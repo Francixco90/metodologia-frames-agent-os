@@ -1,0 +1,17 @@
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+work/private/**
+!work/private/.gitkeep
+projects/**/remotion/renders/*.mp4
+projects/**/remotion/renders/*.mov
+projects/**/remotion/renders/*.webm
+projects/**/remotion/review-shots/*.png
+receipts/**/raw-logs/
+

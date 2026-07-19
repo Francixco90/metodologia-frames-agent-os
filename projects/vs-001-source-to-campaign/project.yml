@@ -1,0 +1,19 @@
+schema_version: 1
+project_id: vs-001-source-to-campaign
+title: "De una fuente first-party a campaña Web + Motion"
+state: INGESTED
+source_snapshot_id: synthetic-vs-001-v1
+claims_ledger: projects/vs-001-source-to-campaign/claims-ledger.yml
+work_products:
+  - id: vs-001-web
+    kind: web
+    state: DEFINED
+  - id: vs-001-remotion
+    kind: video
+    state: DEFINED
+approvals: []
+coverage_gaps:
+  - "Los cuatro textos canónicos del programa no están disponibles."
+  - "H01 aún no ha aprobado el slice."
+  - "La publicación no está autorizada."
+

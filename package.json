@@ -1,0 +1,63 @@
+{
+  "name": "metodologia-instagram-agent-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OS agéntico creativo source-first y fail-closed para MetodologIA.",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22.23.1 <25",
+    "pnpm": "11.9.0"
+  },
+  "toolchain": {
+    "node": "22.23.1",
+    "pnpm": "11.9.0",
+    "remotion": "4.0.494",
+    "ffmpeg": "8.1.1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:contract": "vitest run tests/contract",
+    "test:integration": "vitest run tests/integration",
+    "check:dag": "node --import tsx scripts/check-dag.ts",
+    "check:ownership": "node --import tsx scripts/check-ownership.ts",
+    "check:sources": "node --import tsx scripts/check-sources.ts",
+    "check:claims": "node --import tsx scripts/check-claims.ts",
+    "check:privacy": "node --import tsx scripts/check-privacy.ts",
+    "check:determinism": "node --import tsx scripts/check-determinism.ts",
+    "check:repo": "node --import tsx scripts/check-repo.ts",
+    "web:build": "node --import tsx workflows/web/build.ts",
+    "slice:build": "node --import tsx scripts/build-vertical-slice.ts",
+    "render:smoke": "remotion render renderers/remotion/src/index.ts MethodologiaVertical projects/vs-001-source-to-campaign/remotion/renders/vs-001-smoke.mp4 --props=projects/vs-001-source-to-campaign/remotion/05-input-props.json --frames=0-89 --log=verbose",
+    "render:full": "remotion render renderers/remotion/src/index.ts MethodologiaVertical projects/vs-001-source-to-campaign/remotion/renders/vs-001.mp4 --props=projects/vs-001-source-to-campaign/remotion/05-input-props.json --log=verbose",
+    "verify": "pnpm check:repo && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+  },
+  "dependencies": {
+    "@remotion/zod-types": "4.0.494",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.494",
+    "yaml": "2.9.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@remotion/bundler": "4.0.494",
+    "@remotion/cli": "4.0.494",
+    "@remotion/renderer": "4.0.494",
+    "@types/node": "26.1.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.7.0",
+    "prettier": "3.9.5",
+    "tsx": "4.23.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.64.0",
+    "vitest": "4.1.10"
+  }
+}

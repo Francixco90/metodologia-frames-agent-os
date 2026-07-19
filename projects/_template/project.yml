@@ -1,0 +1,9 @@
+schema_version: 1
+project_id: replace-me
+state: INGESTED
+source_snapshot_id: null
+claims_ledger: null
+work_products: []
+approvals: []
+coverage_gaps: []
+

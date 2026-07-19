@@ -1,0 +1,98 @@
+version: 1
+policy: one-writer-per-path
+writers:
+  lead:
+    - README.md
+    - AGENTS.md
+    - CONTRIBUTING.md
+    - SECURITY.md
+    - docs/**
+    - registries/projects/**
+    - projects/_template/**
+    - projects/vs-001-source-to-campaign/project.yml
+  repo:
+    - package.json
+    - pnpm-lock.yaml
+    - pnpm-workspace.yaml
+    - tsconfig.json
+    - eslint.config.js
+    - .prettierrc.json
+    - .gitignore
+    - .nvmrc
+    - .npmrc
+    - .github/**
+    - scripts/**
+  sources:
+    - inbox/**
+    - adapters/notebooklm/**
+    - registries/sources/**
+    - registries/notebooks/**
+    - registries/claims/**
+    - receipts/imports/**
+    - projects/vs-001-source-to-campaign/source-bundle.yml
+    - projects/vs-001-source-to-campaign/claims-ledger.yml
+  core:
+    - core/**
+    - workflows/core/**
+    - tests/unit/core/**
+  agents-committee:
+    - agents/RT-0[1-9]/**
+    - agents/RT-10/**
+    - committees/**
+    - approvals/schemas/**
+    - receipts/schemas/**
+    - tests/unit/committee/**
+  skill-foundry:
+    - skills/**
+    - registries/skills/**
+  web:
+    - networks/web/**
+    - workflows/web/**
+    - projects/vs-001-source-to-campaign/web/**
+  content:
+    - networks/content/**
+    - workflows/content/**
+    - projects/vs-001-source-to-campaign/content/**
+    - projects/vs-001-source-to-campaign/remotion/00-brief.yml
+    - projects/vs-001-source-to-campaign/remotion/01-source-script.md
+    - projects/vs-001-source-to-campaign/remotion/02-beat-map.yml
+    - projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md
+    - projects/vs-001-source-to-campaign/remotion/captions.json
+  remotion:
+    - renderers/remotion/**
+    - registries/components/**
+    - receipts/renders/**
+    - projects/vs-001-source-to-campaign/remotion/src/**
+    - projects/vs-001-source-to-campaign/remotion/04-component-registry.yml
+    - projects/vs-001-source-to-campaign/remotion/05-input-props.json
+    - projects/vs-001-source-to-campaign/remotion/assets-manifest.yml
+    - projects/vs-001-source-to-campaign/remotion/06-render-manifest.yml
+    - projects/vs-001-source-to-campaign/remotion/07-postproduction-ledger.md
+    - projects/vs-001-source-to-campaign/remotion/receipts/**
+    - tests/unit/remotion/**
+  n8n:
+    - adapters/n8n/**
+    - workflows/adapters/**
+    - tests/unit/n8n/**
+    - receipts/releases/**
+  qa:
+    - tests/contract/**
+    - tests/integration/**
+    - tests/e2e/**
+    - tests/negative/**
+    - tests/visual/**
+    - tests/fixtures/**
+    - quality/reports/**
+  governance:
+    - governance/**
+    - quality/reviews/rights-accessibility-security/**
+  guardian:
+    - agents/RT-11/**
+    - guardian/**
+    - projects/vs-001-source-to-campaign/guardian/**
+non_writers:
+  human_approver:
+    actor_id: H01
+  guardian:
+    may_remediate: false
+

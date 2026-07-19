@@ -1,0 +1,72 @@
+version: 1
+program_id: metodologia-instagram-agent-os
+packages:
+  A00:
+    owner: lead
+    depends_on: []
+    gate: G00
+  A01:
+    owner: repo
+    depends_on: [A00]
+    gate: G04
+  A02a:
+    owner: sources
+    depends_on: [A01]
+    gate: G02_PRECLEAR
+  A09a:
+    owner: governance
+    depends_on: [A02a]
+    gate: G03_PRECLEAR
+  A02b:
+    owner: sources
+    depends_on: [A09a]
+    gate: G02
+  A03:
+    owner: core
+    depends_on: [A01]
+    gate: G08
+  A04:
+    owner: agents-committee
+    depends_on: [A03]
+    gate: G10
+  A05:
+    owner: skill-foundry
+    depends_on: [A02b, A03, A09a]
+    gate: G07
+  A06:
+    owner: web
+    depends_on: [A02b, A03, A04, A05]
+    gate: G09_WEB
+  A07:
+    owner: content
+    depends_on: [A02b, A03, A04, A05]
+    gate: G09_CONTENT
+  A08:
+    owner: remotion
+    depends_on: [A03, A05, A07]
+    gate: G12
+  A10a:
+    owner: qa
+    depends_on: [A03, A04, A05]
+    gate: G08_CONTRACTS
+  A11:
+    owner: n8n
+    depends_on: [A03, A06, A08]
+    gate: G11
+  A10b:
+    owner: qa
+    depends_on: [A06, A08, A10a, A11]
+    gate: G12_QA
+  A09b:
+    owner: governance
+    depends_on: [A05, A06, A07, A08, A10b, A11]
+    gate: G13
+  A12:
+    owner: guardian
+    depends_on: [A09b, A10b]
+    gate: G14
+release:
+  human_gate: G15
+  readiness_gate: G16
+  publish_gate: G17
+
