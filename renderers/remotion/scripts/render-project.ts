@@ -5,7 +5,7 @@ import {resolve} from 'node:path';
 import YAML from 'yaml';
 
 import {
-  type ValidationCommandResult,
+  validationTestReportSchema,
   verifyValidationCommandEvidenceBinding,
 } from '../src/validation-evidence.ts';
 
@@ -19,12 +19,9 @@ const shotsRoot = `${projectRelative}/review-shots`;
 const validationReportPath = `${projectRelative}/receipts/test-report.json`;
 const sha256 = (value: Uint8Array | string): string =>
   createHash('sha256').update(value).digest('hex');
-const validationReport = JSON.parse(readFileSync(resolve(root, validationReportPath), 'utf8')) as {
-  status: 'PASS' | 'FAIL';
-  technical_validation_state: string;
-  source_files: Array<{path: string; sha256: string}>;
-  commands: ValidationCommandResult[];
-};
+const validationReport = validationTestReportSchema.parse(
+  JSON.parse(readFileSync(resolve(root, validationReportPath), 'utf8')),
+);
 if (
   validationReport.status !== 'PASS' ||
   validationReport.technical_validation_state !== 'BUILD_VALIDATED'

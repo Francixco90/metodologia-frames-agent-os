@@ -8,14 +8,19 @@ import {
   buildValidationCommandEvidence,
   serializeValidationCommandEvidence,
   validationCommandResultSchema,
+  validationTestReportSchema,
 } from '../src/validation-evidence.ts';
 
 interface CommandResult {
   readonly command: string;
   readonly status: 'PASS' | 'FAIL';
   readonly exitCode: number | null;
-  readonly stdoutSha256: string;
-  readonly stderrSha256: string;
+  readonly normalizationProfile: 'portable-command-output-v1';
+  readonly semanticOutputKind: 'portable-text' | 'vitest-summary' | 'remotion-version-alignment';
+  readonly stdoutSemanticSha256: string;
+  readonly stderrSemanticSha256: string;
+  readonly stdoutSemanticBytes: number;
+  readonly stderrSemanticBytes: number;
   readonly evidenceId: string;
   readonly evidenceRef: string;
   readonly evidenceSha256: string;
@@ -149,6 +154,7 @@ const commandResults: CommandResult[] = commands.map(({id, executable, args}) =>
     exitCode: result.status,
     stdout,
     stderr,
+    repositoryRoot: root,
   });
   const evidenceId = evidence.evidenceId;
   const evidenceRef = `${evidenceRootRelative}/${id}.json`;
@@ -158,8 +164,12 @@ const commandResults: CommandResult[] = commands.map(({id, executable, args}) =>
     command,
     status,
     exitCode: result.status,
-    stdoutSha256: sha256(stdout),
-    stderrSha256: sha256(stderr),
+    normalizationProfile: evidence.normalizationProfile,
+    semanticOutputKind: evidence.semanticOutputKind,
+    stdoutSemanticSha256: evidence.stdoutSemanticSha256,
+    stderrSemanticSha256: evidence.stderrSemanticSha256,
+    stdoutSemanticBytes: evidence.semanticSummary.stdoutSemanticBytes,
+    stderrSemanticBytes: evidence.semanticSummary.stderrSemanticBytes,
     evidenceId,
     evidenceRef,
     evidenceSha256: sha256(evidenceText),
@@ -167,8 +177,9 @@ const commandResults: CommandResult[] = commands.map(({id, executable, args}) =>
 });
 
 const passed = commandResults.every(({status}) => status === 'PASS');
-const report = {
-  schema_version: 1,
+const report = validationTestReportSchema.parse({
+  schema_version: 2,
+  report_contract: 'validation-test-report-v2',
   report_id: 'TEST-REPORT-REMOTION-VS001-001',
   project_id: 'vs-001-source-to-campaign',
   governed_workflow_state: 'BLOCKED_BEFORE_SOURCE_LOCK',
@@ -179,7 +190,7 @@ const report = {
   commands: commandResults,
   status: passed ? 'PASS' : 'FAIL',
   created_at: '2026-07-19T12:00:00.000Z',
-};
+});
 writeText(
   receiptRelative,
   await format(JSON.stringify(report), {...prettierConfig, parser: 'json'}),

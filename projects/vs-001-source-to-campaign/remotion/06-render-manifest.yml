@@ -21,7 +21,7 @@ audio:
     - video
   normalized_audio_digest: null
   mode: silent-first
-input_set_sha256: 63f5add24c46b289c8839e8a8c87bca3d255cbd698c77ad929868c292c258df9
+input_set_sha256: c77bfb6ea6b09099c0f0e5ae7aebbb5b91018bf891c55a70be39c69a8e9167d0
 inputs:
   - path: projects/vs-001-source-to-campaign/remotion/05-input-props.json
     sha256: a7dc373984871e35927b62ca16315d5cf7ed13d8cfefe75dc2e1a86534ff4127
@@ -30,7 +30,7 @@ inputs:
   - path: projects/vs-001-source-to-campaign/remotion/04-component-registry.yml
     sha256: 6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2
   - path: projects/vs-001-source-to-campaign/remotion/receipts/test-report.json
-    sha256: bf7f62b6abc8af0950eb3d4876f2d58c03a483998baaa158e22a1d5482669510
+    sha256: ee01cbf1195715a64436be827f57074753e04bf5574e9464877f210a07cd91ea
   - path: pnpm-lock.yaml
     sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
 outputs:

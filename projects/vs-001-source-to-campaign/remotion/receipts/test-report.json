@@ -1,11 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "report_contract": "validation-test-report-v2",
   "report_id": "TEST-REPORT-REMOTION-VS001-001",
   "project_id": "vs-001-source-to-campaign",
   "governed_workflow_state": "BLOCKED_BEFORE_SOURCE_LOCK",
   "technical_validation_state": "BUILD_VALIDATED",
   "state_effect": "NONE_ON_GOVERNED_WORKFLOW",
-  "source_set_sha256": "c5f10cacf91721e0ad2abcaeb6c5f33bba12ca81cb7380faf33542b4d7bb4c22",
+  "source_set_sha256": "01071fbbbb9d4880366b73a3753e584dcfd43efa96b1535727bbc9e5f55c51ae",
   "source_files": [
     {
       "path": "networks/content/src/document-contracts.ts",
@@ -89,7 +90,7 @@
     },
     {
       "path": "renderers/remotion/scripts/inspect-renders.ts",
-      "sha256": "a18689614e180567ca818ce66b10c6ad3722c093e3ba154db678f2e6062a9a39"
+      "sha256": "9c723ccf416019e0da02d974b10fe2cbfb0da4d66f7d3939a54ccfcb29a8fe7b"
     },
     {
       "path": "renderers/remotion/scripts/prepare-project.ts",
@@ -97,11 +98,11 @@
     },
     {
       "path": "renderers/remotion/scripts/render-project.ts",
-      "sha256": "32d5ccf1dd0f9106dffcab2c5990d1776028f13daa50ac1047656240909f9925"
+      "sha256": "9ee1e271527a36599a050505c4b0d0dfcbe74332565b60dbab456bfbbe2d05e0"
     },
     {
       "path": "renderers/remotion/scripts/validate-project.ts",
-      "sha256": "eb99983b056f81c8a24563853fd2eb7772839ce9dff70cabd28ba3b72e783c01"
+      "sha256": "c21fdeb40c5f69adc709d2922021537c39de4dc8bfc11c827960c9ec05e42d77"
     },
     {
       "path": "renderers/remotion/src/Root.tsx",
@@ -201,7 +202,7 @@
     },
     {
       "path": "renderers/remotion/src/validation-evidence.ts",
-      "sha256": "7cfad6575858409d24fb5303768aa6801b94b00662734231c14b31e769e6b121"
+      "sha256": "2c857522ae16be0cd99869b3e54dbdbb42ad6e0b1a6135421e3f15610febd045"
     },
     {
       "path": "tests/unit/remotion/contracts.test.ts",
@@ -233,7 +234,7 @@
     },
     {
       "path": "tests/unit/remotion/validation-evidence.test.ts",
-      "sha256": "2da51891b83e3f0eb0b24d04eae3a7fd955369c26e7c43dbe046d856c5ffa3e6"
+      "sha256": "55406610874e71cd010222635f3feecfc270000a282cbd51b6098d2cf3e5d39a"
     },
     {
       "path": "workflows/content/build.ts",
@@ -249,51 +250,71 @@
       "command": "pnpm typecheck",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSemanticSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
+      "stdoutSemanticBytes": 0,
+      "stderrSemanticBytes": 32,
       "evidenceId": "EVD-REMOTION-VS001-TYPECHECK",
       "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json",
-      "evidenceSha256": "9d0a4adf3f5c29ad6df5ab5846ce84628fabd44190efa424f1803b804c5465bc"
+      "evidenceSha256": "bbc8ee81ade1ca0ed00b32e4b494b344f1dcb29f69f960f8ecf3a6ff2cfa6aa8"
     },
     {
       "command": "pnpm exec eslint networks/content workflows/content renderers/remotion projects/vs-001-source-to-campaign/remotion/src tests/unit/remotion",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 0,
+      "stderrSemanticBytes": 0,
       "evidenceId": "EVD-REMOTION-VS001-LINT-A07-A08",
       "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08.json",
-      "evidenceSha256": "6f3b5bbe4cef3d721c67a27070a669e4cca57bb151d386ae3809bbfce6c53a2e"
+      "evidenceSha256": "babbc581c76db94c6ffec9792fe2dd60d5ee098e2f8d33af573588a5b7534d6c"
     },
     {
       "command": "pnpm exec vitest run tests/unit/remotion",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "48251796b69258639bec112c4d396dfea0a09b1411dea30f3b0f37ff81a2ee7a",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "vitest-summary",
+      "stdoutSemanticSha256": "841be33ebc9a9e6c7e989a3996dc7fedab35a06668ebd55a924f58e19dfdad37",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 88,
+      "stderrSemanticBytes": 0,
       "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08",
       "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08.json",
-      "evidenceSha256": "1beddc5aa2bf0eb897760b200073e8289bdf219810bb77f8c66b1eae24ef136d"
+      "evidenceSha256": "bd6750dc958dffab6d2cbad11c3e97f39ec957baf8fc38a2bcce2dc0de17069f"
     },
     {
       "command": "pnpm check:determinism",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
-      "stderrSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
+      "stderrSemanticSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
+      "stdoutSemanticBytes": 88,
+      "stderrSemanticBytes": 49,
       "evidenceId": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
       "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy.json",
-      "evidenceSha256": "da5db14f2da6f33ce6d08a74e2dfd3533cc6c1abda6c70e19f369918ac585471"
+      "evidenceSha256": "08ef17f91dcf1e8d695b1c9c95de6006d3eb3381c1676057e36ded71f28faa1c"
     },
     {
       "command": "pnpm exec remotion versions --log=verbose",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "2a719ee357c0215714cfec928361dd01fe804913dc0514c700bcb4a6055553ea",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "remotion-version-alignment",
+      "stdoutSemanticSha256": "9d31aed9f7347cfd44bc1f4ef39ac41d9c12855307c0d3b4d9c36b436ce7c4c0",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 53,
+      "stderrSemanticBytes": 0,
       "evidenceId": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT",
       "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment.json",
-      "evidenceSha256": "29318d24db28b2e60fd5f8964b83a15ef82da4bd2ad66ea1828f430e0709f66e"
+      "evidenceSha256": "aa4f543104f516dae087b1694456942866413014d8de26bbf3f3dc3ab72ad5b4"
     }
   ],
   "status": "PASS",

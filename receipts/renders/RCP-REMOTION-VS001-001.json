@@ -1,7 +1,7 @@
 {
   "schemaVersion": "render-receipt-v1",
   "receiptId": "RCP-REMOTION-VS001-001",
-  "idempotencyKey": "remotion-vs001-63f5add24c46b289c8839e8a8c87bca3",
+  "idempotencyKey": "remotion-vs001-c77bfb6ea6b09099c0f0e5ae7aebbb5b",
   "artifactId": "REMOTION-VS001",
   "artifactHash": "b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010",
   "compositionId": "MethodologiaVertical",

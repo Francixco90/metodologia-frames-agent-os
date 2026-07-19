@@ -9,7 +9,7 @@ import YAML from 'yaml';
 import {RenderReceiptSchema} from '../../../core/contracts/index.ts';
 import {methodologiaVerticalPropsSchema} from '../src/schema.ts';
 import {
-  type ValidationCommandResult,
+  validationTestReportSchema,
   verifyValidationCommandEvidenceBinding,
 } from '../src/validation-evidence.ts';
 
@@ -28,14 +28,6 @@ interface ProbeStream {
 interface ProbeResult {
   readonly streams: readonly ProbeStream[];
   readonly format?: {readonly duration?: string; readonly size?: string};
-}
-
-interface TestReport {
-  readonly status: 'PASS' | 'FAIL';
-  readonly technical_validation_state: string;
-  readonly source_set_sha256: string;
-  readonly source_files: ReadonlyArray<{path: string; sha256: string}>;
-  readonly commands: readonly ValidationCommandResult[];
 }
 
 const root = process.cwd();
@@ -75,9 +67,9 @@ if (expectedDuration === undefined) {
   throw new Error('Cannot inspect a render without a derived duration.');
 }
 
-const testReport = JSON.parse(
-  readFileSync(resolve(root, testReportRelative), 'utf8'),
-) as TestReport;
+const testReport = validationTestReportSchema.parse(
+  JSON.parse(readFileSync(resolve(root, testReportRelative), 'utf8')),
+);
 if (testReport.status !== 'PASS' || testReport.technical_validation_state !== 'BUILD_VALIDATED') {
   throw new Error('Render inspection requires a passing BUILD_VALIDATED test report.');
 }

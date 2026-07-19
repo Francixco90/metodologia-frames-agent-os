@@ -8,58 +8,161 @@ import {
   verifyValidationCommandEvidenceBinding,
 } from '../../../renderers/remotion/src/validation-evidence.ts';
 
+const repoA = ['', 'Users', 'operator', 'checkout-a'].join('/');
+const repoB = ['', 'home', 'runner', 'work', 'checkout-b'].join('/');
+const vitestCommand = 'pnpm exec vitest run tests/unit/remotion';
+const remotionVersionsCommand = 'pnpm exec remotion versions --log=verbose';
+
+const vitestOutput = (root: string, start: string, duration: string): string => `
+ RUN  v4.1.10 ${root}
+
+ Test Files  8 passed (8)
+      Tests  63 passed (63)
+   Start at  ${start}
+   Duration  ${duration} (transform 301ms, setup 0ms, import 546ms, tests 107ms)
+`;
+
+const remotionVersionsOutput = (root: string, optionalPackages: readonly string[]): string => `
+Remotion root directory: ${root}
+No config file loaded.
+
+On version: 4.0.494
+${optionalPackages.map((name) => `- ${name}\n  ${root}/node_modules/${name}/package.json`).join('\n')}
+
+All packages have the correct version.
+Cleaning up...
+`;
+
+const passingStdoutFor = (command: string, root: string): string => {
+  if (command === vitestCommand) return vitestOutput(root, '23:20:17', '256ms');
+  if (command === remotionVersionsCommand) {
+    return remotionVersionsOutput(root, ['@remotion/cli', '@remotion/renderer', 'remotion']);
+  }
+  return '';
+};
+
+const buildPassingEvidence = (command: string, repositoryRoot = repoA) =>
+  buildValidationCommandEvidence({
+    id: 'portable-command',
+    command,
+    status: 'PASS',
+    exitCode: 0,
+    stdout: passingStdoutFor(command, repositoryRoot),
+    stderr: '',
+    repositoryRoot,
+  });
+
 describe('portable Remotion validation evidence', () => {
   it.each([
     'pnpm typecheck',
     'pnpm check:determinism',
-    'pnpm exec remotion versions --log=verbose',
+    remotionVersionsCommand,
     'pnpm exec eslint renderers/remotion tests/unit/remotion',
-    'pnpm exec vitest run tests/unit/remotion',
+    vitestCommand,
   ])('accepts the portable governed command: %s', (command) => {
-    expect(() =>
-      buildValidationCommandEvidence({
-        id: 'portable-command',
-        command,
-        status: 'PASS',
-        exitCode: 0,
-        stdout: '',
-        stderr: '',
-      }),
-    ).not.toThrow();
+    expect(() => buildPassingEvidence(command)).not.toThrow();
   });
 
-  it('persists only command identity, outcome, byte counts and output digests', () => {
-    const privateOutput = ['/', 'Users', 'private-operator', 'workspace'].join('/');
-    const evidence = buildValidationCommandEvidence({
-      id: 'remotion-version-alignment',
-      command: 'pnpm exec remotion versions --log=verbose',
+  it('produces byte-identical Vitest evidence across roots, clocks and timings', () => {
+    const first = buildValidationCommandEvidence({
+      id: 'unit-a07-a08',
+      command: vitestCommand,
       status: 'PASS',
       exitCode: 0,
-      stdout: `Remotion root directory: ${privateOutput}`,
+      stdout: vitestOutput(repoA, '23:18:14', '250ms'),
       stderr: '',
+      repositoryRoot: repoA,
     });
+    const second = buildValidationCommandEvidence({
+      id: 'unit-a07-a08',
+      command: vitestCommand,
+      status: 'PASS',
+      exitCode: 0,
+      stdout: vitestOutput(repoB, '01:02:03', '999ms'),
+      stderr: '',
+      repositoryRoot: repoB,
+    });
+
+    expect(serializeValidationCommandEvidence(first)).toBe(
+      serializeValidationCommandEvidence(second),
+    );
+    expect(first.semanticOutputKind).toBe('vitest-summary');
+  });
+
+  it('produces byte-identical Remotion evidence across roots and optional package inventories', () => {
+    const first = buildValidationCommandEvidence({
+      id: 'remotion-version-alignment',
+      command: remotionVersionsCommand,
+      status: 'PASS',
+      exitCode: 0,
+      stdout: remotionVersionsOutput(repoA, [
+        '@remotion/cli',
+        '@remotion/renderer',
+        '@remotion/compositor-linux-x64-gnu',
+        'remotion',
+      ]),
+      stderr: '',
+      repositoryRoot: repoA,
+    });
+    const second = buildValidationCommandEvidence({
+      id: 'remotion-version-alignment',
+      command: remotionVersionsCommand,
+      status: 'PASS',
+      exitCode: 0,
+      stdout: remotionVersionsOutput(repoB, ['@remotion/cli', '@remotion/renderer', 'remotion']),
+      stderr: '',
+      repositoryRoot: repoB,
+    });
+
+    expect(serializeValidationCommandEvidence(first)).toBe(
+      serializeValidationCommandEvidence(second),
+    );
+    expect(first.semanticOutputKind).toBe('remotion-version-alignment');
+  });
+
+  it('persists semantic digests, not raw output or private locators', () => {
+    const evidence = buildPassingEvidence(remotionVersionsCommand, repoA);
     const serialized = serializeValidationCommandEvidence(evidence);
 
-    expect(serialized).not.toContain(privateOutput);
-    expect(serialized).not.toContain('.log');
-    expect(evidence.stdoutSha256).toMatch(/^[a-f0-9]{64}$/u);
-    expect(evidence.sanitizedSummary).toMatchObject({
+    expect(serialized).not.toContain(repoA);
+    expect(serialized).not.toContain('stdoutSha256');
+    expect(serialized).not.toContain('stdoutBytes');
+    expect(evidence.stdoutSemanticSha256).toMatch(/^[a-f0-9]{64}$/u);
+    expect(evidence.normalizationProfile).toBe('portable-command-output-v1');
+    expect(evidence.semanticSummary).toMatchObject({
       rawOutputPersistedInVersionableEvidence: false,
       absolutePathsPersisted: false,
       privateDiagnosticLogPolicy: 'ignored_not_referenced',
     });
   });
 
-  it('rejects legacy logRef fields from versionable command evidence', () => {
-    const evidence = buildValidationCommandEvidence({
-      id: 'typecheck',
-      command: 'pnpm typecheck',
-      status: 'PASS',
-      exitCode: 0,
-      stdout: '',
-      stderr: '',
-    });
+  it.each([
+    'On version: 4.0.494\n',
+    'All packages have the correct version.\n',
+    'On version: 4.0.493\nOn version: 4.0.494\nAll packages have the correct version.\n',
+  ])('fails closed when Remotion alignment facts are incomplete or ambiguous', (stdout) => {
+    expect(() =>
+      buildValidationCommandEvidence({
+        id: 'remotion-version-alignment',
+        command: remotionVersionsCommand,
+        status: 'PASS',
+        exitCode: 0,
+        stdout,
+        stderr: '',
+        repositoryRoot: repoA,
+      }),
+    ).toThrow(/Remotion version evidence/u);
+  });
 
+  it('rejects legacy raw-output and logRef fields from versionable evidence', () => {
+    const evidence = buildPassingEvidence('pnpm typecheck');
+
+    expect(() =>
+      validationCommandEvidenceSchema.parse({
+        ...evidence,
+        stdoutSha256: '0'.repeat(64),
+      }),
+    ).toThrow();
     expect(() =>
       validationCommandEvidenceSchema.parse({
         ...evidence,
@@ -69,21 +172,18 @@ describe('portable Remotion validation evidence', () => {
   });
 
   it('fails closed when a versionable evidence digest or field drifts', () => {
-    const evidence = buildValidationCommandEvidence({
-      id: 'typecheck',
-      command: 'pnpm typecheck',
-      status: 'PASS',
-      exitCode: 0,
-      stdout: '',
-      stderr: '',
-    });
+    const evidence = buildPassingEvidence('pnpm typecheck');
     const evidenceText = serializeValidationCommandEvidence(evidence);
     const result = validationCommandResultSchema.parse({
       command: evidence.command,
       status: evidence.status,
       exitCode: evidence.exitCode,
-      stdoutSha256: evidence.stdoutSha256,
-      stderrSha256: evidence.stderrSha256,
+      normalizationProfile: evidence.normalizationProfile,
+      semanticOutputKind: evidence.semanticOutputKind,
+      stdoutSemanticSha256: evidence.stdoutSemanticSha256,
+      stderrSemanticSha256: evidence.stderrSemanticSha256,
+      stdoutSemanticBytes: evidence.semanticSummary.stdoutSemanticBytes,
+      stderrSemanticBytes: evidence.semanticSummary.stderrSemanticBytes,
       evidenceId: evidence.evidenceId,
       evidenceRef:
         'projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json',
@@ -136,6 +236,7 @@ describe('portable Remotion validation evidence', () => {
         exitCode: 0,
         stdout: '',
         stderr: '',
+        repositoryRoot: repoA,
       }),
     ).toThrow(/absolute or private locators/u);
   });
