@@ -1,0 +1,18 @@
+{
+  "requestId": "RND-NEGATIVE-002",
+  "status": "READY",
+  "artifactId": "ART-RND-NEGATIVE-002",
+  "portableMediaPath": "projects/vs-001-source-to-campaign/remotion/renders/invalid.mp4",
+  "fileSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "normalizedFrameDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "normalizedAudioDigest": null,
+  "profile": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 90
+  },
+  "humanReview": "pending",
+  "runtimeLicenseStatus": "unresolved",
+  "coverageGaps": ["runtime_commercial_license_unresolved"]
+}

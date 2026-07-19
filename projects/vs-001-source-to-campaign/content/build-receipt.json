@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "RCP-CONTENT-VS001-001",
+  "artifactId": "REMOTION-VS001",
+  "producerActorId": "A07-content",
+  "sourceSnapshotId": "synthetic-vs-001-v1",
+  "sourceNormalizedSha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb",
+  "creativeDecision": {
+    "proposalId": "PROP-VS001-02-RT04",
+    "synthesisId": "SYNTHESIS-VS001-MOTION-01",
+    "incorporatedElementCount": 4
+  },
+  "timing": {
+    "method": "caption-words-reading-hold-playback-margin-and-transition-overlap",
+    "fps": 30,
+    "durationInFrames": 1231,
+    "durationSeconds": 41.033,
+    "fixed36SecondDefault": false
+  },
+  "inputs": [
+    {
+      "path": "projects/vs-001-source-to-campaign/content/campaign-copy.json",
+      "sha256": "1bef0f275b419b1286c60a6862613f5d9a842376cc47b12dffc36f74af71d4bc"
+    },
+    {
+      "path": "registries/sources/source-registry.yml",
+      "sha256": "3bf54d11abcba1b2bb3f9dd33a9acc1d34ae64c4f0424f39b6e1c1b481257797"
+    },
+    {
+      "path": "registries/claims/claim-registry.yml",
+      "sha256": "47d4a7eb433814cccb69c1b34d6354605c7f6099671d75a963f3501593841d31"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/source-bundle.yml",
+      "sha256": "87b3a3bb3cf5be7bbd0620b0c8a9779257d690f195311a7bf88809094b518976"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/committee/committee-decision.json",
+      "sha256": "2ffcac1332a2247be2c63546df05291350ca56955a48ebfd2c5f18e58e7f90f7"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/00-source-script.md",
+      "sha256": "63f6d695aa4270237e242663130ff01b6865ddaa9abef180783c93b4854af3df"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/01-video-spec.yml",
+      "sha256": "25ab88db974a5654233008f83dddcbd19f3d78202f761f9d63f934f8ac90469b"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/02-beat-map.yml",
+      "sha256": "aff84eebb270ca715f6063af0f5ba613abbbc69a3e0711fa6c9890ec2c140794"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md",
+      "sha256": "d33764636863b69f151fb12a08366e357e183bf39ec3e9460fd0d8d613a3b7be"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/captions.json",
+      "sha256": "a07ff2e97eb471e97b8a74a9bcdf811ba143896fbc2244b1b55026ac5ec019cf"
+    }
+  ],
+  "status": "RENDERED_DRAFT",
+  "scope": "LOCAL TEST ONLY",
+  "publishAuthorized": false,
+  "coverageGaps": [
+    "four_canonical_texts_missing_0_of_4",
+    "audio_rights_receipt_absent_silent_first",
+    "cross_host_chromium_pixel_equivalence_unverified",
+    "font_binary_origin_version_unresolved",
+    "authoritative_linux_network_namespace_offline_render_unexecuted",
+    "remotion_commercial_license_eligibility_unresolved",
+    "guardian_and_human_approval_absent",
+    "external_distribution_not_authorized"
+  ],
+  "generatedAt": "2026-07-19T12:00:00.000Z"
+}

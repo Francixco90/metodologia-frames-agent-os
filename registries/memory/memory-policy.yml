@@ -1,0 +1,32 @@
+schema_version: 1
+policy_id: governed-memory-v1
+storage_model: append-only-events
+portable_only: true
+allowed_record_types:
+  - evidence_summary
+  - decision
+  - accepted_learning
+  - coverage_gap
+required_fields:
+  - record_id
+  - artifact_id
+  - actor_id
+  - evidence_hashes
+  - recorded_at
+  - record_type
+forbidden_content:
+  - private_chain_of_thought
+  - secret
+  - pii
+  - private_locator
+  - ungrounded_claim
+promotion_policy:
+  accepted_learning_requires:
+    - verifier_id
+    - guardian_verdict_ref
+    - source_snapshot_id
+  unresolved_material_must_be: coverage_gap
+retention:
+  mutation: append_new_event
+  overwrite: forbidden
+  delete: forbidden

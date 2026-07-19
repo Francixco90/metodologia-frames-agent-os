@@ -69,4 +69,3 @@ release:
   human_gate: G15
   readiness_gate: G16
   publish_gate: G17
-

@@ -1,0 +1,17 @@
+fixture_id: notebook-undeclared-locator-negative
+expected: invalid
+expected_error: NOTEBOOK_BINDING_INVALID
+request:
+  operation: query_grounding
+  binding:
+    mode: digest
+    binding_digest: 7f40def525a5bedda62b03bdb4e39f3f2699d325c36a26c9edc1a3b762094382
+    locator_material_present: false
+    undeclared_locator_material: true
+    coverage:
+      source_count: 1
+      cited_source_count: 1
+      coverage_digest: fccde85870b9614602dea60ff0aec484fc2a1c0e09d3a00293bc953ef645ad34
+      observed_at: '2026-07-19T20:38:02Z'
+  claim_ids:
+    - CLM-FIXTURE-001

@@ -1,0 +1,26 @@
+{
+  "requestId": "RND-FIXTURE-001",
+  "projectId": "vs-001-source-to-campaign",
+  "requestedState": "RENDERED_DRAFT",
+  "sourceSnapshot": {
+    "id": "synthetic-vs-001-v1",
+    "normalizedSha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+  },
+  "claimsLedgerDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "assetsManifestDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "profile": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 90
+  },
+  "props": {
+    "sourceSnapshotId": "synthetic-vs-001-v1"
+  },
+  "runtime": {
+    "remotionVersion": "4.0.494",
+    "zodMajor": 4,
+    "networkAllowed": false,
+    "licenseVerdict": "evaluation_only"
+  }
+}

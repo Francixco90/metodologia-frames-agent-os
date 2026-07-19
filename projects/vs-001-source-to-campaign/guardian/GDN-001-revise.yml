@@ -1,0 +1,132 @@
+schema_version: 1
+review_id: GDN-001
+project_id: vs-001-source-to-campaign
+review_role: guardian_rt_11
+review_date: '2026-07-19'
+verdict: REVISE_LOCAL_CLOSEOUT
+severity_summary:
+  p0: 0
+  p1: 1
+  p2: 0
+independence:
+  production_review_mode: read_only
+  guardian_may_remediate: false
+  written_paths:
+    - guardian/reviews/GDN-001-revise.md
+    - projects/vs-001-source-to-campaign/guardian/GDN-001-revise.yml
+scope:
+  baseline_commit: b32e766
+  snapshot_kind: working_tree_with_post_baseline_implementation
+  technical_evidence_state: RENDER_VALIDATED
+  governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+  state_effect: NONE_ON_GOVERNED_WORKFLOW
+gate_decisions:
+  source_locked: false
+  guardian_pass: false
+  human_approver_id: H01
+  human_approved: false
+  ready: false
+  release_authorized: false
+  published: false
+findings:
+  - finding_id: GDN-001-P1-STATE-DRIFT
+    severity: P1
+    status: OPEN
+    category: state_traceability_drift
+    summary: >-
+      Project registry, project manifest and requirements traceability remain behind the
+      hash-bound RENDER_VALIDATED receipts.
+    observed:
+      - ref: registries/projects/project-registry.yml
+        fields:
+          - entries[0].technical_validation_state=IN_PROGRESS
+          - entries[0].work_products[video].technical_state=IN_PROGRESS
+      - ref: projects/vs-001-source-to-campaign/project.yml
+        fields:
+          - state=INGESTED
+          - work_products[web].state=DEFINED
+          - work_products[video].state=DEFINED
+      - ref: docs/program/requirements-traceability.md
+        fields:
+          - R-023.status=in_progress
+          - R-024.status=in_progress
+          - R-028.status=implemented_pending_final_qa
+    contrary_evidence:
+      - ref: projects/vs-001-source-to-campaign/remotion/06-render-manifest.yml
+        field: technical_validation_state
+        value: RENDER_VALIDATED
+      - ref: projects/vs-001-source-to-campaign/remotion/receipts/render-output.json
+        field: technicalValidationState
+        value: RENDER_VALIDATED
+      - ref: receipts/renders/RCP-REMOTION-VS001-001.json
+        field: status
+        value: succeeded
+        artifact_sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    required_action: >-
+      The authorized Lead writer must reconcile technical states and traceability while preserving
+      BLOCKED_BEFORE_SOURCE_LOCK and every external gate as false, then request Guardian
+      revalidation.
+passes:
+  - id: repository_contracts
+    evidence:
+      - pnpm check:repo
+      - pnpm typecheck
+      - pnpm lint
+      - pnpm test
+      - pnpm format:check
+    result: PASS
+    test_files: 29
+    tests: 241
+  - id: committee
+    command: pnpm committee:validate
+    result: PASS
+    proposals: 5
+    peer_assessments: 20
+  - id: source_claim_privacy
+    result: PASS_FAIL_CLOSED
+    registered_sources: 8
+    canonical_sources_confirmed: 0
+    canonical_sources_expected: 4
+    active_claims: 3
+  - id: web_build_and_visual_smoke
+    result: PASS_TECHNICAL_LOCAL
+    output_sha256: 12c722ba072b71e5da56af10a6837c11890a13d17d6c3fee510fd51c65d3b7d4
+    viewports:
+      - 1440x1000
+      - 390x844
+  - id: remotion_hash_and_media
+    result: PASS_TECHNICAL_LOCAL
+    artifact_sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+    review_shots: 27
+    bad_shot_hashes: 0
+    minimum_ssim: 0.975161
+    required_ssim: 0.97
+    streams:
+      - video
+  - id: n8n_dry_run
+    result: PASS_FAIL_CLOSED
+    workflow_active: false
+    credentials_present: false
+    network_or_publish_nodes_present: false
+  - id: release_absence
+    result: PASS
+    release_receipt_present: false
+    h01_receipt_present: false
+coverage_gaps:
+  - four_canonical_sources_missing_0_of_4
+  - notebooklm_live_binding_absent
+  - commercial_license_eligibility_unresolved
+  - font_binary_upstream_release_or_commit_unresolved
+  - authoritative_linux_network_namespace_test_pending
+  - cross_host_equivalence_pending
+  - human_playback_pending
+  - guardian_revalidation_pending
+  - h01_approval_absent
+  - external_distribution_not_authorized
+  - dependency_advisory_query_unavailable_due_to_registry_dns
+revalidation_conditions:
+  - reconcile_project_registry_project_manifest_and_requirements
+  - preserve_all_governed_release_gates_as_false
+  - pass_repo_project_format_and_test_checks
+  - provide_writer_scoped_diff_and_updated_hash_evidence

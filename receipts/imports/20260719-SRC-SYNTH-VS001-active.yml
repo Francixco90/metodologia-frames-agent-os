@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-SYNTH-VS001-004
+recorded_at: '2026-07-19T20:38:02Z'
+event_order: 4
+actor_id: sources
+verifier_id: sources-verifier
+package_id: A02b
+source_id: SRC-SYNTH-VS001
+transition:
+  from: evaluated
+  to: active
+hashes:
+  raw_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+  normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+activation_scope: local_contract_testing_only
+decision: activate_fixture_without_publication_authority
+append_only: true

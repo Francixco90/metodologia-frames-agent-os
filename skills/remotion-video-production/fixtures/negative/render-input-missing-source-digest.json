@@ -1,0 +1,23 @@
+{
+  "requestId": "RND-NEGATIVE-001",
+  "projectId": "vs-001-source-to-campaign",
+  "requestedState": "RENDERED_DRAFT",
+  "sourceSnapshot": {
+    "id": "synthetic-vs-001-v1"
+  },
+  "claimsLedgerDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "assetsManifestDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "profile": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationInFrames": 90
+  },
+  "props": {},
+  "runtime": {
+    "remotionVersion": "4.0.494",
+    "zodMajor": 4,
+    "networkAllowed": false,
+    "licenseVerdict": "evaluation_only"
+  }
+}

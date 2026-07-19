@@ -10,4 +10,3 @@
 8. No activar conectores ni publicar; n8n permanece en dry-run.
 9. Producer, verifier y Guardian deben ser distintos.
 10. Cerrar cada paquete con outputs hash-bound, tests, riesgos, gaps y próximo gate.
-

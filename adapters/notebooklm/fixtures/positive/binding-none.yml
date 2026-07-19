@@ -1,0 +1,9 @@
+fixture_id: notebook-binding-none-positive
+expected: valid
+request:
+  operation: resolve_binding_status
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  claim_ids: []

@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "projectId": "vs-001-source-to-campaign",
+  "workProductId": "REMOTION-VS001",
+  "language": "es-CO",
+  "deterministicTimestamp": "2026-07-19T12:00:00.000Z",
+  "creativeDirection": {
+    "proposalId": "PROP-VS001-02-RT04",
+    "title": "Cadena visible",
+    "synthesisId": "SYNTHESIS-VS001-MOTION-01",
+    "incorporatedElements": [
+      "three-question-breadcrumb",
+      "text-shape-pattern-reduced-motion-rights-first",
+      "zero-of-four-claims-hash-custody",
+      "persistent-signal-web-motion-fork"
+    ]
+  },
+  "sourceSnapshot": {
+    "sourceId": "SRC-SYNTH-VS001",
+    "sourceSnapshotId": "synthetic-vs-001-v1",
+    "normalizedSha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb",
+    "allowedUseScope": "local_contract_testing_only"
+  },
+  "requestedState": "RENDERED_DRAFT",
+  "scopeBadge": "LOCAL TEST ONLY",
+  "persistentBadges": ["RENDERED_DRAFT", "LOCAL TEST ONLY"],
+  "videoContract": {
+    "objective": "Explicar de forma verificable cómo una fuente identificada pasa por una decisión, se bifurca en productos coherentes y se detiene ante un gate.",
+    "audience": [
+      "Personas de MetodologIA que revisan el sistema creativo local",
+      "Verifier y Guardian responsables de evidencia audiovisual"
+    ],
+    "narrativeThesis": "Crear no es improvisar: es hacer visible una cadena de fuente, decisión, producto y gate.",
+    "format": "vertical_video",
+    "platform": "local_remotion_review",
+    "centralMetaphor": {
+      "value": "cadena causal visible",
+      "rationale": "La cadena conecta custodia, decisión y límites sin convertir el gap 0/4 en una métrica."
+    },
+    "emotionalVisualArc": ["claridad inicial", "confianza por evidencia", "límite deliberado"],
+    "designSystemRef": "projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md",
+    "componentRegistryRef": "projects/vs-001-source-to-campaign/remotion/04-component-registry.yml",
+    "humanApprovalRequired": true
+  },
+  "profile": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "safeZonePx": 96
+  },
+  "timingPolicy": {
+    "wordsPerMinute": 165,
+    "playbackMargin": 1.15,
+    "captionLeadFrames": 10,
+    "captionTrailFrames": 10,
+    "transitionFrames": 12
+  },
+  "audio": {
+    "mode": "silent-first",
+    "streams": [],
+    "reason": "no-audio-rights-receipt"
+  },
+  "messagesForbidden": [
+    "Afirmaciones de desempeño, alcance o conversión.",
+    "Lectura de 0/4 como KPI o progreso porcentual.",
+    "READY, FINAL, HUMAN_APPROVED o PUBLISHED como estado concedido.",
+    "Cinco propuestas o veinte reviews como métrica de éxito.",
+    "Derechos comerciales o elegibilidad productiva del runtime Remotion."
+  ],
+  "beats": [
+    {
+      "beatId": "B01-apertura",
+      "question": "¿De dónde sale?",
+      "eyebrow": "Cadena visible · 01",
+      "headline": "Crear no es improvisar.",
+      "body": "Es hacer visible qué fuente entra, qué decisión se toma y qué gate sigue.",
+      "caption": "Crear no es improvisar. Es hacer visible una cadena.",
+      "claimIds": ["CLM-VS001-001"],
+      "configRefs": ["CFG-COMMITTEE-DECISION"],
+      "minimumHoldSeconds": 3,
+      "layout": "opening",
+      "visualAction": "La señal causal aparece completa mientras el headline fija la tesis y el breadcrumb activa la primera pregunta.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail",
+        "StatusBadge"
+      ],
+      "mood": "deliberate-opening",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "Estado expresado por texto, forma y patrón",
+        "Caption dentro de safe zone",
+        "Reduced motion conserva estructura y lectura"
+      ]
+    },
+    {
+      "beatId": "B02-fuente",
+      "question": "¿De dónde sale?",
+      "eyebrow": "Fuente",
+      "headline": "Primero, una fuente identificada.",
+      "body": "El snapshot sintético first-party conserva ID, versión y hash antes de proponer una pieza.",
+      "caption": "Primero, una fuente first-party identificada y versionada.",
+      "claimIds": ["CLM-VS001-001"],
+      "configRefs": ["CFG-LOCAL-EVALUATION"],
+      "minimumHoldSeconds": 3.4,
+      "layout": "source",
+      "visualAction": "La etapa Fuente de la cadena se activa y la evidencia secundaria conserva snapshot y alcance local.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail"
+      ],
+      "mood": "source-evidence",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "Orden de lectura de arriba hacia abajo",
+        "Caption sin solapar transición",
+        "Fuente identificada también en texto"
+      ]
+    },
+    {
+      "beatId": "B03-comite",
+      "question": "¿Cómo se decide?",
+      "eyebrow": "Decisión",
+      "headline": "Una decisión material se contrasta.",
+      "body": "Producer, verifier y Guardian son roles distintos. La síntesis seleccionada mantiene la disidencia útil.",
+      "caption": "Después, una decisión material pasa por un comité con roles distintos.",
+      "claimIds": ["CLM-VS001-002"],
+      "configRefs": ["CFG-COMMITTEE-DECISION"],
+      "minimumHoldSeconds": 4,
+      "layout": "committee",
+      "visualAction": "La señal avanza a Comité y contrasta roles distintos sin presentar el conteo de propuestas como desempeño.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail"
+      ],
+      "mood": "committee-contrast",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "Roles descritos en texto",
+        "Contraste principal superior a 7:1",
+        "Reduced motion elimina desplazamiento"
+      ]
+    },
+    {
+      "beatId": "B04-custodia",
+      "question": "¿Cómo se decide?",
+      "eyebrow": "Custodia",
+      "headline": "La señal conserva la evidencia.",
+      "body": "Snapshot, claim IDs y hash permanecen visibles. El corpus canónico sigue en 0/4: es un coverage_gap, no un KPI.",
+      "caption": "Snapshot, claims y hash siguen juntos. Cero de cuatro es un gap, no un KPI.",
+      "claimIds": ["CLM-VS001-001", "CLM-VS001-002"],
+      "configRefs": ["CFG-CANONICAL-CORPUS-GAP"],
+      "minimumHoldSeconds": 5.2,
+      "layout": "custody",
+      "visualAction": "Cuatro celdas muestran snapshot, claims, hash y el gap 0/4 con borde y patrón de límite.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail"
+      ],
+      "mood": "custody-proof",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "0/4 etiquetado como COVERAGE GAP y NO KPI",
+        "Hash visible como texto",
+        "Grid dentro de safe zone"
+      ]
+    },
+    {
+      "beatId": "B05-bifurcacion",
+      "question": "¿Cómo se decide?",
+      "eyebrow": "Producto",
+      "headline": "Un expediente. Dos salidas coherentes.",
+      "body": "La señal se bifurca en Web y Motion sin perder snapshot, claims, estado ni límite.",
+      "caption": "Desde el mismo expediente, Web y Motion se bifurcan sin perder trazabilidad.",
+      "claimIds": ["CLM-VS001-001", "CLM-VS001-003"],
+      "configRefs": ["CFG-COMMITTEE-DECISION"],
+      "minimumHoldSeconds": 4.4,
+      "layout": "fork",
+      "visualAction": "Una ruta first-party se bifurca explícitamente en Web y Motion desde el mismo expediente.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail"
+      ],
+      "mood": "coherent-fork",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "Ramas rotuladas WEB y MOTION",
+        "Color acompañado por geometría",
+        "Caption conserva hold completo"
+      ]
+    },
+    {
+      "beatId": "B06-gate",
+      "question": "¿Hasta dónde llega?",
+      "eyebrow": "Gate",
+      "headline": "El sistema también sabe detenerse.",
+      "body": "Sin derechos, autoridad, hashes y aprobación humana no existe paso legítimo a READY ni PUBLISHED.",
+      "caption": "Sin derechos, autoridad, hashes y aprobación humana, el flujo no avanza a READY ni PUBLISHED.",
+      "claimIds": ["CLM-VS001-003"],
+      "configRefs": ["CFG-LOCAL-EVALUATION"],
+      "minimumHoldSeconds": 5.5,
+      "layout": "gate",
+      "visualAction": "El gate ocupa el plano con borde, trama y texto STOP; la cadena termina sin avanzar a READY.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail",
+        "StatusBadge"
+      ],
+      "mood": "fail-closed-limit",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "STOP comunicado por texto, borde y trama",
+        "Sin destello ni movimiento autónomo",
+        "Caption explica el bloqueo"
+      ]
+    },
+    {
+      "beatId": "B07-cierre",
+      "question": "¿Hasta dónde llega?",
+      "eyebrow": "Límite deliberado",
+      "headline": "Un borrador útil sigue siendo borrador.",
+      "body": "RENDERED_DRAFT y LOCAL TEST ONLY permanecen visibles. El render no concede aprobación ni publicación.",
+      "caption": "RENDERED DRAFT. LOCAL TEST ONLY. El límite también es parte del producto.",
+      "claimIds": ["CLM-VS001-003"],
+      "configRefs": ["CFG-LOCAL-EVALUATION", "CFG-CANONICAL-CORPUS-GAP"],
+      "minimumHoldSeconds": 5,
+      "layout": "closing",
+      "visualAction": "El cierre mantiene badges, gap y STOP hasta el último frame, sin fundido a negro.",
+      "components": [
+        "BeatScene",
+        "Breadcrumb",
+        "CaptionBand",
+        "LayoutGuard",
+        "PersistentChrome",
+        "SignalRail",
+        "StatusBadge"
+      ],
+      "mood": "deliberate-closing",
+      "transition": {
+        "kind": "overlap-opacity-translate-y",
+        "reducedMotion": "opacity-only-with-persistent-layout"
+      },
+      "accessibility": [
+        "Último frame conserva mensaje legible",
+        "Estado visible de forma persistente",
+        "No se concede aprobación implícita"
+      ]
+    }
+  ]
+}

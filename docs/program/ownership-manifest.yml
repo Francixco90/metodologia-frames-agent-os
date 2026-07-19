@@ -8,6 +8,7 @@ writers:
     - SECURITY.md
     - docs/**
     - registries/projects/**
+    - registries/memory/**
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
   repo:
@@ -22,6 +23,8 @@ writers:
     - .npmrc
     - .github/**
     - scripts/**
+    - types/**
+    - receipts/builds/**
   sources:
     - inbox/**
     - adapters/notebooklm/**
@@ -38,10 +41,12 @@ writers:
   agents-committee:
     - agents/RT-0[1-9]/**
     - agents/RT-10/**
+    - agents/RT-11/**
     - committees/**
     - approvals/schemas/**
     - receipts/schemas/**
     - tests/unit/committee/**
+    - projects/vs-001-source-to-campaign/remotion/committee/**
   skill-foundry:
     - skills/**
     - registries/skills/**
@@ -53,8 +58,8 @@ writers:
     - networks/content/**
     - workflows/content/**
     - projects/vs-001-source-to-campaign/content/**
-    - projects/vs-001-source-to-campaign/remotion/00-brief.yml
-    - projects/vs-001-source-to-campaign/remotion/01-source-script.md
+    - projects/vs-001-source-to-campaign/remotion/00-source-script.md
+    - projects/vs-001-source-to-campaign/remotion/01-video-spec.yml
     - projects/vs-001-source-to-campaign/remotion/02-beat-map.yml
     - projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md
     - projects/vs-001-source-to-campaign/remotion/captions.json
@@ -68,6 +73,8 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/assets-manifest.yml
     - projects/vs-001-source-to-campaign/remotion/06-render-manifest.yml
     - projects/vs-001-source-to-campaign/remotion/07-postproduction-ledger.md
+    - projects/vs-001-source-to-campaign/remotion/review-shots/**
+    - projects/vs-001-source-to-campaign/remotion/approvals/**
     - projects/vs-001-source-to-campaign/remotion/receipts/**
     - tests/unit/remotion/**
   n8n:
@@ -83,11 +90,11 @@ writers:
     - tests/visual/**
     - tests/fixtures/**
     - quality/reports/**
+    - quality/reviews/core-committee/**
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**
   guardian:
-    - agents/RT-11/**
     - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
 non_writers:
@@ -95,4 +102,3 @@ non_writers:
     actor_id: H01
   guardian:
     may_remediate: false
-

@@ -1,0 +1,35 @@
+schema_version: 1
+record_id: canonical-source-gaps-v1
+status: coverage_gap
+expected_count: 4
+confirmed_count: 0
+slots:
+  - expected_slot: 1
+    source_id: null
+    title: null
+    raw_sha256: null
+    normalized_sha256: null
+    gap_reason: canonical_text_not_provided
+  - expected_slot: 2
+    source_id: null
+    title: null
+    raw_sha256: null
+    normalized_sha256: null
+    gap_reason: canonical_text_not_provided
+  - expected_slot: 3
+    source_id: null
+    title: null
+    raw_sha256: null
+    normalized_sha256: null
+    gap_reason: canonical_text_not_provided
+  - expected_slot: 4
+    source_id: null
+    title: null
+    raw_sha256: null
+    normalized_sha256: null
+    gap_reason: canonical_text_not_provided
+consequence:
+  source_locked: false
+  may_use_synthetic_fixture: true
+  may_claim_canonical_corpus_ingested: false
+  may_publish: false

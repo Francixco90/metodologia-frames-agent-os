@@ -1,0 +1,33 @@
+schema_version: 1
+evidence_id: EVD-A02-SOURCE-INVENTORY-SUPERSEDING-001
+recorded_at: '2026-07-19T22:35:00Z'
+evidence_class: CODE_CONFIG
+supersedes:
+  evidence_ref: quality/reports/a09-a10-test-evidence.yml
+  evidence_sha256: 3e13a127b8928f6c0b75c1d9cdbd970658718bd90400f4be26759d3e169824f8
+  scope: source_inventory_count_only
+  historical_result: Three source records
+  history_rewritten: false
+current_inventory:
+  registry_ref: registries/sources/source-registry.yml
+  registry_sha256: a3a7f5f166d346800896a22d7488640b8a79dd94faca931b63beb01c0c04aec7
+  registry_id: source-registry-v2
+  registry_schema_version: 2
+  source_count: 8
+  source_ids:
+    - SRC-SYNTH-VS001
+    - SRC-METH-JVC-YT-001
+    - SRC-METH-JVC-SKOOL-001
+    - SRC-PROMPT-MAESTRO-V6
+    - SRC-METH-IMAGE-001
+    - SRC-REMOTION-DOCS-001
+    - SRC-REMOTION-SKILLS-001
+    - SRC-LEGACY-STITCH-REMOTION-001
+validation:
+  command: node skills/remotion-video-production/scripts/check-sources.mjs
+  expected_record_count: 8
+  canonical_expected: 4
+  canonical_confirmed: 0
+  source_locked: false
+  state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED
+append_only: true

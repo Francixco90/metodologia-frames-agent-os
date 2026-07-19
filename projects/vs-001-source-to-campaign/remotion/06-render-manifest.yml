@@ -1,0 +1,351 @@
+schema_version: 1
+manifest_id: RENDER-MANIFEST-VS001-001
+artifact_id: REMOTION-VS001
+composition_id: MethodologiaVertical
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+technical_validation_state: RENDER_VALIDATED
+state_scope: technical_local_only_not_a_governed_transition_receipt
+visible_status: RENDERED_DRAFT
+visible_scope: LOCAL TEST ONLY
+source_snapshot_id: synthetic-vs-001-v1
+source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+profile:
+  width: 1080
+  height: 1920
+  fps: 30
+  durationInFrames: 1231
+audio:
+  expected_streams:
+    - video
+  observed_streams:
+    - video
+  normalized_audio_digest: null
+  mode: silent-first
+input_set_sha256: 63f5add24c46b289c8839e8a8c87bca3d255cbd698c77ad929868c292c258df9
+inputs:
+  - path: projects/vs-001-source-to-campaign/remotion/05-input-props.json
+    sha256: a7dc373984871e35927b62ca16315d5cf7ed13d8cfefe75dc2e1a86534ff4127
+  - path: projects/vs-001-source-to-campaign/remotion/assets-manifest.yml
+    sha256: 54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35
+  - path: projects/vs-001-source-to-campaign/remotion/04-component-registry.yml
+    sha256: 6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2
+  - path: projects/vs-001-source-to-campaign/remotion/receipts/test-report.json
+    sha256: bf7f62b6abc8af0950eb3d4876f2d58c03a483998baaa158e22a1d5482669510
+  - path: pnpm-lock.yaml
+    sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
+outputs:
+  - mode: smoke
+    path: projects/vs-001-source-to-campaign/remotion/receipts/media/vs-001-smoke.mp4
+    sha256: e0c787e31827ff509f1ad2b421a06ef87f326beb67b3d7326ac6844a465a94f9
+    normalized_pixel_digest: b1a31943ba514caf434e4d8c93d5bf2ffcebc14ae5b236ed6508b3f63d354e8a
+    ffprobe:
+      programs: []
+      stream_groups: []
+      streams:
+        - codec_name: h264
+          codec_type: video
+          width: 270
+          height: 480
+          pix_fmt: yuv420p
+          color_range: tv
+          color_space: bt709
+          r_frame_rate: 30/1
+          nb_frames: '90'
+      format:
+        duration: '3.000000'
+        size: '20489'
+  - mode: reviewA
+    path: projects/vs-001-source-to-campaign/remotion/receipts/media/vs-001-review-a.mp4
+    sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+    ffprobe:
+      programs: []
+      stream_groups: []
+      streams:
+        - codec_name: h264
+          codec_type: video
+          width: 1080
+          height: 1920
+          pix_fmt: yuv420p
+          color_range: tv
+          color_space: bt709
+          r_frame_rate: 30/1
+          nb_frames: '1231'
+      format:
+        duration: '41.033333'
+        size: '2399803'
+  - mode: reviewB
+    path: projects/vs-001-source-to-campaign/remotion/receipts/media/vs-001-review-b.mp4
+    sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+    ffprobe:
+      programs: []
+      stream_groups: []
+      streams:
+        - codec_name: h264
+          codec_type: video
+          width: 1080
+          height: 1920
+          pix_fmt: yuv420p
+          color_range: tv
+          color_space: bt709
+          r_frame_rate: 30/1
+          nb_frames: '1231'
+      format:
+        duration: '41.033333'
+        size: '2399803'
+review_shots:
+  - reviewId: ENDPOINT-FIRST
+    phase: first
+    frame: 0
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/00-first-f0.png
+    sha256: 705a5812d69133b354bd0a869730023ccafeb4956a1358e2666b8d62f0ccaa31
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.97737
+  - reviewId: TR-B01-apertura-B02-fuente
+    phase: pre
+    frame: 132
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/01-pre-f132.png
+    sha256: 6daec9608b1b892a326d6c0a2dfc04a3e6635993f4abe2ab27058f7538f83146
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977381
+  - reviewId: TR-B01-apertura-B02-fuente
+    phase: during
+    frame: 139
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/01-during-f139.png
+    sha256: 1368196304ad29c8a8ed0cc68b82d8c474a3badaa10925632eac50713dec56c8
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977464
+  - reviewId: TR-B01-apertura-B02-fuente
+    phase: post
+    frame: 145
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/01-post-f145.png
+    sha256: d88e2b4565dcfe92c5f70a187a06af93ddf89356f75f93cffce35b684db36308
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977779
+  - reviewId: TR-B02-fuente-B03-comite
+    phase: pre
+    frame: 252
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/02-pre-f252.png
+    sha256: be3021b0f37c8fad0bc023ac4849a1e0d9fb972b5ee2fedc76c37c5f18955f4a
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977905
+  - reviewId: TR-B02-fuente-B03-comite
+    phase: during
+    frame: 259
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/02-during-f259.png
+    sha256: 32f6f3e3df097c470482d93b78ed097c66c4b46b2172ed8ca1792e3201bf1ef2
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.978252
+  - reviewId: TR-B02-fuente-B03-comite
+    phase: post
+    frame: 265
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/02-post-f265.png
+    sha256: 70f475321837e8b6d8f568e811d9f1ef71a4c7849c1f8f7ce51385623e0329a9
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977537
+  - reviewId: TR-B03-comite-B04-custodia
+    phase: pre
+    frame: 422
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/03-pre-f422.png
+    sha256: a89771e6d3e9b17f4abfc0c13c5ca41842a011400c35401fe3da7a4d5f920b2e
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977481
+  - reviewId: TR-B03-comite-B04-custodia
+    phase: during
+    frame: 429
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/03-during-f429.png
+    sha256: 49f654ad678df47620370719c7c92c5f94a505e853e9cfab377102daa44bde33
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.976159
+  - reviewId: TR-B03-comite-B04-custodia
+    phase: post
+    frame: 435
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/03-post-f435.png
+    sha256: 0dbf32769fb5052e7af8ac1880e0a98a27fd78168f8b44c04480cdd44acb21dd
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977705
+  - reviewId: TR-B04-custodia-B05-bifurcacion
+    phase: pre
+    frame: 643
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/04-pre-f643.png
+    sha256: 5ec46666fb42354291ea3798711f2643ccc69f5eebfb6249e18658097d15d4da
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977983
+  - reviewId: TR-B04-custodia-B05-bifurcacion
+    phase: during
+    frame: 650
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/04-during-f650.png
+    sha256: ff7b8ebe8f51dc0f6553f72a1806669c831acb29879d0a7adc22e16f91c00639
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977299
+  - reviewId: TR-B04-custodia-B05-bifurcacion
+    phase: post
+    frame: 656
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/04-post-f656.png
+    sha256: 185ce8c78c572d3e766f39701c68b7c1acaa1142153710a0c2b873e4113ab095
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.97705
+  - reviewId: TR-B05-bifurcacion-B06-gate
+    phase: pre
+    frame: 826
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/05-pre-f826.png
+    sha256: c95a8fa8b1bc0bda48948760087c7ae259af435134dc41b7af6c159bb821feca
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977131
+  - reviewId: TR-B05-bifurcacion-B06-gate
+    phase: during
+    frame: 833
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/05-during-f833.png
+    sha256: 916cd5a8be725865e199ae91fd679412cf9f7767caa0265ac43a806c0d750558
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.97555
+  - reviewId: TR-B05-bifurcacion-B06-gate
+    phase: post
+    frame: 839
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/05-post-f839.png
+    sha256: 724221f75c23bf95cc6d36dfe4af6e96ce20e5ea9bb368ea489de0c4d066fd73
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.976226
+  - reviewId: TR-B06-gate-B07-cierre
+    phase: pre
+    frame: 1047
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/06-pre-f1047.png
+    sha256: 4c758d972036456bb9abb0e79244c4e74ed266fa4e9b8b752daff56edfbdd978
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.97701
+  - reviewId: TR-B06-gate-B07-cierre
+    phase: during
+    frame: 1054
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/06-during-f1054.png
+    sha256: f053cc350596f5519dfde58d3b0d0997715cfee2b77247d611b251752572fb6e
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.975161
+  - reviewId: TR-B06-gate-B07-cierre
+    phase: post
+    frame: 1060
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/06-post-f1060.png
+    sha256: 575214528f13bb8d1fbfbbd70388376510f57d8bdab0f84b3b69da53de262444
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.975956
+  - reviewId: B01-apertura
+    phase: midpoint
+    frame: 72
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-01-mid-f72.png
+    sha256: 95cd8c420f1ca69558c2e4d720636c3b5d14d48a5da3eab0b288637687c2809e
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977821
+  - reviewId: B02-fuente
+    phase: midpoint
+    frame: 199
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-02-mid-f199.png
+    sha256: d539942097fe1e21f48e240a1b4aade3a1011f2f014e8179bf78551c1eee71dc
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.978174
+  - reviewId: B03-comite
+    phase: midpoint
+    frame: 344
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-03-mid-f344.png
+    sha256: e29c2a6ca34bd5672c679e890d68a6f55d1db19db55ab7b258c6caa465d906d3
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.978038
+  - reviewId: B04-custodia
+    phase: midpoint
+    frame: 539
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-04-mid-f539.png
+    sha256: 77ac47cc4e5b212fcebb423b53193146783bca151fa3bfc1bfa5a98e5781b3a6
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.978716
+  - reviewId: B05-bifurcacion
+    phase: midpoint
+    frame: 741
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-05-mid-f741.png
+    sha256: 9dc37f2a32eef200de30b7baf7c3355c300e751455588a614d72b4a27b089da6
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.977647
+  - reviewId: B06-gate
+    phase: midpoint
+    frame: 943
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-06-mid-f943.png
+    sha256: 54b053a78cc0078cc63113f2e74e6e85876e14a2a6d7771f367d2a33c5c5d3a1
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.976872
+  - reviewId: B07-cierre
+    phase: midpoint
+    frame: 1139
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/beat-07-mid-f1139.png
+    sha256: ca9105c1d8acb74ecaaf35ddf8a0ecb4a0ff8ac1e7ab5bed8dc19d83dc6497c5
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.976588
+  - reviewId: ENDPOINT-LAST
+    phase: last
+    frame: 1230
+    path: projects/vs-001-source-to-campaign/remotion/review-shots/99-last-f1230.png
+    sha256: 0e2dec8dff4725566e8a5d49ddf0a08595d26dabb84455ff973053d86d99fa50
+    width: 1080
+    height: 1920
+    review_frame_ssim: 0.975884
+contact_sheet:
+  path: projects/vs-001-source-to-campaign/remotion/review-shots/contact-sheet.png
+  sha256: 0d0173972aec5a46a2d56e2eb499538f7f4e6f1cfe0ec139f8e8ec08f77d4f2b
+  width: 1128
+  height: 2360
+runtime_guards:
+  remote_fetch_canary:
+    status: PASS
+    evidence_path: projects/vs-001-source-to-campaign/remotion/receipts/runtime-network-denied.png
+    sha256: b8c18928cc3584adb6147ee7d8732201b51d80576bc3d4903136a878f851af29
+    scope: browser fetch guard; same-origin/data/blob allowed, remote fetch denied
+  layout_guard:
+    status: PASS
+    evidence: Both 1231-frame renders completed with per-frame viewport, safe-zone and text checks.
+  authoritative_network_namespace: pending_ci_linux
+automated_visual_checks:
+  shot_count: 27
+  dimensions_1080x1920: true
+  first_and_last_frames_present: true
+  seven_beat_midpoints_present: true
+  transition_pre_during_post_present: true
+  minimum_review_frame_ssim: 0.975161
+  runtime_overflow_safe_zone_text_guard: PASS
+  independent_full_playback: pending
+deterministic_pixel_match: true
+normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+container_byte_match: true
+human_review: pending
+publish_authorized: false
+coverage_gaps:
+  - four_canonical_texts_missing_0_of_4
+  - formal_component_registry_approval_receipt_absent
+  - cross_host_chromium_pixel_equivalence_unverified
+  - font_binary_origin_version_unresolved
+  - authoritative_linux_network_namespace_offline_render_unexecuted
+  - remotion_commercial_license_eligibility_unresolved
+  - guardian_and_human_approval_absent
+  - external_distribution_not_authorized

@@ -1,0 +1,3 @@
+# Deterministic generated artifacts are validated against their build receipts.
+# Reformatting them outside the generator would invalidate byte-level reproducibility.
+projects/**/web/artifact/index.html

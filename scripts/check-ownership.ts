@@ -60,4 +60,3 @@ if (errors.length > 0) {
 } else {
   console.info('PASS G04 OWNERSHIP: un writer por allowlist; H01 y Guardian son no-writers.');
 }
-

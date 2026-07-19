@@ -1,0 +1,94 @@
+schema_version: 1
+review_id: QA-A03-A04-INDEPENDENT-20260719
+verifier_actor_id: qa-core-committee-independent
+independence:
+  producer_actor_ids:
+    - core
+    - agents-committee
+  guardian_actor_id: RT-11
+  human_approver_actor_id: H01
+  verifier_is_distinct: true
+scope:
+  packages:
+    - A03
+    - A04
+  production_mutations: []
+verdict:
+  status: PASS_A03_A04_LOCAL_CONTRACTS
+  product_state_effect: NONE
+  source_locked: false
+  human_approval_granted: false
+  release_effect: NONE
+  publication_effect: NONE
+committee:
+  committee_id: COMMITTEE-VS001-MOTION-01
+  proposal_count: 5
+  peer_assessment_count: 20
+  unique_proposer_actor_count: 5
+  unique_proposer_role_count: 5
+  unique_assessment_id_count: 20
+  selected_proposal_id: PROP-VS001-02-RT04
+  selected_weighted_score: 4.375
+  subagent_provenance_count: 3
+  sequential_perspective_count: 2
+  second_prototype_required: false
+  file_hashes:
+    session_sha256: 4710b0108c3cad64ca0440ce86728974a7d6052fcc4bcd5519e785db72788623
+    decision_sha256: 2ffcac1332a2247be2c63546df05291350ca56955a48ebfd2c5f18e58e7f90f7
+  canonical_hashes:
+    session_sha256: 9846792c603128d7e98aab9bdd6d3996bec49633cd568a328504581355c65033
+    decision_sha256: be1a00153ce34c53e814b0becc1e9b50846d03fb2f2ad3584f521c4a623e654b
+tests:
+  independent:
+    command: >-
+      vitest run tests/contract/core-committee-independent.contract.test.ts
+      tests/negative/core-committee-independent.negative.test.ts
+    test_files: 2
+    tests_passed: 26
+    tests_failed: 0
+    status: PASS
+  combined_core_committee:
+    command: >-
+      vitest run tests/unit/core tests/unit/committee
+      tests/contract/core-committee-independent.contract.test.ts
+      tests/negative/core-committee-independent.negative.test.ts
+    test_files: 9
+    tests_passed: 110
+    tests_failed: 0
+    status: PASS
+  committee_validator:
+    command: >-
+      node --import tsx
+      projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts
+    status: PASS
+  typecheck:
+    command: tsc -p tsconfig.json --noEmit
+    exit_code: 0
+    status: PASS
+  lint:
+    command: >-
+      eslint tests/contract/core-committee-independent.contract.test.ts
+      tests/negative/core-committee-independent.negative.test.ts
+    exit_code: 0
+    status: PASS
+  formatting:
+    command: >-
+      prettier --check tests/contract/core-committee-independent.contract.test.ts
+      tests/negative/core-committee-independent.negative.test.ts
+    status: PASS
+test_file_hashes:
+  tests/contract/core-committee-independent.contract.test.ts: a077b117a08f65596053a5aa91258a69ab3c95b9992f3bba0773280862fbf14d
+  tests/negative/core-committee-independent.negative.test.ts: 783223a15b489fa96b9ea35f640de1f04e66219a158af5680b3a5f0a8d16e32b
+findings:
+  total_found: 8
+  open: 0
+  remediated_and_reverified: 8
+coverage_gaps:
+  - four_canonical_texts_missing_0_of_4
+  - source_locked_false
+  - committee_provenance_is_3_subagents_plus_2_sequential_perspectives
+  - guardian_verdict_not_yet_issued
+  - H01_human_approval_not_issued
+  - release_and_publication_not_authorized
+  - explicit_reasoning_marker_filter_is_not_semantic_inference
+next_gate: G12_QA_THEN_G14_GUARDIAN

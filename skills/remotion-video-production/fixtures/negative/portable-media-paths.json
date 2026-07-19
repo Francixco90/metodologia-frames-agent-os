@@ -1,0 +1,16 @@
+{
+  "cases": [
+    {"case": "parent-traversal-leading", "value": "../private/output.mp4"},
+    {"case": "parent-traversal-nested", "value": "renders/../private/output.mp4"},
+    {"case": "current-directory-segment", "value": "./output.mp4"},
+    {"case": "posix-absolute", "value": "/private/output.mp4"},
+    {"case": "windows-drive-backslash", "value": "C:\\Users\\private\\output.mp4"},
+    {"case": "windows-drive-forward-slash", "value": "C:/Users/private/output.mp4"},
+    {"case": "windows-unc", "value": "\\\\server\\share\\output.mp4"},
+    {"case": "ambiguous-backslash", "value": "renders\\output.mp4"},
+    {"case": "file-uri", "value": "file:///private/output.mp4"},
+    {"case": "empty-middle-segment", "value": "renders//output.mp4"},
+    {"case": "empty-final-segment", "value": "renders/"},
+    {"case": "empty-path", "value": ""}
+  ]
+}

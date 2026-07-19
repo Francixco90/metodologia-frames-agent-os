@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/remotion-render-output-v1.json",
+  "title": "Remotion render output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "status",
+    "artifactId",
+    "portableMediaPath",
+    "fileSha256",
+    "normalizedFrameDigest",
+    "normalizedAudioDigest",
+    "profile",
+    "humanReview",
+    "runtimeLicenseStatus",
+    "coverageGaps"
+  ],
+  "properties": {
+    "requestId": {"type": "string", "minLength": 1},
+    "status": {"const": "RENDERED_DRAFT"},
+    "artifactId": {"type": "string", "minLength": 1},
+    "portableMediaPath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!\\.\\.?(?:/|$))(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:\\/[A-Za-z0-9._-]+)*$"
+    },
+    "fileSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "normalizedFrameDigest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "normalizedAudioDigest": {
+      "oneOf": [{"type": "string", "pattern": "^[a-f0-9]{64}$"}, {"type": "null"}]
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "fps", "durationInFrames"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "fps": {"type": "integer", "minimum": 1},
+        "durationInFrames": {"type": "integer", "minimum": 1}
+      }
+    },
+    "humanReview": {"const": "pending"},
+    "runtimeLicenseStatus": {"enum": ["unresolved", "eligible_for_requested_use"]},
+    "coverageGaps": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

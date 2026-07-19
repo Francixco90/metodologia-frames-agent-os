@@ -1,0 +1,31 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-METH-IMAGE-001-001
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 1
+actor_id: sources
+package_id: A02c
+source_id: SRC-METH-IMAGE-001
+transition:
+  from: null
+  to: candidate
+hashes:
+  raw_sha256: ed07e79d4722e1e72e1e1e656dd55ba5518fb6956d10ab47c4f7cd552a9b910d
+  normalized_sha256: ed07e79d4722e1e72e1e1e656dd55ba5518fb6956d10ab47c4f7cd552a9b910d
+  normalization: binary_identity
+media_metadata:
+  media_type: image/png
+  bytes: 502215
+  width: 1440
+  height: 773
+  color_model: rgb_8_bit
+  interlace: none
+locator_policy:
+  binary_copied: false
+  absolute_locator_persisted: false
+evidence_class: DOC
+decision: keep_methodology_reference_candidate
+promotion_blockers:
+  - rights_unresolved
+  - authority_pending
+  - no_portable_content_locator
+append_only: true

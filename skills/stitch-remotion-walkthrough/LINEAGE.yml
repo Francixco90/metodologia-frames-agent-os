@@ -1,0 +1,21 @@
+schema_version: 1
+skill_id: stitch-remotion-walkthrough
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_quarantine_wrapper
+content_license: LicenseRef-MetodologIA-Internal
+lifecycle_state: quarantined
+execution_scope: audit-only
+legacy_observation:
+  observed_skill_id: remotion
+  observed_content_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+  declared_upstream: https://github.com/google-labs-code/stitch-skills
+  exact_source_commit: coverage_gap
+  license_status_for_observed_copy: unresolved
+  copied_material_in_this_package: false
+promotion_blockers:
+  - exact_source_commit_unknown
+  - license_for_observed_copy_unresolved
+  - current_api_parity_not_proven
+  - deterministic_qa_absent
+  - generic_legacy_id_conflicts_with_canonical_routing

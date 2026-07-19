@@ -1,0 +1,55 @@
+schema_version: 2
+receipt_kind: hash_semantics_migration
+receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-005
+recorded_at: '2026-07-19T22:52:25Z'
+event_order: 5
+actor_id: sources
+package_id: A02c
+source_id: SRC-PROMPT-MAESTRO-V6
+state_preserved: active
+migration_id: MIG-SRC-PROMPT-HASH-SEMANTICS-001
+superseded_receipt_ids:
+  - RCP-IMP-SRC-PROMPT-MAESTRO-V6-001
+  - RCP-IMP-SRC-PROMPT-MAESTRO-V6-002
+  - RCP-IMP-SRC-PROMPT-MAESTRO-V6-003
+  - RCP-IMP-SRC-PROMPT-MAESTRO-V6-004
+historical_receipts:
+  - receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-001
+    path: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-candidate.yml
+    sha256: 52493223df5fbe96a95ab75e195ce632bad7319e55fb3dfc7dce44f606c47d84
+  - receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-002
+    path: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-quarantined.yml
+    sha256: 9851ddb94f379ae6000be31fea0e955e9b50e2e359e0ab2a462e2fd6cbf58660
+  - receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-003
+    path: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-evaluated.yml
+    sha256: c30d699c9ef29dcdee0887fe4d28ccc007a1b88eaaa6e9a416fd3923f3d7c89a
+  - receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-004
+    path: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-active.yml
+    sha256: e27ef1dff0277e0c08a0fe9ce524010f0156218b8ca9bfa0c404931c950a4cbd
+legacy_semantics:
+  field: normalized_sha256
+  recorded_sha256: 02153ec2c50808ae1b91c8dff0bf0f11840ac8237948580b5e0ee6d36cbdf48f
+  corrected_role: historical_projection_sha256
+  historical_locator: docs/program/requirements-traceability.md
+  defect: mutable_requirements_matrix_was_misclassified_as_normalized_source_bytes
+corrected_source_hashes:
+  raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+  source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+  raw_bytes: 14086
+  source_normalized_bytes: 14087
+  normalization_contract: source-promotion-v1
+replacement_projection:
+  projection_id: prompt-maestro-v6-requirements-projection-v2
+  projection_locator: inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml
+  projection_sha256: b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5
+  projection_bytes: 3943
+  projection_contract: product-requirements-projection-v1
+  derived_from_source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+  immutable: true
+verification_status: pending_independent_guardian_revalidation
+governed_state:
+  source_locked: false
+  ready: false
+  published: false
+decision: correct_hash_roles_without_rewriting_or_deleting_historical_receipts
+append_only: true

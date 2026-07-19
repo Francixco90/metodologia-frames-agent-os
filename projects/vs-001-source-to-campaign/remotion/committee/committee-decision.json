@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "committeeId": "COMMITTEE-VS001-MOTION-01",
+  "workProductId": "REMOTION-VS001",
+  "status": "DECIDED",
+  "ranking": [
+    {
+      "rank": 1,
+      "proposalId": "PROP-VS001-02-RT04",
+      "weightedScore": 4.375,
+      "assessmentCount": 4
+    },
+    {
+      "rank": 2,
+      "proposalId": "PROP-VS001-04-RT05",
+      "weightedScore": 4.3625,
+      "assessmentCount": 4
+    },
+    {
+      "rank": 3,
+      "proposalId": "PROP-VS001-05-RT09",
+      "weightedScore": 4.35,
+      "assessmentCount": 4
+    },
+    {
+      "rank": 4,
+      "proposalId": "PROP-VS001-01-RT07",
+      "weightedScore": 4.3125,
+      "assessmentCount": 4
+    },
+    {
+      "rank": 5,
+      "proposalId": "PROP-VS001-03-RT08",
+      "weightedScore": 4.2,
+      "assessmentCount": 4
+    }
+  ],
+  "synthesis": {
+    "synthesisId": "SYNTHESIS-VS001-MOTION-01",
+    "selectedProposalId": "PROP-VS001-02-RT04",
+    "decisionSummary": "Cadena visible sirve como columna causal; la dirección integrada añade claridad interrogativa, custodia semántica, señal persistente y gobierno accesible sin convertir el demostrador en una aprobación.",
+    "incorporatedElements": [
+      {
+        "sourceProposalId": "PROP-VS001-04-RT05",
+        "element": "Tres preguntas como headers y breadcrumb.",
+        "compatibilityNote": "Organizan los siete beats sin cambiar la cadena causal."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-05-RT09",
+        "element": "Estado por texto, forma y patrón; reduced-motion y rights-first.",
+        "compatibilityNote": "Refuerza el gate sin adoptar la apertura narrativa inversa."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-03-RT08",
+        "element": "Semántica 0/4, claim IDs y hash.",
+        "compatibilityNote": "Conserva trazabilidad como prueba secundaria legible."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-01-RT07",
+        "element": "Señal persistente y bifurcación Web/Motion.",
+        "compatibilityNote": "Une escenas y demuestra que ambos productos comparten expediente."
+      }
+    ],
+    "alternativeDispositions": [
+      {
+        "proposalId": "PROP-VS001-01-RT07",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran señal y bifurcación; no se adopta la dirección completa para evitar lectura cuantitativa."
+      },
+      {
+        "proposalId": "PROP-VS001-03-RT08",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integra custodia mínima; IDs densos pasan a manifests."
+      },
+      {
+        "proposalId": "PROP-VS001-04-RT05",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran preguntas y recap dentro de la cadena ganadora."
+      },
+      {
+        "proposalId": "PROP-VS001-05-RT09",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran accesibilidad, rights-first y stop redundante; se descarta la apertura inversa."
+      }
+    ],
+    "requestedChanges": [
+      "No fijar 36 segundos sin beat map, captions, audio y playback completos.",
+      "Mantener RENDERED_DRAFT y LOCAL TEST ONLY como badges persistentes.",
+      "No presentar cinco propuestas ni veinte reviews como KPI.",
+      "Validar captions, velocidad de lectura, contraste y safe-zone en 9:16.",
+      "Usar únicamente assets locales hash-bound con rights receipts."
+    ],
+    "evidenceRefs": ["EV-P01", "EV-P02", "EV-P03", "EV-P04", "EV-P05"]
+  },
+  "dissent": {
+    "status": "PRESENT",
+    "entries": [
+      {
+        "dissentId": "DISSENT-RT05-P05",
+        "actorId": "perspective-lead-rt05",
+        "proposalId": "PROP-VS001-05-RT09",
+        "statement": "La narrativa inversa y el énfasis inicial en bloqueo pueden hacer que el producto parezca fallido antes de demostrar valor.",
+        "evidenceRefs": ["EV-P05"],
+        "disposition": "PARTIALLY_INCORPORATED",
+        "dispositionSummary": "Se incorpora el stop accesible y rights-first, pero no se adopta la apertura narrativa inversa."
+      },
+      {
+        "dissentId": "DISSENT-RT08-P02",
+        "actorId": "actor-rt08-subagent",
+        "proposalId": "PROP-VS001-02-RT04",
+        "statement": "La duración de 36 segundos no está justificada antes de beat map, captions, audio y playback.",
+        "evidenceRefs": ["EV-P02"],
+        "disposition": "INCORPORATED",
+        "dispositionSummary": "La síntesis exige timing derivado y prohíbe fijar 36 segundos sin evidencia de playback."
+      }
+    ]
+  },
+  "uncertainty": {
+    "assessment": {
+      "overallScore": 0.55,
+      "materialThreshold": 0.65,
+      "drivers": [
+        {
+          "driverId": "UNCERTAINTY-DURATION-AUDIO",
+          "statement": "Duración, narración y audio pueden cambiar timing y número de holds.",
+          "impact": "MATERIAL",
+          "analysisStatus": "RESOLVABLE",
+          "evidenceRefs": ["EV-P02"]
+        },
+        {
+          "driverId": "UNCERTAINTY-ID-DENSITY",
+          "statement": "La densidad de IDs puede afectar legibilidad y comprensión en 9:16.",
+          "impact": "MATERIAL",
+          "analysisStatus": "RESOLVABLE",
+          "evidenceRefs": ["EV-P03"]
+        },
+        {
+          "driverId": "UNCERTAINTY-ACCESS-LAYOUT",
+          "statement": "Captions, safe-zone y reduced-motion requieren stills y playback.",
+          "impact": "MATERIAL",
+          "analysisStatus": "RESOLVABLE",
+          "evidenceRefs": ["EV-P05"]
+        }
+      ]
+    },
+    "material": true,
+    "unresolvedByAnalysis": false
+  },
+  "secondPrototype": {
+    "required": false,
+    "trigger": "NOT_JUSTIFIED",
+    "rationale": "Las incertidumbres materiales son resolubles con beat map, layout, stills y playback; no existe driver NOT_RESOLVABLE."
+  },
+  "trace": {
+    "proposalCount": 5,
+    "peerAssessmentCount": 20,
+    "privateReasoningPersisted": false
+  }
+}

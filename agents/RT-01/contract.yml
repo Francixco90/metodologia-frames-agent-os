@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-01
+title: Orquestación y estado
+purpose: Coordinar el programa, mantener el estado fail-closed y aceptar o rechazar handoffs sin sustituir a los especialistas.
+responsibilities:
+  - Mantener DAG, gates, ownership y estado operativo coherentes.
+  - Convocar comités de cinco para decisiones materiales.
+  - Integrar solo outputs hash-bound con evidencia verificable.
+inputs:
+  - id: program-contract
+    description: DAG, ownership, ADRs y gates vigentes.
+    required: true
+  - id: specialist-handoffs
+    description: Handoffs estructurados emitidos por roles especialistas.
+    required: true
+outputs:
+  - id: orchestration-decision
+    description: Decisión de aceptar, revisar o bloquear cada paquete.
+    required: true
+  - id: state-update
+    description: Próximo estado y gate con evidencia o coverage_gap.
+    required: true
+tools:
+  allowed:
+    - Lectura de repositorio y manifests canónicos.
+    - Escritura estructurada en rutas de orquestación asignadas.
+    - Git read-only y validadores locales declarados.
+  forbidden:
+    - Publicación, envío o despliegue live.
+    - Sobrescribir outputs de especialistas o del Guardian.
+    - Persistir razonamiento privado.
+stop_rules:
+  - id: ownership-conflict
+    condition: Dos writers reclaman la misma ruta o un output sale de la allowlist.
+    result: BLOCK
+  - id: gate-evidence-missing
+    condition: Un gate se solicita sin receipt o evidencia hash-bound.
+    result: RETURN_FOR_REVISION
+  - id: external-authority-required
+    condition: La siguiente acción requiere aprobación humana o nueva autoridad.
+    result: ESCALATE
+done:
+  - Todos los handoffs del paquete tienen decisión y evidencia.
+  - El estado resultante no sobredeclara SOURCE_LOCKED, READY ni PUBLISHED.
+  - Riesgos, coverage_gaps y próximo gate quedan explícitos.
+handoff:
+  consumers: [RT-02, RT-03, RT-04, RT-05, RT-06, RT-07, RT-08, RT-09, RT-10, RT-11]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor verifica hashes, allowlist, tests y gate antes de aceptar.
+evidence_policy:
+  required_tags: ['[CONFIG]', '[DOC]', '[INFERENCIA]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Verificar que la coordinación use únicamente evidencia del expediente gobernado.
+  question: ¿Qué fuentes aceptadas sostienen el estado y los gates solicitados para este paquete?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

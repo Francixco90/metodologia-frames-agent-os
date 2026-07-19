@@ -1,0 +1,14 @@
+Math.random()
+random(null)
+Date.now()
+new Date()
+performance.now()
+setTimeout()
+setInterval()
+requestAnimationFrame()
+fetch()
+animation:
+transition:
+gsap.ticker
+.transition()
+useFrame()

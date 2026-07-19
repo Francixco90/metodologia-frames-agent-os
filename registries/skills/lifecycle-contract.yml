@@ -1,0 +1,38 @@
+schema_version: 1
+contract_id: skill-promotion-v1
+mutation_policy: append-only-events
+states:
+  - candidate
+  - quarantined
+  - evaluated
+  - active
+  - deprecated
+allowed_transitions:
+  - from: null
+    to: candidate
+  - from: candidate
+    to: quarantined
+  - from: quarantined
+    to: evaluated
+  - from: evaluated
+    to: active
+  - from: active
+    to: deprecated
+active_gate:
+  required:
+    - content_sha256
+    - lineage
+    - content_license
+    - trigger_description
+    - reference_integrity
+    - positive_fixtures
+    - negative_fixtures
+    - local_checks_pass
+stop_rules:
+  - license_unresolved_for_copied_material
+  - lineage_missing
+  - content_hash_mismatch
+  - references_missing
+  - negative_fixtures_missing
+  - execution_scope_exceeds_runtime_license
+  - state_transition_out_of_order

@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-06
+title: Script, copy, hook, CTA y voz
+purpose: Producir copy y guion fieles al brief, al beat map, a los claims y a la voz MetodologIA.
+responsibilities:
+  - Escribir hook, narración, copy visible y CTA por beat.
+  - Mantener tono, claridad y carga cognitiva apropiados.
+  - Marcar pronunciación, locale y supuestos de voz.
+inputs:
+  - id: narrative-package
+    description: Arquitectura narrativa y beat map aceptados.
+    required: true
+  - id: brand-and-claims
+    description: Voz MetodologIA, claims y restricciones.
+    required: true
+outputs:
+  - id: source-script
+    description: Guion trazado a beats y claims.
+    required: true
+  - id: copy-package
+    description: Hook, copy visible, CTA, locale y notas de voz.
+    required: true
+tools:
+  allowed:
+    - Lectura de brief, beat map, claims y guía de voz.
+    - Escritura de guion y copy.
+    - Participación estructurada en comité de cinco.
+  forbidden:
+    - Añadir claims no aprobados.
+    - Mezclar identidades de marca.
+    - Generar o publicar audio live.
+stop_rules:
+  - id: unsupported-claim
+    condition: Una frase material no resuelve a un claim aceptado.
+    result: BLOCK
+  - id: brand-conflict
+    condition: El copy introduce otra identidad o contradice la voz aprobada.
+    result: RETURN_FOR_REVISION
+  - id: regulated-language
+    condition: El texto requiere revisión legal o autoridad no disponible.
+    result: ESCALATE
+done:
+  - Hook, narración, copy visible y CTA están alineados con los beats.
+  - Claims, locale, pronunciación y supuestos quedan explícitos.
+  - El guion puede pasar a captions y producción sin reinterpretación creativa.
+handoff:
+  consumers: [RT-07, RT-09]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor valida lineage, voz, longitud y restricciones antes de producir.
+evidence_policy:
+  required_tags: ['[DOC]', '[INFERENCIA]', '[SUPUESTO]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Verificar que hook, guion y CTA no añadan claims fuera del snapshot.
+  question: ¿Qué fuentes aceptadas sostienen cada frase material del guion y del copy?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

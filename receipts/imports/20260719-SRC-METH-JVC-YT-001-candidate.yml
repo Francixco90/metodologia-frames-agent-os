@@ -1,0 +1,22 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-METH-JVC-YT-001-001
+recorded_at: '2026-07-19T20:38:02Z'
+event_order: 1
+actor_id: sources
+package_id: A02a
+source_id: SRC-METH-JVC-YT-001
+transition:
+  from: null
+  to: candidate
+canonical_uri_sha256: 2c8e3d7c10d256ce4c67bd4dd3af2c071caafa2ebcbc8c618cbb4635a39b9fb4
+content_hashes:
+  raw_sha256: null
+  normalized_sha256: null
+  status: not_ingested
+evidence_class: DOC
+decision: keep_methodology_reference_candidate
+promotion_blockers:
+  - raw_and_normalized_hashes_absent
+  - rights_unresolved
+  - authority_pending
+append_only: true

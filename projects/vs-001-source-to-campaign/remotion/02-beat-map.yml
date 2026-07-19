@@ -1,0 +1,459 @@
+schema_version: 1
+beat_map_id: BEAT-MAP-VS001-001
+work_product_id: REMOTION-VS001
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+creative_direction:
+  proposalId: PROP-VS001-02-RT04
+  title: Cadena visible
+  synthesisId: SYNTHESIS-VS001-MOTION-01
+  incorporatedElements:
+    - three-question-breadcrumb
+    - text-shape-pattern-reduced-motion-rights-first
+    - zero-of-four-claims-hash-custody
+    - persistent-signal-web-motion-fork
+source_snapshot_id: synthetic-vs-001-v1
+source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+timing:
+  fps: 30
+  duration_in_frames: 1231
+  duration_seconds: 41.033
+  range_contract: '[from_frame, to_frame)'
+  derivation:
+    words_per_minute: 165
+    playback_margin: 1.15
+    caption_lead_frames: 10
+    caption_trail_frames: 10
+    transition_frames: 12
+    fixed_36_second_default: false
+audio:
+  mode: silent-first
+  streams: []
+  reason: no-audio-rights-receipt
+beats:
+  - beat_id: B01-apertura
+    purpose: ¿De dónde sale? — Cadena visible · 01
+    duration_frames: 145
+    narration: Crear no es improvisar. Es hacer visible una cadena.
+    visible_copy:
+      eyebrow: Cadena visible · 01
+      headline: Crear no es improvisar.
+      body: Es hacer visible qué fuente entra, qué decisión se toma y qué gate sigue.
+    visual_action: La señal causal aparece completa mientras el headline fija la tesis y el breadcrumb activa la primera pregunta.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+      - StatusBadge
+    claim_ids:
+      - CLM-VS001-001
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-001
+      - CFG-COMMITTEE-DECISION
+    audio: none
+    mood: deliberate-opening
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 0
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - Estado expresado por texto, forma y patrón
+      - Caption dentro de safe zone
+      - Reduced motion conserva estructura y lectura
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-COMMITTEE-DECISION
+    from_frame: 0
+    to_frame: 145
+    layout: opening
+    caption_id: CAP-B01-apertura
+  - beat_id: B02-fuente
+    purpose: ¿De dónde sale? — Fuente
+    duration_frames: 132
+    narration: Primero, una fuente first-party identificada y versionada.
+    visible_copy:
+      eyebrow: Fuente
+      headline: Primero, una fuente identificada.
+      body: El snapshot sintético first-party conserva ID, versión y hash antes de proponer una pieza.
+    visual_action: La etapa Fuente de la cadena se activa y la evidencia secundaria conserva snapshot y alcance local.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+    claim_ids:
+      - CLM-VS001-001
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-001
+      - CFG-LOCAL-EVALUATION
+    audio: none
+    mood: source-evidence
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - Orden de lectura de arriba hacia abajo
+      - Caption sin solapar transición
+      - Fuente identificada también en texto
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-LOCAL-EVALUATION
+    from_frame: 133
+    to_frame: 265
+    layout: source
+    caption_id: CAP-B02-fuente
+  - beat_id: B03-comite
+    purpose: ¿Cómo se decide? — Decisión
+    duration_frames: 182
+    narration: Después, una decisión material pasa por un comité con roles distintos.
+    visible_copy:
+      eyebrow: Decisión
+      headline: Una decisión material se contrasta.
+      body: Producer, verifier y Guardian son roles distintos. La síntesis seleccionada mantiene la disidencia útil.
+    visual_action: La señal avanza a Comité y contrasta roles distintos sin presentar el conteo de propuestas como desempeño.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+    claim_ids:
+      - CLM-VS001-002
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-002
+      - CFG-COMMITTEE-DECISION
+    audio: none
+    mood: committee-contrast
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - Roles descritos en texto
+      - Contraste principal superior a 7:1
+      - Reduced motion elimina desplazamiento
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-COMMITTEE-DECISION
+    from_frame: 253
+    to_frame: 435
+    layout: committee
+    caption_id: CAP-B03-comite
+  - beat_id: B04-custodia
+    purpose: ¿Cómo se decide? — Custodia
+    duration_frames: 233
+    narration: Snapshot, claims y hash siguen juntos. Cero de cuatro es un gap, no un KPI.
+    visible_copy:
+      eyebrow: Custodia
+      headline: La señal conserva la evidencia.
+      body: 'Snapshot, claim IDs y hash permanecen visibles. El corpus canónico sigue en 0/4: es un coverage_gap, no un KPI.'
+    visual_action: Cuatro celdas muestran snapshot, claims, hash y el gap 0/4 con borde y patrón de límite.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+    claim_ids:
+      - CLM-VS001-001
+      - CLM-VS001-002
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-001
+      - CLM-VS001-002
+      - CFG-CANONICAL-CORPUS-GAP
+    audio: none
+    mood: custody-proof
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - 0/4 etiquetado como COVERAGE GAP y NO KPI
+      - Hash visible como texto
+      - Grid dentro de safe zone
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-CANONICAL-CORPUS-GAP
+    from_frame: 423
+    to_frame: 656
+    layout: custody
+    caption_id: CAP-B04-custodia
+  - beat_id: B05-bifurcacion
+    purpose: ¿Cómo se decide? — Producto
+    duration_frames: 195
+    narration: Desde el mismo expediente, Web y Motion se bifurcan sin perder trazabilidad.
+    visible_copy:
+      eyebrow: Producto
+      headline: Un expediente. Dos salidas coherentes.
+      body: La señal se bifurca en Web y Motion sin perder snapshot, claims, estado ni límite.
+    visual_action: Una ruta first-party se bifurca explícitamente en Web y Motion desde el mismo expediente.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+    claim_ids:
+      - CLM-VS001-001
+      - CLM-VS001-003
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-001
+      - CLM-VS001-003
+      - CFG-COMMITTEE-DECISION
+    audio: none
+    mood: coherent-fork
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - Ramas rotuladas WEB y MOTION
+      - Color acompañado por geometría
+      - Caption conserva hold completo
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-COMMITTEE-DECISION
+    from_frame: 644
+    to_frame: 839
+    layout: fork
+    caption_id: CAP-B05-bifurcacion
+  - beat_id: B06-gate
+    purpose: ¿Hasta dónde llega? — Gate
+    duration_frames: 233
+    narration: Sin derechos, autoridad, hashes y aprobación humana, el flujo no avanza a READY ni PUBLISHED.
+    visible_copy:
+      eyebrow: Gate
+      headline: El sistema también sabe detenerse.
+      body: Sin derechos, autoridad, hashes y aprobación humana no existe paso legítimo a READY ni PUBLISHED.
+    visual_action: El gate ocupa el plano con borde, trama y texto STOP; la cadena termina sin avanzar a READY.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+      - StatusBadge
+    claim_ids:
+      - CLM-VS001-003
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-003
+      - CFG-LOCAL-EVALUATION
+    audio: none
+    mood: fail-closed-limit
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 12
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - STOP comunicado por texto, borde y trama
+      - Sin destello ni movimiento autónomo
+      - Caption explica el bloqueo
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-LOCAL-EVALUATION
+    from_frame: 827
+    to_frame: 1060
+    layout: gate
+    caption_id: CAP-B06-gate
+  - beat_id: B07-cierre
+    purpose: ¿Hasta dónde llega? — Límite deliberado
+    duration_frames: 183
+    narration: RENDERED DRAFT. LOCAL TEST ONLY. El límite también es parte del producto.
+    visible_copy:
+      eyebrow: Límite deliberado
+      headline: Un borrador útil sigue siendo borrador.
+      body: RENDERED_DRAFT y LOCAL TEST ONLY permanecen visibles. El render no concede aprobación ni publicación.
+    visual_action: El cierre mantiene badges, gap y STOP hasta el último frame, sin fundido a negro.
+    components:
+      - BeatScene
+      - Breadcrumb
+      - CaptionBand
+      - LayoutGuard
+      - PersistentChrome
+      - SignalRail
+      - StatusBadge
+    claim_ids:
+      - CLM-VS001-003
+    data:
+      - synthetic-vs-001-v1
+      - CLM-VS001-003
+      - CFG-LOCAL-EVALUATION
+      - CFG-CANONICAL-CORPUS-GAP
+    audio: none
+    mood: deliberate-closing
+    transition:
+      kind: overlap-opacity-translate-y
+      incoming_frames: 12
+      outgoing_frames: 0
+      reduced_motion: opacity-only-with-persistent-layout
+    accessibility:
+      - Último frame conserva mensaje legible
+      - Estado visible de forma persistente
+      - No se concede aprobación implícita
+    acceptance:
+      - Persistent badges remain visible.
+      - Material text stays inside the 96px safe zone.
+      - Claim and config references resolve.
+      - Caption does not overlap a transition.
+      - Runtime LayoutGuard reports no overflow.
+    config_refs:
+      - CFG-LOCAL-EVALUATION
+      - CFG-CANONICAL-CORPUS-GAP
+    from_frame: 1048
+    to_frame: 1231
+    layout: closing
+    caption_id: CAP-B07-cierre
+transitions:
+  - transition_id: TR-B01-apertura-B02-fuente
+    from_beat_id: B01-apertura
+    to_beat_id: B02-fuente
+    from_frame: 133
+    to_frame_exclusive: 145
+    duration_frames: 12
+    review_frames:
+      pre: 132
+      during: 139
+      post: 145
+    boundary_test_frames:
+      - 132
+      - 133
+      - 134
+      - 144
+      - 145
+      - 146
+  - transition_id: TR-B02-fuente-B03-comite
+    from_beat_id: B02-fuente
+    to_beat_id: B03-comite
+    from_frame: 253
+    to_frame_exclusive: 265
+    duration_frames: 12
+    review_frames:
+      pre: 252
+      during: 259
+      post: 265
+    boundary_test_frames:
+      - 252
+      - 253
+      - 254
+      - 264
+      - 265
+      - 266
+  - transition_id: TR-B03-comite-B04-custodia
+    from_beat_id: B03-comite
+    to_beat_id: B04-custodia
+    from_frame: 423
+    to_frame_exclusive: 435
+    duration_frames: 12
+    review_frames:
+      pre: 422
+      during: 429
+      post: 435
+    boundary_test_frames:
+      - 422
+      - 423
+      - 424
+      - 434
+      - 435
+      - 436
+  - transition_id: TR-B04-custodia-B05-bifurcacion
+    from_beat_id: B04-custodia
+    to_beat_id: B05-bifurcacion
+    from_frame: 644
+    to_frame_exclusive: 656
+    duration_frames: 12
+    review_frames:
+      pre: 643
+      during: 650
+      post: 656
+    boundary_test_frames:
+      - 643
+      - 644
+      - 645
+      - 655
+      - 656
+      - 657
+  - transition_id: TR-B05-bifurcacion-B06-gate
+    from_beat_id: B05-bifurcacion
+    to_beat_id: B06-gate
+    from_frame: 827
+    to_frame_exclusive: 839
+    duration_frames: 12
+    review_frames:
+      pre: 826
+      during: 833
+      post: 839
+    boundary_test_frames:
+      - 826
+      - 827
+      - 828
+      - 838
+      - 839
+      - 840
+  - transition_id: TR-B06-gate-B07-cierre
+    from_beat_id: B06-gate
+    to_beat_id: B07-cierre
+    from_frame: 1048
+    to_frame_exclusive: 1060
+    duration_frames: 12
+    review_frames:
+      pre: 1047
+      during: 1054
+      post: 1060
+    boundary_test_frames:
+      - 1047
+      - 1048
+      - 1049
+      - 1059
+      - 1060
+      - 1061

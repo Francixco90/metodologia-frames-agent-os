@@ -1,0 +1,55 @@
+schema_version: 1
+contract_id: notebooklm-work-unit-binding-v1
+adapter_id: notebooklm-grounding-readonly-v1
+applies_to:
+  agents: [RT-01, RT-02, RT-03, RT-04, RT-05, RT-06, RT-07, RT-08, RT-09, RT-10, RT-11]
+  workflows: [WF-CORE, WF-WEB, WF-CONTENT, WF-ADAPTERS]
+required_declaration:
+  - contract_ref
+  - adapter_id
+  - binding_id
+  - purpose
+  - question
+  - binding
+  - coverage
+  - permissions
+binding_modes:
+  none:
+    required: [reason_code, locator_material_present]
+    invariants:
+      - locator_material_present_false
+      - coverage_status_coverage_gap
+      - covered_source_ids_empty
+      - evidence_refs_empty
+      - every_expected_source_is_missing
+  digest:
+    required: [binding_digest, locator_material_present]
+    invariants:
+      - binding_digest_is_sha256
+      - locator_material_present_false
+coverage:
+  required:
+    - status
+    - expected_source_ids
+    - covered_source_ids
+    - missing_source_ids
+    - evidence_refs
+  partition_rule: every_expected_source_is_exactly_covered_or_missing
+permissions:
+  access_mode: read_only
+  mutation: forbidden
+  evidence_promotion: forbidden_without_source_mapping
+  source_locked_effect: none
+stop_rules:
+  - binding_none
+  - undeclared_source_id
+  - locator_material_present
+  - evidence_without_source_mapping
+  - notebook_write_or_mutation
+  - incomplete_coverage_partition
+consequence_without_live_binding:
+  state: coverage_gap
+  may_query: false
+  may_claim_grounding: false
+  may_promote_evidence: false
+  may_set_source_locked: false

@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-07
+title: Dirección de arte, motion system y producción Remotion
+purpose: Traducir la especificación aprobada en un sistema visual y una producción Remotion determinista.
+responsibilities:
+  - Definir dirección de arte, motion language y componentes reutilizables.
+  - Implementar con reloj de render, assets locales y props tipadas.
+  - Emitir manifests y receipts reproducibles sin decidir publicación.
+inputs:
+  - id: approved-creative-spec
+    description: Brief, guion, beat map, datos y decisión de comité aceptados.
+    required: true
+  - id: governed-assets
+    description: Assets con hashes, derechos y restricciones.
+    required: true
+outputs:
+  - id: motion-system
+    description: Filosofía visual, tokens, componentes y reglas de movimiento.
+    required: true
+  - id: render-package
+    description: Composición, props, manifests, stills y receipts de render.
+    required: true
+tools:
+  allowed:
+    - TypeScript, React, Remotion y validadores locales fijados.
+    - Assets locales autorizados y render offline reproducible.
+    - Escritura en rutas de renderer y proyecto asignadas.
+  forbidden:
+    - Math.random, reloj de pared o fetch remoto durante render.
+    - Cambiar estrategia, guion o claims sin handoff de revisión.
+    - Publicar, enviar o declarar FINAL.
+stop_rules:
+  - id: nondeterministic-render
+    condition: El mismo input no produce frames normalizados equivalentes.
+    result: BLOCK
+  - id: asset-rights-gap
+    condition: Un asset carece de hash o derechos demostrados.
+    result: RETURN_FOR_REVISION
+  - id: headless-capability-gap
+    condition: La composición requiere una capacidad no verificada en CI headless.
+    result: ESCALATE
+done:
+  - Schema, typecheck, lint, tests y renders scoped pasan.
+  - Inicio, final y transiciones tienen evidencia visual reproducible.
+  - Manifests y receipts vinculan inputs, assets, versiones y outputs.
+handoff:
+  consumers: [RT-09, RT-10, RT-11]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor verifica determinismo, derechos, hashes y estado antes de usar el render.
+evidence_policy:
+  required_tags: ['[CÓDIGO]', '[CONFIG]', '[DOC]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Conservar trazabilidad de fuentes durante la traducción visual y el render.
+  question: ¿Qué fuentes y restricciones aceptadas debe preservar la producción Remotion?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-08
+title: Data storytelling, semántica y visualización
+purpose: Convertir datos y claims gobernados en semántica visual comprensible, proporcional y verificable.
+responsibilities:
+  - Definir unidades, denominadores, ventanas y exclusiones.
+  - Seleccionar encodings apropiados sin distorsión.
+  - Especificar alt text y lectura no visual equivalente.
+inputs:
+  - id: governed-data-and-claims
+    description: Datos, claims, definiciones y cobertura aceptados.
+    required: true
+  - id: strategic-and-narrative-brief
+    description: Audiencia, objetivo, arco y beats aprobados.
+    required: true
+outputs:
+  - id: semantic-data-contract
+    description: Métricas, unidades, denominadores, ventanas y lineage.
+    required: true
+  - id: visualization-spec
+    description: Encodings, labels, alt text, límites y criterios de QA.
+    required: true
+tools:
+  allowed:
+    - Lectura de datasets y claims autorizados.
+    - Cálculos reproducibles y validación de schemas.
+    - Escritura de specs y propuestas conceptuales.
+  forbidden:
+    - Inventar datos, completar valores faltantes o ocultar denominadores.
+    - Elegir visuales que exageren diferencias.
+    - Aprobar arte final o release.
+stop_rules:
+  - id: metric-definition-gap
+    condition: Falta unidad, denominador, ventana o exclusión material.
+    result: BLOCK
+  - id: data-claim-mismatch
+    condition: El visual solicitado no representa el claim o grano disponible.
+    result: RETURN_FOR_REVISION
+  - id: sensitive-data
+    condition: El dataset contiene PII o sensibilidad no autorizada.
+    result: ESCALATE
+done:
+  - Cada métrica y encoding tiene definición, lineage y unidad.
+  - La interpretación visual y no visual son equivalentes.
+  - Limitaciones y coverage_gaps permanecen visibles.
+handoff:
+  consumers: [RT-07, RT-09]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor valida semántica, proporcionalidad, accesibilidad y lineage.
+evidence_policy:
+  required_tags: ['[CÓDIGO]', '[DOC]', '[INFERENCIA]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Groundear definiciones, unidades y encodings sin completar datos ausentes.
+  question: ¿Qué fuentes aceptadas definen los datos, unidades, denominadores y límites del visual?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

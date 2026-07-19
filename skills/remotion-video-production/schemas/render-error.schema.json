@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/remotion-render-error-v1.json",
+  "title": "Remotion render error",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "status",
+    "code",
+    "phase",
+    "message",
+    "retryable",
+    "evidence",
+    "coverageGaps"
+  ],
+  "properties": {
+    "requestId": {"type": "string", "minLength": 1},
+    "status": {"const": "blocked"},
+    "code": {
+      "enum": [
+        "SOURCE_NOT_ACTIVE",
+        "CLAIM_NOT_SUPPORTED",
+        "ASSET_INVALID",
+        "RIGHTS_OR_AUTHORITY_GAP",
+        "RUNTIME_LICENSE_GAP",
+        "VERSION_MISMATCH",
+        "NONDETERMINISTIC_API",
+        "OFFLINE_VIOLATION",
+        "TIMELINE_INVALID",
+        "AV_QA_FAILED",
+        "RENDER_FAILED"
+      ]
+    },
+    "phase": {"enum": ["preflight", "bundle", "render", "av_qa", "handoff"]},
+    "message": {"type": "string", "minLength": 1},
+    "retryable": {"type": "boolean"},
+    "evidence": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "coverageGaps": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

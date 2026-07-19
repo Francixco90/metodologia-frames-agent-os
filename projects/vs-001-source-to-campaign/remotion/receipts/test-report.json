@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "report_id": "TEST-REPORT-REMOTION-VS001-001",
+  "project_id": "vs-001-source-to-campaign",
+  "governed_workflow_state": "BLOCKED_BEFORE_SOURCE_LOCK",
+  "technical_validation_state": "BUILD_VALIDATED",
+  "state_effect": "NONE_ON_GOVERNED_WORKFLOW",
+  "source_set_sha256": "c5f10cacf91721e0ad2abcaeb6c5f33bba12ca81cb7380faf33542b4d7bb4c22",
+  "source_files": [
+    {
+      "path": "networks/content/src/document-contracts.ts",
+      "sha256": "9b9289a36f4baa5f3dd3e26c354d17973372d15599db87cc4348aa12910bc240"
+    },
+    {
+      "path": "networks/content/src/model.ts",
+      "sha256": "d6a71b1da093a42038a78095739d5bf88a300d1732c8a5fd09fe8f27e791a537"
+    },
+    {
+      "path": "networks/content/src/timing.ts",
+      "sha256": "0a17addd9074bb655de44a38ff8a9319ab57516768ea1184801093568486c1b7"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/claims-ledger.yml",
+      "sha256": "85d270e8e1d5f3e405b545a4dd5b44fd34d7ef011f52dfa7752a8060030c2720"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/content/build-receipt.json",
+      "sha256": "c56b2c322b6d1db3d7a57948cbb39c891d67896d7e4d37412f9a29c3ddf70ca6"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/content/campaign-copy.json",
+      "sha256": "1bef0f275b419b1286c60a6862613f5d9a842376cc47b12dffc36f74af71d4bc"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/00-source-script.md",
+      "sha256": "63f6d695aa4270237e242663130ff01b6865ddaa9abef180783c93b4854af3df"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/01-video-spec.yml",
+      "sha256": "25ab88db974a5654233008f83dddcbd19f3d78202f761f9d63f934f8ac90469b"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/02-beat-map.yml",
+      "sha256": "aff84eebb270ca715f6063af0f5ba613abbbc69a3e0711fa6c9890ec2c140794"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md",
+      "sha256": "d33764636863b69f151fb12a08366e357e183bf39ec3e9460fd0d8d613a3b7be"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/04-component-registry.yml",
+      "sha256": "6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/05-input-props.json",
+      "sha256": "a7dc373984871e35927b62ca16315d5cf7ed13d8cfefe75dc2e1a86534ff4127"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/approvals/README.md",
+      "sha256": "10232f6b6207bcba7b222567ae24fbc36af143c71cdcc9c0d35889d1b3defeb4"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/approvals/TEMPLATE.md",
+      "sha256": "911850c27873afa36b3c193a6636584fcf5ec09e1f47dc27838797626b5aee96"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/assets-manifest.yml",
+      "sha256": "54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/captions.json",
+      "sha256": "a07ff2e97eb471e97b8a74a9bcdf811ba143896fbc2244b1b55026ac5ec019cf"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/committee/committee-decision.json",
+      "sha256": "2ffcac1332a2247be2c63546df05291350ca56955a48ebfd2c5f18e58e7f90f7"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/remotion/src/MethodologiaVertical.tsx",
+      "sha256": "93caf9689b1623b203b6243ad070e78a6875681a8ba484c7121cd434d97db1cc"
+    },
+    {
+      "path": "projects/vs-001-source-to-campaign/source-bundle.yml",
+      "sha256": "e313c28a84b583b188f82d9552bd218db0344ed97338f13eb8e314ab4ac9e52d"
+    },
+    {
+      "path": "renderers/remotion/scripts/inspect-renders.ts",
+      "sha256": "a18689614e180567ca818ce66b10c6ad3722c093e3ba154db678f2e6062a9a39"
+    },
+    {
+      "path": "renderers/remotion/scripts/prepare-project.ts",
+      "sha256": "8b33294e9df5a384cd088fecc091b9dd772e167d25252951a9404f77e2c53391"
+    },
+    {
+      "path": "renderers/remotion/scripts/render-project.ts",
+      "sha256": "32d5ccf1dd0f9106dffcab2c5990d1776028f13daa50ac1047656240909f9925"
+    },
+    {
+      "path": "renderers/remotion/scripts/validate-project.ts",
+      "sha256": "eb99983b056f81c8a24563853fd2eb7772839ce9dff70cabd28ba3b72e783c01"
+    },
+    {
+      "path": "renderers/remotion/src/Root.tsx",
+      "sha256": "6e904cdc4a76a922af7701a48692f93f67c5678433cafa552a6c11c14ed447e0"
+    },
+    {
+      "path": "renderers/remotion/src/assets.d.ts",
+      "sha256": "053594e26196ecd8e941a705058e84370790b6c780b997fa33e086806cf393fb"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf",
+      "sha256": "a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt",
+      "sha256": "c1ab7c666206842a02b35b30770dac0d7a10156ed401c9defc3f02a754d89e90"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf",
+      "sha256": "b6b1ff4ddefe36d7f2a6174e1d001cab374e594519ee9049af028d577b64c5f5"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf",
+      "sha256": "240d125fc9f8561363dc1ea3f513501253bd70942f41468f48f0b0cafb0c82e2"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/WorkSans-OFL.txt",
+      "sha256": "5b56ddd736b14bf46b4f8b4553c2b1154371db6ced1943bbdd5d66ec474b83b2"
+    },
+    {
+      "path": "renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf",
+      "sha256": "e67985a843df0d3cdee51a3d0f329eb1774a344ad9ff0c9ab923751f1577e2a4"
+    },
+    {
+      "path": "renderers/remotion/src/component-registry-schema.ts",
+      "sha256": "84ba06173975037c94ef2e14238c99d60adc64c5030d95c09e7eb8b579aeb6a2"
+    },
+    {
+      "path": "renderers/remotion/src/components/BeatScene.tsx",
+      "sha256": "4df0ae1f5c947a901d9ba606571ea5a792082a2769c3cfa50add67300555ab7d"
+    },
+    {
+      "path": "renderers/remotion/src/components/Breadcrumb.tsx",
+      "sha256": "11f4c3cba75a9f3ef7ef5935f449b6fedf9262277c4387b670c0df53e29d8b5d"
+    },
+    {
+      "path": "renderers/remotion/src/components/CaptionBand.tsx",
+      "sha256": "86801adf06604cffc659663cd4eb98a3276994349b6542fff0057736046ff8bc"
+    },
+    {
+      "path": "renderers/remotion/src/components/LayoutGuard.tsx",
+      "sha256": "f9db53f2500232c7747318d6b6b856391d045a6d9527949b5ab92c04f392297e"
+    },
+    {
+      "path": "renderers/remotion/src/components/NetworkGuardProbe.tsx",
+      "sha256": "0026c236b951d75df5ed63c6d9538142648cd82495cced50e3bb4f6531cd9c3e"
+    },
+    {
+      "path": "renderers/remotion/src/components/PersistentChrome.tsx",
+      "sha256": "e0e7097808ea477a23b17301390c45530e4903157fdfd2148c80f69798955944"
+    },
+    {
+      "path": "renderers/remotion/src/components/SignalRail.tsx",
+      "sha256": "0c300260d1830161ed535f4056c6a97f8021ea9f529443b3da3affbf8b4b3dfe"
+    },
+    {
+      "path": "renderers/remotion/src/components/StatusBadge.tsx",
+      "sha256": "0e220108685527fd70cf8143b8ebbf34b9461679e3c84a595d5c091caee8754f"
+    },
+    {
+      "path": "renderers/remotion/src/components/layout-geometry.ts",
+      "sha256": "ca8fb11c7847225fe0931c23c40deeeefcbd4d1385a6962a42e652827d628430"
+    },
+    {
+      "path": "renderers/remotion/src/fixture-gate.ts",
+      "sha256": "9965fc9da9d993859d2dc6a2e3576241beeff14dc2a0734cc6ece50256bace53"
+    },
+    {
+      "path": "renderers/remotion/src/font-loader.ts",
+      "sha256": "299101c6df8d0b8e7e3af1796f4bf5ea23856eab19f48d33a21a538115416292"
+    },
+    {
+      "path": "renderers/remotion/src/index.ts",
+      "sha256": "edd243e415f3b1988cdb4274c7d784d3e92df69abff988a7522b0964f7757482"
+    },
+    {
+      "path": "renderers/remotion/src/network-guard.ts",
+      "sha256": "b1644bb2d9b17859bb7c07fb1b8845eee3b863334b36e31a5f69b14213dbfb9f"
+    },
+    {
+      "path": "renderers/remotion/src/schema.ts",
+      "sha256": "debc7924632b0a462e067905a4732e4a62c21416752544ccac3065007c5ded9c"
+    },
+    {
+      "path": "renderers/remotion/src/theme.ts",
+      "sha256": "afd4beaaf02221b18c23e97d50032febb53ed5b800cb08a7e1c4caea8a29ea2e"
+    },
+    {
+      "path": "renderers/remotion/src/validation-evidence.ts",
+      "sha256": "7cfad6575858409d24fb5303768aa6801b94b00662734231c14b31e769e6b121"
+    },
+    {
+      "path": "tests/unit/remotion/contracts.test.ts",
+      "sha256": "e8f7bc349b622772449efc531c9c0d30d6ee6d320201f664bbccbd21e74c0449"
+    },
+    {
+      "path": "tests/unit/remotion/fixture-matrix.test.ts",
+      "sha256": "5f128c475f40fa062aee0eb9d69d0f9157f7e682f50aae9fc38c79b475d6d435"
+    },
+    {
+      "path": "tests/unit/remotion/font-loader.test.ts",
+      "sha256": "ec9ea92207bed412b63cf77813c898191486ab20335549700aa9fb1e11d5d877"
+    },
+    {
+      "path": "tests/unit/remotion/layout-geometry.test.ts",
+      "sha256": "ed2aa31ba0b3f78480b371f28b04a791e11a60f9662fcb7e3b393ca48eed146d"
+    },
+    {
+      "path": "tests/unit/remotion/offline-renderer.test.ts",
+      "sha256": "d392fa365599046d088a13cf10119b31a57400f660bcaed39c8cb24e560f0505"
+    },
+    {
+      "path": "tests/unit/remotion/schema.test.ts",
+      "sha256": "73e8db12ec5a71133de57a3237c583300178e3191e34a53df5c3e707ace14596"
+    },
+    {
+      "path": "tests/unit/remotion/timing.test.ts",
+      "sha256": "219981093698c33444a67d7a846014e26b88ccd9bdb43e29930b56786ae043a5"
+    },
+    {
+      "path": "tests/unit/remotion/validation-evidence.test.ts",
+      "sha256": "2da51891b83e3f0eb0b24d04eae3a7fd955369c26e7c43dbe046d856c5ffa3e6"
+    },
+    {
+      "path": "workflows/content/build.ts",
+      "sha256": "e353324eb6235fa098f735ad7b7879a4c5def2f3970962cc518c895eaa82583d"
+    },
+    {
+      "path": "workflows/content/notebooklm-binding.yml",
+      "sha256": "035db343c24d282739b7d78ceca8f96c2aef05f2084444d2e7a93accd54c66e2"
+    }
+  ],
+  "commands": [
+    {
+      "command": "pnpm typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
+      "evidenceId": "EVD-REMOTION-VS001-TYPECHECK",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json",
+      "evidenceSha256": "9d0a4adf3f5c29ad6df5ab5846ce84628fabd44190efa424f1803b804c5465bc"
+    },
+    {
+      "command": "pnpm exec eslint networks/content workflows/content renderers/remotion projects/vs-001-source-to-campaign/remotion/src tests/unit/remotion",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidenceId": "EVD-REMOTION-VS001-LINT-A07-A08",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08.json",
+      "evidenceSha256": "6f3b5bbe4cef3d721c67a27070a669e4cca57bb151d386ae3809bbfce6c53a2e"
+    },
+    {
+      "command": "pnpm exec vitest run tests/unit/remotion",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdoutSha256": "48251796b69258639bec112c4d396dfea0a09b1411dea30f3b0f37ff81a2ee7a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08.json",
+      "evidenceSha256": "1beddc5aa2bf0eb897760b200073e8289bdf219810bb77f8c66b1eae24ef136d"
+    },
+    {
+      "command": "pnpm check:determinism",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdoutSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
+      "stderrSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
+      "evidenceId": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy.json",
+      "evidenceSha256": "da5db14f2da6f33ce6d08a74e2dfd3533cc6c1abda6c70e19f369918ac585471"
+    },
+    {
+      "command": "pnpm exec remotion versions --log=verbose",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdoutSha256": "2a719ee357c0215714cfec928361dd01fe804913dc0514c700bcb4a6055553ea",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidenceId": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment.json",
+      "evidenceSha256": "29318d24db28b2e60fd5f8964b83a15ef82da4bd2ad66ea1828f430e0709f66e"
+    }
+  ],
+  "status": "PASS",
+  "created_at": "2026-07-19T12:00:00.000Z"
+}

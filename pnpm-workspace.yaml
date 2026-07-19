@@ -1,9 +1,10 @@
 packages:
-  - "core/**"
-  - "networks/**"
-  - "renderers/**"
-  - "adapters/**"
-  - "workflows/**"
+  - 'core/**'
+  - 'networks/**'
+  - 'renderers/**'
+  - 'adapters/**'
+  - 'workflows/**'
+verifyDepsBeforeRun: false
 allowBuilds:
   esbuild: true
 minimumReleaseAge: 1440

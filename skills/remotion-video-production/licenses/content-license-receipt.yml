@@ -1,0 +1,21 @@
+schema_version: 1
+receipt_id: RCP-LIC-METODOLOGIA-INTERNAL-001
+recorded_at: '2026-07-19T22:30:00Z'
+license_id: LicenseRef-MetodologIA-Internal
+license_text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+license_text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+authority_class: internal_operating_policy
+applies_to:
+  package_refs:
+    - skills/remotion-video-production
+    - skills/stitch-remotion-walkthrough
+  content_origin: locally_authored
+excludes:
+  - third_party_dependencies
+  - external_reference_content
+  - legacy_observed_content
+permissions:
+  local_design_and_validation: permitted
+  external_distribution: requires_separate_verifiable_authorization
+  commercial_or_production_use: requires_separate_rights_and_license_review
+state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED

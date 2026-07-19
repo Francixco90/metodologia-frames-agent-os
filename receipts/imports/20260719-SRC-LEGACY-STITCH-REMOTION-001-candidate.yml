@@ -1,0 +1,22 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-LEGACY-STITCH-REMOTION-001-001
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 1
+actor_id: sources
+package_id: A02c
+source_id: SRC-LEGACY-STITCH-REMOTION-001
+transition:
+  from: null
+  to: candidate
+canonical_uri_sha256: c87cd13d69aef69146c0179064e34d77ce45d8113a1f8d0786fe94da5e39e9e5
+hashes:
+  raw_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+  normalized_sha256: null
+content_status: observed_hash_only
+evidence_class: DOC
+decision: register_legacy_observation_reference
+promotion_blockers:
+  - exact_source_commit_unknown
+  - normalized_content_hash_absent
+  - license_for_observed_copy_unresolved
+append_only: true

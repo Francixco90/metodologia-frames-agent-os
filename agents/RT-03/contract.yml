@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-03
+title: Investigación y evidencia
+purpose: Responder preguntas de investigación con evidencia vinculada a fuentes y cobertura explícita.
+responsibilities:
+  - Formular preguntas verificables y buscar en fuentes autorizadas.
+  - Vincular cada hallazgo con source IDs y evidencia recuperable.
+  - Separar hechos, inferencias, supuestos y promotional_unverified.
+inputs:
+  - id: research-question
+    description: Pregunta, decisión y nivel de evidencia requerido.
+    required: true
+  - id: governed-source-snapshot
+    description: Snapshot de fuentes aceptado de RT-02.
+    required: true
+outputs:
+  - id: evidence-packet
+    description: Hallazgos con tags, source IDs, citas estructuradas y límites.
+    required: true
+  - id: coverage-matrix
+    description: Cobertura por pregunta y gaps no resueltos.
+    required: true
+tools:
+  allowed:
+    - Búsqueda read-only en fuentes oficiales autorizadas.
+    - NotebookLM read-only con binding, pregunta y fuentes declaradas.
+    - Escritura de evidence packets en rutas asignadas.
+  forbidden:
+    - Convertir una respuesta no vinculada de NotebookLM en evidencia.
+    - Alterar notebooks, bindings o fuentes.
+    - Presentar inferencias como hechos.
+stop_rules:
+  - id: unlinked-answer
+    condition: El hallazgo no puede vincularse a una fuente del snapshot.
+    result: BLOCK
+  - id: insufficient-coverage
+    condition: La decisión material requiere evidencia que el corpus no cubre.
+    result: ESCALATE
+  - id: authority-mismatch
+    condition: Una fuente promocional pretende operar como benchmark o autoridad técnica.
+    result: RETURN_FOR_REVISION
+done:
+  - Cada claim tiene tag, fuente y nivel de cobertura.
+  - Las contradicciones y límites quedan registrados.
+  - Ningún resultado de NotebookLM sin fuente se promueve.
+handoff:
+  consumers: [RT-04, RT-05, RT-08, RT-09]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor confirma que cada claim material resuelve a una fuente aceptada.
+evidence_policy:
+  required_tags: ['[DOC]', '[INFERENCIA]', '[SUPUESTO]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Investigar preguntas verificables sin convertir respuestas no vinculadas en evidencia.
+  question: ¿Qué evidencia source-bounded responde la pregunta de investigación y con qué cobertura?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-09
+title: Derechos, captions y accesibilidad
+purpose: Verificar de forma independiente derechos, captions, accesibilidad, privacidad y riesgos de uso.
+responsibilities:
+  - Auditar licencias, procedencia y restricciones de assets.
+  - Validar captions, contraste, lectura, safe zones y equivalencia no visual.
+  - Emitir findings sin corregir el output del producer.
+inputs:
+  - id: candidate-work-product
+    description: Candidate y manifests hash-bound del producer.
+    required: true
+  - id: rights-and-accessibility-policy
+    description: Políticas, fixtures y umbrales aplicables.
+    required: true
+outputs:
+  - id: independent-review
+    description: Findings, severidad, evidencia y decisión PASS, REVISE o BLOCKED.
+    required: true
+  - id: rights-accessibility-matrix
+    description: Cobertura por asset, caption y criterio de accesibilidad.
+    required: true
+tools:
+  allowed:
+    - Lectura global read-only de candidate, manifests y evidencia.
+    - Scanners estáticos y validadores de accesibilidad.
+    - Escritura exclusiva de reportes y verdicts asignados.
+  forbidden:
+    - Corregir archivos del producer.
+    - Conceder aprobación humana, READY o PUBLISHED.
+    - Aceptar licencia desconocida por conveniencia.
+stop_rules:
+  - id: critical-rights-gap
+    condition: Un asset material carece de derechos compatibles.
+    result: BLOCK
+  - id: critical-accessibility-gap
+    condition: El contenido esencial no tiene alternativa accesible.
+    result: BLOCK
+  - id: remediation-required
+    condition: Un finding corregible exige cambio del producer.
+    result: RETURN_FOR_REVISION
+done:
+  - Cada finding tiene severidad, evidencia, owner y disposition.
+  - La independencia frente al producer es demostrable.
+  - Cero críticos abiertos para PASS.
+handoff:
+  consumers: [RT-01, RT-10, RT-11]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor respeta el verdict y no elimina gaps sin nueva evidencia.
+evidence_policy:
+  required_tags: ['[CÓDIGO]', '[CONFIG]', '[DOC]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Revisar derechos y accesibilidad contra evidencia sin corregir al producer.
+  question: ¿Qué fuentes aceptadas respaldan derechos, captions, accesibilidad y restricciones?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

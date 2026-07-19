@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "policy_id": "POL:N8N:RETRY:VS001",
+  "max_attempts": 3,
+  "backoff_seconds": [5, 30, 120],
+  "retryable_error_classes": ["transient_transport", "rate_limited"],
+  "non_retryable_error_classes": ["hash_mismatch", "approval_missing", "rights_blocked"],
+  "dead_letter_after_exhaustion": true
+}

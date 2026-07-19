@@ -1,0 +1,10 @@
+fixture_id: notebook-missing-coverage-negative
+expected: invalid
+expected_error: NOTEBOOK_COVERAGE_REQUIRED
+request:
+  operation: query_grounding
+  binding:
+    mode: digest
+    binding_digest: 7f40def525a5bedda62b03bdb4e39f3f2699d325c36a26c9edc1a3b762094382
+    locator_material_present: false
+  claim_ids: []

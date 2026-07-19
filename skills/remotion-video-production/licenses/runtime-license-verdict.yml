@@ -1,0 +1,25 @@
+schema_version: 1
+record_id: remotion-runtime-license-verdict-v1
+runtime: Remotion
+version: 4.0.494
+official_license_url: https://github.com/remotion-dev/remotion/blob/main/LICENSE.md
+official_locator_version_pinned: false
+observed_at: '2026-07-19'
+evaluation_receipt:
+  ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml
+  sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+local_evaluation:
+  verdict: permitted
+  evidence_basis: exact_version_hash_bound_receipt_and_program_decision
+  legal_eligibility_adjudicated: false
+commercial_or_production_use:
+  verdict: coverage_gap
+  reason: entity_size_use_case_and_license_eligibility_not_adjudicated
+  consequence: blocked
+responsible_actor: governance-and-human-approver
+revalidation_triggers:
+  - entity_or_use_case_change
+  - runtime_version_change
+  - Remotion_license_change
+  - move_from_evaluation_to_production
+state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED

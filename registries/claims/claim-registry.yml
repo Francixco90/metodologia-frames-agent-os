@@ -1,0 +1,34 @@
+schema_version: 1
+registry_id: claim-registry-v1
+mutation_policy: append-only-records
+claims:
+  - claim_id: CLM-VS001-001
+    state: active
+    claim_type: operating_principle
+    text: El vertical slice sintético usa una fuente first-party antes de proponer piezas.
+    source_id: SRC-SYNTH-VS001
+    source_snapshot_id: synthetic-vs-001-v1
+    source_lines: 9-9
+    source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    support: direct
+    allowed_use_scope: local_contract_testing_only
+  - claim_id: CLM-VS001-002
+    state: active
+    claim_type: governance_principle
+    text: Toda decisión creativa material pasa por un comité con roles distintos de producer, verifier y Guardian.
+    source_id: SRC-SYNTH-VS001
+    source_snapshot_id: synthetic-vs-001-v1
+    source_lines: 11-12
+    source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    support: direct
+    allowed_use_scope: local_contract_testing_only
+  - claim_id: CLM-VS001-003
+    state: active
+    claim_type: state_machine_principle
+    text: 'El flujo falla cerrado: sin derechos, autoridad, hashes y aprobación humana no avanza a READY ni PUBLISHED.'
+    source_id: SRC-SYNTH-VS001
+    source_snapshot_id: synthetic-vs-001-v1
+    source_lines: 14-15
+    source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    support: direct
+    allowed_use_scope: local_contract_testing_only

@@ -1,0 +1,278 @@
+schema_version: 2
+registry_id: source-registry-v2
+supersedes_registry: source-registry-v1
+mutation_policy: append-only-events-with-versioned-current-view
+lifecycle_contract: registries/sources/lifecycle-contract.yml
+semantic_migrations:
+  - migration_id: MIG-SRC-PROMPT-HASH-SEMANTICS-001
+    source_id: SRC-PROMPT-MAESTRO-V6
+    receipt: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-hash-semantics-migration.yml
+    applied_to_current_view: true
+entries:
+  - source_id: SRC-SYNTH-VS001
+    snapshot_id: synthetic-vs-001-v1
+    current_state: active
+    source_kind: first_party_synthetic_fixture
+    title: Fuente sintética first-party de MetodologIA
+    portable_locator: inbox/first-party/SRC-SYNTH-VS001.md
+    portable_locator_role: source_material
+    observed_at: '2026-07-19T20:38:02Z'
+    hashes:
+      raw_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+      normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+      source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+      raw_bytes: 611
+      normalized_bytes: 611
+      normalization_contract: source-promotion-v1
+    deduplication:
+      verdict: unique
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_holder: MetodologIA
+      rights_basis: self_authored_synthetic_fixture
+      allowed_use_scope: local_contract_testing_only
+      rights_verdict: allowed_local_test_only
+    authority:
+      authority_class: first_party_synthetic
+      authority_verdict: verified_for_contract_testing_only
+      provenance_evidence: inbox_file_and_hash_bound_receipts
+    receipts:
+      - receipts/imports/20260719-SRC-SYNTH-VS001-candidate.yml
+      - receipts/imports/20260719-SRC-SYNTH-VS001-quarantined.yml
+      - receipts/imports/20260719-SRC-SYNTH-VS001-evaluated.yml
+      - receipts/imports/20260719-SRC-SYNTH-VS001-active.yml
+    restrictions:
+      - no_external_distribution
+      - no_performance_claims
+      - no_publication_authorization
+  - source_id: SRC-METH-JVC-YT-001
+    current_state: candidate
+    source_kind: remote_video_reference
+    title: 'Video as Code: My AI Animation Stack'
+    canonical_uri: https://www.youtube.com/watch?v=yEa6dgh7wuc
+    canonical_uri_sha256: 2c8e3d7c10d256ce4c67bd4dd3af2c071caafa2ebcbc8c618cbb4635a39b9fb4
+    observed_at: '2026-07-19'
+    hashes:
+      raw_sha256: null
+      normalized_sha256: null
+      source_normalized_sha256: null
+      status: not_ingested
+    deduplication:
+      verdict: pending_content_ingestion
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: methodology_reference
+      authority_verdict: pending
+      provenance_evidence: lead_verified_visible_title_and_url
+    receipts:
+      - receipts/imports/20260719-SRC-METH-JVC-YT-001-candidate.yml
+    coverage_gaps:
+      - raw_and_normalized_hashes_absent
+      - reuse_rights_unresolved
+      - technical_authority_not_established
+  - source_id: SRC-METH-JVC-SKOOL-001
+    current_state: candidate
+    source_kind: remote_post_reference
+    title: 'Good morning everyone, curious about animations'
+    observed_author: Jake Van Clief
+    canonical_uri: https://www.skool.com/cliefnotes/good-morning-everyone-curious-about-animations
+    canonical_uri_sha256: 06c91074a17fa6f60be2576245e091d57186a6bf9e7190f75fb7dd35bbe1ca49
+    observed_at: '2026-07-19'
+    hashes:
+      raw_sha256: null
+      normalized_sha256: null
+      source_normalized_sha256: null
+      status: not_ingested
+    deduplication:
+      verdict: pending_content_ingestion
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: methodology_reference
+      authority_verdict: pending
+      provenance_evidence: lead_verified_visible_author_url_and_outbound_link
+    relations:
+      - type: links_to
+        source_id: SRC-METH-JVC-YT-001
+        verdict: verified
+    receipts:
+      - receipts/imports/20260719-SRC-METH-JVC-SKOOL-001-candidate.yml
+    coverage_gaps:
+      - raw_and_normalized_hashes_absent
+      - reuse_rights_unresolved
+      - technical_authority_not_established
+  - source_id: SRC-PROMPT-MAESTRO-V6
+    snapshot_id: prompt-maestro-v6-source-v1
+    current_state: active
+    source_kind: product_requirements_authority
+    title: Prompt Maestro V6 — Creación del OS Agéntico Creativo MetodologIA
+    portable_locator: inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml
+    portable_locator_role: derived_projection
+    observed_at: '2026-07-19T21:43:28Z'
+    hashes:
+      raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+      normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+      source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+      raw_bytes: 14086
+      normalized_bytes: 14087
+      normalization_contract: source-promotion-v1
+    projection:
+      projection_id: prompt-maestro-v6-requirements-projection-v2
+      projection_locator: inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml
+      projection_sha256: b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5
+      projection_bytes: 3943
+      projection_contract: product-requirements-projection-v1
+      derived_from_source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+      immutable: true
+    deduplication:
+      verdict: unique
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_holder: project_instruction_provider
+      rights_basis: user_supplied_requirements_for_requested_implementation
+      allowed_use_scope: internal_product_implementation_only
+      rights_verdict: allowed_internal_implementation
+    authority:
+      authority_class: first_party
+      authority_verdict: verified_product_requirements
+      provenance_evidence: raw_hash_matches_supplied_prompt_and_portable_traceability_projection
+    receipts:
+      - receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-candidate.yml
+      - receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-quarantined.yml
+      - receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-evaluated.yml
+      - receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-active.yml
+      - receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-hash-semantics-migration.yml
+    restrictions:
+      - internal_implementation_authority_only
+      - portable_projection_is_not_verbatim_raw_archive
+      - mutable_requirements_traceability_is_not_hash_authority
+      - no_release_or_publication_authority
+    coverage_gaps:
+      - raw_attachment_not_versioned
+      - historical_projection_hash_02153e_was_semantically_misclassified_and_is_preserved_in_migration_receipt
+  - source_id: SRC-METH-IMAGE-001
+    current_state: candidate
+    source_kind: observed_image_reference
+    title: Captura de especificación audiovisual y filosofía visual en editor
+    observed_at: '2026-07-19T21:43:28Z'
+    hashes:
+      raw_sha256: ed07e79d4722e1e72e1e1e656dd55ba5518fb6956d10ab47c4f7cd552a9b910d
+      normalized_sha256: ed07e79d4722e1e72e1e1e656dd55ba5518fb6956d10ab47c4f7cd552a9b910d
+      source_normalized_sha256: ed07e79d4722e1e72e1e1e656dd55ba5518fb6956d10ab47c4f7cd552a9b910d
+      raw_bytes: 502215
+      normalized_bytes: 502215
+      normalization_contract: binary-identity-v1
+    deduplication:
+      verdict: unique_by_sha256_within_registry
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: methodology_reference
+      authority_verdict: pending
+      provenance_evidence: lead_supplied_image_inspected_read_only_without_persisting_locator
+    receipts:
+      - receipts/imports/20260719-SRC-METH-IMAGE-001-candidate.yml
+    restrictions:
+      - reference_only
+      - binary_not_copied
+      - local_locator_not_persisted
+      - no_claim_promotion
+    coverage_gaps:
+      - rights_holder_and_reuse_scope_unresolved
+      - methodology_authority_unresolved
+      - portable_content_locator_intentionally_absent
+  - source_id: SRC-REMOTION-DOCS-001
+    current_state: candidate
+    source_kind: official_technical_documentation
+    title: Remotion official documentation
+    canonical_uri: https://www.remotion.dev/docs/
+    canonical_uri_sha256: 798677226d3ac311af1df3991081e78ff42642c1743deab33c2a99d70c6a08ca
+    observed_at: '2026-07-19T21:43:28Z'
+    hashes:
+      raw_sha256: null
+      normalized_sha256: null
+      source_normalized_sha256: null
+      status: not_ingested
+    deduplication:
+      verdict: canonical_uri_unique
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: technical_authority
+      authority_verdict: verified_official_documentation_locator
+      provenance_evidence: remotion_domain_and_official_documentation_verified
+    receipts:
+      - receipts/imports/20260719-SRC-REMOTION-DOCS-001-candidate.yml
+    restrictions:
+      - technical_reference_only
+      - no_content_copy
+      - no_claim_promotion_without_content_hash
+    coverage_gaps:
+      - raw_and_normalized_content_hashes_absent
+      - content_reuse_rights_unresolved
+  - source_id: SRC-REMOTION-SKILLS-001
+    current_state: candidate
+    source_kind: pinned_repository_reference
+    title: remotion-dev skills pinned reference at 62d0a68043d5adb5ff6baa1e38328855172c9d92
+    canonical_uri: https://github.com/remotion-dev/skills/tree/62d0a68043d5adb5ff6baa1e38328855172c9d92
+    canonical_uri_sha256: b108aef24ed1e4b973c9c70c4e7f1fe544c6f37d3b0afbcef17afb0ccea52277
+    observed_at: '2026-07-19T21:43:28Z'
+    hashes:
+      raw_sha256: null
+      normalized_sha256: null
+      source_normalized_sha256: null
+      status: not_ingested
+    deduplication:
+      verdict: canonical_uri_and_commit_unique
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: official_agent_guidance
+      authority_verdict: verified_pinned_reference_locator
+      provenance_evidence: existing_skill_lineage_and_pinned_commit
+    receipts:
+      - receipts/imports/20260719-SRC-REMOTION-SKILLS-001-candidate.yml
+    restrictions:
+      - reference_only
+      - no_content_copy
+      - no_promotion_without_license_and_content_hashes
+    coverage_gaps:
+      - raw_and_normalized_content_hashes_absent
+      - repository_content_license_unresolved
+  - source_id: SRC-LEGACY-STITCH-REMOTION-001
+    current_state: quarantined
+    source_kind: observed_legacy_skill_reference
+    title: Legacy Stitch Remotion walkthrough skill observation
+    canonical_uri: https://github.com/google-labs-code/stitch-skills
+    canonical_uri_sha256: c87cd13d69aef69146c0179064e34d77ce45d8113a1f8d0786fe94da5e39e9e5
+    observed_at: '2026-07-19T21:43:28Z'
+    hashes:
+      raw_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+      normalized_sha256: null
+      source_normalized_sha256: null
+      status: not_ingested
+    deduplication:
+      verdict: observed_hash_unique_within_registry
+      checked_against_registry: source-registry-v1
+    rights:
+      rights_verdict: unresolved
+    authority:
+      authority_class: methodology_reference
+      authority_verdict: pending
+      provenance_evidence: existing_quarantine_wrapper_and_skill_lineage
+    receipts:
+      - receipts/imports/20260719-SRC-LEGACY-STITCH-REMOTION-001-candidate.yml
+      - receipts/imports/20260719-SRC-LEGACY-STITCH-REMOTION-001-quarantined.yml
+    restrictions:
+      - quarantine_reference_only
+      - no_external_fragments_copied
+      - no_execution_or_promotion
+    coverage_gaps:
+      - exact_source_commit_unknown
+      - normalized_content_hash_absent
+      - license_for_observed_copy_unresolved
+      - current_api_parity_not_proven

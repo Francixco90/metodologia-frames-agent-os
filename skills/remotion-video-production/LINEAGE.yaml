@@ -1,0 +1,84 @@
+schema_version: 1
+skill_id: remotion-video-production
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+content_license_evidence:
+  text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+  text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+  receipt_ref: skills/remotion-video-production/licenses/content-license-receipt.yml
+  receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
+lifecycle_state: active
+execution_scope: local-design-and-validation
+runtime:
+  remotion_version: 4.0.494
+  zod_major: 4
+  local_evaluation: permitted_by_program_decision
+  commercial_or_production_use: coverage_gap
+  license_authority:
+    kind: exact_version_hash_bound_evaluation_receipt
+    receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml
+    receipt_sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+    legal_eligibility_adjudicated: false
+references:
+  - source_id: SRC-REMOTION-DOCS-001
+    registry_state: candidate
+    url: https://www.remotion.dev/docs/
+    canonical_uri_sha256: 798677226d3ac311af1df3991081e78ff42642c1743deab33c2a99d70c6a08ca
+    content_hash_status: not_ingested
+    raw_sha256: null
+    normalized_sha256: null
+    use: technical_authority
+    restrictions:
+      - technical_reference_only
+      - no_content_copy
+      - no_claim_promotion_without_content_hash
+    receipts:
+      - ref: receipts/imports/20260719-SRC-REMOTION-DOCS-001-candidate.yml
+        sha256: 49ff580ca147f825eb3c781e79cd489f13e3812511758272026ba66a3d5e445e
+    copied_material: false
+  - source_id: SRC-REMOTION-SKILLS-001
+    registry_state: candidate
+    url: https://github.com/remotion-dev/skills/tree/62d0a68043d5adb5ff6baa1e38328855172c9d92
+    canonical_uri_sha256: b108aef24ed1e4b973c9c70c4e7f1fe544c6f37d3b0afbcef17afb0ccea52277
+    commit: 62d0a68043d5adb5ff6baa1e38328855172c9d92
+    content_hash_status: not_ingested
+    raw_sha256: null
+    normalized_sha256: null
+    use: reference_only_license_unresolved
+    license_status: unresolved
+    restrictions:
+      - reference_only
+      - no_content_copy
+      - no_promotion_without_license_and_content_hashes
+    receipts:
+      - ref: receipts/imports/20260719-SRC-REMOTION-SKILLS-001-candidate.yml
+        sha256: 7a970e083c4a1640a72e977e234183d5bb58aecdfce935a6d2425f75d053a786
+    copied_material: false
+  - source_id: SRC-LEGACY-STITCH-REMOTION-001
+    registry_state: quarantined
+    url: https://github.com/google-labs-code/stitch-skills
+    canonical_uri_sha256: c87cd13d69aef69146c0179064e34d77ce45d8113a1f8d0786fe94da5e39e9e5
+    content_hash_status: not_ingested
+    observed_raw_hash_only: true
+    raw_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+    normalized_sha256: null
+    use: quarantine_assessment_only
+    license_status: unresolved_for_local_copy
+    restrictions:
+      - quarantine_reference_only
+      - no_external_fragments_copied
+      - no_execution_or_promotion
+    receipts:
+      - ref: receipts/imports/20260719-SRC-LEGACY-STITCH-REMOTION-001-candidate.yml
+        sha256: b0f94c4d8aa516ec2778c6d6b0e3d8b9f058c4a84754e416bbabe28575bf2caf
+      - ref: receipts/imports/20260719-SRC-LEGACY-STITCH-REMOTION-001-quarantined.yml
+        sha256: 4972e6438d5fef3a67e23d3686f66cf08faf8a4eddf054dcd45c7cf78d54d8ef
+    copied_material: false
+coverage_gaps:
+  - remotion_runtime_commercial_eligibility_unresolved
+  - remotion_dev_skills_content_license_unresolved
+stop_rules:
+  - do_not_copy_reference_only_sources
+  - do_not_produce_commercially_without_runtime_license_verdict

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/remotion-render-input-v1.json",
+  "title": "Remotion render input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "projectId",
+    "requestedState",
+    "sourceSnapshot",
+    "claimsLedgerDigest",
+    "assetsManifestDigest",
+    "profile",
+    "props",
+    "runtime"
+  ],
+  "properties": {
+    "requestId": {"type": "string", "minLength": 1},
+    "projectId": {"type": "string", "minLength": 1},
+    "requestedState": {"const": "RENDERED_DRAFT"},
+    "sourceSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "normalizedSha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "normalizedSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "claimsLedgerDigest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "assetsManifestDigest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "fps", "durationInFrames"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "fps": {"type": "integer", "minimum": 1},
+        "durationInFrames": {"type": "integer", "minimum": 1}
+      }
+    },
+    "props": {"type": "object"},
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["remotionVersion", "zodMajor", "networkAllowed", "licenseVerdict"],
+      "properties": {
+        "remotionVersion": {"const": "4.0.494"},
+        "zodMajor": {"const": 4},
+        "networkAllowed": {"const": false},
+        "licenseVerdict": {"enum": ["evaluation_only", "eligible_for_requested_use"]}
+      }
+    }
+  }
+}

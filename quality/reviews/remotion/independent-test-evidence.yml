@@ -1,0 +1,82 @@
+schema_version: 1
+review_id: QA-REMOTION-VS001-20260719
+review_scope: A07_content_and_A08_remotion_independent_verification
+reviewer_role: independent_verifier
+reviewed_artifact: REMOTION-VS001
+decision: PASS_TECHNICAL_LOCAL_ONLY
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+technical_validation_state: RENDER_VALIDATED
+visible_state: RENDERED_DRAFT
+visible_scope: LOCAL TEST ONLY
+source_set:
+  sha256: 78a2874842acf36114221dd7c3193e474bf6a2c91d498e7e3e654dc504c38b6f
+  file_count: 56
+  mismatches: 0
+media:
+  smoke:
+    sha256: e0c787e31827ff509f1ad2b421a06ef87f326beb67b3d7326ac6844a465a94f9
+    width: 270
+    height: 480
+    frames: 90
+    streams:
+      - video
+  review_a:
+    sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+  review_b:
+    sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+  review_profile:
+    codec: h264
+    width: 1080
+    height: 1920
+    fps: 30
+    frames: 1231
+    pixel_format: yuv420p
+    color_space: bt709
+    streams:
+      - video
+  container_byte_identical: true
+  decoded_frames_identical: true
+visual_evidence:
+  canonical_still_count: 27
+  unique_frame_count: 27
+  contact_sheet_count: 1
+  minimum_ssim: 0.975161
+  still_hash_mismatches: 0
+  manifest_binding_mismatches: 0
+runtime_gates:
+  layout_guard: PASS
+  remote_fetch_canary: PASS
+  authoritative_linux_network_namespace: pending
+  fonts_hash_and_license_bound: PASS_LOCAL_ONLY
+committee:
+  selected_proposal_id: PROP-VS001-02-RT04
+  incorporated_elements_in_order:
+    - PROP-VS001-04-RT05|Tres preguntas como headers y breadcrumb.
+    - PROP-VS001-05-RT09|Estado por texto, forma y patrón; reduced-motion y rights-first.
+    - PROP-VS001-03-RT08|Semántica 0/4, claim IDs y hash.
+    - PROP-VS001-01-RT07|Señal persistente y bifurcación Web/Motion.
+approvals:
+  human_review: pending
+  guardian_receipt_present: false
+  publish_authorized: false
+findings:
+  critical: []
+  high: []
+  medium: []
+  low: []
+residual_coverage_gaps:
+  - four_canonical_texts_missing_0_of_4
+  - formal_component_registry_approval_receipt_absent
+  - cross_host_chromium_pixel_equivalence_unverified
+  - font_binary_origin_version_unresolved
+  - authoritative_linux_network_namespace_offline_render_unexecuted
+  - remotion_commercial_license_eligibility_unresolved
+  - guardian_and_human_approval_absent
+  - external_distribution_not_authorized
+commands:
+  - pnpm verify:media
+  - pnpm exec vitest run tests/unit/remotion tests/contract/remotion-documentation.contract.test.ts
+  - pnpm exec eslint tests/contract/remotion-documentation.contract.test.ts
+  - pnpm exec prettier --check tests/contract/remotion-documentation.contract.test.ts quality/reviews/remotion

@@ -1,0 +1,67 @@
+schema_version: 1
+report_id: A09-A10-CROSS-DEFECTS-20260719
+recorded_at: '2026-07-19T21:21:53Z'
+verifier_actor: A09-A10-cross-verifier
+independence:
+  produced_packages: [A03, A04]
+  independently_verified_packages: [A02, A05, A06, A11]
+  excluded_from_independent_verdict: [A03, A04, A07, A08]
+release_authorized: false
+summary:
+  open_critical: 0
+  open_high: 0
+  open_medium: 0
+  overall: BLOCKED
+defects: []
+resolved_findings:
+  - finding_ids:
+      - QA-NBLM-001
+      - QA-NBLM-002
+      - QA-NBLM-003
+      - QA-NBLM-004
+      - QA-NBLM-005
+    package: A02
+    status: resolved_by_producer_and_regression_verified
+    evidence: tests/negative/source-notebook.negative.test.ts
+    result: 10 of 10 adversarial tests pass after fail-closed schema resubmission
+  - finding_ids:
+      - QA-SKILL-001
+    package: A05
+    status: resolved_by_producer_and_regression_verified
+    evidence: tests/negative/skill-foundry.negative.test.ts
+    result: The published schema and checker reject all 12 hostile portableMediaPath fixtures.
+  - finding_ids:
+      - QA-WEB-001
+      - QA-WEB-002
+      - QA-WEB-003
+    package: A06
+    status: resolved_by_producer_and_regression_verified
+    evidence: tests/negative/web-security.negative.test.ts
+    result: Strict model, claim-reference semantics, and model/render receipt hashes pass.
+  - finding_ids:
+      - QA-N8N-001
+      - QA-N8N-002
+      - QA-N8N-003
+    package: A11
+    status: resolved_by_producer_and_regression_verified
+    evidence: tests/negative/n8n-controls.negative.test.ts
+    result: All v2 evidence resolves and hash-binds; H02 and replay evidence drift fail closed.
+coverage_gaps:
+  - id: GAP-SOURCES-CANONICAL-0-OF-4
+    package: A02
+    detail: The four canonical pasted texts remain unconfirmed; source_locked is false.
+  - id: GAP-SKILL-FIXTURE-MATRIX
+    package: A05
+    detail: The complete mandatory audiovisual edge-case fixture matrix is not executable in the available A05 package.
+  - id: GAP-RUNTIME-LICENSE
+    package: A05
+    detail: Remotion commercial or production eligibility remains coverage_gap and blocked.
+  - id: GAP-WEB-MANUAL-A11Y
+    package: A06
+    detail: Keyboard and screen-reader testing in a live browser was not executed; no WCAG conformance claim is made.
+  - id: GAP-N8N-LIVE
+    package: A11
+    detail: Workflow remains inactive, without credentials or network; no live integration was tested or authorized.
+  - id: GAP-H01-REAL-RECEIPT
+    package: A11
+    detail: Regression uses a synthetic H01 fixture; no real H01 approval exists for the project artifact.

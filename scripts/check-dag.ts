@@ -87,4 +87,3 @@ if (errors.length > 0) {
 } else {
   console.info('PASS G04 DAG: grafo acíclico, dependencias resolubles y G15→G16→G17 explícito.');
 }
-

@@ -1,0 +1,22 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-REMOTION-DOCS-001-001
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 1
+actor_id: sources
+package_id: A02c
+source_id: SRC-REMOTION-DOCS-001
+transition:
+  from: null
+  to: candidate
+canonical_uri_sha256: 798677226d3ac311af1df3991081e78ff42642c1743deab33c2a99d70c6a08ca
+content_hashes:
+  raw_sha256: null
+  normalized_sha256: null
+  status: not_ingested
+evidence_class: DOC
+authority_evidence: official_remotion_documentation_verified_2026-07-19
+decision: keep_technical_authority_candidate
+promotion_blockers:
+  - content_hashes_absent
+  - content_reuse_rights_unresolved
+append_only: true

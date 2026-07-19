@@ -1,0 +1,657 @@
+schema_version: 1
+registry_id: COMPONENTS-VS001-001
+composition_id: MethodologiaVertical
+state: REGISTRY_DRAFT
+approval_receipt: null
+committee_decision_ref: projects/vs-001-source-to-campaign/remotion/committee/committee-decision.json
+creative_direction:
+  proposalId: PROP-VS001-02-RT04
+  title: Cadena visible
+  synthesisId: SYNTHESIS-VS001-MOTION-01
+  incorporatedElements:
+    - three-question-breadcrumb
+    - text-shape-pattern-reduced-motion-rights-first
+    - zero-of-four-claims-hash-custody
+    - persistent-signal-web-motion-fork
+components:
+  - component_id: StatusBadge
+    version: 1.0.0
+    category: status
+    renderer: remotion
+    path: renderers/remotion/src/components/StatusBadge.tsx
+    sha256: 0e220108685527fd70cf8143b8ebbf34b9461679e3c84a595d5c091caee8754f
+    role: Estado redundante por texto, forma y patrón.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - kind
+        - label
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: PersistentChrome
+    version: 1.0.0
+    category: chrome
+    renderer: remotion
+    path: renderers/remotion/src/components/PersistentChrome.tsx
+    sha256: e0e7097808ea477a23b17301390c45530e4903157fdfd2148c80f69798955944
+    role: Marca única, badges y semántica 0/4 persistentes.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - props
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: SignalRail
+    version: 1.0.0
+    category: navigation
+    renderer: remotion
+    path: renderers/remotion/src/components/SignalRail.tsx
+    sha256: 0c300260d1830161ed535f4056c6a97f8021ea9f529443b3da3affbf8b4b3dfe
+    role: Cadena causal persistente y bifurcación Web/Motion.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - beat
+        - frame
+        - props
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: Breadcrumb
+    version: 1.0.0
+    category: navigation
+    renderer: remotion
+    path: renderers/remotion/src/components/Breadcrumb.tsx
+    sha256: 11f4c3cba75a9f3ef7ef5935f449b6fedf9262277c4387b670c0df53e29d8b5d
+    role: Tres preguntas incorporadas como breadcrumb.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - beat
+        - props
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: BeatScene
+    version: 1.0.0
+    category: scene
+    renderer: remotion
+    path: renderers/remotion/src/components/BeatScene.tsx
+    sha256: 4df0ae1f5c947a901d9ba606571ea5a792082a2769c3cfa50add67300555ab7d
+    role: Escena frame-driven con variante reduced-motion.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - beat
+        - props
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: CaptionBand
+    version: 1.0.0
+    category: caption
+    renderer: remotion
+    path: renderers/remotion/src/components/CaptionBand.tsx
+    sha256: 86801adf06604cffc659663cd4eb98a3276994349b6542fff0057736046ff8bc
+    role: Caption dentro de safe-zone y ventana monotónica.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - props
+        - text
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: LayoutGuard
+    version: 1.0.0
+    category: qa
+    renderer: remotion
+    path: renderers/remotion/src/components/LayoutGuard.tsx
+    sha256: f9db53f2500232c7747318d6b6b856391d045a6d9527949b5ab92c04f392297e
+    role: Espera el portal activo y falla ante overflow, safe-zone o texto recortado dentro de su raíz sentinel-bound.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - compositionHeight
+        - compositionWidth
+        - safeZonePx
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: layout-geometry
+    version: 1.0.0
+    category: qa
+    renderer: remotion
+    path: renderers/remotion/src/components/layout-geometry.ts
+    sha256: ca8fb11c7847225fe0931c23c40deeeefcbd4d1385a6962a42e652827d628430
+    role: Normaliza bounds a coordenadas lógicas de composición para escalas 0.25 y 1.0.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: NetworkGuardProbe
+    version: 1.0.0
+    category: qa
+    renderer: remotion
+    path: renderers/remotion/src/components/NetworkGuardProbe.tsx
+    sha256: 0026c236b951d75df5ed63c6d9538142648cd82495cced50e3bb4f6531cd9c3e
+    role: Canary headless que debe observar bloqueo síncrono de red remota.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: Root
+    version: 1.0.0
+    category: composition
+    renderer: remotion
+    path: renderers/remotion/src/Root.tsx
+    sha256: 6e904cdc4a76a922af7701a48692f93f67c5678433cafa552a6c11c14ed447e0
+    role: Registro de composición con schema y calculateMetadata.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: component-registry-schema
+    version: 1.0.0
+    category: contract
+    renderer: remotion
+    path: renderers/remotion/src/component-registry-schema.ts
+    sha256: 84ba06173975037c94ef2e14238c99d60adc64c5030d95c09e7eb8b579aeb6a2
+    role: Contrato estricto del component registry y sus campos mínimos.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: font-loader
+    version: 1.0.0
+    category: font-loader
+    renderer: remotion
+    path: renderers/remotion/src/font-loader.ts
+    sha256: 299101c6df8d0b8e7e3af1796f4bf5ea23856eab19f48d33a21a538115416292
+    role: Carga y verifica cuatro fonts OFL locales con gate de composición, timeout y cancelRender.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: network-guard
+    version: 1.0.0
+    category: runtime-policy
+    renderer: remotion
+    path: renderers/remotion/src/network-guard.ts
+    sha256: b1644bb2d9b17859bb7c07fb1b8845eee3b863334b36e31a5f69b14213dbfb9f
+    role: Bloquea fetch remoto y conserva recursos same-origin, data y blob.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: schema
+    version: 1.0.0
+    category: contract
+    renderer: remotion
+    path: renderers/remotion/src/schema.ts
+    sha256: debc7924632b0a462e067905a4732e4a62c21416752544ccac3065007c5ded9c
+    role: Zod 4, timeline y calculateMetadata.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: theme
+    version: 1.0.0
+    category: visual-system
+    renderer: remotion
+    path: renderers/remotion/src/theme.ts
+    sha256: afd4beaaf02221b18c23e97d50032febb53ed5b800cb08a7e1c4caea8a29ea2e
+    role: Tokens y familias tipográficas vendorizadas.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required: []
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Non-visual runtime, policy or contract module.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - does not independently render user-facing content
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+  - component_id: MethodologiaVertical
+    version: 1.0.0
+    category: composition
+    renderer: remotion
+    path: projects/vs-001-source-to-campaign/remotion/src/MethodologiaVertical.tsx
+    sha256: 93caf9689b1623b203b6243ad070e78a6875681a8ba484c7121cd434d97db1cc
+    role: Composición 9:16 con siete beats y seis overlaps.
+    runtime: Remotion 4.0.494
+    deterministic: true
+    props:
+      required:
+        - props
+      defaults: {}
+    compatible_formats:
+      - 9:16
+    preview:
+      status: not_applicable
+      reason: Portable review-shot previews are generated after build; this registry remains an unapproved draft.
+    restrictions:
+      - local contract testing only
+      - no remote assets or fonts
+      - no governed state transition without independent approvals
+    rights:
+      holder: MetodologIA
+      basis: locally_authored_first_party_code
+      allowed_scope: local_contract_testing_only
+    accessibility:
+      - layout guard checks viewport and safe-zone bounds
+      - status is not communicated by color alone
+    tests:
+      required: true
+      refs:
+        - tests/unit/remotion/contracts.test.ts
+        - tests/unit/remotion/font-loader.test.ts
+        - tests/unit/remotion/layout-geometry.test.ts
+        - tests/unit/remotion/offline-renderer.test.ts
+    risks:
+      - formal registry approval receipt absent
+      - human playback approval absent
+    state: REGISTRY_DRAFT
+asset_manifest_sha256: 54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35
+forbidden_runtime_behaviors:
+  - network
+  - clock
+  - randomness
+  - timers
+  - css_animation
+  - css_transition
+  - remote_font

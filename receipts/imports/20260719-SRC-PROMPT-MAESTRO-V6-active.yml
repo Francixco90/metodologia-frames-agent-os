@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-004
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 4
+actor_id: sources
+verifier_id: sources-verifier
+package_id: A02c
+source_id: SRC-PROMPT-MAESTRO-V6
+transition:
+  from: evaluated
+  to: active
+hashes:
+  raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+  normalized_sha256: 02153ec2c50808ae1b91c8dff0bf0f11840ac8237948580b5e0ee6d36cbdf48f
+activation_scope: internal_product_implementation_only
+decision: activate_requirements_authority_without_source_lock_or_release_authority
+append_only: true

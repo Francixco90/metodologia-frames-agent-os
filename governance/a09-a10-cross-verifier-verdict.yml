@@ -1,0 +1,82 @@
+schema_version: 1
+verdict_id: A09-A10-CROSS-VERDICT-20260719
+recorded_at: '2026-07-19T21:21:53Z'
+verifier_actor: A09-A10-cross-verifier
+producer_separation:
+  independently_verified: [A02, A05, A06, A11]
+  excluded_because_verifier_produced: [A03, A04]
+  excluded_because_deferred: [A07, A08]
+overall_verdict: BLOCKED
+human_approval_granted: false
+ready_granted: false
+release_authorized: false
+package_verdicts:
+  A02_sources:
+    verdict: PASS_CONTROLLED_FIXTURE_ONLY
+    gate: G02
+    limits:
+      - canonical_corpus_0_of_4
+      - source_locked_false
+      - remote_rights_and_authority_unresolved
+  A02_notebooklm:
+    verdict: PASS_READ_ONLY_CONTRACT
+    gate: G02
+    passing_scope:
+      - strict_unknown_field_rejection
+      - no_write_or_live_mutation_fields
+      - iso_coverage_timestamps
+      - exclusive_binding_union
+      - grounded_query_requires_claim_mapping
+      - binding_none_remains_blocked
+  A05_skill_foundry:
+    verdict: PASS_PORTABILITY_CONTRACT
+    gate: G07
+    passing_scope:
+      - local_skill_checks
+      - canonical_lineage
+      - legacy_quarantine
+      - portable_paths_3_of_3_accepted
+      - hostile_paths_12_of_12_rejected
+      - runtime_license_fail_closed
+    limits:
+      - runtime_license_unresolved
+      - complete_audiovisual_edge_case_matrix_not_executed
+  A06_web:
+    verdict: PASS_CURRENT_ARTIFACT_AND_STRICT_MODEL
+    gate: G09_WEB
+    passing_scope:
+      - current_claim_resolution
+      - strict_unknown_field_rejection
+      - orphan_and_blocked_claim_rejection
+      - model_and_renderer_hash_binding
+      - deterministic_checked_in_html
+      - offline_static_artifact
+      - desktop_mobile_visual_smoke
+      - static_wcag_aa_contrast_and_structure
+    limits:
+      - no_live_keyboard_or_screen_reader_session
+      - no_wcag_conformance_claim
+      - no_publication_authorization
+  A11_n8n:
+    verdict: PASS_DRY_RUN_V2_CONTRACT
+    gate: G11
+    passing_scope:
+      - inactive_workflow
+      - no_credentials
+      - no_network_or_publish_nodes
+      - default_evidence_deny_all
+      - eight_material_refs_resolve_and_hash_match
+      - render_receipt_binding
+      - canonical_h01_approval_binding
+      - replay_evidence_revalidation
+      - bounded_retry_policy
+      - live_kill_switch
+      - in_memory_idempotency
+    limits:
+      - synthetic_h01_fixture_only
+      - no_real_h01_project_approval
+      - no_live_integration_or_durable_idempotency
+next_gate:
+  action: resolve_controlled_coverage_gaps_and_independently_verify_A07_A08_before_any_release_review
+  may_bypass_failed_tests: false
+  may_authorize_release: false

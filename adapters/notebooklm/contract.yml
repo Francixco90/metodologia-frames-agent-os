@@ -1,0 +1,72 @@
+schema_version: 1
+adapter_id: notebooklm-grounding-readonly-v1
+mode: read_only
+network_activation: disabled
+locator_persistence: forbidden
+unknown_fields: reject
+allowed_operations:
+  - resolve_binding_status
+  - read_metadata_digest
+  - read_coverage_digest
+  - query_grounding
+write_operations: []
+binding_union:
+  digest:
+    required:
+      - binding_digest
+      - coverage
+    binding_digest_format: sha256_hex
+    coverage_required:
+      - source_count
+      - cited_source_count
+      - coverage_digest
+      - observed_at
+    observed_at_format: ISO_8601_datetime_with_timezone
+  none:
+    required:
+      - reason_code
+    forbidden:
+      - binding_digest
+      - coverage
+request_union:
+  query_grounding:
+    claim_ids:
+      minimum_items: 1
+  resolve_binding_status:
+    claim_ids:
+      maximum_items: 0
+  read_metadata_digest:
+    claim_ids:
+      maximum_items: 0
+  read_coverage_digest:
+    claim_ids:
+      maximum_items: 0
+outputs:
+  statuses:
+    - grounded
+    - partial
+    - blocked
+  required:
+    - status
+    - binding_mode
+    - coverage_status
+    - evidence
+errors:
+  - NOTEBOOK_OPERATION_FORBIDDEN
+  - NOTEBOOK_LOCATOR_MATERIAL_FORBIDDEN
+  - NOTEBOOK_BINDING_INVALID
+  - NOTEBOOK_COVERAGE_REQUIRED
+  - NOTEBOOK_COVERAGE_INVALID
+  - NOTEBOOK_BINDING_NONE
+  - NOTEBOOK_REQUEST_INVALID
+  - NOTEBOOK_CLAIM_MAPPING_REQUIRED
+stop_rules:
+  - any_write_operation
+  - locator_material_present
+  - digest_without_coverage
+  - malformed_coverage_timestamp
+  - none_without_reason
+  - digest_material_in_none_mode
+  - evidence_without_source_mapping
+  - undeclared_request_or_binding_fields
+  - private_data_in_versioned_output

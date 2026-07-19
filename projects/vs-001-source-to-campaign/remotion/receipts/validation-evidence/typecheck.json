@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "validation-command-evidence-v1",
+  "evidenceId": "EVD-REMOTION-VS001-TYPECHECK",
+  "projectId": "vs-001-source-to-campaign",
+  "command": "pnpm typecheck",
+  "status": "PASS",
+  "exitCode": 0,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
+  "sanitizedSummary": {
+    "stdoutBytes": 0,
+    "stderrBytes": 32,
+    "rawOutputPersistedInVersionableEvidence": false,
+    "absolutePathsPersisted": false,
+    "privateDiagnosticLogPolicy": "ignored_not_referenced"
+  },
+  "stateEffect": "NONE_ON_GOVERNED_WORKFLOW",
+  "createdAt": "2026-07-19T12:00:00.000Z"
+}

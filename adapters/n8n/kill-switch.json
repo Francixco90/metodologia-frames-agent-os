@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "switch_id": "SW:N8N:VS001",
+  "enabled": true,
+  "effect": "block_live_execution",
+  "reason": "No AUTHORIZE_N8N_LOCAL_DRY_RUN import or live release authorization has been recorded."
+}

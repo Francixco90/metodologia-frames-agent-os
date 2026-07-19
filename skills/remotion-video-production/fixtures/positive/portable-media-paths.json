@@ -1,0 +1,16 @@
+{
+  "cases": [
+    {
+      "case": "nested-repository-relative",
+      "value": "projects/vs-001-source-to-campaign/remotion/renders/vs-001-smoke.mp4"
+    },
+    {
+      "case": "hidden-portable-segment",
+      "value": ".cache/review/output-01.webm"
+    },
+    {
+      "case": "safe-ascii-filename",
+      "value": "renders/campaign_v1-final.mov"
+    }
+  ]
+}

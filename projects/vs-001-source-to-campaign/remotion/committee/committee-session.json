@@ -1,0 +1,1330 @@
+{
+  "schemaVersion": 1,
+  "committeeId": "COMMITTEE-VS001-MOTION-01",
+  "workProductId": "REMOTION-VS001",
+  "sourceSnapshotId": "synthetic-vs-001-v1",
+  "format": "VIDEO",
+  "riskTier": "MEDIUM",
+  "createdAt": "2026-07-19T16:05:00-05:00",
+  "proposals": [
+    {
+      "proposalId": "PROP-VS001-01-RT07",
+      "proposer": {
+        "actorId": "actor-rt07-subagent",
+        "roleId": "RT-07",
+        "specialty": "Motion art direction and deterministic Remotion"
+      },
+      "title": "Expediente vivo",
+      "concept": "Una señal verificable recorre fuente, cinco carriles de comité, la bifurcación Web y Motion y se detiene antes del gate no autorizado.",
+      "assumptions": [
+        {
+          "statement": "La continuidad visual de una señal puede representar lineage sin sugerir una métrica.",
+          "evidenceRefs": ["EV-P01"]
+        }
+      ],
+      "evidence": [
+        {
+          "evidenceId": "EV-P01",
+          "sourceId": "SRC-SYNTH-VS001",
+          "tag": "[INFERENCIA]",
+          "claim": "La fixture sustenta fuente, comité y límite; la señal persistente es una traducción visual propuesta.",
+          "sha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+        }
+      ],
+      "risks": [
+        {
+          "riskId": "RISK-P01-BARS",
+          "statement": "Los cinco carriles pueden confundirse con barras cuantitativas.",
+          "severity": "HIGH",
+          "mitigation": "Etiquetarlos como roles categóricos y evitar ejes, valores o crecimiento proporcional.",
+          "evidenceRefs": ["EV-P01"]
+        }
+      ],
+      "criteria": [
+        {
+          "criterionId": "CRIT-P01-LINEAGE",
+          "statement": "La señal conserva source ID y estado entre escenas.",
+          "acceptanceSignal": "Stills de cada transición muestran el mismo lineage y el gate final permanece bloqueado."
+        }
+      ],
+      "tradeoffs": [
+        "Alta coherencia Web-Motion a cambio de vigilar que la metáfora de señal no parezca un KPI."
+      ]
+    },
+    {
+      "proposalId": "PROP-VS001-02-RT04",
+      "proposer": {
+        "actorId": "actor-rt04-subagent",
+        "roleId": "RT-04",
+        "specialty": "Strategy, audience and objective"
+      },
+      "title": "Cadena visible",
+      "concept": "Una cadena lineal fuente→comité→producto→gate organiza siete beats y hace visible que cada avance depende del anterior.",
+      "assumptions": [
+        {
+          "statement": "La audiencia comprende mejor el sistema cuando la causalidad se presenta en orden directo.",
+          "evidenceRefs": ["EV-P02"]
+        }
+      ],
+      "evidence": [
+        {
+          "evidenceId": "EV-P02",
+          "sourceId": "SRC-SYNTH-VS001",
+          "tag": "[INFERENCIA]",
+          "claim": "La secuencia propuesta traduce los tres claims de la fixture en una cadena causal observable.",
+          "sha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+        }
+      ],
+      "risks": [
+        {
+          "riskId": "RISK-P02-DURATION",
+          "statement": "Fijar 36 segundos antes del playback puede forzar captions o narración.",
+          "severity": "HIGH",
+          "mitigation": "Derivar duración del beat map, captions, audio y revisión del video completo.",
+          "evidenceRefs": ["EV-P02"]
+        }
+      ],
+      "criteria": [
+        {
+          "criterionId": "CRIT-P02-CAUSALITY",
+          "statement": "Cada beat identifica su input, decisión y próximo gate.",
+          "acceptanceSignal": "Un review sin audio puede reconstruir fuente, comité, producto y límite en orden."
+        }
+      ],
+      "tradeoffs": ["Máxima claridad causal con menor libertad para una narrativa no lineal."]
+    },
+    {
+      "proposalId": "PROP-VS001-03-RT08",
+      "proposer": {
+        "actorId": "actor-rt08-subagent",
+        "roleId": "RT-08",
+        "specialty": "Data storytelling, semantics and visualization"
+      },
+      "title": "Cadena de custodia visible",
+      "concept": "IDs, hashes, estado 0/4, claims y gates forman una cadena de custodia semántica donde cada cambio conserva su referencia.",
+      "assumptions": [
+        {
+          "statement": "Una jerarquía rigurosa puede mostrar identificadores técnicos sin desplazar la tesis.",
+          "evidenceRefs": ["EV-P03"]
+        }
+      ],
+      "evidence": [
+        {
+          "evidenceId": "EV-P03",
+          "sourceId": "SRC-SYNTH-VS001",
+          "tag": "[DOC]",
+          "claim": "La fixture y su snapshot hash-bound permiten representar custodia de fuente y claims sin inventar métricas.",
+          "sha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+        }
+      ],
+      "risks": [
+        {
+          "riskId": "RISK-P03-DENSITY",
+          "statement": "La densidad de IDs y hashes puede reducir comprensión y velocidad de lectura.",
+          "severity": "HIGH",
+          "mitigation": "Mostrar IDs completos solo cuando son decisión; truncar hashes visualmente y conservarlos completos en manifests.",
+          "evidenceRefs": ["EV-P03"]
+        }
+      ],
+      "criteria": [
+        {
+          "criterionId": "CRIT-P03-SEMANTICS",
+          "statement": "Todo ID visible representa una entidad real y no una textura decorativa.",
+          "acceptanceSignal": "Cada badge resuelve a source, claim, estado o receipt del expediente."
+        }
+      ],
+      "tradeoffs": ["Máxima integridad semántica con mayor carga cognitiva en 9:16."]
+    },
+    {
+      "proposalId": "PROP-VS001-04-RT05",
+      "proposer": {
+        "actorId": "perspective-lead-rt05",
+        "roleId": "RT-05",
+        "specialty": "Sequential Lead perspective for narrative architecture"
+      },
+      "title": "Tres preguntas antes de crear",
+      "concept": "La narrativa responde tres preguntas: de dónde viene, quién decide y hasta dónde puede llegar; los IDs actúan como prueba secundaria.",
+      "assumptions": [
+        {
+          "statement": "La audiencia es hispanohablante y la pieza debe comprenderse en modo silent-first.",
+          "evidenceRefs": ["EV-P04"]
+        }
+      ],
+      "evidence": [
+        {
+          "evidenceId": "EV-P04",
+          "sourceId": "SRC-SYNTH-VS001",
+          "tag": "[INFERENCIA]",
+          "claim": "Las tres preguntas sintetizan origen, gobierno y límite presentes en la fixture.",
+          "sha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+        }
+      ],
+      "risks": [
+        {
+          "riskId": "RISK-P04-SIMPLIFICATION",
+          "statement": "La simplificación puede ocultar roles, receipts o diferencias entre gates.",
+          "severity": "MEDIUM",
+          "mitigation": "Mantener badges persistentes, claim IDs y un receipt final.",
+          "evidenceRefs": ["EV-P04"]
+        }
+      ],
+      "criteria": [
+        {
+          "criterionId": "CRIT-P04-RECALL",
+          "statement": "La audiencia puede responder las tres preguntas al cierre.",
+          "acceptanceSignal": "Playback sin audio conserva pregunta, respuesta, claim ID y gate no alcanzado."
+        }
+      ],
+      "tradeoffs": ["Mayor claridad y recordación con menor densidad técnica y espectacularidad."]
+    },
+    {
+      "proposalId": "PROP-VS001-05-RT09",
+      "proposer": {
+        "actorId": "perspective-lead-rt09",
+        "roleId": "RT-09",
+        "specialty": "Sequential Lead perspective for accessibility and rights"
+      },
+      "title": "El freno también es diseño",
+      "concept": "La pieza abre en el gate bloqueado y reconstruye hacia atrás la evidencia que justifica detenerse; accesibilidad, derechos y autoridad forman parte del producto.",
+      "assumptions": [
+        {
+          "statement": "Una narrativa inversa puede conservar causalidad mediante numeración y breadcrumb persistente.",
+          "evidenceRefs": ["EV-P05"]
+        }
+      ],
+      "evidence": [
+        {
+          "evidenceId": "EV-P05",
+          "sourceId": "SRC-SYNTH-VS001",
+          "tag": "[CONFIG]",
+          "claim": "El scope local y el estado no publicado justifican representar el stop como una decisión de gobierno.",
+          "sha256": "709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb"
+        }
+      ],
+      "risks": [
+        {
+          "riskId": "RISK-P05-REVERSE",
+          "statement": "Abrir en bloqueo puede parecer una falla y la narrativa inversa puede confundir.",
+          "severity": "HIGH",
+          "mitigation": "Usar numeración, breadcrumb y una frase por frame; declarar el stop como protección.",
+          "evidenceRefs": ["EV-P05"]
+        }
+      ],
+      "criteria": [
+        {
+          "criterionId": "CRIT-P05-ACCESS",
+          "statement": "La pieza es comprensible sin audio, color o movimiento.",
+          "acceptanceSignal": "Texto, forma y patrón redundantes; captions, reduced-motion, contraste y safe-zone pasan."
+        }
+      ],
+      "tradeoffs": ["Máxima seguridad y claridad del límite con menor energía promocional."]
+    }
+  ],
+  "rubric": {
+    "rubricId": "RUBRIC-VS001-MOTION-V1",
+    "dimensions": [
+      {
+        "dimensionId": "strategic-fit",
+        "label": "Strategic fit",
+        "weight": 0.2,
+        "guidance": "Alineación con audiencia, objetivo y límites del slice.",
+        "riskCritical": false
+      },
+      {
+        "dimensionId": "evidence-integrity",
+        "label": "Evidence integrity",
+        "weight": 0.25,
+        "guidance": "Trazabilidad de fuente, claims, estados y límites.",
+        "riskCritical": true
+      },
+      {
+        "dimensionId": "narrative-clarity",
+        "label": "Narrative clarity",
+        "weight": 0.15,
+        "guidance": "Comprensión observable del arco y de la causalidad.",
+        "riskCritical": false
+      },
+      {
+        "dimensionId": "feasibility-determinism",
+        "label": "Feasibility and determinism",
+        "weight": 0.15,
+        "guidance": "Implementación reproducible, local y compatible con Remotion.",
+        "riskCritical": true
+      },
+      {
+        "dimensionId": "accessibility-rights",
+        "label": "Accessibility and rights",
+        "weight": 0.15,
+        "guidance": "Accesibilidad multimodal, licencias y scope permitido.",
+        "riskCritical": true
+      },
+      {
+        "dimensionId": "web-motion-coherence",
+        "label": "Web and Motion coherence",
+        "weight": 0.1,
+        "guidance": "Coherencia con WEB-VS001 y el expediente compartido.",
+        "riskCritical": false
+      }
+    ],
+    "scale": {
+      "minimum": 0,
+      "maximum": 5
+    }
+  },
+  "peerAssessments": [
+    {
+      "assessmentId": "ASSESS-RT04-P01",
+      "reviewerActorId": "actor-rt04-subagent",
+      "proposalId": "PROP-VS001-01-RT07",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La señal conecta fuente, comité, productos y gate sin cambiar el objetivo."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Conserva lineage, pero necesita IDs persistentes para probarlo."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La progresión es legible si los cinco carriles no parecen métricas."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Primitives 2D bastan; timings deben derivarse del beat map."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 3,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Faltan captions y reduced-motion como parte central del concepto."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La bifurcación usa el mismo expediente que WEB-VS001."
+        }
+      ],
+      "strengths": ["Lineage visible y continuidad entre Web y Motion."],
+      "objections": ["Los carriles pueden sugerir magnitudes inexistentes."],
+      "socraticQuestions": ["¿Cómo probar que los cinco carriles son roles y no un KPI?"],
+      "compatibleElements": ["Señal persistente y bifurcación Web/Motion."]
+    },
+    {
+      "assessmentId": "ASSESS-RT04-P03",
+      "reviewerActorId": "actor-rt04-subagent",
+      "proposalId": "PROP-VS001-03-RT08",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La custodia hace visible la promesa source-first del slice."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "IDs, hash, 0/4 y gates permanecen como entidades verificables."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La densidad técnica puede desplazar la tesis humana."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Badges son reproducibles si se fijan fuentes y medición."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La semántica ayuda, pero requiere jerarquía no visual."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Reutiliza directamente ledger, IDs y paneles del Web."
+        }
+      ],
+      "strengths": ["Trazabilidad frame a frame."],
+      "objections": ["Un hash ilegible no debe convertirse en decoración."],
+      "socraticQuestions": ["¿Cuál es el conjunto mínimo de IDs que conserva custodia?"],
+      "compatibleElements": ["0/4, claim IDs y hash semantics."]
+    },
+    {
+      "assessmentId": "ASSESS-RT04-P04",
+      "reviewerActorId": "actor-rt04-subagent",
+      "proposalId": "PROP-VS001-04-RT05",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Las preguntas acercan el sistema a la audiencia."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Los badges deben mantener el detalle que la síntesis verbal reduce."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Tres preguntas ofrecen una estructura recordable."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Tipografía y capítulos discretos son reproducibles."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Silent-first favorece captions; aún requiere rights receipts de assets."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Las tres preguntas deben mapear explícitamente los cuatro capítulos Web."
+        }
+      ],
+      "strengths": ["Claridad humana y criterio de recuerdo observable."],
+      "objections": ["Puede simplificar roles y gates en exceso."],
+      "socraticQuestions": ["¿Cómo conserva cuatro capítulos dentro de tres preguntas?"],
+      "compatibleElements": ["Preguntas como headers y breadcrumb."]
+    },
+    {
+      "assessmentId": "ASSESS-RT04-P05",
+      "reviewerActorId": "actor-rt04-subagent",
+      "proposalId": "PROP-VS001-05-RT09",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El stop protege la promesa de gobierno."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Scope local y estados justifican cada bloqueo."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "La inversión funciona con numeración y breadcrumb."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Movimiento sobrio y labels son deterministas."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Texto, forma, patrón y reduced-motion son explícitos."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 3,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Invierte el orden editorial del Web y exige puente visible."
+        }
+      ],
+      "strengths": ["El límite se entiende como función del producto."],
+      "objections": ["Abrir bloqueado puede parecer falla."],
+      "socraticQuestions": ["¿Qué señal demuestra que detenerse es calidad y no error?"],
+      "compatibleElements": ["Estado redundante y rights-first."]
+    },
+    {
+      "assessmentId": "ASSESS-RT07-P02",
+      "reviewerActorId": "actor-rt07-subagent",
+      "proposalId": "PROP-VS001-02-RT04",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Representa los cuatro momentos declarados del slice."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La cadena conserva origen y gates; debe mostrar hash y 0/4."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Siete beats son legibles si cada transición tiene hold."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Primitives 2D bastan; 36s no puede preceder al playback."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 3,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Faltan reduced-motion y política de assets en el concepto base."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Replica el orden editorial de WEB-VS001."
+        }
+      ],
+      "strengths": ["Modelo causal claro y transferible."],
+      "objections": ["Duración fija y gate ambiguo si parece alcanzado."],
+      "socraticQuestions": ["¿Qué beats se fusionan si captions requieren más hold?"],
+      "compatibleElements": ["Cadena lineal y match-cuts entre IDs."]
+    },
+    {
+      "assessmentId": "ASSESS-RT07-P03",
+      "reviewerActorId": "actor-rt07-subagent",
+      "proposalId": "PROP-VS001-03-RT08",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Prioriza trazabilidad, aunque el mecanismo domina la tesis."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Todos los identificadores tienen función semántica."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La densidad puede competir con el mensaje en 9:16."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Badges y ledgers son deterministas con fixtures de texto."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 3,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Faltan límites de densidad y lectura no visual."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Reutiliza claims y paneles de trazabilidad Web."
+        }
+      ],
+      "strengths": ["Máxima trazabilidad observable."],
+      "objections": ["Los hashes pueden volverse textura ilegible."],
+      "socraticQuestions": ["¿Qué IDs prueban lineage sin desplazar captions?"],
+      "compatibleElements": ["Ledger, 0/4 y hash truncado."]
+    },
+    {
+      "assessmentId": "ASSESS-RT07-P04",
+      "reviewerActorId": "actor-rt07-subagent",
+      "proposalId": "PROP-VS001-04-RT05",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Traduce fuente, comité y límite al lenguaje de audiencia."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Badges preservan respaldo si 0/4 permanece visible."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Tres preguntas producen recuerdo comprobable."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Escenas discretas no dependen de red ni simulación."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Silent-first, captions y safe-zone son criterios explícitos."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Requiere mapear tres preguntas a cuatro capítulos Web."
+        }
+      ],
+      "strengths": ["Tesis humana con prueba técnica secundaria."],
+      "objections": ["Puede reducir diferencias entre producer, verifier y Guardian."],
+      "socraticQuestions": ["¿Cómo conserva esos roles sin crear otra pregunta?"],
+      "compatibleElements": ["Headers interrogativos y recap de respuestas."]
+    },
+    {
+      "assessmentId": "ASSESS-RT07-P05",
+      "reviewerActorId": "actor-rt07-subagent",
+      "proposalId": "PROP-VS001-05-RT09",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El límite representa gobierno, aunque desplaza el inicio creativo."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "0/4, scope local y draft explican el stop."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "La reconstrucción inversa exige breadcrumb."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Labels y patrones se implementan con primitives locales."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Estado redundante y reduced-motion están definidos."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Continúa el límite Web, aunque invierte sus capítulos."
+        }
+      ],
+      "strengths": ["Accesibilidad y derechos son lenguaje visual."],
+      "objections": ["El primer frame bloqueado puede parecer falla."],
+      "socraticQuestions": ["¿Cómo mostrar que el stop es calidad?"],
+      "compatibleElements": ["Texto+forma+patrón y reduced-motion."]
+    },
+    {
+      "assessmentId": "ASSESS-RT08-P01",
+      "reviewerActorId": "actor-rt08-subagent",
+      "proposalId": "PROP-VS001-01-RT07",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La señal hace visible el proceso completo."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Necesita labels para impedir interpretación cuantitativa."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "El recorrido es directo con holds entre estados."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La gramática 2D es reproducible y medible."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 3,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Color y movimiento no pueden cargar solos el estado."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Conserva la arquitectura visual del Web."
+        }
+      ],
+      "strengths": ["Continuidad gráfica sin assets externos."],
+      "objections": ["Cinco barras pueden leerse como datos."],
+      "socraticQuestions": ["¿Qué encoding categórico reemplaza una lectura cuantitativa?"],
+      "compatibleElements": ["Señal persistente con labels de rol."]
+    },
+    {
+      "assessmentId": "ASSESS-RT08-P02",
+      "reviewerActorId": "actor-rt08-subagent",
+      "proposalId": "PROP-VS001-02-RT04",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La causalidad directa sirve al objetivo del demostrador."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Debe incluir estado 0/4 y scope en la cadena."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Los cuatro hitos se reconstruyen sin inferencia adicional."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Siete beats son viables si duración sale de playback."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La linealidad ayuda; faltan criterios de captions y rights."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Coincide con la secuencia Web actual."
+        }
+      ],
+      "strengths": ["Causalidad y jerarquía editorial claras."],
+      "objections": ["36s es un supuesto no validado."],
+      "socraticQuestions": ["¿Qué duración emerge del caption timing real?"],
+      "compatibleElements": ["Cadena fuente→gate con timing derivado."]
+    },
+    {
+      "assessmentId": "ASSESS-RT08-P04",
+      "reviewerActorId": "actor-rt08-subagent",
+      "proposalId": "PROP-VS001-04-RT05",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Las preguntas acercan el sistema al usuario."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 3,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "El lenguaje primero puede relegar 0/4, hashes y estados."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Tres preguntas definen un test de comprensión."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "La arquitectura tipográfica es estable."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Silent-first y captions son parte del diseño."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Necesita una tabla de correspondencia con capítulos Web."
+        }
+      ],
+      "strengths": ["Lenguaje claro y captions como superficie principal."],
+      "objections": ["Puede diluir semántica de hashes y estado."],
+      "socraticQuestions": ["¿Qué evidencia mínima permanece en cada pregunta?"],
+      "compatibleElements": ["Preguntas como capa narrativa sobre IDs."]
+    },
+    {
+      "assessmentId": "ASSESS-RT08-P05",
+      "reviewerActorId": "actor-rt08-subagent",
+      "proposalId": "PROP-VS001-05-RT09",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El stop explica el alcance real del slice."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Los límites se conectan a configuración verificable."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Breadcrumb puede resolver la inversión narrativa."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Patrones y labels son deterministas."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "No depende de audio, color o movimiento."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El panel límite Web sirve como ancla final."
+        }
+      ],
+      "strengths": ["Semántica redundante y límites explícitos."],
+      "objections": ["La apertura bloqueada requiere contexto inmediato."],
+      "socraticQuestions": ["¿Cómo conservar causalidad al reconstruir hacia atrás?"],
+      "compatibleElements": ["Patrón de estado y rights-first."]
+    },
+    {
+      "assessmentId": "ASSESS-RT05-P01",
+      "reviewerActorId": "perspective-lead-rt05",
+      "proposalId": "PROP-VS001-01-RT07",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La señal representa el flujo, aunque necesita una premisa verbal."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Puede mantener source ID, claims y gates en pantalla."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "El recorrido lineal es comprensible con labels."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La señal se anima con primitives deterministas."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Requiere redundancia más allá de color y movimiento."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Conserva el mismo sistema editorial."
+        }
+      ],
+      "strengths": ["Metáfora compacta del expediente."],
+      "objections": ["Sin copy rector puede sentirse abstracta."],
+      "socraticQuestions": ["¿Qué frase convierte la señal en una promesa humana?"],
+      "compatibleElements": ["Señal como breadcrumb de toda la pieza."]
+    },
+    {
+      "assessmentId": "ASSESS-RT05-P02",
+      "reviewerActorId": "perspective-lead-rt05",
+      "proposalId": "PROP-VS001-02-RT04",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La cadena responde al objetivo sin desvíos."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Cada beat puede vincularse a claim y estado."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Es clara, aunque siete beats pueden fragmentar el arco."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Viable si la duración no se fija antes del guion."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La secuencia ayuda captions; faltan criterios explícitos."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "El orden coincide con el Web."
+        }
+      ],
+      "strengths": ["Estructura clara para copy y beat map."],
+      "objections": ["Siete beats pueden parecer checklist."],
+      "socraticQuestions": ["¿Qué pregunta humana unifica los siete beats?"],
+      "compatibleElements": ["Cadena causal como columna vertebral."]
+    },
+    {
+      "assessmentId": "ASSESS-RT05-P03",
+      "reviewerActorId": "perspective-lead-rt05",
+      "proposalId": "PROP-VS001-03-RT08",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Prueba trazabilidad, pero puede sonar a interfaz interna."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La custodia preserva todo el lineage."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "IDs y hashes requieren traducción verbal."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Factible con jerarquía tipográfica estable."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Necesita límites de lectura y alt semantics."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Coherente con el ledger Web, menos con su tesis humana."
+        }
+      ],
+      "strengths": ["Prueba técnica sólida."],
+      "objections": ["Puede perder a la audiencia no técnica."],
+      "socraticQuestions": ["¿Qué historia cuentan los IDs antes de mostrarlos?"],
+      "compatibleElements": ["Claim IDs y hash semantics como prueba secundaria."]
+    },
+    {
+      "assessmentId": "ASSESS-RT05-P05",
+      "reviewerActorId": "perspective-lead-rt05",
+      "proposalId": "PROP-VS001-05-RT09",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 3,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El bloqueo domina la propuesta antes de explicar el valor."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Cada stop tiene respaldo de estado y derechos."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "La inversión puede confundir cronología y causa."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "El sistema de labels es ejecutable."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Accesibilidad y rights son centrales."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 3,
+          "evidenceRefs": ["EV-P05"],
+          "decisionNote": "Invierte la progresión del Web y necesita remapeo."
+        }
+      ],
+      "strengths": ["El límite nunca queda ambiguo."],
+      "objections": [
+        "La narrativa inversa y el énfasis en bloqueo pueden presentar el producto como fallido."
+      ],
+      "socraticQuestions": ["¿Qué se pierde si el stop aparece al final en vez de abrir la pieza?"],
+      "compatibleElements": ["Estado redundante y reduced-motion, sin adoptar la apertura inversa."]
+    },
+    {
+      "assessmentId": "ASSESS-RT09-P01",
+      "reviewerActorId": "perspective-lead-rt09",
+      "proposalId": "PROP-VS001-01-RT07",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La señal conecta el proceso con el límite."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Puede portar IDs y estado durante toda la pieza."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "La continuidad reduce saltos cognitivos."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "No exige assets externos ni red."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Debe añadir forma y texto a la señal de color."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P01"],
+          "decisionNote": "Replica el lenguaje visual del Web."
+        }
+      ],
+      "strengths": ["Continuidad con bajo riesgo de assets."],
+      "objections": ["Color y movimiento no bastan para comunicar estado."],
+      "socraticQuestions": ["¿Cómo funciona la señal en reduced-motion y monocromo?"],
+      "compatibleElements": ["Señal persistente con labels redundantes."]
+    },
+    {
+      "assessmentId": "ASSESS-RT09-P02",
+      "reviewerActorId": "perspective-lead-rt09",
+      "proposalId": "PROP-VS001-02-RT04",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "La cadena muestra el flujo sin exceder scope."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Claims y gates pueden anclarse por beat."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "El orden directo reduce ambigüedad."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Viable con timing derivado y assets locales."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Debe incorporar captions, safe-zone y rights receipts."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 5,
+          "evidenceRefs": ["EV-P02"],
+          "decisionNote": "Mantiene la progresión Web."
+        }
+      ],
+      "strengths": ["Orden directo y gates visibles."],
+      "objections": ["El tiempo fijo amenaza velocidad de captions."],
+      "socraticQuestions": ["¿Qué cambia cuando captions definen la duración?"],
+      "compatibleElements": ["Cadena directa con controles de accesibilidad."]
+    },
+    {
+      "assessmentId": "ASSESS-RT09-P03",
+      "reviewerActorId": "perspective-lead-rt09",
+      "proposalId": "PROP-VS001-03-RT08",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La custodia demuestra gobierno y límites."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "La semántica evita claims sin source."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 3,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "El volumen de labels puede saturar 9:16."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Requiere fixtures de texto y fuentes fijadas."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 5,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Lineage y scope son verificables si se leen sin color."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P03"],
+          "decisionNote": "Conserva ledger y claims del Web."
+        }
+      ],
+      "strengths": ["No permite evidencia ornamental."],
+      "objections": ["Demasiados IDs reducen tamaño y lectura."],
+      "socraticQuestions": ["¿Qué información pasa al manifest y no al frame?"],
+      "compatibleElements": ["0/4 y claim IDs visibles."]
+    },
+    {
+      "assessmentId": "ASSESS-RT09-P04",
+      "reviewerActorId": "perspective-lead-rt09",
+      "proposalId": "PROP-VS001-04-RT05",
+      "dimensionScores": [
+        {
+          "dimensionId": "strategic-fit",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Las preguntas hacen el gobierno entendible."
+        },
+        {
+          "dimensionId": "evidence-integrity",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Claim IDs deben permanecer junto a cada respuesta."
+        },
+        {
+          "dimensionId": "narrative-clarity",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "La estructura es clara en modo silent-first."
+        },
+        {
+          "dimensionId": "feasibility-determinism",
+          "score": 5,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Capítulos tipográficos son reproducibles."
+        },
+        {
+          "dimensionId": "accessibility-rights",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "Necesita rights receipts además de captions y safe-zone."
+        },
+        {
+          "dimensionId": "web-motion-coherence",
+          "score": 4,
+          "evidenceRefs": ["EV-P04"],
+          "decisionNote": "La correspondencia con cuatro capítulos debe documentarse."
+        }
+      ],
+      "strengths": ["Comprensible sin audio y con copy breve."],
+      "objections": ["La simplificación no puede borrar gates distintos."],
+      "socraticQuestions": ["¿Dónde se muestra que Guardian, H01 y release no son equivalentes?"],
+      "compatibleElements": ["Headers, breadcrumb y recap accesible."]
+    }
+  ],
+  "dissent": {
+    "status": "PRESENT",
+    "entries": [
+      {
+        "dissentId": "DISSENT-RT05-P05",
+        "actorId": "perspective-lead-rt05",
+        "proposalId": "PROP-VS001-05-RT09",
+        "statement": "La narrativa inversa y el énfasis inicial en bloqueo pueden hacer que el producto parezca fallido antes de demostrar valor.",
+        "evidenceRefs": ["EV-P05"],
+        "disposition": "PARTIALLY_INCORPORATED",
+        "dispositionSummary": "Se incorpora el stop accesible y rights-first, pero no se adopta la apertura narrativa inversa."
+      },
+      {
+        "dissentId": "DISSENT-RT08-P02",
+        "actorId": "actor-rt08-subagent",
+        "proposalId": "PROP-VS001-02-RT04",
+        "statement": "La duración de 36 segundos no está justificada antes de beat map, captions, audio y playback.",
+        "evidenceRefs": ["EV-P02"],
+        "disposition": "INCORPORATED",
+        "dispositionSummary": "La síntesis exige timing derivado y prohíbe fijar 36 segundos sin evidencia de playback."
+      }
+    ]
+  },
+  "synthesis": {
+    "synthesisId": "SYNTHESIS-VS001-MOTION-01",
+    "selectedProposalId": "PROP-VS001-02-RT04",
+    "decisionSummary": "Cadena visible sirve como columna causal; la dirección integrada añade claridad interrogativa, custodia semántica, señal persistente y gobierno accesible sin convertir el demostrador en una aprobación.",
+    "incorporatedElements": [
+      {
+        "sourceProposalId": "PROP-VS001-04-RT05",
+        "element": "Tres preguntas como headers y breadcrumb.",
+        "compatibilityNote": "Organizan los siete beats sin cambiar la cadena causal."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-05-RT09",
+        "element": "Estado por texto, forma y patrón; reduced-motion y rights-first.",
+        "compatibilityNote": "Refuerza el gate sin adoptar la apertura narrativa inversa."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-03-RT08",
+        "element": "Semántica 0/4, claim IDs y hash.",
+        "compatibilityNote": "Conserva trazabilidad como prueba secundaria legible."
+      },
+      {
+        "sourceProposalId": "PROP-VS001-01-RT07",
+        "element": "Señal persistente y bifurcación Web/Motion.",
+        "compatibilityNote": "Une escenas y demuestra que ambos productos comparten expediente."
+      }
+    ],
+    "alternativeDispositions": [
+      {
+        "proposalId": "PROP-VS001-01-RT07",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran señal y bifurcación; no se adopta la dirección completa para evitar lectura cuantitativa."
+      },
+      {
+        "proposalId": "PROP-VS001-03-RT08",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integra custodia mínima; IDs densos pasan a manifests."
+      },
+      {
+        "proposalId": "PROP-VS001-04-RT05",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran preguntas y recap dentro de la cadena ganadora."
+      },
+      {
+        "proposalId": "PROP-VS001-05-RT09",
+        "disposition": "PARTIALLY_INCORPORATED",
+        "summary": "Se integran accesibilidad, rights-first y stop redundante; se descarta la apertura inversa."
+      }
+    ],
+    "requestedChanges": [
+      "No fijar 36 segundos sin beat map, captions, audio y playback completos.",
+      "Mantener RENDERED_DRAFT y LOCAL TEST ONLY como badges persistentes.",
+      "No presentar cinco propuestas ni veinte reviews como KPI.",
+      "Validar captions, velocidad de lectura, contraste y safe-zone en 9:16.",
+      "Usar únicamente assets locales hash-bound con rights receipts."
+    ],
+    "evidenceRefs": ["EV-P01", "EV-P02", "EV-P03", "EV-P04", "EV-P05"]
+  },
+  "uncertainty": {
+    "overallScore": 0.55,
+    "materialThreshold": 0.65,
+    "drivers": [
+      {
+        "driverId": "UNCERTAINTY-DURATION-AUDIO",
+        "statement": "Duración, narración y audio pueden cambiar timing y número de holds.",
+        "impact": "MATERIAL",
+        "analysisStatus": "RESOLVABLE",
+        "evidenceRefs": ["EV-P02"]
+      },
+      {
+        "driverId": "UNCERTAINTY-ID-DENSITY",
+        "statement": "La densidad de IDs puede afectar legibilidad y comprensión en 9:16.",
+        "impact": "MATERIAL",
+        "analysisStatus": "RESOLVABLE",
+        "evidenceRefs": ["EV-P03"]
+      },
+      {
+        "driverId": "UNCERTAINTY-ACCESS-LAYOUT",
+        "statement": "Captions, safe-zone y reduced-motion requieren stills y playback.",
+        "impact": "MATERIAL",
+        "analysisStatus": "RESOLVABLE",
+        "evidenceRefs": ["EV-P05"]
+      }
+    ]
+  },
+  "secondPrototype": {
+    "required": false,
+    "trigger": "NOT_JUSTIFIED",
+    "rationale": "Las incertidumbres materiales son resolubles con beat map, layout, stills y playback; no existe driver NOT_RESOLVABLE."
+  }
+}

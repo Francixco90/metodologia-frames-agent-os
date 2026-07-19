@@ -1,0 +1,22 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-REMOTION-SKILLS-001-001
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 1
+actor_id: sources
+package_id: A02c
+source_id: SRC-REMOTION-SKILLS-001
+transition:
+  from: null
+  to: candidate
+canonical_uri_sha256: b108aef24ed1e4b973c9c70c4e7f1fe544c6f37d3b0afbcef17afb0ccea52277
+pinned_commit: 62d0a68043d5adb5ff6baa1e38328855172c9d92
+content_hashes:
+  raw_sha256: null
+  normalized_sha256: null
+  status: not_ingested
+evidence_class: DOC
+decision: keep_pinned_reference_only_candidate
+promotion_blockers:
+  - content_hashes_absent
+  - repository_content_license_unresolved
+append_only: true

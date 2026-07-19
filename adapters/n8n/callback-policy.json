@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "policy_id": "POL:N8N:CALLBACK:VS001",
+  "mode": "receipt-only",
+  "allowed_fields": [
+    "job_id",
+    "status",
+    "log_refs",
+    "input_hash",
+    "output_hash",
+    "receipt_id",
+    "retry_count",
+    "error_class"
+  ],
+  "network_callback_enabled": false
+}

@@ -1,0 +1,156 @@
+schema_version: 1
+registry_id: skill-registry-v1
+mutation_policy: append-only-records-and-events
+lifecycle_contract: registries/skills/lifecycle-contract.yml
+entries:
+  - skill_id: remotion-video-production
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry
+    source_url: https://www.remotion.dev/docs/
+    reference_repository_url: https://github.com/remotion-dev/skills
+    reference_commit: 62d0a68043d5adb5ff6baa1e38328855172c9d92
+    reference_license_status: unresolved
+    runtime_version: 4.0.494
+    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    package_manifest_sha256: 720b166efa889d8039136ce3826026ac035cf187839f6c9554e79f53a2e5d6cf
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/remotion-video-production/LINEAGE.yaml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/remotion-video-production/licenses/content-license-receipt.yml
+      receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
+    runtime_license_evidence:
+      receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml
+      receipt_sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+      commercial_or_production_use: coverage_gap
+      consequence: blocked
+    recorded_at: '2026-07-19T20:38:02Z'
+    fragments_reused: false
+    local_changes:
+      - original_router_for_15_modules
+      - original_contracts_and_fixtures
+      - deterministic_offline_and_av_qa_rules
+      - runtime_license_fail_closed_gate
+    restrictions:
+      - no_copy_from_reference_only_sources
+      - no_commercial_or_production_render_until_license_verdict
+      - rendered_draft_is_not_ready
+    execution_scope: local-design-and-validation
+    production_runtime_status: blocked_license_coverage_gap
+    tests:
+      - node skills/remotion-video-production/scripts/check-skill.mjs
+      - node skills/remotion-video-production/scripts/check-contracts.mjs
+      - node skills/remotion-video-production/scripts/check-sources.mjs
+      - node skills/remotion-video-production/scripts/check-example.mjs
+    event_ids:
+      - EVT-SKL-REMOTION-001
+      - EVT-SKL-REMOTION-002
+      - EVT-SKL-REMOTION-003
+      - EVT-SKL-REMOTION-004
+  - skill_id: stitch-remotion-walkthrough
+    version: 0.1.0
+    current_state: quarantined
+    owner: MetodologIA
+    responsible_actor: skill-foundry
+    source_url: https://github.com/google-labs-code/stitch-skills
+    source_commit: coverage_gap
+    source_version: coverage_gap
+    source_license_status: unresolved_for_observed_copy
+    observed_legacy_content_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+    content_sha256: d039ce1f7def615eaedb2c8b5f79441129eca3ae514c81fa6ae804d52df8d673
+    package_manifest_sha256: 179fd351812de9de102346cfd22313e849076400b38808ef9e03dbe96ab672d0
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/stitch-remotion-walkthrough/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/remotion-video-production/licenses/content-license-receipt.yml
+      receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
+    recorded_at: '2026-07-19T20:38:02Z'
+    fragments_reused: false
+    local_changes:
+      - original_quarantine_wrapper_only
+      - original_risk_assessment
+      - no_legacy_code_examples_assets_or_scripts_included
+    restrictions:
+      - audit_only
+      - no_rendering
+      - no_downloads_or_mcp
+      - no_promotion_until_commit_license_and_api_parity_are_resolved
+    execution_scope: reference_only
+    production_runtime_status: forbidden
+    tests:
+      - node skills/stitch-remotion-walkthrough/scripts/check-quarantine.mjs
+    event_ids:
+      - EVT-SKL-STITCH-001
+      - EVT-SKL-STITCH-002
+events:
+  - event_id: EVT-SKL-REMOTION-001
+    event_order: 1
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry
+    skill_id: remotion-video-production
+    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    transition:
+      from: null
+      to: candidate
+    decision: accept_locally_authored_candidate
+  - event_id: EVT-SKL-REMOTION-002
+    event_order: 2
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry
+    skill_id: remotion-video-production
+    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    transition:
+      from: candidate
+      to: quarantined
+    decision: quarantine_for_lineage_and_contract_review
+  - event_id: EVT-SKL-REMOTION-003
+    event_order: 3
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry-verifier
+    skill_id: remotion-video-production
+    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    transition:
+      from: quarantined
+      to: evaluated
+    decision: checks_pass_for_local_design_and_validation
+  - event_id: EVT-SKL-REMOTION-004
+    event_order: 4
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry
+    verifier_id: skill-foundry-verifier
+    skill_id: remotion-video-production
+    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    transition:
+      from: evaluated
+      to: active
+    activation_scope: local-design-and-validation
+    decision: activate_skill_keep_production_runtime_blocked
+  - event_id: EVT-SKL-STITCH-001
+    event_order: 1
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry
+    skill_id: stitch-remotion-walkthrough
+    content_sha256: d039ce1f7def615eaedb2c8b5f79441129eca3ae514c81fa6ae804d52df8d673
+    transition:
+      from: null
+      to: candidate
+    decision: register_legacy_observation_wrapper
+  - event_id: EVT-SKL-STITCH-002
+    event_order: 2
+    recorded_at: '2026-07-19T20:38:02Z'
+    actor_id: skill-foundry
+    skill_id: stitch-remotion-walkthrough
+    content_sha256: d039ce1f7def615eaedb2c8b5f79441129eca3ae514c81fa6ae804d52df8d673
+    transition:
+      from: candidate
+      to: quarantined
+    decision: keep_reference_only_license_and_api_gaps

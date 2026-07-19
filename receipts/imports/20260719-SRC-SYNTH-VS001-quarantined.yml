@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-SYNTH-VS001-002
+recorded_at: '2026-07-19T20:38:02Z'
+event_order: 2
+actor_id: sources
+package_id: A02a
+source_id: SRC-SYNTH-VS001
+transition:
+  from: candidate
+  to: quarantined
+hashes:
+  raw_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+  normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+decision: quarantine_pending_rights_authority_and_deduplication
+append_only: true

@@ -1,0 +1,29 @@
+schema_version: 1
+registry_id: project-registry-v1
+mutation_policy: append-only-records-and-events
+entries:
+  - project_id: vs-001-source-to-campaign
+    manifest_ref: projects/vs-001-source-to-campaign/project.yml
+    source_bundle_ref: projects/vs-001-source-to-campaign/source-bundle.yml
+    claims_ledger_ref: projects/vs-001-source-to-campaign/claims-ledger.yml
+    current_state: PARTIAL_CONTROLLED
+    governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+    technical_validation_state: RENDER_VALIDATED
+    work_products:
+      - artifact_id: vs-001-web
+        kind: web
+        technical_state: BUILD_VALIDATED
+      - artifact_id: vs-001-remotion
+        kind: video
+        technical_state: RENDER_VALIDATED
+    source_locked: false
+    guardian_passed: false
+    human_approved: false
+    ready: false
+    published: false
+    coverage_gaps:
+      - four_canonical_texts_missing_0_of_4
+      - remotion_commercial_license_eligibility_unresolved
+      - human_editorial_playback_pending
+      - canonical_guardian_and_H01_approval_absent
+      - external_distribution_not_authorized

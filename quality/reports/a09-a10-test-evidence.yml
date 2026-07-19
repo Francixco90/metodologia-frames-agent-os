@@ -1,0 +1,108 @@
+schema_version: 1
+report_id: A09-A10-TEST-EVIDENCE-20260719
+recorded_at: '2026-07-19T21:21:53Z'
+release_authorized: false
+commands:
+  - command: pnpm exec vitest run tests/contract tests/integration tests/negative tests/visual tests/unit/n8n
+    status: passed
+    result: 12 files, 76 tests passed
+  - command: pnpm typecheck
+    status: passed_before_concurrent_deferred_write
+    result: TypeScript strict project check passed before A08 resumed writing
+  - command: pnpm typecheck
+    status: blocked_by_deferred_a08_in_progress
+    result: A later run found renderers/remotion/src/Root.tsx importing the not-yet-created 05-input-props.json
+  - command: pnpm lint
+    status: passed
+    result: Repository-wide ESLint check passed
+  - command: pnpm check:ownership
+    status: passed
+    result: One writer per allowlist; H01 and Guardian remain non-writers
+  - command: pnpm exec prettier --check <QA/governance allowlist files>
+    status: passed
+    result: All 10 changed QA/governance files use Prettier code style
+  - command: pnpm format:check
+    status: blocked_by_out_of_scope_format_drift
+    result: Repository-wide baseline reports 37 unformatted files outside this verifier allowlist
+  - command: git diff --check -- <QA/governance allowlist>
+    status: passed
+    result: No whitespace errors in the verifier-owned surface
+  - command: node skills/remotion-video-production/scripts/check-skill.mjs
+    status: passed
+    result: Router, lineage and registry hash passed
+  - command: node skills/remotion-video-production/scripts/check-contracts.mjs
+    status: passed
+    result: Input/output/error contracts, 3 portable paths, 12 hostile paths, and 14 forbidden APIs passed
+  - command: node skills/remotion-video-production/scripts/check-sources.mjs
+    status: passed
+    result: Three source records and canonical 0-of-4 coverage gap validated
+  - command: node skills/remotion-video-production/scripts/check-example.mjs
+    status: passed
+    result: Minimal deterministic example compiled
+  - command: node skills/stitch-remotion-walkthrough/scripts/check-quarantine.mjs
+    status: passed
+    result: Legacy wrapper remains quarantine-only
+  - command: pnpm check:sources
+    status: passed
+    result: Three sources; fixture-only active source and fail-closed 0-of-4 state
+  - command: pnpm check:claims
+    status: passed
+    result: Three current claims resolve for the checked-in Web artifact
+  - command: node adapters/notebooklm/scripts/check-contract.mjs
+    status: passed
+    result: YAML and fail-closed TypeScript contracts align after producer resubmission
+  - command: pnpm check:n8n
+    status: passed
+    result: Inactive workflow and v2 fail-closed evidence resolution checks passed
+  - command: pnpm check:repo
+    status: blocked_by_unavailable_packages
+    result: All preceding checks passed; renderers/remotion is absent, while A07/A08 remain deferred from this verifier round
+resolved_regressions:
+  - package: A02
+    initial_result: 5 of 10 NotebookLM adversarial tests failed
+    final_result: 10 of 10 NotebookLM adversarial tests passed
+    producer_change_verified: true
+    verifier_modified_production: false
+  - package: A05
+    initial_result: portableMediaPath admitted traversal and absolute locators
+    final_result: 12 of 12 hostile path fixtures rejected
+    producer_change_verified: true
+    verifier_modified_production: false
+  - package: A06
+    initial_result: unknown fields, orphan/blocked claims, and unbound renderer code were accepted
+    final_result: 4 of 4 Web adversarial tests passed with model and renderer hashes verified
+    producer_change_verified: true
+    verifier_modified_production: false
+  - package: A11
+    initial_result: forged unresolved evidence, H02 approval, and replay evidence drift were accepted
+    final_result: 24 of 24 n8n adversarial tests passed; 4 contract and 7 unit tests also passed
+    producer_change_verified: true
+    verifier_modified_production: false
+verified_production_hashes:
+  - artifact: skills/remotion-video-production/schemas/render-output.schema.json
+    sha256: 67f986e4ca12b16e603ff4e72216fd1c17450a2586fd1072b94e82a17d1a4b68
+  - artifact: skills/remotion-video-production/fixtures/negative/portable-media-paths.json
+    sha256: 0e0ff9997b977222cc6fa90c9dbd69e724b27844c117e6f852147eac19ce2c80
+  - artifact: networks/web/src/model.ts
+    sha256: c61e8b3657914ae5ffb265a5c45343be48d4657ad26a6668b4e6d8f2977dc9c3
+  - artifact: networks/web/src/render.ts
+    sha256: f2ac07255c781346a93e4887982c3f2c2bffd750bd59e632e16e427ee5fe5c11
+  - artifact: projects/vs-001-source-to-campaign/web/artifact/build-receipt.json
+    sha256: 96b35601439130a7b359064a0a8932a70f046f2418640b839767a4bb87570ef2
+  - artifact: adapters/n8n/contract.ts
+    sha256: 0bc8c7f88b7bd3309849d08f8551a62fd5c2d73f0489304cb6413b631f7f3925
+  - artifact: adapters/n8n/transport.ts
+    sha256: f8d4c112995456391e05a2885a9a125c5f93fe9eaddbef75f102a369fd268c30
+visual_evidence:
+  - artifact: projects/vs-001-source-to-campaign/web/artifact/review-desktop.png
+    inspection: passed_current_artifact
+    limits: Static screenshot; no keyboard or screen-reader coverage
+  - artifact: projects/vs-001-source-to-campaign/web/artifact/review-mobile.png
+    inspection: passed_current_artifact
+    limits: Static screenshot; no keyboard or screen-reader coverage
+concurrent_scope_drift:
+  - observed_at: '2026-07-19T21:21:53Z'
+    package: A08
+    scope_status: deferred_and_outside_verifier_allowlist
+    evidence: renderers/remotion/src/Root.tsx exists while its 05-input-props.json import is unresolved
+    impact: Global typecheck changed from pass to blocked; scoped A02/A05/A06/A11 regression remains 76 of 76

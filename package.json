@@ -13,7 +13,9 @@
     "node": "22.23.1",
     "pnpm": "11.9.0",
     "remotion": "4.0.494",
-    "ffmpeg": "8.1.1"
+    "zod": "4.3.6",
+    "ffmpeg": "8.1.1",
+    "playwright": "1.61.1"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -24,18 +26,28 @@
     "test:unit": "vitest run tests/unit",
     "test:contract": "vitest run tests/contract",
     "test:integration": "vitest run tests/integration",
+    "check:toolchain": "node --import tsx scripts/check-toolchain.ts",
     "check:dag": "node --import tsx scripts/check-dag.ts",
     "check:ownership": "node --import tsx scripts/check-ownership.ts",
+    "check:projects": "node --import tsx scripts/check-projects.ts",
+    "check:memory": "node --import tsx scripts/check-memory.ts",
+    "check:notebooklm": "node --import tsx scripts/check-notebooklm.ts",
     "check:sources": "node --import tsx scripts/check-sources.ts",
     "check:claims": "node --import tsx scripts/check-claims.ts",
     "check:privacy": "node --import tsx scripts/check-privacy.ts",
     "check:determinism": "node --import tsx scripts/check-determinism.ts",
+    "check:n8n": "node --import tsx scripts/check-n8n.ts",
     "check:repo": "node --import tsx scripts/check-repo.ts",
+    "committee:validate": "node --import tsx projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts",
+    "content:build": "node --import tsx workflows/content/build.ts",
     "web:build": "node --import tsx workflows/web/build.ts",
+    "remotion:prepare": "node --import tsx renderers/remotion/scripts/prepare-project.ts",
+    "remotion:validate": "node --import tsx renderers/remotion/scripts/validate-project.ts",
+    "render:all": "node --import tsx renderers/remotion/scripts/render-project.ts",
+    "remotion:inspect": "node --import tsx renderers/remotion/scripts/inspect-renders.ts",
     "slice:build": "node --import tsx scripts/build-vertical-slice.ts",
-    "render:smoke": "remotion render renderers/remotion/src/index.ts MethodologiaVertical projects/vs-001-source-to-campaign/remotion/renders/vs-001-smoke.mp4 --props=projects/vs-001-source-to-campaign/remotion/05-input-props.json --frames=0-89 --log=verbose",
-    "render:full": "remotion render renderers/remotion/src/index.ts MethodologiaVertical projects/vs-001-source-to-campaign/remotion/renders/vs-001.mp4 --props=projects/vs-001-source-to-campaign/remotion/05-input-props.json --log=verbose",
-    "verify": "pnpm check:repo && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+    "verify": "pnpm check:repo && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
+    "verify:media": "pnpm remotion:inspect"
   },
   "dependencies": {
     "@remotion/zod-types": "4.0.494",
@@ -43,7 +55,7 @@
     "react-dom": "19.2.7",
     "remotion": "4.0.494",
     "yaml": "2.9.0",
-    "zod": "4.4.3"
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -54,6 +66,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "10.7.0",
+    "playwright": "1.61.1",
     "prettier": "3.9.5",
     "tsx": "4.23.1",
     "typescript": "6.0.3",

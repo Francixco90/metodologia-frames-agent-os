@@ -1,0 +1,39 @@
+schema_version: 1
+receipt_id: RCP-ASSETS-VS001-001
+project_id: vs-001-source-to-campaign
+assets_manifest_sha256: 54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35
+binary_asset_count: 4
+audio_asset_count: 0
+procedural_element_count: 10
+rights_holders:
+  - MetodologIA for procedural renderer code
+  - The Work Sans Project Authors for Work Sans
+  - The JetBrains Mono Project Authors for JetBrains Mono
+rights_basis: locally_authored_first_party_code plus bundled OFL-1.1 fonts
+font_license_receipts:
+  - asset_id: FONT-WORK-SANS-REGULAR
+    font_sha256: e67985a843df0d3cdee51a3d0f329eb1774a344ad9ff0c9ab923751f1577e2a4
+    license_path: renderers/remotion/src/assets/fonts/WorkSans-OFL.txt
+    license_sha256: 4f8cbaf2a5494148a8064db9b5eb7c23a0f9098683244803b11c0eec857b81a9
+    license: SIL Open Font License 1.1
+  - asset_id: FONT-WORK-SANS-BOLD
+    font_sha256: 240d125fc9f8561363dc1ea3f513501253bd70942f41468f48f0b0cafb0c82e2
+    license_path: renderers/remotion/src/assets/fonts/WorkSans-OFL.txt
+    license_sha256: 4f8cbaf2a5494148a8064db9b5eb7c23a0f9098683244803b11c0eec857b81a9
+    license: SIL Open Font License 1.1
+  - asset_id: FONT-JETBRAINS-MONO-REGULAR
+    font_sha256: b6b1ff4ddefe36d7f2a6174e1d001cab374e594519ee9049af028d577b64c5f5
+    license_path: renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt
+    license_sha256: 4d9694c4844a13ea377458c3f98c90d2bf83d3c214612dcae2b7808406520708
+    license: SIL Open Font License 1.1
+  - asset_id: FONT-JETBRAINS-MONO-BOLD
+    font_sha256: a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3
+    license_path: renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt
+    license_sha256: 4d9694c4844a13ea377458c3f98c90d2bf83d3c214612dcae2b7808406520708
+    license: SIL Open Font License 1.1
+allowed_scope: local_contract_testing_only
+verdict: PROVISIONALLY_CLEARED_FOR_LOCAL_TEST_ONLY
+coverage_gaps:
+  - font_binary_origin_version_unresolved
+external_distribution_authorized: false
+generated_at: 2026-07-19T12:00:00.000Z

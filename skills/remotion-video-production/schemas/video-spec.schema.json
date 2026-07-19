@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/video-spec-v1.json",
+  "title": "01-video-spec.yml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "spec_id",
+    "project_id",
+    "source_snapshot_id",
+    "allowed_claim_ids",
+    "requested_state",
+    "profiles",
+    "coverage_gaps"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "spec_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "source_snapshot_id": {"type": "string", "minLength": 1},
+    "allowed_claim_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "requested_state": {"const": "RENDERED_DRAFT"},
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["profile_id", "width", "height", "fps", "duration_target_frames"],
+        "properties": {
+          "profile_id": {"type": "string", "minLength": 1},
+          "width": {"type": "integer", "minimum": 1},
+          "height": {"type": "integer", "minimum": 1},
+          "fps": {"type": "integer", "minimum": 1},
+          "duration_target_frames": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

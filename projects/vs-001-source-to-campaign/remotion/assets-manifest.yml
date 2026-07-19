@@ -1,0 +1,201 @@
+schema_version: 1
+manifest_id: ASSETS-VS001-001
+project_id: vs-001-source-to-campaign
+status: PROVISIONALLY_CLEARED_FOR_LOCAL_TEST_ONLY
+policy:
+  network_allowed: false
+  remote_assets_allowed: false
+  remote_fonts_allowed: false
+  symlinks_allowed: false
+  audio_mode: silent-first
+binary_assets:
+  - asset_id: FONT-WORK-SANS-REGULAR
+    family: MetodologIA Work Sans
+    weight: 400
+    path: renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf
+    license_path: renderers/remotion/src/assets/fonts/WorkSans-OFL.txt
+    rights_holder: The Work Sans Project Authors
+    canonical_source_url: https://github.com/weiweihuanghuang/Work-Sans
+    original_filename: WorkSans-Regular.ttf
+    acquisition_origin:
+      source_package: claude-cowork/anthropic-skills@1.0.0
+      package_asset_path: skills/canvas-design/canvas-fonts/WorkSans-Regular.ttf
+      upstream_release_or_commit: unresolved
+      evaluated_at: 2026-07-19T12:00:00.000Z
+    sha256: e67985a843df0d3cdee51a3d0f329eb1774a344ad9ff0c9ab923751f1577e2a4
+    mime: font/ttf
+    license: SIL Open Font License 1.1
+    license_sha256: 4f8cbaf2a5494148a8064db9b5eb7c23a0f9098683244803b11c0eec857b81a9
+    rights_basis: OFL-1.1 bundled with the unmodified font binary
+    allowed_scope: embedded_and_redistributed_with_license
+    verdict: allowed_local_test_with_origin_gap
+  - asset_id: FONT-WORK-SANS-BOLD
+    family: MetodologIA Work Sans
+    weight: 700
+    path: renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf
+    license_path: renderers/remotion/src/assets/fonts/WorkSans-OFL.txt
+    rights_holder: The Work Sans Project Authors
+    canonical_source_url: https://github.com/weiweihuanghuang/Work-Sans
+    original_filename: WorkSans-Bold.ttf
+    acquisition_origin:
+      source_package: claude-cowork/anthropic-skills@1.0.0
+      package_asset_path: skills/canvas-design/canvas-fonts/WorkSans-Bold.ttf
+      upstream_release_or_commit: unresolved
+      evaluated_at: 2026-07-19T12:00:00.000Z
+    sha256: 240d125fc9f8561363dc1ea3f513501253bd70942f41468f48f0b0cafb0c82e2
+    mime: font/ttf
+    license: SIL Open Font License 1.1
+    license_sha256: 4f8cbaf2a5494148a8064db9b5eb7c23a0f9098683244803b11c0eec857b81a9
+    rights_basis: OFL-1.1 bundled with the unmodified font binary
+    allowed_scope: embedded_and_redistributed_with_license
+    verdict: allowed_local_test_with_origin_gap
+  - asset_id: FONT-JETBRAINS-MONO-REGULAR
+    family: MetodologIA JetBrains Mono
+    weight: 400
+    path: renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf
+    license_path: renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt
+    rights_holder: The JetBrains Mono Project Authors
+    canonical_source_url: https://github.com/JetBrains/JetBrainsMono
+    original_filename: JetBrainsMono-Regular.ttf
+    acquisition_origin:
+      source_package: claude-cowork/anthropic-skills@1.0.0
+      package_asset_path: skills/canvas-design/canvas-fonts/JetBrainsMono-Regular.ttf
+      upstream_release_or_commit: unresolved
+      evaluated_at: 2026-07-19T12:00:00.000Z
+    sha256: b6b1ff4ddefe36d7f2a6174e1d001cab374e594519ee9049af028d577b64c5f5
+    mime: font/ttf
+    license: SIL Open Font License 1.1
+    license_sha256: 4d9694c4844a13ea377458c3f98c90d2bf83d3c214612dcae2b7808406520708
+    rights_basis: OFL-1.1 bundled with the unmodified font binary
+    allowed_scope: embedded_and_redistributed_with_license
+    verdict: allowed_local_test_with_origin_gap
+  - asset_id: FONT-JETBRAINS-MONO-BOLD
+    family: MetodologIA JetBrains Mono
+    weight: 700
+    path: renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf
+    license_path: renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt
+    rights_holder: The JetBrains Mono Project Authors
+    canonical_source_url: https://github.com/JetBrains/JetBrainsMono
+    original_filename: JetBrainsMono-Bold.ttf
+    acquisition_origin:
+      source_package: claude-cowork/anthropic-skills@1.0.0
+      package_asset_path: skills/canvas-design/canvas-fonts/JetBrainsMono-Bold.ttf
+      upstream_release_or_commit: unresolved
+      evaluated_at: 2026-07-19T12:00:00.000Z
+    sha256: a2349098b9e45419e7bf0e2958d6c4937a049dded37387b08be725be4c7615f3
+    mime: font/ttf
+    license: SIL Open Font License 1.1
+    license_sha256: 4d9694c4844a13ea377458c3f98c90d2bf83d3c214612dcae2b7808406520708
+    rights_basis: OFL-1.1 bundled with the unmodified font binary
+    allowed_scope: embedded_and_redistributed_with_license
+    verdict: allowed_local_test_with_origin_gap
+procedural_first_party_elements:
+  - asset_id: PROC-STATUSBADGE
+    path: renderers/remotion/src/components/StatusBadge.tsx
+    sha256: 0e220108685527fd70cf8143b8ebbf34b9461679e3c84a595d5c091caee8754f
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-PERSISTENTCHROME
+    path: renderers/remotion/src/components/PersistentChrome.tsx
+    sha256: e0e7097808ea477a23b17301390c45530e4903157fdfd2148c80f69798955944
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-SIGNALRAIL
+    path: renderers/remotion/src/components/SignalRail.tsx
+    sha256: 0c300260d1830161ed535f4056c6a97f8021ea9f529443b3da3affbf8b4b3dfe
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-BREADCRUMB
+    path: renderers/remotion/src/components/Breadcrumb.tsx
+    sha256: 11f4c3cba75a9f3ef7ef5935f449b6fedf9262277c4387b670c0df53e29d8b5d
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-BEATSCENE
+    path: renderers/remotion/src/components/BeatScene.tsx
+    sha256: 4df0ae1f5c947a901d9ba606571ea5a792082a2769c3cfa50add67300555ab7d
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-CAPTIONBAND
+    path: renderers/remotion/src/components/CaptionBand.tsx
+    sha256: 86801adf06604cffc659663cd4eb98a3276994349b6542fff0057736046ff8bc
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-LAYOUTGUARD
+    path: renderers/remotion/src/components/LayoutGuard.tsx
+    sha256: f9db53f2500232c7747318d6b6b856391d045a6d9527949b5ab92c04f392297e
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-LAYOUT-GEOMETRY
+    path: renderers/remotion/src/components/layout-geometry.ts
+    sha256: ca8fb11c7847225fe0931c23c40deeeefcbd4d1385a6962a42e652827d628430
+    mime: text/typescript
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-NETWORKGUARDPROBE
+    path: renderers/remotion/src/components/NetworkGuardProbe.tsx
+    sha256: 0026c236b951d75df5ed63c6d9538142648cd82495cced50e3bb4f6531cd9c3e
+    mime: text/tsx
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+  - asset_id: PROC-THEME
+    path: renderers/remotion/src/theme.ts
+    sha256: afd4beaaf02221b18c23e97d50032febb53ed5b800cb08a7e1c4caea8a29ea2e
+    mime: text/typescript
+    rights_holder: MetodologIA
+    rights_basis: locally_authored_first_party_code
+    allowed_scope: local_contract_testing_only
+    verdict: allowed_local_test_only
+font_policy:
+  loaded_font_assets:
+    - asset_id: FONT-WORK-SANS-REGULAR
+      family: MetodologIA Work Sans
+      path: renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf
+      weight: 400
+    - asset_id: FONT-WORK-SANS-BOLD
+      family: MetodologIA Work Sans
+      path: renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf
+      weight: 700
+    - asset_id: FONT-JETBRAINS-MONO-REGULAR
+      family: MetodologIA JetBrains Mono
+      path: renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf
+      weight: 400
+    - asset_id: FONT-JETBRAINS-MONO-BOLD
+      family: MetodologIA JetBrains Mono
+      path: renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf
+      weight: 700
+  css_stack: '"MetodologIA Work Sans" for sans and "MetodologIA JetBrains Mono" for monospace'
+  network_fetch: false
+  loader: Four explicit FontFace loads plus status and FontFaceSet checks; component-scoped delayRender, 30000ms timeout, zero retries, cancelRender on error
+  determinism_scope: hash_bound_fonts_same_pinned_chromium_profile
+audio_assets: []
+coverage_gaps:
+  - audio_rights_receipt_absent_silent_first
+  - cross_host_chromium_pixel_equivalence_unverified
+  - font_binary_origin_version_unresolved
+  - authoritative_linux_network_namespace_offline_render_unexecuted
+  - external_distribution_not_authorized

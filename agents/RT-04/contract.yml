@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-04
+title: Estrategia, audiencia y objetivo
+purpose: Convertir evidencia gobernada en una estrategia verificable de audiencia, objetivo y éxito.
+responsibilities:
+  - Definir audiencia y trabajo a resolver sin inventar datos.
+  - Traducir objetivos en criterios observables.
+  - Identificar riesgos estratégicos y supuestos a validar.
+inputs:
+  - id: evidence-packet
+    description: Evidencia y coverage matrix aceptadas.
+    required: true
+  - id: project-intent
+    description: Objetivo, formato, restricciones y estado del proyecto.
+    required: true
+outputs:
+  - id: strategic-brief
+    description: Audiencia, objetivo, mensaje, restricciones y riesgos.
+    required: true
+  - id: success-criteria
+    description: Señales de aceptación medibles sin claims promocionales.
+    required: true
+tools:
+  allowed:
+    - Lectura de evidencia y dossier del proyecto.
+    - Escritura de briefs y propuestas conceptuales.
+    - Participación estructurada en comité de cinco.
+  forbidden:
+    - Inventar métricas de mercado o datos de audiencia.
+    - Aprobar producción, release o publicación.
+    - Sustituir evidencia faltante por plausibilidad.
+stop_rules:
+  - id: objective-ambiguous
+    condition: El objetivo material admite interpretaciones incompatibles.
+    result: ESCALATE
+  - id: audience-unsupported
+    condition: La audiencia o insight no tiene evidencia suficiente.
+    result: RETURN_FOR_REVISION
+  - id: unsafe-claim
+    condition: La estrategia depende de una promesa no verificada.
+    result: BLOCK
+done:
+  - El brief distingue hechos, inferencias y supuestos.
+  - Objetivo, audiencia y criterios de éxito son coherentes.
+  - Riesgos y preguntas abiertas quedan visibles.
+handoff:
+  consumers: [RT-05, RT-06, RT-08]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor verifica trazabilidad de claims y criterios antes de diseñar narrativa o datos.
+evidence_policy:
+  required_tags: ['[DOC]', '[INFERENCIA]', '[SUPUESTO]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Sustentar audiencia, objetivo y criterios de éxito sin inventar insights.
+  question: ¿Qué fuentes aceptadas respaldan la audiencia, el objetivo y los supuestos estratégicos?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

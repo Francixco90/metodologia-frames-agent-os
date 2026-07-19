@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pageId": "WEB-VS001",
+  "language": "es",
+  "title": "De una fuente a una campaña trazable — MetodologIA",
+  "description": "Demostrador local de un sistema creativo que conecta fuentes, decisiones, productos y evidencia sin saltarse aprobaciones.",
+  "eyebrow": "Vertical slice · Red Web",
+  "thesis": "Crear no es improvisar. Es convertir una fuente en una decisión trazable.",
+  "summary": "Este demostrador conecta una fuente first-party, un comité creativo y dos productos sincronizados. Cada afirmación conserva su respaldo; cada límite permanece visible.",
+  "status": "RENDERED_DRAFT",
+  "sourceSnapshotId": "synthetic-vs-001-v1",
+  "deterministicTimestamp": "2026-07-19T12:00:00.000Z",
+  "claims": [
+    {
+      "claimId": "CLM-VS001-001",
+      "sourceId": "SRC-SYNTH-VS001",
+      "statement": "El flujo comienza con una fuente identificada y versionada.",
+      "status": "supported"
+    },
+    {
+      "claimId": "CLM-VS001-002",
+      "sourceId": "SRC-SYNTH-VS001",
+      "statement": "Una decisión creativa material contrasta cinco propuestas antes de construir.",
+      "status": "supported"
+    },
+    {
+      "claimId": "CLM-VS001-003",
+      "sourceId": "SRC-SYNTH-VS001",
+      "statement": "Un render no equivale a aprobación humana ni a publicación.",
+      "status": "supported"
+    }
+  ],
+  "sections": [
+    {
+      "id": "fuente",
+      "eyebrow": "01 · Grounding",
+      "title": "Primero, una fuente que podamos nombrar.",
+      "body": "El sistema fija identidad, versión, hash, procedencia y derechos antes de usar una referencia como evidencia.",
+      "items": [
+        "ID portable y snapshot",
+        "Hash raw y normalizado",
+        "Autoridad y derechos",
+        "Gaps explícitos"
+      ],
+      "claimIds": ["CLM-VS001-001"]
+    },
+    {
+      "id": "decision",
+      "eyebrow": "02 · Comité",
+      "title": "Cinco miradas; una dirección integrada.",
+      "body": "Las propuestas se comparan con una misma rúbrica. Se conserva la disidencia útil, pero solo se implementa la dirección ganadora.",
+      "items": [
+        "Propuestas independientes",
+        "Crítica socrática",
+        "Scores comparables",
+        "Síntesis y dissent"
+      ],
+      "claimIds": ["CLM-VS001-002"]
+    },
+    {
+      "id": "producto",
+      "eyebrow": "03 · Producción",
+      "title": "Web y Motion hablan desde el mismo expediente.",
+      "body": "Copy, claims, sistema visual y estados se derivan del mismo snapshot para evitar dos narrativas desconectadas.",
+      "items": [
+        "Modelo de página validado",
+        "Video spec y beat map",
+        "Assets locales",
+        "Receipts hash-bound"
+      ],
+      "claimIds": ["CLM-VS001-001", "CLM-VS001-003"]
+    },
+    {
+      "id": "evidencia",
+      "eyebrow": "04 · Gobierno",
+      "title": "El sistema sabe cuándo detenerse.",
+      "body": "Guardian, aprobación humana y release son gates distintos. Un borrador útil sigue siendo un borrador hasta que exista evidencia.",
+      "items": ["Fail closed", "Guardian independiente", "Aprobación humana", "Release separado"],
+      "claimIds": ["CLM-VS001-003"]
+    }
+  ]
+}

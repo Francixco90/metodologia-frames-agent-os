@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "pass": true,
+  "results": [
+    {
+      "id": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "title": "De una fuente a una campaña trazable — MetodologIA",
+      "lang": "es",
+      "h1Count": 1,
+      "h2Count": 6,
+      "mainCount": 1,
+      "horizontalOverflow": false,
+      "sourceReferences": 3,
+      "bodyTextLength": 2196,
+      "consoleErrors": [],
+      "screenshotPath": "review-desktop.png"
+    },
+    {
+      "id": "mobile",
+      "width": 390,
+      "height": 844,
+      "title": "De una fuente a una campaña trazable — MetodologIA",
+      "lang": "es",
+      "h1Count": 1,
+      "h2Count": 6,
+      "mainCount": 1,
+      "horizontalOverflow": false,
+      "sourceReferences": 3,
+      "bodyTextLength": 2196,
+      "consoleErrors": [],
+      "screenshotPath": "review-mobile.png"
+    }
+  ]
+}

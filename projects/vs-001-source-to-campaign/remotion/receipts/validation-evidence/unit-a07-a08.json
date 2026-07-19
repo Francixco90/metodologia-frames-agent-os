@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "validation-command-evidence-v1",
+  "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08",
+  "projectId": "vs-001-source-to-campaign",
+  "command": "pnpm exec vitest run tests/unit/remotion",
+  "status": "PASS",
+  "exitCode": 0,
+  "stdoutSha256": "48251796b69258639bec112c4d396dfea0a09b1411dea30f3b0f37ff81a2ee7a",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sanitizedSummary": {
+    "stdoutBytes": 303,
+    "stderrBytes": 0,
+    "rawOutputPersistedInVersionableEvidence": false,
+    "absolutePathsPersisted": false,
+    "privateDiagnosticLogPolicy": "ignored_not_referenced"
+  },
+  "stateEffect": "NONE_ON_GOVERNED_WORKFLOW",
+  "createdAt": "2026-07-19T12:00:00.000Z"
+}

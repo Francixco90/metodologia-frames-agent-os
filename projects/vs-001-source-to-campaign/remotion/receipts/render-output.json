@@ -1,0 +1,25 @@
+{
+  "requestId": "REQ-REMOTION-VS001-001",
+  "status": "RENDERED_DRAFT",
+  "governedWorkflowState": "BLOCKED_BEFORE_SOURCE_LOCK",
+  "technicalValidationState": "RENDER_VALIDATED",
+  "stateEffect": "NONE_ON_GOVERNED_WORKFLOW",
+  "artifactId": "REMOTION-VS001",
+  "portableMediaPath": "projects/vs-001-source-to-campaign/remotion/receipts/media/vs-001-review-a.mp4",
+  "fileSha256": "b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010",
+  "normalizedFrameDigest": "d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898",
+  "normalizedAudioDigest": null,
+  "profile": {"width": 1080, "height": 1920, "fps": 30, "durationInFrames": 1231},
+  "humanReview": "pending",
+  "runtimeLicenseStatus": "evaluation-only-commercial-eligibility-unresolved",
+  "coverageGaps": [
+    "four_canonical_texts_missing_0_of_4",
+    "formal_component_registry_approval_receipt_absent",
+    "cross_host_chromium_pixel_equivalence_unverified",
+    "font_binary_origin_version_unresolved",
+    "authoritative_linux_network_namespace_offline_render_unexecuted",
+    "remotion_commercial_license_eligibility_unresolved",
+    "guardian_and_human_approval_absent",
+    "external_distribution_not_authorized"
+  ]
+}

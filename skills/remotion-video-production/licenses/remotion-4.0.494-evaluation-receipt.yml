@@ -1,0 +1,35 @@
+schema_version: 1
+receipt_id: RCP-LIC-REMOTION-4.0.494-EVAL-001
+recorded_at: '2026-07-19T22:30:00Z'
+evidence_scope: exact_installed_runtime_local_evaluation_only
+runtime:
+  name: Remotion
+  version: 4.0.494
+version_binding:
+  lockfile_ref: pnpm-lock.yaml
+  lockfile_sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
+  package_key: remotion@4.0.494
+  package_integrity: sha512-WiAUJ5rjhoYvBJzwp8ZLybhJZLe6VAwWk7pbs9Jv1yYLbHAV9RraUaNHuegaIKbbmgW2c9UDPgKjdZ9k9XjTyA==
+installed_evidence:
+  package_manifest_ref: node_modules/remotion/package.json
+  package_manifest_sha256: be2653824d869b613d014adc1d13586ff9c2042315e9a3d729eef6bf520ae246
+  license_text_ref: node_modules/remotion/LICENSE.md
+  license_text_sha256: bd65083b940f61904f6ef298aade918a7cad72a3e35bc406e36fab365844b673
+  external_text_copied_into_skill: false
+upstream_locator:
+  url: https://github.com/remotion-dev/remotion/blob/main/LICENSE.md
+  version_pinned: false
+  authority_use: supplementary_locator_only
+evaluation:
+  local_technical_evaluation: permitted_by_program_decision
+  legal_eligibility_adjudicated: false
+  commercial_or_production_use: coverage_gap
+  consequence: blocked
+reproduce:
+  - pnpm install --frozen-lockfile
+  - verify package version and lockfile integrity
+  - hash installed package manifest and license text
+coverage_gaps:
+  - entity_size_use_case_and_commercial_eligibility_not_adjudicated
+  - upstream_license_locator_not_commit_pinned
+state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED

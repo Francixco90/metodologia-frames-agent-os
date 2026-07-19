@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-10
+title: Adaptadores técnicos y n8n
+purpose: Transportar work products aprobados y hash-bound mediante adapters deterministas, idempotentes y dry-run.
+responsibilities:
+  - Validar contrato, aprobación, hash e idempotency key antes de ejecutar.
+  - Aplicar retries acotados, DLQ, kill switch y observabilidad.
+  - Emitir receipts sin reinterpretar decisiones creativas.
+inputs:
+  - id: approved-work-product
+    description: Artifact, manifests, hashes y aprobación del gate permitido.
+    required: true
+  - id: adapter-policy
+    description: Modo dry-run, callback, retry, DLQ y kill switch.
+    required: true
+outputs:
+  - id: adapter-result
+    description: Status, logs sanitizados, hashes y resultado idempotente.
+    required: true
+  - id: execution-receipt
+    description: Receipt portable que no concede release ni publicación.
+    required: true
+tools:
+  allowed:
+    - Validación local de contratos y hashes.
+    - Simulación n8n dry-run o propose-only autorizada.
+    - Escritura de adapter outputs y receipts asignados.
+  forbidden:
+    - Activar triggers, credenciales, envío, deploy o publicación.
+    - Reinterpretar brief, guion o selección creativa.
+    - Omitir gates o mutar el work product.
+stop_rules:
+  - id: approval-or-hash-missing
+    condition: Falta aprobación aplicable, manifest, hash o idempotency key.
+    result: BLOCK
+  - id: live-mode-request
+    condition: La acción intenta salir de dry-run o propose-only sin autoridad nueva.
+    result: ESCALATE
+  - id: contract-mismatch
+    condition: El payload no cumple el contrato exacto del adapter.
+    result: RETURN_FOR_REVISION
+done:
+  - Repetir la misma idempotency key no duplica efectos.
+  - Status, logs, hashes, retries y gaps quedan en el receipt.
+  - El resultado mantiene releaseEffect NONE.
+handoff:
+  consumers: [RT-01, RT-11]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor verifica modo dry-run, idempotencia, hashes y ausencia de efectos externos.
+evidence_policy:
+  required_tags: ['[CÓDIGO]', '[CONFIG]', '[DOC]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Transportar solo paquetes cuya evidencia source-bound sea resoluble.
+  question: ¿Qué fuentes aceptadas y qué cobertura acompañan al paquete propuesto para transporte?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

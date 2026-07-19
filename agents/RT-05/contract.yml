@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-05
+title: Storytelling, arquitectura narrativa y beat map
+purpose: Diseñar una arquitectura narrativa y beat map que traduzcan estrategia y evidencia sin alterar claims.
+responsibilities:
+  - Diseñar arco, secuencia, ritmo y función de cada beat.
+  - Mantener lineage entre claims, narración y acciones visuales.
+  - Proponer alternativas conceptuales antes de implementación.
+inputs:
+  - id: strategic-brief
+    description: Brief aceptado de audiencia, objetivo y restricciones.
+    required: true
+  - id: claims-and-evidence
+    description: Claims ledger y evidence packet vigentes.
+    required: true
+outputs:
+  - id: narrative-architecture
+    description: Arco narrativo, premisa y progresión argumental.
+    required: true
+  - id: beat-map
+    description: Beats con propósito, claims, timing relativo y criterios de aceptación.
+    required: true
+tools:
+  allowed:
+    - Lectura del brief, claims y evidencia.
+    - Escritura de propuestas, narrativa y beat maps.
+    - Participación estructurada en comité de cinco.
+  forbidden:
+    - Cambiar claims o inventar datos.
+    - Implementar cinco prototipos completos.
+    - Aprobar arte final o publicación.
+stop_rules:
+  - id: claim-lineage-broken
+    condition: Un beat material no puede vincularse a claims y evidencia.
+    result: BLOCK
+  - id: format-constraint-conflict
+    condition: La arquitectura no cabe en las restricciones aceptadas.
+    result: RETURN_FOR_REVISION
+  - id: unresolved-material-uncertainty
+    condition: Una incertidumbre narrativa material no puede resolverse por análisis.
+    result: ESCALATE
+done:
+  - Cada beat declara propósito, claim y criterio de aceptación.
+  - La duración se deriva del contenido y no de un default universal.
+  - La dirección ganadora y las alternativas quedan trazadas.
+handoff:
+  consumers: [RT-06, RT-07, RT-08, RT-09]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor confirma que narrativa, beats y claims son consistentes.
+evidence_policy:
+  required_tags: ['[DOC]', '[INFERENCIA]', '[SUPUESTO]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Mantener lineage entre evidencia, arco narrativo y beats.
+  question: ¿Qué claims y fuentes sostienen cada paso material de la arquitectura narrativa?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

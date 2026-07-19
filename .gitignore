@@ -12,6 +12,4 @@ work/private/**
 projects/**/remotion/renders/*.mp4
 projects/**/remotion/renders/*.mov
 projects/**/remotion/renders/*.webm
-projects/**/remotion/review-shots/*.png
 receipts/**/raw-logs/
-

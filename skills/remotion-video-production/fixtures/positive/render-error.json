@@ -1,0 +1,10 @@
+{
+  "requestId": "RND-FIXTURE-002",
+  "status": "blocked",
+  "code": "RUNTIME_LICENSE_GAP",
+  "phase": "preflight",
+  "message": "El uso solicitado excede el veredicto de licencia disponible.",
+  "retryable": false,
+  "evidence": ["skills/remotion-video-production/LINEAGE.yaml"],
+  "coverageGaps": ["runtime_commercial_license_unresolved"]
+}

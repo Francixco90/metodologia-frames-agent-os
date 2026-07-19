@@ -1,0 +1,20 @@
+schema_version: 1
+contract_id: notebook-binding-portable-v1
+adapter_contract: adapters/notebooklm/contract.yml
+work_unit_declaration_contract: registries/notebooks/work-unit-binding-contract.yml
+portable_modes:
+  - digest
+  - none
+digest_mode:
+  required:
+    - binding_digest
+    - coverage
+  prohibition:
+    - locator_material
+none_mode:
+  required:
+    - reason_code
+  prohibition:
+    - binding_digest
+    - coverage
+append_only: true

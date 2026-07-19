@@ -6,4 +6,3 @@
 - Los adapters externos son fail-closed y dry-run por defecto.
 - Los receipts versionables usan IDs portables y hashes; nunca incluyen tokens ni locators reales.
 - Un hallazgo crítico bloquea `GUARDIAN_PASS`, `HUMAN_APPROVED`, `READY` y cualquier release.
-

@@ -10,4 +10,3 @@
 6. Solicita revisión a un verifier distinto.
 
 No se aceptan dependencias flotantes, assets sin licencia, claims sin fuente, red durante render, mutaciones live ni publicación desde CI.
-

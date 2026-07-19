@@ -1,0 +1,98 @@
+schema_version: 1
+spec_version: 1.0.0
+spec_id: VIDEO-SPEC-VS001-001
+content_id: REMOTION-VS001
+project_id: vs-001-source-to-campaign
+objective: Explicar de forma verificable cómo una fuente identificada pasa por una decisión, se bifurca en productos coherentes y se detiene ante un gate.
+audience:
+  - Personas de MetodologIA que revisan el sistema creativo local
+  - Verifier y Guardian responsables de evidencia audiovisual
+narrative_thesis: 'Crear no es improvisar: es hacer visible una cadena de fuente, decisión, producto y gate.'
+format: vertical_video
+platform: local_remotion_review
+script_ref: projects/vs-001-source-to-campaign/remotion/00-source-script.md
+duration:
+  target_frames: 1231
+  target_seconds: 41.033
+  provenance: caption words + reading WPM + playback margin + lead/trail - transition overlaps
+resolution_profile:
+  width: 1080
+  height: 1920
+  fps: 30
+  codec: h264
+  pixel_format: yuv420p
+  safe_zones_px:
+    top: 96
+    right: 96
+    bottom: 96
+    left: 96
+  provenance: project profile; not a universal default
+  universal_default: false
+central_metaphor:
+  value: cadena causal visible
+  rationale: La cadena conecta custodia, decisión y límites sin convertir el gap 0/4 en una métrica.
+emotional_visual_arc:
+  - claridad inicial
+  - confianza por evidencia
+  - límite deliberado
+design_system_ref: projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md
+component_registry_ref: projects/vs-001-source-to-campaign/remotion/04-component-registry.yml
+accessibility:
+  reduced_motion: true
+  state_redundancy: text + shape + pattern
+  safe_zone_runtime_guard: true
+  contrast_target: WCAG AA or stronger for material text
+captions:
+  ref: projects/vs-001-source-to-campaign/remotion/captions.json
+  mode: open captions
+  overlap_allowed: false
+  maximum_effective_wpm: 143.48
+sources:
+  - source_id: SRC-SYNTH-VS001
+    snapshot_id: synthetic-vs-001-v1
+    normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    allowed_use_scope: local_contract_testing_only
+claims:
+  - claim_id: CLM-VS001-001
+    source_id: SRC-SYNTH-VS001
+  - claim_id: CLM-VS001-002
+    source_id: SRC-SYNTH-VS001
+  - claim_id: CLM-VS001-003
+    source_id: SRC-SYNTH-VS001
+rights:
+  procedural_code: locally_authored_first_party_code
+  fonts: bundled OFL-1.1 with license files
+  audio: absent_no_rights_receipt
+  external_distribution_authorized: false
+assets:
+  manifest_ref: projects/vs-001-source-to-campaign/remotion/assets-manifest.yml
+  remote_assets_allowed: false
+  expected_binary_assets: 4
+  expected_audio_assets: 0
+props:
+  ref: projects/vs-001-source-to-campaign/remotion/05-input-props.json
+  schema_ref: renderers/remotion/src/schema.ts
+  strict: true
+risks:
+  - Canonical corpus remains 0/4 and source lock is unavailable.
+  - Remotion commercial or productive license eligibility is unresolved.
+  - Authoritative Linux network-namespace render is pending.
+  - Upstream release or commit for the vendored font binaries is unresolved.
+  - Guardian and complete human playback approval are absent.
+human_approval_required: true
+source_snapshot_id: synthetic-vs-001-v1
+allowed_claim_ids:
+  - CLM-VS001-001
+  - CLM-VS001-002
+  - CLM-VS001-003
+requested_state: RENDERED_DRAFT
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+coverage_gaps:
+  - four_canonical_texts_missing_0_of_4
+  - audio_rights_receipt_absent_silent_first
+  - cross_host_chromium_pixel_equivalence_unverified
+  - font_binary_origin_version_unresolved
+  - authoritative_linux_network_namespace_offline_render_unexecuted
+  - remotion_commercial_license_eligibility_unresolved
+  - guardian_and_human_approval_absent
+  - external_distribution_not_authorized

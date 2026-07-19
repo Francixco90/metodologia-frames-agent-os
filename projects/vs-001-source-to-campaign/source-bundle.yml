@@ -1,0 +1,52 @@
+schema_version: 2
+bundle_id: source-bundle-vs-001-v2
+project_id: vs-001-source-to-campaign
+source_snapshot_id: synthetic-vs-001-v1
+state: PARTIAL_CONTROLLED
+source_locked: false
+active_sources:
+  - source_id: SRC-SYNTH-VS001
+    normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+    use_scope: local_contract_testing_only
+  - source_id: SRC-PROMPT-MAESTRO-V6
+    normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+    source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+    projection_id: prompt-maestro-v6-requirements-projection-v2
+    projection_sha256: b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5
+    use_scope: internal_product_requirements_only
+candidate_references:
+  - source_id: SRC-METH-JVC-YT-001
+    use_scope: methodology_reference_only
+  - source_id: SRC-METH-JVC-SKOOL-001
+    use_scope: methodology_reference_only
+  - source_id: SRC-METH-IMAGE-001
+    use_scope: methodology_reference_only
+  - source_id: SRC-REMOTION-DOCS-001
+    use_scope: technical_reference_only
+  - source_id: SRC-REMOTION-SKILLS-001
+    use_scope: pinned_reference_only
+  - source_id: SRC-LEGACY-STITCH-REMOTION-001
+    use_scope: quarantined_reference_only
+expected_canonical_sources:
+  record: registries/sources/canonical-source-gaps.yml
+  expected_count: 4
+  confirmed_count: 0
+claims:
+  registry: registries/claims/claim-registry.yml
+  active_claim_ids:
+    - CLM-VS001-001
+    - CLM-VS001-002
+    - CLM-VS001-003
+coverage_gaps:
+  - four_canonical_texts_missing
+  - remote_methodology_content_not_ingested
+  - remote_methodology_rights_and_authority_unresolved
+  - image_reference_rights_and_authority_unresolved
+  - remotion_reference_content_not_ingested
+  - remotion_skills_reference_license_unresolved
+  - legacy_skill_commit_and_license_unresolved
+hard_limits:
+  - fixture_not_valid_for_publication
+  - fixture_not_valid_for_performance_claims
+  - source_locked_must_remain_false

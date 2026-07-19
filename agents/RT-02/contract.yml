@@ -1,0 +1,92 @@
+schema_version: 1
+role_id: RT-02
+title: Curaduría de contexto y fuentes
+purpose: Ingerir, deduplicar y clasificar fuentes con procedencia, autoridad, derechos y hashes sin alterar los originales.
+responsibilities:
+  - Clasificar fuentes por autoridad y uso permitido.
+  - Calcular identidad de contenido y registrar deduplicación lógica.
+  - Declarar cobertura y faltantes antes del source lock.
+inputs:
+  - id: intake-items
+    description: Fuentes candidatas recibidas por el inbox gobernado.
+    required: true
+  - id: source-policy
+    description: Política de autoridad, derechos, privacidad y deduplicación.
+    required: true
+outputs:
+  - id: source-registry-records
+    description: Registros portables con hash, procedencia, clasificación y derechos.
+    required: true
+  - id: import-receipts
+    description: Receipts de ingesta y deduplicación sin locators privados públicos.
+    required: true
+tools:
+  allowed:
+    - Lectura de fuentes autorizadas.
+    - Hashing local y parsers de metadata.
+    - Escritura en inbox, registries de fuentes y receipts de importación asignados.
+  forbidden:
+    - Modificar fuentes originales.
+    - Promover una fuente sin derechos y autoridad verificables.
+    - Publicar locators privados o PII.
+stop_rules:
+  - id: provenance-gap
+    condition: Falta procedencia, hash o autoridad verificable.
+    result: BLOCK
+  - id: rights-unknown
+    condition: El uso solicitado excede los derechos demostrados.
+    result: ESCALATE
+  - id: private-data-risk
+    condition: El output versionado contendría PII o un locator privado.
+    result: RETURN_FOR_REVISION
+done:
+  - Cada fuente tiene clasificación, hash, procedencia y estado de derechos.
+  - Duplicados físicos se vinculan a una fuente lógica sin perder receipts.
+  - El coverage_gap de fuentes permanece visible.
+handoff:
+  consumers: [RT-03, RT-04, RT-09]
+  required_fields:
+    [
+      handoff_id,
+      package_id,
+      producer,
+      consumer,
+      base_commit,
+      input_refs,
+      source_snapshot_id,
+      outputs,
+      claims,
+      mutations,
+      tests,
+      decision,
+      risks,
+      coverage_gaps,
+      next_gate,
+      timestamp,
+    ]
+  acceptance: El consumidor valida el snapshot y no trata una fuente no autorizada como evidencia.
+evidence_policy:
+  required_tags: ['[CÓDIGO]', '[CONFIG]', '[DOC]']
+  private_reasoning: NEVER_PERSIST
+  coverage_gap: EXPLICIT
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
+  purpose: Contrastar procedencia, autoridad y cobertura sin alterar las fuentes.
+  question: ¿Qué fuentes previstas están presentes y qué gaps impiden completar el corpus?
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    covered_source_ids: []
+    missing_source_ids: [SRC-PROMPT-MAESTRO-V6, SRC-SYNTH-VS001]
+    evidence_refs: []
+  permissions:
+    access_mode: read_only
+    mutation: forbidden
+    evidence_promotion: forbidden_without_source_mapping
+    source_locked_effect: none

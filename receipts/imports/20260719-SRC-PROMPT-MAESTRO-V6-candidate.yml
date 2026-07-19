@@ -1,0 +1,24 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-001
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 1
+actor_id: sources
+package_id: A02c
+source_id: SRC-PROMPT-MAESTRO-V6
+transition:
+  from: null
+  to: candidate
+hashes:
+  raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+  normalized_sha256: 02153ec2c50808ae1b91c8dff0bf0f11840ac8237948580b5e0ee6d36cbdf48f
+hash_semantics:
+  raw: exact_user_supplied_prompt_bytes
+  normalized: portable_requirements_traceability_projection_bytes
+  source_promotion_v1_text_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+  projection_is_lossy: true
+evidence:
+  portable_locator: docs/program/requirements-traceability.md
+  raw_bytes: 14086
+  normalized_bytes: 8567
+decision: accept_product_requirements_authority_candidate
+append_only: true

@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-OBS-SRC-LEGACY-STITCH-REMOTION-001-002
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 2
+actor_id: sources
+package_id: A02c
+source_id: SRC-LEGACY-STITCH-REMOTION-001
+transition:
+  from: candidate
+  to: quarantined
+hashes:
+  raw_sha256: c21cfb140cc3836564b23165a68f7075815ed0f9744f320b67949a5e67605da1
+  normalized_sha256: null
+decision: quarantine_reference_only_until_commit_license_and_api_parity_resolve
+append_only: true

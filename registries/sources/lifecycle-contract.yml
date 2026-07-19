@@ -1,0 +1,127 @@
+schema_version: 2
+contract_id: source-promotion-v2
+supersedes_contract: source-promotion-v1
+mutation_policy: append-only-events
+initial_state: candidate
+states:
+  - candidate
+  - quarantined
+  - evaluated
+  - active
+  - deprecated
+allowed_transitions:
+  - from: null
+    to: candidate
+  - from: candidate
+    to: quarantined
+  - from: quarantined
+    to: evaluated
+  - from: evaluated
+    to: active
+  - from: active
+    to: deprecated
+normalization:
+  profile_id: source-normalization-v1
+  compatible_legacy_profile_ids:
+    - source-promotion-v1
+  encoding: UTF-8
+  reject_invalid_utf8: true
+  strip_utf8_bom: true
+  unicode_form: NFC
+  line_endings: LF
+  trim_trailing_spaces_and_tabs: true
+  trailing_newline_count: 1
+  preserve_internal_whitespace: true
+hashes:
+  raw:
+    algorithm: sha256
+    input: exact_received_bytes
+    canonical_field: raw_sha256
+  source_normalized:
+    algorithm: sha256
+    input: normalized_utf8_bytes
+    canonical_field: source_normalized_sha256
+  normalized_compatibility_alias:
+    field: normalized_sha256
+    semantics: source_normalized_sha256
+    must_equal_canonical_field: true
+    status: deprecated_compatibility_only
+projections:
+  distinct_from_source_bytes: true
+  required_fields:
+    - projection_id
+    - projection_locator
+    - projection_sha256
+    - projection_bytes
+    - projection_contract
+    - derived_from_source_normalized_sha256
+  mutable_status_forbidden: true
+  mutation_rule: new_projection_id_and_append_only_migration_receipt
+portable_artifacts:
+  roles:
+    - source_material
+    - derived_projection
+  source_material_hash_field: source_normalized_sha256
+  derived_projection_hash_field: projection_sha256
+semantic_migrations:
+  receipt_kind: hash_semantics_migration
+  preserve_state: true
+  transition_forbidden: true
+  required_lineage:
+    - superseded_receipt_ids
+    - historical_receipt_hashes
+    - legacy_misclassified_hash
+    - corrected_source_normalized_sha256
+    - replacement_projection_sha256
+deduplication:
+  exact_raw_hash: duplicate_exact
+  exact_normalized_hash: duplicate_content
+  canonical_uri_hash: duplicate_locator
+  near_duplicate: human_review_required
+  rule: no_active_promotion_when_duplicate_verdict_is_pending
+rights_gate:
+  required_for_active:
+    - rights_holder
+    - rights_basis
+    - allowed_use_scope
+    - rights_verdict
+  allowed_verdicts:
+    - allowed_local_test_only
+    - allowed_internal_editorial
+    - allowed_internal_implementation
+    - allowed_publication
+authority_gate:
+  required_for_active:
+    - authority_class
+    - authority_verdict
+    - provenance_evidence
+  authority_classes:
+    - first_party
+    - first_party_synthetic
+    - technical_authority
+    - official_agent_guidance
+    - methodology_reference
+    - promotional_unverified
+active_gate:
+  all_required:
+    - raw_sha256_present
+    - source_normalized_sha256_present
+    - normalized_compatibility_alias_matches
+    - provenance_verified
+    - deduplication_resolved
+    - rights_verdict_allows_requested_scope
+    - authority_verdict_allows_requested_scope
+    - portable_artifact_hash_verified
+    - evaluated_receipt_present
+    - active_receipt_present
+stop_rules:
+  - missing_or_mismatched_hash
+  - projection_hash_used_as_source_normalized_hash
+  - mutable_status_matrix_used_as_source_or_projection_locator
+  - unknown_rights
+  - unknown_authority
+  - unresolved_duplicate
+  - private_locator_in_versioned_record
+  - state_transition_out_of_order
+  - receipt_mutation_or_deletion
+  - scope_exceeds_rights_or_authority_verdict

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "captionsId": "CAPTIONS-VS001-001",
+  "language": "es-CO",
+  "sourceSnapshotId": "synthetic-vs-001-v1",
+  "fps": 30,
+  "durationInFrames": 1231,
+  "durationMs": 41033,
+  "readingPolicy": {
+    "wordsPerMinute": 165,
+    "playbackMargin": 1.15,
+    "maximumEffectiveWordsPerMinute": 143.48
+  },
+  "captions": [
+    {
+      "captionId": "CAP-B01-apertura",
+      "beatId": "B01-apertura",
+      "text": "Crear no es improvisar. Es hacer visible una cadena.",
+      "startFrame": 10,
+      "endFrame": 123,
+      "startMs": 333,
+      "endMs": 4100,
+      "wordCount": 9,
+      "readingFrames": 113,
+      "effectiveWordsPerMinute": 143.36
+    },
+    {
+      "captionId": "CAP-B02-fuente",
+      "beatId": "B02-fuente",
+      "text": "Primero, una fuente first-party identificada y versionada.",
+      "startFrame": 155,
+      "endFrame": 243,
+      "startMs": 5167,
+      "endMs": 8100,
+      "wordCount": 7,
+      "readingFrames": 88,
+      "effectiveWordsPerMinute": 143.18
+    },
+    {
+      "captionId": "CAP-B03-comite",
+      "beatId": "B03-comite",
+      "text": "Después, una decisión material pasa por un comité con roles distintos.",
+      "startFrame": 275,
+      "endFrame": 413,
+      "startMs": 9167,
+      "endMs": 13767,
+      "wordCount": 11,
+      "readingFrames": 138,
+      "effectiveWordsPerMinute": 143.48
+    },
+    {
+      "captionId": "CAP-B04-custodia",
+      "beatId": "B04-custodia",
+      "text": "Snapshot, claims y hash siguen juntos. Cero de cuatro es un gap, no un KPI.",
+      "startFrame": 445,
+      "endFrame": 634,
+      "startMs": 14833,
+      "endMs": 21133,
+      "wordCount": 15,
+      "readingFrames": 189,
+      "effectiveWordsPerMinute": 142.86
+    },
+    {
+      "captionId": "CAP-B05-bifurcacion",
+      "beatId": "B05-bifurcacion",
+      "text": "Desde el mismo expediente, Web y Motion se bifurcan sin perder trazabilidad.",
+      "startFrame": 666,
+      "endFrame": 817,
+      "startMs": 22200,
+      "endMs": 27233,
+      "wordCount": 12,
+      "readingFrames": 151,
+      "effectiveWordsPerMinute": 143.05
+    },
+    {
+      "captionId": "CAP-B06-gate",
+      "beatId": "B06-gate",
+      "text": "Sin derechos, autoridad, hashes y aprobación humana, el flujo no avanza a READY ni PUBLISHED.",
+      "startFrame": 849,
+      "endFrame": 1038,
+      "startMs": 28300,
+      "endMs": 34600,
+      "wordCount": 15,
+      "readingFrames": 189,
+      "effectiveWordsPerMinute": 142.86
+    },
+    {
+      "captionId": "CAP-B07-cierre",
+      "beatId": "B07-cierre",
+      "text": "RENDERED DRAFT. LOCAL TEST ONLY. El límite también es parte del producto.",
+      "startFrame": 1070,
+      "endFrame": 1221,
+      "startMs": 35667,
+      "endMs": 40700,
+      "wordCount": 12,
+      "readingFrames": 151,
+      "effectiveWordsPerMinute": 143.05
+    }
+  ]
+}

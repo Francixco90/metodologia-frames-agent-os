@@ -1,0 +1,22 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-PROMPT-MAESTRO-V6-003
+recorded_at: '2026-07-19T21:43:28Z'
+event_order: 3
+actor_id: sources-verifier
+package_id: A02c
+source_id: SRC-PROMPT-MAESTRO-V6
+transition:
+  from: quarantined
+  to: evaluated
+hashes:
+  raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+  normalized_sha256: 02153ec2c50808ae1b91c8dff0bf0f11840ac8237948580b5e0ee6d36cbdf48f
+checks:
+  raw_hash_matches_supplied_value: pass
+  portable_projection_hash_verified: pass
+  raw_vs_projection_semantics_explicit: pass
+  deduplication: unique
+  rights: allowed_internal_implementation
+  authority: verified_product_requirements
+decision: evaluated_for_internal_product_implementation
+append_only: true

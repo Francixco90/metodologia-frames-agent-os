@@ -1,0 +1,29 @@
+schema_version: 1
+ledger_id: claims-ledger-vs-001-v1
+project_id: vs-001-source-to-campaign
+mutation_policy: append-only-records
+source_snapshot_id: synthetic-vs-001-v1
+entries:
+  - claim_id: CLM-VS001-001
+    source_id: SRC-SYNTH-VS001
+    support: direct
+    allowed_use_scope: local_contract_testing_only
+    status: usable
+  - claim_id: CLM-VS001-002
+    source_id: SRC-SYNTH-VS001
+    support: direct
+    allowed_use_scope: local_contract_testing_only
+    status: usable
+  - claim_id: CLM-VS001-003
+    source_id: SRC-SYNTH-VS001
+    support: direct
+    allowed_use_scope: local_contract_testing_only
+    status: usable
+blocked_claim_classes:
+  - performance
+  - customer_outcome
+  - comparative_superiority
+  - commercial_rights
+coverage_gaps:
+  - canonical_corpus_claims_unavailable
+  - methodology_reference_claims_not_promoted
