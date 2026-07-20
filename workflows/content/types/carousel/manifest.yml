@@ -1,0 +1,30 @@
+schema_version: content-type-definition-v1
+content_type: carousel
+plugin_ref: workflows/content/types/carousel/plugin.ts
+renderer_ref: renderers/static-social/scripts/render-carousel.ts
+surface: instagram-feed
+implementation_state: active_candidate
+outputs:
+  - individual_pngs
+  - contact_sheet
+  - offline_gallery
+  - spec
+  - copy
+  - caption
+  - alt_text
+  - asset_manifest
+  - receipt
+  - guardian_review
+gates:
+  - CAROUSEL_SPEC_APPROVED
+  - SEQUENCE_APPROVED
+  - CAROUSEL_BUILD_VALIDATED
+  - SWIPE_REVIEW_APPROVED
+  - RIGHTS_A11Y_PASS
+  - GUARDIAN_PASS
+  - WORKFLOW_PILOT_REVIEW
+fixture_refs:
+  positive: projects/pilot-carousel-001/spec/carousel-spec.yml
+  negative: tests/fixtures/carousel/negative
+publication_effect: NONE
+next_workflow_on_human_acceptance: feed-text

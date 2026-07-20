@@ -1,0 +1,35 @@
+schemaVersion: agent-contract-base-v2
+baseContractId: agent-contract-base-v2
+privateReasoningPolicy: never_persist
+evidencePolicy: decisions_and_evidence_only
+memoryPolicy: after_human_approval_only
+publicationPolicy: forbidden
+maxRetries: 3
+maxConcurrencyPerActor: 1
+allowedTools:
+  - toolId: filesystem.governed-read
+    access: read
+    mutation: none
+  - toolId: workspace.assigned-output
+    access: execute
+    mutation: workspace_scoped
+  - toolId: validator.contract-check
+    access: execute
+    mutation: none
+forbiddenActions:
+  - external_publish
+  - external_send
+  - external_deploy
+  - pre_h01_memory_write
+  - gate_bypass
+  - unstructured_deliberation_persistence
+requiredHandoffFields:
+  - outputs
+  - tests
+  - evidence_hashes
+  - coverage_gaps
+legacyHandoffAdapter:
+  outputsField: outputs
+  testsField: tests
+  coverageGapsField: coverageGaps
+  evidenceHashesSource: outputs[].sha256

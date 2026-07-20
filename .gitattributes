@@ -1,0 +1,5 @@
+# Preserve byte-identical upstream licenses and hash-bound generated evidence.
+brand/fonts/vendor/**/OFL.txt -whitespace
+inbox/first-party/*.projection.md -whitespace
+projects/*/artifacts/*.html -whitespace
+quality/reports/v2-baseline-protection.yml -whitespace

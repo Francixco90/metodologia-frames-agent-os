@@ -1,0 +1,16 @@
+schema_version: 1
+skill_id: remotion-video-production-v2
+version: 0.1.0
+content_origin: locally_authored_compatibility_overlay
+lifecycle_state: active
+execution_scope: local-design-and-validation
+authority_refs:
+  - skills/remotion-video-production/SKILL.md
+  - core/contracts/content-v2.ts
+  - core/orchestration/runtime-v2.ts
+compatibility_contract: remotion-v1-to-content-v2
+supersedes_skill: null
+extends_skill: remotion-video-production@0.1.0
+external_fragments_reused: false
+production_runtime_status: blocked_license_coverage_gap
+publication_authority: false

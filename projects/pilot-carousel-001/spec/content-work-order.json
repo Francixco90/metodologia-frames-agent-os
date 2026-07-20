@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "content-work-order-v2",
+  "workOrderId": "WO-CAR-MAO-001",
+  "projectId": "pilot-carousel-001",
+  "contentTypeId": "carousel",
+  "requestedByActorId": "H01",
+  "producerActorInstanceId": "RT-07-CAR-MAO-001",
+  "sourceSnapshotId": "mao-public-semantics-and-brand-v1",
+  "sourceSnapshotSha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c",
+  "brandProfile": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "registries/brand/brand-profile-v2.yml",
+    "sha256": "d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c"
+  },
+  "voiceProfile": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "registries/brand/voice-profile-v2.yml",
+    "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+  },
+  "channelProfile": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "registries/channels/instagram-profile-v1.yml",
+    "sha256": "316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482"
+  },
+  "objective": "Ayudar a profesionales y equipos a elegir tecnología desde un resultado y una señal observables.",
+  "audience": "Profesionales y equipos que quieren adoptar IA sin acumular herramientas ni promesas sin evidencia.",
+  "editorialPattern": "educational",
+  "locale": "es-LatAm",
+  "claimBindings": [
+    {
+      "claimId": "CLM-CAR-METHOD-001",
+      "sourceId": "SRC-MAO-PUBLIC-SEMANTICS-001",
+      "evidenceRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md",
+        "sha256": "3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c"
+      }
+    },
+    {
+      "claimId": "CLM-CAR-INTENT-001",
+      "sourceId": "SRC-MAO-BRAND-VOICE-001",
+      "evidenceRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      }
+    },
+    {
+      "claimId": "CLM-CAR-ALLY-001",
+      "sourceId": "SRC-MAO-BRAND-VOICE-001",
+      "evidenceRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      }
+    },
+    {
+      "claimId": "CLM-CAR-EVIDENCE-001",
+      "sourceId": "SRC-MAO-BRAND-VOICE-001",
+      "evidenceRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      }
+    }
+  ],
+  "requestedVariants": [
+    {
+      "variantId": "VAR-CAR-MAO-001-FEED",
+      "channelId": "instagram",
+      "surface": "feed",
+      "locale": "es-LatAm"
+    }
+  ],
+  "riskTier": "MEDIUM",
+  "approvalState": "unapproved",
+  "publicationPolicy": "forbidden",
+  "createdAt": "2026-07-20T17:30:00.000Z",
+  "canonicalSha256": "8ac1d846e85e7e079a0e1a90c3414614a7dccb7e00165fb549a8661e7b2c03b0"
+}

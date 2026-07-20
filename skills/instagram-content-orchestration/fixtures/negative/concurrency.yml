@@ -1,0 +1,4 @@
+case_id: ORCH-NEG-001
+requested_concurrency: 3
+expected_error: OWNERSHIP_CONFLICT
+expected_behavior: reject_before_execution

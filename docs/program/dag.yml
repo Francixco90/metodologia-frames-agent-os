@@ -21,17 +21,21 @@ packages:
     owner: sources
     depends_on: [A09a]
     gate: G02
+  A02c:
+    owner: brand
+    depends_on: [A02b, A09a]
+    gate: G03_BRAND
   A03:
     owner: core
     depends_on: [A01]
     gate: G08
   A04:
     owner: agents-committee
-    depends_on: [A03]
+    depends_on: [A02c, A03]
     gate: G10
   A05:
     owner: skill-foundry
-    depends_on: [A02b, A03, A09a]
+    depends_on: [A02b, A02c, A03, A09a]
     gate: G07
   A06:
     owner: web
@@ -39,8 +43,12 @@ packages:
     gate: G09_WEB
   A07:
     owner: content
-    depends_on: [A02b, A03, A04, A05]
+    depends_on: [A02b, A02c, A03, A04, A05]
     gate: G09_CONTENT
+  A07s:
+    owner: static-social
+    depends_on: [A02c, A03, A04, A05, A07]
+    gate: G12_CAROUSEL
   A08:
     owner: remotion
     depends_on: [A03, A05, A07]
@@ -57,13 +65,17 @@ packages:
     owner: qa
     depends_on: [A06, A08, A10a, A11]
     gate: G12_QA
+  A10c:
+    owner: qa
+    depends_on: [A07s, A10a]
+    gate: G13_CAROUSEL_QA
   A09b:
     owner: governance
-    depends_on: [A05, A06, A07, A08, A10b, A11]
+    depends_on: [A05, A06, A07, A07s, A08, A10b, A10c, A11]
     gate: G13
   A12:
     owner: guardian
-    depends_on: [A09b, A10b]
+    depends_on: [A09b, A10b, A10c]
     gate: G14
 release:
   human_gate: G15

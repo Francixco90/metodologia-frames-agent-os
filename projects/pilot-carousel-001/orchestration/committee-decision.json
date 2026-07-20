@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "committee-decision-v2",
+  "committeeId": "COMMITTEE-CAR-MAO-001",
+  "workOrderId": "WO-CAR-MAO-001",
+  "workOrderSha256": "8ac1d846e85e7e079a0e1a90c3414614a7dccb7e00165fb549a8661e7b2c03b0",
+  "status": "decided",
+  "compositionPattern": "two-plus-two-plus-one",
+  "proposalBindings": [
+    {
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "actorInstanceId": "RT-03-CAR-MAO-001",
+      "proposalSha256": "a2614d0a458954df85f8fd6717109a5e8473e8055b2532856630e1f5f1c4f0f5"
+    },
+    {
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "actorInstanceId": "RT-04-CAR-MAO-001",
+      "proposalSha256": "12d25cdbd506b39df06982d4365537d86637aa8bebab5d3a2e8895d288628037"
+    },
+    {
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "actorInstanceId": "RT-05-CAR-MAO-001",
+      "proposalSha256": "f8253ccd2b8201b9db63e8f80da72bf9e53771d271cf4ce05a81015c71eeef1f"
+    },
+    {
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "actorInstanceId": "RT-06-CAR-MAO-001",
+      "proposalSha256": "1640cd10adbf424fcdaa3b89523c45ca64b97c1469c4ca1da86c7054b9bc53cf"
+    },
+    {
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "actorInstanceId": "RT-07-CAR-MAO-001",
+      "proposalSha256": "43f63156b804a4f001537a3c8949032f7752c316d549ab88a669ec3d995b8580"
+    }
+  ],
+  "selectedProposalId": "PROP-RT-05-CAR-MAO-001",
+  "ranking": [
+    {
+      "rank": 1,
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "actorInstanceId": "RT-05-CAR-MAO-001",
+      "weightedScore": 5,
+      "evaluationCount": 4
+    },
+    {
+      "rank": 2,
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "actorInstanceId": "RT-04-CAR-MAO-001",
+      "weightedScore": 4,
+      "evaluationCount": 4
+    },
+    {
+      "rank": 3,
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "actorInstanceId": "RT-06-CAR-MAO-001",
+      "weightedScore": 4,
+      "evaluationCount": 4
+    },
+    {
+      "rank": 4,
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "actorInstanceId": "RT-07-CAR-MAO-001",
+      "weightedScore": 4,
+      "evaluationCount": 4
+    },
+    {
+      "rank": 5,
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "actorInstanceId": "RT-03-CAR-MAO-001",
+      "weightedScore": 3,
+      "evaluationCount": 4
+    }
+  ],
+  "trace": {
+    "executionWaves": [
+      2,
+      2,
+      1
+    ],
+    "uniqueActorInstanceCount": 5,
+    "proposalCount": 5,
+    "crossEvaluationCount": 20,
+    "privateReasoningPersisted": false
+  },
+  "decidedAt": "2026-07-20T17:37:00.000Z",
+  "decisionSha256": "23584aef676fbabd80783ba8a5361c2a49cd410604fe160358568d6faae3d053"
+}

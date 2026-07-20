@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "distribution-variant-v1",
+  "variantId": "VAR-CAR-MAO-001-FEED",
+  "editorialUnitId": "CEU-CAR-MAO-001",
+  "editorialUnitSha256": "09fd5fb03ecf4b43f58e878ef2765460db07124a81a672c2b582e351314690c4",
+  "contentTypeId": "carousel",
+  "contentTypeDefinitionSha256": "3ab0e857f182a5a69c6c7db6ad67003495d1eb63e4ba3f9dab7c028bcad60142",
+  "channelId": "instagram",
+  "channelProfile": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "registries/channels/instagram-profile-v1.yml",
+    "sha256": "316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482"
+  },
+  "surface": "feed",
+  "locale": "es-LatAm",
+  "adaptationKind": "sequenced",
+  "copy": "Empieza por el resultado, no por la herramienta.\n\n1. Define qué decisión, conducta o proceso quieres mejorar.\n2. Elige un cambio pequeño que reduzca fricción y pueda sostenerse.\n3. Usa la tecnología para automatizar lo repetible y conserva el juicio humano donde importa.\n\nEvidencia honesta: observa ciclo, adopción y retrabajo como indicadores sugeridos. Sin línea base, dueño, frecuencia y umbral, no son resultados.\n\nEscribe hoy el resultado que quieres mejorar y la señal que revisarás esta semana.",
+  "adaptationDiff": [
+    {
+      "field": "editorial-unit-to-eight-cards",
+      "change": "The thesis, supports, evidence and CTA are sequenced across eight feed cards.",
+      "rationale": "A swipe sequence separates conclusion, tension, three supports, evidence, action and CTA."
+    }
+  ],
+  "altTextRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "projects/pilot-carousel-001/spec/alt-text.md",
+    "sha256": "bbf9d07800a5fc217f55960bb7fbaf0731605b1b354c71d1c28096ba0c0785e9"
+  },
+  "claimIds": [
+    "CLM-CAR-METHOD-001",
+    "CLM-CAR-INTENT-001",
+    "CLM-CAR-ALLY-001",
+    "CLM-CAR-EVIDENCE-001"
+  ],
+  "assets": [
+    {
+      "assetId": "ASSET-CAR-MAO-001-01",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-01.png",
+        "sha256": "ec6bcbe2ae1261c39acc3301bcc90096a889fc34e42fcdaf027bbba54906c5f4"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-02",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-02.png",
+        "sha256": "60b96ed5e47b60639aa17f54d856ab7653999476aa7d5fbfa675257f923f94a5"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-03",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-03.png",
+        "sha256": "d981665acf86c5c81f9614101792b6ca117eba3e2b76912a9d2f5e39c0d8c7e9"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-04",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-04.png",
+        "sha256": "db2c550ec614de9a8abcca1523a0b16845e52d7991e283f0041a862ba397082d"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-05",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-05.png",
+        "sha256": "182c4ac409e78624b389fcbb86c73146955840c940685e976a5a33b5ac35f96d"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-06",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-06.png",
+        "sha256": "7ce2aa5638d68b94a0de78fdf6ab2beab159ddfcbc3270af619e63b72c1c6c9d"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-07",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-07.png",
+        "sha256": "ae5ec0f9cf4ead2d031cf5d15b41f4dd6c6c9f0fab7c1b6031b203359422638c"
+      },
+      "mediaType": "image/png"
+    },
+    {
+      "assetId": "ASSET-CAR-MAO-001-08",
+      "assetRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/slide-08.png",
+        "sha256": "b22c8026709e740da75a336b026e0ba7e1533484d8af16678511ac9114f60a70"
+      },
+      "mediaType": "image/png"
+    }
+  ],
+  "status": "draft",
+  "approvalState": "committee_approved",
+  "publishAllowed": false,
+  "producerActorInstanceId": "RT-07-CAR-MAO-001",
+  "canonicalSha256": "56a12be7d3b2daa3a0689b8a438fbb7ff11bf968ad0063354ee845656a0f1295"
+}

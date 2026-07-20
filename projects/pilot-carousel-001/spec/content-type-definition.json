@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "content-type-definition-v1",
+  "contentTypeId": "carousel",
+  "version": "1.0.0",
+  "title": "Instagram feed carousel",
+  "kind": "STATIC_SEQUENCE",
+  "canonicalInputSchema": "workflows/content/types/carousel/schema.ts",
+  "pluginRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "workflows/content/types/carousel/plugin.ts",
+    "sha256": "d6de374b382dc046362779bbc184f654e495b93819f7f731be3756649f053c2b"
+  },
+  "rendererRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "renderers/static-social/scripts/render-carousel.ts",
+    "sha256": "3a8daaa5a3a3404885289816c969cb6fc8c7290971a70a5defb7b6c146745f9e"
+  },
+  "outputs": [
+    {
+      "outputId": "individual-pngs",
+      "mediaType": "image/png",
+      "extension": ".png",
+      "required": true
+    },
+    {
+      "outputId": "contact-sheet",
+      "mediaType": "image/png",
+      "extension": ".png",
+      "required": true
+    },
+    {
+      "outputId": "offline-gallery",
+      "mediaType": "text/html",
+      "extension": ".html",
+      "required": true
+    },
+    {
+      "outputId": "copy-package",
+      "mediaType": "text/markdown",
+      "extension": ".md",
+      "required": true
+    },
+    {
+      "outputId": "asset-manifest",
+      "mediaType": "application/json",
+      "extension": ".json",
+      "required": true
+    },
+    {
+      "outputId": "render-receipt",
+      "mediaType": "application/json",
+      "extension": ".json",
+      "required": true
+    }
+  ],
+  "gates": [
+    {
+      "gateId": "CAROUSEL_SPEC_APPROVED",
+      "order": 0,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "SEQUENCE_APPROVED",
+      "order": 1,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "CAROUSEL_BUILD_VALIDATED",
+      "order": 2,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "SWIPE_REVIEW_APPROVED",
+      "order": 3,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "RIGHTS_A11Y_PASS",
+      "order": 4,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "GUARDIAN_PASS",
+      "order": 5,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    },
+    {
+      "gateId": "WORKFLOW_PILOT_REVIEW",
+      "order": 6,
+      "required": true,
+      "acceptanceContractRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "workflows/content/types/carousel/README.md",
+        "sha256": "7af2ecea17ec1f71df81d9fb48361c904905b50df02730bd1945e89655b74857"
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "fixtureId": "carousel-positive-pilot",
+      "purpose": "Eight-card ES-LatAm pilot with source, brand and channel bindings.",
+      "fixtureRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/editorial/pilot-content.yml",
+        "sha256": "4b0fff840ad4c1d336e0960c210f44363d7e6e380e2102e42e0df8aa3ce49840"
+      }
+    },
+    {
+      "fixtureId": "carousel-negative-contracts",
+      "purpose": "Negative edge-case contract inventory.",
+      "fixtureRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "tests/fixtures/carousel/negative/README.md",
+        "sha256": "82e2f7f1e05f729e32bc724513b6aee05e2d881a3240738f357821f8f718a8c8"
+      }
+    }
+  ],
+  "distributionSurfaces": [
+    {
+      "surface": "feed",
+      "required": true,
+      "aspectRatio": "4:5"
+    }
+  ],
+  "requiredSpecialistRoleIds": [
+    "RT-03",
+    "RT-04",
+    "RT-05",
+    "RT-06",
+    "RT-07",
+    "RT-09"
+  ],
+  "minimumVariants": 1,
+  "maximumVariants": 1,
+  "committeePattern": "two-plus-two-plus-one",
+  "implementationState": "active_candidate",
+  "publicationPolicy": "forbidden",
+  "definitionSha256": "3ab0e857f182a5a69c6c7db6ad67003495d1eb63e4ba3f9dab7c028bcad60142"
+}

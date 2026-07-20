@@ -1,0 +1,36 @@
+schema_version: 1
+evidence_id: EVD-A02C-SOURCE-INVENTORY-SUPERSEDING-002
+recorded_at: '2026-07-20T17:54:46Z'
+evidence_class: CODE_CONFIG
+supersedes:
+  evidence_ref: quality/reports/a09-a10-source-inventory-superseding.yml
+  evidence_sha256: c1282eafa122300572f6912fff1f86cced98191178f30a62cf953e2bd5298edd
+  scope: source_inventory_and_brand_lifecycle
+  historical_result: Eight source records
+  history_rewritten: false
+current_inventory:
+  registry_ref: registries/sources/source-registry.yml
+  registry_sha256: fbba553904040cc8a9d035da3efbdac9f1cbdd269fccaadccfdedca2138fdf8b
+  registry_id: source-registry-v2
+  registry_schema_version: 2
+  source_count: 11
+  source_ids:
+    - SRC-SYNTH-VS001
+    - SRC-METH-JVC-YT-001
+    - SRC-METH-JVC-SKOOL-001
+    - SRC-PROMPT-MAESTRO-V6
+    - SRC-METH-IMAGE-001
+    - SRC-REMOTION-DOCS-001
+    - SRC-REMOTION-SKILLS-001
+    - SRC-LEGACY-STITCH-REMOTION-001
+    - SRC-MAO-BRAND-BUNDLE-001
+    - SRC-MAO-BRAND-VOICE-001
+    - SRC-MAO-PUBLIC-SEMANTICS-001
+validation:
+  command: node skills/remotion-video-production/scripts/check-sources.mjs
+  expected_record_count: 11
+  canonical_expected: 4
+  canonical_confirmed: 0
+  source_locked: false
+  state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED
+append_only: true

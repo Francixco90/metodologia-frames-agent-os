@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "workflow-pilot-review-event-v1",
+  "eventId": "WORKFLOW-PILOT-REVIEW-CAR-MAO-001",
+  "eventType": "WORKFLOW_PILOT_REVIEW",
+  "workflowType": "carousel",
+  "workOrderId": "WO-CAR-MAO-001",
+  "candidatePackageId": "CP-CAR-MAO-001",
+  "candidatePackageSha256": "366af0578700e7d6cf1b823e4c2695904df7335d9202ab5c069b94fafcabfb38",
+  "state": "awaiting_human_approval",
+  "decision": null,
+  "acceptedEventPresent": false,
+  "nextWorkflow": "feed-text",
+  "nextWorkflowUnlocked": false,
+  "publicationAuthorized": false,
+  "requiredHumanAction": "Approve or request changes to this exact candidate package hash. Approval unlocks only feed-text.",
+  "createdAt": "2026-07-20T17:30:00.000Z",
+  "eventSha256": "2157e3adf28678d158e34330612ba43deba721af2647a7daa0873df19a03e148"
+}

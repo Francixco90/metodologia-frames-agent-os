@@ -11,6 +11,9 @@ writers:
     - registries/memory/**
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
+    - projects/pilot-carousel-001/README.md
+    - projects/pilot-carousel-001/project.yml
+    - work/private/.gitkeep
   repo:
     - package.json
     - pnpm-lock.yaml
@@ -18,13 +21,20 @@ writers:
     - tsconfig.json
     - eslint.config.js
     - .prettierrc.json
+    - .prettierignore
+    - .gitattributes
     - .gitignore
     - .nvmrc
     - .npmrc
+    - vitest.config.ts
     - .github/**
     - scripts/**
     - types/**
     - receipts/builds/**
+  brand:
+    - brand/**
+    - registries/brand/**
+    - registries/channels/**
   sources:
     - inbox/**
     - adapters/notebooklm/**
@@ -45,8 +55,10 @@ writers:
     - committees/**
     - approvals/schemas/**
     - receipts/schemas/**
+    - registries/agents/**
     - tests/unit/committee/**
     - projects/vs-001-source-to-campaign/remotion/committee/**
+    - projects/pilot-carousel-001/orchestration/**
   skill-foundry:
     - skills/**
     - registries/skills/**
@@ -57,6 +69,9 @@ writers:
   content:
     - networks/content/**
     - workflows/content/**
+    - registries/content-types/**
+    - projects/pilot-carousel-001/editorial/**
+    - projects/pilot-carousel-001/spec/**
     - projects/vs-001-source-to-campaign/content/**
     - projects/vs-001-source-to-campaign/remotion/00-source-script.md
     - projects/vs-001-source-to-campaign/remotion/01-video-spec.yml
@@ -77,6 +92,10 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/approvals/**
     - projects/vs-001-source-to-campaign/remotion/receipts/**
     - tests/unit/remotion/**
+  static-social:
+    - renderers/static-social/**
+    - projects/pilot-carousel-001/artifacts/**
+    - receipts/carousel/**
   n8n:
     - adapters/n8n/**
     - workflows/adapters/**
@@ -90,13 +109,19 @@ writers:
     - tests/visual/**
     - tests/fixtures/**
     - quality/reports/**
+    - quality/reviews/remotion/**
+    - quality/reviews/skill-foundry/**
     - quality/reviews/core-committee/**
+    - projects/pilot-carousel-001/quality/**
+    - receipts/dependency-audits/**
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**
+    - receipts/migrations/**
   guardian:
     - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
+    - projects/pilot-carousel-001/guardian/**
 non_writers:
   human_approver:
     actor_id: H01

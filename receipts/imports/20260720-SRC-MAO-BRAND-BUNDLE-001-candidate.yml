@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-MAO-BRAND-BUNDLE-001-001
+recorded_at: '2026-07-20T17:43:27Z'
+event_order: 1
+actor_id: source-lifecycle-v2
+package_id: A02c
+source_id: SRC-MAO-BRAND-BUNDLE-001
+transition:
+  from: null
+  to: candidate
+hashes:
+  raw_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+  normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+evidence:
+  - portable_locator: registries/brand/source-bundle-v1.yml
+decision: accept_hash_bound_stable_sources_as_candidate
+append_only: true

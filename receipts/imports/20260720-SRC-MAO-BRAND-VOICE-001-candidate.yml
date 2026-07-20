@@ -1,0 +1,20 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-MAO-BRAND-VOICE-001-001
+recorded_at: '2026-07-20T17:43:27Z'
+event_order: 1
+actor_id: source-lifecycle-v2
+package_id: A02c
+source_id: SRC-MAO-BRAND-VOICE-001
+transition:
+  from: null
+  to: candidate
+hashes:
+  raw_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+  normalized_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+evidence:
+  - portable_locator: registries/brand/voice-profile-v2.yml
+coverage_gaps:
+  - source_not_commit_bound
+  - brand_owner_confirmation_pending
+decision: retain_as_first_party_candidate_for_internal_drafts_only
+append_only: true

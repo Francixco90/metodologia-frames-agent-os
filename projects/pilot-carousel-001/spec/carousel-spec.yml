@@ -1,0 +1,225 @@
+schemaVersion: carousel-spec-v1
+carouselId: CAR-MAO-001
+version: 1.0.0
+status: RENDERED_DRAFT
+generatedAt: 2026-07-20T17:30:00.000Z
+workOrderRef: projects/pilot-carousel-001/spec/content-work-order.json
+canonicalUnitRef: projects/pilot-carousel-001/spec/canonical-editorial-unit.json
+brandProfileRef: registries/brand/brand-profile-v2.yml
+voiceProfileRef: registries/brand/voice-profile-v2.yml
+channelProfileRef: registries/channels/instagram-profile-v1.yml
+bindingHashes:
+  workOrderSha256: 221e102138d1454420044a4b6e7a90fb6caf983d3c7603073a9fe58e02730e8b
+  canonicalUnitSha256: 1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b
+  brandProfileSha256: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+  voiceProfileSha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+  channelProfileSha256: 316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482
+locale: es-LatAm
+theme: social-light
+dimensions:
+  width: 1080
+  height: 1350
+  aspectRatio: 4:5
+  safeZonePx: 72
+cards:
+  - cardId: CAR-MAO-001-C01
+    position: 1
+    role: conclusion
+    eyebrow: Decisión
+    title: Método antes que herramientas
+    body: La herramienta acelera. El método decide hacia dónde.
+    bullets: []
+    evidence:
+      kind: first_party_statement
+      label: Posicionamiento público versionado de MetodologIA.
+      shortLabel: Fuente primaria
+      sourceIds:
+        - SRC-MAO-PUBLIC-SEMANTICS-001
+      claimIds:
+        - CLM-CAR-METHOD-001
+      limitation: Principio editorial; no es un claim de desempeño.
+    altText: Portada azul marino del carrusel MetodologIA con la conclusión “Método antes que herramientas” y un
+      acento dorado.
+    visualCue: Contraste de dirección frente a aceleración mediante tres barras ascendentes.
+  - cardId: CAR-MAO-001-C02
+    position: 2
+    role: tension
+    eyebrow: Tensión
+    title: El costo del enfoque tool-first
+    body: Cambias de plataforma, acumulas pruebas y sigues sin un criterio para decidir qué debe mejorar.
+    bullets: []
+    evidence:
+      kind: signal_to_measure
+      label: "Señales sugeridas: cambios de herramienta, pruebas abandonadas y decisiones sin criterio."
+      shortLabel: Señal a medir
+      sourceIds:
+        - SRC-MAO-PUBLIC-SEMANTICS-001
+      claimIds:
+        - CLM-CAR-METHOD-001
+      limitation: Son señales diagnósticas sugeridas; no describen a toda organización.
+    altText: Segunda tarjeta clara que plantea el costo del enfoque centrado primero en herramientas y propone
+      observar pruebas abandonadas.
+    visualCue: Barras de actividad sin un eje de dirección.
+  - cardId: CAR-MAO-001-C03
+    position: 3
+    role: support
+    eyebrow: Pilar 1
+    title: Define el resultado
+    body: Antes de elegir IA, nombra la decisión, conducta o proceso que quieres mejorar.
+    bullets: []
+    pillar: P1
+    evidence:
+      kind: first_party_statement
+      label: P1 — el método cierra la brecha entre estado actual y deseado.
+      shortLabel: Fuente primaria
+      sourceIds:
+        - SRC-MAO-PUBLIC-SEMANTICS-001
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-METHOD-001
+      limitation: El resultado debe concretarse en cada contexto.
+    altText: "Tercera tarjeta del carrusel: “Define el resultado”; invita a nombrar una decisión, conducta o
+      proceso antes de elegir IA."
+    visualCue: Una meta definida antes de tres opciones de herramienta.
+  - cardId: CAR-MAO-001-C04
+    position: 4
+    role: support
+    eyebrow: Pilar 2
+    title: Pon la intención primero
+    body: Elige el cambio más pequeño que reduzca fricción y pueda sostenerse.
+    bullets: []
+    pillar: P2
+    evidence:
+      kind: first_party_statement
+      label: P2 — intención antes que intensidad.
+      shortLabel: Fuente primaria
+      sourceIds:
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-INTENT-001
+      limitation: “Más pequeño” depende del riesgo y del contexto operativo.
+    altText: "Cuarta tarjeta: “Pon la intención primero”; recomienda un cambio pequeño que reduzca fricción y
+      pueda mantenerse."
+    visualCue: Una trayectoria breve y deliberada frente a múltiples desvíos.
+  - cardId: CAR-MAO-001-C05
+    position: 5
+    role: support
+    eyebrow: Pilar 3
+    title: Usa la tecnología como aliada
+    body: Automatiza lo repetible. Reserva el juicio humano para lo que importa.
+    bullets: []
+    pillar: P3
+    evidence:
+      kind: first_party_statement
+      label: P3 — tecnología como aliada.
+      shortLabel: Fuente primaria
+      sourceIds:
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-ALLY-001
+      limitation: Automatizar requiere control, responsable y posibilidad de reversa.
+    altText: "Quinta tarjeta: “Usa la tecnología como aliada”; separa tareas repetibles del juicio humano que debe
+      conservarse."
+    visualCue: "Dos carriles coordinados: automatización y criterio humano."
+  - cardId: CAR-MAO-001-C06
+    position: 6
+    role: evidence
+    eyebrow: Evidencia honesta
+    title: Mide antes de prometer
+    body: Observa ciclo, adopción y retrabajo. Son indicadores sugeridos, no resultados ya obtenidos.
+    bullets: []
+    evidence:
+      kind: indicator_suggested
+      label: "Indicadores sugeridos: tiempo de ciclo, adopción y retrabajo."
+      shortLabel: Indicador sugerido
+      sourceIds:
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-EVIDENCE-001
+      limitation: Faltan línea base, definición, frecuencia, dueño y umbral.
+    altText: "Sexta tarjeta: “Mide antes de prometer”; lista ciclo, adopción y retrabajo como indicadores
+      sugeridos, no como resultados."
+    visualCue: Tres barras etiquetadas como señales por medir, sin valores inventados.
+  - cardId: CAR-MAO-001-C07
+    position: 7
+    role: action
+    eyebrow: Aplicación
+    title: Empieza en tres pasos
+    body: Convierte el principio en una prueba acotada.
+    bullets:
+      - Define el resultado.
+      - Elige una señal.
+      - Prueba una herramienta con un límite.
+    evidence:
+      kind: signal_to_measure
+      label: La prueba se evalúa contra la señal elegida.
+      shortLabel: Señal a medir
+      sourceIds:
+        - SRC-MAO-PUBLIC-SEMANTICS-001
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-METHOD-001
+        - CLM-CAR-EVIDENCE-001
+      limitation: La prueba no autoriza escalar ni publicar resultados.
+    altText: "Séptima tarjeta con tres pasos: definir el resultado, elegir una señal y probar una herramienta con
+      un límite."
+    visualCue: Secuencia numerada de tres movimientos.
+  - cardId: CAR-MAO-001-C08
+    position: 8
+    role: cta
+    eyebrow: Un movimiento
+    title: Define antes de elegir
+    body: Escribe hoy el resultado que quieres mejorar y la señal que revisarás esta semana.
+    bullets: []
+    evidence:
+      kind: signal_to_measure
+      label: CTA de reflexión y definición; no promete desempeño.
+      shortLabel: Señal a medir
+      sourceIds:
+        - SRC-MAO-PUBLIC-SEMANTICS-001
+        - SRC-MAO-BRAND-VOICE-001
+      claimIds:
+        - CLM-CAR-METHOD-001
+        - CLM-CAR-EVIDENCE-001
+      limitation: La siguiente decisión depende de la señal observada.
+    altText: "Cierre azul marino: “Define antes de elegir”; pide escribir hoy un resultado y una señal para
+      revisar esta semana."
+    visualCue: Una línea de acción única cerrada con acento dorado.
+caption: >-
+  Empieza por el resultado, no por la herramienta.
+
+
+  1. Define qué decisión, conducta o proceso quieres mejorar.
+
+  2. Elige un cambio pequeño que reduzca fricción y pueda sostenerse.
+
+  3. Usa la tecnología para automatizar lo repetible y conserva el juicio humano donde importa.
+
+
+  Evidencia honesta: observa ciclo, adopción y retrabajo como indicadores sugeridos. Sin línea base, dueño,
+  frecuencia y umbral, no son resultados.
+
+
+  Escribe hoy el resultado que quieres mejorar y la señal que revisarás esta semana.
+deckAltText: Carrusel de ocho tarjetas de MetodologIA. Abre con “Método antes que herramientas”, explica el
+  riesgo del enfoque centrado en herramientas, desarrolla tres pilares —resultado, intención y tecnología
+  aliada—, propone medir ciclo, adopción y retrabajo sin inventar resultados, resume tres pasos y cierra con
+  una acción para esta semana.
+cta: Escribe hoy el resultado que quieres mejorar y la señal que revisarás esta semana.
+sourceIds:
+  - SRC-MAO-PUBLIC-SEMANTICS-001
+  - SRC-MAO-BRAND-VOICE-001
+claimIds:
+  - CLM-CAR-METHOD-001
+  - CLM-CAR-INTENT-001
+  - CLM-CAR-ALLY-001
+  - CLM-CAR-EVIDENCE-001
+rights:
+  assets: first_party_procedural_only
+  fonts: OFL-1.1
+  externalDistributionAuthorized: false
+renderPolicy:
+  networkAllowed: false
+  randomnessAllowed: false
+  wallClockAllowed: false
+  copyEmbeddedInRenderer: false

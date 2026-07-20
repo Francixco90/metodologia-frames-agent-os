@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-MAO-BRAND-BUNDLE-001-002
+recorded_at: '2026-07-20T17:43:27Z'
+event_order: 2
+actor_id: source-lifecycle-v2
+package_id: A02c
+source_id: SRC-MAO-BRAND-BUNDLE-001
+transition:
+  from: candidate
+  to: quarantined
+hashes:
+  raw_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+  normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+decision: quarantine_while_dirty_and_candidate_sources_are_partitioned
+append_only: true

@@ -1,0 +1,50 @@
+export const socialLightTokens = {
+  schemaVersion: 'brand-token-projection-v1',
+  tokenSetId: 'metodologia-social-light-v2',
+  sourceRef: 'brand/tokens/brand-tokens.yml',
+  colors: {
+    canvas: '#f5f7fa',
+    canvasDeep: '#e2e8f0',
+    ink: '#0a122a',
+    surface: '#ffffff',
+    surfaceAlt: '#f1f5f9',
+    goldFill: '#e0b400',
+    goldText: '#8a6d00',
+    goldSoft: '#f0c820',
+    textSoft: '#334155',
+    muted: '#576472',
+    border: 'rgba(10, 18, 42, .12)',
+    borderHover: 'rgba(224, 180, 0, .45)',
+  },
+  aliases: {
+    brandNavy: 'ink',
+    brandWhite: 'surface',
+    brandWhiteSoft: 'surfaceAlt',
+    brandWhiteMuted: 'canvasDeep',
+    textPrimary: 'ink',
+    textOnGold: 'ink',
+    accentFill: 'goldFill',
+    accentText: 'goldText',
+  },
+  typography: {
+    heading: {
+      family: 'Poppins',
+      fallback: 'system-ui, sans-serif',
+      allowedWeights: [600, 700, 800, 900],
+      vendoredWeights: [400, 700, 800],
+    },
+    body: {
+      family: 'Montserrat',
+      fallback: 'system-ui, sans-serif',
+      allowedWeights: [400, 500, 600, 700],
+      vendoredWeights: '400 700',
+    },
+  },
+  layout: {
+    radius: '16px',
+    radiusLarge: '24px',
+    gutter: 'clamp(1rem, 3vw, 2rem)',
+  },
+} as const;
+
+export type SocialLightTokens = typeof socialLightTokens;

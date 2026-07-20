@@ -1,0 +1,5 @@
+case_id: CAR-SKL-POS-001
+card_count: 8
+dimensions: {width: 1080, height: 1350}
+alt_text_per_card: true
+expected_state: WORKFLOW_PILOT_REVIEW

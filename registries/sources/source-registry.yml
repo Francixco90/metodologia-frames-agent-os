@@ -276,3 +276,129 @@ entries:
       - normalized_content_hash_absent
       - license_for_observed_copy_unresolved
       - current_api_parity_not_proven
+  - source_id: SRC-MAO-BRAND-BUNDLE-001
+    snapshot_id: metodologia-brand-stable-projection-v1
+    current_state: active
+    source_kind: first_party_brand_bundle
+    title: Proyección portable de las fuentes estables de marca MetodologIA
+    portable_locator: registries/brand/source-bundle-v1.yml
+    portable_locator_role: derived_projection
+    observed_at: '2026-07-20T17:43:27Z'
+    hashes:
+      raw_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+      normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+      source_normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+      normalization_contract: sorted-relative-path-and-sha256-v1
+    projection:
+      projection_id: metodologia-brand-source-bundle-v1
+      projection_locator: registries/brand/source-bundle-v1.yml
+      projection_sha256: 39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf
+      projection_bytes: 3772
+      projection_contract: brand-authority-bundle-v1
+      derived_from_source_normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+      immutable: true
+    deduplication:
+      verdict: unique
+      checked_against_registry: source-registry-v2
+    rights:
+      rights_holder: MetodologIA
+      rights_basis: first_party_brand_sources
+      allowed_use_scope: internal_brand_projection_and_local_draft_rendering
+      rights_verdict: allowed_internal_editorial
+    authority:
+      authority_class: first_party
+      authority_verdict: verified_stable_projection_sources
+      provenance_evidence: commit_relative_paths_and_exact_sha256
+    receipts:
+      - receipts/imports/20260720-SRC-MAO-BRAND-BUNDLE-001-candidate.yml
+      - receipts/imports/20260720-SRC-MAO-BRAND-BUNDLE-001-quarantined.yml
+      - receipts/imports/20260720-SRC-MAO-BRAND-BUNDLE-001-evaluated.yml
+      - receipts/imports/20260720-SRC-MAO-BRAND-BUNDLE-001-active.yml
+    restrictions:
+      - internal_brand_grounding_only
+      - dirty_and_candidate_sources_excluded_from_stable_projection
+      - no_publication_authorization
+  - source_id: SRC-MAO-BRAND-VOICE-001
+    snapshot_id: metodologia-voice-candidate-v2
+    current_state: candidate
+    source_kind: first_party_voice_candidate
+    title: Brand Voice MetodologIA v3 como candidato first-party
+    portable_locator: registries/brand/voice-profile-v2.yml
+    portable_locator_role: derived_projection
+    observed_at: '2026-07-20T17:43:27Z'
+    hashes:
+      raw_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+      normalized_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+      source_normalized_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+      normalization_contract: source-identity-v1
+    projection:
+      projection_id: metodologia-voice-profile-v2
+      projection_locator: registries/brand/voice-profile-v2.yml
+      projection_sha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+      projection_bytes: 2743
+      projection_contract: voice-profile-projection-v2
+      derived_from_source_normalized_sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+      immutable: true
+    deduplication:
+      verdict: unique
+      checked_against_registry: source-registry-v2
+    rights:
+      rights_holder: MetodologIA
+      rights_basis: first_party_local_candidate
+      allowed_use_scope: internal_candidate_copy_only
+      rights_verdict: allowed_internal_voice_candidate
+    authority:
+      authority_class: first_party_candidate
+      authority_verdict: pending_brand_owner_confirmation
+      provenance_evidence: exact_hash_and_constitutional_corroboration
+    receipts:
+      - receipts/imports/20260720-SRC-MAO-BRAND-VOICE-001-candidate.yml
+    restrictions:
+      - no_ready_or_public_release
+      - no_human_approval_substitution
+      - no_publication_authorization
+    coverage_gaps:
+      - source_not_commit_bound
+      - brand_owner_confirmation_pending
+  - source_id: SRC-MAO-PUBLIC-SEMANTICS-001
+    snapshot_id: metodologia-public-semantics-v1
+    current_state: active
+    source_kind: first_party_public_semantics
+    title: Proyección semántica pública para el piloto Método antes que herramientas
+    portable_locator: inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+    portable_locator_role: derived_projection
+    observed_at: '2026-07-20T17:43:27Z'
+    hashes:
+      raw_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+      normalized_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+      source_normalized_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+      normalization_contract: source-identity-v1
+    projection:
+      projection_id: metodologia-public-semantics-pilot-v1
+      projection_locator: inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+      projection_sha256: 3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c
+      projection_bytes: 521
+      projection_contract: public-semantics-projection-v1
+      derived_from_source_normalized_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+      immutable: true
+    deduplication:
+      verdict: unique
+      checked_against_registry: source-registry-v2
+    rights:
+      rights_holder: MetodologIA
+      rights_basis: first_party_public_semantics
+      allowed_use_scope: internal_editorial_grounding_and_local_pilot
+      rights_verdict: allowed_internal_editorial
+    authority:
+      authority_class: first_party
+      authority_verdict: verified_first_party_public_semantics
+      provenance_evidence: clean_commit_hash_and_sanitized_projection
+    receipts:
+      - receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-candidate.yml
+      - receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-quarantined.yml
+      - receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-evaluated.yml
+      - receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-active.yml
+    restrictions:
+      - internal_editorial_grounding_only
+      - no_performance_claims
+      - no_publication_authorization

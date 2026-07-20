@@ -1,3 +1,14 @@
 # Deterministic generated artifacts are validated against their build receipts.
 # Reformatting them outside the generator would invalidate byte-level reproducibility.
 projects/**/web/artifact/index.html
+
+# V2 render outputs and canonical runtime snapshots are generator-owned.
+projects/*/artifacts/**
+projects/*/orchestration/**
+projects/pilot-carousel-001/spec/carousel-spec.yml
+projects/pilot-carousel-001/spec/content-type-definition.json
+
+# Imported and append-only evidence remains byte-identical to its receipts.
+inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+quality/reports/v2-baseline-protection.yml
+skills/remotion-video-production/scripts/check-sources.mjs

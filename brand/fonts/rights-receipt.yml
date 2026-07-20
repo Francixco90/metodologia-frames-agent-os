@@ -1,0 +1,25 @@
+schema_version: brand-font-rights-receipt-v1
+receipt_id: RCP-BRAND-FONTS-OFL-20260720-001
+manifest_ref: brand/fonts/font-manifest.yml
+source_repository: google/fonts
+source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+observed_at: '2026-07-20T00:00:00Z'
+license: OFL-1.1
+rights_verdict: cleared_for_local_bundling_and_rendering
+network_runtime_required: false
+files_verified: 6
+producer_actor_id: brand-docs-specialist-a
+verifier_actor_id: deterministic-check-brand-v2
+guardian_actor_id: pending-independent-guardian
+gate_effect:
+  allows: BRAND_VALIDATED
+  does_not_allow:
+    - GUARDIAN_VERIFIED
+    - HUMAN_APPROVED
+    - READY
+    - PUBLISHED
+failure_policy:
+  missing_binary: RIGHTS_GAP
+  hash_mismatch: RIGHTS_GAP
+  missing_license: RIGHTS_GAP
+  unpinned_source: RIGHTS_GAP

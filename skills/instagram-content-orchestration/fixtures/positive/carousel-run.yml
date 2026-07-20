@@ -1,0 +1,7 @@
+case_id: ORCH-POS-001
+content_type: carousel
+expected_concurrency_max: 2
+expected_execution_waves: [2, 2, 1]
+expected_proposals: 5
+expected_cross_evaluations: 20
+expected_maximum_state: WORKFLOW_PILOT_REVIEW

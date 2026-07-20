@@ -546,12 +546,12 @@ describe('A05 Skill Foundry contracts', () => {
   it('adds hash-bound source-count evidence without rewriting the historical report', () => {
     const evidence = z
       .object({
-        evidence_id: z.literal('EVD-A02-SOURCE-INVENTORY-SUPERSEDING-001'),
+        evidence_id: z.literal('EVD-A02C-SOURCE-INVENTORY-SUPERSEDING-002'),
         supersedes: z.object({
           evidence_ref: PortablePathSchema,
           evidence_sha256: Sha256Schema,
-          scope: z.literal('source_inventory_count_only'),
-          historical_result: z.literal('Three source records'),
+          scope: z.literal('source_inventory_and_brand_lifecycle'),
+          historical_result: z.literal('Eight source records'),
           history_rewritten: z.literal(false),
         }),
         current_inventory: z.object({
@@ -559,29 +559,43 @@ describe('A05 Skill Foundry contracts', () => {
           registry_sha256: Sha256Schema,
           registry_id: z.literal('source-registry-v2'),
           registry_schema_version: z.literal(2),
-          source_count: z.literal(8),
-          source_ids: z.array(z.string().regex(/^SRC-/u)).length(8),
+          source_count: z.literal(11),
+          source_ids: z.array(z.string().regex(/^SRC-/u)).length(11),
         }),
         validation: z.object({
-          expected_record_count: z.literal(8),
+          expected_record_count: z.literal(11),
           canonical_expected: z.literal(4),
           canonical_confirmed: z.literal(0),
           source_locked: z.literal(false),
+          state_effect: z.literal('NONE_ON_READY_RELEASE_OR_PUBLISHED'),
         }),
         append_only: z.literal(true),
       })
-      .parse(readRepositoryYaml('quality/reports/a09-a10-source-inventory-superseding.yml'));
-    const historicalText = readRepositoryText(evidence.supersedes.evidence_ref);
+      .parse(readRepositoryYaml('quality/reports/a02c-source-inventory-superseding-v2.yml'));
+    const priorEvidenceText = readRepositoryText(evidence.supersedes.evidence_ref);
+    const priorEvidence = z
+      .object({
+        evidence_id: z.literal('EVD-A02-SOURCE-INVENTORY-SUPERSEDING-001'),
+        supersedes: z.object({
+          evidence_ref: PortablePathSchema,
+          evidence_sha256: Sha256Schema,
+          historical_result: z.literal('Three source records'),
+          history_rewritten: z.literal(false),
+        }),
+      })
+      .parse(readRepositoryYaml(evidence.supersedes.evidence_ref));
+    const historicalText = readRepositoryText(priorEvidence.supersedes.evidence_ref);
     const currentRegistry = z
       .object({
         schema_version: z.literal(2),
         registry_id: z.literal('source-registry-v2'),
-        entries: z.array(z.object({source_id: z.string().regex(/^SRC-/u)})).length(8),
+        entries: z.array(z.object({source_id: z.string().regex(/^SRC-/u)})).length(11),
       })
       .parse(readRepositoryYaml(evidence.current_inventory.registry_ref));
 
-    expect(historicalText).toContain(evidence.supersedes.historical_result);
-    expect(sha256(historicalText)).toBe(evidence.supersedes.evidence_sha256);
+    expect(sha256(priorEvidenceText)).toBe(evidence.supersedes.evidence_sha256);
+    expect(historicalText).toContain(priorEvidence.supersedes.historical_result);
+    expect(sha256(historicalText)).toBe(priorEvidence.supersedes.evidence_sha256);
     expect(sha256(readRepositoryText(evidence.current_inventory.registry_ref))).toBe(
       evidence.current_inventory.registry_sha256,
     );

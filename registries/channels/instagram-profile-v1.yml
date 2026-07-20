@@ -1,0 +1,83 @@
+schema_version: channel-profile-v1
+profile_id: instagram-social-v1
+channel_id: instagram
+channel_state: governed_candidate
+platform_spec_policy:
+  live_verification_required_before_publish: true
+  internal_dimensions_are_project_profiles_not_platform_maxima: true
+  source_authority: official_only
+  publish_connector: disabled
+source_bindings:
+  - source_id: IG-OFFICIAL-PHOTO-RESOLUTION
+    authority: official_instagram_help_center
+    canonical_uri: https://www.facebook.com/help/instagram/1631821640426723
+    observed_at: '2026-07-20T13:00:00-05:00'
+    supports:
+      - static_media_preflight
+  - source_id: IG-OFFICIAL-CAROUSEL
+    authority: official_instagram_help_center
+    canonical_uri: https://www.facebook.com/help/instagram/269314186824048
+    observed_at: '2026-07-20T13:00:00-05:00'
+    supports:
+      - carousel_item_count_preflight
+  - source_id: IG-OFFICIAL-REELS
+    authority: official_instagram_help_center
+    canonical_uri: https://www.facebook.com/help/instagram/1038071743007909
+    observed_at: '2026-07-20T13:00:00-05:00'
+    supports:
+      - motion_media_preflight
+  - source_id: IG-OFFICIAL-ALT-TEXT
+    authority: official_instagram_help_center
+    canonical_uri: https://www.facebook.com/help/instagram/503708446705527
+    observed_at: '2026-07-20T13:00:00-05:00'
+    supports:
+      - accessibility_preflight
+freshness_policy:
+  observed_at: '2026-07-20T13:00:00-05:00'
+  stale_after_days: 30
+  when_fresh:
+    local_tests: allowed
+    ready: defer_to_remaining_gates
+  when_stale:
+    local_tests: allowed
+    maximum_state: RENDERED_DRAFT
+    ready: blocked
+    publish: blocked
+    required_action: reobserve_official_sources
+brand_profile_ref: registries/brand/brand-profile-v2.yml
+voice_profile_ref: registries/brand/voice-profile-v2.yml
+language:
+  default: es-LatAm
+  address: tú
+tone:
+  voice_is_constant: true
+  formality: medium
+  energy: medium_high
+  technical_depth: low_medium
+  priority: decision_comprehension_action
+render_profiles:
+  portrait_static:
+    width: 1080
+    height: 1350
+    aspect_ratio: '4:5'
+  vertical_motion:
+    width: 1080
+    height: 1920
+    aspect_ratio: '9:16'
+  square_static:
+    width: 1080
+    height: 1080
+    aspect_ratio: '1:1'
+accessibility:
+  per_asset_alt_text: required
+  captions_for_spoken_media: required
+  color_as_only_signal: forbidden
+  safe_zone_validation: required
+  text_overflow_validation: required
+governance:
+  candidate_state: RENDERED_DRAFT
+  guardian_required: true
+  human_gate: G15
+  readiness_gate: G16
+  publish_gate: G17
+  automatic_publication: forbidden

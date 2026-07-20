@@ -1,6 +1,6 @@
-import {spawnSync} from 'node:child_process';
+import {execFileSync, spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 
 type Step = {
@@ -9,6 +9,8 @@ type Step = {
 };
 
 const root = process.cwd();
+const baselineCommit = 'cf887caab1321689f1585d46167a8cb2666e49ed';
+const verifyExisting = process.argv.includes('--verify-existing');
 const steps: readonly Step[] = [
   {
     id: 'notebooklm-read-only-contract',
@@ -58,7 +60,10 @@ const steps: readonly Step[] = [
 const sha256 = (value: Uint8Array | string): string =>
   createHash('sha256').update(value).digest('hex');
 
-for (const step of steps) {
+const mutatingStepIds = new Set(['content-build', 'web-build', 'remotion-preflight']);
+const selectedSteps = verifyExisting ? steps.filter(({id}) => !mutatingStepIds.has(id)) : steps;
+
+for (const step of selectedSteps) {
   const result = spawnSync(process.execPath, ['--import', 'tsx', step.entry], {
     cwd: root,
     encoding: 'utf8',
@@ -93,19 +98,36 @@ const outputs = outputPaths.map((path) => ({
   path,
   sha256: sha256(readFileSync(resolve(root, path))),
 }));
+if (verifyExisting) {
+  const drift = outputs.filter(({path, sha256: currentSha256}) => {
+    const baseline = execFileSync('git', ['show', `${baselineCommit}:${path}`], {
+      cwd: root,
+      maxBuffer: 64 * 1024 * 1024,
+    });
+    return currentSha256 !== sha256(baseline);
+  });
+  if (drift.length > 0) {
+    throw new Error(`VS-001 compatibility drift: ${drift.map(({path}) => path).join(', ')}`);
+  }
+  console.info(
+    `PASS VS-001 COMPATIBILITY: ${String(outputs.length)} historical outputs remain byte-identical.`,
+  );
+  process.exit(0);
+}
 const aggregateSha256 = sha256(
   outputs.map(({path, sha256: digest}) => `${path}:${digest}`).join('\n'),
 );
+const receiptId = `RCP-VS001-PREFLIGHT-${aggregateSha256.slice(0, 12).toUpperCase()}`;
 const receipt = {
   schemaVersion: 1,
-  receiptId: 'RCP-VS001-PREFLIGHT-001',
+  receiptId,
   projectId: 'vs-001-source-to-campaign',
   producerActorId: 'RT-01',
   state: 'PREFLIGHT_VALIDATED',
   visibleWorkProductState: 'RENDERED_DRAFT',
   generatedAt: '2026-07-19T12:00:00.000Z',
-  stepCount: steps.length,
-  steps: steps.map(({id, entry}) => ({id, entry, status: 'passed'})),
+  stepCount: selectedSteps.length,
+  steps: selectedSteps.map(({id, entry}) => ({id, entry, status: 'passed'})),
   outputs,
   aggregateSha256,
   sourceLocked: false,
@@ -119,10 +141,18 @@ const receipt = {
     'external_distribution_not_authorized',
   ],
 };
-const receiptPath = resolve(root, 'receipts/builds/RCP-VS001-PREFLIGHT-001.json');
+const receiptPath = resolve(root, `receipts/builds/${receiptId}.json`);
 mkdirSync(dirname(receiptPath), {recursive: true});
-writeFileSync(receiptPath, `${JSON.stringify(receipt, null, 2)}\n`, 'utf8');
+const receiptBytes = `${JSON.stringify(receipt, null, 2)}\n`;
+if (existsSync(receiptPath)) {
+  const existing = readFileSync(receiptPath, 'utf8');
+  if (existing !== receiptBytes) {
+    throw new Error(`Append-only receipt collision: ${receiptId}`);
+  }
+} else {
+  writeFileSync(receiptPath, receiptBytes, 'utf8');
+}
 
 console.info(
-  `PASS VERTICAL SLICE PREFLIGHT: ${steps.length} pasos, ${outputs.length} outputs, ${aggregateSha256}.`,
+  `PASS VERTICAL SLICE PREFLIGHT: ${selectedSteps.length} pasos, ${outputs.length} outputs, ${aggregateSha256}.`,
 );

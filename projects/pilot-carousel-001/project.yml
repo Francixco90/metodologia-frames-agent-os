@@ -1,0 +1,16 @@
+schema_version: content-pilot-project-v1
+project_id: pilot-carousel-001
+workflow_type: carousel
+topic: Método antes que herramientas
+locale: es-LatAm
+audience: profesionales y equipos
+state: RENDERED_DRAFT
+workflow_event: WORKFLOW_PILOT_REVIEW
+workflow_pilot_accepted: false
+next_workflow: feed-text
+next_workflow_unlocked: false
+guardian_passed: false
+human_approved: false
+ready: false
+publication_authorized: false
+source_of_truth: projects/pilot-carousel-001/editorial/pilot-content.yml

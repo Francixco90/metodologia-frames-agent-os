@@ -1,0 +1,14 @@
+schema_version: 1
+skill_id: metodologia-brand-router
+version: 0.1.0
+content_origin: locally_authored
+lifecycle_state: active
+execution_scope: internal-brand-routing
+authority_refs:
+  - registries/brand/source-bundle-v1.yml
+  - registries/brand/brand-profile-v2.yml
+  - registries/brand/voice-profile-v2.yml
+  - registries/channels/instagram-profile-v1.yml
+compatibility_contract: brand-profile-routing-v2
+external_fragments_reused: false
+publication_authority: false

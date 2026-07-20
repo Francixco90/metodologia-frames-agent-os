@@ -1,0 +1,288 @@
+schemaVersion: agent-registry-v2
+registryId: metodologia-agent-registry-v2
+baseContract:
+  schemaVersion: hash-bound-ref-v1
+  ref: registries/agents/base-contract-v2.yml
+  sha256: f6fd383c40fe961ce92612c07dff05a5d54f5be711136f3065e8af7c25c49504
+entries:
+  - roleId: RT-01
+    agentId: CreativeOrchestratorV2
+    agentClass: orchestrator
+    lifecycle: permanent
+    purpose: Coordinate governed content work without replacing specialist judgment.
+    responsibilities:
+      - Schedule bounded work units with at most two active specialists.
+      - Enforce committee, verifier, Guardian and H01 ordering.
+    capabilities: [orchestration.schedule, orchestration.state]
+    inputs:
+      - contractId: content-work-order-v2
+        description: Hash-bound content work order.
+        required: true
+    outputs:
+      - contractId: orchestration-run-v2
+        description: Append-only governed run trace.
+        required: true
+    stopRules:
+      - ruleId: rt01-concurrency
+        condition: More than two specialists would be active.
+        errorCode: ORCH_V2_MAX_CONCURRENCY
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-01/contract.yml
+      sha256: 93dd8a7c3a0d440ca3652c2a39f4849a5853984aa3e8bd380f841241f0137ed2
+  - roleId: RT-02
+    agentId: ContextCuratorV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Curate the smallest sufficient governed source context for the work order.
+    responsibilities:
+      - Resolve source and claim bindings and expose explicit coverage gaps.
+    capabilities: [context.curate, source.bind]
+    inputs:
+      - contractId: content-work-order-v2
+        description: Work order with source snapshot.
+        required: true
+    outputs:
+      - contractId: context-packet-v2
+        description: Portable source context packet.
+        required: true
+    stopRules:
+      - ruleId: rt02-source-gap
+        condition: A required claim lacks governed evidence.
+        errorCode: ORCH_V2_HASH_MISMATCH
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-02/contract.yml
+      sha256: db40064a6227f7beb9a7665a3ddbca3f9aed139f95ad8180ecab53ce33851aa1
+  - roleId: RT-03
+    agentId: EvidenceResearcherV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Research and verify evidence against the locked source snapshot.
+    responsibilities:
+      - Return supported claims, uncertainty and provenance without silent promotion.
+    capabilities: [evidence.research, claim.verify]
+    inputs:
+      - contractId: context-packet-v2
+        description: Curated governed context.
+        required: true
+    outputs:
+      - contractId: evidence-packet-v2
+        description: Claim-level evidence packet.
+        required: true
+    stopRules:
+      - ruleId: rt03-evidence-gap
+        condition: Material evidence cannot be resolved from governed sources.
+        errorCode: ORCH_V2_HASH_MISMATCH
+        result: escalate
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-03/contract.yml
+      sha256: c3bf784177b2ed30b538c8587911c6f93ec4b5d23101ca5df22e950d255f59f4
+  - roleId: RT-04
+    agentId: ContentStrategistV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Define audience, objective, editorial pattern and acceptance criteria.
+    responsibilities:
+      - Produce a falsifiable strategic direction grounded in the work order.
+    capabilities: [strategy.define, audience.frame]
+    inputs:
+      - contractId: evidence-packet-v2
+        description: Verified evidence packet.
+        required: true
+    outputs:
+      - contractId: strategy-direction-v2
+        description: Strategy committee proposal.
+        required: true
+    stopRules:
+      - ruleId: rt04-brief-gap
+        condition: Objective or audience is materially ambiguous.
+        errorCode: ORCH_V2_ROLE_ORDER
+        result: return_for_revision
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-04/contract.yml
+      sha256: 9fb26e4137bd2f8d606aaef51c482d76cbb16ed7383637f6372015c07a25c2cc
+  - roleId: RT-05
+    agentId: NarrativeArchitectV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Design the narrative architecture and sequence of the editorial unit.
+    responsibilities:
+      - Produce an independent narrative proposal with risks and criteria.
+    capabilities: [narrative.architect, sequence.design]
+    inputs:
+      - contractId: strategy-direction-v2
+        description: Strategic direction and constraints.
+        required: true
+    outputs:
+      - contractId: narrative-proposal-v2
+        description: Narrative committee proposal.
+        required: true
+    stopRules:
+      - ruleId: rt05-unsupported-narrative
+        condition: A narrative beat introduces an unsupported material claim.
+        errorCode: ORCH_V2_HASH_MISMATCH
+        result: return_for_revision
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-05/contract.yml
+      sha256: 1ed08d3f76334517001746824fa9f71dc69539edfd0f17429a073ecbbd698c04
+  - roleId: RT-06
+    agentId: CopyVoiceSpecialistV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Author hook, copy and CTA under the bound voice profile.
+    responsibilities:
+      - Preserve claims and document every platform adaptation.
+    capabilities: [copy.author, voice.apply]
+    inputs:
+      - contractId: canonical-editorial-unit-v1
+        description: Canonical editorial unit and voice profile.
+        required: true
+    outputs:
+      - contractId: copy-proposal-v2
+        description: Voice-bound copy proposal.
+        required: true
+    stopRules:
+      - ruleId: rt06-voice-gap
+        condition: Voice profile is absent or its hash does not resolve.
+        errorCode: ORCH_V2_HASH_MISMATCH
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-06/contract.yml
+      sha256: 79f57889bc2f6af6ac2fe4b854c91bd924de76e02c8068881fe2ef5eeb7a5af3
+  - roleId: RT-07
+    agentId: ArtMotionProducerV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Produce the single committee-selected candidate as a governed draft.
+    responsibilities:
+      - Bind spec, assets, manifests, receipts and QA to RENDERED_DRAFT.
+    capabilities: [art.direct, candidate.produce]
+    inputs:
+      - contractId: committee-decision-v2
+        description: Selected proposal and decision hash.
+        required: true
+    outputs:
+      - contractId: candidate-package-v2
+        description: Hash-bound RENDERED_DRAFT candidate.
+        required: true
+    stopRules:
+      - ruleId: rt07-unselected
+        condition: Candidate does not descend from the selected proposal.
+        errorCode: ORCH_V2_ROLE_ORDER
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-07/contract.yml
+      sha256: e2c69760f447173bf7767985b69fe4e5770c745c5a774ec8c73617faa3f5c9af
+  - roleId: RT-08
+    agentId: DataStorytellingV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Verify data semantics and design accessible evidence-led visual encoding.
+    responsibilities:
+      - Prevent unsupported visual inference and document semantic limits.
+    capabilities: [data.semantic, visualization.review]
+    inputs:
+      - contractId: evidence-packet-v2
+        description: Evidence and data claims.
+        required: true
+    outputs:
+      - contractId: data-story-proposal-v2
+        description: Semantic committee proposal.
+        required: true
+    stopRules:
+      - ruleId: rt08-semantic-gap
+        condition: A visual encoding changes the meaning of the governed data.
+        errorCode: ORCH_V2_HASH_MISMATCH
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-08/contract.yml
+      sha256: 25d95d775177e5aae3ddec8534f8477e60abaa12c2f0db9ec6d348f8d0078ef3
+  - roleId: RT-09
+    agentId: RightsAccessibilityVerifierV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Independently verify rights, accessibility and candidate integrity before Guardian.
+    responsibilities:
+      - Verify the selected candidate after production and before RT-11.
+    capabilities: [rights.verify, accessibility.verify]
+    inputs:
+      - contractId: candidate-package-v2
+        description: Selected hash-bound candidate package.
+        required: true
+    outputs:
+      - contractId: verifier-report-v2
+        description: Rights and accessibility verification report.
+        required: true
+    stopRules:
+      - ruleId: rt09-material-failure
+        condition: Rights, accessibility or hash integrity fails materially.
+        errorCode: ORCH_V2_ROLE_ORDER
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-09/contract.yml
+      sha256: 34009530fe2c365434f14ddde5eb50907b31eca70ba49c995cf25d94e9c3a51e
+  - roleId: RT-10
+    agentId: TechnicalAdapterV2
+    agentClass: specialist
+    lifecycle: ephemeral
+    purpose: Validate deterministic adapters without granting creative or release authority.
+    responsibilities:
+      - Return dry-run technical receipts bound to approved inputs.
+    capabilities: [adapter.validate, receipt.emit]
+    inputs:
+      - contractId: candidate-package-v2
+        description: Hash-bound candidate for dry-run adapter validation.
+        required: true
+    outputs:
+      - contractId: adapter-receipt-v2
+        description: Deterministic dry-run adapter receipt.
+        required: true
+    stopRules:
+      - ruleId: rt10-live-mutation
+        condition: An adapter attempts a live mutation or creative reinterpretation.
+        errorCode: ORCH_V2_PUBLICATION_FORBIDDEN
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-10/contract.yml
+      sha256: e09fc8c75f7408431b73c7950a30aa16c2a5a5ffe1578cab91466300d0722f58
+  - roleId: RT-11
+    agentId: GuardianV2
+    agentClass: guardian
+    lifecycle: permanent
+    purpose: Independently verify governance without producing or remediating the candidate.
+    responsibilities:
+      - Review only after RT-09 and never substitute for H01.
+    capabilities: [guardian.review, governance.block]
+    inputs:
+      - contractId: verifier-report-v2
+        description: Independent RT-09 verifier report.
+        required: true
+    outputs:
+      - contractId: guardian-review-v2
+        description: Independent pass, fail or changes-requested verdict.
+        required: true
+    stopRules:
+      - ruleId: rt11-role-separation
+        condition: Producer, verifier or Guardian actor instances overlap.
+        errorCode: ORCH_V2_ROLE_SEPARATION
+        result: block
+    legacyV1Contract:
+      schemaVersion: hash-bound-ref-v1
+      ref: agents/RT-11/contract.yml
+      sha256: cc79f1b808589ad1c1f142cc601f7ba916cc6938bdea0668a4cf3b36b3293708
+migration:
+  strategy: v1-adapter-before-producer-cutover
+  vs001Compatible: true
+  producerCutoverAllowed: false
+publicationPolicy: forbidden

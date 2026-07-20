@@ -22,7 +22,9 @@ const lifecycle = readYaml('registries/sources/lifecycle-contract.yml');
 const gaps = readYaml('registries/sources/canonical-source-gaps.yml');
 const claims = readYaml('registries/claims/claim-registry.yml');
 const bundle = readYaml('projects/vs-001-source-to-campaign/source-bundle.yml');
-const supersedingEvidence = readYaml('quality/reports/a09-a10-source-inventory-superseding.yml');
+const supersedingEvidence = readYaml(
+  'quality/reports/a02c-source-inventory-superseding-v2.yml',
+);
 const errors = [];
 const states = lifecycle.states ?? [];
 const allowedTransitions = new Set(
@@ -37,17 +39,23 @@ if (states.join('>') !== 'candidate>quarantined>evaluated>active>deprecated') {
 
 const entries = new Map((registry.entries ?? []).map((entry) => [entry.source_id, entry]));
 const currentSourceIds = [...entries.keys()];
-const historicalEvidence = readFileSync(
+const priorEvidenceBytes = readFileSync(
   resolve(root, supersedingEvidence.supersedes?.evidence_ref ?? ''),
 );
+const priorEvidence = parse(priorEvidenceBytes.toString('utf8'));
+const historicalEvidence = readFileSync(resolve(root, priorEvidence.supersedes?.evidence_ref ?? ''));
 const currentRegistry = readFileSync(
   resolve(root, supersedingEvidence.current_inventory?.registry_ref ?? ''),
 );
 if (
-  supersedingEvidence.evidence_id !== 'EVD-A02-SOURCE-INVENTORY-SUPERSEDING-001' ||
+  supersedingEvidence.evidence_id !== 'EVD-A02C-SOURCE-INVENTORY-SUPERSEDING-002' ||
   supersedingEvidence.supersedes?.history_rewritten !== false ||
-  supersedingEvidence.supersedes?.scope !== 'source_inventory_count_only' ||
-  supersedingEvidence.supersedes?.evidence_sha256 !== sha256(historicalEvidence) ||
+  supersedingEvidence.supersedes?.scope !== 'source_inventory_and_brand_lifecycle' ||
+  supersedingEvidence.supersedes?.historical_result !== 'Eight source records' ||
+  supersedingEvidence.supersedes?.evidence_sha256 !== sha256(priorEvidenceBytes) ||
+  priorEvidence.evidence_id !== 'EVD-A02-SOURCE-INVENTORY-SUPERSEDING-001' ||
+  priorEvidence.supersedes?.history_rewritten !== false ||
+  priorEvidence.supersedes?.evidence_sha256 !== sha256(historicalEvidence) ||
   !historicalEvidence.toString('utf8').includes('Three source records') ||
   supersedingEvidence.current_inventory?.registry_sha256 !== sha256(currentRegistry) ||
   supersedingEvidence.current_inventory?.registry_id !== registry.registry_id ||
@@ -59,6 +67,8 @@ if (
   supersedingEvidence.validation?.canonical_expected !== 4 ||
   supersedingEvidence.validation?.canonical_confirmed !== 0 ||
   supersedingEvidence.validation?.source_locked !== false ||
+  supersedingEvidence.validation?.state_effect !==
+    'NONE_ON_READY_RELEASE_OR_PUBLISHED' ||
   supersedingEvidence.append_only !== true
 ) {
   errors.push('superseding source inventory evidence is stale or not hash-bound');

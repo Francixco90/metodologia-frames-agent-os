@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "carousel-producer-preflight-v1",
+  "reviewId": "QA-CAR-MAO-001-PREFLIGHT-001",
+  "producerActorInstanceId": "RT-07-CAR-MAO-001",
+  "checkActorInstanceId": "STATIC-CHECK-CAR-MAO-001",
+  "generatedAt": "2026-07-20T17:30:00.000Z",
+  "checks": {
+    "cards": true,
+    "altText": true,
+    "noExternalUrlsInGallery": true,
+    "deterministic": true,
+    "networkRequests": 0,
+    "state": "RENDERED_DRAFT",
+    "publicationAuthorized": false
+  },
+  "decision": "pass_to_independent_rt09"
+}

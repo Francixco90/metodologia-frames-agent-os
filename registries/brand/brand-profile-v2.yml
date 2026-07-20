@@ -1,0 +1,68 @@
+schema_version: brand-profile-v2
+profile_id: metodologia-brand-v2
+brand_id: metodologia
+version: 2.0.0
+validation_state: BRAND_VALIDATED
+visible_identity:
+  canonical_name: MetodologIA
+  exact_case_required: true
+  exclusive_in_public_artifact: true
+  brand_puns:
+    - MetodologIA
+    - (R)Evolución
+    - EstrategIA
+  foreign_identity_policy: forbidden
+source_bundle_ref: registries/brand/source-bundle-v1.yml
+token_contract:
+  authored_source_ref: brand/tokens/brand-tokens.yml
+  generated_projections:
+    json: brand/generated/social-light.tokens.json
+    css: brand/generated/social-light.css
+    typescript: brand/generated/social-light.tokens.ts
+  hardcoded_color_outside_contract: forbidden
+visual_system:
+  default_theme: light
+  heading_font: Poppins
+  heading_weight_range: 600-900
+  body_font: Montserrat
+  body_weight_range: 400-700
+  gold_foreground_token: text_on_gold
+  forbidden_pairing: white_on_gold
+font_contract:
+  manifest_ref: brand/fonts/font-manifest.yml
+  rights_receipt_ref: brand/fonts/rights-receipt.yml
+  render_mode: offline_local_only
+  unresolved_font_behavior: RIGHTS_GAP
+content_rules:
+  - rule_id: BR-001
+    policy: no_prices_by_default
+    replacement: Cotización tras Discovery
+  - rule_id: BR-002
+    policy: no_free_or_no_commitment_promises
+  - rule_id: BR-004
+    policy: brand_pun_intact
+  - rule_id: BR-005
+    policy: navy_on_gold_never_white
+  - rule_id: BR-006
+    policy: one_visible_identity
+  - rule_id: BR-008
+    policy: local_brand_fonts_required
+accessibility_floor:
+  standard: WCAG-AA
+  body_text_contrast: 4.5
+  large_text_and_ui_contrast: 3
+  alt_text_required: true
+  reduced_motion_required: true
+  color_as_only_signal: forbidden
+gate_effect:
+  allows:
+    - BRAND_VALIDATED
+    - RENDERED_DRAFT
+  does_not_allow:
+    - HUMAN_APPROVED
+    - READY
+    - PUBLISHED
+validation_evidence:
+  checker_ref: scripts/check-brand.ts
+  independent_guardian_state: pending
+  human_gate: G15

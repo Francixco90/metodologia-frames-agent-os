@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-MAO-PUBLIC-SEMANTICS-001-002
+recorded_at: '2026-07-20T17:43:27Z'
+event_order: 2
+actor_id: source-lifecycle-v2
+package_id: A02c
+source_id: SRC-MAO-PUBLIC-SEMANTICS-001
+transition:
+  from: candidate
+  to: quarantined
+hashes:
+  raw_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+  normalized_sha256: 62b66f5c769af7505a64892d7f6a28fb1ce01a5d5bebadbf8afbda2476b7203a
+decision: quarantine_while_projection_privacy_and_claim_scope_are_checked
+append_only: true

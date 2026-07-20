@@ -71,6 +71,14 @@ const activePolicies: Readonly<Record<string, {rightsVerdict: string; authorityV
       rightsVerdict: 'allowed_internal_implementation',
       authorityVerdict: 'verified_product_requirements',
     },
+    first_party_brand_bundle: {
+      rightsVerdict: 'allowed_internal_editorial',
+      authorityVerdict: 'verified_stable_projection_sources',
+    },
+    first_party_public_semantics: {
+      rightsVerdict: 'allowed_internal_editorial',
+      authorityVerdict: 'verified_first_party_public_semantics',
+    },
   };
 
 if (/\/Users\/|[A-Za-z]:\\Users\\/u.test(raw)) {

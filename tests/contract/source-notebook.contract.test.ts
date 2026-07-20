@@ -27,6 +27,9 @@ const root = process.cwd();
 const receiptDirectory = 'receipts/imports';
 const expectedSourceIds = [
   'SRC-LEGACY-STITCH-REMOTION-001',
+  'SRC-MAO-BRAND-BUNDLE-001',
+  'SRC-MAO-BRAND-VOICE-001',
+  'SRC-MAO-PUBLIC-SEMANTICS-001',
   'SRC-METH-IMAGE-001',
   'SRC-METH-JVC-SKOOL-001',
   'SRC-METH-JVC-YT-001',
