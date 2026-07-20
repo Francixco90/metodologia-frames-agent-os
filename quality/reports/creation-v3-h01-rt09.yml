@@ -1,0 +1,69 @@
+schema_version: creation-v3-h01-rt09-verdict-v1
+verdict_id: RT09-CREATION-V3-H01-001
+actor_instance_id: RT-09-H01-FINAL-001
+role: rights_and_accessibility_verifier
+mode: read_only
+candidate:
+  base_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+  staged_tree: 40b77601e7385f6cf9adb8adbe293dbabdd67055
+  content_raw_sha256: b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382
+  content_semantic_sha256: 9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23
+verdict: PASS
+maximum_state: SCOPED
+checks:
+  creation_doc:
+    result: pass
+    evidence: DRAFT to SCOPED, 23 hash-bound read-set entries and six resolved claims.
+  committee:
+    result: pass
+    evidence: Five unique positions and twenty directed non-self cross-reviews.
+  rights_and_sources:
+    result: pass
+    evidence: Four explicit authorities; candidate voice remains candidate_limited and no claim is promoted beyond its support.
+  accessibility:
+    result: pass
+    evidence: Typed semantic relations, equivalent message, reading order and non-color cue resolve against declared refs.
+  planned_capabilities:
+    result: pass
+    evidence: D3, Three.js, Lottie, GSAP and Remotion are planned_capability with verification gate H-03.
+  actor_separation:
+    result: pass
+    evidence: RT-02 producer and RT-03 source verifier are distinct; RT-09 did not remediate.
+  adversarial_probes:
+    result: pass
+    count: 9
+    evidence: Identity, disclosure, accessibility ref, authority binding, profile freeze, absolute path, traversal and legacy drift probes were rejected.
+  scope:
+    result: pass
+    evidence: No staged change in n8n, historical projects, renderers, skills, state machine or pnpm-lock; H-02 is absent.
+  privacy:
+    result: pass
+    evidence: No staged private locator, secret, token or credential.
+  budget:
+    result: pass
+    evidence: Rolling V3 baseline remains below the 1.5x objective and 2x hard cap; V2 ledger remains closed independently.
+test_evidence:
+  targeted_h01:
+    test_files: 2
+    tests: 22
+    result: pass
+  producer_full_suite_before_final_test_additions:
+    test_files: 43
+    tests: 343
+    result: pass
+  independent_vitest_repeat:
+    result: not_run
+    limitation: Vite cache cannot write through the temporary node_modules symlink without an escalated run.
+coverage_gaps:
+  - voice_owner_confirmation_pending
+  - canonical_corpus_0_of_4
+  - carousel_claims_not_in_central_registry
+  - planned_motion_capabilities_not_installed_or_validated
+  - no_measured_performance_dataset
+  - publication_not_authorized
+prohibitions:
+  h02_authorized: false
+  render_authorized: false
+  distribution_authorized: false
+  publication_authorized: false
+private_reasoning_persisted: false

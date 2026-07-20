@@ -7,6 +7,7 @@ projects/*/artifacts/**
 projects/*/orchestration/**
 projects/pilot-carousel-001/spec/carousel-spec.yml
 projects/pilot-carousel-001/spec/content-type-definition.json
+content/*/generated/**
 
 # Imported and append-only evidence remains byte-identical to its receipts.
 inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md

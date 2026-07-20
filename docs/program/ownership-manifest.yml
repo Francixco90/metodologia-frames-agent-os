@@ -67,6 +67,7 @@ writers:
     - workflows/web/**
     - projects/vs-001-source-to-campaign/web/**
   content:
+    - content/**
     - networks/content/**
     - workflows/content/**
     - registries/content-types/**

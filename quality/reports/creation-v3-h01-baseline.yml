@@ -1,0 +1,43 @@
+schema_version: creation-v3-h01-baseline-v1
+baseline_id: BASELINE-CREATION-V3-H01-001
+target:
+  base_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+  base_tree: b7ee542968351486df718161671d4fa9fc99cd3f
+  branch: codex/instagram-os-creation-v3-carousel-v2
+  tracked_files: 515
+  initial_status_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  verify:
+    command: pnpm verify
+    test_files_passed: 41
+    tests_passed: 325
+    result: pass
+legacy:
+  pilot_carousel_001_tree_sha256: d9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78
+  vs_001_tree_sha256: 4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4
+source_authority_observation:
+  head: f53177ff604c936c887a2675d661b65ff97bfef6
+  tree: 51eda9e08b664ae58b63cd2c71c495a3bcfe8df6
+  status_sha256: 53918b5785dc58c364774a7d074a0b8e51e007a75cc6ebb13c6f9ed43b74478d
+  modified: 1112
+  deleted: 1762
+  untracked: 42
+  dirty: true
+  accessed_for_h01: false
+  mutation_allowed: false
+  authority_policy: use_existing_portable_hash_bound_projections_only
+budget:
+  baseline_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+  baseline_authored_words: 116033
+  baseline_authored_loc: 42344
+  objective_multiplier: 1.5
+  hard_cap_multiplier: 2
+  excluded:
+    - immutable_history
+    - append_only_committee_evidence
+    - generated_projections
+  policy: V3 additions use the clean V2 closure as their rolling baseline; the 377-file V2 ledger remains independently closed.
+scope:
+  maximum_state: SCOPED
+  dependencies_may_change: false
+  n8n_may_change: false
+  publication_authority: false

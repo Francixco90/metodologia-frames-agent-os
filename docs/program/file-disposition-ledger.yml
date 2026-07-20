@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 11
+    refactored: 12
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 266
+    verified_no_change: 265
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -54,8 +54,8 @@ budgets:
     words: non-empty Unicode-whitespace-delimited tokens
     loc: physical text lines; a trailing terminator does not add an empty LOC
     editable_markdown: versionable .md files excluding immutable history and generated projections
-    authored_eligible: all versionable text files excluding immutable history and generated projections; 1.5x word cap
-    authored_total: same authored-eligible surface with an independent 2x hard cap on words and LOC
+    authored_eligible: V2 closure paths at 4e20f453 only, excluding immutable history and generated projections; V3 additions use their own rolling-baseline check
+    authored_total: same V2 closure surface with an independent 2x hard cap on words and LOC
     generated_template: only declared output/template bindings; both word and LOC ratios are enforced
   editable_markdown_per_file:
     maximum_multiplier: 2
@@ -393,30 +393,30 @@ budgets:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116033
+    final_words: 116209
     maximum_multiplier: 1.5
     maximum_words: 117060
-    actual_multiplier: 1.4868
+    actual_multiplier: 1.4891
     status: pass
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116033
+    final_words: 116209
     maximum_words: 156080
-    word_multiplier: 1.4868
+    word_multiplier: 1.4891
     baseline_loc: 29426
-    final_loc: 42344
+    final_loc: 42388
     maximum_loc: 58852
-    loc_multiplier: 1.439
+    loc_multiplier: 1.4405
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 46
+    inventory_count: 48
     applicable_bindings: 3
-    not_applicable_count: 43
-    coverage: 46/46
+    not_applicable_count: 45
+    coverage: 48/48
     coverage_gaps: []
     status: pass
     checks:
@@ -451,6 +451,10 @@ budgets:
         maximum_multiplier: 2
         status: pass
     not_applicable:
+      - path: content/pilot-carousel-002/generated/canonical-content-document.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/source-freeze-receipt.json
+        reason: Generated projection without a declared size-comparable template binding.
       - path: docs/program/file-disposition-ledger.md
         reason: Self-describing ledger projection; no size-comparable authored template exists.
       - path: docs/program/file-disposition-ledger.yml
@@ -651,9 +655,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: a4fc7db6859287836b1e71e3d3cdcf58ce875444e160d2919c2b84139a9bea30
-      current_words: 48
-      current_loc: 14
+      current_sha256: 2f8711bb357e6cdfe1d78d0d158b60f5ad94a019211de1f90cbf20d9dcf08b19
+      current_words: 49
+      current_loc: 15
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore
@@ -1884,17 +1888,17 @@ entries:
     initial_words: 20
     initial_loc: 5
     resolved_owner: core
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: 06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd
-      current_words: 20
-      current_loc: 5
-      byte_identical: true
-      material_change: false
+      current_sha256: 1838cfa700f8ef345734c201dc263fcd3a0ca75a0a5c3001a7ecc5253cf4185f
+      current_words: 24
+      current_loc: 6
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
       generator_ref: null
       successor_path: null
@@ -2352,9 +2356,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: b473a01a5d9356d402949874d45b2e757a85bbed53b909ecbb08ce940629c2f8
-      current_words: 239
-      current_loc: 129
+      current_sha256: bc3425071575f11a0e8e0c20e286d442ba09f7447c4596ca9a2579a34e12a5cd
+      current_words: 241
+      current_loc: 130
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2709,9 +2713,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 97e2a649c30bf0140205423437e079ee2ee13894398562eaab305f1056f42225
-      current_words: 333
-      current_loc: 89
+      current_sha256: f6f555d347ebe96c336ce1c1ce4450bcb9c7dcf4be48ba773b7bb5cee3c5aba5
+      current_words: 346
+      current_loc: 91
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json

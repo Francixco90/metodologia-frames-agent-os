@@ -1,0 +1,251 @@
+schema_version: source-freeze-manifest-v1
+manifest_id: FREEZE-PILOT-CAROUSEL-002-H01
+content_id: pilot-carousel-002
+base_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+created_by_actor_instance_id: RT-02-H01-001
+verified_by_actor_instance_id: RT-03-H01-001
+read_set:
+  - binding_id: H01-RS-001
+    purpose: governance_decision
+    authority_id: DEC-CREATIVE-OS-V3-H00
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: docs/program/instagram-content-creation-network-v3.md
+      sha256: f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed
+  - binding_id: H01-RS-002
+    purpose: source_material
+    authority_id: SRC-MAO-PUBLIC-SEMANTICS-001
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+      sha256: 3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c
+  - binding_id: H01-RS-003
+    purpose: source_material
+    authority_id: SRC-PROMPT-MAESTRO-V6
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml
+      sha256: b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5
+  - binding_id: H01-RS-004
+    purpose: legacy_input
+    authority_id: LEGACY-PILOT-CAROUSEL-001-EDITORIAL
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: projects/pilot-carousel-001/editorial/pilot-content.yml
+      sha256: 4b0fff840ad4c1d336e0960c210f44363d7e6e380e2102e42e0df8aa3ce49840
+  - binding_id: H01-RS-005
+    purpose: legacy_snapshot
+    authority_id: LEGACY-PILOT-CAROUSEL-001-SNAPSHOT
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: projects/pilot-carousel-001/spec/source-snapshot.json
+      sha256: 8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c
+  - binding_id: H01-RS-006
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-PROMPT-MAESTRO-V6-ACTIVE
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-active.yml
+      sha256: e27ef1dff0277e0c08a0fe9ce524010f0156218b8ca9bfa0c404931c950a4cbd
+  - binding_id: H01-RS-007
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-PROMPT-MAESTRO-V6-CANDIDATE
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-candidate.yml
+      sha256: 52493223df5fbe96a95ab75e195ce632bad7319e55fb3dfc7dce44f606c47d84
+  - binding_id: H01-RS-008
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-PROMPT-MAESTRO-V6-EVALUATED
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-evaluated.yml
+      sha256: c30d699c9ef29dcdee0887fe4d28ccc007a1b88eaaa6e9a416fd3923f3d7c89a
+  - binding_id: H01-RS-009
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-PROMPT-MAESTRO-V6-HASH-MIGRATION
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-hash-semantics-migration.yml
+      sha256: 7f97b586fb547481e1df1b859fec5239eb3f91eb2b9e0f38c74626b177b96d71
+  - binding_id: H01-RS-010
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-PROMPT-MAESTRO-V6-QUARANTINED
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-quarantined.yml
+      sha256: 9851ddb94f379ae6000be31fea0e955e9b50e2e359e0ab2a462e2fd6cbf58660
+  - binding_id: H01-RS-011
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-MAO-BRAND-VOICE-CANDIDATE
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260720-SRC-MAO-BRAND-VOICE-001-candidate.yml
+      sha256: 853311328476f8f7b425958a8a4355dab499422a6a706caf35703d0851199b1f
+  - binding_id: H01-RS-012
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-MAO-PUBLIC-SEMANTICS-ACTIVE
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-active.yml
+      sha256: 9fd38e83c877047ddf3367e5b42db9dab75423ce4c1a01673c34dccd89a9e07f
+  - binding_id: H01-RS-013
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-MAO-PUBLIC-SEMANTICS-CANDIDATE
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-candidate.yml
+      sha256: 87920604465277c18e809c396215fc1996377fa64ab108a7525c3487abc3ddf9
+  - binding_id: H01-RS-014
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-MAO-PUBLIC-SEMANTICS-EVALUATED
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-evaluated.yml
+      sha256: 8315023053ed87358abd6080483814b4c386a48a9e5cb343333a1b1f06704690
+  - binding_id: H01-RS-015
+    purpose: source_lifecycle_receipt
+    authority_id: RCP-MAO-PUBLIC-SEMANTICS-QUARANTINED
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-quarantined.yml
+      sha256: 62cec48a2ec3b2ddb6168dbca4ba45ea88238a7de1827d50cb191d13d2bb368a
+  - binding_id: H01-RS-016
+    purpose: brand_adaptation
+    authority_id: PROFILE-MAO-BRAND-ADAPTATION
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/brand/brand-adaptation-decision-v1.yml
+      sha256: 2609707f113383063d01eaaa52f6381adec22ec990d6dd75fb53f536ce236673
+  - binding_id: H01-RS-017
+    purpose: brand_profile
+    authority_id: PROFILE-MAO-BRAND-V2
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/brand/brand-profile-v2.yml
+      sha256: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+  - binding_id: H01-RS-018
+    purpose: source_material
+    authority_id: SRC-MAO-BRAND-BUNDLE-001
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/brand/source-bundle-v1.yml
+      sha256: 39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf
+  - binding_id: H01-RS-019
+    purpose: voice_profile
+    authority_id: SRC-MAO-BRAND-VOICE-001
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/brand/voice-profile-v2.yml
+      sha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+  - binding_id: H01-RS-020
+    purpose: channel_profile
+    authority_id: PROFILE-IG-CHANNEL-V1
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/channels/instagram-profile-v1.yml
+      sha256: 316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482
+  - binding_id: H01-RS-021
+    purpose: workflow_registry
+    authority_id: REG-IG-WORKFLOW-MATRIX-V2
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/content-types/instagram-workflow-matrix.yml
+      sha256: 9cf7df13ca2a8dd828298c80b15df49f1726780ced5ac3f02c781fe87d391b50
+  - binding_id: H01-RS-022
+    purpose: source_lifecycle_contract
+    authority_id: CONTRACT-SOURCE-LIFECYCLE-V2
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/sources/lifecycle-contract.yml
+      sha256: 2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613
+  - binding_id: H01-RS-023
+    purpose: source_registry
+    authority_id: REG-SOURCE-V2
+    material_ref:
+      schema_version: hash-bound-ref-v1
+      ref: registries/sources/source-registry.yml
+      sha256: fbba553904040cc8a9d035da3efbdac9f1cbdd269fccaadccfdedca2138fdf8b
+authorities:
+  - authority_id: DEC-CREATIVE-OS-V3-H00
+    authority_kind: governance_decision
+    lifecycle_state: active
+    use_decision: grounded
+    read_set_binding_id: H01-RS-001
+    rights_verdict: allowed_internal_implementation
+    allowed_use_scope: Internal implementation and exact approved pilot requirements only.
+    restrictions:
+      - no_industry_generalization
+      - no_publication_authority
+  - authority_id: SRC-MAO-PUBLIC-SEMANTICS-001
+    authority_kind: source
+    lifecycle_state: active
+    use_decision: grounded
+    read_set_binding_id: H01-RS-002
+    rights_verdict: allowed_internal_grounding
+    allowed_use_scope: Internal editorial grounding and local pilot only.
+    restrictions:
+      - no_performance_claims
+      - no_publication_authority
+  - authority_id: SRC-MAO-BRAND-VOICE-001
+    authority_kind: profile
+    lifecycle_state: candidate
+    use_decision: qualified_candidate
+    read_set_binding_id: H01-RS-019
+    rights_verdict: candidate_limited
+    allowed_use_scope: Candidate copy and internal active-candidate work only.
+    restrictions:
+      - owner_confirmation_required
+      - no_human_approved
+      - no_ready
+      - no_published
+  - authority_id: REG-IG-WORKFLOW-MATRIX-V2
+    authority_kind: registry
+    lifecycle_state: active_candidate
+    use_decision: grounded
+    read_set_binding_id: H01-RS-021
+    rights_verdict: allowed_internal_implementation
+    allowed_use_scope: Internal OS workflow inventory and maturity state.
+    restrictions:
+      - only_carousel_is_active_candidate
+      - no_publication_authority
+profile_bindings:
+  brand:
+    schema_version: hash-bound-ref-v1
+    ref: registries/brand/brand-profile-v2.yml
+    sha256: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+  voice:
+    schema_version: hash-bound-ref-v1
+    ref: registries/brand/voice-profile-v2.yml
+    sha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+  channel:
+    schema_version: hash-bound-ref-v1
+    ref: registries/channels/instagram-profile-v1.yml
+    sha256: 316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482
+  adaptation:
+    schema_version: hash-bound-ref-v1
+    ref: registries/brand/brand-adaptation-decision-v1.yml
+    sha256: 2609707f113383063d01eaaa52f6381adec22ec990d6dd75fb53f536ce236673
+legacy_provenance:
+  input:
+    schema_version: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/editorial/pilot-content.yml
+    sha256: 4b0fff840ad4c1d336e0960c210f44363d7e6e380e2102e42e0df8aa3ce49840
+  snapshot:
+    schema_version: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/spec/source-snapshot.json
+    sha256: 8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c
+  authority: read_only
+coverage_gaps:
+  - voice_owner_confirmation_pending
+  - voice_source_not_commit_bound
+  - canonical_corpus_0_of_4
+  - carousel_claims_not_in_central_registry
+  - legacy_snapshot_lacks_authority_rights_and_spans
+  - planned_motion_capabilities_not_installed_or_validated
+  - technical_sources_not_yet_promoted
+  - channel_sources_not_content_hash_bound
+  - no_measured_performance_dataset
+  - publication_not_authorized
+global_source_locked: false
+publication_authority: false

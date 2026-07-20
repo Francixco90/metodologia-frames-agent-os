@@ -1,0 +1,420 @@
+{
+  "schemaVersion": "source-freeze-receipt-v1",
+  "receiptId": "RCP-H01-RT02-SOURCE-FREEZE-001",
+  "manifestId": "FREEZE-PILOT-CAROUSEL-002-H01",
+  "manifestRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "content/pilot-carousel-002/source-freeze-manifest.yml",
+    "sha256": "dcc123616413875bcd89313850c663235f99012771894b292f283d58eb349cb3"
+  },
+  "contentId": "pilot-carousel-002",
+  "contentVersion": "0.1.0",
+  "contentRef": "content/pilot-carousel-002/content.md",
+  "contentRawSha256": "b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382",
+  "contentSemanticSha256": "9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23",
+  "baseCommit": "4e20f453f1e206bc0b42936df33d6cbadf7eb603",
+  "producerActorInstanceId": "RT-02-H01-001",
+  "verifierActorInstanceId": "RT-03-H01-001",
+  "readSet": [
+    {
+      "bindingId": "H01-RS-001",
+      "purpose": "governance_decision",
+      "authorityId": "DEC-CREATIVE-OS-V3-H00",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "docs/program/instagram-content-creation-network-v3.md",
+        "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+      }
+    },
+    {
+      "bindingId": "H01-RS-002",
+      "purpose": "source_material",
+      "authorityId": "SRC-MAO-PUBLIC-SEMANTICS-001",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md",
+        "sha256": "3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c"
+      }
+    },
+    {
+      "bindingId": "H01-RS-003",
+      "purpose": "source_material",
+      "authorityId": "SRC-PROMPT-MAESTRO-V6",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml",
+        "sha256": "b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5"
+      }
+    },
+    {
+      "bindingId": "H01-RS-004",
+      "purpose": "legacy_input",
+      "authorityId": "LEGACY-PILOT-CAROUSEL-001-EDITORIAL",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/editorial/pilot-content.yml",
+        "sha256": "4b0fff840ad4c1d336e0960c210f44363d7e6e380e2102e42e0df8aa3ce49840"
+      }
+    },
+    {
+      "bindingId": "H01-RS-005",
+      "purpose": "legacy_snapshot",
+      "authorityId": "LEGACY-PILOT-CAROUSEL-001-SNAPSHOT",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+        "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+      }
+    },
+    {
+      "bindingId": "H01-RS-006",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-PROMPT-MAESTRO-V6-ACTIVE",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-active.yml",
+        "sha256": "e27ef1dff0277e0c08a0fe9ce524010f0156218b8ca9bfa0c404931c950a4cbd"
+      }
+    },
+    {
+      "bindingId": "H01-RS-007",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-PROMPT-MAESTRO-V6-CANDIDATE",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-candidate.yml",
+        "sha256": "52493223df5fbe96a95ab75e195ce632bad7319e55fb3dfc7dce44f606c47d84"
+      }
+    },
+    {
+      "bindingId": "H01-RS-008",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-PROMPT-MAESTRO-V6-EVALUATED",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-evaluated.yml",
+        "sha256": "c30d699c9ef29dcdee0887fe4d28ccc007a1b88eaaa6e9a416fd3923f3d7c89a"
+      }
+    },
+    {
+      "bindingId": "H01-RS-009",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-PROMPT-MAESTRO-V6-HASH-MIGRATION",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-hash-semantics-migration.yml",
+        "sha256": "7f97b586fb547481e1df1b859fec5239eb3f91eb2b9e0f38c74626b177b96d71"
+      }
+    },
+    {
+      "bindingId": "H01-RS-010",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-PROMPT-MAESTRO-V6-QUARANTINED",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260719-SRC-PROMPT-MAESTRO-V6-quarantined.yml",
+        "sha256": "9851ddb94f379ae6000be31fea0e955e9b50e2e359e0ab2a462e2fd6cbf58660"
+      }
+    },
+    {
+      "bindingId": "H01-RS-011",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-MAO-BRAND-VOICE-CANDIDATE",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260720-SRC-MAO-BRAND-VOICE-001-candidate.yml",
+        "sha256": "853311328476f8f7b425958a8a4355dab499422a6a706caf35703d0851199b1f"
+      }
+    },
+    {
+      "bindingId": "H01-RS-012",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-MAO-PUBLIC-SEMANTICS-ACTIVE",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-active.yml",
+        "sha256": "9fd38e83c877047ddf3367e5b42db9dab75423ce4c1a01673c34dccd89a9e07f"
+      }
+    },
+    {
+      "bindingId": "H01-RS-013",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-MAO-PUBLIC-SEMANTICS-CANDIDATE",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-candidate.yml",
+        "sha256": "87920604465277c18e809c396215fc1996377fa64ab108a7525c3487abc3ddf9"
+      }
+    },
+    {
+      "bindingId": "H01-RS-014",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-MAO-PUBLIC-SEMANTICS-EVALUATED",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-evaluated.yml",
+        "sha256": "8315023053ed87358abd6080483814b4c386a48a9e5cb343333a1b1f06704690"
+      }
+    },
+    {
+      "bindingId": "H01-RS-015",
+      "purpose": "source_lifecycle_receipt",
+      "authorityId": "RCP-MAO-PUBLIC-SEMANTICS-QUARANTINED",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "receipts/imports/20260720-SRC-MAO-PUBLIC-SEMANTICS-001-quarantined.yml",
+        "sha256": "62cec48a2ec3b2ddb6168dbca4ba45ea88238a7de1827d50cb191d13d2bb368a"
+      }
+    },
+    {
+      "bindingId": "H01-RS-016",
+      "purpose": "brand_adaptation",
+      "authorityId": "PROFILE-MAO-BRAND-ADAPTATION",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/brand-adaptation-decision-v1.yml",
+        "sha256": "2609707f113383063d01eaaa52f6381adec22ec990d6dd75fb53f536ce236673"
+      }
+    },
+    {
+      "bindingId": "H01-RS-017",
+      "purpose": "brand_profile",
+      "authorityId": "PROFILE-MAO-BRAND-V2",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/brand-profile-v2.yml",
+        "sha256": "d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c"
+      }
+    },
+    {
+      "bindingId": "H01-RS-018",
+      "purpose": "source_material",
+      "authorityId": "SRC-MAO-BRAND-BUNDLE-001",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/source-bundle-v1.yml",
+        "sha256": "39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf"
+      }
+    },
+    {
+      "bindingId": "H01-RS-019",
+      "purpose": "voice_profile",
+      "authorityId": "SRC-MAO-BRAND-VOICE-001",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      }
+    },
+    {
+      "bindingId": "H01-RS-020",
+      "purpose": "channel_profile",
+      "authorityId": "PROFILE-IG-CHANNEL-V1",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/channels/instagram-profile-v1.yml",
+        "sha256": "316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482"
+      }
+    },
+    {
+      "bindingId": "H01-RS-021",
+      "purpose": "workflow_registry",
+      "authorityId": "REG-IG-WORKFLOW-MATRIX-V2",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/content-types/instagram-workflow-matrix.yml",
+        "sha256": "9cf7df13ca2a8dd828298c80b15df49f1726780ced5ac3f02c781fe87d391b50"
+      }
+    },
+    {
+      "bindingId": "H01-RS-022",
+      "purpose": "source_lifecycle_contract",
+      "authorityId": "CONTRACT-SOURCE-LIFECYCLE-V2",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/sources/lifecycle-contract.yml",
+        "sha256": "2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613"
+      }
+    },
+    {
+      "bindingId": "H01-RS-023",
+      "purpose": "source_registry",
+      "authorityId": "REG-SOURCE-V2",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/sources/source-registry.yml",
+        "sha256": "fbba553904040cc8a9d035da3efbdac9f1cbdd269fccaadccfdedca2138fdf8b"
+      }
+    }
+  ],
+  "readSetSha256": "2a2f90cdadedd40f3c6b285c63b12c5016f102fc044d56aa9634f6b10ec33399",
+  "claimBindings": [
+    {
+      "claimId": "CLM-PILOT2-AGENT-WORKFLOW-001",
+      "authorityId": "DEC-CREATIVE-OS-V3-H00",
+      "support": "direct",
+      "evidenceRole": "defines_system_behavior",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "docs/program/instagram-content-creation-network-v3.md",
+        "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 9,
+        "endLine": 17
+      },
+      "fragmentSha256": "a6f8b9704c4ee5a2ba7bc2afbc41da1a3776797d60879cbbf4b16da0703344fc"
+    },
+    {
+      "claimId": "CLM-PILOT2-BOUNDARY-001",
+      "authorityId": "DEC-CREATIVE-OS-V3-H00",
+      "support": "direct",
+      "evidenceRole": "defines_system_behavior",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "docs/program/instagram-content-creation-network-v3.md",
+        "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 142,
+        "endLine": 149
+      },
+      "fragmentSha256": "bc5e5188c77549912868d0ef140926b54506bbe875c89935ffdbf8855beb97b1"
+    },
+    {
+      "claimId": "CLM-PILOT2-EVIDENCE-001",
+      "authorityId": "SRC-MAO-BRAND-VOICE-001",
+      "support": "qualified",
+      "evidenceRole": "qualifies",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 60,
+        "endLine": 66
+      },
+      "fragmentSha256": "499e2f37801123424eaf380b99c09ed6cb583bf82f8fc21ce723e80712fd3c92"
+    },
+    {
+      "claimId": "CLM-PILOT2-METHOD-001",
+      "authorityId": "SRC-MAO-PUBLIC-SEMANTICS-001",
+      "support": "direct",
+      "evidenceRole": "supports",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md",
+        "sha256": "3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 6,
+        "endLine": 8
+      },
+      "fragmentSha256": "fb3fc5f8cc3d7d9963b4c1871a2cb5c48a50f80113c9a9db9455d0cc2c262994"
+    },
+    {
+      "claimId": "CLM-PILOT2-PIPELINE-001",
+      "authorityId": "DEC-CREATIVE-OS-V3-H00",
+      "support": "direct",
+      "evidenceRole": "defines_system_behavior",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "docs/program/instagram-content-creation-network-v3.md",
+        "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 19,
+        "endLine": 30
+      },
+      "fragmentSha256": "c2ba05be7540e1841beb45f458573f59874c97a8684d37b3d724fe3894f3bd73"
+    },
+    {
+      "claimId": "CLM-PILOT2-WORKFLOWS-001",
+      "authorityId": "REG-IG-WORKFLOW-MATRIX-V2",
+      "support": "direct",
+      "evidenceRole": "defines_system_behavior",
+      "materialRef": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/content-types/instagram-workflow-matrix.yml",
+        "sha256": "9cf7df13ca2a8dd828298c80b15df49f1726780ced5ac3f02c781fe87d391b50"
+      },
+      "locator": {
+        "kind": "line_range",
+        "startLine": 35,
+        "endLine": 114
+      },
+      "fragmentSha256": "036e17527dd367e8e5c925fb00aac2f9bfa149061ea33921b70fa00f8cd5c41b"
+    }
+  ],
+  "profileBindings": {
+    "brand": {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "registries/brand/brand-profile-v2.yml",
+      "sha256": "d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c"
+    },
+    "voice": {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "registries/brand/voice-profile-v2.yml",
+      "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+    },
+    "channel": {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "registries/channels/instagram-profile-v1.yml",
+      "sha256": "316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482"
+    },
+    "adaptation": {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "registries/brand/brand-adaptation-decision-v1.yml",
+      "sha256": "2609707f113383063d01eaaa52f6381adec22ec990d6dd75fb53f536ce236673"
+    }
+  },
+  "coverage": {
+    "requiredClaimIds": [
+      "CLM-PILOT2-AGENT-WORKFLOW-001",
+      "CLM-PILOT2-BOUNDARY-001",
+      "CLM-PILOT2-EVIDENCE-001",
+      "CLM-PILOT2-METHOD-001",
+      "CLM-PILOT2-PIPELINE-001",
+      "CLM-PILOT2-WORKFLOWS-001"
+    ],
+    "groundedClaimIds": [
+      "CLM-PILOT2-AGENT-WORKFLOW-001",
+      "CLM-PILOT2-BOUNDARY-001",
+      "CLM-PILOT2-METHOD-001",
+      "CLM-PILOT2-PIPELINE-001",
+      "CLM-PILOT2-WORKFLOWS-001"
+    ],
+    "qualifiedClaimIds": [
+      "CLM-PILOT2-EVIDENCE-001"
+    ],
+    "blockedClaimIds": [],
+    "status": "qualified"
+  },
+  "integrityState": "frozen",
+  "authorityState": "candidate_limited",
+  "scopeLocked": true,
+  "authoredStatus": "DRAFT",
+  "maximumState": "SCOPED",
+  "globalSourceLocked": false,
+  "distributionState": "NOT_DESIGNED",
+  "publicationAuthority": false,
+  "coverageGaps": [
+    "voice_owner_confirmation_pending",
+    "voice_source_not_commit_bound",
+    "canonical_corpus_0_of_4",
+    "carousel_claims_not_in_central_registry",
+    "legacy_snapshot_lacks_authority_rights_and_spans",
+    "planned_motion_capabilities_not_installed_or_validated",
+    "technical_sources_not_yet_promoted",
+    "channel_sources_not_content_hash_bound",
+    "no_measured_performance_dataset",
+    "publication_not_authorized"
+  ],
+  "receiptSha256": "91ff59032259e09ae0db5b40e67c9e35af3bf3929639df0125966fb649de76d1"
+}

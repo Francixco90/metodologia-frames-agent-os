@@ -9,6 +9,7 @@ import {z} from 'zod';
 
 export const BASELINE_COMMIT = 'cf887caab1321689f1585d46167a8cb2666e49ed';
 export const BASELINE_FILE_COUNT = 377;
+export const V2_CLOSURE_COMMIT = '4e20f453f1e206bc0b42936df33d6cbadf7eb603';
 
 const artifactClasses = [
   'canonical_editable',
@@ -154,6 +155,7 @@ const isRuntimeGeneratedEvidence = (path: string): boolean =>
 
 export const isHistoricalEvidence = (path: string): boolean =>
   path === 'docs/program/execution-ledger.md' ||
+  path.startsWith('committees/creation/') ||
   path.startsWith('governance/') ||
   path.startsWith('guardian/') ||
   path.startsWith('quality/reports/') ||
@@ -225,14 +227,16 @@ const ratio = (numerator: number, denominator: number): number =>
 const roundedRatio = (numerator: number, denominator: number): number =>
   Number(ratio(numerator, denominator).toFixed(4));
 
-const baselinePaths = (root: string): string[] =>
-  execFileSync('git', ['ls-tree', '-r', '--name-only', BASELINE_COMMIT], {
+const trackedPathsAt = (root: string, commit: string): string[] =>
+  execFileSync('git', ['ls-tree', '-r', '--name-only', commit], {
     cwd: root,
     encoding: 'utf8',
   })
     .split('\n')
     .filter(Boolean)
     .sort();
+
+const baselinePaths = (root: string): string[] => trackedPathsAt(root, BASELINE_COMMIT);
 
 const baselineBytes = (root: string, path: string): Buffer =>
   execFileSync('git', ['show', `${BASELINE_COMMIT}:${path}`], {
@@ -408,11 +412,30 @@ const isGeneratedProjection = (path: string): boolean =>
   generatedPaths.has(path) ||
   ledgerProjectionPaths.has(path) ||
   path.startsWith('brand/generated/') ||
+  /^content\/[^/]+\/generated\//u.test(path) ||
   isRuntimeGeneratedEvidence(path) ||
   /^projects\/[^/]+\/artifacts\//u.test(path);
 
 const isAuthoredEligible = (path: string): boolean =>
   !isHistoricalEvidence(path) && !isGeneratedProjection(path);
+
+export interface AuthoredSurfaceMetrics {
+  files: number;
+  words: number;
+  loc: number;
+}
+
+export const measureAuthoredSurface = (root = process.cwd()): AuthoredSurfaceMetrics => {
+  const metrics = versionablePaths(root)
+    .filter(isAuthoredEligible)
+    .map((path) => metricsFor(readFileSync(resolve(root, path))))
+    .filter(({format}) => format === 'text');
+  return {
+    files: metrics.length,
+    words: metrics.reduce((total, {words}) => total + words, 0),
+    loc: metrics.reduce((total, {loc}) => total + loc, 0),
+  };
+};
 
 const generatedNotApplicableReason = (path: string): string => {
   if (isRuntimeGeneratedEvidence(path)) {
@@ -472,8 +495,10 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
     (total, {initial_loc: loc}) => total + loc,
     0,
   );
+  const v2ClosurePaths = new Set(trackedPathsAt(root, V2_CLOSURE_COMMIT));
   const finalAuthoredEntries = [...currentMetrics.entries()].filter(
-    ([path, metrics]) => metrics.format === 'text' && isAuthoredEligible(path),
+    ([path, metrics]) =>
+      metrics.format === 'text' && isAuthoredEligible(path) && v2ClosurePaths.has(path),
   );
   const finalAuthoredWords = finalAuthoredEntries.reduce((total, [, {words}]) => total + words, 0);
   const finalAuthoredLoc = finalAuthoredEntries.reduce((total, [, {loc}]) => total + loc, 0);
@@ -537,9 +562,8 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
       editable_markdown:
         'versionable .md files excluding immutable history and generated projections',
       authored_eligible:
-        'all versionable text files excluding immutable history and generated projections; 1.5x word cap',
-      authored_total:
-        'same authored-eligible surface with an independent 2x hard cap on words and LOC',
+        'V2 closure paths at 4e20f453 only, excluding immutable history and generated projections; V3 additions use their own rolling-baseline check',
+      authored_total: 'same V2 closure surface with an independent 2x hard cap on words and LOC',
       generated_template:
         'only declared output/template bindings; both word and LOC ratios are enforced',
     },

@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       11 |
+| `refactored`         |       12 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      266 |
+| `verified_no_change` |      265 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,10 +39,10 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            78040 |            116033 |     117060 (1.5×) | 1.4868× | `pass` |
-| Total authored (palabras)     |            78040 |            116033 |       156080 (2×) | 1.4868× | `pass` |
-| Total authored (LOC)          |            29426 |             42344 |        58852 (2×) |  1.439× | `pass` |
-| Generated/template aplicables | 46 inventariados | 3 checks + 43 N/A | 2× palabras y LOC |   46/46 | `pass` |
+| Corpus authored elegible      |            78040 |            116209 |     117060 (1.5×) | 1.4891× | `pass` |
+| Total authored (palabras)     |            78040 |            116209 |       156080 (2×) | 1.4891× | `pass` |
+| Total authored (LOC)          |            29426 |             42388 |        58852 (2×) | 1.4405× | `pass` |
+| Generated/template aplicables | 48 inventariados | 3 checks + 45 N/A | 2× palabras y LOC |   48/48 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
 Además, 54 Markdown editables del baseline se
@@ -64,7 +64,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.gitignore`                                                                                                  | `repo`             | `verified_no_change` | 15                 | 15                | 15          | 15         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `byte-identical` |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
-| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 48                | 3           | 14         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
+| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 49                | 3           | 15         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `verified_no_change` | 105                | 105               | 12          | 12         | `4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d` | `byte-identical` |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `verified_no_change` | 62                 | 62                | 12          | 12         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `byte-identical` |
@@ -123,7 +123,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `committees/src/protocol.ts`                                                                                  | `agents-committee` | `verified_no_change` | 309                | 309               | 123         | 123        | `ae54750da757f94c7ac8a16a8430418837fe4d15fadd77af1b27c9daa1a66bcd` | `byte-identical` |
 | `core/approvals/approval-engine.ts`                                                                           | `core`             | `verified_no_change` | 219                | 219               | 72          | 72         | `2c0384e65d26fa7ec4d5ea270f1afea59bff834acd12d46bedab157b90e3a97a` | `byte-identical` |
 | `core/approvals/index.ts`                                                                                     | `core`             | `verified_no_change` | 4                  | 4                 | 1           | 1          | `f60879b334e3351cba5bc8e6d6f8bc85fb0f27d972de2754a602b2ac9dc4e410` | `byte-identical` |
-| `core/contracts/index.ts`                                                                                     | `core`             | `verified_no_change` | 20                 | 20                | 5           | 5          | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `byte-identical` |
+| `core/contracts/index.ts`                                                                                     | `core`             | `refactored`         | 20                 | 24                | 5           | 6          | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `changed`        |
 | `core/contracts/json.ts`                                                                                      | `core`             | `verified_no_change` | 43                 | 43                | 17          | 17         | `4cf9d62ee9221661dbbb939457191f2e959ddc1eebee6fdf36aabdd3bb007820` | `byte-identical` |
 | `core/contracts/notebooklm-work-unit.ts`                                                                      | `core`             | `verified_no_change` | 383                | 383               | 144         | 144        | `557c97e60c76a8527a5a92499286615b8001c24cdfc2e2866b7551c17e847fa9` | `byte-identical` |
 | `core/contracts/primitives.ts`                                                                                | `core`             | `verified_no_change` | 177                | 177               | 75          | 75         | `bed8743cc3545f5db7d2e66971f92153db3ffe874b7a37e6dc25be86e435bdb9` | `byte-identical` |
@@ -145,7 +145,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `docs/program/execution-ledger.md`                                                                            | `lead`             | `immutable_history`  | 314                | 314               | 41          | 41         | `3d6afb6cfbeb9d4756a621712b062beafb99cc6d59e587a4f627b71bba5b7e1b` | `byte-identical` |
 | `docs/program/formal-scope.md`                                                                                | `lead`             | `verified_no_change` | 592                | 592               | 70          | 70         | `35748c31dca00e9cf769c0f2b85ec9dd83c5434b8a52796d1167a0519b05ba08` | `byte-identical` |
 | `docs/program/operator-runbook.md`                                                                            | `lead`             | `verified_no_change` | 542                | 542               | 108         | 108        | `56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274` | `byte-identical` |
-| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 239               | 104         | 129        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
+| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 241               | 104         | 130        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
 | `docs/program/requirements-traceability.md`                                                                   | `lead`             | `verified_no_change` | 835                | 835               | 53          | 53         | `207c511ff8eade696fcbeedf33f1d4c305f63b72e59351cff28d3c1e40e03e33` | `byte-identical` |
 | `docs/program/system-architecture.md`                                                                         | `lead`             | `verified_no_change` | 596                | 596               | 89          | 89         | `c1a8fcc5ece81e28d99d5771435fdc01c441b042c86f1c6247688cbdf8b45692` | `byte-identical` |
 | `docs/program/test-strategy.md`                                                                               | `lead`             | `verified_no_change` | 556                | 556               | 51          | 51         | `49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7` | `byte-identical` |
@@ -162,7 +162,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `networks/web/src/model.ts`                                                                                   | `web`              | `verified_no_change` | 207                | 207               | 74          | 74         | `c61e8b3657914ae5ffb265a5c45343be48d4657ad26a6668b4e6d8f2977dc9c3` | `byte-identical` |
 | `networks/web/src/render.ts`                                                                                  | `web`              | `verified_no_change` | 259                | 259               | 98          | 98         | `1bc264cf29ec1152d997ce67d5724f08bb433cba73f1fb1f53842b4248943ef4` | `byte-identical` |
 | `networks/web/src/styles.css`                                                                                 | `web`              | `verified_no_change` | 662                | 662               | 378         | 378        | `82c4c4e0d35a7b86f88d2edb38c75c4fe4b75010082d7cccd9d874e2214e080c` | `byte-identical` |
-| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 333               | 76          | 89         | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
+| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 346               | 76          | 91         | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
 | `pnpm-lock.yaml`                                                                                              | `repo`             | `verified_no_change` | 6267               | 6267              | 4637        | 4637       | `c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82` | `byte-identical` |
 | `pnpm-workspace.yaml`                                                                                         | `repo`             | `verified_no_change` | 67                 | 67                | 35          | 35         | `5f1436a7d37fbce1cebd276d445647ab4d68e09f01294075e77cdd4ad9816e12` | `byte-identical` |
 | `projects/_template/project.yml`                                                                              | `lead`             | `verified_no_change` | 16                 | 16                | 8           | 8          | `ba6a183fdf8926d1b2f0a9b6475eef467f24125bcfbc7016ad0a90db1d28f0dd` | `byte-identical` |
