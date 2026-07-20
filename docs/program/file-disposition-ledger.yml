@@ -393,30 +393,30 @@ budgets:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116209
+    final_words: 116228
     maximum_multiplier: 1.5
     maximum_words: 117060
-    actual_multiplier: 1.4891
+    actual_multiplier: 1.4893
     status: pass
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116209
+    final_words: 116228
     maximum_words: 156080
-    word_multiplier: 1.4891
+    word_multiplier: 1.4893
     baseline_loc: 29426
-    final_loc: 42388
+    final_loc: 42393
     maximum_loc: 58852
-    loc_multiplier: 1.4405
+    loc_multiplier: 1.4407
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 48
+    inventory_count: 54
     applicable_bindings: 3
-    not_applicable_count: 45
-    coverage: 48/48
+    not_applicable_count: 51
+    coverage: 54/54
     coverage_gaps: []
     status: pass
     checks:
@@ -451,7 +451,19 @@ budgets:
         maximum_multiplier: 2
         status: pass
     not_applicable:
+      - path: content/pilot-carousel-002/generated/atom-graph-lineage.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/atom-graph.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/atomization-receipt.json
+        reason: Generated projection without a declared size-comparable template binding.
       - path: content/pilot-carousel-002/generated/canonical-content-document.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/invalidation-demo.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: content/pilot-carousel-002/generated/lineage/simulated-graph-approval.json
         reason: Generated projection without a declared size-comparable template binding.
       - path: content/pilot-carousel-002/generated/source-freeze-receipt.json
         reason: Generated projection without a declared size-comparable template binding.
@@ -655,9 +667,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: 2f8711bb357e6cdfe1d78d0d158b60f5ad94a019211de1f90cbf20d9dcf08b19
-      current_words: 49
-      current_loc: 15
+      current_sha256: 1be80710e49944466e789c19c75aef91ca42d67022d79f20ebd8752481a82b60
+      current_words: 51
+      current_loc: 17
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore
@@ -1894,9 +1906,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: 1838cfa700f8ef345734c201dc263fcd3a0ca75a0a5c3001a7ecc5253cf4185f
-      current_words: 24
-      current_loc: 6
+      current_sha256: dd7512df30b2a1211def50e18078079f0ecaf6a530c2e7bb7d9155b610e738c3
+      current_words: 28
+      current_loc: 7
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -2713,9 +2725,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: f6f555d347ebe96c336ce1c1ce4450bcb9c7dcf4be48ba773b7bb5cee3c5aba5
-      current_words: 346
-      current_loc: 91
+      current_sha256: f61ec0161ac866ff708ce9eb239a14f2e4661f323b7def9b1f0896b0ca115e0f
+      current_words: 359
+      current_loc: 93
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json

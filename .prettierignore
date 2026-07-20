@@ -13,3 +13,5 @@ content/*/generated/**
 inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
 quality/reports/v2-baseline-protection.yml
 skills/remotion-video-production/scripts/check-sources.mjs
+content/pilot-carousel-002/generated/atom-graph.json
+content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json

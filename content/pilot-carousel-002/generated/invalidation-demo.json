@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "atom-invalidation-simulation-v1",
+  "simulationId": "SIM-H02-SELECTIVE-INVALIDATION-001",
+  "simulationOnly": true,
+  "fromContentVersion": "0.1.0",
+  "toContentVersion": "0.1.1",
+  "mutation": {
+    "fromText": "la velocidad no reemplaza la dirección",
+    "toText": "la velocidad necesita dirección"
+  },
+  "simulatedSourceReceipt": {
+    "receiptId": "RCP-H02-SIM-SOURCE-FREEZE-001",
+    "contentRawSha256": "683dcdd2182ab9dfedcacf76fe2f88195452bd5ec2fe386ecec889803efcb899",
+    "contentSemanticSha256": "918a17817e41d710acb36cb70cce926f30c8c98788a3f148d0f077925636fe63",
+    "receiptSha256": "b04132eb2e17d6d6e022d0505b28e5e5ba2afb941b03704e3d4233e3582a007f"
+  },
+  "priorBeatAtomId": "ATM-81e4c13e0a7d3d4c70b82e771e7cf6ed41e0d54d2d8ccdac218b7f8b669b4f55",
+  "currentBeatAtomId": "ATM-81e4c13e0a7d3d4c70b82e771e7cf6ed41e0d54d2d8ccdac218b7f8b669b4f55",
+  "changedAtomCount": 1,
+  "unchangedAtomCount": 38,
+  "sequenceOutputStable": true,
+  "approvalState": "STALE",
+  "invalidation": {
+    "schemaVersion": "atom-graph-invalidation-v1",
+    "fromGraphSha256": "d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa",
+    "toGraphSha256": "c94dffc254e503c56cd00fb33ba5c34424aea5aa805329dda1030ab51f7b9df7",
+    "changeKind": "semantic_patch",
+    "changedAtomIds": [
+      "ATM-81e4c13e0a7d3d4c70b82e771e7cf6ed41e0d54d2d8ccdac218b7f8b669b4f55"
+    ],
+    "unchangedAtomIds": [
+      "ATM-08c6aa022fbafbf6a2b7989dc2bcba0a9010388b2057a3d0b96d6ff3814c7ff5",
+      "ATM-0b53640ccb52ad588a0e44fe69cb3a47162fa6f25e1145ee8c7089270adcac6d",
+      "ATM-0c7a6896ee87ac559c716015fa6b6229fece6f9351a5adec71829bf34de60c62",
+      "ATM-17b3efc07ad4742629599f71cb12a7ab9eeda2b29e707b156fe6616f19a6a869",
+      "ATM-26006f9b8a5d71dd20a8f128c6b1a12779b5cab40b915793259997ac8f6ede16",
+      "ATM-26edda4f01618f3e0d4ca558d3043bb093faa0a712d98a971c08740f343e491b",
+      "ATM-2e0c182ccd7644420c26172a63fd732172032aa950c6894a5b1ca4237f74c01d",
+      "ATM-2e63db5533fdc39dc9678ca432cf7b1a4b7ce8da17c60577e7b2d2b8766e5f7e",
+      "ATM-32318998d4ed87845b2ac2c53bc153a69711eafe2331325460cff424bd3ede9c",
+      "ATM-36adc81b4af3e3ad94abeeff43ecbe36167f4ea4e339bcfe1805397c9df29c0e",
+      "ATM-3f4c2956fffcc7d38a8c76ffb72a30199806e4c507bccebd92119999e1942c11",
+      "ATM-42a7595a8acc4760d1113c8218ba4ba012f4167988ed578e2ebf3e740debc930",
+      "ATM-42a8b0b4ce8f524ec692d1215ee7cceaca19b3c05ffeca5816562d84076140b5",
+      "ATM-464fa10c0d13098e19c90f8996c0dc2b332351774d17ef64d7f7dc78d81fe095",
+      "ATM-5212da1d3bedeae2cb01742565a1dc850f87e783d9d602091e1211c0bd91e355",
+      "ATM-613393c7cdcfef4ea73e4e88f156ed73dcf608168632093f33fcb90e686c7b2c",
+      "ATM-73e2ee9a84d5ded00204afcd2a5de8b12d2187566d4844aa7acca7345c350b59",
+      "ATM-754d6391bfe75e0644d8a8511fbc0327090cb23788c3d801bdc26a0941ca8191",
+      "ATM-767aad961043210b84133ad3555977367ea90d7cf033109c8ab6ea48f1aad6db",
+      "ATM-80dc9bbf202576e9d453a471559eb16038ac09699c473d9c1f3357df52454a90",
+      "ATM-8b72f079128078e43d3fcda8718724787417af9d768d531cf763c8d825914bd1",
+      "ATM-8e9085e0c0e65707a79754afe379492d0100bba40da624dd19b496414afee80b",
+      "ATM-96fbef4311919146ac4aa1cd738c67190b9ddb63dcb84dc14fdc1d051e2c6737",
+      "ATM-a0651ca52d79b6263e69014b0b6391bb1360ac23d0d43537ecb2f048871a1f36",
+      "ATM-a3828e4db8074dbb6888ca405a2b1a482a1f53d8e8592e47996e3866e01b0e11",
+      "ATM-a69c18a114e448185991244900813d39651879abe71fada1a5e4d60627afff3b",
+      "ATM-ab4c00234e2461493cafca2bbc24244b0942cf709bf1894bdb280f33dc597934",
+      "ATM-b9d81ffad960fe40ab5763174f48b13290755a81743ea85c29037bd66d242c4b",
+      "ATM-bd65762f596a2e3e7d435552a890f4f01d05220b068fde8bbabe0c88853737f6",
+      "ATM-bdfe809ed7b17f1ab5be42bf3c7f6ab862ea790e4badcd7b4b08571789e161a7",
+      "ATM-c5b462b812c393297e0fa298e3deceb9ffbd57a7177cdb1e8090ead91746a980",
+      "ATM-c7407bceab686ad4816803b8e05e78fe83f985993432ef5c463f66fae96c7ec1",
+      "ATM-d94864da459d7550971bb0b2e460fd775a7a7059cb3b0ec68d7ce05fb42cdeef",
+      "ATM-dfcb26019ff79bc3a4977383a53493df55382d6ac9a67d17265cef8d14824d1d",
+      "ATM-e3894cc66cfa250d098cc9d322c363e9cd5225e6a7cbef7e31a2434f60d981ea",
+      "ATM-f7a2b9290086a60e50053ccdf1bc16c736d1569a83265a80db6350d81881cc57",
+      "ATM-fd8f63eacf0d83c6746fdd0eb9102d7ab4cefc33bdace697bf295e933e7b4f45",
+      "ATM-ffeb3c590de48be8e33dc3c124e982818b53389f7c44094da9b41314a6ad2e08"
+    ],
+    "addedAtomIds": [],
+    "tombstonedAtomIds": [],
+    "stableTopologyAtomIds": [
+      "ATM-17b3efc07ad4742629599f71cb12a7ab9eeda2b29e707b156fe6616f19a6a869",
+      "ATM-767aad961043210b84133ad3555977367ea90d7cf033109c8ab6ea48f1aad6db"
+    ],
+    "invalidatedApprovalRefs": [
+      {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "content/pilot-carousel-002/generated/lineage/simulated-graph-approval.json",
+        "sha256": "2407b06da8ec8cee32d2026a927422e504209602dcb89a4ec11209d37bc31883"
+      }
+    ],
+    "priorApprovalState": "STALE",
+    "simulationOnly": true,
+    "invalidationSha256": "d85e3650951ed9772120ffe5b4d8a9f9cc750137992f5ae43d2b1b26029eff3c"
+  },
+  "distributionState": "NOT_DESIGNED",
+  "publicationAuthority": false,
+  "simulationSha256": "a3e0050a190306ae021af4373f2ad926cd830bba4eaf8b7adb936f836a62a8f5"
+}
