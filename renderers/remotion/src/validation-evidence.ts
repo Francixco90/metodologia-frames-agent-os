@@ -194,7 +194,7 @@ export const buildValidationCommandEvidence = ({
   });
   return validationCommandEvidenceSchema.parse({
     schemaVersion: 'validation-command-evidence-v2',
-    evidenceId: `EVD-REMOTION-VS001-${id.toUpperCase()}`,
+    evidenceId: `EVD-REMOTION-VS001-${id.toUpperCase()}-V2`,
     projectId: 'vs-001-source-to-campaign',
     command,
     status,
@@ -226,7 +226,7 @@ const validationSourceFileSchema = z.strictObject({
 export const validationTestReportSchema = z.strictObject({
   schema_version: z.literal(2),
   report_contract: z.literal('validation-test-report-v2'),
-  report_id: z.literal('TEST-REPORT-REMOTION-VS001-001'),
+  report_id: z.literal('TEST-REPORT-REMOTION-VS001-002'),
   project_id: z.literal('vs-001-source-to-campaign'),
   governed_workflow_state: z.literal('BLOCKED_BEFORE_SOURCE_LOCK'),
   technical_validation_state: z.enum(['BUILD_VALIDATED', 'BUILD_FAILED']),

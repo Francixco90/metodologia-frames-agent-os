@@ -1,17 +1,15 @@
 {
-  "schemaVersion": "validation-command-evidence-v2",
+  "schemaVersion": "validation-command-evidence-v1",
   "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08",
   "projectId": "vs-001-source-to-campaign",
   "command": "pnpm exec vitest run tests/unit/remotion",
   "status": "PASS",
   "exitCode": 0,
-  "normalizationProfile": "portable-command-output-v1",
-  "semanticOutputKind": "vitest-summary",
-  "stdoutSemanticSha256": "841be33ebc9a9e6c7e989a3996dc7fedab35a06668ebd55a924f58e19dfdad37",
-  "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "semanticSummary": {
-    "stdoutSemanticBytes": 88,
-    "stderrSemanticBytes": 0,
+  "stdoutSha256": "48251796b69258639bec112c4d396dfea0a09b1411dea30f3b0f37ff81a2ee7a",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sanitizedSummary": {
+    "stdoutBytes": 303,
+    "stderrBytes": 0,
     "rawOutputPersistedInVersionableEvidence": false,
     "absolutePathsPersisted": false,
     "privateDiagnosticLogPolicy": "ignored_not_referenced"

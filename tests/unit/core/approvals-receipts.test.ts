@@ -5,6 +5,7 @@ import {
   createReleaseReceiptStore,
   createRenderReceiptStore,
   IdempotencyConflictError,
+  ReceiptIdentityConflictError,
 } from '../../../core/receipts/index.ts';
 import {HASH_A, HASH_B, HASH_C, NOW, approval, portableRef, workProduct} from './fixtures.ts';
 
@@ -145,6 +146,49 @@ describe('idempotent receipt stores', () => {
     const store = createRenderReceiptStore();
     store.record(renderReceipt());
     expect(() => store.record(renderReceipt(HASH_C))).toThrow(IdempotencyConflictError);
+  });
+
+  it('fails when the same receipt ID is reused under a new key with changed content', () => {
+    const store = createRenderReceiptStore();
+    store.record(renderReceipt());
+    const changedRecord = {
+      ...(renderReceipt(HASH_C) as Record<string, unknown>),
+      idempotencyKey: 'render-vs001-final-0002',
+    };
+
+    expect(() => store.record(changedRecord)).toThrow(ReceiptIdentityConflictError);
+  });
+
+  it('accepts only an explicit, history-honest supersession on render receipt v2', () => {
+    const store = createRenderReceiptStore();
+    const supersedingReceipt = {
+      ...(renderReceipt() as Record<string, unknown>),
+      schemaVersion: 'render-receipt-v2',
+      receiptId: 'receipt:render:two',
+      idempotencyKey: 'render-vs001-final-0002',
+      supersedes: {
+        eventType: 'SUPERSEDES',
+        priorReceiptId: 'receipt:render:one',
+        priorReceiptRef: 'receipts/renders/receipt-one.json',
+        priorReceiptSha256: HASH_A,
+        migrationEventRef: 'receipts/migrations/render-evidence-v2.json',
+        historyWasImmutable: false,
+        reason: 'PORTABLE_EVIDENCE_V2_REQUIRES_NEW_APPEND_ONLY_RECEIPT',
+      },
+    };
+
+    expect(store.record(supersedingReceipt).status).toBe('created');
+    expect(() =>
+      store.record({
+        ...supersedingReceipt,
+        receiptId: 'receipt:render:three',
+        idempotencyKey: 'render-vs001-final-0003',
+        supersedes: {
+          ...(supersedingReceipt.supersedes as Record<string, unknown>),
+          historyWasImmutable: true,
+        },
+      }),
+    ).toThrow();
   });
 
   it('fails closed for a published dry-run release', () => {

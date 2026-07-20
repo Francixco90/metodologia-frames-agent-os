@@ -265,8 +265,7 @@ export const ToolchainSchema = z.strictObject({
 
 export const ReceiptStatusSchema = z.enum(['succeeded', 'failed']);
 
-export const RenderReceiptSchema = z.strictObject({
-  schemaVersion: z.literal('render-receipt-v1'),
+const RenderReceiptFields = {
   receiptId: PortableIdSchema,
   idempotencyKey: z.string().min(16).max(256),
   artifactId: PortableIdSchema,
@@ -293,7 +292,31 @@ export const RenderReceiptSchema = z.strictObject({
   status: ReceiptStatusSchema,
   logRefs: z.array(RelativePathSchema),
   createdAt: TimestampSchema,
+} as const;
+
+export const LegacyRenderReceiptSchema = z.strictObject({
+  schemaVersion: z.literal('render-receipt-v1'),
+  ...RenderReceiptFields,
 });
+
+export const SupersedingRenderReceiptSchema = z.strictObject({
+  schemaVersion: z.literal('render-receipt-v2'),
+  ...RenderReceiptFields,
+  supersedes: z.strictObject({
+    eventType: z.literal('SUPERSEDES'),
+    priorReceiptId: PortableIdSchema,
+    priorReceiptRef: RelativePathSchema,
+    priorReceiptSha256: Sha256Schema,
+    migrationEventRef: RelativePathSchema,
+    historyWasImmutable: z.literal(false),
+    reason: z.literal('PORTABLE_EVIDENCE_V2_REQUIRES_NEW_APPEND_ONLY_RECEIPT'),
+  }),
+});
+
+export const RenderReceiptSchema = z.discriminatedUnion('schemaVersion', [
+  LegacyRenderReceiptSchema,
+  SupersedingRenderReceiptSchema,
+]);
 
 export const ReleaseReceiptSchema = z
   .strictObject({

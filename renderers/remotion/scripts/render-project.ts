@@ -16,7 +16,7 @@ const composition = 'MethodologiaVertical';
 const props = `${projectRelative}/05-input-props.json`;
 const mediaRoot = `${projectRelative}/receipts/media`;
 const shotsRoot = `${projectRelative}/review-shots`;
-const validationReportPath = `${projectRelative}/receipts/test-report.json`;
+const validationReportPath = `${projectRelative}/receipts/test-report-v2.json`;
 const sha256 = (value: Uint8Array | string): string =>
   createHash('sha256').update(value).digest('hex');
 const validationReport = validationTestReportSchema.parse(

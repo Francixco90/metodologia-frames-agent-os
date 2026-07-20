@@ -4,6 +4,13 @@ import {resolve} from 'node:path';
 import YAML from 'yaml';
 import {z} from 'zod';
 
+import {RenderReceiptSchema} from '../core/contracts/index.ts';
+import {
+  APPEND_ONLY_MIGRATION_REF,
+  appendOnlyEvidenceMigrationSchema,
+  verifyAppendOnlyEvidenceMigrationFiles,
+} from '../renderers/remotion/src/append-only-evidence.ts';
+
 const root = process.cwd();
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const RelativeRefSchema = z
@@ -87,17 +94,6 @@ const renderOutputSchema = z.object({
   fileSha256: Sha256Schema,
 });
 
-const renderReceiptSchema = z.object({
-  artifactId: z.literal('REMOTION-VS001'),
-  artifactHash: Sha256Schema,
-  status: z.literal('succeeded'),
-  output: z.object({
-    ref: RelativeRefSchema,
-    sha256: Sha256Schema,
-    streams: z.tuple([z.literal('video')]),
-  }),
-});
-
 const webReceiptSchema = z.object({
   artifact_id: z.string().min(1),
   state: z.literal('RENDERED_DRAFT'),
@@ -120,6 +116,10 @@ const sha256File = (path: string): string =>
 const registry = registrySchema.parse(readYaml('registries/projects/project-registry.yml'));
 const errors: string[] = [];
 const projectIds = new Set<string>();
+const migrationReceipt = appendOnlyEvidenceMigrationSchema.parse(
+  readJson(APPEND_ONLY_MIGRATION_REF),
+);
+verifyAppendOnlyEvidenceMigrationFiles(root, migrationReceipt);
 
 for (const project of registry.entries) {
   if (projectIds.has(project.project_id)) {
@@ -177,8 +177,17 @@ for (const project of registry.entries) {
   const renderOutputPath =
     'projects/vs-001-source-to-campaign/remotion/receipts/render-output.json';
   const renderOutput = renderOutputSchema.parse(readJson(renderOutputPath));
-  const renderReceipt = renderReceiptSchema.parse(readJson(video.receipt_ref));
+  const renderReceipt = RenderReceiptSchema.parse(readJson(video.receipt_ref));
   if (
+    video.receipt_ref !== 'receipts/renders/RCP-REMOTION-VS001-002.json' ||
+    renderReceipt.schemaVersion !== 'render-receipt-v2' ||
+    renderReceipt.receiptId !== 'RCP-REMOTION-VS001-002' ||
+    renderReceipt.supersedes.priorReceiptId !== 'RCP-REMOTION-VS001-001' ||
+    renderReceipt.supersedes.priorReceiptRef !== 'receipts/renders/RCP-REMOTION-VS001-001.json' ||
+    renderReceipt.supersedes.priorReceiptSha256 !==
+      sha256File('receipts/renders/RCP-REMOTION-VS001-001.json') ||
+    renderReceipt.supersedes.migrationEventRef !== APPEND_ONLY_MIGRATION_REF ||
+    renderReceipt.supersedes.historyWasImmutable !== false ||
     project.technical_validation_state !== 'RENDER_VALIDATED' ||
     video.technical_state !== 'RENDER_VALIDATED' ||
     renderOutput.portableMediaPath !== video.artifact_ref ||

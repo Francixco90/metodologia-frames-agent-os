@@ -17,12 +17,13 @@ node --import tsx renderers/remotion/scripts/render-project.ts
 node --import tsx renderers/remotion/scripts/inspect-renders.ts
 ```
 
-`validate-project.ts` materializa un `test-report.json` real de typecheck, lint, unit tests,
-determinismo y alineación de versiones. Cada comando apunta a un receipt JSON versionable que
+`validate-project.ts` conserva el histórico `test-report.json` V1 y materializa la versión vigente
+en `test-report-v2.json` con un ID nuevo. Cada comando apunta a un receipt JSON `*-v2.json` que
 conserva identidad, resultado, conteos de bytes y digests, pero no stdout, stderr, rutas absolutas
 ni referencias a logs ignorados. Los logs diagnósticos locales permanecen privados, ignorados y
-fuera de la cadena portable. `render-project.ts` rechaza fuentes cambiadas después de ese receipt y
-produce:
+fuera de la cadena portable. Una ruta append-only solo admite replay byte-idéntico; cualquier drift
+exige una nueva ruta y un nuevo ID. `render-project.ts` rechaza fuentes cambiadas después de ese
+receipt y produce:
 
 - un canary headless que debe bloquear `fetch` remoto;
 - un smoke de 90 frames a 270×480;

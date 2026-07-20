@@ -1,17 +1,15 @@
 {
-  "schemaVersion": "validation-command-evidence-v2",
+  "schemaVersion": "validation-command-evidence-v1",
   "evidenceId": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
   "projectId": "vs-001-source-to-campaign",
   "command": "pnpm check:determinism",
   "status": "PASS",
   "exitCode": 0,
-  "normalizationProfile": "portable-command-output-v1",
-  "semanticOutputKind": "portable-text",
-  "stdoutSemanticSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
-  "stderrSemanticSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
-  "semanticSummary": {
-    "stdoutSemanticBytes": 88,
-    "stderrSemanticBytes": 49,
+  "stdoutSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
+  "stderrSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
+  "sanitizedSummary": {
+    "stdoutBytes": 88,
+    "stderrBytes": 49,
     "rawOutputPersistedInVersionableEvidence": false,
     "absolutePathsPersisted": false,
     "privateDiagnosticLogPolicy": "ignored_not_referenced"

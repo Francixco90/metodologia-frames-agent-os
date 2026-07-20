@@ -10,14 +10,22 @@ export class IdempotencyConflictError extends Error {
   }
 }
 
+export class ReceiptIdentityConflictError extends Error {
+  public constructor(receiptId: string) {
+    super(`Receipt ID already exists with different content: ${receiptId}`);
+    this.name = 'ReceiptIdentityConflictError';
+  }
+}
+
 export interface ReceiptRecordResult<Receipt> {
   readonly receipt: Readonly<Receipt>;
   readonly receiptHash: string;
   readonly status: 'created' | 'replayed';
 }
 
-export class IdempotentReceiptStore<Receipt extends {idempotencyKey: string}> {
+export class IdempotentReceiptStore<Receipt extends {idempotencyKey: string; receiptId: string}> {
   readonly #records = new Map<string, {receipt: Readonly<Receipt>; receiptHash: string}>();
+  readonly #receiptIds = new Map<string, string>();
 
   public constructor(private readonly schema: z.ZodType<Receipt>) {}
 
@@ -35,9 +43,14 @@ export class IdempotentReceiptStore<Receipt extends {idempotencyKey: string}> {
         status: 'replayed',
       };
     }
+    const existingReceiptIdHash = this.#receiptIds.get(parsed.receiptId);
+    if (existingReceiptIdHash !== undefined && existingReceiptIdHash !== receiptHash) {
+      throw new ReceiptIdentityConflictError(parsed.receiptId);
+    }
 
     const receipt = immutableClone(parsed);
     this.#records.set(parsed.idempotencyKey, {receipt, receiptHash});
+    this.#receiptIds.set(parsed.receiptId, receiptHash);
     return {receipt: immutableClone(receipt), receiptHash, status: 'created'};
   }
 

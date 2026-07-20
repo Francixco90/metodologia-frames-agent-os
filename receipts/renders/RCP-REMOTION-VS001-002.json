@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "render-receipt-v1",
-  "receiptId": "RCP-REMOTION-VS001-001",
-  "idempotencyKey": "remotion-vs001-63f5add24c46b289c8839e8a8c87bca3",
+  "schemaVersion": "render-receipt-v2",
+  "receiptId": "RCP-REMOTION-VS001-002",
+  "idempotencyKey": "remotion-vs001-0155f87e3b6866c384d346cd2ad35fdb",
   "artifactId": "REMOTION-VS001",
   "artifactHash": "b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010",
   "compositionId": "MethodologiaVertical",
@@ -32,7 +32,7 @@
   "mode": "review",
   "status": "succeeded",
   "logRefs": [
-    "projects/vs-001-source-to-campaign/remotion/receipts/test-report.json",
+    "projects/vs-001-source-to-campaign/remotion/receipts/test-report-v2.json",
     "projects/vs-001-source-to-campaign/remotion/receipts/ffprobe-smoke.json",
     "projects/vs-001-source-to-campaign/remotion/receipts/ffprobe-review-a.json",
     "projects/vs-001-source-to-campaign/remotion/receipts/ffprobe-review-b.json",
@@ -41,5 +41,14 @@
     "projects/vs-001-source-to-campaign/remotion/receipts/review-shot-parity.json",
     "projects/vs-001-source-to-campaign/remotion/receipts/runtime-network-denied.png"
   ],
-  "createdAt": "2026-07-19T12:00:00.000Z"
+  "createdAt": "2026-07-19T12:00:00.000Z",
+  "supersedes": {
+    "eventType": "SUPERSEDES",
+    "priorReceiptId": "RCP-REMOTION-VS001-001",
+    "priorReceiptRef": "receipts/renders/RCP-REMOTION-VS001-001.json",
+    "priorReceiptSha256": "6d15cedbaae62f34d331e64ac4278a04220abc3f9d184e5c208fa151c2f9b537",
+    "migrationEventRef": "receipts/migrations/MIG-REMOTION-VS001-APPEND-ONLY-001.json",
+    "historyWasImmutable": false,
+    "reason": "PORTABLE_EVIDENCE_V2_REQUIRES_NEW_APPEND_ONLY_RECEIPT"
+  }
 }

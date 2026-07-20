@@ -9,6 +9,8 @@ visible_status: RENDERED_DRAFT
 visible_scope: LOCAL TEST ONLY
 source_snapshot_id: synthetic-vs-001-v1
 source_normalized_sha256: 709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb
+current_render_receipt_ref: receipts/renders/RCP-REMOTION-VS001-002.json
+evidence_migration_ref: receipts/migrations/MIG-REMOTION-VS001-APPEND-ONLY-001.json
 profile:
   width: 1080
   height: 1920
@@ -21,7 +23,7 @@ audio:
     - video
   normalized_audio_digest: null
   mode: silent-first
-input_set_sha256: c77bfb6ea6b09099c0f0e5ae7aebbb5b91018bf891c55a70be39c69a8e9167d0
+input_set_sha256: 0155f87e3b6866c384d346cd2ad35fdbd6666e93fe063c9c2c9cbcdd4d21d8a7
 inputs:
   - path: projects/vs-001-source-to-campaign/remotion/05-input-props.json
     sha256: a7dc373984871e35927b62ca16315d5cf7ed13d8cfefe75dc2e1a86534ff4127
@@ -29,8 +31,8 @@ inputs:
     sha256: 54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35
   - path: projects/vs-001-source-to-campaign/remotion/04-component-registry.yml
     sha256: 6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2
-  - path: projects/vs-001-source-to-campaign/remotion/receipts/test-report.json
-    sha256: ee01cbf1195715a64436be827f57074753e04bf5574e9464877f210a07cd91ea
+  - path: projects/vs-001-source-to-campaign/remotion/receipts/test-report-v2.json
+    sha256: 458cce400fde20059ee088c2d5c832002234f0873773de28442970995dc60806
   - path: pnpm-lock.yaml
     sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
 outputs:

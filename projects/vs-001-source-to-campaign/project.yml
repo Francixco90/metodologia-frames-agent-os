@@ -18,7 +18,7 @@ work_products:
     kind: video
     technical_state: RENDER_VALIDATED
     artifact_ref: projects/vs-001-source-to-campaign/remotion/receipts/media/vs-001-review-a.mp4
-    receipt_ref: receipts/renders/RCP-REMOTION-VS001-001.json
+    receipt_ref: receipts/renders/RCP-REMOTION-VS001-002.json
 approvals: []
 guardian_passed: false
 human_approved: false

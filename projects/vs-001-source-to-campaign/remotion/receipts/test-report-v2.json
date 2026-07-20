@@ -1,11 +1,12 @@
 {
-  "schema_version": 1,
-  "report_id": "TEST-REPORT-REMOTION-VS001-001",
+  "schema_version": 2,
+  "report_contract": "validation-test-report-v2",
+  "report_id": "TEST-REPORT-REMOTION-VS001-002",
   "project_id": "vs-001-source-to-campaign",
   "governed_workflow_state": "BLOCKED_BEFORE_SOURCE_LOCK",
   "technical_validation_state": "BUILD_VALIDATED",
   "state_effect": "NONE_ON_GOVERNED_WORKFLOW",
-  "source_set_sha256": "c5f10cacf91721e0ad2abcaeb6c5f33bba12ca81cb7380faf33542b4d7bb4c22",
+  "source_set_sha256": "7ef005e03462fd2332133526f73d448c9fbfaa734ebc19a9e5238984518c3008",
   "source_files": [
     {
       "path": "networks/content/src/document-contracts.ts",
@@ -89,7 +90,7 @@
     },
     {
       "path": "renderers/remotion/scripts/inspect-renders.ts",
-      "sha256": "a18689614e180567ca818ce66b10c6ad3722c093e3ba154db678f2e6062a9a39"
+      "sha256": "565bf560bec747e007c6592737f3bc28017055b919fc5151d77f4ec80d73c764"
     },
     {
       "path": "renderers/remotion/scripts/prepare-project.ts",
@@ -97,15 +98,19 @@
     },
     {
       "path": "renderers/remotion/scripts/render-project.ts",
-      "sha256": "32d5ccf1dd0f9106dffcab2c5990d1776028f13daa50ac1047656240909f9925"
+      "sha256": "e012cd2307dfa072fc8baa7e57b2a93ddfc8d8df0b0743ba6efb617024746a7d"
     },
     {
       "path": "renderers/remotion/scripts/validate-project.ts",
-      "sha256": "eb99983b056f81c8a24563853fd2eb7772839ce9dff70cabd28ba3b72e783c01"
+      "sha256": "8d2c7fe3ec25e27e0e893acc4ade619786ff2d07a38692854d0429078de79aa8"
     },
     {
       "path": "renderers/remotion/src/Root.tsx",
       "sha256": "6e904cdc4a76a922af7701a48692f93f67c5678433cafa552a6c11c14ed447e0"
+    },
+    {
+      "path": "renderers/remotion/src/append-only-evidence.ts",
+      "sha256": "c1d45286015e4c246ecb4abf054312c5b16988489baf918c40a9a7414e051648"
     },
     {
       "path": "renderers/remotion/src/assets.d.ts",
@@ -201,7 +206,7 @@
     },
     {
       "path": "renderers/remotion/src/validation-evidence.ts",
-      "sha256": "7cfad6575858409d24fb5303768aa6801b94b00662734231c14b31e769e6b121"
+      "sha256": "be6fd9ce84d1e06eca0e045905d11b2a8ef31327fbd00af722430fc75fcd7c77"
     },
     {
       "path": "tests/unit/remotion/contracts.test.ts",
@@ -233,7 +238,7 @@
     },
     {
       "path": "tests/unit/remotion/validation-evidence.test.ts",
-      "sha256": "2da51891b83e3f0eb0b24d04eae3a7fd955369c26e7c43dbe046d856c5ffa3e6"
+      "sha256": "06a640d0a18698193704ed326802b662a62366f1b4a2b294646f9f2e21d54d61"
     },
     {
       "path": "workflows/content/build.ts",
@@ -249,51 +254,71 @@
       "command": "pnpm typecheck",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
-      "evidenceId": "EVD-REMOTION-VS001-TYPECHECK",
-      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json",
-      "evidenceSha256": "9d0a4adf3f5c29ad6df5ab5846ce84628fabd44190efa424f1803b804c5465bc"
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSemanticSha256": "38ac890c60e7f38d59ddfb410325cdfb5fca83c9411765c5481754e01c021630",
+      "stdoutSemanticBytes": 0,
+      "stderrSemanticBytes": 32,
+      "evidenceId": "EVD-REMOTION-VS001-TYPECHECK-V2",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck-v2.json",
+      "evidenceSha256": "d309ae8f8afad02407efec9decf2d884178609cac12ac65fb70969b6d70df5b4"
     },
     {
       "command": "pnpm exec eslint networks/content workflows/content renderers/remotion projects/vs-001-source-to-campaign/remotion/src tests/unit/remotion",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "evidenceId": "EVD-REMOTION-VS001-LINT-A07-A08",
-      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08.json",
-      "evidenceSha256": "6f3b5bbe4cef3d721c67a27070a669e4cca57bb151d386ae3809bbfce6c53a2e"
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 0,
+      "stderrSemanticBytes": 0,
+      "evidenceId": "EVD-REMOTION-VS001-LINT-A07-A08-V2",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08-v2.json",
+      "evidenceSha256": "064eccc0f4a88a461357abc47aed2aa0f6a744c93960c5875c15e8ebbf34ddc5"
     },
     {
       "command": "pnpm exec vitest run tests/unit/remotion",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "48251796b69258639bec112c4d396dfea0a09b1411dea30f3b0f37ff81a2ee7a",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08",
-      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08.json",
-      "evidenceSha256": "1beddc5aa2bf0eb897760b200073e8289bdf219810bb77f8c66b1eae24ef136d"
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "vitest-summary",
+      "stdoutSemanticSha256": "941af460ac8a685b5b26489a3a048cf57cd3157807b0b29fdd67facc80f2f2fc",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 88,
+      "stderrSemanticBytes": 0,
+      "evidenceId": "EVD-REMOTION-VS001-UNIT-A07-A08-V2",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08-v2.json",
+      "evidenceSha256": "97aa65509feed4c49588f571e7bcb6eea3c3327b3ac5915f502c0fc6f9297512"
     },
     {
       "command": "pnpm check:determinism",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
-      "stderrSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
-      "evidenceId": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
-      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy.json",
-      "evidenceSha256": "da5db14f2da6f33ce6d08a74e2dfd3533cc6c1abda6c70e19f369918ac585471"
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "portable-text",
+      "stdoutSemanticSha256": "df5e5d38954e43e914577bf8dd2e6bdb28ac9d7ad56dc061030fad7601889795",
+      "stderrSemanticSha256": "fb8c1f6fb94111debe0fb8954797aa49cf71673c33d9dcbc61996cb521f31b27",
+      "stdoutSemanticBytes": 88,
+      "stderrSemanticBytes": 49,
+      "evidenceId": "EVD-REMOTION-VS001-DETERMINISM-POLICY-V2",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy-v2.json",
+      "evidenceSha256": "b7bd9525dbcfa42058980b989748afb6d74fa0709e6d8508babda12dc301cbc6"
     },
     {
       "command": "pnpm exec remotion versions --log=verbose",
       "status": "PASS",
       "exitCode": 0,
-      "stdoutSha256": "2a719ee357c0215714cfec928361dd01fe804913dc0514c700bcb4a6055553ea",
-      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "evidenceId": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT",
-      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment.json",
-      "evidenceSha256": "29318d24db28b2e60fd5f8964b83a15ef82da4bd2ad66ea1828f430e0709f66e"
+      "normalizationProfile": "portable-command-output-v1",
+      "semanticOutputKind": "remotion-version-alignment",
+      "stdoutSemanticSha256": "9d31aed9f7347cfd44bc1f4ef39ac41d9c12855307c0d3b4d9c36b436ce7c4c0",
+      "stderrSemanticSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdoutSemanticBytes": 53,
+      "stderrSemanticBytes": 0,
+      "evidenceId": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT-V2",
+      "evidenceRef": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment-v2.json",
+      "evidenceSha256": "4e2b11a480bcdc7a3ba2c6a8ffce81e97e29a5cd0ac69ab16fc34843f0068d83"
     }
   ],
   "status": "PASS",

@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "append-only-evidence-migration-v1",
+  "migrationId": "MIG-REMOTION-VS001-APPEND-ONLY-001",
+  "projectId": "vs-001-source-to-campaign",
+  "restoredFromCommit": "d4a90901de20c7e54cdaa6e76394f37654341bea",
+  "affectedCommit": "ce732781ae5602859679de72800ae05397e47ca0",
+  "incidentDetectedAtCommit": "3ff73490f632d38648e6cd5edaa0223126381f26",
+  "commitFormat": {
+    "restoredFromCommit": "d4a90901de20c7e54cdaa6e76394f37654341bea",
+    "affectedCommit": "ce732781ae5602859679de72800ae05397e47ca0",
+    "incidentDetectedAtCommit": "3ff73490f632d38648e6cd5edaa0223126381f26"
+  },
+  "historyIntegrity": {
+    "historyWasImmutable": false,
+    "accidentalSameIdReuseObserved": true,
+    "originalBytesRestored": true,
+    "replacementSameIdReuse": false,
+    "incident": "Seven append-only records were rewritten in place at the affected commit."
+  },
+  "remediationSemantics": "RESTORE_ORIGINAL_BYTES_AND_APPEND_NEW_VERSIONED_RECORDS",
+  "governedWorkflowState": "BLOCKED_BEFORE_SOURCE_LOCK",
+  "stateEffect": "NONE_ON_GOVERNED_WORKFLOW",
+  "supersessions": [
+    {
+      "recordKind": "validation-test-report",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/test-report.json",
+        "id": "TEST-REPORT-REMOTION-VS001-001",
+        "sha256": "bf7f62b6abc8af0950eb3d4876f2d58c03a483998baaa158e22a1d5482669510"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/test-report.json",
+        "id": "TEST-REPORT-REMOTION-VS001-001",
+        "sha256": "ee01cbf1195715a64436be827f57074753e04bf5574e9464877f210a07cd91ea"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/test-report-v2.json",
+        "id": "TEST-REPORT-REMOTION-VS001-002",
+        "sha256": "458cce400fde20059ee088c2d5c832002234f0873773de28442970995dc60806"
+      }
+    },
+    {
+      "recordKind": "validation-command-evidence",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json",
+        "id": "EVD-REMOTION-VS001-TYPECHECK",
+        "sha256": "9d0a4adf3f5c29ad6df5ab5846ce84628fabd44190efa424f1803b804c5465bc"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json",
+        "id": "EVD-REMOTION-VS001-TYPECHECK",
+        "sha256": "bbc8ee81ade1ca0ed00b32e4b494b344f1dcb29f69f960f8ecf3a6ff2cfa6aa8"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck-v2.json",
+        "id": "EVD-REMOTION-VS001-TYPECHECK-V2",
+        "sha256": "d309ae8f8afad02407efec9decf2d884178609cac12ac65fb70969b6d70df5b4"
+      }
+    },
+    {
+      "recordKind": "validation-command-evidence",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08.json",
+        "id": "EVD-REMOTION-VS001-LINT-A07-A08",
+        "sha256": "6f3b5bbe4cef3d721c67a27070a669e4cca57bb151d386ae3809bbfce6c53a2e"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08.json",
+        "id": "EVD-REMOTION-VS001-LINT-A07-A08",
+        "sha256": "babbc581c76db94c6ffec9792fe2dd60d5ee098e2f8d33af573588a5b7534d6c"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/lint-a07-a08-v2.json",
+        "id": "EVD-REMOTION-VS001-LINT-A07-A08-V2",
+        "sha256": "064eccc0f4a88a461357abc47aed2aa0f6a744c93960c5875c15e8ebbf34ddc5"
+      }
+    },
+    {
+      "recordKind": "validation-command-evidence",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08.json",
+        "id": "EVD-REMOTION-VS001-UNIT-A07-A08",
+        "sha256": "1beddc5aa2bf0eb897760b200073e8289bdf219810bb77f8c66b1eae24ef136d"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08.json",
+        "id": "EVD-REMOTION-VS001-UNIT-A07-A08",
+        "sha256": "bd6750dc958dffab6d2cbad11c3e97f39ec957baf8fc38a2bcce2dc0de17069f"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/unit-a07-a08-v2.json",
+        "id": "EVD-REMOTION-VS001-UNIT-A07-A08-V2",
+        "sha256": "97aa65509feed4c49588f571e7bcb6eea3c3327b3ac5915f502c0fc6f9297512"
+      }
+    },
+    {
+      "recordKind": "validation-command-evidence",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy.json",
+        "id": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
+        "sha256": "da5db14f2da6f33ce6d08a74e2dfd3533cc6c1abda6c70e19f369918ac585471"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy.json",
+        "id": "EVD-REMOTION-VS001-DETERMINISM-POLICY",
+        "sha256": "08ef17f91dcf1e8d695b1c9c95de6006d3eb3381c1676057e36ded71f28faa1c"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/determinism-policy-v2.json",
+        "id": "EVD-REMOTION-VS001-DETERMINISM-POLICY-V2",
+        "sha256": "b7bd9525dbcfa42058980b989748afb6d74fa0709e6d8508babda12dc301cbc6"
+      }
+    },
+    {
+      "recordKind": "validation-command-evidence",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment.json",
+        "id": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT",
+        "sha256": "29318d24db28b2e60fd5f8964b83a15ef82da4bd2ad66ea1828f430e0709f66e"
+      },
+      "accidentalMutation": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment.json",
+        "id": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT",
+        "sha256": "aa4f543104f516dae087b1694456942866413014d8de26bbf3f3dc3ab72ad5b4"
+      },
+      "replacement": {
+        "path": "projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/remotion-version-alignment-v2.json",
+        "id": "EVD-REMOTION-VS001-REMOTION-VERSION-ALIGNMENT-V2",
+        "sha256": "4e2b11a480bcdc7a3ba2c6a8ffce81e97e29a5cd0ac69ab16fc34843f0068d83"
+      }
+    },
+    {
+      "recordKind": "render-receipt",
+      "eventType": "SUPERSEDED_BY",
+      "original": {
+        "path": "receipts/renders/RCP-REMOTION-VS001-001.json",
+        "id": "RCP-REMOTION-VS001-001",
+        "sha256": "6d15cedbaae62f34d331e64ac4278a04220abc3f9d184e5c208fa151c2f9b537"
+      },
+      "accidentalMutation": {
+        "path": "receipts/renders/RCP-REMOTION-VS001-001.json",
+        "id": "RCP-REMOTION-VS001-001",
+        "sha256": "00878fa6e562097171c2b4128c1f8d15dac809174ebfbf0644873a72a5b02e98"
+      },
+      "replacement": {
+        "path": "receipts/renders/RCP-REMOTION-VS001-002.json",
+        "id": "RCP-REMOTION-VS001-002",
+        "sha256": "1e6ec18aea9fb784cc6616dc8d599fd6b1f1e9d8d703cce28c66ea68658878e7"
+      }
+    }
+  ],
+  "completeness": {
+    "expectedRecords": 7,
+    "mappedRecords": 7,
+    "validationCommandEvidenceRecords": 5,
+    "validationTestReportRecords": 1,
+    "renderReceiptRecords": 1
+  },
+  "createdAt": "2026-07-19T12:00:00.000Z"
+}

@@ -5,8 +5,9 @@
 - Fuente lógica: `SRC-PROMPT-MAESTRO-V6`.
 - SHA-256 del texto recibido: `19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2`.
 - Clasificación: `product_requirements_authority`.
-- Este documento es una normalización portable. Omite locators locales y no reemplaza el texto
-  original ni la instrucción vigente del usuario. [CONFIG]
+- Este documento es una vista mutable del estado actual de trazabilidad; no constituye bytes
+  normalizados de la fuente ni una proyección inmutable. La autoridad portable e inmutable del
+  Prompt Maestro V6 está en `inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml`. [CONFIG]
 - Regla de cierre: `implemented` significa construido; no implica `READY`, release ni publicación.
 
 ## Matriz

@@ -9,6 +9,14 @@ import YAML from 'yaml';
 import {RenderReceiptSchema} from '../../../core/contracts/index.ts';
 import {methodologiaVerticalPropsSchema} from '../src/schema.ts';
 import {
+  APPEND_ONLY_MIGRATION_REF,
+  buildAppendOnlyEvidenceMigration,
+  evidenceRemediationBaselines,
+  serializeAppendOnlyEvidenceMigration,
+  verifyAppendOnlyEvidenceMigrationFiles,
+  writeAppendOnlyText,
+} from '../src/append-only-evidence.ts';
+import {
   validationTestReportSchema,
   verifyValidationCommandEvidenceBinding,
 } from '../src/validation-evidence.ts';
@@ -39,7 +47,9 @@ const shotsRoot = resolve(projectRoot, 'review-shots');
 const propsRelative = `${projectRelative}/05-input-props.json`;
 const assetsRelative = `${projectRelative}/assets-manifest.yml`;
 const registryRelative = `${projectRelative}/04-component-registry.yml`;
-const testReportRelative = `${projectRelative}/receipts/test-report.json`;
+const testReportRelative = `${projectRelative}/receipts/test-report-v2.json`;
+const renderReceiptRelative = 'receipts/renders/RCP-REMOTION-VS001-002.json';
+const priorRenderReceiptRelative = 'receipts/renders/RCP-REMOTION-VS001-001.json';
 const lockfileRelative = 'pnpm-lock.yaml';
 const networkProbeRelative = `${projectRelative}/receipts/runtime-network-denied.png`;
 const contactSheetRelative = `${projectRelative}/review-shots/contact-sheet.png`;
@@ -361,8 +371,8 @@ const boundInputSetSha256 = sha256(
   boundInputs.map(({path, sha256: digest}) => `${path}\t${digest}`).join('\n'),
 );
 const receipt = RenderReceiptSchema.parse({
-  schemaVersion: 'render-receipt-v1',
-  receiptId: 'RCP-REMOTION-VS001-001',
+  schemaVersion: 'render-receipt-v2',
+  receiptId: 'RCP-REMOTION-VS001-002',
   idempotencyKey: `remotion-vs001-${boundInputSetSha256.slice(0, 32)}`,
   artifactId: props.artifactId,
   artifactHash: reviewARecord.sha256,
@@ -404,6 +414,15 @@ const receipt = RenderReceiptSchema.parse({
     networkProbeRelative,
   ],
   createdAt: '2026-07-19T12:00:00.000Z',
+  supersedes: {
+    eventType: 'SUPERSEDES',
+    priorReceiptId: 'RCP-REMOTION-VS001-001',
+    priorReceiptRef: priorRenderReceiptRelative,
+    priorReceiptSha256: fileDigest(priorRenderReceiptRelative),
+    migrationEventRef: APPEND_ONLY_MIGRATION_REF,
+    historyWasImmutable: false,
+    reason: 'PORTABLE_EVIDENCE_V2_REQUIRES_NEW_APPEND_ONLY_RECEIPT',
+  },
 });
 
 const coverageGaps = [
@@ -450,6 +469,8 @@ const renderManifest = {
   visible_scope: props.scopeBadge,
   source_snapshot_id: props.sourceSnapshot.id,
   source_normalized_sha256: props.sourceSnapshot.normalizedSha256,
+  current_render_receipt_ref: renderReceiptRelative,
+  evidence_migration_ref: APPEND_ONLY_MIGRATION_REF,
   profile: portableRenderOutput.profile,
   audio: {
     expected_streams: ['video'],
@@ -499,10 +520,31 @@ const renderManifest = {
   coverage_gaps: coverageGaps,
 };
 
-writeText(
-  'receipts/renders/RCP-REMOTION-VS001-001.json',
-  await format(JSON.stringify(receipt), {...prettierConfig, parser: 'json'}),
+const renderReceiptText = await format(JSON.stringify(receipt), {
+  ...prettierConfig,
+  parser: 'json',
+});
+writeAppendOnlyText(root, renderReceiptRelative, renderReceiptText, {
+  field: 'receiptId',
+  id: receipt.receiptId,
+});
+
+const replacementHashes = Object.fromEntries(
+  evidenceRemediationBaselines.map(({replacement}) => [
+    replacement.path,
+    replacement.path === renderReceiptRelative
+      ? sha256(renderReceiptText)
+      : fileDigest(replacement.path),
+  ]),
 );
+const migrationReceipt = buildAppendOnlyEvidenceMigration(replacementHashes);
+const migrationReceiptText = serializeAppendOnlyEvidenceMigration(migrationReceipt);
+writeAppendOnlyText(root, APPEND_ONLY_MIGRATION_REF, migrationReceiptText, {
+  field: 'migrationId',
+  id: migrationReceipt.migrationId,
+});
+verifyAppendOnlyEvidenceMigrationFiles(root, migrationReceipt);
+
 writeText(
   `${projectRelative}/receipts/render-output.json`,
   await format(JSON.stringify(portableRenderOutput), {...prettierConfig, parser: 'json'}),
@@ -527,6 +569,8 @@ const postproductionLedger = `# 07 Postproduction ledger
 - Scope: \`${props.scopeBadge}\`.
 - State effect: none on the governed workflow.
 - Postproduction: pass-through inspection only; no media mutation.
+- Current render receipt: \`${renderReceiptRelative}\`, append-only successor of
+  \`${priorRenderReceiptRelative}\` through \`${APPEND_ONLY_MIGRATION_REF}\`.
 
 ## Operaciones
 

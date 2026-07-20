@@ -1,6 +1,12 @@
 import {describe, expect, it} from 'vitest';
 
 import {
+  appendOnlyEvidenceMigrationSchema,
+  assertAppendOnlyRecordReplay,
+  buildAppendOnlyEvidenceMigration,
+  evidenceRemediationBaselines,
+} from '../../../renderers/remotion/src/append-only-evidence.ts';
+import {
   buildValidationCommandEvidence,
   serializeValidationCommandEvidence,
   validationCommandEvidenceSchema,
@@ -186,7 +192,7 @@ describe('portable Remotion validation evidence', () => {
       stderrSemanticBytes: evidence.semanticSummary.stderrSemanticBytes,
       evidenceId: evidence.evidenceId,
       evidenceRef:
-        'projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck.json',
+        'projects/vs-001-source-to-campaign/remotion/receipts/validation-evidence/typecheck-v2.json',
       evidenceSha256: '0'.repeat(64),
     });
 
@@ -200,6 +206,55 @@ describe('portable Remotion validation evidence', () => {
           'projects/vs-001-source-to-campaign/remotion/receipts/validation-logs/typecheck.log',
       }),
     ).toThrow();
+  });
+
+  it('replays identical append-only bytes and rejects changed bytes under the same ID', () => {
+    const evidence = buildPassingEvidence('pnpm typecheck');
+    const original = serializeValidationCommandEvidence(evidence);
+    const changed = `${JSON.stringify({...evidence, status: 'FAIL'}, null, 2)}\n`;
+    const identity = {field: 'evidenceId' as const, id: evidence.evidenceId};
+
+    expect(() => assertAppendOnlyRecordReplay(original, original, identity)).not.toThrow();
+    expect(() => assertAppendOnlyRecordReplay(original, changed, identity)).toThrow(
+      /already exists with different bytes/u,
+    );
+  });
+
+  it('requires a complete seven-record supersession map with new paths and IDs', () => {
+    const replacementHashes = Object.fromEntries(
+      evidenceRemediationBaselines.map(({replacement}, index) => [
+        replacement.path,
+        String(index + 1).padStart(64, '0'),
+      ]),
+    );
+    const migration = buildAppendOnlyEvidenceMigration(replacementHashes);
+
+    expect(migration.supersessions).toHaveLength(7);
+    expect(migration.historyIntegrity).toMatchObject({
+      historyWasImmutable: false,
+      accidentalSameIdReuseObserved: true,
+      originalBytesRestored: true,
+      replacementSameIdReuse: false,
+    });
+    expect(() =>
+      appendOnlyEvidenceMigrationSchema.parse({
+        ...migration,
+        supersessions: migration.supersessions.slice(0, -1),
+      }),
+    ).toThrow();
+    expect(() =>
+      appendOnlyEvidenceMigrationSchema.parse({
+        ...migration,
+        supersessions: migration.supersessions.map((record, index) =>
+          index === 0
+            ? {
+                ...record,
+                replacement: {...record.replacement, id: record.original.id},
+              }
+            : record,
+        ),
+      }),
+    ).toThrow(/new path and a new ID/u);
   });
 
   it.each([

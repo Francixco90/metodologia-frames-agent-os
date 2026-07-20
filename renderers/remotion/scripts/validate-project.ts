@@ -4,6 +4,7 @@ import {mkdirSync, readFileSync, readdirSync, statSync, writeFileSync} from 'nod
 import {dirname, join, relative, resolve} from 'node:path';
 import {format, resolveConfig} from 'prettier';
 
+import {writeAppendOnlyText} from '../src/append-only-evidence.ts';
 import {
   buildValidationCommandEvidence,
   serializeValidationCommandEvidence,
@@ -29,7 +30,7 @@ interface CommandResult {
 const root = process.cwd();
 const prettierConfig = (await resolveConfig(resolve(root, '.prettierrc.json'))) ?? {};
 const projectRelative = 'projects/vs-001-source-to-campaign/remotion';
-const receiptRelative = `${projectRelative}/receipts/test-report.json`;
+const receiptRelative = `${projectRelative}/receipts/test-report-v2.json`;
 const privateLogRootRelative = `${projectRelative}/receipts/validation-logs`;
 const evidenceRootRelative = `${projectRelative}/receipts/validation-evidence`;
 
@@ -157,9 +158,12 @@ const commandResults: CommandResult[] = commands.map(({id, executable, args}) =>
     repositoryRoot: root,
   });
   const evidenceId = evidence.evidenceId;
-  const evidenceRef = `${evidenceRootRelative}/${id}.json`;
+  const evidenceRef = `${evidenceRootRelative}/${id}-v2.json`;
   const evidenceText = serializeValidationCommandEvidence(evidence);
-  writeText(evidenceRef, evidenceText);
+  writeAppendOnlyText(root, evidenceRef, evidenceText, {
+    field: 'evidenceId',
+    id: evidenceId,
+  });
   return validationCommandResultSchema.parse({
     command,
     status,
@@ -180,7 +184,7 @@ const passed = commandResults.every(({status}) => status === 'PASS');
 const report = validationTestReportSchema.parse({
   schema_version: 2,
   report_contract: 'validation-test-report-v2',
-  report_id: 'TEST-REPORT-REMOTION-VS001-001',
+  report_id: 'TEST-REPORT-REMOTION-VS001-002',
   project_id: 'vs-001-source-to-campaign',
   governed_workflow_state: 'BLOCKED_BEFORE_SOURCE_LOCK',
   technical_validation_state: passed ? 'BUILD_VALIDATED' : 'BUILD_FAILED',
@@ -191,9 +195,14 @@ const report = validationTestReportSchema.parse({
   status: passed ? 'PASS' : 'FAIL',
   created_at: '2026-07-19T12:00:00.000Z',
 });
-writeText(
+writeAppendOnlyText(
+  root,
   receiptRelative,
   await format(JSON.stringify(report), {...prettierConfig, parser: 'json'}),
+  {
+    field: 'report_id',
+    id: report.report_id,
+  },
 );
 
 if (!passed) {
