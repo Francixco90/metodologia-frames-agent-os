@@ -1,0 +1,175 @@
+schema_version: 1
+review_id: GDN-002
+project_id: vs-001-source-to-campaign
+review_role: guardian_rt_11
+review_date: '2026-07-19'
+verdict: PASS_LOCAL_CONTROLLED_CLOSEOUT
+scope:
+  kind: technical_local_controlled_closeout
+  baseline_commit: f03b2753ce2e7551e317454e94f3840bcc308fb2
+  baseline_tree: 331a45c62a00b7127a9d37eb65f79a946f2e7613
+  checkout_state_before_review: clean
+  checkout_state_after_generator_replay: clean
+  governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+  technical_states:
+    web: BUILD_VALIDATED
+    motion: RENDER_VALIDATED
+  visible_state: RENDERED_DRAFT
+independence:
+  production_review_mode: read_only_except_generator_replay
+  guardian_may_remediate: false
+  production_files_remediated_by_guardian: 0
+  written_paths:
+    - guardian/reviews/GDN-002-local-closeout.md
+    - projects/vs-001-source-to-campaign/guardian/GDN-002-local-closeout.yml
+severity_summary:
+  p0_open: 0
+  p1_open: 0
+  p2_open: 2
+gate_decisions:
+  local_controlled_closeout_pass: true
+  source_locked: false
+  canonical_guardian_pass: false
+  guardian_passed: false
+  human_approver_id: H01
+  h01_receipt_present: false
+  human_approved: false
+  ready: false
+  release_authorized: false
+  published: false
+remediated_findings:
+  - finding_id: GDN-001-P1-STATE-DRIFT
+    result: REMEDIATED
+    evidence:
+      - registries/projects/project-registry.yml
+      - projects/vs-001-source-to-campaign/project.yml
+      - docs/program/requirements-traceability.md
+      - projects/vs-001-source-to-campaign/remotion/06-render-manifest.yml
+    observed_state:
+      current: PARTIAL_CONTROLLED
+      governed: BLOCKED_BEFORE_SOURCE_LOCK
+      web: BUILD_VALIDATED
+      motion: RENDER_VALIDATED
+  - finding_id: AUX-P0-PROMPT-HASH-SEMANTICS
+    result: REMEDIATED
+    raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+    source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+    projection_sha256: b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5
+  - finding_id: AUX-P1-NOTEBOOKLM-WORK-UNITS
+    result: REMEDIATED_FAIL_CLOSED
+    agent_contracts: 11
+    workflow_contracts: 4
+    binding_mode: none
+  - finding_id: AUX-P1-SKILL-LINEAGE-LICENSE
+    result: REMEDIATED_LOCAL_SCOPE
+    skill_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
+    content_license_receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
+    runtime_license_receipt_sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+    commercial_or_production_use: coverage_gap
+  - finding_id: AUX-P1-PORTABLE-VALIDATION-EVIDENCE
+    result: REMEDIATED
+    report_id: TEST-REPORT-REMOTION-VS001-002
+    command_evidence_records: 5
+    private_locators_persisted: false
+    ignored_log_refs_persisted: false
+  - finding_id: AUX-P1-APPEND-ONLY-ID-REUSE
+    result: REMEDIATED_WITH_HONEST_HISTORY
+    history_was_immutable: false
+    original_records_restored_byte_identical: 7
+    accidental_mutations_recorded: 7
+    replacements_with_new_paths_and_ids: 7
+    migration:
+      ref: receipts/migrations/MIG-REMOTION-VS001-APPEND-ONLY-001.json
+      sha256: a8e8b02ef1eae0f346875646e5b90981d8e89a1eedd7f873220bb4f7cf255658
+    current_test_report:
+      ref: projects/vs-001-source-to-campaign/remotion/receipts/test-report-v2.json
+      sha256: 458cce400fde20059ee088c2d5c832002234f0873773de28442970995dc60806
+    current_render_receipt:
+      ref: receipts/renders/RCP-REMOTION-VS001-002.json
+      sha256: 1e6ec18aea9fb784cc6616dc8d599fd6b1f1e9d8d703cce28c66ea68658878e7
+  - finding_id: AUX-P2-TRACEABILITY-DOCUMENT-ROLE
+    result: REMEDIATED
+    current_role: mutable_traceability_view
+passes:
+  - id: full_verify
+    command: pnpm verify
+    result: PASS
+    test_files: 32
+    tests: 276
+  - id: generator_validation_replay
+    command: pnpm remotion:validate
+    result: PASS
+    source_files: 60
+    source_set_sha256: 7ef005e03462fd2332133526f73d448c9fbfaa734ebc19a9e5238984518c3008
+    git_drift_after_replay: false
+  - id: media_replay
+    command: pnpm verify:media
+    result: PASS_TECHNICAL_LOCAL
+    duration_frames: 1231
+    streams:
+      - video
+    artifact_sha256: b37d3327e1a3c46fe5f0586a912f62bd831abf8faec046efe419ef238f394010
+    normalized_pixel_digest: d5f0cc1a5abef9e0488933cf992291d8e7fce870ece5b4219ae31b213de22898
+    review_shots: 27
+    minimum_ssim: 0.975161
+    required_ssim: 0.97
+    git_drift_after_replay: false
+  - id: focal_adversarial
+    result: PASS
+    test_files: 9
+    tests: 95
+  - id: committee
+    command: pnpm committee:validate
+    result: PASS
+    proposals: 5
+    peer_assessments: 20
+  - id: skill_foundry
+    result: PASS_LOCAL_SCOPE
+    validators: 4
+  - id: source_claim_privacy
+    result: PASS_FAIL_CLOSED
+    registered_sources: 8
+    canonical_sources_confirmed: 0
+    canonical_sources_expected: 4
+    active_claims: 3
+    versionable_files_scanned: 375
+  - id: n8n
+    result: PASS_FAIL_CLOSED
+    workflow_active: false
+    node_count: 2
+    credentials_present: false
+    network_or_publish_nodes_present: false
+  - id: release_absence
+    result: PASS
+    release_receipt_present: false
+    h01_receipt_present: false
+  - id: dependency_audit
+    result: PASS_SESSION_EVIDENCE_ONLY
+    observed_output: No known vulnerabilities found
+    persisted_receipt_present: false
+residual_findings:
+  - finding_id: GDN-002-P2-OWNERSHIP-COVERAGE
+    severity: P2
+    status: OPEN_NON_BLOCKING
+    summary: receipts/migrations/** is not yet assigned in the ownership manifest.
+    consequence: assign a canonical writer and add coverage validation before future migrations
+  - finding_id: GDN-002-P2-AUDIT-RECEIPT
+    severity: P2
+    status: OPEN_NON_BLOCKING
+    summary: dependency audit passed in-session but has no durable repository receipt
+    consequence: do not treat the session output as persisted supply-chain evidence
+coverage_gaps:
+  - four_canonical_sources_missing_0_of_4
+  - notebooklm_live_binding_absent
+  - remotion_commercial_or_production_license_eligibility_unresolved
+  - font_binary_upstream_release_or_commit_unresolved
+  - authoritative_linux_network_namespace_test_pending
+  - cross_host_pixel_equivalence_pending
+  - human_editorial_playback_pending
+  - human_accessibility_review_pending
+  - canonical_guardian_post_source_lock_absent
+  - h01_approval_absent
+  - external_release_and_distribution_not_authorized
+next_gate:
+  action: promote_clean_commit_with_gdn_002
+  canonical_gate_transition_authorized: false
