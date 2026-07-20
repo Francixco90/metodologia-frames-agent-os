@@ -43,7 +43,7 @@
 | R-027 | Publicación y conectores en dry-run/propose-only                                                | implemented                   | `AUTHORIZE_RELEASE` ausente; no hay activación ni envío.                                                           |
 | R-028 | Primer vertical slice Web + Motion reproducible                                                 | implemented_technical_local   | Web `BUILD_VALIDATED`; Motion `RENDER_VALIDATED`; estado gobernado sigue bloqueado.                                |
 | R-029 | Evidencia sin secretos, PII ni rutas privadas                                                   | implemented_local_scan_passed | Scan de privacidad pasa sobre la superficie versionable; se repetirá en destino final.                             |
-| R-030 | Cierre con archivos, decisiones, agentes, fuentes, tests, gaps, riesgos y estado                | pending_closeout              | Se completa después de Guardian y promoción.                                                                       |
+| R-030 | Cierre con archivos, decisiones, agentes, fuentes, tests, gaps, riesgos y estado                | implemented_local_closeout    | GDN-002 y el clon final en Documents pasaron verificación integral; no concede ningún gate canónico.               |
 
 ## Límites de aceptación
 
