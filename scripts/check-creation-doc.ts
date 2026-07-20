@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {readdirSync, readFileSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import {readFileSync, statSync} from 'node:fs';
+import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {parse as parseYaml} from 'yaml';
@@ -34,14 +34,13 @@ const BASE_COMMIT = '4e20f453f1e206bc0b42936df33d6cbadf7eb603';
 const sha256Bytes = (value: Uint8Array): string => createHash('sha256').update(value).digest('hex');
 
 const walkFiles = (root: string, directory: string): string[] => {
-  const absolute = resolve(root, directory);
-  const visit = (current: string): string[] =>
-    readdirSync(current, {withFileTypes: true}).flatMap((entry) => {
-      const child = join(current, entry.name);
-      if (entry.isDirectory()) return visit(child);
-      return entry.isFile() ? [relative(root, child).replaceAll('\\', '/')] : [];
-    });
-  return visit(absolute).sort();
+  return execFileSync('git', ['ls-files', '--', directory], {
+    cwd: root,
+    encoding: 'utf8',
+  })
+    .split('\n')
+    .filter(Boolean)
+    .sort();
 };
 
 const digestTree = (root: string, directory: string): string => {
