@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       19 |
+| `refactored`         |       20 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      258 |
+| `verified_no_change` |      257 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            78040 |            116773 |     117060 (1.5×) | 1.4963× | `pass` |
-| Total authored (palabras)     |            78040 |            116773 |       156080 (2×) | 1.4963× | `pass` |
-| Total authored (LOC)          |            29426 |             42857 |        58852 (2×) | 1.4564× | `pass` |
+| Corpus authored elegible      |            78040 |            116993 |     117060 (1.5×) | 1.4991× | `pass` |
+| Total authored (palabras)     |            78040 |            116993 |       156080 (2×) | 1.4991× | `pass` |
+| Total authored (LOC)          |            29426 |             42875 |        58852 (2×) |  1.457× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -64,7 +64,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.gitignore`                                                                                                  | `repo`             | `verified_no_change` | 15                 | 15                | 15          | 15         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `byte-identical` |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
-| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 95                | 3           | 37         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
+| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 39                | 3           | 28         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `verified_no_change` | 105                | 105               | 12          | 12         | `4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d` | `byte-identical` |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `verified_no_change` | 62                 | 62                | 12          | 12         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `byte-identical` |
@@ -141,7 +141,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `core/state-machine/index.ts`                                                                                 | `core`             | `verified_no_change` | 4                  | 4                 | 1           | 1          | `be5625eff889dd42b1957c33e52b6fef00a53615e9c1d614047abfb724ace59a` | `byte-identical` |
 | `core/state-machine/machine.ts`                                                                               | `core`             | `verified_no_change` | 889                | 889               | 330         | 330        | `451710133d2fb918ffdf6205513973bf3b1d49791430ccdc9b2d901a49acdabd` | `byte-identical` |
 | `docs/adrs/0001-0020-decisions.md`                                                                            | `lead`             | `verified_no_change` | 366                | 366               | 41          | 41         | `889bd6d9b21d0096a3eda82a68ef9450fc6cec48fb3ac6a63d2a8881fc0d5105` | `byte-identical` |
-| `docs/program/dag.yml`                                                                                        | `lead`             | `refactored`         | 147                | 180               | 71          | 83         | `7d5c705ecbf1639e73e97c5e2a64ff3fadf870a92fdcdecbe083d42c93a5319f` | `changed`        |
+| `docs/program/dag.yml`                                                                                        | `lead`             | `refactored`         | 147                | 182               | 71          | 85         | `7d5c705ecbf1639e73e97c5e2a64ff3fadf870a92fdcdecbe083d42c93a5319f` | `changed`        |
 | `docs/program/execution-ledger.md`                                                                            | `lead`             | `immutable_history`  | 314                | 314               | 41          | 41         | `3d6afb6cfbeb9d4756a621712b062beafb99cc6d59e587a4f627b71bba5b7e1b` | `byte-identical` |
 | `docs/program/formal-scope.md`                                                                                | `lead`             | `verified_no_change` | 592                | 592               | 70          | 70         | `35748c31dca00e9cf769c0f2b85ec9dd83c5434b8a52796d1167a0519b05ba08` | `byte-identical` |
 | `docs/program/operator-runbook.md`                                                                            | `lead`             | `verified_no_change` | 542                | 542               | 108         | 108        | `56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274` | `byte-identical` |
@@ -327,7 +327,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `renderers/remotion/src/validation-evidence.ts`                                                               | `remotion`         | `verified_no_change` | 722                | 722               | 267         | 267        | `be6fd9ce84d1e06eca0e045905d11b2a8ef31327fbd00af722430fc75fcd7c77` | `byte-identical` |
 | `scripts/build-vertical-slice.ts`                                                                             | `repo`             | `generator_fixed`    | 302                | 420               | 128         | 158        | `7d4c82244689390f127de3223f13f1b26636d606d4800b179d742273f5db0322` | `changed`        |
 | `scripts/check-claims.ts`                                                                                     | `repo`             | `verified_no_change` | 276                | 276               | 87          | 87         | `6ae724f971cb3e47099a041254f12a0a95c73e8c1af0695e1ae4b2efb65f39b8` | `byte-identical` |
-| `scripts/check-dag.ts`                                                                                        | `repo`             | `verified_no_change` | 229                | 229               | 89          | 89         | `8b44e4e43b2cb2c3f7472d1bd8cd6c1b49289d429cfc42b39359f2cf1d5cbd45` | `byte-identical` |
+| `scripts/check-dag.ts`                                                                                        | `repo`             | `refactored`         | 229                | 286               | 89          | 107        | `8b44e4e43b2cb2c3f7472d1bd8cd6c1b49289d429cfc42b39359f2cf1d5cbd45` | `changed`        |
 | `scripts/check-determinism.ts`                                                                                | `repo`             | `refactored`         | 179                | 209               | 54          | 61         | `d1a125af5b186c9bcfecc381ef0436c1e6db31ac8476241c4746c11ce9d7c64b` | `changed`        |
 | `scripts/check-memory.ts`                                                                                     | `repo`             | `verified_no_change` | 96                 | 96                | 49          | 49         | `0cbf348498f900262045a74c7477cd97fb7781adf4c67de2ee04fa866438d6c2` | `byte-identical` |
 | `scripts/check-n8n.ts`                                                                                        | `repo`             | `verified_no_change` | 230                | 230               | 93          | 93         | `baa7d9ae544580203129a696bc31b62200b6e466718e5352220bbf8a48ad64a3` | `byte-identical` |
@@ -335,7 +335,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-ownership.ts`                                                                                  | `repo`             | `verified_no_change` | 236                | 236               | 62          | 62         | `14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435` | `byte-identical` |
 | `scripts/check-privacy.ts`                                                                                    | `repo`             | `verified_no_change` | 188                | 188               | 72          | 72         | `f3239e066d1f3b997671da2b1140702ceb0ea4360abeb73f3fc787d432e62e1e` | `byte-identical` |
 | `scripts/check-projects.ts`                                                                                   | `repo`             | `verified_no_change` | 596                | 596               | 219         | 219        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `byte-identical` |
-| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 203               | 84          | 105        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
+| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 204               | 84          | 106        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `verified_no_change` | 378                | 378               | 114         | 114        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `byte-identical` |
 | `scripts/web-visual-smoke.mjs`                                                                                | `repo`             | `verified_no_change` | 225                | 225               | 73          | 73         | `bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24` | `byte-identical` |

@@ -1,24 +1,15 @@
-# Deterministic generated artifacts are validated against their build receipts.
-# Reformatting them outside the generator would invalidate byte-level reproducibility.
 projects/**/web/artifact/index.html
-
-# V2 render outputs and canonical runtime snapshots are generator-owned.
 projects/*/artifacts/**
 projects/*/orchestration/**
 projects/pilot-carousel-001/spec/carousel-spec.yml
 projects/pilot-carousel-001/spec/content-type-definition.json
 content/*/generated/**
-
-# Imported and append-only evidence remains byte-identical to its receipts.
 inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
 quality/reports/v2-baseline-protection.yml
 skills/remotion-video-production/scripts/check-sources.mjs
 content/pilot-carousel-002/generated/atom-graph.json
 content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
-
-# H-03 machine registries, receipts and schemas use wide canonical records to
-# preserve the repository-wide authored LOC budget. Their dedicated checkers
-# validate structure and hash bindings.
+# Wide canonical records are governed by dedicated structure and hash checks.
 registries/renderers/renderer-capability-registry-v1.yml
 registries/skills/creation-v3-skill-registry.yml
 quality/reports/creation-v3-h03-render-smoke.yml

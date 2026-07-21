@@ -78,6 +78,7 @@ const checks = [
   'check-content-matrix.ts',
   'check-instagram-v2-skills.ts',
   'check-dependency-audit.ts',
+  'check-visual-reference-register.mjs',
 ];
 
 for (const check of checks) {

@@ -14,6 +14,8 @@ const dagSchema = z.object({
   program_id: z.literal('metodologia-instagram-agent-os'),
   packages: z.record(z.string(), packageSchema),
   release: z.object({
+    creation_terminal_package: z.literal('A12'),
+    excluded_from_creation_path: z.tuple([z.literal('A11')]),
     human_gate: z.literal('G15'),
     readiness_gate: z.literal('G16'),
     publish_gate: z.literal('G17'),
@@ -55,6 +57,20 @@ export const validateDag = (root = process.cwd()): string[] => {
 
   for (const id of ids) visit(id, []);
 
+  const creationAncestors = new Set<string>();
+  const collectCreationAncestors = (id: string): void => {
+    if (creationAncestors.has(id)) return;
+    creationAncestors.add(id);
+    for (const dependency of dag.packages[id]?.depends_on ?? [])
+      collectCreationAncestors(dependency);
+  };
+  collectCreationAncestors(dag.release.creation_terminal_package);
+  for (const excluded of dag.release.excluded_from_creation_path) {
+    if (creationAncestors.has(excluded)) {
+      errors.push(`${excluded}: integración futura incluida en el camino crítico de creación`);
+    }
+  }
+
   const required = [
     'A00',
     'A01',
@@ -85,5 +101,7 @@ if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.info('PASS G04 DAG: grafo acíclico, dependencias resolubles y G15→G16→G17 explícito.');
+  console.info(
+    'PASS G04 DAG: grafo acíclico, A11 fuera del camino creation-only y G15→G16→G17 explícito.',
+  );
 }

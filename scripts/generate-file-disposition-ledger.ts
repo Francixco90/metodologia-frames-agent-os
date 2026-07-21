@@ -38,9 +38,7 @@ export {
   V2_CLOSURE_COMMIT,
 };
 export type {LedgerEntry};
-
 const sha256 = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
-
 const metricsFor = (bytes: Buffer): TextMetrics => {
   if (bytes.includes(0)) return {format: 'binary', words: 0, loc: 0};
   const text = bytes.toString('utf8');
@@ -55,13 +53,10 @@ const metricsFor = (bytes: Buffer): TextMetrics => {
     loc: physicalLines,
   };
 };
-
 const ratio = (numerator: number, denominator: number): number =>
   denominator === 0 ? (numerator === 0 ? 1 : Number.POSITIVE_INFINITY) : numerator / denominator;
-
 const roundedRatio = (numerator: number, denominator: number): number =>
   Number(ratio(numerator, denominator).toFixed(4));
-
 const trackedPathsAt = (root: string, commit: string): string[] =>
   execFileSync('git', ['ls-tree', '-r', '--name-only', commit], {
     cwd: root,
@@ -70,15 +65,50 @@ const trackedPathsAt = (root: string, commit: string): string[] =>
     .split('\n')
     .filter(Boolean)
     .sort();
-
-const baselinePaths = (root: string): string[] => trackedPathsAt(root, BASELINE_COMMIT);
-
-const baselineBytes = (root: string, path: string): Buffer =>
-  execFileSync('git', ['show', `${BASELINE_COMMIT}:${path}`], {
-    cwd: root,
-    maxBuffer: 64 * 1024 * 1024,
+export const parseGitCatFileBatch = (output: Buffer, objectIds: readonly string[]): Buffer[] => {
+  let offset = 0;
+  const objects = objectIds.map((objectId) => {
+    const headerEnd = output.indexOf(0x0a, offset);
+    if (headerEnd < 0) throw new Error(`Git batch header missing for ${objectId}`);
+    const header = output.subarray(offset, headerEnd).toString('ascii');
+    const match = /^([0-9a-f]{40,64}) blob ([0-9]+)$/u.exec(header);
+    if (match?.[1] !== objectId)
+      throw new Error(`Git batch framing mismatch for ${objectId}: ${header}`);
+    const size = Number(match[2]);
+    const start = headerEnd + 1;
+    const end = start + size;
+    if (!Number.isSafeInteger(size) || end >= output.length || output[end] !== 0x0a) {
+      throw new Error(`Git batch payload framing invalid for ${objectId}`);
+    }
+    offset = end + 1;
+    return output.subarray(start, end);
   });
-
+  if (offset !== output.length) throw new Error('Git batch output contains trailing bytes');
+  return objects;
+};
+const baselineBlobs = (root: string) => {
+  const tree = execFileSync('git', ['ls-tree', '-rz', '--full-tree', BASELINE_COMMIT], {cwd: root});
+  const refs = tree
+    .subarray(0, tree.length - (tree.at(-1) === 0 ? 1 : 0))
+    .toString('utf8')
+    .split('\0')
+    .map((entry) => {
+      const match = /^[0-7]+ blob ([0-9a-f]{40,64})\t([\s\S]+)$/u.exec(entry);
+      if (match === null) throw new Error(`Unsupported Git tree entry: ${entry}`);
+      return {objectId: match[1] as string, path: match[2] as string};
+    })
+    .sort(({path: left}, {path: right}) => (left < right ? -1 : left > right ? 1 : 0));
+  const output = execFileSync('git', ['cat-file', '--batch'], {
+    cwd: root,
+    input: `${refs.map(({objectId}) => objectId).join('\n')}\n`,
+    maxBuffer: 256 * 1024 * 1024,
+  });
+  const bytes = parseGitCatFileBatch(
+    output,
+    refs.map(({objectId}) => objectId),
+  );
+  return refs.map((ref, index) => ({...ref, bytes: bytes[index] as Buffer}));
+};
 const versionablePaths = (root: string): string[] =>
   execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard'], {
     cwd: root,
@@ -94,7 +124,6 @@ const versionablePaths = (root: string): string[] =>
         lstatSync(resolve(root, path)).isFile(),
     )
     .sort();
-
 const globPatternToRegExp = (pattern: string): RegExp => {
   const placeholder = '\u0000';
   const protectedPattern = pattern.replaceAll('**', placeholder);
@@ -108,13 +137,11 @@ const globPatternToRegExp = (pattern: string): RegExp => {
   }
   return new RegExp(`^${expression}$`, 'u');
 };
-
 const ownershipManifestSchema = z.object({
   version: z.literal(1),
   policy: z.literal('one-writer-per-path'),
   writers: z.record(z.enum(ownerIds), z.array(z.string().min(1))),
 });
-
 const buildOwnerResolver = (root: string): ((path: string) => OwnerResolution) => {
   const manifestPath = resolve(root, 'docs/program/ownership-manifest.yml');
   const manifest = ownershipManifestSchema.parse(parse(readFileSync(manifestPath, 'utf8')));
@@ -142,14 +169,12 @@ const buildOwnerResolver = (root: string): ((path: string) => OwnerResolution) =
     throw new Error(`Ownership unresolved for baseline path ${path}`);
   };
 };
-
 const currentBytesFor = (root: string, path: string): Buffer | null => {
   const currentPath = resolve(root, path);
   return existsSync(currentPath) && lstatSync(currentPath).isFile()
     ? readFileSync(currentPath)
     : null;
 };
-
 const generatorRefFor = (path: string): string | null => {
   if (generatorSourcePaths.has(path)) return path;
   if (path === 'projects/vs-001-source-to-campaign/web/artifact/index.html') {
@@ -178,7 +203,6 @@ const generatorRefFor = (path: string): string | null => {
   }
   return null;
 };
-
 const decisionFor = (
   path: string,
   byteIdentical: boolean,
@@ -242,7 +266,6 @@ const decisionFor = (
     successorPath: null,
   };
 };
-
 const isGeneratedProjection = (path: string): boolean =>
   generatedPaths.has(path) ||
   ledgerProjectionPaths.has(path) ||
@@ -250,16 +273,13 @@ const isGeneratedProjection = (path: string): boolean =>
   /^content\/[^/]+\/generated\//u.test(path) ||
   isRuntimeGeneratedEvidence(path) ||
   /^projects\/[^/]+\/artifacts\//u.test(path);
-
 const isAuthoredEligible = (path: string): boolean =>
   !isHistoricalEvidence(path) && !isGeneratedProjection(path);
-
 export interface AuthoredSurfaceMetrics {
   files: number;
   words: number;
   loc: number;
 }
-
 export const measureAuthoredSurface = (root = process.cwd()): AuthoredSurfaceMetrics => {
   const metrics = versionablePaths(root)
     .filter(isAuthoredEligible)
@@ -271,7 +291,6 @@ export const measureAuthoredSurface = (root = process.cwd()): AuthoredSurfaceMet
     loc: metrics.reduce((total, {loc}) => total + loc, 0),
   };
 };
-
 const generatedNotApplicableReason = (path: string): string => {
   if (isRuntimeGeneratedEvidence(path)) {
     return 'Append-only runtime orchestration evidence; hashes and receipts govern it, not an authored template ratio.';
@@ -287,7 +306,6 @@ const generatedNotApplicableReason = (path: string): string => {
   }
   return 'Generated projection without a declared size-comparable template binding.';
 };
-
 const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
   const currentPaths = versionablePaths(root);
   const currentMetrics = new Map(
@@ -466,12 +484,11 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
     },
   };
 };
-
 export const buildLedger = (root = process.cwd()) => {
-  const paths = baselinePaths(root);
+  const blobs = baselineBlobs(root);
+  const paths = blobs.map(({path}) => path);
   const resolveOwner = buildOwnerResolver(root);
-  const entries: LedgerEntry[] = paths.map((path) => {
-    const initialBytes = baselineBytes(root, path);
+  const entries: LedgerEntry[] = blobs.map(({bytes: initialBytes, path}) => {
     const initialMetrics = metricsFor(initialBytes);
     const initialSha256 = sha256(initialBytes);
     const currentBytes = currentBytesFor(root, path);
@@ -547,11 +564,8 @@ export const buildLedger = (root = process.cwd()) => {
     entries,
   };
 };
-
 type Ledger = ReturnType<typeof buildLedger>;
-
 const nullableNonnegativeInteger = z.number().int().nonnegative().nullable();
-
 const ledgerEntrySchema = z.strictObject({
   path: z.string().min(1),
   artifact_class: z.enum(artifactClasses),
@@ -579,7 +593,6 @@ const ledgerEntrySchema = z.strictObject({
     successor_path: z.string().min(1).nullable(),
   }),
 });
-
 const ledgerSchema = z
   .object({
     schema_version: z.literal('file-disposition-ledger-v2'),
@@ -622,7 +635,6 @@ const ledgerSchema = z
     entries: z.array(ledgerEntrySchema).length(BASELINE_FILE_COUNT),
   })
   .passthrough();
-
 const renderSummaryTable = (header: string, values: Record<string, number>): string => {
   const rows = Object.entries(values).map(([key, value]) => [`\`${key}\``, String(value)] as const);
   const firstWidth = Math.max(header.length, ...rows.map(([key]) => key.length));
@@ -633,7 +645,6 @@ const renderSummaryTable = (header: string, values: Record<string, number>): str
     ...rows.map(([key, value]) => `| ${key.padEnd(firstWidth)} | ${value.padStart(secondWidth)} |`),
   ].join('\n');
 };
-
 const renderBudgetTable = (rows: readonly (readonly string[])[]): string => {
   const headers = ['Gate', 'Baseline', 'Final', 'Límite', 'Ratio', 'Estado'] as const;
   const rightAligned = new Set([1, 2, 3, 4]);
@@ -653,7 +664,6 @@ const renderBudgetTable = (rows: readonly (readonly string[])[]): string => {
   );
   return [renderRow(headers), renderRow(separator), ...rows.map(renderRow)].join('\n');
 };
-
 const markdownFor = (ledger: Ledger): string => {
   const budgets = ledger.budgets;
   const entryValues = ledger.entries.map(
@@ -785,7 +795,6 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 ${entryTable}
 `;
 };
-
 export const writeLedger = (root = process.cwd()): void => {
   const ledger = buildLedger(root);
   writeFileSync(
@@ -794,7 +803,6 @@ export const writeLedger = (root = process.cwd()): void => {
   );
   writeFileSync(resolve(root, 'docs/program/file-disposition-ledger.md'), markdownFor(ledger));
 };
-
 export const validateDispositionLedger = (root = process.cwd()): string[] => {
   const errors: string[] = [];
   const ledgerPath = resolve(root, 'docs/program/file-disposition-ledger.yml');
@@ -856,10 +864,8 @@ export const validateDispositionLedger = (root = process.cwd()): string[] => {
   }
   return errors;
 };
-
 const isMain =
   process.argv[1] !== undefined && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
-
 if (isMain) {
   if (process.argv.includes('--write')) {
     writeLedger();

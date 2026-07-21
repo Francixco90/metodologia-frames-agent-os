@@ -63,7 +63,7 @@ packages:
     gate: G11
   A10b:
     owner: qa
-    depends_on: [A06, A08, A10a, A11]
+    depends_on: [A06, A08, A10a]
     gate: G12_QA
   A10c:
     owner: qa
@@ -71,13 +71,15 @@ packages:
     gate: G13_CAROUSEL_QA
   A09b:
     owner: governance
-    depends_on: [A05, A06, A07, A07s, A08, A10b, A10c, A11]
+    depends_on: [A05, A06, A07, A07s, A08, A10b, A10c]
     gate: G13
   A12:
     owner: guardian
     depends_on: [A09b, A10b, A10c]
     gate: G14
 release:
+  creation_terminal_package: A12
+  excluded_from_creation_path: [A11]
   human_gate: G15
   readiness_gate: G16
   publish_gate: G17
