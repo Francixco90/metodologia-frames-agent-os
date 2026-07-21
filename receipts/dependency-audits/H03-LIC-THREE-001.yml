@@ -1,0 +1,20 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-THREE-001
+family: three-r3f
+observed_at: '2026-07-20'
+packages:
+  - {name: three, version: 0.178.0, manifest_sha256: 87d07b0c5f34cb2f758d98b1ba54e78f6a4e08e42a2d0ad2fa10320c2d67ecbd, license: MIT, license_sha256: bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601}
+  - {name: '@react-three/fiber', version: 9.2.0, manifest_sha256: 496db2b81382c5ea23ba6670fcfa43aa97a836ecf7310dbeed323781b0d320ff, license: MIT, license_evidence: official_published_manifest}
+  - {name: '@remotion/three', version: 4.0.494, manifest_sha256: 854d3ef5ec255faec998495f35adc09aa07e46e4548fa94bd6449a122a67ec59, license: MIT, license_evidence: official_published_manifest}
+verdict: verified_osi_metadata
+transitive_runtime_license:
+  package: {name: remotion, version: 4.0.494}
+  receipt_ref: receipts/dependency-audits/H03-LIC-REMOTION-001.yml
+  receipt_sha256: ad5e9954c0ef6d1b8663a3c7f7e64cc3e5386a2e90bbf71b1a9a7034f7593fbf
+  commercial_or_production_use: coverage_gap
+  consequence: blocked_license
+production_eligibility: blocked_license
+runtime_restriction: angle_profile_and_local_reproducibility_required
+cross_host_pixel_identity_claimed: false
+publication_authority: false
+append_only: true

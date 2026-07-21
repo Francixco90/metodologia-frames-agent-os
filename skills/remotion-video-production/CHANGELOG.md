@@ -5,6 +5,8 @@
 - Remediar `QA-SKILL-001`: endurecer `portableMediaPath` contra traversal, rutas absolutas
   POSIX/Windows, backslashes, `file://` y segmentos vacíos.
 - Añadir fixtures positivas y negativas para la gramática de rutas portables.
+- Verificar la sucesión aprobada del lockfile H-02→H-03 sin reescribir el receipt histórico ni
+  promover la licencia productiva de Remotion.
 
 ## 0.1.0 — 2026-07-19
 

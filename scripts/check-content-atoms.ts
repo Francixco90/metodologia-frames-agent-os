@@ -23,6 +23,7 @@ import {
   parseCanonicalContentMarkdown,
 } from '../workflows/content/markdown/parse-canonical-content.ts';
 import {computeSourceFreezeReceiptSha256} from '../workflows/content/markdown/source-freeze.ts';
+import {H02_LOCK_SHA256, verifyApprovedH03LockSuccession} from './lib/h03-lock-succession.mjs';
 
 const root = process.cwd();
 const generated = 'content/pilot-carousel-002/generated';
@@ -221,11 +222,8 @@ expect(
   'simulation approval file binding differs',
 );
 
-expect(
-  sha256(read('pnpm-lock.yaml')) ===
-    'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82',
-  'pnpm lockfile changed',
-);
+const currentLockSha256 = sha256(read('pnpm-lock.yaml'));
+if (currentLockSha256 !== H02_LOCK_SHA256) verifyApprovedH03LockSuccession(root);
 expect(
   treeDigest('adapters/n8n') === '3a27f59814a35ce5e0d87aee1a1d5e9645db288c2cbac87b59b6aabd5ffd174d',
   'n8n adapter tree changed',

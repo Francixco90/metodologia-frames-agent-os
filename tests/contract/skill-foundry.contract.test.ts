@@ -333,9 +333,9 @@ describe('A05 Skill Foundry contracts', () => {
         runtime: z.literal('Remotion'),
         version: z.literal('4.0.494'),
         official_license_url: z.literal(
-          'https://github.com/remotion-dev/remotion/blob/main/LICENSE.md',
+          'https://github.com/remotion-dev/remotion/blob/v4.0.494/LICENSE.md',
         ),
-        official_locator_version_pinned: z.literal(false),
+        official_locator_version_pinned: z.literal(true),
         evaluation_receipt: BoundFileSchema,
         local_evaluation: z.object({verdict: z.literal('permitted')}),
         commercial_or_production_use: z.object({

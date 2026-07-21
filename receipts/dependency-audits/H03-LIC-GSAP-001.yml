@@ -1,0 +1,13 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-GSAP-001
+family: gsap
+observed_at: '2026-07-20'
+official_locator: https://gsap.com/community/standard-license/
+official_snapshot_sha256: 4cce3eaf5f4fac6c17739b0e181504bfdc84b8991a53ee508de6dc60326a4d42
+package: {name: gsap, version: 3.15.0, manifest_sha256: 85cc13e31f7a3cd124b587a40f545f265f47d0dfb9a556bb122d70fc0fca3459}
+license: GSAP Standard no-charge license
+verdict: verified_custom_restricted
+restriction: revalidate_if_product_becomes_a_visual_animation_builder_competing_with_webflow
+legal_advice: false
+publication_authority: false
+append_only: true

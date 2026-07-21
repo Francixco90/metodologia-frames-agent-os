@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/motion-adapter-spec-v1.schema.json",
+  "title": "MotionAdapterSpecV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "adapterId", "library", "version", "clock", "networkAllowed", "fallback", "licenseState", "publicationAuthority"],
+  "properties": {
+    "schemaVersion": {"const": "motion-adapter-spec-v1"},
+    "adapterId": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,127}$"},
+    "library": {"enum": ["gsap", "three", "lottie", "remotion"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "clock": {"const": "explicit_remotion_frame"},
+    "networkAllowed": {"const": false},
+    "fallback": {"type": "string", "minLength": 1, "maxLength": 160},
+    "licenseState": {"enum": ["allowed_scoped", "local_evaluation_only"]},
+    "publicationAuthority": {"const": false}
+  }
+}

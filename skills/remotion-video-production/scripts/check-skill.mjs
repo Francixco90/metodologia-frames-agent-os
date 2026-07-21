@@ -27,7 +27,6 @@ const validateBoundFile = (reference, expectedSha256, label) => {
     errors.push(`${label}: hash no coincide con el archivo resoluble`);
   }
 };
-
 if (!frontmatterMatch) {
   errors.push('SKILL.md: frontmatter ausente');
 } else {
@@ -90,6 +89,7 @@ for (const required of [
   'licenses/README.md',
   'licenses/content-license-receipt.yml',
   'licenses/remotion-4.0.494-evaluation-receipt.yml',
+  'licenses/remotion-4.0.494-evaluation-receipt-h03.yml',
   'licenses/runtime-license-verdict.yml',
   'schemas/render-input.schema.json',
   'schemas/render-output.schema.json',
@@ -208,6 +208,10 @@ if (
   runtimeAuthority?.kind !== 'exact_version_hash_bound_evaluation_receipt' ||
   runtimeAuthority?.legal_eligibility_adjudicated !== false ||
   runtimeReceipt.runtime?.version !== '4.0.494' ||
+  runtimeReceipt.supersedes?.receipt_ref !==
+    'skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml' ||
+  runtimeReceipt.supersedes?.receipt_sha256 !==
+    '24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a' ||
   runtimeReceipt.evaluation?.commercial_or_production_use !== 'coverage_gap' ||
   runtimeReceipt.evaluation?.consequence !== 'blocked' ||
   runtimeVerdict.evaluation_receipt?.ref !== runtimeAuthority?.receipt_ref ||

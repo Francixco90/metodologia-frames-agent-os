@@ -1,0 +1,23 @@
+schema_version: creation-v3-h03-baseline-v1
+captured_at: '2026-07-20T00:00:00Z'
+base_commit: a200830df19b5a9a2a176ed9bdcf342da5b8bd64
+base_tree: f1afca851960c97ccf5b192c1b77bf276629ee90
+branch: codex/instagram-os-creation-v3-carousel-v2
+checks:
+  command: pnpm verify
+  result: pass
+  test_files: 47
+  tests: 379
+immutable_baseline:
+  package_json_sha256: f61ec0161ac866ff708ce9eb239a14f2e4661f323b7def9b1f0896b0ca115e0f
+  pnpm_lock_sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
+  root_tsx_sha256: 6e904cdc4a76a922af7701a48692f93f67c5678433cafa552a6c11c14ed447e0
+  pilot_v1_tree_sha256: d9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78
+  vs001_tree_sha256: 4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4
+  n8n_tree_sha256: 3a27f59814a35ce5e0d87aee1a1d5e9645db288c2cbac87b59b6aabd5ffd174d
+authorization:
+  exact_phrase: APRUEBO HITO H-03
+  permits_dependency_install: true
+  permits_h04: false
+  permits_distribution: false
+  permits_publication: false

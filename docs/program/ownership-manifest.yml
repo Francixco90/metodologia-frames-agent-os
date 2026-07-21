@@ -81,6 +81,7 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/captions.json
   remotion:
     - renderers/remotion/**
+    - registries/renderers/**
     - registries/components/**
     - receipts/renders/**
     - projects/vs-001-source-to-campaign/remotion/src/**

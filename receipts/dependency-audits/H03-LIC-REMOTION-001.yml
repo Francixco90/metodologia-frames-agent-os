@@ -1,0 +1,15 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-REMOTION-001
+family: remotion-runtime
+observed_at: '2026-07-20'
+version: 4.0.494
+official_locator: https://github.com/remotion-dev/remotion/blob/v4.0.494/LICENSE.md
+official_license_sha256: bd65083b940f61904f6ef298aade918a7cad72a3e35bc406e36fab365844b673
+supersedes_unpinned_locator_record: skills/remotion-video-production/licenses/runtime-license-verdict.yml
+local_evaluation: permitted
+commercial_or_production_use: coverage_gap
+reason: entity_size_use_case_and_license_eligibility_not_adjudicated
+consequence: blocked_license
+legal_advice: false
+publication_authority: false
+append_only: true

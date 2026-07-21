@@ -18,8 +18,8 @@ runtime:
   commercial_or_production_use: coverage_gap
   license_authority:
     kind: exact_version_hash_bound_evaluation_receipt
-    receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml
-    receipt_sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+    receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03.yml
+    receipt_sha256: 5e073ab99011507e0d8d8ee2334f6eb1ce971b3748e0eec81e65a5f81b85f046
     legal_eligibility_adjudicated: false
 references:
   - source_id: SRC-REMOTION-DOCS-001

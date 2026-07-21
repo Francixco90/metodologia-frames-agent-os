@@ -1,0 +1,21 @@
+schema_version: 1
+skill_id: data-visual-composition
+version: 0.1.0
+content_origin: locally_authored
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - core/contracts/renderer-capabilities-v1.ts
+  - renderers/remotion/src/adapters/d3-adapter.ts
+  - content/pilot-carousel-002/generated/atom-graph.json
+dependency_receipt_ref: skills/data-visual-composition/receipts/d3-dependency-license.yml
+central_license_receipt_ref: receipts/dependency-audits/H03-LIC-D3-001.yml
+compatibility_contract: d3-svg-geometry-v1
+request_contract_ref: skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
+supported_request_types:
+  - categorical_matrix
+  - quantitative_series
+  - hierarchy_tree
+  - interpolation
+external_fragments_reused: false
+publication_authority: false

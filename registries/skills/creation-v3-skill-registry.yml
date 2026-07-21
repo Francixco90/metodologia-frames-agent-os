@@ -1,0 +1,35 @@
+schema_version: 1
+registry_id: creation-v3-skills-h03
+mutation_policy: append-only-events-with-versioned-current-view
+entries:
+  - skill_id: data-visual-composition
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 78ad018103030b593340a4e28fa68fd113842d65b388934fdbbea21494be6dd2
+    package_manifest_sha256: 5bc664570c739fc3b29e82ba98b3b7364e55f36fa692a8b1d14f8035302d1549
+    lineage_ref: skills/data-visual-composition/LINEAGE.yml
+    dependency_receipt_ref: skills/data-visual-composition/receipts/d3-dependency-license.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node --import tsx skills/data-visual-composition/scripts/check.ts]
+  - skill_id: motion-library-adapters
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation-only
+    content_sha256: 7b13b6dd52eda0f91a55fbd9179e315311698a41e4ff75c2bdaf10460d9df7c4
+    package_manifest_sha256: 25a509b2b213a277cbac1a340f3394cce286ce8ec791b7b3233fed00caa3ac1b
+    lineage_ref: skills/motion-library-adapters/LINEAGE.yml
+    dependency_receipt_ref: skills/motion-library-adapters/receipts/runtime-boundary.yml
+    production_runtime_status: blocked_remotion_license_coverage_gap
+    publication_authority: false
+    tests: [node skills/motion-library-adapters/scripts/check-skill.mjs]
+events:
+  - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
+  - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
+  - {event_id: EVT-SKL-DVC-H03-003, event_order: 3, skill_id: data-visual-composition, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DVC-H03-004, event_order: 4, skill_id: data-visual-composition, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MLA-H03-001, event_order: 1, skill_id: motion-library-adapters, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MLA-H03-002, event_order: 2, skill_id: motion-library-adapters, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MLA-H03-003, event_order: 3, skill_id: motion-library-adapters, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MLA-H03-004, event_order: 4, skill_id: motion-library-adapters, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

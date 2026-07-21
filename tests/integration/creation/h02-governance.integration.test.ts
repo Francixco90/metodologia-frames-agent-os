@@ -4,6 +4,11 @@ import {relative, resolve} from 'node:path';
 
 import {describe, expect, it} from 'vitest';
 
+import {
+  H02_LOCK_SHA256,
+  verifyApprovedH03LockSuccession,
+} from '../../../scripts/lib/h03-lock-succession.mjs';
+
 const root = process.cwd();
 
 const sha256 = (value: Uint8Array | string): string =>
@@ -58,7 +63,7 @@ describe('H-02 governance and preservation', () => {
     expect(committee).toContain('Siguiente gate humano: `APRUEBO HITO H-03`');
   });
 
-  it('keeps H-01, legacy projects, lockfile and n8n byte-identical', () => {
+  it('keeps H-01, legacy projects and n8n byte-identical and requires lock succession', () => {
     const expectedFiles = new Map([
       [
         'content/pilot-carousel-002/content.md',
@@ -72,12 +77,13 @@ describe('H-02 governance and preservation', () => {
         'content/pilot-carousel-002/generated/source-freeze-receipt.json',
         '73942f3d682a232c9cd5c26b87a6912f5f9907fd99ca43a97465f1a28df0ffb7',
       ],
-      ['pnpm-lock.yaml', 'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82'],
     ]);
 
     for (const [ref, digest] of expectedFiles) {
       expect(sha256(readFileSync(resolve(root, ref))), ref).toBe(digest);
     }
+    const succession = verifyApprovedH03LockSuccession(root);
+    expect(succession.receipt.previous?.lock_sha256).toBe(H02_LOCK_SHA256);
     expect(treeDigest('projects/pilot-carousel-001')).toBe(
       'd9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78',
     );
