@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 20
+    refactored: 21
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 257
+    verified_no_change: 256
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -393,22 +393,22 @@ budgets:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116993
+    final_words: 117023
     maximum_multiplier: 1.5
     maximum_words: 117060
-    actual_multiplier: 1.4991
+    actual_multiplier: 1.4995
     status: pass
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 116993
+    final_words: 117023
     maximum_words: 156080
-    word_multiplier: 1.4991
+    word_multiplier: 1.4995
     baseline_loc: 29426
-    final_loc: 42875
+    final_loc: 42880
     maximum_loc: 58852
-    loc_multiplier: 1.457
+    loc_multiplier: 1.4572
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -598,17 +598,17 @@ entries:
     initial_words: 15
     initial_loc: 15
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:.gitignore
       current_ref: working-tree:.gitignore
       current_state: present
-      current_sha256: 42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7
-      current_words: 15
-      current_loc: 15
-      byte_identical: true
-      material_change: false
+      current_sha256: 9f37e068f186eaa3e9c73c66f900d47c01cc893e6e1b64c87548537bca3fd693
+      current_words: 16
+      current_loc: 16
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.gitignore
       generator_ref: null
       successor_path: null
@@ -2368,7 +2368,7 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 6ecf1498a13fd9a9e5a6171d43dafdd897ebb9b5827bd0671ddcc440cf0bce9b
+      current_sha256: 6e1bfdb766d324f2904ae0c455ff6f484c9f96bd28abd682f70a0e170182713c
       current_words: 243
       current_loc: 131
       byte_identical: false
@@ -5413,7 +5413,7 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: 413cee86b74ecc9ab1f03d2435c5278ed4c6dd6c003055ee0cef5486b5f76ea3
+      current_sha256: a84313f1f41a01d2f7859456fe684a56320f45055229fb714536c6b96d273457
       current_words: 898
       current_loc: 426
       byte_identical: false
@@ -7303,8 +7303,8 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:skills/remotion-video-production/scripts/check-skill.mjs
       current_ref: working-tree:skills/remotion-video-production/scripts/check-skill.mjs
       current_state: present
-      current_sha256: b475fab53464c2b6dbc1f506bf8eb9e13610eb6ab4863a7c3a1b6a6943479830
-      current_words: 955
+      current_sha256: 324b7f0dc7991fdb30ed8e45291c2ecb2b9456d1fea53f5c92bcfdca0c894cb9
+      current_words: 956
       current_loc: 325
       byte_identical: false
       material_change: true

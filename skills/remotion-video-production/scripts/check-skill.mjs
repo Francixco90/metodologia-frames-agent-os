@@ -1,6 +1,6 @@
 import {createHash} from 'node:crypto';
 import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import {join, relative, resolve, sep} from 'node:path';
 import {parse} from 'yaml';
 
 const root = process.cwd();
@@ -265,7 +265,7 @@ const walk = (path) =>
   });
 const packageManifest = `${walk(skillRoot)
   .sort()
-  .map((path) => `${sha256(readFileSync(path))}  ${relative(skillRoot, path)}`)
+  .map((path) => `${sha256(readFileSync(path))}  ${relative(skillRoot, path).split(sep).join('/')}`)
   .join('\n')}\n`;
 const packageManifestSha256 = sha256(packageManifest);
 if (

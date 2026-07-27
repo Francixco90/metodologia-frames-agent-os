@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       20 |
+| `refactored`         |       21 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      257 |
+| `verified_no_change` |      256 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            78040 |            116993 |     117060 (1.5×) | 1.4991× | `pass` |
-| Total authored (palabras)     |            78040 |            116993 |       156080 (2×) | 1.4991× | `pass` |
-| Total authored (LOC)          |            29426 |             42875 |        58852 (2×) |  1.457× | `pass` |
+| Corpus authored elegible      |            78040 |            117023 |     117060 (1.5×) | 1.4995× | `pass` |
+| Total authored (palabras)     |            78040 |            117023 |       156080 (2×) | 1.4995× | `pass` |
+| Total authored (LOC)          |            29426 |             42880 |        58852 (2×) | 1.4572× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -61,7 +61,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
 | `.github/workflows/validate.yml`                                                                              | `repo`             | `verified_no_change` | 89                 | 89                | 33          | 33         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `byte-identical` |
-| `.gitignore`                                                                                                  | `repo`             | `verified_no_change` | 15                 | 15                | 15          | 15         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `byte-identical` |
+| `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 16                | 15          | 16         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
 | `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 39                | 3           | 28         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
@@ -380,7 +380,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `skills/remotion-video-production/schemas/video-spec.schema.json`                                             | `skill-foundry`    | `verified_no_change` | 117                | 117               | 49          | 49         | `6f9ee0fcff452694aa37747c4d831ac597d53514ac1b81fb70d3da4d00706f47` | `byte-identical` |
 | `skills/remotion-video-production/scripts/check-contracts.mjs`                                                | `skill-foundry`    | `verified_no_change` | 405                | 405               | 157         | 157        | `8cef4be9e2364a52ec9c9fdc011a3e020f81a678744579f2c4806b67304d5803` | `byte-identical` |
 | `skills/remotion-video-production/scripts/check-example.mjs`                                                  | `skill-foundry`    | `verified_no_change` | 89                 | 89                | 28          | 28         | `6a1595ad776b06061e2a72bd0f0d9a56d40af9f23e16af1fbc2191fad036c5b9` | `byte-identical` |
-| `skills/remotion-video-production/scripts/check-skill.mjs`                                                    | `skill-foundry`    | `refactored`         | 946                | 955               | 321         | 325        | `e3684bb41aadd4b82a2c86e1d03df263cc0fb8473619198d773b32bbba82c03e` | `changed`        |
+| `skills/remotion-video-production/scripts/check-skill.mjs`                                                    | `skill-foundry`    | `refactored`         | 946                | 956               | 321         | 325        | `e3684bb41aadd4b82a2c86e1d03df263cc0fb8473619198d773b32bbba82c03e` | `changed`        |
 | `skills/remotion-video-production/scripts/check-sources.mjs`                                                  | `skill-foundry`    | `refactored`         | 598                | 633               | 168         | 178        | `befd852bfcd18cf3656a1004361a1326a5f4d66e4f55b24ed1e6e72a1dfa11a1` | `changed`        |
 | `skills/stitch-remotion-walkthrough/LINEAGE.yml`                                                              | `skill-foundry`    | `quarantined`        | 40                 | 40                | 21          | 21         | `29cb5965f38e0f211c4fc6e10922e9dc2be7397fc0dca951c7b7f2d93cbd6112` | `byte-identical` |
 | `skills/stitch-remotion-walkthrough/SKILL.md`                                                                 | `skill-foundry`    | `quarantined`        | 326                | 326               | 59          | 59         | `d039ce1f7def615eaedb2c8b5f79441129eca3ae514c81fa6ae804d52df8d673` | `byte-identical` |
