@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 21
+    refactored: 23
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 256
+    verified_no_change: 254
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -393,22 +393,22 @@ budgets:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 117023
+    final_words: 117044
     maximum_multiplier: 1.5
     maximum_words: 117060
-    actual_multiplier: 1.4995
+    actual_multiplier: 1.4998
     status: pass
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 117023
+    final_words: 117044
     maximum_words: 156080
-    word_multiplier: 1.4995
+    word_multiplier: 1.4998
     baseline_loc: 29426
-    final_loc: 42880
+    final_loc: 42889
     maximum_loc: 58852
-    loc_multiplier: 1.4572
+    loc_multiplier: 1.4575
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -5554,17 +5554,17 @@ entries:
     initial_words: 370
     initial_loc: 168
     resolved_owner: remotion
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:renderers/remotion/scripts/render-project.ts
       current_ref: working-tree:renderers/remotion/scripts/render-project.ts
       current_state: present
-      current_sha256: e012cd2307dfa072fc8baa7e57b2a93ddfc8d8df0b0743ba6efb617024746a7d
-      current_words: 370
-      current_loc: 168
-      byte_identical: true
-      material_change: false
+      current_sha256: b56914d327252a710073d9bcf1fc258d5fcd83b2694b524b1f4abcd2ff0282a1
+      current_words: 374
+      current_loc: 169
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:remotion:renderers/remotion/**
       generator_ref: null
       successor_path: null
@@ -6394,17 +6394,17 @@ entries:
     initial_words: 378
     initial_loc: 114
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:scripts/check-toolchain.ts
       current_ref: working-tree:scripts/check-toolchain.ts
       current_state: present
-      current_sha256: 615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857
-      current_words: 378
-      current_loc: 114
-      byte_identical: true
-      material_change: false
+      current_sha256: e8937bfc6997ccd425cbcb18deb0387cee194102ee9428519a68abf90eab617c
+      current_words: 395
+      current_loc: 122
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
       generator_ref: null
       successor_path: null

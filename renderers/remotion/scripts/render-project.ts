@@ -56,6 +56,7 @@ const runRemotion = (args: readonly string[]): void => {
     cwd: root,
     encoding: 'utf8',
     stdio: 'inherit',
+    shell: process.platform === 'win32',
   });
 };
 

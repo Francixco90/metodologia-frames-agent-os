@@ -36,14 +36,21 @@ if (process.version !== `v${expected.node}`) {
   errors.push(`Node: esperado v${expected.node}, observado ${process.version}`);
 }
 
-const pnpmVersion = execFileSync('pnpm', ['--version'], {encoding: 'utf8'}).trim();
+const pnpmVersion = execFileSync('pnpm', ['--version'], {
+  encoding: 'utf8',
+  shell: process.platform === 'win32',
+}).trim();
 if (pnpmVersion !== expected.pnpm) {
   errors.push(`pnpm: esperado ${expected.pnpm}, observado ${pnpmVersion}`);
 }
 
 let ffmpegLine = 'not-checked';
 if (validationProfile === 'local-full') {
-  ffmpegLine = execFileSync('ffmpeg', ['-version'], {encoding: 'utf8'}).split('\n')[0] ?? '';
+  ffmpegLine = execFileSync('ffmpeg', ['-version'], {
+    encoding: 'utf8',
+    shell: process.platform === 'win32',
+  })
+    .split('\n')[0] ?? '';
   if (!ffmpegLine.startsWith(`ffmpeg version ${expected.ffmpeg} `)) {
     errors.push(`FFmpeg: esperado ${expected.ffmpeg}, observado ${ffmpegLine}`);
   }
@@ -74,6 +81,7 @@ if (installedPlaywright.version !== expected.playwright) {
 
 const verifyDepsBeforeRun = execFileSync('pnpm', ['config', 'get', 'verify-deps-before-run'], {
   encoding: 'utf8',
+  shell: process.platform === 'win32',
 }).trim();
 if (verifyDepsBeforeRun !== 'false') {
   errors.push(

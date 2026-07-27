@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       21 |
+| `refactored`         |       23 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      256 |
+| `verified_no_change` |      254 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            78040 |            117023 |     117060 (1.5×) | 1.4995× | `pass` |
-| Total authored (palabras)     |            78040 |            117023 |       156080 (2×) | 1.4995× | `pass` |
-| Total authored (LOC)          |            29426 |             42880 |        58852 (2×) | 1.4572× | `pass` |
+| Corpus authored elegible      |            78040 |            117044 |     117060 (1.5×) | 1.4998× | `pass` |
+| Total authored (palabras)     |            78040 |            117044 |       156080 (2×) | 1.4998× | `pass` |
+| Total authored (LOC)          |            29426 |             42889 |        58852 (2×) | 1.4575× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -297,7 +297,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `renderers/remotion/README.md`                                                                                | `remotion`         | `verified_no_change` | 358                | 358               | 53          | 53         | `0d9be1e63133d9ad9af662230a89aaf6426f080141b8a5caee66578a57c1c730` | `byte-identical` |
 | `renderers/remotion/scripts/inspect-renders.ts`                                                               | `remotion`         | `verified_no_change` | 1828               | 1828              | 606         | 606        | `565bf560bec747e007c6592737f3bc28017055b919fc5151d77f4ec80d73c764` | `byte-identical` |
 | `renderers/remotion/scripts/prepare-project.ts`                                                               | `remotion`         | `verified_no_change` | 1758               | 1758              | 642         | 642        | `8b33294e9df5a384cd088fecc091b9dd772e167d25252951a9404f77e2c53391` | `byte-identical` |
-| `renderers/remotion/scripts/render-project.ts`                                                                | `remotion`         | `verified_no_change` | 370                | 370               | 168         | 168        | `e012cd2307dfa072fc8baa7e57b2a93ddfc8d8df0b0743ba6efb617024746a7d` | `byte-identical` |
+| `renderers/remotion/scripts/render-project.ts`                                                                | `remotion`         | `refactored`         | 370                | 374               | 168         | 169        | `e012cd2307dfa072fc8baa7e57b2a93ddfc8d8df0b0743ba6efb617024746a7d` | `changed`        |
 | `renderers/remotion/scripts/validate-project.ts`                                                              | `remotion`         | `verified_no_change` | 522                | 522               | 211         | 211        | `8d2c7fe3ec25e27e0e893acc4ade619786ff2d07a38692854d0429078de79aa8` | `byte-identical` |
 | `renderers/remotion/src/Root.tsx`                                                                             | `remotion`         | `verified_no_change` | 50                 | 50                | 28          | 28         | `6e904cdc4a76a922af7701a48692f93f67c5678433cafa552a6c11c14ed447e0` | `byte-identical` |
 | `renderers/remotion/src/append-only-evidence.ts`                                                              | `remotion`         | `verified_no_change` | 1096               | 1096              | 419         | 419        | `c1d45286015e4c246ecb4abf054312c5b16988489baf918c40a9a7414e051648` | `byte-identical` |
@@ -337,7 +337,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-projects.ts`                                                                                   | `repo`             | `verified_no_change` | 596                | 596               | 219         | 219        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `byte-identical` |
 | `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 204               | 84          | 106        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
-| `scripts/check-toolchain.ts`                                                                                  | `repo`             | `verified_no_change` | 378                | 378               | 114         | 114        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `byte-identical` |
+| `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 395               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |
 | `scripts/web-visual-smoke.mjs`                                                                                | `repo`             | `verified_no_change` | 225                | 225               | 73          | 73         | `bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24` | `byte-identical` |
 | `skills/remotion-video-production/CHANGELOG.md`                                                               | `skill-foundry`    | `refactored`         | 101                | 121               | 17          | 19         | `067d820776b0e7233bbe0cd7e6fe63c4cddc576bde91b74db21ca848af1c1134` | `changed`        |
 | `skills/remotion-video-production/LINEAGE.yaml`                                                               | `skill-foundry`    | `refactored`         | 163                | 163               | 84          | 84         | `291a39b471e2f480ff5f84b1cf50da89f7fcc1249ab026c3e95a92457cf5fd2e` | `changed`        |
