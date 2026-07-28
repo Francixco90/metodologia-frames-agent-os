@@ -14,6 +14,9 @@ const bindingSchema = z.object({
   allowed_actors: z.array(z.string()),
   capabilities: z.array(z.string()),
   exclusions: z.array(z.string()),
+  default_mode: z.string().optional(),
+  verdict_state: z.string().optional(),
+  required_verdict_hash: z.unknown().optional(),
 });
 
 const bindingPath = resolve(root, 'docs/program/token-efficiency/instagram-agent-os-binding.json');
@@ -81,6 +84,14 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
   }
   if (!binding.capabilities.includes('communication.wellbeing')) {
     errors.push('AI-RUNTIME-009 communication.wellbeing capability is mandatory');
+  }
+  if (binding.default_mode !== undefined && binding.default_mode !== 'off') {
+    errors.push(`AI-RUNTIME-010 default_mode must be OFF, got ${binding.default_mode}`);
+  }
+  if (binding.verdict_state !== undefined && binding.verdict_state === 'not_benchmarked') {
+    // Valid: no verdict yet, capabilities stay OFF
+  } else if (binding.verdict_state !== undefined && binding.verdict_state !== 'promoted') {
+    errors.push(`AI-RUNTIME-011 verdict_state must be not_benchmarked or promoted, got ${binding.verdict_state}`);
   }
   return errors;
 };

@@ -40,6 +40,7 @@
     "publication"
   ],
   "required_verdict_hash": null,
+  "verdict_state": "not_benchmarked",
   "valid_until": null,
   "source": "metodologia-os-clean/01-system/contracts/token-efficiency/bindings/instagram-agent-os-binding.json",
   "default_mode": "off",
