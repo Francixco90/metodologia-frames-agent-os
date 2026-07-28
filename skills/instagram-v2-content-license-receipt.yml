@@ -9,6 +9,7 @@ applies_to:
     - skills/instagram-content-orchestration
     - skills/instagram-carousel-production
     - skills/remotion-video-production-v2
+    - skills/metodologia-certificate-builder
   content_origin: locally_authored
 permissions:
   internal_execution: allowed

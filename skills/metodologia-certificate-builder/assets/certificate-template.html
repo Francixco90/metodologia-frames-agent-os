@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>{{PAGE_TITLE}}</title>
+  <style>
+    :root {
+      --brand-dark: #0a122a;
+      --brand-gold: #f4c900;
+      --brand-gold-text: #806900;
+      --brand-text: #17213a;
+      --brand-soft: #536174;
+      --brand-border: #cfd6df;
+      --brand-surface: #f3f6f9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #edf1f5;
+      color: var(--brand-text);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    p,
+    h1,
+    h2 {
+      margin: 0;
+    }
+
+    .certificate-shell {
+      width: 297mm;
+      height: 210mm;
+      display: grid;
+      grid-template-columns: 22mm minmax(0, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--brand-border);
+      background: #fff;
+      box-shadow: 0 20px 55px rgba(10, 18, 42, 0.16);
+    }
+
+    .certificate-rail {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      justify-items: center;
+      padding: 12mm 0 10mm;
+      background: var(--brand-dark);
+      color: var(--brand-gold);
+    }
+
+    .rail-label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .rail-index {
+      width: 14mm;
+      height: 14mm;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--brand-gold);
+      font-weight: 900;
+    }
+
+    .certificate-content {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 5mm;
+      padding: 12mm 14mm 10mm;
+      border: 1px solid rgba(244, 201, 0, 0.9);
+      margin: 5mm;
+    }
+
+    .certificate-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8mm;
+      align-items: start;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--brand-dark);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: var(--brand-dark);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .brand-gold {
+      color: var(--brand-gold-text);
+    }
+
+    .certificate-meta {
+      display: grid;
+      gap: 3px;
+      color: var(--brand-soft);
+      font-size: 10px;
+      font-weight: 800;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .certificate-body {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 58mm;
+      gap: 7mm;
+      align-items: center;
+    }
+
+    .main-copy {
+      min-width: 0;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+
+    .eyebrow,
+    .hours-title {
+      color: var(--brand-gold-text);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: var(--brand-dark);
+      font-size: 38px;
+      line-height: 1.04;
+    }
+
+    .statement {
+      color: var(--brand-soft);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .recipient-name {
+      width: 100%;
+      padding: 2px 0 8px;
+      border-bottom: 2px solid var(--brand-gold);
+      color: var(--brand-dark);
+      font-size: 31px;
+      line-height: 1.08;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .recipient-name.is-long {
+      font-size: 26px;
+    }
+
+    .course-box {
+      display: grid;
+      gap: 6px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--brand-gold);
+      background: var(--brand-surface);
+    }
+
+    .certification-statement {
+      color: var(--brand-text);
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 700;
+    }
+
+    .effort-summary,
+    .issue-date,
+    .evidence-note,
+    .limitation-note {
+      color: var(--brand-soft);
+      font-size: 10px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .hours-panel {
+      min-width: 0;
+      align-self: stretch;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid var(--brand-border);
+      background: #fbfcfd;
+    }
+
+    .hour-row {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--brand-border);
+    }
+
+    .hour-number {
+      color: var(--brand-dark);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .hour-label {
+      color: var(--brand-text);
+      font-size: 10px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .estimate {
+      display: block;
+      color: var(--brand-soft);
+      font-size: 9px;
+    }
+
+    .hour-total {
+      padding: 10px;
+      background: var(--brand-gold);
+      color: var(--brand-dark);
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .certificate-footer {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 60mm;
+      gap: 7mm;
+      align-items: end;
+      padding-top: 4mm;
+      border-top: 1px solid var(--brand-border);
+    }
+
+    .signatures {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(var(--signature-count), minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .signature {
+      min-width: 0;
+    }
+
+    .signature-image {
+      width: 100%;
+      height: 28px;
+      object-fit: contain;
+      object-position: left bottom;
+    }
+
+    .signature-image--empty {
+      border: 0;
+    }
+
+    .signature-line {
+      border-top: 1px solid #9aa4b2;
+    }
+
+    .issuer-name {
+      margin-top: 5px;
+      color: var(--brand-dark);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .issuer-role {
+      margin-top: 2px;
+      color: var(--brand-soft);
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+    .verification {
+      display: grid;
+      gap: 2px;
+      justify-items: end;
+      color: var(--brand-soft);
+      font-size: 8px;
+      text-align: right;
+    }
+
+    .verification-id {
+      color: var(--brand-dark);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    @media print {
+      html,
+      body {
+        width: 297mm;
+        height: 210mm;
+        background: #fff;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .certificate-shell {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="certificate-shell" aria-label="Certificado {{ISSUER}}">
+    <div class="certificate-rail" aria-hidden="true">
+      <div class="rail-label">{{RAIL_LABEL}}</div>
+      <div class="rail-index">IA</div>
+    </div>
+
+    <section class="certificate-content">
+      <header class="certificate-header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">IA</span>
+          <span>Metodolog<span class="brand-gold">IA</span></span>
+        </div>
+        <div class="certificate-meta">
+          <span>{{META_LABEL}}</span>
+          <span>{{ISSUE_DATE}}</span>
+        </div>
+      </header>
+
+      <section class="certificate-body">
+        <div class="main-copy">
+          <div class="eyebrow">Constancia formativa verificable</div>
+          <h1>{{CERTIFICATE_TITLE}}</h1>
+          <p class="statement">{{ISSUER}} certifica que</p>
+          <h2 class="{{RECIPIENT_CLASS}}">{{RECIPIENT_NAME}}</h2>
+          <div class="course-box">
+            <p class="certification-statement">{{CERTIFICATION_STATEMENT}}</p>
+            <p class="effort-summary">{{EFFORT_SUMMARY}}</p>
+            <p class="issue-date">Fecha de emision: {{ISSUE_DATE}}</p>
+          </div>
+          <p class="evidence-note">{{EVIDENCE_NOTE}}</p>
+          <p class="limitation-note">{{LIMITATION_NOTE}}</p>
+        </div>
+
+        <aside class="hours-panel" aria-label="Desglose del esfuerzo formativo">
+          <div class="hours-title">{{PANEL_TITLE}}</div>
+          {{EFFORT_ROWS}}
+          <div class="hour-total">{{TOTAL_HOURS}} h certificables</div>
+        </aside>
+      </section>
+
+      <footer class="certificate-footer">
+        <div class="signatures" style="--signature-count: {{SIGNATURE_COUNT}}">
+          {{SIGNATURES}}
+        </div>
+        <div class="verification">
+          <span>Folio local</span>
+          <span class="verification-id">{{FOLIO}}</span>
+          <span>Verificacion por registro interno de {{ISSUER}}.</span>
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

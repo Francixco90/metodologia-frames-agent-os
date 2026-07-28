@@ -68,7 +68,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 99d52c8610a9d21f1380b9abd0dd871c3ee75a7592bb0cd2d82c5d5aecf52b26
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -101,7 +101,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 99d52c8610a9d21f1380b9abd0dd871c3ee75a7592bb0cd2d82c5d5aecf52b26
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -134,7 +134,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 99d52c8610a9d21f1380b9abd0dd871c3ee75a7592bb0cd2d82c5d5aecf52b26
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -167,7 +167,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 99d52c8610a9d21f1380b9abd0dd871c3ee75a7592bb0cd2d82c5d5aecf52b26
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -225,6 +225,7 @@ entries:
     event_ids:
       - EVT-SKL-STITCH-001
       - EVT-SKL-STITCH-002
+  - {skill_id: metodologia-certificate-builder, version: 0.1.0, current_state: active, content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e, package_manifest_sha256: 66f244729889ddb6f0c6cab1d0317662046ea18a724250ec89b065adaee3f655, package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines, lineage: skills/metodologia-certificate-builder/LINEAGE.yml, content_license: LicenseRef-MetodologIA-Internal, content_license_evidence: {text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md, text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8, receipt_ref: skills/instagram-v2-content-license-receipt.yml, receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298}, execution_scope: local-candidate-production, production_runtime_status: publication_blocked, tests: [pnpm verify:skills], event_ids: [EVT-SKL-CERT-001, EVT-SKL-CERT-002, EVT-SKL-CERT-003, EVT-SKL-CERT-004]}
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -424,3 +425,7 @@ events:
     transition: {from: evaluated, to: active}
     activation_scope: local-design-and-validation
     decision: activate_overlay_keep_runtime_license_blocked
+  - {event_id: EVT-SKL-CERT-001, event_order: 1, actor_id: skill-foundry-v2, skill_id: metodologia-certificate-builder, content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e, transition: {from: null, to: candidate}}
+  - {event_id: EVT-SKL-CERT-002, event_order: 2, actor_id: skill-foundry-v2, skill_id: metodologia-certificate-builder, content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e, transition: {from: candidate, to: quarantined}}
+  - {event_id: EVT-SKL-CERT-003, event_order: 3, actor_id: skill-foundry-v2-verifier, skill_id: metodologia-certificate-builder, content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e, transition: {from: quarantined, to: evaluated}}
+  - {event_id: EVT-SKL-CERT-004, event_order: 4, actor_id: skill-foundry-v2, skill_id: metodologia-certificate-builder, content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e, transition: {from: evaluated, to: active}}

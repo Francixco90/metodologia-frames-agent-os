@@ -393,22 +393,22 @@ budgets:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 117044
+    final_words: 117174
     maximum_multiplier: 1.5
     maximum_words: 117060
-    actual_multiplier: 1.4998
-    status: pass
+    actual_multiplier: 1.5015
+    status: fail
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
     baseline_words: 78040
-    final_words: 117044
+    final_words: 117174
     maximum_words: 156080
-    word_multiplier: 1.4998
+    word_multiplier: 1.5015
     baseline_loc: 29426
-    final_loc: 42889
+    final_loc: 42898
     maximum_loc: 58852
-    loc_multiplier: 1.4575
+    loc_multiplier: 1.4578
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -604,7 +604,7 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:.gitignore
       current_ref: working-tree:.gitignore
       current_state: present
-      current_sha256: 9f37e068f186eaa3e9c73c66f900d47c01cc893e6e1b64c87548537bca3fd693
+      current_sha256: f3509e55e16704ec5fddf94b8bf72fb54778098974c7c25cdb374f05d8747ce1
       current_words: 16
       current_loc: 16
       byte_identical: false
@@ -2725,9 +2725,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 2b226ce14218e8acd54b7a08b44b819b366f1dd49d63eaed2341ab9c3bbfa675
-      current_words: 406
-      current_loc: 111
+      current_sha256: 1b1001061af881bfdeedc59a5ce9e07cafd8addc44ddb0c85bb664fcd7cc669f
+      current_words: 416
+      current_loc: 113
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -5413,9 +5413,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: a84313f1f41a01d2f7859456fe684a56320f45055229fb714536c6b96d273457
-      current_words: 898
-      current_loc: 426
+      current_sha256: c19228ea84c517e4d41a97ab5d481b321aec13b693b0488632c1084f327563d5
+      current_words: 1000
+      current_loc: 431
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**

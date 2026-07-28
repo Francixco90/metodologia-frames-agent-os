@@ -43,6 +43,8 @@
     "carousel:build": "node --import tsx scripts/build-carousel-pilot.ts",
     "carousel:render": "node --import tsx renderers/static-social/scripts/render-carousel.ts",
     "carousel:orchestrate": "node --import tsx scripts/build-carousel-orchestration-run.ts",
+    "cb": "node --import tsx skills/metodologia-certificate-builder/scripts/render-certificates.ts",
+    "cv": "node --import tsx skills/metodologia-certificate-builder/scripts/validate-certificates.ts",
     "creation-doc:build": "node --import tsx scripts/build-creation-doc.ts",
     "verify:creation-doc": "node --import tsx scripts/check-creation-doc.ts",
     "atoms:build": "node --import tsx scripts/build-content-atoms.ts",

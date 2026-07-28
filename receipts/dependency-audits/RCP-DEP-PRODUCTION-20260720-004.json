@@ -11,7 +11,7 @@
     "moderate": 0,
     "low": 0
   },
-  "packageJsonSha256": "2b226ce14218e8acd54b7a08b44b819b366f1dd49d63eaed2341ab9c3bbfa675",
+  "packageJsonSha256": "1b1001061af881bfdeedc59a5ce9e07cafd8addc44ddb0c85bb664fcd7cc669f",
   "pnpmLockSha256": "ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd",
   "supersedesReceiptId": "RCP-DEP-PRODUCTION-20260720-003",
   "packageChangeScope": "h03_exact_renderer_adapters_types_and_verification_scripts",

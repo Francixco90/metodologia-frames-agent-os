@@ -1,0 +1,21 @@
+case_id: CERT-SKL-NEG-001
+condition: total_certifiable_hours_does_not_sum
+manifest:
+  package_id: certificados-bad-hours
+  issuer: MetodologIA
+  certificate_title: Certificado de Embajador
+  issue_date: '2026-07-14'
+  issue_date_display: 14 de julio de 2026
+  certification_statement: Finalizo satisfactoriamente el programa.
+  effort:
+  - {label: trabajo sincronico, hours: 48}
+  - {label: trabajo independiente, hours: 48}
+  total_certifiable_hours: 999
+  evidence_note: Competencias verificadas.
+  limitation_note: Constancia formativa interna.
+  recipients:
+  - {name: Persona Sintetica, folio: MDG-BAD-001}
+  signatures:
+  - {name: Firmante Sintetico, role: Instructor}
+expected_error: total_certifiable_hours
+expected_behavior: reject_before_render

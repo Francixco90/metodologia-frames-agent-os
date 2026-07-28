@@ -48,6 +48,7 @@ const skills = [
       'bloqueado',
     ],
   },
+  {id: 'metodologia-certificate-builder', scope: 'local-candidate-production', productionStatus: 'publication_blocked', positive: 'fixtures/positive/embajador-batch.yml', negative: 'fixtures/negative/hours-mismatch.yml', requiredTerms: ['cb', 'cv', 'RENDERED_DRAFT', 'coverage_gap', 'work/private']},
 ] as const;
 
 type RegistryEntry = {
