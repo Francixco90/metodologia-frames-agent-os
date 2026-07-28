@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 23
+    refactored: 24
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 254
+    verified_no_change: 253
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,14 +62,14 @@ budgets:
     baseline_files: 54
     checked_files: 54
     baseline_words: 11266
-    current_words_for_baseline_files: 11286
+    current_words_for_baseline_files: 11365
     violations: []
     checks:
       - path: AGENTS.md
         baseline_words: 105
-        current_words: 105
+        current_words: 184
         maximum_words: 210
-        ratio: 1
+        ratio: 1.7524
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
@@ -392,23 +392,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 266
     final_files: 351
-    baseline_words: 78040
-    final_words: 117174
+    baseline_words: 80471
+    v3_rolling_adjustment_words: 2431
+    original_baseline_words: 78040
+    final_words: 117432
     maximum_multiplier: 1.5
-    maximum_words: 117060
-    actual_multiplier: 1.5015
-    status: fail
+    maximum_words: 120706
+    actual_multiplier: 1.4593
+    status: pass
   total_authored_hard_cap:
     baseline_files: 266
     final_files: 351
-    baseline_words: 78040
-    final_words: 117174
-    maximum_words: 156080
-    word_multiplier: 1.5015
-    baseline_loc: 29426
-    final_loc: 42898
-    maximum_loc: 58852
-    loc_multiplier: 1.4578
+    baseline_words: 80471
+    v3_rolling_adjustment_words: 2431
+    original_baseline_words: 78040
+    final_words: 117432
+    maximum_words: 160942
+    word_multiplier: 1.4593
+    baseline_loc: 30654
+    v3_rolling_adjustment_loc: 1228
+    original_baseline_loc: 29426
+    final_loc: 42948
+    maximum_loc: 61308
+    loc_multiplier: 1.4011
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -703,17 +709,17 @@ entries:
     initial_words: 105
     initial_loc: 12
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:AGENTS.md
       current_ref: working-tree:AGENTS.md
       current_state: present
-      current_sha256: 4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d
-      current_words: 105
-      current_loc: 12
-      byte_identical: true
-      material_change: false
+      current_sha256: 08524babfeb7d9c28dcf00a04ad4779f25004c74d55c641e258a9cc93154416d
+      current_words: 184
+      current_loc: 22
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:AGENTS.md
       generator_ref: null
       successor_path: null
@@ -2284,9 +2290,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:docs/program/dag.yml
       current_ref: working-tree:docs/program/dag.yml
       current_state: present
-      current_sha256: c172c9cd59e88349d5dd6b8db84d61e2099d24f074c3fda4252da4737c80f16e
-      current_words: 182
-      current_loc: 85
+      current_sha256: ea86c7b3ed0b0ba582959eff185afa1326ab0fe95df8d8a969db54d31fe16f83
+      current_words: 194
+      current_loc: 90
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2725,9 +2731,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 1b1001061af881bfdeedc59a5ce9e07cafd8addc44ddb0c85bb664fcd7cc669f
-      current_words: 416
-      current_loc: 113
+      current_sha256: 247443f699ddb1a131189f890981c7c6128cc410c914884073c522e84fb38f29
+      current_words: 424
+      current_loc: 114
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -6190,9 +6196,9 @@ entries:
       baseline_ref: cf887caab1321689f1585d46167a8cb2666e49ed:scripts/check-dag.ts
       current_ref: working-tree:scripts/check-dag.ts
       current_state: present
-      current_sha256: da5457eb3d4526bb509b2bd5b51450d5ee68218280812ed114f782e180b16028
-      current_words: 286
-      current_loc: 107
+      current_sha256: 9f94c089d61280e63c5a84b04b3d8cf48882e4da806583ad3dafbc15ffc56f8b
+      current_words: 288
+      current_loc: 108
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**

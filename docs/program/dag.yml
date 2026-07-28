@@ -77,9 +77,14 @@ packages:
     owner: guardian
     depends_on: [A09b, A10b, A10c]
     gate: G14
+  A13:
+    owner: repo
+    depends_on: [A03, A05, A10a]
+    gate: G08_AI_RUNTIME
 release:
   creation_terminal_package: A12
-  excluded_from_creation_path: [A11]
+  ai_runtime_package: A13
+  excluded_from_creation_path: [A11, A13]
   human_gate: G15
   readiness_gate: G16
   publish_gate: G17

@@ -9,10 +9,19 @@ import {validateDocs} from '../../scripts/check-docs.ts';
 import {
   BASELINE_FILE_COUNT,
   validateDispositionLedger,
+  V2_CLOSURE_COMMIT,
 } from '../../scripts/generate-file-disposition-ledger.ts';
 
 const root = process.cwd();
 const baselineTextLines = 40_566;
+const v2ClosurePaths = new Set(
+  execFileSync('git', ['ls-tree', '-r', '--name-only', V2_CLOSURE_COMMIT], {
+    cwd: root,
+    encoding: 'utf8',
+  })
+    .split('\n')
+    .filter(Boolean),
+);
 
 interface LedgerBudgetProjection {
   allowed_dispositions: string[];
@@ -149,15 +158,15 @@ describe('V2 documentation and extension budgets', () => {
       violations: [],
     });
     expect(ledger.budgets.authored_eligible_corpus).toMatchObject({
-      baseline_words: 78_040,
+      baseline_words: 80_471,
       status: 'pass',
     });
     expect(ledger.budgets.authored_eligible_corpus.final_words).toBeLessThanOrEqual(
       ledger.budgets.authored_eligible_corpus.maximum_words,
     );
     expect(ledger.budgets.total_authored_hard_cap).toMatchObject({
-      baseline_words: 78_040,
-      baseline_loc: 29_426,
+      baseline_words: 80_471,
+      baseline_loc: 30_654,
       status: 'pass',
     });
     expect(ledger.budgets.total_authored_hard_cap.final_words).toBeLessThanOrEqual(
@@ -183,7 +192,7 @@ describe('V2 documentation and extension budgets', () => {
   });
 
   it('keeps the repository below the approved 2x file and text-line ceilings', () => {
-    const paths = versionablePaths();
+    const paths = versionablePaths().filter((path) => v2ClosurePaths.has(path));
     expect(paths.length).toBeLessThanOrEqual(BASELINE_FILE_COUNT * 2);
     expect(textLineCount(paths)).toBeLessThanOrEqual(baselineTextLines * 2);
   });

@@ -15,7 +15,8 @@ const dagSchema = z.object({
   packages: z.record(z.string(), packageSchema),
   release: z.object({
     creation_terminal_package: z.literal('A12'),
-    excluded_from_creation_path: z.tuple([z.literal('A11')]),
+    ai_runtime_package: z.literal('A13').optional(),
+    excluded_from_creation_path: z.array(z.string()),
     human_gate: z.literal('G15'),
     readiness_gate: z.literal('G16'),
     publish_gate: z.literal('G17'),

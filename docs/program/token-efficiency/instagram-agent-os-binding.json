@@ -1,0 +1,47 @@
+{
+  "schema_version": "harness-binding-v1",
+  "harness_id": "metodologia-instagram-agent-os",
+  "allowed_profiles": [
+    "instagram-creation",
+    "instagram-engineering",
+    "instagram-debug-verbose",
+    "instagram-review",
+    "instagram-guardian"
+  ],
+  "allowed_stages": [
+    "discovered",
+    "pinned",
+    "licensed",
+    "security-reviewed",
+    "planned",
+    "installed-isolated",
+    "smoke-passed",
+    "benchmark-passed",
+    "promoted",
+    "monitored",
+    "quarantined",
+    "rolled-back"
+  ],
+  "allowed_actors": ["producer", "verifier", "guardian"],
+  "capabilities": [
+    "token.response-compression",
+    "code.minimum-sufficient",
+    "token.tool-output-compression",
+    "context.bootstrap-minimization",
+    "communication.wellbeing"
+  ],
+  "exclusions": [
+    "copy and captions",
+    "accessibility",
+    "claims",
+    "approvals",
+    "brand communication",
+    "contracts",
+    "publication"
+  ],
+  "required_verdict_hash": null,
+  "valid_until": null,
+  "source": "metodologia-os-clean/01-system/contracts/token-efficiency/bindings/instagram-agent-os-binding.json",
+  "default_mode": "off",
+  "activation_policy": "All token-efficiency frames are OFF by default. Activation requires an approved BenchmarkVerdict with A/B evidence. No frame activates on human, publishable, Guardian, or brand content."
+}
