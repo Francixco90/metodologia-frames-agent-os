@@ -19,6 +19,7 @@ const SignatureSchema = z.strictObject({
   name: z.string().min(1).max(200),
   role: z.string().min(1).max(200),
   asset_path: z.string().min(1).max(500).optional(),
+  asset_presentation: z.enum(['standard', 'invert']).optional(),
 });
 
 export const CertificateManifestSchema = z
@@ -34,17 +35,40 @@ export const CertificateManifestSchema = z
     rail_label: z.string().min(1).max(200).optional(),
     issue_date: z.string().regex(datePattern, 'issue_date must be YYYY-MM-DD'),
     issue_date_display: z.string().min(1).max(200),
+    completion_date_display: z.string().min(1).max(200).optional(),
+    artifact_state: z.enum(['RENDERED_DRAFT', 'FINAL']),
+    hours_claim_mode: z.enum(['certifiable_hours', 'estimated_program_load']),
+    approved_demo_sha256: z.string().regex(/^[a-f0-9]{64}$/u).optional(),
     certification_statement: z.string().min(1).max(420),
     effort_summary: z.string().min(1).max(400).optional(),
+    learning_areas: z.array(z.string().min(1).max(120)).min(3).max(8).optional(),
     effort: z.array(EffortItemSchema).min(1).max(4),
     total_certifiable_hours: z.number().nonnegative().finite(),
     evidence_note: z.string().min(1).max(400),
     limitation_note: z.string().min(1).max(400),
     panel_title: z.string().min(1).max(200).optional(),
+    program_focus: z.string().min(1).max(200).optional(),
+    program_cycle: z.string().min(1).max(200).optional(),
     recipients: z.array(RecipientSchema).min(1),
     signatures: z.array(SignatureSchema).min(1).max(3),
     coverage_gap: z.array(z.string().min(1)).optional(),
   })
+  .refine(
+    (data) => data.artifact_state !== 'FINAL' || Boolean(data.approved_demo_sha256),
+    {
+      message: 'FINAL requires approved_demo_sha256 from an explicitly approved demo',
+      path: ['approved_demo_sha256'],
+    },
+  )
+  .refine(
+    (data) =>
+      data.hours_claim_mode !== 'estimated_program_load' ||
+      data.effort.every((item) => item.estimated === true),
+    {
+      message: 'estimated_program_load requires estimated: true on every effort item',
+      path: ['effort'],
+    },
+  )
   .refine(
     (data) => {
       const sum = data.effort.reduce((acc, item) => acc + item.hours, 0);

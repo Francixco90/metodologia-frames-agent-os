@@ -10,8 +10,12 @@ const validManifest = {
   rail_label: 'MetodologIA Embajadores',
   issue_date: '2026-07-14',
   issue_date_display: '14 de julio de 2026',
+  completion_date_display: '12 de julio de 2026',
+  artifact_state: 'RENDERED_DRAFT',
+  hours_claim_mode: 'certifiable_hours',
   certification_statement: 'Finalizo satisfactoriamente el programa.',
   effort_summary: 'Recorrido formativo completo.',
+  learning_areas: ['Área uno', 'Área dos', 'Área tres'],
   effort: [
     {label: 'trabajo sincronico', hours: 48},
     {label: 'trabajo independiente', hours: 48},
@@ -100,5 +104,29 @@ describe('CertificateManifestSchema', () => {
       recipients: [{name: 'Persona Ejemplo', folio: 'MDG-001', display_lines: ['Persona', 'Ejemplo']}],
     };
     expect(() => CertificateManifestSchema.parse(good)).not.toThrow();
+  });
+
+  it('blocks FINAL without an approved demo hash', () => {
+    const bad = {...validManifest, artifact_state: 'FINAL'};
+    expect(() => CertificateManifestSchema.parse(bad)).toThrow(/approved_demo_sha256/u);
+  });
+
+  it('accepts FINAL bound to an approved demo hash', () => {
+    const good = {
+      ...validManifest,
+      artifact_state: 'FINAL',
+      approved_demo_sha256: 'a'.repeat(64),
+    };
+    expect(() => CertificateManifestSchema.parse(good)).not.toThrow();
+  });
+
+  it('requires every effort component to be estimated in estimated program load mode', () => {
+    const bad = {...validManifest, hours_claim_mode: 'estimated_program_load'};
+    expect(() => CertificateManifestSchema.parse(bad)).toThrow(/estimated/u);
+  });
+
+  it('rejects an incomplete learning areas list', () => {
+    const bad = {...validManifest, learning_areas: ['Área uno', 'Área dos']};
+    expect(() => CertificateManifestSchema.parse(bad)).toThrow();
   });
 });

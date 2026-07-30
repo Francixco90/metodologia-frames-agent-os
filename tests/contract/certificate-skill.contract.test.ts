@@ -47,7 +47,7 @@ describe('metodologia-certificate-builder skill registry binding', () => {
       publication_authority?: boolean;
     };
     expect(lineage.skill_id).toBe('metodologia-certificate-builder');
-    expect(lineage.version).toBe('0.1.0');
+    expect(lineage.version).toBe('0.3.0');
     expect(lineage.content_origin).toMatch(/^locally_authored/);
     expect(lineage.lifecycle_state).toBe('active');
     expect(lineage.execution_scope).toBe('local-candidate-production');
@@ -75,7 +75,7 @@ describe('metodologia-certificate-builder skill registry binding', () => {
     };
     const entry = registry.entries?.find((e) => e.skill_id === 'metodologia-certificate-builder');
     expect(entry).toBeDefined();
-    expect(entry?.version).toBe('0.1.0');
+    expect(entry?.version).toBe('0.3.0');
     expect(entry?.current_state).toBe('active');
     expect(entry?.execution_scope).toBe('local-candidate-production');
     expect(entry?.production_runtime_status).toBe('publication_blocked');
@@ -90,7 +90,7 @@ describe('metodologia-certificate-builder skill registry binding', () => {
     expect(tests).toContain('pnpm verify:skills');
   });
 
-  it('has 4 lifecycle events with correct transitions', () => {
+  it('preserves the lifecycle chain and appends the 0.2.1 activation event', () => {
     const registry = parse(readFileSync(registryPath, 'utf8')) as {
       events?: Array<{
         skill_id?: string;
@@ -101,16 +101,18 @@ describe('metodologia-certificate-builder skill registry binding', () => {
     const events = (registry.events ?? [])
       .filter((e) => e.skill_id === 'metodologia-certificate-builder')
       .sort((a, b) => (a.event_order ?? 0) - (b.event_order ?? 0));
-    expect(events).toHaveLength(4);
+    expect(events).toHaveLength(6);
     const expected = [
       {from: null, to: 'candidate'},
       {from: 'candidate', to: 'quarantined'},
       {from: 'quarantined', to: 'evaluated'},
       {from: 'evaluated', to: 'active'},
     ];
-    events.forEach((event, index) => {
+    events.slice(0, 4).forEach((event, index) => {
       expect(event.transition?.from).toBe(expected[index]?.from ?? null);
       expect(event.transition?.to).toBe(expected[index]?.to);
     });
+    expect(events[4]?.transition).toEqual({from: 'active', to: 'active'});
+    expect(events[5]?.transition).toEqual({from: 'active', to: 'active'});
   });
 });

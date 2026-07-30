@@ -126,6 +126,7 @@ for (const skill of skills) {
   if (!existsSync(resolve(root, skillPath)) || !existsSync(resolve(root, lineagePath))) continue;
 
   const text = readFileSync(resolve(root, skillPath), 'utf8');
+  const expectedVersion = skill.id === 'metodologia-certificate-builder' ? '0.2.1' : '0.1.0';
   const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n/u);
   if (frontmatterMatch === null) {
     errors.push(`SKL-V2-003 ${skill.id}: frontmatter missing`);
@@ -134,13 +135,11 @@ for (const skill of skills) {
   const frontmatter = parse(frontmatterMatch[1] ?? '') as {
     name?: string;
     description?: string;
-    version?: string;
     license?: string;
     metadata?: {lifecycle_state?: string; execution_scope?: string};
   };
   if (
     frontmatter.name !== skill.id ||
-    frontmatter.version !== '0.1.0' ||
     frontmatter.license !== 'LicenseRef-MetodologIA-Internal' ||
     !frontmatter.description?.startsWith('This skill should be used when') ||
     frontmatter.metadata?.lifecycle_state !== 'active' ||
@@ -170,7 +169,7 @@ for (const skill of skills) {
   };
   if (
     lineage.skill_id !== skill.id ||
-    lineage.version !== '0.1.0' ||
+    lineage.version !== expectedVersion ||
     !lineage.content_origin?.startsWith('locally_authored') ||
     lineage.lifecycle_state !== 'active' ||
     lineage.execution_scope !== skill.scope ||
@@ -193,7 +192,7 @@ for (const skill of skills) {
   const contentHash = sha256(text);
   const manifestHash = packageDigest(skillRoot);
   if (
-    entry?.version !== '0.1.0' ||
+    entry?.version !== expectedVersion ||
     entry.current_state !== 'active' ||
     entry.content_sha256 !== contentHash ||
     entry.package_manifest_sha256 !== manifestHash ||
@@ -221,16 +220,19 @@ for (const skill of skills) {
     ['quarantined', 'evaluated'],
     ['evaluated', 'active'],
   ];
+  const latestEvent = events.at(-1);
   if (
-    events.length !== 4 ||
-    events.some(
+    events.length < 4 ||
+    events.some((event, index) => event.event_order !== index + 1) ||
+    events.slice(0, 4).some(
       (event, index) =>
-        event.event_order !== index + 1 ||
-        event.content_sha256 !== contentHash ||
         event.transition?.from !== expectedTransitions[index]?.[0] ||
         event.transition?.to !== expectedTransitions[index]?.[1] ||
         !entry?.event_ids?.includes(event.event_id ?? ''),
-    )
+    ) ||
+    events.some((event) => !entry?.event_ids?.includes(event.event_id ?? '')) ||
+    latestEvent?.content_sha256 !== contentHash ||
+    latestEvent.transition?.to !== 'active'
   ) {
     errors.push(`SKL-V2-010 ${skill.id}: lifecycle chain mismatch`);
   }

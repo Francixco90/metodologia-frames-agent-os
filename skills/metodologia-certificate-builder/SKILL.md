@@ -1,9 +1,7 @@
 ---
 name: metodologia-certificate-builder
 description: This skill should be used when the user asks to "create MetodologIA certificates", "emit certificate batches", "validate certificate packages", "regenerate certificates from a manifest", or "prepare HTML certificates for printing or PDF conversion".
-version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Requires the certificate manifest Zod schema, A4 landscape HTML template, and hash-bound brand profiles.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -21,10 +19,13 @@ como un mismo paquete hash-bound.
 1. Leer primero cualquier certificado, plantilla, manifiesto, lista o regla de marca entregada
    por el usuario.
 2. Confirmar marca activa, tipo de certificado, fuente de los claims, fecha, destinatarios,
-   folios, desglose horario, total y firmantes.
+   folios, desglose horario, total, `artifact_state`, `hours_claim_mode` y firmantes.
 3. Resolver `BrandProfileV2`, `VoiceProfileV2` y `ChannelProfileV1` por hash antes de renderizar.
 4. Tratar como `coverage_gap` cualquier dato material no suministrado. No inferir aprobacion,
    competencia demostrada, horas, acreditacion externa ni fecha historica.
+5. Usar `RENDERED_DRAFT` para demos. Exigir `approved_demo_sha256` antes de aceptar `FINAL`.
+6. Usar `learning_areas` para mostrar el alcance formativo de manera estructurada cuando exista
+   una fuente aprobada. No convertir el listado en una declaracion de competencia.
 
 ## Produccion
 
@@ -45,6 +46,8 @@ como un mismo paquete hash-bound.
 
 6. Si se solicita PDF, convertirlo solo despues del pass HTML/visual y usar la skill PDF
    aplicable. No declarar aptitud de imprenta ni PDF/X sin su gate especifico.
+7. No compartir `assets/certificate-template.html`: al abrirse directamente debe mostrar el
+   guard de plantilla tecnica, nunca un certificado con tokens sin resolver.
 
 ## Claims y evidencia
 
@@ -54,6 +57,8 @@ como un mismo paquete hash-bound.
 - Verificar aritmeticamente cada total certificable contra sus componentes (el schema Zod lo
   exige).
 - Etiquetar horas aproximadas como estimadas en el copy y en el manifiesto.
+- Usar `hours_claim_mode: estimated_program_load` para mostrar `h estimadas`; no presentar esa
+  carga prevista como horas certificables.
 - Mantener una nota de alcance cuando el certificado sea interno y no constituya acreditacion
   externa o licencia profesional.
 - Exigir revision humana para certificados publicables, contractuales o que puedan interpretarse
@@ -65,6 +70,7 @@ como un mismo paquete hash-bound.
 - Aceptar firmas solo desde archivos locales autorizados; copiar al paquete como assets relativos.
 - Bloquear en el HTML final `http(s)`, `file://`, `data:`, `blob:`, rutas absolutas, CDNs,
   fuentes remotas y tracking.
+- Copiar Poppins y Montserrat desde el manifiesto local de fuentes autorizado y hash-bound.
 - No leer caches, historiales, cookies, tokens ni perfiles de navegador como fuente de
   certificados.
 
@@ -78,11 +84,13 @@ aceptacion explicita; no emitir `READY` ni publicar.
 ## Recursos
 
 - Usar [assets/certificate-template.html](assets/certificate-template.html) como shell A4
-  landscape local.
-- Usar [scripts/render-certificates.ts](scripts/render-certificates.ts) para generar HTML, indice
-  y manifiesto de salida.
+  landscape local de tres paginas (certificado, competencias y ruta formativa).
+  El template es self-contained: fuentes woff2 embebidas, SVG inline y JS vanilla.
+- El renderizador inyecta los datos del participante en el objeto `certificateData`
+  del template mediante [scripts/render-certificates.ts](scripts/render-certificates.ts),
+  que genera HTML, indice y manifiesto de salida.
 - Usar [scripts/validate-certificates.ts](scripts/validate-certificates.ts) para validar
-  estructura, hashes, assets, folios, copy nominal y suma horaria.
+  estructura, hashes, assets, folios, datos inyectados y suma horaria.
 - Leer [references/certificate-manifest.md](references/certificate-manifest.md) al preparar o
   revisar el JSON de entrada.
 
@@ -90,8 +98,8 @@ aceptacion explicita; no emitir `READY` ni publicar.
 
 - Confirmar conteo esperado y observado.
 - Confirmar folios unicos, hashes actuales y assets relativos existentes.
-- Confirmar una sola etiqueta `h1`, shell semantica y cero referencias remotas o rutas privadas.
-- Confirmar total horario exacto y copy material presente en todos los certificados.
+- Confirmar `data-render-status="rendered"`, `certificateData` inyectado y cero referencias remotas o rutas privadas.
+- Confirmar total horario exacto y datos del participante presentes en todos los certificados.
 - Revisar visualmente cada pagina o registrar `coverage_gap` si no hay navegador.
 - Reportar archivos creados, validaciones, decision, privacidad, gaps y siguiente accion.
 

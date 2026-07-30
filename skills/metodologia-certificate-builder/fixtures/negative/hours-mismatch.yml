@@ -6,6 +6,8 @@ manifest:
   certificate_title: Certificado de Embajador
   issue_date: '2026-07-14'
   issue_date_display: 14 de julio de 2026
+  artifact_state: RENDERED_DRAFT
+  hours_claim_mode: certifiable_hours
   certification_statement: Finalizo satisfactoriamente el programa.
   effort:
   - {label: trabajo sincronico, hours: 48}

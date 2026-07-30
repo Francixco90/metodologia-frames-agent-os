@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: metodologia-certificate-builder
-version: 0.1.0
+version: 0.3.0
 content_origin: locally_authored
 lifecycle_state: active
 execution_scope: local-candidate-production
@@ -9,6 +9,6 @@ authority_refs:
   - registries/brand/voice-profile-v2.yml
   - skills/metodologia-certificate-builder/schemas/certificate-manifest.ts
   - skills/metodologia-certificate-builder/assets/certificate-template.html
-compatibility_contract: certificate-manifest-v1
+compatibility_contract: certificate-manifest-v2-template-v15
 external_fragments_reused: false
 publication_authority: false

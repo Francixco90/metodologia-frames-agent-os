@@ -1,6 +1,16 @@
 #!/usr/bin/env node
-import {copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync} from 'node:fs';
-import {join, resolve, dirname, extname, basename, isAbsolute} from 'node:path';
+import {
+  copyFileSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  realpathSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
+import {join, resolve, dirname, extname, basename, isAbsolute, relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {CertificateManifestSchema, type CertificateManifest} from '../schemas/certificate-manifest';
@@ -8,6 +18,14 @@ import {escapeHtml, fileSha256, readJson, slugify} from '../../../scripts/lib/ce
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'certificate-template.html');
+const repoRoot = resolve(scriptDir, '..', '..', '..');
+const BRAND_BINDINGS = [
+  'registries/brand/brand-profile-v2.yml',
+  'registries/brand/voice-profile-v2.yml',
+  'brand/tokens/brand-tokens.yml',
+  'brand/fonts/font-manifest.yml',
+  'brand/fonts/rights-receipt.yml',
+] as const;
 
 interface Args {
   input: string;
@@ -41,6 +59,7 @@ function parseArgs(argv: string[]): Args {
 interface NormalizedSignature {
   name: string;
   role: string;
+  asset_presentation?: 'standard' | 'invert' | undefined;
   asset_path?: string | undefined;
   asset: string | null;
   html_asset: string | null;
@@ -60,9 +79,16 @@ function copySignatureAssets(
     if (/^(https?|file|data|blob):/i.test(sig.asset_path)) {
       throw new Error(`Signature asset must be a local file path: ${sig.asset_path}`);
     }
-    const source = isAbsolute(sig.asset_path) ? sig.asset_path : resolve(inputDir, sig.asset_path);
+    if (isAbsolute(sig.asset_path)) {
+      throw new Error(`Signature asset path must be relative to the manifest: ${sig.asset_path}`);
+    }
+    const source = resolve(inputDir, sig.asset_path);
     if (!existsSync(source) || !statSync(source).isFile()) {
       throw new Error(`Signature asset not found: ${sig.asset_path}`);
+    }
+    const relativeSource = relative(realpathSync(inputDir), realpathSync(source));
+    if (relativeSource.startsWith('..') || isAbsolute(relativeSource) || lstatSync(source).isSymbolicLink()) {
+      throw new Error(`Signature asset must stay inside the manifest directory: ${sig.asset_path}`);
     }
     const ext = extname(source).toLowerCase();
     if (!['.png', '.jpg', '.jpeg', '.webp'].includes(ext)) {
@@ -80,36 +106,70 @@ function copySignatureAssets(
   });
 }
 
-function effortRows(effort: CertificateManifest['effort']): string {
-  return effort
-    .map((item) => {
-      const estimate = item.estimated ? '<span class="estimate">estimadas</span>' : '';
-      return `<div class="hour-row"><span class="hour-number">${escapeHtml(item.hours)} h</span><span class="hour-label">${escapeHtml(item.label)} ${estimate}</span></div>`;
-    })
-    .join('\n');
+function splitName(fullName: string): {nombres: string; apellidos: string} {
+  const parts = fullName.trim().split(/\s+/);
+  if (parts.length <= 1) {
+    return {nombres: parts[0] ?? '', apellidos: ''};
+  }
+  if (parts.length === 2) {
+    return {nombres: parts[0] ?? '', apellidos: parts[1] ?? ''};
+  }
+  const apellidos = parts.slice(-2).join(' ');
+  const nombres = parts.slice(0, -2).join(' ');
+  return {nombres, apellidos};
 }
 
-function signatureCards(signatures: NormalizedSignature[]): string {
-  return signatures
-    .map((sig) => {
-      const image = sig.html_asset
-        ? `<img class="signature-image" src="${escapeHtml(sig.html_asset)}" alt="Firma de ${escapeHtml(sig.name)}">`
-        : '<div class="signature-image signature-image--empty" aria-hidden="true"></div>';
-      return `<section class="signature">${image}<div class="signature-line" aria-hidden="true"></div><p class="issuer-name">${escapeHtml(sig.name)}</p><p class="issuer-role">${escapeHtml(sig.role)}</p></section>`;
-    })
-    .join('\n');
+function buildCertificateDataJs(
+  config: CertificateManifest,
+  recipient: CertificateManifest['recipients'][number],
+): string {
+  const displayLines = recipient.display_lines ?? [];
+  const split = splitName(recipient.name);
+  const nombres = displayLines.length >= 2 ? displayLines[0]! : split.nombres;
+  const apellidos = displayLines.length >= 2 ? displayLines[1]! : split.apellidos;
+  const estado = config.artifact_state === 'FINAL' ? 'emitido' : 'demo';
+  const fechaGrado = config.completion_date_display ?? config.issue_date_display;
+  const enfoqueProfesional = config.program_focus ?? 'Método + IA';
+  const ciclo = config.program_cycle ?? '';
+  const sig0 = config.signatures[0];
+  const sig1 = config.signatures[1];
+  const data: Record<string, string> = {
+    estado,
+    nombres,
+    apellidos,
+    intensidad: String(config.total_certifiable_hours),
+    fechaGrado,
+    enfoqueProfesional,
+    ciclo,
+    firmaPrincipal: sig0?.name ?? '',
+    cargoPrincipal: sig0?.role ?? '',
+    firmaSecundaria: sig1?.name ?? config.issuer,
+    cargoSecundaria: sig1?.role ?? '',
+    folio: recipient.folio,
+  };
+  const entries = Object.entries(data)
+    .map(([key, value]) => `      ${key}: ${JSON.stringify(value)}`)
+    .join(',\n');
+  return `    const certificateData = Object.freeze({\n${entries},\n    });`;
 }
 
-function replaceTokens(template: string, values: Record<string, string>): string {
-  let output = template;
-  for (const [key, value] of Object.entries(values)) {
-    output = output.split(`{{${key}}}`).join(value);
+function injectCertificateData(template: string, dataJs: string): string {
+  const pattern = /const certificateData = Object\.freeze\(\{[\s\S]*?\}\);/;
+  if (!pattern.test(template)) {
+    throw new Error('Template does not contain a certificateData block to inject into.');
   }
-  const unresolved = output.match(/\{\{[A-Z0-9_]+\}\}/g);
-  if (unresolved) {
-    throw new Error(`Template has unresolved tokens: ${[...new Set(unresolved)].join(', ')}`);
-  }
-  return output;
+  return template.replace(pattern, dataJs);
+}
+
+function activateRenderedState(html: string, artifactState: string): string {
+  const templateState = artifactState === 'FINAL' ? 'emitido' : 'demo';
+  return html
+    .replace('<body ', '<body data-render-status="rendered" ')
+    .replace(/data-template-state="(?:demo|emitido)"/, `data-template-state="${templateState}"`);
+}
+
+function updatePageTitle(html: string, title: string): string {
+  return html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`);
 }
 
 interface OutputEntry {
@@ -119,6 +179,13 @@ interface OutputEntry {
   file_name: string;
   relative_path: string;
   sha256: string;
+}
+
+function walkFiles(root: string, current = root): string[] {
+  return readdirSync(current, {withFileTypes: true}).flatMap((entry) => {
+    const absolute = join(current, entry.name);
+    return entry.isDirectory() ? walkFiles(root, absolute) : [relative(root, absolute).replace(/\\/g, '/')];
+  });
 }
 
 function writeIndex(
@@ -180,38 +247,18 @@ function main(): void {
   const assetsDir = join(outputRoot, 'assets');
   mkdirSync(htmlDir, {recursive: true});
   const signatures = copySignatureAssets(config.signatures, dirname(inputPath), assetsDir);
-  const sigMarkup = signatureCards(signatures);
-  const rows = effortRows(config.effort);
 
   const outputs: OutputEntry[] = config.recipients.map((recipient, index) => {
     const fileName = `${String(index + 1).padStart(2, '0')}-${slugify(recipient.name)}.html`;
     const outputPath = join(htmlDir, fileName);
-    const nameClass = recipient.name.length > 38 ? 'recipient-name is-long' : 'recipient-name';
-    const displayLines = recipient.display_lines ?? [recipient.name];
-    const html = replaceTokens(template, {
-      PAGE_TITLE: escapeHtml(`${config.certificate_title} | ${config.issuer}`),
-      ISSUER: escapeHtml(config.issuer),
-      RAIL_LABEL: escapeHtml(config.rail_label ?? 'MetodologIA'),
-      META_LABEL: escapeHtml(config.meta_label ?? 'Certificado MetodologIA'),
-      ISSUE_DATE: escapeHtml(config.issue_date_display),
-      CERTIFICATE_TITLE: escapeHtml(config.certificate_title),
-      RECIPIENT_CLASS: nameClass,
-      RECIPIENT_NAME: displayLines.map(escapeHtml).join('<br>'),
-      CERTIFICATION_STATEMENT: escapeHtml(config.certification_statement),
-      EFFORT_SUMMARY: escapeHtml(config.effort_summary ?? ''),
-      EVIDENCE_NOTE: escapeHtml(config.evidence_note),
-      LIMITATION_NOTE: escapeHtml(config.limitation_note),
-      PANEL_TITLE: escapeHtml(config.panel_title ?? 'Esfuerzo formativo'),
-      EFFORT_ROWS: rows,
-      TOTAL_HOURS: escapeHtml(config.total_certifiable_hours),
-      SIGNATURE_COUNT: String(signatures.length),
-      SIGNATURES: sigMarkup,
-      FOLIO: escapeHtml(recipient.folio),
-    });
+    const dataJs = buildCertificateDataJs(config, recipient);
+    let html = injectCertificateData(template, dataJs);
+    html = activateRenderedState(html, config.artifact_state);
+    html = updatePageTitle(html, `${config.certificate_title} | ${config.issuer}`);
     writeFileSync(outputPath, html, 'utf8');
     return {
       name: recipient.name,
-      display_lines: displayLines,
+      display_lines: recipient.display_lines ?? [recipient.name],
       folio: recipient.folio,
       file_name: fileName,
       relative_path: `html/${fileName}`,
@@ -221,28 +268,48 @@ function main(): void {
 
   writeIndex(outputRoot, config, outputs);
 
+  const brandBindings = BRAND_BINDINGS.map((path) => ({
+    path,
+    sha256: fileSha256(join(repoRoot, path)),
+  }));
+  const boundFiles = walkFiles(outputRoot)
+    .sort()
+    .map((path) => ({path, sha256: fileSha256(join(outputRoot, path))}));
   const outputManifest = {
+    generator: {id: 'metodologia-certificate-builder', version: '0.3.0'},
     package_id: config.package_id,
     generated_at: new Date().toISOString(),
     source_input: basename(inputPath),
+    artifact_state: config.artifact_state,
+    hours_claim_mode: config.hours_claim_mode,
+    approved_demo_sha256: config.approved_demo_sha256 ?? null,
     issuer: config.issuer,
     certificate_title: config.certificate_title,
     issue_date: config.issue_date,
     issue_date_display: config.issue_date_display,
+    completion_date_display: config.completion_date_display,
     certification_statement: config.certification_statement,
     effort_summary: config.effort_summary,
+    learning_areas: config.learning_areas,
+    program_focus: config.program_focus ?? 'Método + IA',
+    program_cycle: config.program_cycle ?? null,
     effort: config.effort,
     total_certifiable_hours: config.total_certifiable_hours,
     evidence_note: config.evidence_note,
     limitation_note: config.limitation_note,
     count: outputs.length,
     outputs,
-    signatures: signatures.map(({name, role, asset, sha256: digest}) => ({
+    signatures: signatures.map(({name, role, asset_presentation, asset, sha256: digest}) => ({
       name,
       role,
+      asset_presentation: asset_presentation ?? 'standard',
       asset,
       sha256: digest,
     })),
+    template_sha256: fileSha256(TEMPLATE_PATH),
+    brand_bindings: brandBindings,
+    file_allowlist: boundFiles.map(({path}) => path),
+    files: boundFiles,
     coverage_gap: config.coverage_gap ?? [],
   };
   writeFileSync(join(outputRoot, 'manifest.json'), `${JSON.stringify(outputManifest, null, 2)}\n`, 'utf8');

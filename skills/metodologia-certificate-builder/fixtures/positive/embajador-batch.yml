@@ -7,10 +7,16 @@ manifest:
   rail_label: MetodologIA Embajadores
   issue_date: '2026-07-14'
   issue_date_display: 14 de julio de 2026
+  completion_date_display: 12 de julio de 2026
+  artifact_state: RENDERED_DRAFT
+  hours_claim_mode: certifiable_hours
   certification_statement: Finalizo satisfactoriamente el programa, demostro las competencias
     previstas y obtuvo la declaratoria correspondiente.
   effort_summary: El recorrido comprendio trabajo sincronico, trabajo independiente
     y cierre de entregables.
+  learning_areas: [Area uno, Area dos, Area tres]
+  program_focus: Método + IA
+  program_cycle: Ciclo 1 · 2026
   effort:
   - {label: trabajo sincronico, hours: 48}
   - {label: trabajo independiente, hours: 48}

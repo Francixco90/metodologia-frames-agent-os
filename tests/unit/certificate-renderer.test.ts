@@ -1,4 +1,4 @@
-import {mkdtempSync, rmSync, writeFileSync, existsSync} from 'node:fs';
+import {existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -23,8 +23,12 @@ const validManifest = {
   rail_label: 'MetodologIA Embajadores',
   issue_date: '2026-07-14',
   issue_date_display: '14 de julio de 2026',
+  completion_date_display: '12 de julio de 2026',
+  artifact_state: 'RENDERED_DRAFT',
+  hours_claim_mode: 'certifiable_hours',
   certification_statement: 'Finalizo satisfactoriamente el programa.',
   effort_summary: 'Recorrido formativo completo.',
+  learning_areas: ['Área uno', 'Área dos', 'Área tres'],
   effort: [
     {label: 'trabajo sincronico', hours: 48},
     {label: 'trabajo independiente', hours: 48},
@@ -69,6 +73,15 @@ describe('certificate render + validate round-trip', () => {
     expect(existsSync(join(outputDir, 'index.html'))).toBe(true);
     expect(existsSync(join(outputDir, 'html', '01-persona-sintetica-uno.html'))).toBe(true);
     expect(existsSync(join(outputDir, 'html', '02-persona-sintetica-dos.html'))).toBe(true);
+    const firstHtml = readFileSync(
+      join(outputDir, 'html', '01-persona-sintetica-uno.html'),
+      'utf8',
+    );
+    expect(firstHtml).toContain('data-render-status="rendered"');
+    expect(firstHtml).toContain('certificateData');
+    expect(firstHtml).toContain('Persona');
+    expect(firstHtml).toContain('MDG-TEST-001');
+    expect(firstHtml).not.toMatch(/\{\{[A-Z0-9_]+\}\}/u);
 
     const validateOut = execFileSync('node', ['--import', 'tsx', validateScript, '--package', outputDir], {
       encoding: 'utf8',
