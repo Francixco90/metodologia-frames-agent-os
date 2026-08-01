@@ -5,7 +5,7 @@ readiness, distribución o publicación. [CONFIG]
 
 ## Inputs congelados
 
-- Base: `4e20f453f1e206bc0b42936df33d6cbadf7eb603`.
+- Base: `7c26b6719451de7b0101262f3c379f85a251f939`.
 - Read set portable RT-02: `SOURCE_FREEZE_REQUIRED`.
 - Restricción superior: Carousel V2 conserva D3, Three.js, Lottie, GSAP y Remotion como
   `planned_capability`.

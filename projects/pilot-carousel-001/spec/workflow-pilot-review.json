@@ -5,7 +5,7 @@
   "workflowType": "carousel",
   "workOrderId": "WO-CAR-MAO-001",
   "candidatePackageId": "CP-CAR-MAO-001",
-  "candidatePackageSha256": "366af0578700e7d6cf1b823e4c2695904df7335d9202ab5c069b94fafcabfb38",
+  "candidatePackageSha256": "7c4b878afe848a1f507ae07d428113fe52d86c1a0d0367f08e5b64af7fccd547",
   "state": "awaiting_human_approval",
   "decision": null,
   "acceptedEventPresent": false,
@@ -14,5 +14,5 @@
   "publicationAuthorized": false,
   "requiredHumanAction": "Approve or request changes to this exact candidate package hash. Approval unlocks only feed-text.",
   "createdAt": "2026-07-20T17:30:00.000Z",
-  "eventSha256": "2157e3adf28678d158e34330612ba43deba721af2647a7daa0873df19a03e148"
+  "eventSha256": "c03cf2a0b1a27acadf29662fc19f52e5ac84bdcd74e17cdaa37ed17515fd47d7"
 }

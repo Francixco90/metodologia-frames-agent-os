@@ -15,7 +15,7 @@ source_evidence:
   legacy_v15:
     source_kind: user_supplied_workspace_template
     source_sha256: aa1c649b042560d89f16f52455329cec8abf48e2f08eb367551d19149412630f
-    integration_commit: d0e0d9e105c5b875cfbe1284409246169e97f619
+    integration_commit: 0dc858b93e34508a96da582d9ab07de781eba5d9
   v16_derivation:
     base_template: skills/metodologia-certificate-builder/assets/certificate-template.html
     base_sha256: 19cd91136d3c97be6f88529a5283445d86c8d3e54395e2a7857e110e286c4d1a

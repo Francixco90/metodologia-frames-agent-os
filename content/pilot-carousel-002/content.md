@@ -12,7 +12,7 @@ authored_by_actor_instance_id: RT-04-H01-PILOT-002
 source_freeze_manifest:
   schema_version: hash-bound-ref-v1
   ref: content/pilot-carousel-002/source-freeze-manifest.yml
-  sha256: dcc123616413875bcd89313850c663235f99012771894b292f283d58eb349cb3
+  sha256: 71ffb0eea5a3e06144afc2a45328941623be2a5708a2a4e97d21def570c0fbb3
 profiles:
   brand:
     schema_version: hash-bound-ref-v1

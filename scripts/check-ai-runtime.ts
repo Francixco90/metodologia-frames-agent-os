@@ -19,7 +19,7 @@ const bindingSchema = z.object({
   required_verdict_hash: z.unknown().optional(),
 });
 
-const bindingPath = resolve(root, 'docs/program/token-efficiency/instagram-agent-os-binding.json');
+const bindingPath = resolve(root, 'docs/program/token-efficiency/fremes-agent-os-binding.json');
 
 export const validateAiRuntime = (cwd = process.cwd()): string[] => {
   const errors: string[] = [];
@@ -29,7 +29,7 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
     return errors;
   }
   if (!existsSync(bindingPath)) {
-    errors.push('AI-RUNTIME-002 instagram-agent-os-binding.json missing');
+    errors.push('AI-RUNTIME-002 fremes-agent-os-binding.json missing');
     return errors;
   }
   let raw: unknown;
@@ -45,9 +45,9 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
     return errors;
   }
   const binding = result.data;
-  if (binding.harness_id !== 'metodologia-instagram-agent-os') {
+  if (binding.harness_id !== 'metodologia-fremes-agent-os') {
     errors.push(
-      `AI-RUNTIME-005 harness_id mismatch: expected metodologia-instagram-agent-os, got ${binding.harness_id}`,
+      `AI-RUNTIME-005 harness_id mismatch: expected metodologia-fremes-agent-os, got ${binding.harness_id}`,
     );
   }
   const requiredProfiles = [

@@ -1,6 +1,6 @@
-export const BASELINE_COMMIT = 'cf887caab1321689f1585d46167a8cb2666e49ed';
-export const BASELINE_FILE_COUNT = 377;
-export const V2_CLOSURE_COMMIT = '4e20f453f1e206bc0b42936df33d6cbadf7eb603';
+export const BASELINE_COMMIT = '4c8c16820aa3abe9f4089a1f88c093e2ea58140f';
+export const BASELINE_FILE_COUNT = 387;
+export const V2_CLOSURE_COMMIT = '7c26b6719451de7b0101262f3c379f85a251f939';
 
 export const artifactClasses = [
   'canonical_editable',

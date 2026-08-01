@@ -230,7 +230,7 @@ entries:
       version: 0.4.1,
       current_state: active,
       content_sha256: b8975a9e94e39741dcefe87128c04a87c787e4519af5d02b00a8e22e1add94ce,
-      package_manifest_sha256: 9b2f43a4403ac3746919c84f5c46d9060071d61b467b809cad663d9464dcdfd6,
+      package_manifest_sha256: 6cd46460efdd8fd0cddbd19d08404d6356b05be444b9ec5743e7dad90072df9f,
       package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines,
       lineage: skills/metodologia-certificate-builder/LINEAGE.yml,
       content_license: LicenseRef-MetodologIA-Internal,

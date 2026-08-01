@@ -67,15 +67,15 @@ describe('H-02 governance and preservation', () => {
     const expectedFiles = new Map([
       [
         'content/pilot-carousel-002/content.md',
-        'b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382',
+        '30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585',
       ],
       [
         'content/pilot-carousel-002/generated/canonical-content-document.json',
-        '051cf409c8cc2146fefa9c629a34c2135264a4d7f85e9745a634fea1675cd6d1',
+        'e177737bd7fb72c4e0af54e06e388c329e373f0216c7addbc405e54c1d1e6c55',
       ],
       [
         'content/pilot-carousel-002/generated/source-freeze-receipt.json',
-        '73942f3d682a232c9cd5c26b87a6912f5f9907fd99ca43a97465f1a28df0ffb7',
+        '3e3376e84513b360987ccdb900ed46124aa9647aae8da197488c3702e3188f20',
       ],
     ]);
 
@@ -85,7 +85,7 @@ describe('H-02 governance and preservation', () => {
     const succession = verifyApprovedH03LockSuccession(root);
     expect(succession.receipt.previous?.lock_sha256).toBe(H02_LOCK_SHA256);
     expect(treeDigest('projects/pilot-carousel-001')).toBe(
-      'd9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78',
+      'eeb540327e985bb14ad10a053a2c091dff030706238039aa3fe809cef728a1e2',
     );
     expect(treeDigest('projects/vs-001-source-to-campaign')).toBe(
       '4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4',

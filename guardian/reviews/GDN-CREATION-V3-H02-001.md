@@ -6,7 +6,7 @@ declara completo. [CONFIG]
 ## Binding del candidato
 
 - Guardian: `RT-11-H02-REVIEW-001`.
-- Base: `e54833fc6877c9ab97cc876dad36b4a01d83eaf3`.
+- Base: `7377fd6d27dcbf6dde8d791661025722f2757965`.
 - Árbol staged evaluado: `e43a066c3549ed2e171b0ffd21b25937ca7ebd0a`.
 - Payload técnico evaluado por RT-09: `5c01410d3968991273d451d2d0faca7f0ff8d65b`.
 - RT-09 previo: `RT09-CREATION-V3-H02-001`, `PASS`, read-only y sin remediación.

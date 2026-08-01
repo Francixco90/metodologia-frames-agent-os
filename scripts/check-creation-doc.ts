@@ -29,7 +29,7 @@ const RECEIPT_REF = 'content/pilot-carousel-002/generated/source-freeze-receipt.
 const BASELINE_REF = 'quality/reports/creation-v3-h01-baseline.yml';
 const COMMITTEE_REF = 'committees/creation/H-01/canonical-content-contract.md';
 const NETWORK_REF = 'docs/program/instagram-content-creation-network-v3.md';
-const BASE_COMMIT = '4e20f453f1e206bc0b42936df33d6cbadf7eb603';
+const BASE_COMMIT = '7c26b6719451de7b0101262f3c379f85a251f939';
 
 const sha256Bytes = (value: Uint8Array): string => createHash('sha256').update(value).digest('hex');
 

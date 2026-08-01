@@ -1,7 +1,7 @@
 schema_version: source-freeze-manifest-v1
 manifest_id: FREEZE-PILOT-CAROUSEL-002-H01
 content_id: pilot-carousel-002
-base_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+base_commit: 7c26b6719451de7b0101262f3c379f85a251f939
 created_by_actor_instance_id: RT-02-H01-001
 verified_by_actor_instance_id: RT-03-H01-001
 read_set:

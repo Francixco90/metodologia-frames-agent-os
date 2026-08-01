@@ -14,7 +14,7 @@
     "sourceFreezeManifest": {
       "schemaVersion": "hash-bound-ref-v1",
       "ref": "content/pilot-carousel-002/source-freeze-manifest.yml",
-      "sha256": "dcc123616413875bcd89313850c663235f99012771894b292f283d58eb349cb3"
+      "sha256": "71ffb0eea5a3e06144afc2a45328941623be2a5708a2a4e97d21def570c0fbb3"
     },
     "profiles": {
       "brand": {
@@ -414,6 +414,6 @@
       "Ningún estado de este documento autoriza distribución o publicación."
     ]
   },
-  "rawSha256": "b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382",
-  "semanticSha256": "9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23"
+  "rawSha256": "30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585",
+  "semanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813"
 }

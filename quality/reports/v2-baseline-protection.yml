@@ -4,7 +4,7 @@ recorded_at: '2026-07-20T17:17:14.000Z'
 actor_id: lead
 target:
   repository_id: metodologia-instagram-agent-os
-  baseline_commit: cf887caab1321689f1585d46167a8cb2666e49ed
+  baseline_commit: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f
   branch_created: codex/instagram-os-v2-carousel
   tracked_files: 377
   tracked_markdown_files: 65

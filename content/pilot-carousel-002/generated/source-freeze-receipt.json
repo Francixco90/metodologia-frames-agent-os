@@ -5,14 +5,14 @@
   "manifestRef": {
     "schemaVersion": "hash-bound-ref-v1",
     "ref": "content/pilot-carousel-002/source-freeze-manifest.yml",
-    "sha256": "dcc123616413875bcd89313850c663235f99012771894b292f283d58eb349cb3"
+    "sha256": "71ffb0eea5a3e06144afc2a45328941623be2a5708a2a4e97d21def570c0fbb3"
   },
   "contentId": "pilot-carousel-002",
   "contentVersion": "0.1.0",
   "contentRef": "content/pilot-carousel-002/content.md",
-  "contentRawSha256": "b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382",
-  "contentSemanticSha256": "9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23",
-  "baseCommit": "4e20f453f1e206bc0b42936df33d6cbadf7eb603",
+  "contentRawSha256": "30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585",
+  "contentSemanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813",
+  "baseCommit": "7c26b6719451de7b0101262f3c379f85a251f939",
   "producerActorInstanceId": "RT-02-H01-001",
   "verifierActorInstanceId": "RT-03-H01-001",
   "readSet": [
@@ -416,5 +416,5 @@
     "no_measured_performance_dataset",
     "publication_not_authorized"
   ],
-  "receiptSha256": "91ff59032259e09ae0db5b40e67c9e35af3bf3929639df0125966fb649de76d1"
+  "receiptSha256": "0f6a8ab1b071286c2d8dcfb0ff98f10a93e79ad0085f0268c4688207fb5661ed"
 }

@@ -2,9 +2,9 @@
   "schemaVersion": "orchestration-run-persistence-receipt-v2",
   "receiptId": "receipt:RUN-CAR-MAO-001:persistence:orchestration-run-v2",
   "runId": "RUN-CAR-MAO-001",
-  "runSha256": "c9536473c75b02aa577cfdcdc6c471df1d84e9c3eb40029da36d44261e9897f1",
+  "runSha256": "55239bd0d18d79012bdc9bab098edcbf2b500c00ad087950a43093af89b2e3f1",
   "snapshotRef": "orchestration-run-v2.json",
-  "snapshotSha256": "a90be7fb9d68b4ff469e3edefcdc6cae9c250643873e5062f3f47d122fee4e5d",
+  "snapshotSha256": "71486a97de411aad2eccfdd72ffbc22d14276dc403c0f6cd309bdc195c45d2f4",
   "committeeProposalCount": 5,
   "crossEvaluationCount": 20,
   "executionWaves": [

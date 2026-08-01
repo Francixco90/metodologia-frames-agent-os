@@ -1,6 +1,6 @@
 schema_version: creation-v3-h03-candidate-freeze-v1
 receipt_id: RCP-H03-CANDIDATE-FREEZE-001
-base_commit: a200830df19b5a9a2a176ed9bdcf342da5b8bd64
+base_commit: 46eb7ca3f26c1ebbcdd1873627fb9014f072d9f5
 actor_instance_id: RT-10-H03-INTEGRATION-001
 scope: staged_binary_diff_excluding_freeze_rt09_and_guardian_reports
 candidate_diff_sha256: 2870393e21f593a2770e4de155717ac04c61fadd7181bceedc03cbb1b1b2bc4f

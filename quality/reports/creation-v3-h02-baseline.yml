@@ -1,7 +1,7 @@
 schema_version: creation-v3-h02-baseline-v1
 baseline_id: BASELINE-CREATION-V3-H02-001
 target:
-  base_commit: e54833fc6877c9ab97cc876dad36b4a01d83eaf3
+  base_commit: 7377fd6d27dcbf6dde8d791661025722f2757965
   base_tree: 28a347f1210f24eb2a5821c05a9a2c07310ec686
   branch: codex/instagram-os-creation-v3-carousel-v2
   tracked_files: 536

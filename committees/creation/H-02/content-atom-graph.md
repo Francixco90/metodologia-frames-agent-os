@@ -5,7 +5,7 @@ composición, render, H-03, distribución o publicación. [CONFIG]
 
 ## Inputs y restricciones
 
-- Base: `e54833fc6877c9ab97cc876dad36b4a01d83eaf3`.
+- Base: `7377fd6d27dcbf6dde8d791661025722f2757965`.
 - Parent editorial: `pilot-carousel-002@0.1.0`, `semanticSha256=9d724e86…`.
 - Receipt H-01: `RCP-H01-RT02-SOURCE-FREEZE-001`, self-hash `91ff5903…`.
 - Invariantes: atomizador puro, búsqueda limitada al parent graph, cero fuzzy/posición, estados

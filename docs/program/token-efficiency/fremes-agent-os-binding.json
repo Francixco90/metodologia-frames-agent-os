@@ -1,6 +1,6 @@
 {
   "schema_version": "harness-binding-v1",
-  "harness_id": "metodologia-instagram-agent-os",
+  "harness_id": "metodologia-fremes-agent-os",
   "allowed_profiles": [
     "instagram-creation",
     "instagram-engineering",

@@ -1,6 +1,6 @@
 # File disposition ledger
 
-Baseline: `cf887caab1321689f1585d46167a8cb2666e49ed`. Coverage: **377/377**. [CÓDIGO]
+Baseline: `4c8c16820aa3abe9f4089a1f88c093e2ea58140f`. Coverage: **387/387**. [CÓDIGO]
 
 Este documento es la proyección legible de
 `docs/program/file-disposition-ledger.yml`. El YAML canónico se regenera desde el árbol y los blobs
@@ -11,10 +11,10 @@ de los 377 archivos. [CONFIG]
 
 | Clase                  | Archivos |
 | ---------------------- | -------: |
-| `canonical_editable`   |       53 |
+| `canonical_editable`   |       62 |
 | `generated`            |       12 |
 | `append_only_evidence` |       95 |
-| `code_script`          |      135 |
+| `code_script`          |      136 |
 | `skill`                |       50 |
 | `agent_contract`       |       22 |
 | `workflow`             |       10 |
@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       26 |
+| `refactored`         |       29 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      251 |
+| `verified_no_change` |      258 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,13 +39,13 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            80577 |            117576 |     120865 (1.5×) | 1.4592× | `pass` |
-| Total authored (palabras)     |            80577 |            117576 |       161154 (2×) | 1.4592× | `pass` |
-| Total authored (LOC)          |            30754 |             43061 |        61508 (2×) | 1.4002× | `pass` |
+| Corpus authored elegible      |            89845 |            116912 |     134767 (1.5×) | 1.3013× | `pass` |
+| Total authored (palabras)     |            89845 |            116912 |       179690 (2×) | 1.3013× | `pass` |
+| Total authored (LOC)          |            34072 |             42932 |        68144 (2×) |   1.26× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
-Además, 54 Markdown editables del baseline se
+Además, 58 Markdown editables del baseline se
 comprueban individualmente contra un máximo de 2× palabras. Violaciones registradas:
 **0**. La historia queda excluida de los
 presupuestos authored. El inventario generado declara cada output como binding aplicable o N/A con
@@ -53,7 +53,7 @@ justificación. La evidencia runtime de orquestación excluida suma **6**
 archivos append-only. Las métricas usan tokens separados por whitespace y líneas físicas; un
 terminador final no crea una LOC vacía. [CONFIG]
 
-## Cobertura 377/377
+## Cobertura 387/387
 
 Cada fila resume métricas y evidencia; la justificación, el hash actual, la regla de ownership y el
 posible sucesor permanecen en el YAML canónico. [CONFIG]
@@ -153,9 +153,18 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `governance/a09-a10-cross-verifier-verdict.yml`                                                               | `governance`       | `immutable_history`  | 153                | 153               | 82          | 82         | `f91ce3299cfe4168bfcdf368903de4dbff732460846c3ba1fa07af7725e658fe` | `byte-identical` |
 | `guardian/reviews/GDN-001-revise.md`                                                                          | `guardian`         | `immutable_history`  | 947                | 947               | 162         | 162        | `cd2b02e31ca0149b55105388cd84bd791fbdb42e19d92532c712b6c2e3d70dff` | `byte-identical` |
 | `guardian/reviews/GDN-002-local-closeout.md`                                                                  | `guardian`         | `immutable_history`  | 1101               | 1101              | 195         | 195        | `c8f718fab84eaefd23a0182f9c14f06d33aa50d6febe4cb279701142292c32da` | `byte-identical` |
-| `inbox/README.md`                                                                                             | `sources`          | `verified_no_change` | 106                | 106               | 17          | 17         | `c93b780eca840108e4cb442486cc609cc265fcd69c102ba3d64a57a94033f177` | `byte-identical` |
+| `inbox/.gitignore`                                                                                            | `sources`          | `verified_no_change` | 49                 | 49                | 16          | 16         | `98fa6bd652c3f8b003f19f1051a1997b833259976f614fdb943f651a9d12bad6` | `byte-identical` |
+| `inbox/Contratos/.gitkeep`                                                                                    | `sources`          | `verified_no_change` | 16                 | 16                | 2           | 2          | `f6ced62fbe674251d6f1c1c27968c101bbacac3a76a91bf935c563bfb2e6d123` | `byte-identical` |
+| `inbox/Contratos/README.md`                                                                                   | `sources`          | `refactored`         | 82                 | 82                | 14          | 15         | `ea451b7c386255a4ce1f21a321f20a846e23c0027eafd0ed7e3f5fd812e19b16` | `changed`        |
+| `inbox/Firmas/.gitkeep`                                                                                       | `sources`          | `verified_no_change` | 16                 | 16                | 2           | 2          | `f6ced62fbe674251d6f1c1c27968c101bbacac3a76a91bf935c563bfb2e6d123` | `byte-identical` |
+| `inbox/Firmas/README.md`                                                                                      | `sources`          | `refactored`         | 79                 | 79                | 14          | 15         | `f4a9de56c58cae5170f4afcc86ac17b8ae3ba8abc5580a979491bd2b9c07a788` | `changed`        |
+| `inbox/Muestras/.gitkeep`                                                                                     | `sources`          | `verified_no_change` | 16                 | 16                | 2           | 2          | `f6ced62fbe674251d6f1c1c27968c101bbacac3a76a91bf935c563bfb2e6d123` | `byte-identical` |
+| `inbox/Muestras/README.md`                                                                                    | `sources`          | `refactored`         | 80                 | 80                | 14          | 15         | `e56c99090b7e3198ecd86d104ff7e862221c4f6e9d2fe542cb38a7b2404c673a` | `changed`        |
+| `inbox/README.md`                                                                                             | `sources`          | `verified_no_change` | 167                | 167               | 30          | 30         | `48f50a5cc578fd3ac632d8411364fef19de8d0350d9f68dcd0a60aab5d6e8427` | `byte-identical` |
+| `inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md`                                                | `sources`          | `verified_no_change` | 70                 | 70                | 11          | 11         | `3f4fe592333652f7103c8074b7e6fb8d9a0e96d271250742e2a2d22fc1da032c` | `byte-identical` |
 | `inbox/first-party/SRC-PROMPT-MAESTRO-V6.projection.yml`                                                      | `sources`          | `verified_no_change` | 411                | 411               | 83          | 83         | `b75c9baa1afc8a893743e96adfddf09a2580cd9f527abdf91d108ee19d6f50f5` | `byte-identical` |
 | `inbox/first-party/SRC-SYNTH-VS001.md`                                                                        | `sources`          | `verified_no_change` | 77                 | 77                | 18          | 18         | `709d0df2c40af4c69f8c9b3cd64b4efb97a62b184c3c8fcc6fe6476ab68ac9cb` | `byte-identical` |
+| `inbox/templates/Programa de Empoderamiento · Reconocimiento v15 · MetodologIA.html`                          | `sources`          | `verified_no_change` | 8696               | 8696              | 3206        | 3206       | `6e6e051920e1ab6b3a7078469c00ded02c5646f638a0cdd1dd75c8f9bcf58ea5` | `byte-identical` |
 | `networks/content/src/document-contracts.ts`                                                                  | `content`          | `verified_no_change` | 422                | 422               | 215         | 215        | `9b9289a36f4baa5f3dd3e26c354d17973372d15599db87cc4348aa12910bc240` | `byte-identical` |
 | `networks/content/src/model.ts`                                                                               | `content`          | `verified_no_change` | 428                | 428               | 184         | 184        | `d6a71b1da093a42038a78095739d5bf88a300d1732c8a5fd09fe8f27e791a537` | `byte-identical` |
 | `networks/content/src/timing.ts`                                                                              | `content`          | `verified_no_change` | 568                | 568               | 196         | 196        | `0a17addd9074bb655de44a38ff8a9319ab57516768ea1184801093568486c1b7` | `byte-identical` |
@@ -338,6 +347,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 204               | 84          | 106        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 394               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |
+| `scripts/hooks/pre-commit-pii-guard.sh`                                                                       | `repo`             | `verified_no_change` | 103                | 103               | 21          | 21         | `5bbb2fbf2694db30d0a2550f54f83896b28b0776cf750b1fb5f9a1e1a93fda8e` | `byte-identical` |
 | `scripts/web-visual-smoke.mjs`                                                                                | `repo`             | `verified_no_change` | 225                | 225               | 73          | 73         | `bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24` | `byte-identical` |
 | `skills/remotion-video-production/CHANGELOG.md`                                                               | `skill-foundry`    | `refactored`         | 101                | 121               | 17          | 19         | `067d820776b0e7233bbe0cd7e6fe63c4cddc576bde91b74db21ca848af1c1134` | `changed`        |
 | `skills/remotion-video-production/LINEAGE.yaml`                                                               | `skill-foundry`    | `refactored`         | 163                | 163               | 84          | 84         | `291a39b471e2f480ff5f84b1cf50da89f7fcc1249ab026c3e95a92457cf5fd2e` | `changed`        |

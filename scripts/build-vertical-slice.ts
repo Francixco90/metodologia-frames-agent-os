@@ -9,7 +9,7 @@ type Step = {
 };
 
 const root = process.cwd();
-const baselineCommit = 'cf887caab1321689f1585d46167a8cb2666e49ed';
+const baselineCommit = '4c8c16820aa3abe9f4089a1f88c093e2ea58140f';
 const verifyExisting = process.argv.includes('--verify-existing');
 const steps: readonly Step[] = [
   {

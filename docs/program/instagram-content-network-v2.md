@@ -252,7 +252,7 @@ La capa documental y de marca queda completa cuando:
 2. Los tests contractuales y negativos cubren `BR`, `VOICE`, `SOC` y `CAR`.
 3. Las fuentes locales verifican contra el manifest y OFL.
 4. Las proyecciones de tokens no presentan drift.
-5. El ledger cubre 377/377, valida los cuatro presupuestos y conserva 95/95 históricos por SHA-256.
+5. El ledger cubre 387/387, valida los cuatro presupuestos y conserva 95/95 históricos por SHA-256.
 6. El carrusel produce un candidate reproducible sin elevar gates.
 7. Guardian y H01 permanecen pendientes hasta evidencia independiente.
 

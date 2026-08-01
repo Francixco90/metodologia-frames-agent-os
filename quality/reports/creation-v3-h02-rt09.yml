@@ -4,7 +4,7 @@ actor_instance_id: RT-09-H02-FINAL-001
 role: rights_and_accessibility_verifier
 mode: read_only
 candidate:
-  base_commit: e54833fc6877c9ab97cc876dad36b4a01d83eaf3
+  base_commit: 7377fd6d27dcbf6dde8d791661025722f2757965
   staged_tree: 5c01410d3968991273d451d2d0faca7f0ff8d65b
   graph_sha256: d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa
   graph_file_sha256: 96d3d0616da605c6ae08113914db9911d26df6f4b7477c7fb15397586b2db2c2

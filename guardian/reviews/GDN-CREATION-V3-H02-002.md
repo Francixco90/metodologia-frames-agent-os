@@ -5,7 +5,7 @@ Veredicto final: `PASS`. Estado máximo acreditado: `QUALIFIED · ATOMIZED`. [CO
 ## Binding del candidato
 
 - Guardian: `RT-11-H02-REVIEW-002`.
-- Base: `e54833fc6877c9ab97cc876dad36b4a01d83eaf3`.
+- Base: `7377fd6d27dcbf6dde8d791661025722f2757965`.
 - Árbol staged evaluado: `4cd29457f300769a902e34e8cb5ac258d56f5000`.
 - Payload remediado verificado por RT-09: `a8be8ddc3b98b4fd7d7c28ce4eb2378784d33bb5`.
 - RT-09 previo: `RT09-CREATION-V3-H02-002`, `PASS`, read-only y sin remediación.

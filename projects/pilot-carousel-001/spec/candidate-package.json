@@ -66,7 +66,7 @@
     {
       "schemaVersion": "hash-bound-ref-v1",
       "ref": "quality/reports/v2-baseline-protection.yml",
-      "sha256": "5044d3478689c3ad1edeb72c8249c1dbdc24ba64f58214fc8c569df8dc2573ce"
+      "sha256": "a41deeaf8ca2c542992d4c35f032a4fe6b821fecc37c2712adc4ece02f8d67a9"
     }
   ],
   "assumptions": [
@@ -113,5 +113,5 @@
   ],
   "publicationPolicy": "forbidden",
   "createdAt": "2026-07-20T17:30:00.000Z",
-  "packageSha256": "366af0578700e7d6cf1b823e4c2695904df7335d9202ab5c069b94fafcabfb38"
+  "packageSha256": "7c4b878afe848a1f507ae07d428113fe52d86c1a0d0367f08e5b64af7fccd547"
 }

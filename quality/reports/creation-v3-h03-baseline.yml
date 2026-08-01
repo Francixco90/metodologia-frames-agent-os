@@ -1,6 +1,6 @@
 schema_version: creation-v3-h03-baseline-v1
 captured_at: '2026-07-20T00:00:00Z'
-base_commit: a200830df19b5a9a2a176ed9bdcf342da5b8bd64
+base_commit: 46eb7ca3f26c1ebbcdd1873627fb9014f072d9f5
 base_tree: f1afca851960c97ccf5b192c1b77bf276629ee90
 branch: codex/instagram-os-creation-v3-carousel-v2
 checks:

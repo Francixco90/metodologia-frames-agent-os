@@ -623,7 +623,7 @@ const ledgerSchema = z
     ledger_id: z.literal('instagram-agent-os-v2-baseline-disposition'),
     baseline_commit: z.literal(BASELINE_COMMIT),
     baseline_file_count: z.literal(BASELINE_FILE_COUNT),
-    coverage: z.literal('377/377'),
+    coverage: z.literal('387/387'),
     allowed_dispositions: z.array(z.enum(dispositions)).length(dispositions.length),
     budgets: z.object({
       editable_markdown_per_file: z.object({
@@ -811,7 +811,7 @@ justificación. La evidencia runtime de orquestación excluida suma **${runtimeE
 archivos append-only. Las métricas usan tokens separados por whitespace y líneas físicas; un
 terminador final no crea una LOC vacía. [CONFIG]
 
-## Cobertura 377/377
+## Cobertura 387/387
 
 Cada fila resume métricas y evidencia; la justificación, el hash actual, la regla de ownership y el
 posible sucesor permanecen en el YAML canónico. [CONFIG]

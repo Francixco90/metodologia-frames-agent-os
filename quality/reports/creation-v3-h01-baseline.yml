@@ -1,7 +1,7 @@
 schema_version: creation-v3-h01-baseline-v1
 baseline_id: BASELINE-CREATION-V3-H01-001
 target:
-  base_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+  base_commit: 7c26b6719451de7b0101262f3c379f85a251f939
   base_tree: b7ee542968351486df718161671d4fa9fc99cd3f
   branch: codex/instagram-os-creation-v3-carousel-v2
   tracked_files: 515
@@ -26,7 +26,7 @@ source_authority_observation:
   mutation_allowed: false
   authority_policy: use_existing_portable_hash_bound_projections_only
 budget:
-  baseline_commit: 4e20f453f1e206bc0b42936df33d6cbadf7eb603
+  baseline_commit: 7c26b6719451de7b0101262f3c379f85a251f939
   baseline_authored_words: 116033
   baseline_authored_loc: 42344
   objective_multiplier: 1.5

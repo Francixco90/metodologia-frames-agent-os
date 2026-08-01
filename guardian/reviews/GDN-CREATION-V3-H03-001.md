@@ -5,7 +5,7 @@ Veredicto: `PASS_TECHNICAL_CANDIDATE_BLOCKED_LICENSE`. Estado siguiente: `H-04_B
 ## Binding y separación
 
 - Guardian read-only: `RT-11-H03-REVIEW-001`; no produjo ni remedió el candidato. [CONFIG]
-- Base: `a200830df19b5a9a2a176ed9bdcf342da5b8bd64`.
+- Base: `46eb7ca3f26c1ebbcdd1873627fb9014f072d9f5`.
 - Diff productor recomputado: `2870393e21f593a2770e4de155717ac04c61fadd7181bceedc03cbb1b1b2bc4f`.
 - RT-09/001 `FAIL` se preserva con SHA-256 `f3c0545977f704babf18790448a9614436c192f6e695274f4e8feda7f5a74467`; solo detectó formato en el receipt de freeze y no remedió.
 - RT-09/002 es actor distinto, read-only, `PASS`, sin remediación y ligado al mismo diff; su SHA-256 es `d9ad665f26e108afed251c44631b0daaefea2829fbe0aa4e6b9cc0805a437066`.

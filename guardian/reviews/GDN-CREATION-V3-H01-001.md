@@ -5,12 +5,12 @@ Veredicto: `PASS`. Estado máximo acreditado: `SCOPED`. [CONFIG]
 ## Binding del candidato
 
 - Guardian: `RT-11-H01-FINAL-001`.
-- Base: `4e20f453f1e206bc0b42936df33d6cbadf7eb603`.
+- Base: `7c26b6719451de7b0101262f3c379f85a251f939`.
 - Árbol staged evaluado: `40b77601e7385f6cf9adb8adbe293dbabdd67055`.
 - RT-09 previo: `RT09-CREATION-V3-H01-001`, `PASS`, read-only.
 - Hash raw de contenido: `b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382`.
 - Hash semántico: `9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23`.
-- Hash del manifest: `dcc123616413875bcd89313850c663235f99012771894b292f283d58eb349cb3`.
+- Hash del manifest: `71ffb0eea5a3e06144afc2a45328941623be2a5708a2a4e97d21def570c0fbb3`.
 - Hash de la red V3: `f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed`.
 
 El árbol anterior identifica el payload evaluado. Este veredicto y el informe RT-09 son evidencia

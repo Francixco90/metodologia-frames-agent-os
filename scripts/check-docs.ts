@@ -138,7 +138,7 @@ if (isMain) {
     process.exitCode = 1;
   } else {
     console.info(
-      'PASS DOCS V2: network, exact 8-workflow matrix, budgets and 377/377 ledger are coherent.',
+      'PASS DOCS V2: network, exact 8-workflow matrix, budgets and 387/387 ledger are coherent.',
     );
   }
 }

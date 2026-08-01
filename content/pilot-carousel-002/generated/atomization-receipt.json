@@ -1,31 +1,31 @@
 {
   "schemaVersion": "atomization-receipt-v1",
   "receiptId": "RCP-H02-RT05-ATOMIZATION-001",
-  "graphId": "ATG-5d73499f538a9400c5f217f2b9b79c8164459baefdc4a90e100c736db01544ce",
+  "graphId": "ATG-33a0fa9c8e964c0ca0f308b4b13c390617a2ed522a4cffea17277170e54d74b5",
   "graphRef": {
     "schemaVersion": "hash-bound-ref-v1",
     "ref": "content/pilot-carousel-002/generated/atom-graph.json",
-    "sha256": "96d3d0616da605c6ae08113914db9911d26df6f4b7477c7fb15397586b2db2c2"
+    "sha256": "3f1d16cece4d1fa2499c5026e17e52ab9850e127526cafb707ab7d050eed9f4f"
   },
   "contentId": "pilot-carousel-002",
   "contentVersion": "0.1.0",
   "contentRef": "content/pilot-carousel-002/content.md",
-  "contentRawSha256": "b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382",
-  "contentSemanticSha256": "9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23",
+  "contentRawSha256": "30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585",
+  "contentSemanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813",
   "sourceFreezeReceiptRef": {
     "schemaVersion": "hash-bound-ref-v1",
     "ref": "content/pilot-carousel-002/generated/source-freeze-receipt.json",
-    "sha256": "73942f3d682a232c9cd5c26b87a6912f5f9907fd99ca43a97465f1a28df0ffb7"
+    "sha256": "3e3376e84513b360987ccdb900ed46124aa9647aae8da197488c3702e3188f20"
   },
   "atomizerVersion": "1.0.0",
   "producerActorInstanceId": "RT-05-H02-001",
   "verifierActorInstanceId": "RT-10-H02-001",
   "atomCount": 39,
   "edgeCount": 50,
-  "semanticGraphSha256": "45207c4ed1f9f9980d7c9cc8f3b659ac53c14c90ca7ed5b7e62e5973dd815fa0",
-  "graphSha256": "d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa",
-  "inputSha256": "e4f1df0e13686d52fc6578e5df1e9c0c8a67d75451fa852c8d9c0cbc181e9e42",
-  "outputSha256": "857ff3de181fe9db90670f757e9b5536ac20fc0d4b72b42151727501517930f3",
+  "semanticGraphSha256": "b7af503a0d88f0fad878c218a683cf938875fcd31a90128f3be591936c798ae6",
+  "graphSha256": "c14d43dcf6577a68a01c9f1980f6bf1d98ffc00028685c22472b5443de9638e0",
+  "inputSha256": "bdad41fdeadd9bd232e9aed5769ee79333dcf33d96287bb9e16fb7efb308b991",
+  "outputSha256": "e0376fac731aaf14dbc1d363dbaafc57b1c51500d02a9f90cc092722b0227df7",
   "evidenceState": "QUALIFIED",
   "structuralState": "ATOMIZED",
   "maximumState": "ATOMIZED",
@@ -47,5 +47,5 @@
     "voice_owner_confirmation_pending",
     "voice_source_not_commit_bound"
   ],
-  "receiptSha256": "ba0fee08b564c109cef2b9fd411f98ed33f06e4c8c4a8a70ce907995a0dedcdc"
+  "receiptSha256": "b0d2a07900c40db58ee3b06fcf2fbf43d92aa27a8c225bd186ce2fdd1102a5e3"
 }

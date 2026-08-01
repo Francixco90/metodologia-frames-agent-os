@@ -4,16 +4,16 @@
   "contentId": "pilot-carousel-002",
   "entries": [
     {
-      "graphId": "ATG-5d73499f538a9400c5f217f2b9b79c8164459baefdc4a90e100c736db01544ce",
+      "graphId": "ATG-33a0fa9c8e964c0ca0f308b4b13c390617a2ed522a4cffea17277170e54d74b5",
       "contentVersion": "0.1.0",
-      "contentSemanticSha256": "9d724e868da8eead9be7925da48a67aa13a277bc209b1a6023ed93ce6fdf5d23",
-      "semanticGraphSha256": "45207c4ed1f9f9980d7c9cc8f3b659ac53c14c90ca7ed5b7e62e5973dd815fa0",
-      "graphSha256": "d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa",
+      "contentSemanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813",
+      "semanticGraphSha256": "b7af503a0d88f0fad878c218a683cf938875fcd31a90128f3be591936c798ae6",
+      "graphSha256": "c14d43dcf6577a68a01c9f1980f6bf1d98ffc00028685c22472b5443de9638e0",
       "parentGraphSha256": null,
       "atomizationReceiptRef": {
         "schemaVersion": "hash-bound-ref-v1",
         "ref": "content/pilot-carousel-002/generated/atomization-receipt.json",
-        "sha256": "5aa1912b8e21903df3784a604f11e86718a8e3d4847f44eeb5041854e275a9fd"
+        "sha256": "64e99f8ea3f97be09d5ceba236f588c250c40503d2419a98659361c111a9cdfd"
       },
       "state": "current",
       "simulationOnly": false
@@ -22,8 +22,8 @@
   "invalidations": [
     {
       "schemaVersion": "atom-graph-invalidation-v1",
-      "fromGraphSha256": "d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa",
-      "toGraphSha256": "c94dffc254e503c56cd00fb33ba5c34424aea5aa805329dda1030ab51f7b9df7",
+      "fromGraphSha256": "c14d43dcf6577a68a01c9f1980f6bf1d98ffc00028685c22472b5443de9638e0",
+      "toGraphSha256": "ef244c7e14653ee2b883efee5e2bf2ff8815df3617cd3a985f08aaac2ef6ef18",
       "changeKind": "semantic_patch",
       "changedAtomIds": [
         "ATM-81e4c13e0a7d3d4c70b82e771e7cf6ed41e0d54d2d8ccdac218b7f8b669b4f55"
@@ -78,16 +78,16 @@
         {
           "schemaVersion": "hash-bound-ref-v1",
           "ref": "content/pilot-carousel-002/generated/lineage/simulated-graph-approval.json",
-          "sha256": "2407b06da8ec8cee32d2026a927422e504209602dcb89a4ec11209d37bc31883"
+          "sha256": "fac45f753fd9360ff1824edc1a17d1810beb90d918904173674702b99de4f5d6"
         }
       ],
       "priorApprovalState": "STALE",
       "simulationOnly": true,
-      "invalidationSha256": "d85e3650951ed9772120ffe5b4d8a9f9cc750137992f5ae43d2b1b26029eff3c"
+      "invalidationSha256": "ab432edd3b1d4df375e2eaafc6342925173d4b72fdcd3dbefd304885903430d9"
     }
   ],
-  "currentGraphSha256": "d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa",
+  "currentGraphSha256": "c14d43dcf6577a68a01c9f1980f6bf1d98ffc00028685c22472b5443de9638e0",
   "distributionState": "NOT_DESIGNED",
   "publicationAuthority": false,
-  "lineageSha256": "3c599d1eeb108c56cda76adb719d2ae043a8f2e15758d9d2ba55966e3f1dcc3e"
+  "lineageSha256": "47fc8e565de53bea6cea1c6cb35bee69bae08f0765565b2b46115a3cac6661b8"
 }
