@@ -1,0 +1,83 @@
+schema_version: 1
+projection_id: prompt-maestro-v6-requirements-projection-v2
+source_id: SRC-PROMPT-MAESTRO-V6
+projection_contract: product-requirements-projection-v1
+source_hash_binding:
+  raw_sha256: 19803669c1ae8dacf62af64936060235cb7d15b870c7f0abc23962159be5bde2
+  source_normalized_sha256: 00de50b02d9cf393a5376781938fd0ba01c3bd8b7460e4b379ef9c31b148e505
+  normalization_contract: source-promotion-v1
+scope:
+  authority: product_requirements_only
+  raw_material_persisted: false
+  mutable_implementation_status_included: false
+  private_locator_included: false
+immutability:
+  policy: append-only-hash-bound-snapshot
+  mutation_rule: create_a_new_projection_id_and_migration_receipt
+requirements:
+  - requirement_id: R-001
+    statement: Repositorio nuevo, aislado y autocontenido.
+  - requirement_id: R-002
+    statement: Una sola identidad visible, MetodologIA.
+  - requirement_id: R-003
+    statement: Núcleo compartido con Red Web y Red Contenido/Motion.
+  - requirement_id: R-004
+    statement: Inbox, fuentes, proyectos, memoria, skills, comités, approvals, receipts y Guardian compartidos.
+  - requirement_id: R-005
+    statement: n8n es adaptador opcional y no es el cerebro.
+  - requirement_id: R-006
+    statement: NotebookLM declara binding, pregunta, fuentes y cobertura.
+  - requirement_id: R-007
+    statement: Comité material de cinco especialistas.
+  - requirement_id: R-008
+    statement: No persistir chain-of-thought privado.
+  - requirement_id: R-009
+    statement: Registrar y clasificar las fuentes Remotion iniciales.
+  - requirement_id: R-010
+    statement: Las promesas promocionales nunca son benchmark.
+  - requirement_id: R-011
+    statement: Remotion es renderer determinista, no orquestador ni publicador.
+  - requirement_id: R-012
+    statement: RENDERED_DRAFT no equivale a FINAL, READY o PUBLISHED.
+  - requirement_id: R-013
+    statement: Skill legacy genérica en cuarentena.
+  - requirement_id: R-014
+    statement: Skill canónica con quince módulos especializados.
+  - requirement_id: R-015
+    statement: Skill con lineage, licencia, schemas, fixtures, validadores y ejemplo compilable.
+  - requirement_id: R-016
+    statement: Dossier audiovisual documental completo.
+  - requirement_id: R-017
+    statement: Video spec, beat map y component registry con campos operativos.
+  - requirement_id: R-018
+    statement: RT-01 a RT-11 con separación producer, verifier, Guardian y H01.
+  - requirement_id: R-019
+    statement: Animación gobernada por frame y metadata calculada.
+  - requirement_id: R-020
+    statement: Sin reloj, red, timers, CSS animations ni aleatoriedad no fijada.
+  - requirement_id: R-021
+    statement: Assets, fuentes, locale, timezone y versiones fijados.
+  - requirement_id: R-022
+    statement: Estados y gates audiovisuales explícitos.
+  - requirement_id: R-023
+    statement: Review shots reales, smoke y dos renders completos.
+  - requirement_id: R-024
+    statement: QA de schema, código, visuales, streams, captions, safe zones y determinismo.
+  - requirement_id: R-025
+    statement: Fixtures audiovisuales adversariales obligatorios.
+  - requirement_id: R-026
+    statement: n8n recibe únicamente un paquete aprobado y hash-bound.
+  - requirement_id: R-027
+    statement: Publicación y conectores permanecen en dry-run o propose-only.
+  - requirement_id: R-028
+    statement: Primer vertical slice Web y Motion reproducible.
+  - requirement_id: R-029
+    statement: Evidencia sin secretos, PII ni rutas privadas.
+  - requirement_id: R-030
+    statement: Cierre con archivos, decisiones, agentes, fuentes, tests, gaps, riesgos y estado.
+acceptance_limits:
+  - A technical local artifact may reach RENDER_VALIDATED.
+  - SOURCE_LOCKED requires the canonical corpus and its independent evidence.
+  - GUARDIAN_PASS requires an independent Guardian verdict.
+  - HUMAN_APPROVED requires H01 evidence.
+  - READY and PUBLISHED require their explicit downstream gates.
