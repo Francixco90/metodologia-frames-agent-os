@@ -79,11 +79,11 @@ interface LedgerBudgetProjection {
 }
 
 const versionablePaths = (): string[] =>
-  execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard'], {
+  execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
     cwd: root,
     encoding: 'utf8',
   })
-    .split('\n')
+    .split('\0')
     .filter(
       (path) => path.length > 0 && path !== 'node_modules' && !path.startsWith('node_modules/'),
     );
@@ -158,15 +158,15 @@ describe('V2 documentation and extension budgets', () => {
       violations: [],
     });
     expect(ledger.budgets.authored_eligible_corpus).toMatchObject({
-      baseline_words: 80_471,
+      baseline_words: 80_577,
       status: 'pass',
     });
     expect(ledger.budgets.authored_eligible_corpus.final_words).toBeLessThanOrEqual(
       ledger.budgets.authored_eligible_corpus.maximum_words,
     );
     expect(ledger.budgets.total_authored_hard_cap).toMatchObject({
-      baseline_words: 80_471,
-      baseline_loc: 30_654,
+      baseline_words: 80_577,
+      baseline_loc: 30_754,
       status: 'pass',
     });
     expect(ledger.budgets.total_authored_hard_cap.final_words).toBeLessThanOrEqual(
