@@ -11,10 +11,10 @@
     "moderate": 0,
     "low": 0
   },
-  "packageJsonSha256": "247443f699ddb1a131189f890981c7c6128cc410c914884073c522e84fb38f29",
+  "packageJsonSha256": "660bbc4d08fa42ee9a67a4eea802f0490625f4a9e51419f3431ea3382a728afd",
   "pnpmLockSha256": "ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd",
   "supersedesReceiptId": "RCP-DEP-PRODUCTION-20260720-004",
-  "packageChangeScope": "ai_runtime_verify_script_added",
+  "packageChangeScope": "engines_node_pinned_exact_cross_platform_harness_fix",
   "productionDependenciesAudited": 39,
   "appendOnly": true
 }

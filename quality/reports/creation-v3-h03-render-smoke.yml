@@ -6,7 +6,7 @@ mode: local_evaluation_only
 entry_ref: tests/fixtures/renderers/h03-probe-entry.tsx
 composition_id: H03RendererProbe
 replay_ref: scripts/render-h03-probe.ts
-replay_sha256: 789bd15f9585c7ccc3d235f89da222515a664f71b8ec6e7e1466c677383052ad
+replay_sha256: b1fb844dafcb2ad5353e8197eee30ec2d6b7237b46d1afe2445c2992384be76d
 replay_command: pnpm exec tsx scripts/render-h03-probe.ts --output-dir $TMPDIR/h03-replay-<frame> --frame <frame>
 profile:
   remotion: 4.0.494
