@@ -9,6 +9,8 @@ export default tseslint.config(
       'node_modules/**',
       'dist/**',
       'coverage/**',
+      'work/private/**',
+      'tmp/**',
       'projects/**/web/dist/**',
       'projects/**/remotion/renders/**',
     ],

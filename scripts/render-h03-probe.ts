@@ -2,6 +2,7 @@ import {fork} from 'node:child_process';
 import {createHash as digest} from 'node:crypto';
 import {constants as fsConstants} from 'node:fs';
 import {access, mkdir, readdir, readFile as read} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
 import {basename, relative, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -9,9 +10,27 @@ import {bundle} from '@remotion/bundler';
 import {renderStill, selectComposition} from '@remotion/renderer';
 const entry = resolve('tests/fixtures/renderers/h03-probe-entry.tsx');
 const harness = fileURLToPath(import.meta.url);
-const defaultBrowser = resolve(
-  'node_modules/.remotion/chrome-headless-shell/mac-arm64/chrome-headless-shell-mac-arm64/chrome-headless-shell',
-);
+const remotionPlatform = (): string => {
+  switch (process.platform) {
+    case 'darwin':
+      return process.arch === 'arm64' ? 'mac-arm64' : 'mac-x64';
+    case 'linux':
+      return process.arch === 'arm64' ? 'linux-arm64' : 'linux64';
+    case 'win32':
+      return 'win64';
+    default:
+      throw new Error(`Unsupported platform: ${process.platform}`);
+  }
+};
+const headlessShellExecutable = (platform: string): string => {
+  const dir = resolve(
+    `node_modules/.remotion/chrome-headless-shell/${platform}/chrome-headless-shell-${platform}`,
+  );
+  if (platform === 'win64') return resolve(dir, 'chrome-headless-shell.exe');
+  if (platform === 'linux-arm64') return resolve(dir, 'headless_shell');
+  return resolve(dir, 'chrome-headless-shell');
+};
+const defaultBrowser = headlessShellExecutable(remotionPlatform());
 type Config = {browser: string; frame: number; output: string; serveUrl: string; workerId: string};
 type Timing = {pid: number; startedAtMs: number; finishedAtMs: number; sha256: string};
 type Result = Pick<Config, 'frame' | 'workerId' | 'output'> & Timing;
@@ -68,7 +87,7 @@ const parent = async () => {
   const requestedOutput = option('--output-dir');
   if (!requestedOutput) throw new Error('MISSING_OPTION: --output-dir');
   const outputDir = resolve(requestedOutput);
-  const relation = relative('/private/tmp', outputDir);
+  const relation = relative(tmpdir(), outputDir);
   if (!relation || relation.startsWith('..')) throw new Error('OUTPUT_DIR_FORBIDDEN');
   await mkdir(outputDir, {recursive: true});
   if ((await readdir(outputDir)).length) throw new Error('OUTPUT_DIR_NOT_EMPTY');

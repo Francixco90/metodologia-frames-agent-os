@@ -91,7 +91,9 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
   if (binding.verdict_state !== undefined && binding.verdict_state === 'not_benchmarked') {
     // Valid: no verdict yet, capabilities stay OFF
   } else if (binding.verdict_state !== undefined && binding.verdict_state !== 'promoted') {
-    errors.push(`AI-RUNTIME-011 verdict_state must be not_benchmarked or promoted, got ${binding.verdict_state}`);
+    errors.push(
+      `AI-RUNTIME-011 verdict_state must be not_benchmarked or promoted, got ${binding.verdict_state}`,
+    );
   }
   return errors;
 };

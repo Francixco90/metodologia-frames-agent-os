@@ -46,11 +46,11 @@ if (pnpmVersion !== expected.pnpm) {
 
 let ffmpegLine = 'not-checked';
 if (validationProfile === 'local-full') {
-  ffmpegLine = execFileSync('ffmpeg', ['-version'], {
-    encoding: 'utf8',
-    shell: process.platform === 'win32',
-  })
-    .split('\n')[0] ?? '';
+  ffmpegLine =
+    execFileSync('ffmpeg', ['-version'], {
+      encoding: 'utf8',
+      shell: process.platform === 'win32',
+    }).split('\n')[0] ?? '';
   if (!ffmpegLine.startsWith(`ffmpeg version ${expected.ffmpeg} `)) {
     errors.push(`FFmpeg: esperado ${expected.ffmpeg}, observado ${ffmpegLine}`);
   }

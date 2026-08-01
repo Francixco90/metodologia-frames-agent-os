@@ -110,11 +110,11 @@ const baselineBlobs = (root: string) => {
   return refs.map((ref, index) => ({...ref, bytes: bytes[index] as Buffer}));
 };
 const versionablePaths = (root: string): string[] =>
-  execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard'], {
+  execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
     cwd: root,
     encoding: 'utf8',
   })
-    .split('\n')
+    .split('\0')
     .filter(
       (path) =>
         path.length > 0 &&

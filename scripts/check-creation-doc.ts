@@ -34,11 +34,11 @@ const BASE_COMMIT = '4e20f453f1e206bc0b42936df33d6cbadf7eb603';
 const sha256Bytes = (value: Uint8Array): string => createHash('sha256').update(value).digest('hex');
 
 const walkFiles = (root: string, directory: string): string[] => {
-  return execFileSync('git', ['ls-files', '--', directory], {
+  return execFileSync('git', ['ls-files', '-z', '--', directory], {
     cwd: root,
     encoding: 'utf8',
   })
-    .split('\n')
+    .split('\0')
     .filter(Boolean)
     .sort();
 };

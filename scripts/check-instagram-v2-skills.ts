@@ -48,7 +48,14 @@ const skills = [
       'bloqueado',
     ],
   },
-  {id: 'metodologia-certificate-builder', scope: 'local-candidate-production', productionStatus: 'publication_blocked', positive: 'fixtures/positive/embajador-batch.yml', negative: 'fixtures/negative/hours-mismatch.yml', requiredTerms: ['cb', 'cv', 'RENDERED_DRAFT', 'coverage_gap', 'work/private']},
+  {
+    id: 'metodologia-certificate-builder',
+    scope: 'local-candidate-production',
+    productionStatus: 'publication_blocked',
+    positive: 'fixtures/positive/embajador-batch.yml',
+    negative: 'fixtures/negative/hours-mismatch.yml',
+    requiredTerms: ['cb', 'cv', 'RENDERED_DRAFT', 'coverage_gap', 'work/private'],
+  },
 ] as const;
 
 type RegistryEntry = {
@@ -126,7 +133,9 @@ for (const skill of skills) {
   if (!existsSync(resolve(root, skillPath)) || !existsSync(resolve(root, lineagePath))) continue;
 
   const text = readFileSync(resolve(root, skillPath), 'utf8');
-  const expectedVersion = skill.id === 'metodologia-certificate-builder' ? '0.2.1' : '0.1.0';
+  const expectedVersion = skill.id === 'metodologia-certificate-builder' ? '0.4.1' : '0.1.0';
+  const expectedExternalFragmentsReused =
+    skill.id === 'metodologia-certificate-builder' ? true : false;
   const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n/u);
   if (frontmatterMatch === null) {
     errors.push(`SKL-V2-003 ${skill.id}: frontmatter missing`);
@@ -173,7 +182,7 @@ for (const skill of skills) {
     !lineage.content_origin?.startsWith('locally_authored') ||
     lineage.lifecycle_state !== 'active' ||
     lineage.execution_scope !== skill.scope ||
-    lineage.external_fragments_reused !== false ||
+    lineage.external_fragments_reused !== expectedExternalFragmentsReused ||
     lineage.publication_authority !== false
   ) {
     errors.push(`SKL-V2-007 ${skill.id}: lineage contract mismatch`);
@@ -224,12 +233,14 @@ for (const skill of skills) {
   if (
     events.length < 4 ||
     events.some((event, index) => event.event_order !== index + 1) ||
-    events.slice(0, 4).some(
-      (event, index) =>
-        event.transition?.from !== expectedTransitions[index]?.[0] ||
-        event.transition?.to !== expectedTransitions[index]?.[1] ||
-        !entry?.event_ids?.includes(event.event_id ?? ''),
-    ) ||
+    events
+      .slice(0, 4)
+      .some(
+        (event, index) =>
+          event.transition?.from !== expectedTransitions[index]?.[0] ||
+          event.transition?.to !== expectedTransitions[index]?.[1] ||
+          !entry?.event_ids?.includes(event.event_id ?? ''),
+      ) ||
     events.some((event) => !entry?.event_ids?.includes(event.event_id ?? '')) ||
     latestEvent?.content_sha256 !== contentHash ||
     latestEvent.transition?.to !== 'active'
