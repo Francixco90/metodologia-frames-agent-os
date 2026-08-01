@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+import {createHash} from 'node:crypto';
 import {existsSync, readFileSync, readdirSync} from 'node:fs';
 import {join, resolve, relative} from 'node:path';
 
 import {escapeHtml, fileSha256} from '../../../scripts/lib/certificate-utils';
+import {visibleCertificationStatementMarkup} from './certification-statement-binding';
 
 interface Args {
   packageDir: string;
@@ -25,7 +27,7 @@ interface Finding {
 const FORBIDDEN: ReadonlyArray<readonly [string, RegExp]> = [
   ['http_url', /https?:\/\//i],
   ['file_url', /file:\/\//i],
-  ['data_uri_non_font', /data:(?!font\/|image\/svg)/i],
+  ['data_uri_disallowed', /data:(?!font\/|image\/svg|image\/png|image\/jpeg|image\/webp)/i],
   ['blob_url', /blob:/i],
   ['css_import', /@import/i],
   ['local_font', /local\s*\(/i],
@@ -40,6 +42,31 @@ function countMatches(value: string, regex: RegExp): number {
 
 function portableRelative(root: string, filePath: string): string {
   return relative(root, filePath).replace(/\\/g, '/');
+}
+
+function extractCertificateString(html: string, field: string): string | null {
+  const match = html.match(new RegExp(`\\b${field}:\\s*("(?:\\\\.|[^"\\\\])*")`, 'u'));
+  if (!match?.[1]) return null;
+  try {
+    return JSON.parse(match[1]) as string;
+  } catch {
+    return null;
+  }
+}
+
+function decodeImageDataUri(
+  value: string,
+): {mimeType: 'image/png' | 'image/jpeg' | 'image/webp'; bytes: Buffer} | null {
+  const match = value.match(/^data:(image\/(?:png|jpeg|webp));base64,([A-Za-z0-9+/=]+)$/u);
+  if (!match?.[1] || !match[2]) return null;
+  return {
+    mimeType: match[1] as 'image/png' | 'image/jpeg' | 'image/webp',
+    bytes: Buffer.from(match[2], 'base64'),
+  };
+}
+
+function bytesSha256(bytes: Uint8Array): string {
+  return createHash('sha256').update(bytes).digest('hex');
 }
 
 interface OutputItem {
@@ -70,7 +97,8 @@ interface PackageManifest {
   signatures: Array<{
     name: string;
     role: string;
-    asset: string | null;
+    asset_mode: 'embedded_data_uri' | 'none';
+    mime_type: 'image/png' | 'image/jpeg' | 'image/webp' | null;
     sha256: string | null;
   }>;
   certification_statement: string;
@@ -80,6 +108,7 @@ interface PackageManifest {
   limitation_note: string;
   issue_date_display: string;
   completion_date_display?: string;
+  template_id: string;
   file_allowlist: string[];
   files: Array<{path: string; sha256: string}>;
 }
@@ -106,20 +135,39 @@ function main(): void {
   if (!Array.isArray(manifest.outputs) || manifest.outputs.length !== manifest.count) {
     findings.push({severity: 'P1', file: 'manifest.json', issue: 'output_count_mismatch'});
   }
-  if (manifest.generator?.id !== 'metodologia-certificate-builder') {
+  if (
+    manifest.generator?.id !== 'metodologia-certificate-builder' ||
+    manifest.generator.version !== '0.4.1'
+  ) {
     findings.push({severity: 'P1', file: 'manifest.json', issue: 'unexpected_generator'});
   }
-  if (manifest.artifact_state === 'FINAL' && !/^[a-f0-9]{64}$/u.test(manifest.approved_demo_sha256 ?? '')) {
-    findings.push({severity: 'P0', file: 'manifest.json', issue: 'final_without_approved_demo_hash'});
+  if (manifest.template_id !== 'programa-empoderamiento-reconocimiento-v16') {
+    findings.push({severity: 'P1', file: 'manifest.json', issue: 'unexpected_template_id'});
+  }
+  if (
+    manifest.artifact_state === 'FINAL' &&
+    !/^[a-f0-9]{64}$/u.test(manifest.approved_demo_sha256 ?? '')
+  ) {
+    findings.push({
+      severity: 'P0',
+      file: 'manifest.json',
+      issue: 'final_without_approved_demo_hash',
+    });
   }
   if (
     manifest.hours_claim_mode === 'estimated_program_load' &&
     !manifest.effort.every((item) => item.estimated === true)
   ) {
-    findings.push({severity: 'P1', file: 'manifest.json', issue: 'estimated_mode_has_non_estimated_component'});
+    findings.push({
+      severity: 'P1',
+      file: 'manifest.json',
+      issue: 'estimated_mode_has_non_estimated_component',
+    });
   }
 
-  const allowedFiles = Array.isArray(manifest.file_allowlist) ? [...manifest.file_allowlist].sort() : [];
+  const allowedFiles = Array.isArray(manifest.file_allowlist)
+    ? [...manifest.file_allowlist].sort()
+    : [];
   const observedBoundFiles = walkFiles(packageDir)
     .filter((path) => path !== 'manifest.json')
     .sort();
@@ -142,7 +190,8 @@ function main(): void {
     ? readdirSync(htmlDir).filter((name) => name.toLowerCase().endsWith('.html'))
     : [];
   for (const fileName of observedFiles) {
-    if (!expectedFiles.has(fileName)) findings.push({severity: 'P1', file: `html/${fileName}`, issue: 'unexpected_html'});
+    if (!expectedFiles.has(fileName))
+      findings.push({severity: 'P1', file: `html/${fileName}`, issue: 'unexpected_html'});
   }
   for (const fileName of expectedFiles) {
     if (!observedFiles.includes(fileName)) {
@@ -157,7 +206,11 @@ function main(): void {
     !Number.isFinite(calculatedTotal) ||
     Math.abs(calculatedTotal - Number(manifest.total_certifiable_hours)) > 1e-9
   ) {
-    findings.push({severity: 'P1', file: 'manifest.json', issue: 'certifiable_hours_total_mismatch'});
+    findings.push({
+      severity: 'P1',
+      file: 'manifest.json',
+      issue: 'certifiable_hours_total_mismatch',
+    });
   }
 
   const names = outputs.map((item) => String(item.name).toLowerCase());
@@ -177,25 +230,35 @@ function main(): void {
     for (const [id, regex] of FORBIDDEN) {
       if (regex.test(html)) findings.push({severity: 'P0', file: rel, issue: id});
     }
-    if (!html.includes('data-render-status="rendered"')) {
+    const bodyTag = html.match(/<body\b[^>]*>/u)?.[0] ?? '';
+    if (!bodyTag.includes('data-render-status="rendered"')) {
       findings.push({severity: 'P1', file: rel, issue: 'missing_render_status'});
     }
     if (countMatches(html, /class="page /g) < 1) {
       findings.push({severity: 'P1', file: rel, issue: 'missing_page_articles'});
     }
-    if (manifest.artifact_state === 'RENDERED_DRAFT') {
-      const hasWatermark =
-        html.includes('data-template-state="demo"') ||
-        html.includes('"demo"');
-      if (!hasWatermark) {
-        findings.push({severity: 'P1', file: rel, issue: 'draft_missing_demo_state'});
-      }
+    const expectedTemplateState = manifest.artifact_state === 'FINAL' ? 'emitido' : 'demo';
+    if (!bodyTag.includes(`data-template-state="${expectedTemplateState}"`)) {
+      findings.push({severity: 'P1', file: rel, issue: 'body_template_state_mismatch'});
     }
-    if (manifest.artifact_state === 'FINAL' && html.includes('data-template-state="demo"')) {
-      findings.push({severity: 'P1', file: rel, issue: 'final_has_demo_state'});
+    if (!/body\[data-template-state=(?:"emitido"|'emitido')\]\s+\.template-watermark/u.test(html)) {
+      findings.push({severity: 'P1', file: rel, issue: 'watermark_selector_mutated'});
     }
     if (!html.includes('certificateData')) {
       findings.push({severity: 'P1', file: rel, issue: 'missing_certificate_data'});
+    }
+    const expectedStatement = visibleCertificationStatementMarkup(manifest.certification_statement);
+    const exactStatementCount = html.split(expectedStatement).length - 1;
+    const statementSlotCount = countMatches(
+      html,
+      /<p\b[^>]*\bclass="certificate-statement"[^>]*>/gu,
+    );
+    if (exactStatementCount !== 1 || statementSlotCount !== 1) {
+      findings.push({
+        severity: 'P1',
+        file: rel,
+        issue: 'visible_certification_statement_mismatch',
+      });
     }
     if (!html.includes(item.folio)) {
       findings.push({severity: 'P1', file: rel, issue: 'missing_folio'});
@@ -220,6 +283,33 @@ function main(): void {
     if (item.sha256 && fileSha256(htmlPath) !== item.sha256) {
       findings.push({severity: 'P1', file: rel, issue: 'html_hash_mismatch'});
     }
+    const signatureFields = ['firmaPrincipalAsset', 'firmaSecundariaAsset'] as const;
+    manifest.signatures.forEach((signature, index) => {
+      const field = signatureFields[index];
+      if (!field) return;
+      const encoded = extractCertificateString(html, field) ?? '';
+      if (signature.asset_mode === 'none') {
+        if (encoded) {
+          findings.push({
+            severity: 'P0',
+            file: rel,
+            issue: `unexpected_embedded_signature:${field}`,
+          });
+        }
+        return;
+      }
+      const decoded = decodeImageDataUri(encoded);
+      if (!decoded) {
+        findings.push({severity: 'P0', file: rel, issue: `missing_embedded_signature:${field}`});
+        return;
+      }
+      if (decoded.mimeType !== signature.mime_type) {
+        findings.push({severity: 'P1', file: rel, issue: `signature_mime_mismatch:${field}`});
+      }
+      if (!signature.sha256 || bytesSha256(decoded.bytes) !== signature.sha256) {
+        findings.push({severity: 'P1', file: rel, issue: `signature_hash_mismatch:${field}`});
+      }
+    });
     const assetRefs = [...html.matchAll(/src="\.\.\/assets\/([^"]+)"/g)].map((m) => m[1]);
     for (const asset of assetRefs) {
       if (asset && !existsSync(join(packageDir, 'assets', asset))) {
@@ -229,14 +319,18 @@ function main(): void {
   }
 
   for (const signature of manifest.signatures) {
-    if (!signature.asset) continue;
-    const assetPath = join(packageDir, signature.asset);
-    if (!existsSync(assetPath)) {
-      findings.push({severity: 'P0', file: signature.asset, issue: 'missing_signature_asset'});
-      continue;
+    if (
+      signature.asset_mode === 'embedded_data_uri' &&
+      (!signature.sha256 || !signature.mime_type)
+    ) {
+      findings.push({
+        severity: 'P0',
+        file: 'manifest.json',
+        issue: 'embedded_signature_missing_binding',
+      });
     }
-    if (signature.sha256 && fileSha256(assetPath) !== signature.sha256) {
-      findings.push({severity: 'P1', file: signature.asset, issue: 'signature_hash_mismatch'});
+    if (signature.asset_mode === 'none' && (signature.sha256 || signature.mime_type)) {
+      findings.push({severity: 'P1', file: 'manifest.json', issue: 'empty_signature_has_binding'});
     }
   }
 

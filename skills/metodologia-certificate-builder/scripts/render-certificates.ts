@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import {
-  copyFileSync,
   existsSync,
   lstatSync,
   mkdirSync,
@@ -15,9 +14,10 @@ import {fileURLToPath} from 'node:url';
 
 import {CertificateManifestSchema, type CertificateManifest} from '../schemas/certificate-manifest';
 import {escapeHtml, fileSha256, readJson, slugify} from '../../../scripts/lib/certificate-utils';
+import {bindVisibleCertificationStatement} from './certification-statement-binding';
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
-const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'certificate-template.html');
+const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'certificate-template-v16.html');
 const repoRoot = resolve(scriptDir, '..', '..', '..');
 const BRAND_BINDINGS = [
   'registries/brand/brand-profile-v2.yml',
@@ -51,7 +51,9 @@ function parseArgs(argv: string[]): Args {
     throw new Error(`Unknown argument: ${token}`);
   }
   if (!args.input || !args.output) {
-    throw new Error('Usage: render-certificates.ts --input <manifest.json> --output <directory> [--force]');
+    throw new Error(
+      'Usage: render-certificates.ts --input <manifest.json> --output <directory> [--force]',
+    );
   }
   return args as Args;
 }
@@ -60,21 +62,25 @@ interface NormalizedSignature {
   name: string;
   role: string;
   asset_presentation?: 'standard' | 'invert' | undefined;
-  asset_path?: string | undefined;
-  asset: string | null;
-  html_asset: string | null;
+  asset_mode: 'embedded_data_uri' | 'none';
+  data_uri: string | null;
+  mime_type: 'image/png' | 'image/jpeg' | 'image/webp' | null;
   sha256: string | null;
 }
 
-function copySignatureAssets(
+function loadSignatureAssets(
   signatures: CertificateManifest['signatures'],
   inputDir: string,
-  assetsDir: string,
 ): NormalizedSignature[] {
-  mkdirSync(assetsDir, {recursive: true});
-  return signatures.map((sig, index) => {
+  return signatures.map((sig) => {
     if (!sig.asset_path) {
-      return {...sig, asset: null, html_asset: null, sha256: null};
+      return {
+        ...sig,
+        asset_mode: 'none',
+        data_uri: null,
+        mime_type: null,
+        sha256: null,
+      };
     }
     if (/^(https?|file|data|blob):/i.test(sig.asset_path)) {
       throw new Error(`Signature asset must be a local file path: ${sig.asset_path}`);
@@ -87,21 +93,25 @@ function copySignatureAssets(
       throw new Error(`Signature asset not found: ${sig.asset_path}`);
     }
     const relativeSource = relative(realpathSync(inputDir), realpathSync(source));
-    if (relativeSource.startsWith('..') || isAbsolute(relativeSource) || lstatSync(source).isSymbolicLink()) {
+    if (
+      relativeSource.startsWith('..') ||
+      isAbsolute(relativeSource) ||
+      lstatSync(source).isSymbolicLink()
+    ) {
       throw new Error(`Signature asset must stay inside the manifest directory: ${sig.asset_path}`);
     }
     const ext = extname(source).toLowerCase();
     if (!['.png', '.jpg', '.jpeg', '.webp'].includes(ext)) {
       throw new Error(`Unsupported signature asset type: ${ext}`);
     }
-    const fileName = `signature-${String(index + 1).padStart(2, '0')}${ext}`;
-    const dest = join(assetsDir, fileName);
-    copyFileSync(source, dest);
+    const mimeType = ext === '.png' ? 'image/png' : ext === '.webp' ? 'image/webp' : 'image/jpeg';
+    const bytes = readFileSync(source);
     return {
       ...sig,
-      asset: `assets/${fileName}`,
-      html_asset: `../assets/${fileName}`,
-      sha256: fileSha256(dest),
+      asset_mode: 'embedded_data_uri',
+      data_uri: `data:${mimeType};base64,${bytes.toString('base64')}`,
+      mime_type: mimeType,
+      sha256: fileSha256(source),
     };
   });
 }
@@ -122,6 +132,7 @@ function splitName(fullName: string): {nombres: string; apellidos: string} {
 function buildCertificateDataJs(
   config: CertificateManifest,
   recipient: CertificateManifest['recipients'][number],
+  signatures: NormalizedSignature[],
 ): string {
   const displayLines = recipient.display_lines ?? [];
   const split = splitName(recipient.name);
@@ -131,8 +142,8 @@ function buildCertificateDataJs(
   const fechaGrado = config.completion_date_display ?? config.issue_date_display;
   const enfoqueProfesional = config.program_focus ?? 'Método + IA';
   const ciclo = config.program_cycle ?? '';
-  const sig0 = config.signatures[0];
-  const sig1 = config.signatures[1];
+  const sig0 = signatures[0];
+  const sig1 = signatures[1];
   const data: Record<string, string> = {
     estado,
     nombres,
@@ -143,9 +154,14 @@ function buildCertificateDataJs(
     ciclo,
     firmaPrincipal: sig0?.name ?? '',
     cargoPrincipal: sig0?.role ?? '',
-    firmaSecundaria: sig1?.name ?? config.issuer,
+    cargoPrincipalSecundario: sig0 ? 'Cofundador de MetodologIA' : '',
+    firmaPrincipalAsset: sig0?.data_uri ?? '',
+    firmaSecundaria: sig1?.name ?? '',
     cargoSecundaria: sig1?.role ?? '',
+    cargoSecundariaSecundario: sig1 ? 'Cofundador de MetodologIA' : '',
+    firmaSecundariaAsset: sig1?.data_uri ?? '',
     folio: recipient.folio,
+    certificationStatement: config.certification_statement,
   };
   const entries = Object.entries(data)
     .map(([key, value]) => `      ${key}: ${JSON.stringify(value)}`)
@@ -163,9 +179,15 @@ function injectCertificateData(template: string, dataJs: string): string {
 
 function activateRenderedState(html: string, artifactState: string): string {
   const templateState = artifactState === 'FINAL' ? 'emitido' : 'demo';
-  return html
-    .replace('<body ', '<body data-render-status="rendered" ')
-    .replace(/data-template-state="(?:demo|emitido)"/, `data-template-state="${templateState}"`);
+  return html.replace(/<body\b[^>]*>/u, (bodyTag) => {
+    const withRenderStatus = /data-render-status=/u.test(bodyTag)
+      ? bodyTag.replace(/data-render-status="[^"]*"/u, 'data-render-status="rendered"')
+      : bodyTag.replace('<body', '<body data-render-status="rendered"');
+    return withRenderStatus.replace(
+      /data-template-state="(?:demo|emitido)"/u,
+      `data-template-state="${templateState}"`,
+    );
+  });
 }
 
 function updatePageTitle(html: string, title: string): string {
@@ -184,15 +206,13 @@ interface OutputEntry {
 function walkFiles(root: string, current = root): string[] {
   return readdirSync(current, {withFileTypes: true}).flatMap((entry) => {
     const absolute = join(current, entry.name);
-    return entry.isDirectory() ? walkFiles(root, absolute) : [relative(root, absolute).replace(/\\/g, '/')];
+    return entry.isDirectory()
+      ? walkFiles(root, absolute)
+      : [relative(root, absolute).replace(/\\/g, '/')];
   });
 }
 
-function writeIndex(
-  outputRoot: string,
-  config: CertificateManifest,
-  outputs: OutputEntry[],
-): void {
+function writeIndex(outputRoot: string, config: CertificateManifest, outputs: OutputEntry[]): void {
   const items = outputs
     .map(
       (item) =>
@@ -244,15 +264,15 @@ function main(): void {
   const config = CertificateManifestSchema.parse(readJson(inputPath));
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
   const htmlDir = join(outputRoot, 'html');
-  const assetsDir = join(outputRoot, 'assets');
   mkdirSync(htmlDir, {recursive: true});
-  const signatures = copySignatureAssets(config.signatures, dirname(inputPath), assetsDir);
+  const signatures = loadSignatureAssets(config.signatures, dirname(inputPath));
 
   const outputs: OutputEntry[] = config.recipients.map((recipient, index) => {
     const fileName = `${String(index + 1).padStart(2, '0')}-${slugify(recipient.name)}.html`;
     const outputPath = join(htmlDir, fileName);
-    const dataJs = buildCertificateDataJs(config, recipient);
+    const dataJs = buildCertificateDataJs(config, recipient, signatures);
     let html = injectCertificateData(template, dataJs);
+    html = bindVisibleCertificationStatement(html, config.certification_statement);
     html = activateRenderedState(html, config.artifact_state);
     html = updatePageTitle(html, `${config.certificate_title} | ${config.issuer}`);
     writeFileSync(outputPath, html, 'utf8');
@@ -273,10 +293,11 @@ function main(): void {
     sha256: fileSha256(join(repoRoot, path)),
   }));
   const boundFiles = walkFiles(outputRoot)
+    .filter((path) => path !== 'manifest.json')
     .sort()
     .map((path) => ({path, sha256: fileSha256(join(outputRoot, path))}));
   const outputManifest = {
-    generator: {id: 'metodologia-certificate-builder', version: '0.3.0'},
+    generator: {id: 'metodologia-certificate-builder', version: '0.4.1'},
     package_id: config.package_id,
     generated_at: new Date().toISOString(),
     source_input: basename(inputPath),
@@ -299,20 +320,28 @@ function main(): void {
     limitation_note: config.limitation_note,
     count: outputs.length,
     outputs,
-    signatures: signatures.map(({name, role, asset_presentation, asset, sha256: digest}) => ({
-      name,
-      role,
-      asset_presentation: asset_presentation ?? 'standard',
-      asset,
-      sha256: digest,
-    })),
+    signatures: signatures.map(
+      ({name, role, asset_presentation, asset_mode, mime_type, sha256: digest}) => ({
+        name,
+        role,
+        asset_presentation: asset_presentation ?? 'standard',
+        asset_mode,
+        mime_type,
+        sha256: digest,
+      }),
+    ),
+    template_id: 'programa-empoderamiento-reconocimiento-v16',
     template_sha256: fileSha256(TEMPLATE_PATH),
     brand_bindings: brandBindings,
     file_allowlist: boundFiles.map(({path}) => path),
     files: boundFiles,
     coverage_gap: config.coverage_gap ?? [],
   };
-  writeFileSync(join(outputRoot, 'manifest.json'), `${JSON.stringify(outputManifest, null, 2)}\n`, 'utf8');
+  writeFileSync(
+    join(outputRoot, 'manifest.json'),
+    `${JSON.stringify(outputManifest, null, 2)}\n`,
+    'utf8',
+  );
   process.stdout.write(
     `${JSON.stringify({package: config.package_id, certificates: outputs.length, output: outputRoot}, null, 2)}\n`,
   );

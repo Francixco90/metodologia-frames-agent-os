@@ -16,7 +16,7 @@
     <!-- [METODOLOGIA] La arquitectura Método primero, IA después proviene del source pack y del cuaderno del programa. -->
     <!-- [INFERENCIA] Systems Thinking y Systems Design nombran de forma coherente prácticas sistémicas ya presentes en el recorrido. -->
     <!-- [SUPUESTO] Los datos personales y académicos visibles son demostrativos hasta su verificación previa a emisión. -->
-    <title>Programa de Empoderamiento · Reconocimiento v15 · MetodologIA</title>
+    <title>Programa de Empoderamiento · Reconocimiento v16 · MetodologIA</title>
     <style>
       /*
       Poppins © Indian Type Foundry · SIL Open Font License 1.1.
@@ -645,6 +645,10 @@
         text-align: center;
       }
 
+      .signature[hidden] {
+        display: none;
+      }
+
       .signature-image {
         height: 14mm;
         max-width: 100%;
@@ -688,6 +692,7 @@
 
       .folio {
         display: grid;
+        grid-column: 3;
         justify-items: end;
         gap: 1mm;
         min-width: 31mm;
@@ -1805,7 +1810,7 @@
     data-template-state="demo"
     data-brand-profile="metodologia_public_program"
     data-source-pack-id="program-source-pack-empoderamiento-trabajo-amplificado-v1"
-    data-template-id="programa-empoderamiento-reconocimiento-v15"
+    data-template-id="programa-empoderamiento-reconocimiento-v16"
     data-claim-policy="program-participation-recognition"
     data-competency-architecture="professional-sovereignty-plus-digital-sovereignty"
     data-experience-mode="single-page-screen-three-page-print"
@@ -1936,7 +1941,7 @@
           </div>
 
           <footer class="page-one-footer">
-            <section class="signature">
+            <section class="signature" data-signature-slot="principal" hidden>
               <img
                 class="signature-image"
                 data-signature-field="firmaPrincipalAsset"
@@ -1950,7 +1955,7 @@
                 >Rol complementario</span
               >
             </section>
-            <section class="signature">
+            <section class="signature" data-signature-slot="secundaria" hidden>
               <img
                 class="signature-image"
                 data-signature-field="firmaSecundariaAsset"
@@ -2608,13 +2613,13 @@
         fechaGrado: '28 de julio de 2026',
         enfoqueProfesional: 'Método + IA',
         ciclo: 'Ciclo 1 · 2026',
-        firmaPrincipal: 'Nombre de quien firma',
-        cargoPrincipal: 'Rol autorizado',
-        cargoPrincipalSecundario: 'Rol complementario',
+        firmaPrincipal: '',
+        cargoPrincipal: '',
+        cargoPrincipalSecundario: '',
         firmaPrincipalAsset: '',
-        firmaSecundaria: 'Nombre de quien firma',
-        cargoSecundaria: 'Rol autorizado',
-        cargoSecundariaSecundario: 'Rol complementario',
+        firmaSecundaria: '',
+        cargoSecundaria: '',
+        cargoSecundariaSecundario: '',
         firmaSecundariaAsset: '',
         folio: 'DEMO-NO-VALIDO',
       });
@@ -2655,6 +2660,17 @@
           node.removeAttribute('src');
           node.hidden = true;
         }
+      });
+
+      const signatureSlotFields = {
+        principal: ['firmaPrincipal', 'cargoPrincipal', 'cargoPrincipalSecundario'],
+        secundaria: ['firmaSecundaria', 'cargoSecundaria', 'cargoSecundariaSecundario'],
+      };
+      document.querySelectorAll('[data-signature-slot]').forEach((slot) => {
+        const keys = signatureSlotFields[slot.dataset.signatureSlot] ?? [];
+        const hasText = keys.some((key) => safeText(normalized[key]));
+        const hasAsset = Boolean(slot.querySelector('[data-signature-field]:not([hidden])'));
+        slot.hidden = !(hasText || hasAsset);
       });
 
       /*

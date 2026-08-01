@@ -32,21 +32,24 @@ como un mismo paquete hash-bound.
 1. Crear un manifiesto JSON conforme a
    [references/certificate-manifest.md](references/certificate-manifest.md) y validado por
    [schemas/certificate-manifest.ts](schemas/certificate-manifest.ts).
-2. Elegir una ruta de salida autorizada. Dentro del arnes, guardar nombres, firmas, manifiestos
+2. El renderer `0.4.1` debe vincular `certification_statement` como texto plano escapado en el
+   unico slot visible `certificate-statement` del HTML de salida. Debe fallar si el template no
+   contiene exactamente un slot; nunca modificar la plantilla v16 para resolver el binding.
+3. Elegir una ruta de salida autorizada. Dentro del arnes, guardar nombres, firmas, manifiestos
    nominales y capturas solo en `work/private/certificates/<package_id>/`.
-3. Generar el paquete con:
+4. Generar el paquete con:
 
    `pnpm cb -- --input <manifest.json> --output <output-dir>`
 
-4. Usar `--force` solo cuando el usuario haya autorizado regenerar una ruta existente y se haya
+5. Usar `--force` solo cuando el usuario haya autorizado regenerar una ruta existente y se haya
    revisado su contenido.
-5. Validar el paquete con:
+6. Validar el paquete con:
 
    `pnpm cv -- --package <output-dir>`
 
-6. Si se solicita PDF, convertirlo solo despues del pass HTML/visual y usar la skill PDF
+7. Si se solicita PDF, convertirlo solo despues del pass HTML/visual y usar la skill PDF
    aplicable. No declarar aptitud de imprenta ni PDF/X sin su gate especifico.
-7. No compartir `assets/certificate-template.html`: al abrirse directamente debe mostrar el
+8. No compartir `assets/certificate-template.html`: al abrirse directamente debe mostrar el
    guard de plantilla tecnica, nunca un certificado con tokens sin resolver.
 
 ## Claims y evidencia
@@ -67,9 +70,12 @@ como un mismo paquete hash-bound.
 ## Privacidad y assets
 
 - No guardar nombres reales, firmas, folios nominales ni rutas privadas dentro de esta skill.
-- Aceptar firmas solo desde archivos locales autorizados; copiar al paquete como assets relativos.
-- Bloquear en el HTML final `http(s)`, `file://`, `data:`, `blob:`, rutas absolutas, CDNs,
-  fuentes remotas y tracking.
+- Aceptar firmas solo desde archivos locales autorizados y confinados al directorio del
+  manifiesto. Incrustarlas como `data:image/*` unicamente al renderizar el HTML nominal,
+  vinculadas al SHA-256 del archivo fuente; nunca guardarlas en el template generico.
+- Bloquear en el HTML final `http(s)`, `file://`, `blob:`, rutas absolutas, CDNs, fuentes
+  remotas y tracking. Permitir solo `data:font/*`, `data:image/svg`, y firmas
+  `data:image/{png,jpeg,webp}` cuyo hash coincida con el manifiesto.
 - Copiar Poppins y Montserrat desde el manifiesto local de fuentes autorizado y hash-bound.
 - No leer caches, historiales, cookies, tokens ni perfiles de navegador como fuente de
   certificados.
@@ -83,12 +89,16 @@ aceptacion explicita; no emitir `READY` ni publicar.
 
 ## Recursos
 
-- Usar [assets/certificate-template.html](assets/certificate-template.html) como shell A4
-  landscape local de tres paginas (certificado, competencias y ruta formativa).
+- Usar [assets/certificate-template-v16.html](assets/certificate-template-v16.html) como shell
+  A4 landscape activo de tres paginas (certificado, competencias y ruta formativa). Sus slots de
+  firma son genericos y permanecen ocultos hasta que el manifiesto aporta un firmante.
   El template es self-contained: fuentes woff2 embebidas, SVG inline y JS vanilla.
+- Conservar [assets/certificate-template.html](assets/certificate-template.html) como evidencia
+  legacy v15 hash-bound. El renderer no debe usarlo ni modificarlo.
 - El renderizador inyecta los datos del participante en el objeto `certificateData`
   del template mediante [scripts/render-certificates.ts](scripts/render-certificates.ts),
-  que genera HTML, indice y manifiesto de salida.
+  vincula la declaracion visible con el marcador tecnico `renderer-0.4.1` y genera HTML, indice
+  y manifiesto de salida con `template_id` y hash.
 - Usar [scripts/validate-certificates.ts](scripts/validate-certificates.ts) para validar
   estructura, hashes, assets, folios, datos inyectados y suma horaria.
 - Leer [references/certificate-manifest.md](references/certificate-manifest.md) al preparar o
@@ -97,8 +107,10 @@ aceptacion explicita; no emitir `READY` ni publicar.
 ## Criterio de cierre
 
 - Confirmar conteo esperado y observado.
-- Confirmar folios unicos, hashes actuales y assets relativos existentes.
+- Confirmar folios unicos, hashes actuales y firmas embebidas vinculadas a sus assets fuente.
 - Confirmar `data-render-status="rendered"`, `certificateData` inyectado y cero referencias remotas o rutas privadas.
+- Confirmar exactamente una declaracion visible, escapada y marcada, igual a
+  `certification_statement`.
 - Confirmar total horario exacto y datos del participante presentes en todos los certificados.
 - Revisar visualmente cada pagina o registrar `coverage_gap` si no hay navegador.
 - Reportar archivos creados, validaciones, decision, privacidad, gaps y siguiente accion.

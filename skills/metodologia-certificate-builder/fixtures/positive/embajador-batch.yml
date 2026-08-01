@@ -18,9 +18,9 @@ manifest:
   program_focus: Método + IA
   program_cycle: Ciclo 1 · 2026
   effort:
-  - {label: trabajo sincronico, hours: 48}
-  - {label: trabajo independiente, hours: 48}
-  - {label: cierre de entregables, hours: 24, estimated: true}
+    - {label: trabajo sincronico, hours: 48}
+    - {label: trabajo independiente, hours: 48}
+    - {label: cierre de entregables, hours: 24, estimated: true}
   total_certifiable_hours: 120
   evidence_note: Competencias y entregables verificados conforme al registro interno
     del programa.
@@ -28,10 +28,10 @@ manifest:
     ni licencia profesional.
   panel_title: Esfuerzo formativo
   recipients:
-  - {name: Persona Sintetica Uno, folio: MDG-SYN-001}
-  - {name: Persona Sintetica Dos, folio: MDG-SYN-002}
+    - {name: Persona Sintetica Uno, folio: MDG-SYN-001}
+    - {name: Persona Sintetica Dos, folio: MDG-SYN-002}
   signatures:
-  - {name: Firmante Sintetico, role: Instructor Sintetico}
+    - {name: Firmante Sintetico, role: Instructor Sintetico}
   coverage_gap: []
 expected_state: RENDERED_DRAFT
 expected_validation: pass

@@ -38,7 +38,10 @@ export const CertificateManifestSchema = z
     completion_date_display: z.string().min(1).max(200).optional(),
     artifact_state: z.enum(['RENDERED_DRAFT', 'FINAL']),
     hours_claim_mode: z.enum(['certifiable_hours', 'estimated_program_load']),
-    approved_demo_sha256: z.string().regex(/^[a-f0-9]{64}$/u).optional(),
+    approved_demo_sha256: z
+      .string()
+      .regex(/^[a-f0-9]{64}$/u)
+      .optional(),
     certification_statement: z.string().min(1).max(420),
     effort_summary: z.string().min(1).max(400).optional(),
     learning_areas: z.array(z.string().min(1).max(120)).min(3).max(8).optional(),
@@ -53,13 +56,10 @@ export const CertificateManifestSchema = z
     signatures: z.array(SignatureSchema).min(1).max(3),
     coverage_gap: z.array(z.string().min(1)).optional(),
   })
-  .refine(
-    (data) => data.artifact_state !== 'FINAL' || Boolean(data.approved_demo_sha256),
-    {
-      message: 'FINAL requires approved_demo_sha256 from an explicitly approved demo',
-      path: ['approved_demo_sha256'],
-    },
-  )
+  .refine((data) => data.artifact_state !== 'FINAL' || Boolean(data.approved_demo_sha256), {
+    message: 'FINAL requires approved_demo_sha256 from an explicitly approved demo',
+    path: ['approved_demo_sha256'],
+  })
   .refine(
     (data) =>
       data.hours_claim_mode !== 'estimated_program_load' ||

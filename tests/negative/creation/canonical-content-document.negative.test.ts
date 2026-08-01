@@ -158,7 +158,11 @@ describe('CanonicalContentDocumentV1 adversarial rejection', () => {
       try {
         symlinkSync(external, join(repository, 'evidence.txt'));
       } catch (error) {
-        if (error instanceof Error && 'code' in error && (error as NodeJS.ErrnoException).code === 'EPERM') {
+        if (
+          error instanceof Error &&
+          'code' in error &&
+          (error as NodeJS.ErrnoException).code === 'EPERM'
+        ) {
           // Windows without Developer Mode cannot create symlinks.
           // The security invariant (reject external symlinks) is implicitly
           // satisfied: the OS blocks the symlink before the harness can.

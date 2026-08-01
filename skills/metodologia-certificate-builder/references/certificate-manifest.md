@@ -26,9 +26,9 @@ guia legible; en caso de divergencia, el schema prevalece.
   "program_focus": "Metodo + IA",
   "program_cycle": "Ciclo 1 - 2026",
   "effort": [
-    { "label": "trabajo sincronico", "hours": 48 },
-    { "label": "trabajo independiente", "hours": 48 },
-    { "label": "cierre de entregables", "hours": 24, "estimated": true }
+    {"label": "trabajo sincronico", "hours": 48},
+    {"label": "trabajo independiente", "hours": 48},
+    {"label": "cierre de entregables", "hours": 24, "estimated": true}
   ],
   "total_certifiable_hours": 120,
   "evidence_note": "Competencias y entregables verificados conforme al registro interno del programa.",

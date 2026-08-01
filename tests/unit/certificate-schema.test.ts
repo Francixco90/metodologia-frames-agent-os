@@ -101,7 +101,9 @@ describe('CertificateManifestSchema', () => {
   it('accepts display_lines that preserve the full name', () => {
     const good = {
       ...validManifest,
-      recipients: [{name: 'Persona Ejemplo', folio: 'MDG-001', display_lines: ['Persona', 'Ejemplo']}],
+      recipients: [
+        {name: 'Persona Ejemplo', folio: 'MDG-001', display_lines: ['Persona', 'Ejemplo']},
+      ],
     };
     expect(() => CertificateManifestSchema.parse(good)).not.toThrow();
   });

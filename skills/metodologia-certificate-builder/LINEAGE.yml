@@ -1,14 +1,26 @@
 schema_version: 1
 skill_id: metodologia-certificate-builder
-version: 0.3.0
-content_origin: locally_authored
+version: 0.4.1
+content_origin: locally_authored_adaptation
 lifecycle_state: active
 execution_scope: local-candidate-production
 authority_refs:
   - registries/brand/brand-profile-v2.yml
   - registries/brand/voice-profile-v2.yml
   - skills/metodologia-certificate-builder/schemas/certificate-manifest.ts
-  - skills/metodologia-certificate-builder/assets/certificate-template.html
-compatibility_contract: certificate-manifest-v2-template-v15
-external_fragments_reused: false
+  - skills/metodologia-certificate-builder/assets/certificate-template-v16.html
+compatibility_contract: certificate-manifest-v2-template-v16-visible-statement-binding
+external_fragments_reused: true
+source_evidence:
+  legacy_v15:
+    source_kind: user_supplied_workspace_template
+    source_sha256: aa1c649b042560d89f16f52455329cec8abf48e2f08eb367551d19149412630f
+    integration_commit: d0e0d9e105c5b875cfbe1284409246169e97f619
+  v16_derivation:
+    base_template: skills/metodologia-certificate-builder/assets/certificate-template.html
+    base_sha256: 19cd91136d3c97be6f88529a5283445d86c8d3e54395e2a7857e110e286c4d1a
+    decision: derive_unsigned_template_with_optional_signature_slots
+  renderer_0_4_1_binding:
+    template_sha256: 6a5a528d4d0f40f4d7cd6db78a24aeee873eb5b4c77e08710d811ef89157668c
+    decision: bind_visible_certification_statement_without_template_mutation
 publication_authority: false

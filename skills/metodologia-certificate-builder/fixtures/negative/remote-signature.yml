@@ -10,13 +10,13 @@ manifest:
   hours_claim_mode: certifiable_hours
   certification_statement: Finalizo satisfactoriamente el programa.
   effort:
-  - {label: trabajo sincronico, hours: 48}
+    - {label: trabajo sincronico, hours: 48}
   total_certifiable_hours: 48
   evidence_note: Competencias verificadas.
   limitation_note: Constancia formativa interna.
   recipients:
-  - {name: Persona Sintetica, folio: MDG-BAD-002}
+    - {name: Persona Sintetica, folio: MDG-BAD-002}
   signatures:
-  - {name: Firmante Remoto, role: Instructor, asset_path: 'https://example.com/firma.png'}
+    - {name: Firmante Remoto, role: Instructor, asset_path: 'https://example.com/firma.png'}
 expected_error: signature_asset_must_be_local
 expected_behavior: reject_before_render
