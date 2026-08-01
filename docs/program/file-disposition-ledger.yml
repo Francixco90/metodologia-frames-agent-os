@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 29
+    refactored: 31
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 258
+    verified_no_change: 256
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 11638
-    current_words_for_baseline_files: 11737
+    current_words_for_baseline_files: 11765
     violations: []
     checks:
       - path: AGENTS.md
@@ -73,9 +73,9 @@ budgets:
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
-        current_words: 62
+        current_words: 90
         maximum_words: 124
-        ratio: 1
+        ratio: 1.4516
         status: pass
       - path: README.md
         baseline_words: 567
@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89845
-    v3_rolling_adjustment_words: 2537
+    baseline_words: 89882
+    v3_rolling_adjustment_words: 2574
     original_baseline_words: 87308
-    final_words: 116912
+    final_words: 116949
     maximum_multiplier: 1.5
-    maximum_words: 134767
-    actual_multiplier: 1.3013
+    maximum_words: 134823
+    actual_multiplier: 1.3011
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89845
-    v3_rolling_adjustment_words: 2537
+    baseline_words: 89882
+    v3_rolling_adjustment_words: 2574
     original_baseline_words: 87308
-    final_words: 116912
-    maximum_words: 179690
-    word_multiplier: 1.3013
-    baseline_loc: 34072
-    v3_rolling_adjustment_loc: 1331
+    final_words: 116949
+    maximum_words: 179764
+    word_multiplier: 1.3011
+    baseline_loc: 34079
+    v3_rolling_adjustment_loc: 1338
     original_baseline_loc: 32741
-    final_loc: 42932
-    maximum_loc: 68144
+    final_loc: 42939
+    maximum_loc: 68158
     loc_multiplier: 1.26
     maximum_multiplier: 2
     status: pass
@@ -607,17 +607,17 @@ entries:
     initial_words: 89
     initial_loc: 33
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: 216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e
-      current_words: 89
-      current_loc: 33
-      byte_identical: true
-      material_change: false
+      current_sha256: 1b2e40a39f97f9666126f3e7d24b1ffe7dafaee555bb848828cc2418f37bf66f
+      current_words: 93
+      current_loc: 34
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
       generator_ref: null
       successor_path: null
@@ -754,17 +754,17 @@ entries:
     initial_words: 62
     initial_loc: 12
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:CONTRIBUTING.md
       current_ref: working-tree:CONTRIBUTING.md
       current_state: present
-      current_sha256: ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112
-      current_words: 62
-      current_loc: 12
-      byte_identical: true
-      material_change: false
+      current_sha256: a8827fb1cc3d5459d55ebf43eb993e7d6b63b5a3eb7c9ade41891ca370eed5b6
+      current_words: 90
+      current_loc: 17
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:CONTRIBUTING.md
       generator_ref: null
       successor_path: null
@@ -2944,9 +2944,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: b866c6fd43dd9224395a5b692628a7e845ef187c51a9938ca0597af42a145a19
-      current_words: 423
-      current_loc: 114
+      current_sha256: 3f7706417b1f8649a935a6c4a70345da5855bfcce065b00d5513cfd29ddc703d
+      current_words: 428
+      current_loc: 115
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json

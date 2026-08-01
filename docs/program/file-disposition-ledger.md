@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       29 |
+| `refactored`         |       31 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      258 |
+| `verified_no_change` |      256 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            89845 |            116912 |     134767 (1.5×) | 1.3013× | `pass` |
-| Total authored (palabras)     |            89845 |            116912 |       179690 (2×) | 1.3013× | `pass` |
-| Total authored (LOC)          |            34072 |             42932 |        68144 (2×) |   1.26× | `pass` |
+| Corpus authored elegible      |            89882 |            116949 |     134823 (1.5×) | 1.3011× | `pass` |
+| Total authored (palabras)     |            89882 |            116949 |       179764 (2×) | 1.3011× | `pass` |
+| Total authored (LOC)          |            34079 |             42939 |        68158 (2×) |   1.26× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -60,14 +60,14 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
-| `.github/workflows/validate.yml`                                                                              | `repo`             | `verified_no_change` | 89                 | 89                | 33          | 33         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `byte-identical` |
+| `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 93                | 33          | 34         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
 | `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 17                | 15          | 17         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
 | `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 39                | 3           | 28         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `refactored`         | 105                | 184               | 12          | 22         | `4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d` | `changed`        |
-| `CONTRIBUTING.md`                                                                                             | `lead`             | `verified_no_change` | 62                 | 62                | 12          | 12         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `byte-identical` |
+| `CONTRIBUTING.md`                                                                                             | `lead`             | `refactored`         | 62                 | 90                | 12          | 17         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `changed`        |
 | `README.md`                                                                                                   | `lead`             | `verified_no_change` | 567                | 567               | 107         | 107        | `f5d1f360c5189ec1337390b9937f692bf450a3d993c1efece5970dc940a07f0d` | `byte-identical` |
 | `SECURITY.md`                                                                                                 | `lead`             | `verified_no_change` | 73                 | 73                | 8           | 8          | `4ef6d9dfca8c3ed939d3bf402362e340efb7ee52684c181a31d77e996235459e` | `byte-identical` |
 | `adapters/n8n/README.md`                                                                                      | `n8n`              | `verified_no_change` | 184                | 184               | 23          | 23         | `99de7683e9276c5c711c76a6519a25335ced04ec8ee41b24851738a2fb4c9e10` | `byte-identical` |
@@ -171,7 +171,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `networks/web/src/model.ts`                                                                                   | `web`              | `verified_no_change` | 207                | 207               | 74          | 74         | `c61e8b3657914ae5ffb265a5c45343be48d4657ad26a6668b4e6d8f2977dc9c3` | `byte-identical` |
 | `networks/web/src/render.ts`                                                                                  | `web`              | `verified_no_change` | 259                | 259               | 98          | 98         | `1bc264cf29ec1152d997ce67d5724f08bb433cba73f1fb1f53842b4248943ef4` | `byte-identical` |
 | `networks/web/src/styles.css`                                                                                 | `web`              | `verified_no_change` | 662                | 662               | 378         | 378        | `82c4c4e0d35a7b86f88d2edb38c75c4fe4b75010082d7cccd9d874e2214e080c` | `byte-identical` |
-| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 423               | 76          | 114        | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
+| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 428               | 76          | 115        | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
 | `pnpm-lock.yaml`                                                                                              | `repo`             | `refactored`         | 6267               | 6986              | 4637        | 5210       | `c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82` | `changed`        |
 | `pnpm-workspace.yaml`                                                                                         | `repo`             | `verified_no_change` | 67                 | 67                | 35          | 35         | `5f1436a7d37fbce1cebd276d445647ab4d68e09f01294075e77cdd4ad9816e12` | `byte-identical` |
 | `projects/_template/project.yml`                                                                              | `lead`             | `verified_no_change` | 16                 | 16                | 8           | 8          | `ba6a183fdf8926d1b2f0a9b6475eef467f24125bcfbc7016ad0a90db1d28f0dd` | `byte-identical` |

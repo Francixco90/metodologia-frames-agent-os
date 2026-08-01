@@ -56,6 +56,7 @@
     "verify:carousel": "node --import tsx scripts/check-carousel.ts",
     "verify:content-matrix": "node --import tsx scripts/check-content-matrix.ts",
     "verify:skills": "node --import tsx scripts/check-instagram-v2-skills.ts && node --import tsx scripts/check-creation-v3-skills.ts",
+    "verify:contributions": "node --import tsx scripts/check-contributions.ts",
     "verify:dependencies": "node --import tsx scripts/check-dependency-audit.ts",
     "committee:validate": "node --import tsx projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts",
     "content:build": "node --import tsx workflows/content/build.ts",

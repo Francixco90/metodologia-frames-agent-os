@@ -11,7 +11,7 @@
     "moderate": 0,
     "low": 0
   },
-  "packageJsonSha256": "b866c6fd43dd9224395a5b692628a7e845ef187c51a9938ca0597af42a145a19",
+  "packageJsonSha256": "3f7706417b1f8649a935a6c4a70345da5855bfcce065b00d5513cfd29ddc703d",
   "pnpmLockSha256": "ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd",
   "supersedesReceiptId": "RCP-DEP-PRODUCTION-20260720-004",
   "packageChangeScope": "engines_node_pinned_exact_cross_platform_harness_fix",
