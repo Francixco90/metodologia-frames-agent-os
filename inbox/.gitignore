@@ -1,0 +1,16 @@
+# Inbox PII protection - defense in depth layer 1 (.gitignore)
+# Layer 2: README.md per subfolder (cognitive barrier)
+# Layer 3: pre-commit hook (only layer that blocks git add -f)
+
+# Zonas reguladas: ignorar todo el contenido excepto placeholders
+inbox/Contratos/*
+!inbox/Contratos/.gitkeep
+!inbox/Contratos/README.md
+
+inbox/Firmas/*
+!inbox/Firmas/.gitkeep
+!inbox/Firmas/README.md
+
+inbox/Muestras/*
+!inbox/Muestras/.gitkeep
+!inbox/Muestras/README.md
