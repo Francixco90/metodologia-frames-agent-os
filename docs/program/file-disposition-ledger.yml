@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 11638
-    current_words_for_baseline_files: 11765
+    current_words_for_baseline_files: 11786
     violations: []
     checks:
       - path: AGENTS.md
@@ -73,9 +73,9 @@ budgets:
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
-        current_words: 90
+        current_words: 111
         maximum_words: 124
-        ratio: 1.4516
+        ratio: 1.7903
         status: pass
       - path: README.md
         baseline_words: 567
@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89970
+    v3_rolling_adjustment_words: 2662
     original_baseline_words: 87308
-    final_words: 117016
+    final_words: 117037
     maximum_multiplier: 1.5
-    maximum_words: 134923
-    actual_multiplier: 1.3009
+    maximum_words: 134955
+    actual_multiplier: 1.3008
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89970
+    v3_rolling_adjustment_words: 2662
     original_baseline_words: 87308
-    final_words: 117016
-    maximum_words: 179898
-    word_multiplier: 1.3009
-    baseline_loc: 34089
-    v3_rolling_adjustment_loc: 1348
+    final_words: 117037
+    maximum_words: 179940
+    word_multiplier: 1.3008
+    baseline_loc: 34093
+    v3_rolling_adjustment_loc: 1352
     original_baseline_loc: 32741
-    final_loc: 42949
-    maximum_loc: 68178
+    final_loc: 42953
+    maximum_loc: 68186
     loc_multiplier: 1.2599
     maximum_multiplier: 2
     status: pass
@@ -760,9 +760,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:CONTRIBUTING.md
       current_ref: working-tree:CONTRIBUTING.md
       current_state: present
-      current_sha256: a8827fb1cc3d5459d55ebf43eb993e7d6b63b5a3eb7c9ade41891ca370eed5b6
-      current_words: 90
-      current_loc: 17
+      current_sha256: e61831e8dde8790dab483f60d679f5ce5648eed6e5474cc0fa1e860a6b855740
+      current_words: 111
+      current_loc: 21
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:CONTRIBUTING.md

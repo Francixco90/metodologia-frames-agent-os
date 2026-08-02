@@ -15,3 +15,7 @@ Si creas folios, agrega una entrada en `registries/contributions/entries/`. ID: 
 Los folios conservan su nomenclatura. Duplicados se conservan. El `registry_entry_id` es la clave unica. El `contributor_alias` es seudonimo opaco.
 
 No commitees PII. `work/private/` esta gitignored.
+
+## Como anadir artefactos gobernados
+
+Guia detallada en `docs/contributing/adding-artifacts.md`: agente, skill, proyecto, contrato y recibo, con owners, schemas y checks. [DOC]
