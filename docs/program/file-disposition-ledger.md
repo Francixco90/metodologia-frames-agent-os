@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       31 |
+| `refactored`         |       32 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      256 |
+| `verified_no_change` |      255 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            89949 |            117016 |     134923 (1.5×) | 1.3009× | `pass` |
-| Total authored (palabras)     |            89949 |            117016 |       179898 (2×) | 1.3009× | `pass` |
-| Total authored (LOC)          |            34089 |             42949 |        68178 (2×) | 1.2599× | `pass` |
+| Corpus authored elegible      |            89992 |            117059 |     134988 (1.5×) | 1.3008× | `pass` |
+| Total authored (palabras)     |            89992 |            117059 |       179984 (2×) | 1.3008× | `pass` |
+| Total authored (LOC)          |            34097 |             42957 |        68194 (2×) | 1.2598× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -297,7 +297,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/notebooks/notebook-registry.yml`                                                                  | `sources`          | `verified_no_change` | 30                 | 30                | 16          | 16         | `e31037151c2a549d4d657804c5d018cc92dc1bf1900ba3d6e9d6cc1c583dfd59` | `byte-identical` |
 | `registries/notebooks/work-unit-binding-contract.yml`                                                         | `sources`          | `verified_no_change` | 113                | 113               | 55          | 55         | `53f6fef560ded6662343f1fc094a7cab6250b7de1d53d6556cdb2ed506efe937` | `byte-identical` |
 | `registries/projects/project-registry.yml`                                                                    | `lead`             | `verified_no_change` | 58                 | 58                | 29          | 29         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `byte-identical` |
-| `registries/skills/README.md`                                                                                 | `skill-foundry`    | `verified_no_change` | 60                 | 60                | 8           | 8          | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `byte-identical` |
+| `registries/skills/README.md`                                                                                 | `skill-foundry`    | `refactored`         | 60                 | 103               | 8           | 16         | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `changed`        |
 | `registries/skills/lifecycle-contract.yml`                                                                    | `skill-foundry`    | `verified_no_change` | 76                 | 76                | 38          | 38         | `e90b0715d47955754a2692d819d76f0e447e7d2452ef594538e92b194de42264` | `byte-identical` |
 | `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1104              | 156         | 528        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
 | `registries/sources/canonical-source-gaps.yml`                                                                | `sources`          | `verified_no_change` | 72                 | 72                | 35          | 35         | `13da2cf746907bcb68bc652aa6f239219fd75718064da910afc01cb25e6bb772` | `byte-identical` |
