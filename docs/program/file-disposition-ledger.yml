@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89882
-    v3_rolling_adjustment_words: 2574
+    baseline_words: 89911
+    v3_rolling_adjustment_words: 2603
     original_baseline_words: 87308
-    final_words: 116949
+    final_words: 116978
     maximum_multiplier: 1.5
-    maximum_words: 134823
-    actual_multiplier: 1.3011
+    maximum_words: 134866
+    actual_multiplier: 1.301
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89882
-    v3_rolling_adjustment_words: 2574
+    baseline_words: 89911
+    v3_rolling_adjustment_words: 2603
     original_baseline_words: 87308
-    final_words: 116949
-    maximum_words: 179764
-    word_multiplier: 1.3011
-    baseline_loc: 34079
-    v3_rolling_adjustment_loc: 1338
+    final_words: 116978
+    maximum_words: 179822
+    word_multiplier: 1.301
+    baseline_loc: 34083
+    v3_rolling_adjustment_loc: 1342
     original_baseline_loc: 32741
-    final_loc: 42939
-    maximum_loc: 68158
+    final_loc: 42943
+    maximum_loc: 68166
     loc_multiplier: 1.26
     maximum_multiplier: 2
     status: pass
@@ -613,9 +613,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: 1b2e40a39f97f9666126f3e7d24b1ffe7dafaee555bb848828cc2418f37bf66f
-      current_words: 93
-      current_loc: 34
+      current_sha256: ff274ba126495f02ca97739e1f9c8aa8fb1d71f4d4900db35ea1a992e25d24fe
+      current_words: 122
+      current_loc: 38
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
@@ -739,7 +739,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:AGENTS.md
       current_ref: working-tree:AGENTS.md
       current_state: present
-      current_sha256: 08524babfeb7d9c28dcf00a04ad4779f25004c74d55c641e258a9cc93154416d
+      current_sha256: 0a9abdd1d1514bff24e2051b07e05ac3f0aa3b90f2af2dc34689080fb2998b90
       current_words: 184
       current_loc: 22
       byte_identical: false
