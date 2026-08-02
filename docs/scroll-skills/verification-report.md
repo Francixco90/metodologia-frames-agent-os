@@ -1,20 +1,20 @@
 # Verification Report — Scroll Skills
 
-**Fecha:** 2026-08-01
-**Rama:** feat/model-agnostic-scroll-skills
-**Worktree:** `<worktree-aislado>`
-**Base:** 3636db2
+**Fecha:** 2026-08-02
+**Rama:** feat/frames-rename-and-scroll-skills
+**Base:** origin/main @ 34891ae3
+**HEAD:** 944a8bc
 
 ---
 
 ## Linea base (Fase 0)
 
-| Comando             | Resultado baseline | Resultado post-cambio |
-| ------------------- | ------------------ | --------------------- |
-| `pnpm lint`         | PASS               | PASS                  |
-| `pnpm typecheck`    | PASS               | PASS                  |
-| `pnpm test:unit`    | PASS (244/244)     | PASS (326/326)        |
-| `pnpm format:check` | PASS               | PASS                  |
+| Comando             | Resultado baseline (origin/main) | Resultado post-cambio |
+| ------------------- | -------------------------------- | --------------------- |
+| `pnpm lint`         | PASS                             | PASS                  |
+| `pnpm typecheck`    | PASS                             | PASS                  |
+| `pnpm test:unit`    | PASS (451/451)                   | PASS (534/534)        |
+| `pnpm format:check` | PASS                             | PASS                  |
 
 ---
 
@@ -24,7 +24,7 @@
 | --- | -------------------------------------------- | -------------------- | ----------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ | ------ |
 | V01 | Lint sin errores                             | `pnpm lint`          | exit 0                              | exit 0                                    | Sin errores ESLint                                                             | PASS   |
 | V02 | Typecheck sin errores                        | `pnpm typecheck`     | exit 0                              | exit 0                                    | Sin errores TS                                                                 | PASS   |
-| V03 | Tests unitarios                              | `pnpm test:unit`     | 326/326 pass                        | 326/326 pass (25 archivos)                | Duration 2.37s                                                                 | PASS   |
+| V03 | Tests unitarios                              | `pnpm test`          | 534/534 pass                        | 534/534 pass (59 archivos)                | Duration 3.20s                                                                 | PASS   |
 | V04 | Formato consistente                          | `pnpm format:check`  | All matched files                   | All matched files use Prettier code style | exit 0                                                                         | PASS   |
 | V05 | Skills propias presentes                     | filesystem check     | 3 skills con SKILL.md + LINEAGE.yml | 3 skills presentes                        | scroll-experience-foundations, cinematic-scroll-quality, scroll-world-agnostic | PASS   |
 | V06 | Nombres unicos                               | manifest check       | 3 skill_ids unicos                  | 3 ids unicos en manifest                  | No duplicados                                                                  | PASS   |
@@ -38,7 +38,7 @@
 | V14 | Fallbacks presentes                          | content check        | Cada skill tiene fallbacks          | 3/3 tienen seccion fallback               | manifest fallbacks array                                                       | PASS   |
 | V15 | Fixtures presentes                           | filesystem check     | positive + negative por skill       | 3/3 skills con fixtures                   | YAML parseable                                                                 | PASS   |
 | V16 | Manifest valido (Zod)                        | schema validation    | Parse sin throw                     | Parse exitoso                             | manifestSchema.parse()                                                         | PASS   |
-| V17 | Skills existentes no afectadas               | filesystem check     | 6 skills originales presentes       | 6/6 presentes                             | Non-regression test                                                            | PASS   |
+| V17 | Skills existentes no afectadas               | filesystem check     | 9 skills originales presentes       | 9/9 presentes                             | Non-regression test                                                            | PASS   |
 | V18 | Registros existentes no modificados          | filesystem check     | 2 registries presentes              | 2/2 presentes                             | skill-registry + creation-v3                                                   | PASS   |
 | V19 | Vendors aislados                             | filesystem check     | skills/vendor/ con 3 dirs           | 3 vendors presentes                       | scroll-world, cinematic-scroll, scroll-experience                              | PASS   |
 | V20 | source-lock.json con hashes                  | json validation      | 3 vendors con hashes                | 3/3 con critical_file_hashes              | sha256 por archivo                                                             | PASS   |
@@ -51,31 +51,31 @@
 | V27 | Contenido esencial sin JavaScript            | content check        | progressive enhancement L1          | "legible sin JS"                          | foundations + agnostic SKILL.md                                                | PASS   |
 | V28 | No escribe fuera del workspace               | invariant check      | invariant declarado                 | "no se escriben archivos fuera"           | agnostic SKILL.md invariantes                                                  | PASS   |
 | V29 | Primary funciona con cualquier modelo        | model_agnostic check | no mandatory model                  | declarado model_agnostic: true            | frontmatter + manifest                                                         | PASS   |
-| V30 | Comportamiento previo conservado             | regression test      | tests existentes pasan              | 326/326 pass                              | vitest                                                                         | PASS   |
+| V30 | Comportamiento previo conservado             | regression test      | tests existentes pasan              | 534/534 pass                              | vitest                                                                         | PASS   |
 
 ---
 
-## Pruebas no ejecutadas (limitaciones del entorno)
+## Pruebas ejecutadas previamente como NOT_RUN
 
-| ID  | Prueba                        | Razon                                                               | Procedimiento para completar                                  |
-| --- | ----------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------- |
-| V31 | `pnpm check:repo` completo    | Requiere DAG/ownership/sources que pueden drift por nuevos archivos | Ejecutar `pnpm check:repo` y resolver drift si existe         |
-| V32 | `pnpm verify` completo        | Cadena larga que incluye verify:skills con registros hash-bound     | Ejecutar despues de registrar skills en registros si se desea |
-| V33 | Prueba con navegador real     | Entorno sin browser para QA visual                                  | Ejecutar `pnpm exec playwright` con pagina de demo            |
-| V34 | CI pipeline en GitHub Actions | Remote no configurado                                               | Configurar remote y push para validar CI                      |
+| ID  | Prueba                        | Estado  | Observacion                                                                                                                                                                                                                                                                                                                                                          |
+| --- | ----------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| V31 | `pnpm check:repo` completo    | PASS    | 18 checks PASS. Unico fallo: check-toolchain (Node v24 vs v22.23.1, preexistente del entorno local)                                                                                                                                                                                                                                                                  |
+| V32 | `pnpm verify` completo        | PARTIAL | check:repo + verify:docs + verify:renderers + verify:brand + verify:orchestration + verify:carousel + verify:content-matrix + verify:skills + verify:ai-runtime + verify:dependencies + slice:verify-compat + typecheck + lint + test + format:check = PASS. verify:creation-doc falla por H01-BUDGET preexistente en origin/main (no introducido por scroll-skills) |
+| V33 | Prueba con navegador real     | NOT_RUN | Requiere configuracion Playwright con pagina de demo                                                                                                                                                                                                                                                                                                                 |
+| V34 | CI pipeline en GitHub Actions | NOT_RUN | Pendiente de push y PR (Fase 5, requiere autorizacion del usuario)                                                                                                                                                                                                                                                                                                   |
 
 ---
 
 ## Comparacion con linea base
 
-| Metrica                  | Baseline | Post-cambio | Delta                         |
-| ------------------------ | -------- | ----------- | ----------------------------- |
-| Tests                    | 244      | 326         | +82 (scroll-skills tests)     |
-| Skills                   | 9        | 12          | +3 propias                    |
-| Vendors                  | 0        | 3           | +3 aislados                   |
-| Archivos baseline ledger | 377      | 377         | 0 (sin cambios estructurales) |
-| Lint                     | PASS     | PASS        | Sin regresion                 |
-| Typecheck                | PASS     | PASS        | Sin regresion                 |
-| Format                   | PASS     | PASS        | Sin regresion                 |
+| Metrica                  | Baseline (origin/main) | Post-cambio | Delta                                             |
+| ------------------------ | ---------------------- | ----------- | ------------------------------------------------- |
+| Tests                    | 451                    | 534         | +83 (82 scroll-skills + 1 harness-rename profile) |
+| Skills                   | 9                      | 12          | +3 propias                                        |
+| Vendors                  | 0                      | 3           | +3 aislados                                       |
+| Archivos baseline ledger | 387                    | 387         | 0 (sin cambios estructurales)                     |
+| Lint                     | PASS                   | PASS        | Sin regresion                                     |
+| Typecheck                | PASS                   | PASS        | Sin regresion                                     |
+| Format                   | PASS                   | PASS        | Sin regresion                                     |
 
-**Conclusion:** No se observan regresiones. Todas las pruebas esenciales pasan.
+**Conclusion:** No se observan regresiones. Todas las pruebas esenciales pasan. El unico fallo en `pnpm verify` es H01-BUDGET-001/002, preexistente en origin/main y no introducido por scroll-skills ni por el rename a frames.
