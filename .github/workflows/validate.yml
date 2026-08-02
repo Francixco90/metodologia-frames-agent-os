@@ -18,6 +18,10 @@ jobs:
       METODOLOGIA_TOOLCHAIN_PROFILE: ci-code-only
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history required: check:repo resolves BASELINE_COMMIT via git ls-tree.
+          # A shallow clone (default fetch-depth=1) lacks the baseline object → "fatal: not a tree object".
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
           version: 11.9.0
