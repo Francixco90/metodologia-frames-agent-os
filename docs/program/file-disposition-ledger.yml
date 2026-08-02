@@ -419,10 +419,10 @@ budgets:
     baseline_words: 89949
     v3_rolling_adjustment_words: 2641
     original_baseline_words: 87308
-    final_words: 117016
+    final_words: 117036
     maximum_multiplier: 1.5
     maximum_words: 134923
-    actual_multiplier: 1.3009
+    actual_multiplier: 1.3011
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
@@ -430,15 +430,15 @@ budgets:
     baseline_words: 89949
     v3_rolling_adjustment_words: 2641
     original_baseline_words: 87308
-    final_words: 117016
+    final_words: 117036
     maximum_words: 179898
-    word_multiplier: 1.3009
+    word_multiplier: 1.3011
     baseline_loc: 34089
     v3_rolling_adjustment_loc: 1348
     original_baseline_loc: 32741
-    final_loc: 42949
+    final_loc: 42953
     maximum_loc: 68178
-    loc_multiplier: 1.2599
+    loc_multiplier: 1.26
     maximum_multiplier: 2
     status: pass
   generated_template_budget:

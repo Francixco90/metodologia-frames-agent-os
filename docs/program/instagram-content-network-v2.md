@@ -6,6 +6,10 @@ Este documento define la red permanente para producir contenido de Instagram con
 visible, fuentes trazables, adaptación de marca explícita y gates que separan producción, validación,
 aprobación humana y publicación. No eleva ningún artefacto a `READY` o `PUBLISHED`. [DOC]
 
+Documento canónico central. La red de creación V3
+(`instagram-content-creation-network-v3.md`) evoluciona este documento sin reemplazarlo y sin
+elevar estados acreditables. [DOC]
+
 ## 1. Decisión operativa
 
 La V2 usa un orquestador, especialistas efímeros reales y un Guardian independiente. “Dos agentes”
