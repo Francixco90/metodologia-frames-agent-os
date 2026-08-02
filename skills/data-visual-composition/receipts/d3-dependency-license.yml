@@ -1,0 +1,34 @@
+schema_version: 1
+receipt_id: RCP-H03-D3-DEPENDENCIES-001
+capability_id: d3
+adapter_id: d3-svg-geometry-v1
+adapter_version: 0.1.0
+state: verified_local
+dependencies:
+  - package: d3-array
+    version: 3.2.4
+    license: ISC
+    license_sha256: 3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4
+  - package: d3-scale
+    version: 4.0.2
+    license: ISC
+    license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee
+  - package: d3-shape
+    version: 3.2.0
+    license: ISC
+    license_sha256: faa682e3e430941f958d26180458f5934a62f58dac4d70ccdd15608c15d0f884
+  - package: d3-hierarchy
+    version: 3.1.2
+    license: ISC
+    license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee
+  - package: d3-interpolate
+    version: 3.0.1
+    license: ISC
+    license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee
+official_source: https://github.com/d3/d3
+lock_bound: true
+pnpm_lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+central_license_receipt_ref: receipts/dependency-audits/H03-LIC-D3-001.yml
+clock_mode: not_applicable
+network_allowed: false
+publication_authority: false

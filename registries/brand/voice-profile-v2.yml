@@ -1,0 +1,103 @@
+schema_version: voice-profile-v2
+profile_id: metodologia-voice-v2
+brand_id: metodologia
+version: 2.0.0
+validation_state: VOICE_CANDIDATE
+confidence:
+  level: medium
+  basis:
+    - first_party_candidate_voice_profile
+    - clean_constitutional_corroboration
+  promotion_requirement: independent_brand_owner_confirmation
+source_bindings:
+  - source_id: BRAND-SRC-VOICE-V3
+    sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+    authority_class: first_party_candidate
+  - source_id: BRAND-SRC-CONSTITUTION-XI
+    sha256: a506427360513d2026b16a1fea3d79b1423d33ff3bf397398ec029aeaaf0a8b4
+    authority_class: constitutional_brand_authority
+voice_constants:
+  - id: method_driven
+    we_are: orientados por método
+    we_are_not: guiados por intensidad sin diseño
+  - id: evidence_honest
+    we_are: rigurosos con la evidencia
+    we_are_not: promocionales sin sustento
+  - id: decision_useful
+    we_are: claros, accionables y densos en valor
+    we_are_not: decorativos o ambiguos
+  - id: technology_as_ally
+    we_are: humanos amplificados por tecnología
+    we_are_not: tecnocéntricos
+structure:
+  default_mode: minto_complete
+  modes:
+    minto_complete:
+      conclusion_count: 1
+      support_count: 3
+      support_rule: MECE
+      evidence_per_support: required
+      cta_count: 1
+    minto_micro:
+      conclusion_count: 1
+      support_count: 2
+      support_rule: MECE
+      evidence_per_support: required
+      cta_count: 1
+      allowed_when:
+        - constrained_attention
+        - short_channel_rhythm
+pillars:
+  - pillar_id: P1
+    name: (R)Evolución
+    proposition: El método cierra la brecha entre estado actual y estado deseado.
+  - pillar_id: P2
+    name: Intención antes que intensidad
+    proposition: El diseño y los trade-offs preceden al esfuerzo.
+  - pillar_id: P3
+    name: Tecnología como aliada
+    proposition: Automatiza lo repetible y potencia lo importante.
+evidence_policy:
+  strong_claim_requires_one_of:
+    - dato_real
+    - indicador_sugerido
+    - señal_a_medir
+    - dato_requerido
+  unsupported_claim_behavior: fail_closed
+language:
+  default: es-LatAm
+  address: tú
+  regionalisms: forbidden
+red_list:
+  - hack
+  - truco
+  - secreto
+  - resultados instantáneos
+  - arquitecto
+  - arquitectura
+  - transformación
+preferred_language:
+  - método
+  - diseñar
+  - diseño
+  - sistemas
+  - gobernanza
+  - capacidades
+  - (R)Evolución
+  - Success as a Service
+cta_contract:
+  required_parts:
+    - verbo
+    - objeto
+    - contexto
+  movements: 1
+  generic_cta: forbidden
+gate_effect:
+  allowed_scope:
+    - internal_active_candidate
+    - candidate_copy
+  blocked_scope:
+    - public_release_without_owner_confirmation
+    - HUMAN_APPROVED
+    - READY
+    - PUBLISHED

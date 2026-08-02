@@ -1,0 +1,1 @@
+{"schemaVersion":"d3-fixture-dataset-v1","rows":[{"id":"negative","value":-2},{"id":"zero","value":0},{"id":"tie-a","value":4},{"id":"tie-b","value":4},{"id":"outlier","value":25}]}

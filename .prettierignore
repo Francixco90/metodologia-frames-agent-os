@@ -1,3 +1,28 @@
-# Deterministic generated artifacts are validated against their build receipts.
-# Reformatting them outside the generator would invalidate byte-level reproducibility.
 projects/**/web/artifact/index.html
+projects/*/artifacts/**
+projects/*/orchestration/**
+projects/pilot-carousel-001/spec/carousel-spec.yml
+projects/pilot-carousel-001/spec/content-type-definition.json
+content/*/generated/**
+inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+quality/reports/v2-baseline-protection.yml
+skills/remotion-video-production/scripts/check-sources.mjs
+content/pilot-carousel-002/generated/atom-graph.json
+content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
+# Wide canonical records are governed by dedicated structure and hash checks.
+registries/renderers/renderer-capability-registry-v1.yml
+registries/skills/creation-v3-skill-registry.yml
+quality/reports/creation-v3-h03-render-smoke.yml
+receipts/dependency-audits/H03-LIC-D3-001.yml
+receipts/dependency-audits/H03-LIC-GSAP-001.yml
+receipts/dependency-audits/H03-LIC-LOTTIE-001.yml
+receipts/dependency-audits/H03-LIC-THREE-001.yml
+skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
+skills/motion-library-adapters/schemas/motion-adapter-spec-v1.schema.json
+skills/data-visual-composition/fixtures/**/*.json
+skills/data-visual-composition/LINEAGE.yml
+skills/data-visual-composition/receipts/*.yml
+skills/motion-library-adapters/fixtures/**/*.yml
+skills/motion-library-adapters/LINEAGE.yml
+skills/motion-library-adapters/receipts/*.yml
+tests/fixtures/renderers/h03-hostile-motion-adapters.yml

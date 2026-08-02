@@ -1,0 +1,9 @@
+# Normalize all text files to LF line endings in the repo blob.
+# This ensures hash-bound files produce identical SHA-256 on Windows and POSIX.
+* text=auto eol=lf
+
+# Preserve byte-identical upstream licenses and hash-bound generated evidence.
+brand/fonts/vendor/**/OFL.txt -whitespace
+inbox/first-party/*.projection.md -whitespace
+projects/*/artifacts/*.html -whitespace
+quality/reports/v2-baseline-protection.yml -whitespace

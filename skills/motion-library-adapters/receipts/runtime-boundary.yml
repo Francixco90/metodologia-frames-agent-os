@@ -1,0 +1,25 @@
+schema_version: 1
+receipt_id: RCP-H03-MOTION-ADAPTERS-001
+scope: local-evaluation-only
+lockfile_ref: pnpm-lock.yaml
+pnpm_lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+central_license_receipts:
+  - receipts/dependency-audits/H03-LIC-GSAP-001.yml
+  - receipts/dependency-audits/H03-LIC-THREE-001.yml
+  - receipts/dependency-audits/H03-LIC-LOTTIE-001.yml
+  - receipts/dependency-audits/H03-LIC-REMOTION-001.yml
+packages:
+  - {name: gsap, version: 3.15.0, license_state: allowed_scoped}
+  - {name: three, version: 0.178.0, license_state: allowed_scoped}
+  - {name: '@react-three/fiber', version: 9.2.0, license_state: allowed_scoped}
+  - {name: '@remotion/three', version: 4.0.494, license_state: local_evaluation_only}
+  - {name: lottie-web, version: 5.13.0, license_state: allowed_scoped}
+  - {name: '@remotion/lottie', version: 4.0.494, license_state: local_evaluation_only}
+  - {name: remotion, version: 4.0.494, license_state: local_evaluation_only}
+runtime_rules:
+  explicit_frame: true
+  network_allowed: false
+  autonomous_clock_allowed: false
+  fallback_must_be_observable: true
+production_runtime_status: blocked_remotion_license_coverage_gap
+publication_authority: false

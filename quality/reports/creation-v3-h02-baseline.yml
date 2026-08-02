@@ -1,0 +1,54 @@
+schema_version: creation-v3-h02-baseline-v1
+baseline_id: BASELINE-CREATION-V3-H02-001
+target:
+  base_commit: 7377fd6d27dcbf6dde8d791661025722f2757965
+  base_tree: 28a347f1210f24eb2a5821c05a9a2c07310ec686
+  branch: codex/instagram-os-creation-v3-carousel-v2
+  tracked_files: 536
+  initial_status_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  verify:
+    command: pnpm verify
+    test_files_passed: 43
+    tests_passed: 347
+    result: pass
+h01_bindings:
+  content_raw_sha256: b53aa138b8406ebfdcbe6032a646239ec93384561b6a45a74986c62bb75a1382
+  canonical_projection_file_sha256: 051cf409c8cc2146fefa9c629a34c2135264a4d7f85e9745a634fea1675cd6d1
+  source_freeze_receipt_file_sha256: 73942f3d682a232c9cd5c26b87a6912f5f9907fd99ca43a97465f1a28df0ffb7
+  maximum_state: SCOPED
+  mutation_allowed: false
+legacy:
+  pilot_carousel_001_tree_sha256: d9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78
+  vs_001_tree_sha256: 4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4
+source_authority_observation:
+  head: f53177ff604c936c887a2675d661b65ff97bfef6
+  tree: 51eda9e08b664ae58b63cd2c71c495a3bcfe8df6
+  status_sha256: 53918b5785dc58c364774a7d074a0b8e51e007a75cc6ebb13c6f9ed43b74478d
+  modified: 1112
+  deleted: 1762
+  untracked: 42
+  dirty: true
+  mutation_allowed: false
+budget:
+  baseline_authored_words: 126402
+  baseline_authored_loc: 45686
+  objective_multiplier: 1.5
+  hard_cap_multiplier: 2
+  exclusions:
+    - immutable_history
+    - append_only_committee_evidence
+    - generated_projections
+scope:
+  deliverables:
+    - content_atom_graph_v1
+    - atom_lineage
+    - selective_invalidation
+    - atomization_receipt
+  maximum_state: ATOMIZED
+  content_md_may_change: false
+  h01_generated_evidence_may_change: false
+  dependencies_may_change: false
+  render_may_run: false
+  n8n_may_change: false
+  distribution_may_change: false
+  publication_authority: false

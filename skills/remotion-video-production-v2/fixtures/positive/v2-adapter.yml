@@ -1,0 +1,6 @@
+case_id: REM-V2-POS-001
+content_type: reel-motion
+input_contract: ContentWorkOrderV2
+adapter_output: render-input-v1
+package_contract: CandidatePackageV2
+expected_state: RENDERED_DRAFT

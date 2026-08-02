@@ -1,0 +1,63 @@
+schemaVersion: guardian-review-v2
+reviewId: GDN-CAR-MAO-001
+actorInstanceId: RT-11-CAR-MAO-001
+producerActorInstanceId: RT-07-CAR-MAO-001
+verifierActorInstanceId: RT-09-CAR-MAO-001
+candidatePackageId: CP-CAR-MAO-001
+candidatePackageSha256: 7c4b878afe848a1f507ae07d428113fe52d86c1a0d0367f08e5b64af7fccd547
+rt09ReportRef:
+  schemaVersion: hash-bound-ref-v1
+  ref: projects/pilot-carousel-001/quality/rt09-review.json
+  sha256: 71afa6ca061c87d02bc40292ac9322ce9dd72eba71161b4fe84453236c1d294f
+decision: pass
+evidenceRefs:
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/spec/candidate-package.json
+    sha256: 48ecd6361acd304ddef89f17ceb5d1a4baaa927c8d7277063c73f1a76c31b419
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/orchestration/committee-session.json
+    sha256: 22e1c206d5d3f61a0cb5898b1ed44ec4858b99ce7be96a68deed4eee20e15492
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/orchestration/committee-decision.json
+    sha256: ccea88c49a90294a1e4720cf1ca762d6b379d84e070da9aa997baa286dabe0e3
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/orchestration/orchestration-run-pre-guardian.json
+    sha256: 4dc8128dffcfd1b0bf756ae1963bf26dde9e304546447c1742ffff551d728b6e
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/orchestration/persistence-receipt-pre-guardian.json
+    sha256: 6b84c78ad97ebe836301fc9fda133796a231792031203817f2ee986c5257f9cf
+  - schemaVersion: hash-bound-ref-v1
+    ref: registries/brand/brand-profile-v2.yml
+    sha256: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+  - schemaVersion: hash-bound-ref-v1
+    ref: registries/brand/voice-profile-v2.yml
+    sha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+  - schemaVersion: hash-bound-ref-v1
+    ref: registries/channels/instagram-profile-v1.yml
+    sha256: 316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482
+  - schemaVersion: hash-bound-ref-v1
+    ref: registries/brand/source-bundle-v1.yml
+    sha256: 39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf
+  - schemaVersion: hash-bound-ref-v1
+    ref: quality/reports/v2-baseline-protection.yml
+    sha256: a41deeaf8ca2c542992d4c35f032a4fe6b821fecc37c2712adc4ece02f8d67a9
+  - schemaVersion: hash-bound-ref-v1
+    ref: registries/content-types/instagram-workflow-matrix.yml
+    sha256: 9cf7df13ca2a8dd828298c80b15df49f1726780ced5ac3f02c781fe87d391b50
+  - schemaVersion: hash-bound-ref-v1
+    ref: projects/pilot-carousel-001/spec/workflow-pilot-review.json
+    sha256: 701bab854beeae3959674cc1267d17b6b8b50323dee1000537425f0fadc9a2bb
+coverageGaps:
+  - VoiceProfileV2 remains a first-party candidate pending independent
+    brand-owner confirmation; public release remains blocked.
+  - H01 workflow-pilot approval is absent; publication, Ads, boost and external
+    distribution remain forbidden, live official-channel revalidation is still
+    required, and this pass authorizes only handoff to G15 without unlocking
+    feed-text.
+  - The source repository has external global status drift not attributable to
+    this OS; HEAD f53177ff604c936c887a2675d661b65ff97bfef6 and all ten selected
+    authority-source hashes remain intact.
+reviewedAt: 2026-07-20T18:42:31Z
+publicationAuthorized: false
+humanApprovalPresent: false
+reviewSha256: 9e270deb5beeaa49db7bda90e4edbc06002bba37b01c7e5250393f5e3a4cb788

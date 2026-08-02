@@ -1,0 +1,114 @@
+schema_version: instagram-workflow-matrix-v1
+matrix_id: instagram-content-network-v2
+network_state: active_candidate
+channel_profile_ref: registries/channels/instagram-profile-v1.yml
+brand_profile_ref: registries/brand/brand-profile-v2.yml
+voice_profile_ref: registries/brand/voice-profile-v2.yml
+brand_adaptation_ref: registries/brand/brand-adaptation-decision-v1.yml
+orchestrator_ref: workflows/core/orchestrate-content-v2.ts
+content_contract_ref: core/contracts/content-v2.ts
+shared_pipeline:
+  - intake
+  - source_grounding
+  - strategic_brief
+  - narrative_and_copy
+  - brand_adaptation
+  - production
+  - deterministic_validation
+  - independent_verification
+  - guardian
+  - human_gate
+shared_gates:
+  source_gate: G02
+  contract_gate: G08
+  content_gate: G09_CONTENT
+  render_gate: G12
+  governance_gate: G13
+  guardian_gate: G14
+  human_gate: G15
+  readiness_gate: G16
+  publish_gate: G17
+publication:
+  connector_mode: disabled
+  automatic_publication: forbidden
+  maximum_machine_state: GUARDIAN_VERIFIED
+workflows:
+  - workflow_id: IG-CAROUSEL-V1
+    content_type: carousel
+    lifecycle_state: active_candidate
+    implementation:
+      status: active_candidate
+      plugin_ref: workflows/content/types/carousel/plugin.ts
+      manifest_ref: workflows/content/types/carousel/manifest.yml
+      schema_ref: workflows/content/types/carousel/schema.ts
+      renderer_ref: renderers/static-social/scripts/render-carousel.ts
+      build_command: pnpm carousel:build
+      verify_command: pnpm verify:carousel
+    render_profile: portrait_static
+    content_contract:
+      slide_count_min: 3
+      slide_count_max: 10
+      pilot_slide_count: 8
+      per_slide_alt_text: required
+      claim_binding: required
+      source_binding: required
+    maximum_automatic_state: RENDERED_DRAFT
+    coverage_gaps:
+      - live_platform_spec_verification_pending
+      - guardian_and_h01_pending
+  - workflow_id: IG-FEED-TEXT-V1
+    content_type: feed-text
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: portrait_static
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-FEED-PHOTO-V1
+    content_type: feed-photo
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: portrait_static
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-INFOGRAPHIC-V1
+    content_type: infographic
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: portrait_static
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-STORY-SEQUENCE-V1
+    content_type: story-sequence
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: vertical_motion
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-REEL-MOTION-V1
+    content_type: reel-motion
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: vertical_motion
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-MICROCOPY-V1
+    content_type: microcopy
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: portrait_static
+    maximum_automatic_state: DRAFT
+  - workflow_id: IG-LIVE-KIT-V1
+    content_type: live-kit
+    lifecycle_state: planned
+    implementation:
+      status: planned
+      plugin_ref: null
+    render_profile: vertical_motion
+    maximum_automatic_state: DRAFT

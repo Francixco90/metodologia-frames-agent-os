@@ -1,0 +1,7 @@
+case_id: BRAND-ROUTE-POS-001
+request: Adaptar un carrusel MetodologIA a Instagram
+expected_profiles:
+  - metodologia-brand-v2
+  - metodologia-voice-v2
+  - instagram-social-v1
+expected_maximum_state: RENDERED_DRAFT

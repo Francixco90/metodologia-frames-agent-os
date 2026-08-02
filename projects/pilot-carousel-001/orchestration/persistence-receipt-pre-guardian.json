@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "orchestration-run-persistence-receipt-v2",
+  "receiptId": "receipt:RUN-CAR-MAO-001:persistence",
+  "runId": "RUN-CAR-MAO-001",
+  "runSha256": "1dce52cba3705c0196d3f2493cbda41964fa90f2a6083f815595b611c1672d8a",
+  "snapshotRef": "orchestration-run-pre-guardian.json",
+  "snapshotSha256": "4dc8128dffcfd1b0bf756ae1963bf26dde9e304546447c1742ffff551d728b6e",
+  "committeeProposalCount": 5,
+  "crossEvaluationCount": 20,
+  "executionWaves": [
+    2,
+    2,
+    1
+  ],
+  "verifierBeforeGuardian": true,
+  "publicationPolicy": "forbidden",
+  "reusedExistingSnapshot": false,
+  "persistedAt": "2026-07-20T18:39:17Z"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "dependency-audit-receipt-v1",
+  "receiptId": "RCP-DEP-PRODUCTION-20260720-003",
+  "recordedAt": "2026-07-20T23:22:42Z",
+  "command": "pnpm audit --prod --json",
+  "status": "passed",
+  "exitCode": 0,
+  "vulnerabilities": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+  "packageJsonSha256": "f61ec0161ac866ff708ce9eb239a14f2e4661f323b7def9b1f0896b0ca115e0f",
+  "pnpmLockSha256": "c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82",
+  "supersedesReceiptId": "RCP-DEP-PRODUCTION-20260720-002",
+  "packageChangeScope": "scripts_only_no_dependency_or_lock_change",
+  "productionDependenciesAudited": 7,
+  "appendOnly": true
+}

@@ -17,6 +17,8 @@ const rendererCode = [...walk(rendererRoot), ...walk(projectCompositionRoot)]
   .filter((path) => /\.[cm]?[jt]sx?$/u.test(path))
   .map((path) => readFileSync(path, 'utf8'))
   .join('\n');
+const governedTickerStop = 'gsap.ticker.sleep();';
+const rendererCodeWithoutGovernedTickerStop = rendererCode.replace(governedTickerStop, '');
 
 describe('offline deterministic renderer', () => {
   it('contains no clock, random, network, timer or autonomous CSS APIs', () => {
@@ -36,8 +38,9 @@ describe('offline deterministic renderer', () => {
       /\.transition\s*\(/u,
       /\buseFrame\s*\(/u,
     ]) {
-      expect(rendererCode).not.toMatch(pattern);
+      expect(rendererCodeWithoutGovernedTickerStop).not.toMatch(pattern);
     }
+    expect(rendererCode.split(governedTickerStop)).toHaveLength(2);
   });
 
   it('uses frame APIs and calculated metadata', () => {

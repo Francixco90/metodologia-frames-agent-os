@@ -1,0 +1,14 @@
+schema_version: 1
+skill_id: instagram-content-orchestration
+version: 0.1.0
+content_origin: locally_authored
+lifecycle_state: active
+execution_scope: local-orchestration
+authority_refs:
+  - core/contracts/content-v2.ts
+  - committees/src/agent-contract-v2.ts
+  - core/orchestration/runtime-v2.ts
+  - registries/content-types/instagram-workflow-matrix.yml
+compatibility_contract: orchestration-run-v2
+external_fragments_reused: false
+publication_authority: false

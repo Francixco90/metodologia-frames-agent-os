@@ -1,0 +1,5 @@
+case_id: REM-V2-NEG-001
+requested_state: PUBLISHED
+runtime_license_status: coverage_gap
+expected_error: RIGHTS_GAP
+expected_behavior: reject_before_render

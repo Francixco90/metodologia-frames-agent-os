@@ -1,0 +1,419 @@
+{
+  "schemaVersion": "canonical-content-document-v1",
+  "frontmatter": {
+    "schemaVersion": "canonical-content-document-v1",
+    "contentId": "pilot-carousel-002",
+    "version": "0.1.0",
+    "authoredStatus": "DRAFT",
+    "brandId": "metodologia",
+    "locale": "es-LatAm",
+    "editorialPattern": "educational",
+    "primaryWorkflow": "carousel",
+    "surface": "instagram-feed",
+    "authoredByActorInstanceId": "RT-04-H01-PILOT-002",
+    "sourceFreezeManifest": {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "content/pilot-carousel-002/source-freeze-manifest.yml",
+      "sha256": "71ffb0eea5a3e06144afc2a45328941623be2a5708a2a4e97d21def570c0fbb3"
+    },
+    "profiles": {
+      "brand": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/brand-profile-v2.yml",
+        "sha256": "d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c"
+      },
+      "voice": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/voice-profile-v2.yml",
+        "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+      },
+      "channel": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/channels/instagram-profile-v1.yml",
+        "sha256": "316f6e60fde9aecc67fcddad57f44f5308fa9a239aca656ea2923ef867c93482"
+      },
+      "adaptation": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "registries/brand/brand-adaptation-decision-v1.yml",
+        "sha256": "2609707f113383063d01eaaa52f6381adec22ec990d6dd75fb53f536ce236673"
+      }
+    },
+    "plannedCapabilities": [
+      {
+        "capabilityId": "d3",
+        "label": "D3",
+        "state": "planned_capability",
+        "intendedUse": "Convertir relaciones y matrices verificables en geometría visual.",
+        "verificationGate": "H-03",
+        "requirementRef": {
+          "schemaVersion": "hash-bound-ref-v1",
+          "ref": "docs/program/instagram-content-creation-network-v3.md",
+          "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+        }
+      },
+      {
+        "capabilityId": "gsap",
+        "label": "GSAP",
+        "state": "planned_capability",
+        "intendedUse": "Coordinar una transición compleja controlada por el frame del compositor.",
+        "verificationGate": "H-03",
+        "requirementRef": {
+          "schemaVersion": "hash-bound-ref-v1",
+          "ref": "docs/program/instagram-content-creation-network-v3.md",
+          "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+        }
+      },
+      {
+        "capabilityId": "lottie",
+        "label": "Lottie",
+        "state": "planned_capability",
+        "intendedUse": "Expresar progreso mediante micro-motion local y poster equivalente.",
+        "verificationGate": "H-03",
+        "requirementRef": {
+          "schemaVersion": "hash-bound-ref-v1",
+          "ref": "docs/program/instagram-content-creation-network-v3.md",
+          "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+        }
+      },
+      {
+        "capabilityId": "remotion-v3-creative-compositor",
+        "label": "Remotion",
+        "state": "planned_capability",
+        "intendedUse": "Producir stills y preview motion desde un reloj explícito.",
+        "verificationGate": "H-03",
+        "requirementRef": {
+          "schemaVersion": "hash-bound-ref-v1",
+          "ref": "docs/program/instagram-content-creation-network-v3.md",
+          "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+        }
+      },
+      {
+        "capabilityId": "three",
+        "label": "Three.js",
+        "state": "planned_capability",
+        "intendedUse": "Explicar las capas del sistema con una vista tridimensional funcional.",
+        "verificationGate": "H-03",
+        "requirementRef": {
+          "schemaVersion": "hash-bound-ref-v1",
+          "ref": "docs/program/instagram-content-creation-network-v3.md",
+          "sha256": "f965dc28ca487639bad6be88fdc37e9c47a3ba08956cf791ebfcd0dfcc2b20ed"
+        }
+      }
+    ],
+    "rightsPolicy": "source_freeze_and_first_party_assets_only",
+    "publicationPolicy": "forbidden",
+    "distributionState": "NOT_DESIGNED",
+    "publicationAuthority": false
+  },
+  "body": {
+    "title": "Método antes que herramientas",
+    "audience": "Profesionales y equipos que quieren adoptar IA con un criterio claro, sin acumular herramientas ni promesas sin evidencia.",
+    "problem": "Empezar por una plataforma dispersa la atención: todavía no define qué debe mejorar, qué ruta puede repetirse ni qué señal permitirá decidir si una prueba merece continuar.",
+    "promise": "Mostrar cómo un sistema de creación separa decisiones, ejecución y verificación para elegir herramientas por la función que cumplen, no por novedad.",
+    "thesis": "Diseña primero el método y el sistema de trabajo; después elige la herramienta que ejecute una función verificable dentro de esa ruta.",
+    "supports": [
+      {
+        "supportId": "SUP-PILOT2-METHOD-001",
+        "statement": "El resultado y el método dan dirección antes de comparar herramientas.",
+        "claimIds": [
+          "CLM-PILOT2-METHOD-001"
+        ],
+        "pillar": "P1"
+      },
+      {
+        "supportId": "SUP-PILOT2-SYSTEM-001",
+        "statement": "Los agentes administran decisiones y excepciones; los workflows ejecutan rutas gobernadas y repetibles.",
+        "claimIds": [
+          "CLM-PILOT2-AGENT-WORKFLOW-001",
+          "CLM-PILOT2-WORKFLOWS-001",
+          "CLM-PILOT2-PIPELINE-001",
+          "CLM-PILOT2-BOUNDARY-001"
+        ],
+        "pillar": "P2"
+      },
+      {
+        "supportId": "SUP-PILOT2-EVIDENCE-001",
+        "statement": "Cada capacidad se evalúa por su utilidad y por señales observables, sin inventar resultados.",
+        "claimIds": [
+          "CLM-PILOT2-EVIDENCE-001"
+        ],
+        "pillar": "P3"
+      }
+    ],
+    "claims": [
+      {
+        "claimId": "CLM-PILOT2-METHOD-001",
+        "statement": "El método orienta la elección de herramientas; las herramientas amplifican un sistema de trabajo y no lo sustituyen.",
+        "claimKind": "first_party_principle",
+        "support": "direct",
+        "authorityId": "SRC-MAO-PUBLIC-SEMANTICS-001",
+        "evidenceRole": "supports",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 6,
+          "endLine": 8
+        },
+        "limitation": "Es un principio first-party para grounding editorial interno, no un resultado de desempeño."
+      },
+      {
+        "claimId": "CLM-PILOT2-AGENT-WORKFLOW-001",
+        "statement": "En este OS, los agentes administran contexto, decisiones, excepciones y evaluación; los workflows ejecutan rutas deterministas, repetibles y observables.",
+        "claimKind": "system_decision",
+        "support": "direct",
+        "authorityId": "DEC-CREATIVE-OS-V3-H00",
+        "evidenceRole": "defines_system_behavior",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 9,
+          "endLine": 17
+        },
+        "limitation": "Describe el diseño aprobado de este OS; no afirma que sea la única forma válida de operar."
+      },
+      {
+        "claimId": "CLM-PILOT2-WORKFLOWS-001",
+        "statement": "La matriz del OS registra ocho workflows creativos y mantiene solo carousel como candidato activo.",
+        "claimKind": "system_decision",
+        "support": "direct",
+        "authorityId": "REG-IG-WORKFLOW-MATRIX-V2",
+        "evidenceRole": "defines_system_behavior",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 35,
+          "endLine": 114
+        },
+        "limitation": "Los otros siete workflows permanecen planificados hasta sus gates humanos secuenciales."
+      },
+      {
+        "claimId": "CLM-PILOT2-PIPELINE-001",
+        "statement": "La ruta creativa parte de una solicitud acotada, pasa por contenido canónico y verificación, y termina en un paquete creativo antes de cualquier distribución.",
+        "claimKind": "system_decision",
+        "support": "direct",
+        "authorityId": "DEC-CREATIVE-OS-V3-H00",
+        "evidenceRole": "defines_system_behavior",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 19,
+          "endLine": 30
+        },
+        "limitation": "H-01 solo valida el contrato y no ejecuta atomización, composición ni render."
+      },
+      {
+        "claimId": "CLM-PILOT2-BOUNDARY-001",
+        "statement": "Distribución, publicación y automatización permanecen fuera de la macrofase de creación.",
+        "claimKind": "system_decision",
+        "support": "direct",
+        "authorityId": "DEC-CREATIVE-OS-V3-H00",
+        "evidenceRole": "defines_system_behavior",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 142,
+          "endLine": 149
+        },
+        "limitation": "La frontera no implica que exista una integración futura diseñada o autorizada."
+      },
+      {
+        "claimId": "CLM-PILOT2-EVIDENCE-001",
+        "statement": "Una afirmación fuerte debe declarar dato real, indicador sugerido, señal a medir o dato requerido.",
+        "claimKind": "indicator_plan",
+        "support": "qualified",
+        "authorityId": "SRC-MAO-BRAND-VOICE-001",
+        "evidenceRole": "qualifies",
+        "locator": {
+          "kind": "line_range",
+          "startLine": 60,
+          "endLine": 66
+        },
+        "limitation": "El perfil de voz sigue candidato; no existen línea base, periodo, responsable ni umbral medidos para este piloto."
+      }
+    ],
+    "narrativeBeats": [
+      {
+        "position": 1,
+        "label": "Tesis",
+        "purpose": "thesis",
+        "statement": "Método antes que herramientas: la velocidad no reemplaza la dirección.",
+        "claimIds": [
+          "CLM-PILOT2-METHOD-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 2,
+        "label": "Decisión",
+        "purpose": "decision",
+        "statement": "Una ruta conocida requiere un workflow; una excepción no enumerable puede justificar un agente.",
+        "claimIds": [
+          "CLM-PILOT2-AGENT-WORKFLOW-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 3,
+        "label": "Diseño del sistema",
+        "purpose": "system",
+        "statement": "Los agentes administran decisiones y los workflows ejecutan rutas gobernadas.",
+        "claimIds": [
+          "CLM-PILOT2-AGENT-WORKFLOW-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 4,
+        "label": "Matriz creativa",
+        "purpose": "workflow_matrix",
+        "statement": "El OS separa ocho productos creativos y activa cada workflow mediante un gate independiente.",
+        "claimIds": [
+          "CLM-PILOT2-WORKFLOWS-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 5,
+        "label": "Proceso",
+        "purpose": "process",
+        "statement": "Markdown, átomos, composición, render, QA y Guardian forman una secuencia verificable.",
+        "claimIds": [
+          "CLM-PILOT2-PIPELINE-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 6,
+        "label": "Router visual planificado",
+        "purpose": "visual_router",
+        "statement": "D3, Three.js, Lottie, GSAP y Remotion responden a intenciones distintas; en H-01 son requisitos planificados y no capacidades disponibles.",
+        "claimIds": [],
+        "plannedCapabilityIds": [
+          "d3",
+          "three",
+          "lottie",
+          "gsap",
+          "remotion-v3-creative-compositor"
+        ],
+        "stateDisclosure": "planned_capability"
+      },
+      {
+        "position": 7,
+        "label": "Frontera",
+        "purpose": "boundary",
+        "statement": "El paquete creativo cierra la creación; distribución y publicación siguen fuera de alcance.",
+        "claimIds": [
+          "CLM-PILOT2-BOUNDARY-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      },
+      {
+        "position": 8,
+        "label": "Acción",
+        "purpose": "cta",
+        "statement": "Diseña primero el sistema que producirá el contenido.",
+        "claimIds": [
+          "CLM-PILOT2-METHOD-001"
+        ],
+        "plannedCapabilityIds": [],
+        "stateDisclosure": "not_applicable"
+      }
+    ],
+    "visualDirection": {
+      "ideaCentral": "La dirección visual debe hacer visible que método, decisión y verificación gobiernan a las herramientas, mientras cada capacidad planificada ocupa una función acotada.",
+      "evidenceMode": "categorical",
+      "relations": [
+        {
+          "relationId": "VIS-PILOT2-001",
+          "kind": "contrast",
+          "refs": [
+            "thesis",
+            "CLM-PILOT2-METHOD-001"
+          ],
+          "meaning": "El método orienta; la herramienta ejecuta."
+        },
+        {
+          "relationId": "VIS-PILOT2-002",
+          "kind": "dependency",
+          "refs": [
+            "CLM-PILOT2-AGENT-WORKFLOW-001",
+            "CLM-PILOT2-WORKFLOWS-001"
+          ],
+          "meaning": "Las decisiones administradas alimentan rutas repetibles."
+        },
+        {
+          "relationId": "VIS-PILOT2-003",
+          "kind": "sequence",
+          "refs": [
+            "CLM-PILOT2-PIPELINE-001",
+            "SUP-PILOT2-SYSTEM-001"
+          ],
+          "meaning": "El contenido avanza por gates antes de convertirse en un paquete."
+        },
+        {
+          "relationId": "VIS-PILOT2-004",
+          "kind": "mapping",
+          "refs": [
+            "capability:d3",
+            "capability:three",
+            "capability:lottie",
+            "capability:gsap",
+            "capability:remotion-v3-creative-compositor"
+          ],
+          "meaning": "Cada capacidad planificada responde a una intención visual distinta."
+        },
+        {
+          "relationId": "VIS-PILOT2-005",
+          "kind": "boundary",
+          "refs": [
+            "CLM-PILOT2-BOUNDARY-001",
+            "cta"
+          ],
+          "meaning": "La creación termina antes de distribución y publicación."
+        }
+      ],
+      "mustPreserve": [
+        "Método y resultado preceden a las herramientas.",
+        "Producer, verifier y Guardian conservan responsabilidades distintas."
+      ],
+      "mustNotImply": [
+        "No representar capacidades planificadas como instaladas, validadas o disponibles.",
+        "No usar magnitudes, rankings o conexiones causales sin claim verificable.",
+        "No insinuar distribución, publicación o automatización diseñadas."
+      ],
+      "accessibility": {
+        "equivalentMessage": "El método define la dirección, los agentes administran decisiones, los workflows ejecutan rutas y cinco capacidades planificadas cumplen funciones visuales distintas antes del gate humano.",
+        "readingOrderRefs": [
+          "thesis",
+          "SUP-PILOT2-METHOD-001",
+          "SUP-PILOT2-SYSTEM-001",
+          "SUP-PILOT2-EVIDENCE-001",
+          "cta"
+        ],
+        "nonColorCue": "Etiquetas, orden, contornos y patrones distinguen roles, estados y fronteras."
+      }
+    },
+    "callToAction": "Diseña primero el sistema que producirá tu contenido y define qué señal verificará cada paso.",
+    "rightsAndAssets": [
+      "Solo activos first-party, procedurales o con autorización explícita podrán convertirse en derivados.",
+      "Las referencias visuales externas sirven para análisis compositivo y no se reutilizan como assets.",
+      "Una captura con PII, interfaz de terceros o derechos inciertos debe redibujarse semánticamente o excluirse."
+    ],
+    "accessibility": [
+      "Toda relación visual tendrá una equivalencia textual con el mismo significado.",
+      "El orden de lectura será explícito y el color nunca será la única señal.",
+      "Copy, labels y estados deberán seguir siendo comprensibles sin motion."
+    ],
+    "limits": [
+      "H-01 termina en `SCOPED`; no produce átomos, specs visuales, stills, PDF ni video.",
+      "Las cinco capacidades permanecen `planned_capability` hasta cerrar H-03.",
+      "No se afirman resultados obtenidos ni mejoras de desempeño.",
+      "El perfil de voz candidato bloquea aprobación humana, readiness y release público.",
+      "`distributionState` permanece `NOT_DESIGNED`.",
+      "Ningún estado de este documento autoriza distribución o publicación."
+    ]
+  },
+  "rawSha256": "30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585",
+  "semanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813"
+}

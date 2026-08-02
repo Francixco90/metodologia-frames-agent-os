@@ -1,0 +1,58 @@
+schema_version: brand-font-manifest-v1
+manifest_id: metodologia-social-fonts-20260720
+source_repository: google/fonts
+source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+render_mode: offline_local_only
+fallback_policy: fail_with_RIGHTS_GAP
+fonts:
+  - family: Poppins
+    style: normal
+    weight: '400'
+    path: brand/fonts/vendor/poppins/Poppins-Regular.ttf
+    sha256: 7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba
+    license_path: brand/fonts/vendor/poppins/OFL.txt
+    license_sha256: 6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/poppins/Poppins-Regular.ttf
+    source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+    rights_verdict: cleared_OFL-1.1
+  - family: Poppins
+    style: normal
+    weight: '700'
+    path: brand/fonts/vendor/poppins/Poppins-Bold.ttf
+    sha256: 983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c
+    license_path: brand/fonts/vendor/poppins/OFL.txt
+    license_sha256: 6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/poppins/Poppins-Bold.ttf
+    source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+    rights_verdict: cleared_OFL-1.1
+  - family: Poppins
+    style: normal
+    weight: '800'
+    path: brand/fonts/vendor/poppins/Poppins-ExtraBold.ttf
+    sha256: f2ab17c1a63a0ecc12c2461848fc8a469395e3cd2d641803e889c643d9f958e1
+    license_path: brand/fonts/vendor/poppins/OFL.txt
+    license_sha256: 6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/poppins/Poppins-ExtraBold.ttf
+    source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+    rights_verdict: cleared_OFL-1.1
+  - family: Montserrat
+    style: normal
+    weight: 400-700
+    path: brand/fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf
+    sha256: 0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7
+    license_path: brand/fonts/vendor/montserrat/OFL.txt
+    license_sha256: 8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/montserrat/Montserrat%5Bwght%5D.ttf
+    source_commit: 389b770410cc0b7c21c85673bfa2077420fe7f65
+    rights_verdict: cleared_OFL-1.1
+licenses:
+  - family: Poppins
+    path: brand/fonts/vendor/poppins/OFL.txt
+    sha256: 6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/poppins/OFL.txt
+    spdx_expression: OFL-1.1
+  - family: Montserrat
+    path: brand/fonts/vendor/montserrat/OFL.txt
+    sha256: 8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e
+    source_url: https://raw.githubusercontent.com/google/fonts/389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/montserrat/OFL.txt
+    spdx_expression: OFL-1.1

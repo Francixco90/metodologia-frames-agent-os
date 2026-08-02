@@ -1,0 +1,2366 @@
+{
+  "schemaVersion": "committee-session-v2",
+  "committeeId": "COMMITTEE-CAR-MAO-001",
+  "workOrderId": "WO-CAR-MAO-001",
+  "workOrderSha256": "8ac1d846e85e7e079a0e1a90c3414614a7dccb7e00165fb549a8661e7b2c03b0",
+  "compositionPattern": "two-plus-two-plus-one",
+  "members": [
+    {
+      "actorInstanceId": "RT-03-CAR-MAO-001",
+      "roleId": "RT-03",
+      "lane": "strategy",
+      "agentContract": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "agents/RT-03/contract.yml",
+        "sha256": "c3bf784177b2ed30b538c8587911c6f93ec4b5d23101ca5df22e950d255f59f4"
+      }
+    },
+    {
+      "actorInstanceId": "RT-04-CAR-MAO-001",
+      "roleId": "RT-04",
+      "lane": "strategy",
+      "agentContract": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "agents/RT-04/contract.yml",
+        "sha256": "9fb26e4137bd2f8d606aaef51c482d76cbb16ed7383637f6372015c07a25c2cc"
+      }
+    },
+    {
+      "actorInstanceId": "RT-05-CAR-MAO-001",
+      "roleId": "RT-05",
+      "lane": "creative",
+      "agentContract": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "agents/RT-05/contract.yml",
+        "sha256": "1ed08d3f76334517001746824fa9f71dc69539edfd0f17429a073ecbbd698c04"
+      }
+    },
+    {
+      "actorInstanceId": "RT-06-CAR-MAO-001",
+      "roleId": "RT-06",
+      "lane": "creative",
+      "agentContract": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "agents/RT-06/contract.yml",
+        "sha256": "79f57889bc2f6af6ac2fe4b854c91bd924de76e02c8068881fe2ef5eeb7a5af3"
+      }
+    },
+    {
+      "actorInstanceId": "RT-07-CAR-MAO-001",
+      "roleId": "RT-07",
+      "lane": "integration",
+      "agentContract": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "agents/RT-07/contract.yml",
+        "sha256": "e2c69760f447173bf7767985b69fe4e5770c745c5a774ec8c73617faa3f5c9af"
+      }
+    }
+  ],
+  "rubric": [
+    {
+      "dimensionId": "strategic_fit",
+      "weight": 0.2,
+      "acceptanceSignal": "Criterio strategic_fit observable y ligado a evidencia."
+    },
+    {
+      "dimensionId": "editorial_clarity",
+      "weight": 0.2,
+      "acceptanceSignal": "Criterio editorial_clarity observable y ligado a evidencia."
+    },
+    {
+      "dimensionId": "evidence_integrity",
+      "weight": 0.2,
+      "acceptanceSignal": "Criterio evidence_integrity observable y ligado a evidencia."
+    },
+    {
+      "dimensionId": "feasibility",
+      "weight": 0.2,
+      "acceptanceSignal": "Criterio feasibility observable y ligado a evidencia."
+    },
+    {
+      "dimensionId": "accessibility",
+      "weight": 0.2,
+      "acceptanceSignal": "Criterio accessibility observable y ligado a evidencia."
+    }
+  ],
+  "proposals": [
+    {
+      "schemaVersion": "committee-proposal-v2",
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "actorInstanceId": "RT-03-CAR-MAO-001",
+      "roleId": "RT-03",
+      "title": "Evidencia antes de promesa",
+      "concept": "Abrir con la decisión y distinguir señales a medir de resultados obtenidos para preservar honestidad.",
+      "assumptions": [
+        {
+          "statement": "El piloto se dirige a profesionales y equipos y usa ocho tarjetas como decisión configurable.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/canonical-editorial-unit.json",
+              "sha256": "1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b"
+            }
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "statement": "La voz continúa como candidato first-party y bloquea release público sin confirmación del owner.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "registries/brand/voice-profile-v2.yml",
+              "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+            }
+          ]
+        }
+      ],
+      "criteria": [
+        "Cada afirmación material conserva una fuente o se presenta como señal a medir.",
+        "La secuencia termina en un único movimiento verificable."
+      ],
+      "compatibleElements": [
+        "Método antes que herramientas"
+      ],
+      "proposalSha256": "a2614d0a458954df85f8fd6717109a5e8473e8055b2532856630e1f5f1c4f0f5"
+    },
+    {
+      "schemaVersion": "committee-proposal-v2",
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "actorInstanceId": "RT-04-CAR-MAO-001",
+      "roleId": "RT-04",
+      "title": "Resultado observable primero",
+      "concept": "Organizar el carrusel desde el resultado deseado hacia una prueba acotada y un criterio de revisión.",
+      "assumptions": [
+        {
+          "statement": "El piloto se dirige a profesionales y equipos y usa ocho tarjetas como decisión configurable.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/canonical-editorial-unit.json",
+              "sha256": "1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b"
+            }
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "statement": "La voz continúa como candidato first-party y bloquea release público sin confirmación del owner.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "registries/brand/voice-profile-v2.yml",
+              "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+            }
+          ]
+        }
+      ],
+      "criteria": [
+        "Cada afirmación material conserva una fuente o se presenta como señal a medir.",
+        "La secuencia termina en un único movimiento verificable."
+      ],
+      "compatibleElements": [
+        "Método antes que herramientas"
+      ],
+      "proposalSha256": "12d25cdbd506b39df06982d4365537d86637aa8bebab5d3a2e8895d288628037"
+    },
+    {
+      "schemaVersion": "committee-proposal-v2",
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "actorInstanceId": "RT-05-CAR-MAO-001",
+      "roleId": "RT-05",
+      "title": "Método antes que herramientas",
+      "concept": "Secuenciar conclusión, tensión, tres pilares, evidencia honesta, aplicación y un CTA de un movimiento.",
+      "assumptions": [
+        {
+          "statement": "El piloto se dirige a profesionales y equipos y usa ocho tarjetas como decisión configurable.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/canonical-editorial-unit.json",
+              "sha256": "1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b"
+            }
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "statement": "La voz continúa como candidato first-party y bloquea release público sin confirmación del owner.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "registries/brand/voice-profile-v2.yml",
+              "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+            }
+          ]
+        }
+      ],
+      "criteria": [
+        "Cada afirmación material conserva una fuente o se presenta como señal a medir.",
+        "La secuencia termina en un único movimiento verificable."
+      ],
+      "compatibleElements": [
+        "Resultado observable",
+        "Una idea por tarjeta",
+        "Continuidad visual sobria"
+      ],
+      "proposalSha256": "f8253ccd2b8201b9db63e8f80da72bf9e53771d271cf4ce05a81015c71eeef1f"
+    },
+    {
+      "schemaVersion": "committee-proposal-v2",
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "actorInstanceId": "RT-06-CAR-MAO-001",
+      "roleId": "RT-06",
+      "title": "Una idea por tarjeta",
+      "concept": "Reducir fricción verbal con titulares directos, soportes breves y un CTA específico en español latino.",
+      "assumptions": [
+        {
+          "statement": "El piloto se dirige a profesionales y equipos y usa ocho tarjetas como decisión configurable.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/canonical-editorial-unit.json",
+              "sha256": "1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b"
+            }
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "statement": "La voz continúa como candidato first-party y bloquea release público sin confirmación del owner.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "registries/brand/voice-profile-v2.yml",
+              "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+            }
+          ]
+        }
+      ],
+      "criteria": [
+        "Cada afirmación material conserva una fuente o se presenta como señal a medir.",
+        "La secuencia termina en un único movimiento verificable."
+      ],
+      "compatibleElements": [
+        "Método antes que herramientas"
+      ],
+      "proposalSha256": "1640cd10adbf424fcdaa3b89523c45ca64b97c1469c4ca1da86c7054b9bc53cf"
+    },
+    {
+      "schemaVersion": "committee-proposal-v2",
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "actorInstanceId": "RT-07-CAR-MAO-001",
+      "roleId": "RT-07",
+      "title": "Continuidad visual sobria",
+      "concept": "Usar contraste navy, blanco y dorado con señales repetidas para sostener continuidad sin ornamentación.",
+      "assumptions": [
+        {
+          "statement": "El piloto se dirige a profesionales y equipos y usa ocho tarjetas como decisión configurable.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/canonical-editorial-unit.json",
+              "sha256": "1d184e8fa45aad81e6c4f2fcd4208d4ae75b163775d7ccb48e6893d4d334b59b"
+            }
+          ]
+        }
+      ],
+      "risks": [
+        {
+          "statement": "La voz continúa como candidato first-party y bloquea release público sin confirmación del owner.",
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "registries/brand/voice-profile-v2.yml",
+              "sha256": "c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a"
+            }
+          ]
+        }
+      ],
+      "criteria": [
+        "Cada afirmación material conserva una fuente o se presenta como señal a medir.",
+        "La secuencia termina en un único movimiento verificable."
+      ],
+      "compatibleElements": [
+        "Método antes que herramientas"
+      ],
+      "proposalSha256": "43f63156b804a4f001537a3c8949032f7752c316d549ab88a669ec3d995b8580"
+    }
+  ],
+  "crossEvaluations": [
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-03-RT-04-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-03-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-04-CAR-MAO-001",
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "17f6a29675744faa5a284c9eb14422c03fb19eb47a1418638edb5d2f8f228cc4"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-03-RT-05-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-03-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-05-CAR-MAO-001",
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "dc4087fec96c5e7e9037968716af51d908e6c74a523755b2165a1c15e7a7bfb7"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-03-RT-06-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-03-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-06-CAR-MAO-001",
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "7a99c894cebb2a77246dc79aa8c4c416309f3e5a00515f41e500eb65e8f0e08f"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-03-RT-07-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-03-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-07-CAR-MAO-001",
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "a4ff50de8bda109f265921c2dc57dad5ace5d0b186b03a3d63dfd7d7e9a78caf"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-04-RT-03-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-04-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-03-CAR-MAO-001",
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "2fa0bf4a1a7cf99cf2bb567cda13f2eee599ff615ea687c658793f774fa4fdb3"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-04-RT-05-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-04-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-05-CAR-MAO-001",
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "b837812c52524ebd1c58a71aec5a95750e7a55317334d1b7691457906e9a945c"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-04-RT-06-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-04-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-06-CAR-MAO-001",
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "860f3a57d28762c0865b041f5a9563607abb0267e6fe28277ba7e57d7fb255a0"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-04-RT-07-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-04-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-07-CAR-MAO-001",
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "58f8bbb6668e99ffb14e220342f623367deade515fb1b46a0c635739180f6633"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-05-RT-03-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-05-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-03-CAR-MAO-001",
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "476d768e13a182af56d939a21968af351848b83c927b62fe4b27496a8a8a7ba2"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-05-RT-04-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-05-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-04-CAR-MAO-001",
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "a28985f7e0fbf18e3b6c829b31d0ffe31f9da637881563090190569c4d82b9b9"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-05-RT-06-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-05-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-06-CAR-MAO-001",
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "84376544802febc73a25e3c5eb8ee448ed22a410dd5a83f7e4699ed365902631"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-05-RT-07-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-05-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-07-CAR-MAO-001",
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "73e7850d06b776881535e3cf733f203aacdc5fed6dbc7ba6d1547962fb3723f0"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-06-RT-03-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-06-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-03-CAR-MAO-001",
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "64387a5f88a1dff67c40b6f27407a5f067d6f526fe26ea7ff35e53cf1449a3a2"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-06-RT-04-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-06-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-04-CAR-MAO-001",
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "3695c49114114ef015df06ba1a6321cfbd6fc63e153784b130b41b9dddc92bc8"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-06-RT-05-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-06-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-05-CAR-MAO-001",
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "96526c92cf830a0e2cc57877f24f4ccab5cbb024193e7484ede30b15bca26873"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-06-RT-07-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-06-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-07-CAR-MAO-001",
+      "proposalId": "PROP-RT-07-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "f1caaa5ad01ab96cf304081fab6fc7d00a8983c14cb9df1776b1c25afe348bf6"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-07-RT-03-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-07-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-03-CAR-MAO-001",
+      "proposalId": "PROP-RT-03-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 3,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 3 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "5f62f1accf0acc630bfb525710f96f7f71c73de89f54a89a5975c67e9b2e49b3"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-07-RT-04-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-07-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-04-CAR-MAO-001",
+      "proposalId": "PROP-RT-04-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "386b2dc518f946bbe85719bd3a30a2c9de845a8e4af5bc25963469efa939d19f"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-07-RT-05-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-07-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-05-CAR-MAO-001",
+      "proposalId": "PROP-RT-05-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 5,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 5 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "7b2d1b79f34a9016ab86f3dab22965c19f7e81e5787c8c9e7bd99b8eb8535f48"
+    },
+    {
+      "schemaVersion": "cross-evaluation-v2",
+      "evaluationId": "EVAL-RT-07-RT-06-CAR-MAO-001",
+      "reviewerActorInstanceId": "RT-07-CAR-MAO-001",
+      "subjectActorInstanceId": "RT-06-CAR-MAO-001",
+      "proposalId": "PROP-RT-06-CAR-MAO-001",
+      "scores": [
+        {
+          "dimensionId": "strategic_fit",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "editorial_clarity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "evidence_integrity",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "feasibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        },
+        {
+          "dimensionId": "accessibility",
+          "score": 4,
+          "evidenceRefs": [
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+              "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+            },
+            {
+              "schemaVersion": "hash-bound-ref-v1",
+              "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+              "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+            }
+          ],
+          "decisionNote": "Puntuación 4 sustentada en fuente, spec y criterio observable."
+        }
+      ],
+      "objections": [
+        "La dirección necesita integrarse a la secuencia canónica seleccionada."
+      ],
+      "socraticQuestions": [
+        "¿Qué evidencia observable invalidaría esta dirección antes de publicarla?"
+      ],
+      "compatibleElements": [
+        "Puede aportar un criterio a la propuesta narrativa seleccionada."
+      ],
+      "evaluationSha256": "df170d6e29ffc358d0d91678a797d8056204deaa850ed5f5d4b6f4fa2e460297"
+    }
+  ],
+  "createdAt": "2026-07-20T17:37:00.000Z",
+  "sessionSha256": "7ad1ab5631ed2df4a152089d661a2045fd1fe79bad2484cffe10a956f4c98ed2"
+}

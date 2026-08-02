@@ -1,0 +1,19 @@
+schema_version: 1
+receipt_id: RCP-SKL-INSTAGRAM-V2-LICENSE-001
+license_id: LicenseRef-MetodologIA-Internal
+license_text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+license_text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+applies_to:
+  package_refs:
+    - skills/metodologia-brand-router
+    - skills/instagram-content-orchestration
+    - skills/instagram-carousel-production
+    - skills/remotion-video-production-v2
+    - skills/metodologia-certificate-builder
+  content_origin: locally_authored
+permissions:
+  internal_execution: allowed
+  local_candidate_rendering: allowed
+  external_distribution: requires_separate_verifiable_authorization
+  publication: forbidden_without_explicit_gate
+append_only: true

@@ -1,0 +1,74 @@
+schema_version: creation-v3-h02-rt09-verdict-v1
+verdict_id: RT09-CREATION-V3-H02-002
+actor_instance_id: RT-09-H02-FINAL-002
+role: rights_and_accessibility_verifier
+mode: read_only
+review: 2
+candidate:
+  base_commit: 7377fd6d27dcbf6dde8d791661025722f2757965
+  staged_tree: a8be8ddc3b98b4fd7d7c28ce4eb2378784d33bb5
+  prior_payload_tree: 5c01410d3968991273d451d2d0faca7f0ff8d65b
+  graph_sha256: d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa
+verdict: PASS
+maximum_state:
+  evidence: QUALIFIED
+  structural: ATOMIZED
+findings:
+  critical: 0
+  high: 0
+  medium: 0
+  low: 0
+guardian_finding:
+  finding_id: G-H02-01
+  prior_severity: high
+  status: CLOSED_EXECUTABLE_EVIDENCE
+  remediation_owner: RT-05-H02-REMEDIATION-001
+  verifier_remediated: false
+delta:
+  production_changed: false
+  graph_or_receipt_changed: false
+  tests_added: 10
+  test_file: tests/unit/creation/atomizer-v1.test.ts
+  covered_cases:
+    - markdown_reflow_without_semantic_invalidation
+    - merge_with_survivor_identity_and_tombstone
+    - non_canonical_atom_and_edge_order
+    - claim_drift
+    - authority_drift
+    - locator_drift
+    - fragment_drift
+    - rights_drift
+    - non_monotonic_revision
+    - hostile_atom_id_recycling
+checks:
+  graph:
+    result: pass
+    evidence: 39 active atoms, 50 edges and selective invalidation 1 changed / 38 unchanged.
+  delta_scope:
+    result: pass
+    evidence: Only prior review evidence and the expanded unit test file differ from the first payload.
+  immutable_surfaces:
+    result: pass
+    evidence: H-01, Carousel V1, pilot-carousel-001, VS-001, package lock and adapters/n8n remain byte-identical.
+  prohibitions:
+    result: pass
+    evidence: H-03, composition, render, distribution and publication remain unauthorized.
+test_evidence:
+  producer_full_suite:
+    test_files: 47
+    tests: 379
+    result: pass
+  staged_tree_check:
+    command: git write-tree
+    result: pass
+  diff_check:
+    command: git diff --cached --check
+    result: pass
+  independent_atom_checker:
+    command: node --import tsx scripts/check-content-atoms.ts
+    result: pass
+  write_capable_suite:
+    result: not_run
+    limitation: RT-09 remained read-only and accepted the producer's hash-bound full-suite receipt.
+next_gate: RT-11-H02-REVIEW-002
+private_reasoning_persisted: false

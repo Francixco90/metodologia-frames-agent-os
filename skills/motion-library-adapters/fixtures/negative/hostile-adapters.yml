@@ -1,0 +1,17 @@
+case_id: MOTION-H03-NEG-001
+cases:
+  - id: gsap-autonomous-ticker
+    expected_error: GSAP_RECIPE_INVALID
+  - id: three-use-frame
+    expected_error: THREE_SCENE_INVALID
+  - id: three-angle-unavailable
+    expected_state: FALLBACK_2D_REQUIRED
+  - id: lottie-expression
+    expected_error: LOTTIE_DOCUMENT_INVALID
+  - id: lottie-remote-asset
+    expected_error: LOTTIE_ASSET_NOT_CLOSED
+  - id: invalid-frame
+    expected_error: INVALID_FRAME_CONTEXT
+  - id: production-remotion
+    expected_error: DEPENDENCY_LICENSE_UNRESOLVED
+publication_authority: false

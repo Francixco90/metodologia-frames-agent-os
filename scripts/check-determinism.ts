@@ -30,11 +30,18 @@ const walk = (path: string): string[] => {
 };
 
 for (const path of walk(rendererRoot).filter((candidate) => /\.[cm]?[jt]sx?$/u.test(candidate))) {
+  const portablePath = relative(process.cwd(), path).replaceAll('\\', '/');
   const lines = readFileSync(path, 'utf8').split('\n');
   lines.forEach((line, index) => {
     for (const [rule, pattern] of rules) {
       if (pattern.test(line)) {
-        findings.push({path: relative(process.cwd(), path), line: index + 1, rule});
+        const isGovernedTickerStop =
+          rule === 'GSAP ticker' &&
+          portablePath === 'renderers/remotion/src/adapters/gsap-adapter.ts' &&
+          line.trim() === 'const sleepAutonomousTicker = (): void => gsap.ticker.sleep();';
+        if (!isGovernedTickerStop) {
+          findings.push({path: portablePath, line: index + 1, rule});
+        }
       }
     }
   });

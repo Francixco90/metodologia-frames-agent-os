@@ -1,0 +1,87 @@
+schema_version: creation-v3-h02-rt09-verdict-v1
+verdict_id: RT09-CREATION-V3-H02-001
+actor_instance_id: RT-09-H02-FINAL-001
+role: rights_and_accessibility_verifier
+mode: read_only
+candidate:
+  base_commit: 7377fd6d27dcbf6dde8d791661025722f2757965
+  staged_tree: 5c01410d3968991273d451d2d0faca7f0ff8d65b
+  graph_sha256: d93bea34b6efb3d913fa4f3040c3f4b0110bb72a26db975009f31bab442d72aa
+  graph_file_sha256: 96d3d0616da605c6ae08113914db9911d26df6f4b7477c7fb15397586b2db2c2
+  atomization_receipt_sha256: ba0fee08b564c109cef2b9fd411f98ed33f06e4c8c4a8a70ce907995a0dedcdc
+verdict: PASS
+maximum_state:
+  evidence: QUALIFIED
+  structural: ATOMIZED
+findings:
+  critical: 0
+  high: 0
+  medium: 0
+  low: 0
+checks:
+  graph_shape:
+    result: pass
+    evidence: 39 active atoms (23 narrative, 11 visual, 1 temporal, 4 delivery) and 50 edges.
+  topology:
+    result: pass
+    evidence: 37 hard and 13 topology_only edges; zero cycles, self-edges, duplicate edges or unknown endpoints.
+  evidence:
+    result: pass
+    evidence: The qualified claim remains qualified_internal_derivation and all source locators are portable and hash-bound.
+  rights:
+    result: pass
+    evidence: Zero scope promotions or lost restrictions; five planned capabilities retain planned_only rights.
+  accessibility:
+    result: pass
+    evidence: Authored policy, textual equivalence, non-color cue and five topology-only orders with ordinals 1 through 5.
+  selective_invalidation:
+    result: pass
+    evidence: The simulation preserves atomId, changes 1 atom, leaves 38 unchanged, keeps sequence output stable and marks prior approval STALE.
+  lineage:
+    result: pass
+    evidence: Graph and receipt hashes bind H-01 content and source-freeze receipt; receipt self-hash was recomputed.
+  committee:
+    result: pass
+    evidence: Five unique positions, twenty directed non-self reviews and four reviews per member.
+  immutable_surfaces:
+    result: pass
+    evidence: H-01, Carousel V1, pilot-carousel-001, VS-001, pnpm-lock.yaml and adapters/n8n have no staged changes.
+  privacy:
+    result: pass
+    evidence: No private absolute path, email, secret, token, credential or copied source fragment in the staged diff.
+  scope:
+    result: pass
+    evidence: readinessEligible=false, distributionState=NOT_DESIGNED and publicationAuthority=false.
+test_evidence:
+  staged_tree_check:
+    result: pass
+    command: git write-tree
+  diff_check:
+    result: pass
+    command: git diff --cached --check
+  independent_atom_checker:
+    result: pass
+    command: node --import tsx scripts/check-content-atoms.ts
+    summary: active=39 edges=50 selective=1/38
+  write_capable_suite:
+    result: not_run
+    limitation: RT-09 remained read-only and did not invoke commands that may write caches.
+actor_separation:
+  producer: RT-05-H02-001
+  hash_verifier: RT-10-H02-001
+  rights_accessibility_verifier: RT-09-H02-FINAL-001
+  verifier_remediated: false
+coverage_gaps:
+  - voice_owner_confirmation_pending
+  - canonical_corpus_0_of_4
+  - carousel_claims_not_in_central_registry
+  - h03_capabilities_not_installed_licensed_or_deterministic
+  - no_measured_performance_dataset
+  - dag_v2_still_coupled_to_a11
+prohibitions:
+  h03_authorized: false
+  composition_authorized: false
+  render_authorized: false
+  distribution_authorized: false
+  publication_authorized: false
+private_reasoning_persisted: false

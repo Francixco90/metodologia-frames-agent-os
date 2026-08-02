@@ -1,0 +1,103 @@
+schema_version: brand-source-bundle-v1
+bundle_id: metodologia-public-brand-snapshot-20260720
+source_repo_id: metodologia-public-site
+observed_commit: f53177ff604c936c887a2675d661b65ff97bfef6
+locator_policy:
+  durable_locator: logical_repo_and_relative_path_only
+  absolute_path_allowed: false
+  raw_content_copied: false
+authority_policy:
+  stable_projection_authority_requires:
+    - dirty_false
+    - commit_bound
+    - exact_sha256
+  first_party_candidate_may_ground:
+    - voice_candidate
+    - internal_active_candidate
+  first_party_candidate_may_not_ground:
+    - public_release
+    - human_approval
+  dirty_sources_are:
+    - observational_only
+    - non_authoritative
+sources:
+  - source_id: BRAND-SRC-TOKENS
+    relative_path: design-system/tokens.css
+    sha256: 32cc6576323aae325160c589cac500f6965b897070aecbc048278c363ed25f19
+    dirty: false
+    commit_bound: true
+    authority_class: stable_projection_authority
+    use_scope: visual_tokens
+  - source_id: BRAND-SRC-SKILL
+    relative_path: design-system/brand-html-skill/SKILL.md
+    sha256: bc68a6ef3607ca6cb2af15b365cf59fa5e8fd846519a99ec027b4d85f41316b8
+    dirty: false
+    commit_bound: true
+    authority_class: stable_projection_authority
+    use_scope: brand_workflow
+  - source_id: BRAND-SRC-CONTRACTS
+    relative_path: design-system/brand-html-skill/references/contracts.json
+    sha256: 5cb7f8cd429ae50ea1aa9e4c96eb0a9e6388db17d37a88cfd68b03097c37eb76
+    dirty: false
+    commit_bound: true
+    authority_class: stable_projection_authority
+    use_scope: brand_rule_ids
+  - source_id: BRAND-SRC-RULES
+    relative_path: design-system/brand-html-skill/references/brand-rules.md
+    sha256: 55514b363186dd64a8ee327ac83d7eb1a4a1c06655c2c96029e0dcc3c5afee0e
+    dirty: false
+    commit_bound: true
+    authority_class: stable_projection_authority
+    use_scope: brand_and_accessibility_rules
+  - source_id: BRAND-SRC-NAMING
+    relative_path: docs/BRAND_NAMES.md
+    sha256: c3023e3464515a1b2a87a0a75aa9ff806f246667be277d5bcfbea95d89a4e39e
+    dirty: false
+    commit_bound: true
+    authority_class: stable_projection_authority
+    use_scope: canonical_naming
+  - source_id: BRAND-SRC-CONSTITUTION-XI
+    relative_path: CONSTITUTION.md
+    sha256: a506427360513d2026b16a1fea3d79b1423d33ff3bf397398ec029aeaaf0a8b4
+    dirty: false
+    commit_bound: true
+    authority_class: constitutional_brand_authority
+    use_scope: brand_voice_integrity
+    section_ref: XI
+  - source_id: BRAND-SRC-VOICE-V3
+    relative_path: .local/pristino-alfa/references/brand/brand-voice-v3.0.md
+    sha256: d415571ed41f49ee186f2fc70faa91e91862142175ad89c39454a41bf295168f
+    dirty: false
+    commit_bound: false
+    authority_class: first_party_candidate
+    use_scope: voice_candidate
+  - source_id: BRAND-SRC-LLMS-DIRTY
+    relative_path: llms.txt
+    sha256: a7f9893b49f5ee2de12844e4759413066bc61ace69b4c9f12717b08b6a1efead
+    dirty: true
+    commit_bound: false
+    authority_class: observational_only
+    use_scope: drift_detection_only
+  - source_id: BRAND-SRC-MANIFEST-DIRTY
+    relative_path: manifest.json
+    sha256: 801bef55000af6486aa149cdfdf15fae5bbd0545ed1e2169ed5edfe1c26bf5c5
+    dirty: true
+    commit_bound: false
+    authority_class: observational_only
+    use_scope: drift_detection_only
+  - source_id: BRAND-SRC-NEOSWISS-DIRTY
+    relative_path: estilos/neoswiss-v5.css
+    sha256: 83d10053cccac1cc50e3515f609727c927b80f127064f4bf49e7988e8814e614
+    dirty: true
+    commit_bound: false
+    authority_class: observational_only
+    use_scope: drift_detection_only
+coverage:
+  clean_authority_sources: 6
+  stable_projection_sources: 5
+  constitutional_sources: 1
+  first_party_candidates: 1
+  dirty_observations: 3
+  gaps:
+    - voice_source_not_commit_bound
+    - dirty_site_files_not_authority

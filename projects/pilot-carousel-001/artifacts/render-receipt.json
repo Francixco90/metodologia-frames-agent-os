@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "carousel-render-receipt-v1",
+  "receiptId": "RCP-CAR-MAO-001-RENDER-001",
+  "carouselId": "CAR-MAO-001",
+  "producerActorInstanceId": "RT-07-CAR-MAO-001",
+  "verifierActorInstanceId": "RT-09-CAR-MAO-001",
+  "generatedAt": "2026-07-20T17:30:00.000Z",
+  "state": "RENDERED_DRAFT",
+  "browser": {
+    "engine": "Chromium",
+    "version": "150.0.7871.125"
+  },
+  "specSha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c",
+  "manifestRef": "projects/pilot-carousel-001/artifacts/asset-manifest.json",
+  "manifestSha256": "ae46a31f325fd81a054306398c706418b635c1c490e3ae0a06a124e9784bdffe",
+  "outputAggregateSha256": "1c1ba01c01cc987d7b6fde3c1dabb340e703cb81cf27d0f57bacaed326c3397f",
+  "deterministic": true,
+  "networkRequests": 0,
+  "guardianPassed": false,
+  "humanApproved": false,
+  "ready": false,
+  "publicationAuthorized": false,
+  "nextGate": "RIGHTS_A11Y_PASS"
+}

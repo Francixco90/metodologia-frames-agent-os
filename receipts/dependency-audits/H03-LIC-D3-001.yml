@@ -1,0 +1,14 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-D3-001
+family: d3-modular
+observed_at: '2026-07-20'
+source: official_npm_packages
+packages:
+  - {name: d3-array, version: 3.2.4, manifest_sha256: f9e9dc28e2a9bfe32a0a80dda5c9f8bb49758ee112f4418e2b5662787f1bf500, license: ISC, license_sha256: 3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4}
+  - {name: d3-scale, version: 4.0.2, manifest_sha256: 75f7dfe869b2e6d1cbecd380f939f218ca046a26313c4e623aa52d6352a9b51b, license: ISC, license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee}
+  - {name: d3-shape, version: 3.2.0, manifest_sha256: c3d084a64bc3c85c407db4282be588a42484c4dc2639bb0a21424fe29ff38335, license: ISC, license_sha256: faa682e3e430941f958d26180458f5934a62f58dac4d70ccdd15608c15d0f884}
+  - {name: d3-hierarchy, version: 3.1.2, manifest_sha256: 5b3864284fb2b406f453a0eddd475f4fcd15c9a5302ff76cdce5d95442d93168, license: ISC, license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee}
+  - {name: d3-interpolate, version: 3.0.1, manifest_sha256: 3e2ce33f9d7072b6bfedbae949c1df546e187994e44b6f4b3795abeb63914613, license: ISC, license_sha256: e008c5e25a6be382593089c29bfabbc553c6378eee02895aec46ce396cc404ee}
+verdict: verified_osi_for_local_adapter
+publication_authority: false
+append_only: true

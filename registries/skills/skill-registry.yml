@@ -14,7 +14,7 @@ entries:
     reference_license_status: unresolved
     runtime_version: 4.0.494
     content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
-    package_manifest_sha256: 720b166efa889d8039136ce3826026ac035cf187839f6c9554e79f53a2e5d6cf
+    package_manifest_sha256: 5dfe8ae7d8711abbbcc097eb7d3a84ed8c549e6345e7b06b3f73e5c07a96d5f1
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/remotion-video-production/LINEAGE.yaml
     license: LicenseRef-MetodologIA-Internal
@@ -25,8 +25,8 @@ entries:
       receipt_ref: skills/remotion-video-production/licenses/content-license-receipt.yml
       receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
     runtime_license_evidence:
-      receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml
-      receipt_sha256: 24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a
+      receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03.yml
+      receipt_sha256: 5e073ab99011507e0d8d8ee2334f6eb1ce971b3748e0eec81e65a5f81b85f046
       commercial_or_production_use: coverage_gap
       consequence: blocked
     recorded_at: '2026-07-19T20:38:02Z'
@@ -36,6 +36,7 @@ entries:
       - original_contracts_and_fixtures
       - deterministic_offline_and_av_qa_rules
       - runtime_license_fail_closed_gate
+      - append_only_source_inventory_successor_validation
     restrictions:
       - no_copy_from_reference_only_sources
       - no_commercial_or_production_render_until_license_verdict
@@ -52,6 +53,139 @@ entries:
       - EVT-SKL-REMOTION-002
       - EVT-SKL-REMOTION-003
       - EVT-SKL-REMOTION-004
+  - skill_id: metodologia-brand-router
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: 0c9fc5a56ea6cf950275c32df6a84652c55f9d118b61c3a3f3a9de6f8f19c28a
+    package_manifest_sha256: e022725bcd8879ce240ac08e7a7dd2df7efac8a351dd4fc80b2d26c34ef9dbcf
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-brand-router/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/instagram-v2-content-license-receipt.yml
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
+    recorded_at: '2026-07-20T17:43:27Z'
+    fragments_reused: false
+    local_changes:
+      - profile_hash_router
+      - preserve_adapt_exclude_decisions
+    restrictions:
+      - internal_brand_grounding_only
+      - no_publication_authority
+    execution_scope: internal-brand-routing
+    production_runtime_status: publication_blocked
+    tests:
+      - pnpm verify:skills
+    event_ids:
+      - EVT-SKL-BRAND-ROUTER-001
+      - EVT-SKL-BRAND-ROUTER-002
+      - EVT-SKL-BRAND-ROUTER-003
+      - EVT-SKL-BRAND-ROUTER-004
+  - skill_id: instagram-content-orchestration
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: e8781d196dcec3ef01d747cf45cbf3adb5571c2ae9112f6b3728e457fa6bb88e
+    package_manifest_sha256: 604c891f62ebe0a4ae54e063835284a3a25d3640a3a365cc8df2dfbc158f6e42
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/instagram-content-orchestration/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/instagram-v2-content-license-receipt.yml
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
+    recorded_at: '2026-07-20T17:43:27Z'
+    fragments_reused: false
+    local_changes:
+      - persistent_actor_instances
+      - bounded_2_2_1_committee
+    restrictions:
+      - maximum_two_ephemeral_specialists
+      - no_publication_authority
+    execution_scope: local-orchestration
+    production_runtime_status: publication_blocked
+    tests:
+      - pnpm verify:skills
+    event_ids:
+      - EVT-SKL-IG-ORCH-001
+      - EVT-SKL-IG-ORCH-002
+      - EVT-SKL-IG-ORCH-003
+      - EVT-SKL-IG-ORCH-004
+  - skill_id: instagram-carousel-production
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: 9b354e6e5d6f6023e1913246ad4104edee1f83d9c44958fcac69a15bb5d564ba
+    package_manifest_sha256: abdc0561843fa08ceed53d3c69c76300c105d007fe314d45b2a0df1c6edb38da
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/instagram-carousel-production/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/instagram-v2-content-license-receipt.yml
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
+    recorded_at: '2026-07-20T17:43:27Z'
+    fragments_reused: false
+    local_changes:
+      - plugin_driven_static_carousel
+      - deterministic_png_review_package
+    restrictions:
+      - rendered_draft_is_not_ready
+      - no_publication_authority
+    execution_scope: local-candidate-production
+    production_runtime_status: publication_blocked
+    tests:
+      - pnpm verify:skills
+    event_ids:
+      - EVT-SKL-IG-CAR-001
+      - EVT-SKL-IG-CAR-002
+      - EVT-SKL-IG-CAR-003
+      - EVT-SKL-IG-CAR-004
+  - skill_id: remotion-video-production-v2
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: e45e13b11fea0f4e8687a389729cb45638d631f9a0cefef574d1e5bd99931492
+    package_manifest_sha256: af2ddb738115f8da4197ad9e07b6a29282c174e2a5a8b77804273d547ba518b0
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/remotion-video-production-v2/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/instagram-v2-content-license-receipt.yml
+      receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298
+    recorded_at: '2026-07-20T17:43:27Z'
+    fragments_reused: false
+    local_changes:
+      - content_work_order_v2_adapter
+      - candidate_package_v2_wrapper
+    restrictions:
+      - no_copy_from_reference_only_sources
+      - no_commercial_or_production_render_until_license_verdict
+      - rendered_draft_is_not_ready
+    execution_scope: local-design-and-validation
+    production_runtime_status: blocked_license_coverage_gap
+    tests:
+      - pnpm verify:skills
+    event_ids:
+      - EVT-SKL-REMOTION-V2-001
+      - EVT-SKL-REMOTION-V2-002
+      - EVT-SKL-REMOTION-V2-003
+      - EVT-SKL-REMOTION-V2-004
   - skill_id: stitch-remotion-walkthrough
     version: 0.1.0
     current_state: quarantined
@@ -91,6 +225,37 @@ entries:
     event_ids:
       - EVT-SKL-STITCH-001
       - EVT-SKL-STITCH-002
+  - {
+      skill_id: metodologia-certificate-builder,
+      version: 0.4.1,
+      current_state: active,
+      content_sha256: b8975a9e94e39741dcefe87128c04a87c787e4519af5d02b00a8e22e1add94ce,
+      package_manifest_sha256: 6cd46460efdd8fd0cddbd19d08404d6356b05be444b9ec5743e7dad90072df9f,
+      package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines,
+      lineage: skills/metodologia-certificate-builder/LINEAGE.yml,
+      content_license: LicenseRef-MetodologIA-Internal,
+      content_license_evidence:
+        {
+          text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md,
+          text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8,
+          receipt_ref: skills/instagram-v2-content-license-receipt.yml,
+          receipt_sha256: 58aee1dfe87907215563ddd31c5775633aca13d2a4cbd6033aaf48305d40f298,
+        },
+      execution_scope: local-candidate-production,
+      production_runtime_status: publication_blocked,
+      tests: [pnpm verify:skills],
+      event_ids:
+        [
+          EVT-SKL-CERT-001,
+          EVT-SKL-CERT-002,
+          EVT-SKL-CERT-003,
+          EVT-SKL-CERT-004,
+          EVT-SKL-CERT-005,
+          EVT-SKL-CERT-006,
+          EVT-SKL-CERT-007,
+          EVT-SKL-CERT-008,
+        ],
+    }
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -154,3 +319,210 @@ events:
       from: candidate
       to: quarantined
     decision: keep_reference_only_license_and_api_gaps
+  - event_id: EVT-SKL-BRAND-ROUTER-001
+    event_order: 1
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-brand-router
+    content_sha256: 0c9fc5a56ea6cf950275c32df6a84652c55f9d118b61c3a3f3a9de6f8f19c28a
+    transition: {from: null, to: candidate}
+    decision: accept_locally_authored_candidate
+  - event_id: EVT-SKL-BRAND-ROUTER-002
+    event_order: 2
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-brand-router
+    content_sha256: 0c9fc5a56ea6cf950275c32df6a84652c55f9d118b61c3a3f3a9de6f8f19c28a
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_lineage_and_fixture_review
+  - event_id: EVT-SKL-BRAND-ROUTER-003
+    event_order: 3
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: metodologia-brand-router
+    content_sha256: 0c9fc5a56ea6cf950275c32df6a84652c55f9d118b61c3a3f3a9de6f8f19c28a
+    transition: {from: quarantined, to: evaluated}
+    decision: profiles_and_negative_fixture_pass
+  - event_id: EVT-SKL-BRAND-ROUTER-004
+    event_order: 4
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    verifier_id: skill-foundry-v2-verifier
+    skill_id: metodologia-brand-router
+    content_sha256: 0c9fc5a56ea6cf950275c32df6a84652c55f9d118b61c3a3f3a9de6f8f19c28a
+    transition: {from: evaluated, to: active}
+    activation_scope: internal-brand-routing
+    decision: activate_without_publication_authority
+  - event_id: EVT-SKL-IG-ORCH-001
+    event_order: 1
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: instagram-content-orchestration
+    content_sha256: e8781d196dcec3ef01d747cf45cbf3adb5571c2ae9112f6b3728e457fa6bb88e
+    transition: {from: null, to: candidate}
+    decision: accept_locally_authored_candidate
+  - event_id: EVT-SKL-IG-ORCH-002
+    event_order: 2
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: instagram-content-orchestration
+    content_sha256: e8781d196dcec3ef01d747cf45cbf3adb5571c2ae9112f6b3728e457fa6bb88e
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_actor_and_budget_review
+  - event_id: EVT-SKL-IG-ORCH-003
+    event_order: 3
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: instagram-content-orchestration
+    content_sha256: e8781d196dcec3ef01d747cf45cbf3adb5571c2ae9112f6b3728e457fa6bb88e
+    transition: {from: quarantined, to: evaluated}
+    decision: committee_and_concurrency_fixtures_pass
+  - event_id: EVT-SKL-IG-ORCH-004
+    event_order: 4
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    verifier_id: skill-foundry-v2-verifier
+    skill_id: instagram-content-orchestration
+    content_sha256: e8781d196dcec3ef01d747cf45cbf3adb5571c2ae9112f6b3728e457fa6bb88e
+    transition: {from: evaluated, to: active}
+    activation_scope: local-orchestration
+    decision: activate_bounded_orchestration
+  - event_id: EVT-SKL-IG-CAR-001
+    event_order: 1
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: instagram-carousel-production
+    content_sha256: 9b354e6e5d6f6023e1913246ad4104edee1f83d9c44958fcac69a15bb5d564ba
+    transition: {from: null, to: candidate}
+    decision: accept_locally_authored_candidate
+  - event_id: EVT-SKL-IG-CAR-002
+    event_order: 2
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: instagram-carousel-production
+    content_sha256: 9b354e6e5d6f6023e1913246ad4104edee1f83d9c44958fcac69a15bb5d564ba
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_render_and_rights_review
+  - event_id: EVT-SKL-IG-CAR-003
+    event_order: 3
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: instagram-carousel-production
+    content_sha256: 9b354e6e5d6f6023e1913246ad4104edee1f83d9c44958fcac69a15bb5d564ba
+    transition: {from: quarantined, to: evaluated}
+    decision: deterministic_render_and_negative_fixture_pass
+  - event_id: EVT-SKL-IG-CAR-004
+    event_order: 4
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    verifier_id: skill-foundry-v2-verifier
+    skill_id: instagram-carousel-production
+    content_sha256: 9b354e6e5d6f6023e1913246ad4104edee1f83d9c44958fcac69a15bb5d564ba
+    transition: {from: evaluated, to: active}
+    activation_scope: local-candidate-production
+    decision: activate_rendered_draft_only
+  - event_id: EVT-SKL-REMOTION-V2-001
+    event_order: 1
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: remotion-video-production-v2
+    content_sha256: e45e13b11fea0f4e8687a389729cb45638d631f9a0cefef574d1e5bd99931492
+    transition: {from: null, to: candidate}
+    decision: accept_locally_authored_compatibility_overlay
+  - event_id: EVT-SKL-REMOTION-V2-002
+    event_order: 2
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    skill_id: remotion-video-production-v2
+    content_sha256: e45e13b11fea0f4e8687a389729cb45638d631f9a0cefef574d1e5bd99931492
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_compatibility_and_license_review
+  - event_id: EVT-SKL-REMOTION-V2-003
+    event_order: 3
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: remotion-video-production-v2
+    content_sha256: e45e13b11fea0f4e8687a389729cb45638d631f9a0cefef574d1e5bd99931492
+    transition: {from: quarantined, to: evaluated}
+    decision: v1_compatibility_and_license_gap_preserved
+  - event_id: EVT-SKL-REMOTION-V2-004
+    event_order: 4
+    recorded_at: '2026-07-20T17:43:27Z'
+    actor_id: skill-foundry-v2
+    verifier_id: skill-foundry-v2-verifier
+    skill_id: remotion-video-production-v2
+    content_sha256: e45e13b11fea0f4e8687a389729cb45638d631f9a0cefef574d1e5bd99931492
+    transition: {from: evaluated, to: active}
+    activation_scope: local-design-and-validation
+    decision: activate_overlay_keep_runtime_license_blocked
+  - {
+      event_id: EVT-SKL-CERT-001,
+      event_order: 1,
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e,
+      transition: {from: null, to: candidate},
+    }
+  - {
+      event_id: EVT-SKL-CERT-002,
+      event_order: 2,
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e,
+      transition: {from: candidate, to: quarantined},
+    }
+  - {
+      event_id: EVT-SKL-CERT-003,
+      event_order: 3,
+      actor_id: skill-foundry-v2-verifier,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e,
+      transition: {from: quarantined, to: evaluated},
+    }
+  - {
+      event_id: EVT-SKL-CERT-004,
+      event_order: 4,
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: a9f9db27b7875d12961654cacf7b9272f90ae1964dd9f910bc8ffbfbcc0e563e,
+      transition: {from: evaluated, to: active},
+    }
+  - {
+      event_id: EVT-SKL-CERT-005,
+      event_order: 5,
+      recorded_at: '2026-07-28T00:00:00Z',
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: 9b0a931852389639ab5d2134017af4eda9253d7c2f76c69655b5627b10d69871,
+      transition: {from: active, to: active},
+      decision: upgrade_to_certificate_manifest_v2,
+    }
+  - {
+      event_id: EVT-SKL-CERT-006,
+      event_order: 6,
+      recorded_at: '2026-07-28T21:15:00Z',
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: 59adcf14b6530b046a562e046677ed756f4e2c4ecf76d6ec9b87093e0e9d0e5e,
+      transition: {from: active, to: active},
+      decision: upgrade_to_certificate_manifest_v2_1,
+    }
+  - {
+      event_id: EVT-SKL-CERT-007,
+      event_order: 7,
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: b07bdee8a52d3c42b76a7ee1f362c717cfecb961cc3ca546c4e1ef0d50b79d6b,
+      transition: {from: active, to: active},
+      decision: activate_unsigned_template_v16,
+    }
+  - {
+      event_id: EVT-SKL-CERT-008,
+      event_order: 8,
+      recorded_at: '2026-07-30T00:00:00Z',
+      actor_id: skill-foundry-v2,
+      skill_id: metodologia-certificate-builder,
+      content_sha256: b8975a9e94e39741dcefe87128c04a87c787e4519af5d02b00a8e22e1add94ce,
+      transition: {from: active, to: active},
+      decision: bind_visible_certification_statement_v16_renderer_0_4_1,
+    }

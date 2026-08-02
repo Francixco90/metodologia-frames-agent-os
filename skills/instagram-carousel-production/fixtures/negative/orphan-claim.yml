@@ -1,0 +1,4 @@
+case_id: CAR-SKL-NEG-001
+condition: card_claim_without_source_binding
+expected_error: CLAIM_MISMATCH
+expected_behavior: reject_before_render

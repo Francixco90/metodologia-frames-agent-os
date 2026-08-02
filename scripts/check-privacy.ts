@@ -5,10 +5,10 @@ import {resolve} from 'node:path';
 const root = process.cwd();
 const versionable = execFileSync(
   'git',
-  ['ls-files', '--cached', '--others', '--exclude-standard'],
+  ['ls-files', '-z', '--cached', '--others', '--exclude-standard'],
   {encoding: 'utf8'},
 )
-  .split('\n')
+  .split('\0')
   .filter(Boolean);
 
 const forbiddenPathPatterns = [/\.env(?:\.|$)/u, /work\/private\/(?!\.gitkeep)/u];

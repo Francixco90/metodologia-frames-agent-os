@@ -1,0 +1,4 @@
+case_id: BRAND-ROUTE-NEG-001
+condition: channel_profile_expired_for_ready
+expected_error: CHANNEL_PROFILE_STALE
+retryable_after_profile_refresh: true

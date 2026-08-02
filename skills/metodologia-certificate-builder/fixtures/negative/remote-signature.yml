@@ -1,0 +1,22 @@
+case_id: CERT-SKL-NEG-002
+condition: signature_asset_is_remote_url
+manifest:
+  package_id: certificados-bad-remote
+  issuer: MetodologIA
+  certificate_title: Certificado de Embajador
+  issue_date: '2026-07-14'
+  issue_date_display: 14 de julio de 2026
+  artifact_state: RENDERED_DRAFT
+  hours_claim_mode: certifiable_hours
+  certification_statement: Finalizo satisfactoriamente el programa.
+  effort:
+    - {label: trabajo sincronico, hours: 48}
+  total_certifiable_hours: 48
+  evidence_note: Competencias verificadas.
+  limitation_note: Constancia formativa interna.
+  recipients:
+    - {name: Persona Sintetica, folio: MDG-BAD-002}
+  signatures:
+    - {name: Firmante Remoto, role: Instructor, asset_path: 'https://example.com/firma.png'}
+expected_error: signature_asset_must_be_local
+expected_behavior: reject_before_render

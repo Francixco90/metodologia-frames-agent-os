@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "candidate-package-v2",
+  "candidatePackageId": "CP-CAR-MAO-001",
+  "workOrderId": "WO-CAR-MAO-001",
+  "workOrderSha256": "8ac1d846e85e7e079a0e1a90c3414614a7dccb7e00165fb549a8661e7b2c03b0",
+  "editorialUnitId": "CEU-CAR-MAO-001",
+  "editorialUnitSha256": "09fd5fb03ecf4b43f58e878ef2765460db07124a81a672c2b582e351314690c4",
+  "proposalActorInstanceId": "RT-05-CAR-MAO-001",
+  "producerActorInstanceId": "RT-07-CAR-MAO-001",
+  "artifacts": [
+    {
+      "artifactId": "CAROUSEL-CONTACT-SHEET",
+      "artifactType": "contact_sheet",
+      "binding": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/contact-sheet.png",
+        "sha256": "c1af9c615151188b2f400be9295247efa169806b4583d9e650dde6ec4a7921a4"
+      }
+    },
+    {
+      "artifactId": "CAROUSEL-GALLERY",
+      "artifactType": "offline_gallery",
+      "binding": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/artifacts/index.html",
+        "sha256": "3896f550a4f87c60bfdbe7a261d5952df30a372ee6fdbeee02ac34d9a996b982"
+      }
+    },
+    {
+      "artifactId": "CAROUSEL-CAPTION",
+      "artifactType": "caption",
+      "binding": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/spec/caption.md",
+        "sha256": "79470388b756185aa9611f4b61e3152bfa01f13bfed3e534e4538654261a604a"
+      }
+    },
+    {
+      "artifactId": "CAROUSEL-ALT-TEXT",
+      "artifactType": "alt_text",
+      "binding": {
+        "schemaVersion": "hash-bound-ref-v1",
+        "ref": "projects/pilot-carousel-001/spec/alt-text.md",
+        "sha256": "bbf9d07800a5fc217f55960bb7fbaf0731605b1b354c71d1c28096ba0c0785e9"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "projects/pilot-carousel-001/spec/distribution-variant.json",
+      "sha256": "6eb78e74669a64e8594c3b1a1d25ff5062da7de2a544612a2baeebdae752e592"
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "projects/pilot-carousel-001/spec/source-snapshot.json",
+      "sha256": "8dce020fbc11b13e63b37f55fe74a82162bcba660e0f100bfcc4c8b7f62e250c"
+    },
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "projects/pilot-carousel-001/spec/content-type-definition.json",
+      "sha256": "57e44cd6a3a6b86a7818e2693860d79d1ffd89c98cd7badb59c0a88c64ffc1c6"
+    },
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "quality/reports/v2-baseline-protection.yml",
+      "sha256": "a41deeaf8ca2c542992d4c35f032a4fe6b821fecc37c2712adc4ece02f8d67a9"
+    }
+  ],
+  "assumptions": [
+    "The selected topic is the approved fallback because no alternative topic was provided.",
+    "Pilot dimensions and card count are configurable editorial decisions."
+  ],
+  "risks": [
+    "Channel capabilities can change after the profile stale date.",
+    "Human review may request copy or hierarchy changes before workflow acceptance."
+  ],
+  "coverageGaps": [
+    "WORKFLOW_PILOT_ACCEPTED is absent.",
+    "Publication, Ads, boost and external distribution are forbidden."
+  ],
+  "state": "RENDERED_DRAFT",
+  "specRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "projects/pilot-carousel-001/spec/carousel-spec.yml",
+    "sha256": "fe977e8f389f132b8df8c1ddc807dc082932de84bb90465df643119704d6cb7c"
+  },
+  "assetManifestRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "projects/pilot-carousel-001/artifacts/asset-manifest.json",
+    "sha256": "ae46a31f325fd81a054306398c706418b635c1c490e3ae0a06a124e9784bdffe"
+  },
+  "renderManifestRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "projects/pilot-carousel-001/artifacts/asset-manifest.json",
+    "sha256": "ae46a31f325fd81a054306398c706418b635c1c490e3ae0a06a124e9784bdffe"
+  },
+  "receiptRefs": [
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "projects/pilot-carousel-001/artifacts/render-receipt.json",
+      "sha256": "36ef369a3f8f7c4a522841b3614838a84157aa5ecb60f2fe3bc76392bd81b66d"
+    }
+  ],
+  "qaRefs": [
+    {
+      "schemaVersion": "hash-bound-ref-v1",
+      "ref": "projects/pilot-carousel-001/quality/producer-preflight.json",
+      "sha256": "db71a7910fecc1adb260adb9f2a2567f7032578fcfab3169d679d1ff9a41c2c1"
+    }
+  ],
+  "publicationPolicy": "forbidden",
+  "createdAt": "2026-07-20T17:30:00.000Z",
+  "packageSha256": "7c4b878afe848a1f507ae07d428113fe52d86c1a0d0367f08e5b64af7fccd547"
+}

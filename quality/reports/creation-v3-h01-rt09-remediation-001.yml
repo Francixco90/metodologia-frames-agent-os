@@ -1,0 +1,48 @@
+schema_version: creation-v3-h01-remediation-verdict-v1
+verdict_id: RT09-CREATION-V3-H01-REM-001
+actor_instance_id: RT-09-H01-REMEDIATION-001
+role: rights_and_accessibility_verifier
+mode: read_only
+supersedes_no_evidence: false
+candidate:
+  h01_commit: dfa7bf09ba7c3a52db0ad810df5082223f44a8ac
+  remediation_staged_tree: 4c08deb6615f3bb9ffbe2be6feb886685e723f26
+  changed_path: scripts/check-creation-doc.ts
+  diff_stat: 9 insertions, 10 deletions
+issue:
+  code: H01_LEGACY_DIGEST_INCLUDED_IGNORED_RUNTIME_FILES
+  observed_on: target writable checkout
+  evidence: Five ignored validation logs changed the filesystem digest without changing versioned legacy evidence.
+remediation:
+  decision: Hash the tracked legacy surface returned by git ls-files.
+  invariants:
+    - Detect tracked additions, removals and modifications.
+    - Ignore untracked and ignored runtime residue.
+    - Preserve the original byte-level digest for every tracked file.
+checks:
+  ignored_runtime_files_excluded:
+    result: pass
+    evidence: The five validation logs are absent from git ls-files.
+  pilot_carousel_001_tracked_digest:
+    result: pass
+    sha256: d9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78
+  vs_001_tracked_digest:
+    result: pass
+    sha256: 4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4
+  tracked_mutation_probe:
+    result: pass
+    evidence: A simulated tracked mutation changed the digest.
+  target_checkout_probe:
+    result: pass
+    evidence: The creation document checker returned no errors against the real target checkout.
+  n8n_scope:
+    result: pass
+    evidence: No n8n path or behavior changed.
+verdict: PASS
+maximum_state: SCOPED
+private_reasoning_persisted: false
+prohibitions:
+  h02_authorized: false
+  render_authorized: false
+  distribution_authorized: false
+  publication_authorized: false

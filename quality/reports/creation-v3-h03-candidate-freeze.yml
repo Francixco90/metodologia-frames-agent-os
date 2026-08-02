@@ -1,0 +1,30 @@
+schema_version: creation-v3-h03-candidate-freeze-v1
+receipt_id: RCP-H03-CANDIDATE-FREEZE-001
+base_commit: 46eb7ca3f26c1ebbcdd1873627fb9014f072d9f5
+actor_instance_id: RT-10-H03-INTEGRATION-001
+scope: staged_binary_diff_excluding_freeze_rt09_and_guardian_reports
+candidate_diff_sha256: 2870393e21f593a2770e4de155717ac04c61fadd7181bceedc03cbb1b1b2bc4f
+producer_tree_before_freeze: 6e2835a95bad2fe17264baa8892be02d772dfb7a
+changed_files: 77
+registry_sha256: 25f5b569aa3d729e12421f5bdfc96c0959ea2e1fc03c63b2f3e91741d1ac3cd5
+graphical_probe_sha256:
+  {
+    frame_0: 31b3746ddea1ea4f6c84832ce1cac06564a55032932b75a2b7f0d949c66bfac8,
+    frame_15: 9a9e4a89fce0f466bae717c166fb946377f32c2548ec56e7fd22a72d84ed83ab,
+    frame_29: 519518a2fd4c3d69bd58bfd24ca15b95efbc6c7a47b46d355debd6ea7552a1f3,
+  }
+verification:
+  {
+    pnpm_verify: pass,
+    test_files: 52,
+    tests: 413,
+    versionable_files: 620,
+    text_lines: 80899,
+    text_line_limit: 81132,
+  }
+state: H03_TECHNICAL_CANDIDATE
+production_state: BLOCKED_LICENSE
+h04_unlocked: false
+distribution_state: NOT_DESIGNED
+publication_authority: false
+private_reasoning_persisted: false

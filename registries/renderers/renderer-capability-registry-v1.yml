@@ -1,0 +1,128 @@
+schemaVersion: renderer-capability-registry-v1
+registryId: renderer-registry-h03-v1
+state: H03_EVALUATION_ONLY
+capabilities:
+  - schemaVersion: renderer-capability-v1
+    capabilityId: d3
+    adapterId: d3-svg-geometry-v1
+    adapterVersion: 0.1.0
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/d3-adapter.ts, sha256: 1812ce8b0ba64371e687e80c5cfc71663aa0a95d1eb77498ee590c24e110c2f5}
+    positiveFixtureRef: {schemaVersion: hash-bound-ref-v1, ref: skills/data-visual-composition/fixtures/positive/categorical-matrix.json, sha256: b994e94541ecaa24428cdfc987ca96fb0c95bd9e040e7be0ff606818c1b68738}
+    hostileFixtureRef: {schemaVersion: hash-bound-ref-v1, ref: skills/data-visual-composition/fixtures/hostile/empty-series.json, sha256: d5b49d747bf800058856c201f8a9b663815908968872fdb4bb26a982a820d1bc}
+    dependencies:
+      - {packageName: d3-array, version: 3.2.4, lockIntegrity: 'sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==', licenseId: ISC, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-D3-001.yml, sha256: 8238a4a4eef57df167d26a08cb013757407a7d4789f99d4276192f7931e45802}}
+      - {packageName: d3-scale, version: 4.0.2, lockIntegrity: 'sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==', licenseId: ISC, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-D3-001.yml, sha256: 8238a4a4eef57df167d26a08cb013757407a7d4789f99d4276192f7931e45802}}
+      - {packageName: d3-shape, version: 3.2.0, lockIntegrity: 'sha512-SaLBuwGm3MOViRq2ABk3eLoxwZELpH6zhl3FbAoJ7Vm1gofKx6El1Ib5z23NUEhF9AsGl7y+dzLe5Cw2AArGTA==', licenseId: ISC, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-D3-001.yml, sha256: 8238a4a4eef57df167d26a08cb013757407a7d4789f99d4276192f7931e45802}}
+      - {packageName: d3-hierarchy, version: 3.1.2, lockIntegrity: 'sha512-FX/9frcub54beBdugHjDCdikxThEqjnR93Qt7PvQTOHxyiNCAlvMrHhclk3cD5VeAaq9fxmfRp+CnWw9rEMBuA==', licenseId: ISC, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-D3-001.yml, sha256: 8238a4a4eef57df167d26a08cb013757407a7d4789f99d4276192f7931e45802}}
+      - {packageName: d3-interpolate, version: 3.0.1, lockIntegrity: 'sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==', licenseId: ISC, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-D3-001.yml, sha256: 8238a4a4eef57df167d26a08cb013757407a7d4789f99d4276192f7931e45802}}
+    inputKinds: [categorical_matrix, quantitative_series, hierarchy_tree, interpolation_state]
+    outputKinds: [svg_geometry_json, semantic_text_projection]
+    supportedEvidenceModes: [categorical, quantitative_claims]
+    determinism: {explicitFrameRequired: false, networkAllowed: false, wallClockAllowed: false, implicitRandomnessAllowed: false, canonicalOrderingRequired: true, freshProcessVerified: true, concurrentRepeatVerified: true}
+    fallback: {fallbackId: d3-semantic-table-v1, outputKind: semantic_table, observable: true, preservesCapabilityVerdict: false, triggerCodes: [RENDERER_UNAVAILABLE, METRIC_BINDING_MISSING]}
+    limitations: [A general DAG is not coerced into a hierarchy tree.]
+    availability: verified_local_internal_preview
+    productionEligibility: eligible
+    readinessEligible: false
+    distributionState: NOT_DESIGNED
+    publicationAuthority: false
+  - schemaVersion: renderer-capability-v1
+    capabilityId: gsap
+    adapterId: gsap-frame-seek-v1
+    adapterVersion: 0.1.0
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/gsap-adapter.ts, sha256: cf076127290281c8aa5496aedfcf1250282b0eba77f210f200a4576a4d8c9097}
+    positiveFixtureRef: &motionPositive {schemaVersion: hash-bound-ref-v1, ref: skills/motion-library-adapters/fixtures/positive/local-frame-seek.yml, sha256: 9e1fbfd983d84c39b469be8b6ab7f9c924179090df16e0a2e891decbe5470a39}
+    hostileFixtureRef: &motionHostile {schemaVersion: hash-bound-ref-v1, ref: skills/motion-library-adapters/fixtures/negative/hostile-adapters.yml, sha256: 93f6850ce6978ad51081a12127d1f9d63188e05d042840a6ef9cc2c5ba965058}
+    dependencies:
+      - {packageName: gsap, version: 3.15.0, lockIntegrity: 'sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==', licenseId: GSAP-Standard, licenseVerdict: verified_custom_restricted, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-GSAP-001.yml, sha256: 516fec1365fd056a702696514c761c8258ca3ef6a23640b6833dd421c036c389}}
+    inputKinds: [explicit_frame, numeric_timeline_recipe]
+    outputKinds: [numeric_property_snapshot]
+    supportedEvidenceModes: [conceptual, categorical]
+    determinism: &motionDeterminism {explicitFrameRequired: true, networkAllowed: false, wallClockAllowed: false, implicitRandomnessAllowed: false, canonicalOrderingRequired: true, freshProcessVerified: true, concurrentRepeatVerified: true}
+    fallback: {fallbackId: gsap-native-motion-v1, outputKind: native_motion, observable: true, preservesCapabilityVerdict: false, triggerCodes: [RENDERER_UNAVAILABLE, NON_DETERMINISTIC_RENDER]}
+    limitations: [Only paused numeric object timelines without plugins are allowed.]
+    availability: verified_local_internal_preview
+    productionEligibility: eligible
+    readinessEligible: false
+    distributionState: NOT_DESIGNED
+    publicationAuthority: false
+  - schemaVersion: renderer-capability-v1
+    capabilityId: three
+    adapterId: three-fixed-scene-v1
+    adapterVersion: 0.1.0
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/three-adapter.ts, sha256: 2f31a15beb4233a905c62159c3b27d39addf004ad822aefdaba74bc17aaaedfd}
+    positiveFixtureRef: *motionPositive
+    hostileFixtureRef: *motionHostile
+    dependencies:
+      - {packageName: '@remotion/three', version: 4.0.494, lockIntegrity: 'sha512-ZjRfUU/pkP8IPnAHWv8QB+wjaDTh8bdkKZUAf6b0Or0zGOMVhQDoh2GTHHFtzrCVplJjLofgIYh4+KHMGf9dvQ==', licenseId: MIT, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-THREE-001.yml, sha256: 29cb9d9af069d3ad5b5be7c480c5939a994b3986a63e3f96723c531831734232}}
+      - {packageName: '@react-three/fiber', version: 9.2.0, lockIntegrity: 'sha512-esZe+E9T/aYEM4HlBkirr/yRE8qWTp9WUsLISyHHMCHKlJv85uc5N4wwKw+Ay0QeTSITw6T9Q3Svpu383Q+CSQ==', licenseId: MIT, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-THREE-001.yml, sha256: 29cb9d9af069d3ad5b5be7c480c5939a994b3986a63e3f96723c531831734232}}
+      - {packageName: three, version: 0.178.0, lockIntegrity: 'sha512-ybFIB0+x8mz0wnZgSGy2MO/WCO6xZhQSZnmfytSPyNpM0sBafGRVhdaj+erYh5U+RhQOAg/eXqw5uVDiM2BjhQ==', licenseId: MIT, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-THREE-001.yml, sha256: 29cb9d9af069d3ad5b5be7c480c5939a994b3986a63e3f96723c531831734232}}
+    inputKinds: [explicit_frame, fixed_procedural_scene]
+    outputKinds: [three_scene_plan, angle_probe_frame]
+    supportedEvidenceModes: [conceptual, categorical]
+    determinism: *motionDeterminism
+    fallback: {fallbackId: three-isometric-svg-v1, outputKind: svg_2d, observable: true, preservesCapabilityVerdict: false, triggerCodes: [ANGLE_UNAVAILABLE, NON_DETERMINISTIC_RENDER]}
+    limitations: [Pixel identity is verified only for the pinned local ANGLE profile.]
+    availability: verified_local_internal_preview
+    productionEligibility: blocked_license
+    readinessEligible: false
+    distributionState: NOT_DESIGNED
+    publicationAuthority: false
+  - schemaVersion: renderer-capability-v1
+    capabilityId: lottie
+    adapterId: lottie-local-vector-v1
+    adapterVersion: 0.1.0
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/lottie-adapter.ts, sha256: 917f1ff487da47ba44beccd3f7eb89fd7d52090fe2e10489c8b33db513da0dcf}
+    positiveFixtureRef: *motionPositive
+    hostileFixtureRef: *motionHostile
+    dependencies:
+      - {packageName: '@remotion/lottie', version: 4.0.494, lockIntegrity: 'sha512-keOjAhnbDVQhlpPZTKbBpMAt60DB2yVgVzvXfpRZa4SrwBHc4+IwHzmXXp4EExeuY32M8NRR8QpZxA7jTTlImw==', licenseId: Remotion-License, licenseVerdict: evaluation_only, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-LOTTIE-001.yml, sha256: b496fc8671425fe82db275ccaf88ae15249d01c311d7317e716dc20241d589aa}}
+      - {packageName: lottie-web, version: 5.13.0, lockIntegrity: 'sha512-+gfBXl6sxXMPe8tKQm7qzLnUy5DUPJPKIyRHwtpCpyUEYjHYRJC/5gjUvdkuO2c3JllrPtHXH5UJJK8LRYl5yQ==', licenseId: MIT, licenseVerdict: verified_osi, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-LOTTIE-001.yml, sha256: b496fc8671425fe82db275ccaf88ae15249d01c311d7317e716dc20241d589aa}}
+    inputKinds: [explicit_frame, local_lottie_json]
+    outputKinds: [lottie_source_frame, svg_probe_frame]
+    supportedEvidenceModes: [conceptual, categorical]
+    determinism: *motionDeterminism
+    fallback: {fallbackId: lottie-poster-frame-v1, outputKind: poster_frame, observable: true, preservesCapabilityVerdict: false, triggerCodes: [LOTTIE_DOCUMENT_INVALID, DEPENDENCY_LICENSE_UNRESOLVED]}
+    limitations: [Expressions and external or embedded assets are rejected.]
+    availability: verified_local_internal_preview
+    productionEligibility: blocked_license
+    readinessEligible: false
+    distributionState: NOT_DESIGNED
+    publicationAuthority: false
+  - schemaVersion: renderer-capability-v1
+    capabilityId: remotion
+    adapterId: remotion-explicit-frame-v1
+    adapterVersion: 0.1.0
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/remotion-adapter.ts, sha256: 371d6bb8bb193ade16a76b91f77ba9603c2f4919b7eb3cbc01c1d6717decfa13}
+    positiveFixtureRef: *motionPositive
+    hostileFixtureRef: *motionHostile
+    dependencies:
+      - {packageName: remotion, version: 4.0.494, lockIntegrity: 'sha512-WiAUJ5rjhoYvBJzwp8ZLybhJZLe6VAwWk7pbs9Jv1yYLbHAV9RraUaNHuegaIKbbmgW2c9UDPgKjdZ9k9XjTyA==', licenseId: Remotion-License, licenseVerdict: evaluation_only, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-REMOTION-001.yml, sha256: ad5e9954c0ef6d1b8663a3c7f7e64cc3e5386a2e90bbf71b1a9a7034f7593fbf}}
+    inputKinds: [explicit_frame]
+    outputKinds: [frame_sample, local_probe_frame]
+    supportedEvidenceModes: [conceptual, categorical, quantitative_claims]
+    determinism: *motionDeterminism
+    fallback: {fallbackId: remotion-png-sequence-v1, outputKind: native_motion, observable: true, preservesCapabilityVerdict: false, triggerCodes: [RENDERER_UNAVAILABLE, DEPENDENCY_LICENSE_UNRESOLVED]}
+    limitations: [Local evaluation is allowed; production eligibility is not adjudicated.]
+    availability: verified_local_internal_preview
+    productionEligibility: blocked_license
+    readinessEligible: false
+    distributionState: NOT_DESIGNED
+    publicationAuthority: false
+adapterSpecs:
+  - {schemaVersion: motion-adapter-spec-v1, adapterId: d3-svg-geometry-v1, adapterVersion: 0.1.0, capabilityId: d3, clockMode: not_applicable, fallbackObservable: true, publicationAuthority: false, allowedModules: [d3-array, d3-scale, d3-shape, d3-hierarchy, d3-interpolate], domMutationAllowed: false, numericPrecisionDigits: 3, quantitativeMetadataRequired: true, textualEquivalenceRequired: true}
+  - {schemaVersion: motion-adapter-spec-v1, adapterId: gsap-frame-seek-v1, adapterVersion: 0.1.0, capabilityId: gsap, clockMode: explicit_frame, fallbackObservable: true, publicationAuthority: false, paused: true, seekFormula: frame/fps, tickerMode: sleep, plugins: [], cleanupRequired: true}
+  - {schemaVersion: motion-adapter-spec-v1, adapterId: three-fixed-scene-v1, adapterVersion: 0.1.0, capabilityId: three, clockMode: explicit_frame, fallbackObservable: true, publicationAuthority: false, cameraFixed: true, lightsFixed: true, seedFixed: true, useFrameAllowed: false, graphicsBackend: angle}
+  - {schemaVersion: motion-adapter-spec-v1, adapterId: lottie-local-vector-v1, adapterVersion: 0.1.0, capabilityId: lottie, clockMode: explicit_frame, fallbackObservable: true, publicationAuthority: false, localJsonOnly: true, expressionsAllowed: false, autoplay: false, loop: false, posterFrameRequired: true}
+  - {schemaVersion: motion-adapter-spec-v1, adapterId: remotion-explicit-frame-v1, adapterVersion: 0.1.0, capabilityId: remotion, clockMode: explicit_frame, fallbackObservable: true, publicationAuthority: false, frameSource: useCurrentFrame, networkGuardRequired: true, runtimeScope: local_evaluation_only}
+supportingRefs:
+  - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/adapter-runtime.ts, sha256: d853277a9c2447acb0c634c20092b7a90e8e81ce48a1b6498028f6a18d069cff}
+  - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/h03-probe-components.tsx, sha256: 0970fbc7a3520cd3cff3c51e367f0f33788a61aa558fa495c491c512381fc9bf}
+  - {schemaVersion: hash-bound-ref-v1, ref: tests/fixtures/renderers/h03-probe-entry.tsx, sha256: 15f552fd188598d8ed0de255bd1e8fccc265949f05c3aa8f201355fac9fb2103}
+  - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/network-guard.ts, sha256: b1644bb2d9b17859bb7c07fb1b8845eee3b863334b36e31a5f69b14213dbfb9f}
+  - {schemaVersion: hash-bound-ref-v1, ref: scripts/render-h03-probe.ts, sha256: 789bd15f9585c7ccc3d235f89da222515a664f71b8ec6e7e1466c677383052ad}
+  - {schemaVersion: hash-bound-ref-v1, ref: quality/reports/creation-v3-h03-render-smoke.yml, sha256: be9369ad51bed604f53521d73ad8ec6ac7c8c09bb2be2f7341a9a7d90c8f2c68}
+registrySha256: 25f5b569aa3d729e12421f5bdfc96c0959ea2e1fc03c63b2f3e91741d1ac3cd5
+productionState: BLOCKED_LICENSE
+distributionState: NOT_DESIGNED
+publicationAuthority: false

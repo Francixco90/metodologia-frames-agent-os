@@ -1,0 +1,12 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-LOTTIE-001
+family: lottie
+observed_at: '2026-07-20'
+packages:
+  - {name: lottie-web, version: 5.13.0, manifest_sha256: 8a5e80ee2f1919459c838fb6305c5328ca8176e67538e52ef254a21a65e3fc2c, license: MIT, license_sha256: 9d8d4d8b4bb99572ee8b51025a30b8493d949798cac465c6c15b1b29420bcb06}
+  - {name: '@remotion/lottie', version: 4.0.494, manifest_sha256: cdf27e6611d3ecb2175a68526c255370c1d408cbf6967b38e49e9453536c0ad9, license: Remotion License, license_sha256: bd65083b940f61904f6ef298aade918a7cad72a3e35bc406e36fab365844b673}
+verdict: local_evaluation_only
+production_eligibility: blocked_license
+fixture_rights: first_party_procedural_only
+publication_authority: false
+append_only: true

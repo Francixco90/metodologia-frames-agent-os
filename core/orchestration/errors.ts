@@ -1,0 +1,53 @@
+import {
+  OrchestrationErrorCodeV2Schema,
+  type OrchestrationErrorCodeV2,
+  type PublicPlanErrorCodeV1,
+} from '../contracts/content-v2.ts';
+
+export const PUBLIC_ERROR_BY_INTERNAL_V2 = {
+  ORCH_V2_AGENT_CONTRACT_INVALID: 'UNKNOWN_FIELD',
+  ORCH_V2_COMMITTEE_ACTOR_UNIQUENESS: 'COMMITTEE_INCOMPLETE',
+  ORCH_V2_COMMITTEE_CARDINALITY: 'COMMITTEE_INCOMPLETE',
+  ORCH_V2_CROSS_REVIEW_COVERAGE: 'COMMITTEE_INCOMPLETE',
+  ORCH_V2_GUARDIAN_REVIEW_LIMIT: 'ITERATION_BUDGET_EXCEEDED',
+  ORCH_V2_HASH_MISMATCH: 'HASH_MISMATCH',
+  ORCH_V2_HUMAN_APPROVAL_REQUIRED: 'HUMAN_APPROVAL_REQUIRED',
+  ORCH_V2_MAX_CONCURRENCY: 'MAX_CONCURRENCY_EXCEEDED',
+  ORCH_V2_MEMORY_BEFORE_HUMAN_APPROVAL: 'MEMORY_WRITE_FORBIDDEN',
+  ORCH_V2_PRIVATE_REASONING: 'PRIVATE_REASONING_FORBIDDEN',
+  ORCH_V2_PUBLICATION_FORBIDDEN: 'PUBLICATION_FORBIDDEN',
+  ORCH_V2_RETRY_LIMIT: 'ITERATION_BUDGET_EXCEEDED',
+  ORCH_V2_ROLE_ORDER: 'VERIFIER_REQUIRED',
+  ORCH_V2_ROLE_SEPARATION: 'GUARDIAN_REQUIRED',
+  ORCH_V2_STATE_TRANSITION: 'INVALID_STATE_TRANSITION',
+} as const satisfies Record<OrchestrationErrorCodeV2, PublicPlanErrorCodeV1>;
+
+export const publicErrorCodeFor = (code: OrchestrationErrorCodeV2): PublicPlanErrorCodeV1 =>
+  PUBLIC_ERROR_BY_INTERNAL_V2[code];
+
+export const REQUIRED_PLAN_ERROR_TO_INTERNAL_V2 = {
+  SOURCE_GAP: 'ORCH_V2_AGENT_CONTRACT_INVALID',
+  BRAND_PROFILE_MISSING: 'ORCH_V2_HASH_MISMATCH',
+  BRAND_DRIFT: 'ORCH_V2_HASH_MISMATCH',
+  CHANNEL_PROFILE_STALE: 'ORCH_V2_HASH_MISMATCH',
+  CLAIM_MISMATCH: 'ORCH_V2_HASH_MISMATCH',
+  RIGHTS_GAP: 'ORCH_V2_ROLE_ORDER',
+  OWNERSHIP_CONFLICT: 'ORCH_V2_ROLE_SEPARATION',
+  APPROVAL_REQUIRED: 'ORCH_V2_HUMAN_APPROVAL_REQUIRED',
+  PUBLICATION_FORBIDDEN: 'ORCH_V2_PUBLICATION_FORBIDDEN',
+  ITERATION_BUDGET_EXCEEDED: 'ORCH_V2_RETRY_LIMIT',
+} as const satisfies Partial<Record<PublicPlanErrorCodeV1, OrchestrationErrorCodeV2>>;
+
+export class OrchestrationErrorV2 extends Error {
+  public readonly code: OrchestrationErrorCodeV2;
+
+  public constructor(code: OrchestrationErrorCodeV2, message: string) {
+    super(message);
+    this.name = 'OrchestrationErrorV2';
+    this.code = OrchestrationErrorCodeV2Schema.parse(code);
+  }
+}
+
+export const failOrchestration = (code: OrchestrationErrorCodeV2, message: string): never => {
+  throw new OrchestrationErrorV2(code, message);
+};

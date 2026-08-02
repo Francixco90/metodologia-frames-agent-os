@@ -1,0 +1,13 @@
+schema_version: 1
+skill_id: instagram-carousel-production
+version: 0.1.0
+content_origin: locally_authored
+lifecycle_state: active
+execution_scope: local-candidate-production
+authority_refs:
+  - workflows/content/types/carousel/manifest.yml
+  - workflows/content/types/carousel/schema.ts
+  - renderers/static-social/scripts/render-carousel.ts
+compatibility_contract: content-type-carousel-v1
+external_fragments_reused: false
+publication_authority: false

@@ -1,0 +1,27 @@
+case_id: MOTION-H03-POS-001
+schema_version: motion-adapter-spec-v1
+frame_context:
+  frame: 15
+  fps: 30
+  durationInFrames: 31
+adapters:
+  gsap:
+    timeline: paused
+    seek_seconds: 0.5
+    ticker: stopped
+    cleanup: kill
+  three:
+    geometry: procedural_box
+    camera_fixed: true
+    lights_fixed: true
+    seed: h03-fixed-seed
+    chromium_gl: angle
+  lottie:
+    source: local_inline_json
+    expressions: false
+    loop: false
+    autoplay: false
+  remotion:
+    clock_owner: REMOTION_FRAME
+expected_state: LOCAL_ADAPTER_VALIDATED
+publication_authority: false

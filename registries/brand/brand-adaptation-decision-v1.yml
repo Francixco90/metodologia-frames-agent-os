@@ -1,0 +1,43 @@
+schema_version: brand-adaptation-decision-v1
+decision_id: BAD-INSTAGRAM-SOCIAL-001
+brand_profile_ref: registries/brand/brand-profile-v2.yml
+voice_profile_ref: registries/brand/voice-profile-v2.yml
+channel_profile_ref: registries/channels/instagram-profile-v1.yml
+decision_state: active_candidate
+preserve:
+  - visible_identity
+  - voice_constants
+  - evidence_honesty
+  - canonical_naming
+  - accessibility_floor
+adapt:
+  - dimension: formality
+    value: medium
+  - dimension: energy
+    value: medium_high
+  - dimension: technical_depth
+    value: low_medium
+  - dimension: minto_mode
+    default: minto_complete
+    compact_allowed: minto_micro
+  - dimension: visual_profile
+    value: social_light
+forbid:
+  - dirty_source_as_authority
+  - white_on_gold
+  - unsupported_performance_claim
+  - automatic_publication
+  - human_gate_bypass
+evidence:
+  source_bundle_ref: registries/brand/source-bundle-v1.yml
+  token_source_ref: brand/tokens/brand-tokens.yml
+  font_manifest_ref: brand/fonts/font-manifest.yml
+gate_effect:
+  maximum_state: RENDERED_DRAFT
+  next_required_gate: G14
+  human_gate: G15
+  ready_gate: G16
+  publish_gate: G17
+coverage_gaps:
+  - voice_owner_confirmation_pending
+  - live_platform_spec_verification_pending

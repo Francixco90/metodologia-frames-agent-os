@@ -1,0 +1,48 @@
+schema_version: creation-v3-h03-render-smoke-v1
+receipt_id: RCP-H03-RENDER-SMOKE-001
+executed_at: '2026-07-20'
+actor_instance_id: RT-10-H03-INTEGRATION-001
+mode: local_evaluation_only
+entry_ref: tests/fixtures/renderers/h03-probe-entry.tsx
+composition_id: H03RendererProbe
+replay_ref: scripts/render-h03-probe.ts
+replay_sha256: b1fb844dafcb2ad5353e8197eee30ec2d6b7237b46d1afe2445c2992384be76d
+replay_command: pnpm exec tsx scripts/render-h03-probe.ts --output-dir $TMPDIR/h03-replay-<frame> --frame <frame>
+profile:
+  remotion: 4.0.494
+  chrome_for_testing: 149.0.7790.0
+  platform: mac-arm64
+  graphics_backend: angle
+  width: 480
+  height: 240
+  fps: 30
+  duration_in_frames: 30
+capabilities_exercised: [gsap, three, lottie, remotion]
+outputs:
+  - {logical_name: frame-0-worker-a.png, frame: 0, concurrency_group: frame-0, sha256: 31b3746ddea1ea4f6c84832ce1cac06564a55032932b75a2b7f0d949c66bfac8}
+  - {logical_name: frame-0-worker-b.png, frame: 0, concurrency_group: frame-0, sha256: 31b3746ddea1ea4f6c84832ce1cac06564a55032932b75a2b7f0d949c66bfac8}
+  - {logical_name: frame-15-worker-a.png, frame: 15, concurrency_group: frame-15, sha256: 9a9e4a89fce0f466bae717c166fb946377f32c2548ec56e7fd22a72d84ed83ab}
+  - {logical_name: frame-15-worker-b.png, frame: 15, concurrency_group: frame-15, sha256: 9a9e4a89fce0f466bae717c166fb946377f32c2548ec56e7fd22a72d84ed83ab}
+  - {logical_name: frame-29-worker-a.png, frame: 29, concurrency_group: frame-29, sha256: 519518a2fd4c3d69bd58bfd24ca15b95efbc6c7a47b46d355debd6ea7552a1f3}
+  - {logical_name: frame-29-worker-b.png, frame: 29, concurrency_group: frame-29, sha256: 519518a2fd4c3d69bd58bfd24ca15b95efbc6c7a47b46d355debd6ea7552a1f3}
+checks:
+  three_concurrent_same_frame_pairs_byte_identical: pass
+  distinct_processes_per_pair: pass
+  measured_overlap_ms: {frame_0: 734, frame_15: 717, frame_29: 772}
+  fresh_process_repeat_frame_15_byte_identical: pass
+  frames_change_with_explicit_clock: pass
+  three_angle_scene_visible: pass
+  lottie_local_scene_visible: pass
+  gsap_frame_seek_visible: pass
+  network_guard_installed: pass
+  output_dimensions: pass_480x240_rgb
+remediation_evidence:
+  initial_failure: lottie_web_attempted_to_annotate_frozen_canonical_json
+  resolution: disposable_per_instance_json_clone_preserves_canonical_input
+  regression_test: tests/unit/remotion/motion-adapters.test.ts
+claims:
+  cross_host_pixel_identity: not_claimed
+  production_eligibility: not_claimed
+  publication_authority: false
+temporary_outputs_versioned: false
+private_reasoning_persisted: false

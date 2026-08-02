@@ -1,0 +1,11 @@
+schema_version: 1
+fixture_id: H03-HOSTILE-MOTION-ADAPTERS-001
+cases:
+  - case_id: invalid-frame
+    expected_error: INVALID_FRAME_CONTEXT
+  - case_id: gsap-unknown-property
+    expected_error: GSAP_RECIPE_INVALID
+  - case_id: lottie-expression
+    expected_error: LOTTIE_DOCUMENT_INVALID
+  - case_id: production-license-unresolved
+    expected_error: DEPENDENCY_LICENSE_UNRESOLVED

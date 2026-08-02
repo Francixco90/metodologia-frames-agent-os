@@ -1,0 +1,74 @@
+schema_version: creation-v3-h03-rt09-verification-v1
+report_id: RCP-H03-RT09-VERIFY-001
+actor_instance_id: RT-09-H03-VERIFY-001
+verified_at: '2026-07-20'
+role: independent_rights_accessibility_and_runtime_verifier
+mode: read_only
+candidate:
+  base_commit: 46eb7ca3f26c1ebbcdd1873627fb9014f072d9f5
+  freeze_receipt: quality/reports/creation-v3-h03-candidate-freeze.yml
+  staged_binary_diff_scope: excludes_freeze_rt09_and_guardian_reports
+  staged_binary_diff_sha256: 2870393e21f593a2770e4de155717ac04c61fadd7181bceedc03cbb1b1b2bc4f
+  expected_sha256: 2870393e21f593a2770e4de155717ac04c61fadd7181bceedc03cbb1b1b2bc4f
+  hash_match: true
+checks:
+  - id: RT09-H03-001
+    subject: strict_contracts_unknown_fields_and_hash_bound_registry
+    result: PASS
+    evidence: Renderer schemas are strict; registry self-hash, adapter, fixture, license and supporting refs passed verify:renderers.
+  - id: RT09-H03-002
+    subject: exact_dependency_pins_lock_integrity_receipts_and_license_boundaries
+    result: PASS
+    evidence: Eleven runtime and six type packages are exact; package, lock and audit hashes match H03-LOCK-SUCCESSION-001.
+  - id: RT09-H03-003
+    subject: d3_semantics_and_accessible_fallbacks
+    result: PASS
+    evidence: Matrix, signed series, hierarchy and interpolation preserve semantic text or tables and reject hostile inputs.
+  - id: RT09-H03-004
+    subject: gsap_explicit_frame_and_sleeping_ticker
+    result: PASS
+    evidence: Paused seek(frame/fps), governed ticker sleep, cleanup and fresh-process no-advance test passed.
+  - id: RT09-H03-005
+    subject: three_fixed_scene_angle_seed_and_observable_fallback
+    result: PASS
+    evidence: Fixed camera, lights and explicit seed are retained; useFrame is forbidden; ANGLE smoke and 2D fallback checks passed.
+  - id: RT09-H03-006
+    subject: lottie_local_closed_document_and_60_to_30_frame_mapping
+    result: PASS
+    evidence: Local JSON only, expressions/fonts/assets rejected, loop/autoplay false and playbackRate 2 for 60fps to 30fps passed.
+  - id: RT09-H03-007
+    subject: remotion_clock_network_guard_and_real_concurrent_replay
+    result: PASS
+    evidence: Remotion owns the explicit frame; remote requests are denied; two distinct overlapping processes produced identical bytes at frames 0, 15 and 29.
+  - id: RT09-H03-008
+    subject: local_skills_committee_privacy_budget_and_immutable_surfaces
+    result: PASS
+    evidence: Two local skills are hash-bound; committee is 5/20; privacy and document budgets pass; H-01, H-02, Root, VS-001, pilot-carousel-001 and n8n regression gates pass.
+  - id: RT09-H03-009
+    subject: read_only_source_authority_preservation
+    result: PASS
+    evidence: Source HEAD f53177ff, committed tree 51eda9e0, dirty-status hash 1ff3aa31, nine selected-file hashes and counts 1112/1762/42 match the H-01 baseline; no write was performed.
+  - id: RT09-H03-010
+    subject: creation_only_authority_boundary
+    result: PASS
+    evidence: productionState=BLOCKED_LICENSE, distributionState=NOT_DESIGNED, readinessEligible=false and publicationAuthority=false.
+  - id: RT09-H03-011
+    subject: full_repository_verification
+    result: FAIL
+    evidence: pnpm verify reached 52/52 test files and 413/413 tests, then failed because quality/reports/creation-v3-h03-candidate-freeze.yml does not satisfy Prettier.
+coverage_gap:
+  - code: DEPENDENCY_LICENSE_UNRESOLVED
+    subject: remotion_4_0_494_commercial_or_production_eligibility
+    consequence: H-03 remains local evaluation only and cannot unlock H-04 or CREATION_READY.
+blocking_findings:
+  - code: FORMAT_CHECK_FAILED
+    file: quality/reports/creation-v3-h03-candidate-freeze.yml
+    detail: graphical_probe_sha256 and verification inline mappings require canonical Prettier formatting.
+    owner: RT-10-H03-INTEGRATION-001
+verdict: FAIL
+remediation_performed: false
+next_gate: RETURN_TO_RT10
+h04_unlocked: false
+distribution_state: NOT_DESIGNED
+publication_authority: false
+private_reasoning_persisted: false

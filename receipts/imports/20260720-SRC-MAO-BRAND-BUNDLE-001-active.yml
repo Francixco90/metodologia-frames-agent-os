@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-IMP-SRC-MAO-BRAND-BUNDLE-001-004
+recorded_at: '2026-07-20T17:43:27Z'
+event_order: 4
+actor_id: source-lifecycle-v2
+verifier_id: source-guardian-v2
+package_id: A02c
+source_id: SRC-MAO-BRAND-BUNDLE-001
+transition:
+  from: evaluated
+  to: active
+hashes:
+  raw_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+  normalized_sha256: 636baee557e1c37cef690b85884b2cd27a155432ea200aa397419ddb83e98fd9
+activation_scope: internal_brand_projection_and_local_draft_rendering
+decision: activate_stable_projection_without_publication_authority
+append_only: true

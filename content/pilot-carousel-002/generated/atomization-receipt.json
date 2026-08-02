@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "atomization-receipt-v1",
+  "receiptId": "RCP-H02-RT05-ATOMIZATION-001",
+  "graphId": "ATG-33a0fa9c8e964c0ca0f308b4b13c390617a2ed522a4cffea17277170e54d74b5",
+  "graphRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "content/pilot-carousel-002/generated/atom-graph.json",
+    "sha256": "3f1d16cece4d1fa2499c5026e17e52ab9850e127526cafb707ab7d050eed9f4f"
+  },
+  "contentId": "pilot-carousel-002",
+  "contentVersion": "0.1.0",
+  "contentRef": "content/pilot-carousel-002/content.md",
+  "contentRawSha256": "30a7e195db8c919fc0f34f12032c6e7be118e39d100ff002777e6c5b3ae3b585",
+  "contentSemanticSha256": "3bb9bd3af5844c83d4b2902b6e2ab3c06a93be865566ef34c17d074f1c587813",
+  "sourceFreezeReceiptRef": {
+    "schemaVersion": "hash-bound-ref-v1",
+    "ref": "content/pilot-carousel-002/generated/source-freeze-receipt.json",
+    "sha256": "3e3376e84513b360987ccdb900ed46124aa9647aae8da197488c3702e3188f20"
+  },
+  "atomizerVersion": "1.0.0",
+  "producerActorInstanceId": "RT-05-H02-001",
+  "verifierActorInstanceId": "RT-10-H02-001",
+  "atomCount": 39,
+  "edgeCount": 50,
+  "semanticGraphSha256": "b7af503a0d88f0fad878c218a683cf938875fcd31a90128f3be591936c798ae6",
+  "graphSha256": "c14d43dcf6577a68a01c9f1980f6bf1d98ffc00028685c22472b5443de9638e0",
+  "inputSha256": "bdad41fdeadd9bd232e9aed5769ee79333dcf33d96287bb9e16fb7efb308b991",
+  "outputSha256": "e0376fac731aaf14dbc1d363dbaafc57b1c51500d02a9f90cc092722b0227df7",
+  "evidenceState": "QUALIFIED",
+  "structuralState": "ATOMIZED",
+  "maximumState": "ATOMIZED",
+  "simulationOnly": false,
+  "readinessEligible": false,
+  "distributionState": "NOT_DESIGNED",
+  "publicationAuthority": false,
+  "coverageGaps": [
+    "canonical_corpus_0_of_4",
+    "carousel_claims_not_in_central_registry",
+    "channel_sources_not_content_hash_bound",
+    "dag_v2_still_coupled_to_a11",
+    "h03_capabilities_not_installed_licensed_or_deterministic",
+    "legacy_snapshot_lacks_authority_rights_and_spans",
+    "no_measured_performance_dataset",
+    "planned_motion_capabilities_not_installed_or_validated",
+    "publication_not_authorized",
+    "technical_sources_not_yet_promoted",
+    "voice_owner_confirmation_pending",
+    "voice_source_not_commit_bound"
+  ],
+  "receiptSha256": "b0d2a07900c40db58ee3b06fcf2fbf43d92aa27a8c225bd186ce2fdd1102a5e3"
+}
