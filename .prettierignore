@@ -26,3 +26,8 @@ skills/motion-library-adapters/fixtures/**/*.yml
 skills/motion-library-adapters/LINEAGE.yml
 skills/motion-library-adapters/receipts/*.yml
 tests/fixtures/renderers/h03-hostile-motion-adapters.yml
+# Vendor sources are reference-only, frozen at audited commits — do not reformat
+skills/vendor/**
+# External Instagram post samples in inbox/Muestras are third-party reference
+# artifacts; their inline formatting is not governed by the project style.
+inbox/Muestras/**
