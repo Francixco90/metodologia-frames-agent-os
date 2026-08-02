@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            89954 |            117021 |     134931 (1.5×) | 1.3009× | `pass` |
-| Total authored (palabras)     |            89954 |            117021 |       179908 (2×) | 1.3009× | `pass` |
-| Total authored (LOC)          |            34094 |             42954 |        68188 (2×) | 1.2599× | `pass` |
+| Corpus authored elegible      |            89954 |            117041 |     134931 (1.5×) | 1.3011× | `pass` |
+| Total authored (palabras)     |            89954 |            117041 |       179908 (2×) | 1.3011× | `pass` |
+| Total authored (LOC)          |            34094 |             42958 |        68188 (2×) |   1.26× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
