@@ -3,11 +3,11 @@ import {z} from 'zod';
 import {
   ActorIdSchema,
   containsProhibitedReasoningText,
+  HashBoundReferenceV1Schema,
   PortableIdSchema,
   Sha256Schema,
   TimestampSchema,
 } from '../../core/contracts/index.ts';
-import {HashBoundReferenceV1Schema} from '../../core/contracts/content-v2.ts';
 import {failOrchestration} from '../../core/orchestration/errors.ts';
 import {
   assertDeclaredContractSha256,

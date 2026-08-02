@@ -13,7 +13,7 @@ import {
   CandidatePackageV2Schema,
   HashBoundReferenceV1Schema,
   OrchestrationRunV2Schema,
-} from '../core/contracts/content-v2.ts';
+} from '../core/contracts/index.ts';
 import {
   computeDeclaredContractSha256,
   parseHashBoundCandidatePackageV2,

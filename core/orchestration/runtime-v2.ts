@@ -9,7 +9,7 @@ import {
   type OrchestrationEventV2,
   type OrchestrationRunV2,
   type WorkflowPilotApprovalV1,
-} from '../contracts/content-v2.ts';
+} from '../contracts/index.ts';
 import {
   ActorIdSchema,
   PortableIdSchema,

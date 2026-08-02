@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            89949 |            117016 |     134923 (1.5×) | 1.3009× | `pass` |
-| Total authored (palabras)     |            89949 |            117016 |       179898 (2×) | 1.3009× | `pass` |
-| Total authored (LOC)          |            34089 |             42949 |        68178 (2×) | 1.2599× | `pass` |
+| Corpus authored elegible      |            89953 |            117012 |     134929 (1.5×) | 1.3008× | `pass` |
+| Total authored (palabras)     |            89953 |            117012 |       179906 (2×) | 1.3008× | `pass` |
+| Total authored (LOC)          |            34090 |             42948 |        68180 (2×) | 1.2598× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -123,7 +123,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `committees/src/protocol.ts`                                                                                  | `agents-committee` | `verified_no_change` | 309                | 309               | 123         | 123        | `ae54750da757f94c7ac8a16a8430418837fe4d15fadd77af1b27c9daa1a66bcd` | `byte-identical` |
 | `core/approvals/approval-engine.ts`                                                                           | `core`             | `verified_no_change` | 219                | 219               | 72          | 72         | `2c0384e65d26fa7ec4d5ea270f1afea59bff834acd12d46bedab157b90e3a97a` | `byte-identical` |
 | `core/approvals/index.ts`                                                                                     | `core`             | `verified_no_change` | 4                  | 4                 | 1           | 1          | `f60879b334e3351cba5bc8e6d6f8bc85fb0f27d972de2754a602b2ac9dc4e410` | `byte-identical` |
-| `core/contracts/index.ts`                                                                                     | `core`             | `refactored`         | 20                 | 32                | 5           | 8          | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `changed`        |
+| `core/contracts/index.ts`                                                                                     | `core`             | `refactored`         | 20                 | 36                | 5           | 9          | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `changed`        |
 | `core/contracts/json.ts`                                                                                      | `core`             | `verified_no_change` | 43                 | 43                | 17          | 17         | `4cf9d62ee9221661dbbb939457191f2e959ddc1eebee6fdf36aabdd3bb007820` | `byte-identical` |
 | `core/contracts/notebooklm-work-unit.ts`                                                                      | `core`             | `verified_no_change` | 383                | 383               | 144         | 144        | `557c97e60c76a8527a5a92499286615b8001c24cdfc2e2866b7551c17e847fa9` | `byte-identical` |
 | `core/contracts/primitives.ts`                                                                                | `core`             | `verified_no_change` | 177                | 177               | 75          | 75         | `bed8743cc3545f5db7d2e66971f92153db3ffe874b7a37e6dc25be86e435bdb9` | `byte-identical` |

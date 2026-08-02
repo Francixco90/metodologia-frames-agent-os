@@ -12,7 +12,7 @@ import {
   ContentWorkOrderV2Schema,
   DistributionVariantV1Schema,
   withoutDeclaredSha256,
-} from '../core/contracts/content-v2.ts';
+} from '../core/contracts/index.ts';
 import {renderCarouselPackage} from '../renderers/static-social/scripts/render-carousel.ts';
 import {CarouselSpecV1Schema} from '../workflows/content/types/carousel/schema.ts';
 

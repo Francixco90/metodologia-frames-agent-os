@@ -18,7 +18,7 @@ import {
   type DistributionVariantV1,
   type HashBoundReferenceV1,
   type OrchestrationRunV2,
-} from '../contracts/content-v2.ts';
+} from '../contracts/index.ts';
 import {hashCanonical} from '../evidence/hash.ts';
 import {failOrchestration} from './errors.ts';
 

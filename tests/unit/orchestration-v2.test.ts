@@ -9,7 +9,7 @@ import {
   ContentWorkOrderV2Schema,
   OrchestrationEventV2Schema,
   WorkflowPilotApprovalV1Schema,
-} from '../../core/contracts/content-v2.ts';
+} from '../../core/contracts/index.ts';
 import {OrchestrationErrorV2} from '../../core/orchestration/errors.ts';
 import {
   assertDeclaredContractSha256,

@@ -4,7 +4,7 @@ import {
   CandidatePackageV2Schema,
   WorkflowPilotApprovalV1Schema,
   type OrchestrationRunV2,
-} from '../../core/contracts/content-v2.ts';
+} from '../../core/contracts/index.ts';
 import {Sha256Schema, TimestampSchema} from '../../core/contracts/primitives.ts';
 import {
   CreativeOrchestrationRuntimeV2,

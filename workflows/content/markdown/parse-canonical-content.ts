@@ -14,7 +14,7 @@ import {
   type CanonicalContentDocumentV1,
   type SourceFreezeManifestV1,
 } from '../../../core/contracts/creation-v3.ts';
-import type {HashBoundReferenceV1} from '../../../core/contracts/content-v2.ts';
+import type {HashBoundReferenceV1} from '../../../core/contracts/index.ts';
 import {RelativePathSchema} from '../../../core/contracts/primitives.ts';
 import {hashCanonical, sha256Text} from '../../../core/evidence/hash.ts';
 
