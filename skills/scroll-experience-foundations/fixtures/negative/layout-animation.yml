@@ -1,0 +1,9 @@
+# Negative fixture: animando propiedades que disparan layout (jank)
+skill: scroll-experience-foundations
+scenario: layout-triggering-animation
+description: Animacion que usa width/height/top/left causa jank
+violation: animated_properties_include_layout_props
+animated_properties: [width, height, top, left, margin]
+expected_rule: only_transform_and_opacity
+expected_severity: MEDIUM
+expected_fix: cambiar a transform (translate, scale) y opacity

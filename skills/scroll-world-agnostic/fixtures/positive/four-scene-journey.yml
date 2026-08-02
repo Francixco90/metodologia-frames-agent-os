@@ -1,0 +1,35 @@
+# Positive fixture: experiencia scroll de 4 escenas con estrategia agnostica
+skill: scroll-world-agnostic
+scenario: valid-four-scene-journey
+description: Jornada visual de 4 escenas con seam law y fallback documentado
+strategy: video-scrub
+subject: 'Example Business - one-line pitch'
+story_beats:
+  - id: scene-1
+    name: arrival
+    camera_style: dive-in
+  - id: scene-2
+    name: exploration
+    camera_style: connector
+  - id: scene-3
+    name: discovery
+    camera_style: connector
+  - id: scene-4
+    name: resolution
+    camera_style: dive-in
+seam_law:
+  enforced: true
+  method: frame-identical-connectors
+adapters_detected:
+  image_provider: true
+  video_provider: true
+  media_inspector: true
+  runtime_verifier: false
+fallback_chain:
+  - video-scrub
+  - image-sequence
+  - dom-css
+  - static-html
+accessibility:
+  prefers_reduced_motion: true
+  content_without_js: true

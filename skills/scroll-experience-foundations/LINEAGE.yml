@@ -1,0 +1,18 @@
+schema_version: 1
+skill_id: scroll-experience-foundations
+version: 0.1.0
+content_origin: locally_authored_adaptation
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs: []
+compatibility_contract: scroll-skills-v1-foundations
+external_fragments_reused: true
+source_evidence:
+  original:
+    source_repo: sickn33/agentic-awesome-skills
+    source_path: skills/scroll-experience/SKILL.md
+    source_upstream: vibeforge1111/vibeship-spawner-skills
+    source_license_container: MIT
+    source_license_original: Apache-2.0
+    derivation: locally_authored_adaptation
+publication_authority: false
