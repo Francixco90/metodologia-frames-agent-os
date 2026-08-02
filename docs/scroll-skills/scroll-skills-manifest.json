@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "stack_id": "scroll-skills-v1",
+  "description": "Pila de skills model-agnostic para experiencias web guiadas por scroll",
+  "model_agnostic": true,
+  "lifecycle_state": "active",
+  "execution_order": [
+    "scroll-experience-foundations",
+    "cinematic-scroll-quality",
+    "scroll-world-agnostic"
+  ],
+  "skills": [
+    {
+      "skill_id": "scroll-experience-foundations",
+      "role": "complementary-foundations",
+      "version": "0.1.0",
+      "description": "Fundamentos de scroll: narrativa, accesibilidad, performance, responsive, SEO, degradacion progresiva",
+      "model_agnostic": true,
+      "depends_on": [],
+      "must_run_before": ["cinematic-scroll-quality", "scroll-world-agnostic"],
+      "source_derivations": [
+        {
+          "source_repo": "sickn33/agentic-awesome-skills",
+          "source_path": "skills/scroll-experience/SKILL.md",
+          "source_license": "MIT (container) + Apache 2.0 (original: vibeship-spawner-skills)",
+          "derivation": "locally_authored_adaptation"
+        }
+      ],
+      "activation": "when the user asks for scroll fundamentals, accessibility patterns, performance rules, or progressive enhancement for scroll experiences",
+      "no_activation": "CRUD apps, forms, dashboards, or tasks unrelated to scroll-driven web",
+      "required_capabilities": [],
+      "optional_capabilities": [],
+      "fallbacks": ["static HTML without JavaScript", "CSS-only scroll-timeline"],
+      "publication_authority": false
+    },
+    {
+      "skill_id": "cinematic-scroll-quality",
+      "role": "complementary-cinematic-quality",
+      "version": "0.1.0",
+      "description": "Direccion visual cinematografica: tokens, storyboard, capítulos, ritmo, continuidad, verificacion de calidad",
+      "model_agnostic": true,
+      "depends_on": ["scroll-experience-foundations"],
+      "must_run_before": ["scroll-world-agnostic"],
+      "source_derivations": [
+        {
+          "source_repo": "MustBeSimo/cinematic-scroll-skill",
+          "source_commit": "089cd3aeccc950a579e5aa402c473715b608dece",
+          "source_license": "MIT (Copyright 2026 Simone Leonelli)",
+          "derivation": "locally_authored_adaptation"
+        }
+      ],
+      "activation": "when the user asks for cinematic scroll quality, design tokens, taste guardrails, choreography, or quality scoring",
+      "no_activation": "generic CRUD, basic landing pages without cinematic motion",
+      "required_capabilities": [],
+      "optional_capabilities": ["browser-based visual verification"],
+      "fallbacks": ["static HTML review", "token validation without runtime"],
+      "publication_authority": false
+    },
+    {
+      "skill_id": "scroll-world-agnostic",
+      "role": "primary-orchestrator",
+      "version": "0.1.0",
+      "description": "Orquesta experiencias web guiadas por scroll con estrategias model-agnostic: secuencia visual, escenas conectadas, video scrub, fallback estatico",
+      "model_agnostic": true,
+      "depends_on": ["scroll-experience-foundations", "cinematic-scroll-quality"],
+      "must_run_before": [],
+      "source_derivations": [
+        {
+          "source_repo": "oso95/scroll-world",
+          "source_commit": "71cc36d3bb150248ae36a2c552f9cbf88802a79c",
+          "source_license": "MIT (Copyright 2026 cyw)",
+          "derivation": "locally_authored_adaptation"
+        }
+      ],
+      "activation": "when the user asks for a scroll-driven cinematic experience, scroll-scrub world, immersive landing page, or guided visual journey",
+      "no_activation": "CRUD apps, forms, CMS integrations, dashboards, API-only backends",
+      "required_capabilities": [],
+      "optional_capabilities": [
+        "ImageProvider.generate(request) -> AssetResult",
+        "VideoProvider.generate(request) -> AssetResult",
+        "MediaInspector.inspect(asset) -> MediaMetadata",
+        "RuntimeVerifier.verify(target) -> VerificationResult"
+      ],
+      "fallbacks": [
+        "static image sequence without video",
+        "CSS-only scroll animation",
+        "static HTML fallback without JavaScript"
+      ],
+      "publication_authority": false
+    }
+  ],
+  "adapter_contracts": {
+    "ImageProvider": {
+      "method": "generate",
+      "input": "ImageRequest { prompt: string, aspectRatio?: string, resolution?: string }",
+      "output": "AssetResult { assetPath: string, format: string, sha256: string, metadata: MediaMetadata }",
+      "required": false,
+      "replaceable": true
+    },
+    "VideoProvider": {
+      "method": "generate",
+      "input": "VideoRequest { prompt: string, startImage?: string, endImage?: string, duration?: number }",
+      "output": "AssetResult { assetPath: string, format: string, sha256: string, metadata: MediaMetadata }",
+      "required": false,
+      "replaceable": true
+    },
+    "MediaInspector": {
+      "method": "inspect",
+      "input": "assetPath: string",
+      "output": "MediaMetadata { width: number, height: number, duration?: number, codec?: string, fps?: number }",
+      "required": false,
+      "replaceable": true
+    },
+    "RuntimeVerifier": {
+      "method": "verify",
+      "input": "target: string (URL or path)",
+      "output": "VerificationResult { passed: boolean, checks: Check[], score?: number }",
+      "required": false,
+      "replaceable": true
+    }
+  },
+  "invariants": [
+    "no_circular_dependencies",
+    "unique_skill_names",
+    "no_ambiguous_entrypoints",
+    "no_vendor_as_core_dependency",
+    "complementary_skills_run_before_primary_when_output_is_prerequisite"
+  ],
+  "forbidden": [
+    "secrets",
+    "absolute_user_paths",
+    "mandatory_providers",
+    "mandatory_models",
+    "destructive_commands",
+    "unresolved_placeholders",
+    "unexecuted_validation_claims"
+  ]
+}

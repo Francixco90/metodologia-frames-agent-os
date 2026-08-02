@@ -1,0 +1,17 @@
+schema_version: 1
+skill_id: cinematic-scroll-quality
+version: 0.1.0
+content_origin: locally_authored_adaptation
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs: []
+compatibility_contract: scroll-skills-v1-cinematic-quality
+external_fragments_reused: true
+source_evidence:
+  original:
+    source_repo: MustBeSimo/cinematic-scroll-skill
+    source_commit: 089cd3aeccc950a579e5aa402c473715b608dece
+    source_license: MIT
+    source_author: Simone Leonelli
+    derivation: locally_authored_adaptation
+publication_authority: false

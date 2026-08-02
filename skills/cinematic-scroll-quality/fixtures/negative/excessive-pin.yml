@@ -1,0 +1,11 @@
+# Negative fixture: pin excesivo viola taste guardrail
+skill: cinematic-scroll-quality
+scenario: pin-duration-exceeds-maximum
+description: Pin de 600vh excede el maximo de 400vh
+violation: pin_duration_exceeds_400vh
+chapter:
+  id: ch-broken
+  pin_vh: 600
+expected_rule: pin_max_400vh
+expected_severity: taste-guardrail-3
+expected_fix: dividir en dos secciones pinned con 50vh de breathing room

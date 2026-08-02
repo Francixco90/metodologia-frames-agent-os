@@ -1,0 +1,9 @@
+# Negative fixture: exigir un proveedor obligatorio viola model_agnostic
+skill: scroll-world-agnostic
+scenario: mandatory-vendor-violation
+description: Configuracion que exige Higgsfield como proveedor obligatorio
+violation: mandatory_provider_detected
+mandatory_provider: higgsfield
+mandatory_model: seedance_2_0
+expected_rule: no_mandatory_providers
+expected_fix: convertir a adaptador opcional reemplazable

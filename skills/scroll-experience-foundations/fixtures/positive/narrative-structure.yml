@@ -1,0 +1,36 @@
+# Positive fixture: estructura narrativa valida para scroll experience
+skill: scroll-experience-foundations
+scenario: valid-narrative-structure
+description: Estructura narrativa de 5 actos con progressive enhancement
+story_beats:
+  - id: hook
+    type: full-viewport
+    purpose: Captar atencion inmediatamente
+  - id: context
+    type: text-plus-visuals
+    purpose: Establecer contexto
+  - id: journey
+    type: parallax-storytelling
+    purpose: Narrativa por profundidad
+  - id: climax
+    type: dramatic-reveal
+    purpose: Momento culminante
+  - id: resolution
+    type: cta
+    purpose: Conversion o conclusion
+progressive_enhancement:
+  level_1: Contenido legible sin JavaScript
+  level_2: Estilos y layout basicos
+  level_3: Animaciones de scroll como enhancement
+accessibility:
+  prefers_reduced_motion: true
+  keyboard_navigation: true
+  skip_links: true
+  content_not_hidden: true
+performance:
+  animated_properties: [transform, opacity]
+  will_change_usage: sparingly
+  scroll_throttling: requestAnimationFrame
+mobile_safe:
+  detection: dual-ua-and-viewport
+  parallax_reduction: true

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "lock_id": "scroll-skills-vendor-lock-v1",
+  "created": "2026-08-01",
+  "description": "Lock de vendors externos auditados y aislados en skills/vendor/",
+  "vendors": [
+    {
+      "vendor_id": "scroll-world",
+      "source_repo": "https://github.com/oso95/scroll-world",
+      "source_branch": "main",
+      "source_commit": "71cc36d3bb150248ae36a2c552f9cbf88802a79c",
+      "version": "0.8.0",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 cyw",
+      "destination": "skills/vendor/scroll-world/",
+      "audit_date": "2026-08-01",
+      "audit_report": "docs/scroll-skills/audit-scroll-world.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (reference)",
+        "references/scrub-engine.js (reference, zero-dep vanilla JS)",
+        "references/index-template.html (reference)",
+        "references/knockout.py (reference, requires PIL — not auto-installed)",
+        "references/pipeline.md (reference, bash scripts — not auto-executed)",
+        "references/prompts.md (reference)"
+      ],
+      "components_disabled": [
+        "pipeline.md §7 Monid backend (schema-coupled, isolated)",
+        "brand-kit fetch via URL (isolated)"
+      ],
+      "critical_file_hashes": {
+        "LICENSE": "2b249a284ecc1a5a32cde57a26424899d4c254d30a7081ccccc702d1a4ac40e3",
+        "SKILL.md": "c0a40b69bf2b6e13568664770674cfb122f477e679be15b05702d7a3c748b4be",
+        "references/index-template.html": "beea1ae9cba0beed98e37334505d143a9f31a2ef1d21926359f1cadd28283624",
+        "references/knockout.py": "f7ca96fb45b49b22abcc6a90d343c85ab069b900ffffc50c6d5e07bd6c5ffaa9",
+        "references/pipeline.md": "11546cae1b0bd3d054fd39d867e5c0096608d26e0c32fdf5cf9c5bade122af1a",
+        "references/prompts.md": "d26a6fb6e4802ed462b39238964d417505405b1a322f87851a23aec5dcbbbef4",
+        "references/scrub-engine.js": "f1d16efdc409460b6a41fe70bb72bc75fb948a6f2d9b999bb86540b5e23bbdc9"
+      },
+      "known_risks": [
+        "Single-commit repo (no audit history)",
+        "Pipeline scripts are BSD/macOS specific (stat -f%z)",
+        "Provider-coupled generation pipeline (Higgsfield/Monid/Seedance)"
+      ],
+      "update_procedure": "1) Clone fresh at new commit. 2) Re-audit per audit-scroll-world.md checklist. 3) Update source_commit + hashes. 4) Verify no new network/telemetry/destructive patterns."
+    },
+    {
+      "vendor_id": "cinematic-scroll",
+      "source_repo": "https://github.com/MustBeSimo/cinematic-scroll-skill",
+      "source_branch": "main",
+      "source_commit": "089cd3aeccc950a579e5aa402c473715b608dece",
+      "version": "2.6.9",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Simone Leonelli",
+      "destination": "skills/vendor/cinematic-scroll/",
+      "audit_date": "2026-08-01",
+      "audit_report": "docs/scroll-skills/audit-cinematic-scroll.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (reference)",
+        "tokens/core.tokens.json + motion.tokens.json + semantic.tokens.json (DTCG data)",
+        "themes/theme-contract.md (reference)",
+        "design.md, taste-guardrails.md, audit-mode.md, decision-log.md (reference docs)",
+        "scroll-choreography.json (declarative schema)",
+        "compile-choreography.mjs (zero-dep compiler reference)",
+        "manifest.json + manifest.md (metadata)",
+        "SECURITY.md (reference)",
+        "components/manifest.json (component spec)"
+      ],
+      "components_disabled": [
+        "templates/nextjs/ (Next.js + R3F + fal.ai — not copied)",
+        "bin/install.mjs (npm installer — not copied)",
+        "tools/bench/, tools/page-proof/ (require Playwright — not copied)",
+        "assets/ (binary mp4/png/webp/gif — not copied)",
+        "bench/ corpus (not copied)"
+      ],
+      "critical_file_hashes": {
+        "LICENSE": "fed4608713fbfde4bac187f4a4153d66839fb6e04a312ff3ef1dd155beffe3a2",
+        "SECURITY.md": "ae62496d6ceb1a2eb77af30d59805552e99d2da642c1f82ae1600c429d4700d9",
+        "SKILL.md": "b4112bdffccd112c93b741ce47a1c0dbcec81e83331e548dd5eac8f9e8dfe665",
+        "audit-mode.md": "206e8a7f64ac37d5b7061534d285262cfccd45e53ca25eeedc860d1a6c363c80",
+        "compile-choreography.mjs": "8f413a49789749458a45890259011d2e0b931109af19304b0752ae139f995895",
+        "decision-log.md": "e3e99c13df6b28ff817f6a0c97e2609f5d0a2da2c0d17edcd77afc745f2b62e9",
+        "design.md": "e2e57491c1f848791a59c380c135df2e4b84d8bc886a802f5248609d5e167234",
+        "manifest.json": "348cf46ae4a3725d8179a59971584c942a8e244a164764b6fef645c0896ddc38",
+        "manifest.md": "955713e4e2c512d8e8dde49ad15059f6b8f5a4212c62e7187a35ba965d84e5a4",
+        "scroll-choreography.json": "45e53251bc5e6f796a5b88c5fbed1b8170b2afee70f7ceca113f0550517e3f19",
+        "taste-guardrails.md": "59fb9b3dc6a311cbf2073dcee9232d50dc3a445232681e726860a971fe52b402",
+        "themes/theme-contract.md": "264e8cd938f2803179d27a7b4dadf92a6262a8170803e4c8ce1ed1b15bec65f0",
+        "tokens/core.tokens.json": "2f26ace3e7a75847d79e4da00a5571778e0be3be29038ebc05a5eb8943a6bf23",
+        "tokens/motion.tokens.json": "901fccc3ac1dad744abc4de4d59d9cac5895fbfe8b8fd539138073fa2c2f4579",
+        "tokens/semantic.tokens.json": "307b987e6caa0c5d372794fc3154de4fcb0d8809dfddc2d9f5cf2fd59a5617db"
+      },
+      "known_risks": [
+        "Version drift (lockfile 2.6.1, plugin.json 2.6.4, repo 2.6.9)",
+        "choreo-3d single-maintainer dependency (only in Mode B, not copied)",
+        "CDN dependencies in generated output (GSAP/three.js)"
+      ],
+      "update_procedure": "1) Clone fresh at new commit. 2) Re-audit per audit-cinematic-scroll.md checklist. 3) Update source_commit + hashes. 4) Verify version consistency (run check-consistency). 5) Copy only text skill files, never assets/templates."
+    },
+    {
+      "vendor_id": "scroll-experience",
+      "source_repo": "https://github.com/sickn33/agentic-awesome-skills",
+      "source_path": "skills/scroll-experience/SKILL.md",
+      "source_upstream": "https://github.com/vibeforge1111/vibeship-spawner-skills",
+      "source_branch": "main",
+      "source_commit": "main (V15.6.0 release tag)",
+      "version": "unversioned",
+      "license": "MIT (container) + Apache-2.0 (original: vibeship-spawner-skills)",
+      "attribution": "Original: vibeforge1111/vibeship-spawner-skills. Aggregator: sickn33/agentic-awesome-skills",
+      "destination": "skills/vendor/scroll-experience/",
+      "audit_date": "2026-08-01",
+      "audit_report": "docs/scroll-skills/audit-scroll-experience.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (pure knowledge, no executable code)",
+        "NOTICE (dual-license attribution)"
+      ],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "NOTICE": "c65b0e173f8fcecf96d8fb2b2ed39d93175c80f1feaec5089452f9c7d6943c7e",
+        "SKILL.md": "4f32befc173fb89d8d20364fe096023667306a57b088857bc25b11ff033cf3d2"
+      },
+      "known_risks": [
+        "Exact commit not pinned (repo uses release tags, not commit SHAs in the path)",
+        "Delegation Triggers reference external skills that don't exist locally (inert)"
+      ],
+      "update_procedure": "1) Fetch SKILL.md from main branch. 2) Compare hash with locked version. 3) Re-audit if changed. 4) Update hash + audit date."
+    }
+  ]
+}

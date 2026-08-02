@@ -19,4 +19,4 @@ Default: OFF. No usar en contenido humano, publicable, Guardian o marca. [CONFIG
 - **Code minimalism**: Implement only minimal sufficient code. No unrequested refactors. No removal of security or error handling. [DOC]
 - **Context router**: Load deep context files only when explicitly requested. Keep baseline prompt under budget. [DOC]
 
-Source: `docs/program/token-efficiency/fremes-agent-os-binding.json`. Activate via control plane `token_runtime.py plan --profile <id>`. [CONFIG]
+Source: `docs/program/token-efficiency/frames-agent-os-binding.json`. Activate via control plane `token_runtime.py plan --profile <id>`. [CONFIG]

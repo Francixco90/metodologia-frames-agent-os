@@ -37,13 +37,13 @@ y la historia conserva bytes. [CONFIG]
 
 ## Presupuestos medidos
 
-| Gate                          |         Baseline |             Final |            Límite |  Ratio | Estado |
-| ----------------------------- | ---------------: | ----------------: | ----------------: | -----: | ------ |
-| Corpus authored elegible      |            89911 |            116978 |     134866 (1.5×) | 1.301× | `pass` |
-| Total authored (palabras)     |            89911 |            116978 |       179822 (2×) | 1.301× | `pass` |
-| Total authored (LOC)          |            34083 |             42943 |        68166 (2×) |  1.26× | `pass` |
-| Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |  54/54 | `pass` |
-| Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |    n/a | `pass` |
+| Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
+| ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
+| Corpus authored elegible      |            89949 |            117016 |     134923 (1.5×) | 1.3009× | `pass` |
+| Total authored (palabras)     |            89949 |            117016 |       179898 (2×) | 1.3009× | `pass` |
+| Total authored (LOC)          |            34089 |             42949 |        68178 (2×) | 1.2599× | `pass` |
+| Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
+| Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
 Además, 58 Markdown editables del baseline se
 comprueban individualmente contra un máximo de 2× palabras. Violaciones registradas:
@@ -64,7 +64,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 17                | 15          | 17         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
-| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 39                | 3           | 28         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
+| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 76                | 3           | 33         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `refactored`         | 105                | 184               | 12          | 22         | `4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d` | `changed`        |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `refactored`         | 62                 | 90                | 12          | 17         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `changed`        |
@@ -149,7 +149,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `docs/program/requirements-traceability.md`                                                                   | `lead`             | `verified_no_change` | 835                | 835               | 53          | 53         | `207c511ff8eade696fcbeedf33f1d4c305f63b72e59351cff28d3c1e40e03e33` | `byte-identical` |
 | `docs/program/system-architecture.md`                                                                         | `lead`             | `verified_no_change` | 596                | 596               | 89          | 89         | `c1a8fcc5ece81e28d99d5771435fdc01c441b042c86f1c6247688cbdf8b45692` | `byte-identical` |
 | `docs/program/test-strategy.md`                                                                               | `lead`             | `verified_no_change` | 556                | 556               | 51          | 51         | `49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7` | `byte-identical` |
-| `eslint.config.js`                                                                                            | `repo`             | `refactored`         | 55                 | 57                | 33          | 35         | `54f61524fdb31c24c595c2a90f40933b77514b307e58f3a1c2771267a1ff773b` | `changed`        |
+| `eslint.config.js`                                                                                            | `repo`             | `refactored`         | 55                 | 58                | 33          | 36         | `54f61524fdb31c24c595c2a90f40933b77514b307e58f3a1c2771267a1ff773b` | `changed`        |
 | `governance/a09-a10-cross-verifier-verdict.yml`                                                               | `governance`       | `immutable_history`  | 153                | 153               | 82          | 82         | `f91ce3299cfe4168bfcdf368903de4dbff732460846c3ba1fa07af7725e658fe` | `byte-identical` |
 | `guardian/reviews/GDN-001-revise.md`                                                                          | `guardian`         | `immutable_history`  | 947                | 947               | 162         | 162        | `cd2b02e31ca0149b55105388cd84bd791fbdb42e19d92532c712b6c2e3d70dff` | `byte-identical` |
 | `guardian/reviews/GDN-002-local-closeout.md`                                                                  | `guardian`         | `immutable_history`  | 1101               | 1101              | 195         | 195        | `c8f718fab84eaefd23a0182f9c14f06d33aa50d6febe4cb279701142292c32da` | `byte-identical` |

@@ -1,0 +1,38 @@
+# Positive fixture: storyboard cinematografico valido
+skill: cinematic-scroll-quality
+scenario: valid-three-chapter-storyboard
+description: Storyboard de 3 capítulos con pacing correcto y tokens
+chapters:
+  - id: ch1-hook
+    theme: clinical-noir
+    pin_vh: 200
+    layers:
+      - id: background
+        depth: 0.2
+      - id: midground
+        depth: 0.5
+      - id: focal
+        depth: 1.0
+    motion_types: [parallax, reveal]
+  - id: ch2-context
+    theme: clinical-noir
+    pin_vh: 250
+    layers:
+      - id: background
+        depth: 0.2
+      - id: content
+        depth: 1.0
+    motion_types: [reveal]
+  - id: ch3-resolution
+    theme: clinical-noir
+    pin_vh: 150
+    layers:
+      - id: background
+        depth: 0.2
+      - id: focal
+        depth: 1.0
+    motion_types: [reveal, parallax]
+breathing_room_vh: 100
+quality_gate:
+  threshold: 70
+  categories: [taste, performance, a11y, mobile, tokens, threed, hygiene]

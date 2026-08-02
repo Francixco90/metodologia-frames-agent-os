@@ -13,6 +13,7 @@ export default tseslint.config(
       'tmp/**',
       'projects/**/web/dist/**',
       'projects/**/remotion/renders/**',
+      'skills/vendor/**',
     ],
   },
   js.configs.recommended,

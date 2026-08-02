@@ -19,7 +19,7 @@ const bindingSchema = z.object({
   required_verdict_hash: z.unknown().optional(),
 });
 
-const bindingPath = resolve(root, 'docs/program/token-efficiency/fremes-agent-os-binding.json');
+const bindingPath = resolve(root, 'docs/program/token-efficiency/frames-agent-os-binding.json');
 
 export const validateAiRuntime = (cwd = process.cwd()): string[] => {
   const errors: string[] = [];
@@ -29,7 +29,7 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
     return errors;
   }
   if (!existsSync(bindingPath)) {
-    errors.push('AI-RUNTIME-002 fremes-agent-os-binding.json missing');
+    errors.push('AI-RUNTIME-002 frames-agent-os-binding.json missing');
     return errors;
   }
   let raw: unknown;
@@ -45,17 +45,17 @@ export const validateAiRuntime = (cwd = process.cwd()): string[] => {
     return errors;
   }
   const binding = result.data;
-  if (binding.harness_id !== 'metodologia-fremes-agent-os') {
+  if (binding.harness_id !== 'metodologia-frames-agent-os') {
     errors.push(
-      `AI-RUNTIME-005 harness_id mismatch: expected metodologia-fremes-agent-os, got ${binding.harness_id}`,
+      `AI-RUNTIME-005 harness_id mismatch: expected metodologia-frames-agent-os, got ${binding.harness_id}`,
     );
   }
   const requiredProfiles = [
-    'instagram-creation',
-    'instagram-engineering',
-    'instagram-debug-verbose',
-    'instagram-review',
-    'instagram-guardian',
+    'frames-creation',
+    'frames-engineering',
+    'frames-debug-verbose',
+    'frames-review',
+    'frames-guardian',
   ];
   for (const profile of requiredProfiles) {
     if (!binding.allowed_profiles.includes(profile)) {
