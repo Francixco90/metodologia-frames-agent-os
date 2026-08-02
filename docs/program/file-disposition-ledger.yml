@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89957
+    v3_rolling_adjustment_words: 2649
     original_baseline_words: 87308
-    final_words: 117016
+    final_words: 117024
     maximum_multiplier: 1.5
-    maximum_words: 134923
+    maximum_words: 134935
     actual_multiplier: 1.3009
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89957
+    v3_rolling_adjustment_words: 2649
     original_baseline_words: 87308
-    final_words: 117016
-    maximum_words: 179898
+    final_words: 117024
+    maximum_words: 179914
     word_multiplier: 1.3009
-    baseline_loc: 34089
-    v3_rolling_adjustment_loc: 1348
+    baseline_loc: 34091
+    v3_rolling_adjustment_loc: 1350
     original_baseline_loc: 32741
-    final_loc: 42949
-    maximum_loc: 68178
+    final_loc: 42951
+    maximum_loc: 68182
     loc_multiplier: 1.2599
     maximum_multiplier: 2
     status: pass
@@ -613,9 +613,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: ff274ba126495f02ca97739e1f9c8aa8fb1d71f4d4900db35ea1a992e25d24fe
-      current_words: 122
-      current_loc: 38
+      current_sha256: 5914178d89dafc5a2dfccb304ba886b4e6e12769f017392d7f73e9e9a993ed60
+      current_words: 130
+      current_loc: 40
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
