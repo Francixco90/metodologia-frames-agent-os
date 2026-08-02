@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89954
+    v3_rolling_adjustment_words: 2646
     original_baseline_words: 87308
-    final_words: 117016
+    final_words: 117021
     maximum_multiplier: 1.5
-    maximum_words: 134923
+    maximum_words: 134931
     actual_multiplier: 1.3009
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89949
-    v3_rolling_adjustment_words: 2641
+    baseline_words: 89954
+    v3_rolling_adjustment_words: 2646
     original_baseline_words: 87308
-    final_words: 117016
-    maximum_words: 179898
+    final_words: 117021
+    maximum_words: 179908
     word_multiplier: 1.3009
-    baseline_loc: 34089
-    v3_rolling_adjustment_loc: 1348
+    baseline_loc: 34094
+    v3_rolling_adjustment_loc: 1353
     original_baseline_loc: 32741
-    final_loc: 42949
-    maximum_loc: 68178
+    final_loc: 42954
+    maximum_loc: 68188
     loc_multiplier: 1.2599
     maximum_multiplier: 2
     status: pass
@@ -634,9 +634,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.gitignore
       current_ref: working-tree:.gitignore
       current_state: present
-      current_sha256: 954eaa0b1e5bfc1e999957f21f4fbca033f14728311687a22bcc6473c1fb528f
-      current_words: 17
-      current_loc: 17
+      current_sha256: c372a6523b54f7b3cbbc62c553d6fbe092793dd5c099c368123f3fa4800fa1f3
+      current_words: 22
+      current_loc: 22
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.gitignore
