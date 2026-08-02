@@ -1,5 +1,5 @@
 version: 1
-program_id: metodologia-instagram-agent-os
+program_id: metodologia-frames-agent-os
 packages:
   A00:
     owner: lead

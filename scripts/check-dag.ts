@@ -11,7 +11,7 @@ const packageSchema = z.object({
 
 const dagSchema = z.object({
   version: z.literal(1),
-  program_id: z.literal('metodologia-instagram-agent-os'),
+  program_id: z.literal('metodologia-frames-agent-os'),
   packages: z.record(z.string(), packageSchema),
   release: z.object({
     creation_terminal_package: z.literal('A12'),

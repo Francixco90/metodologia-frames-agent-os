@@ -739,7 +739,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:AGENTS.md
       current_ref: working-tree:AGENTS.md
       current_state: present
-      current_sha256: 0a9abdd1d1514bff24e2051b07e05ac3f0aa3b90f2af2dc34689080fb2998b90
+      current_sha256: 2372c11f0166766069833ff6e120d62873cd4b00b9023e5316de01c0d38a44fc
       current_words: 184
       current_loc: 22
       byte_identical: false
@@ -2314,7 +2314,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/dag.yml
       current_ref: working-tree:docs/program/dag.yml
       current_state: present
-      current_sha256: ea86c7b3ed0b0ba582959eff185afa1326ab0fe95df8d8a969db54d31fe16f83
+      current_sha256: 07163a33d6d52725012549ad4ddd2d7b2c7ba2d1aa989b47fc623e8bf3b57834
       current_words: 194
       current_loc: 90
       byte_identical: false
@@ -2944,7 +2944,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 3f7706417b1f8649a935a6c4a70345da5855bfcce065b00d5513cfd29ddc703d
+      current_sha256: e78823eba00fd5082b2e615ed093ca6be0d01f1253de57b29949a6d59377fef6
       current_words: 428
       current_loc: 115
       byte_identical: false
@@ -6409,7 +6409,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-dag.ts
       current_ref: working-tree:scripts/check-dag.ts
       current_state: present
-      current_sha256: 9f94c089d61280e63c5a84b04b3d8cf48882e4da806583ad3dafbc15ffc56f8b
+      current_sha256: 86f24b261aa8c4551f9528bb25e3ac2dff1ac8e9fb33d2ab07ba8a0095230cc1
       current_words: 288
       current_loc: 108
       byte_identical: false

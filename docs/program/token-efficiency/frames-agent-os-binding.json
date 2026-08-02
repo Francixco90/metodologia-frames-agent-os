@@ -1,12 +1,12 @@
 {
   "schema_version": "harness-binding-v1",
-  "harness_id": "metodologia-fremes-agent-os",
+  "harness_id": "metodologia-frames-agent-os",
   "allowed_profiles": [
-    "instagram-creation",
-    "instagram-engineering",
-    "instagram-debug-verbose",
-    "instagram-review",
-    "instagram-guardian"
+    "frames-creation",
+    "frames-engineering",
+    "frames-debug-verbose",
+    "frames-review",
+    "frames-guardian"
   ],
   "allowed_stages": [
     "discovered",
