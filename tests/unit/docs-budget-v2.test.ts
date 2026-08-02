@@ -112,7 +112,7 @@ describe('V2 documentation and extension budgets', () => {
     expect(validateDispositionLedger(root)).toStrictEqual([]);
     const source = readFileSync(resolve(root, 'docs/program/file-disposition-ledger.yml'), 'utf8');
     const ledger = parse(source) as LedgerBudgetProjection;
-    expect(source).toContain('coverage: 377/377');
+    expect(source).toContain('coverage: 387/387');
     expect(ledger.allowed_dispositions).toStrictEqual([
       'refactored',
       'generator_fixed',
@@ -124,7 +124,7 @@ describe('V2 documentation and extension budgets', () => {
     expect(ledger.summary.dispositions.immutable_history).toBe(95);
     expect(ledger.summary.dispositions.quarantined).toBe(4);
     expect(ledger.summary.dispositions.superseded).toBe(0);
-    expect(ledger.entries).toHaveLength(377);
+    expect(ledger.entries).toHaveLength(387);
     for (const entry of ledger.entries) {
       expect(entry.initial_sha256).toMatch(/^[a-f0-9]{64}$/u);
       expect(Number.isInteger(entry.initial_words)).toBe(true);
@@ -154,19 +154,19 @@ describe('V2 documentation and extension budgets', () => {
       readFileSync(resolve(root, 'docs/program/file-disposition-ledger.yml'), 'utf8'),
     ) as LedgerBudgetProjection;
     expect(ledger.budgets.editable_markdown_per_file).toMatchObject({
-      baseline_files: 54,
+      baseline_files: 58,
       violations: [],
     });
     expect(ledger.budgets.authored_eligible_corpus).toMatchObject({
-      baseline_words: 80_615,
+      baseline_words: 89_949,
       status: 'pass',
     });
     expect(ledger.budgets.authored_eligible_corpus.final_words).toBeLessThanOrEqual(
       ledger.budgets.authored_eligible_corpus.maximum_words,
     );
     expect(ledger.budgets.total_authored_hard_cap).toMatchObject({
-      baseline_words: 80_615,
-      baseline_loc: 30_760,
+      baseline_words: 89_949,
+      baseline_loc: 34_089,
       status: 'pass',
     });
     expect(ledger.budgets.total_authored_hard_cap.final_words).toBeLessThanOrEqual(
