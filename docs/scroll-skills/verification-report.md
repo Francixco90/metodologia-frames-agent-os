@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-08-01
 **Rama:** feat/model-agnostic-scroll-skills
-**Worktree:** C:/Users/USUARIO/Projects/scroll-skills-wt
+**Worktree:** `<worktree-aislado>`
 **Base:** 3636db2
 
 ---
@@ -30,7 +30,7 @@
 | V06 | Nombres unicos                               | manifest check       | 3 skill_ids unicos                  | 3 ids unicos en manifest                  | No duplicados                                                                  | PASS   |
 | V07 | Orden de ejecucion correcto                  | manifest check       | foundations -> quality -> primary   | Orden correcto                            | execution_order array                                                          | PASS   |
 | V08 | Sin dependencias circulares                  | cycle detection      | No hay ciclos                       | No hay ciclos                             | DFS traversal en test                                                          | PASS   |
-| V09 | Sin rutas absolutas                          | content scan         | No /Users/ /home/ C:\Users\         | No encontradas                            | 3 skills escaneadas                                                            | PASS   |
+| V09 | Sin rutas absolutas                          | content scan         | No rutas de usuario absolutas       | No encontradas                            | 3 skills escaneadas                                                            | PASS   |
 | V10 | Sin secretos                                 | secret scan          | No api_key/secret/token             | No encontrados                            | 3 skills + 3 LINEAGE escaneadas                                                | PASS   |
 | V11 | Sin proveedores obligatorios                 | content scan         | No mandatory provider language      | No encontradas                            | MANDATORY_PATTERNS no matchean                                                 | PASS   |
 | V12 | Model-agnostic declarado                     | frontmatter check    | model_agnostic: true en las 3       | true en las 3                             | metadata.model_agnostic                                                        | PASS   |

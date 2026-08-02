@@ -11,7 +11,7 @@ Si se necesita revertir todos los cambios de esta rama:
 
 ```bash
 # En el worktree principal
-cd C:/Users/USUARIO/Projects/metodologia-instagram-agent-os
+cd <repo-raiz>
 
 # La rama feat/model-agnostic-scroll-skills esta en un worktree separado.
 # Si se hizo merge a main:
