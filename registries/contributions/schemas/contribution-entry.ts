@@ -14,7 +14,14 @@ export const ContributionEntrySchema = z.strictObject({
     .regex(/^MFAO-REG-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu),
   original_folio_id: z.string().min(1).max(100),
   original_certificate_id: z.string().min(1).max(100).optional(),
-  artifact_reference: z.string().min(1).max(500),
+  artifact_reference: z
+    .string()
+    .min(1)
+    .max(500)
+    .refine(
+      (v) => !v.includes('..') && !v.startsWith('/'),
+      'must be a relative path without parent-directory traversal',
+    ),
   content_hash: z.string().regex(/^[a-f0-9]{64}$/u),
   contributor_alias: z
     .string()
