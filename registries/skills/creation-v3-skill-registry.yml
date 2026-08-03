@@ -24,6 +24,17 @@ entries:
     production_runtime_status: blocked_remotion_license_coverage_gap
     publication_authority: false
     tests: [node skills/motion-library-adapters/scripts/check-skill.mjs]
+  - skill_id: content-os-core
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 582f25eefc5b1efce80474fe7d98d57c62fe96c1bc1ded51b6be0a5d7106de1b
+    package_manifest_sha256: fc6cd3919f05fc157c22f0267a27f9c90d834bd440bc244ea6cef7e93bdb9225
+    lineage_ref: skills/content-os-core/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-core/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-core/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -33,3 +44,7 @@ events:
   - {event_id: EVT-SKL-MLA-H03-002, event_order: 2, skill_id: motion-library-adapters, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MLA-H03-003, event_order: 3, skill_id: motion-library-adapters, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MLA-H03-004, event_order: 4, skill_id: motion-library-adapters, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COS-H03-001, event_order: 1, skill_id: content-os-core, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COS-H03-002, event_order: 2, skill_id: content-os-core, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COS-H03-003, event_order: 3, skill_id: content-os-core, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COS-H03-004, event_order: 4, skill_id: content-os-core, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
