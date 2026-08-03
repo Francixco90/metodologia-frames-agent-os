@@ -1,0 +1,40 @@
+receipt_id: RCP-H03-CONTENT-OS-MEDIA-001
+skill_id: content-os-media
+runtime_profile: offline-default-remote-opt-in
+gsap:
+  allowed_scoped: content-os-animation composition timing only
+  status: referenced (this skill does not animate; resolves media)
+ffmpeg:
+  allowed_scoped: local binary for transcription/bg-removal/probing (default)
+  version: 8.1.1
+  scope: offline media ops
+whisper_cpp:
+  allowed_scoped: local transcription (default, deterministic)
+  status: offline-default
+piper_coqui:
+  allowed_scoped: local TTS (default, deterministic)
+  status: offline-default
+heygen_cli:
+  allowed_scoped: remote TTS/image/sfx/bgm (opt-in, auth-gated)
+  status: opt-in-fail-closed
+openai:
+  allowed_scoped: remote transcription/TTS (opt-in, auth-gated)
+  status: opt-in-fail-closed
+three: {status: out_of_scope}
+lottie: {status: out_of_scope}
+anime: {status: out_of_scope}
+typegpu: {status: out_of_scope}
+google_fonts_cdn: {status: out_of_scope}
+external_image_urls: {status: out_of_scope_in_default_render_path}
+runtime_rules:
+  - offline_default_no_network_in_render_path
+  - fail_closed_without_credentials
+  - opt_in_per_project_declared
+  - media_playback_framework_owned_deterministic
+  - provenance_required_sha256_source_provider
+  - no_vendor_placeholder_reuse
+  - deterministic_first_remote_is_opt_in_only
+  - rendered_draft_not_human_approved
+render_adapter:
+  inherits: content-os-core (Playwright 1.61.1 + FFmpeg 8.1.1)
+  scope: media playback framework-owned, start/stop deterministic per clip

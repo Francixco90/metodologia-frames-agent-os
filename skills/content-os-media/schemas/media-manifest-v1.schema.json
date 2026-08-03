@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.io/schemas/content-os-media-manifest-v1.schema.json",
+  "title": "Content OS Media Manifest v1",
+  "description": "Resolved media manifest for a Content OS composition. Every entry is offline-default; remote entries are opt-in, auth-gated, fail-closed.",
+  "type": "object",
+  "required": ["schemaVersion", "projectId", "mediaProfile", "entries"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "content-os-media-manifest-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mediaProfile": {
+      "type": "string",
+      "enum": ["offline", "remote-opt-in"],
+      "description": "offline = default, no network in render path. remote-opt-in = project explicitly declares which remote adapters are enabled."
+    },
+    "remoteOptIn": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["heygen", "openai", "svgl", "simple-icons"]
+      },
+      "description": "Empty when mediaProfile=offline. Lists remote adapters the project explicitly enables.",
+      "default": []
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "path", "sha256", "source", "provider"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z]+_\\d{3}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["bgm", "sfx", "image", "icon", "logo", "voice", "grade", "lut"]
+          },
+          "path": {
+            "type": "string",
+            "description": "Local frozen path. file:// or relative. No https URLs in the default render path."
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Provenance string: catalog id, ingest url (if remote), or 'local-assets'."
+          },
+          "provider": {
+            "type": "string",
+            "enum": ["offline", "remote"]
+          },
+          "auth_declared": {
+            "type": "boolean",
+            "description": "Required true when provider=remote. Fail-closed without it.",
+            "default": false
+          },
+          "duration_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "dims": {
+            "type": "string",
+            "description": "Dimensions WxH for image/icon/logo."
+          }
+        }
+      }
+    }
+  }
+}

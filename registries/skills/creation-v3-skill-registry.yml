@@ -68,6 +68,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-creative/scripts/check-skill.mjs]
+  - skill_id: content-os-media
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: cd0f6fb34b98e8ab592a68355d984f4bf6f0155d50268dd090ecb91c8f2ad1c0
+    package_manifest_sha256: 6fad5f95c440c8efdb810596c75e32696f8f1700cf2b49fb4ab5752f860eda93
+    lineage_ref: skills/content-os-media/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-media/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-media/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -93,3 +104,7 @@ events:
   - {event_id: EVT-SKL-CSC-H03-002, event_order: 2, skill_id: content-os-creative, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSC-H03-003, event_order: 3, skill_id: content-os-creative, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSC-H03-004, event_order: 4, skill_id: content-os-creative, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSM-H03-001, event_order: 1, skill_id: content-os-media, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSM-H03-002, event_order: 2, skill_id: content-os-media, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSM-H03-003, event_order: 3, skill_id: content-os-media, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSM-H03-004, event_order: 4, skill_id: content-os-media, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

@@ -1,0 +1,38 @@
+# Valid offline-only media brief — no remote, no network, provenance complete.
+projectId: metodologia-demo
+mediaProfile: offline
+remoteOptIn: []
+compositionPattern: title-card
+offlineFirst: true
+entries:
+  - id: bgm_001
+    type: bgm
+    path: assets/audio/bgm/launch.mp3
+    sha256: b5caa632f74dad5749c94c0be38272a256ca6ef5319c45c8d64aa47a677156b2
+    source: local-assets
+    provider: offline
+    auth_declared: false
+    duration_s: 25
+  - id: voice_001
+    type: voice
+    path: assets/audio/voice/intro.wav
+    sha256: f018a7aa1998bc229c4f4107c27d1963eef0c048aaf92045621a9e2a2abe06c2
+    source: piper-local
+    provider: offline
+    auth_declared: false
+    duration_s: 12
+  - id: image_001
+    type: image
+    path: assets/images/gradient-tech.jpg
+    sha256: 43a695c29ae6ccb7e3a87873a334bc08494c0f3ffbe6d6b142673c480acbec51
+    source: local-assets
+    provider: offline
+    auth_declared: false
+    dims: 1920x1080
+storySpine:
+  hook: 'Content OS resolve offline'
+  beats:
+    - {label: 'bgm resolved local', at: '0s'}
+    - {label: 'voice piper local', at: '2s'}
+    - {label: 'image local assets', at: '4s'}
+  final: 'deterministic render'

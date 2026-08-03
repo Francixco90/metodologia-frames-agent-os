@@ -1,0 +1,42 @@
+# Negative media brief — documents every violation the audit rejects.
+# NOT a valid brief. Used only to verify media-audit.mjs detection.
+projectId: bad-demo
+mediaProfile: offline # remote used but opt-in NOT declared -> remote-without-opt-in
+remoteOptIn: []
+compositionPattern: title-card
+offlineFirst: false # lazy-default flagged
+lazy-default: true
+placeholder-media: true # media without real resolve
+entries:
+  # Entry 1: remote provider, no auth, no opt-in, https path -> 3 violations.
+  - id: voice_002
+    type: voice
+    path: https://heygen.example.com/tts/at_test voice.mp3 # network-in-render-path + vendor-placeholder-reuse
+    source: heygen-remote
+    provider: remote # remote-without-opt-in (mediaProfile=offline)
+    auth_declared: false # remote-without-auth (fail-closed)
+    duration_s: 10
+  # Entry 2: missing-sha256 + missing-source.
+  - id: image_002
+    type: image
+    path: assets/images/placeholder.jpg
+    # sha256 omitted -> missing-sha256
+    # source omitted -> missing-source
+    provider: offline
+    auth_declared: false
+storySpine:
+  hook: 'remote without auth'
+  beats: []
+  final: 'fail-closed'
+# Violations documented for negative-fixture completeness:
+# - provider: remote (declared)
+# - auth_declared: false (no auth for remote)
+# - mediaProfile: offline (opt-in not declared)
+# - network-in-render-path (https:// URL in entry.path)
+# - https:// literal present
+# - missing-sha256 (entry 2)
+# - missing-source (entry 2)
+# - vendor-placeholder-reuse (at_test token in entry 1 path)
+# - at_test literal present
+# - lazy-default: true (placeholder media without resolve)
+# - placeholder-media: true
