@@ -1,0 +1,25 @@
+schema_version: 1
+skill_id: content-os-animation
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/hyperframes-animation/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/motion-library-adapters/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/content-os-animation/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-animation/receipts/runtime-boundary.yml
+compatibility_contract: html-animation-v1
+request_contract_ref: skills/content-os-animation/schemas/animation-rule-v1.schema.json
+supported_request_types:
+  - animation_rule_compose
+  - blueprint_load
+  - transition_author
+external_fragments_reused: false
+production_runtime_status: local_capability_only
+publication_authority: false

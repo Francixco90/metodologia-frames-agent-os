@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS animation — positive fixture (seek-safe)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: system-ui, sans-serif;
+      }
+      #cos-anim-pos {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #cos-anim-pos h1 {
+        font-size: 72px;
+        font-weight: 800;
+        margin: 0;
+        will-change: transform, opacity;
+      }
+    </style>
+    <script src="../../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-anim-pos"
+      data-composition-id="cos-anim-pos"
+      data-width="1280"
+      data-height="720"
+      data-duration="3"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="3" data-track-index="0">
+        <h1 id="pos-title">Seek-safe</h1>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-anim-pos'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-anim-pos'];
+      // fromTo with absolute from-states, no relative tweens, finite repeats only, no Math.random
+      tl.fromTo(
+        '#pos-title',
+        {opacity: 0, y: 30},
+        {opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'},
+        0,
+      );
+      tl.fromTo('#pos-title', {scale: 1}, {scale: 1.05, duration: 0.6, ease: 'sine.inOut'}, 1.2);
+      tl.fromTo('#pos-title', {scale: 1.05}, {scale: 1, duration: 0.6, ease: 'sine.inOut'}, 1.8);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+  NEGATIVE FIXTURE — do NOT render. Documents animation contract violations the
+  checker rejects: autonomous CSS animation with repeat: infinite, Math.random in
+  tween-time computation, getBoundingClientRect at tween time, relative += tween,
+  and CSS transition on an animated element. Not in the checker runtimeCombined set.
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS animation — negative fixture (violations)</title>
+    <style>
+      #cos-anim-neg .pulse {
+        animation: pulse 1s infinite;
+        transition: transform 0.3s ease;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="cos-anim-neg"
+      data-composition-id="cos-anim-neg"
+      data-width="1280"
+      data-height="720"
+      data-duration="3"
+      data-start="0"
+    >
+      <div class="pulse">violation</div>
+    </div>
+    <script>
+      const box = document.querySelector('.pulse');
+      const rect = box.getBoundingClientRect();
+      const jitter = Math.random() * rect.width;
+      const tl = gsap.timeline({paused: true});
+      tl.to('.pulse', {x: '+=40', duration: 0.5});
+    </script>
+  </body>
+</html>
