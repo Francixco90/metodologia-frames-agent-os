@@ -1,0 +1,25 @@
+skill_id: content-os-media
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: html-media-v1
+authority_refs:
+  - skills/vendor/hyperframes/media-use/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - docs/content-os/architecture.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: hyperframes-media-use
+  source_repo: https://github.com/heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation: offline-default + remote-opt-in fail-closed; no vendor placeholders reused; own credential contract
+supported_request_types:
+  - media_resolve_offline
+  - tts_generate_offline
+  - transcribe_offline
+  - bg_remove_offline
+  - remote_opt_in_declare
+  - media_manifest_audit
