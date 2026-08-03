@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.dev/schemas/content-os/creative-brief-v1.json",
+  "title": "Content OS Creative Brief v1",
+  "description": "Creative brief for an HTML+GSAP Content OS composition: brand references, story spine with timestamped beats, composition pattern, palette/typography via brand tokens, offline-first constraints.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "compositionId",
+    "brandRef",
+    "voiceRef",
+    "channelRef",
+    "storySpine"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"type": "string", "const": "content-os-creative-brief-v1"},
+    "compositionId": {"type": "string", "minLength": 1},
+    "brandRef": {
+      "type": "string",
+      "description": "Path or id to BrandProfileV2 resolved via metodologia-brand-router."
+    },
+    "voiceRef": {"type": "string", "description": "Path or id to VoiceProfileV2."},
+    "channelRef": {"type": "string", "description": "Path or id to ChannelProfileV1."},
+    "durationSeconds": {"type": "number", "minimum": 0},
+    "compositionPattern": {
+      "type": "string",
+      "enum": ["title-card", "pip", "text-behind-subject", "stats", "slideshow", "lower-third"]
+    },
+    "storySpine": {
+      "type": "object",
+      "required": ["hook", "beats", "final"],
+      "additionalProperties": false,
+      "properties": {
+        "hook": {
+          "type": "object",
+          "required": ["text", "at"],
+          "additionalProperties": false,
+          "properties": {"text": {"type": "string"}, "at": {"type": "number", "minimum": 0}}
+        },
+        "beats": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["label", "at", "purpose"],
+            "additionalProperties": false,
+            "properties": {
+              "label": {"type": "string", "minLength": 1},
+              "at": {"type": "number", "minimum": 0},
+              "purpose": {"type": "string", "minLength": 1},
+              "valueBeforeEvidence": {"type": "boolean"}
+            }
+          }
+        },
+        "final": {
+          "type": "object",
+          "required": ["text", "at"],
+          "additionalProperties": false,
+          "properties": {"text": {"type": "string"}, "at": {"type": "number", "minimum": 0}}
+        }
+      }
+    },
+    "palette": {
+      "type": "object",
+      "description": "Color tokens resolved from BrandProfileV2 (semantic names, not literals).",
+      "additionalProperties": {"type": "string"}
+    },
+    "typography": {
+      "type": "object",
+      "description": "Font tokens from the brand bundle (pinned local, license resolved). No external font URLs.",
+      "additionalProperties": {"type": "string"}
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "offlineFontsOnly": {"type": "boolean"},
+        "noExternalAssets": {"type": "boolean"},
+        "noNetwork": {"type": "boolean"},
+        "language": {"type": "string", "enum": ["es-LATAM", "en", "pt"]}
+      }
+    }
+  }
+}

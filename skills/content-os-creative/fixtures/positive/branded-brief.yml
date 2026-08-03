@@ -1,0 +1,25 @@
+schemaVersion: content-os-creative-brief-v1
+compositionId: cos-brand-reveal
+brandRef: registries/brand/brand-profile-v2.yml
+voiceRef: registries/brand/voice-profile-v2.yml
+channelRef: registries/brand/source-bundle-v1.yml
+compositionPattern: title-card
+durationSeconds: 4
+storySpine:
+  hook: {text: 'Content OS', at: 0}
+  beats:
+    - {label: 'wordmark', at: 0.2, purpose: 'brand mark entrance', valueBeforeEvidence: true}
+    - {label: 'tagline', at: 1.2, purpose: 'value promise'}
+    - {label: 'settle', at: 2.6, purpose: 'lockup proof'}
+  final: {text: 'MetodologIA', at: 3.6}
+palette:
+  bg: 'token://brand/surface/deep'
+  fg: 'token://brand/foreground/primary'
+  accent: 'token://brand/accent/primary'
+typography:
+  display: 'token://brand/font/display'
+constraints:
+  offlineFontsOnly: true
+  noExternalAssets: true
+  noNetwork: true
+  language: 'es-LATAM'

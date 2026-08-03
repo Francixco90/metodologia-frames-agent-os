@@ -1,0 +1,22 @@
+# NEGATIVE FIXTURE — do NOT use. Documents creative-contract violations the auditor
+# rejects: missing-brandRef, external font CDN, external asset, lazy defaults
+# (pure-white, generic-copy), missing story spine. Not in the checker runtimeCombined set.
+schemaVersion: content-os-creative-brief-v1
+compositionId: cos-lazy-default
+# missing-brandRef: brandRef absent, cannot resolve brand tokens offline
+voiceRef: registries/brand/voice-profile-v2.yml
+channelRef: registries/brand/source-bundle-v1.yml
+compositionPattern: title-card
+durationSeconds: 4
+# external-font: Google Fonts CDN detected (not offline-first)
+fontUrl: 'https://fonts.googleapis.com/css2?family=Inter&display=swap'
+# external-asset: external image URL (not offline-first)
+heroImage: 'https://example.com/assets/hero.png'
+# lazy-default: pure-white background without brand token override
+pure-white: true
+# lazy-default: generic copy without voice profile resolution
+generic-copy: true
+# lazy-default: soft generic shadow, no hierarchy
+softShadow: '0 4px 12px rgba(0,0,0,0.1)'
+# missing-story-spine: no hook/beats/final declared before HTML
+storySpine: {}

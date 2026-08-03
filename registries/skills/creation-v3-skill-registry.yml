@@ -57,6 +57,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-keyframes/scripts/check-skill.mjs]
+  - skill_id: content-os-creative
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 01c1858b31d52a53ee2f97f18a9687eb500b56b06db362e4ebc1405adbe216a5
+    package_manifest_sha256: 46a7fbb4f3197f1679e24ac74fe309c57d8c72ef679360c113cd1055a4601eae
+    lineage_ref: skills/content-os-creative/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-creative/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -78,3 +89,7 @@ events:
   - {event_id: EVT-SKL-CSK-H03-002, event_order: 2, skill_id: content-os-keyframes, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSK-H03-003, event_order: 3, skill_id: content-os-keyframes, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSK-H03-004, event_order: 4, skill_id: content-os-keyframes, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSC-H03-001, event_order: 1, skill_id: content-os-creative, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSC-H03-002, event_order: 2, skill_id: content-os-creative, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSC-H03-003, event_order: 3, skill_id: content-os-creative, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSC-H03-004, event_order: 4, skill_id: content-os-creative, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
