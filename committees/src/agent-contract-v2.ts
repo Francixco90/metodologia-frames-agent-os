@@ -3,14 +3,12 @@ import {z} from 'zod';
 import {
   ActorIdSchema,
   containsProhibitedReasoningText,
+  HashBoundReferenceV1Schema,
+  OrchestrationErrorCodeV2Schema,
   PortableIdSchema,
   RelativePathSchema,
   Sha256Schema,
 } from '../../core/contracts/index.ts';
-import {
-  HashBoundReferenceV1Schema,
-  OrchestrationErrorCodeV2Schema,
-} from '../../core/contracts/content-v2.ts';
 import {RoleIdSchema} from './contracts.ts';
 
 const NonEmptyTextSchema = z.string().trim().min(1).max(4_000);

@@ -7,7 +7,7 @@ import {
   OrchestrationEventV2Schema,
   PublicPlanErrorCodeV1Schema,
   WorkflowPilotApprovalV1Schema,
-} from '../../core/contracts/content-v2.ts';
+} from '../../core/contracts/index.ts';
 import {
   assertDeclaredContractSha256,
   computeDeclaredContractSha256,

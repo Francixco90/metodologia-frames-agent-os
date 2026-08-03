@@ -2,7 +2,7 @@ import {
   OrchestrationErrorCodeV2Schema,
   type OrchestrationErrorCodeV2,
   type PublicPlanErrorCodeV1,
-} from '../contracts/content-v2.ts';
+} from '../contracts/index.ts';
 
 export const PUBLIC_ERROR_BY_INTERNAL_V2 = {
   ORCH_V2_AGENT_CONTRACT_INVALID: 'UNKNOWN_FIELD',

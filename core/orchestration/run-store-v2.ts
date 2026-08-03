@@ -3,7 +3,7 @@ import {basename, dirname, isAbsolute, relative, resolve} from 'node:path';
 
 import {z} from 'zod';
 
-import {OrchestrationRunV2Schema, type OrchestrationRunV2} from '../contracts/content-v2.ts';
+import {OrchestrationRunV2Schema, type OrchestrationRunV2} from '../contracts/index.ts';
 import {
   PortableIdSchema,
   RelativePathSchema,

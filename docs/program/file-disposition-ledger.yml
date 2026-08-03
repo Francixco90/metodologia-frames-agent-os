@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 31
+    refactored: 32
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 256
+    verified_no_change: 255
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 11638
-    current_words_for_baseline_files: 11765
+    current_words_for_baseline_files: 11829
     violations: []
     checks:
       - path: AGENTS.md
@@ -73,9 +73,9 @@ budgets:
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
-        current_words: 90
+        current_words: 111
         maximum_words: 124
-        ratio: 1.4516
+        ratio: 1.7903
         status: pass
       - path: README.md
         baseline_words: 567
@@ -271,9 +271,9 @@ budgets:
         status: pass
       - path: registries/skills/README.md
         baseline_words: 60
-        current_words: 60
+        current_words: 103
         maximum_words: 120
-        ratio: 1
+        ratio: 1.7167
         status: pass
       - path: renderers/remotion/README.md
         baseline_words: 358
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89954
-    v3_rolling_adjustment_words: 2646
+    baseline_words: 90031
+    v3_rolling_adjustment_words: 2723
     original_baseline_words: 87308
-    final_words: 117021
+    final_words: 117110
     maximum_multiplier: 1.5
-    maximum_words: 134931
-    actual_multiplier: 1.3009
+    maximum_words: 135046
+    actual_multiplier: 1.3008
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 89954
-    v3_rolling_adjustment_words: 2646
+    baseline_words: 90031
+    v3_rolling_adjustment_words: 2723
     original_baseline_words: 87308
-    final_words: 117021
-    maximum_words: 179908
-    word_multiplier: 1.3009
-    baseline_loc: 34094
-    v3_rolling_adjustment_loc: 1353
+    final_words: 117110
+    maximum_words: 180062
+    word_multiplier: 1.3008
+    baseline_loc: 34110
+    v3_rolling_adjustment_loc: 1369
     original_baseline_loc: 32741
-    final_loc: 42954
-    maximum_loc: 68188
-    loc_multiplier: 1.2599
+    final_loc: 42972
+    maximum_loc: 68220
+    loc_multiplier: 1.2598
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -613,9 +613,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: ff274ba126495f02ca97739e1f9c8aa8fb1d71f4d4900db35ea1a992e25d24fe
-      current_words: 122
-      current_loc: 38
+      current_sha256: 5914178d89dafc5a2dfccb304ba886b4e6e12769f017392d7f73e9e9a993ed60
+      current_words: 130
+      current_loc: 40
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
@@ -760,9 +760,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:CONTRIBUTING.md
       current_ref: working-tree:CONTRIBUTING.md
       current_state: present
-      current_sha256: a8827fb1cc3d5459d55ebf43eb993e7d6b63b5a3eb7c9ade41891ca370eed5b6
-      current_words: 90
-      current_loc: 17
+      current_sha256: e61831e8dde8790dab483f60d679f5ce5648eed6e5474cc0fa1e860a6b855740
+      current_words: 111
+      current_loc: 21
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:CONTRIBUTING.md
@@ -1936,9 +1936,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: fe8f8fa06e016a33eb0ca230fecbf67f64bc7da9786aa9db1d3cd102b928d917
-      current_words: 32
-      current_loc: 8
+      current_sha256: c5ae220893db4ef7457c792aed4f3af4282e785f293f32fa955ac18733385400
+      current_words: 36
+      current_loc: 9
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -5584,17 +5584,17 @@ entries:
     initial_words: 60
     initial_loc: 8
     resolved_owner: skill-foundry
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/README.md
       current_ref: working-tree:registries/skills/README.md
       current_state: present
-      current_sha256: c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030
-      current_words: 60
-      current_loc: 8
-      byte_identical: true
-      material_change: false
+      current_sha256: 5299115459d06c5e608a8834f3e46a55cb3158b42f698adc393fc06842a9cc07
+      current_words: 103
+      current_loc: 16
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**
       generator_ref: null
       successor_path: null
@@ -6577,9 +6577,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-repo.ts
       current_ref: working-tree:scripts/check-repo.ts
       current_state: present
-      current_sha256: b4ad3c48c2fbf3df4cfc515775019b3705ca813c863566e0c6ceafb05838183b
-      current_words: 204
-      current_loc: 106
+      current_sha256: c37a1a751021ea403742b61c26c4efc4e235907a6e471635ba84e63990f2414c
+      current_words: 205
+      current_loc: 107
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
