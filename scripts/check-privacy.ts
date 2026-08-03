@@ -33,12 +33,18 @@ const isAdversarialFixture = (relativePath: string): boolean =>
   relativePath.includes('/fixtures/negative/') ||
   relativePath.startsWith('tests/negative/') ||
   relativePath === 'tests/unit/core/contracts.test.ts';
+// Vendor sources are reference-only, text-only, and audited upstream at a pinned
+// commit (see docs/<vendor>/source-lock.json). Privacy responsibility lives in the
+// vendor audit reports, not the first-party scanner — mirrors the prettier,
+// tsconfig and eslint exclusions for skills/vendor/**.
+const isVendor = (relativePath: string): boolean => relativePath.startsWith('skills/vendor/');
 
 for (const relativePath of versionable) {
   if (forbiddenPathPatterns.some((pattern) => pattern.test(relativePath))) {
     errors.push(`${relativePath}: ruta prohibida versionada`);
     continue;
   }
+  if (isVendor(relativePath)) continue;
   const absolutePath = resolve(root, relativePath);
   if (!statSync(absolutePath).isFile()) continue;
   const content = readFileSync(absolutePath);
