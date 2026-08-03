@@ -35,6 +35,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-core/scripts/check-skill.mjs]
+  - skill_id: content-os-animation
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: fbb1395a6f44137c71a86eb90648c1d5505acbf825d7d692462d4d509e1b7ddb
+    package_manifest_sha256: 4ca348fd7d2a798ae5112fe249ee4631009791b64314ddcee75af8b70143c09a
+    lineage_ref: skills/content-os-animation/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-animation/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-animation/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -48,3 +59,7 @@ events:
   - {event_id: EVT-SKL-COS-H03-002, event_order: 2, skill_id: content-os-core, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COS-H03-003, event_order: 3, skill_id: content-os-core, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COS-H03-004, event_order: 4, skill_id: content-os-core, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSA-H03-001, event_order: 1, skill_id: content-os-animation, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSA-H03-002, event_order: 2, skill_id: content-os-animation, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSA-H03-003, event_order: 3, skill_id: content-os-animation, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSA-H03-004, event_order: 4, skill_id: content-os-animation, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

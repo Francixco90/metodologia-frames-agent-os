@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS — brand-reveal blueprint ground truth</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: 'Poppins', system-ui, sans-serif;
+      }
+      #cos-brand-reveal {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #cos-brand-reveal .wordmark {
+        font-size: 88px;
+        font-weight: 800;
+        letter-spacing: -2px;
+        margin: 0;
+        will-change: transform, opacity;
+      }
+      #cos-brand-reveal .tagline {
+        list-style: none;
+        margin: 24px 0 0;
+        padding: 0;
+        display: flex;
+        gap: 16px;
+      }
+      #cos-brand-reveal .tagline li {
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0.7;
+        will-change: transform, opacity;
+      }
+    </style>
+    <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-brand-reveal"
+      data-composition-id="cos-brand-reveal"
+      data-width="1280"
+      data-height="720"
+      data-duration="4"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="4" data-track-index="0">
+        <h1 id="brand-wordmark" class="wordmark">MetodologIA</h1>
+        <ul id="brand-tagline" class="tagline">
+          <li>Content</li>
+          <li>OS</li>
+          <li>dual paradigm</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-brand-reveal'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-brand-reveal'];
+      // Scene 1 (0.0-1.2s): wordmark fade-slide-rise
+      tl.fromTo(
+        '#brand-wordmark',
+        {opacity: 0, y: 40},
+        {opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'},
+        0,
+      );
+      // Scene 2 (0.6-2.0s): tagline stagger (3 items × 0.12 = 0.36s <= 0.5s)
+      tl.fromTo(
+        '#brand-tagline li',
+        {opacity: 0, y: 24},
+        {opacity: 0.7, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12},
+        0.6,
+      );
+      // Scene 3 (2.0-3.2s): settle-scale (two absolute tweens, no yoyo+repeat)
+      tl.fromTo(
+        '#brand-wordmark',
+        {scale: 1},
+        {scale: 1.04, duration: 0.6, ease: 'sine.inOut'},
+        2.0,
+      );
+      tl.fromTo(
+        '#brand-wordmark',
+        {scale: 1.04},
+        {scale: 1, duration: 0.6, ease: 'sine.inOut'},
+        2.6,
+      );
+    </script>
+  </body>
+</html>

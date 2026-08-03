@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/animation-rule-v1.schema.json",
+  "title": "AnimationRuleV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "ruleId", "runtime", "tags", "recipe"],
+  "properties": {
+    "schemaVersion": {"const": "animation-rule-v1"},
+    "ruleId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$"},
+    "runtime": {"enum": ["gsap", "css-keyframes", "waapi"]},
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"}
+    },
+    "durationSeconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 60},
+    "recipe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism", "seekSafe"],
+      "properties": {
+        "mechanism": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "seekSafe": {"type": "boolean"},
+        "fromStates": {"type": "boolean"},
+        "noRelativeTweens": {"type": "boolean"},
+        "staggerCap": {"type": "number", "minimum": 0, "maximum": 0.5}
+      }
+    },
+    "constraints": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 320}}
+  }
+}
