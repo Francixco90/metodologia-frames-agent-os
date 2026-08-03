@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 32
+    refactored: 33
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 255
+    verified_no_change: 254
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90031
-    v3_rolling_adjustment_words: 2723
+    baseline_words: 90083
+    v3_rolling_adjustment_words: 2775
     original_baseline_words: 87308
-    final_words: 117110
+    final_words: 117162
     maximum_multiplier: 1.5
-    maximum_words: 135046
-    actual_multiplier: 1.3008
+    maximum_words: 135124
+    actual_multiplier: 1.3006
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90031
-    v3_rolling_adjustment_words: 2723
+    baseline_words: 90083
+    v3_rolling_adjustment_words: 2775
     original_baseline_words: 87308
-    final_words: 117110
-    maximum_words: 180062
-    word_multiplier: 1.3008
-    baseline_loc: 34110
-    v3_rolling_adjustment_loc: 1369
+    final_words: 117162
+    maximum_words: 180166
+    word_multiplier: 1.3006
+    baseline_loc: 34116
+    v3_rolling_adjustment_loc: 1375
     original_baseline_loc: 32741
-    final_loc: 42972
-    maximum_loc: 68220
+    final_loc: 42978
+    maximum_loc: 68232
     loc_multiplier: 1.2598
     maximum_multiplier: 2
     status: pass
@@ -6535,9 +6535,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-privacy.ts
       current_ref: working-tree:scripts/check-privacy.ts
       current_state: present
-      current_sha256: c91b7f6a6237a8dae703b5ce7a4e3db9df8b08525a8ec6fbe6a7526f3ee55feb
-      current_words: 189
-      current_loc: 72
+      current_sha256: 7d2836e72d9781b7c3aad4c5b1f9016f50fd59081548fa45c7c996b4f577295e
+      current_words: 240
+      current_loc: 78
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -8440,17 +8440,17 @@ entries:
     initial_words: 53
     initial_loc: 24
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tsconfig.json
       current_ref: working-tree:tsconfig.json
       current_state: present
-      current_sha256: e90baf833b8549269e2b12f063409645e78bda9e3de6c8d57a3b9dae1a522dcd
-      current_words: 53
+      current_sha256: e6919602d9a66eeba3a5377010713550a63e922a8777982d5107cc06226c1cca
+      current_words: 54
       current_loc: 24
-      byte_identical: true
-      material_change: false
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:tsconfig.json
       generator_ref: null
       successor_path: null
