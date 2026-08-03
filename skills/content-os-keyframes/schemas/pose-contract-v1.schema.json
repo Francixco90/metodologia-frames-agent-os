@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.dev/schemas/content-os/pose-contract-v1.json",
+  "title": "Content OS Pose Contract v1",
+  "description": "Seek-safe keyframe pose contract for an HTML+GSAP Content OS composition. Subject identity, explicit poses, final state, seekable runtime, verified pixels.",
+  "type": "object",
+  "required": ["schemaVersion", "compositionId", "subjects"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"type": "string", "const": "content-os-pose-contract-v1"},
+    "compositionId": {"type": "string", "minLength": 1},
+    "runtime": {"type": "string", "enum": ["gsap", "css-keyframes", "waapi"]},
+    "subjects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["subjectId", "selector", "poses", "finalState"],
+        "additionalProperties": false,
+        "properties": {
+          "subjectId": {"type": "string", "minLength": 1},
+          "selector": {"type": "string", "minLength": 1},
+          "crossfade": {"type": "string", "enum": ["replacement", "dissolve", "none"]},
+          "poses": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["name", "at", "channels"],
+              "additionalProperties": false,
+              "properties": {
+                "name": {"type": "string", "minLength": 1},
+                "at": {"type": "number", "minimum": 0},
+                "hold": {"type": "boolean"},
+                "channels": {
+                  "type": "object",
+                  "description": "Compositor/visual channels: x/y/z, scale, rotation, opacity, autoAlpha, clipPath, svgDash.",
+                  "additionalProperties": {"type": ["number", "string"]}
+                }
+              }
+            }
+          },
+          "finalState": {
+            "type": "object",
+            "required": ["name", "at"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "at": {"type": "number", "minimum": 0},
+              "hold": {"type": "boolean"},
+              "resetToRest": {"type": "boolean"},
+              "endOnBlack": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "snapshots": {
+      "type": "array",
+      "description": "Proof times to snapshot via content-os-core render adapter.",
+      "items": {
+        "type": "object",
+        "required": ["label", "at"],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "enum": ["first", "proof", "final-minus-hold", "exact-final"]
+          },
+          "at": {"type": "number", "minimum": 0}
+        }
+      }
+    }
+  }
+}

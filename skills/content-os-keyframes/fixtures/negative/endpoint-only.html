@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  NEGATIVE FIXTURE — do NOT render. Documents pose-contract violations the linter
+  rejects: endpoint-only (only start/final, no middle pose), unregistered timeline,
+  fake-3d (scale without perspective/z), CSS animation infinite, Math.random in pose
+  time, getBoundingClientRect at pose time, relative += tween, CSS transition on animated
+  element. Not in the checker runtimeCombined set.
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS keyframes — negative fixture (endpoint-only violations)</title>
+    <style>
+      #cos-pose-neg .pulse {
+        animation: pulse 1s infinite;
+        transition: transform 0.3s ease;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="cos-pose-neg"
+      data-composition-id="cos-pose-neg"
+      data-keyframe-subject=".pulse"
+      data-final-state="rest"
+      data-end-on-black="true"
+      data-reset-to-rest="true"
+      data-width="1280"
+      data-height="720"
+      data-duration="3"
+      data-start="0"
+    >
+      <!-- endpoint-only: only start + final, no middle pose -->
+      <div class="pulse" data-pose="start" data-at="0" data-final-state="rest">violation</div>
+    </div>
+    <script>
+      const box = document.querySelector('.pulse');
+      const rect = box.getBoundingClientRect();
+      const jitter = Math.random() * rect.width;
+      // fake-3d: scale without perspective/z; unregistered timeline (not in window.__timelines)
+      const tl = gsap.timeline({paused: true});
+      tl.to('.pulse', {scale: 1.4, x: '+=40', duration: 0.5});
+    </script>
+  </body>
+</html>

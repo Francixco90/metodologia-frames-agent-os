@@ -1,0 +1,37 @@
+schema_version: 1
+receipt_id: RCP-H03-CONTENT-OS-KEYFRAMES-001
+scope: local-evaluation
+lockfile_ref: pnpm-lock.yaml
+pnpm_lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+central_license_receipts:
+  - receipts/dependency-audits/H03-LIC-GSAP-001.yml
+packages:
+  - {name: gsap, version: 3.15.0, license_state: allowed_scoped}
+out_of_scope_runtimes:
+  - {name: three.js, reason: 'requires external assets + GPU runtime; offline-first violation'}
+  - {
+      name: lottie,
+      reason: 'requires After Effects JSON assets + dotLottie player; external asset dependency',
+    }
+  - {name: anime.js, reason: 'not pinned; use GSAP default instead'}
+  - {name: typegpu/webgpu, reason: 'GPU compute runtime; non-deterministic offline render path'}
+out_of_scope_plugins:
+  - {name: MotionPathPlugin, reason: 'GSAP paywall plugin; use sampled x/y/z offline fallback'}
+  - {name: MorphSVGPlugin, reason: 'GSAP paywall plugin; use path tween offline fallback'}
+  - {
+      name: DrawSVGPlugin,
+      reason: 'GSAP paywall plugin; use stroke-dasharray/dashoffset offline fallback',
+    }
+  - {name: SplitText, reason: 'GSAP paywall plugin; use authored spans offline fallback'}
+  - {name: Flip, reason: 'GSAP paywall plugin; use manual FLIP offline fallback'}
+runtime_rules:
+  explicit_frame: true
+  network_allowed: false
+  autonomous_clock_allowed: false
+  fallback_must_be_observable: true
+  seek_safe_bidirectional: true
+  no_relative_tweens: true
+  finite_repeats_only: true
+  pose_contract_required: true
+production_runtime_status: local_capability_only
+publication_authority: false

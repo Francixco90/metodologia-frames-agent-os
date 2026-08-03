@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS keyframes — pose ladder ground truth (seek-safe)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: system-ui, sans-serif;
+      }
+      #cos-pose-ladder {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #mover {
+        position: absolute;
+        left: 540px;
+        top: 320px;
+        width: 200px;
+        height: 80px;
+        background: #6d8bff;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 700;
+        will-change: transform, opacity;
+      }
+    </style>
+    <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-pose-ladder"
+      data-composition-id="cos-pose-ladder"
+      data-keyframe-subject="#mover"
+      data-final-state="settled"
+      data-width="1280"
+      data-height="720"
+      data-duration="4"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="4" data-track-index="0">
+        <div
+          id="mover"
+          data-pose="start"
+          data-at="0"
+          data-pose="peak"
+          data-at="1.2"
+          data-pose="settle"
+          data-at="2.4"
+          data-final-state="settled"
+        >
+          mover
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-pose-ladder'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-pose-ladder'];
+      // 3 explicit poses + final hold: fromTo absolute from-states, finite repeats only
+      tl.fromTo(
+        '#mover',
+        {opacity: 0, x: -200},
+        {opacity: 1, x: 0, duration: 1.2, ease: 'power2.out'},
+        0,
+      );
+      tl.fromTo('#mover', {scale: 1}, {scale: 1.15, duration: 0.6, ease: 'sine.inOut'}, 1.2);
+      tl.fromTo('#mover', {scale: 1.15}, {scale: 1, duration: 0.6, ease: 'sine.inOut'}, 1.8);
+      tl.set('#mover', {autoAlpha: 1}, 2.4);
+    </script>
+  </body>
+</html>

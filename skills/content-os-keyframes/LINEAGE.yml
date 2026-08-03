@@ -1,0 +1,26 @@
+schema_version: 1
+skill_id: content-os-keyframes
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/hyperframes-keyframes/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/content-os-keyframes/scripts/check-skill.mjs
+  - skills/content-os-keyframes/scripts/pose-lint.mjs
+dependency_receipt_ref: skills/content-os-keyframes/receipts/runtime-boundary.yml
+compatibility_contract: html-keyframes-v1
+request_contract_ref: skills/content-os-keyframes/schemas/pose-contract-v1.schema.json
+supported_request_types:
+  - pose_contract_define
+  - pose_lint_run
+  - proof_snapshot
+external_fragments_reused: false
+production_runtime_status: local_capability_only
+publication_authority: false
