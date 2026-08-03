@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            89949 |            117016 |     134923 (1.5×) | 1.3009× | `pass` |
-| Total authored (palabras)     |            89949 |            117016 |       179898 (2×) | 1.3009× | `pass` |
-| Total authored (LOC)          |            34089 |             42949 |        68178 (2×) | 1.2599× | `pass` |
+| Corpus authored elegible      |            89950 |            117017 |     134925 (1.5×) | 1.3009× | `pass` |
+| Total authored (palabras)     |            89950 |            117017 |       179900 (2×) | 1.3009× | `pass` |
+| Total authored (LOC)          |            34090 |             42950 |        68180 (2×) | 1.2599× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -344,7 +344,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-ownership.ts`                                                                                  | `repo`             | `verified_no_change` | 236                | 236               | 62          | 62         | `14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435` | `byte-identical` |
 | `scripts/check-privacy.ts`                                                                                    | `repo`             | `refactored`         | 188                | 189               | 72          | 72         | `f3239e066d1f3b997671da2b1140702ceb0ea4360abeb73f3fc787d432e62e1e` | `changed`        |
 | `scripts/check-projects.ts`                                                                                   | `repo`             | `verified_no_change` | 596                | 596               | 219         | 219        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `byte-identical` |
-| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 204               | 84          | 106        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
+| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 205               | 84          | 107        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 394               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |
 | `scripts/hooks/pre-commit-pii-guard.sh`                                                                       | `repo`             | `verified_no_change` | 103                | 103               | 21          | 21         | `5bbb2fbf2694db30d0a2550f54f83896b28b0776cf750b1fb5f9a1e1a93fda8e` | `byte-identical` |
