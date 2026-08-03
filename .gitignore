@@ -14,4 +14,9 @@ projects/**/remotion/renders/*.mov
 projects/**/remotion/renders/*.webm
 receipts/**/raw-logs/
 CLAUDE.md
+CONTEXT.md
+PROJECT.md
+TASK.md
+local/
+discovery/
 tmp/
