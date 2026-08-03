@@ -1,0 +1,35 @@
+schema_version: 1
+receipt_id: RCP-H03-CONTENT-OS-CORE-001
+scope: local-evaluation
+lockfile_ref: pnpm-lock.yaml
+pnpm_lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+central_license_receipts:
+  - receipts/dependency-audits/H03-LIC-GSAP-001.yml
+packages:
+  - {
+      name: playwright,
+      version: 1.61.1,
+      license_state: local_evaluation_only,
+      note: 'Apache-2.0; headless screenshot runtime, no production publish',
+    }
+  - {name: gsap, version: 3.15.0, license_state: allowed_scoped}
+system_tools:
+  - {
+      name: ffmpeg,
+      version: 8.1.1,
+      license_state: system_binary_offline,
+      note: 'LGPL/GPL system binary; invoked via child_process spawn on PATH, no npm dep',
+    }
+runtime_rules:
+  explicit_frame: true
+  network_allowed: false
+  autonomous_clock_allowed: false
+  fallback_must_be_observable: true
+  deterministic_double_capture: true
+render_adapter:
+  path: skills/content-os-core/scripts/render-html.ts
+  engine: playwright-chromium
+  pipe: ffmpeg-image2pipe-libx264
+  production_runtime_status: local_capability_only
+production_runtime_status: local_capability_only
+publication_authority: false

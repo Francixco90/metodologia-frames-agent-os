@@ -1,0 +1,45 @@
+<!doctype html>
+<!--
+  NEGATIVE FIXTURE — do NOT render. Documents contract violations the adapter
+  and checker reject: remote network media, Math.random, Date.now, setTimeout,
+  autonomous CSS animation. Used by future integration tests to assert the
+  checker flags each violation. Not in the checker runtimeCombined set.
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS — negative fixture (violations)</title>
+    <style>
+      #cos-fixture-neg .pulse {
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="cos-fixture-neg"
+      data-composition-id="cos-fixture-neg"
+      data-width="1280"
+      data-height="720"
+      data-duration="5"
+      data-start="0"
+    >
+      <img src="https://example.invalid/remote.png" alt="remote" />
+      <div class="pulse">violation</div>
+    </div>
+    <script>
+      const noise = Math.random();
+      const now = Date.now();
+      setTimeout(() => window.__timelines, 100);
+      fetch('https://example.invalid/track');
+    </script>
+  </body>
+</html>

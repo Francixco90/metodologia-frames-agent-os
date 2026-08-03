@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS — positive fixture (5s)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: system-ui, sans-serif;
+      }
+      #cos-fixture-pos {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #cos-fixture-pos h1 {
+        font-size: 80px;
+        font-weight: 800;
+        margin: 0;
+      }
+    </style>
+    <script src="../../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-fixture-pos"
+      data-composition-id="cos-fixture-pos"
+      data-width="1280"
+      data-height="720"
+      data-duration="5"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="5" data-track-index="0">
+        <h1 id="cos-fixture-pos-title">Render local</h1>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-fixture-pos'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-fixture-pos'];
+      tl.fromTo('#cos-fixture-pos-title', {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: 1});
+    </script>
+  </body>
+</html>

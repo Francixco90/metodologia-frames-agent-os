@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS — minimal composition (faceless 10s)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: 'Poppins', system-ui, sans-serif;
+      }
+      #cos-minimal {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+      }
+      #cos-minimal .layer {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #cos-minimal h1 {
+        font-size: 96px;
+        font-weight: 800;
+        letter-spacing: -2px;
+        margin: 0;
+        text-align: center;
+      }
+      #cos-minimal .wordmark {
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+    </style>
+    <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-minimal"
+      data-composition-id="cos-minimal"
+      data-width="1280"
+      data-height="720"
+      data-duration="10"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="10" data-track-index="0">
+        <div class="layer">
+          <div>
+            <h1 id="cos-minimal-title">Content OS</h1>
+            <p class="wordmark" id="cos-minimal-mark">MetodologIA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-minimal'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-minimal'];
+      tl.fromTo('#cos-minimal-title', {opacity: 0, y: 40}, {opacity: 1, y: 0, duration: 1});
+      tl.fromTo('#cos-minimal-mark', {opacity: 0}, {opacity: 0.7, duration: 1}, 0.5);
+      tl.to('#cos-minimal-title', {scale: 1.04, duration: 1, yoyo: true, repeat: 1}, 2);
+    </script>
+  </body>
+</html>
