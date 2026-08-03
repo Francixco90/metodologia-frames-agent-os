@@ -5590,7 +5590,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/README.md
       current_ref: working-tree:registries/skills/README.md
       current_state: present
-      current_sha256: 94c72c3606c0285cecdb0c0d14bd4cdc14c1aaeb574f3804cf6d7fa53148ce16
+      current_sha256: 6506a5f38a0c5b19f61714f4293b4ba339cf825624c476d5fb5bd2d3a5bafc29
       current_words: 103
       current_loc: 16
       byte_identical: false
