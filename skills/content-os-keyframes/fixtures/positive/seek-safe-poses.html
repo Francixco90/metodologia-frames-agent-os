@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Content OS keyframes — positive fixture (seek-safe poses)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b1020;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: system-ui, sans-serif;
+      }
+      #cos-pose-pos {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        background: #0b1020;
+        color: #e8eefc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #card {
+        position: absolute;
+        left: 540px;
+        top: 300px;
+        width: 200px;
+        height: 120px;
+        background: #6d8bff;
+        border-radius: 16px;
+        will-change: transform, opacity;
+      }
+    </style>
+    <script src="../../../node_modules/gsap/dist/gsap.js"></script>
+  </head>
+  <body>
+    <div
+      id="cos-pose-pos"
+      data-composition-id="cos-pose-pos"
+      data-keyframe-subject="#card"
+      data-final-state="locked"
+      data-width="1280"
+      data-height="720"
+      data-duration="3"
+      data-start="0"
+    >
+      <div class="clip" data-start="0" data-duration="3" data-track-index="0">
+        <div
+          id="card"
+          data-pose="enter"
+          data-at="0"
+          data-pose="lift"
+          data-at="1"
+          data-pose="drop"
+          data-at="2"
+          data-final-state="locked"
+        >
+          card
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines['cos-pose-pos'] = gsap.timeline({paused: true});
+      const tl = window.__timelines['cos-pose-pos'];
+      // 3 explicit poses + final lock: fromTo absolute from-states, finite repeats only, no Math.random
+      tl.fromTo(
+        '#card',
+        {opacity: 0, y: 120},
+        {opacity: 1, y: 0, duration: 1, ease: 'power2.out'},
+        0,
+      );
+      tl.fromTo('#card', {scale: 1}, {scale: 1.1, duration: 0.5, ease: 'sine.inOut'}, 1);
+      tl.fromTo('#card', {scale: 1.1}, {scale: 1, duration: 0.5, ease: 'sine.inOut'}, 1.5);
+      tl.set('#card', {autoAlpha: 1}, 2);
+    </script>
+  </body>
+</html>
