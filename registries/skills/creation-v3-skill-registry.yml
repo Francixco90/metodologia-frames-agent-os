@@ -14,11 +14,11 @@ entries:
     publication_authority: false
     tests: [node --import tsx skills/data-visual-composition/scripts/check.ts]
   - skill_id: motion-library-adapters
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation-only
-    content_sha256: 7b13b6dd52eda0f91a55fbd9179e315311698a41e4ff75c2bdaf10460d9df7c4
-    package_manifest_sha256: 25a509b2b213a277cbac1a340f3394cce286ce8ec791b7b3233fed00caa3ac1b
+    content_sha256: 76908f32d8ef935da73bed3f08d217d5b542785f14362f2e855dedb030754db5
+    package_manifest_sha256: 242c7fb786983ae5fa6b68840c08ca4b8589986f6415b55a7aec0f104ee3310e
     lineage_ref: skills/motion-library-adapters/LINEAGE.yml
     dependency_receipt_ref: skills/motion-library-adapters/receipts/runtime-boundary.yml
     production_runtime_status: blocked_remotion_license_coverage_gap
@@ -198,6 +198,7 @@ events:
   - {event_id: EVT-SKL-MLA-H03-002, event_order: 2, skill_id: motion-library-adapters, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MLA-H03-003, event_order: 3, skill_id: motion-library-adapters, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MLA-H03-004, event_order: 4, skill_id: motion-library-adapters, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MLA-H03-005, event_order: 5, skill_id: motion-library-adapters, from: active, to: active, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COS-H03-001, event_order: 1, skill_id: content-os-core, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COS-H03-002, event_order: 2, skill_id: content-os-core, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COS-H03-003, event_order: 3, skill_id: content-os-core, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

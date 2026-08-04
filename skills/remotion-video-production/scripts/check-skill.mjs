@@ -40,7 +40,7 @@ if (!frontmatterMatch) {
   ) {
     errors.push('SKILL.md: description debe usar third-person y triggers explícitos');
   }
-  if (frontmatter.version !== '0.1.0') errors.push('SKILL.md: versión inesperada');
+  if (frontmatter.version !== '0.2.0') errors.push('SKILL.md: versión inesperada');
 }
 
 const lineCount = skillText.split('\n').length;
@@ -52,6 +52,7 @@ const modules = [
   'motion-art-direction',
   'compositions-and-metadata',
   'deterministic-animation',
+  'keyframe-pose-contract',
   'timing-and-transitions',
   'assets-and-rights',
   'audio-and-captions',
@@ -302,7 +303,7 @@ for (const [index, event] of registryEvents.entries()) {
   if (
     event.event_order !== index + 1 ||
     event.transition?.from !== previousState ||
-    event.content_sha256 !== contentSha256
+    (index === registryEvents.length - 1 && event.content_sha256 !== contentSha256)
   ) {
     errors.push(`skill registry: invalid canonical event ${event.event_id ?? index + 1}`);
   }

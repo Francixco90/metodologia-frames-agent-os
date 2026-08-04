@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 33
+    refactored: 34
     generator_fixed: 1
     superseded: 0
-    verified_no_change: 254
+    verified_no_change: 253
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 11638
-    current_words_for_baseline_files: 11829
+    current_words_for_baseline_files: 11847
     violations: []
     checks:
       - path: AGENTS.md
@@ -289,9 +289,9 @@ budgets:
         status: pass
       - path: skills/remotion-video-production/SKILL.md
         baseline_words: 1330
-        current_words: 1330
+        current_words: 1348
         maximum_words: 2660
-        ratio: 1
+        ratio: 1.0135
         status: pass
       - path: skills/remotion-video-production/examples/minimal-deterministic/README.md
         baseline_words: 89
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90083
-    v3_rolling_adjustment_words: 2775
+    baseline_words: 90131
+    v3_rolling_adjustment_words: 2823
     original_baseline_words: 87308
-    final_words: 117162
+    final_words: 117210
     maximum_multiplier: 1.5
-    maximum_words: 135124
-    actual_multiplier: 1.3006
+    maximum_words: 135196
+    actual_multiplier: 1.3004
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90083
-    v3_rolling_adjustment_words: 2775
+    baseline_words: 90131
+    v3_rolling_adjustment_words: 2823
     original_baseline_words: 87308
-    final_words: 117162
-    maximum_words: 180166
-    word_multiplier: 1.3006
-    baseline_loc: 34116
-    v3_rolling_adjustment_loc: 1375
+    final_words: 117210
+    maximum_words: 180262
+    word_multiplier: 1.3004
+    baseline_loc: 34131
+    v3_rolling_adjustment_loc: 1390
     original_baseline_loc: 32741
-    final_loc: 42978
-    maximum_loc: 68232
-    loc_multiplier: 1.2598
+    final_loc: 42993
+    maximum_loc: 68262
+    loc_multiplier: 1.2596
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -5632,9 +5632,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: b66e36a1d4004d9ce4d61111a10d743f626f832ff37d2b52acf674d566dc20f8
-      current_words: 1104
-      current_loc: 528
+      current_sha256: d1ba51f9e81758ee9e2785f4c5917c8d9920bac518ee91eb2a89d65f5e0d9a49
+      current_words: 1128
+      current_loc: 540
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**
@@ -6703,7 +6703,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/LINEAGE.yaml
       current_ref: working-tree:skills/remotion-video-production/LINEAGE.yaml
       current_state: present
-      current_sha256: 43e0f8549caae6955237f4f589725cbeb84e43e417c189b016a243cac8c77067
+      current_sha256: ceb32da3eba47413762fd13cca40f5fe5b34f141cce72616ad8178bd6503b7a0
       current_words: 163
       current_loc: 84
       byte_identical: false
@@ -6718,17 +6718,17 @@ entries:
     initial_words: 1330
     initial_loc: 211
     resolved_owner: skill-foundry
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/SKILL.md
       current_ref: working-tree:skills/remotion-video-production/SKILL.md
       current_state: present
-      current_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
-      current_words: 1330
-      current_loc: 211
-      byte_identical: true
-      material_change: false
+      current_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
+      current_words: 1348
+      current_loc: 212
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:skills/**
       generator_ref: null
       successor_path: null
@@ -7543,9 +7543,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/scripts/check-skill.mjs
       current_ref: working-tree:skills/remotion-video-production/scripts/check-skill.mjs
       current_state: present
-      current_sha256: 324b7f0dc7991fdb30ed8e45291c2ecb2b9456d1fea53f5c92bcfdca0c894cb9
-      current_words: 956
-      current_loc: 325
+      current_sha256: 33b208b1d9de1e652b579f760227c7682ffc3f1594f580fd46336d0e6e832161
+      current_words: 963
+      current_loc: 326
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:skills/**
@@ -7774,9 +7774,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/contract/skill-foundry.contract.test.ts
       current_ref: working-tree:tests/contract/skill-foundry.contract.test.ts
       current_state: present
-      current_sha256: 42d00e5aa3809b7800095902494769318471497337c9983dd1dec1305ac0e75c
-      current_words: 1328
-      current_loc: 647
+      current_sha256: 7f3c592f9e612d10493204041f8bebcf622ce1aae9d4f8ac988522d499239e64
+      current_words: 1327
+      current_loc: 648
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:qa:tests/contract/**

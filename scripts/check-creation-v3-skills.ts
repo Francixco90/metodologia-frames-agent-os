@@ -52,7 +52,14 @@ if (!registry.mutation_policy?.includes('append-only')) {
   errors.push('SKL-H03-001 registry is not append-only');
 }
 
-const skills = [
+type SkillEntry = {
+  id: string;
+  scope: string;
+  version?: string;
+  check: readonly string[];
+};
+
+const skills: SkillEntry[] = [
   {
     id: 'data-visual-composition',
     scope: 'local-evaluation',
@@ -61,6 +68,7 @@ const skills = [
   {
     id: 'motion-library-adapters',
     scope: 'local-evaluation-only',
+    version: '0.2.0',
     check: ['skills/motion-library-adapters/scripts/check-skill.mjs'],
   },
   {
@@ -138,7 +146,7 @@ const skills = [
     scope: 'local-evaluation',
     check: ['skills/content-os-remotion-bridge/scripts/check-skill.mjs'],
   },
-] as const;
+];
 
 for (const skill of skills) {
   const directory = resolve(root, 'skills', skill.id);
@@ -155,7 +163,7 @@ for (const skill of skills) {
   if (
     !markdown.startsWith(`---\nname: ${skill.id}\n`) ||
     !markdown.includes('description: This skill should be used when') ||
-    !markdown.includes('version: 0.1.0') ||
+    !markdown.includes(`version: ${skill.version ?? '0.1.0'}`) ||
     !markdown.includes('lifecycle_state: active') ||
     /\/Users\/|\/home\/|[A-Za-z]:\\Users\\/u.test(markdown)
   ) {
@@ -163,7 +171,7 @@ for (const skill of skills) {
   }
   if (
     lineage.skill_id !== skill.id ||
-    lineage.version !== '0.1.0' ||
+    lineage.version !== (skill.version ?? '0.1.0') ||
     lineage.lifecycle_state !== 'active' ||
     lineage.execution_scope !== skill.scope ||
     lineage.external_fragments_reused !== false ||
@@ -178,7 +186,7 @@ for (const skill of skills) {
   }
   const entry = registry.entries?.find(({skill_id: id}) => id === skill.id);
   if (
-    entry?.version !== '0.1.0' ||
+    entry?.version !== (skill.version ?? '0.1.0') ||
     entry.current_state !== 'active' ||
     entry.execution_scope !== skill.scope ||
     entry.content_sha256 !== sha256(markdown) ||
@@ -191,14 +199,17 @@ for (const skill of skills) {
   const events = (registry.events ?? [])
     .filter(({skill_id: id}) => id === skill.id)
     .sort((left, right) => (left.event_order ?? 0) - (right.event_order ?? 0));
-  const transitions = [
+  const transitions: Array<[string | null, string]> = [
     [null, 'candidate'],
     ['candidate', 'quarantined'],
     ['quarantined', 'evaluated'],
     ['evaluated', 'active'],
   ];
+  if (skill.version) {
+    transitions.push(['active', 'active']);
+  }
   if (
-    events.length !== 4 ||
+    events.length !== transitions.length ||
     events.some(
       (event, index) =>
         event.event_order !== index + 1 ||
