@@ -80,13 +80,53 @@ Legend: ✅ pass · ⚠ noted risk (does not block vendor) · — n/a.
 | faceless-explainer      | 24    | ✅      | ✅                | ✅         | ✅           | ⚠ TTS narration depends on media-use adapter (Fase 2e)                                       |
 | general-video           | 4     | ✅      | —                 | ✅         | ✅           | ⚠ thin reference; delegates to other workflows                                               |
 
+## Batch 2 audit — Fase 1A (2026-08-04)
+
+> Source: `heygen-com/hyperframes` @ `77f95e46e038ee93e03b3f7a0099b25a4feb73f8`
+> (v0.7.90) · License: Apache-2.0 · 10 additional skills, 117 text files, 0 binaries.
+
+### Scope correction
+
+skills.sh aggregates HeyGen-adjacent skills from multiple repos (~49 listed). The
+pinned `heygen-com/hyperframes` repo at HEAD has 25 unique skills (19 marketplace
+`skills/` + 6 repo-native `.agents/skills/`). 15 were vendored in Fase 0 → **10 NEW**
+vendored here. The remaining ~24 listed on skills.sh live in other repos (animation
+adapters overlapping `motion-library-adapters` per plan risk #3), are retired
+(`hyperframes-media`), or have unclear source provenance — documented as follow-up,
+not blocking Fase 1A.
+
+### Batch 2 per-skill checklist
+
+Legend: ✅ pass · ⚠ noted risk (does not block vendor) · — n/a.
+
+| skill              | source path                        | files | license | binaries excluded | no secrets | no auto-exec | risk                                                                           |
+| ------------------ | ---------------------------------- | ----- | ------- | ----------------- | ---------- | ------------ | ------------------------------------------------------------------------------ |
+| figma              | `skills/figma/`                    | 2     | ✅      | —                 | ✅         | ✅           | ⚠ Figma design reference; verify-motion.mjs inert                              |
+| hyperframes-cli    | `skills/hyperframes-cli/`          | 11    | ✅      | —                 | ✅         | ✅           | ⚠ deploy references (cloud/cloudrun/lambda) inert; no CLI executed             |
+| music-to-video     | `skills/music-to-video/`           | 65    | ✅      | ✅                | ✅         | ✅           | ⚠ bundled gsap.min.js text ref; PNG masks + woff2 excluded (binary)            |
+| talking-head-recut | `skills/talking-head-recut/`       | 22    | ✅      | ✅                | ✅         | ✅           | ⚠ gsap.min.js text ref; woff2 + MP4 excluded (binary); media-contract test ref |
+| captions-overlay   | `.agents/skills/captions-overlay/` | 1     | ✅      | —                 | ✅         | ✅           | ⚠ thin reference (overlay caption model)                                       |
+| changelog-video    | `.agents/skills/changelog-video/`  | 8     | ✅      | —                 | ✅         | ✅           | ⚠ align-captions.mjs inert; script-tokens/lexicon JSON refs                    |
+| cut-the-curve      | `.agents/skills/cut-the-curve/`    | 2     | ✅      | —                 | ✅         | ✅           | ⚠ thin reference (curve-cut transition + GSAP example)                         |
+| motion-doctrine    | `.agents/skills/motion-doctrine/`  | 4     | ✅      | —                 | ✅         | ✅           | ⚠ seam-gate/seam-stamp scripts inert; doctrine reference                       |
+| oversized-cursor   | `.agents/skills/oversized-cursor/` | 1     | ✅      | —                 | ✅         | ✅           | ⚠ thin reference (oversized cursor attention)                                  |
+| seam-craft         | `.agents/skills/seam-craft/`       | 1     | ✅      | —                 | ✅         | ✅           | ⚠ thin reference (seam crafting)                                               |
+
+### Batch 2 integrity
+
+- `source-lock.json` `batch_2` block: `source_commit`, `added: 10`, `added_date`.
+- Per-file sha256 recorded under each new vendor's `critical_file_hashes`.
+- All 117 files content-type verified as text (`file` scan: ASCII / UTF-8 / HTML / JSON; 0 binaries).
+- `execution_status: reference-only-no-auto-execution` for all 10 new vendors.
+- Bundled `gsap.min.js` (music-to-video, talking-head-recut) vendored as text reference only; Content OS uses toolchain `gsap 3.15.0` — no runtime dep on the vendor copy.
+
 ## Verdict
 
-**APPROVED for vendor.** All 15 skills pass the text-only, no-secret,
-no-auto-execution, Apache-2.0-attribution checks. Noted risks are documented in
-`source-lock.json` per-vendor `known_risks` and are addressed by the Fase 2-4
-adaptation contract (locally-authored, fail-closed, hash-bound, offline-first with
-opt-in remote behind auth gating).
+**APPROVED for vendor.** All 25 skills (15 Fase 0 + 10 Fase 1A) pass the text-only,
+no-secret, no-auto-execution, Apache-2.0-attribution checks. Noted risks are
+documented in `source-lock.json` per-vendor `known_risks` and are addressed by the
+Fase 2-4 adaptation contract (locally-authored, fail-closed, hash-bound, offline-first
+with opt-in remote behind auth gating).
 
 ## Update procedure
 
