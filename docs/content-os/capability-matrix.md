@@ -1,4 +1,4 @@
-# Content OS — capability matrix
+# Frames ContentOS — capability matrix
 
 > Formaliza el mapeo entre las skills HyperFrames vendored (Fase 0 + Fase 1A) y
 > las skills nativas `content-os-*`. Insumo load-bearing para el roadmap. El
@@ -31,10 +31,10 @@ Los 4 publishers son **reference-only**: no se ejecutan, no se registran, bypass
 
 ## Matriz Fase 0 — 15 HyperFrames → skills nativas (referencia histórica)
 
-Mapeo original Fase 0. El programa Content OS se expandió beyond esta matriz
+Mapeo original Fase 0. El programa Frames ContentOS se expandió beyond esta matriz
 (ver §“Homólogos H-03” abajo para el estado actual completo). [DOC]
 
-| HyperFrames vendored                             | Equivalente local actual                                               | Tipo    | Skill Content OS                  | Fase |
+| HyperFrames vendored                             | Equivalente local actual                                               | Tipo    | Skill Frames ContentOS            | Fase |
 | ------------------------------------------------ | ---------------------------------------------------------------------- | ------- | --------------------------------- | ---- |
 | `hyperframes` (router/intro)                     | `CLAUDE.md` router Capa A (cabina, no source→video)                    | gap     | `content-os-router`               | 2g   |
 | `hyperframes-core` (composición HTML + `data-*`) | `remotion-video-production` (React, no HTML)                           | gap     | `content-os-core`                 | 2a   |
@@ -109,6 +109,6 @@ animation-adapter overlap merge, meta/dev doc-index) — ver `roadmap.md`. [DOC]
 
 ## Cobertura local
 
-13 skills locales originales (pre-Content OS) + 26 homólogos H-03 = 39 skills
+13 skills locales originales (pre-Frames ContentOS) + 26 homólogos H-03 = 39 skills
 nativas registradas. Vendors (`skills/vendor/**`) permanecen reference-only, no
 registradas. [CONFIG]

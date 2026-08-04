@@ -1,9 +1,9 @@
-# Content OS — architecture
+# Frames ContentOS — architecture
 
-> Define Content OS: el OS agéntico creativo evoluciona a **dual paradigm**
+> Define Frames ContentOS: el OS agéntico creativo evoluciona a **dual paradigm**
 > (Remotion + HTML+GSAP) con media **offline-default + remote-opt-in**. Esta
 > arquitectura gobierna las skills `content-os-*` de Fases 2-4. Fase 1 del
-> programa Content OS.
+> programa Frames ContentOS.
 >
 > **Alcance multi-vendor (2026-08-04)**: el programa se expandió beyond Fase 0.
 > 4 publishers vendored reference-only (48 HyperFrames, 11 Remotion, 3 Bento,
@@ -143,7 +143,7 @@ Cada `content-os-*` sigue el contrato load-bearing (Fase 0 plan):
 8. Si muta `package.json`: regen `RCP-DEP-PRODUCTION`. Option D evita esto
    (Playwright ya pinneado, sin runtime deps nuevas en Fase 2).
 
-## 7. Lo que Content OS NO es
+## 7. Lo que Frames ContentOS NO es
 
 - No reemplaza Remotion. Coexisten.
 - No ejecuta vendors. `skills/vendor/**` es reference-only (4 publishers: 48

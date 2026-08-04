@@ -1,4 +1,4 @@
-# Content OS — roadmap
+# Frames ContentOS — roadmap
 
 > Secuencia de PRs para Fases 2-4 + programa multi-vendor. Cada skill = un PR (o
 > batch 2-3 cuando acoplamiento bajo). Aprobación por fase. Dependencies resueltas
@@ -44,13 +44,13 @@ campo (más uso real MetodologIA). [DOC]
 
 ## Fase 4 — bridge + hardening (multi-PR)
 
-| orden | PR                                                                               | scope                                                                   |
-| ----- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| 4a    | `feat(content-os): remotion-bridge — bidirectional Remotion↔HTML (SSIM-graded)`  | `content-os-remotion-bridge` skill                                      |
-| 4b    | `feat(content-os): harden remotion-video-production — keyframe pose contract`    | extiende skill existente                                                |
-| 4c    | `feat(content-os): harden motion-library-adapters — media-use adapter pattern`   | extiende skill existente                                                |
-| 4d    | `feat(content-os): CI expansion — verify:content-os validator + workflow`        | `.github/workflows/validate.yml` + `scripts/check-content-os-skills.ts` |
-| 4e    | `feat(content-os): union index — registries/skills/README.md + Content OS entry` | doc                                                                     |
+| orden | PR                                                                                     | scope                                                                   |
+| ----- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| 4a    | `feat(content-os): remotion-bridge — bidirectional Remotion↔HTML (SSIM-graded)`        | `content-os-remotion-bridge` skill                                      |
+| 4b    | `feat(content-os): harden remotion-video-production — keyframe pose contract`          | extiende skill existente                                                |
+| 4c    | `feat(content-os): harden motion-library-adapters — media-use adapter pattern`         | extiende skill existente                                                |
+| 4d    | `feat(content-os): CI expansion — verify:content-os validator + workflow`              | `.github/workflows/validate.yml` + `scripts/check-content-os-skills.ts` |
+| 4e    | `feat(content-os): union index — registries/skills/README.md + Frames ContentOS entry` | doc                                                                     |
 
 **Estado**: `content-os-remotion-bridge` (4a) existe (activo). Hardening (4b-4c) y
 CI expansion (4d-4e) pendientes. [DOC]
@@ -93,7 +93,7 @@ homólogos (active). Batches 4+ pendientes: `oversized-cursor`, `hyperframes-tts
 - **3a + 3b son los validadores de campo**: si alguno fracasa, pausa Fase 3 y
   re-alinea arquitectura antes de continuar.
 
-## Fuera de scope (programa Content OS)
+## Fuera de scope (programa Frames ContentOS)
 
 - Runtime npm dep (`@hyperframes/engine`) — rechazado (Option B, Puppeteer
   conflict); ver `architecture.md` §2.

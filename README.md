@@ -86,9 +86,11 @@ El expediente
 Los cuatro textos canónicos, la elegibilidad comercial de la licencia Remotion, el playback humano,
 la aprobación H01 y cualquier distribución externa permanecen como `coverage_gap`.
 
-## Content OS
+## Frames ContentOS
 
-El programa Content OS extiende el dual paradigm (Remotion + HTML+GSAP) con un
+> Un producto MetodologIA. Autoría de Franklin Ospina y Javier Montaño.
+
+El programa Frames ContentOS extiende el dual paradigm (Remotion + HTML+GSAP) con un
 programa multi-vendor + homólogos:
 
 - **4 publishers vendored** (reference-only, bypass `verify:skills`): 48 HyperFrames

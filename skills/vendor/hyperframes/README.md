@@ -23,7 +23,7 @@
 25 skills, text-only (`.md`, `.mjs`, `.html`, `.json`, `.tsx`, `.ts`, `.cjs`, `.js`,
 `.sh`, `.py`, `.txt`, `.svg`, `.yaml`, `.yml`, `.css`). Binaries (`.png`, `.mp3`,
 `.mp4`, `.woff2`, …) and `node_modules/` were **not** copied. **15 from Fase 0** +
-**10 vendored in Fase 1A** (the adoption scope expanded for the Content OS homólogo
+**10 vendored in Fase 1A** (the adoption scope expanded for the Frames ContentOS homólogo
 program — see `docs/content-os/capability-matrix.md`).
 
 | skill | files | phase | role |
