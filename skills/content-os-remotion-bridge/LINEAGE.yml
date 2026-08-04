@@ -1,0 +1,27 @@
+skill_id: content-os-remotion-bridge
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_adaptation
+provenance:
+  source_skill: remotion-to-hyperframes
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation_notes: >-
+    Bidirectional bridge. R→H adapted from vendor remotion-to-hyperframes
+    (lint + api-map + ssim-graded eval + escape-hatch). H→R inverse mapping is
+    native to Content OS (vendor explicitly declines reverse). Determinism
+    contract enforced in both directions; offline-first; interop escape-hatch
+    for blockers.
+authority_refs:
+  - skills/vendor/hyperframes/remotion-to-hyperframes/SKILL.md
+  - skills/vendor/hyperframes/remotion-to-hyperframes/references/api-map.md
+  - skills/vendor/hyperframes/remotion-to-hyperframes/references/escape-hatch.md
+  - skills/content-os-core/LINEAGE.yml
+  - skills/content-os-animation/LINEAGE.yml
+  - skills/content-os-keyframes/LINEAGE.yml
+  - skills/content-os-registry/LINEAGE.yml
+  - skills/content-os-media/LINEAGE.yml
+  - scripts/check-creation-v3-skills.ts
+external_fragments_reused: false
+publication_authority: false
