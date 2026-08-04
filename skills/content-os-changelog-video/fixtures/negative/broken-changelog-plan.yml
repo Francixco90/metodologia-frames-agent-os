@@ -1,0 +1,24 @@
+# Negative fixture: broken changelog-video plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: clv-broken-001
+duration: 200
+aspect: '1:1'
+themes:
+  - id: theme-99
+    heading: 'Bad theme'
+    visualization: text-bullets
+    line: 'A list of bullets.'
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in visualization code (rejected)
+# - Date.now : forbidden API in visualization code (rejected)
+# - setTimeout : forbidden API in visualization code (rejected)
+# - fetch : network in render path (rejected)
+# - theme-99 : invalid theme id pattern (rejected by schema)
+# - text-bullets : violates prime directive visualize don't list (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - theme-99
+  - text-bullets

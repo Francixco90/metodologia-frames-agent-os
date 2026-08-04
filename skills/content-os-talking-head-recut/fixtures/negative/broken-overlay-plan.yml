@@ -1,0 +1,28 @@
+# Negative fixture: broken talking-head-recut overlay plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: thr-broken-001
+duration: 30
+aspect: '16:9'
+clip:
+  path: videos/thr-broken/clip.mp4
+cards:
+  - id: card-99
+    start: 0
+    end: 999
+    kind: title
+    content: "<div class='card'>Bad</div>"
+    rationale: out-of-range end exceeds duration
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in card code (rejected)
+# - Date.now : forbidden API in card code (rejected)
+# - setTimeout : forbidden API in card code (rejected)
+# - fetch : network in render path (rejected)
+# - card-99 : invalid card id pattern (rejected by schema)
+# - out-of-range : end exceeds duration (rejected by schema)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - card-99
+  - out-of-range

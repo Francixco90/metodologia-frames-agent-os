@@ -1,0 +1,23 @@
+# Negative fixture: broken music-to-video beat plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: m2v-broken-001
+duration: 24
+aspect: '16:9'
+track:
+  path: assets/bgm.mp3
+  analyzed: false
+frames: []
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in frame code (rejected)
+# - Date.now : forbidden API in frame code (rejected)
+# - setTimeout : forbidden API in frame code (rejected)
+# - fetch : network in render path (rejected)
+# - frame-99 : invalid frame id pattern (rejected by schema)
+# - empty-frames : frames array empty (rejected by schema minItems=1)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - frame-99
+  - empty-frames

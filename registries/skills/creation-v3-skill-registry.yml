@@ -189,6 +189,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-remotion-bridge/scripts/check-skill.mjs]
+  - skill_id: content-os-talking-head-recut
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 09691e19f25484ecdaafd0ebfb8273adc77573879681f5cbbff3d83de69043af
+    package_manifest_sha256: 69c6efd28d0308b7e320b9f34a1cd68babcf71dd34dfa3bca563d3ac77d4c9ae
+    lineage_ref: skills/content-os-talking-head-recut/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-talking-head-recut/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-talking-head-recut/scripts/check-skill.mjs]
+  - skill_id: content-os-music-to-video
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 190e1761bbef8c2b264d42091edbadd30856df588b5b9acacc67ba8ee8ecce2a
+    package_manifest_sha256: 8614b7a6b1be5bc538273c359961d442cc294f480b8d3bfe6d8afe4267558680
+    lineage_ref: skills/content-os-music-to-video/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-music-to-video/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-music-to-video/scripts/check-skill.mjs]
+  - skill_id: content-os-changelog-video
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 09cae849b22be545975a94e05a8fb79297e0eda985364030955781d4ef738e26
+    package_manifest_sha256: 6b9891b88c2a94f87735693808909ccff482a8592a21dba07b5e9accd1c722f1
+    lineage_ref: skills/content-os-changelog-video/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-changelog-video/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-changelog-video/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -259,3 +292,15 @@ events:
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CRB-H03-004, event_order: 4, skill_id: content-os-remotion-bridge, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-THR-H03-001, event_order: 1, skill_id: content-os-talking-head-recut, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-THR-H03-002, event_order: 2, skill_id: content-os-talking-head-recut, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-THR-H03-003, event_order: 3, skill_id: content-os-talking-head-recut, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-THR-H03-004, event_order: 4, skill_id: content-os-talking-head-recut, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-M2V-H03-001, event_order: 1, skill_id: content-os-music-to-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-M2V-H03-002, event_order: 2, skill_id: content-os-music-to-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-M2V-H03-003, event_order: 3, skill_id: content-os-music-to-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-M2V-H03-004, event_order: 4, skill_id: content-os-music-to-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CLV-H03-001, event_order: 1, skill_id: content-os-changelog-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CLV-H03-002, event_order: 2, skill_id: content-os-changelog-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CLV-H03-003, event_order: 3, skill_id: content-os-changelog-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CLV-H03-004, event_order: 4, skill_id: content-os-changelog-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
