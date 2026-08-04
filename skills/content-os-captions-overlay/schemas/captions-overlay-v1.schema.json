@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/captions-overlay-v1.schema.json",
+  "title": "Captions Overlay v1 request",
+  "type": "object",
+  "required": ["composition_id", "mode", "phrases"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "mode": {"type": "string", "enum": ["standard", "cinematic"], "default": "standard"},
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      }
+    },
+    "true_vertical_center": {
+      "type": "boolean",
+      "default": true,
+      "description": "center composition on y = H/2; never shift content up for captions"
+    },
+    "phrases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "start", "end", "kind", "text"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^phrase-\\d{2}$"},
+          "start": {"type": "number", "minimum": 0},
+          "end": {"type": "number", "minimum": 0, "description": "must be > start"},
+          "kind": {"type": "string", "enum": ["drop", "rail", "embed"]},
+          "text": {"type": "string", "description": "verbatim text (rail) or peak word (embed)"},
+          "emphasis": {
+            "type": "boolean",
+            "default": false,
+            "description": "inline punch-word highlight on the rail"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+schema_version: 1
+skill_id: content-os-hyperframes-cli
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-apache-2-reference
+derivation_note: >
+  Clean-room prose adaptation of the hyperframes-cli development loop doctrine (init →
+  lint → check → preview → render after approval → verify) for the Content OS toolchain.
+  No vendor code copied; the vendor SKILL.md is read-only authority reference. Apache-2.0
+  permits derivation with attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/hyperframes-cli/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-router/SKILL.md
+runtime_refs:
+  - skills/content-os-hyperframes-cli/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-hyperframes-cli/receipts/runtime-boundary.yml
+compatibility_contract: cli-loop-v1
+request_contract_ref: skills/content-os-hyperframes-cli/schemas/cli-loop-v1.schema.json
+supported_request_types:
+  - cli_loop
+  - render_verify
+external_fragments_reused: false
+external_fragments_source: skills/vendor/hyperframes/hyperframes-cli/ (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: heygen-com/hyperframes hyperframes-cli
+production_runtime_status: local_capability_only
+publication_authority: false

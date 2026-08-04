@@ -1,0 +1,26 @@
+# Negative fixture: broken figma import plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: figma-broken-001
+figma_ref:
+  fileKey: ABC123def
+  nodeId: 1-2
+phase: component
+format: png
+scale: 2
+description: hero mark
+entity: acme-logo
+storyboard_mode: false
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in component code (rejected)
+# - Date.now : forbidden API in component code (rejected)
+# - setTimeout : forbidden API in component code (rejected)
+# - fetch : network in render path — figma URL not frozen (rejected)
+# - bad-token : access token missing at preflight (rejected — do not run to harvest error)
+# - no-freeze : figma URL left in composition instead of frozen local file (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - bad-token
+  - no-freeze

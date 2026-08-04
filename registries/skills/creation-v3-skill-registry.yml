@@ -222,6 +222,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-changelog-video/scripts/check-skill.mjs]
+  - skill_id: content-os-figma
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 47ebc6207cd79dc32cc52109f7da0414887cff66ba79218a94e56ac255a6fd28
+    package_manifest_sha256: c85997f6af8f7497fc4ae0a0ff313f47b1b89b7e8b35ebb38c144d9ca9ae9a9e
+    lineage_ref: skills/content-os-figma/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-figma/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-figma/scripts/check-skill.mjs]
+  - skill_id: content-os-hyperframes-cli
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 1692ca4c21ca0a4af29d25ba4d368748010e7c8f644a4e86d528a02a56a5444b
+    package_manifest_sha256: e4a1a02c96853f22caa31285e1279217045a8391975f5fa5885637d415f05506
+    lineage_ref: skills/content-os-hyperframes-cli/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-hyperframes-cli/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-hyperframes-cli/scripts/check-skill.mjs]
+  - skill_id: content-os-captions-overlay
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3d024eb5fe4e2ab3c4673d9c623aa5b647fe60abfcaf02fd8d68ca63533044cc
+    package_manifest_sha256: b6674519999a30b3992b48ebe8d70bf38f6e0ba032b336d3e82c1fb44ee8e16b
+    lineage_ref: skills/content-os-captions-overlay/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-captions-overlay/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-captions-overlay/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -304,3 +337,15 @@ events:
   - {event_id: EVT-SKL-CLV-H03-002, event_order: 2, skill_id: content-os-changelog-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CLV-H03-003, event_order: 3, skill_id: content-os-changelog-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CLV-H03-004, event_order: 4, skill_id: content-os-changelog-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FGM-H03-001, event_order: 1, skill_id: content-os-figma, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FGM-H03-002, event_order: 2, skill_id: content-os-figma, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FGM-H03-003, event_order: 3, skill_id: content-os-figma, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FGM-H03-004, event_order: 4, skill_id: content-os-figma, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HFC-H03-001, event_order: 1, skill_id: content-os-hyperframes-cli, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HFC-H03-002, event_order: 2, skill_id: content-os-hyperframes-cli, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HFC-H03-003, event_order: 3, skill_id: content-os-hyperframes-cli, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HFC-H03-004, event_order: 4, skill_id: content-os-hyperframes-cli, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COV-H03-001, event_order: 1, skill_id: content-os-captions-overlay, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COV-H03-002, event_order: 2, skill_id: content-os-captions-overlay, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COV-H03-003, event_order: 3, skill_id: content-os-captions-overlay, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COV-H03-004, event_order: 4, skill_id: content-os-captions-overlay, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

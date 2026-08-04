@@ -1,0 +1,5 @@
+{"composition_id":"cli-demo-001","stage":"lint","json":true,"run_id":"run-abc-001"}
+{"composition_id":"cli-demo-001","stage":"check","strict":true,"snapshots":true,"json":true,"run_id":"run-abc-001"}
+{"composition_id":"cli-demo-001","stage":"preview","json":true,"run_id":"run-abc-001"}
+{"composition_id":"cli-demo-001","stage":"render","quality":"high","output":"renders/video.mp4","approved":true,"run_id":"run-abc-001"}
+{"composition_id":"cli-demo-001","stage":"verify","json":true,"run_id":"run-abc-001"}

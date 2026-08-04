@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/figma-import-v1.schema.json",
+  "title": "Figma Import v1 request",
+  "type": "object",
+  "required": ["composition_id", "figma_ref", "phase"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "figma_ref": {
+      "type": "object",
+      "description": "parsed Figma reference (fileKey:nodeId, URL, or bare fileKey)",
+      "required": ["fileKey"],
+      "properties": {
+        "fileKey": {"type": "string", "pattern": "^[A-Za-z0-9]+$"},
+        "nodeId": {"type": "string", "description": "optional node id"}
+      }
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["asset", "tokens", "component", "storyboard"]
+    },
+    "format": {"type": "string", "enum": ["svg", "png", "jpg", "pdf"], "default": "svg"},
+    "scale": {"type": "number", "minimum": 1, "maximum": 4, "default": 1},
+    "description": {"type": "string", "description": "becomes index row + img alt"},
+    "entity": {"type": "string", "description": "named brand mark for media-use resolve"},
+    "storyboard_mode": {
+      "type": "boolean",
+      "default": false,
+      "description": "decode section as element timelines (keyframes, not slides)"
+    }
+  }
+}

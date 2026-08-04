@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/cli-loop-v1.schema.json",
+  "title": "CLI Loop v1 request",
+  "type": "object",
+  "required": ["composition_id", "stage"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "stage": {
+      "type": "string",
+      "enum": ["lint", "check", "preview", "snapshot", "render", "verify", "doctor"]
+    },
+    "quality": {"type": "string", "enum": ["draft", "high"], "default": "draft"},
+    "output": {"type": "string", "description": "render output path"},
+    "strict": {"type": "boolean", "default": false},
+    "json": {"type": "boolean", "default": true, "description": "agent/CI convention"},
+    "snapshots": {"type": "boolean", "default": false, "description": "annotated overview frames"},
+    "run_id": {"type": "string", "description": "one HYPERFRAMES_RUN_ID per verification loop"},
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "render stage requires explicit approval — checks passing never grants it"
+    }
+  }
+}

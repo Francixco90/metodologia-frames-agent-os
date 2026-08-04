@@ -1,0 +1,25 @@
+# Negative fixture: broken CLI loop plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: cli-broken-001
+stage: render
+quality: high
+output: renders/video.mp4
+strict: false
+json: true
+snapshots: false
+run_id: run-broken-001
+approved: false
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in composition code (rejected)
+# - Date.now : forbidden API in composition code (rejected)
+# - setTimeout : forbidden API in composition code (rejected)
+# - fetch : network in render path (rejected)
+# - no-approval : render attempted without explicit approval at preview (rejected)
+# - redundant-lint : standalone lint prepended before check which already includes lint (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - no-approval
+  - redundant-lint
