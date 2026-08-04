@@ -56,6 +56,7 @@
     "verify:carousel": "node --import tsx scripts/check-carousel.ts",
     "verify:content-matrix": "node --import tsx scripts/check-content-matrix.ts",
     "verify:skills": "node --import tsx scripts/check-instagram-v2-skills.ts && node --import tsx scripts/check-creation-v3-skills.ts",
+    "verify:content-os": "node --import tsx scripts/check-content-os-workflows.ts",
     "verify:contributions": "node --import tsx scripts/check-contributions.ts",
     "verify:dependencies": "node --import tsx scripts/check-dependency-audit.ts",
     "committee:validate": "node --import tsx projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts",
@@ -68,7 +69,7 @@
     "slice:build": "node --import tsx scripts/build-vertical-slice.ts",
     "slice:verify-compat": "node --import tsx scripts/build-vertical-slice.ts --verify-existing",
     "verify:ai-runtime": "node --import tsx scripts/check-ai-runtime.ts",
-    "verify": "pnpm check:repo && pnpm verify:docs && pnpm verify:creation-doc && pnpm verify:atoms && pnpm verify:renderers && pnpm verify:brand && pnpm verify:orchestration && pnpm verify:carousel && pnpm verify:content-matrix && pnpm verify:skills && pnpm verify:ai-runtime && pnpm verify:dependencies && pnpm slice:verify-compat && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
+    "verify": "pnpm check:repo && pnpm verify:docs && pnpm verify:creation-doc && pnpm verify:atoms && pnpm verify:renderers && pnpm verify:brand && pnpm verify:orchestration && pnpm verify:carousel && pnpm verify:content-matrix && pnpm verify:skills && pnpm verify:content-os && pnpm verify:ai-runtime && pnpm verify:dependencies && pnpm slice:verify-compat && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
     "verify:media": "pnpm remotion:inspect"
   },
   "dependencies": {

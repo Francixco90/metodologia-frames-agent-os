@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            90131 |            117210 |     135196 (1.5×) | 1.3004× | `pass` |
-| Total authored (palabras)     |            90131 |            117210 |       180262 (2×) | 1.3004× | `pass` |
-| Total authored (LOC)          |            34131 |             42993 |        68262 (2×) | 1.2596× | `pass` |
+| Corpus authored elegible      |            90143 |            117222 |     135214 (1.5×) | 1.3004× | `pass` |
+| Total authored (palabras)     |            90143 |            117222 |       180286 (2×) | 1.3004× | `pass` |
+| Total authored (LOC)          |            34133 |             42995 |        68266 (2×) | 1.2596× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -60,7 +60,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
-| `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 130               | 33          | 40         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
+| `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 134               | 33          | 41         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
 | `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 22                | 15          | 22         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
@@ -171,7 +171,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `networks/web/src/model.ts`                                                                                   | `web`              | `verified_no_change` | 207                | 207               | 74          | 74         | `c61e8b3657914ae5ffb265a5c45343be48d4657ad26a6668b4e6d8f2977dc9c3` | `byte-identical` |
 | `networks/web/src/render.ts`                                                                                  | `web`              | `verified_no_change` | 259                | 259               | 98          | 98         | `1bc264cf29ec1152d997ce67d5724f08bb433cba73f1fb1f53842b4248943ef4` | `byte-identical` |
 | `networks/web/src/styles.css`                                                                                 | `web`              | `verified_no_change` | 662                | 662               | 378         | 378        | `82c4c4e0d35a7b86f88d2edb38c75c4fe4b75010082d7cccd9d874e2214e080c` | `byte-identical` |
-| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 428               | 76          | 115        | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
+| `package.json`                                                                                                | `repo`             | `refactored`         | 242                | 436               | 76          | 116        | `de7febde754d974d207eb84dcde5b9290a47683c12ef40de0f84941cc08cfe83` | `changed`        |
 | `pnpm-lock.yaml`                                                                                              | `repo`             | `refactored`         | 6267               | 6986              | 4637        | 5210       | `c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82` | `changed`        |
 | `pnpm-workspace.yaml`                                                                                         | `repo`             | `verified_no_change` | 67                 | 67                | 35          | 35         | `5f1436a7d37fbce1cebd276d445647ab4d68e09f01294075e77cdd4ad9816e12` | `byte-identical` |
 | `projects/_template/project.yml`                                                                              | `lead`             | `verified_no_change` | 16                 | 16                | 8           | 8          | `ba6a183fdf8926d1b2f0a9b6475eef467f24125bcfbc7016ad0a90db1d28f0dd` | `byte-identical` |

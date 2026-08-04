@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90131
-    v3_rolling_adjustment_words: 2823
+    baseline_words: 90143
+    v3_rolling_adjustment_words: 2835
     original_baseline_words: 87308
-    final_words: 117210
+    final_words: 117222
     maximum_multiplier: 1.5
-    maximum_words: 135196
+    maximum_words: 135214
     actual_multiplier: 1.3004
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90131
-    v3_rolling_adjustment_words: 2823
+    baseline_words: 90143
+    v3_rolling_adjustment_words: 2835
     original_baseline_words: 87308
-    final_words: 117210
-    maximum_words: 180262
+    final_words: 117222
+    maximum_words: 180286
     word_multiplier: 1.3004
-    baseline_loc: 34131
-    v3_rolling_adjustment_loc: 1390
+    baseline_loc: 34133
+    v3_rolling_adjustment_loc: 1392
     original_baseline_loc: 32741
-    final_loc: 42993
-    maximum_loc: 68262
+    final_loc: 42995
+    maximum_loc: 68266
     loc_multiplier: 1.2596
     maximum_multiplier: 2
     status: pass
@@ -613,9 +613,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: 5914178d89dafc5a2dfccb304ba886b4e6e12769f017392d7f73e9e9a993ed60
-      current_words: 130
-      current_loc: 40
+      current_sha256: ac459bc9b0e1bafb1b01a5ff4575bf4dd43fb2ca796fbb3c19af0091019a7d19
+      current_words: 134
+      current_loc: 41
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
@@ -2944,9 +2944,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: e78823eba00fd5082b2e615ed093ca6be0d01f1253de57b29949a6d59377fef6
-      current_words: 428
-      current_loc: 115
+      current_sha256: c908b39be55dda16624fa3bf974946309b4955d7bca0f29ab04b01b9bac11620
+      current_words: 436
+      current_loc: 116
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
