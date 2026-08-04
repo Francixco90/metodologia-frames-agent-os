@@ -1,0 +1,26 @@
+# Negative fixture: broken oversized cursor plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: ocr-broken-001
+beat_type: cursor_entry
+size_cqw: 2
+entry_origin: below
+tip_transform_origin: '50% 50%'
+click_ratio: '1:1'
+exit_type: fade-in-place
+ease: power1.inOut
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in cursor code (rejected)
+# - Date.now : forbidden API in cursor code (rejected)
+# - setTimeout : forbidden API in cursor code (rejected)
+# - fetch : network in render path (rejected)
+# - fade-in-place : opacity fade in place to exit (rejected — physical exits only)
+# - mask-reveal : mask-reveal entry instead of physical off-screen entry (rejected)
+# - idle-wobble : cursor jitters in place instead of owning the beat or drifting aside (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - fade-in-place
+  - mask-reveal
+  - idle-wobble
