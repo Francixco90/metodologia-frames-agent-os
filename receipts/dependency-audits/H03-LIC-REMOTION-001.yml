@@ -13,3 +13,29 @@ consequence: blocked_license
 legal_advice: false
 publication_authority: false
 append_only: true
+addenda:
+  - addendum_id: source-available-publisher
+    added_at: '2026-08-04'
+    scope: vendor reference skills (NOT runtime dep)
+    source_repo: https://github.com/remotion-dev/skills
+    source_commit: f94c1e18db2bb30b904784b986f6897822b8f152
+    skills_vendored: 11
+    vendor_destination: skills/vendor/remotion-publisher/
+    license_governing: Remotion AG two-tier (Free License / Company License), source-available, NOT OSI
+    license_file_local: docs/remotion-publisher/LICENSE-upstream.md
+    license_file_sha256: bd65083b940f61904f6ef298aade918a7cad72a3e35bc406e36fab365844b673
+    standalone_repo_license_file: absent (no LICENSE in remotion-dev/skills root)
+    redistribution_rights: none
+    relicensing_rights: none
+    execution_status: reference-only-no-auto-execution
+    homologo_derivation_mode: clean-room-prose-from-source-available-reference
+    homologo_license: LicenseRef-MetodologIA-Internal
+    commercial_or_production_use: coverage_gap
+    reason: entity_size_use_case_and_license_eligibility_not_adjudicated
+    stop_rule: license_unresolved_for_copied_material
+    note: >
+      Vendored publisher skills are reference-only material governed by the same
+      Remotion two-tier license as the runtime. No vendor code is copied into
+      MetodologIA homólogos; content-os-remotion-* homólogos (Fase 2B) are clean-room
+      prose with self-contained check-skill.mjs (no import of vendor code). No
+      package.json mutation; Remotion 4.0.494 remains the toolchain-pinned runtime.
