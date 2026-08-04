@@ -1,0 +1,37 @@
+receipt_id: RCP-H03-CONTENT-OS-REGISTRY-001
+skill_id: content-os-registry
+runtime_profile: local-hash-bound-offline-seek-safe
+gsap:
+  allowed_scoped: block/component timelines (paused, seek-safe, finite)
+  version: 3.15.0
+  scope: registry block composition timing
+network_fetch:
+  status: out_of_scope
+  note: no CLI install with network; registry is local manifest + dir, install = copy + hash register
+external_assets:
+  status: out_of_scope
+  note: blocks are offline-first, no external fonts/assets (hereda content-os-core)
+google_fonts_cdn: {status: out_of_scope}
+remote_registry_fetch: {status: out_of_scope}
+three: {status: out_of_scope}
+lottie: {status: out_of_scope}
+anime: {status: out_of_scope}
+typegpu: {status: out_of_scope}
+runtime_rules:
+  - hash_bound_sha256_per_block
+  - seek_safe_paused_scrubbed_no_repeat_minus1_no_relative_plus
+  - offline_first_no_external_assets_no_network
+  - deterministic_no_date_now_no_math_random_no_fetch
+  - block_sub_composition_data_composition_src
+  - component_snippet_paste_markup_style_script
+  - no_network_install_copy_local_register_hash
+  - rendered_draft_not_human_approved
+render_adapter:
+  inherits: content-os-core (Playwright 1.61.1 + FFmpeg 8.1.1)
+  scope: block playback framework-owned, start/stop deterministic per clip
+composition_inheritance:
+  - content-os-core: HTML composition contract
+  - content-os-animation: GSAP seek-safe rules
+  - content-os-keyframes: pose contract
+  - content-os-creative: brand tokens via metodologia-brand-router
+  - content-os-media: media resolve offline cascade

@@ -1,0 +1,26 @@
+skill_id: content-os-registry
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: html-registry-v1
+authority_refs:
+  - skills/vendor/hyperframes/hyperframes-registry/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: hyperframes-registry
+  source_repo: https://github.com/heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation: local hash-bound manifest + dir (no CLI network fetch); seek-safe + offline-first + deterministic blocks
+supported_request_types:
+  - registry_discover
+  - block_install_local
+  - block_wire
+  - component_paste
+  - block_contribute
+  - registry_manifest_audit

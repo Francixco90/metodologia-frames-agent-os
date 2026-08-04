@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.io/schemas/content-os-registry-block-v1.schema.json",
+  "title": "Content OS Registry Block/Component v1",
+  "description": "Reusable block (sub-composition) or component (effect snippet) entry in the local Content OS registry. Hash-bound, offline-first, seek-safe, deterministic.",
+  "type": "object",
+  "required": ["id", "type", "title", "tags", "files", "sha256", "seek_safe", "offline"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]+$",
+      "description": "kebab-case identifier; must match the block's internal composition ID."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["block", "component"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "dimensions": {
+      "type": "string",
+      "description": "WxH. Required for type=block; forbidden for type=component."
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Required for type=block; forbidden for type=component."
+    },
+    "files": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "description": "Relative paths to block/component files inside registry/."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "sha256 of the primary block file (UTF-8)."
+    },
+    "seek_safe": {
+      "type": "boolean",
+      "description": "true = GSAP timeline paused, scrubbed, no repeat:-1/relative +=/transition. Required true for blocks with timeline."
+    },
+    "offline": {
+      "type": "boolean",
+      "description": "true = no external assets, no network, no Google Fonts CDN. Required true.",
+      "enum": [true]
+    },
+    "composition_id": {
+      "type": "string",
+      "description": "Internal composition ID for blocks; must match data-composition-id used in wiring."
+    }
+  }
+}
