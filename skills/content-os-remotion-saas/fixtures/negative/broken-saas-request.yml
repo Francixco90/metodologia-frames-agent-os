@@ -1,0 +1,20 @@
+# Negative fixture: a malformed Remotion SaaS app request.
+schema_version: 1
+skill_id: content-os-remotion-saas
+app_shape: cloud-render-pipeline
+render_path_contract: 'dom-event-driven'
+license_verdict_resolved: false
+credentials_in_render_path: true
+remote_media: 'any-url'
+determinism_contract: false
+violations:
+  - Company License verdict unresolved for commercial SaaS rendering
+  - credentials/PII leak into the render path (secret in composition)
+  - fetch inside composition to load user assets (network in render path)
+  - Math.random in render path (non-deterministic)
+  - Date.now in render path (non-deterministic)
+  - setTimeout to delay a render branch (not frame-driven)
+  - remote media not auth-gated fail-closed
+  - render path branched by app-layer DOM events
+  - production request without G13-G17 human gate
+verdict: reject; saas blocked

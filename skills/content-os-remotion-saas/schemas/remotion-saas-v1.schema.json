@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-saas-v1.schema.json",
+  "title": "Remotion SaaS v1 app request",
+  "type": "object",
+  "required": ["app_shape", "render_path_contract", "license_verdict_resolved"],
+  "properties": {
+    "app_shape": {
+      "type": "string",
+      "enum": ["form-render", "video-editor-ui", "cloud-render-pipeline"],
+      "description": "app shell around Remotion"
+    },
+    "render_path_contract": {
+      "type": "string",
+      "enum": ["useCurrentFrame-only", "deterministic-given-props"],
+      "description": "app/edge layer may be non-deterministic; render path must not be"
+    },
+    "license_verdict_resolved": {
+      "type": "boolean",
+      "description": "Company License verdict resolved for commercial SaaS rendering (H03-LIC-REMOTION-001)"
+    },
+    "credentials_in_render_path": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; credentials/PII never reach the render path"
+    },
+    "remote_media": {
+      "type": "string",
+      "enum": ["disabled", "opt-in-auth-gated-fail-closed"],
+      "description": "resolved first-party version-pinned asset refs passed as props"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "same props + frame ⇒ same pixel output; render path has no temporal/network APIs"
+    }
+  }
+}

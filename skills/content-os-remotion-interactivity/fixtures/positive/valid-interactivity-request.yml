@@ -1,0 +1,15 @@
+# Positive fixture: a well-formed Remotion interactivity (Studio markup-structure) request.
+schema_version: 1
+skill_id: content-os-remotion-interactivity
+affordance: select
+exposed_values: [position, scale, rotation, color, easing]
+render_path_contract: useCurrentFrame-only
+dom_event_driven_render: false
+determinism_contract: true
+non_negotiables:
+  - interactivity is a Studio markup-structure contract (not a runtime branch)
+  - render path uses useCurrentFrame only; interactivity must not branch it
+  - exposed values are named props/interpolate inputs the Studio recognizes
+  - no requestAnimationFrame / getBoundingClientRect in render path
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: interactivity valid; render deterministic

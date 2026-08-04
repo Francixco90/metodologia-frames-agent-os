@@ -1,0 +1,16 @@
+# Positive fixture: a well-formed Remotion captions request.
+schema_version: 1
+skill_id: content-os-remotion-captions
+caption_source: caption-json-first-party
+timing_clock: useCurrentFrame
+animate_in_out: true
+karaoke_highlight: true
+transcribe_scope: off-render
+determinism_contract: true
+non_negotiables:
+  - caption JSON transcribed/converted off-render (render path reads JSON only)
+  - ms converted to frames (ms * fps / 1000); Sequence from/durationInFrames
+  - fade/slide via interpolate(frame, range, [0,1]); never CSS transition/animation
+  - live transcribe / SRT-VTT parse forbidden in render path
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: captions valid; frame-driven deterministic

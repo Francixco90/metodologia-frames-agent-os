@@ -1,0 +1,4 @@
+{"step":1,"intent":"selectable item","route":"content-os-remotion-interactivity","affordance":"select","render_path":"useCurrentFrame-only","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":2,"intent":"drag resize rotate","route":"content-os-remotion-interactivity","affordance":"drag-drop","exposed":["position","scale","rotation"],"license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":3,"intent":"editable keyframes","route":"content-os-remotion-interactivity","affordance":"edit-keyframes","exposed":["position","easing"],"license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":4,"intent":"render path check","route":"content-os-remotion-interactivity","dom_event_driven_render":"false","forbidden":"requestAnimationFrame getBoundingClientRect","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}

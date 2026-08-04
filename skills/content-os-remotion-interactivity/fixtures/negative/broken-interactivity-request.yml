@@ -1,0 +1,19 @@
+# Negative fixture: a malformed Remotion interactivity request.
+schema_version: 1
+skill_id: content-os-remotion-interactivity
+affordance: select
+exposed_values: [position]
+render_path_contract: 'dom-event-driven'
+dom_event_driven_render: true
+determinism_contract: false
+violations:
+  - Studio affordance branched into the render path (render non-deterministic)
+  - requestAnimationFrame to drive interactive motion (not the Remotion clock)
+  - getBoundingClientRect during a render frame (measures at wrong time)
+  - onClick handler branches the render output (DOM-event-driven render)
+  - Math.random to jitter drag (non-deterministic)
+  - Date.now to seed a layout (non-deterministic)
+  - setTimeout to delay a selection (not frame-driven)
+  - fetch inside composition to load interaction state (network in render path)
+  - production request without G13-G17 human gate
+verdict: reject; interactivity blocked
