@@ -1,0 +1,12 @@
+request_id: docs-valid-001
+skill: content-os-remotion-docs
+search_scope: authoring-time-docs-search
+query: useCurrentFrame timing
+fetch_format: markdown-suffix
+pin_awareness: true
+notes:
+  - search docs index at authoring time for useCurrentFrame timing
+  - fetch https://www.remotion.dev/docs/use-current-frame.md
+  - reconcile documented API to pinned Remotion 4.0.494 before adopting
+  - render path unchanged; useCurrentFrame + interpolate only
+verdict: accept; docs discovered at authoring time, render path deterministic

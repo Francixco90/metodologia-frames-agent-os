@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-docs-v1.schema.json",
+  "title": "Remotion Docs v1 search request",
+  "type": "object",
+  "required": ["search_scope", "fetch_format", "pin_awareness"],
+  "properties": {
+    "search_scope": {
+      "type": "string",
+      "enum": [
+        "authoring-time-docs-search",
+        "authoring-time-markdown-fetch",
+        "api-reconcile-to-pin"
+      ],
+      "description": "doc discovery at authoring time; never a render-path operation"
+    },
+    "fetch_format": {
+      "type": "string",
+      "enum": ["markdown-suffix", "json-index"],
+      "description": "append .md to docs URL or read search index JSON"
+    },
+    "pin_awareness": {
+      "type": "boolean",
+      "description": "reconcile documented API to pinned toolchain (Remotion 4.0.494) before adopting"
+    },
+    "docs_fetch_in_render_path": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; doc-fetch inside a composition is forbidden"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "render path unchanged; doc search is authoring-time only"
+    }
+  }
+}

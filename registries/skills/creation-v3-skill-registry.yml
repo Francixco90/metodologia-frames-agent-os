@@ -398,6 +398,28 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-remotion-saas/scripts/check-skill.mjs]
+  - skill_id: content-os-remotion-docs
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 38ddcf42fcd8fc507001c20ef5fb348163c92484b633206d3993da92f7958e6e
+    package_manifest_sha256: 7aed66044be438facef60ac042df9ec68e5aedcc656f2071d27a9e7ab84e6c1b
+    lineage_ref: skills/content-os-remotion-docs/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-remotion-docs/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-remotion-docs/scripts/check-skill.mjs]
+  - skill_id: content-os-remotion-upgrade
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 27d045d75e1858a89e5f2c301acf37c98f4cc70ef883c9d9bae629945f955796
+    package_manifest_sha256: bc4c6c26d91e59c2ca3cbf891d36ed7f68eef34aead9b68c514eb57ac9b6ea09
+    lineage_ref: skills/content-os-remotion-upgrade/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-remotion-upgrade/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-remotion-upgrade/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -544,3 +566,11 @@ events:
   - {event_id: EVT-SKL-RSA-H03-002, event_order: 2, skill_id: content-os-remotion-saas, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RSA-H03-003, event_order: 3, skill_id: content-os-remotion-saas, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-RSA-H03-004, event_order: 4, skill_id: content-os-remotion-saas, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RDT-H03-001, event_order: 1, skill_id: content-os-remotion-docs, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RDT-H03-002, event_order: 2, skill_id: content-os-remotion-docs, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RDT-H03-003, event_order: 3, skill_id: content-os-remotion-docs, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RDT-H03-004, event_order: 4, skill_id: content-os-remotion-docs, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UPG-H03-001, event_order: 1, skill_id: content-os-remotion-upgrade, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UPG-H03-002, event_order: 2, skill_id: content-os-remotion-upgrade, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UPG-H03-003, event_order: 3, skill_id: content-os-remotion-upgrade, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UPG-H03-004, event_order: 4, skill_id: content-os-remotion-upgrade, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

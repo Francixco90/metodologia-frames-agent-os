@@ -241,6 +241,16 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-remotion-saas/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-remotion-docs',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-remotion-docs/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-remotion-upgrade',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-remotion-upgrade/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

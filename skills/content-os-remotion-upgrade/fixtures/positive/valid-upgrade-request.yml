@@ -1,0 +1,13 @@
+request_id: upgrade-valid-001
+skill: content-os-remotion-upgrade
+upgrade_mode: manual-exact-version
+version_coordination: true
+mediabunny_compat: true
+receipt_cascade_required: true
+notes:
+  - upgrade every remotion and @remotion/* dependency to one exact version
+  - reconcile mediabunny to the documented compatible version
+  - regenerate RCP-DEP-PRODUCTION and bump H03-LOCK-SUCCESSION-001 after mutation
+  - render path contract unchanged; useCurrentFrame + interpolate only
+  - upgrade is authoring-time and off-render; G13-G17 manual
+verdict: accept; coordinated upgrade, receipt cascade regenerated, render deterministic

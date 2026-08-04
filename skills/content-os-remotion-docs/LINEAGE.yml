@@ -1,0 +1,34 @@
+schema_version: 1
+skill_id: content-os-remotion-docs
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-source-available-reference
+derivation_note: >
+  Clean-room prose adaptation of the Remotion publisher docs-search guidance (Algolia
+  docs index, .md suffix on docs URLs, authoring-time workflow, reconcile to pinned
+  toolchain) for the Frames ContentOS toolchain. No vendor code copied; the vendor
+  SKILL.md is read-only authority reference. Source-available Remotion AG — no
+  relicensing, no redistribution of vendor source.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/remotion-publisher/remotion-docs/SKILL.md
+  - skills/remotion-video-production/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/content-os-remotion-docs/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-remotion-docs/receipts/runtime-boundary.yml
+compatibility_contract: remotion-docs-v1
+request_contract_ref: skills/content-os-remotion-docs/schemas/remotion-docs-v1.schema.json
+supported_request_types:
+  - remotion_docs_search
+  - remotion_docs_fetch_markdown
+  - remotion_docs_api_reconcile
+external_fragments_reused: false
+external_fragments_source: skills/vendor/remotion-publisher/remotion-docs/ (source-available Remotion AG, authority reference only)
+external_fragments_license: Remotion AG two-tier (Free License / Company License), source-available, NOT OSI
+external_fragments_attribution: remotion/remotion-publisher remotion-docs
+production_runtime_status: local_capability_only
+publication_authority: false

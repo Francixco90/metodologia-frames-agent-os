@@ -1,0 +1,32 @@
+schema_version: 1
+receipt_id: COS-UPG-RUNTIME-001
+skill_id: content-os-remotion-upgrade
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  remotion: 4.0.494
+  react: 19.2.7
+  ffmpeg: libx264
+render_adapter: renderers/remotion/src/Root.tsx
+network_in_render_path: false
+toolchain_mutation_gated: true
+receipt_cascade_required:
+  - receipts/dependency-audits/H03-LOCK-SUCCESSION-001.yml
+  - receipts/dependency-audits/RCP-DEP-PRODUCTION-latest.json
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added by this skill (Remotion + React + FFmpeg already pinned).
+  - An upgrade is an authoring-time, off-render event; render path contract unchanged after.
+  - Any package.json/lockfile mutation must regenerate RCP-DEP-PRODUCTION + bump H03-LOCK-SUCCESSION-001.
+  - Never mix Remotion versions; reconcile Mediabunny to the compatible version.
+  - License verdict: see receipts/dependency-audits/H03-LIC-REMOTION-001.yml (source-available-publisher addendum).
+  - Production gates G13-G17 manual; render stays RENDERED_DRAFT.

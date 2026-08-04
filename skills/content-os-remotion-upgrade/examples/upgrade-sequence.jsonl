@@ -1,0 +1,3 @@
+{"turn": 1, "user": "Upgrade Remotion to the latest stable", "assistant": "Resolve latest stable version. Upgrade every remotion and @remotion/* dependency to one exact version. Never mix versions.", "upgrade_mode": "manual-exact-version", "version_coordination": true}
+{"turn": 2, "user": "Is Mediabunny compatible", "assistant": "Read the current Mediabunny compatibility page and upgrade every installed mediabunny package to the documented compatible version.", "mediabunny_compat": true}
+{"turn": 3, "user": "Do I need to regenerate receipts", "assistant": "Yes. Regenerate RCP-DEP-PRODUCTION and bump H03-LOCK-SUCCESSION-001 after the mutation. The upgrade is blocked without the receipt cascade. Render path contract unchanged.", "receipt_cascade_required": true}
