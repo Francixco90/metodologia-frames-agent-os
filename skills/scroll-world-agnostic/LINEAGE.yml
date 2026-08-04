@@ -1,12 +1,14 @@
 schema_version: 1
 skill_id: scroll-world-agnostic
 version: 0.1.0
-content_origin: locally_authored_adaptation
+content_origin: locally_authored_clean_room_adaptation
 lifecycle_state: active
 execution_scope: local-evaluation
-authority_refs: []
+authority_refs:
+  - skills/vendor/scroll-world/SKILL.md
+  - skills/vendor/cinematic-scroll/SKILL.md
 compatibility_contract: scroll-skills-v1-primary-orchestrator
-external_fragments_reused: true
+external_fragments_reused: false
 source_evidence:
   original:
     source_repo: oso95/scroll-world

@@ -56,6 +56,30 @@ const skills = [
     negative: 'fixtures/negative/hours-mismatch.yml',
     requiredTerms: ['cb', 'cv', 'RENDERED_DRAFT', 'coverage_gap', 'work/private'],
   },
+  {
+    id: 'scroll-experience-foundations',
+    scope: 'local-evaluation',
+    productionStatus: 'local_capability_only',
+    positive: 'fixtures/positive/narrative-structure.yml',
+    negative: 'fixtures/negative/layout-animation.yml',
+    requiredTerms: ['prefers-reduced-motion', 'transform', 'opacity', 'progressive enhancement'],
+  },
+  {
+    id: 'cinematic-scroll-quality',
+    scope: 'local-evaluation',
+    productionStatus: 'local_capability_only',
+    positive: 'fixtures/positive/three-chapter-storyboard.yml',
+    negative: 'fixtures/negative/excessive-pin.yml',
+    requiredTerms: ['taste guardrails', 'DTCG', 'quality gate', 'breathing'],
+  },
+  {
+    id: 'scroll-world-agnostic',
+    scope: 'local-evaluation',
+    productionStatus: 'local_capability_only',
+    positive: 'fixtures/positive/four-scene-journey.yml',
+    negative: 'fixtures/negative/mandatory-vendor.yml',
+    requiredTerms: ['VideoProvider', 'SeedanceAdapter', 'FalAIAdapter', 'model_agnostic'],
+  },
 ] as const;
 
 type RegistryEntry = {
@@ -268,6 +292,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.info(
-    'PASS SKILLS V2: brand, orchestration, carousel and Remotion compatibility skills are hash-bound.',
+    'PASS SKILLS V2: brand, orchestration, carousel, Remotion compatibility and scroll multi-provider skills are hash-bound.',
   );
 }
