@@ -12,9 +12,14 @@ metadata:
 
 # Scroll World Agnostic
 
+Derivada de `scroll-world` (oso95/scroll-world, MIT). Adaptacion local
+clean-room model-agnostic. Vendor reference:
+`skills/vendor/scroll-world/SKILL.md` (read-only). Patron Fal AI del vendor
+`skills/vendor/cinematic-scroll/SKILL.md` (read-only).
+
 Orquesta experiencias web guiadas por scroll donde el visitante viaja a traves
-de escenas conectadas. Inspirada funcionalmente en `scroll-world` (oso95, MIT),
-pero model-agnostic: ningun modelo, proveedor, API, CLI o framework es obligatorio.
+de escenas conectadas. model-agnostic: ningun modelo, proveedor, API, CLI o
+framework es obligatorio.
 
 ## model_agnostic: true (declaracion explicita)
 
@@ -111,6 +116,24 @@ Output: MediaMetadata { width: number, height: number, duration?: number, codec?
 Input: target: string (URL or path)
 Output: VerificationResult { passed: boolean, checks: Check[], score?: number }
 ```
+
+## Adaptadores concretos (opcionales, multi-provider)
+
+El contrato `VideoProvider` admite cualquier proveedor. Tres adaptadores
+concretos (opcionales, referencias de arquitectura vendor read-only):
+
+- **SeedanceAdapter** — generacion de video via Seedance.
+- **HiggsfieldAdapter** — generacion de video via Higgsfield.
+- **FalAIAdapter** — generacion de video/imagen via fal.ai. Patron
+  arquitectural del vendor `cinematic-scroll`
+  (`skills/vendor/cinematic-scroll/SKILL.md`): `lib/fal-models.ts` adapta
+  parametros por modelo (FLUX.2/Gemini/Imagen), `@fal-ai/server-proxy`
+  mantiene `FAL_KEY` server-side, `fal.subscribe` (<=5 escenas) o
+  `fal.queue.submit` + webhook (>5). Nunca exponer `FAL_KEY` en cliente.
+
+`@fal-ai/client` es dependencia opcional/lazy del proyecto consumidor, no de
+esta skill. Sin adaptadores, degradar a fallback estatico (ver Invariantes).
+El seam law (frame-identico entre escenas) es provider-agnostic.
 
 ## Deteccion de capacidades
 

@@ -149,6 +149,18 @@ Umbral minimo: configurable por proyecto. Default: 70/100.
 3. Verificar accesibilidad (reduced-motion, keyboard, ARIA).
 4. Verificar mobile (breakpoints, touch gates).
 
+## Provider de medios (opcional, Fal AI)
+
+Cuando la direccion cinematografica requiera generacion de assets (imagenes/
+video, opcional), el provider unico referenciado es **Fal AI**. Patron
+arquitectural del vendor `cinematic-scroll`
+(`skills/vendor/cinematic-scroll/SKILL.md`, read-only): `lib/fal-models.ts`
+adapta parametros por modelo, `@fal-ai/server-proxy` mantiene `FAL_KEY`
+server-side, `fal.subscribe` (<=5 escenas) o `fal.queue.submit`+webhook (>5).
+`FAL_KEY` nunca en cliente. `@fal-ai/client` es dependencia opcional/lazy del
+proyecto consumidor. Sin provider, degradar a assets suministrados o fallback
+estatico. CSS-only es first-class, no fallback degradado.
+
 ## Limites
 
 - No garantiza compatibilidad con todos los browsers antiguos.
