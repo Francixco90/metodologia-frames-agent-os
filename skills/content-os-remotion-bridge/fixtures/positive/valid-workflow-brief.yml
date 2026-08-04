@@ -1,0 +1,40 @@
+schemaVersion: remotion-bridge-v1
+projectId: title-card-r2h
+route: content-os-remotion-bridge
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-registry
+direction: R-to-H
+offline: true
+has_blocker: false
+translate_attempted: false
+translated: true
+validation_passed: true
+brief: >-
+  port single-element Remotion title card (fade-in) to HTML+GSAP, mechanical
+  linear interpolate mapping, ssim-graded against baseline
+translationPlan:
+  source:
+    - remotion-src/src/Root.tsx
+    - remotion-src/src/TitleCard.tsx
+  mapping_ref: references/api-map.md
+  topic_refs:
+    - timing
+    - parameters
+  anticipated_gaps:
+    - font substitution if google fonts used
+steps:
+  - step: setup
+    state: gate-passed
+  - step: lint
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: translate
+    state: gate-passed
+  - step: validate
+    state: gate-passed
+  - step: finalize
+    state: gate-passed

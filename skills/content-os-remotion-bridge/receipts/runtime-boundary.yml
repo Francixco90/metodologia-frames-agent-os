@@ -1,0 +1,27 @@
+receipt_id: RCP-H03-CONTENT-OS-REMOTION-BRIDGE-001
+issued: '2026-08-04'
+issuer: RT-07-H03-PRODUCER
+skill_id: content-os-remotion-bridge
+version: '0.1.0'
+lifecycle_state: active
+execution_scope: local-evaluation
+allowed_scoped:
+  - bidirectional_translation_remotion_to_html_and_back
+  - step_gated_orchestrator_setup_lint_plan_translate_validate_finalize
+  - source_lint_blockers_escape_hatch_to_interop
+  - runtime_interop_pattern_r_to_h_player_bundle_and_h_to_r_timeline_seek
+  - ssim_graded_eval_threshold_below_complexity_tier
+  - api_map_r_to_h_and_inverse_map_h_to_r
+  - translation_notes_md_for_gaps
+  - delegation_to_core_animation_keyframes_registry_media
+  - offline_first_render_path_remote_opt_in_auth_gated
+  - hash_bound_via_sha256_registry_and_4_lifecycle_events
+out_of_scope:
+  - npx_hyperframes_cli
+  - translating_past_blocker_without_escape_hatch
+  - authoring_new_compositions
+  - non_paradigm_sources_after_effects_framer_motion_plain_css
+  - mixing_paradigms_in_one_output
+  - network_in_render_path_without_auth
+  - silent_divergence_below_ssim_threshold
+  - ready_or_published_without_human_gates

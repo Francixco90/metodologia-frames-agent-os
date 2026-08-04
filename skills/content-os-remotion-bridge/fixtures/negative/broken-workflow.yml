@@ -1,0 +1,33 @@
+schemaVersion: remotion-bridge-v1
+projectId: bad-bridge
+route: content-os-remotion-bridge
+capability_map:
+  - content-os-core
+  - content-os-animation
+direction: R-to-H
+offline: false # network-in-workflow: render path not offline
+has_blocker: true # lint found a Remotion blocker (useState driving animation)
+translate_attempted: true # unapproved-interop: blocker present, translation attempted instead of escape-hatch
+translated: false # no-translation: finalize gate passed but no target composition emitted
+validation_passed: false # silent-divergence: finalize gate passed but ssim eval skipped/below threshold
+asset_ref: https://acme.com/logo.png # network-in-workflow: https URL in render path
+brief: >-
+  broken bridge run: blocker ignored, translation attempted anyway, no eval,
+  network asset, steps out of order
+translationPlan:
+  source:
+    - remotion-src/src/Root.tsx
+  mapping_ref: references/api-map.md
+steps:
+  - step: setup
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: lint
+    state: gate-passed # step-out-of-order: lint (index 1) after plan (index 2)
+  - step: translate
+    state: done # missing-gate: state "done" not in valid set (pending|in-progress|gate-passed|user-approved)
+  - step: validate
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-translation + silent-divergence: finalize gate passed with translated=false and validation_passed=false

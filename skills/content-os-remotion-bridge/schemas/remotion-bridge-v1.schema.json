@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.internal/schemas/content-os-remotion-bridge-v1.schema.json",
+  "title": "Content OS Remotion Bridge workflow brief",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "direction",
+    "offline",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {"type": "string", "const": "remotion-bridge-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "route": {"type": "string", "const": "content-os-remotion-bridge"},
+    "capability_map": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "direction": {"type": "string", "enum": ["R-to-H", "H-to-R"]},
+    "offline": {"type": "boolean", "const": true},
+    "has_blocker": {"type": "boolean"},
+    "translate_attempted": {"type": "boolean"},
+    "translated": {"type": "boolean"},
+    "validation_passed": {"type": "boolean"},
+    "asset_ref": {"type": "string"},
+    "steps": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["setup", "lint", "plan", "translate", "validate", "finalize"]
+          },
+          "state": {"type": "string", "enum": ["pending", "gate-passed", "done"]}
+        }
+      }
+    }
+  }
+}
