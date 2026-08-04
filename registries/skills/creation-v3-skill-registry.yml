@@ -112,6 +112,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-faceless-explainer/scripts/check-skill.mjs]
+  - skill_id: content-os-pr-to-video
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: b64fafcb84b2fa06e146ed06ca854f7cfb24b4650f35e8145c1b260d5e5f0854
+    package_manifest_sha256: 0e140fdeee4f39ced6041bf46c804c9c298e83740b45b4f36e5dde2bcd79542b
+    lineage_ref: skills/content-os-pr-to-video/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-pr-to-video/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-pr-to-video/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -153,3 +164,7 @@ events:
   - {event_id: EVT-SKL-CFE-H03-002, event_order: 2, skill_id: content-os-faceless-explainer, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CFE-H03-003, event_order: 3, skill_id: content-os-faceless-explainer, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CFE-H03-004, event_order: 4, skill_id: content-os-faceless-explainer, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPV-H03-001, event_order: 1, skill_id: content-os-pr-to-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPV-H03-002, event_order: 2, skill_id: content-os-pr-to-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPV-H03-003, event_order: 3, skill_id: content-os-pr-to-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPV-H03-004, event_order: 4, skill_id: content-os-pr-to-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

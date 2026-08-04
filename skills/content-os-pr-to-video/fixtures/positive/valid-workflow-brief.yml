@@ -1,0 +1,47 @@
+# Valid workflow brief — gate-bound, ordered, code-editorial, no footage, render-path offline.
+schemaVersion: pr-to-video-v1
+projectId: acme-sdk-pr-1842
+route: content-os-pr-to-video
+capability_map:
+  [
+    content-os-core,
+    content-os-animation,
+    content-os-keyframes,
+    content-os-creative,
+    content-os-media,
+    content-os-registry,
+  ]
+source_type: github-pr
+pr_ref: acme/sdk#1842
+style: code-editorial
+duration_s: 75
+vo_mode: restructured
+offline: true
+silent: false
+rendered: false
+footage: false
+steps:
+  - step: setup
+    state: gate-passed
+  - step: ingest
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: storyboard
+    state: user-approved
+  - step: audio
+    state: gate-passed
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: pending
+storySpine:
+  archetype: feature-reveal
+  hook: '2.3x throughput via request retries'
+  beats:
+    - {label: 'hero stat', at: '0-8s'}
+    - {label: 'code-diff retry loop', at: '8-22s'}
+    - {label: 'mechanism diagram', at: '22-34s'}
+  final: 'credits close'
