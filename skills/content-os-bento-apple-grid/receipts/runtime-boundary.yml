@@ -1,0 +1,29 @@
+schema_version: 1
+receipt_id: COS-BAG-RUNTIME-001
+skill_id: content-os-bento-apple-grid
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  playwright: 1.61.1
+render_adapter: content-os-core/html-composition
+network_in_render_path: false
+authoring_time_network: true
+authoring_time_network_scope: google-fonts-link-only-view-time
+screenshot_export: playwright-2x-viewport-matched
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Playwright already toolchain-pinned for HTML export).
+  - Generated HTML is self-contained (inline CSS, Google Fonts link only external).
+  - Google Fonts link is view-time network, not generation-time.
+  - Screenshot export at 2x; viewport width must match grid CSS width (1200/1100/600).
+  - MIT vendor reference — no relicensing of vendor source.
+  - Production gates G13-G17 manual; screenshot stays RENDERED_DRAFT.

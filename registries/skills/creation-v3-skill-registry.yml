@@ -420,6 +420,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-remotion-upgrade/scripts/check-skill.mjs]
+  - skill_id: content-os-bento-grid
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 146a662fa25c7bfa52faa36985621f01225b164e7263b61f38fcac16fa95321b
+    package_manifest_sha256: b93d896045af97a663008c71be0f09212ab0080be14767d35c2511f1e630f141
+    lineage_ref: skills/content-os-bento-grid/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-bento-grid/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-bento-grid/scripts/check-skill.mjs]
+  - skill_id: content-os-bento-slides
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 6a545b5a90e399300e8901619d98f83ea28629512d0be134759d36c9a9574836
+    package_manifest_sha256: f29744de0b9930ddab78504a85e6c97f6b70eb279071cda19495c2f3ce853ef9
+    lineage_ref: skills/content-os-bento-slides/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-bento-slides/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-bento-slides/scripts/check-skill.mjs]
+  - skill_id: content-os-bento-apple-grid
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 77f49d396501271f439eca0ab990a9194c09e19892dd91d77ee2b834d53211e8
+    package_manifest_sha256: d07d076ec06c99881b2c798e41b3da8b8ae56faa90f110bf4a1fe61a166200b9
+    lineage_ref: skills/content-os-bento-apple-grid/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-bento-apple-grid/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-bento-apple-grid/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -574,3 +607,15 @@ events:
   - {event_id: EVT-SKL-UPG-H03-002, event_order: 2, skill_id: content-os-remotion-upgrade, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-UPG-H03-003, event_order: 3, skill_id: content-os-remotion-upgrade, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-UPG-H03-004, event_order: 4, skill_id: content-os-remotion-upgrade, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BNG-H03-001, event_order: 1, skill_id: content-os-bento-grid, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BNG-H03-002, event_order: 2, skill_id: content-os-bento-grid, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BNG-H03-003, event_order: 3, skill_id: content-os-bento-grid, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BNG-H03-004, event_order: 4, skill_id: content-os-bento-grid, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BNS-H03-001, event_order: 1, skill_id: content-os-bento-slides, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BNS-H03-002, event_order: 2, skill_id: content-os-bento-slides, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BNS-H03-003, event_order: 3, skill_id: content-os-bento-slides, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BNS-H03-004, event_order: 4, skill_id: content-os-bento-slides, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BAG-H03-001, event_order: 1, skill_id: content-os-bento-apple-grid, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BAG-H03-002, event_order: 2, skill_id: content-os-bento-apple-grid, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BAG-H03-003, event_order: 3, skill_id: content-os-bento-apple-grid, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BAG-H03-004, event_order: 4, skill_id: content-os-bento-apple-grid, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

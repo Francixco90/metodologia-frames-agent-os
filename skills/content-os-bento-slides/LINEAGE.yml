@@ -1,0 +1,34 @@
+schema_version: 1
+skill_id: content-os-bento-slides
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+derivation_note: >
+  Clean-room prose adaptation of the nyblnet bento-slides skill (.bento.html deck
+  authoring, #bento-doc JSON document model, material→feature mapping, morph/state/
+  ken-burns/count-up features, critical gotchas, self-audit) for the Frames ContentOS
+  toolchain. No vendor code copied; the vendor SKILL.md is read-only authority reference.
+  MIT license — attribution preserved, no relicensing of vendor source.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/bento/bento-slides/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/content-os-bento-slides/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-bento-slides/receipts/runtime-boundary.yml
+compatibility_contract: bento-slides-v1
+request_contract_ref: skills/content-os-bento-slides/schemas/bento-slides-v1.schema.json
+supported_request_types:
+  - bento_deck_author
+  - bento_deck_morph
+  - bento_deck_charts
+external_fragments_reused: false
+external_fragments_source: skills/vendor/bento/bento-slides/ (MIT, authority reference only)
+external_fragments_license: MIT
+external_fragments_attribution: nyblnet/bento bento-slides
+production_runtime_status: local_capability_only
+publication_authority: false
