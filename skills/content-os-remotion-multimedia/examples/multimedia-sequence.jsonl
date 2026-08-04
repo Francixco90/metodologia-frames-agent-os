@@ -1,0 +1,4 @@
+{"step":1,"intent":"audio duration","route":"content-os-remotion-multimedia","metadata_read":"audio-duration","read_scope":"calculateMetadata","to_frames":"durationSeconds * fps","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":2,"intent":"video dimensions","route":"content-os-remotion-multimedia","metadata_read":"video-dimensions","read_scope":"calculateMetadata","pass_to":"width/height","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":3,"intent":"video duration","route":"content-os-remotion-multimedia","metadata_read":"video-duration","read_scope":"calculateMetadata","to_frames":"durationSeconds * fps","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":4,"intent":"pin check","route":"content-os-remotion-multimedia","pin":"remotion@4.0.494 react@19.2.7","per_frame_read":"false","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}

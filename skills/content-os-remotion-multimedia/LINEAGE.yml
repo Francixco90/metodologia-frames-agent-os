@@ -1,0 +1,34 @@
+schema_version: 1
+skill_id: content-os-remotion-multimedia
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-source-available-reference
+derivation_note: >
+  Clean-room prose adaptation of the Remotion publisher multimedia guidance (Mediabunny
+  audio/video duration + dimensions, off-render vs in-render, determinism) for the Frames
+  ContentOS toolchain. No vendor code copied; the vendor SKILL.md is read-only authority
+  reference. Source-available Remotion AG — no relicensing, no redistribution of vendor
+  source.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/remotion-publisher/remotion-multimedia/SKILL.md
+  - skills/remotion-video-production/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/content-os-remotion-multimedia/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-remotion-multimedia/receipts/runtime-boundary.yml
+compatibility_contract: remotion-multimedia-v1
+request_contract_ref: skills/content-os-remotion-multimedia/schemas/remotion-multimedia-v1.schema.json
+supported_request_types:
+  - remotion_multimedia_audio_duration
+  - remotion_multimedia_video_dimensions
+  - remotion_multimedia_video_duration
+external_fragments_reused: false
+external_fragments_source: skills/vendor/remotion-publisher/remotion-multimedia/ (source-available Remotion AG, authority reference only)
+external_fragments_license: Remotion AG two-tier (Free License / Company License), source-available, NOT OSI
+external_fragments_attribution: remotion/remotion-publisher remotion-multimedia
+production_runtime_status: local_capability_only
+publication_authority: false

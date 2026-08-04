@@ -1,0 +1,18 @@
+# Positive fixture: a well-formed Remotion render request.
+schema_version: 1
+skill_id: content-os-remotion-render
+render_target: composition-mp4
+codec: h264
+image_format: jpeg
+concurrency: 4
+gl: swiftshader
+browser_executable_pinned: true
+remote_media: disabled
+determinism_contract: true
+non_negotiables:
+  - codec pinned (libx264 for MP4)
+  - concurrency explicit (changes wall-clock only, not pixels)
+  - browser-executable pinned to toolchain Chromium
+  - remote media disabled or opt-in auth-gated fail-closed
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: render valid; deterministic offline export

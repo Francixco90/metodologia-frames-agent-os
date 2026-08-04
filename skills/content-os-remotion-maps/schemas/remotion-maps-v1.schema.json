@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-maps-v1.schema.json",
+  "title": "Remotion Maps v1 request",
+  "type": "object",
+  "required": ["technique", "determinism_contract"],
+  "properties": {
+    "technique": {
+      "type": "string",
+      "enum": ["static-satellite", "mapbox", "geo-data-viz"],
+      "description": "exactly one technique per composition/Sequence"
+    },
+    "animation_clock": {
+      "type": "string",
+      "enum": ["useCurrentFrame"],
+      "description": "the only animation clock"
+    },
+    "interpolate_used": {
+      "type": "boolean",
+      "description": "pan/zoom/route-draw/mask via interpolate(frame, range, output)"
+    },
+    "mapbox_key_handling": {
+      "type": "string",
+      "enum": ["disabled", "opt-in-auth-gated-fail-closed", "pre-rendered-snapshot"],
+      "description": "prefer pre-rendered snapshot for determinism; never hard-coded key"
+    },
+    "remote_media": {
+      "type": "string",
+      "enum": ["disabled", "opt-in-auth-gated-fail-closed"],
+      "description": "local first-party version-pinned tiles by default"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval; no live tile/API in render path"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# Positive fixture: a well-formed Remotion map animation request.
+schema_version: 1
+skill_id: content-os-remotion-maps
+technique: static-satellite
+animation_clock: useCurrentFrame
+interpolate_used: true
+mapbox_key_handling: disabled
+remote_media: disabled
+determinism_contract: true
+non_negotiables:
+  - exactly one technique per composition/Sequence
+  - pan/zoom/route-draw via interpolate(frame, range, output)
+  - satellite image mounted in Img with delayRender until decoded
+  - no live tile/API fetch in render path
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: map valid; frame-driven deterministic

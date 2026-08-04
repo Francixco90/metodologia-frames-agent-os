@@ -1,0 +1,24 @@
+# Negative fixture: a malformed Remotion render request.
+schema_version: 1
+skill_id: content-os-remotion-render
+render_target: composition-mp4
+codec: unpinned
+image_format: jpeg
+concurrency: 'default'
+gl: 'host-gpu'
+browser_executable_pinned: false
+remote_media: 'any-url'
+determinism_contract: false
+violations:
+  - codec not pinned (libx264 default may drift)
+  - concurrency not explicit
+  - gl depends on host GPU (non-deterministic across machines)
+  - browser-executable not pinned to toolchain Chromium
+  - remote media not auth-gated fail-closed
+  - Math.random in composition (non-deterministic render)
+  - Date.now to seed a layout (non-deterministic)
+  - setTimeout to delay a frame (not frame-driven)
+  - fetch inside composition (network in render path)
+  - transparent video requested with h264 codec (h264 has no alpha)
+  - production request without G13-G17 human gate
+verdict: reject; render blocked
