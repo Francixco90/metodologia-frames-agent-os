@@ -1,0 +1,61 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/gsap-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/greensock/gsap-skills",
+  "source_commit": "aed9cfd",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 GreenSock (gsap-skills, https://github.com/greensock/gsap-skills)",
+  "vendor_root_hashes": {
+    "LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90"
+  },
+  "vendors": [
+    {
+      "skill": "gsap-skills",
+      "source_repo": "https://github.com/greensock/gsap-skills",
+      "source_commit": "aed9cfd",
+      "source_path": "/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 GreenSock",
+      "destination": "skills/vendor/gsap-skills/gsap-skills/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/gsap-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 33,
+      "critical_file_hashes": {
+        "skills/gsap-core/SKILL.md": "3887b47e050ab5afbe2a9a820f23d39fa02ab785e06a343be44c6f91d84d12b3",
+        "skills/gsap-timeline/SKILL.md": "1a8b0f39cc4be3ed3d834b89672e4ae2f151b901dc3450bebf10bbc45379fe02",
+        "skills/gsap-scrolltrigger/SKILL.md": "9351b6666a4749c0740406ea363aaccb99a087ff45cc5e8b99a0f367facf3ef4",
+        "skills/gsap-plugins/SKILL.md": "5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4",
+        "skills/gsap-utils/SKILL.md": "1927bcc4ea95b38203404ad5ea1d060b15c4a886c65ae53e885ff1793aabe0ba",
+        "skills/gsap-react/SKILL.md": "88e2a5312b45e8cc7b3c496637ff5bc9af2ae9c925b555c8b235b34cbc989d74",
+        "skills/gsap-performance/SKILL.md": "cb5408d6fba707aabcbfe3320317a14c1f8fca6070074e5261047930f50d441e",
+        "skills/gsap-frameworks/SKILL.md": "842d9d3659ec3ddc8abbdc524708f8facf81f468ac25d0577f48c759c4fa31e6"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "8 sub-skills (gsap-core, gsap-timeline, gsap-scrolltrigger, gsap-plugins, gsap-utils, gsap-react, gsap-performance, gsap-frameworks); homólogo design-gsap-motion derives from umbrella doctrine (core API + timelines + ScrollTrigger + React useGSAP + performance)",
+        "GSAP plugins now 100% free (Webflow acquisition); all from public `gsap` npm package — no Club membership/auth token required (per upstream README)",
+        "assets/ SVG logos excluded as binaries; .claude-plugin/, .cursor-plugin/ excluded (plugin config); GEMINI.md, CLAUDE.md excluded (agent config)",
+        "examples/ (vue, nuxt, vanilla, react) vendored as text reference; package.json in examples declares build deps but not installed",
+        "Skill doctrine teaches GSAP API usage (gsap.to/from/fromTo, easing, timelines, ScrollTrigger pinning/scrub, useGSAP hook, gsap.context cleanup, transforms over layout props); homólogo encodes doctrine in prose, check-skill.mjs self-contained (no import of vendor code)"
+      ],
+      "update_procedure": [
+        "Clone greensock/gsap-skills at new commit",
+        "Re-copy text-only to skills/vendor/gsap-skills/gsap-skills/ (exclude .git, .gitignore, assets/, .claude-plugin/, .cursor-plugin/, GEMINI.md, CLAUDE.md)",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 33,
+    "total_skills": 1,
+    "licenses": {
+      "gsap-skills": "MIT"
+    },
+    "binaries_excluded": "assets/*.svg (SVG logos)",
+    "text_extensions_copied": [".md", ".vue", ".html", ".js", ".jsx", ".ts", ".json"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
