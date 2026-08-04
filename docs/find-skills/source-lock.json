@@ -1,0 +1,51 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/vercel-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/vercel-labs/skills",
+  "source_commit": "ab4fc49265c443279a5deae20297e631470da68c",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Vercel, Inc. (find-skills, https://github.com/vercel-labs/skills)",
+  "vendor_root_hashes": {
+    "LICENSE": "661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca"
+  },
+  "vendors": [
+    {
+      "skill": "find-skills",
+      "source_repo": "https://github.com/vercel-labs/skills",
+      "source_commit": "ab4fc49265c443279a5deae20297e631470da68c",
+      "source_path": "skills/find-skills/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Vercel, Inc.",
+      "destination": "skills/vendor/vercel-skills/find-skills/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/find-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "c00eeea0e13e74fe4a9d84ba0a8542205a1b736d65f13134fe1a6647eb14976f"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "find-skills is a meta-discovery skill that recommends running `npx skills find/add` (external CLI); homólogo must not auto-execute network/install commands without user confirmation",
+        "Source repo is the `skills` CLI package itself (vercel-labs/skills); only skills/find-skills/SKILL.md vendored, not the CLI src/"
+      ],
+      "update_procedure": [
+        "Clone vercel-labs/skills at new commit",
+        "Re-copy text-only to skills/vendor/vercel-skills/find-skills/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 1,
+    "total_skills": 1,
+    "licenses": {
+      "find-skills": "MIT"
+    },
+    "binaries_excluded": "none (single SKILL.md, no binaries in source)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
