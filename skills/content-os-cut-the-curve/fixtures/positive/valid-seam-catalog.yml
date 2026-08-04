@@ -1,0 +1,17 @@
+# Positive fixture: valid seam catalog plan
+composition_id: ctc-demo-001
+technique: cut-the-curve
+direction: left
+travel: 230
+z_scale_sign: none
+peak_blur: 8
+exit:
+  ease: power4.in
+  duration: 0.34
+entry:
+  ease: power4.out
+  duration: 0.42
+  start_opacity: 0.35
+# contract tokens present: data-composition-id, data-duration, data-start,
+# window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# mirrored power4.in / power4.out, partial travel 230px (~12%), early fade, opaque stage ground

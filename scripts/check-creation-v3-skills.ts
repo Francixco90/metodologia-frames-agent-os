@@ -176,6 +176,21 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-captions-overlay/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-motion-doctrine',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-motion-doctrine/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-cut-the-curve',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-cut-the-curve/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-seam-craft',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-seam-craft/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

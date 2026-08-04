@@ -1,0 +1,5 @@
+{"composition_id":"mdr-demo-001","current":"left","scene":{"id":"scene-01","sustained_motion_route":"staged-reveals","stillness_before_climax":true}}
+{"composition_id":"mdr-demo-001","seam":{"cut_time":4.2,"exit":"x-LEFT","entry":"x-LEFT","technique":"cut-the-curve"}}
+{"composition_id":"mdr-demo-001","current":"left","scene":{"id":"scene-02","sustained_motion_route":"camera-with-intent","stillness_before_climax":true}}
+{"composition_id":"mdr-demo-001","seam":{"cut_time":8.7,"exit":"z-push","entry":"z-push","z_scale_sign":"push","technique":"zoom-through"}}
+{"composition_id":"mdr-demo-001","current":"left","scene":{"id":"scene-03","sustained_motion_route":"sequenced-ui-life","stillness_before_climax":true}}

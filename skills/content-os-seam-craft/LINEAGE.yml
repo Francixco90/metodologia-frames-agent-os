@@ -1,0 +1,33 @@
+schema_version: 1
+skill_id: content-os-seam-craft
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-apache-2-reference
+derivation_note: >
+  Clean-room prose adaptation of the seam-craft render-correctness doctrine (opaque stage
+  ground / white-flash guard + injector overlap mechanics) for the Content OS toolchain.
+  No vendor code copied; the vendor SKILL.md is read-only authority reference. Apache-2.0
+  permits derivation with attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/seam-craft/SKILL.md
+  - skills/content-os-cut-the-curve/SKILL.md
+  - skills/content-os-motion-doctrine/SKILL.md
+  - skills/content-os-core/SKILL.md
+runtime_refs:
+  - skills/content-os-seam-craft/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-seam-craft/receipts/runtime-boundary.yml
+compatibility_contract: seam-craft-v1
+request_contract_ref: skills/content-os-seam-craft/schemas/seam-craft-v1.schema.json
+supported_request_types:
+  - seam_render_prerequisites
+  - white_flash_guard
+external_fragments_reused: false
+external_fragments_source: skills/vendor/hyperframes/seam-craft/ (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: heygen-com/hyperframes seam-craft
+production_runtime_status: local_capability_only
+publication_authority: false

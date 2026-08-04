@@ -1,0 +1,31 @@
+# Negative fixture: broken seam catalog plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: ctc-broken-001
+technique: cut-the-curve
+direction: left
+travel: 1920
+z_scale_sign: none
+peak_blur: 10
+exit:
+  ease: power4.inOut
+  duration: 0.6
+entry:
+  ease: power4.inOut
+  duration: 0.6
+  start_opacity: 0
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in seam code (rejected)
+# - Date.now : forbidden API in seam code (rejected)
+# - setTimeout : forbidden API in seam code (rejected)
+# - fetch : network in render path (rejected)
+# - grow-from-small-mirror : inverse-zoom exit answered by grow-from-small entry (rejected)
+# - full-off-screen : travel 1920 = full frame instead of partial ~12% (rejected)
+# - inOut-on-cut : power4.inOut on both sides instead of mirrored power4.in / power4.out (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - grow-from-small-mirror
+  - full-off-screen
+  - inOut-on-cut

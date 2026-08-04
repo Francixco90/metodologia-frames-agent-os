@@ -1,0 +1,26 @@
+schema_version: 1
+receipt_id: COS-CTC-RUNTIME-001
+skill_id: content-os-cut-the-curve
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  playwright: 1.61.1
+  gsap: 3.15.0
+  ffmpeg: libx264
+render_adapter: skills/content-os-core/scripts/render-html.ts
+network_in_render_path: false
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Playwright + GSAP + FFmpeg already toolchain-pinned).
+  - Implements seam catalog governed by content-os-motion-doctrine (read gateway first).
+  - Partial travel ~12% of frame; mirrored power4.in / power4.out; no .inOut on cuts.
+  - Blur the wrapper, never children; 10px text / 18-20px full-frame; never blur <video> directly.

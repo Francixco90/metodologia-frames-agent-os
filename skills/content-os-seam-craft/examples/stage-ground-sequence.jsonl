@@ -1,0 +1,3 @@
+{"composition_id":"smc-demo-001","stage_ground":{"opaque":true,"background":"var(--canvas-deep, var(--canvas, #000))"}}
+{"composition_id":"smc-demo-001","seam":{"from":"#el-scene-01","to":"#el-scene-02","duration_s":0.6,"track_index":0,"hold_final_frame":true}}
+{"composition_id":"smc-demo-001","seam":{"from":"#el-scene-02","to":"#el-scene-03","duration_s":0.4,"track_index":1,"hold_final_frame":true}}

@@ -255,6 +255,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-captions-overlay/scripts/check-skill.mjs]
+  - skill_id: content-os-motion-doctrine
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: c32dae6abc0aef39c31eb2dc7d56b6b8654085ea1dcd0168be9dc012205e07d6
+    package_manifest_sha256: 87f75a89c96c473b345e533ba4728a69b5b96b496cca375850fb5851324b79a0
+    lineage_ref: skills/content-os-motion-doctrine/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-motion-doctrine/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-motion-doctrine/scripts/check-skill.mjs]
+  - skill_id: content-os-cut-the-curve
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 425f7b963d2b8bca73e8885eb9c516ec8396dbce717b525dc4036e9635056686
+    package_manifest_sha256: af74ad99fc68ca21db32821d03f910c3209d72a0cb04d5ac0c73e07db7c7e786
+    lineage_ref: skills/content-os-cut-the-curve/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-cut-the-curve/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-cut-the-curve/scripts/check-skill.mjs]
+  - skill_id: content-os-seam-craft
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: b498b1236ee396d1f38fb073921fdbfea7745a8ad6c5ed8195c26f176bc69641
+    package_manifest_sha256: 184312b1ac9e1a672fcf3624ff3972ea1ea73544cf56979f90db4028a863dbb8
+    lineage_ref: skills/content-os-seam-craft/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-seam-craft/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-seam-craft/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -349,3 +382,15 @@ events:
   - {event_id: EVT-SKL-COV-H03-002, event_order: 2, skill_id: content-os-captions-overlay, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COV-H03-003, event_order: 3, skill_id: content-os-captions-overlay, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COV-H03-004, event_order: 4, skill_id: content-os-captions-overlay, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MDR-H03-001, event_order: 1, skill_id: content-os-motion-doctrine, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MDR-H03-002, event_order: 2, skill_id: content-os-motion-doctrine, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MDR-H03-003, event_order: 3, skill_id: content-os-motion-doctrine, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MDR-H03-004, event_order: 4, skill_id: content-os-motion-doctrine, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CTC-H03-001, event_order: 1, skill_id: content-os-cut-the-curve, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTC-H03-002, event_order: 2, skill_id: content-os-cut-the-curve, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTC-H03-003, event_order: 3, skill_id: content-os-cut-the-curve, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CTC-H03-004, event_order: 4, skill_id: content-os-cut-the-curve, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SMC-H03-001, event_order: 1, skill_id: content-os-seam-craft, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SMC-H03-002, event_order: 2, skill_id: content-os-seam-craft, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SMC-H03-003, event_order: 3, skill_id: content-os-seam-craft, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SMC-H03-004, event_order: 4, skill_id: content-os-seam-craft, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

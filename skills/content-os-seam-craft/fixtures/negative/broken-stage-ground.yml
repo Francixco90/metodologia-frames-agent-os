@@ -1,0 +1,33 @@
+# Negative fixture: broken stage ground + seam assembly (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: smc-broken-001
+stage_ground:
+  opaque: false
+  background: transparent
+seams:
+  - from: '#el-scene-01'
+    to: '#el-scene-02'
+    duration_s: 0.6
+    track_index: 0
+    hold_final_frame: true
+  - from: '#el-scene-02'
+    to: '#el-scene-03'
+    duration_s: 0.4
+    track_index: 0
+    hold_final_frame: false
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in seam-assembly code (rejected)
+# - Date.now : forbidden API in seam-assembly code (rejected)
+# - setTimeout : forbidden API in seam-assembly code (rejected)
+# - fetch : network in render path (rejected)
+# - transparent-root : #root not opaque -> white flash at every seam (rejected)
+# - same-track-overlap : both wrappers on track 0 -> illegal overlap (rejected)
+# - no-hold-final-frame : incoming wrapper not holding scene i final frame (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - transparent-root
+  - same-track-overlap
+  - no-hold-final-frame

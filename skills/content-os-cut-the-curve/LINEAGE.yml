@@ -1,0 +1,34 @@
+schema_version: 1
+skill_id: content-os-cut-the-curve
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-apache-2-reference
+derivation_note: >
+  Clean-room prose adaptation of the cut-the-curve technique catalog (five velocity-matched
+  seams + waterfall entry + nudge curve) for the Content OS toolchain. No vendor code copied;
+  the vendor SKILL.md is read-only authority reference. Apache-2.0 permits derivation with
+  attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/cut-the-curve/SKILL.md
+  - skills/content-os-motion-doctrine/SKILL.md
+  - skills/content-os-seam-craft/SKILL.md
+  - skills/content-os-core/SKILL.md
+runtime_refs:
+  - skills/content-os-cut-the-curve/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-cut-the-curve/receipts/runtime-boundary.yml
+compatibility_contract: cut-the-curve-v1
+request_contract_ref: skills/content-os-cut-the-curve/schemas/cut-the-curve-v1.schema.json
+supported_request_types:
+  - seam_transition
+  - waterfall_entry
+  - nudge_curve
+external_fragments_reused: false
+external_fragments_source: skills/vendor/hyperframes/cut-the-curve/ (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: heygen-com/hyperframes cut-the-curve
+production_runtime_status: local_capability_only
+publication_authority: false

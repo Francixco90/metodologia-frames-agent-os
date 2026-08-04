@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/seam-craft-v1.schema.json",
+  "title": "Seam Craft v1 request",
+  "type": "object",
+  "required": ["composition_id", "stage_ground", "seams"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "stage_ground": {
+      "type": "object",
+      "required": ["opaque"],
+      "properties": {
+        "opaque": {"type": "boolean", "description": "#root must be opaque — white-flash guard"},
+        "background": {"type": "string", "default": "var(--canvas-deep, var(--canvas, #000))"}
+      }
+    },
+    "seams": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "duration_s", "track_index"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "pattern": "^#el-[a-z0-9-]+$",
+            "description": "outgoing clip wrapper"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^#el-[a-z0-9-]+$",
+            "description": "incoming clip wrapper"
+          },
+          "duration_s": {"type": "number", "minimum": 0, "description": "overlap window length"},
+          "track_index": {
+            "type": "integer",
+            "enum": [0, 1],
+            "description": "ping-pong; same-track overlap illegal"
+          },
+          "hold_final_frame": {"type": "boolean", "default": true}
+        }
+      }
+    }
+  }
+}
