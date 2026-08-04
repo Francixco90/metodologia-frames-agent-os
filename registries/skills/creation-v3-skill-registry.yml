@@ -145,6 +145,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-motion-graphics/scripts/check-skill.mjs]
+  - skill_id: content-os-embedded-captions
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 95243be66d5282046f473ff83d4cfb749ad93e8820977141a23d50b3b08d37ec
+    package_manifest_sha256: 9eb473a584a7f04ea68986e43241d3d733d128a4630b9b5837287ec064686b06
+    lineage_ref: skills/content-os-embedded-captions/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-embedded-captions/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-embedded-captions/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -198,3 +209,7 @@ events:
   - {event_id: EVT-SKL-CMG-H03-002, event_order: 2, skill_id: content-os-motion-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMG-H03-003, event_order: 3, skill_id: content-os-motion-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMG-H03-004, event_order: 4, skill_id: content-os-motion-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CEC-H03-001, event_order: 1, skill_id: content-os-embedded-captions, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CEC-H03-002, event_order: 2, skill_id: content-os-embedded-captions, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CEC-H03-003, event_order: 3, skill_id: content-os-embedded-captions, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CEC-H03-004, event_order: 4, skill_id: content-os-embedded-captions, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

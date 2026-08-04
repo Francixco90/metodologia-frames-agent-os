@@ -1,0 +1,21 @@
+receipt_id: RCP-H03-CONTENT-OS-EMBEDDED-CAPTIONS-001
+issued: '2026-08-03'
+scope: skills/content-os-embedded-captions
+production_runtime_status: local_capability_only
+publication_authority: false
+allowed_scoped:
+  - 'html_composition_offline_deterministic'
+  - 'gsap_seek_safe_paused_true'
+  - 'caption_rail_embed_drop_model'
+  - 'footage_untouched_captions_only'
+  - 'matte_occlusion_subject_segmentation'
+  - 'transcription_offline_whisper_cpp_default'
+  - 'matting_offline_ffmpeg_bg_removal_default'
+  - 'remote_opt_in_auth_gated_transcription_matting'
+  - 'composite_footage_embed_matte_rail_offline'
+out_of_scope:
+  - 'npx_hyperframes_cli'
+  - 'graded_footage_recolor_scanline'
+  - 'burned_in_captions_conflict'
+  - 'fabricated_captions_over_garbage_transcript'
+  - 'network_in_render_path'

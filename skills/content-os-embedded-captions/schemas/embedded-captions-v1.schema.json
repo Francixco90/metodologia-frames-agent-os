@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedded-captions-v1",
+  "title": "Content OS Embedded Captions workflow state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "vo_mode",
+    "has_script",
+    "footage",
+    "offline",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "embedded-captions-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-embedded-captions"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["standard", "cinematic", "theme"],
+      "description": "Caption mode. standard=rail+embed climax; cinematic=pure embed; theme=themed constitution."
+    },
+    "identity": {
+      "type": "string",
+      "description": "Picked identity from the catalog (DNA registry or theme)."
+    },
+    "vo_mode": {
+      "type": "string",
+      "const": "transcribed",
+      "description": "Captions derived from footage speech via transcription. Only 'transcribed' valid. The footage carries its own VO."
+    },
+    "has_script": {
+      "type": "boolean",
+      "const": false,
+      "description": "No SCRIPT.md authored — transcript is derived from footage, not authored."
+    },
+    "footage": {
+      "type": "boolean",
+      "const": true,
+      "description": "This workflow takes existing talking-head footage. footage:true is valid here (unlike motion-graphics)."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true
+    },
+    "graded_footage": {
+      "type": "boolean",
+      "description": "If true = graded-footage violation (never grade/recolor the footage)."
+    },
+    "embed_all": {
+      "type": "boolean",
+      "description": "If true = embed-overuse violation (rail-first; embedding every word is the common mistake)."
+    },
+    "rail_mode": {
+      "type": "string",
+      "enum": ["rail", "none"],
+      "description": "rail=rail track present (default); none=no rail (embed-overuse if standard/cinematic without rail)."
+    },
+    "burned_in_captions": {
+      "type": "boolean",
+      "description": "If true, source already has burned-in captions — decision gate should refuse."
+    },
+    "transcript_source": {
+      "type": "string",
+      "enum": ["offline", "remote"],
+      "description": "Transcription engine. offline=whisper.cpp (default); remote=WhisperX opt-in auth-gated."
+    },
+    "matte_source": {
+      "type": "string",
+      "enum": ["offline", "remote"],
+      "description": "Matting engine. offline=ffmpeg bg-removal (default); remote opt-in auth-gated."
+    },
+    "rendered": {
+      "type": "boolean"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["setup", "prepare", "plan", "design", "build", "verify", "finalize"]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+# Negative fixture: documents all 6 violation codes.
+# - missing-gate: build state done (invalid)
+# - step-out-of-order: plan before prepare
+# - no-render: finalize gate-passed + rendered false
+# - network-in-workflow: offline false + https URL in source_ref
+# - graded-footage: graded_footage true (never grade the footage)
+# - embed-overuse: embed_all true + rail_mode none (rail-first violated)
+schemaVersion: embedded-captions-v1
+projectId: bad-captions
+route: content-os-embedded-captions
+mode: standard
+identity: cream
+vo_mode: transcribed
+has_script: false
+footage: true
+offline: false # network-in-workflow: offline not true
+graded_footage: true # graded-footage: never grade/recolor the footage
+embed_all: true # embed-overuse: embedding every word is the common mistake
+rail_mode: none # embed-overuse: rail_mode none (rail-first violated)
+burned_in_captions: false
+rendered: false
+source_ref: https://acme.com/clip.mp4 # network-in-workflow: https URL in state
+capability_map:
+  - content-os-core
+  - content-os-media
+steps:
+  - step: setup
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: prepare
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: build
+    state: done # missing-gate: build state done (invalid, not in VALID_STATES)
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render: finalize gate-passed + rendered false

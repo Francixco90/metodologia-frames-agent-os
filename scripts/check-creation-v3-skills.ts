@@ -118,6 +118,11 @@ const skills = [
     scope: 'local-evaluation',
     check: ['skills/content-os-motion-graphics/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-embedded-captions',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-embedded-captions/scripts/check-skill.mjs'],
+  },
 ] as const;
 
 for (const skill of skills) {
@@ -200,5 +205,5 @@ if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.info('PASS CREATION V3 SKILLS: thirteen local H-03 skills are active and hash-bound.');
+  console.info('PASS CREATION V3 SKILLS: fourteen local H-03 skills are active and hash-bound.');
 }
