@@ -17,8 +17,8 @@ entries:
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation-only
-    content_sha256: 76908f32d8ef935da73bed3f08d217d5b542785f14362f2e855dedb030754db5
-    package_manifest_sha256: 242c7fb786983ae5fa6b68840c08ca4b8589986f6415b55a7aec0f104ee3310e
+    content_sha256: 542ae5398562901017405124ce4833dadfbc42abc85b2dea3c6d04b3fe804814
+    package_manifest_sha256: 29253a30855b72ff12f9987d29bf5ce49b835f2e33cd56c11773b7fa62f11dff
     lineage_ref: skills/motion-library-adapters/LINEAGE.yml
     dependency_receipt_ref: skills/motion-library-adapters/receipts/runtime-boundary.yml
     production_runtime_status: blocked_remotion_license_coverage_gap
@@ -39,8 +39,8 @@ entries:
     version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 9f2155cef19d5e74c0676952aca32388122755a828744428449b4fed9f67e203
-    package_manifest_sha256: 10f4de4140d98c4110f97bfe83ed7c104bfc648ec82f8d952877bcefa72fe44e
+    content_sha256: 8a32e4f94d94339002bbc12cbf09aed28c4fbcb7cf5fcb1ea3f02a2b9c72b6ec
+    package_manifest_sha256: fa6bca042ed3ccfbc4a96bdd4724a1cb51e38a7621c94c27a379bf469a2e3b4e
     lineage_ref: skills/content-os-animation/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-animation/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

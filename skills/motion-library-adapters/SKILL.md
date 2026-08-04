@@ -34,6 +34,28 @@ compositor final ni publicador.
 - **Remotion:** obtener el frame solo en el boundary y entregarlo a los adapters. No registrar una
   composición nueva en H-03.
 
+## Adapter family coverage (Fase 2A overlap merge)
+
+`motion-library-adapters` (Remotion-runtime adapters) + `content-os-animation` (HTML+GSAP
+rules/blueprints) cubren colectivamente la familia conceptual de adapters de HyperFrames
+sin requerir un homólogo por adapter. La decisión de overlap merge (Fase 2A) mapea los
+patrones de adapter a las dos skills existentes en lugar de duplicar uno por runtime:
+
+| patrón adapter (HyperFrames conceptual) | homólogo Frames ContentOS                          | runtime                          |
+| --------------------------------------- | -------------------------------------------------- | -------------------------------- |
+| gsap, gsap-effects                      | `motion-library-adapters` + `content-os-animation` | Remotion frame clock / HTML+GSAP |
+| css-animations                          | `content-os-animation`                             | HTML CSS keyframes               |
+| tailwind (motion utilities)             | `content-os-animation`                             | HTML CSS                         |
+| animejs                                 | `content-os-animation` (out-of-scope offline)      | HTML (declared out-of-scope)     |
+| three                                   | `motion-library-adapters`                          | Remotion R3F                     |
+| lottie                                  | `motion-library-adapters`                          | Remotion Lottie                  |
+| waapi                                   | `content-os-animation`                             | HTML WAAPI                       |
+| typegpu                                 | both (out-of-scope offline)                        | declared out-of-scope            |
+
+Autoridad conceptual: `skills/vendor/hyperframes/hyperframes-animation/SKILL.md` (vendor
+reference-only, Apache-2.0). No se vendoriza un adapter por runtime; la cobertura se
+consolida en estas dos skills hash-bound.
+
 ## Fallbacks
 
 Declarar el fallback en el resultado y degradar la disponibilidad de la capacidad. Usar motion
