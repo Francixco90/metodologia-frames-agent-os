@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "product-launch-video-v1",
+  "title": "Content OS Product Launch Video workflow state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "source_type",
+    "offline",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "product-launch-video-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-product-launch-video"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["url", "script", "brief"]
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "Normalized domain/brand (URL input) or script/brief label. No raw https URL in state."
+    },
+    "capture": {
+      "type": "boolean",
+      "description": "true if Step 1 capture ran (URL input). false for no-capture path (script/brief)."
+    },
+    "capture_blocked": {
+      "type": "boolean",
+      "description": "true if capture/BLOCKED.md hard-stop triggered. Violation if true."
+    },
+    "style_preset": {
+      "type": "string",
+      "description": "Frame preset name from content-os-creative (user pick or judgment call)."
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 5
+    },
+    "vo_mode": {
+      "type": "string",
+      "enum": ["narrated", "restructured", "silent"]
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true
+    },
+    "silent": {
+      "type": "boolean"
+    },
+    "rendered": {
+      "type": "boolean"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "setup",
+              "capture",
+              "design",
+              "storyboard",
+              "audio",
+              "visual-design",
+              "build-frames",
+              "finalize"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          }
+        }
+      }
+    }
+  }
+}

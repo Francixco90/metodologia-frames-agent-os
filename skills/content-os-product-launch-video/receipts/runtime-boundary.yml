@@ -1,0 +1,41 @@
+receipt_id: RCP-H03-CONTENT-OS-PRODUCT-LAUNCH-VIDEO-001
+skill_id: content-os-product-launch-video
+version: 0.1.0
+issued: 2026-08-03
+issuer: RT-07-H03-PRODUCER
+execution_scope: local-evaluation
+runtime_boundary:
+  composition_runtime: html-gsap-seekable
+  render_adapter: 'content-os-core (Playwright + FFmpeg, HTML to MP4)'
+  capture_adapter: 'Playwright 1.61.1 pinned (Step 1 only, URL input)'
+  media_runtime: 'content-os-media offline cascade (Piper/Coqui TTS, whisper.cpp); remote opt-in auth-gated'
+  determinism: 'no Date.now/Math.random/new Date/performance.now/fetch/setTimeout/setInterval/getBoundingClientRect; no repeat:-1; no relative +=; no CSS transition: on animated elements'
+  seek_safe: 'GSAP paused: true, window.__timelines[id], seek(frame/fps)'
+allowed_scoped:
+  - html_composition_offline_deterministic
+  - gsap_seek_safe_paused_true
+  - playwright_capture_step1_url_only
+  - tts_offline_cascade_default
+  - remote_media_opt_in_auth_gated
+  - content_os_registry_blocks
+out_of_scope:
+  - npx_hyperframes_cli
+  - npx_hyperframes_capture
+  - network_in_render_path
+  - footage_real_video
+  - rebuild_full_website_in_html_for_tour
+  - synthetic_fallback_on_capture_blocked
+  - publication_authority
+  - human_approval_automation
+gates_manual_by_design:
+  - G13 governance
+  - G14 Guardian
+  - H01 human
+  - G16 readiness
+  - G17 publish
+output_state: RENDERED_DRAFT
+license: LicenseRef-MetodologIA-Internal
+provenance:
+  source_skill: product-launch-video
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0

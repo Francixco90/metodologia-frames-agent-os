@@ -1,0 +1,50 @@
+# Negative fixture: broken product-launch-video workflow.
+# Documents all 6 audit violation codes. This file MUST fail the audit.
+#
+# Violations present:
+#   - missing-gate: step 'audio' state 'done' (invalid state)
+#   - step-out-of-order: storyboard before capture and design
+#   - capture-blocked: capture_blocked: true (hard-stop not respected)
+#   - no-capture-for-url: source_type url + capture false
+#   - no-render: finalize gate-passed + rendered false
+#   - network-in-workflow: https URL in source_ref + offline false
+schemaVersion: product-launch-video-v1
+projectId: bad-launch
+route: content-os-product-launch-video
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-creative
+  - content-os-media
+  - content-os-registry
+source_type: url
+source_ref: https://acme.com/launch # network-in-workflow: raw URL in state
+capture: false # no-capture-for-url: url input without capture
+capture_blocked: true # capture-blocked: hard-stop flag set, workflow proceeds anyway
+style_preset: bold-numeric
+duration_s: 75
+vo_mode: narrated
+offline: false # network-in-workflow: offline not true
+silent: false
+rendered: false # no-render: finalize gate-passed below + no MP4
+steps:
+  - step: setup
+    state: gate-passed
+  - step: storyboard # step-out-of-order: storyboard before capture and design
+    state: gate-passed
+  - step: capture
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: audio
+    state: done # missing-gate: invalid state (valid: pending|in-progress|gate-passed|user-approved)
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render: gate passed + rendered false
+storySpine:
+  archetype: feature-reveal
+  hook: question
+  vo_mode: narrated
