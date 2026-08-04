@@ -1,0 +1,32 @@
+skill_id: content-os-slideshow
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: slideshow-v1
+authority_refs:
+  - skills/vendor/hyperframes/slideshow/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: slideshow
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation_notes: >
+    Orquestador deck→navigable-slideshow: autor una presentación o deck
+    interactivo con slides discretos, fragment reveals, branching hotspots,
+    presenter mode con speaker notes. También convierte una página existente en
+    deck. Output es el deck HTML (navegable), NO MP4 (sin master-root
+    composition; render truncaría al primer slide). Composition via content-os-core
+    (HTML+GSAP seekable per slide). Lint via content-os-keyframes. Slide blocks
+    via content-os-registry. Brand tokens via content-os-creative. Unnarrated
+    (speaker notes presenter-only, no TTS). Slide writing rules (headline =
+    complete-sentence claim, no label). JSON island declares slides + sequences.
+    Output RENDERED_DRAFT (deck draft), no HUMAN_APPROVED.
