@@ -1,0 +1,5 @@
+{"composition_id":"ocr-demo-001","beat_type":"cursor_entry","size_cqw":7,"entry_origin":"below","ease":"power3.out","duration":0.85,"from":{"left":"48.6%","top":"115%"},"to":{"left":"48.6%","top":"55%"}}
+{"composition_id":"ocr-demo-001","beat_type":"cursor_click_tap","tip_transform_origin":"21% 14%","click_ratio":"1:2","compress":{"scale":0.84,"duration":0.1,"ease":"power2.in"},"expand":{"scale":1,"duration":0.22,"ease":"power2.out"},"ignites":"menu-cascade"}
+{"composition_id":"ocr-demo-001","beat_type":"cursor_drift_aside","ease":"power2.out","duration":0.7,"to":{"left":"62%","top":"48%"}}
+{"composition_id":"ocr-demo-001","beat_type":"cursor_exit","exit_type":"off-frame","ease":"power2.in","duration":0.6,"to":{"left":"118%"}}
+{"composition_id":"ocr-demo-001","beat_type":"cursor_handoff","exit_type":"cut-the-curve-handoff","scene_a_last_0.3s":{"ease":"power2.in","to":{"left":"40.7%","top":"63.7%"}},"scene_b_continue":{"ease":"power2.out","duration":0.6,"from":{"left":"40.7%","top":"63.7%"},"to":{"left":"22%","top":"45%"}}}

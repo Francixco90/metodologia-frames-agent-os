@@ -288,6 +288,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-seam-craft/scripts/check-skill.mjs]
+  - skill_id: content-os-oversized-cursor
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: ff09f7a95f9c46d50ac7664ae3b079315a39770f8541ff2bbbdb28cdb9490d84
+    package_manifest_sha256: 2b5a8b36f315ed51409271f443652b91a0c257d77d9e3e3748370027ca5a0872
+    lineage_ref: skills/content-os-oversized-cursor/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-oversized-cursor/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-oversized-cursor/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -394,3 +405,7 @@ events:
   - {event_id: EVT-SKL-SMC-H03-002, event_order: 2, skill_id: content-os-seam-craft, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SMC-H03-003, event_order: 3, skill_id: content-os-seam-craft, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SMC-H03-004, event_order: 4, skill_id: content-os-seam-craft, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCR-H03-001, event_order: 1, skill_id: content-os-oversized-cursor, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCR-H03-002, event_order: 2, skill_id: content-os-oversized-cursor, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCR-H03-003, event_order: 3, skill_id: content-os-oversized-cursor, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCR-H03-004, event_order: 4, skill_id: content-os-oversized-cursor, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

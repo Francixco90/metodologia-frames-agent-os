@@ -1,0 +1,14 @@
+# Positive fixture: valid oversized cursor plan
+composition_id: ocr-demo-001
+beat_type: cursor_entry
+size_cqw: 7
+entry_origin: below
+tip_transform_origin: '21% 14%'
+click_ratio: '1:2'
+exit_type: cut-the-curve-handoff
+ease: power3.out
+# contract tokens present: data-composition-id, data-duration, data-start,
+# window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# 7cqw full-frame; off-screen entry from below (top 115%); tip-targeting transformOrigin 21% 14%;
+# asymmetric 1:2 click tap (power2.in 0.1s / power2.out 0.22s); click-ignites-next-beat;
+# drifts aside during long beats; zero idle wobble; physical exit (no fade-in-place)

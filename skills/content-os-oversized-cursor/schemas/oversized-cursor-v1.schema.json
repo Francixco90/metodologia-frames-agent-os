@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/oversized-cursor-v1.schema.json",
+  "title": "Oversized Cursor v1 request",
+  "type": "object",
+  "required": ["composition_id", "beat_type", "size_cqw"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "beat_type": {
+      "type": "string",
+      "enum": [
+        "cursor_entry",
+        "cursor_click_tap",
+        "cursor_drift_aside",
+        "cursor_exit",
+        "cursor_handoff"
+      ],
+      "description": "the cursor either owns the beat or drifts aside — no idle wobble"
+    },
+    "size_cqw": {
+      "type": "number",
+      "minimum": 4.6,
+      "maximum": 7,
+      "description": "7cqw full-frame; 4.6-5.5cqw inside a mock; never smaller"
+    },
+    "entry_origin": {
+      "type": "string",
+      "enum": ["below", "above", "left", "right"],
+      "default": "below",
+      "description": "off-screen entry (canonical: below, top 115-120%); never fade/mask reveal"
+    },
+    "tip_transform_origin": {
+      "type": "string",
+      "default": "21% 14%",
+      "description": "press pivots on the arrow tip, not the box center"
+    },
+    "click_ratio": {
+      "type": "string",
+      "enum": ["1:2"],
+      "default": "1:2",
+      "description": "asymmetric compress/expand — power2.in 0.1s / power2.out 0.22s"
+    },
+    "exit_type": {
+      "type": "string",
+      "enum": ["off-frame", "cut-the-curve-handoff"],
+      "description": "physical exits only; never opacity fade in place"
+    },
+    "ease": {
+      "type": "string",
+      "description": "power3.out entry; power2.in off-frame exit; power2.out drift/handoff finish"
+    }
+  }
+}

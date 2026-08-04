@@ -1,0 +1,28 @@
+schema_version: 1
+receipt_id: COS-OCR-RUNTIME-001
+skill_id: content-os-oversized-cursor
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  playwright: 1.61.1
+  gsap: 3.15.0
+  ffmpeg: libx264
+render_adapter: skills/content-os-core/scripts/render-html.ts
+network_in_render_path: false
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Playwright + GSAP + FFmpeg already toolchain-pinned).
+  - Implements the oversized cursor eye-carrier governed by content-os-motion-doctrine (read gateway first).
+  - Size 7cqw full-frame; off-screen entry (top 115-120%); tip-targeting transformOrigin '21% 14%'.
+  - Asymmetric 1:2 click tap (power2.in 0.1s / power2.out 0.22s); click ignites the next beat same-frame.
+  - Drifts aside during beats it doesn't own (0.5-0.9s power2.out); zero idle wobble.
+  - Physical exits only: off-frame (power2.in) or cut-the-curve handoff; no fade-in-place.

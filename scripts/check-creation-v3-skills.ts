@@ -191,6 +191,11 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-seam-craft/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-oversized-cursor',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-oversized-cursor/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
