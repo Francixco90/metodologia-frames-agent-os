@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-multimedia-v1.schema.json",
+  "title": "Remotion Multimedia v1 metadata request",
+  "type": "object",
+  "required": ["metadata_read", "read_scope", "determinism_contract"],
+  "properties": {
+    "metadata_read": {
+      "type": "string",
+      "enum": ["audio-duration", "video-dimensions", "video-duration"],
+      "description": "which metadata to read"
+    },
+    "read_scope": {
+      "type": "string",
+      "enum": ["off-render", "calculateMetadata"],
+      "description": "read off-render or in calculateMetadata; never in the per-frame render path"
+    },
+    "per_frame_read": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; a per-frame metadata read breaks determinism"
+    },
+    "remote_media": {
+      "type": "string",
+      "enum": ["disabled", "opt-in-auth-gated-fail-closed"],
+      "description": "local first-party version-pinned by default"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval; same file ⇒ same metadata"
+    }
+  }
+}

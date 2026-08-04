@@ -1,0 +1,20 @@
+# Negative fixture: a malformed Remotion map animation request.
+schema_version: 1
+skill_id: content-os-remotion-maps
+technique: mapbox
+animation_clock: requestAnimationFrame
+interpolate_used: false
+mapbox_key_handling: 'hard-coded'
+remote_media: 'live-tile-api'
+determinism_contract: false
+violations:
+  - Mapbox key hard-coded in composition (PII/secret in render path)
+  - live tile API fetch in render path (non-deterministic)
+  - requestAnimationFrame to drive motion (not the Remotion clock)
+  - Math.random to jitter pin positions (non-deterministic)
+  - Date.now to seed a layout (non-deterministic)
+  - setTimeout to delay a route draw (not frame-driven)
+  - fetch inside composition (network in render path)
+  - multiple techniques in one composition without Sequence isolation
+  - production request without G13-G17 human gate
+verdict: reject; map blocked

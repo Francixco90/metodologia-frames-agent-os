@@ -1,0 +1,27 @@
+schema_version: 1
+receipt_id: COS-RDR-RUNTIME-001
+skill_id: content-os-remotion-render
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  remotion: 4.0.494
+  react: 19.2.7
+  ffmpeg: libx264
+render_adapter: renderers/remotion/src/Root.tsx
+network_in_render_path: false
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Remotion + React + FFmpeg already toolchain-pinned).
+  - Renders compositions authored via content-os-remotion-create / content-os-remotion-markup.
+  - Deterministic regardless of --concurrency; same frame ⇒ same pixel output.
+  - License verdict: see receipts/dependency-audits/H03-LIC-REMOTION-001.yml (source-available-publisher addendum).
+  - Production gates G13-G17 manual; render stays RENDERED_DRAFT.

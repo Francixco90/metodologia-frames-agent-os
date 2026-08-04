@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-render-v1.schema.json",
+  "title": "Remotion Render v1 request",
+  "type": "object",
+  "required": ["render_target", "determinism_contract"],
+  "properties": {
+    "render_target": {
+      "type": "string",
+      "enum": ["composition-mp4", "composition-still-png", "composition-transparent-webm"],
+      "description": "what to export"
+    },
+    "codec": {
+      "type": "string",
+      "enum": ["h264", "vp8", "vp9", "png-sequence"],
+      "description": "H.264 (libx264) for MP4; VP8/VP9 for WebM; PNG for transparent/lossless"
+    },
+    "image_format": {
+      "type": "string",
+      "enum": ["jpeg", "png"],
+      "description": "png required for transparency"
+    },
+    "concurrency": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "explicit; default = CPU count; changes wall-clock only, not pixels"
+    },
+    "gl": {
+      "type": "string",
+      "enum": ["swiftshader", "angle", "egl", "swangle"],
+      "description": "headless GL backend for CI; never depend on host GPU"
+    },
+    "browser_executable_pinned": {
+      "type": "boolean",
+      "description": "toolchain Chromium pinned; never system Chrome"
+    },
+    "remote_media": {
+      "type": "string",
+      "enum": ["disabled", "opt-in-auth-gated-fail-closed"],
+      "description": "local first-party version-pinned by default"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval in render path"
+    }
+  }
+}

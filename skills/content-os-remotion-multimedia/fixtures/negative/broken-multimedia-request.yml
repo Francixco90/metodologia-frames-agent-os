@@ -1,0 +1,19 @@
+# Negative fixture: a malformed Remotion multimedia metadata request.
+schema_version: 1
+skill_id: content-os-remotion-multimedia
+metadata_read: video-duration
+read_scope: 'per-frame'
+per_frame_read: true
+remote_media: 'any-url'
+determinism_contract: false
+violations:
+  - Mediabunny read in the per-frame render path (non-deterministic)
+  - per-frame read every frame (breaks determinism)
+  - fetch inside composition to load media (network in render path)
+  - Math.random to jitter duration (non-deterministic)
+  - Date.now to seed a layout (non-deterministic)
+  - setTimeout to delay a metadata read (not frame-driven)
+  - remote media not auth-gated fail-closed
+  - unpinned remote assets in render path
+  - production request without G13-G17 human gate
+verdict: reject; multimedia blocked

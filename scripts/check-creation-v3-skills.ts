@@ -211,6 +211,21 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-remotion-markup/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-remotion-render',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-remotion-render/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-remotion-maps',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-remotion-maps/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-remotion-multimedia',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-remotion-multimedia/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

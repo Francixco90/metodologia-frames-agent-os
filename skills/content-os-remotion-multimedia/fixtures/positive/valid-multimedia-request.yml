@@ -1,0 +1,15 @@
+# Positive fixture: a well-formed Remotion multimedia metadata request.
+schema_version: 1
+skill_id: content-os-remotion-multimedia
+metadata_read: audio-duration
+read_scope: calculateMetadata
+per_frame_read: false
+remote_media: disabled
+determinism_contract: true
+non_negotiables:
+  - metadata read off-render or in calculateMetadata (never per-frame)
+  - same file ⇒ same duration/dimensions (deterministic)
+  - duration converted to frames (durationSeconds * fps) for the composition
+  - render path uses only useCurrentFrame + interpolate + precomputed metadata
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: multimedia valid; off-render deterministic metadata

@@ -1,0 +1,4 @@
+{"step":1,"intent":"render mp4","route":"content-os-remotion-render","entry":"src/index.ts","composition":"Main","out":"out/video.mp4","codec":"h264","image_format":"jpeg","concurrency":4,"gl":"swiftshader"}
+{"step":2,"intent":"render still","route":"content-os-remotion-render","entry":"src/index.ts","composition":"Main","out":"out/frame.png","image_format":"png"}
+{"step":3,"intent":"render transparent","route":"content-os-remotion-render","entry":"src/index.ts","composition":"Overlay","out":"out/overlay.webm","codec":"vp8","image_format":"png","transparent":true}
+{"step":4,"intent":"render pin check","route":"content-os-remotion-render","pin":"remotion@4.0.494 react@19.2.7 ffmpeg=libx264","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
