@@ -61,6 +61,16 @@ que necesitas orquestación a nivel escena.
 Múltiples runtimes pueden coexistir; cada uno registra instancias en su global para que el
 adapter de `content-os-core` seek todos en un pass.
 
+### Overlap merge (Fase 2A)
+
+`content-os-animation` (HTML+GSAP) + `motion-library-adapters` (Remotion-runtime) cubren
+colectivamente la familia conceptual de adapters de HyperFrames (gsap, css-animations,
+tailwind, animejs, three, lottie, waapi, typegpu, gsap-effects) sin un homólogo por adapter.
+Los runtimes Remotion (three, lottie, gsap frame-clock) → `motion-library-adapters`; los
+runtimes HTML (gsap, css-animations, tailwind, waapi) → esta skill; three/lottie/anime/typegpu
+offline-first → out-of-scope (declarado arriba). Autoridad conceptual:
+`skills/vendor/hyperframes/hyperframes-animation/SKILL.md` (reference-only, Apache-2.0).
+
 ## Critical Constraints
 
 Prerequisito: `content-os-core` → Non-Negotiable Rules (single paused timeline,

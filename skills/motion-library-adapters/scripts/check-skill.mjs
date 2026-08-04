@@ -54,6 +54,8 @@ for (const token of [
   'ThreeCanvas',
   'loop={false}',
   'useCurrentFrame',
+  'Adapter family coverage',
+  'overlap merge',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`MOTION_ADAPTER_CONTRACT_MISSING: ${token}`);

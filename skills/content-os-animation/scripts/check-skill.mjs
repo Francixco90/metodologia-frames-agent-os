@@ -46,6 +46,8 @@ for (const token of [
   'stagger',
   'autoAlpha',
   'will-change: transform',
+  'Overlap merge',
+  'overlap merge',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`COSA_CONTRACT_MISSING: ${token}`);

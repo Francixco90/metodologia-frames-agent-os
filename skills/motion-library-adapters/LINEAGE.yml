@@ -15,6 +15,7 @@ authority_refs:
   - core/contracts/renderer-capabilities-v1.ts
   - skills/motion-library-adapters/references/media-use-adapter.md
   - skills/vendor/hyperframes/media-use/SKILL.md
+  - skills/vendor/hyperframes/hyperframes-animation/SKILL.md
 runtime_refs:
   - renderers/remotion/src/adapters/gsap-adapter.ts
   - renderers/remotion/src/adapters/three-adapter.ts
