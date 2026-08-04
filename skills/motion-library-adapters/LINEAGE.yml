@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: motion-library-adapters
-version: 0.1.0
+version: 0.2.0
 owner: MetodologIA
 content_origin: locally_authored
 content_license: LicenseRef-MetodologIA-Internal
@@ -13,6 +13,8 @@ authority_refs:
   - skills/remotion-video-production/references/lottie.md
   - core/contracts/creation-v3.ts
   - core/contracts/renderer-capabilities-v1.ts
+  - skills/motion-library-adapters/references/media-use-adapter.md
+  - skills/vendor/hyperframes/media-use/SKILL.md
 runtime_refs:
   - renderers/remotion/src/adapters/gsap-adapter.ts
   - renderers/remotion/src/adapters/three-adapter.ts

@@ -144,7 +144,7 @@ const RegistrySchema = z.object({
 const CanonicalLineageSchema = z.object({
   schema_version: z.literal(1),
   skill_id: z.literal('remotion-video-production'),
-  version: z.literal('0.1.0'),
+  version: z.enum(['0.1.0', '0.2.0']),
   content_origin: z.literal('locally_authored'),
   content_license: z.literal('LicenseRef-MetodologIA-Internal'),
   content_license_evidence: z.strictObject({
@@ -301,9 +301,10 @@ describe('A05 Skill Foundry contracts', () => {
       ['candidate', 'quarantined'],
       ['quarantined', 'evaluated'],
       ['evaluated', 'active'],
+      ['active', 'active'],
     ]);
-    expect(events.map(({event_order: eventOrder}) => eventOrder)).toEqual([1, 2, 3, 4]);
-    expect(events.every(({content_sha256: digest}) => digest === expectedContentHash)).toBe(true);
+    expect(events.map(({event_order: eventOrder}) => eventOrder)).toEqual([1, 2, 3, 4, 5]);
+    expect(events.at(-1)?.content_sha256).toBe(expectedContentHash);
   });
 
   it('keeps canonical external references reference-only and production licensing fail-closed', () => {

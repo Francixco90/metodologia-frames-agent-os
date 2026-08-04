@@ -1,7 +1,7 @@
 ---
 name: remotion-video-production
 description: This skill should be used when the user asks to "author a Remotion video spec", "turn a governed source into a motion piece", "design a beat map", "build deterministic Remotion animation", "validate Remotion audio and captions", "prepare a render review", or "handoff a Remotion draft for postproduction".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires Node 22.23.1, Remotion 4.0.494, React 19, Zod 4, local assets, and an offline-capable Chromium render profile.
 metadata:
@@ -112,23 +112,24 @@ safe zones, captions, legibilidad, clipping, silencio, sincronía A/V y contenid
 
 Cargar solo el módulo necesario y volver a este flujo para los gates:
 
-| Módulo                         | Cargar cuando se necesite                                     |
-| ------------------------------ | ------------------------------------------------------------- |
-| `video-spec-authoring`         | Redactar o validar `01-video-spec.yml`.                       |
-| `beat-map-design`              | Convertir guion en beats y rangos de frames.                  |
-| `motion-art-direction`         | Fijar filosofía visual y límites de movimiento.               |
-| `compositions-and-metadata`    | Definir props, Zod 4 y `calculateMetadata()`.                 |
-| `deterministic-animation`      | Implementar animación frame-driven y revisar APIs prohibidas. |
-| `timing-and-transitions`       | Secuenciar escenas y calcular solapamientos.                  |
-| `assets-and-rights`            | Resolver assets, hashes, licencias y `staticFile()`.          |
-| `audio-and-captions`           | Diseñar mezcla, sincronía y captions accesibles.              |
-| `charts-and-data-storytelling` | Convertir datos gobernados en narrativa visual.               |
-| `gsap-integration`             | Evaluar GSAP solo tras ADR y pin exacto.                      |
-| `three-and-r3f`                | Integrar 3D determinista y render headless.                   |
-| `lottie`                       | Evaluar animaciones Lottie y sus expresiones/assets.          |
-| `rendering-and-review`         | Ejecutar smoke/full render y QA humano/técnico.               |
-| `postproduction-handoff`       | Entregar hashes, cambios permitidos y trazabilidad.           |
-| `edge-cases`                   | Probar bordes, inputs hostiles y fallos esperados.            |
+| Módulo                         | Cargar cuando se necesite                                                                                  |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `video-spec-authoring`         | Redactar o validar `01-video-spec.yml`.                                                                    |
+| `beat-map-design`              | Convertir guion en beats y rangos de frames.                                                               |
+| `motion-art-direction`         | Fijar filosofía visual y límites de movimiento.                                                            |
+| `compositions-and-metadata`    | Definir props, Zod 4 y `calculateMetadata()`.                                                              |
+| `deterministic-animation`      | Implementar animación frame-driven y revisar APIs prohibidas.                                              |
+| `keyframe-pose-contract`       | Fijar el contrato de poses: sujetos, estados visibles, determinismo seek-safe y verificación por snapshot. |
+| `timing-and-transitions`       | Secuenciar escenas y calcular solapamientos.                                                               |
+| `assets-and-rights`            | Resolver assets, hashes, licencias y `staticFile()`.                                                       |
+| `audio-and-captions`           | Diseñar mezcla, sincronía y captions accesibles.                                                           |
+| `charts-and-data-storytelling` | Convertir datos gobernados en narrativa visual.                                                            |
+| `gsap-integration`             | Evaluar GSAP solo tras ADR y pin exacto.                                                                   |
+| `three-and-r3f`                | Integrar 3D determinista y render headless.                                                                |
+| `lottie`                       | Evaluar animaciones Lottie y sus expresiones/assets.                                                       |
+| `rendering-and-review`         | Ejecutar smoke/full render y QA humano/técnico.                                                            |
+| `postproduction-handoff`       | Entregar hashes, cambios permitidos y trazabilidad.                                                        |
+| `edge-cases`                   | Probar bordes, inputs hostiles y fallos esperados.                                                         |
 
 Los módulos están en `references/<module>.md`.
 
@@ -205,7 +206,7 @@ Exigir PASS de los cuatro validadores antes de registrar una nueva versión de l
 - Consultar `licenses/runtime-license-verdict.yml` y su receipt hash-bound antes de superar
   evaluación local.
 - Consultar `CHANGELOG.md` antes de aceptar un hash nuevo.
-- Consultar los 15 archivos de `references/` mediante el router anterior.
+- Consultar los 16 archivos de `references/` mediante el router anterior.
 - Consultar `schemas/` para contratos portables.
 - Usar `fixtures/positive/` y `fixtures/negative/` para regresión.
 - Compilar `examples/minimal-deterministic/` como prueba mínima de integración.

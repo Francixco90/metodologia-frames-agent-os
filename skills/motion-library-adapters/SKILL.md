@@ -1,7 +1,7 @@
 ---
 name: motion-library-adapters
 description: This skill should be used when the user asks to "integrate GSAP, Three.js or Lottie with Remotion", "validate a frame-driven motion adapter", "route a motion recipe through the H-03 renderer registry", or "test deterministic fallbacks for a creative motion capability".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires exact H-03 dependency pins, Remotion 4.0.494, React 19 and an offline render profile.
 metadata:
@@ -57,3 +57,7 @@ pnpm typecheck
 ```
 
 Conservar VS-001, `pilot-carousel-001`, H-01, H-02, n8n y `Root.tsx` byte-idénticos.
+
+## Referencias
+
+- `references/media-use-adapter.md` — cómo los adapters resuelven y reproducen media (audio, video, imagen, Lottie, Three) bajo el reloj de frames de Remotion, determinista y offline-first. Adaptado del patrón `media-use` de HyperFrames (resolve / generate / operate / remember). Remote opt-in auth-gated, fail-closed sin credenciales; registro hash-bound; sin red en el render path.

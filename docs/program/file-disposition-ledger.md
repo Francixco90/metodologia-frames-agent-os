@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       33 |
+| `refactored`         |       34 |
 | `generator_fixed`    |        1 |
 | `superseded`         |        0 |
-| `verified_no_change` |      254 |
+| `verified_no_change` |      253 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            90083 |            117162 |     135124 (1.5×) | 1.3006× | `pass` |
-| Total authored (palabras)     |            90083 |            117162 |       180166 (2×) | 1.3006× | `pass` |
-| Total authored (LOC)          |            34116 |             42978 |        68232 (2×) | 1.2598× | `pass` |
+| Corpus authored elegible      |            90131 |            117210 |     135196 (1.5×) | 1.3004× | `pass` |
+| Total authored (palabras)     |            90131 |            117210 |       180262 (2×) | 1.3004× | `pass` |
+| Total authored (LOC)          |            34131 |             42993 |        68262 (2×) | 1.2596× | `pass` |
 | Generated/template aplicables | 54 inventariados | 3 checks + 51 N/A | 2× palabras y LOC |   54/54 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -299,7 +299,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/projects/project-registry.yml`                                                                    | `lead`             | `verified_no_change` | 58                 | 58                | 29          | 29         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `byte-identical` |
 | `registries/skills/README.md`                                                                                 | `skill-foundry`    | `refactored`         | 60                 | 103               | 8           | 16         | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `changed`        |
 | `registries/skills/lifecycle-contract.yml`                                                                    | `skill-foundry`    | `verified_no_change` | 76                 | 76                | 38          | 38         | `e90b0715d47955754a2692d819d76f0e447e7d2452ef594538e92b194de42264` | `byte-identical` |
-| `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1104              | 156         | 528        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
+| `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1128              | 156         | 540        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
 | `registries/sources/canonical-source-gaps.yml`                                                                | `sources`          | `verified_no_change` | 72                 | 72                | 35          | 35         | `13da2cf746907bcb68bc652aa6f239219fd75718064da910afc01cb25e6bb772` | `byte-identical` |
 | `registries/sources/lifecycle-contract.yml`                                                                   | `sources`          | `verified_no_change` | 235                | 235               | 127         | 127        | `2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613` | `byte-identical` |
 | `registries/sources/source-registry.yml`                                                                      | `sources`          | `refactored`         | 555                | 811               | 278         | 404        | `a3a7f5f166d346800896a22d7488640b8a79dd94faca931b63beb01c0c04aec7` | `changed`        |
@@ -351,7 +351,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/web-visual-smoke.mjs`                                                                                | `repo`             | `verified_no_change` | 225                | 225               | 73          | 73         | `bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24` | `byte-identical` |
 | `skills/remotion-video-production/CHANGELOG.md`                                                               | `skill-foundry`    | `refactored`         | 101                | 121               | 17          | 19         | `067d820776b0e7233bbe0cd7e6fe63c4cddc576bde91b74db21ca848af1c1134` | `changed`        |
 | `skills/remotion-video-production/LINEAGE.yaml`                                                               | `skill-foundry`    | `refactored`         | 163                | 163               | 84          | 84         | `291a39b471e2f480ff5f84b1cf50da89f7fcc1249ab026c3e95a92457cf5fd2e` | `changed`        |
-| `skills/remotion-video-production/SKILL.md`                                                                   | `skill-foundry`    | `verified_no_change` | 1330               | 1330              | 211         | 211        | `6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3` | `byte-identical` |
+| `skills/remotion-video-production/SKILL.md`                                                                   | `skill-foundry`    | `refactored`         | 1330               | 1348              | 211         | 212        | `6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3` | `changed`        |
 | `skills/remotion-video-production/examples/minimal-deterministic/Composition.tsx`                             | `skill-foundry`    | `verified_no_change` | 110                | 110               | 45          | 45         | `02a83bad9dff6cc2994e4ea0735aef9f210de5fd748f77e1321eb90484ccebf2` | `byte-identical` |
 | `skills/remotion-video-production/examples/minimal-deterministic/README.md`                                   | `skill-foundry`    | `verified_no_change` | 89                 | 89                | 21          | 21         | `2687a2b4f023dcf8675022387007fff52a5051ebdaf5b6434209224291d2758b` | `byte-identical` |
 | `skills/remotion-video-production/examples/minimal-deterministic/tsconfig.json`                               | `skill-foundry`    | `verified_no_change` | 13                 | 13                | 8           | 8          | `127b9c3fd9db6874e6aabc454a37ffc1eae073fc20b189d0d729300c9a6c8bb1` | `byte-identical` |
@@ -390,7 +390,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `skills/remotion-video-production/schemas/video-spec.schema.json`                                             | `skill-foundry`    | `verified_no_change` | 117                | 117               | 49          | 49         | `6f9ee0fcff452694aa37747c4d831ac597d53514ac1b81fb70d3da4d00706f47` | `byte-identical` |
 | `skills/remotion-video-production/scripts/check-contracts.mjs`                                                | `skill-foundry`    | `verified_no_change` | 405                | 405               | 157         | 157        | `8cef4be9e2364a52ec9c9fdc011a3e020f81a678744579f2c4806b67304d5803` | `byte-identical` |
 | `skills/remotion-video-production/scripts/check-example.mjs`                                                  | `skill-foundry`    | `verified_no_change` | 89                 | 89                | 28          | 28         | `6a1595ad776b06061e2a72bd0f0d9a56d40af9f23e16af1fbc2191fad036c5b9` | `byte-identical` |
-| `skills/remotion-video-production/scripts/check-skill.mjs`                                                    | `skill-foundry`    | `refactored`         | 946                | 956               | 321         | 325        | `e3684bb41aadd4b82a2c86e1d03df263cc0fb8473619198d773b32bbba82c03e` | `changed`        |
+| `skills/remotion-video-production/scripts/check-skill.mjs`                                                    | `skill-foundry`    | `refactored`         | 946                | 963               | 321         | 326        | `e3684bb41aadd4b82a2c86e1d03df263cc0fb8473619198d773b32bbba82c03e` | `changed`        |
 | `skills/remotion-video-production/scripts/check-sources.mjs`                                                  | `skill-foundry`    | `refactored`         | 598                | 633               | 168         | 178        | `befd852bfcd18cf3656a1004361a1326a5f4d66e4f55b24ed1e6e72a1dfa11a1` | `changed`        |
 | `skills/stitch-remotion-walkthrough/LINEAGE.yml`                                                              | `skill-foundry`    | `quarantined`        | 40                 | 40                | 21          | 21         | `29cb5965f38e0f211c4fc6e10922e9dc2be7397fc0dca951c7b7f2d93cbd6112` | `byte-identical` |
 | `skills/stitch-remotion-walkthrough/SKILL.md`                                                                 | `skill-foundry`    | `quarantined`        | 326                | 326               | 59          | 59         | `d039ce1f7def615eaedb2c8b5f79441129eca3ae514c81fa6ae804d52df8d673` | `byte-identical` |
@@ -401,7 +401,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `tests/contract/notebooklm-work-units.contract.test.ts`                                                       | `qa`               | `verified_no_change` | 452                | 452               | 171         | 171        | `af2a7e643f6f62844e28b1854288210227febe030260eb88443ea3b6b3594137` | `byte-identical` |
 | `tests/contract/qa-verdict.contract.test.ts`                                                                  | `qa`               | `verified_no_change` | 238                | 238               | 117         | 117        | `c2db93bef6a75c1e1396d8432d457162705a6a467fec00fa901867388c0e10fd` | `byte-identical` |
 | `tests/contract/remotion-documentation.contract.test.ts`                                                      | `qa`               | `verified_no_change` | 811                | 811               | 323         | 323        | `1cbdcf5701225081a7320aed4224822e9a5cd6504520b5f5e9f81d7603faee32` | `byte-identical` |
-| `tests/contract/skill-foundry.contract.test.ts`                                                               | `qa`               | `refactored`         | 1299               | 1328              | 633         | 647        | `58056b01692a6bc67daec0cf719faa62dc63ec11b8211403f1d6feec921b609e` | `changed`        |
+| `tests/contract/skill-foundry.contract.test.ts`                                                               | `qa`               | `refactored`         | 1299               | 1327              | 633         | 648        | `58056b01692a6bc67daec0cf719faa62dc63ec11b8211403f1d6feec921b609e` | `changed`        |
 | `tests/contract/source-notebook.contract.test.ts`                                                             | `qa`               | `refactored`         | 1272               | 1275              | 539         | 542        | `137e4b97d77660b8678106b65deb8892a8a9563744a6944f1b55f40bc08b62e4` | `changed`        |
 | `tests/contract/web.contract.test.ts`                                                                         | `qa`               | `verified_no_change` | 281                | 281               | 111         | 111        | `8832e625e16b165eb86bb76554eaf59ce7332f88e22ddee3917a69aaf9275a9d` | `byte-identical` |
 | `tests/fixtures/source-notebook/contracts.ts`                                                                 | `qa`               | `verified_no_change` | 2205               | 2205              | 913         | 913        | `3c079d9b93f524f4fd3bc4f38e4b587edf1eed5c8208a7db6c59fb0cf9c22452` | `byte-identical` |

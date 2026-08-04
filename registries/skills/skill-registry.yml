@@ -4,7 +4,7 @@ mutation_policy: append-only-records-and-events
 lifecycle_contract: registries/skills/lifecycle-contract.yml
 entries:
   - skill_id: remotion-video-production
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     owner: MetodologIA
     responsible_actor: skill-foundry
@@ -13,8 +13,8 @@ entries:
     reference_commit: 62d0a68043d5adb5ff6baa1e38328855172c9d92
     reference_license_status: unresolved
     runtime_version: 4.0.494
-    content_sha256: 6e808a55e0cf4bfc23c12575e28da18ff79db5d0f844d8460e0ff21341989cf3
-    package_manifest_sha256: 5dfe8ae7d8711abbbcc097eb7d3a84ed8c549e6345e7b06b3f73e5c07a96d5f1
+    content_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
+    package_manifest_sha256: 5b995be55a53864e0e324df34513a4bb0d198dd0b7ddd2580e4e77e97a54ad1f
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/remotion-video-production/LINEAGE.yaml
     license: LicenseRef-MetodologIA-Internal
@@ -53,6 +53,7 @@ entries:
       - EVT-SKL-REMOTION-002
       - EVT-SKL-REMOTION-003
       - EVT-SKL-REMOTION-004
+      - EVT-SKL-REMOTION-005
   - skill_id: metodologia-brand-router
     version: 0.1.0
     current_state: active
@@ -299,6 +300,17 @@ events:
       to: active
     activation_scope: local-design-and-validation
     decision: activate_skill_keep_production_runtime_blocked
+  - event_id: EVT-SKL-REMOTION-005
+    event_order: 5
+    recorded_at: '2026-08-04T00:00:00Z'
+    actor_id: skill-foundry-verifier
+    skill_id: remotion-video-production
+    content_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
+    transition:
+      from: active
+      to: active
+    activation_scope: local-design-and-validation
+    decision: revise_add_keyframe_pose_contract_reference
   - event_id: EVT-SKL-STITCH-001
     event_order: 1
     recorded_at: '2026-07-19T20:38:02Z'
