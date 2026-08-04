@@ -90,6 +90,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
+  - skill_id: content-os-router
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: da1d704ac8054103a441aa5c07d320f1a862767f89ac3f55c99a54ef2df24e79
+    package_manifest_sha256: 4b6b1ace487864399ad48dba14055ed5d79d803471958606df3d7afe9d7a7f1e
+    lineage_ref: skills/content-os-router/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-router/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -123,3 +134,7 @@ events:
   - {event_id: EVT-SKL-CSR-H03-002, event_order: 2, skill_id: content-os-registry, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSR-H03-003, event_order: 3, skill_id: content-os-registry, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSR-H03-004, event_order: 4, skill_id: content-os-registry, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COR-H03-001, event_order: 1, skill_id: content-os-router, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COR-H03-002, event_order: 2, skill_id: content-os-router, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-COR-H03-003, event_order: 3, skill_id: content-os-router, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COR-H03-004, event_order: 4, skill_id: content-os-router, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

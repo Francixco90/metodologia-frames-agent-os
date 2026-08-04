@@ -1,0 +1,4 @@
+{"decisionId":"dec-001","intentId":"pr-123-explainer","matchedDeliverable":"explain a GitHub PR","matchedRoute":"content-os-pr-to-video","priority":1,"ruleApplied":"route-by-deliverable","offline":true}
+{"decisionId":"dec-002","intentId":"topic-faceless-quantum","matchedDeliverable":"explain a topic with invented visuals","matchedRoute":"content-os-faceless-explainer","priority":3,"ruleApplied":"route-by-deliverable","offline":true}
+{"decisionId":"dec-003","intentId":"site-launch-acme","matchedDeliverable":"market a website from a URL","matchedRoute":"content-os-website-to-video","priority":2,"ruleApplied":"route-by-deliverable","offline":true}
+{"decisionId":"dec-004","intentId":"logo-sting-acme","matchedDeliverable":"short unnarrated motion-first unit under 10s","matchedRoute":"content-os-motion-graphics","priority":5,"ruleApplied":"route-by-deliverable","offline":true}

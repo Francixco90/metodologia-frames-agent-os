@@ -1,0 +1,39 @@
+# Valid intent brief — route-bound, capability-mapped, offline-first, source-typed.
+schemaVersion: router-intent-v1
+projectId: metodologia-demo
+routerProfile: route-once
+offlineFirst: true
+intents:
+  - intentId: pr-123-explainer
+    source_type: github-pr
+    source_ref: PR #123 feat/auth
+    deliverable: explain a GitHub PR
+    route: content-os-pr-to-video
+    capability_map:
+      [
+        content-os-core,
+        content-os-animation,
+        content-os-keyframes,
+        content-os-creative,
+        content-os-media,
+      ]
+    duration_s: 60
+    runtime: html-gsap
+    offline: true
+    workflow_status: pending
+  - intentId: logo-sting-acme
+    source_type: brief
+    source_ref: logo sting for acme
+    deliverable: short unnarrated motion-first unit under 10s
+    route: content-os-motion-graphics
+    capability_map: [content-os-core, content-os-animation, content-os-keyframes]
+    duration_s: 8
+    runtime: html-gsap
+    offline: true
+    workflow_status: pending
+storySpine:
+  hook: 'intent routed by deliverable'
+  beats:
+    - {label: 'pr-123 routes to pr-to-video', at: 'route-once'}
+    - {label: 'logo-sting routes to motion-graphics', at: 'route-once'}
+  final: 'deterministic dispatch'
