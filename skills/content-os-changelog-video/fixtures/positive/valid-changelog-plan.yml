@@ -1,0 +1,27 @@
+# Positive fixture: valid changelog-video plan
+composition_id: clv-demo-001
+duration: 52
+aspect: '1:1'
+vo_voice: annie
+themes:
+  - id: theme-01
+    heading: 'Faster renders'
+    visualization: ui-recreate
+    line: 'Renders now finish in half the time.'
+    start: 4
+    end: 16
+  - id: theme-02
+    heading: 'New caption rail'
+    visualization: ui-analog
+    line: 'A new caption rail keeps text readable.'
+    start: 16
+    end: 32
+  - id: theme-03
+    heading: 'Reliability fixes'
+    visualization: checklist
+    line: 'A slate of reliability fixes lands this week.'
+    start: 32
+    end: 48
+# contract tokens: data-composition-id, data-duration, data-start,
+# window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# prime directive: visualize, don't list

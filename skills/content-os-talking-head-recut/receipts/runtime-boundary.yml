@@ -1,0 +1,26 @@
+schema_version: 1
+receipt_id: COS-THR-RUNTIME-001
+skill_id: content-os-talking-head-recut
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  playwright: 1.61.1
+  gsap: 3.15.0
+  ffmpeg: libx264
+transcription_provider: whisper-local-via-content-os-media
+render_adapter: skills/content-os-core/scripts/render-html.ts
+network_in_render_path: false
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Playwright + GSAP + FFmpeg already toolchain-pinned).
+  - Transcription delegated to content-os-media (local Whisper; remote opt-in, fail-closed).
+  - Source clip audio is muxed back from the extracted audio.mp3; the visual render is silent.

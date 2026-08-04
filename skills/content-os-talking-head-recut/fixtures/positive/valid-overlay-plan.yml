@@ -1,0 +1,29 @@
+# Positive fixture: valid talking-head-recut overlay plan
+composition_id: thr-demo-001
+duration: 30
+aspect: '16:9'
+clip:
+  path: videos/thr-demo/clip.mp4
+  audio_extracted: true
+  transcribed: true
+cards:
+  - id: card-01
+    start: 0
+    end: 3
+    kind: title
+    content: "<div class='card title'>Intro</div>"
+    rationale: opening title
+  - id: card-02
+    start: 8
+    end: 11
+    kind: lower-third
+    content: "<div class='card lower-third'>Dr. Vega</div>"
+    rationale: speaker name appears
+  - id: card-03
+    start: 18
+    end: 21
+    kind: data-callout
+    content: "<div class='card callout'>42%</div>"
+    rationale: stat spoken
+# contract tokens present in composition: data-composition-id, data-duration,
+# data-start, window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT

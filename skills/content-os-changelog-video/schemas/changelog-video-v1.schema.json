@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/changelog-video-v1.schema.json",
+  "title": "Changelog Video v1 request",
+  "type": "object",
+  "required": ["composition_id", "duration", "themes"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "duration": {"type": "number", "minimum": 30, "maximum": 90, "description": "target ~45-60s"},
+    "aspect": {"type": "string", "enum": ["1:1", "16:9", "9:16"], "default": "1:1"},
+    "themes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "heading", "visualization", "line"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^theme-\\d{2}$"},
+          "heading": {"type": "string"},
+          "visualization": {
+            "type": "string",
+            "enum": ["ui-recreate", "ui-analog", "terminal", "checklist"]
+          },
+          "line": {"type": "string", "description": "VO sentence for this theme"},
+          "start": {"type": "number", "minimum": 0},
+          "end": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "vo_voice": {"type": "string", "default": "annie"}
+  }
+}

@@ -1,0 +1,33 @@
+schema_version: 1
+skill_id: content-os-talking-head-recut
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-apache-2-reference
+derivation_note: >
+  Clean-room prose adaptation of the talking-head-recut capability (graphic overlay
+  cards on a playing clip) for the Content OS toolchain. No vendor code copied; the
+  vendor SKILL.md is read-only authority reference. Apache-2.0 permits derivation with
+  attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/talking-head-recut/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-embedded-captions/SKILL.md
+runtime_refs:
+  - skills/content-os-talking-head-recut/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-talking-head-recut/receipts/runtime-boundary.yml
+compatibility_contract: talking-head-recut-v1
+request_contract_ref: skills/content-os-talking-head-recut/schemas/talking-head-recut-v1.schema.json
+supported_request_types:
+  - talking_head_recut
+  - graphic_overlay_package
+external_fragments_reused: false
+external_fragments_source: skills/vendor/hyperframes/talking-head-recut/ (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: heygen-com/hyperframes talking-head-recut
+production_runtime_status: local_capability_only
+publication_authority: false

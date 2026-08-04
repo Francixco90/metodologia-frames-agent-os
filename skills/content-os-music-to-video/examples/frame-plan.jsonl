@@ -1,0 +1,3 @@
+{"composition_id":"m2v-demo-001","duration":24,"frame":{"id":"frame-01","start":0,"end":6,"template":"kinetic-title","pacing":"beat"}}
+{"composition_id":"m2v-demo-001","duration":24,"frame":{"id":"frame-02","start":6,"end":18,"template":"motion-primitives-grid","pacing":"beat"}}
+{"composition_id":"m2v-demo-001","duration":24,"frame":{"id":"frame-03","start":18,"end":24,"template":"outro-fade","pacing":"phrase"}}

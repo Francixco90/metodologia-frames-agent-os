@@ -1,0 +1,32 @@
+# Positive fixture: valid music-to-video beat plan
+composition_id: m2v-demo-001
+duration: 24
+aspect: '16:9'
+track:
+  path: assets/bgm.mp3
+  analyzed: true
+  pacing: beat
+audiomap:
+  bpm: 128
+  beats_sec: 0.469
+  energy: [0.2, 0.5, 0.8, 0.9, 0.6]
+  onsets: [0, 0.469, 0.938, 1.407]
+  silences: [12.0, 12.5]
+frames:
+  - id: frame-01
+    start: 0
+    end: 6
+    template: kinetic-title
+    pacing: beat
+  - id: frame-02
+    start: 6
+    end: 18
+    template: motion-primitives-grid
+    pacing: beat
+  - id: frame-03
+    start: 18
+    end: 24
+    template: outro-fade
+    pacing: phrase
+# contract tokens: data-composition-id, data-duration, data-start,
+# window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT

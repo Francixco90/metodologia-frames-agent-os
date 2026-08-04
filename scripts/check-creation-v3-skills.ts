@@ -146,6 +146,21 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-remotion-bridge/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-talking-head-recut',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-talking-head-recut/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-music-to-video',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-music-to-video/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-changelog-video',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-changelog-video/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
