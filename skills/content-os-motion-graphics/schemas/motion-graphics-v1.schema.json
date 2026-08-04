@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "motion-graphics-v1",
+  "title": "Content OS Motion Graphics workflow state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "vo_mode",
+    "offline",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "motion-graphics-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-motion-graphics"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["form", "search"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Chosen motion-graphics category (form or search-driven)."
+    },
+    "asset_needs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Search queries for search-driven categories. Empty for form categories (skip source step)."
+    },
+    "vo_mode": {
+      "type": "string",
+      "const": "silent",
+      "description": "Motion-graphics is unnarrated. Only 'silent' valid. Non-silent = narration-in-motion-graphics violation."
+    },
+    "has_script": {
+      "type": "boolean",
+      "const": false,
+      "description": "No SCRIPT.md. If true = narration-in-motion-graphics violation."
+    },
+    "footage": {
+      "type": "boolean",
+      "const": false,
+      "description": "No live-action subject. If true = footage-in-motion-graphics violation."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true
+    },
+    "overlay": {
+      "type": "boolean",
+      "description": "true = transparent overlay (.webm/.mov). false = MP4."
+    },
+    "rendered": {
+      "type": "boolean"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["setup", "plan", "source", "design", "build", "verify", "finalize"]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          }
+        }
+      }
+    }
+  }
+}

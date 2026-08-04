@@ -1,0 +1,41 @@
+receipt_id: RCP-H03-CONTENT-OS-MOTION-GRAPHICS-001
+skill_id: content-os-motion-graphics
+version: 0.1.0
+issued: 2026-08-03
+issuer: RT-07-H03-PRODUCER
+execution_scope: local-evaluation
+runtime_boundary:
+  composition_runtime: html-gsap-seekable
+  render_adapter: 'content-os-core (Playwright + FFmpeg, HTML to MP4 or transparent overlay)'
+  lint_adapter: 'content-os-keyframes (pose contract + seek-safe lint + snapshot)'
+  asset_adapter: 'content-os-media (offline cascade default; search remote opt-in auth-gated, fail-closed)'
+  determinism: 'no Date.now/Math.random/new Date/performance.now/fetch/setTimeout/setInterval/getBoundingClientRect; no repeat:-1; no relative +=; no CSS transition: on animated elements'
+  seek_safe: 'GSAP paused: true, window.__timelines[id], seek(frame/fps)'
+  unnarrated: 'vo_mode silent, no SCRIPT, no TTS; optional music bed via content-os-media'
+allowed_scoped:
+  - html_composition_offline_deterministic
+  - gsap_seek_safe_paused_true
+  - asset_first_source_before_design
+  - catalog_blocks_reuse_first
+  - asset_search_remote_opt_in_auth_gated
+  - transparent_overlay_webm_mov
+out_of_scope:
+  - npx_hyperframes_cli
+  - npx_hyperframes_init_add_lint_check_snapshot_render
+  - network_in_render_path
+  - narration_vo_tts_script
+  - footage_live_action
+  - publication_authority
+  - human_approval_automation
+gates_manual_by_design:
+  - G13 governance
+  - G14 Guardian
+  - H01 human
+  - G16 readiness
+  - G17 publish
+output_state: RENDERED_DRAFT
+license: LicenseRef-MetodologIA-Internal
+provenance:
+  source_skill: motion-graphics
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0

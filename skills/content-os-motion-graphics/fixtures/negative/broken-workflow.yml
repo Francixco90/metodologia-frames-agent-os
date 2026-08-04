@@ -1,0 +1,48 @@
+# Negative fixture: broken motion-graphics workflow.
+# Documents all 6 audit violation codes. This file MUST fail the audit.
+#
+# Violations present:
+#   - missing-gate: step 'build' state 'done' (invalid state)
+#   - step-out-of-order: design before plan
+#   - no-render: finalize gate-passed + rendered false
+#   - network-in-workflow: https URL in source_ref + offline false
+#   - narration-in-motion-graphics: vo_mode narrated + has_script true
+#   - footage-in-motion-graphics: footage true
+schemaVersion: motion-graphics-v1
+projectId: bad-motion
+route: content-os-motion-graphics
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-creative
+  - content-os-registry
+source_type: search
+category: webpage
+asset_needs:
+  - acme.com homepage # network-in-workflow: https URL in state via source_ref below
+source_ref: https://acme.com # network-in-workflow: raw URL in state
+vo_mode: narrated # narration-in-motion-graphics: motion-graphics is unnarrated
+has_script: true # narration-in-motion-graphics: no SCRIPT allowed
+footage: true # footage-in-motion-graphics: no live-action subject
+offline: false # network-in-workflow: offline not true
+overlay: false
+rendered: false # no-render: finalize gate-passed below + no MP4
+steps:
+  - step: setup
+    state: gate-passed
+  - step: design # step-out-of-order: design before plan
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: source
+    state: gate-passed
+  - step: build
+    state: done # missing-gate: invalid state (valid: pending|in-progress|gate-passed|user-approved)
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render: gate passed + rendered false
+shotPlan:
+  category: webpage
+  block: caption-scroll
+  motion: scroll reveal

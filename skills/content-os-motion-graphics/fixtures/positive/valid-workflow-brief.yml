@@ -1,0 +1,38 @@
+schemaVersion: motion-graphics-v1
+projectId: q3-growth-stat-motion
+route: content-os-motion-graphics
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-creative
+  - content-os-registry
+source_type: form
+category: stat
+asset_needs: []
+vo_mode: silent
+has_script: false
+footage: false
+offline: true
+overlay: false
+rendered: false
+steps:
+  - step: setup
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: source
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: build
+    state: gate-passed
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: pending
+shotPlan:
+  category: stat
+  block: apple-money-count
+  motion: count-up ring fill
+  proof_times: [0.0, 2.5, 5.5]

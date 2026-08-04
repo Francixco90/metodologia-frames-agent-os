@@ -1,0 +1,31 @@
+skill_id: content-os-motion-graphics
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: motion-graphics-v1
+authority_refs:
+  - skills/vendor/hyperframes/motion-graphics/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: motion-graphics
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation_notes: >
+    Orquestador source→video para short design-led unnarrated motion graphics
+    (kinetic-type, stat, charts, logo-reveal, lower-thirds, maps, webpage, news,
+    tweet, asset-fusion). Asset-first: plan source antes de design. Render via
+    content-os-core (HTML→MP4 o overlay, Playwright + FFmpeg). Lint via
+    content-os-keyframes. Assets via content-os-media (offline cascade; search
+    remote opt-in). Motion via content-os-animation + content-os-registry.
+    Unnarrated (vo_mode silent, no SCRIPT, no TTS). No footage. Output
+    RENDERED_DRAFT, no HUMAN_APPROVED.
