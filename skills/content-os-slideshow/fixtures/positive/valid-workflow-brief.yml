@@ -1,0 +1,36 @@
+schemaVersion: slideshow-v1
+projectId: market-sizing-deck
+route: content-os-slideshow
+vo_mode: silent
+has_script: false
+footage: false
+offline: true
+output_format: deck
+deck_presentable: true
+rendered_mp4: false
+headline_label: false
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-creative
+  - content-os-registry
+deckPlan:
+  slide_count: 10
+  headline_rule: complete-sentence claim per slide
+  fragments_per_slide: [2, 3, 2, 1, 4, 2, 3, 2, 1, 2]
+  branches: [demo-sequence]
+  font_min: 48px body, 80px headline
+steps:
+  - step: setup
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: build
+    state: gate-passed
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: gate-passed

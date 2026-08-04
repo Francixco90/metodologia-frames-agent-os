@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slideshow-v1",
+  "title": "Content OS Slideshow workflow state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "vo_mode",
+    "has_script",
+    "footage",
+    "offline",
+    "output_format",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "slideshow-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-slideshow"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "vo_mode": {
+      "type": "string",
+      "const": "silent",
+      "description": "Deck is unnarrated. Speaker notes are presenter-only text, not TTS. Only 'silent' valid."
+    },
+    "has_script": {
+      "type": "boolean",
+      "const": false,
+      "description": "No SCRIPT.md authored — deck has no narration."
+    },
+    "footage": {
+      "type": "boolean",
+      "const": false,
+      "description": "Deck is authored from intent, not from existing footage."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true
+    },
+    "output_format": {
+      "type": "string",
+      "const": "deck",
+      "description": "Output is a navigable deck (HTML), NOT MP4."
+    },
+    "rendered_mp4": {
+      "type": "boolean",
+      "description": "If true = render-mp4 violation (deck has no master-root; render truncates to first slide)."
+    },
+    "deck_presentable": {
+      "type": "boolean",
+      "description": "Deck is presentable (navigable, presenter mode available). finalize gate-passed with deck_presentable=false = no-deck violation."
+    },
+    "headline_label": {
+      "type": "boolean",
+      "description": "If true = label-not-claim violation (headline must be a complete-sentence claim, not a label)."
+    },
+    "source_page": {
+      "type": "string",
+      "description": "Optional: source page path being converted into a deck."
+    },
+    "rendered": {
+      "type": "boolean"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["setup", "plan", "design", "build", "verify", "finalize"]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+receipt_id: RCP-H03-CONTENT-OS-SLIDESHOW-001
+issued: '2026-08-03'
+scope: skills/content-os-slideshow
+production_runtime_status: local_capability_only
+publication_authority: false
+allowed_scoped:
+  - 'html_composition_offline_deterministic'
+  - 'gsap_seek_safe_paused_true'
+  - 'navigable_deck_not_mp4'
+  - 'json_island_slides_sequences'
+  - 'fragments_seek_driven_hold_points'
+  - 'hotspots_branching_nav_stack'
+  - 'presenter_mode_speaker_notes_local_storage'
+  - 'slide_blocks_registry_reuse'
+  - 'system_fonts_concrete_render_safe'
+  - 'stacked_scene_frames_opacity_visibility_pointer_events'
+out_of_scope:
+  - 'npx_hyperframes_cli'
+  - 'render_deck_to_mp4'
+  - 'master_root_composition_wrapping_slides'
+  - 'google_fonts_cdn'
+  - 'network_in_deck_composition'
+  - 'label_headline_not_claim'
