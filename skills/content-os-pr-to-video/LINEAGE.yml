@@ -1,0 +1,30 @@
+skill_id: content-os-pr-to-video
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: pr-to-video-v1
+authority_refs:
+  - skills/vendor/hyperframes/pr-to-video/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: pr-to-video
+  source_repo: https://github.com/heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation: local orchestrator (no npx hyperframes CLI); 8-step gated workflow; delegates design/motion to Fase 2 capabilities + media to content-os-media offline cascade; HTML→MP4 via content-os-core Playwright adapter; input is a GitHub PR (code change via gh) not a website; no web capture, no footage; style fixed code-editorial; code beats use content-os-registry code-* blocks; credits close uses contributor avatars
+supported_request_types:
+  - github_pr_to_code_explainer_video
+  - pr_walkthrough_video
+  - changelog_video
+  - feature_reveal_video
+  - fix_explainer_video
+  - refactor_walkthrough_video

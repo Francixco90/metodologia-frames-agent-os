@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.internal/schemas/pr-to-video-v1.schema.json",
+  "title": "Content OS PR to Video Workflow v1",
+  "description": "Workflow state for a code-change explainer video (GitHub PR to video, input is a code change via gh, no web capture, no footage). 8-step gated orchestrator delegating to Fase 2 capabilities. Style fixed code-editorial.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "style",
+    "offline",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "pr-to-video-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project directory name (kebab-case from PR, e.g. acme-sdk-pr-1842). No workspace name or timestamp."
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-pr-to-video"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "content-os-core",
+          "content-os-animation",
+          "content-os-keyframes",
+          "content-os-creative",
+          "content-os-media",
+          "content-os-registry"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["github-pr", "this-pr"],
+      "description": "PR ref form. github-pr = URL or owner/repo#N. this-pr = PR in checked-out repo."
+    },
+    "pr_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Normalized PR ref (owner/repo#N or N). State stores the normalized ref, never the raw https URL (URLs trigger network-in-workflow)."
+    },
+    "style": {
+      "type": "string",
+      "const": "code-editorial",
+      "description": "Fixed style. Always code-editorial (warm editorial, navy code surface for diffs). Never asked, never overridden."
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Target duration from brief length. Specialized workflows strong at 30-120s. >180s routes to general-video."
+    },
+    "vo_mode": {
+      "type": "string",
+      "enum": ["verbatim", "restructured", "silent"],
+      "description": "Verbatim = keep user wording. Restructured = reshape for narrative. Silent = no narration."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true,
+      "description": "Render-path offline-first. Compositions + TTS offline. Step 1 ingest uses gh (the one network step). State itself is offline (no https URLs)."
+    },
+    "silent": {
+      "type": "boolean",
+      "description": "music: none + no SCRIPT. No narration, no BGM, no SFX."
+    },
+    "rendered": {
+      "type": "boolean",
+      "description": "true once renders/video.mp4 exists (RENDERED_DRAFT). finalize gate-passed without rendered=true = no-render violation."
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "setup",
+              "ingest",
+              "design",
+              "storyboard",
+              "audio",
+              "visual-design",
+              "build-frames",
+              "finalize"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          },
+          "user_gated": {
+            "type": "boolean",
+            "description": "Steps setup, storyboard, finalize pause for user approval."
+          }
+        }
+      },
+      "minItems": 8,
+      "description": "8-step workflow state. Each step must pass gate before next."
+    }
+  }
+}

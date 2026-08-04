@@ -1,0 +1,36 @@
+# Negative workflow brief — documents violations the auditor rejects.
+# Violation codes listed in comments for negative-completeness check.
+schemaVersion: pr-to-video-v1
+projectId: acme-sdk-pr-bad
+route: content-os-pr-to-video
+capability_map: [content-os-core]
+source_type: github-pr
+pr_ref: acme/sdk#999
+style: product-launch # style-not-code-editorial (must be code-editorial, always)
+duration_s: 200
+vo_mode: restructured
+offline: false # network-in-workflow (offline not true)
+silent: false
+rendered: false
+footage: true # footage-in-pr-video (pr-to-video = code-editorial, no footage)
+steps:
+  - step: setup
+    state: gate-passed
+  - step: storyboard # step-out-of-order (storyboard before ingest + design)
+    state: gate-passed
+  - step: ingest
+    state: pending # missing-gate (ingest not passed)
+  - step: design
+    state: gate-passed
+  - step: audio
+    state: gate-passed
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render (finalize passed but rendered=false)
+source_ref: https://github.com/acme/sdk/pull/999 # network-in-workflow (https URL in state)
+# Violation codes documented: missing-gate, step-out-of-order, footage-in-pr-video,
+# style-not-code-editorial, no-render, network-in-workflow.
+# The auditor (workflow-audit.mjs --strict) must reject this brief.
