@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-interactivity-v1.schema.json",
+  "title": "Remotion Interactivity v1 markup-structure request",
+  "type": "object",
+  "required": ["affordance", "render_path_contract"],
+  "properties": {
+    "affordance": {
+      "type": "string",
+      "enum": [
+        "select",
+        "drag-drop",
+        "resize",
+        "rotate",
+        "edit-css",
+        "edit-keyframes",
+        "edit-easing"
+      ],
+      "description": "Studio interactivity affordance exposed via markup structure"
+    },
+    "exposed_values": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "named props/interpolate inputs the Studio recognizes as keyframes/curves"
+    },
+    "render_path_contract": {
+      "type": "string",
+      "enum": ["useCurrentFrame-only", "deterministic-no-dom-events"],
+      "description": "interactivity must not branch the render path; useCurrentFrame is the only clock"
+    },
+    "dom_event_driven_render": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; onClick/onDrag are Studio-only, must not branch the render"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval/requestAnimationFrame/getBoundingClientRect in render"
+    }
+  }
+}

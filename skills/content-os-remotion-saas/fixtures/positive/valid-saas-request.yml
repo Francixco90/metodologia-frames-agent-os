@@ -1,0 +1,15 @@
+# Positive fixture: a well-formed Remotion SaaS app request.
+schema_version: 1
+skill_id: content-os-remotion-saas
+app_shape: form-render
+render_path_contract: useCurrentFrame-only
+license_verdict_resolved: true
+credentials_in_render_path: false
+remote_media: opt-in-auth-gated-fail-closed
+determinism_contract: true
+non_negotiables:
+  - app/edge layer may be non-deterministic; render path must not be
+  - Company License verdict resolved for commercial SaaS (H03-LIC-REMOTION-001)
+  - credentials/PII never reach render path; pass resolved asset refs as props
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: saas valid; render deterministic given props

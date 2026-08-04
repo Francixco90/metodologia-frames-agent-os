@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-captions-v1.schema.json",
+  "title": "Remotion Captions v1 request",
+  "type": "object",
+  "required": ["caption_source", "timing_clock", "determinism_contract"],
+  "properties": {
+    "caption_source": {
+      "type": "string",
+      "enum": ["caption-json-first-party", "srt-converted-off-render", "vtt-converted-off-render"],
+      "description": "Caption JSON transcribed/converted off-render; render path reads JSON only"
+    },
+    "timing_clock": {
+      "type": "string",
+      "enum": ["useCurrentFrame"],
+      "description": "ms converted to frames (ms * fps / 1000); Sequence from/durationInFrames"
+    },
+    "animate_in_out": {
+      "type": "boolean",
+      "description": "fade/slide via interpolate(frame, range, [0,1]); never CSS transition/animation"
+    },
+    "karaoke_highlight": {
+      "type": "boolean",
+      "description": "per-word reveal via interpolate on the word frame; deterministic"
+    },
+    "transcribe_scope": {
+      "type": "string",
+      "enum": ["off-render", "pre-pass"],
+      "description": "transcription/SRT-parse off-render; never in the per-frame render path"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval; live transcribe forbidden in render path"
+    }
+  }
+}

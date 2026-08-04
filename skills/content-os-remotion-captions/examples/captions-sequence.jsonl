@@ -1,0 +1,4 @@
+{"step":1,"intent":"display captions","route":"content-os-remotion-captions","caption_source":"caption-json-first-party","timing":"ms * fps / 1000 -> Sequence from/durationInFrames","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":2,"intent":"fade in/out","route":"content-os-remotion-captions","animate":"interpolate(frame,[inStart,inEnd],[0,1],{extrapolateLeft:'clamp',extrapolateRight:'clamp'})","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":3,"intent":"karaoke highlight","route":"content-os-remotion-captions","reveal":"interpolate per word frame; deterministic","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":4,"intent":"transcribe scope","route":"content-os-remotion-captions","transcribe_scope":"off-render","srt":"convert off-render -> Caption JSON","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}

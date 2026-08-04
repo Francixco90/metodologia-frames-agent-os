@@ -1,0 +1,20 @@
+# Negative fixture: a malformed Remotion captions request.
+schema_version: 1
+skill_id: content-os-remotion-captions
+caption_source: 'live-srt-parse-in-render'
+timing_clock: 'setTimeout'
+animate_in_out: false
+karaoke_highlight: false
+transcribe_scope: 'per-frame'
+determinism_contract: false
+violations:
+  - live SRT parse in the render path (non-deterministic)
+  - fetch inside composition to load caption source (network in render path)
+  - CSS transition for caption fade-in (does not render frame-accurately)
+  - setTimeout to gate caption timing (not frame-driven)
+  - Math.random to jitter word reveal (non-deterministic)
+  - Date.now to seed a layout (non-deterministic)
+  - live transcription API call in render path (network in render path)
+  - per-frame transcribe (breaks determinism)
+  - production request without G13-G17 human gate
+verdict: reject; captions blocked

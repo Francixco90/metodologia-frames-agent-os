@@ -1,0 +1,4 @@
+{"step":1,"intent":"form render","route":"content-os-remotion-saas","app_shape":"form-render","render_path":"useCurrentFrame-only","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":2,"intent":"video editor UI","route":"content-os-remotion-saas","app_shape":"video-editor-ui","render_path":"deterministic-given-props","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":3,"intent":"cloud render","route":"content-os-remotion-saas","app_shape":"cloud-render-pipeline","render_path":"useCurrentFrame-only","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
+{"step":4,"intent":"license check","route":"content-os-remotion-saas","license_verdict_resolved":"true","company":"Company License confirmed for commercial","credentials_in_render_path":"false","license":"H03-LIC-REMOTION-001","state":"RENDERED_DRAFT"}
