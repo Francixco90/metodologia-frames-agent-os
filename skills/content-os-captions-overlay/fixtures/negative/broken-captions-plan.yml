@@ -1,0 +1,41 @@
+# Negative fixture: broken captions overlay plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: cov-broken-001
+mode: standard
+canvas:
+  width: 1920
+  height: 1080
+true_vertical_center: false
+phrases:
+  - id: phrase-01
+    start: 0
+    end: 2
+    kind: embed
+    text: 'So'
+    emphasis: false
+  - id: phrase-02
+    start: 2
+    end: 4
+    kind: embed
+    text: 'the'
+    emphasis: false
+  - id: phrase-03
+    start: 4
+    end: 6
+    kind: embed
+    text: 'core'
+    emphasis: false
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in caption code (rejected)
+# - Date.now : forbidden API in caption code (rejected)
+# - setTimeout : forbidden API in caption code (rejected)
+# - fetch : network in render path (rejected)
+# - keep-out-band : reserved bottom band for captions instead of overlay (rejected)
+# - embed-every-word : embedding every word instead of rail-first embed-scarce (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - keep-out-band
+  - embed-every-word

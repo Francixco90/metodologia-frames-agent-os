@@ -1,0 +1,29 @@
+# Positive fixture: valid captions overlay plan
+composition_id: cov-demo-001
+mode: standard
+canvas:
+  width: 1920
+  height: 1080
+true_vertical_center: true
+phrases:
+  - id: phrase-01
+    start: 0
+    end: 2
+    kind: rail
+    text: 'So the core idea is'
+    emphasis: false
+  - id: phrase-02
+    start: 2.5
+    end: 4.5
+    kind: embed
+    text: 'Resonance'
+    emphasis: false
+  - id: phrase-03
+    start: 5
+    end: 8
+    kind: rail
+    text: 'and that is what we ship'
+    emphasis: true
+# contract tokens present in composition: data-composition-id, data-duration,
+# data-start, window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# overlay ON TOP, true vertical center y = H/2, rail-first embed-scarce (1 embed, spaced)

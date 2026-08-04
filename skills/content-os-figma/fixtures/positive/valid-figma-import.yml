@@ -1,0 +1,14 @@
+# Positive fixture: valid figma import plan
+composition_id: figma-demo-001
+figma_ref:
+  fileKey: ABC123def
+  nodeId: 1-2
+phase: component
+format: svg
+scale: 1
+description: hero logo mark
+entity: acme-logo
+storyboard_mode: false
+# contract tokens present in composition: data-composition-id, data-duration,
+# data-start, window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# frozen asset under assets/figma/ with provenance; no figma URL in composition

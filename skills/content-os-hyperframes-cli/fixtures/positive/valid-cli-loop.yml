@@ -1,0 +1,13 @@
+# Positive fixture: valid CLI loop plan
+composition_id: cli-demo-001
+stage: render
+quality: high
+output: renders/video.mp4
+strict: true
+json: true
+snapshots: true
+run_id: run-abc-001
+approved: true
+# contract tokens present in composition: data-composition-id, data-duration,
+# data-start, window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# render happens only after explicit approval at preview — checks passing never grants it

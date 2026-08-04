@@ -1,0 +1,4 @@
+{"composition_id":"figma-demo-001","figma_ref":{"fileKey":"ABC123def","nodeId":"1-2"},"phase":"asset","format":"svg","description":"hero logo mark","entity":"acme-logo"}
+{"composition_id":"figma-demo-001","figma_ref":{"fileKey":"ABC123def"},"phase":"tokens"}
+{"composition_id":"figma-demo-001","figma_ref":{"fileKey":"ABC123def","nodeId":"3-4"},"phase":"component","format":"svg","description":"nav card"}
+{"composition_id":"figma-demo-001","figma_ref":{"fileKey":"ABC123def","nodeId":"5-6"},"phase":"storyboard","storyboard_mode":true}

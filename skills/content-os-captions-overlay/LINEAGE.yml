@@ -1,0 +1,32 @@
+schema_version: 1
+skill_id: content-os-captions-overlay
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-apache-2-reference
+derivation_note: >
+  Clean-room prose adaptation of the captions-overlay doctrine (drop/rail/embed model +
+  overlay-not-reserved-band law) for the Content OS toolchain. No vendor code copied; the
+  vendor SKILL.md is read-only authority reference. Apache-2.0 permits derivation with
+  attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/hyperframes/captions-overlay/SKILL.md
+  - skills/content-os-embedded-captions/SKILL.md
+  - skills/content-os-core/SKILL.md
+runtime_refs:
+  - skills/content-os-captions-overlay/scripts/check-skill.mjs
+dependency_receipt_ref: skills/content-os-captions-overlay/receipts/runtime-boundary.yml
+compatibility_contract: captions-overlay-v1
+request_contract_ref: skills/content-os-captions-overlay/schemas/captions-overlay-v1.schema.json
+supported_request_types:
+  - captions_overlay
+  - caption_mode
+external_fragments_reused: false
+external_fragments_source: skills/vendor/hyperframes/captions-overlay/ (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: heygen-com/hyperframes captions-overlay
+production_runtime_status: local_capability_only
+publication_authority: false

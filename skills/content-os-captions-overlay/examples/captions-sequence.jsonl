@@ -1,0 +1,4 @@
+{"composition_id":"cov-demo-001","mode":"standard","phrase":{"id":"phrase-01","start":0,"end":2,"kind":"rail","text":"So the core idea is"}}
+{"composition_id":"cov-demo-001","mode":"standard","phrase":{"id":"phrase-02","start":2.5,"end":4.5,"kind":"embed","text":"Resonance"}}
+{"composition_id":"cov-demo-001","mode":"standard","phrase":{"id":"phrase-03","start":5,"end":8,"kind":"rail","text":"and that is what we ship","emphasis":true}}
+{"composition_id":"cov-demo-001","mode":"standard","phrase":{"id":"phrase-04","start":10,"end":12,"kind":"drop","text":"um"}}
