@@ -1,0 +1,18 @@
+# Negative fixture: every contract violation content-os-remotion-markup rejects.
+schema_version: 1
+skill_id: content-os-remotion-markup
+violations:
+  - Math.random to vary a tween (non-deterministic)
+  - Date.now to derive timing (wall-clock dependent)
+  - setTimeout to delay a beat (not frame-driven)
+  - fetch inside a composition (network in render path)
+  - CSS transition on an animated element (does not render frame-accurately)
+  - Tailwind animation class (does not render frame-accurately)
+  - requestAnimationFrame to drive motion (not the Remotion clock)
+  - getBoundingClientRect during a render frame (measures at wrong time)
+  - useFrame for a Remotion component (that is R3F; Remotion uses useCurrentFrame)
+  - new Date() to seed a layout (non-deterministic)
+  - ms-based timing instead of frames (not fps-relative)
+  - hand-rolled CSS opacity crossfade instead of @remotion/transitions preset
+  - production request without G13-G17 human gate
+verdict: reject; markup blocked

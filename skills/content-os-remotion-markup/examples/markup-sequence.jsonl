@@ -1,0 +1,8 @@
+{"turn": 1, "step": "tween", "action": "const frame = useCurrentFrame(); const o = interpolate(frame, [0,30], [0,1], {easing: Easing.bezier(0.4,0,0.2,1), extrapolateRight: 'clamp'})", "note": "frame-driven"}
+{"turn": 2, "step": "spring", "action": "const s = spring({frame, fps, config: {damping: 200}})", "note": "deterministic spring"}
+{"turn": 3, "step": "sequence", "action": "<Sequence from={30} durationInFrames={60}>...</Sequence>", "note": "frame-accurate timing"}
+{"turn": 4, "step": "transition", "action": "@remotion/transitions slide preset at scene seam", "note": "never CSS crossfade"}
+{"turn": 5, "step": "fonts", "action": "delayRender(); loadFont(); continueRender()", "note": "settle before render"}
+{"turn": 6, "step": "color", "action": "interpolateColors(frame, [0,30], ['#000', '#00e5a0'])", "note": "color tween"}
+{"contract": "useCurrentFrame() + interpolate(); Easing.bezier()/spring(); RENDERED_DRAFT; no Math.random/Date.now/new Date/fetch/setTimeout/setInterval/requestAnimationFrame/getBoundingClientRect"}
+{"license": "source-available Remotion AG; H03-LIC-REMOTION-001 verdict; production gates G13-G17 manual"}

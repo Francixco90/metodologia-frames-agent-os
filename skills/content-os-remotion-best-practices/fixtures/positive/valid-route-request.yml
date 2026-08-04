@@ -1,0 +1,19 @@
+# Positive fixture: a well-formed Remotion best-practices routing request.
+# Determinism contract holds; toolchain pinned; license verdict resolved.
+schema_version: 1
+skill_id: content-os-remotion-best-practices
+request:
+  intent: make_video
+  route: content-os-remotion-create
+  toolchain_pinned: true
+  license_verdict_resolved: true
+  determinism_contract: true
+non_negotiables:
+  - drive animation with useCurrentFrame() and interpolate()
+  - Easing.bezier() and Easing.spring() for timing curves
+  - no Math.random / Date.now / new Date / fetch / setTimeout / setInterval in render path
+  - composition = {fps, durationInFrames, width, height} fixed at register time
+  - registerRoot exactly once; one Root.tsx per project
+  - offline render profile; remote media opt-in auth-gated fail-closed
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: route to content-os-remotion-create

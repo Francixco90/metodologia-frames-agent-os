@@ -1,0 +1,27 @@
+# Positive fixture: a well-formed Remotion markup plan.
+schema_version: 1
+skill_id: content-os-remotion-markup
+animation:
+  clock: useCurrentFrame
+  tween: 'interpolate(frame, [0, 30], [0, 1], {easing: Easing.bezier(0.4,0,0.2,1), extrapolateLeft: clamp, extrapolateRight: clamp})'
+  color_tween: 'interpolateColors(frame, [0, 30], ["#000", "#00e5a0"])'
+timing:
+  sequence: {from: 30, durationInFrames: 60}
+  stagger: 'index * 3'
+transitions:
+  preset: '@remotion/transitions slide at scene seam'
+async_gate:
+  fonts: 'delayRender until loadFont settles, then continueRender'
+  images: 'delayRender until Img decoded'
+media:
+  text: 'measureText + delayRender for fonts'
+  images: 'local first-party version-pinned; remote opt-in auth-gated fail-closed'
+  audio: 'Audio src local; start via Sequence from, never setTimeout'
+determinism_contract: true
+non_negotiables:
+  - animation with useCurrentFrame() and interpolate()
+  - Easing.bezier() and Easing.spring() for curves
+  - no Math.random / Date.now / new Date / fetch / setTimeout / setInterval / requestAnimationFrame in render
+  - no getBoundingClientRect during a render frame
+  - render state is RENDERED_DRAFT; production gates G13-G17 manual
+verdict: markup valid; frame-driven deterministic

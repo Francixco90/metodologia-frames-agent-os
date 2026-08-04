@@ -1,0 +1,7 @@
+{"turn": 1, "intent": "make_video", "route": "content-os-remotion-create", "note": "new video → create sibling"}
+{"turn": 2, "intent": "write_markup", "route": "content-os-remotion-markup", "note": "React markup rules → markup sibling"}
+{"turn": 3, "intent": "render", "route": "content-os-remotion-render", "note": "render settings → render sibling (Fase 2B batch 2)"}
+{"turn": 4, "intent": "ambiguous", "route": "stay", "note": "ambiguous → enumerate options, ask"}
+{"turn": 5, "intent": "captions", "route": "content-os-remotion-captions", "note": "captions → captions sibling (Fase 2B batch 3)"}
+{"contract": "useCurrentFrame() + interpolate(); Easing.bezier()/spring(); RENDERED_DRAFT; no Math.random/Date.now/new Date/fetch/setTimeout/setInterval"}
+{"license": "source-available Remotion AG; H03-LIC-REMOTION-001 verdict; production gates G13-G17 manual"}

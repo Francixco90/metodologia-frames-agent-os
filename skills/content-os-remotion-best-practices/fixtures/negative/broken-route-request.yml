@@ -1,0 +1,16 @@
+# Negative fixture: every contract violation this skill rejects.
+# Documents the forbidden tokens; must NOT be used in a real composition.
+schema_version: 1
+skill_id: content-os-remotion-best-practices
+violations:
+  - Math.random in render path (breaks determinism)
+  - Date.now in render path (frame output depends on wall clock)
+  - setTimeout to delay a tween (not frame-driven)
+  - fetch inside a composition (network in render path)
+  - CSS transition on an animated element (does not render frame-accurately)
+  - Tailwind animation class (does not render frame-accurately)
+  - new Date() to seed a "random" layout (non-deterministic)
+  - production request without G13-G17 human gate
+  - unpinned remote assets in render path
+  - license verdict unresolved for target use case
+verdict: reject; route blocked
