@@ -104,12 +104,12 @@
       "source_path": "skills/scroll-experience/SKILL.md",
       "source_upstream": "https://github.com/vibeforge1111/vibeship-spawner-skills",
       "source_branch": "main",
-      "source_commit": "main (V15.6.0 release tag)",
+      "source_commit": "b7f833d4e12f8cf8f9beb0118b4a72709b63e8a4",
       "version": "unversioned",
       "license": "MIT (container) + Apache-2.0 (original: vibeship-spawner-skills)",
       "attribution": "Original: vibeforge1111/vibeship-spawner-skills. Aggregator: sickn33/agentic-awesome-skills",
       "destination": "skills/vendor/scroll-experience/",
-      "audit_date": "2026-08-01",
+      "audit_date": "2026-08-04",
       "audit_report": "docs/scroll-skills/audit-scroll-experience.md",
       "execution_status": "reference-only-no-auto-execution",
       "components_enabled": [
@@ -122,10 +122,10 @@
         "SKILL.md": "4f32befc173fb89d8d20364fe096023667306a57b088857bc25b11ff033cf3d2"
       },
       "known_risks": [
-        "Exact commit not pinned (repo uses release tags, not commit SHAs in the path)",
+        "Commit SHA pinned to b7f833d4 (was release-tag string; resolved 2026-08-04).",
         "Delegation Triggers reference external skills that don't exist locally (inert)"
       ],
-      "update_procedure": "1) Fetch SKILL.md from main branch. 2) Compare hash with locked version. 3) Re-audit if changed. 4) Update hash + audit date."
+      "update_procedure": "1) Fetch SKILL.md at pinned commit b7f833d4. 2) Compare hash with locked (4f32befc...). 3) Re-audit if changed. 4) Update hash + audit_date + bump source_commit to new SHA."
     }
   ]
 }

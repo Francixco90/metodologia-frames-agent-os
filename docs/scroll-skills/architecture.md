@@ -82,11 +82,28 @@ Las fuentes originales se instalan en `skills/vendor/` como referencia aislada:
 
 ## Atribucion de fuentes
 
-| Skill propia                  | Fuente                                                    | Commit         | Licencia         |
-| ----------------------------- | --------------------------------------------------------- | -------------- | ---------------- |
-| scroll-experience-foundations | sickn33/agentic-awesome-skills (skills/scroll-experience) | main (V15.6.0) | MIT + Apache 2.0 |
-| cinematic-scroll-quality      | MustBeSimo/cinematic-scroll-skill                         | 089cd3ae       | MIT              |
-| scroll-world-agnostic         | oso95/scroll-world                                        | 71cc36d3       | MIT              |
+| Skill propia                  | Fuente                                                    | Commit                                        | Licencia         |
+| ----------------------------- | --------------------------------------------------------- | --------------------------------------------- | ---------------- |
+| scroll-experience-foundations | sickn33/agentic-awesome-skills (skills/scroll-experience) | b7f833d4 (pinned 2026-08-04, was release-tag) | MIT + Apache 2.0 |
+| cinematic-scroll-quality      | MustBeSimo/cinematic-scroll-skill                         | 089cd3ae                                      | MIT              |
+| scroll-world-agnostic         | oso95/scroll-world                                        | 71cc36d3                                      | MIT              |
 
 Todas las derivaciones son `locally_authored_adaptation` con `external_fragments_reused: true`.
 Las atribuciones se conservan en LINEAGE.yml y en los archivos de vendor.
+
+## Re-vendor — Fase 1D (2026-08-04)
+
+Re-verificación de los 3 scroll vendors contra upstream HEAD:
+
+| vendor            | locked commit | upstream HEAD | status                                 |
+| ----------------- | ------------- | ------------- | -------------------------------------- |
+| scroll-world      | 71cc36d3      | 71cc36d3      | ✅ already at HEAD, no change          |
+| cinematic-scroll  | 089cd3ae      | 089cd3ae      | ✅ already at HEAD, no change          |
+| scroll-experience | b7f833d4      | b7f833d4      | ✅ SHA pinned (was release-tag string) |
+
+`scroll-experience` SKILL.md content hash at HEAD `b7f833d4` = `4f32befc...` = identical to
+vendored copy. The prior `source_commit: "main (V15.6.0 release tag)"` known_risk is
+resolved: pinned to SHA `b7f833d4e12f8cf8f9beb0118b4a72709b63e8a4`. NOTICE is a local
+attribution artifact (not from source; no upstream NOTICE file). `cinematic-scroll` is
+the clean Fal AI reference for Fase 2D (`lib/fal-models.ts`, `@fal-ai/server-proxy`,
+`fal.subscribe`/`fal.queue.submit`).
