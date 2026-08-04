@@ -6,7 +6,7 @@
 ## Scope
 
 15 skills vendored text-only into `skills/vendor/hyperframes/` as **reference-only**
-input for the locally-authored `content-os-*` skills (Content OS Fases 2-4). 646 files
+input for the locally-authored `content-os-*` skills (Frames ContentOS Fases 2-4). 646 files
 copied, 77 binaries excluded. Per-file sha256 recorded in
 [`source-lock.json`](./source-lock.json).
 
@@ -118,7 +118,7 @@ Legend: ✅ pass · ⚠ noted risk (does not block vendor) · — n/a.
 - Per-file sha256 recorded under each new vendor's `critical_file_hashes`.
 - All 117 files content-type verified as text (`file` scan: ASCII / UTF-8 / HTML / JSON; 0 binaries).
 - `execution_status: reference-only-no-auto-execution` for all 10 new vendors.
-- Bundled `gsap.min.js` (music-to-video, talking-head-recut) vendored as text reference only; Content OS uses toolchain `gsap 3.15.0` — no runtime dep on the vendor copy.
+- Bundled `gsap.min.js` (music-to-video, talking-head-recut) vendored as text reference only; Frames ContentOS uses toolchain `gsap 3.15.0` — no runtime dep on the vendor copy.
 
 ## Verdict
 

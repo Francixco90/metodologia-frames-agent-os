@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.dev/schemas/content-os/creative-brief-v1.json",
-  "title": "Content OS Creative Brief v1",
-  "description": "Creative brief for an HTML+GSAP Content OS composition: brand references, story spine with timestamped beats, composition pattern, palette/typography via brand tokens, offline-first constraints.",
+  "title": "Frames ContentOS Creative Brief v1",
+  "description": "Creative brief for an HTML+GSAP Frames ContentOS composition: brand references, story spine with timestamped beats, composition pattern, palette/typography via brand tokens, offline-first constraints.",
   "type": "object",
   "required": [
     "schemaVersion",

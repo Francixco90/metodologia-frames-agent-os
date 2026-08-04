@@ -1,4 +1,4 @@
-# Identity Catalog — Content OS Embedded Captions
+# Identity Catalog — Frames ContentOS Embedded Captions
 
 Single source of truth for routing. El user elige UNA identity; engine, compiler
 y authoring file se derivan por lookup. **Nunca surfaces "Standard vs Cinematic vs

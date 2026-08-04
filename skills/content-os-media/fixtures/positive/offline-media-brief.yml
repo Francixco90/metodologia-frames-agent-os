@@ -30,7 +30,7 @@ entries:
     auth_declared: false
     dims: 1920x1080
 storySpine:
-  hook: 'Content OS resolve offline'
+  hook: 'Frames ContentOS resolve offline'
   beats:
     - {label: 'bgm resolved local', at: '0s'}
     - {label: 'voice piper local', at: '2s'}

@@ -1,4 +1,4 @@
-# JSON Island Schema — Content OS Slideshow
+# JSON Island Schema — Frames ContentOS Slideshow
 
 The JSON island is the single source of truth for slide order, notes,
 fragments, hotspots, and branches. Declared as one script block near the top of
@@ -25,7 +25,7 @@ fragments, hotspots, and branches. Declared as one script block near the top of
 | `notes`                              | `string`         | Presenter-only speaker notes.                                   |
 | `fragments`                          | `number[]`       | Absolute composition-timeline hold-points within `[start,end]`. |
 | `hotspots`                           | `SlideHotspot[]` | Click targets that push a branch sequence onto the nav stack.   |
-| `ttsScript`/`ttsUrl`/`ttsDurationMs` | reserved         | Unused in Content OS (deck is unnarrated).                      |
+| `ttsScript`/`ttsUrl`/`ttsDurationMs` | reserved         | Unused in Frames ContentOS (deck is unnarrated).                |
 
 ## SlideHotspot
 

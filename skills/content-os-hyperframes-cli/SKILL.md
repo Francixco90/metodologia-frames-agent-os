@@ -1,6 +1,6 @@
 ---
 name: content-os-hyperframes-cli
-description: This skill should be used when the user asks to "run the CLI development loop", "lint and check a composition", "preview then render a video", "diagnose a build or render failure", "run sub-composition smoke snapshots", or "verify a render output". The Content OS CLI development loop doctrine: init → author → lint → check → preview → render (only after approval) → verify. Covers lint/check/preview/render/snapshot/doctor, sub-composition smoke tests, JSON agent/CI conventions, and the rule that checks passing never grants a render — pause at the final preview and wait for approval. Maps the HyperFrames CLI surface onto the Content OS local render adapter. Unclear → content-os-router.
+description: This skill should be used when the user asks to "run the CLI development loop", "lint and check a composition", "preview then render a video", "diagnose a build or render failure", "run sub-composition smoke snapshots", or "verify a render output". The Frames ContentOS CLI development loop doctrine: init → author → lint → check → preview → render (only after approval) → verify. Covers lint/check/preview/render/snapshot/doctor, sub-composition smoke tests, JSON agent/CI conventions, and the rule that checks passing never grants a render — pause at the final preview and wait for approval. Maps the HyperFrames CLI surface onto the Frames ContentOS local render adapter. Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-router (intent routing). Provides the CLI loop doctrine: lint → check → preview → render(after approval) → verify. Output RENDERED_DRAFT (renders/video.mp4). No render merely because checks pass — final preview is the approval gate.
@@ -11,15 +11,15 @@ metadata:
   model_agnostic: true
 ---
 
-# Content OS CLI — development loop doctrine
+# Frames ContentOS CLI — development loop doctrine
 
 Derivada de `hyperframes-cli` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/hyperframes-cli/SKILL.md` (read-only).
 
 ## What this skill does
 
-Defines the development loop for a Content OS composition project: scaffold, author, get
+Defines the development loop for a Frames ContentOS composition project: scaffold, author, get
 fast feedback, run the final gate, preview, render only after approval, verify the output.
 The CLI requires Node.js 22+ and FFmpeg.
 
@@ -136,7 +136,7 @@ For TTS, transcription, captions, or background removal choices, use `content-os
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock
   (`window.__timelines`, `data-start`, `data-duration`).
 - No network in the render path.
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.

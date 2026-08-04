@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS PR to Video — static workflow-state auditor.
+ * Frames ContentOS PR to Video — static workflow-state auditor.
  *
  * Reads a workflow state (JSONL) or brief (YAML-ish) and detects:
  * missing-gate, step-out-of-order, footage-in-pr-video, style-not-code-editorial,

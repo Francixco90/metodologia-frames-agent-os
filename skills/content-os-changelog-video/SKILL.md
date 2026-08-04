@@ -14,13 +14,13 @@ metadata:
 # Changelog → Branded Video
 
 Derivada de `changelog-video` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/changelog-video/SKILL.md` (read-only).
 
 ## What this skill does
 
 Input: a changelog .md (themes + items, like a weekly digest). Output: a lint-clean,
-seam-gate-green Content OS project in `videos/weekly-changelog-<range>/`. Render only
+seam-gate-green Frames ContentOS project in `videos/weekly-changelog-<range>/`. Render only
 when asked.
 
 **Load first, non-negotiable:** `content-os-motion-graphics` (mock-UI visualizations),
@@ -64,7 +64,7 @@ with timed lines (start, end, text, visualization_ref).
 
 For each theme, write a mock-UI composition (`visualizations/NN-<theme>.html`). Each mock
 animates the change in experience — a button appearing, a panel sliding, a counter
-ticking. GSAP timelines (`gsap.timeline`, `paused: true`) keyed to the Content OS clock
+ticking. GSAP timelines (`gsap.timeline`, `paused: true`) keyed to the Frames ContentOS clock
 contract (`window.__timelines`, `data-start`, `data-duration`). No `Math.random`, no
 `Date.now`, no `fetch`, no `setTimeout`, no `setInterval` (determinism contract).
 
@@ -77,7 +77,7 @@ VO audio (Annie, via `content-os-media`). The composition declares `data-composi
 
 ### Step 5 — render
 
-Render `index.html` to `renders/video.mp4` via the Content OS render adapter
+Render `index.html` to `renders/video.mp4` via the Frames ContentOS render adapter
 (`content-os-core/scripts/render-html.ts`): Playwright + FFmpeg (`libx264`, `image2pipe`),
 frame clock deterministic, no network in the render path. Mux the VO audio.
 
@@ -94,7 +94,7 @@ frame clock deterministic, no network in the render path. Mux the VO audio.
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any visualization or composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock.
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock.
 - No network in the render path. Remote media adapters fail-closed (`content-os-media`).
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
 

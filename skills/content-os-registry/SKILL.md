@@ -1,6 +1,6 @@
 ---
 name: content-os-registry
-description: This skill should be used when the user asks to "discover a reusable Content OS block", "install a registry block locally", "wire a block into a composition via data-composition-src", "paste an effect component snippet", "contribute a new block to the local registry", or "audit a registry manifest for missing hashes or unseekable blocks".
+description: This skill should be used when the user asks to "discover a reusable Frames ContentOS block", "install a registry block locally", "wire a block into a composition via data-composition-src", "paste an effect component snippet", "contribute a new block to the local registry", or "audit a registry manifest for missing hashes or unseekable blocks".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, and content-os-keyframes pose contract. Registry blocks are hash-bound, offline-first, seek-safe, deterministic. No network, no external assets.
@@ -10,9 +10,9 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Registry
+# Frames ContentOS Registry
 
-Registry de **bloques reusables** para composiciones Content OS: sub-compositions
+Registry de **bloques reusables** para composiciones Frames ContentOS: sub-compositions
 (blocks) + effect snippets (components). Adaptado de `hyperframes-registry`
 (vendoreado Fase 0, Apache 2.0, reference-only) al arquitectura local hash-bound +
 offline-first + seek-safe.

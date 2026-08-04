@@ -1,4 +1,4 @@
-# Workflow Contract — Content OS Embedded Captions
+# Workflow Contract — Frames ContentOS Embedded Captions
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 

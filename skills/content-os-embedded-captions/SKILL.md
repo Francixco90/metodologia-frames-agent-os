@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Embedded Captions
+# Frames ContentOS Embedded Captions
 
 Orquestador footage→captioned-video: añade captions/subtítulos a un video
 **talking-head existente** sin editar el footage. El video base se entrega

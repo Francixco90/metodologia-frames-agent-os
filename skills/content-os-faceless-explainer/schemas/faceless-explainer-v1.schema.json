@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.internal/schemas/faceless-explainer-v1.schema.json",
-  "title": "Content OS Faceless Explainer Workflow v1",
+  "title": "Frames ContentOS Faceless Explainer Workflow v1",
   "description": "Workflow state for a faceless explainer video (text to video, invented visuals, no capture). 8-step gated orchestrator delegating to Fase 2 capabilities.",
   "type": "object",
   "required": ["schemaVersion", "projectId", "route", "capability_map", "offline", "steps"],

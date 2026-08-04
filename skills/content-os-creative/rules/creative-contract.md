@@ -36,7 +36,7 @@ channelRef: registries/brand/source-bundle-v1.yml
 compositionPattern: title-card
 durationSeconds: 4
 storySpine:
-  hook: {text: 'Content OS', at: 0}
+  hook: {text: 'Frames ContentOS', at: 0}
   beats:
     - {label: 'wordmark', at: 0.2, purpose: 'brand mark entrance', valueBeforeEvidence: true}
     - {label: 'tagline', at: 1.2, purpose: 'value promise'}

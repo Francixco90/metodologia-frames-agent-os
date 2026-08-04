@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Media — offline resolve cascade (deterministic, no network).
+ * Frames ContentOS Media — offline resolve cascade (deterministic, no network).
  *
  * Resolves a media intent against the local manifest + assets/ directory only.
  * Default is --local-only: no network is ever touched in the render path. Remote

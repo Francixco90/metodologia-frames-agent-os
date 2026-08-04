@@ -1,4 +1,4 @@
-# Workflow Contract — Content OS General Video
+# Workflow Contract — Frames ContentOS General Video
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 

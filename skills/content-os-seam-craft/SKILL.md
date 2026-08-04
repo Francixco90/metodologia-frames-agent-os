@@ -1,6 +1,6 @@
 ---
 name: content-os-seam-craft
-description: This skill should be used when the user asks to "fix a white flash at a cut", "make transitions composite correctly on the master timeline", "reason about why a transition opacity dip shows through", "verify the render-side mechanics of overlapping scene wrappers", "paint the stage ground", or "assemble index.html for scene seams". Render-correctness doctrine for scene-to-scene seams in the Content OS toolchain — the prerequisites that make transitions composite correctly on the master timeline. Covers the opaque stage-ground (#root background) white-flash guard and how the injector overlaps wrappers, holds final frames, ping-pongs tracks, and stamps lint-clean template code onto the master timeline. Does NOT contain the per-transition catalog — see content-os-cut-the-curve. Unclear → content-os-router.
+description: This skill should be used when the user asks to "fix a white flash at a cut", "make transitions composite correctly on the master timeline", "reason about why a transition opacity dip shows through", "verify the render-side mechanics of overlapping scene wrappers", "paint the stage ground", or "assemble index.html for scene seams". Render-correctness doctrine for scene-to-scene seams in the Frames ContentOS toolchain — the prerequisites that make transitions composite correctly on the master timeline. Covers the opaque stage-ground (#root background) white-flash guard and how the injector overlaps wrappers, holds final frames, ping-pongs tracks, and stamps lint-clean template code onto the master timeline. Does NOT contain the per-transition catalog — see content-os-cut-the-curve. Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Render prerequisites for the seam transitions in content-os-cut-the-curve (the catalog) and the gateway content-os-motion-doctrine (vector law + seam gate). Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter). Input = master timeline (index.html) + scene wrappers (#el-<sid>). Output = opaque stage ground + overlap-stamped seams + RENDERED_DRAFT. The transitions this doctrine governs are Tier-B-ready: pure transform / opacity / filter on the two scene clip wrappers, no injected overlay DOM, no per-scene cooperation.
@@ -14,10 +14,10 @@ metadata:
 # Seam Craft — render prerequisites for scene-to-scene transitions
 
 Derivada de `seam-craft` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/seam-craft/SKILL.md` (read-only).
 
-This is the **render-correctness doctrine** for Content OS scene-to-scene seams: the
+This is the **render-correctness doctrine** for Frames ContentOS scene-to-scene seams: the
 prerequisites and master-timeline mechanics that make any transition composite
 correctly, independent of which specific transition is chosen. The per-transition
 catalog (crossfade, push-slide, zoom-through, cut-the-curve, …) lives in
@@ -81,7 +81,7 @@ does not bind index.html.
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any seam-assembly or render code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock
   (`window.__timelines`, `data-start`, `data-duration`).
 - No network in the render path.
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.

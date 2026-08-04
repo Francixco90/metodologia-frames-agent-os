@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS PR to Video
+# Frames ContentOS PR to Video
 
 Orquestador source→video: GitHub pull request (URL, `owner/repo#N`, o "this PR"
 en un repo checked-out) → code-change explainer video. El input es un **cambio de

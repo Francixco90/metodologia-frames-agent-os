@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologIA.internal/schemas/content-os-remotion-bridge-v1.schema.json",
-  "title": "Content OS Remotion Bridge workflow brief",
+  "title": "Frames ContentOS Remotion Bridge workflow brief",
   "type": "object",
   "required": [
     "schemaVersion",

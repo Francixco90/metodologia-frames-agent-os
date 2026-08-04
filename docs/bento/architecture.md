@@ -1,6 +1,6 @@
-# Bento → Content OS architecture mapping
+# Bento → Frames ContentOS architecture mapping
 
-> Reference for Content OS Fase 2C. Maps the vendored Bento skills
+> Reference for Frames ContentOS Fase 2C. Maps the vendored Bento skills
 > (`skills/vendor/bento/`) onto the MetodologIA `content-os-bento-*`
 > homólogos. MIT-licensed reference; homólogos are locally-authored adaptations.
 
@@ -16,19 +16,19 @@
   bento grid presentation card generator (self-contained HTML; screenshot
   export via Playwright).
 
-## Content OS paradigm
+## Frames ContentOS paradigm
 
 The repo already has `content-os-core` (HTML composition foundation) and
 the `content-os-*` family. Fase 2C adds **`content-os-bento-*` homólogos**
 derived (locally-authored adaptation) from the vendored Bento skills.
 
-## Capability mapping (vendored → Content OS homólogo, Fase 2C)
+## Capability mapping (vendored → Frames ContentOS homólogo, Fase 2C)
 
-| vendored skill     | Content OS homólogo (Fase 2C) | type                                                            |
-| ------------------ | ----------------------------- | --------------------------------------------------------------- |
-| `bento`            | `content-os-bento-grid`       | build (principal; grid layout design; dep `content-os-core`)    |
-| `bento-slides`     | `content-os-bento-slides`     | build (deck authoring; .bento.html JSON-in-HTML; network-aware) |
-| `apple-bento-grid` | `content-os-apple-bento-grid` | build (Apple-style stat cards; self-contained HTML; screenshot) |
+| vendored skill     | Frames ContentOS homólogo (Fase 2C) | type                                                            |
+| ------------------ | ----------------------------------- | --------------------------------------------------------------- |
+| `bento`            | `content-os-bento-grid`             | build (principal; grid layout design; dep `content-os-core`)    |
+| `bento-slides`     | `content-os-bento-slides`           | build (deck authoring; .bento.html JSON-in-HTML; network-aware) |
+| `apple-bento-grid` | `content-os-apple-bento-grid`       | build (Apple-style stat cards; self-contained HTML; screenshot) |
 
 ## License guard
 
@@ -45,7 +45,7 @@ derived (locally-authored adaptation) from the vendored Bento skills.
 
 ## Determinism contract
 
-Bento grids are static HTML (deterministic layout). Content OS inherits:
+Bento grids are static HTML (deterministic layout). Frames ContentOS inherits:
 no `Date.now()` / `Math.random()` in composition code, no network in render
 path, fail-closed remote adapters, hash-bound homólogos (4 lifecycle events,
 append-only).

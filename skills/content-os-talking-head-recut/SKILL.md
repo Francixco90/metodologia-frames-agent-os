@@ -1,6 +1,6 @@
 ---
 name: content-os-talking-head-recut
-description: This skill should be used when the user asks to "add graphic overlays to a video", "dress up my talking-head clip", "package an interview with on-screen graphics", "add lower-thirds and data callouts", "layer designed cards on a playing video", or "recut a podcast clip with kinetic titles". Packages an existing talking-head / interview / podcast clip with timed, designed graphic overlay cards (titles, lower-thirds, data callouts, quotes, side panels, PiP) synced to the transcript on 16:9 / 9:16 / 4:5. The clip plays untouched; overlays are designed HTML rendered via the Content OS toolchain (Playwright + FFmpeg, GSAP). Not plain subtitles (content-os-embedded-captions). Unclear → content-os-router.
+description: This skill should be used when the user asks to "add graphic overlays to a video", "dress up my talking-head clip", "package an interview with on-screen graphics", "add lower-thirds and data callouts", "layer designed cards on a playing video", or "recut a podcast clip with kinetic titles". Packages an existing talking-head / interview / podcast clip with timed, designed graphic overlay cards (titles, lower-thirds, data callouts, quotes, side panels, PiP) synced to the transcript on 16:9 / 9:16 / 4:5. The clip plays untouched; overlays are designed HTML rendered via the Frames ContentOS toolchain (Playwright + FFmpeg, GSAP). Not plain subtitles (content-os-embedded-captions). Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-media (video probe, audio extraction, transcription), content-os-embedded-captions (sibling plain-subtitle track). Input = existing talking-head clip (plays untouched). Overlays = designed HTML cards synced to transcript. Output RENDERED_DRAFT (output.mp4, clip + overlay cards composited).
@@ -14,7 +14,7 @@ metadata:
 # Talking Head Recut — graphic overlay cards on a playing clip
 
 Derivada de `talking-head-recut` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/talking-head-recut/SKILL.md` (read-only).
 
 ## What this skill does
@@ -70,7 +70,7 @@ one 4.
 For each card in the storyboard, write a self-contained HTML fragment
 (`public/cards/card-XX.html`). Each card is a positioned overlay: it composes over the
 playing video, never replaces it. Cards use GSAP timelines (`gsap.timeline`, `paused: true`)
-keyed to the Content OS clock contract (`window.__timelines`, `data-start`, `data-duration`).
+keyed to the Frames ContentOS clock contract (`window.__timelines`, `data-start`, `data-duration`).
 No `Math.random`, no `Date.now`, no `fetch`, no `setTimeout`, no `setInterval` in any card
 (determinism contract — see `content-os-core`).
 
@@ -83,7 +83,7 @@ at their `data-start` and play for their `data-duration`. The video plays once, 
 
 ### Step 4 — render
 
-Render `public/index.html` to `output.mp4` via the Content OS render adapter
+Render `public/index.html` to `output.mp4` via the Frames ContentOS render adapter
 (`content-os-core/scripts/render-html.ts`): Playwright launches Chromium, loads the
 composition, drives the frame clock deterministically, captures frames to FFmpeg
 (`libx264`, `image2pipe`). No network in the render path. The clip's own audio is muxed
@@ -106,7 +106,7 @@ The list is descriptive, not prescriptive — new archetypes emerge from the tra
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any card or composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock.
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock.
 - No network in the render path. Remote media adapters fail-closed (`content-os-media`).
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
 

@@ -14,7 +14,7 @@
    file type al pasar. La route table es first-match por deliverable.
 4. **Capability dispatch on-demand.** El capability_map[] declara qué skills Fase
    2 carga el workflow. Las capabilities nunca son owners del deliverable.
-5. **Dual paradigm.** HTML+GSAP (Content OS) por defecto. Remotion solo si el
+5. **Dual paradigm.** HTML+GSAP (Frames ContentOS) por defecto. Remotion solo si el
    intent lo pide explícito. No mezclar runtimes en un deliverable.
 6. **Offline-first.** No network en el route path. No CLI fetch. El router lee
    intent local, escribe brief local. Media via `content-os-media` (offline

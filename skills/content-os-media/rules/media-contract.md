@@ -1,6 +1,6 @@
 # Media Contract — ground truth
 
-8 reglas load-bearing para media resolution + generation en Content OS.
+8 reglas load-bearing para media resolution + generation en Frames ContentOS.
 
 ## 1. Offline por defecto
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "product-launch-video-v1",
-  "title": "Content OS Product Launch Video workflow state",
+  "title": "Frames ContentOS Product Launch Video workflow state",
   "type": "object",
   "required": [
     "schemaVersion",

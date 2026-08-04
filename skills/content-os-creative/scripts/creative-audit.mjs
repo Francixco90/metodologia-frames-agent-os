@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Creative — static creative-brief auditor.
+ * Frames ContentOS Creative — static creative-brief auditor.
  *
  * Reads a creative brief (YAML-ish), extracts brandRef/voiceRef/channelRef, story spine
  * beats, and detects: missing brandRef, external font/asset URLs (not offline-first),

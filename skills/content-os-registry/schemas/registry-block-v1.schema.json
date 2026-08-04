@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.io/schemas/content-os-registry-block-v1.schema.json",
-  "title": "Content OS Registry Block/Component v1",
-  "description": "Reusable block (sub-composition) or component (effect snippet) entry in the local Content OS registry. Hash-bound, offline-first, seek-safe, deterministic.",
+  "title": "Frames ContentOS Registry Block/Component v1",
+  "description": "Reusable block (sub-composition) or component (effect snippet) entry in the local Frames ContentOS registry. Hash-bound, offline-first, seek-safe, deterministic.",
   "type": "object",
   "required": ["id", "type", "title", "tags", "files", "sha256", "seek_safe", "offline"],
   "properties": {

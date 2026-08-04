@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Router — static intent-brief auditor.
+ * Frames ContentOS Router — static intent-brief auditor.
  *
  * Reads an intent brief (JSONL) or brief (YAML-ish) and detects:
  * missing-route, missing-capability-map, unknown-source-type, route-by-keyword,

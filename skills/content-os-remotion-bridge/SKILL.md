@@ -1,6 +1,6 @@
 ---
 name: content-os-remotion-bridge
-description: This skill should be used when translating an existing composition between the two Content OS paradigms — Remotion (React, frame-driven) and HTML+GSAP (seekable composition). Use ONLY on an explicit ask to port/convert/migrate/translate a composition from one paradigm to the other. A passing mention, reference-only code, or "make something like my Remotion video" is a fresh build (content-os-general-video). Unclear → content-os-router.
+description: This skill should be used when translating an existing composition between the two Frames ContentOS paradigms — Remotion (React, frame-driven) and HTML+GSAP (seekable composition). Use ONLY on an explicit ask to port/convert/migrate/translate a composition from one paradigm to the other. A passing mention, reference-only code, or "make something like my Remotion video" is a fresh build (content-os-general-video). Unclear → content-os-router.
 version: 0.1.0
 lifecycle_state: active
 license: LicenseRef-MetodologIA-Internal
@@ -10,16 +10,16 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Remotion Bridge
+# Frames ContentOS Remotion Bridge
 
-> The front door is `content-os-router`. Use this skill **only** to translate an **existing** composition between the two Content OS paradigms: Remotion (React, frame-driven, offline-deterministic) and HTML+GSAP (seekable composition, `window.__timelines`, `paused: true`, `tl.seek(frame/fps)`). Authoring a **new** composition, re-creating from a non-paradigm source (After Effects, Framer Motion, plain CSS), a passing Remotion/HTML mention, or any uncertainty → read `content-os-router` first: the intent layer owns every route decision.
+> The front door is `content-os-router`. Use this skill **only** to translate an **existing** composition between the two Frames ContentOS paradigms: Remotion (React, frame-driven, offline-deterministic) and HTML+GSAP (seekable composition, `window.__timelines`, `paused: true`, `tl.seek(frame/fps)`). Authoring a **new** composition, re-creating from a non-paradigm source (After Effects, Framer Motion, plain CSS), a passing Remotion/HTML mention, or any uncertainty → read `content-os-router` first: the intent layer owns every route decision.
 
 ## Overview
 
-Content OS runs **two coexisting runtimes**. This bridge is the **bidirectional** translation layer between them:
+Frames ContentOS runs **two coexisting runtimes**. This bridge is the **bidirectional** translation layer between them:
 
 - **R→H** — port an existing Remotion (React) composition's source into an HTML+GSAP composition. Adapted from the vendor `remotion-to-hyperframes` skill (Apache-2.0, see LINEAGE). Most Remotion idioms map mechanically (~80%); the lossy 20% is guarded by a source lint + escape-hatch to the runtime interop pattern.
-- **H→R** — port an existing HTML+GSAP composition's source into a Remotion composition. The **inverse** mapping, native to Content OS (the vendor explicitly declines this direction). Seek-driven GSAP tweens become `useCurrentFrame()` derivations; `data-start`/`data-duration` become `<Sequence>`; `data-*` props become `defaultProps`.
+- **H→R** — port an existing HTML+GSAP composition's source into a Remotion composition. The **inverse** mapping, native to Frames ContentOS (the vendor explicitly declines this direction). Seek-driven GSAP tweens become `useCurrentFrame()` derivations; `data-start`/`data-duration` become `<Sequence>`; `data-*` props become `defaultProps`.
 
 Both directions **preserve the determinism contract** of the target paradigm and produce `RENDERED_DRAFT` — never `READY`/`PUBLISHED` without human gates. Both are **offline-first**: the render path contains no network. Both are **hash-bound** via sha256 (registry + 4 lifecycle events).
 
@@ -27,9 +27,9 @@ Both directions **preserve the determinism contract** of the target paradigm and
 
 **Use this skill ONLY when the user explicitly asks to translate between paradigms.** Trigger phrases:
 
-- "port my Remotion project to HTML+GSAP" / "convert this Remotion comp to Content OS HTML"
+- "port my Remotion project to HTML+GSAP" / "convert this Remotion comp to Frames ContentOS HTML"
 - "migrate from Remotion to HTML+GSAP" / "translate this Remotion source"
-- "port my HTML+GSAP composition to Remotion" / "convert this Content OS HTML to Remotion"
+- "port my HTML+GSAP composition to Remotion" / "convert this Frames ContentOS HTML to Remotion"
 - "translate this GSAP composition back to Remotion"
 
 **Do NOT use this skill when:**
@@ -37,7 +37,7 @@ Both directions **preserve the determinism contract** of the target paradigm and
 - (a) The user is authoring a **new** composition, even if they have a similar one in the other paradigm for A/B reference.
 - (b) The user mentions Remotion or HTML+GSAP in passing without asking for migration.
 - (c) The user shares source as reference material rather than asking for a translation.
-- (d) The source is not a composition in either Content OS paradigm (After Effects `.aep`, Framer Motion, plain CSS animation) — there is no paradigm source to translate. Re-create natively via `content-os-general-video`, or decline.
+- (d) The source is not a composition in either Frames ContentOS paradigm (After Effects `.aep`, Framer Motion, plain CSS animation) — there is no paradigm source to translate. Re-create natively via `content-os-general-video`, or decline.
 
 When in doubt, default to authoring a native composition with `content-os-general-video` instead of translating.
 
@@ -74,7 +74,7 @@ Custom subcomponents inline as repeated markup (R→H) or pure prop-driven React
 
 ### Step 5: validate
 
-Run the eval. R→H: render the Remotion baseline (`npx remotion render`) + the HTML translation (Content OS render adapter), SSIM-diff the two outputs. H→R: render the HTML original + the Remotion translation, SSIM-diff. Threshold: ~0.02 below the source's complexity tier baseline. If the diff fails, run the frame strip to see which frames diverged, re-read the relevant mapping ref, and re-translate.
+Run the eval. R→H: render the Remotion baseline (`npx remotion render`) + the HTML translation (Frames ContentOS render adapter), SSIM-diff the two outputs. H→R: render the HTML original + the Remotion translation, SSIM-diff. Threshold: ~0.02 below the source's complexity tier baseline. If the diff fails, run the frame strip to see which frames diverged, re-read the relevant mapping ref, and re-translate.
 
 Critical: both renders must use matching pixel format (`Config.setVideoImageFormat("png")` + `Config.setColorSpace("bt709")` for the Remotion side) — otherwise the diff measures encoder differences, not translation fidelity. Skipping the eval or proceeding below threshold is the `silent-divergence` violation — a translation that "looks right" but renders 0.05 SSIM lower than the validated baseline is silently wrong.
 
@@ -91,10 +91,10 @@ Write `TRANSLATION_NOTES.md` next to the target output: every gap that didn't tr
 
 ## Determinism + seek-safety
 
-R→H output follows the Content OS HTML contract: `window.__timelines["<id>"]`, `paused: true`, scrubbed via `tl.seek(frame/fps)`, no `Date.now()`/`Math.random()`/`new Date()`/`performance.now()`/`fetch`/`setTimeout`/`setInterval`, no `repeat: -1`, finite repeats, no CSS `transition:` on animated elements, system fonts (concrete-render-safe). H→R output follows the Remotion contract: `useCurrentFrame()`-driven, `interpolate`/`spring` derivations, no state-driven animation, `Config.setVideoImageFormat("png")` + `Config.setColorColor("bt709")` for eval parity. Both directions are offline-first; remote media is opt-in auth-gated via `content-os-media` and never in the render path without credentials.
+R→H output follows the Frames ContentOS HTML contract: `window.__timelines["<id>"]`, `paused: true`, scrubbed via `tl.seek(frame/fps)`, no `Date.now()`/`Math.random()`/`new Date()`/`performance.now()`/`fetch`/`setTimeout`/`setInterval`, no `repeat: -1`, finite repeats, no CSS `transition:` on animated elements, system fonts (concrete-render-safe). H→R output follows the Remotion contract: `useCurrentFrame()`-driven, `interpolate`/`spring` derivations, no state-driven animation, `Config.setVideoImageFormat("png")` + `Config.setColorColor("bt709")` for eval parity. Both directions are offline-first; remote media is opt-in auth-gated via `content-os-media` and never in the render path without credentials.
 
 ## Delegation
 
 This skill is an orchestrator — it carries no rules of its own beyond the workflow contract. It delegates composition structure to `content-os-core`, tween mapping to `content-os-animation`, pose/determinism to `content-os-keyframes`, block reuse to `content-os-registry`, and media element mapping to `content-os-media`. Brand/voice/channel (`content-os-creative`) is out of scope — the bridge translates existing compositions, it does not re-author creative. The intent router (`content-os-router`) owns route decisions; this skill is invoked only after the router resolves a translation intent.
 
-step-gated orchestrator (setup → lint → plan → translate → validate → finalize); bidirectional (R→H adapted from vendor remotion-to-hyperframes + H→R inverse mapping native to Content OS); hash-bound via sha256 (registry + 4 lifecycle events). deterministic seek-safe (window.__timelines, paused: true, tl.seek(frame/fps)); offline-first render path (compositions + frames + composite all offline); interop escape-hatch for blockers (runtime adapter, not silent translation); ssim-graded eval (no silent divergence).
+step-gated orchestrator (setup → lint → plan → translate → validate → finalize); bidirectional (R→H adapted from vendor remotion-to-hyperframes + H→R inverse mapping native to Frames ContentOS); hash-bound via sha256 (registry + 4 lifecycle events). deterministic seek-safe (window.__timelines, paused: true, tl.seek(frame/fps)); offline-first render path (compositions + frames + composite all offline); interop escape-hatch for blockers (runtime adapter, not silent translation); ssim-graded eval (no silent divergence).

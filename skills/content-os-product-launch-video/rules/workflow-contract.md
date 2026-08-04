@@ -1,4 +1,4 @@
-# Workflow Contract — Content OS Product Launch Video
+# Workflow Contract — Frames ContentOS Product Launch Video
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 

@@ -1,4 +1,4 @@
-# Content OS Fase 1C — verification report
+# Frames ContentOS Fase 1C — verification report
 
 > Date: 2026-08-04 · Branch: `feat/content-os-vendor-bento` · Base:
 > `02f4153` (post-Fase 1B). 3 sources, all MIT.

@@ -1,6 +1,6 @@
 ---
 name: content-os-core
-description: This skill should be used when the user asks to "render video from HTML", "build a Content OS composition", "validate an HTML+GSAP seekable timeline", "run the Playwright HTML to MP4 adapter", or "define the dual paradigm HTML runtime contract".
+description: This skill should be used when the user asks to "render video from HTML", "build a Frames ContentOS composition", "validate an HTML+GSAP seekable timeline", "run the Playwright HTML to MP4 adapter", or "define the dual paradigm HTML runtime contract".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires Playwright 1.61.1, FFmpeg 8.1.1, GSAP 3.15.0 and an offline render profile. No network on the render path.
@@ -10,9 +10,9 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Core
+# Frames ContentOS Core
 
-El contrato técnico del runtime **HTML+GSAP** de Content OS. Una composición es
+El contrato técnico del runtime **HTML+GSAP** de Frames ContentOS. Una composición es
 un archivo HTML cuyo DOM declara timing con atributos `data-*`, cuya animación es
 seekable (GSAP `paused: true`, scrub a frame `t`), y cuya reproducción de media es
 framework-owned. El render adapter local HTML→MP4 drviea Playwright por frame time,

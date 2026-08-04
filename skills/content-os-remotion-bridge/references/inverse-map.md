@@ -1,8 +1,8 @@
 # HTML+GSAP → Remotion API Map (H→R)
 
 Authoritative translation table for the H→R direction — the **inverse** mapping,
-native to Content OS. The vendor `remotion-to-hyperframes` skill explicitly
-declines this direction; Content OS owns it. Load this reference at plan time
+native to Frames ContentOS. The vendor `remotion-to-hyperframes` skill explicitly
+declines this direction; Frames ContentOS owns it. Load this reference at plan time
 to know the high-level mapping.
 
 ## Reading this table

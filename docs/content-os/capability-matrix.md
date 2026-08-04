@@ -2,7 +2,7 @@
 
 > Formaliza el mapeo entre las skills HyperFrames vendored (Fase 0 + Fase 1A) y
 > las skills nativas `content-os-*`. Insumo load-bearing para el roadmap. El
-> programa se expandió beyond Fase 0: 4 publishers vendored + 26 homólogos H-03
+> programa se expandió beyond Fase 0: 4 publishers vendored + 27 homólogos H-03
 > hash-bound a fecha 2026-08-04. [DOC]
 
 ## Leyenda
@@ -52,9 +52,9 @@ Mapeo original Fase 0. El programa Frames ContentOS se expandió beyond esta mat
 | `faceless-explainer`                             | —                                                                      | gap     | `content-os-faceless-explainer`   | 3    |
 | `general-video`                                  | —                                                                      | gap     | `content-os-general-video`        | 3    |
 
-## Homólogos H-03 hash-bound — estado actual (26 skills)
+## Homólogos H-03 hash-bound — estado actual (27 skills)
 
-26 skills `content-os-*` + afines registradas con `content_sha256` +
+27 skills `content-os-*` + afines registradas con `content_sha256` +
 `package_manifest_sha256` + 4 lifecycle events en
 `registries/skills/creation-v3-skill-registry.yml`, validadas por
 `scripts/check-creation-v3-skills.ts`. [CONFIG]
@@ -81,7 +81,7 @@ Mapeo original Fase 0. El programa Frames ContentOS se expandió beyond esta mat
 | `content-os-general-video`        | active | 3          | general router                                  |
 | `content-os-remotion-bridge`      | active | 4          | bidirectional Remotion↔HTML (SSIM-graded)       |
 
-### Fase 2A HyperFrames homólogos (9, batches 1-3, PRs merged)
+### Fase 2A HyperFrames homólogos (10, batches 1-4, PRs merged)
 
 | skill                           | estado | batch | PR  | origen vendor (Fase 1A)  |
 | ------------------------------- | ------ | ----- | --- | ------------------------ |
@@ -94,14 +94,16 @@ Mapeo original Fase 0. El programa Frames ContentOS se expandió beyond esta mat
 | `content-os-motion-doctrine`    | active | 3     | #37 | `motion-doctrine`        |
 | `content-os-cut-the-curve`      | active | 3     | #37 | `cut-the-curve`          |
 | `content-os-seam-craft`         | active | 3     | #37 | `seam-craft`             |
+| `content-os-oversized-cursor`   | active | 4     | #39 | `oversized-cursor`       |
 
-Fase 2A batches 4+ pendientes (oversized-cursor, hyperframes-tts,
-animation-adapter overlap merge, meta/dev doc-index) — ver `roadmap.md`. [DOC]
+Fase 2A batches 5+ pendientes (hyperframes-tts, animation-adapter overlap
+merge, meta/dev doc-index) — ver `roadmap.md`. Cobertura HyperFrames:
+25/25 vendor dirs con homólogo (oversized-cursor cerró la motion family). [DOC]
 
 ## Resumen
 
-- **26 homólogos H-03 hash-bound** (17 originales + 9 Fase 2A batches 1-3). [CONFIG]
-- **9 homólogos nuevos** en Fase 2A batches 1-3 (PRs #35/#36/#37 merged).
+- **27 homólogos H-03 hash-bound** (17 originales + 10 Fase 2A batches 1-4). [CONFIG]
+- **10 homólogos nuevos** en Fase 2A batches 1-4 (PRs #35/#36/#37/#39 merged).
 - **4 publishers vendored** reference-only: 48 HyperFrames + 11 Remotion + 3 Bento
   - 3 Scroll = 65 skills de referencia (no registradas, bypass `verify:skills`).
 - **Matriz Fase 0 (15→locales)** se mantiene como referencia histórica; el programa
@@ -109,6 +111,6 @@ animation-adapter overlap merge, meta/dev doc-index) — ver `roadmap.md`. [DOC]
 
 ## Cobertura local
 
-13 skills locales originales (pre-Frames ContentOS) + 26 homólogos H-03 = 39 skills
+13 skills locales originales (pre-Frames ContentOS) + 27 homólogos H-03 = 40 skills
 nativas registradas. Vendors (`skills/vendor/**`) permanecen reference-only, no
 registradas. [CONFIG]

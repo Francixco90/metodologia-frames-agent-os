@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Motion Graphics
+# Frames ContentOS Motion Graphics
 
 Orquestador source→video: short, design-led, **unnarrated** motion graphic donde
 el motion es el mensaje — kinetic typography, stat count-up, chart/data-viz hit,

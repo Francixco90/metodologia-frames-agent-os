@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Keyframes — static pose-contract linter.
+ * Frames ContentOS Keyframes — static pose-contract linter.
  *
  * Reads a composition HTML file, extracts declared pose-contract subjects
  * (data-keyframe-subject), explicit poses (data-pose + data-at), final state

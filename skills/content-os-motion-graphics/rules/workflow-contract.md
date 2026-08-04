@@ -1,4 +1,4 @@
-# Workflow Contract — Content OS Motion Graphics
+# Workflow Contract — Frames ContentOS Motion Graphics
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 

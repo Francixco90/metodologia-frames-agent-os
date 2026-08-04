@@ -6,7 +6,7 @@ headline, hero text, o callout. GSAP `power2.out` ease, `fromTo` con from-state 
 ## Mecanismo
 
 ```html
-<h1 id="hero-title">Content OS</h1>
+<h1 id="hero-title">Frames ContentOS</h1>
 ```
 
 ```js

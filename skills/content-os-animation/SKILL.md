@@ -1,6 +1,6 @@
 ---
 name: content-os-animation
-description: This skill should be used when the user asks to "animate a Content OS composition", "pick GSAP motion rules for an HTML scene", "load a multi-phase scene blueprint", "author a scene transition between clips", or "audit a composition's animation map".
+description: This skill should be used when the user asks to "animate a Frames ContentOS composition", "pick GSAP motion rules for an HTML scene", "load a multi-phase scene blueprint", "author a scene transition between clips", or "audit a composition's animation map".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires GSAP 3.15.0, the content-os-core HTML composition contract, and an offline render profile. No network, no GPU runtime, no external assets.
@@ -10,9 +10,9 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Animation
+# Frames ContentOS Animation
 
-Todo el conocimiento de motion para el runtime **HTML+GSAP** de Content OS: **rules**
+Todo el conocimiento de motion para el runtime **HTML+GSAP** de Frames ContentOS: **rules**
 (recetas atómicas), **blueprints** (plantillas multi-phase), **transitions** (transiciones
 entre clips), y **técnicas** (patrones de motion design). Adaptado de `hyperframes-animation`
 (vendor referencia) al arquitectura local fail-closed + offline-first. Coexiste con
