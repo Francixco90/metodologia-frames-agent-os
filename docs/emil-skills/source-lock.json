@@ -1,0 +1,59 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/emil-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/emilkowalski/skills",
+  "source_commit": "da80201",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Emil Kowalski (emilkowalski/skills, https://github.com/emilkowalski/skills)",
+  "vendor_root_hashes": {
+    "LICENSE": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+  },
+  "vendors": [
+    {
+      "skill": "emil-design-eng",
+      "source_repo": "https://github.com/emilkowalski/skills",
+      "source_commit": "da80201",
+      "source_path": "skills/emil-design-eng/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Emil Kowalski",
+      "destination": "skills/vendor/emil-skills/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/emil-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 14,
+      "critical_file_hashes": {
+        "skills/animation-vocabulary/SKILL.md": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757",
+        "skills/apple-design/SKILL.md": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61",
+        "skills/emil-design-eng/SKILL.md": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7",
+        "skills/find-animation-opportunities/SKILL.md": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882",
+        "skills/improve-animations/SKILL.md": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff",
+        "skills/pick-ui-library/SKILL.md": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4",
+        "skills/prototype/SKILL.md": "2ad8401c4deaddb54947fb65247f790e7b3d8784e35312bcbedbfb1d59cd89ce",
+        "skills/review-animations/SKILL.md": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "Repo bundles 8 design/animation skills (emil-design-eng + animation-vocabulary, apple-design, find-animation-opportunities, improve-animations, pick-ui-library, prototype, review-animations); homólogo derives from emil-design-eng (674-line doctrine)",
+        "7 sibling skills are animation/design reference; overlap with gsap-skills (animation) — emil homólogo scoped to design-engineering doctrine, gsap covers motion library",
+        "No CLI/scripts in emil repo (pure SKILL.md skills); no execution surface"
+      ],
+      "update_procedure": [
+        "Clone emilkowalski/skills at new commit",
+        "Re-copy text-only to skills/vendor/emil-skills/ (exclude .git, .gitignore)",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 14,
+    "total_skills": 1,
+    "licenses": {
+      "emil-design-eng": "MIT"
+    },
+    "binaries_excluded": "none (pure markdown skills repo)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

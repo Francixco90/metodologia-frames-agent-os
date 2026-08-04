@@ -1,0 +1,85 @@
+{
+  "name": "extract-design-system",
+  "version": "0.1.11",
+  "description": "Extract design tokens (colors, typography, spacing, border radius, shadows) from any public website. Generates JSON and CSS custom properties for local projects. Available as an AI agent skill (Claude, Cursor, Codex) and standalone CLI.",
+  "type": "module",
+  "bin": {
+    "extract-design-system": "dist/cli.js",
+    "extract-design-system-mcp": "dist/mcp.js"
+  },
+  "files": [
+    ".codex-plugin",
+    "dist",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "cli": "node dist/cli.js",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && chmod +x dist/cli.js dist/mcp.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "author": "arvindrk",
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "design-system-extraction",
+    "css-custom-properties",
+    "css-variables",
+    "color-palette",
+    "color-extraction",
+    "typography",
+    "token-generator",
+    "reverse-engineer",
+    "website-analysis",
+    "w3c-design-tokens",
+    "style-dictionary",
+    "tailwindcss",
+    "figma",
+    "agent-skill",
+    "skills.sh",
+    "skills",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "claude",
+    "anthropic",
+    "cursor",
+    "codex",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvindrk/extract-design-system.git"
+  },
+  "homepage": "https://github.com/arvindrk/extract-design-system#readme",
+  "bugs": {
+    "url": "https://github.com/arvindrk/extract-design-system/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/arvindrk"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "commander": "^15.0.0",
+    "dembrandt": "^0.13.0",
+    "execa": "^9.6.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "@vitest/coverage-v8": "^4.1.5",
+    "tsx": "^4.20.6",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}

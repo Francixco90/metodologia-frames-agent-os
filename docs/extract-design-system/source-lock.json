@@ -1,0 +1,54 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/extract-design-system",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/arvindrk/extract-design-system",
+  "source_commit": "1873741",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Arvind (extract-design-system, https://github.com/arvindrk/extract-design-system)",
+  "vendor_root_hashes": {
+    "LICENSE": "5b26a89b87e63e3709038748b007bebc007ed85e4b5f581ed7d2aa87ab462d40"
+  },
+  "vendors": [
+    {
+      "skill": "extract-design-system",
+      "source_repo": "https://github.com/arvindrk/extract-design-system",
+      "source_commit": "1873741",
+      "source_path": "/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Arvind",
+      "destination": "skills/vendor/extract-design-system/extract-design-system/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/extract-design-system/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 30,
+      "critical_file_hashes": {
+        "skills/extract-design-system/SKILL.md": "e1a08d959b6f6d8d6012bc1dd6b12493dc83f615e32e70117d2fdda33b053c65",
+        "package.json": "1953adca94a921cbe6484c11baed4089e2b6256492d2bc6df1c826f42af925e1",
+        "src/cli.ts": "cc9c08a179da14d7ce2f66142b88b97f43629e1b8139f8ea7bf8d1ea3b59fbc6"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "Generator-based skill with CLI (src/cli.ts, bin extract-design-system + extract-design-system-mcp) + MCP server (src/mcp.ts); CLI not executable in vendor context, no node_modules/dist vendored",
+        "package.json declares bin + files (dist not vendored); tests/ excluded (dev); .codex-plugin/, .cursor/ excluded (plugin/MCP config)",
+        "Homólogo design-extract-design-system (Fase 2D) must describe token-extraction capability in prose; check-skill.mjs self-contained (no import of vendor CLI)"
+      ],
+      "update_procedure": [
+        "Clone arvindrk/extract-design-system at new commit",
+        "Re-copy text-only to skills/vendor/extract-design-system/extract-design-system/ (exclude node_modules, dist, .git, tests, .github, package-lock, .codex-plugin, .cursor, governance docs)",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 30,
+    "total_skills": 1,
+    "licenses": {
+      "extract-design-system": "MIT"
+    },
+    "binaries_excluded": "none (text-only: .md, .ts, .json)",
+    "text_extensions_copied": [".md", ".ts", ".json"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
