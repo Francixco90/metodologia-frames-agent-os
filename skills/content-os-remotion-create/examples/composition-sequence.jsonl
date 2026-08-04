@@ -1,0 +1,7 @@
+{"turn": 1, "step": "scaffold", "action": "blank project, exact pins (Remotion 4.0.494, React 19)", "note": "no tailwind starter"}
+{"turn": 2, "step": "register", "action": "registerRoot(<Composition id=... durationInFrames=300 fps=30 width=1920 height=1080 defaultProps=.../>)", "note": "one Root.tsx"}
+{"turn": 3, "step": "defaultProps", "action": "every prop has a default", "note": "no prop without a default"}
+{"turn": 4, "step": "calculateMetadata", "action": "pure fn of props -> {durationInFrames, fps, width, height}", "note": "deterministic; no temporal/network APIs"}
+{"turn": 5, "step": "handoff", "action": "markup body -> content-os-remotion-markup", "note": "render -> content-os-remotion-render"}
+{"contract": "useCurrentFrame() + interpolate(); Easing.bezier()/spring(); RENDERED_DRAFT; no Math.random/Date.now/new Date/fetch/setTimeout/setInterval"}
+{"license": "source-available Remotion AG; H03-LIC-REMOTION-001 verdict; production gates G13-G17 manual"}

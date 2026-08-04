@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-markup-v1.schema.json",
+  "title": "Remotion Markup v1 animation request",
+  "type": "object",
+  "required": ["animation_clock", "determinism_contract"],
+  "properties": {
+    "animation_clock": {
+      "type": "string",
+      "enum": ["useCurrentFrame"],
+      "description": "the only animation clock in Remotion"
+    },
+    "interpolate_used": {
+      "type": "boolean",
+      "description": "tweens via interpolate(frame, range, output, {easing, extrapolate})"
+    },
+    "easing": {
+      "type": "string",
+      "enum": ["Easing.bezier", "Easing.spring", "Easing.linear", "Easing.inOut", "Easing.out"],
+      "description": "timing curve; linear only if explicitly intended"
+    },
+    "sequence_timing": {
+      "type": "boolean",
+      "description": "Sequence/AbsoluteDelay/Delay for frame-accurate timing; never ms/setTimeout"
+    },
+    "transitions_preset": {
+      "type": "boolean",
+      "description": "@remotion/transitions preset at scene seam; never CSS crossfade"
+    },
+    "async_asset_gate": {
+      "type": "boolean",
+      "description": "delayRender/continueRender for font/image/audio load; not for fake timing"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval/requestAnimationFrame/getBoundingClientRect in render"
+    }
+  }
+}

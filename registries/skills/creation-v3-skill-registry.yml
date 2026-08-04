@@ -299,6 +299,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-oversized-cursor/scripts/check-skill.mjs]
+  - skill_id: content-os-remotion-best-practices
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 46a5d7c817c228b510bcca91c01880b1e536fc8c5a267b0c28dc9558837e57c3
+    package_manifest_sha256: e3f319216328407fe14330acad87379ef76feaac40ef2ce30b4b3c641aefa8f0
+    lineage_ref: skills/content-os-remotion-best-practices/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-remotion-best-practices/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-remotion-best-practices/scripts/check-skill.mjs]
+  - skill_id: content-os-remotion-create
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0496f0d27fea2e3a6e823cbdedcb41865d30e709840e970958c8c450d76bea63
+    package_manifest_sha256: 3f7b97575bb50bd605fe86765f4209cc6261e1d1fd51fc0aee6ef42527ffbd0b
+    lineage_ref: skills/content-os-remotion-create/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-remotion-create/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-remotion-create/scripts/check-skill.mjs]
+  - skill_id: content-os-remotion-markup
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f3ec3c4c89818d7ffa18c34331417d2da13113e658c5490013a1c5b12a209b49
+    package_manifest_sha256: 3dd5c9033d038c9a5909749ce979c29467351289970f68ae4640159c7873cf00
+    lineage_ref: skills/content-os-remotion-markup/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-remotion-markup/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-remotion-markup/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -409,3 +442,15 @@ events:
   - {event_id: EVT-SKL-OCR-H03-002, event_order: 2, skill_id: content-os-oversized-cursor, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCR-H03-003, event_order: 3, skill_id: content-os-oversized-cursor, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCR-H03-004, event_order: 4, skill_id: content-os-oversized-cursor, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RBP-H03-001, event_order: 1, skill_id: content-os-remotion-best-practices, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RBP-H03-002, event_order: 2, skill_id: content-os-remotion-best-practices, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RBP-H03-003, event_order: 3, skill_id: content-os-remotion-best-practices, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RBP-H03-004, event_order: 4, skill_id: content-os-remotion-best-practices, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RCR-H03-001, event_order: 1, skill_id: content-os-remotion-create, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RCR-H03-002, event_order: 2, skill_id: content-os-remotion-create, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RCR-H03-003, event_order: 3, skill_id: content-os-remotion-create, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RCR-H03-004, event_order: 4, skill_id: content-os-remotion-create, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RMK-H03-001, event_order: 1, skill_id: content-os-remotion-markup, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RMK-H03-002, event_order: 2, skill_id: content-os-remotion-markup, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RMK-H03-003, event_order: 3, skill_id: content-os-remotion-markup, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RMK-H03-004, event_order: 4, skill_id: content-os-remotion-markup, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

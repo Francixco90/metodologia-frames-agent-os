@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-create-v1.schema.json",
+  "title": "Remotion Create v1 composition registration",
+  "type": "object",
+  "required": [
+    "composition_id",
+    "component",
+    "durationInFrames",
+    "fps",
+    "width",
+    "height",
+    "defaultProps"
+  ],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "component": {"type": "string", "description": "React component rendered per frame"},
+    "durationInFrames": {"type": "integer", "minimum": 1},
+    "fps": {"type": "integer", "minimum": 1, "description": "frame rate (e.g. 30, 60)"},
+    "width": {"type": "integer", "minimum": 1},
+    "height": {"type": "integer", "minimum": 1},
+    "defaultProps": {
+      "type": "object",
+      "description": "every prop the component reads; no prop without a default"
+    },
+    "calculateMetadata": {
+      "type": "boolean",
+      "description": "true if dynamic dimensions/metadata via pure calculateMetadata"
+    },
+    "registerRoot_once": {
+      "type": "boolean",
+      "default": true,
+      "description": "exactly one Root.tsx per project"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval in render path or calculateMetadata"
+    }
+  }
+}

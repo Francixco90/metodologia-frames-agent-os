@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-best-practices-v1.schema.json",
+  "title": "Remotion Best Practices v1 routing request",
+  "type": "object",
+  "required": ["intent", "route"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "enum": [
+        "make_video",
+        "new_project",
+        "write_markup",
+        "render",
+        "captions",
+        "interactivity",
+        "maps",
+        "multimedia",
+        "saas",
+        "docs",
+        "upgrade",
+        "ambiguous"
+      ],
+      "description": "the user intent to route"
+    },
+    "route": {
+      "type": "string",
+      "enum": [
+        "content-os-remotion-create",
+        "content-os-remotion-markup",
+        "content-os-remotion-render",
+        "content-os-remotion-captions",
+        "content-os-remotion-interactivity",
+        "content-os-remotion-maps",
+        "content-os-remotion-multimedia",
+        "content-os-remotion-saas",
+        "content-os-remotion-docs",
+        "content-os-remotion-upgrade",
+        "stay"
+      ],
+      "description": "sibling skill to route to; 'stay' for ambiguous"
+    },
+    "toolchain_pinned": {
+      "type": "boolean",
+      "description": "Remotion 4.0.494 + React 19 + Node + pnpm + FFmpeg confirmed pinned"
+    },
+    "license_verdict_resolved": {
+      "type": "boolean",
+      "description": "H03-LIC-REMOTION-001 verdict checked for target use case"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "no Math.random/Date.now/new Date/fetch/setTimeout/setInterval in render path"
+    }
+  }
+}

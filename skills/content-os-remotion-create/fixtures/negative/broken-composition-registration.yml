@@ -1,0 +1,16 @@
+# Negative fixture: every contract violation content-os-remotion-create rejects.
+schema_version: 1
+skill_id: content-os-remotion-create
+violations:
+  - Math.random in calculateMetadata (non-deterministic dimensions)
+  - Date.now to derive duration (frame output depends on wall clock)
+  - setTimeout to delay a tween (not frame-driven)
+  - fetch inside a composition (network in render path)
+  - CSS transition on an animated element (does not render frame-accurately)
+  - Tailwind animation class (does not render frame-accurately)
+  - latest versions (toolchain pins broken)
+  - new Date() to seed a layout (non-deterministic)
+  - prop without a defaultProps entry
+  - multiple registerRoot calls (one project, one Root.tsx)
+  - production request without G13-G17 human gate
+verdict: reject; registration blocked
