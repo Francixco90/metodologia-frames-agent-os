@@ -4,6 +4,13 @@
 > (Remotion + HTML+GSAP) con media **offline-default + remote-opt-in**. Esta
 > arquitectura gobierna las skills `content-os-*` de Fases 2-4. Fase 1 del
 > programa Content OS.
+>
+> **Alcance multi-vendor (2026-08-04)**: el programa se expandió beyond Fase 0.
+> 4 publishers vendored reference-only (48 HyperFrames, 11 Remotion, 3 Bento,
+> 3 Scroll). 26 homólogos H-03 hash-bound en
+> `registries/skills/creation-v3-skill-registry.yml` (17 originales, 9 Fase 2A
+> batches 1-3). Ver `roadmap.md` para el estado del programa multi-vendor
+> (Fases 2A-2D, Fase 3-4 reconcile). [DOC]
 
 ## 1. Dual paradigm
 
@@ -139,6 +146,7 @@ Cada `content-os-*` sigue el contrato load-bearing (Fase 0 plan):
 ## 7. Lo que Content OS NO es
 
 - No reemplaza Remotion. Coexisten.
-- No ejecuta vendors. `skills/vendor/hyperframes/` es reference-only.
+- No ejecuta vendors. `skills/vendor/**` es reference-only (4 publishers: 48
+  HyperFrames + 11 Remotion + 3 Bento + 3 Scroll).
 - No publica. n8n dry-run, gates G13-G17 manuales.
 - No mezcla marcas. MetodologIA es la única identidad visible.

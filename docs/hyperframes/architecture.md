@@ -2,8 +2,11 @@
 
 > Reference for Content OS Fases 1-4. Maps the vendored HyperFrames model
 > (`skills/vendor/hyperframes/`) onto the MetodologIA fail-closed, hash-bound,
-> offline-first architecture. Not an executable contract yet — Fase 1 finalizes
-> the runtime decision.
+> offline-first architecture.
+>
+> **Inventario vendor (2026-08-04)**: 48 skills HyperFrames vendored
+> (15 Fase 0 + 33 Fase 1A), Apache-2.0, reference-only. Ver
+> `skills/vendor/hyperframes/README.md` para el inventario con hashes/lockfile. [DOC]
 
 ## HyperFrames model (as vendored)
 
@@ -13,8 +16,9 @@ declares timing via `data-*` attributes, whose animation runtime is **seekable**
 is owned by the framework (deterministic start/stop per clip). Rendering = drive a
 headless browser to each frame time, screenshot, pipe to FFmpeg `image2pipe`.
 
-Seven capability layers + eight deliverable workflows + one bridge (see
-`skills/vendor/hyperframes/README.md` for the inventory).
+48 skills HyperFrames (15 Fase 0 + 33 Fase 1A). Fase 0: 7 capability layers + 8
+deliverable workflows + 1 bridge. Fase 1A: 33 adicionales (ver
+`skills/vendor/hyperframes/README.md` y §“Batch 2 (Fase 1A)” abajo).
 
 ## Content OS dual paradigm
 
@@ -79,9 +83,10 @@ opt in explicitly. Default path is offline so determinism + fail-closed hold.
 
 ## Capability mapping — Batch 2 (Fase 1A)
 
-10 additional vendored skills (source commit `77f95e4`). Homólogo plan in Fase 2A
-(batched 3-5 per PR); animation-adapter overlaps merge into existing homólogos (no
-new), per plan risk #3.
+33 additional vendored skills (Fase 1A, source commit range). Homólogo plan in
+Fase 2A (batched 3 per PR); animation-adapter overlaps merge into existing
+homólogos (no new), per plan risk #3. Batches 1-3 merged (PRs #35/#36/#37, 9
+homólogos active); batches 4+ pending.
 
 | vendored skill       | Content OS homólogo (Fase 2A)           | type                                                              |
 | -------------------- | --------------------------------------- | ----------------------------------------------------------------- |

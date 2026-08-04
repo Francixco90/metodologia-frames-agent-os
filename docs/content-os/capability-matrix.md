@@ -1,8 +1,9 @@
 # Content OS — capability matrix
 
-> Formaliza el mapeo entre las 15 skills HyperFrames vendored
-> (`skills/vendor/hyperframes/`, Fase 0) y las skills nativas `content-os-*` a
-> construir en Fases 2-4. Insumo load-bearing para el roadmap.
+> Formaliza el mapeo entre las skills HyperFrames vendored (Fase 0 + Fase 1A) y
+> las skills nativas `content-os-*`. Insumo load-bearing para el roadmap. El
+> programa se expandió beyond Fase 0: 4 publishers vendored + 26 homólogos H-03
+> hash-bound a fecha 2026-08-04. [DOC]
 
 ## Leyenda
 
@@ -11,7 +12,27 @@
 - **partial** — equivalente local cubre un subconjunto; gap documentado.
 - **gap** — sin equivalente local; capacidad enteramente nueva.
 
-## Matriz
+## Publishers vendored (4 publishers, reference-only)
+
+| publisher                           | skills | licencia / notes                                                                       |
+| ----------------------------------- | ------ | -------------------------------------------------------------------------------------- |
+| `skills/vendor/hyperframes/`        | 48     | HeyGen HyperFrames (15 Fase 0 + 33 Fase 1A), Apache-2.0                                |
+| `skills/vendor/remotion-publisher/` | 11     | Remotion publisher (source-available, Remotion AG, audit)                              |
+| `skills/vendor/bento/`              | 3      | Bento (MIT pending verify)                                                             |
+| `skills/vendor/scroll-skills/`*     | 3      | scroll (re-vendored a latest; `cinematic-scroll`, `scroll-experience`, `scroll-world`) |
+
+\* El programa de scroll se publica como `docs/scroll-skills/`; las 3 skills
+viven en directorios `cinematic-scroll/`, `scroll-experience/`, `scroll-world/`
+bajo `skills/vendor/`. [CONFIG]
+
+Los 4 publishers son **reference-only**: no se ejecutan, no se registran, bypass
+`verify:skills`. Las skills nativas `content-os-*` se construyen localmente bajo
+`LicenseRef-MetodologIA-Internal`. [CONFIG]
+
+## Matriz Fase 0 — 15 HyperFrames → skills nativas (referencia histórica)
+
+Mapeo original Fase 0. El programa Content OS se expandió beyond esta matriz
+(ver §“Homólogos H-03” abajo para el estado actual completo). [DOC]
 
 | HyperFrames vendored                             | Equivalente local actual                                               | Tipo    | Skill Content OS                  | Fase |
 | ------------------------------------------------ | ---------------------------------------------------------------------- | ------- | --------------------------------- | ---- |
@@ -31,17 +52,63 @@
 | `faceless-explainer`                             | —                                                                      | gap     | `content-os-faceless-explainer`   | 3    |
 | `general-video`                                  | —                                                                      | gap     | `content-os-general-video`        | 3    |
 
+## Homólogos H-03 hash-bound — estado actual (26 skills)
+
+26 skills `content-os-*` + afines registradas con `content_sha256` +
+`package_manifest_sha256` + 4 lifecycle events en
+`registries/skills/creation-v3-skill-registry.yml`, validadas por
+`scripts/check-creation-v3-skills.ts`. [CONFIG]
+
+### Originales pre-programa (17)
+
+| skill                             | estado | batch / PR | notas                                           |
+| --------------------------------- | ------ | ---------- | ----------------------------------------------- |
+| `data-visual-composition`         | active | —          | pre-programa                                    |
+| `motion-library-adapters`         | active | —          | pre-programa                                    |
+| `content-os-core`                 | active | 2a         | contrato HTML + render adapter                  |
+| `content-os-animation`            | active | 2b         | GSAP rules/blueprints                           |
+| `content-os-keyframes`            | active | 2c         | pose contract + lint/check/snapshot             |
+| `content-os-creative`             | active | 2d         | brand/pacing/narration (delegates brand-router) |
+| `content-os-media`                | active | 2e         | dual offline + remote-opt-in media OS           |
+| `content-os-registry`             | active | 2f         | reusable HTML blocks registry                   |
+| `content-os-router`               | active | 2g         | intent router source→video (extends Capa A)     |
+| `content-os-faceless-explainer`   | active | 3          | text→video workflow                             |
+| `content-os-pr-to-video`          | active | 3          | GitHub PR→video (auth-gated fetch)              |
+| `content-os-product-launch-video` | active | 3          | launch video workflow                           |
+| `content-os-motion-graphics`      | active | 3          | short unnarrated motion                         |
+| `content-os-embedded-captions`    | active | 3          | caption pipeline                                |
+| `content-os-slideshow`            | active | 3          | navigable deck                                  |
+| `content-os-general-video`        | active | 3          | general router                                  |
+| `content-os-remotion-bridge`      | active | 4          | bidirectional Remotion↔HTML (SSIM-graded)       |
+
+### Fase 2A HyperFrames homólogos (9, batches 1-3, PRs merged)
+
+| skill                           | estado | batch | PR  | origen vendor (Fase 1A)  |
+| ------------------------------- | ------ | ----- | --- | ------------------------ |
+| `content-os-talking-head-recut` | active | 1     | #35 | `talking-head-recut`     |
+| `content-os-music-to-video`     | active | 1     | #35 | `music-to-video`         |
+| `content-os-changelog-video`    | active | 1     | #35 | `changelog-video`        |
+| `content-os-figma`              | active | 2     | #36 | `figma`                  |
+| `content-os-hyperframes-cli`    | active | 2     | #36 | `hyperframes-cli` (meta) |
+| `content-os-captions-overlay`   | active | 2     | #36 | `captions-overlay`       |
+| `content-os-motion-doctrine`    | active | 3     | #37 | `motion-doctrine`        |
+| `content-os-cut-the-curve`      | active | 3     | #37 | `cut-the-curve`          |
+| `content-os-seam-craft`         | active | 3     | #37 | `seam-craft`             |
+
+Fase 2A batches 4+ pendientes (oversized-cursor, hyperframes-tts,
+animation-adapter overlap merge, meta/dev doc-index) — ver `roadmap.md`. [DOC]
+
 ## Resumen
 
-- **7 capability layers** (Fase 2): 5 gap + 2 partial. `content-os-animation` y
-  `content-os-creative` reusan patrones de `motion-library-adapters` y
-  `metodologia-brand-router` respectivamente (no duplican, coexisten).
-- **8 deliverable workflows** (Fase 3): 8 gap. Todos delegan design/motion a
-  capability skills (Fase 2) y media a `content-os-media` (Fase 2e).
-- **1 bridge** (Fase 4): gap. Bidirectional Remotion↔HTML, SSIM-graded.
+- **26 homólogos H-03 hash-bound** (17 originales + 9 Fase 2A batches 1-3). [CONFIG]
+- **9 homólogos nuevos** en Fase 2A batches 1-3 (PRs #35/#36/#37 merged).
+- **4 publishers vendored** reference-only: 48 HyperFrames + 11 Remotion + 3 Bento
+  - 3 Scroll = 65 skills de referencia (no registradas, bypass `verify:skills`).
+- **Matriz Fase 0 (15→locales)** se mantiene como referencia histórica; el programa
+  se expandió con Fase 1A (vendor) + Fase 2A (homólogos).
 
-## Cobertura local post-Fases 2-4
+## Cobertura local
 
-13 skills locales actuales + 16 skills `content-os-*` nuevas (7 capability + 8
-workflow + 1 bridge) = 29 skills nativas. Vendors (`skills/vendor/hyperframes/`)
-permanecen reference-only, no registrados.
+13 skills locales originales (pre-Content OS) + 26 homólogos H-03 = 39 skills
+nativas registradas. Vendors (`skills/vendor/**`) permanecen reference-only, no
+registradas. [CONFIG]

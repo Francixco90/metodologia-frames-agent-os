@@ -86,6 +86,23 @@ El expediente
 Los cuatro textos canónicos, la elegibilidad comercial de la licencia Remotion, el playback humano,
 la aprobación H01 y cualquier distribución externa permanecen como `coverage_gap`.
 
+## Content OS
+
+El programa Content OS extiende el dual paradigm (Remotion + HTML+GSAP) con un
+programa multi-vendor + homólogos:
+
+- **4 publishers vendored** (reference-only, bypass `verify:skills`): 48 HyperFrames
+  (15 Fase 0 + 33 Fase 1A, Apache-2.0), 11 Remotion publisher, 3 Bento, 3 Scroll.
+- **26 homólogos H-03 hash-bound** `content-os-*` en
+  `registries/skills/creation-v3-skill-registry.yml` (17 originales + 9 Fase 2A
+  batches 1-3, PRs #35/#36/#37 merged).
+
+Estado del programa multi-vendor (Fases 2A-2D, registry reconcile, receipt cascade):
+[`docs/content-os/roadmap.md`](docs/content-os/roadmap.md). Mapeo vendor→nativas:
+[`docs/content-os/capability-matrix.md`](docs/content-os/capability-matrix.md).
+Arquitectura dual paradigm + media model:
+[`docs/content-os/architecture.md`](docs/content-os/architecture.md). [DOC]
+
 ## Principios no negociables
 
 - Source-first: ningún claim material sin snapshot, hash, alcance y autoridad.
