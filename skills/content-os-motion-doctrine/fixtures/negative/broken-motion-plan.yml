@@ -1,0 +1,43 @@
+# Negative fixture: broken motion doctrine plan (documents violations it rejects)
+# This fixture MUST contain every violation token the check rejects.
+composition_id: mdr-broken-001
+current: left
+vector_ledger:
+  seams:
+    - cut_time: 3.0
+      exit: x-LEFT
+      entry: x-RIGHT
+      z_scale_sign: none
+      selectors: '#el-scene-01 -> #el-scene-02'
+      technique: crossfade
+    - cut_time: 6.0
+      exit: z-pull
+      entry: z-push
+      z_scale_sign: pull
+      selectors: '#el-scene-02 -> #el-scene-03'
+      technique: zoom-through
+scenes:
+  - id: scene-01
+    sustained_motion_route: idle-breathe
+    stillness_before_climax: false
+  - id: scene-02
+    sustained_motion_route: idle-float
+    stillness_before_climax: false
+# Violations documented (each token below MUST appear so the negative-fixture check passes):
+# - Math.random : forbidden API in motion code (rejected)
+# - Date.now : forbidden API in motion code (rejected)
+# - setTimeout : forbidden API in motion code (rejected)
+# - fetch : network in render path (rejected)
+# - idle-wobble : idle breathe/float as sustained motion (rejected)
+# - crossfade-between-scenes : no carrier between scenes (rejected)
+# - mirrored-vector : exit LEFT entry RIGHT / exit pull entry push (rejected)
+# - direction-ping-pong : consecutive seams in opposing directions (rejected)
+violations_present:
+  - Math.random
+  - Date.now
+  - setTimeout
+  - fetch
+  - idle-wobble
+  - crossfade-between-scenes
+  - mirrored-vector
+  - direction-ping-pong

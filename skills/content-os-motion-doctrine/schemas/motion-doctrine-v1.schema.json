@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/motion-doctrine-v1.schema.json",
+  "title": "Motion Doctrine v1 request",
+  "type": "object",
+  "required": ["composition_id", "current", "scenes"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "current": {
+      "type": "string",
+      "enum": ["left", "right", "up", "z-forward", "z-backward"],
+      "default": "left",
+      "description": "the film's ONE dominant direction; reserved vectors spent on meaning"
+    },
+    "vector_ledger": {
+      "type": "object",
+      "description": "ledger.json — one row per seam; authored before the master timeline",
+      "properties": {
+        "seams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["cut_time", "exit", "entry", "technique"],
+            "properties": {
+              "cut_time": {"type": "number", "minimum": 0},
+              "exit": {"type": "string", "description": "axis + signed direction (e.g. x-LEFT)"},
+              "entry": {"type": "string", "description": "must match exit axis + direction"},
+              "z_scale_sign": {
+                "type": "string",
+                "enum": ["push", "pull", "none"],
+                "default": "none"
+              },
+              "selectors": {"type": "string"},
+              "technique": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "sustained_motion_route"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^scene-\\d{2}$"},
+          "sustained_motion_route": {
+            "type": "string",
+            "enum": [
+              "staged-reveals",
+              "camera-with-intent",
+              "sequenced-ui-life",
+              "animated-sequences",
+              "cursor-led-action"
+            ],
+            "description": "owns every phase between entry and exit; no idle wobble"
+          },
+          "stillness_before_climax": {"type": "boolean", "default": true}
+        }
+      }
+    }
+  }
+}

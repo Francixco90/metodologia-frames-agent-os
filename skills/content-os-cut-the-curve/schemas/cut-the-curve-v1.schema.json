@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/cut-the-curve-v1.schema.json",
+  "title": "Cut the Curve v1 request",
+  "type": "object",
+  "required": ["composition_id", "technique", "direction"],
+  "properties": {
+    "composition_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "technique": {
+      "type": "string",
+      "enum": [
+        "zoom-through",
+        "inverse-zoom-through",
+        "cut-the-curve",
+        "waterfall-cut",
+        "rack-focus-blur-cut",
+        "waterfall-entry",
+        "nudge-curve"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["left", "right", "up", "down", "z-push", "z-pull"],
+      "default": "left",
+      "description": "one current; reserved vectors spent on meaning"
+    },
+    "travel": {
+      "type": "integer",
+      "default": 230,
+      "description": "~12% of frame width (1920); partial travel, never full off-screen"
+    },
+    "z_scale_sign": {
+      "type": "string",
+      "enum": ["push", "pull", "none"],
+      "default": "none",
+      "description": "d(scale)/dt must match across the Z cut"
+    },
+    "peak_blur": {
+      "type": "integer",
+      "description": "10px text / 18-20px full-frame; blur the wrapper never children"
+    },
+    "exit": {
+      "type": "object",
+      "properties": {"ease": {"type": "string"}, "duration": {"type": "number"}}
+    },
+    "entry": {
+      "type": "object",
+      "properties": {
+        "ease": {"type": "string"},
+        "duration": {"type": "number"},
+        "start_opacity": {"type": "number", "default": 0.35}
+      }
+    }
+  }
+}

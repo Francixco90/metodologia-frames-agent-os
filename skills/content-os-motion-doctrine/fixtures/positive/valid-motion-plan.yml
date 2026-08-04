@@ -1,0 +1,30 @@
+# Positive fixture: valid motion doctrine plan
+composition_id: mdr-demo-001
+current: left
+vector_ledger:
+  seams:
+    - cut_time: 4.2
+      exit: x-LEFT
+      entry: x-LEFT
+      z_scale_sign: none
+      selectors: '#el-scene-01 -> #el-scene-02'
+      technique: cut-the-curve
+    - cut_time: 8.7
+      exit: z-push
+      entry: z-push
+      z_scale_sign: push
+      selectors: '#el-scene-02 -> #el-scene-03'
+      technique: zoom-through
+scenes:
+  - id: scene-01
+    sustained_motion_route: staged-reveals
+    stillness_before_climax: true
+  - id: scene-02
+    sustained_motion_route: camera-with-intent
+    stillness_before_climax: true
+  - id: scene-03
+    sustained_motion_route: sequenced-ui-life
+    stillness_before_climax: true
+# contract tokens present: data-composition-id, data-duration, data-start,
+# window.__timelines, gsap.timeline paused: true, RENDERED_DRAFT
+# vector law matched exit/entry, one current (LEFT), no idle wobble, stillness-before-climax

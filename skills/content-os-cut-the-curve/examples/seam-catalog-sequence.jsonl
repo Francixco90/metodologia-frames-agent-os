@@ -1,0 +1,4 @@
+{"composition_id":"ctc-demo-001","technique":"cut-the-curve","direction":"left","travel":230,"exit":{"ease":"power4.in","duration":0.34},"entry":{"ease":"power4.out","duration":0.42,"start_opacity":0.35}}
+{"composition_id":"ctc-demo-001","technique":"zoom-through","direction":"z-push","z_scale_sign":"push","peak_blur":10,"exit":{"ease":"power3.in","duration":0.2},"entry":{"ease":"expo.out","duration":0.5,"start_opacity":0.15}}
+{"composition_id":"ctc-demo-001","technique":"waterfall-entry","direction":"up","exit":{"ease":"power4.out","duration":0.16}}
+{"composition_id":"ctc-demo-001","technique":"nudge-curve","direction":"left","exit":{"ease":"power3.in","duration":0.2}}
