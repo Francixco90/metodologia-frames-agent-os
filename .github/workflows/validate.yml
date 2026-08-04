@@ -33,6 +33,7 @@ jobs:
       - run: pnpm check:repo
       - run: pnpm verify:contributions
       - run: pnpm verify:skills
+      - run: pnpm verify:content-os
       - run: pnpm verify:ai-runtime
       - run: pnpm typecheck
       - run: pnpm lint
