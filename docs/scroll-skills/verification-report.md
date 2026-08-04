@@ -79,3 +79,48 @@
 | Format                   | PASS                   | PASS        | Sin regresion                                     |
 
 **Conclusion:** No se observan regresiones. Todas las pruebas esenciales pasan. El unico fallo en `pnpm verify` es H01-BUDGET-001/002, preexistente en origin/main y no introducido por scroll-skills ni por el rename a frames.
+
+## Re-vendor — Fase 1D (2026-08-04)
+
+> Branch: `feat/content-os-vendor-scroll-revendor` · Base: `7463317` (post-Fase 1A).
+
+### Objective
+
+Re-vendor the 3 scroll skills to latest upstream commits. Result: **no content change** —
+all 3 already at HEAD. Only `scroll-experience` source_commit needed SHA pinning.
+
+### What was done
+
+1. `git ls-remote` against all 3 upstream repos:
+   - `oso95/scroll-world` HEAD = `71cc36d3` = locked. ✅ no change.
+   - `MustBeSimo/cinematic-scroll-skill` HEAD = `089cd3ae` = locked. ✅ no change.
+   - `sickn33/agentic-awesome-skills` HEAD = `b7f833d4` (was locked as release-tag string
+     `"main (V15.6.0 release tag)"`).
+2. Fetched `skills/scroll-experience/SKILL.md` at `b7f833d4` via raw.githubusercontent.
+   sha256 = `4f32befc173fb89d8d20364fe096023667306a57b088857bc25b11ff033cf3d2` = identical
+   to vendored copy. No content change.
+3. `NOTICE` (local attribution artifact, not from source) — no upstream NOTICE file at
+   HEAD (404). Local NOTICE unchanged.
+4. Updated `docs/scroll-skills/source-lock.json` `scroll-experience` entry:
+   `source_commit: "b7f833d4e12f8cf8f9beb0118b4a72709b63e8a4"`, `audit_date: 2026-08-04`,
+   removed `"Exact commit not pinned"` known_risk, added `"Commit SHA pinned to b7f833d4
+(was release-tag string; resolved 2026-08-04)"`.
+5. Updated `docs/scroll-skills/architecture.md` attribution table (scroll-experience commit
+   pinned) + re-vendor section.
+
+### What was NOT done (correctly)
+
+- No vendor file content changed (all 3 at HEAD; SKILL.md hashes match locked).
+- No `package.json` mutation.
+- No registry entry (vendors bypass `verify:skills`).
+- No new runtime dep.
+
+### Risks resolved
+
+- `scroll-experience` `Exact commit not pinned` known_risk → **resolved** (SHA pinned).
+
+### Next gate
+
+Fase 1D commit + PR upstream. Fase 2D (scroll multi-provider homólogos: scroll-world-agnostic
+v2 with Seedance/Higgsfield/FalAI adapters) consumes `cinematic-scroll` as the clean Fal AI
+reference. Fase 2D starts after Fase 1D lands.
