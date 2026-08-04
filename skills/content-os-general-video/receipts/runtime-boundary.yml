@@ -1,0 +1,23 @@
+receipt_id: RCP-H03-CONTENT-OS-GENERAL-VIDEO-001
+issued: '2026-08-04'
+scope: skills/content-os-general-video
+production_runtime_status: local_capability_only
+publication_authority: false
+allowed_scoped:
+  - 'html_composition_offline_deterministic'
+  - 'gsap_seek_safe_paused_true'
+  - 'freeform_multi_scene_assembly'
+  - 'companion_ceiling_treatment_flow'
+  - 'storyboard_review_surface_optional'
+  - 'sub_agent_dispatch_scale_dependent'
+  - 'genre_lenses_borrowed_story_shape'
+  - 'media_offline_default_remote_opt_in_auth_gated'
+  - 'registry_blocks_reuse_before_parallel_work'
+  - 'design_source_frame_md_design_md_DESIGN_md'
+out_of_scope:
+  - 'npx_hyperframes_cli'
+  - 'scope_creep_beyond_brief'
+  - 'render_before_user_approval'
+  - 'network_in_render_path'
+  - 'raw_figma_connector_calls'
+  - 'borrowed_workflow_private_scripts'

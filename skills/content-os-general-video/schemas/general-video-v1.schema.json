@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "general-video-v1",
+  "title": "Content OS General Video workflow state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "route",
+    "capability_map",
+    "vo_mode",
+    "has_script",
+    "footage",
+    "offline",
+    "flow",
+    "storyboard",
+    "steps"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "general-video-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-general-video"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "vo_mode": {
+      "type": "string",
+      "enum": ["narrated", "silent", "transcribed"],
+      "description": "Freeform: narrated (script authored), silent (no VO), or transcribed (footage speech)."
+    },
+    "has_script": {
+      "type": "boolean",
+      "description": "true if SCRIPT.md authored (narrated); false otherwise."
+    },
+    "footage": {
+      "type": "boolean",
+      "description": "true if remixing existing footage; false if authored from scratch."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true
+    },
+    "flow": {
+      "type": "string",
+      "enum": ["automation", "companion"],
+      "description": "automation=workflow chooses + executes; companion=co-create, ceiling treatment first."
+    },
+    "storyboard": {
+      "type": "string",
+      "enum": ["yes", "no"],
+      "description": "yes=plan+sketch are review surface; no=build without board."
+    },
+    "scope_expanded": {
+      "type": "boolean",
+      "description": "If true = scope-creep violation (build what was asked, offer additions before adding)."
+    },
+    "rendered_before_approval": {
+      "type": "boolean",
+      "description": "If true = unapproved-render violation (render only after Step 6 user approval)."
+    },
+    "rendered": {
+      "type": "boolean"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": ["setup", "plan", "resolve", "build", "assemble", "verify", "finalize"]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+skill_id: content-os-general-video
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: general-video-v1
+authority_refs:
+  - skills/vendor/hyperframes/general-video/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: general-video
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation_notes: >
+    Orquestador freeform: autor un video custom cuando ningún workflow
+    especializado encaja — brand reels, sizzle reels, montajes, multi-scene
+    pieces, static loops, title cards, footage remixes, freeform builds.
+    Companion (co-create, ceiling treatment first) o automation (choose + execute)
+    flow. Storyboard yes/no review surface. Sub-agent dispatch scale-dependent
+    (inline si ≤6 short scenes; fan out 2-3 scenes/worker, una sola wave si más).
+    Composition via content-os-core (HTML+GSAP seekable). Lint via
+    content-os-keyframes. Blueprints/rules via content-os-animation. Brand +
+    genre lenses via content-os-creative. Media via content-os-media (offline
+    default; remote opt-in auth-gated). Blocks via content-os-registry. Scope
+    exact (no scope creep). Render only after approval. Output RENDERED_DRAFT
+    (MP4), no HUMAN_APPROVED.

@@ -1,0 +1,38 @@
+# Negative fixture: documents all 6 violation codes.
+# - missing-gate: build state done (invalid)
+# - step-out-of-order: resolve before plan
+# - no-render: finalize gate-passed + rendered false
+# - network-in-workflow: offline false + https URL in asset_ref
+# - scope-creep: scope_expanded true (title card + 3 scenes + music + captions)
+# - unapproved-render: rendered_before_approval true (render before Step 6)
+schemaVersion: general-video-v1
+projectId: bad-reel
+route: content-os-general-video
+vo_mode: silent
+has_script: false
+footage: false
+offline: false # network-in-workflow: offline not true
+flow: automation
+storyboard: no
+scope_expanded: true # scope-creep: title card plus three scenes, music, captions
+rendered_before_approval: true # unapproved-render: render before Step 6 approval
+rendered: false # no-render: finalize gate-passed without render
+asset_ref: https://acme.com/logo.png # network-in-workflow: https URL in state
+capability_map:
+  - content-os-core
+  - content-os-creative
+steps:
+  - step: setup
+    state: gate-passed
+  - step: resolve
+    state: gate-passed # step-out-of-order: resolve before plan
+  - step: plan
+    state: gate-passed
+  - step: build
+    state: done # missing-gate: build state done (invalid, not in VALID_STATES)
+  - step: assemble
+    state: gate-passed
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render: finalize gate-passed + rendered false
