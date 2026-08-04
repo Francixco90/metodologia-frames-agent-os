@@ -2,7 +2,7 @@
   "schema_version": 1,
   "lock_id": "hyperframes-vendor-lock-v1",
   "created": "2026-08-03",
-  "description": "Lock de 15 skills HyperFrames (HeyGen, Apache-2.0) auditadas y aisladas en skills/vendor/hyperframes/. Reference-only, no auto-execution. Derivadas para Content OS en Fases 2-4.",
+  "description": "Lock de 25 skills (15 initial + 10 batch-2) HyperFrames (HeyGen, Apache-2.0) auditadas y aisladas en skills/vendor/hyperframes/. Reference-only, no auto-execution. Derivadas para Content OS en Fases 2-4.",
   "source_repo": "https://github.com/heygen-com/hyperframes",
   "source_commit": "3cf268e1e54b9f1868442a37b7bfafecc0e2355f",
   "version": "0.7.90",
@@ -1023,6 +1023,393 @@
         "Minimal skill (4 files); thin reference; router delegates to other workflows"
       ],
       "update_procedure": "1) Clone heygen-com/hyperframes at new commit (GIT_LFS_SKIP_SMUDGE=1 or git-lfs installed). 2) Re-audit per docs/hyperframes/audit-report.md checklist. 3) Update source_commit + vendored_file_hashes. 4) Copy only text files (md/mjs/html/json/tsx/ts/cjs/js/sh/py/txt/svg/yaml/yml/css); exclude binaries (png/jpg/mp3/mp4/woff2/etc). 5) Verify no new network/telemetry/auth-execution patterns in enabled components."
+    },
+    {
+      "vendor_id": "hyperframes-figma",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": "skills/figma/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/figma/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": ["SKILL.md (Figma design reference, motion verify)"],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "9daacf9d7bffb29ef077a35a8ed9b19e388a6152bbcb5ef302901ff3452b30e3",
+        "scripts/verify-motion.mjs": "26d7709f6d38912e0f1937fb6d827a60fb62e15207e8ab299b8f36758dd53e9d"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-hyperframes-cli",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": "skills/hyperframes-cli/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/hyperframes-cli/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (CLI scaffold/render/lint reference)",
+        "references/ (deploy targets: cloud/cloudrun/lambda)"
+      ],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "9c22116f64ba00347d6bd8a4658865621346eaf52744a14ab4f6e2b8755ddb6b",
+        "references/beats.md": "5b90e725a0a676cadfd597524e3abed77e80a5aca03a4d7bee2c3be44e5b85d6",
+        "references/cloud.md": "65d1a787a940ee360a07e492014c775a898a4b794e26f778e17dca659ffa7a1f",
+        "references/cloudrun.md": "87ba98cc0db3721fb09776d44a5c8ef75fd95b6a74cea1376dc028907b98aeba",
+        "references/compare-and-batch.md": "d17fa5a16707d981fa6473b99a28aa45abf41bca0fd96c5157c632abd0bfc222",
+        "references/doctor-browser.md": "7c8ab29ca563b288286fa3f5812e6badf3b36aea3641a0ef0197a1a8afba7527",
+        "references/init-and-scaffold.md": "aa19617ba7778dfc61f7ed13c72d2f6f097c78cb751666c8cfdee2f4be3c5415",
+        "references/lambda.md": "73e681f3e5c6c3608b8d4f66b4b75628eed708803b4d2fd5532366659a0667c9",
+        "references/lint-validate-inspect.md": "d13bd04a73c1400152f20ff45fa5a93bf6746994b0184a7af3269f739510ca6d",
+        "references/preview-render.md": "b92e731eee28d2b3c8d25546c6feb8271531b8db2f230deafc52d13966bbcb67",
+        "references/upgrade-info-misc.md": "0189413e6dc5fb4e36bd70eeab536e8e193470a6983627fa491b104f791c59e0"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-music-to-video",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": "skills/music-to-video/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/music-to-video/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (beatgrid→montage pipeline reference)",
+        "references/motion-primitives/ (30+ transition demos)",
+        "references/templates/ (8 program.json templates)",
+        "scripts/ (analyze-beatgrid.py, assemble-index.mjs, validate-plan.mjs)"
+      ],
+      "components_disabled": ["PNG masks (excluded, binary)", "woff2 fonts (excluded, binary)"],
+      "critical_file_hashes": {
+        "SKILL.md": "99b053cfa04200b7912a6801b06ee6ef6bd5b5b2d4f7e849b89d1f98102a71b9",
+        "references/frame-skeleton.md": "b3645755b72257076ae8b0ca733f0c2ede1a6556b20325f0a29d42b93d5e86c7",
+        "references/montage.md": "ed18fa27afdffb82fcddc7ac38c37cd646d4bb47fe125f86652877cf61bc70fe",
+        "references/motion-primitive-catalog.md": "92a67a68c99d7a894a5208ab86a6ca9979c3ef1459011c7a7be07d545e46b1f8",
+        "references/motion-primitives/3d-card-flip/index.html": "2b26580cde05d9c228c1ad55c40a0075d8369e32cf0bdae63243d301cfc46f0f",
+        "references/motion-primitives/assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+        "references/motion-primitives/bg-flow-field/index.html": "29bce6fe18a1420a50ad1884eecafea165fdd6858181bed94a7a90d553a74ff4",
+        "references/motion-primitives/binary-decrypt/index.html": "6b9d90d222fe51a75df7375931c0fc83d1ccbdb127cba897e915ff9811c8f5ed",
+        "references/motion-primitives/blur-resolve/index.html": "9a48099d7fc5a9091cc664416d3f151c4e243315e009212e09490cd24d90a2d0",
+        "references/motion-primitives/braam-punch/index.html": "20009fb3ac86997c85c511dc812f40b69bf91d4b793bb2aba5bba2b07a3b9c26",
+        "references/motion-primitives/chromatic-split/index.html": "8a2d99f81b7316a8332afac21dbab51ddb444b7ff761cb2528f2f33bcab50e91",
+        "references/motion-primitives/chrome-sweep/index.html": "370817d6e14a390904982e034cc3aa779c221a83c0305376aa7d0a13b51455a5",
+        "references/motion-primitives/counting-punch/index.html": "52b17af7db444e9d81bac996f1e0590fb47e88a8a200cdc9d5cefb85e1dc42fb",
+        "references/motion-primitives/crash-zoom-in/index.html": "3033ea34231347c1463c14e4d470757d32b0fa3bb35120094f1e90e3fdff0fa2",
+        "references/motion-primitives/datamosh-smear/index.html": "40008888197aacd9292ec101dfd250885a90987ffbd4e9fc575c0858fb5192fd",
+        "references/motion-primitives/directional-fill/index.html": "1c1f17792f9e80e8dc6d62ea1c5dc8f4271e42e04055f8c97e67c5831a030fcf",
+        "references/motion-primitives/dolly-zoom/index.html": "5f880691b03b091d42a74c4f7ff187197e56bbb41103417288be1c7bb139a4dd",
+        "references/motion-primitives/electric-arc/index.html": "a5d931c1952049235c56ce075ded16d910782ed75a2a8a004acb0f713f7fc13c",
+        "references/motion-primitives/flash-cut/index.html": "05f76dc5fc4da23bd2de65f3aab754cb2bf58a4a5b4df9f2d2d826acb8ef5232",
+        "references/motion-primitives/gooey-metaball/index.html": "5819a487314ee710c1bc1479223d7fb494e6176f17ded188825149b9deb8317a",
+        "references/motion-primitives/hard-cut/index.html": "d34752afe7745206d08b6cf0e0f61e94d47b75aaf1318cd06f133511bcbe3b19",
+        "references/motion-primitives/hypercut-whip/index.html": "9048cdd93ec6494998c03bf2e92ca5d5ccc80a0fabd4ca768b474a26e1f8a083",
+        "references/motion-primitives/iris-open/index.html": "8bf26be3cc3eabebbdd7ecaeffadda488db61d23a473aaceef4d927e64ff332b",
+        "references/motion-primitives/kinetic-letter-in/index.html": "962ec9ac7aa6b391f9cb5e3d66816336b0170550c50a194f6bdc9bd16eaccf2b",
+        "references/motion-primitives/liquid-morph/index.html": "a2a98514166502350d0737f5cee01b6189e1ff7c4eea8b541ea3a07be6794ec1",
+        "references/motion-primitives/mask-reveal/index.html": "fe0c1e4538ccab949c8bd954a2cd6e2d454887afbbc2a32ee80738434cacbfce",
+        "references/motion-primitives/mosaic-pack/index.html": "7f2975afcee9c1c6ff7e0f03b02790aeec8bedd40834bf4129a29ae02eae931a",
+        "references/motion-primitives/neon-flicker/index.html": "26a5e950abe8e3434ad69efe97b89b9a565f7859f61764266caff9c1bfbb40dd",
+        "references/motion-primitives/outline-to-fill/index.html": "279ea438384e364f9529dff342caa1641126d03e3dd753d100ea2743b17d2665",
+        "references/motion-primitives/palette-flip/index.html": "c03696cfd77331f83cc006d0512e27be8a663670e2a37103d994ae112fbb73eb",
+        "references/motion-primitives/particle-burst/index.html": "574bcef6f8c1c2eba8a7a15227de8f01d0135af97b8763aa93c58e3649f6eb72",
+        "references/motion-primitives/pixel-dissolve/index.html": "4ff37db19f215f505c1b8de420dd5e3ddd2c75e87a85e577e7f39444a9db85a6",
+        "references/motion-primitives/radial-burst-lines/index.html": "5022379e0d66d108a665377ea90ffc90e9d1d06e6144817f6b0695114a74cc95",
+        "references/motion-primitives/screen-shake/index.html": "ffab022425f8c5f5aed6ef6b8533b62041b09ea0032e65edda77c5b893b8d873",
+        "references/motion-primitives/slot-machine-reveal/index.html": "fe5c83695b6c1358fff5a01400a5bab728e58ae362266aa57467a2add3298ab4",
+        "references/motion-primitives/spotlight-sweep/index.html": "c2f27aeb84f46a7bbae66307bb9da6c5b866de84705b34c78a7513fc63f4cf63",
+        "references/motion-primitives/staggered-exit/index.html": "1463d62f72c428a76ad64a45411e8f55db0e3f7c672540dcf5a7d807771d55e1",
+        "references/motion-primitives/text-spectral-rays/USAGE.md": "bb2cae8966c4eef4b381244097f7995b7ec4b02dd9dbfd5f3fd6473d9a5c7c11",
+        "references/motion-primitives/text-spectral-rays/index.html": "5f8dd911524ffea34f13254235c2939b989a43fbb0e22afb5b21a175195fe1be",
+        "references/motion-primitives/text-wave-distort/index.html": "9e40b743c70c73ee5fbc3bbfc1f4cd6f402664a6d8fbcc65648173f6faf0e02b",
+        "references/motion-primitives/tile-mosaic/index.html": "6c8bce28d90411d459d6fa71c350ce17521aeb9bacd2afc1f489853e7814f772",
+        "references/motion-primitives/typewriter-reveal/index.html": "5387baba4095545024dbcc582396210eeda6d26f82ec11e96b12922ad40aa0ac",
+        "references/motion-primitives/word-grid-burst/index.html": "c1456e605d1e905379894b31e178a2f3f126e8cc3a7163f74fe45516efd476eb",
+        "references/planning.md": "49425a505e805f982d9383989225a20e20bc7e3b42ea77387455309df4d2a7fe",
+        "references/storyboard-format.md": "2e343fa5288002e307486888de87b94746f50e5ce93a8372e8c199bb031fe760",
+        "references/template-catalog.md": "7ce847407b6195f0aab68a960b1de69433cd0c178f4325a4b67c002f8b7c84f1",
+        "references/templates/card-flyby/index.html": "22ee2bdc2eca84c124356e7b7d3e8d73f2db65641d5cbf1c7667a14d2ec457a4",
+        "references/templates/card-flyby/program.json": "0bf66d1c680f5668794bc03939ced411164b0650803b1288dadfed9147bdc975",
+        "references/templates/held-message-living-field/index.html": "6cb86b99a3734cf41baccce4914907866ea74746577d5f912f280d3f266e4ea5",
+        "references/templates/held-text-strobe-burst/index.html": "aa11432608a2672b62da03b19758f297c4dc3cda98dc7c74ffa22aee30030490",
+        "references/templates/intro-kinetic-cascade/index.html": "7a69edbfd3cae461f233c934430d66791c11cb8d00d2979d9e15ff842159ab23",
+        "references/templates/intro-kinetic-cascade/program.json": "e2f9a2a5de8e0fd659181d0ee545524aee245c0b0f24c891427217e749041ce5",
+        "references/templates/logo-split-lockup-pulse/index.html": "ec2c97b761011d0fe044ba0983b7ce4ec9943c2997b153b9029de414b9664511",
+        "references/templates/poster-tile-mosaic/index.html": "5d4d85c626f79bf443ad8d76ac98b1b106ffc99408128b767475ce91a5cac85f",
+        "references/templates/poster-tile-mosaic/program.json": "99d840406246a1237c602362579b19c6d7e88d41607bfe6c5190221abec15519",
+        "references/templates/roll-flipbook-word-cycle/index.html": "fecd97e92610cc30f38e563ea2152727de8f82fed810debf5df64284f273fb61",
+        "references/templates/split-anchor-word-slot/index.html": "dbd8dba3ca08d9ea2a8eca7cd23b9f2c9da27a4b8c092271534e1377270f0b83",
+        "references/templates/split-anchor-word-slot/program.json": "90096a51480803d04dc5a163fe1abfd4efeb936bb55d59b8e4a60f0bab98f955",
+        "references/templates/typewriter-phrase-keyword-shuffle/index.html": "4c794931d075ca2e525c6023e5856ed36b29097d1454f69a1eb8dfaf24c2e88d",
+        "scripts/analyze-beatgrid.py": "ed4032a948cb234291e27aefb83ec2d4f16929d080c6b216641e2872f1302279",
+        "scripts/assemble-index.mjs": "955b715f58952b1c32e8cb29fab55fa2387c571ccca6ec9b8d58716f012e78bf",
+        "scripts/lib/storyboard.mjs": "351d22701a115165b99695fbba880caf652dce92d436815236a430db2da94039",
+        "scripts/stage-assets.mjs": "50a4f20cf71a638cdeeb6625d5a6d75b203c20109ad703e12df538f03ec8730b",
+        "scripts/validate-plan.mjs": "c0883b116ea0030a94cecac826e1bf464f92622166813032f75163cb261d0b6f",
+        "sub-agents/frame-worker.md": "b4712990ae379c571a6d8190587adfa6c9b8cebb982b59edc42e94a04978d45f"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binary assets (PNG masks, woff2 fonts) excluded per text-only vendor policy; referenced but not copied."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-talking-head-recut",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": "skills/talking-head-recut/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/talking-head-recut/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (talking-head recut reference)",
+        "references/frames+layouts+styles (HTML frame library)",
+        "media-contract.test.mjs",
+        "NOTICE.md"
+      ],
+      "components_disabled": ["woff2 fonts (excluded, binary)", "MP4 fixtures (excluded, binary)"],
+      "critical_file_hashes": {
+        "NOTICE.md": "0e0a88d4eb584a1a0805930d30918ceebf0824fbb594731ebaa069eea9849995",
+        "SKILL.md": "ec91591f991fdb6f6ffcfbc4b8fa9756c9700197e0e03a14047bdc99d7972241",
+        "assets/vendor/gsap.min.js": "c3a03a345e45bc954cd48c43f11572891f5dca7a5d99348d5bc14753a728618c",
+        "media-contract.test.mjs": "a1797a8339a213fbd35adee3db91781f24cceabd86593cf3f89d0fc2721a217c",
+        "references/DESIGN_INDEX.md": "25fa72902a37cafb764f86d909e72dbf1c6b44ff3494d1c3da24c4a4a819ce16",
+        "references/frames/clean.html": "10c18a856b9b3430075b14eaaa346fd953827c158c6640cc19d94e1ad622bb0f",
+        "references/frames/hairline.html": "9de5bd85cb6f15dd6cd73ba0a08a69a698d8d68626d5255127a6d6455a35d17c",
+        "references/frames/polaroid.html": "6e031ce943bbc47891ff5bdc7ae5ac22c9b85ba6dc838f9ba06175e979dd54d9",
+        "references/layouts/overlay.html": "d8a44b6b0075b194b70e4df22b34c07d9bd4a41bd14017ef2c126eda37d91a26",
+        "references/layouts/pip.html": "3fc7da10775d5ac6caeca78482939d5a6afad6f1637c0190beb023ebfca0a4f0",
+        "references/layouts/split.html": "6078dba9780e850f1d21cd29fbc27f6dcf69ced3f8559e7db115d16d0ab41b7e",
+        "references/layouts/stack.html": "054d1ec184f53bc6d8ca2a3effc6f8f19a98d29d6c4ab6d3cbf6f9bd4f5b4cb7",
+        "references/styles/academic.html": "aae0f6b167f6a09a02622f1e785aa9b06f0d96382aba9f4cabcb89250747d5a6",
+        "references/styles/audit.html": "2edbd5cfdd9bd3bd6789ac2a6bea9555187f65b03485dc58771b4bdf982a7c7d",
+        "references/styles/editorial.html": "f59b3ef3edb66c523270179a59b1efd0b0183d8d4e871958142c99c6447f5710",
+        "references/styles/geom.html": "4d4e5cdf29ee8082c181f2001c00764355d2a408605ecda87bacc7d1fb48b7c1",
+        "references/styles/minimal.html": "cb161810bad03c9f8e2ed68a6bd300dafc52d184ff214a5e7933d0a0676e1a7f",
+        "references/styles/spotlight.html": "91f2a516f947eab9f40f112f13185724e2cfbeaffb99786ab14ea13629bc38a5",
+        "references/styles/swiss.html": "5c44a617334fb4f7bd4aaad23a2bea2231285ab25e80c952abaf72e9a5f4ac17",
+        "references/styles/terminal.html": "a81c69499a4af4df9c8b1b2b81ffbc7eb467e27b3107fa3adf34bb406b17b72d",
+        "references/styles/whiteboard.html": "5b01baa63fb41e39e8095da5397589489b2cfe328a3b2748a6f83ccd0f0ebb28",
+        "references/styles/xhs.html": "47af8ffdcab845deec36d7d39913ef230a54ddc28c6cd95a5f67f4d50899680b"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-captions-overlay",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/captions-overlay/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/captions-overlay/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": ["SKILL.md (overlay caption model reference)"],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "84cf9826a9782b394ae774397f1f7deeb515585a3c93e87f6292ab00e4e4e438"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-changelog-video",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/changelog-video/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/changelog-video/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (changelog→video reference)",
+        "examples/ (master-skeleton + script-tokens)",
+        "references/ (lexicon, voice, visualization-registry)",
+        "scripts/align-captions.mjs"
+      ],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "8b4157cf7ec0a1797ee28c1f0d56f61e4cf3548054a3fa009b01301a4f735c1d",
+        "examples/master-skeleton.html": "7bfb37cd55acab2f2c830f7f40c3a98f1857e76e607ca591841c30ee7f9c6def",
+        "examples/script-tokens.json": "248e3b713585dd14a17afaa3d52dfd0dcfe505644c354cd179ad544c046efae5",
+        "references/build-spec.md": "122630352ebf70dac8e254c5a20131eadc56b32ccaf139c73ca2cb750c4bf502",
+        "references/lexicon.json": "52cbdd05b01c6ff49352cc68957f294515dcd462fb5149a235ff6cf8e419804c",
+        "references/script-voice.md": "3779239fbadc19afa13772b698dd022a2d65cacd6a79b931c027988ec9f8977d",
+        "references/visualization-registry.md": "cbfb33fdd162d43c626e06108c212391472cf4b1c17fb7ddd0b8e621769793ed",
+        "scripts/align-captions.mjs": "871e58b43daf9e8e52d6838df70a4b5d49982a1c3fdacc973a42362fcd82a7ab"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-cut-the-curve",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/cut-the-curve/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/cut-the-curve/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (curve-cut transition reference)",
+        "examples/gsap-implementation.md"
+      ],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "dd08a1fedca9701b685681aec7c34c0f00de3261dae7c5fdf378537ea2c7df25",
+        "examples/gsap-implementation.md": "c5e523bf1404eff2ffe903bc756006fd21894e1f6c10e630485afc570a2ad72b"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-motion-doctrine",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/motion-doctrine/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/motion-doctrine/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": [
+        "SKILL.md (motion seam doctrine reference)",
+        "references/seam-gate.md",
+        "scripts/seam-gate.mjs + seam-stamp.mjs"
+      ],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "04ef48092fd5ef9eb2f76f1114219d364dfd50411d91cd0fa180b440c3f8318b",
+        "references/seam-gate.md": "388d8370b963bf9ad496905d1cf5d8cc7f25d351123f95b54e3ed0ed002d15e1",
+        "scripts/seam-gate.mjs": "83ccc3baec9f3536bb0738e6163812ef23d74f4da94d026bf6f91e0bd91c1d0f",
+        "scripts/seam-stamp.mjs": "38040de56d700efd51512714405eda30cfe0bdf1ec4ebb221ec42a50c9f96c4d"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-oversized-cursor",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/oversized-cursor/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/oversized-cursor/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": ["SKILL.md (oversized cursor attention reference)"],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "a7fee44865b32f7f4526bfb9cf67c0663233d29fed2524768eb54141d249a0e4"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
+    },
+    {
+      "vendor_id": "hyperframes-seam-craft",
+      "source_repo": "https://github.com/heygen-com/hyperframes",
+      "source_path": ".agents/skills/seam-craft/",
+      "source_branch": "main",
+      "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+      "version": "0.7.90",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) HeyGen, Inc. (HyperFrames, https://github.com/heygen-com/hyperframes)",
+      "destination": "skills/vendor/hyperframes/seam-craft/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/hyperframes/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "components_enabled": ["SKILL.md (seam crafting reference)"],
+      "components_disabled": [],
+      "critical_file_hashes": {
+        "SKILL.md": "e86400c1fba3e182c1b6c4754fc9d77aa119b65ce9215504b044c7e413523d80"
+      },
+      "known_risks": [
+        "Source-available Apache-2.0 reference; no auto-execution (reference-only-no-auto-execution).",
+        "Bundled gsap.min.js vendored as text reference; Content OS uses toolchain gsap 3.15.0 (no runtime dep on vendor copy).",
+        "Binaries excluded per text-only vendor policy."
+      ],
+      "update_procedure": "Re-clone heygen-com/hyperframes, diff skills/<name>/, re-copy text-only, recompute sha256, bump source_commit. Vendors bypass verify:skills (not in registries)."
     }
-  ]
+  ],
+  "batch_2": {
+    "source_commit": "77f95e46e038ee93e03b3f7a0099b25a4feb73f8",
+    "added": 10,
+    "added_date": "2026-08-04"
+  }
 }

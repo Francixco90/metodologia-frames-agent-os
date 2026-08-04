@@ -77,6 +77,36 @@ opt in explicitly. Default path is offline so determinism + fail-closed hold.
 | `faceless-explainer`      | `content-os-faceless-explainer` (3)   | build (priority — most useful for MetodologIA)                      |
 | `general-video`           | `content-os-general-video` (3)        | build                                                               |
 
+## Capability mapping — Batch 2 (Fase 1A)
+
+10 additional vendored skills (source commit `77f95e4`). Homólogo plan in Fase 2A
+(batched 3-5 per PR); animation-adapter overlaps merge into existing homólogos (no
+new), per plan risk #3.
+
+| vendored skill       | Content OS homólogo (Fase 2A)           | type                                                              |
+| -------------------- | --------------------------------------- | ----------------------------------------------------------------- |
+| `figma`              | `content-os-figma`                      | build (Figma design → frame reference, verify-motion inert)       |
+| `hyperframes-cli`    | `content-os-hyperframes-cli` (meta/dev) | reference (deploy targets cloud/cloudrun/lambda inert; doc-index) |
+| `music-to-video`     | `content-os-music-to-video`             | build (beatgrid→montage pipeline, motion-primitive catalog)       |
+| `talking-head-recut` | `content-os-talking-head-recut`         | build (talking-head recut, frame/layout/style library)            |
+| `captions-overlay`   | `content-os-captions-overlay`           | build (overlay caption model; coordinate with embedded-captions)  |
+| `changelog-video`    | `content-os-changelog-video`            | build (changelog→video, lexicon + align-captions)                 |
+| `cut-the-curve`      | `content-os-cut-the-curve`              | build (curve-cut transition + GSAP example)                       |
+| `motion-doctrine`    | `content-os-motion-doctrine`            | build (seam-gate/seam-stamp doctrine; dep `content-os-animation`) |
+| `oversized-cursor`   | `content-os-oversized-cursor`           | build (oversized cursor attention pattern)                        |
+| `seam-craft`         | `content-os-seam-craft`                 | build (seam crafting between clips)                               |
+
+Animation-adapter overlap (gsap, css-animations, tailwind, animejs, three, lottie,
+waapi, typegpu, gsap-effects) — 9 skills.sh entries live in other repos and overlap
+`motion-library-adapters` / `content-os-animation`. Decision: vendor as reference in
+a later batch if needed + version-bump existing homólogos (no new), avoids
+duplication. Hyperframes `contribute-catalog`, `hyperframes-read-first`,
+`hyperframes-compose`, `claude-design-hyperframes`, `compose-video`, `hyperframes-tts`,
+`website-to-video`, `marker-highlight`, `transitions`, `audio-reactive`,
+`graphic-overlays`, `hyperframes-captions`, `captions` — listed on skills.sh but not
+in the pinned repo at HEAD; separate source-repo research if user wants them
+(follow-up, not blocking Fase 1A).
+
 ## Determinism contract (adapted)
 
 HyperFrames determinism: seekable GSAP (scrub to frame `t`), framework-owned media
