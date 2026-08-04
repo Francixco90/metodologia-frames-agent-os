@@ -168,8 +168,8 @@ describe('scroll-skills: LINEAGE contract', () => {
       expect(lineage.lifecycle_state).toBe('active');
     });
 
-    it(`${id}: external_fragments_reused is true`, () => {
-      expect(lineage.external_fragments_reused).toBe(true);
+    it(`${id}: external_fragments_reused is false`, () => {
+      expect(lineage.external_fragments_reused).toBe(false);
     });
 
     it(`${id}: publication_authority is false`, () => {

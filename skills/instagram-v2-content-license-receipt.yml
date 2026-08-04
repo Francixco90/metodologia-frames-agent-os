@@ -10,6 +10,9 @@ applies_to:
     - skills/instagram-carousel-production
     - skills/remotion-video-production-v2
     - skills/metodologia-certificate-builder
+    - skills/scroll-experience-foundations
+    - skills/cinematic-scroll-quality
+    - skills/scroll-world-agnostic
   content_origin: locally_authored
 permissions:
   internal_execution: allowed
