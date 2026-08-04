@@ -1,0 +1,28 @@
+skill_id: content-os-faceless-explainer
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: faceless-explainer-v1
+authority_refs:
+  - skills/vendor/hyperframes/faceless-explainer/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: faceless-explainer
+  source_repo: https://github.com/heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation: local orchestrator (no npx hyperframes CLI); 8-step gated workflow; delegates design/motion to Fase 2 capabilities + media to content-os-media offline cascade; HTML→MP4 via content-os-core Playwright adapter; faceless = invented visuals, no capture
+supported_request_types:
+  - faceless_explainer_text_to_video
+  - concept_breakdown_video
+  - how_to_explainer
+  - listicle_video

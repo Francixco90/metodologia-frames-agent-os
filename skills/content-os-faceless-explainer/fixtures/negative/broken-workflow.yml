@@ -1,0 +1,35 @@
+# Negative workflow brief — documents violations the auditor rejects.
+# Violation codes listed in comments for negative-completeness check.
+schemaVersion: faceless-explainer-v1
+projectId: metodologia-demo-bad
+route: content-os-faceless-explainer
+capability_map: [content-os-core]
+source_type: text
+duration_s: 200
+vo_mode: restructured
+offline: false # network-in-workflow (offline not true)
+silent: false
+rendered: false
+capture: true # capture-in-faceless (faceless = invented, no capture)
+footage: true # footage-in-faceless (faceless = no footage)
+steps:
+  - step: setup
+    state: gate-passed
+  - step: storyboard # step-out-of-order (storyboard before brief + design)
+    state: gate-passed
+  - step: brief
+    state: pending # missing-gate (brief not passed)
+  - step: design
+    state: gate-passed
+  - step: audio
+    state: gate-passed
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: gate-passed # no-render (finalize passed but rendered=false)
+source_ref: https://example.com/article # network-in-workflow (https URL)
+# Violation codes documented: missing-gate, step-out-of-order,
+# capture-in-faceless, footage-in-faceless, no-render, network-in-workflow.
+# The auditor (workflow-audit.mjs --strict) must reject this brief.

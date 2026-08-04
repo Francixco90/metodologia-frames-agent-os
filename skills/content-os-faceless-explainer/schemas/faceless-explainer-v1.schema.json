@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.internal/schemas/faceless-explainer-v1.schema.json",
+  "title": "Content OS Faceless Explainer Workflow v1",
+  "description": "Workflow state for a faceless explainer video (text to video, invented visuals, no capture). 8-step gated orchestrator delegating to Fase 2 capabilities.",
+  "type": "object",
+  "required": ["schemaVersion", "projectId", "route", "capability_map", "offline", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "faceless-explainer-v1"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project directory name (kebab-case from topic). No workspace name or timestamp."
+    },
+    "route": {
+      "type": "string",
+      "const": "content-os-faceless-explainer"
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "content-os-core",
+          "content-os-animation",
+          "content-os-keyframes",
+          "content-os-creative",
+          "content-os-media",
+          "content-os-registry"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["text", "brief"],
+      "description": "Faceless explainer accepts text or brief. No url/website/footage."
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Target duration. Specialized workflows strong at 30-90s. >180s routes to general-video."
+    },
+    "vo_mode": {
+      "type": "string",
+      "enum": ["verbatim", "restructured", "silent"],
+      "description": "Verbatim = keep user wording. Restructured = reshape for narrative. Silent = no narration."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true,
+      "description": "Workflow offline-first. TTS via content-os-media offline cascade default."
+    },
+    "silent": {
+      "type": "boolean",
+      "description": "music: none + no SCRIPT. No narration, no BGM, no SFX."
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "state"],
+        "properties": {
+          "step": {
+            "type": "string",
+            "enum": [
+              "setup",
+              "brief",
+              "design",
+              "storyboard",
+              "audio",
+              "visual-design",
+              "build-frames",
+              "finalize"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "gate-passed", "user-approved"]
+          },
+          "user_gated": {
+            "type": "boolean",
+            "description": "Steps setup, storyboard, finalize pause for user approval."
+          }
+        }
+      },
+      "minItems": 8,
+      "description": "8-step workflow state. Each step must pass gate before next."
+    }
+  }
+}
