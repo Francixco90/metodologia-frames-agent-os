@@ -1,0 +1,12 @@
+request_id: bento-slides-valid-001
+skill: content-os-bento-slides
+deck_scope: author-new-deck
+self_contained: true
+deterministic_ids: true
+notes:
+  - fetch latest bento app release at authoring time and author into #bento-doc
+  - map material to features (charts, morph, state slides, ken-burns, count-up)
+  - assets embedded as data URIs in doc.assets; file stays self-contained
+  - stable ids shared across morph slides; deterministic document JSON
+  - no temporal/network APIs in document; deck renders deterministically
+verdict: accept; bento deck self-contained, deterministic ids, render deterministic

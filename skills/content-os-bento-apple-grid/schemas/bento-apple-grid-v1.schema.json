@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/bento-apple-grid-v1.schema.json",
+  "title": "Apple Bento Grid v1 request",
+  "type": "object",
+  "required": ["grid_template", "theme", "self_contained", "viewport_matches_grid"],
+  "properties": {
+    "grid_template": {
+      "type": "string",
+      "enum": ["a-4col-1200", "b-3col-1100", "c-2col-600-vertical"],
+      "description": "layout template by card count and orientation"
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["light", "dark", "both"],
+      "description": "Apple light (#f5f5f7) or dark (#000) theme"
+    },
+    "self_contained": {
+      "type": "boolean",
+      "description": "single HTML file, inline CSS, Google Fonts link only external"
+    },
+    "viewport_matches_grid": {
+      "type": "boolean",
+      "description": "Playwright viewport width matches grid CSS width (1200/1100/600)"
+    },
+    "nondeterministic_apis_in_html": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; no Math.random/Date.now/fetch in generated HTML"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "generated HTML deterministic given content inputs"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+request_id: bento-grid-valid-001
+skill: content-os-bento-grid
+guideline_scope: design-system-guidelines
+token_anchored: true
+accessibility_testable: true
+notes:
+  - restate design intent before rules
+  - anchor every rule to a token, threshold, or example
+  - specify component anatomy, states, variants, interaction behavior
+  - WCAG 2.2 AA, keyboard-first, visible focus states
+  - generated HTML deterministic given content; no temporal/network APIs
+verdict: accept; bento guidelines token-anchored, accessibility testable, render deterministic

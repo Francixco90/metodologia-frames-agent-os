@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/bento-grid-v1.schema.json",
+  "title": "Bento Grid v1 guideline request",
+  "type": "object",
+  "required": ["guideline_scope", "token_anchored", "accessibility_testable"],
+  "properties": {
+    "guideline_scope": {
+      "type": "string",
+      "enum": ["design-system-guidelines", "component-rules", "qa-checklist"],
+      "description": "bento design-system guideline authoring scope"
+    },
+    "token_anchored": {
+      "type": "boolean",
+      "description": "rules anchor to tokens/thresholds/examples, not adjectives alone"
+    },
+    "accessibility_testable": {
+      "type": "boolean",
+      "description": "accessibility statements testable in implementation (WCAG 2.2 AA)"
+    },
+    "nondeterministic_apis_in_output": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; no Math.random/Date.now/fetch in generated HTML"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "generated HTML deterministic given content inputs"
+    }
+  }
+}

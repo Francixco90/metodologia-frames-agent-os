@@ -1,0 +1,27 @@
+schema_version: 1
+receipt_id: COS-BNG-RUNTIME-001
+skill_id: content-os-bento-grid
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  playwright: 1.61.1
+render_adapter: content-os-core/html-composition
+network_in_render_path: false
+authoring_time_network: true
+authoring_time_network_scope: google-fonts-and-asset-references-only
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Playwright already toolchain-pinned for HTML export).
+  - Bento grid guidelines describe deterministic HTML given content inputs.
+  - Network (Google Fonts, assets) is view-time, not generation-time.
+  - MIT vendor reference — no relicensing of vendor source.
+  - Production gates G13-G17 manual; screenshot/render stays RENDERED_DRAFT.

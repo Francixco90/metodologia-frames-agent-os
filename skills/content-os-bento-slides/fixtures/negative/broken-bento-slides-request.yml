@@ -1,0 +1,15 @@
+request_id: bento-slides-broken-001
+skill: content-os-bento-slides
+deck_scope: author-new-deck
+self_contained: false
+deterministic_ids: false
+violations:
+  - Math.random to generate element ids (non-deterministic morph)
+  - Date.now to seed a slide timestamp (non-deterministic)
+  - fetch inside the document JSON to load remote assets (network in document)
+  - setTimeout to defer a slide transition (not deterministic)
+  - large external media not embedded as data URI (not self-contained)
+  - morph slides without shared ids (no morph, elements just cut)
+  - docId regenerated on an existing deck (identity lost)
+  - production request without G13-G17 human gate
+verdict: reject; bento deck blocked (non-deterministic, not self-contained)

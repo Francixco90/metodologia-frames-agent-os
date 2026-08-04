@@ -1,0 +1,15 @@
+request_id: bento-grid-broken-001
+skill: content-os-bento-grid
+guideline_scope: design-system-guidelines
+token_anchored: false
+accessibility_testable: false
+violations:
+  - rule anchored only to adjectives ("make it pretty"), no token/threshold
+  - accessibility statement not testable in implementation
+  - Math.random to jitter card sizes (non-deterministic output)
+  - Date.now to seed a layout timestamp (non-deterministic)
+  - fetch inside generation to load assets at build time (network in render path)
+  - setTimeout to defer a grid calculation (not deterministic)
+  - low-contrast text below WCAG 2.2 AA
+  - production request without G13-G17 human gate
+verdict: reject; bento grid blocked (non-deterministic, untestable accessibility)

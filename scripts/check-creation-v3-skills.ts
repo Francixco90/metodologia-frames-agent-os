@@ -251,6 +251,21 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-remotion-upgrade/scripts/check-skill.mjs'],
   },
+  {
+    id: 'content-os-bento-grid',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-bento-grid/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-bento-slides',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-bento-slides/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'content-os-bento-apple-grid',
+    scope: 'local-evaluation',
+    check: ['skills/content-os-bento-apple-grid/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

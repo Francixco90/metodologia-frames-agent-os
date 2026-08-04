@@ -1,0 +1,13 @@
+request_id: bento-apple-valid-001
+skill: content-os-bento-apple-grid
+grid_template: a-4col-1200
+theme: dark
+self_contained: true
+viewport_matches_grid: true
+notes:
+  - single self-contained HTML file, inline CSS, Google Fonts link only external
+  - zero-gap grid (stretch, 6px gap, every cell occupied)
+  - viewport width 1200 matches grid CSS width for screenshot export
+  - generated HTML deterministic given content; no temporal/network APIs
+  - visual review before presenting; screenshot at 2x is RENDERED_DRAFT
+verdict: accept; Apple bento grid self-contained, zero-gap, screenshot deterministic

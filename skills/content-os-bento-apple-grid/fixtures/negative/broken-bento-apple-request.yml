@@ -1,0 +1,17 @@
+request_id: bento-apple-broken-001
+skill: content-os-bento-apple-grid
+grid_template: a-4col-1200
+theme: dark
+self_contained: false
+viewport_matches_grid: false
+violations:
+  - align-items: start breaks the zero-gap grid (cells not stretched)
+  - 8px gap instead of 6px (visible row gaps, non-Apple)
+  - empty grid cells (broken grid, misaligned cards)
+  - viewport width wider than grid CSS width (screenshot clips right edge)
+  - Math.random to jitter card accent colors (non-deterministic)
+  - Date.now to seed a layout timestamp (non-deterministic)
+  - fetch inside generated HTML to load assets (network in render path)
+  - setTimeout to defer a grid layout (not deterministic)
+  - production request without G13-G17 human gate
+verdict: reject; Apple bento grid blocked (non-zero-gap, non-deterministic, clip mismatch)

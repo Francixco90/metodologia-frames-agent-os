@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/bento-slides-v1.schema.json",
+  "title": "Bento Slides v1 deck request",
+  "type": "object",
+  "required": ["deck_scope", "self_contained", "deterministic_ids"],
+  "properties": {
+    "deck_scope": {
+      "type": "string",
+      "enum": ["author-new-deck", "edit-existing-deck", "material-to-feature-map"],
+      "description": "bento .bento.html deck authoring scope"
+    },
+    "self_contained": {
+      "type": "boolean",
+      "description": "assets embedded as data URIs in doc.assets; file stays self-contained"
+    },
+    "deterministic_ids": {
+      "type": "boolean",
+      "description": "stable ids shared across morph slides; no Math.random/Date.now ids"
+    },
+    "nondeterministic_apis_in_document": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; no Math.random/Date.now/fetch in document JSON"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "document JSON deterministic given content inputs"
+    }
+  }
+}
