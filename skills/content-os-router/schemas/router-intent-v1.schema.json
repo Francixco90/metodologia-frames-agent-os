@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.internal/schemas/router-intent-v1.schema.json",
+  "title": "Content OS Router Intent v1",
+  "description": "Intent brief for source-to-video routing. Declares source_type, deliverable, route (Fase 3 workflow), and capability_map (Fase 2 skills). Route-once, route-by-deliverable.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "intentId",
+    "source_type",
+    "deliverable",
+    "route",
+    "capability_map",
+    "offline"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "router-intent-v1"
+    },
+    "intentId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique intent identifier (deterministic, no Date.now/Math.random)."
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["url", "github-pr", "text", "website", "brief", "footage", "music", "figma"],
+      "description": "Input source type. Drives capability_map (media resolve for url/footage/music)."
+    },
+    "source_ref": {
+      "type": "string",
+      "description": "Source locator (URL, PR reference, text excerpt). No network fetch at route time."
+    },
+    "deliverable": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Requested deliverable (e.g. 'explain a GitHub PR', 'market a website'). Route-by-deliverable, not by keyword."
+    },
+    "route": {
+      "type": "string",
+      "enum": [
+        "content-os-pr-to-video",
+        "content-os-website-to-video",
+        "content-os-faceless-explainer",
+        "content-os-product-launch-video",
+        "content-os-motion-graphics",
+        "content-os-embedded-captions",
+        "content-os-slideshow",
+        "content-os-general-video"
+      ],
+      "description": "Fase 3 workflow that owns the deliverable end-to-end."
+    },
+    "capability_map": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "content-os-core",
+          "content-os-animation",
+          "content-os-keyframes",
+          "content-os-creative",
+          "content-os-media",
+          "content-os-registry"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Fase 2 capability skills the workflow loads on-demand. Never own the deliverable."
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Target deliverable duration in seconds. >180 routes to content-os-general-video."
+    },
+    "runtime": {
+      "type": "string",
+      "enum": ["html-gsap", "remotion"],
+      "default": "html-gsap",
+      "description": "Dual paradigm. html-gsap (Content OS) default. remotion only if intent explicitly requests."
+    },
+    "offline": {
+      "type": "boolean",
+      "const": true,
+      "description": "Router is offline-first. No network on route path."
+    },
+    "workflow_status": {
+      "type": "string",
+      "enum": ["available", "pending"],
+      "description": "Fase 3 workflow availability. pending = coverage_gap, dispatch capabilities only."
+    }
+  }
+}

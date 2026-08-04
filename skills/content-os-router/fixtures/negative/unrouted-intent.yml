@@ -1,0 +1,32 @@
+# Negative intent brief — documents routing violations the auditor rejects.
+# Violation codes listed in comments for negative-completeness check.
+schemaVersion: router-intent-v1
+projectId: metodologia-demo-bad
+routerProfile: broken
+offlineFirst: false
+intents:
+  # missing-route: no route field. missing-capability-map: no capability_map.
+  # unknown-source-type: source_type 'random' not in enum. no-deliverable: empty deliverable.
+  # network-in-route: https URL in brief, offline not true.
+  - intentId: bad-intent-001
+    source_type: random # unknown-source-type
+    source_ref: https://example.com/bad # network-in-route (https URL)
+    deliverable: '' # no-deliverable
+    route: '' # missing-route
+    capability_map: [] # missing-capability-map
+    offline: false # network-in-route
+    workflow_status: pending
+  # route-by-keyword: routed by a keyword ('video') instead of deliverable.
+  # missing-route: route 'content-os-video' is not a valid Fase 3 workflow.
+  # unknown-source-type: source_type 'tweet' not in enum.
+  - intentId: bad-intent-002
+    source_type: tweet # unknown-source-type
+    source_ref: a tweet
+    deliverable: 'make a video' # route-by-keyword (vague, routed by word 'video')
+    route: content-os-video # missing-route (invalid route)
+    capability_map: [content-os-core]
+    offline: true
+    workflow_status: pending
+# Violation codes documented: missing-route, missing-capability-map,
+# unknown-source-type, route-by-keyword, no-deliverable, network-in-route.
+# The auditor (route-audit.mjs --strict) must reject this brief.

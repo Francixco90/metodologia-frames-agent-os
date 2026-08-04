@@ -1,0 +1,38 @@
+receipt_id: RCP-H03-CONTENT-OS-ROUTER-001
+schema_version: runtime-boundary-v1
+skill_id: content-os-router
+issued: 2026-08-03
+actor: RT-07-H03-PRODUCER
+scope:
+  - intent routing source-to-video
+  - capability dispatch on-demand
+  - intent brief audit
+runtime_boundary:
+  allowed_scoped:
+    - static_intent_brief_parsing
+    - local_route_table_match
+    - capability_map_declaration
+    - deterministic_dispatch
+  out_of_scope:
+    - network_fetch
+    - cli_install
+    - remote_registry_fetch
+    - html_to_mp4_render
+    - media_resolve_remote
+    - external_assets
+    - google_fonts_cdn
+runtime_rules:
+  - route_once
+  - route_by_deliverable
+  - capability_dispatch_on_demand
+  - dual_paradigm
+  - offline_first
+  - deterministic
+  - no_render
+  - hash_bound
+  - rendered_draft_not_human_approved
+notes: >
+  Router no renderiza. El HTML-to-MP4 adapter vive en content-os-core. El router
+  lee intent local, escribe brief local, despacha a Fase 3 workflows (pending) o
+  marca coverage_gap. No network, no CLI fetch. Dual paradigm: html-gsap default,
+  remotion solo si intent explicit.

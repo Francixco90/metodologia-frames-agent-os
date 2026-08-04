@@ -1,0 +1,27 @@
+skill_id: content-os-router
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: router-intent-v1
+authority_refs:
+  - skills/vendor/hyperframes/hyperframes/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: hyperframes
+  source_repo: https://github.com/heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation: local declarative router (no npx CLI install); route-once + route-by-deliverable; dispatch to Fase 2 capabilities + Fase 3 workflows; extends Capa A cabin router with source-to-video routes
+supported_request_types:
+  - intent_route_source_to_video
+  - capability_dispatch
+  - intent_brief_audit
+  - route_resolution
