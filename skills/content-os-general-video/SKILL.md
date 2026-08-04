@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS General Video
+# Frames ContentOS General Video
 
 Orquestador freeform: autor un video custom cuando ningún workflow especializado
 encaja — brand reels, sizzle reels, montajes, multi-scene pieces, static loops,

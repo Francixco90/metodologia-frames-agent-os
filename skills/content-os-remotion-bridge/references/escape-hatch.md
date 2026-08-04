@@ -119,7 +119,7 @@ source first, then re-run the lint.
 
 ## Rebuild-natively fallback
 
-If the source is not a composition in either Content OS paradigm (After Effects
+If the source is not a composition in either Frames ContentOS paradigm (After Effects
 `.aep`, Framer Motion, plain CSS animation, plain React without Remotion),
 there is no paradigm source to translate. Decline the translation and
 recommend `content-os-general-video` for a fresh native build. The bridge

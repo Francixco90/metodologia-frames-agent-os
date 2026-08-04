@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Registry — static registry manifest/brief auditor.
+ * Frames ContentOS Registry — static registry manifest/brief auditor.
  *
  * Reads a registry manifest (JSONL) or brief (YAML-ish) and detects:
  * missing-sha256, missing-seek-safe, network-in-block, not-offline,

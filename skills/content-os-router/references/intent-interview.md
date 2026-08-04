@@ -25,7 +25,7 @@ Aplicar la primera fila que matchee; no evaluar filas menores:
   `content-os-general-video`. Especializados fuertes 30-90s.
 - **Style** — ¿brand/palette/voice? Delegado a `content-os-creative` (Capability
   Fase 2). El router no decide style; lo pasa al capability_map.
-- **Runtime** — ¿HTML+GSAP (Content OS default) o Remotion explícito? Default
+- **Runtime** — ¿HTML+GSAP (Frames ContentOS default) o Remotion explícito? Default
   html-gsap. No mezclar.
 
 ## 3. Resuelve ambigüedades

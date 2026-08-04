@@ -1,6 +1,6 @@
 # Registry Contract — ground truth
 
-8 reglas load-bearing para bloques reusables en Content OS.
+8 reglas load-bearing para bloques reusables en Frames ContentOS.
 
 ## 1. Hash-bound
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "slideshow-v1",
-  "title": "Content OS Slideshow workflow state",
+  "title": "Frames ContentOS Slideshow workflow state",
   "type": "object",
   "required": [
     "schemaVersion",

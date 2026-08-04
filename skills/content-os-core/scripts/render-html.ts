@@ -1,5 +1,5 @@
 /**
- * Content OS Core — HTML→MP4 render adapter.
+ * Frames ContentOS Core — HTML→MP4 render adapter.
  *
  * Drives a headless Chromium (Playwright 1.61.1) per frame time, scrubs the
  * composition's paused GSAP timeline to `frame / fps`, screenshots PNG, and

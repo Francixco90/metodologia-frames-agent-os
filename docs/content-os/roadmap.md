@@ -55,27 +55,30 @@ campo (más uso real MetodologIA). [DOC]
 **Estado**: `content-os-remotion-bridge` (4a) existe (activo). Hardening (4b-4c) y
 CI expansion (4d-4e) pendientes. [DOC]
 
-## Fase 2A — HyperFrames homólogos (batches 1-3 merged)
+## Fase 2A — HyperFrames homólogos (batches 1-4 merged)
 
-9 homólogos adicionales `content-os-*` derivados de skills Fase 1A vendored.
-Batched 3 skills por PR.
+10 homólogos adicionales `content-os-*` derivados de skills Fase 1A vendored.
+Batched 3 skills por PR (batch 4 = 1 skill, cierra la motion family).
 
 | batch | PR  | skills                                                                                     | estado |
 | ----- | --- | ------------------------------------------------------------------------------------------ | ------ |
 | 1     | #35 | `content-os-talking-head-recut`, `content-os-music-to-video`, `content-os-changelog-video` | merged |
 | 2     | #36 | `content-os-figma`, `content-os-hyperframes-cli`, `content-os-captions-overlay`            | merged |
 | 3     | #37 | `content-os-motion-doctrine`, `content-os-cut-the-curve`, `content-os-seam-craft`          | merged |
+| 4     | #39 | `content-os-oversized-cursor`                                                              | merged |
 
-**Objetivo Fase 2A**: 33 skills HyperFrames homólogos. Batches 1-3 cubren 9
-homólogos (active). Batches 4+ pendientes: `oversized-cursor`, `hyperframes-tts`,
-`animation-adapter` overlap merge, meta/dev `doc-index`. [DOC]
+**Objetivo Fase 2A**: 33 skills HyperFrames homólogos. Batches 1-4 cubren 10
+homólogos (active). Batches 5+ pendientes: `hyperframes-tts`,
+`animation-adapter` overlap merge, meta/dev `doc-index`. Cobertura HyperFrames:
+25/25 vendor dirs con homólogo (oversized-cursor cerró la motion family;
+`hyperframes-tts` no existe como vendor dir). [DOC]
 
 ## Programa multi-vendor (Fases 1-4)
 
 | fase                          | scope                      | estado                                                                  |
 | ----------------------------- | -------------------------- | ----------------------------------------------------------------------- |
 | Fase 1 vendor                 | 4 publishers vendored      | done — 48 HyperFrames + 11 Remotion + 3 Bento + 3 Scroll reference-only |
-| Fase 2A HyperFrames homólogos | 33 skills objetivo         | batches 1-3 done (9 skills, PRs #35/#36/#37); batch 4+ pending          |
+| Fase 2A HyperFrames homólogos | 33 skills objetivo         | batches 1-4 done (10 skills, PRs #35/#36/#37/#39); batch 5+ pending     |
 | Fase 2B Remotion              | 11 homólogos               | pendiente — 4 PRs batched                                               |
 | Fase 2C Bento                 | 3 homólogos                | pendiente — 1 PR                                                        |
 | Fase 2D Scroll multi-provider | 3 homólogos v2             | pendiente — 3 PRs                                                       |

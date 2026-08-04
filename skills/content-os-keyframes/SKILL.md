@@ -1,6 +1,6 @@
 ---
 name: content-os-keyframes
-description: This skill should be used when the user asks to "define keyframe poses for a Content OS composition", "lint a pose contract", "verify seek-safe keyframes", "snapshot proof frames of an animation", or "audit pose identity and final state".
+description: This skill should be used when the user asks to "define keyframe poses for a Frames ContentOS composition", "lint a pose contract", "verify seek-safe keyframes", "snapshot proof frames of an animation", or "audit pose identity and final state".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires GSAP 3.15.0, the content-os-core HTML composition contract, and the content-os-animation seek-safe rules. Offline render profile only. No network, no GPU runtime, no external assets.
@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Keyframes
+# Frames ContentOS Keyframes
 
 Keyframes son un **pose contract**: sujetos animados nombrados, estados visibles
 explicitos, estado final declarado, runtime seek-safe, pixeles verificados. Esta skill

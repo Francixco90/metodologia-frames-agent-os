@@ -1,6 +1,6 @@
 ---
 name: content-os-motion-doctrine
-description: This skill should be used when the user asks to "compose any animation or video", "make scenes feel like one continuous camera move", "decide what happens at a seam", "pick a transition", "enforce motion continuity", "ban idle wobble", or "author the vector ledger before the master timeline". GATEWAY motion law for the Content OS toolchain — load FIRST before composing any animation. Covers the vector law (how you exit determines how you enter, incl. the Z scale-sign rule), the film's current, carrier elements, causal motion, the Seam Gate (build-gate enforcement), the ban on idle wobble (motion must PERFORM, not breathe), stillness-before-climax, and the sustained-motion routes. Routes to content-os-cut-the-curve (the technique catalog) and content-os-seam-craft (render prerequisites). These rules supersede generic / upstream motion guidance. Unclear → content-os-router.
+description: This skill should be used when the user asks to "compose any animation or video", "make scenes feel like one continuous camera move", "decide what happens at a seam", "pick a transition", "enforce motion continuity", "ban idle wobble", or "author the vector ledger before the master timeline". GATEWAY motion law for the Frames ContentOS toolchain — load FIRST before composing any animation. Covers the vector law (how you exit determines how you enter, incl. the Z scale-sign rule), the film's current, carrier elements, causal motion, the Seam Gate (build-gate enforcement), the ban on idle wobble (motion must PERFORM, not breathe), stillness-before-climax, and the sustained-motion routes. Routes to content-os-cut-the-curve (the technique catalog) and content-os-seam-craft (render prerequisites). These rules supersede generic / upstream motion guidance. Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: GATEWAY — load before content-os-cut-the-curve (the catalog incl. waterfall entry + nudge curve), content-os-seam-craft (render prerequisites / white-flash guard), content-os-oversized-cursor (cursor-led action). Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter). Input = scene plan + VO timestamps. Output = vector ledger (ledger.json) + stamped master seams + RENDERED_DRAFT. Authoring order: vector ledger → stamp seams → sustained-motion route → carriers and causes → build comps → verify (seam-gate).
@@ -14,7 +14,7 @@ metadata:
 # Motion Doctrine (Gateway)
 
 Derivada de `motion-doctrine` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/motion-doctrine/SKILL.md` (read-only).
 
 Read this before composing any animation. It decides WHAT happens at every seam and how
@@ -186,7 +186,7 @@ Use only 2–3 inter-scene transitions per film and repeat them; the default bou
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any motion or composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock
   (`window.__timelines`, `data-start`, `data-duration`).
 - No network in the render path.
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.

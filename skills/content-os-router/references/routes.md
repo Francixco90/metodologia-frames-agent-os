@@ -1,6 +1,6 @@
 # Routes — source→video
 
-Route table para deliverables Content OS. First-match por **deliverable**, no
+Route table para deliverables Frames ContentOS. First-match por **deliverable**, no
 por keyword. Route-once: el router escribe el `intent-brief.jsonl` y sale.
 
 ## Fase 3 workflows (source→video)
@@ -36,9 +36,9 @@ workflow (Fase 3) es el owner. Carga solo lo que el workflow activo necesita.
 
 ## Dual paradigm
 
-El router despacha a runtime HTML+GSAP (Content OS) por defecto. Si el intent
+El router despacha a runtime HTML+GSAP (Frames ContentOS) por defecto. Si el intent
 pide Remotion explícito, enrutar a `remotion-video-production` (existente, no
-Content OS). No mezclar runtimes en un deliverable.
+Frames ContentOS). No mezclar runtimes en un deliverable.
 
 ## Ambigüedades
 

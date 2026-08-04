@@ -50,7 +50,7 @@ the target paradigm.
 
 ## Stop rules
 
-- **Stop** if the source is not a composition in either Content OS paradigm. Recommend `content-os-general-video` for a fresh native build.
+- **Stop** if the source is not a composition in either Frames ContentOS paradigm. Recommend `content-os-general-video` for a fresh native build.
 - **Stop** if the source lint fires any blocker. Recommend the runtime interop pattern.
 - **Stop** if the SSIM diff fails (below threshold). Re-read the relevant mapping ref, re-translate, re-validate.
 - **Stop** if provenance/rights/authority are unverified. No promotion without hashes/provenance (AGENTS.md).

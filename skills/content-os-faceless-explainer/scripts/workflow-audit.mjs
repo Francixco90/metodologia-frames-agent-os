@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Faceless Explainer — static workflow-state auditor.
+ * Frames ContentOS Faceless Explainer — static workflow-state auditor.
  *
  * Reads a workflow state (JSONL) or brief (YAML-ish) and detects:
  * missing-gate, step-out-of-order, capture-in-faceless, footage-in-faceless,

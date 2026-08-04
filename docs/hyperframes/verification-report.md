@@ -1,11 +1,11 @@
-# Content OS Fase 0 — verification report
+# Frames ContentOS Fase 0 — verification report
 
 > Date: 2026-08-03 · Branch: `feat/content-os-vendor-hyperframes` · Base: `bfb6d5a`
 
 ## Objective
 
 Vendor 15 HyperFrames skills (HeyGen, Apache-2.0) as text-only, reference-only,
-audited input for Content OS Fases 1-4. No execution, no registration, no runtime
+audited input for Frames ContentOS Fases 1-4. No execution, no registration, no runtime
 dependency added.
 
 ## What was done
@@ -27,7 +27,7 @@ dependency added.
    sha256 (644 skill files + 2 root), Apache-2.0 attribution, known risks, update
    procedure.
 5. Wrote `docs/hyperframes/audit-report.md` (per-skill checklist + global findings)
-   and `docs/hyperframes/architecture.md` (HyperFrames → Content OS mapping,
+   and `docs/hyperframes/architecture.md` (HyperFrames → Frames ContentOS mapping,
    runtime decision, media model, determinism contract).
 6. Updated exclusions so vendor files are not built/linted/formatted/privacy-scanned:
    - `tsconfig.json` `exclude` += `skills/vendor/**` (vendor has 28 `.ts`/`.tsx`
@@ -146,7 +146,7 @@ check-privacy.
 ### Risks carried forward
 
 - Bundled `gsap.min.js` (music-to-video, talking-head-recut) — text reference only;
-  Content OS uses toolchain `gsap 3.15.0`, no runtime dep on vendor copy.
+  Frames ContentOS uses toolchain `gsap 3.15.0`, no runtime dep on vendor copy.
 - Animation-adapter overlap (gsap/css-animations/tailwind/animejs/three/lottie/waapi/
   typegpu) — 9 skills listed on skills.sh live in other repos and overlap
   `motion-library-adapters` / `content-os-animation` (plan risk #3). Decision:

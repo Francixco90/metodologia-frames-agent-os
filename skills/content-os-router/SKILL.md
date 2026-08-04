@@ -1,6 +1,6 @@
 ---
 name: content-os-router
-description: This skill should be used when the user asks to "make a video from a URL", "turn a GitHub PR into a video", "explain a topic with a faceless video", "route a source to a Content OS workflow", "pick the right Content OS workflow for a source", or "dispatch capabilities for a source-to-video deliverable".
+description: This skill should be used when the user asks to "make a video from a URL", "turn a GitHub PR into a video", "explain a topic with a faceless video", "route a source to a Frames ContentOS workflow", "pick the right Frames ContentOS workflow for a source", or "dispatch capabilities for a source-to-video deliverable".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, content-os-creative brand/pacing, content-os-media resolve cascade, and content-os-registry blocks. Routes source→video intents to Fase 3 workflows and dispatches Fase 2 capability skills. Extends the cabin router (Capa A) with source-to-video routes.
@@ -10,9 +10,9 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Router
+# Frames ContentOS Router
 
-Front door de **Content OS**. Intent router + capability map para deliverables
+Front door de **Frames ContentOS**. Intent router + capability map para deliverables
 **source→video**. Adaptado de `hyperframes` (vendor, referencia, Apache 2.0) al
 arquitectura local: route-once, route-by-deliverable (no por keyword), dispatch a
 capability skills (Fase 2) + workflows source→video (Fase 3). Extiende el router
@@ -106,9 +106,9 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
    keyword o file type mencionado al pasar. La route table es first-match.
 3. **Capability dispatch on-demand.** El capability_map[] declara qué skills Fase 2
    carga el workflow. Las capabilities nunca son owners del deliverable.
-4. **Dual paradigm.** El router despacha a runtime HTML+GSAP (Content OS) por
+4. **Dual paradigm.** El router despacha a runtime HTML+GSAP (Frames ContentOS) por
    defecto. Si el intent pide Remotion explícito, enrutar a
-   `remotion-video-production` (existente, no Content OS). No mezclar runtimes en
+   `remotion-video-production` (existente, no Frames ContentOS). No mezclar runtimes en
    un deliverable.
 5. **Offline-first.** No network en el route path. No CLI fetch. El router lee
    intent local, escribe brief local. Media resuelto via `content-os-media`

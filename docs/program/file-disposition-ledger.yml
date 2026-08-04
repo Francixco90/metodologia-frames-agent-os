@@ -781,7 +781,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: 0f27089905b9f9960f5ac326a1cea390bbe38bfdca4a4970a6e7ab465f1caaeb
+      current_sha256: 654b83ca8dc6d1676f5e8e37184a16f8ec8e069bfa61f99bd6bbca762ff45238
       current_words: 663
       current_loc: 126
       byte_identical: false

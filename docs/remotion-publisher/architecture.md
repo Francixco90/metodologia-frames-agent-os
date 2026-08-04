@@ -1,6 +1,6 @@
-# Remotion publisher → Content OS architecture mapping
+# Remotion publisher → Frames ContentOS architecture mapping
 
-> Reference for Content OS Fase 2B. Maps the vendored Remotion publisher skills
+> Reference for Frames ContentOS Fase 2B. Maps the vendored Remotion publisher skills
 > (`skills/vendor/remotion-publisher/`) onto the MetodologIA `content-os-remotion-*`
 > homólogos. Source-available reference; homólogos are clean-room prose.
 
@@ -26,7 +26,7 @@ The skills are **markdown reference** (SKILL.md + rules/*.md). The `.tsx/.ts/.mj
 in `remotion-maps` (maptiler/cesium techniques) is reference implementation that imports
 the Remotion runtime — vendored as text, NOT executed.
 
-## Content OS paradigm
+## Frames ContentOS paradigm
 
 The repo already pins **Remotion 4.0.494** in the toolchain and has 2 registered
 Remotion skills: `remotion-video-production` (v1, Fase 4 hardening) and
@@ -34,9 +34,9 @@ Remotion skills: `remotion-video-production` (v1, Fase 4 hardening) and
 bidirectional R↔H interop. Fase 2B adds **`content-os-remotion-*` homólogos** derived
 (clean-room) from the vendored publisher skills.
 
-## Capability mapping (vendored → Content OS homólogo, Fase 2B)
+## Capability mapping (vendored → Frames ContentOS homólogo, Fase 2B)
 
-| vendored skill            | Content OS homólogo (Fase 2B)        | type                                                                               |
+| vendored skill            | Frames ContentOS homólogo (Fase 2B)  | type                                                                               |
 | ------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------- |
 | `remotion-best-practices` | `content-os-remotion-best-practices` | build (umbrella, principal; cite `remotion-video-production-v2` authority sibling) |
 | `remotion-create`         | `content-os-remotion-create`         | build (scaffold reference; auth-gated, offline-fallback)                           |
@@ -64,7 +64,7 @@ bidirectional R↔H interop. Fase 2B adds **`content-os-remotion-*` homólogos**
 
 ## Determinism contract
 
-Remotion is frame-driven (frame clock, offline). Content OS inherits: no `Date.now()` /
+Remotion is frame-driven (frame clock, offline). Frames ContentOS inherits: no `Date.now()` /
 `Math.random()` in composition code, no network in render path, fail-closed remote
 adapters, hash-bound homólogos (4 lifecycle events, append-only).
 

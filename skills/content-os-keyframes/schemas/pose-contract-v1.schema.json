@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.dev/schemas/content-os/pose-contract-v1.json",
-  "title": "Content OS Pose Contract v1",
-  "description": "Seek-safe keyframe pose contract for an HTML+GSAP Content OS composition. Subject identity, explicit poses, final state, seekable runtime, verified pixels.",
+  "title": "Frames ContentOS Pose Contract v1",
+  "description": "Seek-safe keyframe pose contract for an HTML+GSAP Frames ContentOS composition. Subject identity, explicit poses, final state, seekable runtime, verified pixels.",
   "type": "object",
   "required": ["schemaVersion", "compositionId", "subjects"],
   "additionalProperties": false,

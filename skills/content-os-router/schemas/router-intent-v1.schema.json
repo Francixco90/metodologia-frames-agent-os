@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.internal/schemas/router-intent-v1.schema.json",
-  "title": "Content OS Router Intent v1",
+  "title": "Frames ContentOS Router Intent v1",
   "description": "Intent brief for source-to-video routing. Declares source_type, deliverable, route (Fase 3 workflow), and capability_map (Fase 2 skills). Route-once, route-by-deliverable.",
   "type": "object",
   "required": [
@@ -78,7 +78,7 @@
       "type": "string",
       "enum": ["html-gsap", "remotion"],
       "default": "html-gsap",
-      "description": "Dual paradigm. html-gsap (Content OS) default. remotion only if intent explicitly requests."
+      "description": "Dual paradigm. html-gsap (Frames ContentOS) default. remotion only if intent explicitly requests."
     },
     "offline": {
       "type": "boolean",

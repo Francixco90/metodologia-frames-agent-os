@@ -1,6 +1,6 @@
 ---
 name: content-os-figma
-description: This skill should be used when the user asks to "import a Figma design into a video", "bring a Figma frame into a composition", "pull brand tokens from Figma", "reconstruct a Figma component as HTML", "turn a Figma storyboard into animation", or "use my Figma logo in a video". Imports Figma content into a Content OS composition — rendered assets, brand tokens, and components reconstructed as editable HTML at exact geometry, plus storyboard sections decoded into element timelines (frames read as keyframes, not slides). Every import lands as a local frozen file with recorded provenance so renders stay deterministic; no Figma URL survives into the composition. Not a from-scratch creation workflow (use content-os-product-launch-video). Unclear → content-os-router.
+description: This skill should be used when the user asks to "import a Figma design into a video", "bring a Figma frame into a composition", "pull brand tokens from Figma", "reconstruct a Figma component as HTML", "turn a Figma storyboard into animation", or "use my Figma logo in a video". Imports Figma content into a Frames ContentOS composition — rendered assets, brand tokens, and components reconstructed as editable HTML at exact geometry, plus storyboard sections decoded into element timelines (frames read as keyframes, not slides). Every import lands as a local frozen file with recorded provenance so renders stay deterministic; no Figma URL survives into the composition. Not a from-scratch creation workflow (use content-os-product-launch-video). Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-creative (brand variables, tokens), content-os-media (asset freeze, provenance manifest). Input = Figma link or fileKey:nodeId. Output = frozen local assets + composition variables + reconstructed components. Render sees local files only (no network). Applies ON TOP of content-os-embedded-captions for caption overlay. Output RENDERED_DRAFT.
@@ -11,15 +11,15 @@ metadata:
   model_agnostic: true
 ---
 
-# Figma → Content OS composition
+# Figma → Frames ContentOS composition
 
 Derivada de `figma` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored adaptation for
-the Content OS toolchain (HTML composition → Playwright render → MP4). Vendor reference:
+the Frames ContentOS toolchain (HTML composition → Playwright render → MP4). Vendor reference:
 `skills/vendor/hyperframes/figma/SKILL.md` (read-only).
 
 ## What this skill does
 
-Brings the user's Figma work into a Content OS composition. Imports split by capability:
+Brings the user's Figma work into a Frames ContentOS composition. Imports split by capability:
 
 | Phase | What                | Surface                                                                       |
 | ----- | ------------------- | ----------------------------------------------------------------------------- |
@@ -133,7 +133,7 @@ Decode the storyboard grammar mechanically — don't eyeball:
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any composition or component code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock
   (`window.__timelines`, `data-start`, `data-duration`). Never `repeat: -1`.
 - No network in the render path. All Figma I/O at import time; render sees local files only.
 - Never leave a Figma URL in the composition — freeze first.

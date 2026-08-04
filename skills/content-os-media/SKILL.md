@@ -1,6 +1,6 @@
 ---
 name: content-os-media
-description: This skill should be used when the user asks to "resolve a media asset for a Content OS composition", "generate TTS voiceover offline", "transcribe audio locally", "remove background from video offline", "audit a media manifest for remote-without-auth", or "declare remote media opt-in for a project".
+description: This skill should be used when the user asks to "resolve a media asset for a Frames ContentOS composition", "generate TTS voiceover offline", "transcribe audio locally", "remove background from video offline", "audit a media manifest for remote-without-auth", or "declare remote media opt-in for a project".
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract. Offline render profile by default. Remote adapters (HeyGen, OpenAI) are opt-in per project, auth-gated, fail-closed without credentials. No network in the default render path.
@@ -10,9 +10,9 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Media
+# Frames ContentOS Media
 
-Media OS for Content OS compositions: **resolve · generate · transcribe · operate ·
+Media OS for Frames ContentOS compositions: **resolve · generate · transcribe · operate ·
 remember** — every media type, dual offline-default + remote-opt-in, one contract,
 zero context noise. Adaptado de `hyperframes-media-use` (vendoreado Fase 0,
 Apache 2.0, reference-only) al arquitectura local fail-closed + offline-first.

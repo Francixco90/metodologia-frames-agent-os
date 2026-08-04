@@ -7,7 +7,7 @@
 
 3 Bento skills vendored text-only into `skills/vendor/bento/` as
 **reference-only** input for the locally-authored `content-os-bento-*`
-homólogos (Content OS Fase 2C). 24 text files copied, 14 image/metadata
+homólogos (Frames ContentOS Fase 2C). 24 text files copied, 14 image/metadata
 binaries excluded. All 3 sources are **MIT licensed** (verified per repo).
 
 ## Source resolution

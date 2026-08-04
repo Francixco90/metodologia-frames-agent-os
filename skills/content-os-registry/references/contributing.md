@@ -115,7 +115,7 @@ Merge requiere aprobación humana explícita.
   </head>
   <body>
     <div class="stage" data-composition-id="data-chart">
-      <div class="label">Content OS</div>
+      <div class="label">Frames ContentOS</div>
     </div>
     <script>
       gsap.timeline({paused: true, id: 'data-chart'});

@@ -1,6 +1,6 @@
 # Narration & Pacing (offline-first)
 
-Story spine, beat direction, rhythm, and narration rules for Content OS compositions.
+Story spine, beat direction, rhythm, and narration rules for Frames ContentOS compositions.
 Adapted from `hyperframes-creative/references/{story-spine,beat-direction,narration}.md`
 to offline-first + MetodologIA voice (es-LATAM neutro por defecto).
 

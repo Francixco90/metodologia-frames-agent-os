@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Animation — static animation-map auditor.
+ * Frames ContentOS Animation — static animation-map auditor.
  *
  * Reads a composition HTML file, extracts the registered GSAP timeline(s) and
  * enumerates tween calls (fromTo / to / from / set) via a conservative regex

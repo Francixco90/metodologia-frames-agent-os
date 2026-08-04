@@ -1,6 +1,6 @@
 ---
 name: content-os-cut-the-curve
-description: This skill should be used when the user asks to "pick a transition", "author a seam", "velocity-match a cut", "do the waterfall cut", "rack-focus blur-cut", "waterfall entry cascade", "nudge curve group slide", "zoom-through", "inverse zoom-through", or "cut the curve between scenes". The technique catalog for the Content OS toolchain — five velocity-matched SEAMS (zoom-through, inverse zoom-through, cut-the-curve, waterfall cut, rack-focus blur-cut) plus the two in-scene techniques (waterfall ENTRY, nudge curve). Covers partial-travel (~12% of frame) velocity matching via mirrored power4 eases, the Z scale-sign rule, size-scaled blur (10px text / 18-20px full-frame), word-by-word staggered cuts, cascade pacing by element weight, and the 10/65/25 slide ratio. The seam LAW (vector law, the current, the ledger, the Seam Gate) lives in content-os-motion-doctrine; read it first. Unclear → content-os-router.
+description: This skill should be used when the user asks to "pick a transition", "author a seam", "velocity-match a cut", "do the waterfall cut", "rack-focus blur-cut", "waterfall entry cascade", "nudge curve group slide", "zoom-through", "inverse zoom-through", or "cut the curve between scenes". The technique catalog for the Frames ContentOS toolchain — five velocity-matched SEAMS (zoom-through, inverse zoom-through, cut-the-curve, waterfall cut, rack-focus blur-cut) plus the two in-scene techniques (waterfall ENTRY, nudge curve). Covers partial-travel (~12% of frame) velocity matching via mirrored power4 eases, the Z scale-sign rule, size-scaled blur (10px text / 18-20px full-frame), word-by-word staggered cuts, cascade pacing by element weight, and the 10/65/25 slide ratio. The seam LAW (vector law, the current, the ledger, the Seam Gate) lives in content-os-motion-doctrine; read it first. Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Implements the seam-transition catalog governed by content-os-motion-doctrine (the gateway — read FIRST). Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter) and content-os-seam-craft (render prerequisites / opaque stage ground). Input = scene plan + vector ledger. Output = velocity-matched seam tweens + RENDERED_DRAFT. GSAP code templates are worker-authored (scene worker) and registry gsap_templates; transform/opacity/filter only on clip wrappers (#el-<sid>).
@@ -14,7 +14,7 @@ metadata:
 # Cut the Curve — the technique catalog
 
 Derivada de `cut-the-curve` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/cut-the-curve/SKILL.md` (read-only).
 
 Five SEAM techniques, one principle: **cut at peak velocity, match direction and speed
@@ -266,7 +266,7 @@ Rules:
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any seam or composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock
   (`window.__timelines`, `data-start`, `data-duration`).
 - No network in the render path.
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.

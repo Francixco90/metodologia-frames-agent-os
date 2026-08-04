@@ -3,8 +3,8 @@
 Authoritative translation table for the R→H direction. Load this reference at
 plan time to know the high-level mapping; load the per-topic sub-rows for
 fragile details. Adapted from the vendor `remotion-to-hyperframes` skill
-(Apache-2.0, see LINEAGE) — Content OS drops the vendor CLI (`npx hyperframes`)
-and renders via the local Content OS render adapter (Playwright-based).
+(Apache-2.0, see LINEAGE) — Frames ContentOS drops the vendor CLI (`npx hyperframes`)
+and renders via the local Frames ContentOS render adapter (Playwright-based).
 
 ## Reading this table
 

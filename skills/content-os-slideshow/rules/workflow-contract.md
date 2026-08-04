@@ -1,4 +1,4 @@
-# Workflow Contract — Content OS Slideshow
+# Workflow Contract — Frames ContentOS Slideshow
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 

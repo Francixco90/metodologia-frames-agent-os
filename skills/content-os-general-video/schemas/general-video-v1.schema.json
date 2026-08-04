@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "general-video-v1",
-  "title": "Content OS General Video workflow state",
+  "title": "Frames ContentOS General Video workflow state",
   "type": "object",
   "required": [
     "schemaVersion",

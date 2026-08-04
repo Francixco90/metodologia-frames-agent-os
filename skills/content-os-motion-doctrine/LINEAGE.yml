@@ -7,7 +7,7 @@ content_license: LicenseRef-MetodologIA-Internal
 derivation_mode: clean-room-prose-from-apache-2-reference
 derivation_note: >
   Clean-room prose adaptation of the motion-doctrine gateway (vector law + film current +
-  seam gate + no-idle-wobble + sustained-motion routes) for the Content OS toolchain. No
+  seam gate + no-idle-wobble + sustained-motion routes) for the Frames ContentOS toolchain. No
   vendor code copied; the vendor SKILL.md is read-only authority reference. Apache-2.0
   permits derivation with attribution.
 lifecycle_state: active

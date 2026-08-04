@@ -10,7 +10,7 @@ provenance:
   adaptation_notes: >-
     Bidirectional bridge. R→H adapted from vendor remotion-to-hyperframes
     (lint + api-map + ssim-graded eval + escape-hatch). H→R inverse mapping is
-    native to Content OS (vendor explicitly declines reverse). Determinism
+    native to Frames ContentOS (vendor explicitly declines reverse). Determinism
     contract enforced in both directions; offline-first; interop escape-hatch
     for blockers.
 authority_refs:

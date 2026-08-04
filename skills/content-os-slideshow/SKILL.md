@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Slideshow
+# Frames ContentOS Slideshow
 
 Orquestador deck→navigable-slideshow: autor una presentación, pitch deck, o
 deck interactivo con slides discretos, fragment reveals, branching, hotspot
@@ -56,7 +56,7 @@ navigable deck not MP4 (no master-root composition); JSON island declares slides
    - `capability_map[]` en el `intent-brief.jsonl`. Sin brief, rutcea primero.
 2. **Intent confirmation** — si el request llegó como "presentation", "pitch
    deck", "deck", "interactive deck", "convert this page", pausar y confirmar:
-   "Do you want this as a Content OS slideshow?" (navigable deck, no MP4). Esta
+   "Do you want this as a Frames ContentOS slideshow?" (navigable deck, no MP4). Esta
    confirmación es routing decision, no preference gate — sobrevive autonomous
    mode. No autor hasta que el user diga yes.
 3. Verificar `content-os-core` HTML composition contract (`data-*` timing,

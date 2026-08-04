@@ -10,7 +10,7 @@ metadata:
   execution_scope: local-evaluation
 ---
 
-# Content OS Faceless Explainer
+# Frames ContentOS Faceless Explainer
 
 Orquestador source→video: texto (articulo, notes, topic, brief) → faceless
 explainer video. **Faceless** = todo visual es inventado (typography, abstract

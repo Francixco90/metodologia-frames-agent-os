@@ -1,6 +1,6 @@
 # Blocks and components — wiring + install
 
-Dos tipos de bloques reusables en el registry local Content OS.
+Dos tipos de bloques reusables en el registry local Frames ContentOS.
 
 ## Blocks (sub-compositions)
 

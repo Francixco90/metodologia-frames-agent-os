@@ -14,12 +14,12 @@ metadata:
 # music-to-video — one music-grounded, beat-synced video workflow
 
 Derivada de `music-to-video` (`heygen-com/hyperframes`, Apache-2.0). Locally-authored
-adaptation for the Content OS toolchain (HTML composition → Playwright render → MP4).
+adaptation for the Frames ContentOS toolchain (HTML composition → Playwright render → MP4).
 Vendor reference: `skills/vendor/hyperframes/music-to-video/SKILL.md` (read-only).
 
 ## What this skill does
 
-Turn a **music track** into a beat-synced Content OS video. You analyze the track once,
+Turn a **music track** into a beat-synced Frames ContentOS video. You analyze the track once,
 lay out the frames, fill in a per-frame plan, and build each frame as a composition. The
 input is a music track plus optional user images or videos — there is **no narration and
 no website capture**. Typography and templates are the floor (a complete video needs zero
@@ -91,7 +91,7 @@ the summary as a heads-up; wait for approval in interactive mode, proceed in aut
 ### Step 4 — build frames
 
 For each frame, write `compositions/frames/NN-<frame_id>.html`. Each composition uses GSAP
-timelines (`gsap.timeline`, `paused: true`) keyed to the Content OS clock contract
+timelines (`gsap.timeline`, `paused: true`) keyed to the Frames ContentOS clock contract
 (`window.__timelines`, `data-start`, `data-duration`). No `Math.random`, no `Date.now`, no
 `fetch`, no `setTimeout`, no `setInterval` in any frame (determinism contract).
 
@@ -103,7 +103,7 @@ timeline clock. `assets/bgm.mp3` is the audio track (muxed at render).
 
 ### Step 6 — render (user gate)
 
-Render `index.html` to `renders/video.mp4` via the Content OS render adapter
+Render `index.html` to `renders/video.mp4` via the Frames ContentOS render adapter
 (`content-os-core/scripts/render-html.ts`): Playwright + FFmpeg (`libx264`, `image2pipe`),
 frame clock deterministic, no network in the render path. Mux `assets/bgm.mp3` as audio.
 
@@ -111,7 +111,7 @@ frame clock deterministic, no network in the render path. Mux `assets/bgm.mp3` a
 
 - No `Math.random()` / `Date.now()` / `new Date()` / `fetch()` / `setTimeout()` /
   `setInterval()` in any frame or composition code.
-- GSAP timelines `paused: true`, driven by the Content OS frame clock.
+- GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock.
 - No network in the render path. Remote media adapters fail-closed (`content-os-media`).
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
 

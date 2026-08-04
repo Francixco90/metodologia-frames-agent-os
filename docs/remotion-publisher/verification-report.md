@@ -1,4 +1,4 @@
-# Content OS Fase 1B — verification report
+# Frames ContentOS Fase 1B — verification report
 
 > Date: 2026-08-04 · Branch: `feat/content-os-vendor-remotion-publisher` · Base:
 > `0428e0b` (post-Fase 1D). Source: `remotion-dev/skills` @
@@ -7,7 +7,7 @@
 ## Objective
 
 Vendor 11 Remotion publisher skills (source-available, Remotion AG two-tier, NOT OSI)
-as text-only, reference-only input for Content OS Fase 2B homólogos. No execution, no
+as text-only, reference-only input for Frames ContentOS Fase 2B homólogos. No execution, no
 registration, no runtime dependency added.
 
 ## What was done

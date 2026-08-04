@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.io/schemas/content-os-media-manifest-v1.schema.json",
-  "title": "Content OS Media Manifest v1",
-  "description": "Resolved media manifest for a Content OS composition. Every entry is offline-default; remote entries are opt-in, auth-gated, fail-closed.",
+  "title": "Frames ContentOS Media Manifest v1",
+  "description": "Resolved media manifest for a Frames ContentOS composition. Every entry is offline-default; remote entries are opt-in, auth-gated, fail-closed.",
   "type": "object",
   "required": ["schemaVersion", "projectId", "mediaProfile", "entries"],
   "properties": {

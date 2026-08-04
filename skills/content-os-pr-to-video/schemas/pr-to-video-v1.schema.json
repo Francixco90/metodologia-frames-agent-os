@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://metodologia.internal/schemas/pr-to-video-v1.schema.json",
-  "title": "Content OS PR to Video Workflow v1",
+  "title": "Frames ContentOS PR to Video Workflow v1",
   "description": "Workflow state for a code-change explainer video (GitHub PR to video, input is a code change via gh, no web capture, no footage). 8-step gated orchestrator delegating to Fase 2 capabilities. Style fixed code-editorial.",
   "type": "object",
   "required": [

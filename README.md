@@ -95,9 +95,9 @@ programa multi-vendor + homólogos:
 
 - **4 publishers vendored** (reference-only, bypass `verify:skills`): 48 HyperFrames
   (15 Fase 0 + 33 Fase 1A, Apache-2.0), 11 Remotion publisher, 3 Bento, 3 Scroll.
-- **26 homólogos H-03 hash-bound** `content-os-*` en
-  `registries/skills/creation-v3-skill-registry.yml` (17 originales + 9 Fase 2A
-  batches 1-3, PRs #35/#36/#37 merged).
+- **27 homólogos H-03 hash-bound** `content-os-*` en
+  `registries/skills/creation-v3-skill-registry.yml` (17 originales + 10 Fase 2A
+  batches 1-4, PRs #35/#36/#37/#39 merged).
 
 Estado del programa multi-vendor (Fases 2A-2D, registry reconcile, receipt cascade):
 [`docs/content-os/roadmap.md`](docs/content-os/roadmap.md). Mapeo vendor→nativas:

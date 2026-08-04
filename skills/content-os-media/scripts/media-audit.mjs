@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Content OS Media — static media manifest / brief auditor.
+ * Frames ContentOS Media — static media manifest / brief auditor.
  *
  * Reads a media manifest (JSONL, one entry per line) or a brief (YAML-ish),
  * and detects: remote-without-auth (provider=remote, auth_declared!=true),

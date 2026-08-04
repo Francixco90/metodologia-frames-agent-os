@@ -8,7 +8,7 @@
 
 11 Remotion publisher skills vendored text-only into
 `skills/vendor/remotion-publisher/` as **reference-only** input for the
-locally-authored `content-os-remotion-*` homólogos (Content OS Fase 2B). 242 text
+locally-authored `content-os-remotion-*` homólogos (Frames ContentOS Fase 2B). 242 text
 files copied, 23 PNG icons excluded. Per-file sha256 recorded in
 [`source-lock.json`](./source-lock.json).
 

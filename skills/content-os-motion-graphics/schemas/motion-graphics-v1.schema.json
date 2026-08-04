@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "motion-graphics-v1",
-  "title": "Content OS Motion Graphics workflow state",
+  "title": "Frames ContentOS Motion Graphics workflow state",
   "type": "object",
   "required": [
     "schemaVersion",
