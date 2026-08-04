@@ -55,7 +55,7 @@
     "verify:orchestration": "node --import tsx scripts/check-orchestration.ts",
     "verify:carousel": "node --import tsx scripts/check-carousel.ts",
     "verify:content-matrix": "node --import tsx scripts/check-content-matrix.ts",
-    "verify:skills": "node --import tsx scripts/check-instagram-v2-skills.ts && node --import tsx scripts/check-creation-v3-skills.ts",
+    "verify:skills": "node --import tsx scripts/check-instagram-v2-skills.ts && node --import tsx scripts/check-creation-v3-skills.ts && node --import tsx scripts/reconcile-skill-registries.ts",
     "verify:content-os": "node --import tsx scripts/check-content-os-workflows.ts",
     "verify:contributions": "node --import tsx scripts/check-contributions.ts",
     "verify:dependencies": "node --import tsx scripts/check-dependency-audit.ts",
