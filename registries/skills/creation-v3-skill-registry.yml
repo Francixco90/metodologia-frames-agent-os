@@ -79,6 +79,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-media/scripts/check-skill.mjs]
+  - skill_id: content-os-registry
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 4df02930ee4bf9ebc748ef68b949ed33d6965f4a5608f0d97bcafbd02d9969e5
+    package_manifest_sha256: 42c5c0656a0495b5437efa1d0e95d6b2b2efa74c5857aa5eb95c640e74d427f9
+    lineage_ref: skills/content-os-registry/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-registry/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-registry/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -108,3 +119,7 @@ events:
   - {event_id: EVT-SKL-CSM-H03-002, event_order: 2, skill_id: content-os-media, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSM-H03-003, event_order: 3, skill_id: content-os-media, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSM-H03-004, event_order: 4, skill_id: content-os-media, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSR-H03-001, event_order: 1, skill_id: content-os-registry, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSR-H03-002, event_order: 2, skill_id: content-os-registry, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSR-H03-003, event_order: 3, skill_id: content-os-registry, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSR-H03-004, event_order: 4, skill_id: content-os-registry, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

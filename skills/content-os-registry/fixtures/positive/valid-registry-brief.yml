@@ -1,0 +1,41 @@
+# Valid registry brief — hash-bound, seek-safe, offline-first blocks + component.
+projectId: metodologia-demo
+registryProfile: local-hash-bound
+compositionPattern: data-viz
+offlineFirst: true
+blocks:
+  - id: data-chart
+    type: block
+    title: Data Chart
+    tags: [data-viz, social]
+    dimensions: 1920x1080
+    duration_s: 15
+    files: [registry/blocks/data-chart.html]
+    sha256: cc75a018bbee238df2dfdc828a44b45336c8ea22250803fb91b4fd406dcc1973
+    seek_safe: true
+    offline: true
+    composition_id: data-chart
+    wire:
+      data-composition-src: compositions/data-chart.html
+      data-composition-id: data-chart
+      data-start: 2
+      data-duration: 15
+      data-track-index: 1
+      data-width: 1920
+      data-height: 1080
+components:
+  - id: shimmer-sweep
+    type: component
+    title: Shimmer Sweep
+    tags: [effect, overlay]
+    files: [registry/components/shimmer-sweep.html]
+    sha256: 14fd2f4ed69ce4759e96f15933fdbfb6c223a0c990acb4d4c07742bac334d22c
+    seek_safe: true
+    offline: true
+    paste: markup + style + script into host composition
+storySpine:
+  hook: 'registry block reused'
+  beats:
+    - {label: 'data-chart wired at 2s', at: '2s'}
+    - {label: 'shimmer-sweep pasted', at: '4s'}
+  final: 'deterministic reuse'

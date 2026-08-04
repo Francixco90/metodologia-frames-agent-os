@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, initial-scale=1" />
+    <title>data-chart — Content OS registry block</title>
+    <style>
+      :root {
+        --block-surface: #0b0d12;
+        --block-foreground: #f5f7fa;
+        --block-accent: #4d8dff;
+        --block-font: system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        background: var(--block-surface);
+        font-family: var(--block-font);
+      }
+      .stage {
+        width: 1920px;
+        height: 1080px;
+        position: relative;
+        overflow: hidden;
+      }
+      .label {
+        position: absolute;
+        left: 120px;
+        top: 120px;
+        font-weight: 700;
+        font-size: 72px;
+        color: var(--block-foreground);
+        will-change: transform, opacity;
+      }
+      .bar {
+        position: absolute;
+        left: 120px;
+        bottom: 120px;
+        width: 0;
+        height: 24px;
+        background: var(--block-accent);
+        will-change: transform;
+      }
+    </style>
+    <script src="../../../node_modules/gsap/dist/gsap.min.js"></script>
+  </head>
+  <body>
+    <div class="stage" data-composition-id="data-chart">
+      <div class="label">Content OS</div>
+      <div class="bar"></div>
+    </div>
+    <script>
+      // Seek-safe registry block: paused timeline, absolute from-states, finite, no Math.random.
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({paused: true, id: 'data-chart'});
+      tl.fromTo('.label', {autoAlpha: 0, y: 24}, {autoAlpha: 1, y: 0, duration: 0.5}, 0);
+      tl.fromTo('.bar', {width: 0}, {width: 1200, duration: 1.2, ease: 'power2.out'}, 0.4);
+      window.__timelines['data-chart'] = tl;
+      // Seek: window.__timelines['data-chart'].seek(frame / fps)
+    </script>
+  </body>
+</html>

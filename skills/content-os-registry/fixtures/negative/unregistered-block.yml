@@ -1,0 +1,44 @@
+# Negative registry brief — documents every violation the audit rejects.
+# NOT a valid brief. Used only to verify registry-audit.mjs detection.
+projectId: bad-demo
+registryProfile: unregistered
+offlineFirst: false # not-offline flagged
+blocks:
+  # Block 1: missing-sha256 + missing-seek-safe + network-in-block + not-offline + block-missing-dimensions + missing-composition-id.
+  - id: bad-block
+    type: block
+    title: Bad Block
+    tags: [bad]
+    # sha256 omitted -> missing-sha256
+    seek_safe: false # missing-seek-safe
+    offline: false # not-offline
+    # dimensions omitted -> block-missing-dimensions
+    # composition_id omitted -> missing-composition-id
+    files: ['https://example.com/bad-block.html'] # network-in-block + https:// literal
+    wire:
+      data-composition-src: 'https://example.com/bad-block.html' # network-in-block
+      data-composition-id: bad-block
+  # Block 2: component-with-dimensions (type component but has dimensions + duration).
+  - id: bad-component
+    type: component
+    title: Bad Component
+    tags: [bad]
+    dimensions: 1920x1080 # component-with-dimensions
+    duration_s: 10 # component-with-duration (not in negative completeness list, detected by audit)
+    files: [registry/components/bad.html]
+    sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+    seek_safe: true
+    offline: true
+storySpine:
+  hook: 'unregistered block'
+  beats: []
+  final: 'fail-closed'
+# Violations documented for negative-fixture completeness:
+# - missing-sha256 (block 1)
+# - missing-seek-safe (block 1)
+# - network-in-block (https URL in block 1 files + wire)
+# - https:// literal present
+# - block-missing-dimensions (block 1)
+# - component-with-dimensions (block 2 has dimensions)
+# - not-offline (block 1 offline=false)
+# - missing-composition-id (block 1)
