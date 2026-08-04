@@ -1,0 +1,38 @@
+receipt_id: RCP-H03-CONTENT-OS-FACELESS-EXPLAINER-001
+schema_version: runtime-boundary-v1
+skill_id: content-os-faceless-explainer
+issued: 2026-08-03
+actor: RT-07-H03-PRODUCER
+scope:
+  - faceless explainer text-to-video orchestration
+  - 8-step gated workflow
+  - capability delegation on-demand
+runtime_boundary:
+  allowed_scoped:
+    - static_workflow_state_parsing
+    - step_gate_validation
+    - capability_map_declaration
+    - deterministic_orchestration
+  out_of_scope:
+    - network_fetch
+    - cli_install
+    - remote_media_default
+    - html_to_mp4_render_direct
+    - capture
+    - footage
+    - external_assets
+    - google_fonts_cdn
+runtime_rules:
+  - orchestrator_no_rules
+  - faceless_invented_visuals
+  - step_gated
+  - delegate_capabilities_on_demand
+  - offline_first
+  - deterministic
+  - seek_safe
+  - rendered_draft_not_human_approved
+notes: >
+  Workflow orquesta steps + gates. Design y motion viven en Fase 2 capabilities.
+  HTML-to-MP4 render via content-os-core Playwright adapter. Media via
+  content-os-media offline cascade (remoto opt-in auth-gated). Faceless = no
+  capture, no footage, invented visuals. No network en render path.

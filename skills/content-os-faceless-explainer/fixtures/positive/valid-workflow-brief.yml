@@ -1,0 +1,44 @@
+# Valid workflow brief — gate-bound, ordered, faceless, offline-first.
+schemaVersion: faceless-explainer-v1
+projectId: metodologia-demo-explainer
+route: content-os-faceless-explainer
+capability_map:
+  [
+    content-os-core,
+    content-os-animation,
+    content-os-keyframes,
+    content-os-creative,
+    content-os-media,
+  ]
+source_type: text
+duration_s: 75
+vo_mode: restructured
+offline: true
+silent: false
+rendered: false
+capture: false
+footage: false
+steps:
+  - step: setup
+    state: gate-passed
+  - step: brief
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: storyboard
+    state: user-approved
+  - step: audio
+    state: gate-passed
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: pending
+storySpine:
+  hook: 'compound interest explained'
+  beats:
+    - {label: 'hook question', at: '0-8s'}
+    - {label: 'concept diagram', at: '8-20s'}
+    - {label: 'data-viz growth', at: '20-35s'}
+  final: 'recap + call to action'
