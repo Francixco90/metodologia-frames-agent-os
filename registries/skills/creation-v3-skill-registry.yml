@@ -123,6 +123,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-pr-to-video/scripts/check-skill.mjs]
+  - skill_id: content-os-product-launch-video
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3e104e66e068265a965f2b4e2a4a70599b8181cf5cac89c41e1131cda558504c
+    package_manifest_sha256: ca7b136d725796da42286d9e789110efd455e6bb0f971e9f1e85ee4c131ed08f
+    lineage_ref: skills/content-os-product-launch-video/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-product-launch-video/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/content-os-product-launch-video/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -168,3 +179,7 @@ events:
   - {event_id: EVT-SKL-CPV-H03-002, event_order: 2, skill_id: content-os-pr-to-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPV-H03-003, event_order: 3, skill_id: content-os-pr-to-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CPV-H03-004, event_order: 4, skill_id: content-os-pr-to-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPL-H03-001, event_order: 1, skill_id: content-os-product-launch-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPL-H03-002, event_order: 2, skill_id: content-os-product-launch-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPL-H03-003, event_order: 3, skill_id: content-os-product-launch-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPL-H03-004, event_order: 4, skill_id: content-os-product-launch-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

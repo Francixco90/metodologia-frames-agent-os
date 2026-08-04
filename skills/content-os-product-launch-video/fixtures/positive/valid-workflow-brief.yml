@@ -1,0 +1,41 @@
+schemaVersion: product-launch-video-v1
+projectId: acme-saas-launch
+route: content-os-product-launch-video
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-creative
+  - content-os-media
+  - content-os-registry
+source_type: url
+source_ref: acme.com
+capture: true
+capture_blocked: false
+style_preset: bold-numeric
+duration_s: 75
+vo_mode: narrated
+offline: true
+silent: false
+rendered: false
+steps:
+  - step: setup
+    state: gate-passed
+  - step: capture
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: storyboard
+    state: user-approved
+  - step: audio
+    state: gate-passed
+  - step: visual-design
+    state: gate-passed
+  - step: build-frames
+    state: gate-passed
+  - step: finalize
+    state: pending
+storySpine:
+  archetype: feature-reveal
+  hook: question
+  vo_mode: narrated
