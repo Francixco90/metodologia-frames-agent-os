@@ -1,0 +1,109 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/bento",
+  "audit_date": "2026-08-04",
+  "vendors": [
+    {
+      "skill": "bento",
+      "source_repo": "https://github.com/bergside/awesome-design-skills",
+      "source_commit": "f631a09b4fcc0166f2e2c1a8c81906ef680c57e8",
+      "source_path": "skills/bento/",
+      "license": "MIT",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "DESIGN.md": "d71e545da4ed6cf15b762d2b745aba445344b86a4a0238b65cae12783b1a0b84",
+        "LICENSE": "56e2dc0100744b958d87e5fc790f4e5ed2b5f483d6f2cbade4b6f7a0f5a03862",
+        "SKILL.md": "1bc7bc1f8df4effd6053be2255bf640e4ab036f477af3e42f8e5321786fe19f5"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "apple-bento-grid: examples/*.html and scripts/* are reference (screenshot export requires Playwright + network); .claude-plugin/*.json are marketplace metadata (inert)",
+        "bento-slides: single SKILL.md; references bento.page app (network fetch); THIRD_PARTY_NOTICES.md included for attribution"
+      ],
+      "update_procedure": [
+        "Clone source repo at new commit",
+        "Re-copy text-only to skills/vendor/bento/<skill>/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "bento-slides",
+      "source_repo": "https://github.com/nyblnet/bento",
+      "source_commit": "cc038183dbf79a33bee7fe49d0aa1c23f7224874",
+      "source_path": "plugins/bento-slides/skills/bento-slides/",
+      "license": "MIT",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "LICENSE": "98f7c83ee9c15064fef0198e2ec3228fa57628e5812583fd8cc6c98a42d5ad02",
+        "SKILL.md": "7a0400207ff0eff09a8eee79d5fbe6c23aceb297213bcb810264da7df16edfff",
+        "THIRD_PARTY_NOTICES.md": "f3838634253d4d4be866871e907b84f80401bba4c030e06cdefa95c8e608000e"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "apple-bento-grid: examples/*.html and scripts/* are reference (screenshot export requires Playwright + network); .claude-plugin/*.json are marketplace metadata (inert)",
+        "bento-slides: single SKILL.md; references bento.page app (network fetch); THIRD_PARTY_NOTICES.md included for attribution"
+      ],
+      "update_procedure": [
+        "Clone source repo at new commit",
+        "Re-copy text-only to skills/vendor/bento/<skill>/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "apple-bento-grid",
+      "source_repo": "https://github.com/hubeiqiao/apple-bento-grid",
+      "source_commit": "235f740b245a6763773c3c80da25980ef2ef8460",
+      "source_path": "root (SKILL.md at repo root)",
+      "license": "MIT",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 18,
+      "critical_file_hashes": {
+        ".claude-plugin/marketplace.json": "635a98f76a61066eee58cf0fd4439b1da5cee4fc58489e0a2cbeba2d8598d54e",
+        ".claude-plugin/plugin.json": "19338ada9b629ec510a71dbb5d69362c74c905c8c33e96d6ac66f824b68f80f7",
+        "LICENSE": "da2b1a90ff6a10899b5d027181b21691d955f126ec5fcd73efeb7b1403f43193",
+        "README.md": "2a2f700617e2153960f1ad293faa7befec8a51c381be2c86b958e7b1fd0b96e6",
+        "SKILL.md": "953e989d76ad3054cc84967bd18bf12a126d895c9d792baa611df691f792e11b",
+        "design-system.md": "1f787af32edbdf6a0356822dcbbad450703ead9292e7348e53eef9de91e83bcc",
+        "evals/evals.json": "9f9da5d128c520bd674281f63e6b3a52c89f1a28cf45e8bb59118c9701274e09",
+        "examples/dark-horizontal.html": "4d60d1df39e1bdd4c067eef0737949ed6c71d444fcadc53d84e381eced94198d",
+        "examples/light-horizontal.html": "fe75451a4c88f7f2a17c08e3742c815bdb4697df9709d41ab730eea1667c69bf",
+        "examples/light-vertical.html": "bee869cb6b02aa4c80aff248df4cfd8478eadd85bdfa91cb5f743176f0cbce25",
+        "examples/real-cny-2026-square.html": "5c91cc8297187656dd7064600c6514ec33cf026005b7c601468365ef22050a37",
+        "examples/real-corpus-dark-horizontal.html": "3f1fdf50b8d5b2edc639e1f185024e8e8f28d50a58b7a6949c840805c4db3893",
+        "examples/real-corpus-dark-vertical.html": "a3fbcd81a16db7d44e0ca804196ba7f6a4992b75742438086ba785d1621cacc3",
+        "scripts/package-lock.json": "54f96c21349c9bddfe7b101c190704ff28b98ac01c1bba22d7bb50bf6cc2ca31",
+        "scripts/package.json": "6baefb133b8400391b86b2aba631a6e4160f0c3a1e08d61ce281e8ea32686128",
+        "scripts/screenshot.mjs": "58271c006a67315d317a628344920f8d46cdfcdafba3a715aace0465af8b452b",
+        "social/launch-copy.md": "8d085910d3ee5eccbc37012e5aa11f8e99409f9fc65af8b712c5c07d3b45246e",
+        "social/og-preview.html": "32a56ef3be987753988d9f6f4ac613dd4ddb0abd70f4763e6b1ba2b2b04ff11c"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "apple-bento-grid: examples/*.html and scripts/* are reference (screenshot export requires Playwright + network); .claude-plugin/*.json are marketplace metadata (inert)",
+        "bento-slides: single SKILL.md; references bento.page app (network fetch); THIRD_PARTY_NOTICES.md included for attribution"
+      ],
+      "update_procedure": [
+        "Clone source repo at new commit",
+        "Re-copy text-only to skills/vendor/bento/<skill>/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 24,
+    "total_skills": 3,
+    "licenses": {
+      "bento": "MIT",
+      "bento-slides": "MIT",
+      "apple-bento-grid": "MIT"
+    },
+    "binaries_excluded": "apple-bento-grid: 14 (10 image assets + .gitignore + LICENSE re-added; 12 images/.webp excluded, 2 metadata re-included as text)",
+    "text_extensions_copied": [".md", ".json", ".mjs", ".html", ".LICENSE"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

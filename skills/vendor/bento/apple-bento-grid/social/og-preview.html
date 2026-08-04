@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Apple Bento Grid — Social Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0c10;
+    color: #f5f5f7;
+    width: 1280px;
+    height: 640px;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .og-card {
+    width: 1280px;
+    height: 640px;
+    padding: 72px 80px;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* === LEFT SIDE === */
+  .left {
+    flex: 0 0 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2997ff;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-family: 'Sora', sans-serif;
+    font-size: 76px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #6e7681;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    max-width: 400px;
+  }
+
+  .install-block {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 24px;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+  }
+
+  .install-cmd {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 400;
+    color: #30d158;
+    letter-spacing: -0.01em;
+  }
+
+  .repo-url {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #484f58;
+    margin-top: 18px;
+  }
+
+  /* === RIGHT SIDE — Mini bento preview === */
+  .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .mini-bento {
+    width: 560px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 6px;
+    grid-template-areas:
+      "m-hero  m-stat1  m-chart"
+      "m-hero  m-stat2  m-chart"
+      "m-cat1  m-cat2   m-hl";
+    aspect-ratio: 52 / 36;
+  }
+
+  .m-card {
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Mini Hero */
+  .m-hero {
+    grid-area: m-hero;
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    justify-content: center;
+  }
+
+  .m-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2997ff, #30d158, #2997ff);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .m-hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    color: #2997ff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .m-hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #f5f5f7;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .m-hero-sub {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #555;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .m-hero-date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #555;
+    margin-top: 14px;
+  }
+
+  .m-badge {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  /* Mini Stat Cards */
+  .m-stat1 {
+    grid-area: m-stat1;
+    background: linear-gradient(145deg, #0a1e0a, #0d0d0d);
+  }
+  .m-stat1::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(48,209,88,0.08) 0%, transparent 70%);
+  }
+
+  .m-stat2 {
+    grid-area: m-stat2;
+    background: linear-gradient(145deg, #0a1628, #0d0d0d);
+  }
+  .m-stat2::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(41,151,255,0.08) 0%, transparent 70%);
+  }
+
+  .m-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .m-num {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-size: 34px;
+  }
+
+  .m-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  /* Mini Chart */
+  .m-chart {
+    grid-area: m-chart;
+    background: linear-gradient(145deg, #0d0d1a, #0d0d0d);
+    padding: 18px;
+  }
+
+  .m-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .m-chart-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .m-chart-badge {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #30d158;
+  }
+
+  .m-chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    flex: 1;
+    padding-top: 8px;
+  }
+
+  .m-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .m-bar {
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #2997ff, #0071e3);
+  }
+
+  .m-bar-val {
+    font-family: 'Sora', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .m-bar-lbl {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Mini Category Cards */
+  .m-cat1 {
+    grid-area: m-cat1;
+    background: linear-gradient(145deg, #1a0a28, #0d0d0d);
+    padding: 16px 18px;
+  }
+
+  .m-cat2 {
+    grid-area: m-cat2;
+    background: linear-gradient(145deg, #0a1628, #0d0d0d);
+    padding: 16px 18px;
+  }
+
+  .m-phase-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 3px;
+  }
+
+  .m-phase-focus {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #e5e5e7;
+    margin-bottom: 8px;
+  }
+
+  .m-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .m-pill {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    color: #aaa;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    padding: 3px 7px;
+    margin: 2px 2px 2px 0;
+    white-space: nowrap;
+  }
+
+  /* Mini Highlight */
+  .m-hl {
+    grid-area: m-hl;
+    background: linear-gradient(145deg, #059669 0%, #34d399 60%, #6ee7b7 100%);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .m-hl-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .m-hl-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.3;
+  }
+</style>
+</head>
+<body>
+  <div class="og-card">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <div class="eyebrow">Agent Skill</div>
+      <div class="title">Apple<br>Bento Grid</div>
+      <div class="subtitle">Generate Apple-inspired bento grid cards with any AI coding agent. Just describe your data.</div>
+      <div class="install-block">
+        <span class="install-cmd">npx skills add hubeiqiao/apple-bento-grid</span>
+      </div>
+      <div class="repo-url">github.com/hubeiqiao/apple-bento-grid</div>
+    </div>
+
+    <!-- RIGHT SIDE — Mini bento preview -->
+    <div class="right">
+      <div class="mini-bento">
+
+        <!-- Mini Hero -->
+        <div class="m-card m-hero">
+          <div>
+            <div class="m-hero-eyebrow">Q4 2025 Performance</div>
+            <div class="m-hero-title">SaaS</div>
+            <div class="m-hero-title">Metrics</div>
+            <div class="m-hero-sub">Year in Review.</div>
+          </div>
+          <div>
+            <div class="m-hero-date">Oct — Dec 2025</div>
+            <span class="m-badge" style="background: rgba(48,209,88,0.15); color: #30d158;">All Targets Hit</span>
+          </div>
+        </div>
+
+        <!-- Mini Stat 1: ARR -->
+        <div class="m-card m-stat1">
+          <div>
+            <div class="m-label">Annual Revenue</div>
+            <div class="m-num" style="color: #30d158">$2.4M</div>
+            <div class="m-sub">Up from $1.3M</div>
+          </div>
+          <span class="m-badge" style="background: rgba(48,209,88,0.15); color: #30d158;">+84% YoY</span>
+        </div>
+
+        <!-- Mini Stat 2: Users -->
+        <div class="m-card m-stat2">
+          <div>
+            <div class="m-label">Active Users</div>
+            <div class="m-num" style="color: #2997ff">12,500</div>
+            <div class="m-sub">317% growth since Q1</div>
+          </div>
+          <span class="m-badge" style="background: rgba(41,151,255,0.15); color: #2997ff;">+25% QoQ</span>
+        </div>
+
+        <!-- Mini Chart -->
+        <div class="m-card m-chart">
+          <div>
+            <div class="m-chart-header">
+              <div class="m-chart-title">User Growth</div>
+              <div class="m-chart-badge">4.2x</div>
+            </div>
+          </div>
+          <div class="m-chart-bars">
+            <div class="m-bar-group">
+              <div class="m-bar-val">3K</div>
+              <div class="m-bar" style="height: 32px; opacity: 0.5"></div>
+              <div class="m-bar-lbl">Q1</div>
+            </div>
+            <div class="m-bar-group">
+              <div class="m-bar-val">7K</div>
+              <div class="m-bar" style="height: 64px; opacity: 0.65"></div>
+              <div class="m-bar-lbl">Q2</div>
+            </div>
+            <div class="m-bar-group">
+              <div class="m-bar-val">10K</div>
+              <div class="m-bar" style="height: 92px; opacity: 0.8"></div>
+              <div class="m-bar-lbl">Q3</div>
+            </div>
+            <div class="m-bar-group">
+              <div class="m-bar-val">12.5K</div>
+              <div class="m-bar" style="height: 116px; opacity: 1"></div>
+              <div class="m-bar-lbl">Q4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Category 1 -->
+        <div class="m-card m-cat1">
+          <div>
+            <div class="m-phase-label" style="color: #bf5af2">Phase 1</div>
+            <div class="m-phase-focus">Research & Discovery</div>
+          </div>
+          <div class="m-pills-wrap">
+            <span class="m-pill">User Interviews</span>
+            <span class="m-pill">Market Sizing</span>
+            <span class="m-pill">Prototyping</span>
+          </div>
+        </div>
+
+        <!-- Mini Category 2 -->
+        <div class="m-card m-cat2">
+          <div>
+            <div class="m-phase-label" style="color: #2997ff">Phase 2</div>
+            <div class="m-phase-focus">Build & Ship</div>
+          </div>
+          <div class="m-pills-wrap">
+            <span class="m-pill">MVP Launch</span>
+            <span class="m-pill">CI/CD</span>
+            <span class="m-pill">API v1</span>
+          </div>
+        </div>
+
+        <!-- Mini Highlight -->
+        <div class="m-card m-hl">
+          <div class="m-hl-num">4.2x</div>
+          <div class="m-hl-label">User Growth</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
