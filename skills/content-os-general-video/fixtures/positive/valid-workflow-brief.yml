@@ -1,0 +1,39 @@
+schemaVersion: general-video-v1
+projectId: brand-sizzle-reel
+route: content-os-general-video
+vo_mode: silent
+has_script: false
+footage: false
+offline: true
+flow: companion
+storyboard: yes
+scope_expanded: false
+rendered_before_approval: false
+rendered: false
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-creative
+  - content-os-registry
+plan:
+  scene_count: 8
+  genre_lens: borrowed from product-launch
+  audio_identity: deliberate silence
+  open_close: designed
+  scope: exactly the 8 scenes asked
+steps:
+  - step: setup
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: resolve
+    state: gate-passed
+  - step: build
+    state: gate-passed
+  - step: assemble
+    state: gate-passed
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: pending
