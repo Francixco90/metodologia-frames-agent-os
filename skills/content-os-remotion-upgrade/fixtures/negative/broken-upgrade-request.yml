@@ -1,0 +1,17 @@
+request_id: upgrade-broken-001
+skill: content-os-remotion-upgrade
+upgrade_mode: manual-exact-version
+version_coordination: false
+mediabunny_compat: false
+receipt_cascade_required: false
+violations:
+  - mixed Remotion versions across packages (no single exact version)
+  - incompatible Mediabunny version not reconciled to docs
+  - mutation without regenerating RCP-DEP-PRODUCTION receipt cascade
+  - mutation without bumping H03-LOCK-SUCCESSION-001
+  - fetch inside composition to load version metadata (network in render path)
+  - Math.random to jitter a version pin (non-deterministic)
+  - Date.now to seed a lockfile timestamp (non-deterministic)
+  - setTimeout to delay a version check (not frame-driven)
+  - production request without G13-G17 human gate
+verdict: reject; upgrade blocked (mixed versions, no receipt cascade, render path polluted)

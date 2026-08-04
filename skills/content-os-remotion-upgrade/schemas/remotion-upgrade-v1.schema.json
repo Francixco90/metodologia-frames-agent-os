@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologIA.dev/schemas/content-os/remotion-upgrade-v1.schema.json",
+  "title": "Remotion Upgrade v1 request",
+  "type": "object",
+  "required": [
+    "upgrade_mode",
+    "version_coordination",
+    "mediabunny_compat",
+    "receipt_cascade_required"
+  ],
+  "properties": {
+    "upgrade_mode": {
+      "type": "string",
+      "enum": ["cli-npx-remotion-upgrade", "manual-exact-version", "mediabunny-reconcile"],
+      "description": "coordinated upgrade of remotion + @remotion/* packages"
+    },
+    "version_coordination": {
+      "type": "boolean",
+      "description": "all remotion + @remotion/* packages use one exact version"
+    },
+    "mediabunny_compat": {
+      "type": "boolean",
+      "description": "mediabunny / @mediabunny/* upgraded to documented compatible version"
+    },
+    "receipt_cascade_required": {
+      "type": "boolean",
+      "description": "regenerate RCP-DEP-PRODUCTION + bump H03-LOCK-SUCCESSION-001 on mutation"
+    },
+    "mixed_versions": {
+      "type": "boolean",
+      "default": false,
+      "description": "false required; never mix Remotion versions"
+    },
+    "determinism_contract": {
+      "type": "boolean",
+      "default": true,
+      "description": "upgrade is authoring-time; render path contract unchanged after"
+    }
+  }
+}

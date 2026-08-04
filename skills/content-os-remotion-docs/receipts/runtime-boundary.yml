@@ -1,0 +1,29 @@
+schema_version: 1
+receipt_id: COS-RDT-RUNTIME-001
+skill_id: content-os-remotion-docs
+version: 0.1.0
+runtime_scope: local-evaluation-only
+toolchain_dependencies:
+  remotion: 4.0.494
+  react: 19.2.7
+  ffmpeg: libx264
+render_adapter: renderers/remotion/src/Root.tsx
+network_in_render_path: false
+authoring_time_network: true
+authoring_time_network_scope: docs-index-search-and-markdown-fetch-only
+remote_media_fail_mode: closed
+forbidden_apis:
+  - Math.random
+  - Date.now
+  - new Date
+  - fetch
+  - setTimeout
+  - setInterval
+production_runtime_status: local_capability_only
+publication_authority: false
+notes:
+  - No new runtime dependency added (Remotion + React + FFmpeg already toolchain-pinned).
+  - Doc search (Algolia + .md suffix) is authoring-time only; never enters the render path.
+  - Reconcile documented APIs to pinned toolchain (4.0.494) before adopting.
+  - License verdict: see receipts/dependency-audits/H03-LIC-REMOTION-001.yml (source-available-publisher addendum).
+  - Production gates G13-G17 manual; render stays RENDERED_DRAFT.

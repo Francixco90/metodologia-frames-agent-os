@@ -1,0 +1,15 @@
+request_id: docs-broken-001
+skill: content-os-remotion-docs
+search_scope: authoring-time-docs-search
+query: useCurrentFrame timing
+fetch_format: markdown-suffix
+pin_awareness: false
+violations:
+  - fetch inside composition to load docs at render time (network in render path)
+  - adopting an API absent in pinned Remotion 4.0.494 (unreconciled)
+  - Math.random to jitter a doc-fetch cache key (non-deterministic)
+  - Date.now to seed a doc-fetch timestamp (non-deterministic)
+  - setTimeout to delay a doc lookup (not frame-driven)
+  - docs-fetch branches the composition render output (render path polluted)
+  - production request without G13-G17 human gate
+verdict: reject; docs blocked (doc-fetch entered render path)
