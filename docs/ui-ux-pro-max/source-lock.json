@@ -1,0 +1,76 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/ui-ux-pro-max",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "source_commit": "4d140cf",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2024 Next Level Builder (ui-ux-pro-max, https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)",
+  "vendor_root_hashes": {
+    "LICENSE": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014"
+  },
+  "vendors": [
+    {
+      "skill": "ui-ux-pro-max",
+      "source_repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_commit": "4d140cf",
+      "source_path": "/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2024 Next Level Builder",
+      "destination": "skills/vendor/ui-ux-pro-max/ui-ux-pro-max/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ui-ux-pro-max/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 361,
+      "critical_file_hashes": {
+        "skill.json": "5cf345d8413739c43b18efe2f44df2d9fdf7177944c0565d18d489450b4d3988",
+        ".claude/skills/ui-ux-pro-max/SKILL.md": "305a7527fcb2f5b6e4129ab22cd839b5172d26df7f14d3324bfdec8fc1763560",
+        ".claude/skills/design/SKILL.md": "413f4ab913d07f7fd92acbadc25d71aad63443be0c40d11234944aea688603b6",
+        ".claude/skills/design-system/SKILL.md": "655468bb723a6bc9d17fcb09a6a005e10e313d63b879f4d74fb2abdc3041ae3f",
+        ".claude/skills/ui-styling/SKILL.md": "f8b6c3832d2af51f67b3932e3c4a79bcd8a8596cc61ce1547a686fc951e5c62d",
+        ".claude/skills/brand/SKILL.md": "6a450ee1a83a403d47cec2ede9030feb60a67a81fc425d2406e975339313bd44",
+        ".claude/skills/banner-design/SKILL.md": "913d9c4b2a3b405d638d50131e0dd3fe2787c839423d79287b7858ac29255acc",
+        ".claude/skills/slides/SKILL.md": "2b90bdaf63f231919a01f4962f374ecd84af101a7e7545f8d9c68e049025accb"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "Generator-based skill with CLI (cli/) + npm package source (src/); CLI not executable in vendor context, no node_modules/dist vendored",
+        "Bundles 7 sub-skills (ui-ux-pro-max umbrella + design, design-system, ui-styling, brand, banner-design, slides); homólogo derives from umbrella ui-ux-pro-max SKILL.md doctrine",
+        "TrueType fonts (.ttf) in .claude/skills/ui-styling/canvas-fonts/ excluded as binaries; OFL .txt license files retained",
+        "gallery/, projects/, preview/, screenshots/ excluded (demo app, templates, binary screenshots); scripts/ root build scripts excluded",
+        "stack/ is claude-website-design-stack reference (Playwright devDep in package.json declared but not installed); vendored as text reference only",
+        "Search script references Python 3.x (scripts/search.py) — homólogo must not auto-execute; clean-room prose only"
+      ],
+      "update_procedure": [
+        "Clone nextlevelbuilder/ui-ux-pro-max-skill at new commit",
+        "Re-copy text-only to skills/vendor/ui-ux-pro-max/ui-ux-pro-max/ (exclude node_modules, dist, .git, binaries, .ttf, gallery, projects, preview, screenshots, scripts, .github, governance docs)",
+        "Regenerate source-lock.json hashes (per-file sha256 walk + critical_file_hashes)",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 361,
+    "total_skills": 1,
+    "licenses": {
+      "ui-ux-pro-max": "MIT"
+    },
+    "binaries_excluded": "screenshots/*.png, .claude/skills/ui-styling/canvas-fonts/*.ttf (TrueType fonts)",
+    "text_extensions_copied": [
+      ".md",
+      ".json",
+      ".csv",
+      ".py",
+      ".mjs",
+      ".js",
+      ".ts",
+      ".sh",
+      ".txt",
+      ".html",
+      ".css",
+      ".yaml",
+      ".yml"
+    ],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
