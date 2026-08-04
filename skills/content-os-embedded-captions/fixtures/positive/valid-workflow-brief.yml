@@ -1,0 +1,44 @@
+schemaVersion: embedded-captions-v1
+projectId: launch-explainer-captions
+route: content-os-embedded-captions
+mode: standard
+identity: keynote
+vo_mode: transcribed
+has_script: false
+footage: true
+offline: true
+transcript_source: offline
+matte_source: offline
+rail_mode: rail
+embed_all: false
+graded_footage: false
+burned_in_captions: false
+rendered: false
+capability_map:
+  - content-os-core
+  - content-os-animation
+  - content-os-keyframes
+  - content-os-creative
+  - content-os-media
+  - content-os-registry
+shotPlan:
+  footage_ref: local clip launch-talk
+  identity_pick: keynote (opaque white Inter 800 dead-center stillness, product launch)
+  caption_model: rail verbatim + one embed climax at the peak
+  hero_anchor: heroBands.best ~30-55% occluded
+  proof_times: [1.2, 4.5, 8.0]
+steps:
+  - step: setup
+    state: gate-passed
+  - step: prepare
+    state: gate-passed
+  - step: plan
+    state: gate-passed
+  - step: design
+    state: gate-passed
+  - step: build
+    state: gate-passed
+  - step: verify
+    state: gate-passed
+  - step: finalize
+    state: pending

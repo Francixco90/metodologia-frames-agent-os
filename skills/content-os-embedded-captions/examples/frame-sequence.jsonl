@@ -1,0 +1,3 @@
+{"frame":"01-rail-in","step":"build","caption_type":"rail","motion":"fromTo autoAlpha 0->1 y 20->0 duration 0.3","seek_safe":"paused true, tl.seek(frame/fps)","layer":"front"}
+{"frame":"02-embed-peak","step":"build","caption_type":"embed","motion":"fromTo scale 0.8->1.1->1 autoAlpha 0->1 duration 0.4 amplitude coupled audio-envelope","seek_safe":"paused true, tl.seek(frame/fps)","layer":"behind-subject-matte-occlusion"}
+{"frame":"03-embed-exit","step":"build","caption_type":"embed","motion":"fromTo autoAlpha 1->0 scale 1->1.05 duration 0.3","seek_safe":"paused true, tl.seek(frame/fps)","layer":"behind-subject-matte-occlusion"}

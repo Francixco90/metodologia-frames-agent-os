@@ -1,0 +1,31 @@
+skill_id: content-os-embedded-captions
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: embedded-captions-v1
+authority_refs:
+  - skills/vendor/hyperframes/embedded-captions/SKILL.md
+  - skills/content-os-core/SKILL.md
+  - skills/content-os-animation/SKILL.md
+  - skills/content-os-keyframes/SKILL.md
+  - skills/content-os-creative/SKILL.md
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-registry/SKILL.md
+  - skills/content-os-router/SKILL.md
+  - scripts/check-creation-v3-skills.ts
+provenance:
+  source_skill: embedded-captions
+  source_repo: heygen-com/hyperframes
+  source_license: Apache-2.0
+  adaptation_notes: >
+    Orquestador footage→captioned-video: añade captions a talking-head existente
+    sin editar el footage. Caption model rail (default) + embed (pico escaso) +
+    drop (filler). Transcription via content-os-media (whisper.cpp offline
+    default; WhisperX remote opt-in auth-gated). Matting via content-os-media
+    (ffmpeg bg-removal local default; remote opt-in auth-gated). Composition via
+    content-os-core (HTML+GSAP seekable → frames → FFmpeg composite). Identity
+    catalog (DNA registry + themes). Modes standard/cinematic/theme. Footage
+    untouched (never grade). Rail-first. Output RENDERED_DRAFT, no HUMAN_APPROVED.
