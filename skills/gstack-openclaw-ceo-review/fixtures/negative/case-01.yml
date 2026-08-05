@@ -1,0 +1,27 @@
+case_id: ceo-review-negative-01
+description: >
+  Invocación inválida que aprueba automáticamente el plan sin challenge, sin
+  mapear caminos de fracaso, y sin surfear decisiones de alcance al usuario.
+  La skill rubber-stampa la propuesta y declara el plan listo para
+  implementación, violando el límite fail-closed de revisión adversarial y
+  control explícito del usuario.
+invocation:
+  skill: gstack-openclaw-ceo-review
+  input:
+    plan_path: plans/feature-y.md
+  auto_approve: true
+violation: >
+  La skill recibe el plan y declara inmediatamente que está aprobado sin
+  interrogar la premisa, sin producir alternativas de implementación, sin
+  mapear los caminos de fracaso ni los casos límite, y sin presentar
+  decisiones de alcance al usuario para opt-in explícito. Esto rompe el
+  límite fail-closed: la revisión es adversarial por diseño, no un
+  rubber-stamp. Toda decisión de alcance (expandir, mantener o reducir)
+  requiere confirmación explícita del usuario. Aprobar en silencio convierte
+  la postura de CEO en validación cosmética.
+expected_behavior:
+  - refuse_silent_auto_approval
+  - require_explicit_mode_selection_first
+  - challenge_premise_and_map_failure_paths
+  - present_scope_decisions_individually_for_opt_in
+valid: false

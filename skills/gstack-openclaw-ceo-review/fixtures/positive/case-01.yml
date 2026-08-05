@@ -1,0 +1,27 @@
+case_id: ceo-review-positive-01
+description: >
+  Revisión válida de un plan en postura de CEO. La skill interroga la premisa
+  del plan, challengea el alcance propuesto, mapea los caminos de fracaso, y
+  presenta individualmente cada oportunidad de expansión o reducción para que
+  el usuario decida con opt-in explícito. La salida es prosa auditable; no
+  hay ejecución ni mutación del repositorio.
+invocation:
+  skill: gstack-openclaw-ceo-review
+  input:
+    plan_path: plans/feature-x.md
+    plan_type: greenfield_feature
+  user_confirmation: required_before_scope_decisions
+expected_behavior:
+  - challenge_plan_premise_before_sections
+  - map_existing_code_leverage_per_subproblem
+  - produce_two_to_three_implementation_alternatives
+  - ask_user_for_mode_selection_before_review_sections
+  - evaluate_all_eleven_sections_no_skip
+  - present_each_scope_change_individually_for_opt_in
+  - name_every_error_path_and_user_visible_outcome
+  - trace_data_flows_across_happy_and_shadow_paths
+  - require_explicit_user_confirmation_before_any_action
+  - produce_summary_with_mode_strongest_challenges_accepted_deferred
+  - no_repository_mutation
+  - no_external_tool_execution
+valid: true

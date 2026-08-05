@@ -1,0 +1,31 @@
+case_id: office-hours-negative-01
+description: >
+  Invocación inválida que salta el diagnóstico, escribe código, hace scaffold
+  del proyecto y arranca implementación directamente desde la idea, sin
+  challengear premisas ni producir un design doc. Esto rompe el HARD GATE
+  fail-closed de la skill: la única salida autorizada es un design doc de
+  prosa, nunca código ni andamiaje de proyecto.
+invocation:
+  skill: gstack-openclaw-office-hours
+  input:
+    idea: AI onboarding assistant for new hires
+  auto_implement: true
+violation: >
+  La skill recibe la idea y pasa directamente a crear archivos de
+  implementación, inicializar un proyecto (scaffold), invocar herramientas
+  que mutan el repositorio y empezar a escribir código, sin interrogar el
+  goal, sin hacer las preguntas de forcing, sin challengear premisas, sin
+  generar alternativas y sin producir un design doc aprobado. Esto rompe el
+  HARD GATE no negociable: la skill produce design docs, no código. La
+  postura de office hours exige entender el problema antes de proponer
+  solución, y el deliverable es prosa auditable, no ejecución. Toda
+  implementación es otra sesión, otra skill. Aprobar o iniciar código en
+  silencio convierte los office hours en ejecución sin diagnóstico.
+expected_behavior:
+  - refuse_to_write_code_or_scaffold
+  - ask_goal_question_first
+  - run_diagnostic_before_solutions
+  - challenge_premises_and_produce_alternatives
+  - deliver_design_doc_only
+  - require_explicit_user_approval_before_any_design_doc_commit
+valid: false

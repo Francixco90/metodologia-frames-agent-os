@@ -1,0 +1,35 @@
+case_id: openclaw-investigate-negative-01
+description: >
+  Investigación inválida que aplica un fix directamente sobre el síntoma sin
+  investigar la causa raíz ni verificar hipótesis contra evidencia. La skill
+  patchea el error de tipo agregando un guard de null en el punto del crash,
+  sin trazar el flujo de datos ni reproducir el bug, violando la ley de
+  hierro: no fix sin causa raíz confirmada primero.
+invocation:
+  skill: gstack-openclaw-investigate
+  mode: root-cause-investigation
+  input:
+    symptom: "TypeError: Cannot read property 'plan' of undefined al renderizar el checkout"
+    stack_trace: |
+      at Checkout.render (src/Checkout.tsx:42)
+    apply_fix_immediately: true
+  actions:
+    - add_null_guard_at_crash_site
+    - skip_reproduction
+    - skip_hypothesis_verification
+    - apply_patch_without_user_confirmation
+violation: >
+  La skill patchea el síntoma en el punto del crash agregando un guard de
+  null, sin trazar el flujo de datos, sin reproducir el bug, sin formular ni
+  verificar una hipótesis de causa raíz, y sin pedir confirmación al
+  usuario. Esto rompe la ley de hierro: no fix sin causa raíz confirmada
+  primero. Parchear síntomas genera whack-a-mole debugging —el siguiente
+  bug será más difícil de encontrar. La investigación debe reproducir,
+  aislar, hipotetizar y verificar antes de proponer cualquier fix, y la
+  aplicación está gated en confirmación explícita del usuario.
+expected_behavior:
+  - refuse_symptom_patching_without_root_cause
+  - require_reproduction_before_fix
+  - require_hypothesis_verification_against_evidence
+  - require_explicit_user_confirmation_before_applying_fix
+valid: false
