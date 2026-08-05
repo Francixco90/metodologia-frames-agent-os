@@ -681,6 +681,36 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/context-setup-gbrain/scripts/check-skill.mjs'],
   },
+  {
+    id: 'context-agents-dox',
+    scope: 'local-evaluation',
+    check: ['skills/context-agents-dox/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-codebase-guardian',
+    scope: 'local-evaluation',
+    check: ['skills/context-codebase-guardian/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-lsp',
+    scope: 'local-evaluation',
+    check: ['skills/context-lsp/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-memory',
+    scope: 'local-evaluation',
+    check: ['skills/context-memory/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-schema-aware-db',
+    scope: 'local-evaluation',
+    check: ['skills/context-schema-aware-db/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-teammates',
+    scope: 'local-evaluation',
+    check: ['skills/context-teammates/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

@@ -1,0 +1,13 @@
+name: ground-impact-analysis-in-lsp-references
+scenario: >
+  The user asks "who calls processOrder before I refactor it" and a language
+  server is installed for the project stack. The skill queries references for
+  the symbol, receives a list of file:line:col locations, and grounds the
+  impact-radius claim in those locations rather than in a grep over the
+  symbol name.
+expected_behavior:
+  - Detect the stack from project markers and confirm the language server binary is available before querying.
+  - Query references for the symbol position and return each call site as file:line:col with a snippet.
+  - Ground the impact-radius claim by citing the LSP reference locations as evidence, not a grep result.
+  - Batch definition and references into one server session to amortize startup.
+  - If the server is missing, report it in one line, mark coverage_gap for the ungrounded portion, and fall back to Grep for the current query without stalling the task.

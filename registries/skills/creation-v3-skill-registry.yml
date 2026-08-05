@@ -1366,6 +1366,72 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/context-setup-gbrain/scripts/check-skill.mjs]
+  - skill_id: context-agents-dox
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 34552281b01e99d30f3dca3b0751a68ecb2e8f30a4b7de1f74000df8854757f0
+    package_manifest_sha256: ef9138ece0fab970049c7570c3c97979babfa0f9f7083fc118c9d8cc9c57d1c0
+    lineage_ref: skills/context-agents-dox/LINEAGE.yml
+    dependency_receipt_ref: skills/context-agents-dox/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-agents-dox/scripts/check-skill.mjs]
+  - skill_id: context-codebase-guardian
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3ab7bc12f097bd260211906dba6afc0d805edebad66170eae77d358fee058fc4
+    package_manifest_sha256: 406124b2b8d595ab98c94c3541d45fc86c71822ce5ec689d7827f9c5057270b0
+    lineage_ref: skills/context-codebase-guardian/LINEAGE.yml
+    dependency_receipt_ref: skills/context-codebase-guardian/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-codebase-guardian/scripts/check-skill.mjs]
+  - skill_id: context-lsp
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 21932f06f463857fbb31f0e30eda561b910dc9d8fea6e19662d9a099ee9b2ba5
+    package_manifest_sha256: 1ff26888fcba924b9fbeb2047c8a4f2a3e5d0ca93b91c1357b9414f889c31bc4
+    lineage_ref: skills/context-lsp/LINEAGE.yml
+    dependency_receipt_ref: skills/context-lsp/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-lsp/scripts/check-skill.mjs]
+  - skill_id: context-memory
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 921b808c6fc809606a99f4d5ded45f28d622e0a6f793242aec9537b2eaaa4ee3
+    package_manifest_sha256: a894acf660c14ede1706db179830801d1098418312b358f0fc64c6346e918461
+    lineage_ref: skills/context-memory/LINEAGE.yml
+    dependency_receipt_ref: skills/context-memory/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-memory/scripts/check-skill.mjs]
+  - skill_id: context-schema-aware-db
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 4660a1b79ab38b1cdd82cad0ea2c8e55813a6b8292e493a89c7956c817434d26
+    package_manifest_sha256: 08ea87078fc1e210597736e22e9e286b1bdfd5e8e32d6becc39e3c3accfeb28b
+    lineage_ref: skills/context-schema-aware-db/LINEAGE.yml
+    dependency_receipt_ref: skills/context-schema-aware-db/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-schema-aware-db/scripts/check-skill.mjs]
+  - skill_id: context-teammates
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 466d4976e2db4db18f3c6527262d1f3e459b87b2ad4cdfc03e7821cf9fc70bf3
+    package_manifest_sha256: 96a22d01cf27d140d49f18b52ffee905e0f0044a2d81b821bddcf9507caf15b0
+    lineage_ref: skills/context-teammates/LINEAGE.yml
+    dependency_receipt_ref: skills/context-teammates/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-teammates/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1864,3 +1930,27 @@ events:
   - {event_id: EVT-SKL-CSB-H03-002, event_order: 2, skill_id: context-setup-gbrain, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSB-H03-003, event_order: 3, skill_id: context-setup-gbrain, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSB-H03-004, event_order: 4, skill_id: context-setup-gbrain, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CAD-H03-001, event_order: 1, skill_id: context-agents-dox, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CAD-H03-002, event_order: 2, skill_id: context-agents-dox, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CAD-H03-003, event_order: 3, skill_id: context-agents-dox, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CAD-H03-004, event_order: 4, skill_id: context-agents-dox, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CCG-H03-001, event_order: 1, skill_id: context-codebase-guardian, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CCG-H03-002, event_order: 2, skill_id: context-codebase-guardian, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CCG-H03-003, event_order: 3, skill_id: context-codebase-guardian, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CCG-H03-004, event_order: 4, skill_id: context-codebase-guardian, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CLP-H03-001, event_order: 1, skill_id: context-lsp, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CLP-H03-002, event_order: 2, skill_id: context-lsp, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CLP-H03-003, event_order: 3, skill_id: context-lsp, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CLP-H03-004, event_order: 4, skill_id: context-lsp, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMM-H03-001, event_order: 1, skill_id: context-memory, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMM-H03-002, event_order: 2, skill_id: context-memory, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMM-H03-003, event_order: 3, skill_id: context-memory, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMM-H03-004, event_order: 4, skill_id: context-memory, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSD-H03-001, event_order: 1, skill_id: context-schema-aware-db, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSD-H03-002, event_order: 2, skill_id: context-schema-aware-db, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSD-H03-003, event_order: 3, skill_id: context-schema-aware-db, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSD-H03-004, event_order: 4, skill_id: context-schema-aware-db, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CTM-H03-001, event_order: 1, skill_id: context-teammates, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTM-H03-002, event_order: 2, skill_id: context-teammates, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTM-H03-003, event_order: 3, skill_id: context-teammates, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CTM-H03-004, event_order: 4, skill_id: context-teammates, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

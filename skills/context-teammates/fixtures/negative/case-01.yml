@@ -1,0 +1,19 @@
+name: two-writers-on-same-path-silent-overlap
+scenario: >
+  The agent models a team where the researcher and the writer both claim
+  ownership of the same findings file path, and the skill silently picks one
+  writer instead of declaring the conflict and blocking execution. The
+  overlap is discovered mid-execution and the agent improvises a winner
+  rather than re-modeling the boundaries.
+violation: >
+  The agent allows two teammates to claim the same writable path and does not
+  declare the ownership conflict before execution, breaking the hard rule that
+  each route has exactly one declared writer. Instead of emitting
+  coverage_gap and stopping to re-model the boundaries, the agent silently
+  picks a winner and lets both write, producing untraceable concurrent writes
+  on the same path.
+expect_reject:
+  - The skill declares the ownership conflict as soon as the overlap is detected.
+  - The skill blocks execution of any teammate on the contested path until the conflict is resolved.
+  - The skill emits coverage_gap rather than improvising a winner or fabricating a partial model.
+  - The skill never lets two teammates write the same path, regardless of context or urgency.
