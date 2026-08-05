@@ -1,0 +1,33 @@
+case_id: benchmark-models-positive-01
+description: >
+  Diseño válido de un benchmark cross-model para una skill. La skill produce el
+  protocolo (prompt de paridad, rúbrica de evaluación, esquema de puntuación,
+  formato de resultados), estima el costo del juez opcional, pide confirmación
+  al usuario y solo entonces entrega el plan listo para ejecución material.
+invocation:
+  skill: gstack-benchmark-models
+  input:
+    skill_under_benchmark: dev-design-review
+    models:
+      - claude
+      - gpt
+      - gemini
+    rubric_criteria:
+      - ajuste_al_objetivo
+      - cumplimiento_restricciones
+      - calidad_tecnica
+      - trazabilidad
+      - claridad
+    judge: optional_with_cost_estimate
+  user_confirmation: required_before_execution
+expected_behavior:
+  - establish_prompt_parity_across_models
+  - publish_explicit_weighted_rubric
+  - define_scoring_scale_and_aggregation
+  - estimate_judge_cost_before_opt_in
+  - request_explicit_user_confirmation
+  - no_api_calls_without_confirmation
+  - no_network_access
+  - no_repository_mutation
+  - declare_any_model_specific_config_as_execution_condition
+valid: true

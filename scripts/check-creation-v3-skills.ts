@@ -751,6 +751,31 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/web-hackernews-frontpage/scripts/check-skill.mjs'],
   },
+  {
+    id: 'gstack-autoplan',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-autoplan/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-benchmark',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-benchmark/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-benchmark-models',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-benchmark-models/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-upgrade',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-upgrade/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-ios-clean',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-ios-clean/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

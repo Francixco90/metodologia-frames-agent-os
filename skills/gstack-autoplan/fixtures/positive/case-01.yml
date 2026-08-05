@@ -1,0 +1,30 @@
+case_id: autoplan-positive-01
+description: >
+  Orquestación válida de la pipeline de revisión multi-lente sobre un plan.
+  La skill describe el plan de ejecución (lentes detectadas, alcance, orden),
+  pide confirmación al usuario, y solo entonces ejecuta secuencialmente las
+  lentes con decisión automatizada de issues mecánicos y surfacing de
+  decisiones de gusto en la puerta final.
+invocation:
+  skill: gstack-autoplan
+  input:
+    plan_path: plans/feature-x.md
+    detected_lenses:
+      - strategy
+      - design
+      - engineering
+      - dx
+    execution_order: sequential
+  user_confirmation: required_before_execution
+expected_behavior:
+  - describe_plan_and_lenses_before_running
+  - request_explicit_user_confirmation
+  - run_lenses_sequentially_not_in_parallel
+  - auto_decide_mechanical_issues_with_principles
+  - surface_taste_decisions_at_final_gate
+  - surface_user_challenges_with_full_context
+  - emit_phase_transition_summaries
+  - produce_consolidated_audit_trail
+  - no_repository_mutation
+  - no_external_tool_execution
+valid: true

@@ -1,0 +1,19 @@
+case_id: autoplan-negative-01
+description: >
+  Invocación inválida que ejecuta automáticamente las lentes de revisión sin
+  pedir confirmación al usuario, violando el límite fail-closed de la skill.
+invocation:
+  skill: gstack-autoplan
+  input:
+    plan_path: plans/feature-y.md
+  auto_execution: true
+violation: >
+  La skill arranca las lentes de revisión inmediatamente al recibir el plan,
+  sin surfear el plan de ejecución ni pedir confirmación explícita al usuario.
+  Esto rompe el límite fail-closed: la orquestación es evaluación local, no
+  ejecución automática. La confirmación del usuario es obligatoria antes de
+  invocar cualquier sub-skill de revisión.
+expected_behavior:
+  - refuse_silent_auto_execution
+  - require_explicit_user_confirmation_first
+valid: false

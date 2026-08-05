@@ -1,0 +1,28 @@
+case_id: gstack-upgrade-positive-01
+description: >
+  Procedimiento válido de upgrade gated de toolchain. La skill fija la versión
+  actual, revisa el changelog entre la versión instalada y la objetivo, evalúa
+  breaking changes contra el repositorio, produce un plan de aplicación por
+  pasos con puertas de confirmación, define un plan de rollback, y solo
+  entonces surfacea la puerta de aprobación final al usuario.
+invocation:
+  skill: gstack-upgrade
+  input:
+    current_version: 1.4.2
+    target_version: 1.5.0
+    install_type: vendored
+    changelog_path: CHANGELOG.md
+  user_confirmation: required_before_each_apply_step
+expected_behavior:
+  - pin_current_version_before_anything_else
+  - review_changelog_grouped_by_theme
+  - assess_breaking_changes_against_repo_surface
+  - block_on_blocking_breaking_change_without_migration
+  - produce_gated_apply_plan_with_per_step_confirmation
+  - define_rollback_plan_before_application
+  - surface_final_approval_gate_approve_modify_or_reject
+  - no_install_or_upgrade_command_execution
+  - no_repository_mutation
+  - no_network_access
+  - mark_coverage_gap_when_version_cannot_be_determined
+valid: true
