@@ -1,0 +1,17 @@
+schema_version: 1
+skill_id: design-motion-principles
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/genjutsu/_jutsu/motion-principles/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-motion-principles/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-motion-principles/receipts/runtime-boundary.yml
+external_fragments_reused: false
+publication_authority: false

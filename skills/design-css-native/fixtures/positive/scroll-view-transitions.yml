@@ -1,0 +1,7 @@
+case: scroll-view-transitions
+context: Landing page requiere barra de progreso de scroll y reveals al entrar viewport, sin librerías.
+request: 'Anima una barra de progreso que sigue el scroll de la página y haz que las tarjetas aparezcan al entrar el viewport, solo con CSS.'
+expect: >
+  Salida usa animation-timeline: scroll(root block) para la barra y animation-timeline: view() con
+  animation-range: entry 0% entry 100% para reveals. Incluye @supports fallback para navegadores sin
+  soporte. Cumple fail-closed (sin librerías externas, sin red).

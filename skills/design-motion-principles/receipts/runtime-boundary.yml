@@ -1,0 +1,10 @@
+schema_version: 1
+receipt_id: RCP-H03-DESIGN-MOTION-PRINCIPLES-001
+scope: local-evaluation
+runtime_rules:
+  explicit_frame: true
+  network_allowed: false
+  autonomous_clock_allowed: false
+  fallback_must_be_observable: true
+production_runtime_status: local_capability_only
+publication_authority: false

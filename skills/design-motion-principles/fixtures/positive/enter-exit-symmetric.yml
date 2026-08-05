@@ -1,0 +1,7 @@
+case: enter-exit-symmetric
+context: Modal necesita animación de entrada y salida correcta según motion principles.
+request: 'Define la animación de entrada y salida de un modal siguiendo motion principles.'
+expect: >
+  Enter 300ms ease-out con choreography completa (translateY + opacity + scale leve). Exit 200ms
+  ease-in más sutil (opacity only o opacity + slight scale). Respeta prefers-reduced-motion (duración
+  0.01ms). Cumple fail-closed (sin auto-ejecutar, sin CLI).

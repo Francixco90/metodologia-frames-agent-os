@@ -1,0 +1,17 @@
+schema_version: 1
+skill_id: design-audit-genjutsu
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/genjutsu/_jutsu/design-audit/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-audit-genjutsu/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-audit-genjutsu/receipts/runtime-boundary.yml
+external_fragments_reused: false
+publication_authority: false

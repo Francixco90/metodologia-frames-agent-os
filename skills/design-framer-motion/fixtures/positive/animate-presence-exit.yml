@@ -1,0 +1,7 @@
+case: animate-presence-exit
+context: Modal React necesita animación de entrada y salida al montar/desmontar.
+request: 'Anima un modal con entrada y salida suave usando Framer Motion en React.'
+expect: >
+  Salida usa AnimatePresence mode="wait" envolviendo conditional render, motion.div con key único,
+  initial/animate/exit. Exit más sutil que enter (200ms ease-in opacity, vs enter 300ms ease-out
+  full choreography). Cumple fail-closed (sin auto-instalar motion, describir import).
