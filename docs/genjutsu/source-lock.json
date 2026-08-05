@@ -1,0 +1,515 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/genjutsu",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/AThevon/genjutsu",
+  "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+  "vendor_root_hashes": {
+    "LICENSE": "b37092034fa60870302c3ed67c29fb355ed87ee233c17d11076f0b3e8be970ac"
+  },
+  "vendors": [
+    {
+      "skill": "canvas-generative",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/canvas-generative/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/canvas-generative/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "9f6747e5e7c308e8cdeebca7a4ddab1d9e994d65e2645dcc5b4b8c092db9c558",
+        "references/algorithms.md": "0de2b469554f796ca8a4220625d0a24d7e9fcc670bbaebe9df41e41871a4eb55"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "compose-graphics",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/compose-graphics/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/compose-graphics/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "7b3889e783a28b66b72c762fcd014fddabde181c88dc97ddd71b89378e097f35",
+        "references/agsl-recipes.md": "74b91463f08149f112925345a46ee32909d7d53b219e8152d75ec36383ac0d2f",
+        "references/canvas-generative.md": "4436203dc5c93c0a80b28c6a8cb71c5104188030301883fd66dcc5d3a9bc6cda",
+        "references/m3-expressive-deep.md": "f2c6a5fee383c7a6b7b6f55bbe3dc908fa9a57cc6ef843cdc9ded34728918269"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "compose-motion",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/compose-motion/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/compose-motion/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "e20a68002e3c53be62d968f6f45d8dcc49cef0def54872e6827aa97c96a161bf",
+        "references/gestures-compose.md": "1c02940cbaad75203ca1d0700637fd8336a85b0f62356656592c108589df77ed",
+        "references/recomposition-and-anim.md": "21395e1df29165589998f9a76c5ed1ac3b8d10566409059a3629bf1deb6f5adf",
+        "references/shared-transitions.md": "f75d35b63c153d5e69cb6dabda12c61b5ea7d7e1edc6d0c12dd91b759bd61d93"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "compose-multiplatform",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/compose-multiplatform/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/compose-multiplatform/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "SKILL.md": "0df67d53bfa6541894f979dad5a0432abd8cd09e08939a7dbfcc6a98ee202cad",
+        "references/cmp-interop.md": "23cdb3fb37a12e88db535b7ec508b818c38c0d4d7009490b529301fc5836bb69",
+        "references/cmp-platform-quirks.md": "f13d0eeca3653f7ebd8e0f99c375f2931c211618a7974d31994686e0bf04cd62"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "css-native",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/css-native/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/css-native/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "016569d40213e4a6a529d576acd7c3c1bbf97e6fbc235024eb3eeb4581b53bbc",
+        "references/modern-css.md": "db824e7046ffaca1c67393d3acdfc15ea6729eb71bab2988761b60506087aeb9"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "design-audit",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/design-audit/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/design-audit/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "1be0fb363fa57a6df0c24f764354db8f04dad267725ceb2cd28bc53f3ea8b9bf"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "desktop-principles",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/desktop-principles/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/desktop-principles/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "SKILL.md": "1c52aeca8760a89b6597fc3a3fa4d3b908a490f461fe0c51cd5063c565508763",
+        "references/keyboard-patterns.md": "3acfb1a2342668dbaddf6ef9c42c6d99b562de50a7b8aca6c674206601873d9b",
+        "references/multi-window.md": "5c069e2780f16bc8462e9d35d31b92c7e4e183119d62b7117afaf133534e4fe1"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "framer-motion",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/framer-motion/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/framer-motion/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "198701316fbfa03b54007d24f1015f4e58c33a2e1a5cde18e20a44a1c5a131b0",
+        "references/api.md": "0c94ed64d454fbb63722e5c75370730871173a15899f43282aa52ace72d9c7eb"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "gsap",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/gsap/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/gsap/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 5,
+      "critical_file_hashes": {
+        "SKILL.md": "08df3ec0c89bede6e899e67d275b85336413efb0d7ed430273310e05ae83dc7e",
+        "references/core.md": "5df9a414fc47a2f567d460809f1665367a659882cb593ab8d297006244c15249",
+        "references/plugins.md": "1fa16be1836ef82c99db1ad1afb5cd751353743033287816ee350ea4b9b46ba7",
+        "references/scrolltrigger.md": "d490ac65ce4ac013c119757f44d18aa2ef1b655656af508da64b6ed78e6c2487",
+        "references/timeline.md": "394a7e3a6a39f912cbebe518061a7eae8ef703880958a5e9660991ab27724c0f"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "mobile-principles",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/mobile-principles/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/mobile-principles/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "SKILL.md": "fb86d940dacceeec5003136ddc5617753d84c8442c29211fce907d8568480534",
+        "references/accessibility-mobile.md": "d61d14438739de9430a6df3e0e3c4cbf986f62821145a89b9174441a85a479ed",
+        "references/gestures-deep.md": "6b0af70e95c852df6ab24dfce4836c660b2f2794e956c322909bd1cbcabb12e4"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "motion-principles",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/motion-principles/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/motion-principles/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "e186d6beca74ce90008d7a96d06c4ba79e4dd4de2a315e7d1614d53a1a6931d7",
+        "references/designers.md": "e7df9e53bd3e9d9dc17ef3a2510d00f1ad3a6ba6bf5b4b75a8e5abcc456cffaa",
+        "references/easing-guide.md": "5f737257f870667a453b83837d86933959d88c76936f34f7f5208951eb54bc12",
+        "references/enter-exit-recipes.md": "6c8dd941ff589b78002d47521739fc8c9cf5a228af62a7163ca17a7e649b1e9c"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "swiftui-graphics",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/swiftui-graphics/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/swiftui-graphics/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "73afab1cd83a540e34ddf03bf01975202e869568da142a368c4cbcd442140edb",
+        "references/canvas-swiftui.md": "e507b315a7fd5d4b73df80555f818f47af44dcdcf2f834f4d826a44bccd9a2ae",
+        "references/liquid-glass-deep.md": "df276d83d6000c4702d50bf1ecaaa3847392748218ef14b5b92132a15879f769",
+        "references/metal-recipes.md": "a356efd287406857645d1a857cb5ccd991a6d4a63fe24b376ce3080ef68767f2"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "swiftui-motion",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/swiftui-motion/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/swiftui-motion/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "7ace689f09373bdefbfb8998a7a25d297c44d2ecd155a9290d963cbe392740be",
+        "references/gestures-swiftui.md": "06e29f10ab71a005a26a07b1b010b850b004c3d883ef31ae8108529586032362",
+        "references/phase-keyframe-deep.md": "75238fd988243eb91273cf40e749fe007f5a3d74febb1d1a4611bce0ba374f32",
+        "references/springs-cheatsheet.md": "3a4208d5c1abc1ac5ee69b75fb6a7e3ad29f5cdfcf0d44bcd728f6586f0d5891"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "threejs-r3f",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/threejs-r3f/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/threejs-r3f/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "SKILL.md": "aeee54f83cd7f449918c84b3a4d91b2a628efbe4dd2a218248c08e8fa46e607e",
+        "references/scene-setup.md": "7e6708c58bde3015cc2a4d086cb3997b0ccf5695d8d315a60f3fe3bea305d2a4",
+        "references/shaders.md": "af2d49b52244c457b7cae09d0f9257394c7687bb9aadb78991f9f704670cf270"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ui-ux-pro-max",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/_jutsu/ui-ux-pro-max/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/_jutsu/ui-ux-pro-max/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 44,
+      "critical_file_hashes": {
+        "SKILL.md": "0ae67c5d631124aad93c122446dfd08fed16b2c1ea455dc303bcb8dfc13a9e42",
+        "UPSTREAM.md": "fcc60bf41a9f7f7ff32ac2e718d19f247020a8aeb9cd3c4377b2980b7e8f578c",
+        "data/app-interface.csv": "2a17ef810dab715ce1f339861817a8fbe3ccc38142b70517301e874803e838ac",
+        "data/charts.csv": "a70ef7460b0eaaea8614f86a0d09a4bc38b467804179762464b5ca45b491baac",
+        "data/colors.csv": "cb26759805217edaaa31b09836aec09eab0fe245c58f5884e9a16ef802c6e26a",
+        "data/google-fonts.csv": "3fd2898fb0fdd31ba758bf05cfcd2b58cd0f038a20cf08e417d09e5a8a4a509e",
+        "data/icons.csv": "f376c29fb4df37b4bdb366a5aa70cb211ba3dd8b435390aaa03152a64b07d2e8",
+        "data/landing.csv": "121a2cac7cf21050234b5f80e7b4e182f10123536032e0f9ad862ad3aec9677d",
+        "data/motion.csv": "6452fbd8028ab71d52993775340e1bc40a150d92be8d4b4cb8710620fd1a7512",
+        "data/products.csv": "e9749e4fd8f7d4c94919c25ebd347a4adaddb671e7b01d33fbc2c87d447e6667",
+        "data/react-performance.csv": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f",
+        "data/stacks/angular.csv": "9de35bbda536ced9af7642d88b7675cefa3e18c370ab40c0875f75ab473f0fd6",
+        "data/stacks/astro.csv": "6b587e32df201b6e5e7b2ed187b65eee8e6d55dcd6cc16bde29fc25e0f911dae",
+        "data/stacks/avalonia.csv": "6bfa40ec6609fcb59e52a38281edcc3a3e5b5e56341304fe5628b32cb9b1f875",
+        "data/stacks/flutter.csv": "fe36d404c799781e8ba6e9a8179b45799ed5126a545528550cd2eb0f2346e8c5",
+        "data/stacks/html-tailwind.csv": "7aef38e75c53559470afcfa91580a9917ca8b7dbf8b92110389e23e93703ac52",
+        "data/stacks/javafx.csv": "5545e331b2479eb431ca45203799ce1b0ab1e369045ab7735d5a9f85ec78f956",
+        "data/stacks/jetpack-compose.csv": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e",
+        "data/stacks/laravel.csv": "3e9f551b5232136f7b5ce1304c5e1bf5a83bd63c0dc02afb37502b238772d145",
+        "data/stacks/nextjs.csv": "e828ccc04843742f52f545a068e8a9ab0d2b97c0e771f7e93bf0cef74da05554",
+        "data/stacks/nuxt-ui.csv": "b9972b31e721faabc667ee2b4e93ba2af29e1df86f186c2ff608b68370f0e3a5",
+        "data/stacks/nuxtjs.csv": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6",
+        "data/stacks/react-native.csv": "077aefc81d194895ecf7936b3ed298b978e36961f183e3a275f8acda19b5f621",
+        "data/stacks/react.csv": "e5624ab41d33427d88e41d07581ce4eca59b37b36ab72a6ad43a9c8e2d0a1c72",
+        "data/stacks/shadcn.csv": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded",
+        "data/stacks/svelte.csv": "71af52d64f266c88070b91dbbaa900c2f8074b6baae9f35eaea6ba9cec6fd803",
+        "data/stacks/swiftui.csv": "c9c2d2510f8e66281a2514e8dd0125a6b653b9ef53a71281b5e7dfe003d5b569",
+        "data/stacks/threejs.csv": "c74d6ba76021f8d72c0ed12c559caecfeb6961829242acf6bcb9e99926b1a396",
+        "data/stacks/uno.csv": "5d2e0f396bb9dc5a2661204264cc0eda7cc4fa3d78152dec89d668704a41b8fc",
+        "data/stacks/uwp.csv": "debf669928871261ced9333788d5afd5784377ea1fa1b4f53993dd8f1574c0fc",
+        "data/stacks/vue.csv": "c2724915d3c11cd67263f25896cff721f787a0fdd8326002d31e9f5806dfd8f8",
+        "data/stacks/winui.csv": "2d970b08e44509d7afa53ce7feb446930b2d5e0667fa637df9aeeed65c42bbbe",
+        "data/stacks/wpf.csv": "ca78b5f28dc50d66900548d602d74856400097284c73e076fcfbb5a38ae5083c",
+        "data/styles.csv": "1bf9c1d8484a0a7a54fb67555902380446865b604c8449e47a449cb3d9c1ef88",
+        "data/typography.csv": "7abead73de0e43e09544f164cb60cd431674e411f1e063e555a8b44d51273328",
+        "data/ui-reasoning.csv": "06e4369445388ba9b7a57347510b125b7a2145bbf8546a327ba50292503b204a",
+        "data/ux-guidelines.csv": "e01943c433b2cad3040f19389b3b0455673758a569b7a927b5bedf65c989cb96",
+        "references/pro-rules.md": "bc56db7cb40c5f4d8d4f6229f5c7072865278488fe5b97c76d3a38eb596da4fc",
+        "references/quick-reference.md": "b01ad594cc069d18786d5e8865356cc511226ba6f48d328fd975d31aae8e5781",
+        "scripts/core.py": "64c149019196ee24647464a27278eb96d3b4638ded73ebfc35ccd2bc99c083a9",
+        "scripts/design_system.py": "fcdb279eb9691dffd6c80c333d29a4e5567368e38d724520c60013c8b1aaf242",
+        "scripts/search.py": "69a349d69543f35f45a12c0c82922c550d1b0a16a2b37f6b1406afb2ad2919c8",
+        "scripts/tests/test_core.py": "ce60ac571164cf35e8c866550ad989fa686706a56fa48df4fdf76444b94fdd8d",
+        "scripts/validate_data.py": "f1b5e0916f3c2f8271416f93f6ff9ebf3311a68a943a19c1b83f16823cbb05a7"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "cast",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/cast/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/cast/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "d8379ae158b0d24ea912539827b5430911025fd9b7c23da882e4fcaeb89e0250"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "paint",
+      "source_repo": "https://github.com/AThevon/genjutsu",
+      "source_commit": "08a792f6403104a231fc3f9b1612577698d6e03d",
+      "source_path": "skills/paint/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Adrien Thevon (genjutsu, https://github.com/AThevon/genjutsu)",
+      "destination": "skills/vendor/genjutsu/paint/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/genjutsu/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "9f5904f776cfbb58b428cb7d3bb7c0b96bc1866af948da53777d200e0295cd9c"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/AThevon/genjutsu at new commit",
+        "Re-copy text-only skills/ to skills/vendor/genjutsu/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 91,
+    "total_skills": 17,
+    "licenses": {
+      "canvas-generative": "MIT",
+      "compose-graphics": "MIT",
+      "compose-motion": "MIT",
+      "compose-multiplatform": "MIT",
+      "css-native": "MIT",
+      "design-audit": "MIT",
+      "desktop-principles": "MIT",
+      "framer-motion": "MIT",
+      "gsap": "MIT",
+      "mobile-principles": "MIT",
+      "motion-principles": "MIT",
+      "swiftui-graphics": "MIT",
+      "swiftui-motion": "MIT",
+      "threejs-r3f": "MIT",
+      "ui-ux-pro-max": "MIT",
+      "cast": "MIT",
+      "paint": "MIT"
+    },
+    "binaries_excluded": "none (all vendored files are UTF-8 text)",
+    "text_extensions_copied": [
+      ".md",
+      ".json",
+      ".py",
+      ".sh",
+      ".ts",
+      ".js",
+      ".cjs",
+      ".html",
+      ".dot",
+      ".csv"
+    ],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

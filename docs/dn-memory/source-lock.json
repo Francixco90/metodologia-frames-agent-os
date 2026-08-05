@@ -1,0 +1,205 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/dn-memory",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+  "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+  "license": "Apache-2.0",
+  "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+  "vendor_root_hashes": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "vendors": [
+    {
+      "skill": "agents-dox",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/agents-dox/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/agents-dox/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "15be86b005ce0f47e86b6abc75d9b1e9a92948aff9c13070609af11a29bc2afc",
+        "README.md": "b1517279c135e5f862ce2498c924e4094e89390a434513e14ccd0b16b128ea0d",
+        "SKILL.md": "4deb35a8e368d6ab6e0c565e94f5af979890977ec2197aa50da8df326fef5ba9"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "codebase-guardian",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/codebase-guardian/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/codebase-guardian/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 7,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "4e7c1e977b4d5f32489c2b4b9ac85178264b7b486813d77fc74d39db5619c971",
+        "README.md": "d5400cef08fb768c9ce1e4bc518ee02e3f74e2752b87f120ea5cf44c88f7dac9",
+        "SKILL.md": "e6f408bf729f59808f69681de41a8de4a5fae196612870ea57d68d3b7f6a0f8a",
+        "references/flutter.md": "cde13e03e708ebc8e5101debbfe4606b67b9eb1b6ac1c7e2f7ec8d3e8d9f7b66",
+        "references/python.md": "000b35b00f0474b7529e82aff4f3139a9ef4f1bca3068331361414db139d5b27",
+        "references/rust.md": "5e44a750ab597b2b86d5193ff1f02e7776ddca57962e2e1ce6a5296b5d843782",
+        "references/typescript.md": "590441fbd6c4a7e56286ae49629d80fa16348da88c91a85c90a07bac9d02a9b7"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "lsp",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/lsp/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/lsp/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 10,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "bc42be16655eaea658815000c8f1ff2ebdfa6d0038026978d8c72e4ea4da678d",
+        "README.md": "9d252e20c2e6049409b0f9bc0b73959b34921a12f091c68d0b2e747c1c5f36b0",
+        "SKILL.md": "8597afcb157465f9b9fa63110bfbd9c19d2465ad8dede43268ceb5c1647f0abc",
+        "references/flutter.md": "b7fd72bd2c4271971501809f9b23ad1f0df828bc9c5b86e1116624b0d97a2d79",
+        "references/python.md": "b22335120240a3ac65f4e70903090e0a6624be802f1a1218bee84ff34ffb17ee",
+        "references/rust.md": "67c8de9be7625376fe8b1fb45a1207e03de928751d73ed992aad7c7cdae022ba",
+        "references/typescript.md": "4877251293b3c8a99198cb0599173a3c19289c7e724b81464d7015251da83984",
+        "scripts/fake_lsp_server.py": "2e71fcef8c0e20250ace5555aceabe91acabbfcb9fa1566050ea70bdf0fe6286",
+        "scripts/lsp.py": "075d47c7dd1ea3c1ac7ebbf8de71a3f080cb012c42d428f9bc19ee0501a8c3a5",
+        "scripts/test_lsp.py": "08e9334d06cff84466e56f463fabbf3d25a609e12dc2c55eaa46a4331303851e"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "memory",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/memory/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/memory/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "712b1c91e1a742cb977ef266c6772b6d6887c02cadb174014197b7ac97701d80",
+        "README.md": "be5e0748df0db60e7f21dccb1dc8d6cd85469a52b420bfb54ef803fc9945decf",
+        "SKILL.md": "76d7c55dfa69f52ba4638a000347ea538b9956a2f70f25d7e9abc37ca200f88c"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "schema-aware-db",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/schema-aware-db/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/schema-aware-db/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 7,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "c825d755d9120e5d4e6129da499fab798e8a5dbac693bb24719f1aa7ba46bf64",
+        "README.md": "a939c87f3772eaf46f6b5e25e0240bd0f5dca81ea071bbfff344d852efb1bf9b",
+        "SKILL.md": "023d99b71d018f36e3e52f51117b9972395f73d6c90392c5a040c5fa3846d97a",
+        "references/nosql.md": "6d05ee08a4ebe4d474090934756bd9dca04956d6cdaa2f88082d6df61f06b7e2",
+        "references/ripple.md": "a7a721f3927b4acd38e143667329e870078fd92cd4ee3896bd6312758e7760a0",
+        "references/sql.md": "360a07f1e6785ba71e7fad4745b31e464e4faf2c033de3a87219bdf7d24f7454",
+        "references/standards.md": "b7cfb67c07706cbb4176eba331339a2a49324da9e9f2ac1c8980d7b163086a2c"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "teammates",
+      "source_repo": "https://github.com/DN-OpenSource/claude-skills",
+      "source_commit": "1706decfd8771470263e947c6d8d14becef2cb55",
+      "source_path": "skills/teammates/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) The dn-memory authors (claude-skills, https://github.com/DN-OpenSource/claude-skills) — Apache-2.0",
+      "destination": "skills/vendor/dn-memory/teammates/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/dn-memory/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        ".claude-plugin/plugin.json": "5e9fa69e8e2ec2927ca9d0cb5392f51fbdf3b85cc9fdf7ae2bbf71ce517d4679",
+        "README.md": "55ed5b43dc609a935385342ddad75fcea9c0a0b84d5ebe92577e88ca9806492a",
+        "SKILL.md": "8f0e55d62e0ccb0e7767e271dc9fb5a66bfd9b68bce59246ed7076ff071e9d3b"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DN-OpenSource/claude-skills at new commit",
+        "Re-copy text-only skills/ to skills/vendor/dn-memory/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 34,
+    "total_skills": 6,
+    "licenses": {
+      "agents-dox": "Apache-2.0",
+      "codebase-guardian": "Apache-2.0",
+      "lsp": "Apache-2.0",
+      "memory": "Apache-2.0",
+      "schema-aware-db": "Apache-2.0",
+      "teammates": "Apache-2.0"
+    },
+    "binaries_excluded": "none (all vendored files are UTF-8 text)",
+    "text_extensions_copied": [
+      ".md",
+      ".json",
+      ".py",
+      ".sh",
+      ".ts",
+      ".js",
+      ".cjs",
+      ".html",
+      ".dot",
+      ".csv"
+    ],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
