@@ -1,0 +1,4 @@
+skill_id: dev-requesting-code-review
+version: 0.1.0
+network_allowed: false
+execution_boundary: requires_user_confirmation

@@ -1,0 +1,17 @@
+schema_version: 1
+skill_id: dev-finishing-a-development-branch
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/superpowers/finishing-a-development-branch/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/dev-finishing-a-development-branch/scripts/check-skill.mjs
+dependency_receipt_ref: skills/dev-finishing-a-development-branch/receipts/runtime-boundary.yml
+external_fragments_reused: false
+publication_authority: false

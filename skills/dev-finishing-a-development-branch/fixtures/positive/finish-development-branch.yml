@@ -1,0 +1,15 @@
+case: El operador termina una rama de feature y el skill cierra las seis fases sin auto-ejecutar merge, push ni borrado de rama.
+context: Rama de desarrollo completa, suite en verde, base declarada en el plan, repo normal sin worktree.
+request: >-
+  Termine esta rama, el feature esta listo. Cierra antes de integrar: corre
+  los tests, confirma la base, presentame las opciones y ejecuta la que yo
+  confirme.
+expect:
+  - El skill recorre el cierre fase por fase y produce una decision revisable en prosa.
+  - Verificar tests: corre la suite completa sobre el arbol a integrar; si falla, reporta y detiene; si pasa, declara el comando y el resultado.
+  - Detectar entorno: declara repo normal vs worktree, rama con nombre vs detached HEAD, dueno del workspace; si no se sabe, marca coverage_gap.
+  - Determinar base: confirma la base contra el plan o pregunta al operador; no asume que es main.
+  - Presentar opciones: presenta el menu exacto (merge local / push y PR / dejar como esta) y espera la respuesta del operador.
+  - Ejecutar eleccion: ejecuta la opcion confirmada solo tras confirmacion explicita del operador; si el merge resulta en suite rota, detiene y deja rama y worktree en su lugar.
+  - Limpiar workspace: remueve el worktree y poda registros solo si el workspace es del operador (.worktrees/ o worktrees/); si es del host, lo deja en su lugar.
+  - El skill NO auto-ejecuta merge, push, borrado de rama ni limpieza de worktree sin confirmacion explicita del operador (fail-closed).

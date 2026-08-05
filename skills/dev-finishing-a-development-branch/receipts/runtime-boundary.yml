@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-DEV-FINISHING-001
+skill_id: dev-finishing-a-development-branch
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Cierre metódico de una rama de desarrollo en prosa local. Sin red, sin git
+  automatico, sin commits, sin merges, sin pushes, sin force-push, sin borrado
+  de rama, sin limpieza de worktree. Todo gate de ejecucion irreversible tras
+  confirmacion explicita del operador.
