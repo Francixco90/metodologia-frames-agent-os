@@ -1432,6 +1432,28 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/context-teammates/scripts/check-skill.mjs]
+  - skill_id: media-rembg
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 8a0ea2fdea0c194502a444febdc8dd5dc04324ff77ed2bbfd221a743b22183f9
+    package_manifest_sha256: 7eadc5a42049682ef4e366338fe0eec44eea775c2dc52d102c7fafae6efb77b2
+    lineage_ref: skills/media-rembg/LINEAGE.yml
+    dependency_receipt_ref: skills/media-rembg/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/media-rembg/scripts/check-skill.mjs]
+  - skill_id: media-make-pdf
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e6b4e71fd66b430eff7604c26ba618b565f3b141673a4e4280a1c2e9aab39341
+    package_manifest_sha256: b489fb07c4d7566e1a6915f717ceae041e8788fcb1a713259b5f7eea574f498d
+    lineage_ref: skills/media-make-pdf/LINEAGE.yml
+    dependency_receipt_ref: skills/media-make-pdf/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/media-make-pdf/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1954,3 +1976,11 @@ events:
   - {event_id: EVT-SKL-CTM-H03-002, event_order: 2, skill_id: context-teammates, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTM-H03-003, event_order: 3, skill_id: context-teammates, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CTM-H03-004, event_order: 4, skill_id: context-teammates, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MRG-H03-001, event_order: 1, skill_id: media-rembg, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MRG-H03-002, event_order: 2, skill_id: media-rembg, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MRG-H03-003, event_order: 3, skill_id: media-rembg, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MRG-H03-004, event_order: 4, skill_id: media-rembg, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPD-H03-001, event_order: 1, skill_id: media-make-pdf, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MPD-H03-002, event_order: 2, skill_id: media-make-pdf, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MPD-H03-003, event_order: 3, skill_id: media-make-pdf, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPD-H03-004, event_order: 4, skill_id: media-make-pdf, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

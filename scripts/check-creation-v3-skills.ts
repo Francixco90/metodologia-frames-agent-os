@@ -711,6 +711,16 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/context-teammates/scripts/check-skill.mjs'],
   },
+  {
+    id: 'media-rembg',
+    scope: 'local-evaluation',
+    check: ['skills/media-rembg/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'media-make-pdf',
+    scope: 'local-evaluation',
+    check: ['skills/media-make-pdf/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
