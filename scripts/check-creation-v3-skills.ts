@@ -721,6 +721,36 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/media-make-pdf/scripts/check-skill.mjs'],
   },
+  {
+    id: 'web-crawl4ai',
+    scope: 'local-evaluation',
+    check: ['skills/web-crawl4ai/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'web-scrape',
+    scope: 'local-evaluation',
+    check: ['skills/web-scrape/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'web-browse',
+    scope: 'local-evaluation',
+    check: ['skills/web-browse/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'web-open-browser',
+    scope: 'local-evaluation',
+    check: ['skills/web-open-browser/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'web-setup-browser-cookies',
+    scope: 'local-evaluation',
+    check: ['skills/web-setup-browser-cookies/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'web-hackernews-frontpage',
+    scope: 'local-evaluation',
+    check: ['skills/web-hackernews-frontpage/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

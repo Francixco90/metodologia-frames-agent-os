@@ -1454,6 +1454,72 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/media-make-pdf/scripts/check-skill.mjs]
+  - skill_id: web-crawl4ai
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 1e8daa6b3baaa775e851c1964cf2868b7e7c2dc43a243cd1fc7b78dc6d3aa397
+    package_manifest_sha256: df9794c7e29606deda5376e7f08f833a87aea13881ed91b7f0265b896dd23478
+    lineage_ref: skills/web-crawl4ai/LINEAGE.yml
+    dependency_receipt_ref: skills/web-crawl4ai/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-crawl4ai/scripts/check-skill.mjs]
+  - skill_id: web-scrape
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 61fb0484e1351f37111c77f52e72f3f64242e5cf48ee9118e414d0ebc6a3588f
+    package_manifest_sha256: 93226168dc67089597ffda6a7867a234f0fb2b18b8f1df075b27e59250f612c8
+    lineage_ref: skills/web-scrape/LINEAGE.yml
+    dependency_receipt_ref: skills/web-scrape/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-scrape/scripts/check-skill.mjs]
+  - skill_id: web-browse
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 1428bb42bcec2275f68789f12df098ff8f9892100cbe3348e45d71e62294526f
+    package_manifest_sha256: d6277ad8a5ecec6b2115a28e5db9af93a0eca6f9fa19fc7958fa768d3ab9dfdf
+    lineage_ref: skills/web-browse/LINEAGE.yml
+    dependency_receipt_ref: skills/web-browse/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-browse/scripts/check-skill.mjs]
+  - skill_id: web-open-browser
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f57bd975ce28b7e1ae618e002cb1cf60d133a5d561fa5a63b64b9d3e8316a273
+    package_manifest_sha256: 0b97e0ee3c0c13167d0821b4a7ca5aa08a6d95a438bbd158b2c5cbbfdac44a1d
+    lineage_ref: skills/web-open-browser/LINEAGE.yml
+    dependency_receipt_ref: skills/web-open-browser/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-open-browser/scripts/check-skill.mjs]
+  - skill_id: web-setup-browser-cookies
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0b6776d98da65055dfc4bae78d373858a0fca3409295eeff8c062547e3279a94
+    package_manifest_sha256: edd409e451eb1d6b23d561209ef5f2d08079ff3c81c386ce121b0577a50624c2
+    lineage_ref: skills/web-setup-browser-cookies/LINEAGE.yml
+    dependency_receipt_ref: skills/web-setup-browser-cookies/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-setup-browser-cookies/scripts/check-skill.mjs]
+  - skill_id: web-hackernews-frontpage
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3832b070d80635f5254e4d9ce3e7ce894f621f856e28c8595d9778920f2295ef
+    package_manifest_sha256: a70f8e1f81aa2c33e1fb4f9db4db978940aa6e558518812a73d9a3ee2bf21206
+    lineage_ref: skills/web-hackernews-frontpage/LINEAGE.yml
+    dependency_receipt_ref: skills/web-hackernews-frontpage/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/web-hackernews-frontpage/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1984,3 +2050,27 @@ events:
   - {event_id: EVT-SKL-MPD-H03-002, event_order: 2, skill_id: media-make-pdf, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPD-H03-003, event_order: 3, skill_id: media-make-pdf, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MPD-H03-004, event_order: 4, skill_id: media-make-pdf, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-C4A-H03-001, event_order: 1, skill_id: web-crawl4ai, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-C4A-H03-002, event_order: 2, skill_id: web-crawl4ai, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-C4A-H03-003, event_order: 3, skill_id: web-crawl4ai, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-C4A-H03-004, event_order: 4, skill_id: web-crawl4ai, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSC-H03-001, event_order: 1, skill_id: web-scrape, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WSC-H03-002, event_order: 2, skill_id: web-scrape, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WSC-H03-003, event_order: 3, skill_id: web-scrape, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSC-H03-004, event_order: 4, skill_id: web-scrape, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WBR-H03-001, event_order: 1, skill_id: web-browse, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WBR-H03-002, event_order: 2, skill_id: web-browse, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WBR-H03-003, event_order: 3, skill_id: web-browse, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WBR-H03-004, event_order: 4, skill_id: web-browse, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WOB-H03-001, event_order: 1, skill_id: web-open-browser, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WOB-H03-002, event_order: 2, skill_id: web-open-browser, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WOB-H03-003, event_order: 3, skill_id: web-open-browser, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WOB-H03-004, event_order: 4, skill_id: web-open-browser, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WBC-H03-001, event_order: 1, skill_id: web-setup-browser-cookies, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WBC-H03-002, event_order: 2, skill_id: web-setup-browser-cookies, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WBC-H03-003, event_order: 3, skill_id: web-setup-browser-cookies, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WBC-H03-004, event_order: 4, skill_id: web-setup-browser-cookies, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WHN-H03-001, event_order: 1, skill_id: web-hackernews-frontpage, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WHN-H03-002, event_order: 2, skill_id: web-hackernews-frontpage, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WHN-H03-003, event_order: 3, skill_id: web-hackernews-frontpage, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WHN-H03-004, event_order: 4, skill_id: web-hackernews-frontpage, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
