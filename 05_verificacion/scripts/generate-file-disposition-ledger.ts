@@ -1,6 +1,6 @@
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {existsSync, lstatSync, readFileSync, writeFileSync} from 'node:fs';
+import {type Dirent, existsSync, lstatSync, readdirSync, readFileSync, readlinkSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -109,8 +109,51 @@ const baselineBlobs = (root: string) => {
   );
   return refs.map((ref, index) => ({...ref, bytes: bytes[index] as Buffer}));
 };
-const versionablePaths = (root: string): string[] =>
-  execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
+// NN_slug taxonomy moved files into cardinal buckets (00_inbox … 06_archive) and
+// left retro symlinks at repo root (e.g. `brand -> 03_artefactos/brand`). The
+// disposition policy constants (generatedPaths, generatedTemplateBindings,
+// isGeneratedProjection, isAuthoredEligible, …) are authored in legacy root-
+// relative paths, while `git ls-files` returns the new cardinal tracked paths.
+// Invert the root symlinks so versionable paths are reported in legacy form,
+// keeping the policy constants stable without a per-constant rewrite.
+const legacyPathInversions = (root: string): Array<{link: string; target: string}> => {
+  const inversions: Array<{link: string; target: string}> = [];
+  let entries: Dirent[] = [];
+  try {
+    entries = readdirSync(root, {withFileTypes: true});
+  } catch {
+    return inversions;
+  }
+  for (const entry of entries) {
+    if (!entry.isSymbolicLink()) continue;
+    try {
+      const target = readlinkSync(resolve(root, entry.name));
+      // Only relative in-repo targets that include a path separator map a
+      // cardinal bucket back to a legacy root-relative name.
+      if (!target.startsWith('/') && !target.startsWith('..') && target.includes('/')) {
+        inversions.push({link: entry.name, target});
+      }
+    } catch {
+      /* ignore unreadable symlink */
+    }
+  }
+  inversions.sort((left, right) => right.target.length - left.target.length);
+  return inversions;
+};
+const normalizeToLegacyPath = (
+  path: string,
+  inversions: ReadonlyArray<{link: string; target: string}>,
+): string => {
+  for (const {link, target} of inversions) {
+    if (path === target || path.startsWith(`${target}/`)) {
+      return `${link}${path.slice(target.length)}`;
+    }
+  }
+  return path;
+};
+const versionablePaths = (root: string): string[] => {
+  const inversions = legacyPathInversions(root);
+  return execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
     cwd: root,
     encoding: 'utf8',
   })
@@ -123,7 +166,9 @@ const versionablePaths = (root: string): string[] =>
         existsSync(resolve(root, path)) &&
         lstatSync(resolve(root, path)).isFile(),
     )
+    .map((path) => normalizeToLegacyPath(path, inversions))
     .sort();
+};
 const globPatternToRegExp = (pattern: string): RegExp => {
   const placeholder = '\u0000';
   const protectedPattern = pattern.replaceAll('**', placeholder);

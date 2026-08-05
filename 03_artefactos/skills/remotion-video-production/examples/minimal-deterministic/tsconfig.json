@@ -4,5 +4,6 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["Composition.tsx"]
+  "include": ["Composition.tsx"],
+  "exclude": []
 }

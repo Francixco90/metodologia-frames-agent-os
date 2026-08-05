@@ -8,7 +8,7 @@ previous:
   package_sha256: 3f7706417b1f8649a935a6c4a70345da5855bfcce065b00d5513cfd29ddc703d
   lock_sha256: c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82
 current:
-  package_sha256: e78c11914284ee43b345c91763168ac7520fd62f0df69dc335b729c931c60ddf
+  package_sha256: 42f2a510b3d07e5bddedc01eca05a35e6a06e26c70eacf54eb9727123e5da51c
   lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
 runtime_packages:
   - {name: '@react-three/fiber', version: 9.2.0}
@@ -31,7 +31,7 @@ development_packages:
   - {name: '@types/three', version: 0.178.1}
 audit_receipt:
   ref: receipts/dependency-audits/RCP-DEP-PRODUCTION-20260804-002.json
-  sha256: e520d59d5d615332ebe2e6440994b4e061d088c85447c6a2f0a33842c34df0d9
+  sha256: 5a3b1bb1f85c4a384b8736f326fba7497780019e21f3ab3fbbaf2b47381a169a
 frozen_install:
   command: pnpm install --frozen-lockfile
   status: passed

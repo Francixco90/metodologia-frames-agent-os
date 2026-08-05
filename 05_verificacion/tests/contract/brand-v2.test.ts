@@ -1,4 +1,4 @@
-import {cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {cpSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
@@ -30,8 +30,10 @@ const yaml = (relativePath: string): unknown =>
 const temporaryBrandRoot = (): string => {
   const destination = mkdtempSync(resolve(tmpdir(), 'brand-v2-negative-'));
   temporaryRoots.push(destination);
-  cpSync(resolve(root, 'brand'), resolve(destination, 'brand'), {recursive: true});
-  cpSync(resolve(root, 'registries'), resolve(destination, 'registries'), {recursive: true});
+  cpSync(realpathSync(resolve(root, 'brand')), resolve(destination, 'brand'), {recursive: true});
+  cpSync(realpathSync(resolve(root, 'registries')), resolve(destination, 'registries'), {
+    recursive: true,
+  });
   const docsProgram = resolve(destination, 'docs/program');
   cpSync(resolve(root, 'docs/program'), docsProgram, {
     recursive: true,

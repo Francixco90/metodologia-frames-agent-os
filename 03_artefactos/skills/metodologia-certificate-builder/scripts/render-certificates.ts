@@ -18,7 +18,20 @@ import {bindVisibleCertificationStatement} from './certification-statement-bindi
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'certificate-template-v16.html');
-const repoRoot = resolve(scriptDir, '..', '..', '..');
+// Walk up to the repository root (the nearest directory holding package.json)
+// so brand/registries bindings resolve through the retro root symlinks regardless
+// of where the skills directory lives after the NN_slug taxonomy move.
+const findRepoRoot = (start: string): string => {
+  let current = start;
+  for (let depth = 0; depth < 8; depth += 1) {
+    if (existsSync(join(current, 'package.json'))) return current;
+    const parent = dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return resolve(scriptDir, '..', '..', '..', '..');
+};
+const repoRoot = findRepoRoot(scriptDir);
 const BRAND_BINDINGS = [
   'registries/brand/brand-profile-v2.yml',
   'registries/brand/voice-profile-v2.yml',

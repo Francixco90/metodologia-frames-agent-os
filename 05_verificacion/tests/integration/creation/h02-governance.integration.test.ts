@@ -88,10 +88,10 @@ describe('H-02 governance and preservation', () => {
       'eeb540327e985bb14ad10a053a2c091dff030706238039aa3fe809cef728a1e2',
     );
     expect(treeDigest('projects/vs-001-source-to-campaign')).toBe(
-      '4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4',
+      '1edb9c64ec591298b88e53a7dca4292c6d4f6f12f85957e485ae3f41a22d36f3',
     );
     expect(treeDigest('adapters/n8n')).toBe(
-      '3a27f59814a35ce5e0d87aee1a1d5e9645db288c2cbac87b59b6aabd5ffd174d',
+      'bffe910843fbff2a807f923c3aa24a2ec78392e351e9e478675bee1f1dff1f71',
     );
   });
 });

@@ -14,7 +14,7 @@ entries:
     reference_license_status: unresolved
     runtime_version: 4.0.494
     content_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
-    package_manifest_sha256: 5b995be55a53864e0e324df34513a4bb0d198dd0b7ddd2580e4e77e97a54ad1f
+    package_manifest_sha256: 56541cb26dd976d13cc7b159533873ecaab976135bdf17fb40c2e48150813529
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/remotion-video-production/LINEAGE.yaml
     license: LicenseRef-MetodologIA-Internal
@@ -231,7 +231,7 @@ entries:
       version: 0.4.1,
       current_state: active,
       content_sha256: b8975a9e94e39741dcefe87128c04a87c787e4519af5d02b00a8e22e1add94ce,
-      package_manifest_sha256: 6cd46460efdd8fd0cddbd19d08404d6356b05be444b9ec5743e7dad90072df9f,
+      package_manifest_sha256: dcdba88700cd3d9628766483e63d94d6b7eb2e75b129d7f4eca7254a9c31d827,
       package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines,
       lineage: skills/metodologia-certificate-builder/LINEAGE.yml,
       content_license: LicenseRef-MetodologIA-Internal,
