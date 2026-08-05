@@ -1,0 +1,14 @@
+case: El operador pide investigar tres fallos independientes y el skill produce un plan de despacho en paralelo sin auto-ejecutar dispatches, mutaciones ni commits.
+context: Tres archivos de test fallando por causas raíz distintas, dominios independientes verificables, sin estado compartido.
+request: >-
+  Tengo tres suites fallando: agent-tool-abort.test.ts (timing), batch-completion
+  (eventos no ejecutan), tool-approval-race (count en cero). Investígalos en
+  paralelo, son independientes.
+expect:
+  - El skill recorre las cinco fases y produce un plan de despacho en prosa.
+  - Identificar dominios: agrupa por problema (abort, batch, race); verifica que fixing uno no afecta a los otros; declara independencia.
+  - Construir tareas: cada agente recibe alcance (un archivo), objetivo (devolver causa raíz y fix), restricciones (no tocar otro código), salida esperada (resumen).
+  - Verificar aislamiento: declara qué archivos toca cada agente; confirma que ningún par comparte archivo ni recurso; si compartieran, secuencia o rediseña.
+  - Despachar en paralelo: propone una llamada por dominio en un mismo turno; NO despacha sin confirmación explícita del operador.
+  - Revisar y agregar: declara que al regresar los agentes se leen resúmenes, se verifica no-colisión y se corre la suite completa antes de cerrar.
+  - El skill NO auto-despacha sub-agentes, NO auto-arranca git, tests, installs ni commits; entrega el plan y espera confirmación del operador.
