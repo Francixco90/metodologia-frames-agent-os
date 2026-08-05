@@ -1,0 +1,11 @@
+skill_id: dev-plan-design-review
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_adaptation
+derivation_mode: clean-room-prose-from-permissive-reference
+external_fragments_reused: false
+publication_authority: false
+authority_refs:
+  - skills/vendor/gstack/plan-design-review/SKILL.md
+  - core/contracts/creation-v3.ts

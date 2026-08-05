@@ -1,0 +1,14 @@
+case: El operador pega un plan y el skill camina las siete dimensiones ejecutivas con hallazgos por severidad y recomendaciones opinadas, sin auto-git.
+context: Plan existente en prosa, sin revisión ejecutiva previa, modo seleccionado por el operador.
+request: 'Revisa este plan como CEO — alineación, impacto, riesgo, secuenciación, capacidad, dependencias y timing.'
+expect:
+  - El skill confirma el plan a revisar y el modo seleccionado antes de avanzar.
+  - Alineacion estrategica: declara si el plan resuelve el problema correcto o si existe un enfoque mas simple o impactante; identifica dolor real versus hipotetico.
+  - Impacto de negocio: lista que cambia para el usuario final, el equipo y la organizacion, medible y observable, no impresion.
+  - Riesgo: enumera dependencias externas, cambios destructivos, migraciones de datos, fallas silenciosas; cada uno con una linea de mitigacion o coverage_gap.
+  - Secuenciacion de alcance: declara el conjunto minimo de cambios, que puede diferirse, orden interno y que va en un PR de seguimiento.
+  - Capacidad del equipo: declara cualitativamente si el equipo tiene talento y enfoque, sin precios ni FTE-months; si es constraint emite coverage_gap con disclaimer.
+  - Dependencias: mapea servicios, equipos, APIs y decisiones previas; marca si el plan reversa silenciosamente una decision asentada.
+  - Timing de mercado: declara si ahora es el momento correcto en arcos de seis a doce meses.
+  - El skill emite una sintesis ejecutiva con veredicto, decisiones pendientes con dueno y proximos gates.
+  - El skill NO ejecuta git, tests ni commits; entrega la revision en prosa y espera confirmacion del operador.
