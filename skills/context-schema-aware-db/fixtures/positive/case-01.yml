@@ -1,0 +1,11 @@
+name: Confirmed schema drives a safe column add
+scenario: >
+  The user asks to add a "display_name" field to the users table. The agent first
+  introspects the live schema via information_schema, confirms the table is named
+  "users" with columns "id", "username", and "email", then maps usage across
+  models.py, two query sites, and one serializer before writing the migration and
+  updating every affected file.
+expected_behavior: >
+  The agent introspects before writing, uses only confirmed field names, traces
+  the ripple across the codebase, and reports the schema facts it relied on plus
+  the sites it reconciled.

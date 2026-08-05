@@ -1,0 +1,13 @@
+name: Perfil completo de un agente nuevo
+scenario: >
+  El operador pide documentar un agente recien incorporado al comite. El skill
+  produce una entrada de registro con identidad, capacidades, boundaries y
+  composiciones, cada claim material respaldado por una etiqueta de evidencia.
+expected_behavior:
+  - Lee el registro existente antes de escribir; no inventa un slot nuevo si uno cubre el rol.
+  - Captura identidad (nombre, owner, lifecycle state, model affinity).
+  - Lista capacidades concretas: que produce, no solo "analiza".
+  - Declara boundaries explicitas: allowlist de rutas, herramientas permitidas, no-go zones.
+  - Registra composiciones: con quienes compone, quien lidera, donde ocurre el handoff.
+  - Toda claim material sobre boundary o capacidad lleva etiqueta de evidencia.
+  - Cierra con un DOX pass sobre el AGENTS.md mas cercano si la entrada cambio.

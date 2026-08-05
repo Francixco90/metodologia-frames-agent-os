@@ -1,0 +1,9 @@
+name: Guessed column name without introspection
+scenario: >
+  The user asks to save a "user_name" field to the users table. The agent skips
+  introspection and writes a query referencing the "user_name" column even though
+  the live schema uses "username", producing a broken query that fails at runtime.
+violation: >
+  The agent proceeded on an assumed schema without verifying column names against
+  the live database, migrations, or ORM models, violating the fail-closed rule
+  that requires introspection before writing any data-access code.

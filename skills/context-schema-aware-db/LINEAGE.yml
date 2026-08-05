@@ -1,0 +1,12 @@
+schema_version: 1
+skill_id: context-schema-aware-db
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_adaptation
+derivation_mode: clean-room-prose-from-permissive-reference
+authority_refs:
+  - skills/vendor/dn-memory/schema-aware-db/SKILL.md
+  - core/contracts/creation-v3.ts
+external_fragments_reused: false
+publication_authority: false

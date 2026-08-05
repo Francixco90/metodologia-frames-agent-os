@@ -1,0 +1,15 @@
+name: model-team-with-declared-ownership-and-handoffs
+scenario: >
+  The user asks to model a team of three agents working on a deliverable: a
+  researcher who owns the findings file, a writer who owns the draft, and a
+  verifier who owns the review. Each teammate has a declared role, an
+  ownership allowlist, a handoff contract to the next peer, and a boundary
+  that does not overlap with the others. The skill presents the roster, the
+  shared context, the handoff graph and the one-writer-per-path boundaries.
+expected_behavior:
+  - Declare the roster with role and ownership for each teammate; a teammate without ownership is flagged as coverage_gap.
+  - Declare each handoff with producer, consumer, artifact, state and evidence; a handoff without a declared receiver is blocked.
+  - Distinguish shared context (read by all, written by its declared owner only) from private context (written by the owning teammate only).
+  - Enforce one writer per path; if two teammates claim the same path, declare the conflict and block execution before any work starts.
+  - Present the full team model in prose for the operator to inspect; do not dispatch agents, write shared state, or open network.
+  - If any attribute (roster, ownership, handoff, boundary) is missing, emit coverage_gap instead of fabricating a partial model.

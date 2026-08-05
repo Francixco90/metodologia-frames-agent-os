@@ -1,0 +1,13 @@
+name: persist-decision-across-sessions
+scenario: >
+  El usuario completa una decision arquitectonica (elegir RS256 para JWTs) y quiere
+  que esa decision persista a traves de reinicios, handoffs y reseteos de ventana de
+  contexto. El agente confirma el alcance, captura la decision con su fuente y hash,
+  y la anade append-only al archivo de memoria de contexto del proyecto.
+expected_behavior: >
+  La skill debe persistir la decision como entrada append-only, hash-bound: claim
+  (RS256 para JWTs en src/auth/login.ts), fuente (archivo:linea), evidencia (raw_sha256
+  del archivo), limite (valido para v1.x). No debe sobreescribir historial previo. No
+  debe persistir secretos ni PII. Debe confirmar brevemente al usuario que persistio
+  sin recitar el archivo completo. Esta operacion es local-evaluation, no requiere
+  network ni binario.
