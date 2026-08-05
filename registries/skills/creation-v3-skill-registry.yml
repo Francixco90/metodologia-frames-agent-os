@@ -1113,6 +1113,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-systematic-debugging/scripts/check-skill.mjs]
+  - skill_id: dev-brainstorming
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 8238bc88e99c8163c53b9c27ca10ee8233d164f06716406825229bfb6cfb6910
+    package_manifest_sha256: 7a18b5e62843330967d845f5398c21b2256de32596c2d980bcccda46de0b3b13
+    lineage_ref: skills/dev-brainstorming/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-brainstorming/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-brainstorming/scripts/check-skill.mjs]
+  - skill_id: dev-dispatching-parallel-agents
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e72064a0d61abc1d0c6930c8b9919c6e56865ebda12db83a3f412aebc8e9a5ee
+    package_manifest_sha256: 61c8e2df46021d202f61357ac090db6ccdbb5859f9137b0ae2c1722c853df026
+    lineage_ref: skills/dev-dispatching-parallel-agents/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-dispatching-parallel-agents/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs]
+  - skill_id: dev-executing-plans
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 1fd8ce908c88510c22d0ebb0ce6bc81a8fb860e0e75a035278df58b8090a2820
+    package_manifest_sha256: b1b805e5920e1e75667c3a6f5a84896a18c6a8dfa805f071f609fda475bf52c1
+    lineage_ref: skills/dev-executing-plans/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-executing-plans/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-executing-plans/scripts/check-skill.mjs]
+  - skill_id: dev-writing-plans
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 14b1490d016018c1e3e0e4091a3ec23eb0fb98d9651b49809d8bc463043031a8
+    package_manifest_sha256: f2ccc3811165676cab1466478c08f9b1293c2284e0805db8204593f5e8519204
+    lineage_ref: skills/dev-writing-plans/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-writing-plans/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1519,3 +1563,19 @@ events:
   - {event_id: EVT-SKL-SDB-H03-002, event_order: 2, skill_id: dev-systematic-debugging, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SDB-H03-003, event_order: 3, skill_id: dev-systematic-debugging, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SDB-H03-004, event_order: 4, skill_id: dev-systematic-debugging, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BRN-H03-001, event_order: 1, skill_id: dev-brainstorming, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BRN-H03-002, event_order: 2, skill_id: dev-brainstorming, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-BRN-H03-003, event_order: 3, skill_id: dev-brainstorming, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-BRN-H03-004, event_order: 4, skill_id: dev-brainstorming, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DPA-H03-001, event_order: 1, skill_id: dev-dispatching-parallel-agents, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DPA-H03-002, event_order: 2, skill_id: dev-dispatching-parallel-agents, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DPA-H03-003, event_order: 3, skill_id: dev-dispatching-parallel-agents, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DPA-H03-004, event_order: 4, skill_id: dev-dispatching-parallel-agents, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXE-H03-001, event_order: 1, skill_id: dev-executing-plans, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EXE-H03-002, event_order: 2, skill_id: dev-executing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EXE-H03-003, event_order: 3, skill_id: dev-executing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXE-H03-004, event_order: 4, skill_id: dev-executing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WPL-H03-001, event_order: 1, skill_id: dev-writing-plans, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WPL-H03-002, event_order: 2, skill_id: dev-writing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WPL-H03-003, event_order: 3, skill_id: dev-writing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WPL-H03-004, event_order: 4, skill_id: dev-writing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
