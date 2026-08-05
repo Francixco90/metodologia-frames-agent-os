@@ -1,0 +1,52 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/anthropics-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/anthropics/skills",
+  "source_commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+  "license": "Apache-2.0",
+  "attribution": "Copyright (c) 2026 Anthropic, Inc. (frontend-design, https://github.com/anthropics/skills)",
+  "vendor_root_hashes": {
+    "LICENSE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+  },
+  "vendors": [
+    {
+      "skill": "frontend-design",
+      "source_repo": "https://github.com/anthropics/skills",
+      "source_commit": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+      "source_path": "skills/frontend-design/",
+      "license": "Apache-2.0",
+      "attribution": "Copyright (c) 2026 Anthropic, Inc.",
+      "destination": "skills/vendor/anthropics-skills/frontend-design/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/anthropics-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "1608ea77fbb6fc30d13a97d12cfa8ebf31358d40f0dd97beed24829d6b3f45dd",
+        "LICENSE.txt": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+      },
+      "known_risks": [
+        "Apache-2.0 license; vendored as reference-only (not executed, not registered)",
+        "anthropics/skills repo contains doc skills (docx/pdf/pptx/xlsx) source-available — only frontend-design/ vendored, doc skills excluded",
+        "frontend-design is a design-guidance skill (prose only); no network/install/execution surface"
+      ],
+      "update_procedure": [
+        "Clone anthropics/skills at new commit",
+        "Re-copy text-only skills/frontend-design/ to skills/vendor/anthropics-skills/frontend-design/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 3,
+    "total_skills": 1,
+    "licenses": {
+      "frontend-design": "Apache-2.0"
+    },
+    "binaries_excluded": "none (SKILL.md + LICENSE.txt only, both UTF-8 text)",
+    "text_extensions_copied": [".md", ".txt"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

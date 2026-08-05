@@ -1,0 +1,51 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/vercel-agent-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/vercel-labs/agent-skills",
+  "source_commit": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Vercel, Inc. (web-design-guidelines, https://github.com/vercel-labs/agent-skills)",
+  "vendor_root_hashes": {
+    "LICENSE": "661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca"
+  },
+  "vendors": [
+    {
+      "skill": "web-design-guidelines",
+      "source_repo": "https://github.com/vercel-labs/agent-skills",
+      "source_commit": "7c180d9044c9ae2b442b567aad4e42a28dd5ed62",
+      "source_path": "skills/web-design-guidelines/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Vercel, Inc.",
+      "destination": "skills/vendor/vercel-agent-skills/web-design-guidelines/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/vercel-agent-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
+      },
+      "known_risks": [
+        "MIT license declared in repo README (## License MIT); no LICENSE file in web-design-guidelines/ folder — LICENSE file created at vendor root from README declaration",
+        "vercel-labs/agent-skills repo contains other skills (composition-patterns, deploy-to-vercel, react-best-practices, react-native-skills, react-view-transitions, vercel-cli-with-tokens, vercel-optimize, writing-guidelines) + .zip archives — only web-design-guidelines/ vendored",
+        "web-design-guidelines is a UI review guidance skill (prose only); no network/install/execution surface"
+      ],
+      "update_procedure": [
+        "Clone vercel-labs/agent-skills at new commit",
+        "Re-copy text-only skills/web-design-guidelines/ to skills/vendor/vercel-agent-skills/web-design-guidelines/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 2,
+    "total_skills": 1,
+    "licenses": {
+      "web-design-guidelines": "MIT"
+    },
+    "binaries_excluded": "none (SKILL.md only; .zip archives in repo root excluded)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
