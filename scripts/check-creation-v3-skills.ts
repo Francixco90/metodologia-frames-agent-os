@@ -316,6 +316,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-extract/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-css-native',
+    scope: 'local-evaluation',
+    check: ['skills/design-css-native/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-audit-genjutsu',
+    scope: 'local-evaluation',
+    check: ['skills/design-audit-genjutsu/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-framer-motion',
+    scope: 'local-evaluation',
+    check: ['skills/design-framer-motion/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-motion-principles',
+    scope: 'local-evaluation',
+    check: ['skills/design-motion-principles/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

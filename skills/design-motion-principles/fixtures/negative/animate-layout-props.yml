@@ -1,0 +1,9 @@
+case: animate-layout-props
+context: El agente sugiere animar height del drawer con transition para un menu desplegable.
+request: 'Anima la altura del drawer de 0 a 400px con transition height.'
+violation: >
+  Animar layout properties (height) triggers reflow cada frame = jank. Violación Do Not #1 "nunca
+  animar width/height/top/left". Usar transform/opacity (composite-only, GPU).
+expect_reject: >
+  La skill rechaza animar height. Debe usar transform: translateY(100%) → translateY(0) (composite,
+  sin reflow). Explicar que layout props causan reflow; transform/opacity corren en GPU.

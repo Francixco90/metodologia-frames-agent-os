@@ -1,0 +1,10 @@
+case: unstable-key
+context: El agente sugiere usar key dinámico aleatorio en motion.div layout para forzar re-render.
+request: 'Necesito que el layout animation se re-calcule cada render, usa un key aleatorio.'
+violation: >
+  Usar key dinámico aleatorio en motion.div con layout rompe el tracking de layout (key cambia cada
+  render, Framer Motion no puede trackear el elemento entre estados). Violación del Do Not "layout
+  animation sin stable key".
+expect_reject: >
+  La skill rechaza key aleatorio. Debe usar key estable derivado de data (item.id). Explicar que
+  layout animations requieren key estable para trackear posición/tamaño entre estados.

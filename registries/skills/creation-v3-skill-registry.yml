@@ -563,6 +563,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-extract/scripts/check-skill.mjs]
+  - skill_id: design-css-native
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 14b8744183e8b84cb97c225c85c2dd9fea152a20bdff9deedc27c7d9ff382cd5
+    package_manifest_sha256: 7907dece5131c78901366cddcb6fceca7318a3a8016697faaa255d0911c5e637
+    lineage_ref: skills/design-css-native/LINEAGE.yml
+    dependency_receipt_ref: skills/design-css-native/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-css-native/scripts/check-skill.mjs]
+  - skill_id: design-audit-genjutsu
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 551bece1b34425c448472d644967285c0a2baae24d82a8abade72c6ffdb9d07c
+    package_manifest_sha256: dde0ffaf7aef226c74bbb60c421751415eace9530db7a84618606fbadda5c717
+    lineage_ref: skills/design-audit-genjutsu/LINEAGE.yml
+    dependency_receipt_ref: skills/design-audit-genjutsu/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-audit-genjutsu/scripts/check-skill.mjs]
+  - skill_id: design-framer-motion
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 92aa41f83a8541ccc215fe3fe189b0485bc99c7e5899df3985977d727a1b1e57
+    package_manifest_sha256: b5d4f3bf9115549c20f2ce7b6cb39da65df0664882d3edc2c7e9006a0963264c
+    lineage_ref: skills/design-framer-motion/LINEAGE.yml
+    dependency_receipt_ref: skills/design-framer-motion/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-framer-motion/scripts/check-skill.mjs]
+  - skill_id: design-motion-principles
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 02a809dbe82fe0b94eba05885489ea0b4ba9f588b870b98437ef58ec70c07bd4
+    package_manifest_sha256: abbb756f66cf61c1f2eb8b15c2eb700902698503f706566e479ba7f24989374a
+    lineage_ref: skills/design-motion-principles/LINEAGE.yml
+    dependency_receipt_ref: skills/design-motion-principles/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-motion-principles/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -769,3 +813,19 @@ events:
   - {event_id: EVT-SKL-EXT-H03-002, event_order: 2, skill_id: design-extract, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXT-H03-003, event_order: 3, skill_id: design-extract, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-EXT-H03-004, event_order: 4, skill_id: design-extract, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSN-H03-001, event_order: 1, skill_id: design-css-native, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSN-H03-002, event_order: 2, skill_id: design-css-native, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSN-H03-003, event_order: 3, skill_id: design-css-native, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSN-H03-004, event_order: 4, skill_id: design-css-native, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DAG-H03-001, event_order: 1, skill_id: design-audit-genjutsu, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DAG-H03-002, event_order: 2, skill_id: design-audit-genjutsu, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DAG-H03-003, event_order: 3, skill_id: design-audit-genjutsu, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DAG-H03-004, event_order: 4, skill_id: design-audit-genjutsu, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FRM-H03-001, event_order: 1, skill_id: design-framer-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FRM-H03-002, event_order: 2, skill_id: design-framer-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FRM-H03-003, event_order: 3, skill_id: design-framer-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FRM-H03-004, event_order: 4, skill_id: design-framer-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPR-H03-001, event_order: 1, skill_id: design-motion-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPR-H03-004, event_order: 4, skill_id: design-motion-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

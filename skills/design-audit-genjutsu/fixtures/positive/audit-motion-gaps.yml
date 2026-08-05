@@ -1,0 +1,7 @@
+case: audit-motion-gaps
+context: Proyecto React con Framer Motion antes de ship; revisar gaps de motion y a11y.
+request: 'Audita este proyecto antes de release: revisa motion gaps, accessibility y consistencia.'
+expect: >
+  Salida estructura por severidad (Critical/Important/Nice-to-have). Detecta conditional renders sin
+  AnimatePresence, hover sin transition, reduced motion handler missing (Critical), duraciones >8
+  valores (Important). Cumple fail-closed (audit local, sin auto-run linters externos).
