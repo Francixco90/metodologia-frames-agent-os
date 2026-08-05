@@ -1,0 +1,14 @@
+case: El operador pide explorar direcciones de diseño para una pantalla y el skill diverge en tres rumbos deliberadamente distintos sin auto-ejecutar git, tests ni commits.
+context: Feature de UI nuevo sin direccion visual; el operador quiere ver opciones antes de comprometer una.
+request: >-
+  Explora disenos para la pantalla de onboarding. No me decido por un
+  rumbo. Muéstrame opciones distintas y ayudame a converger.
+expect:
+  - El skill reune contexto (audiencia, job-to-be-done, qué existe, flujo, casos límite) en máximo dos rondas.
+  - Genera tres conceptos textuales, cada uno con familia tipográfica, paleta y enfoque de layout distintos.
+  - Aplica la regla anti-convergencia: si dos direcciones se sienten como hermanas, regenera la mas débil.
+  - Presenta los conceptos al operador y pide confirmacion antes de materializar (generar todos, cambiar, agregar, recortar).
+  - Tras confirmacion, contrasta las direcciones lado a lado en prosa, exponiendo divergencias y tradeoffs.
+  - Recoge feedback estructurado del operador (preferida, ratings, comentarios, dirección).
+  - Confirma lo que entendió antes de guardar la dirección aprobada.
+  - El skill NO auto-commitea la variante aprobada; se detiene tras registrar la decisión de rumbo.

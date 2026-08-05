@@ -1,0 +1,16 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-DOCUMENT-RELEASE-001
+skill_id: dev-document-release
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+auto_tag: false
+auto_publish: false
+rationale: >
+  Redactado de documentación de release en prosa local. Sin red, sin git, sin
+  commits, sin tags, sin releases, sin publish. Todo gate de versión,
+  commit, tag y liberación tras confirmación explícita del operador.

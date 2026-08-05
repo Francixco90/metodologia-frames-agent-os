@@ -1,0 +1,13 @@
+case: El operador pide concebir un sistema de diseño para un producto nuevo y el skill propone un sistema completo y coherente sin auto-ejecutar git ni commits.
+context: Producto nuevo sin DESIGN.md, sin sistema de diseño existente, con README y package.json que dan contexto parcial del tipo de proyecto.
+request: >-
+  Crea un sistema de diseño para esta web app. Es un panel de analytics para
+  equipos de datos. No tengo DESIGN.md todavia. Quiero una propuesta opinada,
+  no un menu de opciones.
+expect:
+  - El skill confirma el contexto del producto (que es, para quien, espacio, tipo de proyecto) y pre-llena lo que puede inferir del repo.
+  - El skill pregunta por la cosa memorable: que deberia recordar alguien tras ver el producto por primera vez.
+  - Si el operador pide investigacion, el skill sintetiza el paisaje en tres capas (table stakes, tendencias, principios primeros) y nombra cualquier insight de capa 3.
+  - El skill propone un sistema completo a lo largo de seis ejes (estetica, tipografia, color, layout, espaciado, movimiento) con razon explicita por cada eleccion.
+  - El skill entrega un preview legible y un DESIGN.md como fuente de verdad, solo tras confirmacion explicita del operador.
+  - El skill NO auto-arranca git, commits, builds ni deploys; entrega la propuesta en prosa y espera confirmacion del operador.

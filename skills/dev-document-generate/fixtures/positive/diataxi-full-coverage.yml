@@ -1,0 +1,16 @@
+case: El operador pide documentar una feature nueva y el skill produce la guia Diataxi completa (referencia, explicacion, how-to, tutorial) sin auto-escribir archivos ni auto-commit.
+context: Feature nueva con superficie publica, tests, dependencias y una decision de diseño no obvia que justifica explicacion.
+request: >-
+  Documenta esta feature. Tiene un modulo publico con 4 funciones, un flag de
+  CLI, tests que cubren casos limite, y una decision de diseño donde se
+  eligio Bayesian inference sobre heuristica simple. Genera la guia para
+  los cuatro cuadrantes Diataxi.
+expect:
+  - El skill produce la arqueologia del codigo primero: mapea estructura, lee entrada, lee implementacion, lee tests, declara conteo de archivos y superficie publica.
+  - Particiona la feature por cuadrante: tutorial (nuevo), how-to (nuevo), referencia (nuevo), explicacion (nuevo). Declara la tabla entidad x cuadrante.
+  - Referencia primero: tipos, defaults, restricciones y firmas exactas trazables al codigo; ejemplos copiables que funcionan.
+  - Explicacion: abre con el problema (que falla sin la inferencia Bayesiana), declara el trade-off frente a la heuristica simple, lista alternativas descartadas si hay evidencia.
+  - How-to: titulos con "Como", pasos accionables, prerequisitos especificos, verificacion, troubleshooting.
+  - Tutorial: tiempo al primer resultado menor a 3 pasos, comandos exactos, cierre con "que construiste".
+  - El skill NO escribe archivos al disco; entrega la guia en prosa y espera confirmacion del operador.
+  - El skill NO ejecuta git, commits, tests ni builds (fail-closed, local-evaluation).
