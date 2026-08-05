@@ -1,0 +1,15 @@
+case: El operador pega un cambio riesgoso y el skill planta guardias a lo largo de las seis dimensiones sin auto-ejecutar git, tests ni edits.
+context: Cambio destructivo con invariants no declarados, comandos destructivos sin confirmacion, frontera de edicion abierta y pre-condiciones ocultas.
+request: >-
+  Pon guardias antes de este cambio. Voy a borrar la tabla legacy
+  `audit_events`, migrar el consumidor al nuevo stream, y forzar push a main.
+  No quiero romper el dashboard de compliance ni el job nocturno.
+expect:
+  - El skill interroga el cambio dimension por dimension y produce un manifesto de guardias en prosa.
+  - Invariants del sistema: declara invariants observables para el dashboard de compliance y el job nocturno (frases verificables, no deseos).
+  - Comandos destructivos: caza DROP TABLE y git push --force; declara que mutan, si hay snapshot/rollback y que bandera los confirma antes de ejecutar.
+  - Frontera de edicion: declara rutas permitidas y bloquea el resto por defecto; abre solo lo minimo necesario.
+  - Dependencias de pre-condiciones: saca a la luz el nuevo stream, el consumidor migrado y permisos; declara dueno y momento; si no hay dueno marca coverage_gap.
+  - Regresiones conocidas: recupera regresiones anteriores del mismo ambito y declara una guardia explicita por cada una.
+  - Secuencia de pre-flight: ordena las guardias en secuencia observable (invariants vigentes -> snapshot listo -> frontera declarada -> pre-condiciones listas -> guardias de regresion activas -> cambio).
+  - El skill NO auto-arranca el cambio; entrega el manifesto y espera confirmacion del operador.

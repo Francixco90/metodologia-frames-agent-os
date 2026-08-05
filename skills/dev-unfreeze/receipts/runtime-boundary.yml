@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-UNFREEZE-001
+skill_id: dev-unfreeze
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Restauracion de checkpoint congelado en prosa local. Sin red, sin git, sin
+  checkout, sin restore, sin stash pop, sin commits, sin deploys. Todo gate de
+  ejecucion tras confirmacion explicita del operador. No se descarta trabajo no
+  confirmado sin aprobacion.

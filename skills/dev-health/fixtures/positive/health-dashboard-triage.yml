@@ -1,0 +1,16 @@
+case: El operador pide un health check del repo y el skill diagnostica las seis dimensiones, calcula el compuesto, triagea señales de decay y entrega recomendaciones sin auto-arreglar nada.
+context: Repo con typechecker, linter, test runner y detector de código muerto presentes; histórico previo con score 9.4.
+request: >-
+  Haz un health check de este repo. Necesito el dashboard de calidad y saber
+  qué cayó desde la última vez.
+expect:
+  - El skill inventaría la pila de salud (typecheck, lint, test, deadcode, shell) y la confirma con el operador antes de correr.
+  - Seguridad de tipos: corre el typechecker, cuenta errores, puntúa 0-10 según la rúbrica.
+  - Lint: corre el linter, cuenta warnings, puntúa 0-10; lista los warnings más comunes.
+  - Tests: corre el runner, captura pass/fail, puntúa 0-10; si solo hay exit code, exit 0 = 10, non-zero = 4.
+  - Código muerto: corre el detector, cuenta exports sin usar, puntúa 0-10.
+  - Scripts: lint de shell sobre los scripts del repo, puntúa 0-10; si no hay scripts, se salta y se redistribuye el peso.
+  - Compuesto: calcula el score ponderado (tipos 22%, lint 18%, tests 28%, muerto 13%, scripts 9%, resto redistribuido).
+  - Tendencia: lee el histórico, compara contra la última medición, identifica qué categorías cayeron y correlaciona el delta con el output crudo.
+  - Recomendaciones: prioriza por impacto (peso * (10 - score)), solo categorías abajo de 10.
+  - El skill NO arregla nada; entrega el dashboard de solo lectura y espera a que el operador decida qué atacar.

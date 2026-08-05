@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-HEALTH-001
+skill_id: dev-health
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Diagnostico de salud del repo en prosa local. Sin red, sin git, sin tests,
+  sin commits, sin deploys, sin installs, sin --write, sin --fix. Todo gate de
+  remediacion tras confirmacion explicita del operador.

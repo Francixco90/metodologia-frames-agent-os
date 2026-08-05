@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-FREEZE-001
+skill_id: dev-freeze
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Checkpoint de trabajo en prosa local. Sin red, sin git, sin stash, sin
+  commits, sin deploys. Todo gate de ejecucion tras confirmacion explicita del
+  operador. El skill describe el punto de restauracion; no ejecuta git.
