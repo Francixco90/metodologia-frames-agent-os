@@ -69,7 +69,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -102,7 +102,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -135,7 +135,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -168,7 +168,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-07-20T17:43:27Z'
     fragments_reused: false
     local_changes:
@@ -240,7 +240,7 @@ entries:
           text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md,
           text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8,
           receipt_ref: skills/instagram-v2-content-license-receipt.yml,
-          receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22,
+          receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca,
         },
       execution_scope: local-candidate-production,
       production_runtime_status: publication_blocked,
@@ -272,7 +272,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-08-04T00:00:00Z'
     fragments_reused: false
     local_changes:
@@ -306,7 +306,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-08-04T00:00:00Z'
     fragments_reused: false
     local_changes:
@@ -340,7 +340,7 @@ entries:
       text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
       text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
       receipt_ref: skills/instagram-v2-content-license-receipt.yml
-      receipt_sha256: 36b532b9da03446a5d9d58902bbe050bb46b893bf959f4ada6888de39ac48f22
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
     recorded_at: '2026-08-04T00:00:00Z'
     fragments_reused: false
     local_changes:
@@ -359,6 +359,41 @@ entries:
       - EVT-SKL-SCROLL-WORLD-002
       - EVT-SKL-SCROLL-WORLD-003
       - EVT-SKL-SCROLL-WORLD-004
+  - skill_id: metodologia-find-skills
+    version: 0.1.0
+    current_state: active
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
+    package_manifest_sha256: 09341e826d5cfc7669aef3d09267fbb482e94fca641007bd53de5647e994e5f7
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-find-skills/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    content_license_evidence:
+      text_ref: skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md
+      text_sha256: f0f5336331b9e8a4261a12c5f355aa1788352606d9f1c91cd339a369ff7910d8
+      receipt_ref: skills/instagram-v2-content-license-receipt.yml
+      receipt_sha256: ab3c8f6e0deecdc0d2378b04417090f88740e231064598077d9fbdf4201c01ca
+    recorded_at: '2026-08-04T00:00:00Z'
+    fragments_reused: false
+    local_changes:
+      - clean_room_prose_from_vercel_find_skills_reference
+      - local_registry_discovery_adaptation
+      - fail_closed_external_cli_invocation
+    restrictions:
+      - internal_skill_discovery_only
+      - no_publication_authority
+      - no_external_cli_without_user_confirmation
+    execution_scope: local-skill-discovery
+    production_runtime_status: publication_blocked
+    tests:
+      - pnpm verify:skills
+    event_ids:
+      - EVT-SKL-FIND-SKILLS-001
+      - EVT-SKL-FIND-SKILLS-002
+      - EVT-SKL-FIND-SKILLS-003
+      - EVT-SKL-FIND-SKILLS-004
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -736,3 +771,35 @@ events:
     content_sha256: 9f466a8b37c64b044989ee03f93284c9f8354f398c4a9cf8db03a151af2a98f6
     transition: {from: evaluated, to: active}
     decision: activate_local_capability
+  - event_id: EVT-SKL-FIND-SKILLS-001
+    event_order: 1
+    recorded_at: '2026-08-04T00:00:00Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-find-skills
+    content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
+    transition: {from: null, to: candidate}
+    decision: accept_locally_authored_candidate
+  - event_id: EVT-SKL-FIND-SKILLS-002
+    event_order: 2
+    recorded_at: '2026-08-04T00:00:00Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-find-skills
+    content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_lineage_and_fixture_review
+  - event_id: EVT-SKL-FIND-SKILLS-003
+    event_order: 3
+    recorded_at: '2026-08-04T00:00:00Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: metodologia-find-skills
+    content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
+    transition: {from: quarantined, to: evaluated}
+    decision: evaluate_clean_room_adaptation
+  - event_id: EVT-SKL-FIND-SKILLS-004
+    event_order: 4
+    recorded_at: '2026-08-04T00:00:00Z'
+    actor_id: skill-foundry-v2-verifier
+    skill_id: metodologia-find-skills
+    content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
+    transition: {from: evaluated, to: active}
+    decision: activate_local_skill_discovery

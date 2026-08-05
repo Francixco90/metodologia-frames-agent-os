@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90679
-    v3_rolling_adjustment_words: 3371
+    baseline_words: 90826
+    v3_rolling_adjustment_words: 3518
     original_baseline_words: 87308
-    final_words: 117820
+    final_words: 117986
     maximum_multiplier: 1.5
-    maximum_words: 136018
-    actual_multiplier: 1.2993
+    maximum_words: 136239
+    actual_multiplier: 1.299
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 347
-    baseline_words: 90679
-    v3_rolling_adjustment_words: 3371
+    baseline_words: 90826
+    v3_rolling_adjustment_words: 3518
     original_baseline_words: 87308
-    final_words: 117820
-    maximum_words: 181358
-    word_multiplier: 1.2993
-    baseline_loc: 34350
-    v3_rolling_adjustment_loc: 1609
+    final_words: 117986
+    maximum_words: 181652
+    word_multiplier: 1.299
+    baseline_loc: 34417
+    v3_rolling_adjustment_loc: 1676
     original_baseline_loc: 32741
-    final_loc: 43239
-    maximum_loc: 68700
-    loc_multiplier: 1.2588
+    final_loc: 43315
+    maximum_loc: 68834
+    loc_multiplier: 1.2585
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -5632,9 +5632,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: 59c7081a563693e2df767e46c1025a613bb043bb32161238d4e3b3b6071ccb57
-      current_words: 1563
-      current_loc: 738
+      current_sha256: 1f2d55a412cbd1b12bfdfd884af08fe8b40f27b7aacd474ac1243c1924fe71ef
+      current_words: 1710
+      current_loc: 805
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**
