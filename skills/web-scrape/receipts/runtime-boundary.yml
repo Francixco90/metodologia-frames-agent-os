@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-H03-WEB-SCRAPE-001
+scope: local-evaluation
+runtime_rules:
+  explicit_frame: true
+  network_allowed: false
+  execution_boundary: requires_user_confirmation
+  browser_launch: requires_user_confirmation
+  network_fetch: requires_user_confirmation
+  external_tool_invocation: requires_user_confirmation
+  autonomous_clock_allowed: false
+  fallback_must_be_observable: true
+  mutating_actions_allowed: false
+  multi_page_crawl_allowed: false
+  auth_flows_allowed: false
+production_runtime_status: local_capability_only
+publication_authority: false
