@@ -7,3 +7,4 @@ export * from './primitives.ts';
 export * from './renderer-capabilities-v1.ts';
 export * from './reasoning-safety.ts';
 export * from './schemas.ts';
+export * from './task-contract.ts';
