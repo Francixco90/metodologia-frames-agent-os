@@ -1,0 +1,15 @@
+case: El operador pide restaurar un checkpoint previamente congelado y el skill produce un plan de restauracion secuenciado en prosa sin auto-ejecutar git.
+context: Existe un freeze registrado (branch, stash y mensaje), el arbol de trabajo tiene deriva desde el freeze, y el operador quiere volver al estado congelado.
+request: >-
+  Descongela este checkpoint. Congelamos la ranela feature-x en el commit abc123
+  con un stash del WIP, y desde ahi se hicieron dos commits mas en main y hay
+  cambios no confirmados en un archivo. Quiero volver al freeze sin perder el
+  trabajo no confirmado.
+expect:
+  - El skill interroga la restauracion dimension por dimension y produce un plan de restauracion en prosa.
+  - Verificar el checkpoint: confirma que el freeze existe, declara branch, commit, stash y mensaje del freeze; si no existe marca coverage_gap.
+  - Declarar la deriva: enumera los dos commits en main y los cambios no confirmados, y declara si son compatibles con la restauracion.
+  - Precisar el blanco: convierte "el freeze" en commit abc123 mas stash ref mas conjunto de archivos; si no puede precisarse marca coverage_gap.
+  - Conflictos y riesgos: declara que el trabajo no confirmado colisiona con el checkout, propone preservarlo (stash o backup) antes de restaurar, y pide aprobacion explicita del operador.
+  - Secuenciar los pasos: declara el orden exacto (preservar cambios, checkout al commit, stash pop, verificar status) con dependencias explicitas entre pasos.
+  - Confirmar antes de restaurar: el skill entrega el plan secuenciado y se detiene; ningun git checkout/restore/stash pop se ejecuta sin confirmacion explicita del operador.

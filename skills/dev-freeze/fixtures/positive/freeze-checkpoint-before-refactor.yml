@@ -1,0 +1,14 @@
+case: El operador pide congelar un checkpoint antes de un refactor riesgoso y el skill documenta las cinco dimensiones sin auto-ejecutar git ni stash.
+context: Hay archivos modificados sin commitear, dos commits locales no empujados, un diff significativo en un modulo core, una TODO en vuelo y el operador va a reescribir un modulo.
+request: >-
+  Congela el estado antes de reescribir el modulo de pagos. Tengo 4 archivos
+  modificados, dos commits sin empujar, una TODO en el header que no quiero
+  perder y el refactor toca pagos y su test de integracion.
+expect:
+  - El skill interroga el estado dimension por dimension y produce un checkpoint en prosa.
+  - Archivos modificados: lista los 4 archivos con tipo de cambio (nuevo/modificado/borrado/sin seguimiento) y tamanio del cambio; si no puede ver uno marca coverage_gap.
+  - Commits locales no empujados: lista los dos commits con hash y mensaje corto; si no puede ver el remoto declara coverage_gap en lugar de asumir empujado.
+  - Diffs significativos: resume el intent del cambio en el modulo core por archivo; si un diff es binario u opaco marca coverage_gap y nombra el archivo.
+  - Pendientes en vuelo: registra la TODO del header tal cual; si el operador no reporta nada declara "ninguna pendiente reportada".
+  - Proximo cambio riesgoso: declara que el refactor toca pagos y su test de integracion, con riesgo especifico (rotura de tests, dependencias cruzadas).
+  - El skill NO auto-arranca el refactor; entrega el checkpoint y espera confirmacion del operador.

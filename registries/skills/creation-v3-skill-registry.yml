@@ -981,6 +981,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-document-release/scripts/check-skill.mjs]
+  - skill_id: dev-freeze
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f17f96c98ccdb2ceab5f20629c78bdf7c14d56a72a8a8733487007be908f9ccc
+    package_manifest_sha256: 02f019f94834f6fe9404df8c97d02bda9ce900fb55cc87ad6e8f8090a5236d58
+    lineage_ref: skills/dev-freeze/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-freeze/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-freeze/scripts/check-skill.mjs]
+  - skill_id: dev-unfreeze
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: eb3cf5ef894e5cdec9c2b4483406f3ce8d86eaa947cdac993b3d0bfe0492a003
+    package_manifest_sha256: 9547840f3707b59b73fe06e01550705c55b5b038842e898817a9f7f1ff15ca6f
+    lineage_ref: skills/dev-unfreeze/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-unfreeze/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-unfreeze/scripts/check-skill.mjs]
+  - skill_id: dev-guard
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: c503e5f2648262e14e32f5e495f7d7520444363427949b98c0f9af972d00469b
+    package_manifest_sha256: d04337fa052eb4a583b609fef2b8e1cf8b2e5f625f92f17c51df4cab496eb340
+    lineage_ref: skills/dev-guard/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-guard/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-guard/scripts/check-skill.mjs]
+  - skill_id: dev-health
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 66cc7f79b851bb2ea914ef67c3a35f816e7be12b1be1da39356ef33f1ea13156
+    package_manifest_sha256: 562b909e953bd33e4781f3acbe4497a1d7853b40949bb4018853f4800ba01640
+    lineage_ref: skills/dev-health/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-health/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-health/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1339,3 +1383,19 @@ events:
   - {event_id: EVT-SKL-DRL-H03-002, event_order: 2, skill_id: dev-document-release, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DRL-H03-003, event_order: 3, skill_id: dev-document-release, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DRL-H03-004, event_order: 4, skill_id: dev-document-release, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FZE-H03-001, event_order: 1, skill_id: dev-freeze, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FZE-H03-002, event_order: 2, skill_id: dev-freeze, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FZE-H03-003, event_order: 3, skill_id: dev-freeze, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FZE-H03-004, event_order: 4, skill_id: dev-freeze, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UFZ-H03-001, event_order: 1, skill_id: dev-unfreeze, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UFZ-H03-002, event_order: 2, skill_id: dev-unfreeze, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UFZ-H03-003, event_order: 3, skill_id: dev-unfreeze, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UFZ-H03-004, event_order: 4, skill_id: dev-unfreeze, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GRD-H03-001, event_order: 1, skill_id: dev-guard, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GRD-H03-002, event_order: 2, skill_id: dev-guard, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GRD-H03-003, event_order: 3, skill_id: dev-guard, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GRD-H03-004, event_order: 4, skill_id: dev-guard, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HLT-H03-001, event_order: 1, skill_id: dev-health, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HLT-H03-002, event_order: 2, skill_id: dev-health, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HLT-H03-003, event_order: 3, skill_id: dev-health, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HLT-H03-004, event_order: 4, skill_id: dev-health, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

@@ -506,6 +506,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-document-release/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-freeze',
+    scope: 'local-evaluation',
+    check: ['skills/dev-freeze/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-unfreeze',
+    scope: 'local-evaluation',
+    check: ['skills/dev-unfreeze/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-guard',
+    scope: 'local-evaluation',
+    check: ['skills/dev-guard/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-health',
+    scope: 'local-evaluation',
+    check: ['skills/dev-health/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
