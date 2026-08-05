@@ -401,6 +401,11 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-paint/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-dna',
+    scope: 'local-evaluation',
+    check: ['skills/design-dna/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
