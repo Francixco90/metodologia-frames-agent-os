@@ -1,0 +1,20 @@
+{
+  "name": "memory",
+  "description": "Maintain durable, hierarchical memory files for the user and for codebases so context persists across sessions — bootstrap, read, and update MEMORY.md at the repo root and per module, plus user-level USER.md. The persistence layer codebase-guardian builds on.",
+  "version": "1.3.0",
+  "author": {
+    "name": "dhirajnikam",
+    "email": "dhirajnikam78@gmail.com"
+  },
+  "homepage": "https://github.com/DN-OpenSource/claude-skills/tree/main/skills/memory",
+  "repository": "https://github.com/DN-OpenSource/claude-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "memory",
+    "context",
+    "documentation",
+    "workflow",
+    "claude-code"
+  ]
+}

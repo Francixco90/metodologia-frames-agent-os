@@ -1,0 +1,22 @@
+{
+  "name": "schema-aware-db",
+  "description": "Stop guessing database schemas. A four-phase discipline for backend data code (SQL and NoSQL) — introspect the real schema, map every usage across the codebase, write the change to industry standard, then trace the ripple so no query, migration, serializer, or test goes stale.",
+  "version": "1.3.0",
+  "author": {
+    "name": "dhirajnikam",
+    "email": "dhirajnikam78@gmail.com"
+  },
+  "homepage": "https://github.com/DN-OpenSource/claude-skills/tree/main/skills/schema-aware-db",
+  "repository": "https://github.com/DN-OpenSource/claude-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "database",
+    "sql",
+    "nosql",
+    "schema",
+    "orm",
+    "migration",
+    "claude-code"
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/ponytail",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/DietrichGebert/ponytail",
+  "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+  "vendor_root_hashes": {
+    "LICENSE": "fb1bc6909ac3ef82d5c22106e32ef682b0cff66788fa915fb9b53b15c9d2f3ab"
+  },
+  "vendors": [
+    {
+      "skill": "ponytail",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ponytail-audit",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail-audit/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail-audit/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "5560b8e383dbe2ddfddc873a1e2bf2e586e23e0cd7d995537482b2315331f6d1"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ponytail-debt",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail-debt/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail-debt/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "c84fba75f0ca12bfe83f9a78ea02fd125c5dd3f1fbb18124105a489937f284e6"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ponytail-gain",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail-gain/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail-gain/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ponytail-help",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail-help/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail-help/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "2264d1615117b02b0fd5a69ec84cd2757006471a78e4d6c22eed6d581c1d37a4"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "ponytail-review",
+      "source_repo": "https://github.com/DietrichGebert/ponytail",
+      "source_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+      "source_path": "skills/ponytail-review/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 DietrichGebert (ponytail, https://github.com/DietrichGebert/ponytail)",
+      "destination": "skills/vendor/ponytail/ponytail-review/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/ponytail/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "40df33b58fc6ef889b93585733feb9566b76e9586efa7f376785c1e995197ac0"
+      },
+      "known_risks": [],
+      "update_procedure": [
+        "Clone https://github.com/DietrichGebert/ponytail at new commit",
+        "Re-copy text-only skills/ to skills/vendor/ponytail/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 7,
+    "total_skills": 6,
+    "licenses": {
+      "ponytail": "MIT",
+      "ponytail-audit": "MIT",
+      "ponytail-debt": "MIT",
+      "ponytail-gain": "MIT",
+      "ponytail-help": "MIT",
+      "ponytail-review": "MIT"
+    },
+    "binaries_excluded": "none (all vendored files are UTF-8 text)",
+    "text_extensions_copied": [
+      ".md",
+      ".json",
+      ".py",
+      ".sh",
+      ".ts",
+      ".js",
+      ".cjs",
+      ".html",
+      ".dot",
+      ".csv"
+    ],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "codebase-guardian",
+  "description": "A disciplined four-phase loop for editing existing codebases safely — validate against the real toolchain, match or deliberately change the existing pattern, trace the ripple, and record learnings to MEMORY.md. Covers TypeScript/Node, Python/Django, Flutter/Dart, and Rust/Tauri.",
+  "version": "1.3.0",
+  "author": {
+    "name": "dhirajnikam",
+    "email": "dhirajnikam78@gmail.com"
+  },
+  "homepage": "https://github.com/DN-OpenSource/claude-skills/tree/main/skills/codebase-guardian",
+  "repository": "https://github.com/DN-OpenSource/claude-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "codebase",
+    "refactoring",
+    "type-safety",
+    "workflow",
+    "claude-code"
+  ]
+}

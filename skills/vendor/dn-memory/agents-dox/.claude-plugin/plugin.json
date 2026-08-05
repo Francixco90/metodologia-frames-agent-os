@@ -1,0 +1,21 @@
+{
+  "name": "agents-dox",
+  "description": "The DOX framework — a high-performance AGENTS.md hierarchy where each AGENTS.md is a binding work contract for its subtree. Read the applicable root-to-nearest chain of AGENTS.md before editing, and run a DOX pass to update the owning AGENTS.md and affected parents/children after every meaningful change. Bootstraps the tree if a repo has none.",
+  "version": "1.3.0",
+  "author": {
+    "name": "dhirajnikam",
+    "email": "dhirajnikam78@gmail.com"
+  },
+  "homepage": "https://github.com/DN-OpenSource/claude-skills/tree/main/skills/agents-dox",
+  "repository": "https://github.com/DN-OpenSource/claude-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "agents-md",
+    "dox",
+    "documentation",
+    "contracts",
+    "workflow",
+    "claude-code"
+  ]
+}
