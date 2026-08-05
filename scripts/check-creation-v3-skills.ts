@@ -646,6 +646,21 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-ponytail-debt/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-ponytail-gain',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail-gain/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-ponytail-help',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail-help/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-karpathy-guidelines',
+    scope: 'local-evaluation',
+    check: ['skills/dev-karpathy-guidelines/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

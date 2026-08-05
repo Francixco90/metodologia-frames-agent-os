@@ -1,0 +1,12 @@
+case: El operador pide una corrección quirúrgica de un bug y el skill aplica los cuatro principles — simplicidad, cambios quirúrgicos, supuestos explicitados y éxito verificable — sin auto-ejecutar git, tests ni installs.
+context: Bug en una función de validación, código existente con estilo propio, el operador pide solo arreglar el bug sin tocar nada más.
+request: >-
+  Corrige el bug en validateAmount: devuelve true para montos negativos
+  cuando deberia devolver false. No toques nada mas.
+expect:
+  - El skill explicita el supuesto (monto negativo no es valido) antes de codear y lo declara en prosa.
+  - El cambio es quirúrgico: solo se modifica la rama que evalua montos negativos, sin tocar código adyacente, formato ni comentarios.
+  - Se replica el estilo existente del archivo, aun si el skill lo haria distinto.
+  - Se define criterio de éxito verificable: un test que reproduzca el bug (monto negativo devuelve true) y que tras el cambio devuelva false.
+  - Si se nota código muerto no relacionado, se menciona — no se borra.
+  - El skill NO auto-arranca installs, git operations, tests ni commits; entrega el cambio y el criterio de verificación y espera confirmación del operador.

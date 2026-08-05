@@ -1,0 +1,14 @@
+case: El operador pide mostrar el impacto de ponytail y el skill displays el scoreboard compacto con medianas de benchmark sin auto-ejecutar benchmarks ni persistir estado.
+context: Operador quiere ver el impacto medido de ponytail como scoreboard one-shot; medianas publicadas disponibles.
+request: >-
+  Muestra el impacto de ponytail. Quiero ver el scoreboard compacto de menos
+  código, menos costo, más velocidad, desde las medianas de benchmark.
+expect:
+  - El skill displays el scoreboard compacto one-shot con barras ASCII y etiquetas de cifra exacta.
+  - Líneas de código: muestra rango medido (6-20% ponytail vs 100% sin-skill) con barra y etiqueta.
+  - Costo: muestra rango medido (23-53% ponytail vs 100% sin-skill) con barra y etiqueta.
+  - Velocidad: muestra 3-6x más rápido con indicador.
+  - Apunta a /dev-ponytail-debt y /dev-ponytail-audit para cifras per-repo en lugar de inventarlas.
+  - El skill NO auto-ejecuta benchmarks, tests, installs ni comandos con side effects.
+  - El skill NO persiste modo, flags ni estado; el display es one-shot y se detiene.
+  - Las cifras se declaran como medianas de benchmark, no como ahorro per-repo.

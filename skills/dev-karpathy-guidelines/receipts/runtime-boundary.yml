@@ -1,0 +1,5 @@
+skill_id: dev-karpathy-guidelines
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_code_apply: false
+auto_refactor: false

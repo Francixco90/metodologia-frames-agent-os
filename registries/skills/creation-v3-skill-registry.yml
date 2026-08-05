@@ -1289,6 +1289,39 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-ponytail-debt/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail-gain
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e29e573c68d558f2dc2b25256b97c621bf834e158164f7213123d5a492cc3055
+    package_manifest_sha256: f0d66e24ea5f3391fcff47734ca211b21c6a25c4f2d8345a31451de67aba34d6
+    lineage_ref: skills/dev-ponytail-gain/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail-gain/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail-gain/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail-help
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 35a5c6be35301ef5df1c72c7f7f7d60acf662ccc35b82396913d723e34c88f76
+    package_manifest_sha256: d2b60466b228da9f4ebf537b27072abd564ee94e023621d82ab86917c166d656
+    lineage_ref: skills/dev-ponytail-help/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail-help/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail-help/scripts/check-skill.mjs]
+  - skill_id: dev-karpathy-guidelines
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: d3da16f5ba06933ad853861102b99903e17b11de7efbfc7aa5639a22a7d9cbca
+    package_manifest_sha256: 3ee88ad23a2e57dcce609ff0567e68e9f7a2801eb4fd528b54182fe49402757b
+    lineage_ref: skills/dev-karpathy-guidelines/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-karpathy-guidelines/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-karpathy-guidelines/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1759,3 +1792,15 @@ events:
   - {event_id: EVT-SKL-PND-H03-002, event_order: 2, skill_id: dev-ponytail-debt, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PND-H03-003, event_order: 3, skill_id: dev-ponytail-debt, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PND-H03-004, event_order: 4, skill_id: dev-ponytail-debt, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNG-H03-001, event_order: 1, skill_id: dev-ponytail-gain, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNG-H03-002, event_order: 2, skill_id: dev-ponytail-gain, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNG-H03-003, event_order: 3, skill_id: dev-ponytail-gain, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNG-H03-004, event_order: 4, skill_id: dev-ponytail-gain, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNH-H03-001, event_order: 1, skill_id: dev-ponytail-help, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNH-H03-002, event_order: 2, skill_id: dev-ponytail-help, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNH-H03-003, event_order: 3, skill_id: dev-ponytail-help, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNH-H03-004, event_order: 4, skill_id: dev-ponytail-help, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-KPG-H03-001, event_order: 1, skill_id: dev-karpathy-guidelines, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-KPG-H03-002, event_order: 2, skill_id: dev-karpathy-guidelines, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-KPG-H03-003, event_order: 3, skill_id: dev-karpathy-guidelines, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-KPG-H03-004, event_order: 4, skill_id: dev-karpathy-guidelines, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
