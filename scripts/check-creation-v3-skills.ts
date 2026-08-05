@@ -466,6 +466,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-plan-ceo-review/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-plan-tune',
+    scope: 'local-evaluation',
+    check: ['skills/dev-plan-tune/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-devex-review',
+    scope: 'local-evaluation',
+    check: ['skills/dev-devex-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-design-review',
+    scope: 'local-evaluation',
+    check: ['skills/dev-design-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-design-html',
+    scope: 'local-evaluation',
+    check: ['skills/dev-design-html/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
