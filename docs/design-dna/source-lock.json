@@ -1,0 +1,54 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/design-dna",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/zanwei/design-dna",
+  "source_commit": "9d9d79568df31cd846681f89fd3be1c3ce0c2aff",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 the design-dna authors (design-dna, https://github.com/zanwei/design-dna)",
+  "vendor_root_hashes": {
+    "LICENSE": "2de108bcd0d904f8756e1135ca77ce1e3e9ca0edb1ae6abecb97dea76d27d174"
+  },
+  "vendors": [
+    {
+      "skill": "design-dna",
+      "source_repo": "https://github.com/zanwei/design-dna",
+      "source_commit": "9d9d79568df31cd846681f89fd3be1c3ce0c2aff",
+      "source_path": "/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 the design-dna authors",
+      "destination": "skills/vendor/design-dna/design-dna/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/design-dna/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 3,
+      "critical_file_hashes": {
+        "SKILL.md": "c04472d2cced644f48485f630cb48e2f496624c65b9f0e5f28aec9af153c7fbf",
+        "references/generation-guide.md": "7073c2b297854daa49c2f2474a678a438fa65db59a2cf07bd71ca373174b4ef8",
+        "references/schema.md": "7437729591e892ccd6c373beb316c28025c05bb78633cbe4912ee40523a03dcf"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "design-dna is a design-token/brand-DNA generation skill (SKILL.md at repo root, not in skills/ folder); references/generation-guide.md + schema.md vendored as support text",
+        "Repo has docs/example-style-transfer.png (binary) — excluded; README locale variants excluded",
+        "Homólogo routes to design-* family (design-dna)"
+      ],
+      "update_procedure": [
+        "Clone zanwei/design-dna at new commit",
+        "Re-copy text-only SKILL.md + references/*.md to skills/vendor/design-dna/design-dna/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 4,
+    "total_skills": 1,
+    "licenses": {
+      "design-dna": "MIT"
+    },
+    "binaries_excluded": "docs/example-style-transfer.png (binary, excluded)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

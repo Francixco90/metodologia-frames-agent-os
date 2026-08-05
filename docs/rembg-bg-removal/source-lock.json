@@ -1,0 +1,55 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/rembg-bg-removal",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/OpenGHz/rembg-bg-removal",
+  "source_commit": "3e9e829db5921e5754fd82af645f82b7357446ee",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Haizhou Ge (rembg-bg-removal, https://github.com/OpenGHz/rembg-bg-removal)",
+  "vendor_root_hashes": {
+    "LICENSE": "ea3939ecbdc77e211cc9cfd0779890addf17fba86c275983c82c3e7ba7a42d76"
+  },
+  "vendors": [
+    {
+      "skill": "rembg",
+      "source_repo": "https://github.com/OpenGHz/rembg-bg-removal",
+      "source_commit": "3e9e829db5921e5754fd82af645f82b7357446ee",
+      "source_path": "/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Haizhou Ge",
+      "destination": "skills/vendor/rembg-bg-removal/rembg/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/rembg-bg-removal/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 4,
+      "critical_file_hashes": {
+        "SKILL.md": "c6eb1fc3995816fde910a2e2af97bf7131092f8b44ff4069ae5450e48d0cb05c",
+        "references/models_and_flags.md": "531d06b477fc51dee54f32f921e1546ba8a9e66224adb3382874ae791e927acc",
+        "scripts/run_rembg.sh": "c822e4e0d5befcaafe016e5b55934bc43595c02a40d7d369e4b62021c9a46903",
+        "scripts/setup_env.sh": "c8a25341be98b4f19beb13bc5a5c5f3ca7a9278ed1946d728f32b52f611eca22"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "rembg is a TOOL skill that invokes rembg binary via scripts/run_rembg.sh + setup_env.sh — FAIL-CLOSED homólogo required (describe capability in prose, gate execution behind user confirmation, NO auto-execute binary/install/network)",
+        "scripts/*.sh vendored as text reference (not executable in vendor context); reference-only-no-auto-execution",
+        "Homólogo routes to media-* family (media-rembg, fail-closed)"
+      ],
+      "update_procedure": [
+        "Clone OpenGHz/rembg-bg-removal at new commit",
+        "Re-copy text-only SKILL.md + references/*.md + scripts/*.sh to skills/vendor/rembg-bg-removal/rembg/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 5,
+    "total_skills": 1,
+    "licenses": {
+      "rembg": "MIT"
+    },
+    "binaries_excluded": "none (SKILL.md + references/*.md + scripts/*.sh + LICENSE, all UTF-8 text/shell)",
+    "text_extensions_copied": [".md", ".sh"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
