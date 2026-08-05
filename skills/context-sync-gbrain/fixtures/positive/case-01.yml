@@ -1,0 +1,11 @@
+name: positive-reconcile-after-subagent
+scenario: >
+  Una sesión retoma un proyecto tras delegar trabajo a un subagente. El contexto local
+  muestra un contrato de tarea obsoleto. El agente lee el cerebro global compartido,
+  detecta un receipt más reciente validado por el subagente, y actualiza TASK.md y
+  CONTEXT.md para reflejar el estado compartido antes de continuar.
+expected_behavior:
+  - El agente lee el cerebro global antes de actuar.
+  - El estado local se reconcilia con el receipt más reciente.
+  - La reconciliación se registra con marca de evidencia.
+  - No se promueve estado sin receipt.

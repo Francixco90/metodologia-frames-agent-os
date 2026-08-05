@@ -1,0 +1,13 @@
+name: restore-most-recent-context
+scenario: >
+  The user asks to resume where they left off after a session restart. A
+  saved context file exists with title, branch, timestamp, summary, remaining
+  work and notes. The skill loads the most recent saved context across all
+  branches and presents it so the user can continue without losing state.
+expected_behavior:
+  - Load the most recent saved context file by filename timestamp prefix (YYYYMMDD-HHMMSS), not filesystem mtime.
+  - Do not filter by branch — cross-branch resume is the whole point; the saved context may come from a different branch than the current one.
+  - Present title, branch, saved timestamp, last session duration, status, summary, remaining work and notes in a structured prose summary.
+  - If the current branch differs from the saved context branch, note the mismatch and suggest the operator may want to switch branches before continuing.
+  - Offer next steps: continue with the first remaining work item, show the full saved file, or dismiss.
+  - Do not modify code, run git, or open network connections — the skill only reads saved files and presents the summary.

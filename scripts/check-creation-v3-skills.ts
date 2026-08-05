@@ -661,6 +661,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-karpathy-guidelines/scripts/check-skill.mjs'],
   },
+  {
+    id: 'context-save',
+    scope: 'local-evaluation',
+    check: ['skills/context-save/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-restore',
+    scope: 'local-evaluation',
+    check: ['skills/context-restore/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-sync-gbrain',
+    scope: 'local-evaluation',
+    check: ['skills/context-sync-gbrain/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'context-setup-gbrain',
+    scope: 'local-evaluation',
+    check: ['skills/context-setup-gbrain/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

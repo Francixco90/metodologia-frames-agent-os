@@ -1322,6 +1322,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-karpathy-guidelines/scripts/check-skill.mjs]
+  - skill_id: context-save
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0e173f4cc2ffbf2429c736e521e34e6a79cdb7e768a2856a330a2d8723165f94
+    package_manifest_sha256: 260f5c6edaf05fff3b222d842a8e1a98d5a192204986ac898a7040a63b6a2514
+    lineage_ref: skills/context-save/LINEAGE.yml
+    dependency_receipt_ref: skills/context-save/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-save/scripts/check-skill.mjs]
+  - skill_id: context-restore
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3925b7327131930c4c06f6b25f03fd5e322abbcc8ba7d653922ee96b52459bc6
+    package_manifest_sha256: e5a3f14c57ab735de6dcaf4ee5349d3b693590ac29219937b0f5aed9f47a802c
+    lineage_ref: skills/context-restore/LINEAGE.yml
+    dependency_receipt_ref: skills/context-restore/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-restore/scripts/check-skill.mjs]
+  - skill_id: context-sync-gbrain
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: b348297610c76966c44b8fd195193626a3b91a0d914eb88c75c54b28705a9372
+    package_manifest_sha256: 9fe0f0f95a5ecc42750fa702eb29c503f8a6d03e024b18b0804a677b54b742c5
+    lineage_ref: skills/context-sync-gbrain/LINEAGE.yml
+    dependency_receipt_ref: skills/context-sync-gbrain/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-sync-gbrain/scripts/check-skill.mjs]
+  - skill_id: context-setup-gbrain
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: d274d6a36b84f006815b15dacf675cdb8f2c9d3079d456ed40159d662d26c28e
+    package_manifest_sha256: 191eeab4a67e4af96bc777abbd65da8b048e88a120ba0b358fdde6390ad7b1a4
+    lineage_ref: skills/context-setup-gbrain/LINEAGE.yml
+    dependency_receipt_ref: skills/context-setup-gbrain/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/context-setup-gbrain/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1804,3 +1848,19 @@ events:
   - {event_id: EVT-SKL-KPG-H03-002, event_order: 2, skill_id: dev-karpathy-guidelines, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-KPG-H03-003, event_order: 3, skill_id: dev-karpathy-guidelines, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-KPG-H03-004, event_order: 4, skill_id: dev-karpathy-guidelines, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSV-H03-001, event_order: 1, skill_id: context-save, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSV-H03-002, event_order: 2, skill_id: context-save, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSV-H03-003, event_order: 3, skill_id: context-save, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSV-H03-004, event_order: 4, skill_id: context-save, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CRT-H03-001, event_order: 1, skill_id: context-restore, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CRT-H03-002, event_order: 2, skill_id: context-restore, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CRT-H03-003, event_order: 3, skill_id: context-restore, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CRT-H03-004, event_order: 4, skill_id: context-restore, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSG-H03-001, event_order: 1, skill_id: context-sync-gbrain, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSG-H03-002, event_order: 2, skill_id: context-sync-gbrain, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSG-H03-003, event_order: 3, skill_id: context-sync-gbrain, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSG-H03-004, event_order: 4, skill_id: context-sync-gbrain, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSB-H03-001, event_order: 1, skill_id: context-setup-gbrain, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSB-H03-002, event_order: 2, skill_id: context-setup-gbrain, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CSB-H03-003, event_order: 3, skill_id: context-setup-gbrain, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSB-H03-004, event_order: 4, skill_id: context-setup-gbrain, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
