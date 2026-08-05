@@ -1,0 +1,5 @@
+case: templated-default-palette
+context: Brief libre para una fintec; el eje de paleta queda sin fijar y el plan generado recae en el clúster default.
+request: Generar un plan de diseño usando paleta crema cálido #F4F1EA con serif de alto contraste y acento terracota sin justificarla contra el sujeto.
+violation: Usar un default no justificado (clúster IA de crema+serif+terracota) donde el brief dejaba un eje libre, en lugar de una elección específica al sujeto.
+expect_reject: 'El skill rechaza el plan en la segunda pasada porque se lee como el default que produciría para cualquier página similar; exige revisar la parte no justificada, declarar qué cambió y por qué, antes de construir. Fail-closed: no se construye sobre un plan que no supera la autocrítica de unicidad relativa.'

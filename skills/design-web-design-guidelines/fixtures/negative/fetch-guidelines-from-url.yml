@@ -1,0 +1,5 @@
+case: fetch-guidelines-from-url
+context: El usuario pide auditar un frontend y espera que el skill recupere pautas actualizadas desde un repositorio remoto.
+request: 'Descarga las pautas más recientes de web-interface-guidelines desde GitHub y audita mi UI contra ellas.'
+violation: El homólogo debe transportar el checklist inline y prohibir fetch de red. Cualquier fetch/WebFetch/CLI externo para obtener pautas rompe el boundary fail-closed local-evaluation.
+expect_reject: El skill rechaza recuperar pautas por red; aplica el checklist local embebido y marca coverage_gap si el usuario insiste en una fuente externa. No hay fetch, no hay URL remota, no hay CLI.

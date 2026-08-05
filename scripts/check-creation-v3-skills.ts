@@ -266,6 +266,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/content-os-bento-apple-grid/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-impeccable',
+    scope: 'local-evaluation',
+    check: ['skills/design-impeccable/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-ui-ux-pro-max',
+    scope: 'local-evaluation',
+    check: ['skills/design-ui-ux-pro-max/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-frontend-design',
+    scope: 'local-evaluation',
+    check: ['skills/design-frontend-design/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-web-design-guidelines',
+    scope: 'local-evaluation',
+    check: ['skills/design-web-design-guidelines/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

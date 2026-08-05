@@ -1,0 +1,4 @@
+case: audit-accessibility-contrast
+context: El usuario entrega un componente de tarjeta de producto HTML y pide una revisión de accesibilidad y contraste.
+request: 'Revisa este componente por contraste WCAG AA y navegación por teclado.'
+expect: Lista de hallazgos file:line que verifica contraste de texto, foco visible, orden de tabulación y alt en imágenes; emite resumen con conteo por severidad y próximos pasos. Sin red, sin ejecución de app.

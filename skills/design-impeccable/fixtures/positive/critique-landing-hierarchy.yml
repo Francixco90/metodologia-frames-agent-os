@@ -1,0 +1,9 @@
+case: critique-landing-hierarchy
+context: Landing page de SaaS B2B con HERO saturado y CTAs compitiendo; se pide critica UX.
+request: 'Critica la jerarquia visual de esta landing y di que priorizar en el pulido.'
+expect: >
+  La skill debe leer el brief del proyecto y al menos una fuente de verdad visual
+  incumbente, identificar el modo (Persuadir), evaluar jerarquia contra el brief,
+  listar defectos acotados en una ronda batched (desktop + mobile) y proponer un
+  plan de pulido que preserve la identidad incumbente. No debe reemplazar copy
+  factual sin preguntar. No debe invocar CLI externo ni abrir red.

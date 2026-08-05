@@ -1,0 +1,8 @@
+case: review-button-touch-target
+context: Revisión de UI de una app móvil React Native antes de entrega.
+request: 'Revisa el botón de envío del formulario de checkout — ¿cumple estándares de touch y accesibilidad?'
+expect: |
+  Checklist aplica prioridad 1 (accesibilidad: aria-label/accessibilityLabel, contraste) y
+  prioridad 2 (touch: target ≥44×44px, 8px espaciado, feedback de estado). Marca hallazgos
+  con evidencia [CÓDIGO] si hay archivo o [INFERENCIA] si es juicio del revisor. Si no puede
+  verificar (sin acceso al componente), declara coverage_gap en vez de inventar.

@@ -1,0 +1,4 @@
+case: distinctive-hero-thesis
+context: Brief de landing para un observatorio astronómico amateur que rechaza resultados plantillados.
+request: Diseñar la dirección visual de la landing con un hero que abra con el elemento más característico del sujeto.
+expect: El skill produce un plan de tokens compacto (paleta 4-6 hex nombrados, emparejamiento tipográfico display+body deliberado, layout con wireframe ASCII y una firma única) y justifica por qué el hero elegido es tesis del sujeto y no la respuesta plantilla de número-grande-con-acento-en-gradiente.
