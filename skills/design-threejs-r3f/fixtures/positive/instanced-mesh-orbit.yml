@@ -1,0 +1,18 @@
+case: instanced-mesh-orbit
+context: >
+  El operador pide una escena R3F con 10k+ esferas instanciadas, OrbitControls para girar la
+  cámara y Bloom de postprocessing. La skill entrega prosa explicativa y pseudocódigo con
+  useFrame(state => state.clock.elapsedTime), useInstancedMesh (InstancedMesh con matrices por
+  instancia y instanceMatrix.needsUpdate), y EffectComposer con Bloom. Gating: no ejecuta
+  render ni dev server; marca local-evaluation y coverage_gap si falta tooling.
+request: >
+  Necesito una escena de React Three Fiber con 10000 esferas instanciadas que orbiten, con
+  OrbitControls y efecto Bloom. Dame la guía y pseudocódigo.
+expect: >
+  La skill responde con prosa estructurada: (1) setup de Canvas con dpr clampeado y Suspense,
+  (2) patrón useInstancedMesh/InstancedMesh con dummy Object3D para setMatrixAt y
+  instanceMatrix.needsUpdate, (3) bucle useFrame que usa state.clock.elapsedTime y state.delta
+  para animar orbits (nunca Date()), (4) OrbitControls makeDefault, (5) EffectComposer con
+  Bloom y luminanceThreshold, (6) nota de performance (<100 draw calls, <1M tris), (7) gating
+  fail-closed: describe la capability, no ejecuta render ni dev server; pide confirmación
+  explícita antes de cualquier CLI externo y marca coverage_gap si no hay runtime WebGL local.

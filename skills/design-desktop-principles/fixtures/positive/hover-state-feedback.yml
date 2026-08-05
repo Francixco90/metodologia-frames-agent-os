@@ -1,0 +1,19 @@
+case: hover-state-feedback
+context: >
+  Operator is designing a desktop toolbar for a cross-platform document editor
+  (macOS, Windows, Linux, web desktop) and asks for hover affordance guidance
+  that respects the 100-200ms transition band and the WCAG 2.5.8 24x24 target
+  floor. The skill is invoked for local evaluation only.
+request: >
+  "Give me hover affordance guidance for a desktop toolbar: transitions in the
+  100-200ms band, targets at least 24x24 CSS pixels, with CSS, SwiftUI, and
+  Compose Desktop pseudocode. Describe the capability — do not run a build or
+  open a window."
+expect: >
+  The skill returns prose explaining hover as the primary desktop affordance
+  signal, the 100-200ms transition rationale, and the 24x24 floor, then yields
+  CSS, SwiftUI (.onHover + .hoverEffect + .animation), and Compose Desktop
+  (.hoverable + collectIsHoveredAsState) pseudocode snippets. It marks
+  execution_scope: local-evaluation, gates any execution behind explicit
+  operator confirmation, and surfaces any platform token gap as coverage_gap
+  rather than inferring it. No build, no window launch, no autonomous clock.

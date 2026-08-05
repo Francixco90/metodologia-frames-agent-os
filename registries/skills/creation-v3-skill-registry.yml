@@ -651,6 +651,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-mobile-principles/scripts/check-skill.mjs]
+  - skill_id: design-canvas-generative
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: afa261a6c6d9c20d570e33c52e85092236a6811377bc6be9a04029c185020eab
+    package_manifest_sha256: 7bb275197f0af37e9918d36d39616f1ac1c39ca5f5c29b93625cb3bb7944b6d2
+    lineage_ref: skills/design-canvas-generative/LINEAGE.yml
+    dependency_receipt_ref: skills/design-canvas-generative/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-canvas-generative/scripts/check-skill.mjs]
+  - skill_id: design-desktop-principles
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0993e95d565ba4b1a3a0cd66bfadd725638045e5ec3bc2b916d3aeb8d73d53d6
+    package_manifest_sha256: 7f6b91481a7bf32df46aef654d9b647fccb730020c06fb5e2c331864bc07dcdd
+    lineage_ref: skills/design-desktop-principles/LINEAGE.yml
+    dependency_receipt_ref: skills/design-desktop-principles/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-desktop-principles/scripts/check-skill.mjs]
+  - skill_id: design-swiftui-motion
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3c7eca3ebaa761b74592f1e9f290a5d56404c85b522b1f3701f40075c3ba40d3
+    package_manifest_sha256: df4855625c632ceb2a6a9b34877470ae2f9ad9f5ff447ea15c1ee050088603e5
+    lineage_ref: skills/design-swiftui-motion/LINEAGE.yml
+    dependency_receipt_ref: skills/design-swiftui-motion/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-swiftui-motion/scripts/check-skill.mjs]
+  - skill_id: design-threejs-r3f
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 213979a794d1286386b068467fd5e8cff28ea234624d3e41eab2965eabc4166c
+    package_manifest_sha256: 4b0cb406ade5f7d38e9f532287d651777541a55652987f5c14db41d3a3daad22
+    lineage_ref: skills/design-threejs-r3f/LINEAGE.yml
+    dependency_receipt_ref: skills/design-threejs-r3f/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-threejs-r3f/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -889,3 +933,19 @@ events:
   - {event_id: EVT-SKL-MOP-H03-002, event_order: 2, skill_id: design-mobile-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MOP-H03-003, event_order: 3, skill_id: design-mobile-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MOP-H03-004, event_order: 4, skill_id: design-mobile-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CNG-H03-001, event_order: 1, skill_id: design-canvas-generative, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CNG-H03-002, event_order: 2, skill_id: design-canvas-generative, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CNG-H03-003, event_order: 3, skill_id: design-canvas-generative, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CNG-H03-004, event_order: 4, skill_id: design-canvas-generative, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DKP-H03-001, event_order: 1, skill_id: design-desktop-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DKP-H03-002, event_order: 2, skill_id: design-desktop-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DKP-H03-003, event_order: 3, skill_id: design-desktop-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DKP-H03-004, event_order: 4, skill_id: design-desktop-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWM-H03-001, event_order: 1, skill_id: design-swiftui-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SWM-H03-002, event_order: 2, skill_id: design-swiftui-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SWM-H03-003, event_order: 3, skill_id: design-swiftui-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWM-H03-004, event_order: 4, skill_id: design-swiftui-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TRF-H03-001, event_order: 1, skill_id: design-threejs-r3f, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TRF-H03-002, event_order: 2, skill_id: design-threejs-r3f, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TRF-H03-003, event_order: 3, skill_id: design-threejs-r3f, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TRF-H03-004, event_order: 4, skill_id: design-threejs-r3f, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

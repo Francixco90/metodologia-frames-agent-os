@@ -1,0 +1,22 @@
+case: positive-particle-pool-flow-field
+context: >
+  El operador solicita diseño de un sistema de partículas con flow field sobre
+  Canvas 2D. Requiere pool de partículas pre-asignado (sin GC pressure), lookup
+  angular desde una grilla de ruido Perlin/Simplex, damping de velocidad y
+  trails con doble buffer. La skill opera en execution_scope local-evaluation:
+  entrega prosa guía y pseudocódigo para evaluación local, no ejecuta canvas ni
+  abre navegador.
+request: >
+  "Diseña un flow field con partículas pooleadas, lookup desde ruido, trails con
+  double buffer y DPR-aware sizing. Entrégame pseudocódigo y reglas fail-closed,
+  no lo ejecutes."
+expect: >
+  La skill responde con prosa terse MetodologIA: explica pool pattern (pre-asignar
+  array, swap-and-shrink en kill), flow field grid (celdas + ángulos desde noise2D),
+  double buffer offscreen con fill semi-transparente para fade, y DPR-aware sizing
+  (buffer en píxeles físicos, CSS en lógicos). Incluye las 4 reglas Do Not
+  (no clearRect para trails, no getImageData en loop, respetar DPR, no allocate
+  en hot loop). Reemplaza cualquier fuente aleatoria por rng() sembrada, no
+  Math.random. Marca runtime como local-evaluation y exige confirmación del
+  operador antes de ejecutar. Marca coverage_gap si falta runtime Canvas. No
+  auto-lanza build tooling ni publica.
