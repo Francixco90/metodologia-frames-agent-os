@@ -17,7 +17,8 @@ CLAUDE.md
 CONTEXT.md
 PROJECT.md
 TASK.md
-local/
+local
+04_estado/local/
 discovery/
 tmp/
 
@@ -44,4 +45,3 @@ tmp/
 
 # local agent cabin (settings, scripts) — personal, not for upstream
 .claude/
-local/
