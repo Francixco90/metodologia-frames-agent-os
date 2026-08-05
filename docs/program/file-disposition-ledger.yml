@@ -415,38 +415,38 @@ budgets:
         status: pass
   authored_eligible_corpus:
     baseline_files: 276
-    final_files: 347
-    baseline_words: 91036
-    v3_rolling_adjustment_words: 3728
+    final_files: 321
+    baseline_words: 89333
+    v3_rolling_adjustment_words: 2025
     original_baseline_words: 87308
-    final_words: 118196
+    final_words: 112402
     maximum_multiplier: 1.5
-    maximum_words: 136554
-    actual_multiplier: 1.2983
+    maximum_words: 133999
+    actual_multiplier: 1.2582
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
-    final_files: 347
-    baseline_words: 91036
-    v3_rolling_adjustment_words: 3728
+    final_files: 321
+    baseline_words: 89333
+    v3_rolling_adjustment_words: 2025
     original_baseline_words: 87308
-    final_words: 118196
-    maximum_words: 182072
-    word_multiplier: 1.2983
-    baseline_loc: 34448
-    v3_rolling_adjustment_loc: 1707
+    final_words: 112402
+    maximum_words: 178666
+    word_multiplier: 1.2582
+    baseline_loc: 33665
+    v3_rolling_adjustment_loc: 924
     original_baseline_loc: 32741
-    final_loc: 43346
-    maximum_loc: 68896
-    loc_multiplier: 1.2583
+    final_loc: 40768
+    maximum_loc: 67330
+    loc_multiplier: 1.211
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 54
+    inventory_count: 53
     applicable_bindings: 3
-    not_applicable_count: 51
-    coverage: 54/54
+    not_applicable_count: 50
+    coverage: 53/53
     coverage_gaps: []
     status: pass
     checks:
@@ -580,8 +580,6 @@ budgets:
       - path: projects/vs-001-source-to-campaign/remotion/captions.json
         reason: Canonical generator output without a declared one-to-one size-comparable template.
       - path: projects/vs-001-source-to-campaign/web/artifact/index.html
-        reason: Canonical generator output without a declared one-to-one size-comparable template.
-      - path: registries/components/component-registry.yml
         reason: Canonical generator output without a declared one-to-one size-comparable template.
   runtime_generated_evidence:
     excluded_from_authored_budgets: true

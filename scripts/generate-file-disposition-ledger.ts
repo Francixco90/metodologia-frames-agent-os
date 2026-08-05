@@ -316,7 +316,11 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
       initialFormat === 'text' && path.endsWith('.md') && isAuthoredEligible(path),
   );
   const markdownFileChecks = baselineEditableMarkdown.map((entry) => {
-    const current = currentMetrics.get(entry.path);
+    // Symlink-aware lookup: baseline paths may resolve to their post-migration
+    // location via retro symlinks (NN_slug taxonomy). currentMetrics is keyed by
+    // current git-tracked paths, so fall back to currentBytesFor which resolves
+    // the baseline path through any retro symlink. See plan inherited-shimmying-hoare.
+    const current = currentMetrics.get(entry.path) ?? (currentBytesFor(root, entry.path) ? metricsFor(currentBytesFor(root, entry.path) as Buffer) : null);
     const currentWords = current?.format === 'text' ? current.words : null;
     const maximumWords = entry.initial_words * 2;
     return {
