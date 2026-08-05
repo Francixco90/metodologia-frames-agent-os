@@ -1,0 +1,34 @@
+case_id: POS-GESTURE-SNAP-BACK-001
+category: gesture_choreography
+platform: cross_platform
+fixture_type: positive
+
+context: >
+  Un diseñador solicita motion para un modal sheet draggable que al soltarse
+  por debajo del umbral de 100pt debe regresar al origen con spring, y al
+  superarlo debe confirmar dismiss. La hit area del handle draggable cumple
+  44x44pt iOS y 48x48dp Android. El háptico dispara solo en el commit del
+  snap, no en cada frame del drag.
+
+request: >
+  Diseñar la choreografía de motion para un bottom sheet draggable con
+  snap-back al origen cuando el arrastre vertical es menor a 100pt, y
+  dismiss confirmado cuando lo supera. Incluir feedback háptico en el
+  momento de commit, no durante el arrastre continuo. Respetar
+  reduced-motion con fallback instantáneo.
+
+expect: >
+  El agente produce un spec de motion que cumple: (1) offset/translationY
+  trackea el dedo 1:1 durante onChanged; (2) onEnded evalúa umbral absoluto
+  de 100pt; (3) bajo umbral usa spring con dampingRatio ~0.7 y response
+  ~0.3s para regresar a offset 0; (4) sobre umbral confirma dismiss con
+  háptico UIImpactFeedbackGenerator(.medium) iOS / HapticFeedbackType.LongPress
+  Android, disparado una sola vez en commit; (5) hit area del handle ≥44pt
+  iOS / 48dp Android vía padding transparente si el glyph visible es menor;
+  (6) reduced-motion detectado vía accessibilityReduceMotion /
+  areAnimatorsEnabled produce snap instantáneo (duración 0) sin spring;
+  (7) no se anima width ni height, solo offset/transform; (8) el elemento
+  nunca queda en offset arbitrario flotando — siempre resuelve a origen o
+  dismiss. El spec cita Apple HIG, Material Motion y WCAG 2.5.5 como
+  fuentes [DOC]. No usa Math.random, Date.now, fetch, setTimeout ni
+  setInterval en el código de ejemplo.

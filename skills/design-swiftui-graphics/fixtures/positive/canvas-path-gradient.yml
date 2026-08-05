@@ -1,0 +1,8 @@
+case: canvas-path-gradient
+context: Una tarjeta visual necesita un campo de ondas animado con gradiente lineal sobre un Canvas, conducido por TimelineView.
+request: 'Dibuja un campo de ondas sinusoidales con gradiente azul→rosa sobre Canvas, animado frame-by-frame con TimelineView, accesible vía accessibilityLabel.'
+expect: >
+  Usa Canvas dentro de TimelineView(.animation) con timeline.date.timeIntervalSinceReferenceDate como fuente de
+  tiempo. Construye Path con move + addLine en stride, stroke con linearGradient (stops explícitos). Añade
+  .accessibilityLabel describiendo el contenido. Precomputa el Gradient fuera del subárbol animado. Cumple
+  fail-closed (sin xcodebuild auto-run, sin red, sin reloj autónomo). Marca coverage_gap si no hay runtime SwiftUI.

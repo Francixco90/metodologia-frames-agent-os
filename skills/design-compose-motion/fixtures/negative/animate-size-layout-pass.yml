@@ -1,0 +1,14 @@
+case: animate-size-layout-pass
+context: El agente anima Modifier.size con animateDpAsState causando un layout pass por frame.
+request: 'Necesito animar el tamaño de un Box al expandir, usa animateDpAsState sobre width y height.'
+violation: >
+  Animar Modifier.size/width/height con animateDpAsState fuerza un layout pass por frame (el sistema
+  de medida recalcula el árbol de layout en cada cambio). Violación del Do Not "animar size con
+  animateDpAsState causa layout pass". El layout pass por frame degrada el rendimiento en scroll y
+  listas; las propiedades composit-only (transform, alpha) corren en GPU sin relayout.
+expect_reject: >
+  La skill rechaza animar size con animateDpAsState. Debe usar graphicsLayer con translationY/scaleX
+  para transforms composit-only (sin layout pass), o AnimatedContent/animateContentSize para
+  intercambios donde el layout debe cambiar de verdad. Explicar que la animación de tamaño real
+  (parent depende del tamaño) requiere AnimatedContent o Modifier.animateContentSize; la animación
+  visual de scale/translate debe usar graphicsLayer.

@@ -1,0 +1,18 @@
+case: canvas-brush-gradient
+context: >
+  Solicitud de un componente visual reutilizable: un avatar circular con borde
+  gradiente (linear, magenta→cyan) dibujado vía Canvas + Brush, sin assets externos,
+  acelerado por hardware y accesible (contentDescription sembrada).
+request: >
+  "Crea un avatar circular de 96dp con un anillo gradiente lineal (magenta a cyan)
+  de 4dp de grosor alrededor de un círculo de color de superficie. Usa Canvas y
+  Brush. No cargues imágenes. Asegura contentDescription."
+expect: >
+  El agente produce un @Composable que usa Canvas(modifier) con DrawScope:
+  drawCircle para el fondo de superficie, drawCircle con style=Stroke y un
+  Brush.linearGradient(colors=[Magenta, Cyan]) para el anillo. El Path/Brush se
+  recuerda con remember { } para evitar allocs por frame. Se siembra
+  Modifier.semantics { contentDescription = "Avatar circular con borde gradiente" }
+  o clearAndSetSemantics. No se invoca gradle, no se compila, no se publica. El
+  agente marca [CÓDIGO] en la salida y declara coverage_gap si no hay runtime
+  Compose disponible para validar visualmente.
