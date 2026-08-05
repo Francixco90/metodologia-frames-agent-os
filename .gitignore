@@ -41,3 +41,7 @@ tmp/
 
 # runtime health reports (S12 doctor)
 05_verificacion/quality/reports/doctor-*.yml
+
+# local agent cabin (settings, scripts) — personal, not for upstream
+.claude/
+local/
