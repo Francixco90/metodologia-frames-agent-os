@@ -1,0 +1,376 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/taste-skill",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/leonxlnx/taste-skill",
+  "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 Leonxlnx (taste-skill, https://github.com/leonxlnx/taste-skill)",
+  "vendor_root_hashes": {
+    "LICENSE": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+    "llms.txt": "c34dc218fe2940a3944967add63e4220e43975f5b15b31b8a280e73055484301"
+  },
+  "vendors": [
+    {
+      "skill": "brandkit",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/brandkit/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/brandkit/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "b0c4837e1bd140ca816ae54948754ddd2ac1e2a4d3619363777a80caf00b2ede"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "brandkit is a premium brand-kit image generation skill (prose guidance); no network/install/execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/brandkit/ to skills/vendor/taste-skill/brandkit/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "brutalist-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/brutalist-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/brutalist-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "fffbaac8597f07679e9d87145533567658aedba3b5eca6f16a7075a333048caa"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "brutalist-skill (industrial-brutalist-ui) is a brutalist UI design guidance skill (prose only)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/brutalist-skill/ to skills/vendor/taste-skill/brutalist-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "gpt-tasteskill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/gpt-tasteskill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/gpt-tasteskill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "2e64c269953f2656c21bf5a0fa6b4568e82fe0c72b36e8f84758e090349966a5"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "gpt-tasteskill (gpt-taste) is an AWWWARDS-level design engineering skill (prose only); references GSAP but no execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/gpt-tasteskill/ to skills/vendor/taste-skill/gpt-tasteskill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "image-to-code-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/image-to-code-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/image-to-code-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "4c060a8064a8b13380bc2ef3d6e6a1d0b1e316aa093cd9807d0ce9e4eeb037fa"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "image-to-code-skill is an image-first website design-to-code skill (prose guidance, 1228 lines); no execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/image-to-code-skill/ to skills/vendor/taste-skill/image-to-code-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "imagegen-frontend-mobile",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/imagegen-frontend-mobile/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/imagegen-frontend-mobile/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "8a33389979f3074fa0926678e266ad2eb9234624472254469fc1ad916b9caa24"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "imagegen-frontend-mobile is a mobile app image-generation direction skill (prose guidance, 1465 lines); no execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/imagegen-frontend-mobile/ to skills/vendor/taste-skill/imagegen-frontend-mobile/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "imagegen-frontend-web",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/imagegen-frontend-web/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/imagegen-frontend-web/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "6b5c2256522fdba1e3313eafa3d743b960a7b13ec029d3e6586e04b23327c1f8"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "imagegen-frontend-web is a frontend image-direction skill (prose guidance, 987 lines); no execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/imagegen-frontend-web/ to skills/vendor/taste-skill/imagegen-frontend-web/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "minimalist-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/minimalist-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/minimalist-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "36bc7328f085405f43b476938e62460fa573bf7e984e949e072bcf014831a44c"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "minimalist-skill (minimalist-ui) is a minimalist UI design guidance skill (prose only)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/minimalist-skill/ to skills/vendor/taste-skill/minimalist-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "output-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/output-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/output-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "e5bf48b1ae561511439cf71672209a10a88cee0968cc925909ff861dfa0a96a7"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "output-skill (full-output-enforcement) is an LLM output-enforcement skill (dev-workflow, not design); homólogo route to dev-* family"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/output-skill/ to skills/vendor/taste-skill/output-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "redesign-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/redesign-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/redesign-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "98ad3e5b051bfb71b2795f7e8a6aa0d32b51ee095606c098a4b2822ac07926c9"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "redesign-skill (redesign-existing-projects) is a redesign skill (prose only)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/redesign-skill/ to skills/vendor/taste-skill/redesign-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "soft-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/soft-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/soft-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "e1e32f5e2d420872c6c7332b53d5ff7721946766b78c4822b424c2d512c8fdbc"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "soft-skill (high-end-visual-design) is a high-end agency design guidance skill (prose only)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/soft-skill/ to skills/vendor/taste-skill/soft-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "stitch-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/stitch-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/stitch-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "46bdb08fee2dded38b6ba0a051230a502d6ac6e4044afd47592cb40c256028b5",
+        "DESIGN.md": "0ab6740c4ebb1966dbceddb823a66d4bf027e960efbd73faca56cbf8370ae2ad"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "stitch-skill (stitch-design-taste) is a semantic design system skill for Google Stitch (prose + DESIGN.md)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/stitch-skill/ to skills/vendor/taste-skill/stitch-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "taste-skill-v1",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/taste-skill-v1/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/taste-skill-v1/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "033d45af1ed23832730642f95f40ab49db7fb5222848489a6c5656144bfc6dae"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "taste-skill-v1 (design-taste-frontend-v1) is the original v1 taste-skill preserved for backward compatibility (prose only)"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/taste-skill-v1/ to skills/vendor/taste-skill/taste-skill-v1/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    },
+    {
+      "skill": "taste-skill",
+      "source_repo": "https://github.com/leonxlnx/taste-skill",
+      "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+      "source_path": "skills/taste-skill/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 Leonxlnx",
+      "destination": "skills/vendor/taste-skill/taste-skill/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/taste-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 1,
+      "critical_file_hashes": {
+        "SKILL.md": "aa194351b246b8b4799099d4ed7b033d29eab6e6e3d58d8d2172978be7b3ec89"
+      },
+      "known_risks": [
+        "MIT license; vendored as reference-only (not executed, not registered)",
+        "taste-skill (design-taste-frontend) is the v2 default anti-slop frontend skill (prose guidance, 1206 lines); no execution surface"
+      ],
+      "update_procedure": [
+        "Clone leonxlnx/taste-skill at new commit",
+        "Re-copy text-only skills/taste-skill/ to skills/vendor/taste-skill/taste-skill/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 16,
+    "total_skills": 13,
+    "licenses": {
+      "brandkit": "MIT",
+      "brutalist-skill": "MIT",
+      "gpt-tasteskill": "MIT",
+      "image-to-code-skill": "MIT",
+      "imagegen-frontend-mobile": "MIT",
+      "imagegen-frontend-web": "MIT",
+      "minimalist-skill": "MIT",
+      "output-skill": "MIT",
+      "redesign-skill": "MIT",
+      "soft-skill": "MIT",
+      "stitch-skill": "MIT",
+      "taste-skill-v1": "MIT",
+      "taste-skill": "MIT"
+    },
+    "binaries_excluded": "none (13 SKILL.md + 1 DESIGN.md + LICENSE + llms.txt, all UTF-8 text); repo assets/*.webp, *.png, *.svg excluded",
+    "text_extensions_copied": [".md", ".txt"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
