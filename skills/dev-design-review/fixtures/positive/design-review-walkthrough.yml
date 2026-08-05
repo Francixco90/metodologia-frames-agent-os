@@ -1,0 +1,12 @@
+case: El operador pide una revision de diseño de la interfaz ya construida y el skill produce un informe de auditoria con hallazgos por dimension y severidad.
+context: Interfaz implementada y renders disponible; el operador quiere evaluar jerarquia, consistencia, accesibilidad y estados de borde.
+request: 'Revisa el diseño de lo que ya construimos. Quiero una auditoria visual.'
+expect:
+  - El skill camina las seis fases del flujo y produce un informe de auditoria en prosa.
+  - Impresion inicial: reacciona en primera persona nombrando que comunica, que destaca y a donde va el ojo; veredicto de una palabra.
+  - Sistema de diseño extraido: lista familias tipograficas, paleta, jerarquia de encabezados, patron de espaciado y targets tactiles; marca desviaciones del design system declarado.
+  - Auditoria por pagina: aplica las diez dimensiones (jerarquia, tipografia, color y contraste, espaciado, estados de interaccion, responsive, movimiento, contenido, AI slop, performance) y emite hallazgos con severidad alto/medio/pulido.
+  - Flujo de interaccion: narra dos o tres flujos clave en primera persona evaluando sensacion, no solo funcion.
+  - Consistencia entre paginas: compara navegacion, footer, reuso de componentes, tono y ritmo de espaciado.
+  - Informe consolidado: dos puntajes A-F (diseno y AI slop), puntajes por dimension, hallazgos ligados a un usuario que los sufre y seccion de quick wins de tres a cinco arreglos de menos de treinta minutos.
+  - El skill NO inicia implementacion de arreglos; entrega el informe y espera confirmacion del operador.

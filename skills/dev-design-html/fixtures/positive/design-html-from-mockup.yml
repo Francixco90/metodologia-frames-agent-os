@@ -1,0 +1,11 @@
+case: El operador pega un mockup o descripción de pantalla y el skill produce la orientación de HTML + CSS antes de escribir archivos.
+context: El operador aporta un diseño visual (mockup, captura o descripción) y pide convertirlo en HTML fiel, sin estructura semántica ni approach de CSS definidos todavía.
+request: Convierte este mockup de landing en HTML. Tiene un hero con titulo grande, una grilla de tres tarjetas y un footer.
+expect:
+  - El skill interroga el diseño ronda por ronda y produce orientación con cinco secciones en prosa y snippets.
+  - Analisis del diseño: declara tipo de layout (landing), estructura semantica (header, main con hero y seccion de tarjetas, footer), sistema visual (tokens de color, tipografia, escala de espaciado), componentes (hero, tarjeta x3, footer) y restricciones de marco (vanilla HTML).
+  - Estructura semantica y approach de CSS: emite el esqueleto HTML5 semantico en orden y declara el approach (custom properties en root, BEM o utility-first, justificado en una linea).
+  - Breakpoints responsives: nombra 375px, 768px, 1024px, 1440px y describe que cambia en cada uno (grilla de 1 a 3 columnas, tipografia que escala, hero que se apila); declara prefers-color-scheme y prefers-reduced-motion.
+  - Accesibilidad: lista jerarquia de encabezados (un solo h1), labels asociadas a inputs, foco visible, contraste contra tokens, roles landmarker y alt en imagenes.
+  - Fidelidad a design tokens y snippets: mapea cada valor visual a un token y emite los snippets de CSS en :root, el HTML semantico del componente principal y las reglas clave por breakpoint; solo contenido real del diseño, nunca lorem ipsum.
+  - El skill NO escribe archivos al repo; entrega la orientacion y los snippets y espera confirmacion del operador.

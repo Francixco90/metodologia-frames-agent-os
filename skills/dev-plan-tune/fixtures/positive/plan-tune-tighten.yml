@@ -1,0 +1,15 @@
+case: El operador pega un plan de ejecución ya cerrado y el skill lo afila a lo largo de las seis dimensiones sin auto-ejecutar git ni tests.
+context: Plan cerrado con pasos redundantes, dependencias ocultas, criterios borrosos y estimaciones infladas.
+request: >-
+  Afina este plan antes de ejecutarlo. El plan tiene 9 pasos, algunos se
+  solapan, el paso 4 depende de un contrato externo que no se nombra, y el
+  paso 7 dice "funciona" como criterio de aceptacion.
+expect:
+  - El skill interroga el plan dimension por dimension y produce un plan afinado en prosa.
+  - Poda de alcance: identifica pasos que no aportan al objetivo y los marca como candidatos a cortar con razon explicita.
+  - Afilar secuenciacion: declara dependencias explicitas entre pasos y reordena si hay secuencia circular o bloqueos ocultos.
+  - Dependencias ocultas: saca a la luz el contrato externo del paso 4, declara quien lo provee y cuando se necesita; si no hay dueno marca coverage_gap.
+  - Cortar desperdicio: identifica validaciones duplicadas, checks solapados y pasos redundantes; propone cortarlos.
+  - Precisar criterios de aceptacion: convierte "funciona" en una frase observable verificable para el paso 7; si un paso no puede tener criterio medible marca coverage_gap.
+  - Calibrar estimaciones: descompone "varias horas" en sub-pasos con rangos acotados por paso real.
+  - El skill NO auto-arranca la ejecucion; entrega el plan afinado y espera confirmacion del operador.

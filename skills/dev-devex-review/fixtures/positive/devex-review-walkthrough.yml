@@ -1,0 +1,13 @@
+case: El operador pide una revision de developer experience de un proyecto construido y el skill produce hallazgos por dimension con severidad y evidencia.
+context: Proyecto con README, CLI, docs y build existentes. No se pide reseñar un plan; se pide auditar lo ya construido.
+request: 'Revisa el devex del CLI de pagos. Quiero saber donde hay friccion.'
+expect:
+  - El skill declara el objetivo (CLI de pagos) y el alcance explicito antes de auditar.
+  - Onboarding: cuenta los pasos para hello world, estima el tiempo, registra cada friccion (paso extra, dependencia oculta).
+  - Setup local: verifica prerequisitos, instalacion, platform coverage; cada paso oculto es un hallazgo.
+  - Loops de tooling: evalua build, tests, feedback del CLI, consistencia de flags, velocidad del ciclo editar-Compilar-ver.
+  - Calidad de docs: comprueba buscabilidad, ejemplos copiables completos, presence de search.
+  - Carga cognitiva: cuenta conceptos previos al primer valor, evalua defaults opinados con escape hatches, progresive disclosure, calidad de mensajes de error.
+  - Velocidad de iteracion: mide tiempos de build, test, hot-reload, presence de modos watch.
+  - El informe lista hallazgos por dimension con severidad (bloqueante / alta / media / baja), evidencia (cita, paso, tiempo, mensaje) y accion recomendada.
+  - El skill NO ejecuta git, tests, builds ni commits; entrega el informe y espera confirmacion del operador.

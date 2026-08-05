@@ -1,0 +1,13 @@
+receipt_id: RCP-H03-DEV-DESIGN-HTML-001
+skill_id: dev-design-html
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Producción de HTML/CSS en prosa y snippets locales. Sin escritura automática
+  de archivos, sin red, sin git, sin tests, sin commits, sin deploys. Todo gate
+  de ejecución tras confirmación explícita del operador.
