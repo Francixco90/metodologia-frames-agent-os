@@ -1,0 +1,11 @@
+schema_version: check-run-receipt-v1
+receipt_id: C-001
+gate: G04
+command: "pnpm check:repo"
+exit_code: 0
+stdout_sha256: 8174add4863ecf1de5774651cb19592f96488eb8f8831b4bf2f6c51b5c7a90b3
+stderr_sha256: 22a594ba353c749e73e481ed55e88ba12729bef97a366e295f45cbae9a1ad172
+duration_ms: 3337
+ran_at: "2026-08-05T14:49:21-05:00"
+append_only: true
+runner_actor: qa

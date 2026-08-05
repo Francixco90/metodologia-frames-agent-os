@@ -1,0 +1,14 @@
+# H-E — exclude Environment subsystem. [CONFIG]
+variant_id: H-E
+excluded_subsystem: Environment
+description: >
+  Exclude Environment — no doctor.ts, no package.json scripts, no layout
+  validation. Degraded harness produces a task.yaml whose inputs reference a
+  non-existent path (`missing/env-file.md`). Schema-valid relative path; the
+  fixed shape oracle accepts (file-existence is not a schema invariant).
+levers_disabled:
+  - 05_verificacion/scripts/doctor.ts
+  - package.json scripts (check:toolchain, check:repo)
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md

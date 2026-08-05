@@ -1,0 +1,31 @@
+schema_version: 1
+project_id: replace-me
+title: 'Replace me — scaffold title'
+# Canonical states are literal per projectManifestSchema (check-projects.ts).
+# A new expedient enters the same Tier A shape; advance only via manual
+# fail-closed gates G13-G17. [CONFIG]
+current_state: PARTIAL_CONTROLLED
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+technical_validation_state: RENDER_VALIDATED
+visible_state: RENDERED_DRAFT
+source_snapshot_id: replace-me-snapshot-v1
+source_locked: false
+claims_ledger: projects/replace-me/claims-ledger.yml
+work_products:
+  - artifact_id: replace-me-web
+    kind: web
+    technical_state: IN_PROGRESS
+    artifact_ref: projects/replace-me/web/artifact/index.html
+    receipt_ref: projects/replace-me/web/artifact/build-receipt.json
+  - artifact_id: replace-me-remotion
+    kind: video
+    technical_state: IN_PROGRESS
+    artifact_ref: projects/replace-me/remotion/receipts/media/replace-me.mp4
+    receipt_ref: receipts/renders/RCP-REMOTION-REPLACE-ME-001.json
+approvals: []
+guardian_passed: false
+human_approved: false
+ready: false
+published: false
+coverage_gaps:
+  - scaffold_pending_fill_from_template

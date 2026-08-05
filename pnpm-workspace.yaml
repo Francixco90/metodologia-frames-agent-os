@@ -1,9 +1,9 @@
 packages:
-  - 'core/**'
+  - '02_proceso/core/**'
   - 'networks/**'
   - 'renderers/**'
   - 'adapters/**'
-  - 'workflows/**'
+  - '02_proceso/workflows/**'
 verifyDepsBeforeRun: false
 allowBuilds:
   esbuild: true

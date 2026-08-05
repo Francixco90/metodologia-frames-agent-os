@@ -1,0 +1,21 @@
+{
+  "graph_id": "wf-001",
+  "version": "1.0.0",
+  "sampling_profile": "deterministic",
+  "steps": [
+    {
+      "id": "s1",
+      "operation": "classify",
+      "inputs": ["user_intent"],
+      "retries": 0
+    },
+    {
+      "id": "s2",
+      "operation": "generate",
+      "inputs": ["s1"],
+      "retries": 1
+    }
+  ],
+  "branches": 1,
+  "model_calls": 2
+}

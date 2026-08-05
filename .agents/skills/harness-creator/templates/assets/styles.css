@@ -1,0 +1,18 @@
+/* MetodologIA — base styles for harness reports. Minimal, no frameworks. [CONFIG] */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  margin: 32px;
+  color: #172026;
+  background: #f7f8fa;
+  line-height: 1.5;
+}
+main { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 32px; margin: 0 0 8px; }
+h2 { font-size: 20px; margin: 0 0 10px; }
+section { background: #fff; border: 1px solid #d9dee5; border-radius: 8px; margin: 14px 0; padding: 16px 18px; }
+ul { margin: 0; padding-left: 20px; }
+li { margin: 6px 0; }
+.pass { color: #126c43; }
+.fail { color: #a23020; }

@@ -1,0 +1,13 @@
+# H-S — exclude State subsystem. [CONFIG]
+variant_id: H-S
+excluded_subsystem: State
+description: >
+  Exclude State — no task-machine.ts, no task-contract.ts enforcement. Degraded
+  harness permits an illegal auto-ENTREGADO to a manual fail-closed gate
+  (G15). TaskContractSchema superRefine rejects (G13-G17 cannot auto-ENTREGADO).
+levers_disabled:
+  - 02_proceso/core/state-machine/task-machine.ts
+  - 02_proceso/core/contracts/task-contract.ts (enforcement)
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md
