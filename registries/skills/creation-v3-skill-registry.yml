@@ -1069,6 +1069,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-learn/scripts/check-skill.mjs]
+  - skill_id: dev-pair-agent
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 414ccf7447e8224e97a4294cfb7d01037744e775f9a5d6a93ee9a4e3a4cd3910
+    package_manifest_sha256: e61d54e63bed1a04d68c63d0a3cb0ea39ac6143c031a2cf9b3c32a517beea9f4
+    lineage_ref: skills/dev-pair-agent/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-pair-agent/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-pair-agent/scripts/check-skill.mjs]
+  - skill_id: dev-setup-deploy
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: be87bff9399cbe033744066013654bb1e78c8fbec83d7662a6833cab557596c5
+    package_manifest_sha256: 4636806209b925a99e5b50a5ad9f18c3640beda9909dadba644114873448bb93
+    lineage_ref: skills/dev-setup-deploy/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-setup-deploy/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-setup-deploy/scripts/check-skill.mjs]
+  - skill_id: dev-test-driven-development
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: a9eaee64f0b1191a26f0616a23ea82aa23734dc84e909101fdab25eaa1821bb8
+    package_manifest_sha256: 4e370003dd294cf4a80bbb71383d4e47e56695a85defd441add33b86891920ca
+    lineage_ref: skills/dev-test-driven-development/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-test-driven-development/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-test-driven-development/scripts/check-skill.mjs]
+  - skill_id: dev-systematic-debugging
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 49710a7a9caa15dc30a3d0a8ef82b1395278be36b9cf480f91af93249a9ddbe1
+    package_manifest_sha256: 5ac84ab1ef3a9701b742e1eb0c3b3aa1ab0365540a2ffcf8a96a1686400614c1
+    lineage_ref: skills/dev-systematic-debugging/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-systematic-debugging/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-systematic-debugging/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1459,3 +1503,19 @@ events:
   - {event_id: EVT-SKL-LRN-H03-002, event_order: 2, skill_id: dev-learn, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-LRN-H03-003, event_order: 3, skill_id: dev-learn, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-LRN-H03-004, event_order: 4, skill_id: dev-learn, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PAG-H03-001, event_order: 1, skill_id: dev-pair-agent, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PAG-H03-002, event_order: 2, skill_id: dev-pair-agent, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PAG-H03-003, event_order: 3, skill_id: dev-pair-agent, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PAG-H03-004, event_order: 4, skill_id: dev-pair-agent, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDP-H03-001, event_order: 1, skill_id: dev-setup-deploy, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDP-H03-002, event_order: 2, skill_id: dev-setup-deploy, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDP-H03-003, event_order: 3, skill_id: dev-setup-deploy, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDP-H03-004, event_order: 4, skill_id: dev-setup-deploy, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TDD-H03-001, event_order: 1, skill_id: dev-test-driven-development, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TDD-H03-002, event_order: 2, skill_id: dev-test-driven-development, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TDD-H03-003, event_order: 3, skill_id: dev-test-driven-development, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TDD-H03-004, event_order: 4, skill_id: dev-test-driven-development, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDB-H03-001, event_order: 1, skill_id: dev-systematic-debugging, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDB-H03-002, event_order: 2, skill_id: dev-systematic-debugging, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDB-H03-003, event_order: 3, skill_id: dev-systematic-debugging, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDB-H03-004, event_order: 4, skill_id: dev-systematic-debugging, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

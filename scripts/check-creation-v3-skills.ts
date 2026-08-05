@@ -546,6 +546,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-learn/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-pair-agent',
+    scope: 'local-evaluation',
+    check: ['skills/dev-pair-agent/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-setup-deploy',
+    scope: 'local-evaluation',
+    check: ['skills/dev-setup-deploy/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-test-driven-development',
+    scope: 'local-evaluation',
+    check: ['skills/dev-test-driven-development/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-systematic-debugging',
+    scope: 'local-evaluation',
+    check: ['skills/dev-systematic-debugging/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
