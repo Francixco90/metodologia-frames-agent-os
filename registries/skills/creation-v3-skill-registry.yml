@@ -750,6 +750,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-paint/scripts/check-skill.mjs]
+  - skill_id: design-dna
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: c8a50317d965817865bf0a5103e63fcd5c54e676f6ab661cc9ba334e3a4f4e3b
+    package_manifest_sha256: a4eb412ac4a65b0ec013e50ce2a58451b627f75275934c7d52a00a71616f03f8
+    lineage_ref: skills/design-dna/LINEAGE.yml
+    dependency_receipt_ref: skills/design-dna/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-dna/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1024,3 +1035,7 @@ events:
   - {event_id: EVT-SKL-PNT-H03-002, event_order: 2, skill_id: design-paint, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNT-H03-003, event_order: 3, skill_id: design-paint, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PNT-H03-004, event_order: 4, skill_id: design-paint, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DDA-H03-001, event_order: 1, skill_id: design-dna, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DDA-H03-002, event_order: 2, skill_id: design-dna, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DDA-H03-003, event_order: 3, skill_id: design-dna, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DDA-H03-004, event_order: 4, skill_id: design-dna, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
