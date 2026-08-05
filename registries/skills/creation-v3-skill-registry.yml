@@ -1157,6 +1157,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-writing-plans/scripts/check-skill.mjs]
+  - skill_id: dev-finishing-a-development-branch
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 38e1cada17cf2fdba0a9df55d312e62ab50671cbc7043115894568a0bbd88f11
+    package_manifest_sha256: 82c5ae3209e80e7353cec741f201106c926e218703cbc5cd905905ad5ac81a40
+    lineage_ref: skills/dev-finishing-a-development-branch/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-finishing-a-development-branch/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-finishing-a-development-branch/scripts/check-skill.mjs]
+  - skill_id: dev-receiving-code-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e2b067f6dc2ac941966f832176050278b64ba4fb2100564119b782a1fdba525b
+    package_manifest_sha256: 881b49c855242dd86b6e255048788fd4179238147cdff340c1d45779cac71afb
+    lineage_ref: skills/dev-receiving-code-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-receiving-code-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-receiving-code-review/scripts/check-skill.mjs]
+  - skill_id: dev-requesting-code-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: daebbb23bb830056d5459178f41c7a1aeb43d8e8485b84edbe1e0d62f2464541
+    package_manifest_sha256: 05ef5c617041c6ffcc6680bf255a799ec9dd76fbe6f62b53139688b156dc16c6
+    lineage_ref: skills/dev-requesting-code-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-requesting-code-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-requesting-code-review/scripts/check-skill.mjs]
+  - skill_id: dev-subagent-driven-development
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 25919493695333416ae256c54b1f55c4ce084501a0b731d56bc0fa2e3c1e0ee2
+    package_manifest_sha256: 9fb8793ad184ee5cf1363528797bc2ca4a9421f33b1c4fe43cd031786c04a238
+    lineage_ref: skills/dev-subagent-driven-development/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-subagent-driven-development/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-subagent-driven-development/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1579,3 +1623,19 @@ events:
   - {event_id: EVT-SKL-WPL-H03-002, event_order: 2, skill_id: dev-writing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WPL-H03-003, event_order: 3, skill_id: dev-writing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WPL-H03-004, event_order: 4, skill_id: dev-writing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FNB-H03-001, event_order: 1, skill_id: dev-finishing-a-development-branch, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FNB-H03-002, event_order: 2, skill_id: dev-finishing-a-development-branch, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-FNB-H03-003, event_order: 3, skill_id: dev-finishing-a-development-branch, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FNB-H03-004, event_order: 4, skill_id: dev-finishing-a-development-branch, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RCV-H03-001, event_order: 1, skill_id: dev-receiving-code-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RCV-H03-002, event_order: 2, skill_id: dev-receiving-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RCV-H03-003, event_order: 3, skill_id: dev-receiving-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RCV-H03-004, event_order: 4, skill_id: dev-receiving-code-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RQR-H03-001, event_order: 1, skill_id: dev-requesting-code-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RQR-H03-002, event_order: 2, skill_id: dev-requesting-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RQR-H03-003, event_order: 3, skill_id: dev-requesting-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RQR-H03-004, event_order: 4, skill_id: dev-requesting-code-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDD-H03-001, event_order: 1, skill_id: dev-subagent-driven-development, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDD-H03-002, event_order: 2, skill_id: dev-subagent-driven-development, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SDD-H03-003, event_order: 3, skill_id: dev-subagent-driven-development, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDD-H03-004, event_order: 4, skill_id: dev-subagent-driven-development, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

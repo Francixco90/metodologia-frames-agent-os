@@ -1,0 +1,15 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-SUBAGENT-DRIVEN-DEVELOPMENT-001
+skill_id: dev-subagent-driven-development
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Coordinación de ejecución de un plan por delegación a subagentes con revisión
+  por tarea. Sin red, sin git, sin tests, sin installs, sin commits, sin
+  deploys en el controlador. Todo despacho de subagente que muta el
+  repositorio tras confirmación explícita del operador (fail-closed).
