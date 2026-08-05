@@ -1,0 +1,9 @@
+case: premium-portfolio-double-bezel
+context: Portafolio de estudio creativo que debe sentirse como build de agencia high-end con profundidad haptica.
+request: 'Disenha mi portafolio de estudio; que se sienta caro, tipo Awwwards.'
+expect: >
+  La skill debe seleccionar un Vibe + Layout archetype del creative variance engine, aplicar
+  double-bezel en cards/containers, button-in-button en CTAs, motion choreography (nav fluida
+  island, hover magnetico, scroll interpolation con cubic-bezier custom), padding minimo py-24,
+  y correr el pre-output checklist. No debe usar defaults banned (Inter, Lucide thick,
+  shadow-md, linear/ease-in-out). No debe invocar CLI externo ni abrir red.

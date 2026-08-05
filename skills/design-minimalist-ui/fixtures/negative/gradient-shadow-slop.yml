@@ -1,0 +1,13 @@
+case: gradient-shadow-slop
+context: El agente genera una interfaz "minimalista" con gradiente sutil y shadow-lg para "dar depth".
+request: 'Hazlo minimalista pero con un poco de depth, un gradiente suave.'
+violation: >
+  Usar gradientes y shadow-lg en una interfaz minimalista utilitaria viola los constraints
+  absolutos negativos (NO gradients, NO neon, NO 3D glassmorphism; NO Tailwind shadow-lg/xl).
+  El minimalismo document-style rechaza el depth artificial via sombras; el depth viene de
+  whitespace macro, contraste tipografico y textura sutil, no de sombras pesadas.
+expect_reject: >
+  La skill rechaza el gradiente y la sombra pesada. Debe lograr depth via macro-whitespace
+  (py-24/py-32), contraste tipografico (sans+serif+mono), border 1px solid #EAEAEA, y a lo sumo
+  box-shadow ultra-difusa opacidad < 0.05. Marcar coverage_gap si el brief exige depth via
+  gradientes; no torcer el minimalismo para complacer.

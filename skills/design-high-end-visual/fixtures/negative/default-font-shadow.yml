@@ -1,0 +1,12 @@
+case: default-font-shadow
+context: El agente genera una interfaz premium usando Inter como fuente default y shadow-md generico.
+request: 'Haz que mi landing se vea cara.'
+violation: >
+  Usar Inter como fuente default y shadow-md generico viola la directiva absolute zero (fuentes
+  banned: Inter/Roboto/Arial/Open Sans/Helvetica como defaults; sombras banned: shadow-md
+  harsh). Un build high-end nunca cae en defaults genericos.
+expect_reject: >
+  La skill rechaza el output con defaults banned. Debe seleccionar fuente con caracter (Geist,
+  Clash Display, PP Editorial New, Plus Jakarta Sans), sombras ultra-difusas tinted al hue del
+  background, y declarar el Vibe + Layout archetype seleccionado. Marcar coverage_gap si el
+  brief no permite inferir el arquetipo; no adivinar.

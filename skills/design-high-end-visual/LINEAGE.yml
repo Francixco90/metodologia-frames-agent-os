@@ -1,0 +1,29 @@
+schema_version: 1
+skill_id: design-high-end-visual
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+derivation_note: >
+  Clean-room prose adaptation of the high-end-visual-design agency-build principle
+  (variance mandate, absolute zero anti-patterns, creative variance engine of vibe+layout
+  archetypes, haptic micro-aesthetics with double-bezel/button-in-button, motion choreography
+  with fluid island nav/magnetic hover/scroll interpolation, performance guardrails, pre-output
+  checklist) into Spanish MetodologIA prose. No vendor code or CLI tooling carried over; the
+  vendor SKILL.md is read-only authority reference. MIT reference permits clean-room
+  adaptation with attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/taste-skill/soft-skill/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-high-end-visual/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-high-end-visual/receipts/runtime-boundary.yml
+external_fragments_reused: false
+external_fragments_source: skills/vendor/taste-skill/soft-skill/SKILL.md (MIT, authority reference only)
+external_fragments_license: MIT
+external_fragments_attribution: leonxlnx/taste-skill
+production_runtime_status: local_capability_only
+publication_authority: false

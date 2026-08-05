@@ -286,6 +286,36 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-web-design-guidelines/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-taste-frontend',
+    scope: 'local-evaluation',
+    check: ['skills/design-taste-frontend/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-high-end-visual',
+    scope: 'local-evaluation',
+    check: ['skills/design-high-end-visual/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-minimalist-ui',
+    scope: 'local-evaluation',
+    check: ['skills/design-minimalist-ui/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-redesign',
+    scope: 'local-evaluation',
+    check: ['skills/design-redesign/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-emil',
+    scope: 'local-evaluation',
+    check: ['skills/design-emil/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-extract',
+    scope: 'local-evaluation',
+    check: ['skills/design-extract/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

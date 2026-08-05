@@ -1,0 +1,29 @@
+schema_version: 1
+skill_id: design-minimalist-ui
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+derivation_note: >
+  Clean-room prose adaptation of the minimalist-ui premium utilitarian minimalism principle
+  (absolute negative constraints, typographic architecture with sans/serif/mono contrast, warm
+  monochrome + spot pastels palette, component specs for bento/CTAs/tags/accordions/keystrokes/
+  window chrome, iconography and imagery directives, subtle invisible motion, execution
+  protocol) into Spanish MetodologIA prose. No vendor code or CLI tooling carried over; the
+  vendor SKILL.md is read-only authority reference. MIT reference permits clean-room adaptation
+  with attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/taste-skill/minimalist-skill/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-minimalist-ui/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-minimalist-ui/receipts/runtime-boundary.yml
+external_fragments_reused: false
+external_fragments_source: skills/vendor/taste-skill/minimalist-skill/SKILL.md (MIT, authority reference only)
+external_fragments_license: MIT
+external_fragments_attribution: leonxlnx/taste-skill
+production_runtime_status: local_capability_only
+publication_authority: false

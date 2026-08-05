@@ -1,0 +1,10 @@
+case: animation-decision-framework
+context: Dropdown que el usuario abrira decenas de veces al dia; hay que decidir easing y duracion con criterio.
+request: 'Anima mi dropdown; que se sienta premium, no sluggish.'
+expect: >
+  La skill debe aplicar el animation decision framework en orden: (a) deberia animar? decenas/dia
+  = remover o reducir drastica; (b) proposito = prevenir cambio jarring/feedback; (c) easing =
+  ease-out custom cubic-bezier(0.23,1,0.32,1) nunca ease-in; (d) velocidad = 150-250ms bajo 300ms.
+  Debe usar transform/opacity solo, transition (no keyframe) para interruptibilidad, y respetar
+  prefers-reduced-motion. No debe animar desde scale(0); empezar scale(0.95)+opacity 0. No debe
+  invocar CLI externo ni abrir red.

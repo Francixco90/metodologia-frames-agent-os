@@ -1,0 +1,11 @@
+case: silent-baseline-dials
+context: El agente genera una landing sin declarar design read y sin razonar los diales desde el brief, usando el baseline por defecto.
+request: 'Disenha una landing para mi startup.'
+violation: >
+  Generar output sin declarar el design read (Section 0.B) y sin razonar los tres diales
+  desde el brief, cayendo en baseline silencioso, viola anti-default discipline. El slop
+  generativo nace de saltarse la lectura del room y usar defaults.
+expect_reject: >
+  La skill rechaza el output sin design read declarado. Debe inferir el brief, declarar la
+  lectura en una linea, mapear diales razonados (no baseline silencioso), y solo entonces
+  generar. Marcar coverage_gap si el brief es insuficiente para inferir; no adivinar.

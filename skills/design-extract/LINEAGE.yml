@@ -1,0 +1,32 @@
+schema_version: 1
+skill_id: design-extract
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+derivation_note: >
+  Clean-room prose adaptation of the extract-design-system tool principle (reverse-engineer a
+  public website's design primitives into project-local starter token files; workflow of
+  confirm-scope/extract-review/summarize/explain-outputs; safety boundaries against claiming
+  completeness on dynamic sites, inferring unextracted components, treating output as
+  authoritative without review, modifying app code without confirmation) into Spanish
+  MetodologIA prose with fail-closed tool gating. The homologo DESCRIBES the extraction
+  capability and gates execution behind explicit user confirmation; it does NOT auto-execute
+  network, install, or binary invocation. No vendor code or CLI tooling carried over; the vendor
+  SKILL.md is read-only authority reference. MIT reference permits clean-room adaptation with
+  attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/extract-design-system/extract-design-system/skills/extract-design-system/SKILL.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-extract/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-extract/receipts/runtime-boundary.yml
+external_fragments_reused: false
+external_fragments_source: skills/vendor/extract-design-system/extract-design-system/skills/extract-design-system/SKILL.md (MIT, authority reference only)
+external_fragments_license: MIT
+external_fragments_attribution: arvindrk/extract-design-system
+production_runtime_status: local_capability_only
+publication_authority: false
