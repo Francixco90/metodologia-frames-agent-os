@@ -1,0 +1,14 @@
+case: El operador pega un design doc y el skill recorre las dimensiones de engineering dejando el plan cerrado sin auto-ejecutar git ni tests.
+context: El operador trae un plan de ejecución con arquitectura, flujo de datos y cobertura de tests parciales; pide una revisión antes de implementar.
+request: 'Revisa la arquitectura de este plan antes de codear. Lock in the plan.'
+expect:
+  - El skill confirma el target de revision con el operador antes de iniciar.
+  - Reto de scope (Step 0) identifica codigo existente que resuelve parte del problema y define el conjunto minimo de cambios.
+  - Si el plan toca mas de 8 archivos o introduce mas de 2 clases nuevas, el skill detiene y desafia al operador con una version minima.
+  - Arquitectura emite findings con severidad (bloqueante, mayor, menor) y una recomendacion opinada por issue; aplica boring-by-default y questioning de innovation tokens.
+  - Flujo de datos exige diagramas ASCII para data flow, maquinas de estado y pipelines; flag si faltan o si estan obsoletos respecto al codigo real.
+  - Edge cases enumera caminos no felices (entradas nulas, timeouts, fallos de dependencias, concurrencia, idempotencia) con una linea de mitigacion cada uno o coverage_gap.
+  - Cobertura de tests valida que el diff de tests es proporcional al diff de codigo; flag si los tests se posponen.
+  - Rendimiento exige metricas y objetivos declarados; rechaza impresiones vagas.
+  - El skill NO inicia implementacion; entrega la revision en prosa y espera confirmacion del operador.
+  - Toda operacion git, tests o commits queda detras de confirmacion explicita del operador (fail-closed).

@@ -849,6 +849,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-qa-only/scripts/check-skill.mjs]
+  - skill_id: dev-plan-eng-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 35d867803d7b72fcb81179bf1619fca854e7950b5d907bf38053fa6f12fe271b
+    package_manifest_sha256: b6ddf4e7111784661cc3d048d1fca874aa2c4f020fb6ba9df4cb48c196c8cad0
+    lineage_ref: skills/dev-plan-eng-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-plan-eng-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-plan-eng-review/scripts/check-skill.mjs]
+  - skill_id: dev-plan-devex-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 56d9fbd5484ac37827c15239adc0a57501cf81980f1e0c172f67dce937a486d9
+    package_manifest_sha256: 05a7d229d819a76f8645f5d0a0c245405cae1b4ce8047952952a08fadce6e7e7
+    lineage_ref: skills/dev-plan-devex-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-plan-devex-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-plan-devex-review/scripts/check-skill.mjs]
+  - skill_id: dev-plan-design-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 99e10a74db49a75d74bc289e22b4d8e033aeb5e700ed212488aeeff3e79c658f
+    package_manifest_sha256: a46516c4a0d5c6cf0448a10d1b08ed130bee3f741192e06444f8445dc3f4c2d3
+    lineage_ref: skills/dev-plan-design-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-plan-design-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-plan-design-review/scripts/check-skill.mjs]
+  - skill_id: dev-plan-ceo-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3df03fe152c18b331c0bbe7911d27186b07fb25283427291ccec6ecf3ef1e037
+    package_manifest_sha256: 3f77c18915a5ca21fd839033cc286f939a7e8daa724130bc7f4bf39e26bea198
+    lineage_ref: skills/dev-plan-ceo-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-plan-ceo-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-plan-ceo-review/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1159,3 +1203,19 @@ events:
   - {event_id: EVT-SKL-DQO-H03-002, event_order: 2, skill_id: dev-qa-only, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DQO-H03-003, event_order: 3, skill_id: dev-qa-only, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DQO-H03-004, event_order: 4, skill_id: dev-qa-only, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PER-H03-001, event_order: 1, skill_id: dev-plan-eng-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PER-H03-002, event_order: 2, skill_id: dev-plan-eng-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PER-H03-003, event_order: 3, skill_id: dev-plan-eng-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PER-H03-004, event_order: 4, skill_id: dev-plan-eng-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PXR-H03-001, event_order: 1, skill_id: dev-plan-devex-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PXR-H03-002, event_order: 2, skill_id: dev-plan-devex-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PXR-H03-003, event_order: 3, skill_id: dev-plan-devex-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PXR-H03-004, event_order: 4, skill_id: dev-plan-devex-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PDR-H03-001, event_order: 1, skill_id: dev-plan-design-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PDR-H03-002, event_order: 2, skill_id: dev-plan-design-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PDR-H03-003, event_order: 3, skill_id: dev-plan-design-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PDR-H03-004, event_order: 4, skill_id: dev-plan-design-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PCR-H03-001, event_order: 1, skill_id: dev-plan-ceo-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PCR-H03-002, event_order: 2, skill_id: dev-plan-ceo-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PCR-H03-003, event_order: 3, skill_id: dev-plan-ceo-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PCR-H03-004, event_order: 4, skill_id: dev-plan-ceo-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

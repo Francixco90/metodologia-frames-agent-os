@@ -1,0 +1,12 @@
+receipt_id: RCP-H03-DEV-PLAN-DEVEX-REVIEW-001
+skill_id: dev-plan-devex-review
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Revisión de DX en prosa local. Sin red, sin git, sin tests, sin commits,
+  sin deploys. Todo gate de ejecución tras confirmación explícita del operador.

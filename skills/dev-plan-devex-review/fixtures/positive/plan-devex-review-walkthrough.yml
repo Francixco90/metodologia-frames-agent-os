@@ -1,0 +1,13 @@
+case: El operador pega un plan developer-facing y el skill recorre las dimensiones DX emitiendo hallazgos con severidad y recomendaciones opinadas, sin auto-ejecutar git.
+context: Plan escrito para un SDK developer-facing con onboarding, tooling y docs; el operador quiere una revision DX antes de avanzar.
+request: 'Revisa el devex del plan de este SDK.'
+expect:
+  - El skill audita la superficie developer-facing del plan (SDK/libreria) y pide confirmacion del tipo antes de avanzar.
+  - Interroga la persona developer (founder YC, platform engineer, backend dev) y produce una ficha de persona con quien, contexto, tolerancia y espera.
+  - Escribe una narrativa de empatia en primera persona (150-250 palabras) recorriendo el path real del README y la corrige con el operador.
+  - Construye una tabla benchmark DX competitivo con TTHW, decision DX notable y fuente por competidor; el operador elige tier (campeon, competitivo, trayectoria).
+  - Traza el journey por etapa (Descubrir, Instalar, Hello World, Uso real, Debug, Upgrade) identificando puntos de friccion con evidencia, uno por pregunta.
+  - Escribe un confusion report con timestamps simulados desde la perspectiva de un developer primerizo, basado en docs reales.
+  - Recorre las dimensiones DX (onboarding/TTHW, ergonomia API/CLI, calidad de errores, loops de feedback, carga cognitiva, docs, setup local) emitiendo hallazgo con severidad (bloqueante/mayor/menor) y recomendacion opinada con escape hatch.
+  - El skill NO edita codigo, NO ejecuta git, NO corre tests, NO hace commits; entrega la revision en prosa y espera confirmacion del operador.
+  - Si una dimension no puede evaluarse por falta de contexto, el skill emite coverage_gap en lugar de adivinar.

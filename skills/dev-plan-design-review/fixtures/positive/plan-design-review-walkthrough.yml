@@ -1,0 +1,11 @@
+case: El operador pega un plan con componentes UI y el skill recorre las siete dimensiones de diseño emitiendo hallazgos por dimension con severidad y recomendaciones opinadas, sin auto-ejecutar git.
+context: Plan con descripcion de backend y UI parcial; sin design system explicito; sin estados de borde definidos.
+request: 'Revisa el diseño de este plan antes de implementar.'
+expect:
+  - El skill confirma el alcance de UI del plan y lo califica 0-10 en completitud de diseño.
+  - El skill audita el sistema (plan, convenciones, design system si existe) y mapea patrones reutilizables.
+  - El skill recorre las siete dimensiones (arquitectura de informacion, flujos de usuario, jerarquia visual, consistencia, accesibilidad, adherencia al design system, estados de borde) calificando cada una 0-10.
+  - Por cada dimension no 10, el skill explica el hueco y propone la decision que lo cerraria, con recomendacion opinada.
+  - El skill enumera estados de borde faltantes (vacio, carga, error, exito, parcial) y los señala como hallazgos.
+  - El skill entrega hallazgos y recomendaciones al operador; NO edita el plan por cuenta propia; NO ejecuta git, tests ni commits.
+  - Las decisiones de gusto real quedan como decisiones abiertas con dueño o coverage_gap si falta.
