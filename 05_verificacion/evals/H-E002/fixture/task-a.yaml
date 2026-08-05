@@ -1,0 +1,23 @@
+schema_version: task-contract-v1
+task_id: TASK-dup-001
+project_id: proj-eval
+objetivo: "Eval fixture A — duplicate task_id probe"
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 05_verificacion/evals/H-E002/fixture/task-a.yaml
+write_set:
+  - 04_estado/tasks/TASK-dup-001/task.yaml
+no_objetivos: []
+done: "Two task.yaml share TASK-dup-001; check-tasks logic must WARN"
+validacion: "assert WARN on duplicate task_id"
+gaps: []
+state: INTAKE
+created_from_route: R3
+gate_target: null
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  eval: DOC
+created_at: 2026-08-01T00:00:00+00:00
+updated_at: 2026-08-01T00:00:00+00:00

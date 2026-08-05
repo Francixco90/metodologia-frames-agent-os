@@ -1,0 +1,11 @@
+# H0 — baseline (no subsystem excluded). [CONFIG]
+variant_id: H0
+excluded_subsystem: null
+description: >
+  Baseline — full harness, all 5 SPEC subsystems active (Instructions, Tools,
+  Environment, State, Feedback). No levers disabled. Produces a schema-valid
+  task.yaml with all harness artifact markers present.
+levers_disabled: []
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md

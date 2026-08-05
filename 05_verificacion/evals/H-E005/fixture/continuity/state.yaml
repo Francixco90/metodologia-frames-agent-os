@@ -1,0 +1,7 @@
+task_id: TASK-resume-001
+state: ESPECIFICADO
+last_gate: G00
+next_step: "Compile write_set with work-built evidence, then transition to COMPILADO"
+project_id: proj-resume
+responsable: lead
+updated_at: 2026-08-01T00:00:00+00:00

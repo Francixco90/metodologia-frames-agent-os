@@ -1,0 +1,14 @@
+# H-T — exclude Tools subsystem. [CONFIG]
+variant_id: H-T
+excluded_subsystem: Tools
+description: >
+  Exclude Tools — no commands.yaml, no check-dag validation, no tool-boundary
+  enforcement. Degraded harness produces a task.yaml whose write_set includes
+  an out-of-allowlist path (`secrets/key.pem`). Schema-valid relative path;
+  the fixed shape oracle accepts (allowlist enforcement is H-E008's domain).
+levers_disabled:
+  - 05_verificacion/scripts/commands.yaml
+  - 05_verificacion/scripts/check-dag.ts (validation)
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md

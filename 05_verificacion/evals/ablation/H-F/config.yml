@@ -1,0 +1,14 @@
+# H-F — exclude Feedback subsystem. [CONFIG]
+variant_id: H-F
+excluded_subsystem: Feedback
+description: >
+  Exclude Feedback — no run-check.ts, no check-receipts, no check-tasks, no
+  verification criterion. Degraded harness produces a task.yaml with empty
+  `validacion`. TaskContractSchema rejects (min length 1).
+levers_disabled:
+  - 05_verificacion/scripts/run-check.ts
+  - 05_verificacion/scripts/check-receipts.ts
+  - 05_verificacion/scripts/check-tasks.ts
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md

@@ -1,0 +1,24 @@
+schema_version: task-contract-v1
+task_id: TASK-adversarial-001
+project_id: proj-adv
+objetivo: "Eval fixture — adversarial write_set outside owner allowlist"
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 05_verificacion/evals/H-E008/fixture/task.yaml
+write_set:
+  - 04_estado/tasks/TASK-adversarial-001/task.yaml
+  - secrets/private-key.pem
+no_objetivos: []
+done: "Adversarial: write_set includes secrets/private-key.pem (outside allowlist)"
+validacion: "assert allowlist check rejects secrets/private-key.pem"
+gaps: []
+state: INTAKE
+created_from_route: R3
+gate_target: null
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  eval: DOC
+created_at: 2026-08-01T00:00:00+00:00
+updated_at: 2026-08-01T00:00:00+00:00

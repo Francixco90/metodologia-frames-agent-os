@@ -1,0 +1,15 @@
+# H-I — exclude Instructions subsystem. [CONFIG]
+variant_id: H-I
+excluded_subsystem: Instructions
+description: >
+  Exclude Instructions — no AGENTS.md/CLAUDE.md rules, no router, no done
+  definition. Degraded harness produces a task.yaml with empty `done`
+  (no instruction defines the completion criterion). TaskContractSchema
+  rejects (min length 1).
+levers_disabled:
+  - 02_proceso/governance/tool-policy.yml
+  - 02_proceso/governance/router.yml
+  - AGENTS.md rule 11
+n: 1
+oracle_ref: oracle.ts
+benchmark_ref: 05_verificacion/evals/ablation/README.md
