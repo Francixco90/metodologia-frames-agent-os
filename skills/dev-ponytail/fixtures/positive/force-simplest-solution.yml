@@ -1,0 +1,12 @@
+case: El operador pide implementar una feature y el skill recorre la escalera hasta la solución más simple que funciona, sin auto-editar ni añadir dependencias.
+context: Tarea de código nueva, sin solución obvia, tentación de sobre-ingeniar.
+request: >-
+  Necesito cachear respuestas de esta API de pagos. Hay un cliente que llama al
+  endpoint de tasas varias veces por request y el lag suma. No quiero mantener
+  una clase custom de cache TTL.
+expect:
+  - El skill recorre la escalera: cuestiona si el cache necesita existir, busca helpers ya en el codebase, evalua stdlib y features nativas.
+  - Propone la solucion más simple que funciona (lru_cache o equivalente stdlib) en prosa, sin auto-editar ni borrar codigo.
+  - No añade dependencias nuevas; si una lib ya instalada lo resuelve, la nombra.
+  - Marca simplificaciones deliberadas con un comentario ponytail nombrando techo y path de upgrade.
+  - Entrega la propuesta y espera confirmacion del operador (fail-closed).

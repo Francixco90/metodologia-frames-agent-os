@@ -626,6 +626,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-writing-skills/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-ponytail',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-ponytail-review',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-ponytail-audit',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail-audit/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-ponytail-debt',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ponytail-debt/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

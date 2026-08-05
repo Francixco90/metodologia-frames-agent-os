@@ -1,0 +1,5 @@
+skill_id: dev-ponytail-debt
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_file_write: false
+auto_ledger_create: false

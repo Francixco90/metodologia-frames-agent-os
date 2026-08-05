@@ -1,0 +1,14 @@
+case: El operador pide revisar un diff por over-engineering y el skill enumera un hallazgo por línea con ubicación, qué cortar y qué lo reemplaza, sin auto-eliminar código.
+context: Diff o archivo con complejidad innecesaria (stdlib reinventado, deps de más, abstracciones especulativas, flexibilidad muerta).
+request: >-
+  Revisa este diff por over-engineering. Encuentra qué podemos eliminar:
+  stdlib reinventado, dependencias innecesarias, abstracciones con una sola
+  implementación, flexibilidad que nadie usa.
+expect:
+  - El skill lee el diff y enumera hallazgos, una línea por cada uno.
+  - Cada hallazgo usa el formato L<line>: <tag> <qué cortar>. <reemplazo>.
+  - Los tags son delete, stdlib, native, yagni o shrink según el tipo de corte.
+  - El reemplazo nombra la función stdlib, el feature nativo o la forma más corta.
+  - El skill NO auto-elimina, edita ni reescribe código; propone cortes y se detiene.
+  - Cierra con net: -<N> líneas posibles. o Lean already. Ship. si no hay cortes.
+  - Si un tramo del diff no es visible, marca coverage_gap en lugar de inventar el hallazgo.
