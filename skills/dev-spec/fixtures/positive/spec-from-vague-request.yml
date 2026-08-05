@@ -1,0 +1,11 @@
+case: El operador pide especa una feature vaga ("añadir un sistema de notificaciones") y el skill produce un espec estructurado antes de codear.
+context: Petición verbal sin estructura, sin alcance definido, sin criterios observables.
+request: "Necesitamos un sistema de notificaciones para nuestra app. Especa esto."
+expect:
+  - El skill interroga la petición ronda por ronda y produce un espec con cinco secciones.
+  - Declaracion del problema: identifica quien (usuarios finales, equipo interno), que hace hoy (no hay notificaciones), que deberia hacer (entregar notificaciones), por que ahora (retencion decae), como se sabe que esta hecho (metrica observable).
+  - Alcance y fronteras: declara explicitamente fuera de alcance (push nativo, SMS, plantillas WYSIWYG); sistemas que toca (tabla notifications, endpoint /api/notifications, job de envio); corte MVP (in-app only).
+  - Criterios de aceptacion: lista en pasado, cada uno una frase observable verificable ("al llamar GET /api/notifications se devuelve un array JSON con items no leidos").
+  - Riesgos: enumera dependencias, cambios destructivos, migraciones de datos; cada uno con una linea de mitigacion o coverage_gap.
+  - Preguntas abiertas: lista lo que sigue sin responder y quien lo resuelve.
+  - El skill NO inicia implementacion; entrega el espec y espera confirmacion del operador.

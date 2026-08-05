@@ -406,6 +406,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-dna/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-spec',
+    scope: 'local-evaluation',
+    check: ['skills/dev-spec/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-qa',
+    scope: 'local-evaluation',
+    check: ['skills/dev-qa/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-review',
+    scope: 'local-evaluation',
+    check: ['skills/dev-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-ship',
+    scope: 'local-evaluation',
+    check: ['skills/dev-ship/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

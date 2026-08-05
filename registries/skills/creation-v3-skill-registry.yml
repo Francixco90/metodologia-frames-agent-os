@@ -761,6 +761,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-dna/scripts/check-skill.mjs]
+  - skill_id: dev-spec
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 9b8c834af97c95b32c8f1e4e5367a9c6ead877be100a1eac284b0f12e4e8f64d
+    package_manifest_sha256: f47b16204bf5d9edbd6eb7da5872d56e7f867a062fc39e89f9c4a84da4852d73
+    lineage_ref: skills/dev-spec/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-spec/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-spec/scripts/check-skill.mjs]
+  - skill_id: dev-qa
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: fa5409c824ed33b9877b133eb8d61ff2480f8d017dde10c8ab79b0be201e6540
+    package_manifest_sha256: b8707f3715c52fe08f08c1fc2b17ca00fa4d2dd7b65679c9cc586ad97e2bba7d
+    lineage_ref: skills/dev-qa/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-qa/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-qa/scripts/check-skill.mjs]
+  - skill_id: dev-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 9ba285f08cb1ccff001ca08a98b113ab8011ea37771812905e9a4932b1dab7ea
+    package_manifest_sha256: 4f2536aea41591a703662e017c43da52bd02e951958f33cfad229aa858b31a7b
+    lineage_ref: skills/dev-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-review/scripts/check-skill.mjs]
+  - skill_id: dev-ship
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: bb7e1411e8f3724e72be87c3de49b10212c7284f0778ad14e6565f1f54117d96
+    package_manifest_sha256: df002060bf8ded0dd6ea35026f49eec8f6a830c301a764a313d5a90efaa28880
+    lineage_ref: skills/dev-ship/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ship/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ship/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1039,3 +1083,19 @@ events:
   - {event_id: EVT-SKL-DDA-H03-002, event_order: 2, skill_id: design-dna, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DDA-H03-003, event_order: 3, skill_id: design-dna, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DDA-H03-004, event_order: 4, skill_id: design-dna, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSP-H03-001, event_order: 1, skill_id: dev-spec, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSP-H03-002, event_order: 2, skill_id: dev-spec, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSP-H03-003, event_order: 3, skill_id: dev-spec, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSP-H03-004, event_order: 4, skill_id: dev-spec, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DQA-H03-001, event_order: 1, skill_id: dev-qa, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DQA-H03-002, event_order: 2, skill_id: dev-qa, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DQA-H03-003, event_order: 3, skill_id: dev-qa, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DQA-H03-004, event_order: 4, skill_id: dev-qa, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DRV-H03-001, event_order: 1, skill_id: dev-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DRV-H03-002, event_order: 2, skill_id: dev-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DRV-H03-003, event_order: 3, skill_id: dev-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DRV-H03-004, event_order: 4, skill_id: dev-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSH-H03-001, event_order: 1, skill_id: dev-ship, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSH-H03-002, event_order: 2, skill_id: dev-ship, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSH-H03-003, event_order: 3, skill_id: dev-ship, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSH-H03-004, event_order: 4, skill_id: dev-ship, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

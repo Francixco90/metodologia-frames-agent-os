@@ -1,0 +1,20 @@
+case: positive
+context: >
+  La feature "export-to-csv" está completa en la rama `feat/export-csv`. Existe
+  una entrada en CHANGELOG.md marcada como `v1.4.0 - 2026-08-04` con el cambio
+  visible listado. Hay una migración `20260804_add_export_jobs_table.sql` con
+  su par `down`. El cambio está detrás del flag `export_csv_enabled` (off por
+  defecto). Hay smoke tests en `tests/smoke/export_csv.spec.ts`. El plan de
+  comunicación avisa al equipo de soporte 24h antes del despliegue.
+request: >
+  Haz una revisión pre-ship de la feature export-to-csv antes de subirla a
+  producción.
+expect: >
+  El skill recorre las seis dimensiones y devuelve hallazgos en prosa por cada
+  una: CHANGELOG presente y alineado con la versión; migración documentada y
+  reversible; plan de rollback explícito vía flag `export_csv_enabled` plus
+  migración `down`; feature flag activo y off por defecto; smoke tests
+  definidos cubriendo el camino crítico; comunicación a soporte planificada.
+  El veredicto es `READY` para evaluación local del operador. El skill NO
+  ejecuta git, tests, migraciones ni despliegues; solo produce prosa y
+  veredicto.
