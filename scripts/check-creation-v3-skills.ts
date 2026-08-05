@@ -526,6 +526,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-health/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-canary',
+    scope: 'local-evaluation',
+    check: ['skills/dev-canary/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-land-and-deploy',
+    scope: 'local-evaluation',
+    check: ['skills/dev-land-and-deploy/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-skillify',
+    scope: 'local-evaluation',
+    check: ['skills/dev-skillify/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-learn',
+    scope: 'local-evaluation',
+    check: ['skills/dev-learn/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

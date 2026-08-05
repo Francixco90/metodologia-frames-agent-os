@@ -1,0 +1,13 @@
+case: El operador pide entender un codebase nuevo y el skill lo recorre en las cinco fases sin auto-ejecutar installs, git ni tests.
+context: Codebase desconocido, sin mapa mental previo, dominio no declarado.
+request: >-
+  Aprende este codebase antes de tocarlo. Es un repo de pagos con servicios de
+  auth, ledger y notificaciones, no conozco los flujos punta a punta.
+expect:
+  - El skill recorre el codebase fase por fase y produce un mapa mental en prosa.
+  - Orientarse: lee README, docs y manifiesto; declara dominio (pagos), fronteras y paradigma.
+  - Mapear entidades: identifica auth, ledger y notificaciones como entidades; declara ubicacion, responsabilidad y dueno de cada una; si una entidad no tiene dueno marca coverage_gap.
+  - Trazar flujos: sigue una peticion de pago punta a punta; enumera entidades, fronteras y estados; declara ramas y condiciones; si un tramo no es visible marca coverage_gap.
+  - Formular hipotesis: plantea hipotesis con evidencia (archivo, flujo) y limite (que la falsaria) por cada comportamiento clave.
+  - Verificar: contrasta cada hipotesis contra el codigo; la que sobrevive entra al mapa, la que cae se reemplaza o marca coverage_gap.
+  - El skill NO auto-arranca installs, git, tests ni commits; entrega el mapa mental y espera confirmacion del operador.
