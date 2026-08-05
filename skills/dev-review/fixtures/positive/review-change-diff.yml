@@ -1,0 +1,47 @@
+case: positive-review-change-diff
+context: |
+  La operadora pega un diff de un cambio que añade un endpoint de API
+  con validación de entrada y una consulta a la base de datos, y
+  solicita una revisión de pares estructurada antes de landear.
+request: |
+  Revisa este diff: handler de /api/orders que agrega validación
+  de entrada y una consulta a la base de datos.
+expect:
+  findings_by_dimension:
+    arquitectura:
+      - severidad: Media
+        cita: 'api/orders.ts:42 — const valid = proc(req.body)'
+        nota: La validación vive en el handler; conviene moverla a un middleware reutilizable.
+    legibilidad:
+      - severidad: Baja
+        cita: 'api/orders.ts:18 — function proc(data)'
+        nota: El nombre `proc` es opaco; renombrar a `processOrder`.
+    mantenibilidad:
+      - severidad: Media
+        cita: 'api/orders.ts:30-37 — bloque repetido de mapeo'
+        nota: Mapeo manual campo a campo repetido; extraer helper.
+    rendimiento:
+      - severidad: Alta
+        cita: 'api/orders.ts:55 — for (const item of items) { await db.query(...) }'
+        nota: Posible N+1 — la consulta se ejecuta dentro del bucle de items.
+    seguridad:
+      - severidad: Bloqueante
+        cita: |-
+          api/orders.ts:61 — WHERE status = '" + status + "'
+        nota: Concatenación de string en la cláusula where; inyección SQL.
+    testabilidad:
+      - severidad: Media
+        cita: 'api/orders.test.ts — sin caso para validación fallida'
+        nota: Sin prueba para la rama de validación fallida.
+    convenciones:
+      - severidad: Baja
+        cita: 'api/Orders.ts — nombre PascalCase'
+        nota: El archivo no sigue la convención de naming kebab del repo.
+  severity_ranking:
+    - Bloqueante
+    - Alta
+    - Media
+    - Baja
+  review_diff_not_person: true
+  requires_operator_confirmation_to_land: true
+  no_auto_git: true

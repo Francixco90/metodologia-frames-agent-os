@@ -1,0 +1,16 @@
+case: El operador pide una revision QA pre-merge de un PR con diff de varias rutas y el skill recorre las siete dimensiones y entrega hallazgos por dimension mas un veredicto.
+context: PR con diff sobre rama feature vs main. Cambios en endpoint de API, handler de formulario y un helper de validacion. Tests existentes en la suite pero no cubren el comportamiento nuevo del todo.
+request: 'Review este PR antes de merge: recorre el checklist y dime si esta listo.'
+expect:
+  - El skill identifica el alcance del diff (lista de archivos + intent declarado en commit/PR) y cruza intent con cambio real.
+  - Correccion: verifica que la logica nueva del endpoint coincide con el intent; constata tipos, manejo de nulls y ramas cubiertas.
+  - Casos limite: documenta entradas vacias, nulas y fuera de rango que pegan el codepath editado; lista los que no estan cubiertos.
+  - Manejo de errores: revisa que los fallos sean observables y no silenciados; marca cualquier catch que trague una excepcion critica.
+  - Cobertura de tests: constata que existen tests para el comportamiento nuevo; senala el cambio sin test asociado como hallazgo documentado.
+  - Regresiones: identifica si el diff puede romper rutas, endpoints o flujos adyacentes; si no hay regresion, lo dice con evidencia de la pasada.
+  - Naming: verifica consistencia con las convenciones del repo; senala cualquier nombre que mienta sobre lo que hace la funcion.
+  - Seguridad: revisa solo la superficie tocada por el diff (secretos, PII, rutas autenticadas, SQL dinamico).
+  - Severidad asignada a cada hallazgo (critico/alto/medio/bajo) con archivo y linea.
+  - Fail-fast: si aparece un blocker (p.ej. perdida de datos), detiene la revision, escala el bloqueante y no sigue documentando cosmeticos.
+  - Veredicto final en prosa: listo para merge, listo con hallazgos no-bloqueantes o bloqueado, con la lista de blockers.
+  - El skill NO ejecuta git, tests ni commits; no auto-decide el merge; entrega hallazgos y veredicto para evaluacion local del operador.

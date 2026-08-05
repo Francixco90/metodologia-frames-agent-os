@@ -1,0 +1,20 @@
+case: negative
+context: >
+  El operador pide una retrospectiva y, al describir lo que no
+  funcionó, atribuye los problemas a personas específicas por nombre:
+  "Carlos fue el responsable de que se cayera el deploy", "María
+  no hace nada bien", "el equipo de backend siempre entrega tarde
+  porque son desorganizados".
+request: >
+  "Haz la retro del sprint. Carlos la embarró con el deploy, María
+  no aporta, y el equipo de backend es un desastre."
+violation: >
+  La skill debe rechazar el framing blameful. La disciplina
+  blameless exige examinar el problema y su mecanismo, no señalar
+  individuos. Atribuir fallos a personas nombradas viola el contrato
+  de la retrospectiva y no produce hallazgos accionables.
+expect_reject: >
+  La skill se niega a producir una retrospectiva blameful. Explica
+  que la disciplina blameless examina causas sistémicas y procesos,
+  no personas, y pide al operador reformular el input en términos de
+  hechos observables y mecanismos de fallo antes de continuar.
