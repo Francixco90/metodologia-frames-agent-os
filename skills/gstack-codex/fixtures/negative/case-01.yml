@@ -1,0 +1,22 @@
+case_id: codex-negative-01
+description: >
+  Invocación inválida que ejecuta automáticamente la llamada a la API del
+  modelo externo sin pedir confirmación al usuario, violando el límite
+  fail-closed de la skill.
+invocation:
+  skill: gstack-codex
+  mode: review
+  input:
+    diff_scope: origin/main...HEAD
+  auto_invoke_external_api: true
+violation: >
+  La skill dispara la llamada al modelo externo inmediatamente al recibir el
+  diff, sin surfear el prompt construido ni pedir confirmación explícita al
+  usuario. Esto rompe el límite fail-closed: la skill es evaluación local y
+  la llamada externa está gated en confirmación. La autorización del
+  usuario es obligatoria antes de cualquier invocación al modelo externo.
+expected_behavior:
+  - refuse_silent_auto_invocation
+  - require_explicit_user_confirmation_first
+  - surface_constructed_prompt_before_call
+valid: false

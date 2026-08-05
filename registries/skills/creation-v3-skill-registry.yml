@@ -1575,6 +1575,61 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/gstack-ios-clean/scripts/check-skill.mjs]
+  - skill_id: gstack-ios-design-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0483c4d45cf9f72681be768aa2bf902130ad36648bd6780a206c7f4444e90dc9
+    package_manifest_sha256: ae9ee2a367c9b8002b29888c578e06d62a9f00729358a659c39bc947004d3539
+    lineage_ref: skills/gstack-ios-design-review/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-ios-design-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-ios-design-review/scripts/check-skill.mjs]
+  - skill_id: gstack-ios-fix
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 7cd7be9ef331d3d7f196f26a6100d2383f6fe0bb660494fc43a80ce6424a966d
+    package_manifest_sha256: d69531fee9fd21231cbfecf8dd53d2006fb353ef52b9eb911694bcca17b89b9f
+    lineage_ref: skills/gstack-ios-fix/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-ios-fix/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-ios-fix/scripts/check-skill.mjs]
+  - skill_id: gstack-ios-sync
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: db572c006ab61addcaf01af71130a2876f40e4d79ac47c8f8f2da77ab1f40cc1
+    package_manifest_sha256: 008389d326be2e723ac67ce4ea524db0fdb0fc2618ee4cc470a3ffc5885f3e04
+    lineage_ref: skills/gstack-ios-sync/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-ios-sync/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-ios-sync/scripts/check-skill.mjs]
+  - skill_id: gstack-cso
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 005d8ec8c318262959d5d1936135258bca5a4c42ace792fdf8145dbd7a7fb72c
+    package_manifest_sha256: e8504bce52d02fabb03cbfb84e0ebd453f5ae0c6073db5e4c56669e5730f9d57
+    lineage_ref: skills/gstack-cso/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-cso/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-cso/scripts/check-skill.mjs]
+  - skill_id: gstack-codex
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3322c8d1aaa0c1379708382389836921cdd701525f01218e3dcdd9df5e0f05e7
+    package_manifest_sha256: d1fdc5b70d666cc9485b9ebb68452df733b87f3b2730135906a21a1f121a0bac
+    lineage_ref: skills/gstack-codex/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-codex/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-codex/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -2149,3 +2204,23 @@ events:
   - {event_id: EVT-SKL-GIC-H03-002, event_order: 2, skill_id: gstack-ios-clean, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GIC-H03-003, event_order: 3, skill_id: gstack-ios-clean, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-GIC-H03-004, event_order: 4, skill_id: gstack-ios-clean, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GID-H03-001, event_order: 1, skill_id: gstack-ios-design-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GID-H03-002, event_order: 2, skill_id: gstack-ios-design-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GID-H03-003, event_order: 3, skill_id: gstack-ios-design-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GID-H03-004, event_order: 4, skill_id: gstack-ios-design-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIF-H03-001, event_order: 1, skill_id: gstack-ios-fix, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIF-H03-002, event_order: 2, skill_id: gstack-ios-fix, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIF-H03-003, event_order: 3, skill_id: gstack-ios-fix, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIF-H03-004, event_order: 4, skill_id: gstack-ios-fix, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIS-H03-001, event_order: 1, skill_id: gstack-ios-sync, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIS-H03-002, event_order: 2, skill_id: gstack-ios-sync, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIS-H03-003, event_order: 3, skill_id: gstack-ios-sync, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIS-H03-004, event_order: 4, skill_id: gstack-ios-sync, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GCS-H03-001, event_order: 1, skill_id: gstack-cso, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GCS-H03-002, event_order: 2, skill_id: gstack-cso, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GCS-H03-003, event_order: 3, skill_id: gstack-cso, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GCS-H03-004, event_order: 4, skill_id: gstack-cso, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GCX-H03-001, event_order: 1, skill_id: gstack-codex, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GCX-H03-002, event_order: 2, skill_id: gstack-codex, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GCX-H03-003, event_order: 3, skill_id: gstack-codex, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GCX-H03-004, event_order: 4, skill_id: gstack-codex, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

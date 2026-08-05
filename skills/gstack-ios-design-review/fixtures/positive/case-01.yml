@@ -1,0 +1,40 @@
+case_id: ios-design-review-positive-01
+description: >
+  Auditoría visual válida de una app iOS contra su línea base de design
+  tokens. La skill identifica el spec (typography scale, spacing grid, color
+  tokens), lista las pantallas en scope con confirmación del usuario,
+  recibe las capturas que el usuario provee con metadatos por pantalla, y
+  aplica el rubro de 10 dimensiones (jerarquía tipográfica, ritmo de
+  espaciado, jerarquía de color, touch targets, estados loading/empty/error,
+  accesibilidad, animación, idioma iOS, densidad, AI-slop) produciendo un
+  reporte markdown con scores 0-10 y fixes de mayor leverage.
+invocation:
+  skill: gstack-ios-design-review
+  input:
+    design_tokens: docs/design/tokens.yml
+    screen_list:
+      - Home
+      - Detail
+      - Settings
+    baseline_build: 0.4.2
+    captures:
+      - screen: Home
+        path: captures/home-light.png
+        build: 0.4.3
+        orientation: portrait
+        dynamic_type: XL
+        mode: light
+        reduce_motion: off
+  user_confirmation: required_per_capture
+expected_behavior:
+  - establish_spec_baseline_before_audit
+  - confirm_screen_list_with_user
+  - require_explicit_per_capture_confirmation
+  - apply_ten_dimension_rubric_against_tokens
+  - score_each_dimension_0_to_10_with_what_would_make_it_10
+  - flag_regressions_against_baseline_build
+  - verify_contrast_against_tokens_not_eyeballing
+  - mark_coverage_gap_when_spec_missing_or_capture_without_metadata
+  - produce_rendered_draft_report_not_human_approved
+  - no_simulator_launch_no_device_daemon_no_auto_capture
+valid: true

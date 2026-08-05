@@ -1,0 +1,25 @@
+case_id: codex-positive-01
+description: >
+  Segunda opinión válida: la skill construye el prompt con la frontera de
+  filesystem, describe el modo y el alcance al usuario, pide confirmación
+  explícita, y solo entonces invoca al modelo externo para una segunda
+  opinión. La salida se presenta verbatim y la recomendación de síntesis
+  nombra el insight más accionable.
+invocation:
+  skill: gstack-codex
+  mode: second-opinion
+  input:
+    question: ¿Conviene sharding o read-replicas para el hot path de escritura?
+    referenced_files:
+      - src/writer-pool.ts
+  user_confirmation: required_before_external_call
+expected_behavior:
+  - construct_prompt_with_filesystem_boundary
+  - describe_mode_and_scope_to_user
+  - request_explicit_user_confirmation
+  - invoke_external_model_only_after_confirmation
+  - present_output_verbatim
+  - emit_synthesis_recommendation_naming_actionable_insight
+  - no_repository_mutation
+  - no_silent_retry_on_failure
+valid: true

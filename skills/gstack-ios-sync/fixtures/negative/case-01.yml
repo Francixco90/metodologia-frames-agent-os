@@ -1,0 +1,28 @@
+case_id: ios-sync-negative-01
+description: >
+  Invocación inválida que sobrescribe automáticamente los archivos de la
+  capa generada al detectar que los templates upstream cambiaron, sin
+  diffear customizaciones locales ni pedir confirmación al usuario. Esto
+  rompe el límite fail-closed: la skill es evaluación local, no
+  regeneración automática.
+invocation:
+  skill: gstack-ios-sync
+  input:
+    app_source_dir: Sources/App
+    generated_layer_dir: Sources/App/GeneratedBridge
+    upstream_templates_root: packages/debug-bridge/templates
+  auto_overwrite: true
+violation: >
+  La skill corre el generador y sobrescribe los archivos de la capa
+  generada inmediatamente tras detectar el desfase de versión, sin diffear
+  los templates contra la capa local, sin inventariar las customizaciones
+  manuales (hooks, overrides, markers movidos), y sin pedir confirmación
+  explícita puerta por puerta al usuario. Esto rompe el límite fail-closed:
+  la capability es evaluación local, no mutación automática. Las
+  customizaciones locales se pierden silenciosamente. La confirmación del
+  usuario es obligatoria antes de cualquier regeneración.
+expected_behavior:
+  - refuse_silent_auto_overwrite
+  - require_diff_and_customization_inventory_first
+  - require_explicit_per_phase_confirmation_before_regeneration
+valid: false
