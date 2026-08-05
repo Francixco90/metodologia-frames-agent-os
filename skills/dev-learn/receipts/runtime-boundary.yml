@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-LEARN-001
+skill_id: dev-learn
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Aprendizaje metódico de un codebase o dominio en prosa local. Sin red, sin
+  git, sin tests, sin installs, sin commits, sin deploys. Todo gate de
+  ejecución tras confirmación explícita del operador.

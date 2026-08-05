@@ -1,0 +1,16 @@
+case: El operador pega un procedimiento reutilizable ya ejecutado con exito y el skill lo eleva a un skill declarado a lo largo de las seis dimensiones sin auto-crear archivos ni auto-mutar el registro.
+context: Procedimiento reutilizable cerrado con concern claro, frontmatter incompleto, alcance difuso y sin fixtures ni checker.
+request: >-
+  Convierte este procedimiento en un skill declarado. Es un flujo de validacion
+  de receipts que ya corrimos tres veces a mano: nombralo, declara el frontmatter,
+  acota el alcance, diseña los fixtures positivo y negativo, escribe el checker
+  y deja la cadena de lineage y receipt. No escribas nada todavia.
+expect:
+  - El skill interroga el procedimiento dimension por dimension y produce un diseno de skill en prosa.
+  - Nombrado: propone un slug valido (letras minusculas, digitos, guiones, ≤32 chars, sin guiones consecutivos) y 3-5 frases disparadoras.
+  - Frontmatter: declara name, description (empieza con "This skill should be used when"), version, license y metadata (owner, lifecycle_state, execution_scope, model_agnostic).
+  - Alcance: declara un solo concern y lista explicitamente las no-funcionalidades (no auto-crea archivos, no auto-muta el registro, no git, no tests, no commits, no red).
+  - Fixtures: diseña un caso positivo (flujo correcto sin auto-escritura) y un caso negativo con escalar plegado violation que documenta auto-crear archivos o auto-mutar el registro sin confirmacion.
+  - Checker: describe un scripts/check-skill.mjs autocontenido que valida tokens de gobernabilidad, rechaza APIs prohibidas, rechaza rutas absolutas y exige el fixture negativo con violation:.
+  - Lineage y receipt: declara LINEAGE.yml con content_origin locally_authored_adaptation, derivation_mode clean-room-prose-from-permissive-reference, external_fragments_reused false y authority_refs reales; declara receipts/runtime-boundary.yml con execution_boundary requires_user_confirmation y network_allowed false.
+  - El skill NO auto-crea los archivos del skill ni auto-muta el registro; entrega el diseno y espera confirmacion del operador.

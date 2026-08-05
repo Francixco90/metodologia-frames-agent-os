@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-LAND-AND-DEPLOY-001
+skill_id: dev-land-and-deploy
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Plan de aterrizaje y despliegue en prosa local. Sin red, sin git, sin merges,
+  sin pushes, sin tests, sin deploys, sin reverts. Todo gate de merge y deploy
+  tras confirmacion explicita del operador.

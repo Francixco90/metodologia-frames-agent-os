@@ -1,0 +1,17 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-SKILLIFY-001
+skill_id: dev-skillify
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+auto_write_skill_files: false
+auto_mutate_skill_registry: false
+rationale: >
+  Skillificacion de un procedimiento reutilizable en prosa local. Sin red, sin
+  git, sin tests, sin commits, sin deploys, sin auto-escritura de archivos del
+  skill, sin auto-mutacion del registro de skills. Todo gate de escritura y de
+  promocion al registry tras confirmacion explicita del operador.

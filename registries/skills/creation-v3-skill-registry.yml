@@ -1025,6 +1025,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-health/scripts/check-skill.mjs]
+  - skill_id: dev-canary
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 2b26617b80a75e3181dcdf97bb16a38b8c30d62bf41c3aab4d8f5ccb5d8019ca
+    package_manifest_sha256: 19fc8bf0f46cbb2f2bfa6d7f2d8a458259b765d4f1519ba47aef7679600fab98
+    lineage_ref: skills/dev-canary/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-canary/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-canary/scripts/check-skill.mjs]
+  - skill_id: dev-land-and-deploy
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: a94ff7bb3f3e2b5de650fbec75d0e7b3dc124452c4436183b649655ce7536089
+    package_manifest_sha256: cba18110e252d21dae49277b0fe211d38970f5948dbc31a5029a42ee4ccef0ca
+    lineage_ref: skills/dev-land-and-deploy/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-land-and-deploy/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-land-and-deploy/scripts/check-skill.mjs]
+  - skill_id: dev-skillify
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: c2eaa90a7be0fe20bd29d657adcb37646dd4aaa8accc96c0ea1cd04aa925a183
+    package_manifest_sha256: 29eb3e29a833088349b91de376d74793e81ca9b1d92f360a99fbf71fd4dc2850
+    lineage_ref: skills/dev-skillify/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-skillify/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-skillify/scripts/check-skill.mjs]
+  - skill_id: dev-learn
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 5176bd90b75369a9513947a41ece25cdbdb85d338e22879e051439883bc35cd3
+    package_manifest_sha256: e1c6149dea5b1e32013f84e918ada0fd11a1fb9b6e7ed5666214bede217234c5
+    lineage_ref: skills/dev-learn/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-learn/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-learn/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1399,3 +1443,19 @@ events:
   - {event_id: EVT-SKL-HLT-H03-002, event_order: 2, skill_id: dev-health, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-HLT-H03-003, event_order: 3, skill_id: dev-health, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-HLT-H03-004, event_order: 4, skill_id: dev-health, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CNR-H03-001, event_order: 1, skill_id: dev-canary, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CNR-H03-002, event_order: 2, skill_id: dev-canary, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CNR-H03-003, event_order: 3, skill_id: dev-canary, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CNR-H03-004, event_order: 4, skill_id: dev-canary, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-LAD-H03-001, event_order: 1, skill_id: dev-land-and-deploy, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-LAD-H03-002, event_order: 2, skill_id: dev-land-and-deploy, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-LAD-H03-003, event_order: 3, skill_id: dev-land-and-deploy, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-LAD-H03-004, event_order: 4, skill_id: dev-land-and-deploy, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SKF-H03-001, event_order: 1, skill_id: dev-skillify, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SKF-H03-002, event_order: 2, skill_id: dev-skillify, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SKF-H03-003, event_order: 3, skill_id: dev-skillify, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SKF-H03-004, event_order: 4, skill_id: dev-skillify, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-LRN-H03-001, event_order: 1, skill_id: dev-learn, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-LRN-H03-002, event_order: 2, skill_id: dev-learn, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-LRN-H03-003, event_order: 3, skill_id: dev-learn, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-LRN-H03-004, event_order: 4, skill_id: dev-learn, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

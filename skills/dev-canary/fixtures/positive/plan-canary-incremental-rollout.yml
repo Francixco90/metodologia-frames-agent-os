@@ -1,0 +1,15 @@
+case: El operador pide planificar un canary para un deploy y el skill produce el plan a lo largo de las seis dimensiones sin auto-ejecutar git ni deploys.
+context: Deploy pendiente donde el operador quiere exposición progresiva con red de rollback antes de arrancar la implementación.
+request: >-
+  Planifica un canary para este deploy. Hay 3 rutas criticas (/, /dashboard,
+  /checkout), el deploy toca migracion de base de datos, y no tenemos definido
+  cuanto trafico exponer primero.
+expect:
+  - El skill interroga la intencion dimension por dimension y produce un plan canary en prosa.
+  - Linea base: declara que metricas se capturan (screenshots, errores de consola, load time), donde se guardan y que se toman antes del deploy; si no hay linea base posible marca coverage_gap.
+  - Exposicion incremental: define los incrementos (1% -> 5% -> 25% -> 50% -> 100%), cuanto dura cada uno y que se verifica antes de avanzar; no big-bang disfrazado.
+  - Observabilidad: declara que se monitorea por chequeo (errores nuevos, regresion 2x, 404, fallos de pagina), cadencia de chequeo y que alertar es sobre cambios no absolutos.
+  - Umbrales y tolerancia: define severidad (CRITICAL/HIGH/MEDIUM/LOW), tolerancia a transitorios (2+ chequeos consecutivos) y gate de confirmacion del operador antes de actuar.
+  - Gates de rollback: para cada severidad declara la respuesta (rollback/pausa/continuar), quien confirma y que se reverte; rollback es decision del operador, no auto.
+  - Veredicto: produce reporte HEALTHY/DEGRADED/BROKEN con screenshots como evidencia; el veredicto es observacion, no aprobacion automatica.
+  - El skill NO auto-arranca el deploy; entrega el plan canary y espera confirmacion del operador.

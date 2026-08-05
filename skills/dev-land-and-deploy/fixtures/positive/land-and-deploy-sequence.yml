@@ -1,0 +1,14 @@
+case: El operador pide aterrizar una rama con PR abierto y el skill produce la secuencia de aterrizaje y despliegue en prosa, sin auto-ejecutar git ni deploy.
+context: PR abierto con CI verde, review CURRENT, changelog actualizado y deploy workflow detectado en el repo.
+request: >-
+  Aterriza esta rama y despliegala a produccion. El PR #42 esta abierto, CI paso,
+  el review de ingenieria esta al dia y hay un workflow de deploy en GitHub
+  Actions.
+expect:
+  - El skill describe las cinco fases del aterrizaje y produce un plan en prosa, no comandos ejecutados.
+  - Pre-flight: identifica el PR #42, su rama origen, la rama base y la plataforma de hosting.
+  - Pre-checks: declara CI en PASS, conflictos en PASS y drift de VERSION en PASS (o coverage_gap si no aplica).
+  - Readiness gate: reune evidencia de reviews (CURRENT), tests (PASS), cuerpo del PR (current) y docs/changelog (updated); arma el reporte y se detiene esperando confirmacion del operador.
+  - Estrategia: declara el metodo de merge (squash/merge/rebase) detectado de la config, declara el workflow de deploy y ofrece la ruta staging-first si staging existe.
+  - Verificacion: declara la profundidad del canary por scope (frontend, backend, config o docs) y el plan de revert si la verificacion falla.
+  - El skill NO auto-mergea ni auto-deploya; entrega el plan y espera confirmacion explicita del operador para cada gate.
