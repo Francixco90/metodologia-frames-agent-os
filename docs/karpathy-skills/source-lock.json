@@ -1,0 +1,52 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/karpathy-skills",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/forrestchang/andrej-karpathy-skills",
+  "source_commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2026 forrestchang (andrej-karpathy-skills, MIT declared in README + SKILL.md frontmatter)",
+  "vendor_root_hashes": {
+    "LICENSE": "057951f4354bf3d08c6bc6f7aacb3daf1b1fb860990853223c5770ed28f27716"
+  },
+  "vendors": [
+    {
+      "skill": "karpathy-guidelines",
+      "source_repo": "https://github.com/forrestchang/andrej-karpathy-skills",
+      "source_commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+      "source_path": "skills/karpathy-guidelines/",
+      "license": "MIT",
+      "attribution": "Copyright (c) 2026 forrestchang (MIT per README + SKILL.md frontmatter; no LICENSE file at source root — LICENSE created at vendor root from declaration)",
+      "destination": "skills/vendor/karpathy-skills/karpathy-guidelines/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/karpathy-skills/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 2,
+      "critical_file_hashes": {
+        "SKILL.md": "6e22cc54cb02a5e98ae42d06d9d7292db0c1b43894831b32879beb0166b2aea7",
+        "EXAMPLES.md": "9bc0ba934077a0514bab0fc7a4ffad37ecd40bfddf57f29d0b8cef5e5b3d1f28"
+      },
+      "known_risks": [
+        "MIT declared in README ## License + SKILL.md frontmatter (license: MIT); NO LICENSE file at source repo root — LICENSE file created at vendor root from declaration (forrestchang attribution)",
+        "karpathy-guidelines is a behavioral-guidelines skill (prose only, 67 lines); no network/install/execution surface",
+        "Homólogo routes to dev-* family (karpathy-guidelines)"
+      ],
+      "update_procedure": [
+        "Clone forrestchang/andrej-karpathy-skills at new commit",
+        "Re-copy text-only skills/karpathy-guidelines/SKILL.md + EXAMPLES.md to skills/vendor/karpathy-skills/karpathy-guidelines/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 3,
+    "total_skills": 1,
+    "licenses": {
+      "karpathy-guidelines": "MIT"
+    },
+    "binaries_excluded": "none (SKILL.md + EXAMPLES.md + created LICENSE, all UTF-8 text)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}

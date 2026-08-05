@@ -1,0 +1,68 @@
+{
+  "schema_version": "vendor-source-lock-v1",
+  "vendor_root": "skills/vendor/crawl4ai-skill",
+  "audit_date": "2026-08-04",
+  "source_repo": "https://github.com/brettdavies/crawl4ai-skill",
+  "source_commit": "c696921b133dd962f766f596655767c0b894d206",
+  "license": "MIT OR Apache-2.0 (dual)",
+  "attribution": "Copyright (c) 2026 Brett Davies (crawl4ai-skill, https://github.com/brettdavies/crawl4ai-skill) — dual-licensed MIT OR Apache-2.0; homólogo derives under MIT for attribution simplicity",
+  "vendor_root_hashes": {
+    "LICENSE": "2489880396bc8dfeefafc2bc45756ab519af00992f5d005a838b88ae5e7bc992",
+    "LICENSE-MIT": "a3f05d297b4a98d39118abcab7ac0495b5ab3ecadd38930c867ec83126ccdd87",
+    "LICENSE-APACHE": "44afcfc1e3d31fb510d5d13047c2768f8e1a98a2c509dbe06b826f2970d595bc"
+  },
+  "vendors": [
+    {
+      "skill": "crawl4ai",
+      "source_repo": "https://github.com/brettdavies/crawl4ai-skill",
+      "source_commit": "c696921b133dd962f766f596655767c0b894d206",
+      "source_path": "/",
+      "license": "MIT OR Apache-2.0 (dual)",
+      "attribution": "Copyright (c) 2026 Brett Davies",
+      "destination": "skills/vendor/crawl4ai-skill/crawl4ai/",
+      "audit_date": "2026-08-04",
+      "audit_report": "docs/crawl4ai-skill/audit-report.md",
+      "execution_status": "reference-only-no-auto-execution",
+      "files_vendored": 14,
+      "critical_file_hashes": {
+        "SKILL.md": "ac9eb874e2732fc1fb26d902cde1b0e1942982ffbf48d6ca248d53a8a0d694a4",
+        "references/anti-detection.md": "d84b54bc20b18db3175382e545faf84dc0192d21caeb044b0aecd108c925b001",
+        "references/cli-guide.md": "0c76e3bde15c84125fc5617b15885448e665b26ca3336c60e7d78a30df3869a5",
+        "references/complete-sdk-reference.md": "a248dc80a65da4d2222ee9b04cbf9e09a8d71a835b175ed319df6b8ed7e0e711",
+        "references/content-filters.md": "8834077412970923ab36387bf1584b0bee33546dadfe24da329f0192402e21e",
+        "references/escalation.md": "1e5104a7145b4331251a1afb39940798f9bf772da841197d4a0472ec2abb497a",
+        "references/recipes.md": "1c967148cb2ca21e017fe482ad64c243f855d50dd1734ef29d8c3884ecd53120",
+        "references/sdk-guide.md": "cdd42adc25fbaf0d30d4f0414863db49146e77beb0777a9663822e675835e2e0",
+        "references/troubleshooting.md": "ccb35042bb1311fc41aab425e7c849796da335f5b6b2df75e1d575433633da40",
+        "references/url-discovery.md": "571d37b494ebdf9e3edf445e45e575f92006f14829fb0b3a7b014e5feeba5fa1",
+        "evals/README.md": "32fdad22d460bc7b822be6471eee85c6b56d243689ab48a8674dc525d26dc6bd",
+        "evals/eval-01-spa-markdown.md": "1b0a7f752cf5c8c3ca3d23b8298eb8057c2aa166f84565e036daa2a3223b4b2b",
+        "evals/eval-02-extract-products.md": "79639323f11ecf58756a8df90e992a4bb4ca1d83a1de93bf91e7fd659192f88a",
+        "evals/eval-03-topic-domain-crawl.md": "91d04a30e03b6c631b161c7f89781f9cbe183ff3624f1fea83302fa7168da2af",
+        "evals/eval-04-render-cached-html.md": "baafb71c76acb330e7fc30c38b4918f8ce57a7efb03aa7b1fef41d4cb2140b90"
+      },
+      "known_risks": [
+        "DUAL license: MIT OR Apache-2.0 (LICENSE, LICENSE-MIT, LICENSE-APACHE all at repo root). Homólogo derives under MIT for attribution simplicity (both permissive, MIT-compatible with LicenseRef-MetodologIA-Internal)",
+        "crawl4ai is a TOOL skill that invokes crawl4ai SDK/CLI for web crawling — FAIL-CLOSED homólogo required (describe capability in prose, gate execution behind user confirmation, NO auto-execute network/install/binary invocation)",
+        "references/*.md (9 files) + evals/*.md (5 files) vendored as text reference; reference-only-no-auto-execution",
+        "Homólogo routes to web-* family (web-crawl4ai, fail-closed)"
+      ],
+      "update_procedure": [
+        "Clone brettdavies/crawl4ai-skill at new commit",
+        "Re-copy text-only SKILL.md + references/*.md + evals/*.md to skills/vendor/crawl4ai-skill/crawl4ai/",
+        "Regenerate source-lock.json hashes",
+        "Run pnpm check:repo && pnpm verify:skills && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+      ]
+    }
+  ],
+  "global": {
+    "total_files": 17,
+    "total_skills": 1,
+    "licenses": {
+      "crawl4ai": "MIT OR Apache-2.0 (dual)"
+    },
+    "binaries_excluded": "none (SKILL.md + 9 references + 5 evals + 3 LICENSE files, all UTF-8 text)",
+    "text_extensions_copied": [".md"],
+    "execution_status": "reference-only-no-auto-execution"
+  }
+}
