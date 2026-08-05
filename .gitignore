@@ -20,3 +20,24 @@ TASK.md
 local/
 discovery/
 tmp/
+
+# task-isolated harness scratch (S13)
+# Scratch paths (ignored, never committed)
+04_estado/tasks/*/work/**
+04_estado/tasks/*/runtime/**
+04_estado/tasks/*/continuity/state.yaml
+04_estado/tasks/*/*.tmp
+# Canonical paths (force-tracked, ensure not ignored)
+!04_estado/tasks/*/task.yaml
+!04_estado/tasks/*/PROGRESS.md
+!04_estado/tasks/*/meta/**
+!04_estado/tasks/*/context/**
+!04_estado/tasks/*/inputs/**
+!04_estado/tasks/*/checks/**
+!04_estado/tasks/*/artifacts/**
+!04_estado/tasks/*/continuity/resume.md
+!04_estado/tasks/*/tests/**
+!04_estado/tasks/*/evals/**
+
+# runtime health reports (S12 doctor)
+05_verificacion/quality/reports/doctor-*.yml

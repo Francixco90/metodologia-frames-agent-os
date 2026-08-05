@@ -73,7 +73,13 @@
     "slice:verify-compat": "node --import tsx scripts/build-vertical-slice.ts --verify-existing",
     "verify:ai-runtime": "node --import tsx scripts/check-ai-runtime.ts",
     "verify": "pnpm check:repo && pnpm verify:docs && pnpm verify:creation-doc && pnpm verify:atoms && pnpm verify:renderers && pnpm verify:brand && pnpm verify:orchestration && pnpm verify:carousel && pnpm verify:content-matrix && pnpm verify:skills && pnpm verify:content-os && pnpm verify:ai-runtime && pnpm verify:dependencies && pnpm slice:verify-compat && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
-    "verify:media": "pnpm remotion:inspect"
+    "verify:media": "pnpm remotion:inspect",
+    "bootstrap": "pnpm install && pnpm check:toolchain",
+    "doctor": "node --import tsx scripts/doctor.ts",
+    "check": "pnpm check:toolchain && pnpm check:repo && pnpm check:ownership && pnpm check:dag && pnpm check:tasks",
+    "task:ongoing": "node --import tsx scripts/ongoing-projects.ts",
+    "task:run-check": "node --import tsx scripts/run-check.ts",
+    "report": "node --import tsx scripts/doctor.ts"
   },
   "dependencies": {
     "@react-three/fiber": "9.2.0",
