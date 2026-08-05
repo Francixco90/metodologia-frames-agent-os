@@ -1201,6 +1201,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-subagent-driven-development/scripts/check-skill.mjs]
+  - skill_id: dev-using-git-worktrees
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 27acfe324f01fc9d1e53932c5355604c439bf4f3de8ac9dfe36b2fc123fde825
+    package_manifest_sha256: 11b4de5aee3db7f916581cf80b39c17dfb4e3cdbc9347a0c5cd596c82f228d3f
+    lineage_ref: skills/dev-using-git-worktrees/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-using-git-worktrees/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-using-git-worktrees/scripts/check-skill.mjs]
+  - skill_id: dev-using-superpowers
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3b48fef313b1c517e927642fed2b4aacf8571b59479b4518c2ed10aa64f4e532
+    package_manifest_sha256: 556b47a8c2df09cd74151582ee919ffd0633febb8001e072c0198b611b9178d8
+    lineage_ref: skills/dev-using-superpowers/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-using-superpowers/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-using-superpowers/scripts/check-skill.mjs]
+  - skill_id: dev-verification-before-completion
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: be41a7aece34389a9bec79621a5aebcfb6b79331f63446e5cf5f57d86da2e745
+    package_manifest_sha256: decb87006f69f2ec2f45b28499c3aec9a07f387693aa8c92166ff09ea495e12a
+    lineage_ref: skills/dev-verification-before-completion/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-verification-before-completion/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-verification-before-completion/scripts/check-skill.mjs]
+  - skill_id: dev-writing-skills
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: bed8166eb6759b28149532513c52060b04684c4eec593fa440d887f71991c7c4
+    package_manifest_sha256: 77333ba6534c57cacd15bd68578fab9a6f46b41b508aa5510a238fc51f64077d
+    lineage_ref: skills/dev-writing-skills/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-writing-skills/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-writing-skills/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1639,3 +1683,19 @@ events:
   - {event_id: EVT-SKL-SDD-H03-002, event_order: 2, skill_id: dev-subagent-driven-development, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SDD-H03-003, event_order: 3, skill_id: dev-subagent-driven-development, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SDD-H03-004, event_order: 4, skill_id: dev-subagent-driven-development, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UGW-H03-001, event_order: 1, skill_id: dev-using-git-worktrees, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UGW-H03-002, event_order: 2, skill_id: dev-using-git-worktrees, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-UGW-H03-003, event_order: 3, skill_id: dev-using-git-worktrees, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-UGW-H03-004, event_order: 4, skill_id: dev-using-git-worktrees, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-USP-H03-001, event_order: 1, skill_id: dev-using-superpowers, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-USP-H03-002, event_order: 2, skill_id: dev-using-superpowers, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-USP-H03-003, event_order: 3, skill_id: dev-using-superpowers, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-USP-H03-004, event_order: 4, skill_id: dev-using-superpowers, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-VBC-H03-001, event_order: 1, skill_id: dev-verification-before-completion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-VBC-H03-002, event_order: 2, skill_id: dev-verification-before-completion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-VBC-H03-003, event_order: 3, skill_id: dev-verification-before-completion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-VBC-H03-004, event_order: 4, skill_id: dev-verification-before-completion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSK-H03-001, event_order: 1, skill_id: dev-writing-skills, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WSK-H03-002, event_order: 2, skill_id: dev-writing-skills, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-WSK-H03-003, event_order: 3, skill_id: dev-writing-skills, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSK-H03-004, event_order: 4, skill_id: dev-writing-skills, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
