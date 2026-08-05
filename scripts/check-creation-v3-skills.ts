@@ -606,6 +606,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/dev-subagent-driven-development/scripts/check-skill.mjs'],
   },
+  {
+    id: 'dev-using-git-worktrees',
+    scope: 'local-evaluation',
+    check: ['skills/dev-using-git-worktrees/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-using-superpowers',
+    scope: 'local-evaluation',
+    check: ['skills/dev-using-superpowers/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-verification-before-completion',
+    scope: 'local-evaluation',
+    check: ['skills/dev-verification-before-completion/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'dev-writing-skills',
+    scope: 'local-evaluation',
+    check: ['skills/dev-writing-skills/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

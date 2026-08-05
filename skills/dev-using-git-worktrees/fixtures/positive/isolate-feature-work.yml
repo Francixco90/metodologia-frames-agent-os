@@ -1,0 +1,11 @@
+case: El operador pide aislar el workspace antes de implementar un feature y el skill detecta el estado, elige mecanismo y propone pasos sin auto-ejecutar git, worktree ni branch.
+context: Repositorio con checkout normal, sin worktree activo, el operador quiere proteger la rama actual antes de implementar.
+request: >-
+  Implementa el feature de pagos en un workspace aislado para no tocar la rama
+  actual. Prefiero no comprometer main por accidente.
+expect:
+  - El skill razona el aislamiento en tres fases y entrega la decision en prosa.
+  - Detectar: compara el directorio git real con el comun; declara si ya hay aislamiento o si es checkout normal; reporta rama y path actual.
+  - Elegir mecanismo: prefiere la herramienta nativa del entorno si existe; solo si no existe cae al fallback manual de git worktree add; documenta la eleccion.
+  - Preparar workspace: propone el setup del proyecto segun el stack detectado y la verificacion del baseline; ambos quedan detras de confirmacion del operador.
+  - El skill NO auto-arranca git worktree add, git branch, installs ni tests; entrega el plan de aislamiento y espera confirmacion del operador.

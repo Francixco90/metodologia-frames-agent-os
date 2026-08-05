@@ -1,0 +1,5 @@
+skill_id: dev-verification-before-completion
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_test_execution: false
+auto_commit_on_pass: false

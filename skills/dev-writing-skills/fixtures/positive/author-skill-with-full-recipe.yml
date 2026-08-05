@@ -1,0 +1,14 @@
+case: El operador pide crear una skill nueva y el autor recorre la receta H-03 completa sin auto-publicar ni auto-validar contra el registro central.
+context: Skill MetodologIA nueva, sin receta aplicada aún, derivación clean-room desde un referenciador permisivo declarado.
+request: >-
+  Crea una skill nueva de autoría MetodologIA. Debe tener SKILL.md, LINEAGE,
+  fixtures positivo y negativo, checker local y runtime-boundary. No la
+  publiques aún.
+expect:
+  - El autor recorre la receta H-03 recurso por recurso y produce los cinco obligatorios.
+  - SKILL.md: frontmatter con name, description (empieza con "This skill should be used when"), version, license LicenseRef-MetodologIA-Internal y metadata con owner, lifecycle_state, execution_scope y model_agnostic.
+  - LINEAGE.yml: declara skill_id, version, lifecycle_state, execution_scope, content_origin, derivation_mode, authority_refs, external_fragments_reused=false y publication_authority=false.
+  - Fixtures: escribe positive (case, context, request >-, expect) y negative (case, context, request >-, violation >, expect_reject) en .yml, no en markdown.
+  - check-skill.mjs checker autocontenido en Node ESM, solo node:fs y node:path, lee los seis recursos, escanea tokens de gobernabilidad y propios, verifica el token de violation en el negativo, rechaza APIs y rutas absolutas prohibidas, imprime PASS al pasar.
+  - runtime-boundary.yml: declara network_allowed=false, execution_boundary=requires_user_confirmation, auto_skill_creation=false, auto_skill_publication=false.
+  - El autor NO auto-publica la skill, NO la promueve a ready/published y NO la valida contra el registro central; entrega la receta y espera confirmacion del operador.

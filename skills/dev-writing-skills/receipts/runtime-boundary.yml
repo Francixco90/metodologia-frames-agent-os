@@ -1,0 +1,5 @@
+skill_id: dev-writing-skills
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_skill_creation: false
+auto_skill_publication: false
