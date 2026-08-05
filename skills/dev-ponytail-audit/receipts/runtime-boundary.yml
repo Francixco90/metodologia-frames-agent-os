@@ -1,0 +1,5 @@
+skill_id: dev-ponytail-audit
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_file_deletion: false
+auto_repo_mutation: false

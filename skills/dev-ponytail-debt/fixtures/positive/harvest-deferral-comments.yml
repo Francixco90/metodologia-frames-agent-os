@@ -1,0 +1,11 @@
+case: El operador pide cosechar todos los comentarios ponytail del codebase y el skill los recolecta en un ledger de deuda sin auto-escribir archivos ni inventar techos faltantes.
+context: Codebase con atajos deliberados marcados como ponytail, algunos sin upgrade path, el operador quiere visibilidad antes de que la deuda pudra.
+request: >-
+  Haz un ponytail-debt del repo. Quiero ver todos los atajos marcados y cuales
+  no tienen trigger de revision, antes de que se conviertan en permanente.
+expect:
+  - El skill escanea el codebase con grep -rnE '(#|//) ?ponytail:' y recolecta cada marcador como una fila del ledger.
+  - El skill propone el contenido del ledger en prosa, agrupado por archivo, con techo, upgrade path y etiqueta no-trigger donde aplique.
+  - El skill marca como no-trigger todo ponytail sin upgrade path o disparador, sin inventar campos faltantes.
+  - El skill cierra con un conteo de marcadores y marcadores sin trigger, o reporta ledger limpio si no hay deuda.
+  - El skill NO auto-escribe el ledger a un archivo; entrega el reporte y espera confirmacion explicita del operador para persistirlo.

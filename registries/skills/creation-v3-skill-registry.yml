@@ -1245,6 +1245,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-writing-skills/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e0759f9394debf490edaae4fe1b52500b69f6b9746e399442dd7185514b7b0e5
+    package_manifest_sha256: d9622d25f0bc0214a94ddeb0d763bd05311e626e2694e62570e07b7780fdc261
+    lineage_ref: skills/dev-ponytail/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 419757aa2b89bf648451b37551e0c962a751192ced4e21cedab28f67e022b82f
+    package_manifest_sha256: dbdbd05373bd4402abbc5215d2a0a8b043e4a001bc642b608d651813bda34884
+    lineage_ref: skills/dev-ponytail-review/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail-review/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail-audit
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f403cc63ba9d611901e7eac75c65b34271ee4ea55a6f0fe48d15479fd21ca15a
+    package_manifest_sha256: b4e4cdd7e6b5e9313552752162d8c7463b0fdc5984d8dc5471aeef04f1904bef
+    lineage_ref: skills/dev-ponytail-audit/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail-audit/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail-audit/scripts/check-skill.mjs]
+  - skill_id: dev-ponytail-debt
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 89142b56fd412b0dfd3b6148b94a2ae6ee4787f870065215612bf60d580fc9ca
+    package_manifest_sha256: 15e6a33a4165fbed2f973b9459c47ea66d3c09853c7a40c241974d83e913dab6
+    lineage_ref: skills/dev-ponytail-debt/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-ponytail-debt/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-ponytail-debt/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1699,3 +1743,19 @@ events:
   - {event_id: EVT-SKL-WSK-H03-002, event_order: 2, skill_id: dev-writing-skills, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WSK-H03-003, event_order: 3, skill_id: dev-writing-skills, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WSK-H03-004, event_order: 4, skill_id: dev-writing-skills, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNY-H03-001, event_order: 1, skill_id: dev-ponytail, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNY-H03-002, event_order: 2, skill_id: dev-ponytail, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNY-H03-003, event_order: 3, skill_id: dev-ponytail, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNY-H03-004, event_order: 4, skill_id: dev-ponytail, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNR-H03-001, event_order: 1, skill_id: dev-ponytail-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNR-H03-002, event_order: 2, skill_id: dev-ponytail-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNR-H03-003, event_order: 3, skill_id: dev-ponytail-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNR-H03-004, event_order: 4, skill_id: dev-ponytail-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNA-H03-001, event_order: 1, skill_id: dev-ponytail-audit, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNA-H03-002, event_order: 2, skill_id: dev-ponytail-audit, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNA-H03-003, event_order: 3, skill_id: dev-ponytail-audit, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNA-H03-004, event_order: 4, skill_id: dev-ponytail-audit, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PND-H03-001, event_order: 1, skill_id: dev-ponytail-debt, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PND-H03-002, event_order: 2, skill_id: dev-ponytail-debt, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PND-H03-003, event_order: 3, skill_id: dev-ponytail-debt, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PND-H03-004, event_order: 4, skill_id: dev-ponytail-debt, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

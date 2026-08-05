@@ -1,0 +1,5 @@
+skill_id: dev-ponytail-review
+network_allowed: false
+execution_boundary: requires_user_confirmation
+auto_code_deletion: false
+auto_review_apply: false

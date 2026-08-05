@@ -1,0 +1,17 @@
+case: El operador pide auditar un repo completo buscando over-engineering y el skill recorre el árbol entero produciendo una lista ranqueada sin mutar nada.
+context: Repo extenso con deuda de complejidad acumulada, sin diff de referencia, dominio no declarado.
+request: >-
+  Audita este repositorio completo buscando over-engineering. Es un monorepo
+  de pagos con servicios de auth, ledger y notificaciones, siento que hay
+  abstracciones que no se justifican y dependencias que el stdlib ya cubre.
+expect:
+  - El skill recorre el árbol completo (no un diff) y produce una lista ranqueada de hallazgos en una pasada.
+  - Cada hallazgo lleva tag (delete, stdlib, native, yagni, shrink), qué cortar, reemplazo y ruta.
+  - delete: identifica código muerto, flexibilidad sin uso y feature especulativa; reemplazo es nada.
+  - stdlib: nombra la función de librería estándar que reemplaza al hand-rolled.
+  - native: nombra el feature de plataforma que reemplaza a la dependencia o código.
+  - yagni: señala abstracción con una sola implementación, config que nadie setea o capa con un solo caller.
+  - shrink: muestra la forma más corta de la misma lógica.
+  - El reporte cierra con `net: -<N> líneas, -<M> deps posibles.` o `Lean ya. Ship.`
+  - El skill NO auto-borra archivos, NO aplica fixes, NO toca git, tests ni installs; entrega el reporte y se detiene.
+  - Bugs de corrección, seguridad y rendimiento se marcan out-of-scope y se rutean a un review normal.
