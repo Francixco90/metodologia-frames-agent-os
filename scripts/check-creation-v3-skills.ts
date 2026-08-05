@@ -336,6 +336,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-motion-principles/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-swiftui-graphics',
+    scope: 'local-evaluation',
+    check: ['skills/design-swiftui-graphics/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-compose-graphics',
+    scope: 'local-evaluation',
+    check: ['skills/design-compose-graphics/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-compose-motion',
+    scope: 'local-evaluation',
+    check: ['skills/design-compose-motion/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-mobile-principles',
+    scope: 'local-evaluation',
+    check: ['skills/design-mobile-principles/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

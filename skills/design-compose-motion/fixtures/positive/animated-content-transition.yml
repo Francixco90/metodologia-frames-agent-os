@@ -1,0 +1,9 @@
+case: animated-content-transition
+context: Intercambio de contenido entre tabs en Compose con transición de slide y fade.
+request: 'Anima el intercambio entre tabs usando AnimatedContent con ContentTransform en Jetpack Compose.'
+expect: >
+  AnimatedContent envuelve el contenido con targetState (currentTab) y transitionSpec que combina
+  slideInHorizontally + fadeIn togetherWith slideOutHorizontally + fadeOut (ContentTransform paralelo).
+  Exit más sutil que enter. label descriptivo. Sin tooling vendor, sin gradle auto-run. Cumple
+  fail-closed (sin red, sin publicación, sin auto-ejecución). coverage_gap declarado si no hay runtime
+  Compose disponible.

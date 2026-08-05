@@ -607,6 +607,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-motion-principles/scripts/check-skill.mjs]
+  - skill_id: design-swiftui-graphics
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 39f3cbd0d5ba62197433520949db511b7d756d75084ac7f0a46f40e853499e90
+    package_manifest_sha256: b982ff4a5aa1a611e4753cb462cedddbae5c24f5c2f73ec52defc3e07892945e
+    lineage_ref: skills/design-swiftui-graphics/LINEAGE.yml
+    dependency_receipt_ref: skills/design-swiftui-graphics/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-swiftui-graphics/scripts/check-skill.mjs]
+  - skill_id: design-compose-graphics
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: d3f532120914ac2fc6adc669398ec4dd3b2fe40c73067b7f8b6cacff6d2cbed8
+    package_manifest_sha256: 8712612521d449e3e7af75ec68f82a7062d4500edd5ca9ead8019b363e4c8c78
+    lineage_ref: skills/design-compose-graphics/LINEAGE.yml
+    dependency_receipt_ref: skills/design-compose-graphics/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-compose-graphics/scripts/check-skill.mjs]
+  - skill_id: design-compose-motion
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 128d818db8ff2e90b423f4d1311dca5e285d1bc9b1a7d5dd40a0f60f2c413acd
+    package_manifest_sha256: 1ff62262949b932d9ddcccbe5b6a81330007e08d72062b91d9b4d2d23429a9f0
+    lineage_ref: skills/design-compose-motion/LINEAGE.yml
+    dependency_receipt_ref: skills/design-compose-motion/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-compose-motion/scripts/check-skill.mjs]
+  - skill_id: design-mobile-principles
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3f5b91693c71e7dc63a861c45e44b714721c8c88b953207b82535001374635ec
+    package_manifest_sha256: bf369c58d385f2a7dc93a8926b6beb53e60bc4a4df6eecf342181e0ee70c21d9
+    lineage_ref: skills/design-mobile-principles/LINEAGE.yml
+    dependency_receipt_ref: skills/design-mobile-principles/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-mobile-principles/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -829,3 +873,19 @@ events:
   - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MPR-H03-004, event_order: 4, skill_id: design-motion-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWG-H03-001, event_order: 1, skill_id: design-swiftui-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SWG-H03-002, event_order: 2, skill_id: design-swiftui-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-SWG-H03-003, event_order: 3, skill_id: design-swiftui-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWG-H03-004, event_order: 4, skill_id: design-swiftui-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPG-H03-001, event_order: 1, skill_id: design-compose-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPG-H03-002, event_order: 2, skill_id: design-compose-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CPG-H03-003, event_order: 3, skill_id: design-compose-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPG-H03-004, event_order: 4, skill_id: design-compose-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMT-H03-001, event_order: 1, skill_id: design-compose-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMT-H03-002, event_order: 2, skill_id: design-compose-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMT-H03-003, event_order: 3, skill_id: design-compose-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMT-H03-004, event_order: 4, skill_id: design-compose-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MOP-H03-001, event_order: 1, skill_id: design-mobile-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MOP-H03-002, event_order: 2, skill_id: design-mobile-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MOP-H03-003, event_order: 3, skill_id: design-mobile-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MOP-H03-004, event_order: 4, skill_id: design-mobile-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

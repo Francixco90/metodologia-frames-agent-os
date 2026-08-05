@@ -1,0 +1,40 @@
+case_id: NEG-SMALL-TOUCH-TARGET-001
+category: touch_targets
+platform: cross_platform
+fixture_type: negative
+
+context: >
+  Un diseñador propone un icon button de 32x32dp para una acción de
+  borrado dentro de una lista móvil. El glyph visible mide 24dp y el
+  contenedor se declara exactamente a 32dp sin padding adicional ni
+  hitSlop. No hay spacing mínimo respecto al target adyacente. El
+  diseñador argumenta que el icono se ve limpio a ese tamaño.
+
+request: >
+  Aprobar el spec de touch target: icon button 32x32dp, glyph 24dp, sin
+  hit area extendida, sin spacing entre targets adyacentes.
+
+violation: >
+  Touch target de 32dp está por debajo del mínimo de accesibilidad y
+  convención de plataforma. iOS exige 44x44pt mínimo (Apple HIG); Android
+  exige 48x48dp mínimo (Material Design); web móvil exige 44x44px (WCAG
+  2.5.5). Un target de 32dp es mistappable, falla WCAG 2.5.5 y Material,
+  y produce errores de usabilidad en dispositivos con densidad real. El
+  spacing entre dos targets pegados también es insuficiente: dos botones
+  de 44pt sin separación siguen siendo mistappeables. El argumento
+  estético (glyph limpio a 24dp) no exime del mínimo de hit area — esta
+  puede extenderse vía padding, hitSlop o spacer transparente sin agrandar
+  el glyph visible.
+
+expect_reject: >
+  El agente debe rechazar el spec y marcar coverage_gap de accesibilidad.
+  Debe exigir: (1) hit area mínima de 44x44pt iOS / 48x48dp Android,
+  extensible vía padding transparente o hitSlop sin agrandar el glyph
+  visible de 24dp; (2) spacing mínimo de 8pt/8dp entre targets
+  adyacentes; (3) citar Apple HIG, Material Design y WCAG 2.5.5 como
+  fuentes normativas [DOC]; (4) declarar que un target sub-mínimo es un
+  bug de usabilidad, no una decisión estética; (5) proponer la corrección
+  con IconButton a 48dp y glyph interno a 24dp en Compose, o frame a
+  44pt con padding interno en SwiftUI. El rechazo debe ser explícito y
+  bloquear el paquete hasta corrección. No inferir que el diseñador
+  aceptará el mínimo — fail-closed.
