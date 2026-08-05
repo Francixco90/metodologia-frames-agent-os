@@ -26,3 +26,21 @@ script (run via `pnpm check:repo`, unless noted).
 [CONFIG] Owners resolved from `docs/program/ownership-manifest.yml`.
 `contributions/` and `visual-references/` were added after the V2 closure commit
 and are not yet assigned a writer; they are still validated by their checks.
+
+## `tasks/`
+
+Append-only task-counter registry and the source of truth for the task-id minter
+(S8). Holds `task-counter.yml`, the monotonic counter that backs `TASK-{slug}-NNN`
+and `TASK-LOOSE-{NNN}` issuance.
+
+- `task-counter.yml` — `schema_version: 1`, `registry_id: task-counter-v1`,
+  `mutation_policy: append-only-records-and-events`. Tracks `project_sequences`
+  (map `project_slug -> last NNN issued`) and `loose_sequence` (last NNN for
+  `TASK-LOOSE-{NNN}`). Starts empty (`project_sequences: {}`, `loose_sequence: 0`).
+- Invariant: append-only. Counters move forward only; never decrement or rewrite
+  issued sequences. The minter reads, increments, and appends an event record per
+  issuance.
+
+The physical task records live under `04_estado/tasks/` (committed via
+`.gitkeep`), surfaced at the repo root through the retro-symlink
+`tasks -> 04_estado/tasks`.

@@ -1,0 +1,8 @@
+schema_version: 1
+original_id: TASK-G14-001
+section: BLOQUEADO
+inferred_state: BLOQUEADO
+receipt_ref: null
+backfilled: true
+note: migrated from flat TASK.md cola — state inferred from section, human amend
+  expected

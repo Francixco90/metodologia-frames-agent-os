@@ -1,0 +1,8 @@
+schema_version: 1
+original_id: TASK-0025
+section: ENTREGADO
+inferred_state: ENTREGADO
+receipt_ref: "PR #31 merged `7463317`"
+backfilled: true
+note: migrated from flat TASK.md cola — state inferred from section, human amend
+  expected

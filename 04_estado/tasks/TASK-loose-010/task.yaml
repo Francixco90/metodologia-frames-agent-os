@@ -1,0 +1,26 @@
+schema_version: task-contract-v1
+task_id: TASK-loose-010
+project_id: null
+objetivo: "Content OS Fase 4: content-os-remotion-bridge (bidirectional R↔H,
+  17th H-03, SSIM-graded + escape-hatch)"
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - TASK.md
+write_set:
+  - 04_estado/tasks/TASK-loose-010/task.yaml
+no_objetivos: []
+done: "Content OS Fase 4: content-os-remotion-bridge (bidirectional R↔H, 17th
+  H-03, SSIM-graded + escape-hatch)"
+validacion: see original TASK.md
+gaps:
+  - backfilled from flat TASK.md — state inferred, human amend
+state: ENTREGADO
+created_from_route: R4
+gate_target: null
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  historical: DOC
+created_at: 2026-08-02T00:00:00+00:00
+updated_at: 2026-08-02T00:00:00+00:00

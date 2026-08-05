@@ -10,7 +10,7 @@ const root = process.cwd();
 
 const scaffoldReceiptRoot = (): string => {
   const dir = mkdtempSync(join(tmpdir(), 'receipts-test-'));
-  for (const family of ['imports', 'renders', 'dependency-audits', 'migrations']) {
+  for (const family of ['imports', 'renders', 'dependency-audits', 'migrations', 'check-runs']) {
     mkdirSync(join(dir, 'receipts', family), {recursive: true});
   }
   return dir;

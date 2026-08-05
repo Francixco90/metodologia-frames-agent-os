@@ -1,0 +1,6 @@
+schema_version: 1
+registry_id: task-counter-v1
+mutation_policy: append-only-records-and-events
+counters:
+  project_sequences: {}
+  loose_sequence: 31

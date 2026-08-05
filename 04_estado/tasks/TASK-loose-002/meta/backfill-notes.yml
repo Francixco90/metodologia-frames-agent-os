@@ -1,0 +1,8 @@
+schema_version: 1
+original_id: TASK-0027
+section: COMPILADO
+inferred_state: COMPILADO
+receipt_ref: commit `fcdc86b`
+backfilled: true
+note: migrated from flat TASK.md cola — state inferred from section, human amend
+  expected

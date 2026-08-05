@@ -26,7 +26,13 @@ import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
 
-const FAMILY_DIRS = ['imports', 'renders', 'dependency-audits', 'migrations'] as const;
+const FAMILY_DIRS = [
+  'imports',
+  'renders',
+  'dependency-audits',
+  'migrations',
+  'check-runs',
+] as const;
 const SHA256_KEY = /sha256$/iu;
 const HEX64 = /^[a-f0-9]{64}$/u;
 
