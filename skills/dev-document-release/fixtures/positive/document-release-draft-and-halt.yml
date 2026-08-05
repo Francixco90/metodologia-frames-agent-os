@@ -1,0 +1,17 @@
+case: El operador entrega un diff de release ya enviado y el skill redacta la documentación (mapa de cobertura, pulido de changelog, actualización de docs, limpieza de TODOS, deuda en el PR) sin auto-commits, auto-tags ni auto-publish.
+context: Release enviado con un PR abierto, changelog con entradas vagas, README estancado, diagrama de arquitectura con drift y TODOS resueltos sin marcar.
+request: >-
+  Redacta la documentación de este release antes de mergear el PR. Hay 12
+  archivos cambiados en 7 commits; el changelog dice "varios fixes", el
+  README apunta a un endpoint que se renombró, y el diagrama de ARCHITECTURE
+  menciona un servicio que se dividió en dos.
+expect:
+  - El skill audita el diff y emite un recuento: N archivos, M commits, K docs por revisar.
+  - Construye un mapa de cobertura Diataxis (referencia/como/tutorial/explicacion) por entidad de superficie publica nueva o modificada; marca vacios criticos y comunes.
+  - Actualiza docs por archivo con correcciones factuales (rutas, conteos, numeros de version, referencias cruzadas estancadas, items nuevos en tablas); detiene cambios narrativos para proponerlos al operador.
+  - Pulce el wording del changelog con un test de venta ("varios fixes" -> impacto observable); NO sobreescribe, elimina ni regenera entradas existentes.
+  - Detecta drift en el diagrama de ARCHITECTURE (servicio dividido en dos) y lo marca como advisory en el cuerpo del PR; NO autoedita el arte ASCII o Mermaid.
+  - Marca TODOS resueltos por el release y propone al operador los nuevos que conviene anadir.
+  - Pregunta al operador sobre el bump de VERSION; no lo bumpa en silencio.
+  - Consolida la deuda de documentacion en un resumen para el cuerpo del PR.
+  - El skill NO auto-commitea, NO auto-taggea, NO auto-publica, NO auto-mergea; entrega la documentacion en prosa y se detiene a la espera de confirmacion del operador.

@@ -937,6 +937,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-design-html/scripts/check-skill.mjs]
+  - skill_id: dev-design-consultation
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 704ec8f570bb3b393503008a260537cf8e18ff987afcbd0a8507b09e60cee9df
+    package_manifest_sha256: 3857d800bb8acac19e84c1443f2f2e09ca007633d066e8337fa5634657419d5a
+    lineage_ref: skills/dev-design-consultation/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-design-consultation/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-design-consultation/scripts/check-skill.mjs]
+  - skill_id: dev-design-shotgun
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0329fde41596f54967cec7e886582e72a9be1caa3c926dd926e05d4b5c71dde4
+    package_manifest_sha256: 77e8c3e9c8d847d1e11b64a6437285dc82f7e2086acfaac6129ba88f3097f450
+    lineage_ref: skills/dev-design-shotgun/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-design-shotgun/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-design-shotgun/scripts/check-skill.mjs]
+  - skill_id: dev-document-generate
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 36c8dd3d6d0a503fad72397ea3b04475b5086fe2ea2857bb5b786da946ed388c
+    package_manifest_sha256: 4a674cc0bae565f795d604f28a73e0c86f4e12f2766b30a2806a76f106af35fc
+    lineage_ref: skills/dev-document-generate/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-document-generate/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-document-generate/scripts/check-skill.mjs]
+  - skill_id: dev-document-release
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 6c0a39a6012073966cb10f2825eeab04db2965eb7148f2da3605d0142e5b9207
+    package_manifest_sha256: 934230b6c18fdcab645fb64e89b0cf49c56a7c743e80ca923f90ebfc1b2af868
+    lineage_ref: skills/dev-document-release/LINEAGE.yml
+    dependency_receipt_ref: skills/dev-document-release/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/dev-document-release/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -1279,3 +1323,19 @@ events:
   - {event_id: EVT-SKL-DHT-H03-002, event_order: 2, skill_id: dev-design-html, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DHT-H03-003, event_order: 3, skill_id: dev-design-html, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DHT-H03-004, event_order: 4, skill_id: dev-design-html, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DCN-H03-001, event_order: 1, skill_id: dev-design-consultation, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DCN-H03-002, event_order: 2, skill_id: dev-design-consultation, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DCN-H03-003, event_order: 3, skill_id: dev-design-consultation, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DCN-H03-004, event_order: 4, skill_id: dev-design-consultation, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSG-H03-001, event_order: 1, skill_id: dev-design-shotgun, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSG-H03-002, event_order: 2, skill_id: dev-design-shotgun, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DSG-H03-003, event_order: 3, skill_id: dev-design-shotgun, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSG-H03-004, event_order: 4, skill_id: dev-design-shotgun, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DGN-H03-001, event_order: 1, skill_id: dev-document-generate, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DGN-H03-002, event_order: 2, skill_id: dev-document-generate, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DGN-H03-003, event_order: 3, skill_id: dev-document-generate, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DGN-H03-004, event_order: 4, skill_id: dev-document-generate, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DRL-H03-001, event_order: 1, skill_id: dev-document-release, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DRL-H03-002, event_order: 2, skill_id: dev-document-release, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DRL-H03-003, event_order: 3, skill_id: dev-document-release, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DRL-H03-004, event_order: 4, skill_id: dev-document-release, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

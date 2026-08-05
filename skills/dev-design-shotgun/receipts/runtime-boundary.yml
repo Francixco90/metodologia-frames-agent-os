@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-DESIGN-SHOTGUN-001
+skill_id: dev-design-shotgun
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Exploracion de diseño divergente en prosa local. Sin red, sin git, sin tests,
+  sin commits, sin deploys, sin mockup generators automaticos. Todo gate de
+  ejecucion tras confirmacion explicita del operador.

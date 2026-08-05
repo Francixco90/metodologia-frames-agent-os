@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: RCP-H03-DEV-DOCUMENT-GENERATE-001
+skill_id: dev-document-generate
+version: 0.1.0
+execution_boundary: requires_user_confirmation
+network_allowed: false
+auto_git: false
+auto_test: false
+auto_commit: false
+auto_deploy: false
+rationale: >
+  Guia de generacion de documentacion en prosa local. Sin red, sin git, sin
+  tests, sin commits, sin deploys, sin escritura automatica de archivos. Todo
+  gate de escritura y ejecucion tras confirmacion explicita del operador.
