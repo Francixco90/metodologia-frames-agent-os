@@ -7,7 +7,7 @@ import {
   PortableIdSchema,
   Sha256Schema,
   TimestampSchema,
-} from '../../core/contracts/index.ts';
+} from 'core/contracts/index.ts';
 
 const reservedDecisionActors = new Set<string>([
   CANONICAL_GUARDIAN_ACTOR_ID,

@@ -1,6 +1,6 @@
 import {z} from 'zod';
 
-import {PortableIdSchema, Sha256Schema, TimestampSchema} from '../../core/contracts/index.ts';
+import {PortableIdSchema, Sha256Schema, TimestampSchema} from 'core/contracts/index.ts';
 
 export const CommitteeReceiptSchema = z
   .object({
