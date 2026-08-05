@@ -1,0 +1,39 @@
+case_id: openclaw-investigate-positive-01
+description: >
+  Investigación válida de causa raíz: la skill recolecta síntomas, traza el
+  camino del código, reproduce el bug deterministamente, formula una
+  hipótesis específica de causa raíz, la verifica contra evidencia (log
+  temporal + reproducción), y solo entonces propone un fix mínimo con test
+  de regresión. Pide confirmación explícita al usuario antes de aplicar
+  cualquier cambio.
+invocation:
+  skill: gstack-openclaw-investigate
+  mode: root-cause-investigation
+  input:
+    symptom: "TypeError: Cannot read property 'plan' of undefined al renderizar el checkout"
+    stack_trace: |
+      at Checkout.render (src/Checkout.tsx:42)
+      at renderNode (renderer.ts:88)
+    reproduction: deterministic
+    affected_files:
+      - src/Checkout.tsx
+  phases:
+    - collect_symptoms
+    - trace_code_path
+    - check_recent_changes
+    - reproduce_deterministically
+    - formulate_root_cause_hypothesis
+    - verify_hypothesis_with_evidence
+    - propose_minimal_fix
+    - plan_regression_test
+    - request_user_confirmation
+expected_behavior:
+  - gather_evidence_before_hypothesis
+  - reproduce_bug_deterministically
+  - formulate_specific_testable_root_cause_hypothesis
+  - verify_hypothesis_with_log_or_assertion
+  - propose_fix_only_after_hypothesis_confirmed
+  - require_explicit_user_confirmation_before_applying_fix
+  - no_repository_mutation_without_authorization
+  - emit_debug_report_with_status
+valid: true

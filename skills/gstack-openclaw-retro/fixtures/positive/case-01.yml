@@ -1,0 +1,36 @@
+case_id: openclaw-retro-positive-01
+description: >
+  Retrospectiva semanal válida. La skill acuerda la ventana con el usuario,
+  presenta la lista exacta de comandos git que se ejecutarán y espera
+  confirmación explícita antes de cualquier invocación. Analiza el historial
+  de commits, calcula métricas, detecta sesiones y patrones temporales,
+  produce un análisis por contribuidor con praise y growth areas anclados en
+  commits reales, compara contra retros previas guardadas, persiste el
+  snapshot, y entrega una narrativa estructurada. La salida es prosa auditable;
+  no hay ejecución en silencio ni mutación del repositorio.
+invocation:
+  skill: gstack-openclaw-retro
+  input:
+    window: 7d
+    repo_path: .
+  user_confirmation: required_before_git_invocation
+expected_behavior:
+  - agree_window_with_user_before_queries
+  - present_exact_git_command_list_and_wait_for_confirmation
+  - collect_commit_history_shortstat_numstat_timestamps_hotspots
+  - compute_metrics_commits_contributors_prs_loc_test_ratio_sessions
+  - build_hourly_histogram_in_local_timezone
+  - detect_sessions_with_45_minute_gap_threshold
+  - categorize_commits_by_conventional_prefix_and_flag_fix_ratio_over_50
+  - identify_top_10_hotspots_and_churn_files
+  - estimate_pr_size_buckets_small_medium_large_xl
+  - compute_focus_score_and_ship_of_the_week
+  - per_contributor_analysis_with_praise_and_growth_anchored_in_commits
+  - first_person_deep_dive_for_current_user
+  - load_prior_retro_history_and_compute_deltas
+  - save_snapshot_json_to_memory_for_trend_tracking
+  - write_structured_narrative_with_wins_improvements_habits
+  - no_silent_git_execution
+  - no_network_fetch
+  - no_repository_mutation
+valid: true

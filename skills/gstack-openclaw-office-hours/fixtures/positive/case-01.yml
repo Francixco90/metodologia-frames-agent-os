@@ -1,0 +1,29 @@
+case_id: office-hours-positive-01
+description: >
+  Sesión válida de office hours. La skill interroga el goal del usuario,
+  selecciona modo startup o builder, hace las preguntas de forcing una a la
+  vez, challengea las premisas, produce 2-3 alternativas de implementación,
+  y entrega un design doc de prosa que el usuario aprueba, revisa o
+  descarta. No se escribe código, no se hace scaffold, no se muta el
+  repositorio. El HARD GATE sobre implementación se respeta.
+invocation:
+  skill: gstack-openclaw-office-hours
+  input:
+    idea: AI onboarding assistant for new hires
+    context: greenfield
+  user_confirmation: required_before_design_doc_approval
+expected_behavior:
+  - ask_goal_question_before_mode_selection
+  - select_mode_startup_or_builder_based_on_goal
+  - ask_forcing_questions_one_at_a_time
+  - push_vague_answers_until_specific_evidence_based
+  - challenge_premises_before_proposing_solutions
+  - produce_two_to_three_implementation_alternatives
+  - require_explicit_user_approval_of_chosen_approach
+  - produce_design_doc_with_problem_demand_StatusQuo_Wedge_premises
+  - end_with_assignment_or_next_steps_concrete_action
+  - no_code_written
+  - no_scaffold_or_project_creation
+  - no_repository_mutation
+  - no_external_tool_execution
+valid: true

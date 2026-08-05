@@ -1630,6 +1630,50 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/gstack-codex/scripts/check-skill.mjs]
+  - skill_id: gstack-openclaw-ceo-review
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: e37c2bb810f6c1d2b5627e1083d9f263a1033dc930a1131428919abcb2365895
+    package_manifest_sha256: 925c9b5cbe9875b2727247b6dcc0a0aa6c9382f17f69478f72883d300e3b71aa
+    lineage_ref: skills/gstack-openclaw-ceo-review/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-openclaw-ceo-review/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs]
+  - skill_id: gstack-openclaw-investigate
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: dffedf30aec498d4131335adb7b3e5ee6112c285795126e33f7bd69e241e8352
+    package_manifest_sha256: 3e4421a24863ab043e0db828575c6f97d9e36697ca4ca5fc5668ea76e3cb72de
+    lineage_ref: skills/gstack-openclaw-investigate/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-openclaw-investigate/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-openclaw-investigate/scripts/check-skill.mjs]
+  - skill_id: gstack-openclaw-office-hours
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 5f81a8518e5fb9295e2278039272442ed02c7ef235913326444f9af56e871db9
+    package_manifest_sha256: e6f8e304b6c928df8ad519920a8bfe21bfcfd9f6bbf9433459d09da70f50561a
+    lineage_ref: skills/gstack-openclaw-office-hours/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-openclaw-office-hours/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-openclaw-office-hours/scripts/check-skill.mjs]
+  - skill_id: gstack-openclaw-retro
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3948cb49fce7e1c492d1f0854c6a55ea288c019ac33059ce243a1d8b5ca45705
+    package_manifest_sha256: f83e8c2dea3041ded471b7dc9daf3f181126427ce307f79b5462cdc2f06a8615
+    lineage_ref: skills/gstack-openclaw-retro/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-openclaw-retro/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-openclaw-retro/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -2224,3 +2268,19 @@ events:
   - {event_id: EVT-SKL-GCX-H03-002, event_order: 2, skill_id: gstack-codex, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GCX-H03-003, event_order: 3, skill_id: gstack-codex, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-GCX-H03-004, event_order: 4, skill_id: gstack-codex, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCC-H03-001, event_order: 1, skill_id: gstack-openclaw-ceo-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCC-H03-002, event_order: 2, skill_id: gstack-openclaw-ceo-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCC-H03-003, event_order: 3, skill_id: gstack-openclaw-ceo-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCC-H03-004, event_order: 4, skill_id: gstack-openclaw-ceo-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCI-H03-001, event_order: 1, skill_id: gstack-openclaw-investigate, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCI-H03-002, event_order: 2, skill_id: gstack-openclaw-investigate, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCI-H03-003, event_order: 3, skill_id: gstack-openclaw-investigate, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCI-H03-004, event_order: 4, skill_id: gstack-openclaw-investigate, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCO-H03-001, event_order: 1, skill_id: gstack-openclaw-office-hours, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCO-H03-002, event_order: 2, skill_id: gstack-openclaw-office-hours, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-OCO-H03-003, event_order: 3, skill_id: gstack-openclaw-office-hours, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCO-H03-004, event_order: 4, skill_id: gstack-openclaw-office-hours, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-ORE-H03-001, event_order: 1, skill_id: gstack-openclaw-retro, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-ORE-H03-002, event_order: 2, skill_id: gstack-openclaw-retro, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-ORE-H03-003, event_order: 3, skill_id: gstack-openclaw-retro, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-ORE-H03-004, event_order: 4, skill_id: gstack-openclaw-retro, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

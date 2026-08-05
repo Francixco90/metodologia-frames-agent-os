@@ -801,6 +801,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/gstack-codex/scripts/check-skill.mjs'],
   },
+  {
+    id: 'gstack-openclaw-ceo-review',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-openclaw-investigate',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-openclaw-investigate/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-openclaw-office-hours',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-openclaw-office-hours/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-openclaw-retro',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-openclaw-retro/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {
