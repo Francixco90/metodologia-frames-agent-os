@@ -1,0 +1,23 @@
+case: expect-actual-share-sheet
+context: >
+  El operador pide guidance para compartir un texto desde una app CMP a las
+  apps nativas del dispositivo, cubriendo Android e iOS con una sola firma
+  declarada en commonMain. Quiere el patrón expect/actual: contrato en
+  commonMain, implementación con Intent en androidMain e
+  UIActivityViewController en iosMain. No quiere que el skill compile ni lance
+  gradle; solo prosa y pseudocode para evaluación local.
+request: >
+  "Necesito compartir texto desde mi app Compose Multiplatform a las apps
+  nativas del dispositivo en Android e iOS. Muéstrame el patrón expect/actual:
+  expect fun openShareSheet en commonMain, actual con Intent en androidMain,
+  actual con UIActivityViewController en iosMain. No corras gradle."
+expect: >
+  El skill entrega prosa que explica el patrón expect/actual y pseudocode
+  rhyming: en commonMain declara `expect fun openShareSheet(text: String)`; en
+  androidMain un `actual fun` que construye un Intent ACTION_SEND con
+  type text/plain y EXTRA_TEXT, lanzado vía Intent.createChooser; en iosMain un
+  `actual fun` que presenta UIActivityViewController desde el keyWindow
+  rootViewController. Marca [CÓDIGO] en la salida. Declara fail-closed: no
+  lanza gradle, no corre red, no publica. Marca coverage_gap si no hay runtime
+  CMP local para validar la integración visual. El resultado es
+  local-evaluation only; el operador decide cuándo compilar.

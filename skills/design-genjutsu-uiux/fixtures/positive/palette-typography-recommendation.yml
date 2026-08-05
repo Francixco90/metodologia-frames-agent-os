@@ -1,0 +1,15 @@
+case: palette-typography-recommendation
+context: >
+  Operador pide recomendación de color y tipografía para un dashboard SaaS B2B en React + Tailwind.
+  La skill debe entregar guidance en prosa con prioridades por categoría (accesibilidad CRITICAL
+  contraste 4.5:1, touch 44px, layout, tipografía/color MEDIUM, style MEDIUM), sin ejecutar CLI
+  externo ni dataset binario.
+request: 'Recomiéndame una paleta de color y un font pairing para mi dashboard SaaS.'
+expect: >
+  Salida estructurada por categoría de prioridad. Accesibilidad primero: contraste 4.5:1 mínimo,
+  tokens semánticos (no hex crudo). Touch: targets 44×44px. Layout: body 16px, line-height 1.5,
+  line-length 65–75 chars. Typography/color: font pairing heading + body por personalidad
+  (geometric sans heading + humanist sans body para SaaS B2B), paleta con bg/surface/text/muted
+  declarada como tokens. Style: consistencia visual, SVG icons (no emoji). Marca execution_scope
+  local-evaluation y fail-closed (no auto-run CLI). Si falta info (tono, audiencia), marca
+  coverage_gap y pide el dato bloqueante antes de recomendar.

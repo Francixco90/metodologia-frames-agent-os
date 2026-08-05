@@ -695,6 +695,61 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-threejs-r3f/scripts/check-skill.mjs]
+  - skill_id: design-compose-multiplatform
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 2f54aa2f009742f0f0880c7a8d1448114a27c6b7e26e1483a41e1dd501390902
+    package_manifest_sha256: deddd333b0a3ab94db94b9ed0b79932631ce1011442d0894e86a7561566bf769
+    lineage_ref: skills/design-compose-multiplatform/LINEAGE.yml
+    dependency_receipt_ref: skills/design-compose-multiplatform/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-compose-multiplatform/scripts/check-skill.mjs]
+  - skill_id: design-genjutsu-gsap-motion
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: ec91aa3a614e18704ecd23a2786e878958308b55884383c841c331d4098fcebe
+    package_manifest_sha256: 4fc45fecb9c543b0ef9ff38212b2be13aeac62540501cc4fafe22388fc73e734
+    lineage_ref: skills/design-genjutsu-gsap-motion/LINEAGE.yml
+    dependency_receipt_ref: skills/design-genjutsu-gsap-motion/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-genjutsu-gsap-motion/scripts/check-skill.mjs]
+  - skill_id: design-genjutsu-uiux
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3318b00c790c8fac238ccbfecdf0e74aabd0678d57e981e07ed3f791dfe313f3
+    package_manifest_sha256: e676a2effe19ee5d0523074b5e5b4fda93cec788dbcf02bb0da9c54bf49a7220
+    lineage_ref: skills/design-genjutsu-uiux/LINEAGE.yml
+    dependency_receipt_ref: skills/design-genjutsu-uiux/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-genjutsu-uiux/scripts/check-skill.mjs]
+  - skill_id: design-cast
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: c8352a258372b6980e9cf6c5515af77b6f1e7cadb40e0a84f4f89d8e80259218
+    package_manifest_sha256: 64ebe77541d932f8f9847c77bbed3b1a17159c43fbbc372578800d50c7058fd2
+    lineage_ref: skills/design-cast/LINEAGE.yml
+    dependency_receipt_ref: skills/design-cast/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-cast/scripts/check-skill.mjs]
+  - skill_id: design-paint
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f3682b35cabfc1b025c16fdac94d75a4f4e6b188d3e84c19181b05ce244018bc
+    package_manifest_sha256: ba786856cbb133045c567ee63b75bdf909346756b421108fb985ad39d6e01c5d
+    lineage_ref: skills/design-paint/LINEAGE.yml
+    dependency_receipt_ref: skills/design-paint/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-paint/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -949,3 +1004,23 @@ events:
   - {event_id: EVT-SKL-TRF-H03-002, event_order: 2, skill_id: design-threejs-r3f, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-003, event_order: 3, skill_id: design-threejs-r3f, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-TRF-H03-004, event_order: 4, skill_id: design-threejs-r3f, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMP-H03-001, event_order: 1, skill_id: design-compose-multiplatform, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMP-H03-002, event_order: 2, skill_id: design-compose-multiplatform, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CMP-H03-003, event_order: 3, skill_id: design-compose-multiplatform, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMP-H03-004, event_order: 4, skill_id: design-compose-multiplatform, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GJM-H03-001, event_order: 1, skill_id: design-genjutsu-gsap-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GJM-H03-002, event_order: 2, skill_id: design-genjutsu-gsap-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GJM-H03-003, event_order: 3, skill_id: design-genjutsu-gsap-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GJM-H03-004, event_order: 4, skill_id: design-genjutsu-gsap-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-JUX-H03-001, event_order: 1, skill_id: design-genjutsu-uiux, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-JUX-H03-002, event_order: 2, skill_id: design-genjutsu-uiux, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-JUX-H03-003, event_order: 3, skill_id: design-genjutsu-uiux, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-JUX-H03-004, event_order: 4, skill_id: design-genjutsu-uiux, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CST-H03-001, event_order: 1, skill_id: design-cast, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CST-H03-002, event_order: 2, skill_id: design-cast, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CST-H03-003, event_order: 3, skill_id: design-cast, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CST-H03-004, event_order: 4, skill_id: design-cast, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNT-H03-001, event_order: 1, skill_id: design-paint, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNT-H03-002, event_order: 2, skill_id: design-paint, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-PNT-H03-003, event_order: 3, skill_id: design-paint, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNT-H03-004, event_order: 4, skill_id: design-paint, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
