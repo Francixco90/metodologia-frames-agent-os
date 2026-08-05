@@ -1,0 +1,34 @@
+case_id: ios-fix-positive-01
+description: >
+  Diagnóstico y fix válido de un bug en una app Swift/iOS. La skill
+  reproduce el fallo con un snapshot determinista, traza la cadena desde
+  el síntoma hasta la mutación de estado que origina el comportamiento
+  erróneo, aísla la causa raíz, formula la hipótesis de patch mínimo,
+  presenta el diff propuesto al usuario, pide confirmación explícita puerta
+  por puerta, y solo entonces aplica el edit y verifica que el síntoma
+  desaparece sin introducir regresiones en flujos adyacentes.
+invocation:
+  skill: gstack-ios-fix
+  input:
+    bug_report:
+      symptom: White screen on session cookie expiry
+      screen: LoginView
+      expected: Redirect to /login when session expires
+      observed: White screen with no navigation
+    app_source_dir: Sources/App
+  user_confirmation: required_per_gate
+expected_behavior:
+  - capture_reproducing_snapshot_before_any_edit
+  - trace_symptom_back_to_state_mutation
+  - isolate_root_cause_from_snapshot_evidence
+  - discard_hypotheses_that_contradict_snapshot
+  - present_minimal_patch_diff_to_user
+  - request_explicit_per_gate_confirmation
+  - apply_edit_only_after_confirmation
+  - restore_reproducing_state_post_patch
+  - compare_post_fix_evidence_against_pre_fix
+  - verify_no_regression_in_adjacent_flows
+  - propose_regression_test_fixture
+  - no_edit_without_confirmation
+  - no_force_push_no_amend_no_history_mutation
+valid: true

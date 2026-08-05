@@ -776,6 +776,31 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/gstack-ios-clean/scripts/check-skill.mjs'],
   },
+  {
+    id: 'gstack-ios-design-review',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-ios-design-review/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-ios-fix',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-ios-fix/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-ios-sync',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-ios-sync/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-cso',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-cso/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'gstack-codex',
+    scope: 'local-evaluation',
+    check: ['skills/gstack-codex/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

@@ -1,0 +1,32 @@
+case_id: ios-sync-positive-01
+description: >
+  Plan válido de resincronización de una capa de instrumentación generada
+  contra los templates upstream más recientes, con reconciliación de
+  customizaciones. La skill diffea templates, identifica customizaciones
+  locales (hooks, overrides, markers movidos), las clasifica, presenta el
+  plan de merge al usuario, pide confirmación puerta por puerta, y solo
+  entonces corre el generador determinístico y verifica el build.
+invocation:
+  skill: gstack-ios-sync
+  input:
+    app_source_dir: Sources/App
+    generated_layer_dir: Sources/App/GeneratedBridge
+    upstream_templates_root: packages/debug-bridge/templates
+    version_marker: Sources/App/GeneratedBridge/.version
+  user_confirmation: required_per_phase
+expected_behavior:
+  - detect_installed_version_and_compare_with_upstream
+  - diff_upstream_templates_against_generated_layer
+  - identify_local_customizations_on_generated_files
+  - classify_customizations_preserve_discard_migrate
+  - present_merge_plan_to_user
+  - request_explicit_per_phase_confirmation
+  - run_deterministic_generator_once_with_approved_merge_config
+  - confirm_generator_did_not_touch_handwritten_sources
+  - manually_migrate_customizations_classified_as_migrate
+  - stop_on_invalid_marked_declaration_without_overwriting
+  - run_package_build_and_scheme_build_to_verify
+  - grep_preserved_customizations_still_present
+  - no_regeneration_without_confirmation
+  - no_force_push_no_amend_no_generator_cache_deletion
+valid: true
