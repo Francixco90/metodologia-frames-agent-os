@@ -376,6 +376,31 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-threejs-r3f/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-compose-multiplatform',
+    scope: 'local-evaluation',
+    check: ['skills/design-compose-multiplatform/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-genjutsu-gsap-motion',
+    scope: 'local-evaluation',
+    check: ['skills/design-genjutsu-gsap-motion/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-genjutsu-uiux',
+    scope: 'local-evaluation',
+    check: ['skills/design-genjutsu-uiux/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-cast',
+    scope: 'local-evaluation',
+    check: ['skills/design-cast/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-paint',
+    scope: 'local-evaluation',
+    check: ['skills/design-paint/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

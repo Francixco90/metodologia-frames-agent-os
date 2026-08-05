@@ -1,0 +1,17 @@
+case: scrolltrigger-timeline-stagger
+context: >
+  El operador pide una animacion scroll-triggered con reveal escalonado de elementos en una
+  seccion: quiere timeline con defaults, ScrollTrigger con pin + scrub, stagger distribution, y
+  integracion React via useGSAP con scope y auto-cleanup.
+request: >
+  Arma un timeline GSAP con ScrollTrigger que fije la seccion .reveal-section, haga scrub 1,
+  y revele .cards con stagger desde el centro. Integracion React con useGSAP y scope en
+  containerRef. Solo guia y pseudocodigo para evaluar localmente; no instales nada.
+expect: >
+  La skill entrega guia en prosa y pseudocodigo rhyming: (1) gsap.timeline({defaults: {duration,
+  ease}}) para la cadena de reveals; (2) ScrollTrigger con trigger .reveal-section, pin: true,
+  scrub: 1, ease: 'none' en el tween padre scroll; (3) stagger distribution {each, from: 'center',
+  grid: 'auto', axis} para .cards; (4) useGSAP(() => {...}, {scope: containerRef}) para auto-cleanup
+  y scope en React. Marca explicitamente local-evaluation: no instala gsap, no corre dev server,
+  no auto-lanza build. Gatilla ejecucion solo tras confirmacion del operador. Marca coverage_gap
+  si falta runtime GSAP local, plugin SplitText/ScrollTrigger o scope de React confirmado.

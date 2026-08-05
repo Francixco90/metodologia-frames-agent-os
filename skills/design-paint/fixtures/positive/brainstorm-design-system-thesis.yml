@@ -1,0 +1,50 @@
+case_id: POS-PNT-BRAINSTORM-DESIGN-SYSTEM-THESIS-001
+category: full_visual_universe
+platform: cross_platform
+fixture_type: positive
+
+context: >
+  Un operador solicita construir un universo visual completo desde cero para
+  un portfolio de fotógrafo. No hay código previo ni sistema de diseño
+  existente. El operador acepta el brainstorm obligatorio y responde una
+  pregunta a la vez. El stack scan detecta desde-cero (sin package.json, sin
+  build.gradle, sin Package.swift). El operador confirma web stack con
+  Tailwind. Las cinco áreas del brainstorm se cubren: producto (portfolio),
+  audiencia (clientes de fotografía comercial), mood (cinematográfico,
+  sobrio, editorial), referencias (sitios de Magnum, Squarespace templates
+  editoriales), tech stack (web + Tailwind desde cero). El operador valida
+  explícitamente la tesis visual y la tesis de interacción. El homólogo
+  genera MASTER.md con paleta, tipografía, spacing, radii, sombras,
+  componentes base y motion tokens. Entrega prosa + pseudocódigo
+  declarativo (Tailwind config + CSS variables). Marca el paquete como
+  local-evaluation. No instala dependencias, no lanza dev server, no
+  publica. Pide confirmación del operador antes de cualquier ejecución
+  real.
+
+request: >
+  Construir un universo visual completo desde cero para un portfolio de
+  fotógrafo. Quiero brainstorm, sistema de diseño, implementación página
+  por página y auditoría. Stack: web con Tailwind. Sin código previo.
+
+expect: >
+  El agente produce un paquete que cumple: (1) Phase 1 brainstorm
+  obligatorio ejecutado, una pregunta a la vez, las cinco áreas cubiertas
+  sin omitir ninguna; (2) Phase 2 tesis visual + tesis de interacción
+  presentadas y validadas explícitamente por el operador, ambas dirigen
+  color/tipografía/espaciado/componentes y timing/hover/scroll/patrones
+  prohibidos respectivamente; (3) Phase 3 MASTER.md generado como única
+  fuente de verdad con paleta, tipografía, spacing, radii, sombras,
+  componentes base, motion tokens, y tailwind.config.js extendido como
+  archivo hijo que referencia MASTER.md; (4) Phase 4 implementación página
+  por página con pseudocódigo declarativo, cada token viene de MASTER.md,
+  sin números mágicos, regla de 5 estados (default, hover, focus, active,
+  disabled) aplicada; (5) Phase 5 auditoría completa ejecutada con
+  checklist web (reduced-motion, exit animations, contraste ≥4.5:1,
+  responsive 4 breakpoints, 60fps, aria-hidden en decorativo, sin divs
+  clickeables sin role); (6) execution_scope marcado local-evaluation; (7)
+  sin Math.random, Date.now, new Date, fetch, setTimeout ni setInterval en
+  pseudocódigo; (8) sin paths absolutos del filesystem; (9) el agente pide
+  confirmación explícita del operador antes de instalar dependencias o
+  lanzar dev server — no auto-ejecuta; (10) coverage_gap marcado en
+  cualquier área donde la información del operador fue insuficiente, sin
+  sustituir por inferencia pulida. fail-closed. [DOC]

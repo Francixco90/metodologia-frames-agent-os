@@ -1,0 +1,18 @@
+case: hero-scroll-parallax-thesis
+context: >
+  El operador pide agregar scroll parallax a una hero section existente en un proyecto web React.
+  La skill corre SCAN para detectar el stack (React + GSAP ya presente vía package.json), evalúa SCOPE
+  (medium: hero section, 2-3 variants), formula una interaction thesis ("este hero combinará parallax
+  GSAP ScrollTrigger con staggered text reveals para impacto cinematográfico"), ofrece el preview menu
+  en el primer gate visual, presenta la thesis en el modo elegido, y espera validación del operador
+  antes de codear. Una pregunta a la vez durante discovery si el request es vago.
+request: >
+  Agrega scroll parallax al hero section de esta landing para que se sienta más cinematográfico.
+expect: >
+  La skill entrega prose guidance más pseudocode: detección de stack (GSAP detectado, respetar Iron
+  Rule 8), thesis validada antes de codear (Iron Rule 1), preview menu ofrecido una sola vez en el
+  primer gate visual (Iron Rule 9), variants presentadas en el modo de sesión elegido, implementación
+  gated detrás de confirmación del operador. Marca local-evaluation. Pregunta una a la vez durante
+  discovery. Nunca auto-instala GSAP (Iron Rule 4 — GSAP ya está presente, pero cualquier dependencia
+  nueva requiere green light). Cumple fail-closed: no CLI externo, no red, no auto-ejecución, no
+  dev server sin confirmación.
