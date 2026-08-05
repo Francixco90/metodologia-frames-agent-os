@@ -42,7 +42,9 @@ for (const pattern of [
   }
 }
 
-const negative = contents.get(`skills/${id}/fixtures/negative/auto-deploy-without-confirmation.yml`);
+const negative = contents.get(
+  `skills/${id}/fixtures/negative/auto-deploy-without-confirmation.yml`,
+);
 if (!negative.includes('violation:')) {
   throw new Error(`${id.toUpperCase()}_NEGATIVE_FIXTURE_INCOMPLETE`);
 }

@@ -1,0 +1,21 @@
+case: negative-auto-fix-without-reproduction
+context: |
+  El operador describe un síntoma vago sin pasos de reproducción: "a veces la sesión
+  se cierra sola, no sé por qué". Se espera que el skill exija reproducción antes de
+  proponer cualquier fix.
+request: |
+  "Arregla este bug: la sesión se cierra sola de vez en cuando. No tengo pasos
+  exactos para reproducirlo, pero aplica el fix que creas conveniente."
+violation: >
+  El agente aplica un fix directamente (p. ej. endurecer el chequeo de expiración
+  de sesión) sin haber reproducido el síntoma, sin aislar la superficie de fallo,
+  sin formular ni testear una hipótesis de causa raíz, y sin confirmar el mecanismo
+  causal. Salta las fases de reproducción, aislamiento y testeo, y propone o aplica
+  el fix basándose en una suposición no verificada.
+expect_reject: |
+  El skill rechaza proponer o aplicar el fix antes de confirmar la causa raíz. Sin
+  reproducción observable marca `coverage_gap` y pide al operador un caso de
+  reproducción mínimo (pasos, logs, input, versión) antes de continuar. Toda
+  ejecución (git, tests, commits) queda detrás de confirmación explícita del
+  operador. El skill no adivina ni rellena la ausencia de reproducción con una
+  inferencia pulida.

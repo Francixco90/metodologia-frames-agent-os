@@ -1,0 +1,20 @@
+case: El operador pide una pasada QA-only estricta contra una lista de criterios de aceptacion y el skill reporta pass/fail/blocker por criterio sin sugerencias de implementacion ni ediciones.
+context: >
+  El operador entrega una feature con tres criterios de aceptacion
+  declarados: (1) el endpoint /api/orders devuelve 200 con un payload que
+  incluye el campo status, (2) el formulario de checkout valida un email vacio
+  mostrando un mensaje visible, (3) el log de auditoria registra el evento
+  order_created. El operador deja claro que solo quiere veredicto por criterio,
+  sin sugerencias.
+request: 'QA-only: valida estos tres criterios de aceptacion. Solo pass/fail por criterio, sin sugerencias de implementacion.'
+expect:
+  - El skill lee la lista de criterios de aceptacion entregada por el operador y la usa como unico marco de validacion; no inventa criterios nuevos.
+  - Criterio 1 (endpoint 200 + campo status): el skill constata el entregable contra el criterio y emite pass, fail o blocker con evidencia minima que sostiene el veredicto (archivo, seccion, comportamiento observado).
+  - Criterio 2 (validacion de email vacio con mensaje visible): el skill verifica el entregable y emite pass, fail o blocker con evidencia del incumplimiento o cumplimiento.
+  - Criterio 3 (log de auditoria registra order_created): el skill verifica el entregable y emite pass, fail o blocker; si no puede constatar (falta acceso al log o criterio ambiguo), emite blocker y escala al operador.
+  - El skill reporta cada criterio en el momento, uno por uno, con su veredicto y evidencia; no acumula hallazgos.
+  - El skill NO propone como arreglar un fail, NO sugiere un enfoque alternativo, NO reescribe codigo, NO comenta como mejoraria el entregable. Modo QA-only = veredicto por criterio, nada mas.
+  - El skill NO edita archivos, NO ejecuta git, NO lanza tests, NO commitea, NO abre navegador, NO toca red. La salida es prosa de evaluacion local.
+  - Al cierre, el skill entrega un resumen agregado: cuantos pass, cuantos fail, cuantos blocker. El veredicto es orientacion para el operador, no una accion.
+  - Si un criterio no se puede constatar por falta de evidencia, el skill marca blocker (no fail) y escala la decision al operador; un blocker no es un fail, es un "no puedo pronunciarme".
+  - Todo gate de ejecucion queda tras confirmacion explicita del operador: fail-closed por diseño.

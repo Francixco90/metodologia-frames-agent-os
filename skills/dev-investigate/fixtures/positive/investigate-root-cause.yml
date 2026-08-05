@@ -1,0 +1,18 @@
+case: positive-debug-investigation
+context: |
+  El operador reporta un error reproducible: un endpoint de autenticación devuelve 500
+  cuando el campo "expires_at" del token llega vacío. El síntoma aparece desde el
+  último despliegue. Se solicita depuración sistemática con causa raíz.
+request: |
+  "Depura este bug: el endpoint /auth/refresh devuelve 500 cuando expires_at viene
+  vacío. Pasos para reproducir: POST /auth/refresh con body {"token": "...", "expires_at": ""}.
+  Investiga la causa raíz antes de proponer fix."
+expect: |
+  El skill recorre las seis fases en orden: reproduce el 500 con el input vacío,
+  aisla el fallo a la rama que parsea expires_at, formula una hipótesis de causa raíz
+  testable (p. ej. "el parser lanza cuando expires_at es cadena vacía porque asume
+  entero sin validar"), testa la hipótesis con una observación dirigida, confirma el
+  mecanismo causal con evidencia, y entrega en prosa la causa raíz confirmada más un
+  fix de alcance mínimo. No ejecuta git, tests ni commits por sí mismo; toda ejecución
+  queda detrás de confirmación del operador. No propone fix antes de confirmar la causa
+  raíz.

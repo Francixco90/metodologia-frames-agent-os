@@ -1,0 +1,17 @@
+case: positive
+context: >
+  Sprint 14 cerró. El equipo completó 9 de 11 historias
+  planeadas. Dos historias se derramaron al siguiente sprint por
+  dependencias externas no anticipadas. Las notas del sprint incluyen
+  observaciones de la daily, un par de incidentes de despliegue y
+  retrospectivas informales del equipo.
+request: >
+  "Haz una retrospectiva del sprint 14: qué funcionó, qué no, qué
+  cambiar, y action items con owners y fechas."
+expect: >
+  La skill entrega prosa blameless con cuatro secciones (lo que
+  funcionó, lo que no funcionó, lo que se debe cambiar, action items).
+  Cada action item lleva descripción accionable, owner nombrado y
+  fecha de vencimiento. No hay señalamiento a individuos; las causas
+  se atribuyen a procesos y sistemas. No se ejecuta git, tests ni
+  commits. El resultado es prosa para evaluación local del operador.
