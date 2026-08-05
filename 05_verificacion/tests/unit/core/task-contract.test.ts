@@ -97,8 +97,7 @@ describe('TaskContractSchema', () => {
   it('defaults no_objetivos and gaps to empty arrays when omitted', () => {
     const input = validInput();
     // Omit optional/defaulted fields explicitly to assert defaults.
-    const {no_objetivos, gaps, spawned_subtasks, evidence_tags, ...rest} =
-      input as Record<string, unknown>;
+    const {no_objetivos, gaps, spawned_subtasks, evidence_tags, ...rest} = input;
     void no_objetivos;
     void gaps;
     void spawned_subtasks;

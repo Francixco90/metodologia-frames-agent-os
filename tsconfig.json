@@ -65,6 +65,7 @@
     "coverage",
     "03_artefactos/projects/**/web/dist",
     "03_artefactos/skills/**",
+    "03_artefactos/scripts/**",
     "adapters/**",
     "agents/**",
     "approvals/**",

@@ -207,7 +207,7 @@ const checkGovernance = (): void => {
     }
     try {
       const text = readFileSync(path, 'utf8');
-      const parsed = parse(text);
+      const parsed: unknown = parse(text);
       if (parsed === null || typeof parsed !== 'object') {
         issues.push(`${name} parsea a no-objeto`);
       }
@@ -222,7 +222,7 @@ const checkGovernance = (): void => {
   } else {
     try {
       const text = readFileSync(commandsPath, 'utf8');
-      const parsed = parse(text);
+      const parsed: unknown = parse(text);
       if (parsed === null || typeof parsed !== 'object') {
         issues.push('commands.yaml parsea a no-objeto');
       }

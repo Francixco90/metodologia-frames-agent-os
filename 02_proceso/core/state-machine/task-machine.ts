@@ -122,7 +122,7 @@ export function transitionTaskState(
 ): TaskWorkState {
   // Validate the input shape even when called with a typed value, mirroring
   // executeTransition's `TransitionRequestSchema.parse(input)` step. [CÓDIGO]
-  const request = TaskTransitionRequestSchema.parse(req) as TaskTransitionRequest;
+  const request = TaskTransitionRequestSchema.parse(req);
   const current = request.currentState;
   const next = request.nextState;
   assertDirectTaskTransition(current, next);

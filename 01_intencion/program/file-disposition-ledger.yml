@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 91998
-    v3_rolling_adjustment_words: 4690
+    baseline_words: 92003
+    v3_rolling_adjustment_words: 4695
     original_baseline_words: 87308
-    final_words: 113857
+    final_words: 113861
     maximum_multiplier: 1.5
-    maximum_words: 137997
+    maximum_words: 138004
     actual_multiplier: 1.2376
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 91998
-    v3_rolling_adjustment_words: 4690
+    baseline_words: 92003
+    v3_rolling_adjustment_words: 4695
     original_baseline_words: 87308
-    final_words: 113857
-    maximum_words: 183996
+    final_words: 113861
+    maximum_words: 184006
     word_multiplier: 1.2376
-    baseline_loc: 34751
-    v3_rolling_adjustment_loc: 2010
+    baseline_loc: 34756
+    v3_rolling_adjustment_loc: 2015
     original_baseline_loc: 32741
-    final_loc: 42844
-    maximum_loc: 69502
+    final_loc: 42849
+    maximum_loc: 69512
     loc_multiplier: 1.2329
     maximum_multiplier: 2
     status: pass
@@ -2478,9 +2478,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:eslint.config.js
       current_ref: working-tree:eslint.config.js
       current_state: present
-      current_sha256: 5315365ead96f4d768938ddb2f22d1eef8d1ab596297d7da0b7b3309d26bbf9e
-      current_words: 58
-      current_loc: 36
+      current_sha256: 3db600cd2f9ec8f332c025cdb7f9e69e5ac3a7dee7d82d7c031aa2e669a0586c
+      current_words: 62
+      current_loc: 40
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:eslint.config.js
@@ -8442,9 +8442,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tsconfig.json
       current_ref: working-tree:tsconfig.json
       current_state: present
-      current_sha256: 8b0ab59b11f3f67f59f4c311321dde209a1404cf15f32f4255e46030da8695e0
-      current_words: 140
-      current_loc: 92
+      current_sha256: 7d27514e3f4c86e524132fe6ace4db8d50bcd0e59bf42be896310e91c3f1c1c1
+      current_words: 141
+      current_loc: 93
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:tsconfig.json

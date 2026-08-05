@@ -118,7 +118,7 @@ const baselineBlobs = (root: string) => {
 // keeping the policy constants stable without a per-constant rewrite.
 const legacyPathInversions = (root: string): Array<{link: string; target: string}> => {
   const inversions: Array<{link: string; target: string}> = [];
-  let entries: Dirent[] = [];
+  let entries: Dirent[];
   try {
     entries = readdirSync(root, {withFileTypes: true});
   } catch {

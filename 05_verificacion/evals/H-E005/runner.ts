@@ -24,6 +24,20 @@ interface ReconstructedContext {
 }
 
 /**
+ * Convierte un valor `unknown` a string sin recurrir a `Object.toString`
+ * (evita `[object Object]`). Primitivos → su string; null/undefined → '';
+ * objetos/arrays → JSON. [CÓDIGO]
+ */
+const primitiveString = (value: unknown): string => {
+  if (typeof value === 'string') return value;
+  if (value === null || value === undefined) return '';
+  if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') {
+    return String(value);
+  }
+  return JSON.stringify(value);
+};
+
+/**
  * Reconstruye el contexto de tarea desde continuity/state.yaml y corrobora
  * contra PROGRESS.md. Espejo de la convención de resume del harness. [DOC]
  */
@@ -38,7 +52,7 @@ function reconstructContext(): {
     state: String(stateRaw['state']),
     lastGate: String(stateRaw['last_gate']),
     nextStep: String(stateRaw['next_step']),
-    projectId: stateRaw['project_id'] === null ? null : String(stateRaw['project_id']),
+    projectId: stateRaw['project_id'] === null ? null : primitiveString(stateRaw['project_id']),
     responsable: String(stateRaw['responsable']),
   };
   return {ctx, progress};
@@ -77,8 +91,8 @@ describe('H-E005 — resume from PROGRESS.md + continuity/state.yaml', () => {
     // resume; their absence surfaces as empty strings in reconstruct, which
     // the oracle rejects.
     const reconstructed = {
-      lastGate: badRaw['last_gate'] === undefined ? '' : String(badRaw['last_gate']),
-      nextStep: badRaw['next_step'] === undefined ? '' : String(badRaw['next_step']),
+      lastGate: badRaw['last_gate'] === undefined ? '' : primitiveString(badRaw['last_gate']),
+      nextStep: badRaw['next_step'] === undefined ? '' : primitiveString(badRaw['next_step']),
     };
     expect(reconstructed.lastGate.length).toBe(0);
     expect(reconstructed.nextStep.length).toBe(0);
