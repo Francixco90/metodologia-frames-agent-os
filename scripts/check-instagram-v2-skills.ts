@@ -80,6 +80,14 @@ const skills = [
     negative: 'fixtures/negative/mandatory-vendor.yml',
     requiredTerms: ['VideoProvider', 'SeedanceAdapter', 'FalAIAdapter', 'model_agnostic'],
   },
+  {
+    id: 'metodologia-find-skills',
+    scope: 'local-skill-discovery',
+    productionStatus: 'publication_blocked',
+    positive: 'fixtures/positive/discover-dev-skill.yml',
+    negative: 'fixtures/negative/assume-missing-skill.yml',
+    requiredTerms: ['creation-v3-skill-registry', 'verify:skills', 'homólogo', 'coverage_gap'],
+  },
 ] as const;
 
 type RegistryEntry = {

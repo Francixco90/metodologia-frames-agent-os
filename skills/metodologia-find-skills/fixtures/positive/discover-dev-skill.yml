@@ -1,0 +1,11 @@
+# Positive fixture — skill discovery resolves to an active H-03 homólogo
+scenario: user asks for a systematic debugging skill
+user_intent: '¿hay una skill para debugging sistemático?'
+resolution_path:
+  - consult_h03_registry: registries/skills/creation-v3-skill-registry.yml
+  - match_by_family: dev-*
+  - found: dev-systematic-debugging
+  - state: active
+  - execution_scope: local-evaluation
+recommendation: dev-systematic-debugging
+validation: pnpm verify:skills

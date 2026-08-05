@@ -13,6 +13,7 @@ applies_to:
     - skills/scroll-experience-foundations
     - skills/cinematic-scroll-quality
     - skills/scroll-world-agnostic
+    - skills/metodologia-find-skills
   content_origin: locally_authored
 permissions:
   internal_execution: allowed

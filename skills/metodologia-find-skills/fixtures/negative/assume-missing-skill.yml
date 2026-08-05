@@ -1,0 +1,9 @@
+# Negative fixture — assuming a skill exists without consulting registries
+scenario: agent recommends a skill without checking local inventories
+violation: recommends npx skills add without consulting v2 or H-03 registries
+reason: MetodologIA fail-closed — no external CLI invocation without user confirmation; local registries are source of truth
+correct_path:
+  - consult v2 registry first
+  - consult H-03 registry second
+  - consult vendor reference third
+  - mark coverage_gap if nothing found
