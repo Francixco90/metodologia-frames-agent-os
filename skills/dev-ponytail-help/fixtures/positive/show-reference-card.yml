@@ -1,0 +1,12 @@
+case: El operador pide una tarjeta de referencia rápida de los modos, skills y comandos ponytail y el skill la muestra sin auto-invocar nada ni cambiar de modo.
+context: El operador quiere consultar qué comandos ponytail existen antes de decidir cuál usar.
+request: >-
+  Muestrame la tarjeta de referencia de ponytail. Quiero ver los modos, skills
+  y comandos disponibles antes de elegir alguno.
+expect:
+  - El skill muestra la tarjeta de referencia en prosa, one-shot, sin persistir nada.
+  - Lista los modos disponibles (lite, full, ultra) con su disparador y qué cambia cada uno.
+  - Lista los skills de referencia (ponytail, ponytail-review, ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help) con su disparador y qué hace.
+  - Lista los errores comunes con su sintoma y correccion.
+  - El skill NO auto-invoca ningun comando listado; el operador elige cual ejecutar despues.
+  - El skill NO cambia de modo, NO escribe flag files y NO persiste estado al mostrar la tarjeta.
