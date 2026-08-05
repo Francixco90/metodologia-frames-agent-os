@@ -356,6 +356,26 @@ const skills: SkillEntry[] = [
     scope: 'local-evaluation',
     check: ['skills/design-mobile-principles/scripts/check-skill.mjs'],
   },
+  {
+    id: 'design-canvas-generative',
+    scope: 'local-evaluation',
+    check: ['skills/design-canvas-generative/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-desktop-principles',
+    scope: 'local-evaluation',
+    check: ['skills/design-desktop-principles/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-swiftui-motion',
+    scope: 'local-evaluation',
+    check: ['skills/design-swiftui-motion/scripts/check-skill.mjs'],
+  },
+  {
+    id: 'design-threejs-r3f',
+    scope: 'local-evaluation',
+    check: ['skills/design-threejs-r3f/scripts/check-skill.mjs'],
+  },
 ];
 
 for (const skill of skills) {

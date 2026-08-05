@@ -1,0 +1,16 @@
+case: matched-geometry-hero
+context: >
+  Operador pide una transición hero entre una tarjeta compacta en una galería y su vista expandida
+  en SwiftUI. Quiere prose + pseudocódigo que use @Namespace y matchedGeometryEffect, con
+  withAnimation(.spring) para disparar la transición. La skill debe gatear ejecución (no correr
+  Xcode) y marcar local-evaluation.
+request: >
+  Muéstrame cómo hacer un hero transition entre SmallCard y LargeCard en SwiftUI con
+  matchedGeometryEffect, namespace y spring. Solo guía, no corras Xcode.
+expect: >
+  La skill entrega prose explicando @Namespace, .matchedGeometryEffect(id:in:), y el rol de
+  withAnimation(.spring(.smooth)) para disparar la interpolación de frame y posición. Incluye
+  pseudocódigo rhyming con if/else simétrico bajo ZStack, onTapGesture en cada rama, id estable
+  ("card"). Marca fail-closed: execution_scope local-evaluation, no auto-ejecuta xcodebuild ni
+  simulador. Indica trampas (id inestable, animar fuera de if donde destino no existe). Cierre
+  con coverage_gap si falta información del operador.
