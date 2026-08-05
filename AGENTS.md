@@ -10,6 +10,7 @@
 8. No activar conectores ni publicar; n8n permanece en dry-run.
 9. Producer, verifier y Guardian deben ser distintos.
 10. Cerrar cada paquete con outputs hash-bound, tests, riesgos, gaps y próximo gate.
+11. Antes de escribir, leer `governance/router.yml` + `governance/tool-policy.yml` + `scripts/commands.yaml`. El `CLAUDE.md` de cabina es un adaptador local; la fuente versionada vive en `governance/` y `scripts/commands.yaml`. [CONFIG]
 
 ## Token efficiency microprofiles
 

@@ -2,6 +2,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {parse} from 'yaml';
 import {z} from 'zod';
+import {CommandsManifestSchema} from './lib/commands-schema.js';
 
 const packageSchema = z.object({
   owner: z.string().min(1),
@@ -97,7 +98,104 @@ export const validateDag = (root = process.cwd()): string[] => {
   return errors;
 };
 
-const errors = validateDag();
+// --- S4: validación del manifiesto gate → comando (commands-v1) ---
+
+const dagGatesSchema = z.object({
+  version: z.literal(1),
+  program_id: z.literal('metodologia-frames-agent-os'),
+  packages: z.record(z.string(), z.object({gate: z.string().min(1)})),
+  release: z.object({
+    human_gate: z.literal('G15'),
+    readiness_gate: z.literal('G16'),
+    publish_gate: z.literal('G17'),
+  }),
+});
+
+const ownershipSchema = z.object({
+  version: z.literal(1),
+  writers: z.record(z.string(), z.array(z.string().min(1))),
+});
+
+const staticPrefix = (pattern: string): string => pattern.split(/[*?[{]/u, 1)[0] ?? '';
+
+const globCoveredByOwner = (glob: string, ownerPatterns: string[]): boolean =>
+  ownerPatterns.some((pattern) => {
+    const globPrefix = staticPrefix(glob);
+    const patternPrefix = staticPrefix(pattern);
+    if (globPrefix.length === 0 || patternPrefix.length === 0) return true;
+    return globPrefix.startsWith(patternPrefix) || patternPrefix.startsWith(globPrefix);
+  });
+
+const validateCommands = (root = process.cwd()): string[] => {
+  const errors: string[] = [];
+
+  const dagPath = resolve(root, 'docs/program/dag.yml');
+  const dag = dagGatesSchema.parse(parse(readFileSync(dagPath, 'utf8')));
+  const dagGates = new Set<string>([
+    ...Object.values(dag.packages).map((pkg) => pkg.gate),
+    dag.release.human_gate,
+    dag.release.readiness_gate,
+    dag.release.publish_gate,
+  ]);
+
+  const manifestPath = resolve(root, '05_verificacion/scripts/commands.yaml');
+  const manifest = CommandsManifestSchema.parse(
+    parse(readFileSync(manifestPath, 'utf8')),
+  );
+  const entryByGate = new Map(manifest.gates.map((entry) => [entry.gate, entry]));
+
+  // 1. todo gate del DAG tiene entrada en el manifiesto.
+  for (const gate of dagGates) {
+    if (!entryByGate.has(gate)) {
+      errors.push(`COMMANDS: gate ${gate} sin entrada en commands.yaml`);
+    }
+  }
+
+  // 2. cargar ownership-manifest para cross-check write_set_globs.
+  const ownershipPath = resolve(root, 'docs/program/ownership-manifest.yml');
+  const ownership = ownershipSchema.parse(parse(readFileSync(ownershipPath, 'utf8')));
+
+  let manualFailClosed = 0;
+
+  for (const entry of manifest.gates) {
+    // 3. entradas manuales deben ser fail-closed.
+    if (entry.manual) {
+      if (!entry.fail_closed) {
+        errors.push(`COMMANDS: gate ${entry.gate} manual pero fail_closed=false`);
+      } else {
+        manualFailClosed += 1;
+      }
+      continue;
+    }
+
+    // 4. entradas automáticas: write_set_globs debe ser subconjunto de la
+    //    allowlist del owner en ownership-manifest.
+    const ownerPatterns = ownership.writers[entry.owner];
+    if (ownerPatterns === undefined) {
+      errors.push(`COMMANDS: gate ${entry.gate} owner "${entry.owner}" no declarado en ownership-manifest`);
+      continue;
+    }
+    for (const glob of entry.write_set_globs) {
+      if (!globCoveredByOwner(glob, ownerPatterns)) {
+        errors.push(
+          `COMMANDS: gate ${entry.gate} glob "${glob}" fuera de la allowlist de owner "${entry.owner}"`,
+        );
+      }
+    }
+  }
+
+  if (errors.length === 0) {
+    console.info(
+      `PASS G04 COMMANDS: manifest válido, ${manifest.gates.length} gates, ${manualFailClosed} manuales fail-closed.`,
+    );
+  }
+
+  return errors;
+};
+
+const dagErrors = validateDag();
+const commandErrors = validateCommands();
+const errors = [...dagErrors, ...commandErrors];
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
