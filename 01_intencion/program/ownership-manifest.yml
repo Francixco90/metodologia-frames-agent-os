@@ -9,6 +9,9 @@ writers:
     - docs/**
     - registries/projects/**
     - registries/memory/**
+    - registries/tasks/**
+    - tasks/**
+    - registries/README.md
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
     - projects/pilot-carousel-001/README.md
@@ -116,6 +119,8 @@ writers:
     - quality/reviews/core-committee/**
     - projects/pilot-carousel-001/quality/**
     - receipts/dependency-audits/**
+    - receipts/check-runs/**
+    - evals/**
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**
