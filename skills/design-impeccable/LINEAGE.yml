@@ -1,0 +1,27 @@
+schema_version: 1
+skill_id: design-impeccable
+version: 0.1.0
+owner: MetodologIA
+content_origin: locally_authored_adaptation
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: clean-room-prose-from-permissive-reference
+derivation_note: >
+  Clean-room prose adaptation of the impeccable design-director skill principle
+  (brief wins, refinement preserves / redesign replaces, modes Persuade/Operate/Read/
+  Experience, bounded verification not open loops) into Spanish MetodologIA prose.
+  No vendor code or CLI tooling carried over; the vendor SKILL.src.md is read-only
+  authority reference. Apache-2.0 reference permits clean-room adaptation with attribution.
+lifecycle_state: active
+execution_scope: local-evaluation
+authority_refs:
+  - skills/vendor/impeccable/impeccable/skill/SKILL.src.md
+  - core/contracts/creation-v3.ts
+runtime_refs:
+  - skills/design-impeccable/scripts/check-skill.mjs
+dependency_receipt_ref: skills/design-impeccable/receipts/runtime-boundary.yml
+external_fragments_reused: false
+external_fragments_source: skills/vendor/impeccable/impeccable/skill/SKILL.src.md (Apache-2.0, authority reference only)
+external_fragments_license: Apache-2.0
+external_fragments_attribution: pbakaus/impeccable
+production_runtime_status: local_capability_only
+publication_authority: false

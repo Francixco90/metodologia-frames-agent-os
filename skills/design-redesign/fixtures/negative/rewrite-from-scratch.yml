@@ -1,0 +1,12 @@
+case: rewrite-from-scratch
+context: El agente responde a una peticion de elevar un proyecto existente reescribiendolo desde cero con un framework nuevo.
+request: 'Mejora mi sitio vanilla CSS; migramoslo a Next.js + Tailwind + shadcn/ui para que se vea premium.'
+violation: >
+  Migrar framework y reescribir desde cero viola las reglas no negociables (trabajar con el
+  stack existente; no migrar frameworks ni librerias de styling; cambios reviewables y
+  enfocados sobre reescrituras grandes). Redesign eleva lo existente, no lo reemplaza.
+expect_reject: >
+  La skill rechaza la migracion de framework y la reescritura. Debe scan-diagnose-fix sobre
+  vanilla CSS existente: auditar patrones genericos, aplicar upgrades dirigidos (font swap,
+  color cleanup, hover/active states, layout spacing, component swaps) sin migrar stack.
+  Marcar coverage_gap si el usuario insiste en migracion; no torcer redesign en greenfield.

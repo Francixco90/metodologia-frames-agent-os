@@ -1,0 +1,11 @@
+case: audit-existing-saas
+context: SaaS marketing existente con Inter en todo, tres card columns y sin hover states; el usuario quiere elevarlo.
+request: 'Mejora mi landing; se ve generico, tipo salida de IA, elevalo a premium sin reescribir todo.'
+expect: >
+  La skill debe scan (leer codebase, identificar Tailwind v4 + React), diagnose (auditar:
+  Inter default, tres card columns genericas, sin hover/active, h-screen, sin focus ring,
+  purpura-IA gradiente), y fix en orden de prioridad (font swap a Geist, color cleanup
+  remover purpura-IA, anadir hover/active states, layout spacing max-width, reemplazar
+  3-card por 2-col zigzag, anadir loading/empty/error states). Trabajar sobre el stack
+  existente, no migrar framework, no romper funcionalidad, testear despues de cada cambio.
+  No debe invocar CLI externo ni abrir red.

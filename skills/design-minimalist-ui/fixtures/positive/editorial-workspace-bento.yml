@@ -1,0 +1,10 @@
+case: editorial-workspace-bento
+context: Workspace tipo documento premium que debe sentirse editorial minimalista, no SaaS generico.
+request: 'Disenha mi workspace; minimalista, tipo Linear pero mas editorial y document-style.'
+expect: >
+  La skill debe aplicar constraints absolutos negativos (cero Inter, cero shadow-md, cero
+  gradientes, cero rounded-full en containers, cero emojis), arquitectura tipografica sans+serif+
+  mono con contraste fuerte, paleta warm monochrome + spot pastels, bento grid flat con border
+  1px solid #EAEAEA radius 8-12px, motion sutil (scroll entry 600ms cubic-bezier, IntersectionObserver
+  no window.addEventListener), y execution protocol (macro-whitespace py-24, max-w-4xl/5xl). No
+  debe invocar CLI externo ni abrir red.

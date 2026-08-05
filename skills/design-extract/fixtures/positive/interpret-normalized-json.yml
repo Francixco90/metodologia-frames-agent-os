@@ -1,0 +1,9 @@
+case: interpret-normalized-json
+context: El usuario ya tiene un normalized.json extraido de un sitio publico y quiere interpretar los primitivos localmente.
+request: 'Tengo este normalized.json de linear.app; summarizame los tokens y generame tokens.css starter.'
+expect: >
+  La skill debe interpretar localmente el normalized.json: summarizar paleta primario/secundario/acento,
+  familias tipograficas, escalas spacing/radius/shadow, y mapearlos a tokens starter JSON/CSS. Esta
+  interpretacion es local-evaluation, no requiere network ni binario. No debe auto-ejecutar
+  extraccion ni instalar dependencias. Debe marcar coverage_gap si falta el normalized.json o si el
+  usuario pide extraccion nueva sin confirmar el URL.

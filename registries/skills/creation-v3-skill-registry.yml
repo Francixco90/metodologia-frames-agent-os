@@ -453,6 +453,116 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-bento-apple-grid/scripts/check-skill.mjs]
+  - skill_id: design-impeccable
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 278a086ea0cced9b01ee49d85cbe417a3cdfdd52a3b5c337ddf4477bef091ea3
+    package_manifest_sha256: 0618496746f56611fce9a007a552b156139808877c3d95c67bb7dc8445a86b23
+    lineage_ref: skills/design-impeccable/LINEAGE.yml
+    dependency_receipt_ref: skills/design-impeccable/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-impeccable/scripts/check-skill.mjs]
+  - skill_id: design-ui-ux-pro-max
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: dcade8dd4278d11b683ab4658770f4c0283fed6cd649c9db4d18f85b90c3b49d
+    package_manifest_sha256: 18731a6c964d5dd7d656d5b6bad55bb18f45d52da3ccd1e5403deae934353356
+    lineage_ref: skills/design-ui-ux-pro-max/LINEAGE.yml
+    dependency_receipt_ref: skills/design-ui-ux-pro-max/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-ui-ux-pro-max/scripts/check-skill.mjs]
+  - skill_id: design-frontend-design
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 5b73a0cc71a23de66941ac5b5f0338d0c68b3225edbc67a2fe8cb7ae9aebafbb
+    package_manifest_sha256: 3ea2c2df3b9d2ffb45e7d8a7dbd5750c970825f275040f9ce02df45fb9bf7972
+    lineage_ref: skills/design-frontend-design/LINEAGE.yml
+    dependency_receipt_ref: skills/design-frontend-design/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-frontend-design/scripts/check-skill.mjs]
+  - skill_id: design-web-design-guidelines
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 306034cfd88dcf6180a9e4bd44dafe62809d3450740bd0dbfb81e8ac5427416c
+    package_manifest_sha256: 22b1a4b88a82ca1930cb2bf10d9752740a086e2d1f35a41dcf8142b9d4111ad4
+    lineage_ref: skills/design-web-design-guidelines/LINEAGE.yml
+    dependency_receipt_ref: skills/design-web-design-guidelines/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-web-design-guidelines/scripts/check-skill.mjs]
+  - skill_id: design-taste-frontend
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 4b0d658eb2f62c8ef23b6c5e403f2df95f9124edeef5f63aa779f3e75a0ea90f
+    package_manifest_sha256: 3ee9b51dfde29f6ec806178a5c60b4ef154b4d2522f918dfaef95d80b68b8ddb
+    lineage_ref: skills/design-taste-frontend/LINEAGE.yml
+    dependency_receipt_ref: skills/design-taste-frontend/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-taste-frontend/scripts/check-skill.mjs]
+  - skill_id: design-high-end-visual
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 6615699f949d55c8e34ba025482af7daf687c190a8b43c34e66def898678a87c
+    package_manifest_sha256: 90cc0df7425cae7977485512e4addbf29c1ba4e88164a48936cb54d161b22b7a
+    lineage_ref: skills/design-high-end-visual/LINEAGE.yml
+    dependency_receipt_ref: skills/design-high-end-visual/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-high-end-visual/scripts/check-skill.mjs]
+  - skill_id: design-minimalist-ui
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 01e952e6ed84c4da01b2c75f0f5ce70511a9fc30f3751dc817c0a82401d592df
+    package_manifest_sha256: e6535ef343a4d35c152c03ed2dba5b8881de6015104fc18356ea1cbfc102e8b3
+    lineage_ref: skills/design-minimalist-ui/LINEAGE.yml
+    dependency_receipt_ref: skills/design-minimalist-ui/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-minimalist-ui/scripts/check-skill.mjs]
+  - skill_id: design-redesign
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 39fde03271645f23b463f2d5f7219851314d49502f7134013f8d3c2fd3a8b5ac
+    package_manifest_sha256: fdc1949cd1125500fd0b0e93c78a1acc47f342eb3d7f07d93dd6ba985439378b
+    lineage_ref: skills/design-redesign/LINEAGE.yml
+    dependency_receipt_ref: skills/design-redesign/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-redesign/scripts/check-skill.mjs]
+  - skill_id: design-emil
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: b168e6db0ba33ee06a4242d2b99b3ad9db9d92f1337fb366c7ac30b2ea2f0ac8
+    package_manifest_sha256: e1c86c9097deeb9c7cae55c3ad85479d8c726f70ec143211f1d8c2d8cad10dc8
+    lineage_ref: skills/design-emil/LINEAGE.yml
+    dependency_receipt_ref: skills/design-emil/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-emil/scripts/check-skill.mjs]
+  - skill_id: design-extract
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 92f1d5a5f677edf9a9e4e44cd10712102accac0b1837ecc489c0fd5c0c99d5d7
+    package_manifest_sha256: 0e95c99b984984735d3dbfa66052742c4786fe5c7b631bc4d11e919ef47843f7
+    lineage_ref: skills/design-extract/LINEAGE.yml
+    dependency_receipt_ref: skills/design-extract/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/design-extract/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -619,3 +729,43 @@ events:
   - {event_id: EVT-SKL-BAG-H03-002, event_order: 2, skill_id: content-os-bento-apple-grid, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-BAG-H03-003, event_order: 3, skill_id: content-os-bento-apple-grid, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-BAG-H03-004, event_order: 4, skill_id: content-os-bento-apple-grid, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DIP-H03-001, event_order: 1, skill_id: design-impeccable, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DIP-H03-002, event_order: 2, skill_id: design-impeccable, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DIP-H03-003, event_order: 3, skill_id: design-impeccable, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DIP-H03-004, event_order: 4, skill_id: design-impeccable, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DUX-H03-001, event_order: 1, skill_id: design-ui-ux-pro-max, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DUX-H03-002, event_order: 2, skill_id: design-ui-ux-pro-max, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DUX-H03-003, event_order: 3, skill_id: design-ui-ux-pro-max, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DUX-H03-004, event_order: 4, skill_id: design-ui-ux-pro-max, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DFD-H03-001, event_order: 1, skill_id: design-frontend-design, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DFD-H03-002, event_order: 2, skill_id: design-frontend-design, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DFD-H03-003, event_order: 3, skill_id: design-frontend-design, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DFD-H03-004, event_order: 4, skill_id: design-frontend-design, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DWG-H03-001, event_order: 1, skill_id: design-web-design-guidelines, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DWG-H03-002, event_order: 2, skill_id: design-web-design-guidelines, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-DWG-H03-003, event_order: 3, skill_id: design-web-design-guidelines, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DWG-H03-004, event_order: 4, skill_id: design-web-design-guidelines, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TFE-H03-001, event_order: 1, skill_id: design-taste-frontend, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TFE-H03-002, event_order: 2, skill_id: design-taste-frontend, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-TFE-H03-003, event_order: 3, skill_id: design-taste-frontend, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TFE-H03-004, event_order: 4, skill_id: design-taste-frontend, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HEV-H03-001, event_order: 1, skill_id: design-high-end-visual, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HEV-H03-002, event_order: 2, skill_id: design-high-end-visual, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-HEV-H03-003, event_order: 3, skill_id: design-high-end-visual, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HEV-H03-004, event_order: 4, skill_id: design-high-end-visual, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MUI-H03-001, event_order: 1, skill_id: design-minimalist-ui, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MUI-H03-002, event_order: 2, skill_id: design-minimalist-ui, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-MUI-H03-003, event_order: 3, skill_id: design-minimalist-ui, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MUI-H03-004, event_order: 4, skill_id: design-minimalist-ui, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RDG-H03-001, event_order: 1, skill_id: design-redesign, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RDG-H03-002, event_order: 2, skill_id: design-redesign, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-RDG-H03-003, event_order: 3, skill_id: design-redesign, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RDG-H03-004, event_order: 4, skill_id: design-redesign, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EML-H03-001, event_order: 1, skill_id: design-emil, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EML-H03-002, event_order: 2, skill_id: design-emil, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EML-H03-003, event_order: 3, skill_id: design-emil, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EML-H03-004, event_order: 4, skill_id: design-emil, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXT-H03-001, event_order: 1, skill_id: design-extract, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EXT-H03-002, event_order: 2, skill_id: design-extract, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-EXT-H03-003, event_order: 3, skill_id: design-extract, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXT-H03-004, event_order: 4, skill_id: design-extract, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

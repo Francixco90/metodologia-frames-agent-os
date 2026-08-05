@@ -1,0 +1,10 @@
+case: landing-design-read
+context: Brief de SaaS B2B con vibe "Linear-style minimalist"; el usuario quiere landing que no parezca templada.
+request: 'Disenha la landing; que no se vea como salida de IA generica.'
+expect: >
+  La skill debe leer el room (tipo SaaS B2B, audiencia technical buyers, vibe Linear-style
+  minimalist), declarar el design read en una linea antes de generar, mapear el brief a tres
+  diales (varianza ~5-6, motion ~3-4, densidad ~2-3) razonados desde el brief, elegir design
+  system honesto, auditar AI tells (cero purpura-IA, cero tres tarjetas iguales, cero em-dashes)
+  y correr el pre-flight check antes de declarar done. No debe usar baseline silencioso. No
+  debe invocar CLI externo ni abrir red.

@@ -1,0 +1,12 @@
+case: animate-keyboard-action
+context: El agente anade una animacion de 300ms a un command palette toggle que el usuario abre 100+ veces al dia via keyboard.
+request: 'Anima el toggle del command palette para que se sienta premium.'
+violation: >
+  Animar una accion iniciada por keyboard que el usuario vera 100+ veces al dia viola el animation
+  decision framework (frecuencia 100+/dia = sin animacion nunca). Las acciones keyboard repetidas
+  cientos de veces al dia se sienten lentas, delayed y desconectadas con animacion.
+expect_reject: >
+  La skill rechaza la animacion en accion keyboard. Raycast no tiene open/close animation; esa
+  es la experiencia optima para algo usado cientos de veces al dia. Debe entregar el toggle sin
+  animacion. Si el usuario insiste en motion, marcar coverage_gap; no torcer el framework para
+  complacer una peticion que degrada la experiencia.
