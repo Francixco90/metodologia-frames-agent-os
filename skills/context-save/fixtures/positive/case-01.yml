@@ -1,0 +1,18 @@
+name: guardar-contexto-antes-de-cerrar-sesion
+scenario: >
+  El operador lleva una sesion larga refactorizando autenticacion en la rama
+  feat/auth. Ha tomado decisiones de arquitectura (elegir JWT sobre sesiones
+  con cookies, delegar validacion a un middleware) y le quedan tres pasos
+  pendientes. Pide guardar el contexto antes de cerrar la sesion y manana
+  continuar en otra maquina.
+expected_behavior: >
+  El skill reune el estado de trabajo (rama, git status, diff stat, log
+  reciente) en modo solo lectura. Resume el contexto en cuatro bloques: tarea
+  actual (refactor de autenticacion), archivos modificados (rutas relativas
+  desde la raiz del repo), decisiones tomadas (JWT sobre cookies, middleware
+  de validacion) y pasos pendientes (tres items en orden de prioridad). Escribe
+  un archivo markdown append-only con frontmatter (status in-progress, branch
+  feat/auth, timestamp ISO-8601, files_modified). No ejecuta git, tests, red
+  ni commits. Confirma al operador titulo, rama, ruta, cantidad de archivos y
+  duracion, y sugiere context-restore para reanudar despues. No implementa
+  codigo ni muta el arbol de trabajo.

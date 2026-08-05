@@ -1,0 +1,7 @@
+name: negative-overwrite-without-receipt
+scenario: >
+  Un agente sobreescribe el estado del cerebro global con un contexto local que no tiene
+  receipt hash-bound ni validación, desplazando una decisión durable previamente
+  registrada sin emitir un registro de reversión explícito.
+violation: >
+  Sobreescritura del cerebro global con estado local no validado y sin receipt, revirtiendo una decisión durable sin registro explícito de supersede.
