@@ -24,6 +24,9 @@ vigente está en
 - `agents/RT-01` … `agents/RT-11`: responsabilidades separadas; RT-11 es Guardian.
 - `committees/`: protocolo de cinco especialistas, síntesis, dissent y rúbrica.
 - `skills/remotion-video-production/`: skill router canónica con 15 módulos.
+- `skills/vendor/`: publishers vendored reference-only (4 originales + 13 expansión);
+  `skills/<homólogo>/`: homólogos H-03 hash-bound (`content-os-*`, `design-*`,
+  `dev-*`) ver § Frames ContentOS.
 - `adapters/notebooklm/`: contrato de grounding read-only y fail-closed.
 - `adapters/n8n/`: transporte opcional, inactivo y dry-run; no toma decisiones creativas.
 - `projects/vs-001-source-to-campaign/`: primer vertical slice y toda su evidencia.
@@ -91,15 +94,43 @@ la aprobación H01 y cualquier distribución externa permanecen como `coverage_g
 > Un producto MetodologIA. Autoría de Franklin Ospina y Javier Montaño.
 
 El programa Frames ContentOS extiende el dual paradigm (Remotion + HTML+GSAP) con un
-programa multi-vendor + homólogos:
+programa multi-vendor + homólogos gobernado por receipts reproducibles. Todo skill
+nuevo entra al registro H-03 (recibo per-skill `receipts/runtime-boundary.yml`,
+`LicenseRef-MetodologIA-Internal`); v2 permanece estable (familia meta `metodologia-*`,
+`instagram-*`, `scroll-*` y `remotion-video-production-v2`).
 
-- **4 publishers vendored** (reference-only, bypass `verify:skills`): 48 HyperFrames
-  (15 Fase 0 + 33 Fase 1A, Apache-2.0), 11 Remotion publisher, 3 Bento, 3 Scroll.
-- **27 homólogos H-03 hash-bound** `content-os-*` en
-  `registries/skills/creation-v3-skill-registry.yml` (17 originales + 10 Fase 2A
-  batches 1-4, PRs #35/#36/#37/#39 merged).
+### Publishers vendored (reference-only, bypass `verify:skills`)
 
-Estado del programa multi-vendor (Fases 2A-2D, registry reconcile, receipt cascade):
+Bajo `skills/vendor/` (text-only, `source-lock.json` hash-bound, sin `package.json`,
+sin runtime deps). 4 publishers originales del dual paradigm + 13 repos de expansión:
+
+- **Originales**: 48 HyperFrames (15 Fase 0 + 33 Fase 1A, Apache-2.0), 11 Remotion
+  publisher, 3 Bento, 3 Scroll.
+- **Expansión**: gstack (59, MIT), genjutsu (17, MIT), superpowers (14, MIT),
+  ponytail (6, MIT), dn-memory (6, Apache-2.0), taste-skill, emil-skills,
+  extract-design-system, impeccable, ui-ux-pro-max, gsap-skills, anthropics
+  frontend-design (Apache-2.0), vercel web-design-guidelines, design-dna, karpathy,
+  rembg, crawl4ai (MIT/Apache-2.0 dual).
+
+### Homólogos hash-bound
+
+- **39 `content-os-*`** en `registries/skills/creation-v3-skill-registry.yml`:
+  15 originales (Fase 2-3 + `remotion-bridge`) + 10 Fase 2A HyperFrames
+  (PRs #35/#36/#37/#39/#41) + 11 Fase 2B Remotion (PRs #42-#45) + 3 Fase 2C Bento
+  (#46).
+- **28 `design-*`**: 11 design-OS originales (#59-#61) + 16 genjutsu Fase 2F
+  (#62-#65) + 1 design-dna Fase 2I (#66).
+- **12 `dev-*`**: 8 Fase 2J batch 1+2 (#67: spec, qa, review, ship, investigate,
+  careful, retro, qa-only) + 4 plan-review Fase 2J batch 3 (#68: plan-eng-review,
+  plan-devex-review, plan-design-review, plan-ceo-review).
+- **2 base**: `data-visual-composition`, `motion-library-adapters`.
+- **v2** en `registries/skills/skill-registry.yml` (shared receipt): familia meta
+  `metodologia-*` + `instagram-*` + `scroll-*` + `remotion-video-production-v2`.
+
+Total H-03 v3: 81 entradas. El gate `verify:skills` corre v2 + v3 + reconcile
+(`scripts/reconcile-skill-registries.ts`) en cada PR: 0 orphans, 0 cross-registry
+dupes, event_ids únicos. Estado del programa multi-vendor (Fases 2A-2D, registry
+reconcile, receipt cascade):
 [`docs/content-os/roadmap.md`](docs/content-os/roadmap.md). Mapeo vendor→nativas:
 [`docs/content-os/capability-matrix.md`](docs/content-os/capability-matrix.md).
 Arquitectura dual paradigm + media model:
