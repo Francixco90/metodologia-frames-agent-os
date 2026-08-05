@@ -1520,6 +1520,61 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/web-hackernews-frontpage/scripts/check-skill.mjs]
+  - skill_id: gstack-autoplan
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 2e82a76d4fc28d0ff84af41ebc46f04fe3e28b281695cc2d7f0a5f3ac4887671
+    package_manifest_sha256: 28d1c1aab1bef450403108ca3a18d949074fc49e7bb89bcccec7dd410806505a
+    lineage_ref: skills/gstack-autoplan/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-autoplan/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-autoplan/scripts/check-skill.mjs]
+  - skill_id: gstack-benchmark
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 9e5100518bb3c1ec23c19dbff4fa2b8b0c05e7d240a09de822cb3132a84999e3
+    package_manifest_sha256: 3823c0e648ec9014349f4c66c7c7962f7afd9449e9c199cb051fc8891f3a947e
+    lineage_ref: skills/gstack-benchmark/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-benchmark/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-benchmark/scripts/check-skill.mjs]
+  - skill_id: gstack-benchmark-models
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3ddf86378263bb046bb421e50783d14cd36755a05088537a1a8e3b040c0cc9fc
+    package_manifest_sha256: 7a4895fd44755a26277ec9daa480430f52534e633fa646b68790b6137b747050
+    lineage_ref: skills/gstack-benchmark-models/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-benchmark-models/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-benchmark-models/scripts/check-skill.mjs]
+  - skill_id: gstack-upgrade
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: eaf7f3c01e8ca60c484ce090d06ff775341036bfeca782ca074dfc19f94b53b4
+    package_manifest_sha256: f8257c2debfec7ad6140057584d351a07ceffee2f698b8d0e2525a7b44866370
+    lineage_ref: skills/gstack-upgrade/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-upgrade/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-upgrade/scripts/check-skill.mjs]
+  - skill_id: gstack-ios-clean
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 1655ac71c5f39cb11c40df10cb8626dffee10de44f2a4df5f6ed6b7b6124cb6b
+    package_manifest_sha256: 5a6fd3d690ee9e9e62ef7438573cf5b8e2d89faa9399b8981a9435fa44e14ab5
+    lineage_ref: skills/gstack-ios-clean/LINEAGE.yml
+    dependency_receipt_ref: skills/gstack-ios-clean/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/gstack-ios-clean/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
@@ -2074,3 +2129,23 @@ events:
   - {event_id: EVT-SKL-WHN-H03-002, event_order: 2, skill_id: web-hackernews-frontpage, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WHN-H03-003, event_order: 3, skill_id: web-hackernews-frontpage, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WHN-H03-004, event_order: 4, skill_id: web-hackernews-frontpage, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GAP-H03-001, event_order: 1, skill_id: gstack-autoplan, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GAP-H03-002, event_order: 2, skill_id: gstack-autoplan, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GAP-H03-003, event_order: 3, skill_id: gstack-autoplan, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GAP-H03-004, event_order: 4, skill_id: gstack-autoplan, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GBM-H03-001, event_order: 1, skill_id: gstack-benchmark, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GBM-H03-002, event_order: 2, skill_id: gstack-benchmark, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GBM-H03-003, event_order: 3, skill_id: gstack-benchmark, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GBM-H03-004, event_order: 4, skill_id: gstack-benchmark, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GMM-H03-001, event_order: 1, skill_id: gstack-benchmark-models, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GMM-H03-002, event_order: 2, skill_id: gstack-benchmark-models, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GMM-H03-003, event_order: 3, skill_id: gstack-benchmark-models, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GMM-H03-004, event_order: 4, skill_id: gstack-benchmark-models, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GUP-H03-001, event_order: 1, skill_id: gstack-upgrade, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GUP-H03-002, event_order: 2, skill_id: gstack-upgrade, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GUP-H03-003, event_order: 3, skill_id: gstack-upgrade, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GUP-H03-004, event_order: 4, skill_id: gstack-upgrade, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIC-H03-001, event_order: 1, skill_id: gstack-ios-clean, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIC-H03-002, event_order: 2, skill_id: gstack-ios-clean, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-GIC-H03-003, event_order: 3, skill_id: gstack-ios-clean, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIC-H03-004, event_order: 4, skill_id: gstack-ios-clean, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}

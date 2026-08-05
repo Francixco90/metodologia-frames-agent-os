@@ -1,0 +1,27 @@
+case_id: ios-clean-positive-01
+description: >
+  Plan válido de remoción de un paquete de instrumentación de debug desde un
+  SwiftPM manifest. La skill audita referencias (imports, bloques `#if DEBUG`,
+  archivos generados), presenta el inventario al usuario, pide confirmación
+  puerta por puerta, y solo entonces ejecuta los edits y verifica el build
+  de Release sin el paquete.
+invocation:
+  skill: gstack-ios-clean
+  input:
+    package_swift: Package.swift
+    debug_module_name: DebugBridge
+    app_source_dir: Sources/App
+  user_confirmation: required_per_item
+expected_behavior:
+  - audit_imports_and_debug_blocks_before_editing
+  - parse_package_swift_for_debug_dependency
+  - present_inventory_to_user
+  - request_explicit_per_item_confirmation
+  - strip_import_and_if_debug_block_preserving_surrounding_code
+  - remove_package_entry_and_target_references_from_manifest
+  - delete_orphan_generated_files
+  - run_release_build_to_verify
+  - grep_clean_for_debug_module_symbols
+  - no_edit_without_confirmation
+  - no_force_push_no_amend_no_spm_cache_deletion
+valid: true
