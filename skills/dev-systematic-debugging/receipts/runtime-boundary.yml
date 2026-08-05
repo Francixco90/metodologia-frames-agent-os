@@ -1,0 +1,4 @@
+skill_id: dev-systematic-debugging
+version: 0.1.0
+network_allowed: false
+execution_boundary: requires_user_confirmation
