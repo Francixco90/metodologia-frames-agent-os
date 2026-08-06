@@ -788,6 +788,7 @@
   },
   {
     "id": "dev-subagent-driven-development",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-subagent-driven-development/scripts/check-skill.mjs"
