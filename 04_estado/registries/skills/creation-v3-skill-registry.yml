@@ -168,11 +168,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-slideshow/scripts/check-skill.mjs]
   - skill_id: content-os-general-video
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: bcc10954a261000eadaa615477ada5600edd11c797d04bae100c07ddae109995
-    package_manifest_sha256: ac373e835b3cca90571573a4761788c016f2741e470af85a50e2ad5c422a5f27
+    content_sha256: e995664a0923b4e3bd9ca9ff2637c98dce769099fae5397f190b87174e7226ab
+    package_manifest_sha256: fa289558704ddab22834d72e41cc2dab04fd825d7057b5ffd25575eab66849fe
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1743,6 +1743,7 @@ events:
   - {event_id: EVT-SKL-CGV-H03-002, event_order: 2, skill_id: content-os-general-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CGV-H03-003, event_order: 3, skill_id: content-os-general-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CGV-H03-004, event_order: 4, skill_id: content-os-general-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CGV-H03-005, event_order: 5, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CRB-H03-001, event_order: 1, skill_id: content-os-remotion-bridge, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

@@ -112,6 +112,7 @@
   },
   {
     "id": "content-os-general-video",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-general-video/scripts/check-skill.mjs"
