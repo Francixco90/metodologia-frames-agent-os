@@ -6,6 +6,21 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
 
 ## 2026-08 — Atemporal + simplicity lift
 
+- **Fase 7 phase 3** — continued `.md` 10× lift on the quick-win band
+  (1201–1299 words). **5 more advisory skills cleared** (11/47 total):
+  `dev-plan-ceo-review` (1209→1176, operator-confirmation + coverage_gap
+  restatement dropped), `dev-document-release` (1213→1177, anti-skip
+  restatement tightened + coverage_gap restatement dropped),
+  `design-threejs-r3f` (1218→1171, intro fail-closed recap dropped —
+  duplicated in §fail-closed / coverage_gap), `dev-document-generate`
+  (1218→1189, duplicate provenance line + coverage_gap restatement dropped),
+  `dev-health` (1240→1189, intro premise restatement + coverage_gap
+  restatement dropped). Each underwent the full hash-bound cascade
+  (0.1.0→0.2.0 in 4 places + both sha256 recomputed + 5th revision event
+  `EVT-SKL-{PCR,DRL,TRF,DGN,HLT}-H03-005`). `verify:skills` PASS (152 H03 +
+  11 v2, 0 orphans). md-budgets advisory 43→38, enforce_violations=0.
+  Gates green: check:repo, G_INBOX PASS. **Remaining 38 advisory** as
+  coverage_gap worklist (phased remediation continues).
 - **Fase 7 phase 2** — continued `.md` 10× lift on the quick-win band
   (1201–1299 words). **3 more advisory skills cleared** (6/47 total):
   `design-framer-motion` (1261→1191, intro fail-closed recap dropped —
