@@ -1,7 +1,7 @@
 ---
 name: design-compose-motion
 description: This skill should be used when the user needs Jetpack Compose / Compose Multiplatform UI animations — animate*AsState for single-value state-driven motion, AnimatedContent for layout swaps with ContentTransform, AnimatedVisibility for mount/unmount enter-exit, updateTransition for coordinated multi-property transitions, SharedTransitionLayout for hero/shared element transitions, and gesture-driven animation via draggable + animateTo. It produces production-ready Compose animation snippets, specs, and wiring evaluated locally with no network, no CLI, no publication.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -38,143 +38,19 @@ Cuándo Compose native vs Lottie/Rive: Compose native para UI interactiva ligada
 
 Regla: subir la escalera solo cuando hace falta. `animate*AsState` cubre el 70% de los casos. Recurrir a `Animatable` solo cuando se necesita interrumpir, encadenar, leer velocidad o hacer decay. Si el entorno no tiene runtime Compose, marcar coverage_gap y describir la capability — no auto-ejecutar gradle.
 
-## Cómo
+## Receta — router
 
-### animate*AsState — valor único sobre el tiempo
+Full Kotlin snippets + specs para cada API lives in `references/compose-motion-receta.md` (governed, hash-bound). Load the receta antes de generar código.
 
-```kotlin
-val targetAlpha = if (visible) 1f else 0f
-val alpha by animateFloatAsState(
-    targetValue = targetAlpha,
-    animationSpec = spring(stiffness = Spring.StiffnessMedium),
-    label = "alpha",
-)
-Box(modifier = Modifier.alpha(alpha))
-```
-
-`label` aparece en Layout Inspector / Animation Preview — siempre setearlo. Variantes: `animateDpAsState`, `animateColorAsState`, `animateOffsetAsState`, `animateIntOffsetAsState`, `animateSizeAsState`, `animateRectAsState`, `animateIntAsState`, y `animateValueAsState` genérico para tipos custom vía `TwoWayConverter`.
-
-Specs:
-
-- `spring(dampingRatio, stiffness)`: físicas. Ignora `durationMillis`. `StiffnessMedium` 1500 (UI snap), `StiffnessMediumLow` 700 (modal/drawer), `StiffnessLow` 400 (bouncy reveal), `StiffnessHigh` 10000 (drag follow 1:1). `DampingRatioNoBouncy` 1.0 (sin overshoot), `DampingRatioLowBouncy` 0.75, `DampingRatioMediumBouncy` 0.5, `DampingRatioHighBouncy` 0.2.
-- `tween(durationMillis, easing)`: duración determinista. Easings: `LinearOutSlowInEasing` (enter), `FastOutLinearInEasing` (exit), `FastOutSlowInEasing` (standard). El exit más corto y simple que el enter (150ms fade vs 300ms slide+fade).
-- `snap()`: instantáneo — usar cuando reduced-motion está activo.
-- `keyframes` / `repeatable` / `infiniteRepeatable` para casos específicos.
-
-`finishMode`: en `Animatable.animateTo` controla comportamiento al interrumpir (`FinishModeJumpToEnd` vs `RepeatMode`). No aplica a `animate*AsState`.
-
-### AnimatedContent — intercambio con ContentTransform
-
-```kotlin
-AnimatedContent(
-    targetState = currentTab,
-    transitionSpec = {
-        (slideInHorizontally { it } + fadeIn()) togetherWith
-            (slideOutHorizontally { -it } + fadeOut())
-    },
-    label = "tabs",
-) { tab ->
-    TabContent(tab)
-}
-```
-
-`togetherWith` corre enter y exit en paralelo (ContentTransform). `slideIntoContainer` / `slideOutOfContainer` variantes que respetan dirección y tamaño del contenedor. Combinar con `+`: `fadeIn() + slideInHorizontally()`. Si `targetState` no cambia identidad, no dispara transición. `SizeTransform(clip = false)` controla cómo el contenedor redimensiona entre contenidos.
-
-### AnimatedVisibility — mount/unmount con enter/exit
-
-```kotlin
-AnimatedVisibility(
-    visible = expanded,
-    enter = slideInVertically(initialOffsetY = { -it }) + fadeIn(),
-    exit = slideOutVertically(targetOffsetY = { -it }) + fadeOut(animationSpec = tween(150)),
-) {
-    Panel()
-}
-```
-
-Enter: `fadeIn`, `slideIn` (Horizontally/Vertically), `scaleIn`, `expandIn` (Vertically/Horizontally), `slideIntoContainer`. Exit: `fadeOut`, `slideOut`, `scaleOut`, `shrinkOut` (Vertically/Horizontally), `slideOutOfContainer`. Combinar con `+`. El contenido solo corre mientras visible O animando — seguro montar hijos costosos dentro. El exit más sutil que el enter.
-
-### updateTransition — multi-propiedad coordinada
-
-```kotlin
-val transition = updateTransition(targetState = expanded, label = "expand")
-val width by transition.animateDp(label = "width") { if (it) 300.dp else 100.dp }
-val color by transition.animateColor(label = "color") { if (it) Color.Blue else Color.Gray }
-val corner by transition.animateDp(label = "corner") { if (it) 24.dp else 8.dp }
-
-Box(Modifier.width(width).background(color, RoundedCornerShape(corner)))
-```
-
-Varias propiedades animadas sobre el mismo estado; todos los hijos comparten la misma timeline, terminan en sincronía. Cada `animate*` acepta su propio `transitionSpec` lambda para tuning por-propiedad. Definir `TransitionStates` como enum/sela class para branches claras. Sin branch de salida (AnimatedVisibility sin exit), la entrada no tiene contrapartida — declarar ambos.
-
-### SharedTransitionLayout — hero animations (Compose 1.7+, experimental)
-
-```kotlin
-SharedTransitionLayout {
-    AnimatedContent(targetState = currentScreen, label = "nav") { screen ->
-        when (screen) {
-            Screen.List -> ListScreen(
-                sharedTransitionScope = this@SharedTransitionLayout,
-                animatedVisibilityScope = this@AnimatedContent,
-            )
-            is Screen.Detail -> DetailScreen(
-                item = screen.item,
-                sharedTransitionScope = this@SharedTransitionLayout,
-                animatedVisibilityScope = this@AnimatedContent,
-            )
-        }
-    }
-}
-
-// Dentro de ListScreen, sobre la imagen del card:
-with(sharedTransitionScope) {
-    Image(
-        painter = painter,
-        contentDescription = null,
-        modifier = Modifier.sharedElement(
-            state = rememberSharedContentState(key = "hero-${item.id}"),
-            animatedVisibilityScope = animatedVisibilityScope,
-        ),
-    )
-}
-```
-
-Dos scopes se pasan abajo: `SharedTransitionScope` (donde vive la extensión `Modifier.sharedElement`) y `AnimatedVisibilityScope` (contexto de visibilidad que dispara la transición). Los `key` de `rememberSharedContentState` DEBEN coincidir entre pantallas o no dispara animación. La API es experimental — verificar `@OptIn(ExperimentalSharedTransitionApi::class)`.
-
-### Spring y tween — specs opinadas
-
-| Uso                                    | Spec                                                                                        |
-| -------------------------------------- | ------------------------------------------------------------------------------------------- |
-| UI snap (modal, drawer, tab)           | `spring(stiffness = Spring.StiffnessMediumLow, dampingRatio = Spring.DampingRatioNoBouncy)` |
-| Tactile (button press release, toggle) | `spring(stiffness = Spring.StiffnessMedium, dampingRatio = 0.85f)`                          |
-| Bouncy reveal (toast, FAB, success)    | `spring(stiffness = Spring.StiffnessLow, dampingRatio = Spring.DampingRatioMediumBouncy)`   |
-| Drag follow (1:1 finger tracking)      | `spring(stiffness = Spring.StiffnessHigh, dampingRatio = 1f)`                               |
-| Deterministic duration                 | `tween(durationMillis, easing = FastOutSlowInEasing)`                                       |
-
-Stiffness: `VeryLow` 200, `Low` 400, `MediumLow` 700, `Medium` 1500, `High` 10000. Mayor = más rápido el settle. Damping: `HighBouncy` 0.2, `MediumBouncy` 0.5, `LowBouncy` 0.75, `NoBouncy` 1.0. Bajo 1.0 = overshoot. Si se necesita duración determinista, usar `tween` (spring ignora `durationMillis`).
-
-### Gestures — drag con animación
-
-```kotlin
-val offsetX = remember { Animatable(0f) }
-Box(
-    Modifier
-        .draggable(
-            orientation = Orientation.Horizontal,
-            state = rememberDraggableState { delta -> },
-            onDragStopped = { velocity ->
-                scope.launch { offsetX.animateTo(0f, spring(dampingRatio = Spring.DampingRatioMediumBouncy)) }
-            },
-        )
-        .offset { IntOffset(offsetX.value.roundToInt(), 0) }
-)
-```
-
-Para snap points: `Modifier.anchoredDraggable(state)` (Compose 1.6+, reemplaza `swipeable`). Para fling: `Animatable.animateDecay`. Para pinch/pan/rotate: `Modifier.transformable(state)`. El drag 1:1 usa `StiffnessHigh` + damping 1.0 (sin overshoot, sigue el dedo).
-
-### Sin tooling vendor
-
-No `gradle`, no `./gradlew`, no `${CLAUDE_PLUGIN_ROOT}`, no scripts externos. La skill describe la capability en prosa; el agente genera código dentro del deliverable solicitado. Ejecutar cualquier comando externo requiere confirmación explícita del usuario (fail-closed). Si no hay runtime Compose disponible en el proyecto destino, marcar coverage_gap y describir la capability — no auto-ejecutar gradle, no auto-agregar dependencias al `build.gradle.kts`.
+| API                          | Where en receta                                            | Notas                                                                              |
+| ---------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `animate*AsState`            | `references/compose-motion-receta.md` § animate*AsState   | Valor único sobre el tiempo. Variantes + specs (spring/tween/snap/keyframes)       |
+| `AnimatedContent`            | `references/compose-motion-receta.md` § AnimatedContent   | Intercambio con `ContentTransform` (`togetherWith`), `slideIntoContainer`         |
+| `AnimatedVisibility`         | `references/compose-motion-receta.md` § AnimatedVisibility | mount/unmount enter-exit. Enter + exit combinados con `+`                          |
+| `updateTransition`           | `references/compose-motion-receta.md` § updateTransition  | Multi-propiedad coordinada sobre un mismo estado; misma timeline                   |
+| `SharedTransitionLayout`     | `references/compose-motion-receta.md` § SharedTransition | Hero animation (Compose 1.7+, experimental). Keys deben coincidir entre pantallas   |
+| Spring/tween specs opinados  | `references/compose-motion-receta.md` § Spring y tween   | Tabla UI snap/tactile/bouncy/drag/deterministic + stiffness/damping values          |
+| Gestures (drag)              | `references/compose-motion-receta.md` § Gestures         | `draggable` + `Animatable.animateTo`, `anchoredDraggable`, `animateDecay`, `transformable` |
 
 ## Do Not
 

@@ -414,6 +414,7 @@
   },
   {
     "id": "design-compose-motion",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-compose-motion/scripts/check-skill.mjs"

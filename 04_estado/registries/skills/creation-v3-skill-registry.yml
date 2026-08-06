@@ -630,11 +630,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-compose-graphics/scripts/check-skill.mjs]
   - skill_id: design-compose-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 128d818db8ff2e90b423f4d1311dca5e285d1bc9b1a7d5dd40a0f60f2c413acd
-    package_manifest_sha256: 1ff62262949b932d9ddcccbe5b6a81330007e08d72062b91d9b4d2d23429a9f0
+    content_sha256: ee2ec7ab607168af0f4798c5bb8f7147eaf72e531ca51dc987e890ecf63f94a8
+    package_manifest_sha256: c8ec10ef5edefbc2610d23c43f0872e46af4c585ee0f6a9e87a1037db644941f
     lineage_ref: skills/design-compose-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-compose-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1919,6 +1919,7 @@ events:
   - {event_id: EVT-SKL-CMT-H03-002, event_order: 2, skill_id: design-compose-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMT-H03-003, event_order: 3, skill_id: design-compose-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMT-H03-004, event_order: 4, skill_id: design-compose-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMT-H03-005, event_order: 5, skill_id: design-compose-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-MOP-H03-001, event_order: 1, skill_id: design-mobile-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MOP-H03-002, event_order: 2, skill_id: design-mobile-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MOP-H03-003, event_order: 3, skill_id: design-mobile-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
