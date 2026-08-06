@@ -1,0 +1,50 @@
+# docs-budget-policy.yml — default .md text budgets (ADR 0027, plan D7).
+#
+# Extends the per-file ledger budgets (58 editable_markdown_per_file) and the
+# V2 SKILL.md ≤1200-word rule (adding-artifacts.md § Skill) to the ~459 .md
+# files without an explicit budget. Respects existing budgets where they exist.
+# Owner: governance. [CONFIG]
+
+schema_version: docs-budget-policy-v1
+manifest_id: docs-budget-policy-v1
+
+# Hard caps. Violations are enforced by `pnpm check-md-budgets` unless the
+# surface is marked `mode: report` (phased remediation, coverage_gap).
+budgets:
+  - surface: SKILL.md
+    match: "03_artefactos/skills/**/SKILL.md"
+    exclude: "03_artefactos/skills/vendor/**"
+    max_words: 1200
+    max_lines: 300
+    mode: report  # 15+ pre-existing over-budget; Fase 7 split remediation
+    rationale: "Progressive-disclosure budget (adding-artifacts.md § Skill)"
+  - surface: prompt-spec.md
+    match: "**/prompt-spec.md"
+    max_lines: 400
+    mode: enforce
+    rationale: "Spec density ceiling"
+  - surface: authored-governance-md
+    match: "02_proceso/governance/*.md"
+    max_lines: 400
+    mode: enforce
+    rationale: "Governance doc density ceiling"
+  - surface: authored-decisions-md
+    match: "01_intencion/adrs/*.md"
+    max_lines: 120
+    mode: enforce
+    rationale: "ADR density ceiling (ADR 0027 = 50 lines norm)"
+  - surface: harness-creator-references
+    match: "03_artefactos/skills/harness-creator/references/*.md"
+    max_lines: 300
+    mode: enforce
+    rationale: "Reference doc density ceiling"
+
+# Working docs (CONTEXT.md, TASK.md, CLAUDE.md) are gitignored local cabinas —
+# excluded from versioned budget enforcement. Their temporal trace lives in
+# changelog.md (append-only). [CONFIG]
+exclusions:
+  - "CONTEXT.md"
+  - "TASK.md"
+  - "CLAUDE.md"
+  - "**/node_modules/**"
+  - "03_artefactos/skills/vendor/**"

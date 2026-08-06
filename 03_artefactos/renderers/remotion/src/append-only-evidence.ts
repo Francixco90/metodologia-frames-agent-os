@@ -4,6 +4,10 @@ import {dirname, resolve} from 'node:path';
 
 import {z} from 'zod';
 
+// Hash-bound literal: `createdAt: z.literal('2026-07-19T12:00:00.000Z')` is
+// sealed to the append-only-evidence chain hash. ADR 0027 excepciones:
+// preserve inline; do NOT extract to `deterministic-epoch.ts`.
+
 const sha256 = (value: string): string => createHash('sha256').update(value).digest('hex');
 const sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const commitSchema = z.string().regex(/^[a-f0-9]{40}$/u);

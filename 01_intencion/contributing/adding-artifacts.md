@@ -17,6 +17,8 @@ Rutina = editar un rol existente:
 
 Registro append-only, pero el validador y el recibo de licencia llevan allowlists explicitos. No basta con crear archivos + entrada. [CÓDIGO]
 
+**Atemporal (ADR 0027)**: el nombre del artefacto no lleva fecha ni versión temporal. El sufijo `-vN` es **identidad de contrato** (no versión temporal); evoluciona vía `supersedes` append-only + `z.discriminatedUnion` (patrón canónico en `02_proceso/core/contracts/schemas.ts:297-319`). La única traza temporal permitida en nombres vive bajo `04_estado/receipts/**` y `04_estado/tasks/**` (gate G21 `check:atemporal`). [CONFIG]
+
 1. Crea `skills/<skill_id>/` con `SKILL.md` (frontmatter: `name`, `description` inicia con "This skill should be used when", `license: LicenseRef-MetodologIA-Internal`, `metadata.lifecycle_state: active`, `metadata.execution_scope`), `LINEAGE.yml` (`content_origin` inicia con `locally_authored`, `publication_authority: false`), `fixtures/positive/*.yml`, `fixtures/negative/*.yml`. Cuerpo ≤ 1200 palabras, sin locators absolutos. [CONFIG]
 2. Calcula `content_sha256` (de `SKILL.md`) y `package_manifest_sha256` (`sha256_of_sorted_sha256_double_space_relative_path_lines` sobre el dir completo). [CÓDIGO]
 3. Append una entrada a `registries/skills/skill-registry.yml` (append-only; nunca mutar entradas existentes) + 4 eventos lifecycle `null→candidate→quarantined→evaluated→active` (el 3er actor es `skill-foundry-v2-verifier`). [CONFIG]
@@ -40,6 +42,8 @@ Owners: `lead` (`project.yml`, `registries/projects/**`), `sources` (`source-bun
 ## Contrato (core/contracts)
 
 Patron Zod: `z.strictObject` + `superRefine` para invariantes, importa primitivas de `./primitives.ts`, exporta `Schema` y `Type = z.infer<typeof Schema>`. [CÓDIGO]
+
+`-vN` = identidad de contrato (NO versión temporal). Evoluciona vía `supersedes` append-only + `z.discriminatedUnion`; nunca renombres ni sobrescribas un contrato `-vN` existente (rompe hashes e imports). [CONFIG]
 
 1. Crea `core/contracts/<nombre>-vN.ts`.
 2. Reexporta desde `core/contracts/index.ts` (NO repitas el descuido de `content-v2.ts`, que falta en el barrel y obliga a imports profundos). [CÓDIGO]

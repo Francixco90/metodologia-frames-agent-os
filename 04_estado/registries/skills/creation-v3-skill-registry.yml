@@ -1136,22 +1136,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs]
   - skill_id: dev-executing-plans
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 1fd8ce908c88510c22d0ebb0ce6bc81a8fb860e0e75a035278df58b8090a2820
-    package_manifest_sha256: b1b805e5920e1e75667c3a6f5a84896a18c6a8dfa805f071f609fda475bf52c1
+    content_sha256: da59482a563993a1a2a2fb4898a2bc5ade7c5fede24e0c1ad3f08b4a59aefb09
+    package_manifest_sha256: b3a2a778fd5f86eb926b94f8f0a747c8da0653c128e31b8b5adfa40ce105c71f
     lineage_ref: skills/dev-executing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-executing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-executing-plans/scripts/check-skill.mjs]
   - skill_id: dev-writing-plans
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 14b1490d016018c1e3e0e4091a3ec23eb0fb98d9651b49809d8bc463043031a8
-    package_manifest_sha256: f2ccc3811165676cab1466478c08f9b1293c2284e0805db8204593f5e8519204
+    content_sha256: c86d54482b5c5975cd141dd3dab8a7460fd2d242f33a56b8d4c94c1bba8294af
+    package_manifest_sha256: 565b429c363d9e37d9f8bd4377ca02c541fe3a3261f974e1645cd79da4217e8d
     lineage_ref: skills/dev-writing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1235,11 +1235,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-verification-before-completion/scripts/check-skill.mjs]
   - skill_id: dev-writing-skills
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: bed8166eb6759b28149532513c52060b04684c4eec593fa440d887f71991c7c4
-    package_manifest_sha256: 77333ba6534c57cacd15bd68578fab9a6f46b41b508aa5510a238fc51f64077d
+    content_sha256: 511f2e25cf747bed76fa467829f73b4d2b4fd475d06c585e79ec4a4a58046b40
+    package_manifest_sha256: 7196f760aad5abe78e9f24a0c6e38b0b9fdaa0f9098c4eefe4c5d1e996c8850d
     lineage_ref: skills/dev-writing-skills/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-skills/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2092,10 +2092,12 @@ events:
   - {event_id: EVT-SKL-EXE-H03-002, event_order: 2, skill_id: dev-executing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXE-H03-003, event_order: 3, skill_id: dev-executing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-EXE-H03-004, event_order: 4, skill_id: dev-executing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXE-H03-005, event_order: 5, skill_id: dev-executing-plans, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, lineage ref moved to top"}
   - {event_id: EVT-SKL-WPL-H03-001, event_order: 1, skill_id: dev-writing-plans, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WPL-H03-002, event_order: 2, skill_id: dev-writing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WPL-H03-003, event_order: 3, skill_id: dev-writing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WPL-H03-004, event_order: 4, skill_id: dev-writing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WPL-H03-005, event_order: 5, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, fixtures renamed example.md to descriptive .yml"}
   - {event_id: EVT-SKL-FNB-H03-001, event_order: 1, skill_id: dev-finishing-a-development-branch, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-002, event_order: 2, skill_id: dev-finishing-a-development-branch, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-003, event_order: 3, skill_id: dev-finishing-a-development-branch, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2128,6 +2130,7 @@ events:
   - {event_id: EVT-SKL-WSK-H03-002, event_order: 2, skill_id: dev-writing-skills, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WSK-H03-003, event_order: 3, skill_id: dev-writing-skills, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WSK-H03-004, event_order: 4, skill_id: dev-writing-skills, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSK-H03-005, event_order: 5, skill_id: dev-writing-skills, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, redundancy eliminated"}
   - {event_id: EVT-SKL-PNY-H03-001, event_order: 1, skill_id: dev-ponytail, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNY-H03-002, event_order: 2, skill_id: dev-ponytail, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNY-H03-003, event_order: 3, skill_id: dev-ponytail, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

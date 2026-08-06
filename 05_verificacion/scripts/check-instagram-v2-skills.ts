@@ -188,6 +188,9 @@ for (const skill of skills) {
   ) {
     errors.push(`SKL-V2-003 ${skill.id}: frontmatter contract mismatch`);
   }
+  // SKL-V2-004: fail-strict 1200-word cap for the 9 V2 contract skills.
+  // Universal report-mode coverage for all 163 non-vendor SKILL.md lives in
+  // check-md-budgets.ts (docs-budget-policy.yml surface SKILL.md, mode: report).
   if (text.split(/\s+/u).length > 1_200) {
     errors.push(`SKL-V2-004 ${skill.id}: progressive-disclosure budget exceeded`);
   }

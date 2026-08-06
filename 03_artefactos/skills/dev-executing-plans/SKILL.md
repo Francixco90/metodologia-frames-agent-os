@@ -1,7 +1,7 @@
 ---
 name: dev-executing-plans
 description: This skill should be used when el operador tiene un plan de implementación escrito y debe ejecutarlo paso a paso en una sesión con checkpoints de revisión tras cada paso, gestionando bloqueadores y escalando en lugar de adivinar — sin auto-ejecutar commits, deploys ni operaciones irreversibles sin confirmación explícita del operador.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -10,26 +10,26 @@ metadata:
   model_agnostic: true
 ---
 
+Derivada de superpowers/executing-plans (obra/superpowers, MIT).
+
 # Dev Executing Plans — ejecutar un plan escrito, paso a paso, con checkpoints
 
-El rol aquí es el de un ingeniero que recibe un plan de implementación ya escrito
-y lo ejecuta en orden, un paso a la vez, con un checkpoint de revisión tras cada
+El rol es un ingeniero que recibe un plan de implementación ya escrito y lo
+ejecuta en orden, un paso a la vez, con un checkpoint de revisión tras cada
 paso. Ejecutar un plan no es volcarse sobre el teclado: es cargar el plan,
-revisarlo críticamente, ejecutar cada tarea siguiendo sus pasos exactos, correr
-las verificaciones que el plan pida y reportar al terminar — deteniéndose en el
-primer bloqueador en lugar de forzar la marcha. Este skill recorre el plan en
-fases y entrega un reporte de ejecución en prosa, revisable por el operador. No
-auto-ejecuta commits ni deploys. No publicaciones. No operaciones irreversibles
-sin confirmación explícita.
+revisarlo críticamente, seguir cada subpaso exacto, correr las verificaciones
+que el plan pida y reportar al terminar — deteniéndose en el primer bloqueador
+en lugar de forzar la marcha. Entrega un reporte de ejecución en prosa,
+revisable por el operador. No auto-ejecuta commits, deploys ni operaciones
+irreversibles sin confirmación explícita.
 
-La premisa es simple: un plan que se ejecuta sin checkpoints se descontrola. "Ya
-hice el paso" no sirve — se marca el paso en progreso, se sigue cada subpaso
-exacto, se corren las verificaciones y se marca completado solo con evidencia—;
-"me trabé, sigo igual" no sirve — se detiene la ejecución y se escala el
-bloqueador en lugar de adivinar—; "creo que el plan dice X" no sirve — se sigue
-el plan como está escrito y, si una instrucción no se entiende, se pregunta. No
-se adivina: si no se sabe algo, se dice y se escala, o se lee el contexto
-primero.
+Un plan sin checkpoints se descontrola. "Ya hice el paso" no sirve — se marca en
+progreso, se siguen los subpasos exactos, se corren las verificaciones y se
+marca completado solo con evidencia; "me trabé, sigo igual" no sirve — se
+detiene y se escala el bloqueador en lugar de adivinar; "creo que el plan dice
+X" no sirve — se sigue el plan como está escrito y, si una instrucción no se
+entiende, se pregunta. No se adivina: si no se sabe, se dice y se escala, o se
+lee el contexto primero.
 
 ## Cuándo usar
 
@@ -125,15 +125,14 @@ Este skill es **fail-closed** y de **local-evaluation**:
 
 - NO ejecuta git, commits, pushes ni merges. Toda operación git queda detrás
   de confirmación explícita del operador.
-- NO ejecuta deploys, publicaciones ni operaciones irreversibles. Todo gate de
-  ejecución irreversible queda detrás de confirmación explícita del operador.
+- NO ejecuta deploys, publicaciones ni operaciones irreversibles. Todo gate
+  irreversible queda detrás de confirmación explícita del operador.
 - NO abre conexiones de red. No publica. No despliega.
 - NO invoca tooling de vendor (`superpowers`, sub-skills de vendor, sesiones,
   analytics, telemetría, hooks). Esos artefactos del referenciador se
   descartaron en la adaptación.
 - NO auto-arranca installs, dependencias ni comandos de exploración con side
-  effects. Todo gate de ejecución queda detrás de confirmación explícita del
-  operador.
+  effects. Todo gate queda tras confirmación explícita del operador.
 - Si un paso no puede completarse por falta de contexto o por un bloqueador, se
   marca `coverage_gap` y se detiene — no se infiere ni se sustituye con una
   pulida conjetura.
@@ -149,5 +148,3 @@ operador.
   y completitud del fixture negativo.
 - Si no hay plan accesible (no hay archivo de plan, no hay pasos declarados),
   se emite `coverage_gap` en lugar de fabricar una ejecución genérica.
-
-Derivada de superpowers/executing-plans (obra/superpowers, MIT).

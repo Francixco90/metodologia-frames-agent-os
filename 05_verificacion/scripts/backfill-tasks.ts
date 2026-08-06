@@ -30,14 +30,12 @@ import {
   type TaskCounter,
   bumpCounter,
 } from './lib/mint-task-id.ts';
+import {BACKFILL_EPOCH as BACKFILL_TIMESTAMP} from './lib/deterministic-epoch.ts';
 
 const root = process.cwd();
 const TASK_MD = resolve(root, 'TASK.md');
 const TASKS_DIR = resolve(root, '04_estado/tasks');
 const COUNTER_PATH = resolve(root, '04_estado/registries/tasks/task-counter.yml');
-
-// Fixed deterministic timestamps for backfilled historical tasks. [CONFIG]
-const BACKFILL_TIMESTAMP = '2026-08-02T00:00:00+00:00';
 
 type Section = 'INTAKE' | 'ESPECIFICADO' | 'COMPILADO' | 'ENTREGADO' | 'BLOQUEADO';
 

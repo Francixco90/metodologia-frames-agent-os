@@ -1,330 +1,62 @@
-import {createHash} from 'node:crypto';
-import {execFileSync} from 'node:child_process';
-import {type Dirent, existsSync, lstatSync, readdirSync, readFileSync, readlinkSync, writeFileSync} from 'node:fs';
+// generate-file-disposition-ledger.ts — canonical file-disposition ledger core.
+//
+// Builds, validates, and projects the V2 baseline disposition ledger. The
+// separable concerns (git walking, path normalization, ownership resolution,
+// generator refs, disposition decision, zod schemas, markdown projection) live
+// in `./ledger/*.ts`. This module retains the dense cohesive core: buildLedger,
+// budgetMetricsFor, validateDispositionLedger, and the authored-surface probe.
+//
+// D8 carve-out: budgetMetricsFor is a single ~210-line computation over shared
+// intermediates (currentMetrics, currentPaths, v2ClosurePaths, rolling
+// baselines). Splitting it per budget surface would either duplicate those maps
+// or thread a context object through six leaf functions — flattening one
+// cohesive computation rather than decoupling concerns. Kept intact as a
+// documented carve-out; flagged coverage_gap against the 100-line norm.
+// [CONFIG]
+import {existsSync, readFileSync, realpathSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-
 import {parse, stringify} from 'yaml';
-import {z} from 'zod';
 
 import {
   artifactClasses,
   BASELINE_COMMIT,
   BASELINE_FILE_COUNT,
   classifyArtifact,
-  type Disposition,
   dispositions,
   generatedPaths,
-  generatorSourcePaths,
   generatedTemplateBindings,
   isHistoricalEvidence,
   isRuntimeGeneratedEvidence,
-  ledgerProjectionPaths,
   type LedgerEntry,
-  type OwnerId,
+  ledgerProjectionPaths,
   ownerIds,
-  type OwnerResolution,
-  quarantinePrefix,
-  supersessionByPath,
-  type TextMetrics,
   V2_CLOSURE_COMMIT,
 } from './lib/file-disposition-policy-v3.ts';
+import {
+  baselineBlobs,
+  metricsFor,
+  parseGitCatFileBatch,
+  roundedRatio,
+  sha256,
+  trackedPathsAt,
+} from './ledger/git-walker.ts';
+import {versionablePaths} from './ledger/path-utils.ts';
+import {buildOwnerResolver} from './ledger/ownership.ts';
+import {currentBytesFor, decisionFor, isAuthoredEligible, isGeneratedProjection} from './ledger/decision.ts';
+import {ledgerSchema} from './ledger/schemas.ts';
+import {markdownFor} from './ledger/markdown.ts';
 
-export {
-  BASELINE_COMMIT,
-  BASELINE_FILE_COUNT,
-  classifyArtifact,
-  isHistoricalEvidence,
-  V2_CLOSURE_COMMIT,
-};
+export {BASELINE_COMMIT, BASELINE_FILE_COUNT, classifyArtifact, isHistoricalEvidence, V2_CLOSURE_COMMIT};
 export type {LedgerEntry};
-const sha256 = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
-const metricsFor = (bytes: Buffer): TextMetrics => {
-  if (bytes.includes(0)) return {format: 'binary', words: 0, loc: 0};
-  const text = bytes.toString('utf8');
-  const trimmed = text.trim();
-  const physicalLines =
-    text.length === 0
-      ? 0
-      : text.split(/\r\n|\r|\n/u).length - (/(?:\r\n|\r|\n)$/u.test(text) ? 1 : 0);
-  return {
-    format: 'text',
-    words: trimmed.length === 0 ? 0 : trimmed.split(/\s+/u).length,
-    loc: physicalLines,
-  };
-};
-const ratio = (numerator: number, denominator: number): number =>
-  denominator === 0 ? (numerator === 0 ? 1 : Number.POSITIVE_INFINITY) : numerator / denominator;
-const roundedRatio = (numerator: number, denominator: number): number =>
-  Number(ratio(numerator, denominator).toFixed(4));
-const trackedPathsAt = (root: string, commit: string): string[] =>
-  execFileSync('git', ['ls-tree', '-r', '--name-only', commit], {
-    cwd: root,
-    encoding: 'utf8',
-  })
-    .split('\n')
-    .filter(Boolean)
-    .sort();
-export const parseGitCatFileBatch = (output: Buffer, objectIds: readonly string[]): Buffer[] => {
-  let offset = 0;
-  const objects = objectIds.map((objectId) => {
-    const headerEnd = output.indexOf(0x0a, offset);
-    if (headerEnd < 0) throw new Error(`Git batch header missing for ${objectId}`);
-    const header = output.subarray(offset, headerEnd).toString('ascii');
-    const match = /^([0-9a-f]{40,64}) blob ([0-9]+)$/u.exec(header);
-    if (match?.[1] !== objectId)
-      throw new Error(`Git batch framing mismatch for ${objectId}: ${header}`);
-    const size = Number(match[2]);
-    const start = headerEnd + 1;
-    const end = start + size;
-    if (!Number.isSafeInteger(size) || end >= output.length || output[end] !== 0x0a) {
-      throw new Error(`Git batch payload framing invalid for ${objectId}`);
-    }
-    offset = end + 1;
-    return output.subarray(start, end);
-  });
-  if (offset !== output.length) throw new Error('Git batch output contains trailing bytes');
-  return objects;
-};
-const baselineBlobs = (root: string) => {
-  const tree = execFileSync('git', ['ls-tree', '-rz', '--full-tree', BASELINE_COMMIT], {cwd: root});
-  const refs = tree
-    .subarray(0, tree.length - (tree.at(-1) === 0 ? 1 : 0))
-    .toString('utf8')
-    .split('\0')
-    .map((entry) => {
-      const match = /^[0-7]+ blob ([0-9a-f]{40,64})\t([\s\S]+)$/u.exec(entry);
-      if (match === null) throw new Error(`Unsupported Git tree entry: ${entry}`);
-      return {objectId: match[1] as string, path: match[2] as string};
-    })
-    .sort(({path: left}, {path: right}) => (left < right ? -1 : left > right ? 1 : 0));
-  const output = execFileSync('git', ['cat-file', '--batch'], {
-    cwd: root,
-    input: `${refs.map(({objectId}) => objectId).join('\n')}\n`,
-    maxBuffer: 256 * 1024 * 1024,
-  });
-  const bytes = parseGitCatFileBatch(
-    output,
-    refs.map(({objectId}) => objectId),
-  );
-  return refs.map((ref, index) => ({...ref, bytes: bytes[index] as Buffer}));
-};
-// NN_slug taxonomy moved files into cardinal buckets (00_inbox … 06_archive) and
-// left retro symlinks at repo root (e.g. `brand -> 03_artefactos/brand`). The
-// disposition policy constants (generatedPaths, generatedTemplateBindings,
-// isGeneratedProjection, isAuthoredEligible, …) are authored in legacy root-
-// relative paths, while `git ls-files` returns the new cardinal tracked paths.
-// Invert the root symlinks so versionable paths are reported in legacy form,
-// keeping the policy constants stable without a per-constant rewrite.
-const legacyPathInversions = (root: string): Array<{link: string; target: string}> => {
-  const inversions: Array<{link: string; target: string}> = [];
-  let entries: Dirent[];
-  try {
-    entries = readdirSync(root, {withFileTypes: true});
-  } catch {
-    return inversions;
-  }
-  for (const entry of entries) {
-    if (!entry.isSymbolicLink()) continue;
-    try {
-      const target = readlinkSync(resolve(root, entry.name));
-      // Only relative in-repo targets that include a path separator map a
-      // cardinal bucket back to a legacy root-relative name.
-      if (!target.startsWith('/') && !target.startsWith('..') && target.includes('/')) {
-        inversions.push({link: entry.name, target});
-      }
-    } catch {
-      /* ignore unreadable symlink */
-    }
-  }
-  inversions.sort((left, right) => right.target.length - left.target.length);
-  return inversions;
-};
-const normalizeToLegacyPath = (
-  path: string,
-  inversions: ReadonlyArray<{link: string; target: string}>,
-): string => {
-  for (const {link, target} of inversions) {
-    if (path === target || path.startsWith(`${target}/`)) {
-      return `${link}${path.slice(target.length)}`;
-    }
-  }
-  return path;
-};
-const versionablePaths = (root: string): string[] => {
-  const inversions = legacyPathInversions(root);
-  return execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
-    cwd: root,
-    encoding: 'utf8',
-  })
-    .split('\0')
-    .filter(
-      (path) =>
-        path.length > 0 &&
-        path !== 'node_modules' &&
-        !path.startsWith('node_modules/') &&
-        existsSync(resolve(root, path)) &&
-        lstatSync(resolve(root, path)).isFile(),
-    )
-    .map((path) => normalizeToLegacyPath(path, inversions))
-    .sort();
-};
-const globPatternToRegExp = (pattern: string): RegExp => {
-  const placeholder = '\u0000';
-  const protectedPattern = pattern.replaceAll('**', placeholder);
-  let expression = '';
-  for (const character of protectedPattern) {
-    if (character === placeholder) expression += '.*';
-    else if (character === '*') expression += '[^/]*';
-    else if (character === '?') expression += '[^/]';
-    else if ('.+^${}()|\\'.includes(character)) expression += `\\${character}`;
-    else expression += character;
-  }
-  return new RegExp(`^${expression}$`, 'u');
-};
-const ownershipManifestSchema = z.object({
-  version: z.literal(1),
-  policy: z.literal('one-writer-per-path'),
-  writers: z.record(z.enum(ownerIds), z.array(z.string().min(1))),
-});
-const buildOwnerResolver = (root: string): ((path: string) => OwnerResolution) => {
-  const manifestPath = resolve(root, 'docs/program/ownership-manifest.yml');
-  const manifest = ownershipManifestSchema.parse(parse(readFileSync(manifestPath, 'utf8')));
-  const routes = Object.entries(manifest.writers).flatMap(([owner, patterns]) =>
-    patterns.map((pattern) => ({
-      owner: owner as OwnerId,
-      pattern,
-      matcher: globPatternToRegExp(pattern),
-    })),
-  );
-  return (path: string): OwnerResolution => {
-    const matches = routes.filter(({matcher}) => matcher.test(path));
-    if (matches.length > 1) {
-      throw new Error(
-        `Ownership collision for ${path}: ${matches.map(({owner, pattern}) => `${owner}:${pattern}`).join(', ')}`,
-      );
-    }
-    const match = matches[0];
-    if (match !== undefined) {
-      return {
-        owner: match.owner,
-        evidence: `docs/program/ownership-manifest.yml:${match.owner}:${match.pattern}`,
-      };
-    }
-    throw new Error(`Ownership unresolved for baseline path ${path}`);
-  };
-};
-const currentBytesFor = (root: string, path: string): Buffer | null => {
-  const currentPath = resolve(root, path);
-  return existsSync(currentPath) && lstatSync(currentPath).isFile()
-    ? readFileSync(currentPath)
-    : null;
-};
-const generatorRefFor = (path: string): string | null => {
-  if (generatorSourcePaths.has(path)) return path;
-  if (path === 'projects/vs-001-source-to-campaign/web/artifact/index.html') {
-    return 'workflows/web/build.ts';
-  }
-  if (path === 'projects/vs-001-source-to-campaign/remotion/07-postproduction-ledger.md') {
-    return 'renderers/remotion/scripts/inspect-renders.ts';
-  }
-  if (
-    path === 'projects/vs-001-source-to-campaign/remotion/04-component-registry.yml' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/05-input-props.json' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/06-render-manifest.yml' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/assets-manifest.yml' ||
-    path === 'registries/components/component-registry.yml'
-  ) {
-    return 'renderers/remotion/scripts/prepare-project.ts';
-  }
-  if (
-    path === 'projects/vs-001-source-to-campaign/remotion/00-source-script.md' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/01-video-spec.yml' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/02-beat-map.yml' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md' ||
-    path === 'projects/vs-001-source-to-campaign/remotion/captions.json'
-  ) {
-    return 'workflows/content/build.ts';
-  }
-  return null;
-};
-const decisionFor = (
-  path: string,
-  byteIdentical: boolean,
-): {
-  decision: Disposition;
-  justification: string;
-  generatorRef: string | null;
-  successorPath: string | null;
-} => {
-  if (isHistoricalEvidence(path)) {
-    return {
-      decision: 'immutable_history',
-      justification:
-        'Historical evidence is excluded from refactoring and must preserve its baseline bytes.',
-      generatorRef: null,
-      successorPath: null,
-    };
-  }
-  if (path.startsWith(quarantinePrefix)) {
-    return {
-      decision: 'quarantined',
-      justification:
-        'The locally authored legacy Stitch wrapper remains audit-only and cannot enter production routing.',
-      generatorRef: null,
-      successorPath: null,
-    };
-  }
-  const successorPath = supersessionByPath.get(path);
-  if (successorPath !== undefined) {
-    return {
-      decision: 'superseded',
-      justification: `A real versioned successor exists at ${successorPath}; lineage remains explicit.`,
-      generatorRef: null,
-      successorPath,
-    };
-  }
-  if (byteIdentical) {
-    return {
-      decision: 'verified_no_change',
-      justification:
-        'Working-tree bytes equal the baseline; no material improvement is claimed for this file.',
-      generatorRef: null,
-      successorPath: null,
-    };
-  }
-  const generatorRef = generatorRefFor(path);
-  if (generatorRef !== null) {
-    return {
-      decision: 'generator_fixed',
-      justification:
-        'The canonical generator changed; derived outputs must be regenerated and verified, never patched as source.',
-      generatorRef,
-      successorPath: null,
-    };
-  }
-  return {
-    decision: 'refactored',
-    justification:
-      'Baseline bytes changed under the resolved owner; compatibility and repository checks are required.',
-    generatorRef: null,
-    successorPath: null,
-  };
-};
-const isGeneratedProjection = (path: string): boolean =>
-  generatedPaths.has(path) ||
-  ledgerProjectionPaths.has(path) ||
-  path.startsWith('brand/generated/') ||
-  /^content\/[^/]+\/generated\//u.test(path) ||
-  isRuntimeGeneratedEvidence(path) ||
-  /^projects\/[^/]+\/artifacts\//u.test(path);
-const isAuthoredEligible = (path: string): boolean =>
-  !isHistoricalEvidence(path) && !isGeneratedProjection(path);
+export {parseGitCatFileBatch};
+
 export interface AuthoredSurfaceMetrics {
   files: number;
   words: number;
   loc: number;
 }
+
 export const measureAuthoredSurface = (root = process.cwd()): AuthoredSurfaceMetrics => {
   const metrics = versionablePaths(root)
     .filter(isAuthoredEligible)
@@ -336,6 +68,7 @@ export const measureAuthoredSurface = (root = process.cwd()): AuthoredSurfaceMet
     loc: metrics.reduce((total, {loc}) => total + loc, 0),
   };
 };
+
 const generatedNotApplicableReason = (path: string): string => {
   if (isRuntimeGeneratedEvidence(path)) {
     return 'Append-only runtime orchestration evidence; hashes and receipts govern it, not an authored template ratio.';
@@ -351,6 +84,7 @@ const generatedNotApplicableReason = (path: string): string => {
   }
   return 'Generated projection without a declared size-comparable template binding.';
 };
+
 const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
   const currentPaths = versionablePaths(root);
   const currentMetrics = new Map(
@@ -365,7 +99,11 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
     // location via retro symlinks (NN_slug taxonomy). currentMetrics is keyed by
     // current git-tracked paths, so fall back to currentBytesFor which resolves
     // the baseline path through any retro symlink. See plan inherited-shimmying-hoare.
-    const current = currentMetrics.get(entry.path) ?? (currentBytesFor(root, entry.path) ? metricsFor(currentBytesFor(root, entry.path) as Buffer) : null);
+    const current =
+      currentMetrics.get(entry.path) ??
+      (currentBytesFor(root, entry.path)
+        ? metricsFor(currentBytesFor(root, entry.path) as Buffer)
+        : null);
     const currentWords = current?.format === 'text' ? current.words : null;
     const maximumWords = entry.initial_words * 2;
     return {
@@ -557,6 +295,7 @@ const budgetMetricsFor = (root: string, entries: LedgerEntry[]) => {
     },
   };
 };
+
 export const buildLedger = (root = process.cwd()) => {
   const blobs = baselineBlobs(root);
   const paths = blobs.map(({path}) => path);
@@ -637,237 +376,9 @@ export const buildLedger = (root = process.cwd()) => {
     entries,
   };
 };
-type Ledger = ReturnType<typeof buildLedger>;
-const nullableNonnegativeInteger = z.number().int().nonnegative().nullable();
-const ledgerEntrySchema = z.strictObject({
-  path: z.string().min(1),
-  artifact_class: z.enum(artifactClasses),
-  initial_sha256: z.string().regex(/^[a-f0-9]{64}$/u),
-  initial_format: z.enum(['text', 'binary']),
-  initial_words: z.number().int().nonnegative(),
-  initial_loc: z.number().int().nonnegative(),
-  resolved_owner: z.enum(ownerIds),
-  decision: z.enum(dispositions),
-  justification: z.string().min(1),
-  evidence: z.strictObject({
-    baseline_ref: z.string().min(1),
-    current_ref: z.string().min(1),
-    current_state: z.enum(['present', 'missing']),
-    current_sha256: z
-      .string()
-      .regex(/^[a-f0-9]{64}$/u)
-      .nullable(),
-    current_words: nullableNonnegativeInteger,
-    current_loc: nullableNonnegativeInteger,
-    byte_identical: z.boolean(),
-    material_change: z.boolean(),
-    owner_resolution: z.string().min(1),
-    generator_ref: z.string().min(1).nullable(),
-    successor_path: z.string().min(1).nullable(),
-  }),
-});
-const ledgerSchema = z
-  .object({
-    schema_version: z.literal('file-disposition-ledger-v2'),
-    ledger_id: z.literal('instagram-agent-os-v2-baseline-disposition'),
-    baseline_commit: z.literal(BASELINE_COMMIT),
-    baseline_file_count: z.literal(BASELINE_FILE_COUNT),
-    coverage: z.literal('387/387'),
-    allowed_dispositions: z.array(z.enum(dispositions)).length(dispositions.length),
-    budgets: z.object({
-      editable_markdown_per_file: z.object({
-        maximum_multiplier: z.literal(2),
-        violations: z.array(z.string()),
-      }),
-      authored_eligible_corpus: z.object({
-        maximum_multiplier: z.literal(1.5),
-        status: z.enum(['pass', 'fail']),
-      }),
-      total_authored_hard_cap: z.object({
-        maximum_multiplier: z.literal(2),
-        status: z.enum(['pass', 'fail']),
-      }),
-      generated_template_budget: z.object({
-        maximum_multiplier: z.literal(2),
-        inventory_count: z.number().int().nonnegative(),
-        applicable_bindings: z.number().int().nonnegative(),
-        not_applicable_count: z.number().int().nonnegative(),
-        coverage_gaps: z.array(z.string()),
-        status: z.enum(['pass', 'fail']),
-      }),
-      runtime_generated_evidence: z.object({
-        excluded_from_authored_budgets: z.literal(true),
-        files: z.number().int().nonnegative(),
-        paths: z.array(z.string()),
-      }),
-      immutable_history: z.object({
-        excluded_from_authored_budgets: z.literal(true),
-        status: z.enum(['pass', 'fail']),
-      }),
-    }),
-    entries: z.array(ledgerEntrySchema).length(BASELINE_FILE_COUNT),
-  })
-  .passthrough();
-const renderSummaryTable = (header: string, values: Record<string, number>): string => {
-  const rows = Object.entries(values).map(([key, value]) => [`\`${key}\``, String(value)] as const);
-  const firstWidth = Math.max(header.length, ...rows.map(([key]) => key.length));
-  const secondWidth = Math.max('Archivos'.length, ...rows.map(([, value]) => value.length));
-  return [
-    `| ${header.padEnd(firstWidth)} | ${'Archivos'.padStart(secondWidth)} |`,
-    `| ${'-'.repeat(firstWidth)} | ${`${'-'.repeat(secondWidth - 1)}:`} |`,
-    ...rows.map(([key, value]) => `| ${key.padEnd(firstWidth)} | ${value.padStart(secondWidth)} |`),
-  ].join('\n');
-};
-const renderBudgetTable = (rows: readonly (readonly string[])[]): string => {
-  const headers = ['Gate', 'Baseline', 'Final', 'Límite', 'Ratio', 'Estado'] as const;
-  const rightAligned = new Set([1, 2, 3, 4]);
-  const widths = headers.map((header, index) =>
-    Math.max(header.length, ...rows.map((row) => row[index]?.length ?? 0)),
-  );
-  const renderRow = (row: readonly string[]): string =>
-    `| ${row
-      .map((value, index) =>
-        rightAligned.has(index)
-          ? value.padStart(widths[index] ?? value.length)
-          : value.padEnd(widths[index] ?? value.length),
-      )
-      .join(' | ')} |`;
-  const separator = widths.map((width, index) =>
-    rightAligned.has(index) ? `${'-'.repeat(Math.max(width - 1, 2))}:` : '-'.repeat(width),
-  );
-  return [renderRow(headers), renderRow(separator), ...rows.map(renderRow)].join('\n');
-};
-const markdownFor = (ledger: Ledger): string => {
-  const budgets = ledger.budgets;
-  const entryValues = ledger.entries.map(
-    (entry) =>
-      [
-        `\`${entry.path}\``,
-        `\`${entry.resolved_owner}\``,
-        `\`${entry.decision}\``,
-        String(entry.initial_words),
-        String(entry.evidence.current_words ?? 'n/a'),
-        String(entry.initial_loc),
-        String(entry.evidence.current_loc ?? 'n/a'),
-        `\`${entry.initial_sha256}\``,
-        entry.evidence.byte_identical ? '`byte-identical`' : '`changed`',
-      ] as const,
-  );
-  const entryHeaders = [
-    'Ruta',
-    'Owner',
-    'Decisión',
-    'Palabras iniciales',
-    'Palabras actuales',
-    'LOC inicial',
-    'LOC actual',
-    'SHA-256 inicial',
-    'Evidencia',
-  ] as const;
-  const entryWidths = entryHeaders.map((header, index) =>
-    Math.max(header.length, ...entryValues.map((row) => row[index]?.length ?? 0)),
-  );
-  const entryTable = [
-    `| ${entryHeaders
-      .map((header, index) => header.padEnd(entryWidths[index] ?? header.length))
-      .join(' | ')} |`,
-    `| ${entryWidths.map((width) => '-'.repeat(width)).join(' | ')} |`,
-    ...entryValues.map(
-      (row) =>
-        `| ${row
-          .map((value, index) => value.padEnd(entryWidths[index] ?? value.length))
-          .join(' | ')} |`,
-    ),
-  ].join('\n');
-  const eligibleBudget = budgets.authored_eligible_corpus;
-  const totalBudget = budgets.total_authored_hard_cap;
-  const generatedBudget = budgets.generated_template_budget;
-  const runtimeEvidence = budgets.runtime_generated_evidence;
-  const historyBudget = budgets.immutable_history;
-  const budgetTable = renderBudgetTable([
-    [
-      'Corpus authored elegible',
-      String(eligibleBudget.baseline_words),
-      String(eligibleBudget.final_words),
-      `${eligibleBudget.maximum_words} (1.5×)`,
-      `${eligibleBudget.actual_multiplier}×`,
-      `\`${eligibleBudget.status}\``,
-    ],
-    [
-      'Total authored (palabras)',
-      String(totalBudget.baseline_words),
-      String(totalBudget.final_words),
-      `${totalBudget.maximum_words} (2×)`,
-      `${totalBudget.word_multiplier}×`,
-      `\`${totalBudget.status}\``,
-    ],
-    [
-      'Total authored (LOC)',
-      String(totalBudget.baseline_loc),
-      String(totalBudget.final_loc),
-      `${totalBudget.maximum_loc} (2×)`,
-      `${totalBudget.loc_multiplier}×`,
-      `\`${totalBudget.status}\``,
-    ],
-    [
-      'Generated/template aplicables',
-      `${generatedBudget.inventory_count} inventariados`,
-      `${generatedBudget.applicable_bindings} checks + ${generatedBudget.not_applicable_count} N/A`,
-      '2× palabras y LOC',
-      generatedBudget.coverage,
-      `\`${generatedBudget.status}\``,
-    ],
-    [
-      'Historia baseline',
-      `${historyBudget.baseline_files} archivos`,
-      `${historyBudget.byte_identical_files} byte-idénticos`,
-      String(historyBudget.baseline_files),
-      'n/a',
-      `\`${historyBudget.status}\``,
-    ],
-  ]);
-  return `# File disposition ledger
 
-Baseline: \`${ledger.baseline_commit}\`. Coverage: **${ledger.coverage}**. [CÓDIGO]
+export type Ledger = ReturnType<typeof buildLedger>;
 
-Este documento es la proyección legible de
-\`docs/program/file-disposition-ledger.yml\`. El YAML canónico se regenera desde el árbol y los blobs
-de Git, compara el working tree y resuelve owner, decisión, justificación y evidencia para cada uno
-de los 377 archivos. [CONFIG]
-
-## Clases
-
-${renderSummaryTable('Clase', ledger.summary.artifact_classes)}
-
-## Disposiciones
-
-${renderSummaryTable('Disposición', ledger.summary.dispositions)}
-
-Las únicas decisiones válidas son \`refactored\`, \`generator_fixed\`, \`superseded\`,
-\`verified_no_change\`, \`quarantined\` e \`immutable_history\`. Un archivo byte-idéntico no se
-presenta como refactor; \`superseded\` exige sucesor real; el wrapper Stitch permanece en cuarentena;
-y la historia conserva bytes. [CONFIG]
-
-## Presupuestos medidos
-
-${budgetTable}
-
-Además, ${budgets.editable_markdown_per_file.checked_files} Markdown editables del baseline se
-comprueban individualmente contra un máximo de 2× palabras. Violaciones registradas:
-**${budgets.editable_markdown_per_file.violations.length}**. La historia queda excluida de los
-presupuestos authored. El inventario generado declara cada output como binding aplicable o N/A con
-justificación. La evidencia runtime de orquestación excluida suma **${runtimeEvidence.files}**
-archivos append-only. Las métricas usan tokens separados por whitespace y líneas físicas; un
-terminador final no crea una LOC vacía. [CONFIG]
-
-## Cobertura 387/387
-
-Cada fila resume métricas y evidencia; la justificación, el hash actual, la regla de ownership y el
-posible sucesor permanecen en el YAML canónico. [CONFIG]
-
-${entryTable}
-`;
-};
 export const writeLedger = (root = process.cwd()): void => {
   const ledger = buildLedger(root);
   writeFileSync(
@@ -876,6 +387,7 @@ export const writeLedger = (root = process.cwd()): void => {
   );
   writeFileSync(resolve(root, 'docs/program/file-disposition-ledger.md'), markdownFor(ledger));
 };
+
 export const validateDispositionLedger = (root = process.cwd()): string[] => {
   const errors: string[] = [];
   const ledgerPath = resolve(root, 'docs/program/file-disposition-ledger.yml');
@@ -937,8 +449,12 @@ export const validateDispositionLedger = (root = process.cwd()): string[] => {
   }
   return errors;
 };
+
+// realpathSync on both sides so a symlinked entry path (scripts/ →
+// 05_verificacion/scripts/) still matches import.meta.url's real path.
 const isMain =
-  process.argv[1] !== undefined && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+  process.argv[1] !== undefined &&
+  realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url));
 if (isMain) {
   if (process.argv.includes('--write')) {
     writeLedger();

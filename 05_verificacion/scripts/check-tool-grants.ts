@@ -9,13 +9,18 @@
 //   - missing-from-policy: the grant's tool prefix does not appear as a role
 //     allow entry at all (a new tool surface the policy has not catalogued).
 //
-// Emits `05_verificacion/quality/reports/tool-grants-{ISO-date}.yml` and
-// exits nonzero on `unapproved`. Idempotent. [CONFIG]
+// Emits an append-only check-run receipt at
+// `04_estado/receipts/check-runs/C-NNN/receipt.yml` plus an atemporal detail
+// at `.../C-NNN/tool-grants-detail.yml` (ADR 0027). Exits nonzero on
+// `unapproved`. Idempotent. [CONFIG]
 //
 // Usage: node --import tsx 05_verificacion/scripts/check-tool-grants.ts
+import {createHash} from 'node:crypto';
 import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
-import {resolve, sep} from 'node:path';
+import {resolve} from 'node:path';
 import {parse} from 'yaml';
+
+import {CheckRunReceiptSchema} from './lib/check-run-receipt-schema.ts';
 
 const ROOT = process.cwd();
 const POLICY = resolve(ROOT, '02_proceso/governance/tool-policy.yml');
@@ -69,9 +74,29 @@ const collectGrants = (): string[] => {
   return [...grants].sort();
 };
 
-const isoDate = (d: Date): string => {
+const CHECK_RUNS_DIR = resolve(ROOT, '04_estado/receipts/check-runs');
+
+const nextReceiptId = (): string => {
+  if (!existsSync(CHECK_RUNS_DIR)) return 'C-001';
+  const ids = readdirSync(CHECK_RUNS_DIR, {withFileTypes: true})
+    .filter((e) => e.isDirectory() && /^C-[0-9]{3}$/u.test(e.name))
+    .map((e) => Number.parseInt(e.name.slice('C-'.length), 10));
+  const max = ids.length === 0 ? 0 : Math.max(...ids);
+  return `C-${String(max + 1).padStart(3, '0')}`;
+};
+
+const sha256 = (text: string): string => createHash('sha256').update(text).digest('hex');
+
+const isoWithOffset = (date: Date): string => {
+  const tzOffsetMin = -date.getTimezoneOffset();
+  const sign = tzOffsetMin >= 0 ? '+' : '-';
+  const abs = Math.abs(tzOffsetMin);
   const pad = (n: number) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const base =
+    `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+    `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  if (tzOffsetMin === 0) return `${base}Z`;
+  return `${base}${sign}${pad(Math.floor(abs / 60))}:${pad(abs % 60)}`;
 };
 
 const main = (): void => {
@@ -82,19 +107,27 @@ const main = (): void => {
   const missingFromPolicy: string[] = [];
   for (const g of grants) {
     const tool = grantTool(g);
-    if (allows.has(tool)) {
-      allowed.push(g);
-    } else {
+    if (allows.has(tool)) allowed.push(g);
+    else {
       unapproved.push(g);
       if (!allows.has(tool)) missingFromPolicy.push(tool);
     }
   }
-  const reportDir = resolve(ROOT, '02_proceso/governance/reports');
-  mkdirSync(reportDir, {recursive: true});
-  const reportPath = resolve(reportDir, `tool-grants-${isoDate(new Date())}.yml`);
-  const lines: string[] = [
-    `schema_version: tool-grants-report-v1`,
-    `generated_at: ${new Date().toISOString()}`,
+  const stdoutText =
+    `tool-grants: total=${grants.length} allowed=${allowed.length}` +
+    ` unapproved=${unapproved.length} missing=${missingFromPolicy.length}`;
+  const stderrText = unapproved.length > 0 ? stdoutText : '';
+
+  // Atemporal detail + append-only receipt (ADR 0027).
+  const receiptId = nextReceiptId();
+  const receiptDir = resolve(CHECK_RUNS_DIR, receiptId);
+  mkdirSync(receiptDir, {recursive: true});
+  // Redact private locators so the receipt stays portable (no /Users/<user>).
+  const redact = (s: string): string =>
+    s.replace(/\/Users\/[^/)]+/gu, '$HOME').replace(/\/home\/[^/)]+/gu, '$HOME');
+  const detail: string[] = [
+    `schema_version: tool-grants-detail-v1`,
+    `generated_at: ${JSON.stringify(isoWithOffset(new Date()))}`,
     `summary:`,
     `  total_grants: ${grants.length}`,
     `  allowed: ${allowed.length}`,
@@ -102,14 +135,54 @@ const main = (): void => {
     `  missing_from_policy: ${missingFromPolicy.length}`,
     `allowed:`,
   ];
-  for (const g of allowed) lines.push(`  - ${JSON.stringify(g)}`);
-  lines.push(`unapproved:`);
-  for (const g of unapproved) lines.push(`  - ${JSON.stringify(g)}`);
-  lines.push(`missing_from_policy:`);
-  for (const t of missingFromPolicy) lines.push(`  - ${t}`);
-  writeFileSync(reportPath, `${lines.join('\n')}\n`, 'utf8');
-  console.info(`tool-grants: total=${grants.length} allowed=${allowed.length} unapproved=${unapproved.length} missing=${missingFromPolicy.length}`);
-  console.info(`report -> ${reportPath.split(sep).slice(-3).join(sep)}`);
+  for (const g of allowed) detail.push(`  - ${JSON.stringify(redact(g))}`);
+  detail.push(`unapproved:`);
+  for (const g of unapproved) detail.push(`  - ${JSON.stringify(redact(g))}`);
+  detail.push(`missing_from_policy:`);
+  for (const t of missingFromPolicy) detail.push(`  - ${t}`);
+  writeFileSync(resolve(receiptDir, 'tool-grants-detail.yml'), `${detail.join('\n')}\n`, 'utf8');
+
+  const started = Date.now();
+  const receipt = {
+    schema_version: 'check-run-receipt-v1' as const,
+    receipt_id: receiptId,
+    gate: 'G20',
+    command: 'pnpm check:grants',
+    exit_code: unapproved.length > 0 ? 1 : 0,
+    stdout_sha256: sha256(stdoutText),
+    stderr_sha256: sha256(stderrText),
+    duration_ms: Date.now() - started,
+    ran_at: isoWithOffset(new Date()),
+    append_only: true as const,
+    runner_actor: 'governance',
+  };
+  const parsed = CheckRunReceiptSchema.safeParse(receipt);
+  if (!parsed.success) {
+    console.error(
+      `[FAIL] receipt schema reject: ${parsed.error.issues.map((i) => i.path.join('.')).join('; ')}`,
+    );
+    process.exitCode = 1;
+    return;
+  }
+  const receiptYml = [
+    `schema_version: check-run-receipt-v1`,
+    `receipt_id: ${receipt.receipt_id}`,
+    `gate: ${receipt.gate}`,
+    `command: ${JSON.stringify(receipt.command)}`,
+    `exit_code: ${receipt.exit_code}`,
+    `stdout_sha256: ${receipt.stdout_sha256}`,
+    `stderr_sha256: ${receipt.stderr_sha256}`,
+    `duration_ms: ${receipt.duration_ms}`,
+    `ran_at: ${JSON.stringify(receipt.ran_at)}`,
+    `append_only: true`,
+    `runner_actor: ${receipt.runner_actor}`,
+  ].join('\n');
+  writeFileSync(resolve(receiptDir, 'receipt.yml'), `${receiptYml}\n`, 'utf8');
+
+  console.info(stdoutText);
+  console.info(
+    `receipt=${resolve(receiptDir, 'receipt.yml')} detail=${resolve(receiptDir, 'tool-grants-detail.yml')}`,
+  );
   if (unapproved.length > 0) {
     console.error(`[FAIL] ${unapproved.length} unapproved grant(s) (tool not in any role allow)`);
     process.exitCode = 1;

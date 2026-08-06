@@ -26,6 +26,8 @@
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
+import {SCAFFOLD_EPOCH} from './lib/deterministic-epoch.ts';
+
 interface B2Entry {
   nn: string;
   slug: string;
@@ -579,8 +581,8 @@ const generateTaskTemplate = (entry: B2Entry, ex: PromptExtract): string => {
   lines.push(`parent_task_id: null`);
   lines.push(`evidence_tags:`);
   lines.push(`  prompt_source: DOC`);
-  lines.push(`created_at: 2026-08-05T00:00:00+00:00`);
-  lines.push(`updated_at: 2026-08-05T00:00:00+00:00`);
+  lines.push(`created_at: ${SCAFFOLD_EPOCH}`);
+  lines.push(`updated_at: ${SCAFFOLD_EPOCH}`);
   return `${lines.join('\n')}\n`;
 };
 

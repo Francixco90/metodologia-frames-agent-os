@@ -19,6 +19,8 @@ import {tmpdir} from 'node:os';
 import {join, resolve, sep} from 'node:path';
 import YAML from 'yaml';
 
+import {DETERMINISTIC_EPOCH as FIXED_TS} from '../../scripts/lib/deterministic-epoch.ts';
+
 import {
   ALL_SUBSYSTEMS,
   artifactMarkerFor,
@@ -35,7 +37,6 @@ export interface VariantResult {
   readonly reason: string;
 }
 
-const FIXED_TS = '2026-08-01T00:00:00+00:00';
 const HARNESS_DIR = '.harness';
 
 // Base valid task.yaml (H0 shape). Variant mutations applied on top. [CONFIG]

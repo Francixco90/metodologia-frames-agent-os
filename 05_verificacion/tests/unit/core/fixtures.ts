@@ -4,11 +4,12 @@ import type {
   PortableRef,
   WorkProduct,
 } from '../../../../core/contracts/index.ts';
+import {FIXTURE_NOW} from '../../../scripts/lib/deterministic-epoch.ts';
 
 export const HASH_A = 'a'.repeat(64);
 export const HASH_B = 'b'.repeat(64);
 export const HASH_C = 'c'.repeat(64);
-export const NOW = '2026-07-19T12:00:00Z';
+export const NOW = FIXTURE_NOW;
 
 export function portableRef(kind: PortableRef['kind'], id: string): PortableRef {
   return {

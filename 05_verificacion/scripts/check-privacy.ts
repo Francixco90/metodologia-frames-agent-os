@@ -1,5 +1,5 @@
 import {execFileSync} from 'node:child_process';
-import {readFileSync, statSync} from 'node:fs';
+import {existsSync, readFileSync, statSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 const root = process.cwd();
@@ -50,6 +50,8 @@ for (const relativePath of versionable) {
   }
   if (isVendor(relativePath)) continue;
   const absolutePath = resolve(root, relativePath);
+  // Skip staged-but-deleted paths (still in the git index, absent on disk).
+  if (!existsSync(absolutePath)) continue;
   if (!statSync(absolutePath).isFile()) continue;
   const content = readFileSync(absolutePath);
   if (content.includes(0)) continue;
