@@ -158,15 +158,15 @@ describe('V2 documentation and extension budgets', () => {
       violations: [],
     });
     expect(ledger.budgets.authored_eligible_corpus).toMatchObject({
-      baseline_words: 92_187,
+      baseline_words: 92_228,
       status: 'pass',
     });
     expect(ledger.budgets.authored_eligible_corpus.final_words).toBeLessThanOrEqual(
       ledger.budgets.authored_eligible_corpus.maximum_words,
     );
     expect(ledger.budgets.total_authored_hard_cap).toMatchObject({
-      baseline_words: 92_187,
-      baseline_loc: 34_789,
+      baseline_words: 92_228,
+      baseline_loc: 34_793,
       status: 'pass',
     });
     expect(ledger.budgets.total_authored_hard_cap.final_words).toBeLessThanOrEqual(

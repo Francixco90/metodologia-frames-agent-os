@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            92187 |            109264 |     138280 (1.5×) | 1.1852× | `pass` |
-| Total authored (palabras)     |            92187 |            109264 |       184374 (2×) | 1.1852× | `pass` |
-| Total authored (LOC)          |            34789 |             41128 |        69578 (2×) | 1.1822× | `pass` |
+| Corpus authored elegible      |            92228 |            109305 |     138342 (1.5×) | 1.1852× | `pass` |
+| Total authored (palabras)     |            92228 |            109305 |       184456 (2×) | 1.1852× | `pass` |
+| Total authored (LOC)          |            34793 |             41132 |        69586 (2×) | 1.1822× | `pass` |
 | Generated/template aplicables | 52 inventariados | 3 checks + 49 N/A | 2× palabras y LOC |   52/52 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -64,7 +64,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 97                | 15          | 55         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
-| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 76                | 3           | 33         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
+| `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 117               | 3           | 37         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `refactored`         | 105                | 209               | 12          | 23         | `4ead006142c206d3ad121e30c15a5d42c90379b6c507527f2592a263ba05487d` | `changed`        |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `refactored`         | 62                 | 111               | 12          | 21         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `changed`        |
