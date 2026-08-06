@@ -11,14 +11,13 @@ write_set:
 no_objetivos: []
 done: Migración física taxonomía cardinal NN_slug (00-06) — Tier A
 validacion: see original TASK.md
-gaps:
-  - backfilled from flat TASK.md — state inferred, human amend
-state: COMPILADO
+gaps: []
+state: ENTREGADO
 created_from_route: R3-LOOSE
 gate_target: null
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:
-  historical: coverage_gap
+  historical: DOC
 created_at: 2026-08-02T00:00:00+00:00
-updated_at: 2026-08-02T00:00:00+00:00
+updated_at: 2026-08-06T00:00:00+00:00
