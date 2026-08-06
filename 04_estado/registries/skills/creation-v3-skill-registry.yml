@@ -113,22 +113,22 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-faceless-explainer/scripts/check-skill.mjs]
   - skill_id: content-os-pr-to-video
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 2111eb767d2de898c57669e1c5e0715df815706dea4f4c544b6155f0990e87fe
-    package_manifest_sha256: fff41be1315841c2986d8c9c3d6369797aba2c8bf96971757908e991b1c09a6f
+    content_sha256: c0486f0fda1c62f852f8db7205ec0c9022b23f0d3a26a2af88708c5052de0a43
+    package_manifest_sha256: 4507e6fde54af02715f8121598be00ab95a3effe9db5f4abc5172b2a6cd6a74c
     lineage_ref: skills/content-os-pr-to-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-pr-to-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-pr-to-video/scripts/check-skill.mjs]
   - skill_id: content-os-product-launch-video
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5e45bd0cb33f1dadf9db9f39e2bc604f03e3812469d93f8e20db79158b3080cf
-    package_manifest_sha256: 6931b8eb1d459184e747f53ee335d90ccc65b3cf285dfe8459d6687851b11658
+    content_sha256: f985257c59790a0a025a940660caf9a56185b4f51c7862af49e858ef7abd9fb8
+    package_manifest_sha256: faffc4085d1cd55ad3a6f2b7861dc4e6962388c49e0017598b30b0382917ed64
     lineage_ref: skills/content-os-product-launch-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-product-launch-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -179,11 +179,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-general-video/scripts/check-skill.mjs]
   - skill_id: content-os-remotion-bridge
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: c8072d3101c2f98bc5ea2b7f4d075df26240a92487e6a36d5b331f9fd4dcc6f1
-    package_manifest_sha256: 9196c8fef2f40d89810f050e760a884e00dbb4746cb594147c639aa63f7ebed8
+    content_sha256: 1e4c7251ca3898c57f30347b931b812b69f51773439566e2ddf8445f65121c32
+    package_manifest_sha256: 4b760e393e710198b4a2381799ca508e870610f15bc2835b66232d660bbbf110
     lineage_ref: skills/content-os-remotion-bridge/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-remotion-bridge/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -223,11 +223,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-changelog-video/scripts/check-skill.mjs]
   - skill_id: content-os-figma
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f7021525d10a7432cbcc79c33707c00b9639be040a9c9b0dfaa0018c4b268e9f
-    package_manifest_sha256: b62c49b3d2611f68c9d8b2af7cff99149558f409fe97640f90aee2543e56afba
+    content_sha256: a76e040e3b953a0331a6ff8a6630545d0e30aafb986f12470bf4b4d834d4be7b
+    package_manifest_sha256: 51c675d8742ace57fe30e5439cc69e745a7bd9414e4d9435e27de1286feb1051
     lineage_ref: skills/content-os-figma/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-figma/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -652,11 +652,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-mobile-principles/scripts/check-skill.mjs]
   - skill_id: design-canvas-generative
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: afa261a6c6d9c20d570e33c52e85092236a6811377bc6be9a04029c185020eab
-    package_manifest_sha256: 7bb275197f0af37e9918d36d39616f1ac1c39ca5f5c29b93625cb3bb7944b6d2
+    content_sha256: 50f7d7b4a004a075fe9ac0b9ab97702d3498f6239e16631bfd59aeaa9be7525d
+    package_manifest_sha256: 6f1f7e1535900a142c01c65b199972e5ecabbe33447093d0da7f1e5399ea18c7
     lineage_ref: skills/design-canvas-generative/LINEAGE.yml
     dependency_receipt_ref: skills/design-canvas-generative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -718,11 +718,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-genjutsu-gsap-motion/scripts/check-skill.mjs]
   - skill_id: design-genjutsu-uiux
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3318b00c790c8fac238ccbfecdf0e74aabd0678d57e981e07ed3f791dfe313f3
-    package_manifest_sha256: e676a2effe19ee5d0523074b5e5b4fda93cec788dbcf02bb0da9c54bf49a7220
+    content_sha256: 3fac9014f59970830a3fd2fabca5a5e1629d54da93573eab855f564b5213b25e
+    package_manifest_sha256: 895937d1395449b58bb4704fcbf0998f51a901096a2e415053417cea58fdbb9a
     lineage_ref: skills/design-genjutsu-uiux/LINEAGE.yml
     dependency_receipt_ref: skills/design-genjutsu-uiux/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -751,11 +751,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-paint/scripts/check-skill.mjs]
   - skill_id: design-dna
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: c8a50317d965817865bf0a5103e63fcd5c54e676f6ab661cc9ba334e3a4f4e3b
-    package_manifest_sha256: a4eb412ac4a65b0ec013e50ce2a58451b627f75275934c7d52a00a71616f03f8
+    content_sha256: b89807be78a8a8d224e8500868c62f86efd64fcd01b192a99d2f2990f9e6a129
+    package_manifest_sha256: 627e94cc68632606cfded164d6664abe32ce9872dbf7b26911f543e519796cd2
     lineage_ref: skills/design-dna/LINEAGE.yml
     dependency_receipt_ref: skills/design-dna/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1720,10 +1720,12 @@ events:
   - {event_id: EVT-SKL-CPV-H03-002, event_order: 2, skill_id: content-os-pr-to-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPV-H03-003, event_order: 3, skill_id: content-os-pr-to-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CPV-H03-004, event_order: 4, skill_id: content-os-pr-to-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPV-H03-005, event_order: 5, skill_id: content-os-pr-to-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1298->1188w (drop Critical Constraints restatement) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-CPL-H03-001, event_order: 1, skill_id: content-os-product-launch-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPL-H03-002, event_order: 2, skill_id: content-os-product-launch-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPL-H03-003, event_order: 3, skill_id: content-os-product-launch-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CPL-H03-004, event_order: 4, skill_id: content-os-product-launch-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CPL-H03-005, event_order: 5, skill_id: content-os-product-launch-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1366->1199w (drop Critical Constraints restatement + trim Diferencia) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-CMG-H03-001, event_order: 1, skill_id: content-os-motion-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMG-H03-002, event_order: 2, skill_id: content-os-motion-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMG-H03-003, event_order: 3, skill_id: content-os-motion-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1744,6 +1746,7 @@ events:
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CRB-H03-004, event_order: 4, skill_id: content-os-remotion-bridge, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CRB-H03-005, event_order: 5, skill_id: content-os-remotion-bridge, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1359->1170w (drop signature line + Determinism restatement + Trigger phrases) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-THR-H03-001, event_order: 1, skill_id: content-os-talking-head-recut, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-THR-H03-002, event_order: 2, skill_id: content-os-talking-head-recut, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-THR-H03-003, event_order: 3, skill_id: content-os-talking-head-recut, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1760,6 +1763,7 @@ events:
   - {event_id: EVT-SKL-FGM-H03-002, event_order: 2, skill_id: content-os-figma, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FGM-H03-003, event_order: 3, skill_id: content-os-figma, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-FGM-H03-004, event_order: 4, skill_id: content-os-figma, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FGM-H03-005, event_order: 5, skill_id: content-os-figma, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1421->1200w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-HFC-H03-001, event_order: 1, skill_id: content-os-hyperframes-cli, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-HFC-H03-002, event_order: 2, skill_id: content-os-hyperframes-cli, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-HFC-H03-003, event_order: 3, skill_id: content-os-hyperframes-cli, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1918,6 +1922,7 @@ events:
   - {event_id: EVT-SKL-CNG-H03-002, event_order: 2, skill_id: design-canvas-generative, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CNG-H03-003, event_order: 3, skill_id: design-canvas-generative, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CNG-H03-004, event_order: 4, skill_id: design-canvas-generative, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CNG-H03-005, event_order: 5, skill_id: design-canvas-generative, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1290->1194w + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-DKP-H03-001, event_order: 1, skill_id: design-desktop-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DKP-H03-002, event_order: 2, skill_id: design-desktop-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DKP-H03-003, event_order: 3, skill_id: design-desktop-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1944,6 +1949,7 @@ events:
   - {event_id: EVT-SKL-JUX-H03-002, event_order: 2, skill_id: design-genjutsu-uiux, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-JUX-H03-003, event_order: 3, skill_id: design-genjutsu-uiux, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-JUX-H03-004, event_order: 4, skill_id: design-genjutsu-uiux, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-JUX-H03-005, event_order: 5, skill_id: design-genjutsu-uiux, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1401->1060w (trim Cuándo usar/Rule intro/Cómo entregar/Fail-closed + tighten Quick Reference anti-patterns) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-CST-H03-001, event_order: 1, skill_id: design-cast, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CST-H03-002, event_order: 2, skill_id: design-cast, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CST-H03-003, event_order: 3, skill_id: design-cast, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1956,6 +1962,7 @@ events:
   - {event_id: EVT-SKL-DDA-H03-002, event_order: 2, skill_id: design-dna, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DDA-H03-003, event_order: 3, skill_id: design-dna, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DDA-H03-004, event_order: 4, skill_id: design-dna, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DDA-H03-005, event_order: 5, skill_id: design-dna, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1385->1199w (drop Combinaciones restatement + compress 3 dimensions + trim Phase 1/intro) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-DSP-H03-001, event_order: 1, skill_id: dev-spec, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DSP-H03-002, event_order: 2, skill_id: dev-spec, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DSP-H03-003, event_order: 3, skill_id: dev-spec, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

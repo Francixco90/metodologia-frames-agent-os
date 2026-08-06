@@ -1,7 +1,7 @@
 ---
 name: design-dna
 description: This skill should be used when the operator requests extracting, structuring, or applying visual design identity as machine-readable Design DNA across three dimensions — design system tokens (color, typography, spacing, layout, shape, elevation, motion), design style (mood, visual language, composition, brand voice), and visual effects (Canvas, WebGL, 3D, particles, shaders, scroll effects). It runs a three-phase workflow (structure schema, analyze references into JSON, generate from DNA) and delivers prose guidance plus pseudocode for local evaluation only; it never runs npx, fetches URLs automatically, or auto-launches build tooling without operator confirmation.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -11,15 +11,15 @@ metadata:
 
 # Design DNA — identidad visual legible por maquina
 
-Derivada de design-dna/SKILL.md (zanwei/design-dna, MIT, commit 9d9d795). Adaptacion clean-room al contexto MetodologIA: el homologo opera como un arquitecto de identidad visual que extrae, estructura y aplica Design DNA en tres dimensiones, entregando guia en prosa y pseudocodigo para evaluacion local. No invoca CLI vendor; no abre red por si mismo; no publica. Toda ejecucion queda detras de confirmacion del operador dentro del marco fail-closed del repositorio.
+Derivada de design-dna/SKILL.md (zanwei/design-dna, MIT, commit 9d9d795). Adaptacion clean-room al contexto MetodologIA: arquitecto de identidad visual que extrae, estructura y aplica Design DNA en tres dimensiones, en prosa y pseudocodigo para evaluacion local (fail-closed).
 
 ## Las tres dimensiones
 
 Design DNA captura la identidad visual de un producto en tres ejes complementarios. Cada eje responde a una pregunta distinta y se modela con un nivel de precision distinto.
 
-1. **design_system — lo medible.** Tokens exactos que un motor puede consumir sin ambiguedad: color (paleta primaria/secundaria/acento + escala neutra), typography (familias, escala, ratio), spacing (densidad, ritmo), layout (grid, max-width, columnas), shape (border-radius, bordes, divisores), elevation (sombras, capas), motion (easing, duracion) y components (patrones reutilizables). Todo es hex/px/rem/ms: valores, no impresiones.
-2. **design_style — lo cualitativo.** Lo que se siente pero no se mide con un valor unico: mood, personalidad, lenguaje visual, estrategia de composicion, filosofia de whitespace, nivel de ornamentacion, voz de marca, arquetipos de genero (SaaS, editorial, brutalist, luxury). Se sintetiza como descripcion estructurada, no como numero.
-3. **visual_effects — lo que va mas alla de CSS plano.** Renderizado especial: Canvas, WebGL, 3D, sistemas de particulas, shaders custom, scroll-driven animations, cursor effects, animaciones SVG, glassmorphism, gradient animations, parallax. Se describe como categoria + intensidad + tier de performance; se marca `enabled: false` cuando el efecto no aparece en la referencia.
+1. **design_system — lo medible.** Tokens exactos (hex/px/rem/ms): color, typography, spacing, layout, shape, elevation, motion, components. Valores, no impresiones.
+2. **design_style — lo cualitativo.** Lo sentible no medible con un valor unico: mood, lenguaje visual, composicion, whitespace, ornamentacion, voz de marca, arquetipos de genero (SaaS, editorial, brutalist, luxury). Descripcion estructurada, no numero.
+3. **visual_effects — lo que va mas alla de CSS plano.** Canvas, WebGL, 3D, particulas, shaders, scroll animations, cursor effects, SVG, glassmorphism, gradient animations, parallax. Categoria + intensidad + tier de performance; `enabled: false` si no aparece en la referencia.
 
 ## Cuatro eventos gobernanados (DDA)
 
@@ -35,7 +35,7 @@ Design DNA captura la identidad visual de un producto en tres ejes complementari
 Cuando el operador pide la estructura o el esquema completo (EVT-SKL-DDA-H03-001):
 
 1. Presentar el esquema completo con descripciones de campo por dimension.
-2. Explicar el rol de cada dimension: design_system es lo medible (hex, px, rem); design_style es lo sentible (mood, composicion); visual_effects es lo que requiere render especial (WebGL, shaders, particulas).
+2. Explicar el rol de cada dimension (ver Las tres dimensiones).
 3. Preguntar si el operador quiere customizar o extender alguna dimension antes de avanzar a Analyze.
 4. No ejecutar nada: esta fase es puramente descriptiva y local.
 
@@ -97,18 +97,6 @@ Si el operador provee solo contenido sin DNA JSON, preguntar si:
 
 - Analizar una referencia primero (volver a Phase 2).
 - Usar un estilo descrito (extraer DNA desde la descripcion, luego generar).
-
-## Combinaciones de fase
-
-El operador puede invocar cualquier combinacion:
-
-- **Phase 1 only**: "muestrame el esquema/estructura de diseno".
-- **Phase 2 only**: "analiza este diseno" (con imagenes/URLs).
-- **Phase 2 to 3**: "analiza este diseno y construye una landing en el mismo estilo".
-- **Phase 1 to 2 to 3**: pipeline completo.
-- **Phase 3 only**: el operador ya tiene DNA JSON.
-
-Detectar que fases se necesitan desde el contexto y ejecutar en consecuencia.
 
 ## Fail-closed
 

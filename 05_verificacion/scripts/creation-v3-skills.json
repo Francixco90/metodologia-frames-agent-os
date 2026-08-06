@@ -74,6 +74,7 @@
   },
   {
     "id": "content-os-pr-to-video",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-pr-to-video/scripts/check-skill.mjs"
@@ -81,6 +82,7 @@
   },
   {
     "id": "content-os-product-launch-video",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-product-launch-video/scripts/check-skill.mjs"
@@ -116,6 +118,7 @@
   },
   {
     "id": "content-os-remotion-bridge",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-remotion-bridge/scripts/check-skill.mjs"
@@ -144,6 +147,7 @@
   },
   {
     "id": "content-os-figma",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-figma/scripts/check-skill.mjs"
@@ -419,6 +423,7 @@
   },
   {
     "id": "design-canvas-generative",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-canvas-generative/scripts/check-skill.mjs"
@@ -463,6 +468,7 @@
   },
   {
     "id": "design-genjutsu-uiux",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-genjutsu-uiux/scripts/check-skill.mjs"
@@ -484,6 +490,7 @@
   },
   {
     "id": "design-dna",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-dna/scripts/check-skill.mjs"
