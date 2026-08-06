@@ -10,6 +10,7 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/canvas-path-gradient.yml`,
   `skills/${id}/fixtures/negative/auto-run-xcodebuild.yml`,
+  `skills/${id}/references/swiftui-graphics-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

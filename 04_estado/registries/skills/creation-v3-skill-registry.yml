@@ -608,11 +608,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-motion-principles/scripts/check-skill.mjs]
   - skill_id: design-swiftui-graphics
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 39f3cbd0d5ba62197433520949db511b7d756d75084ac7f0a46f40e853499e90
-    package_manifest_sha256: b982ff4a5aa1a611e4753cb462cedddbae5c24f5c2f73ec52defc3e07892945e
+    content_sha256: 2587288b6072149aa1cb3c44560002420b64530dbb51a26225bb9dd0af92767e
+    package_manifest_sha256: bfbc5ff4c8526ff58222637301319ac447887f49804a69a350b1230a76fc7177
     lineage_ref: skills/design-swiftui-graphics/LINEAGE.yml
     dependency_receipt_ref: skills/design-swiftui-graphics/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1913,6 +1913,7 @@ events:
   - {event_id: EVT-SKL-SWG-H03-002, event_order: 2, skill_id: design-swiftui-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWG-H03-003, event_order: 3, skill_id: design-swiftui-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SWG-H03-004, event_order: 4, skill_id: design-swiftui-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWG-H03-005, event_order: 5, skill_id: design-swiftui-graphics, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CPG-H03-001, event_order: 1, skill_id: design-compose-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPG-H03-002, event_order: 2, skill_id: design-compose-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPG-H03-003, event_order: 3, skill_id: design-compose-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
