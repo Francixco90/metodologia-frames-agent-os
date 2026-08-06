@@ -1158,11 +1158,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-writing-plans/scripts/check-skill.mjs]
   - skill_id: dev-finishing-a-development-branch
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 38e1cada17cf2fdba0a9df55d312e62ab50671cbc7043115894568a0bbd88f11
-    package_manifest_sha256: 82c5ae3209e80e7353cec741f201106c926e218703cbc5cd905905ad5ac81a40
+    content_sha256: b632b13d6361554153db1779338defe61ea89efd0e75a04628116567f43187f2
+    package_manifest_sha256: 5822d12d0b37b93e5cdafa814de6f875841988d906f0958f85eb88473c364a80
     lineage_ref: skills/dev-finishing-a-development-branch/LINEAGE.yml
     dependency_receipt_ref: skills/dev-finishing-a-development-branch/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2137,6 +2137,7 @@ events:
   - {event_id: EVT-SKL-FNB-H03-002, event_order: 2, skill_id: dev-finishing-a-development-branch, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-003, event_order: 3, skill_id: dev-finishing-a-development-branch, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-FNB-H03-004, event_order: 4, skill_id: dev-finishing-a-development-branch, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FNB-H03-005, event_order: 5, skill_id: dev-finishing-a-development-branch, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-RCV-H03-001, event_order: 1, skill_id: dev-receiving-code-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RCV-H03-002, event_order: 2, skill_id: dev-receiving-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RCV-H03-003, event_order: 3, skill_id: dev-receiving-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

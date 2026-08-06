@@ -776,6 +776,7 @@
   },
   {
     "id": "dev-finishing-a-development-branch",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-finishing-a-development-branch/scripts/check-skill.mjs"

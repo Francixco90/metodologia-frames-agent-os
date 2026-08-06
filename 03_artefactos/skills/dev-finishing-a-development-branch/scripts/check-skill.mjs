@@ -10,6 +10,7 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/finish-development-branch.yml`,
   `skills/${id}/fixtures/negative/auto-merge-without-confirmation.yml`,
+  `skills/${id}/references/finishing-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
