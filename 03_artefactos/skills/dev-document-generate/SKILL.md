@@ -1,7 +1,7 @@
 ---
 name: dev-document-generate
 description: This skill should be used when el operador pide generar documentación para una feature, módulo o proyecto — mapear el código, particionar por el framework Diataxi (tutorial / how-to / referencia / explicación), redactar cada cuadrante con precisión trazable al código y cruzar vínculos — entregando la guía de generación en prosa, sin auto-escribir archivos, sin auto-commit, sin auto-deploy.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -152,7 +152,3 @@ operador.
 - El checker local `skills/dev-document-generate/scripts/check-skill.mjs`
   verifica presencia de tokens de gobernabilidad, ausencia de APIs prohibidas
   y completitud del fixture negativo.
-- Si no hay contexto de código (no hay entidad objetivo, no hay repo accesible),
-  se emite `coverage_gap` en lugar de fabricar documentación genérica.
-
-Derivada de document-generate (garrytan/gstack, MIT).

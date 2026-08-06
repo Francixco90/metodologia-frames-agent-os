@@ -1,7 +1,7 @@
 ---
 name: dev-document-release
 description: This skill should be used when el operador pide redactar o sincronizar la documentación de un release — notas de versión, changelog, README/ARCHITECTURE/CONTRIBUTING/CLAUDE.md alineados con lo que se envió, mapa de cobertura Diataxis, drift de diagramas y limpieza de TODOS — dejando los artefactos en prosa lista para revisión, sin auto-commits, auto-tags, auto-publish ni auto-release.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -110,11 +110,10 @@ avanzar.
    señala, no se paga en automático: el operador decide qué tapar antes de
    mergear y qué dejar para un follow-up.
 
-**Regla anti-skip:** no se publica, no se mergea, no se taggea ni se libera
-sin confirmación explícita del operador. Si el operador pide "publica ya", se
-entrega la documentación redactada primero; si la rechaza, se documenta la
-decisión y se marca `coverage_gap` en lugar de liberar a ciegas. Documenta
-antes de liberar — siempre.
+**Regla anti-skip:** no se publica, mergea, taggea ni libera sin confirmación
+explícita del operador. Si el operador pide "publica ya", se entrega la
+documentación redactada primero; si la rechaza, se documenta la decisión y
+se marca `coverage_gap`. Documenta antes de liberar — siempre.
 
 ## Fail-closed
 
@@ -145,5 +144,3 @@ propuestas, revisable por el operador.
 - El checker local `skills/dev-document-release/scripts/check-skill.mjs`
   verifica presencia de tokens de gobernabilidad, ausencia de APIs prohibidas
   y completitud del fixture negativo.
-- Si no hay contexto de release (no hay diff, no hay commits, no hay PR), se
-  emite `coverage_gap` en lugar de fabricar documentación genérica.

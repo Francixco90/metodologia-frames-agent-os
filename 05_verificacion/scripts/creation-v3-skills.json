@@ -441,6 +441,7 @@
   },
   {
     "id": "design-threejs-r3f",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-threejs-r3f/scripts/check-skill.mjs"
@@ -567,6 +568,7 @@
   },
   {
     "id": "dev-plan-ceo-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-plan-ceo-review/scripts/check-skill.mjs"
@@ -616,6 +618,7 @@
   },
   {
     "id": "dev-document-generate",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-document-generate/scripts/check-skill.mjs"
@@ -623,6 +626,7 @@
   },
   {
     "id": "dev-document-release",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-document-release/scripts/check-skill.mjs"
@@ -651,6 +655,7 @@
   },
   {
     "id": "dev-health",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-health/scripts/check-skill.mjs"
