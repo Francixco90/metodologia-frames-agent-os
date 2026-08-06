@@ -18,9 +18,14 @@ Fase 1C: vendor 3 Bento skills (MIT) — PR #34 CI pending
 Evaluar: run validacion, advance COMPILADO→EVALUADO via checks-green evidence.
 
 ## Blockers
-Open gaps: backfilled from flat TASK.md — state inferred, human amend
+Open gaps: none (closed 2026-08-06).
 
 ## Session log
 | Session | Date | Actor | Action | Evidence |
 |---------|------|-------|--------|----------|
 | (none) | — | — | backfill | task.yaml |
+| 2026-08-06 | 2026-08-06 | lead | close COMPILADO→ENTREGADO | 3 Bento skills present + commit fcdc86b in main |
+
+## Close note (2026-08-06)
+
+Fase 1C vendor 3 Bento skills delivered: `apple-bento-grid`, `bento`, `bento-slides` under `03_artefactos/skills/vendor/bento`. Receipt commit `fcdc86b` in main. State `COMPILADO → ENTREGADO`, `evidence_tags.historical coverage_gap → DOC` per `loose-task-policy.md` rule 5 (ground truth = skills present + commit in main; `inferred_state` cleared).

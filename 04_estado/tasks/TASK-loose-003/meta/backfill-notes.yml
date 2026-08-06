@@ -1,10 +1,20 @@
 schema_version: 1
 original_id: TASK-TAX-001
 section: COMPILADO
-inferred_state: COMPILADO
 receipt_ref: commit `3ed6873` (local)
 backfilled: true
 note: migrated from flat TASK.md cola — state inferred from section, human amend
   expected
 provenance:
   - triage_r3_loose
+  - close_loose_003
+close_loose_003:
+  date: 2026-08-06
+  actor: lead
+  decision: >
+    Migración física taxonomía cardinal NN_slug (00-06) delivered: 7 cardinal
+    dirs (00_inbox, 01_intencion, 02_proceso, 03_artefactos, 04_estado,
+    05_verificacion, 06_archive) present; receipt commit 3ed6873 in main.
+    State COMPILADO -> ENTREGADO, gaps cleared, evidence_tags.historical
+    coverage_gap -> DOC per loose-task-policy rule 5 (ground truth = cardinal
+    dirs + commit in main; inferred_state cleared).

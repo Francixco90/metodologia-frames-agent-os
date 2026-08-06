@@ -1,10 +1,19 @@
 schema_version: 1
 original_id: TASK-0027
 section: COMPILADO
-inferred_state: COMPILADO
 receipt_ref: commit `fcdc86b`
 backfilled: true
 note: migrated from flat TASK.md cola — state inferred from section, human amend
   expected
 provenance:
   - triage_r3_loose
+  - close_loose_002
+close_loose_002:
+  date: 2026-08-06
+  actor: lead
+  decision: >
+    Fase 1C vendor 3 Bento skills delivered (apple-bento-grid, bento,
+    bento-slides under 03_artefactos/skills/vendor/bento). Receipt commit
+    fcdc86b in main. State COMPILADO -> ENTREGADO, gaps cleared,
+    evidence_tags.historical coverage_gap -> DOC per loose-task-policy rule 5
+    (ground truth = 3 skills present + commit in main; inferred_state cleared).

@@ -18,9 +18,14 @@ Migración física taxonomía cardinal NN_slug (00-06) — Tier A
 Evaluar: run validacion, advance COMPILADO→EVALUADO via checks-green evidence.
 
 ## Blockers
-Open gaps: backfilled from flat TASK.md — state inferred, human amend
+Open gaps: none (closed 2026-08-06).
 
 ## Session log
 | Session | Date | Actor | Action | Evidence |
 |---------|------|-------|--------|----------|
 | (none) | — | — | backfill | task.yaml |
+| 2026-08-06 | 2026-08-06 | lead | close COMPILADO→ENTREGADO | 7 cardinal dirs present + commit 3ed6873 in main |
+
+## Close note (2026-08-06)
+
+Migración física taxonomía cardinal NN_slug (00-06) delivered: 7 cardinal dirs (`00_inbox` … `06_archive`) present; receipt commit `3ed6873` in main. State `COMPILADO → ENTREGADO`, `evidence_tags.historical coverage_gap → DOC` per `loose-task-policy.md` rule 5 (ground truth = cardinal dirs + commit in main; `inferred_state` cleared).
