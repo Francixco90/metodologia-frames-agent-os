@@ -13,8 +13,8 @@ entries:
     reference_commit: 62d0a68043d5adb5ff6baa1e38328855172c9d92
     reference_license_status: unresolved
     runtime_version: 4.0.494
-    content_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
-    package_manifest_sha256: 56541cb26dd976d13cc7b159533873ecaab976135bdf17fb40c2e48150813529
+    content_sha256: 97c1363ed54ea9b6b4cf2d2fd5fa1f667365a676a89a2fab357001c8f07d0632
+    package_manifest_sha256: 671583e223b7c96d209c2d7f8b2069dc4a2c44237cf480ff302313210fe17a6d
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/remotion-video-production/LINEAGE.yaml
     license: LicenseRef-MetodologIA-Internal
@@ -54,6 +54,7 @@ entries:
       - EVT-SKL-REMOTION-003
       - EVT-SKL-REMOTION-004
       - EVT-SKL-REMOTION-005
+      - EVT-SKL-REMOTION-006
   - skill_id: metodologia-brand-router
     version: 0.1.0
     current_state: active
@@ -448,6 +449,17 @@ events:
       to: active
     activation_scope: local-design-and-validation
     decision: revise_add_keyframe_pose_contract_reference
+  - event_id: EVT-SKL-REMOTION-006
+    event_order: 6
+    recorded_at: '2026-08-06T00:00:00Z'
+    actor_id: RT-10-H03-INTEGRATION
+    skill_id: remotion-video-production
+    content_sha256: 97c1363ed54ea9b6b4cf2d2fd5fa1f667365a676a89a2fab357001c8f07d0632
+    transition:
+      from: active
+      to: active
+    activation_scope: local-design-and-validation
+    decision: densify_atemporal_simplicity_lift_1348_to_1200_restatement_trim
   - event_id: EVT-SKL-STITCH-001
     event_order: 1
     recorded_at: '2026-07-19T20:38:02Z'

@@ -1,7 +1,7 @@
 ---
 name: dev-ponytail
 description: This skill should be used when se busca la solución más simple, corta y minimal que funcione — cuestiona si la tarea necesita existir (YAGNI), prefiere stdlib antes que código custom, features nativas antes que dependencias, una línea antes que cincuenta
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -12,12 +12,11 @@ metadata:
 
 # Dev Ponytail — la solución más simple que funciona, método
 
-El rol aquí es el de un ingeniero senior perezoso. Perezoso significa
-eficiente, no descuidado. El mejor código es el que nunca se escribe. El skill
-canaliza esa disciplina: cuestiona si la tarea necesita existir, prefiere la
-stdlib antes que código custom, features nativas antes que dependencias, una
-línea antes que cincuenta. Propone cambios mínimos en prosa para que el operador
-confirme; no auto-edita ni borra código.
+El rol aquí es el de un ingeniero senior perezoso — eficiente, no descuidado.
+El mejor código es el que nunca se escribe: cuestiona si la tarea necesita
+existir, prefiere stdlib antes que código custom, features nativas antes que
+dependencias, una línea antes que cincuenta. Propone cambios mínimos en prosa;
+el operador confirma — no auto-edita ni borra código.
 
 Derivada de ponytail (DietrichGebert/ponytail, MIT).
 
@@ -38,11 +37,11 @@ Detenerse en el primer escalón que sostenga:
 6. **¿Puede ser una línea?** Una línea.
 7. **Solo entonces:** el mínimo código que funciona.
 
-La escalera es un reflejo, no un proyecto de investigación — pero corre
-_después_ de entender el problema, no en lugar de ello. Leer la tarea y el
-código que toca primero, trazar el flujo real punta a punta, luego escalar. Dos
-escalones funcionan → tomar el superior y seguir. La primera solución perezosa
-que funciona es la correcta — una vez que se sabe qué debe tocar el cambio.
+La escalera es un reflejo, no un proyecto de investigación — corre _después_
+de entender el problema, no en lugar de ello. Leer la tarea y el código que
+toca, trazar el flujo real punta a punta, luego escalar. Dos escalones
+funcionan → tomar el superior. La primera solución perezosa que funciona es la
+correcta una vez que se sabe qué debe tocar el cambio.
 
 **Bug fix = causa raíz, no síntoma.** Un reporte nombra un síntoma. Antes de
 editar, grep cada caller de la función que se va a tocar. El fix perezoso ES el
@@ -58,12 +57,10 @@ caller hermano roto. Arreglarlo una vez, donde todos los callers convergen.
   sí mismo.
 - Borrar antes que añadir. Aburrido antes que clever; clever es lo que alguien
   decodifica a las 3am.
-- Los menos archivos posibles. El diff más corto que funciona gana — pero solo
-  una vez que se entiende el problema. El cambio más pequeño en el lugar
-  equivocado no es perezoso, es un segundo bug.
+- Los menos archivos posibles; el diff más corto que funciona gana. El cambio
+  más pequeño en el lugar equivocado no es perezoso, es un segundo bug.
 - ¿Pedido complejo? Entregar la versión perezosa y cuestionarla en la misma
-  respuesta: "Hice X; Y cubre. ¿Necesita el X completo? Dilo." Nunca estancarse
-  en una respuesta que se puede defectear.
+  respuesta: "Hice X; Y cubre. ¿Necesita el X completo?"
 - Dos opciones de stdlib, mismo tamaño → la correcta en edge cases. Perezoso
   significa escribir menos código, no escoger el algoritmo más endeble.
 - Marcar simplificaciones deliberadas que cortan una esquina real con un techo
@@ -106,18 +103,17 @@ handling que previene data loss, medidas de seguridad, accessibility básica,
 cualquier cosa explícitamente pedida. El operador insiste en la versión
 completa → construirla, sin re-argumentar.
 
-Nunca perezoso con entender el problema. La escalera acorta la solución, nunca
-la lectura. Trazar todo primero — cada archivo que el cambio toca, el flujo
-real — antes de escoger un escalón. Pereza que salta la comprensión para shipar
-un diff pequeño es la clase peligrosa: se disfraza de eficiencia y entrega un
-fix confiado equivocado. Leer completo, luego ser perezoso.
+Nunca perezoso con entender el problema: la escalera acorta la solución, nunca
+la lectura. Trazar todo primero (cada archivo que el cambio toca, el flujo
+real) antes de escoger un escalón. Pereza que salta la comprensión para shipar
+un diff pequeño se disfraza de eficiencia y entrega un fix confiado equivocado.
+Leer completo, luego ser perezoso.
 
-Código perezoso sin su check está incompleto. Lógica no trivial (un branch, un
-loop, un parser, un path de dinero/seguridad) deja UN check runnable detrás, lo
-más pequeño que falla si la lógica se rompe: un `assert`-based
-`demo()`/`__main__` self-check o un `test_*` pequeño. Sin frameworks, sin
-fixtures, sin suites por función salvo que se pida. One-liners triviales no
-necesitan test; YAGNI aplica a tests también.
+Código perezoso sin su check está incompleto. Lógica no trivial (branch, loop,
+parser, path de dinero/seguridad) deja UN check runnable detrás, lo más pequeño
+que falla si la lógica se rompe: un `assert`-based `demo()`/`__main__`
+self-check o un `test_*` pequeño. Sin frameworks ni fixtures. One-liners
+triviales no necesitan test; YAGNI aplica a tests también.
 
 ## Fail-closed
 
@@ -125,12 +121,11 @@ Este skill es **fail-closed** y de **local-evaluation**:
 
 - NO auto-edita ni borra código. Propone cambios mínimos en prosa; el operador
   confirma antes de cualquier escritura.
-- NO ejecuta git, commits, pushes, ni merges. Toda operación git queda detrás
-  de confirmación explícita del operador.
-- NO ejecuta tests, builds, installs ni comandos de CLI externos.
-- NO añade dependencias. Si una dependencia parece necesaria, se propone y se
-  justifica; el operador decide.
-- NO abre conexiones de red. No publica. No despliega.
+- NO ejecuta git, commits, pushes, merges, tests, builds, installs ni comandos
+  de CLI externos. Toda operación git queda detrás de confirmación explícita
+  del operador.
+- NO añade dependencias: si una parece necesaria, se propone y justifica; el
+  operador decide. NO abre conexiones de red, no publica, no despliega.
 - Si no hay contexto suficiente para proponer un cambio mínimo, se marca
   `coverage_gap` y se detiene — no se infiere ni se sustituye con una conjetura
   pulida.

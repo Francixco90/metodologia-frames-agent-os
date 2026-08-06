@@ -1,7 +1,7 @@
 ---
 name: dev-land-and-deploy
 description: This skill should be used when el operador pide aterrizar una rama y secuenciar su despliegue — elegir la estrategia de merge, correr los pre-checks de readiness, ordenar el despliegue y planear la verificación post-deploy — sin auto-ejecutar git, merge, push ni deploy.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -21,12 +21,12 @@ el operador la revise y detiene toda ejecución detrás de su confirmación
 explícita. No merges. No pushes. No deploys automáticos. El operador decide
 cuándo avanzar; el skill describe cómo.
 
-La premisa es simple: un aterrizaje que no se secuencia se rompe en producción.
-"merge ya" no sirve — se declara la estrategia (squash, merge, rebase) y el
-gate que la condiciona—; "CI verde" no sirve — se lista qué checks pasaron y
-cuáles bloquean—; "deploy y ya" no sirve — se ordena el despliegue y se planea
-la verificación. No se adivina: si no se sabe algo del estado del PR o del
-entorno, se dice y se pregunta, o se lee el contexto primero.
+La premisa: un aterrizaje que no se secuencia se rompe en producción. "merge
+ya" no sirve — se declara la estrategia (squash, merge, rebase) y el gate que
+la condiciona; "CI verde" no sirve — se lista qué checks pasaron y cuáles
+bloquean; "deploy y ya" no sirve — se ordena el despliegue y se planea la
+verificación. Si no se sabe algo del estado del PR o del entorno, se dice o se
+lee el contexto primero.
 
 ## Cuándo usar
 
@@ -38,9 +38,8 @@ Usar este skill cuando el operador pide:
 - "revisa si el PR está listo para merge"
 - cualquier rama con PR abierto que el operador quiere aterrizar y desplegar.
 
-No usar cuando aún no hay PR (ahí toca crearlo primero), ni cuando el deploy ya
-ocurrió y lo que se necesita es monitoreo extendido o rollback en curso. En
-esos casos otra habilidad toma el relevo.
+No usar cuando aún no hay PR (crear primero), ni cuando el deploy ya ocurrió y
+se necesita monitoreo o rollback — otra habilidad toma el relevo.
 
 ## Las fases del aterrizaje y despliegue
 
@@ -53,7 +52,7 @@ que el operador revisa antes de avanzar. Ninguna fase se auto-ejecuta.
    aterrizar; si está `CLOSED` sin mergeear, hay que reabrirlo; si está `OPEN`
    se continúa. Detectar la plataforma de hosting (GitHub, GitLab) y la rama
    base del repo. Si no hay PR para la rama actual, se declara `coverage_gap` y
-   se detiene —no se inventa un PR ni se hace merge a ciegas.
+   se detiene —no se inventa un PR.
 
 2. **Pre-checks de merge.** Antes de mergeear, verificar tres frentes:
    - **CI**: ¿los checks requeridos pasaron? Si están pendientes, declarar que
@@ -65,8 +64,8 @@ que el operador revisa antes de avanzar. Ninguna fase se auto-ejecuta.
      slot del PR no fue ocupado por otro aterrizaje paralelo. Si el slot está
      stale, bloquear y pedir re-sync desde la rama feature.
 
-   Cada check produce un veredicto `PASS`, `BLOCK` o `WAIT`. Un `BLOCK` detiene
-   la fase; el operador resuelve y vuelve a invocar el skill.
+   Cada check da `PASS`, `BLOCK` o `WAIT`; un `BLOCK` detiene la fase hasta que
+   el operador resuelve.
 
 3. **Gate de readiness pre-merge.** Antes de un merge irreversible, reunir
    evidencia de readiness y armar un reporte que el operador aprueba:
@@ -81,10 +80,9 @@ que el operador revisa antes de avanzar. Ninguna fase se auto-ejecuta.
      no se tocaron, marcar warning —`/document-release` probablemente no se
      corrió.
 
-   El reporte lista warnings y blockers. Si hay blockers, no se avanza. Si hay
-   warnings, el operador decide si proceder, fixear primero o saltar con
-   confirmación explícita. **El merge no ocurre aquí** —el skill describe el
-   reporte y se detiene; el operador confirma antes de cualquier operación git.
+   El reporte lista warnings y blockers: con blockers no se avanza; con
+   warnings el operador decide. **El merge no ocurre aquí** —el operador
+   confirma antes de cualquier operación git.
 
 4. **Estrategia de merge y despliegue.** Declarar la secuencia exacta:
    - **Método de merge**: squash / merge / rebase —auto-detectado de la config
@@ -99,8 +97,8 @@ que el operador revisa antes de avanzar. Ninguna fase se auto-ejecuta.
      workflow, declarar que se monitorea el run. Si no hay workflow ni URL, no
      se fabrica verificación —se declara `coverage_gap`.
 
-   La estrategia se entrega como un plan en prosa, no como comandos ejecutados.
-   El operador revisa y confirma antes de cualquier merge.
+   La estrategia es un plan en prosa, no comandos ejecutados; el operador
+   confirma antes de cualquier merge.
 
 5. **Verificación post-deploy y plan de revert.** Después del deploy (que el
    operador ejecuta, no el skill), planear cómo verificar la salud:
@@ -113,27 +111,23 @@ que el operador revisa antes de avanzar. Ninguna fase se auto-ejecuta.
      (fetch base, checkout base, revert del merge SHA, push) y ofrecerlo como
      escape hatch. El revert también queda detrás de confirmación explícita.
 
-   El skill describe el plan de verificación; el operador lo ejecuta y reporta
-   los hallazgos. Si algo falla, el skill describe el plan de revert —no lo
-   ejecuta.
+   El operador ejecuta el plan de verificación y reporta hallazgos; si algo
+   falla, el skill describe el plan de revert —no lo ejecuta.
 
 ## Fail-closed
 
 Este skill es **fail-closed** y de **local-evaluation**:
 
-- NO ejecuta git, merges, pushes, fetches ni deploys. Toda operación git y
-  deploy queda detrás de confirmación explícita del operador.
-- NO ejecuta tests, builds, ni comandos de CLI externos. La orientación es
-  prosa para evaluación local.
+- NO ejecuta git, merges, pushes, fetches, deploys, tests, builds ni comandos
+  de CLI externos. Toda operación git y deploy queda detrás de confirmación
+  explícita del operador.
 - NO abre conexiones de red. No publica. No despliega. No hace `gh`, `fly`,
   `vercel`, `heroku`, `curl` ni ningún comando de plataforma.
-- NO invoca tooling de vendor (`npx gstack`, `${CLAUDE_PLUGIN_ROOT}`,
-  sesiones, analytics, telemetría, mockup generators, hooks, AskUserQuestion,
-  plan-mode gates). Esos artefactos del referenciador se descartaron en la
-  adaptación.
-- NO auto-mergea ni auto-deploya. Todo gate de merge y deploy queda detrás de
-  confirmación explícita del operador. Un PR `ready` no es un PR `merged` —
-  la confirmación explícita del operador es el gate que falta.
+- NO invoca tooling de vendor (`npx gstack`, `${CLAUDE_PLUGIN_ROOT}`, sesiones,
+  analytics, telemetría, mockup generators, hooks, AskUserQuestion, plan-mode
+  gates) — esos artefactos del referenciador se descartaron en la adaptación.
+- NO auto-mergea ni auto-deploya. Un PR `ready` no es un PR `merged` — la
+  confirmación explícita del operador es el gate que falta.
 - Si una fase no puede completarse por falta de contexto, se marca
   `coverage_gap` y se detiene —no se infiere ni se sustituye con una pulida
   conjetura.

@@ -1,7 +1,7 @@
 ---
 name: gstack-ios-fix
 description: This skill should be used when systematically diagnosing and fixing a bug in a Swift or iOS application, reproducing the failure, isolating the root cause, proposing a patch, and verifying the fix.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -21,10 +21,9 @@ verificar que el fix lo elimina. La skill cubre desde el síntoma visible
 hasta la prueba de regresión, pasando por la cadena de evidencia que
 sostiene cada decisión.
 
-No es la pieza para editar código a ciegas ni para auto-aplic fixes. Es la
-pieza para construir el camino completo de diagnóstico antes de tocar
-fuentes, y solo después de confirmación explícita del usuario proponer el
-patch mínimo que repara el comportamiento.
+No edita a ciegas ni auto-aplica fixes: construye el camino de diagnóstico
+antes de tocar fuentes y propone el patch mínimo tras confirmación explícita
+del usuario.
 
 ## Principio de la capability
 
@@ -35,10 +34,9 @@ causa raíz, y presenta el patch propuesto al usuario. La ejecución de
 cualquier edit requiere confirmación explícita puerta por puerta. Sin
 confirmación, no hay mutación.
 
-Esto protege contra la clase de fallo más común en fixes de iOS: parchear
-el síntoma visible sin reproducir el fallo, de modo que el bug reaparece en
-otra rama de estado tres meses después. La skill exige un snapshot
-reproductor antes de proponer cualquier edit.
+Esto evita el fallo más común: parchear el síntoma sin reproducirlo, de modo
+que el bug reaparece en otra rama de estado. La skill exige snapshot
+reproductor antes de cualquier edit.
 
 ## Ley de hierro
 
@@ -68,10 +66,9 @@ reproductora.
 5. Persistir una línea de descripción de qué está mal y qué se espera tras
    el fix.
 
-Si la reproducción es no determinista (ej. race condition), la skill
-documenta el patrón de ocurrencia y los intentos realizados, y detiene el
-proceso hasta que el usuario confirme que el patrón es suficiente para
-proseguir o aporte más datos.
+Si la reproducción es no determinista (ej. race condition), la skill documenta
+el patrón de ocurrencia y detiene el proceso hasta que el usuario confirme que
+es suficiente o aporte más datos.
 
 ## Fase 2: Aislar la causa raíz
 
@@ -94,8 +91,7 @@ Pasos:
 5. Identificar el cambio mínimo que repara el comportamiento: el archivo, la
    función, y la línea específica a editar.
 
-La skill no salta de síntoma a patch. El trazado es obligatorio y se
-documenta en el reporte de diagnóstico.
+La skill no salta de síntoma a patch: el trazado es obligatorio y se documenta en el reporte de diagnóstico.
 
 ## Fase 3: Hipótesis de fix
 
@@ -140,17 +136,14 @@ Proponer un test de regresión que:
 4. Sea determinista y no dependa de estado externo no controlado.
 
 El test de regresión se propone al usuario y solo se escribe tras
-confirmación. La skill no commitea el fixture ni el test por sí sola: eso
-es decisión del usuario.
+confirmación. La skill no commitea el fixture ni el test: es decisión del
+usuario.
 
 ## Qué NO hace la skill
 
-- No edita fuentes sin confirmación explícita puerta por puerta.
-- No aplica fixes automáticos en cadena sin verificación intermedia.
-- No Fuerza-push, amenda, ni muta historial git.
-- No asume causa raíz sin snapshot reproductor.
-- No extiende el patch más allá del cambio mínimo.
-- No publica, no deploya, no activa conectores.
+- No edita fuentes ni aplica fixes en cadena sin confirmación explícita puerta por puerta.
+- No Fuerza-push, amenda, ni muta historial git; no publica, no deploya, no activa conectores.
+- No asume causa raíz sin snapshot reproductor; no extiende el patch más allá del cambio mínimo.
 
 ## Modos de fallo
 
@@ -165,15 +158,15 @@ es decisión del usuario.
 ## Reversibilidad
 
 Cada Edit propuesto es una operación git; el usuario puede `git restore`
-para revertir. La skill nunca hace force-push, nunca amenda, nunca borra
-caché. Esas son decisiones del usuario.
+para revertir. La skill nunca hace force-push, amenda, ni borra caché — esas
+son decisiones del usuario.
 
 ## Fail-closed
 
-Sin write-set declarado, snapshot reproductor, y confirmación explícita del
-usuario, la skill no edita. Una ausencia no se sustituye por una inferencia
-pulida. Si el trazado encuentra referencias ambiguas o el snapshot no
-reproduce de forma determinista, marca `coverage_gap` y pide al usuario que
-delimite antes de proseguir.
+Sin write-set, snapshot reproductor y confirmación explícita, la skill no
+edita. Una ausencia no se sustituye por inferencia pulida. Si el trazado
+encuentra referencias ambiguas o el snapshot no reproduce de forma
+determinista, marca `coverage_gap` y pide al usuario que delimite antes de
+proseguir.
 
 Derivada de ios-fix (garrytan/gstack, MIT).

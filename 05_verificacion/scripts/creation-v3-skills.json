@@ -561,6 +561,7 @@
   },
   {
     "id": "dev-plan-devex-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-plan-devex-review/scripts/check-skill.mjs"
@@ -677,6 +678,7 @@
   },
   {
     "id": "dev-land-and-deploy",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-land-and-deploy/scripts/check-skill.mjs"
@@ -719,6 +721,7 @@
   },
   {
     "id": "dev-systematic-debugging",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-systematic-debugging/scripts/check-skill.mjs"
@@ -733,6 +736,7 @@
   },
   {
     "id": "dev-dispatching-parallel-agents",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs"
@@ -763,6 +767,7 @@
   },
   {
     "id": "dev-receiving-code-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-receiving-code-review/scripts/check-skill.mjs"
@@ -813,6 +818,7 @@
   },
   {
     "id": "dev-ponytail",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-ponytail/scripts/check-skill.mjs"
@@ -1030,6 +1036,7 @@
   },
   {
     "id": "gstack-ios-fix",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/gstack-ios-fix/scripts/check-skill.mjs"
@@ -1079,6 +1086,7 @@
   },
   {
     "id": "gstack-openclaw-retro",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/gstack-openclaw-retro/scripts/check-skill.mjs"
