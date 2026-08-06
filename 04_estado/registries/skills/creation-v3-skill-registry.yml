@@ -696,11 +696,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-threejs-r3f/scripts/check-skill.mjs]
   - skill_id: design-compose-multiplatform
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 2f54aa2f009742f0f0880c7a8d1448114a27c6b7e26e1483a41e1dd501390902
-    package_manifest_sha256: deddd333b0a3ab94db94b9ed0b79932631ce1011442d0894e86a7561566bf769
+    content_sha256: eeac7a3eb495086d21efd028404c419072c251bdf82a4601b63db718c7210092
+    package_manifest_sha256: 2942fb8ac6cb6a90db3b39a14211219d8b462b71621f4ee53b6255c38ac888b4
     lineage_ref: skills/design-compose-multiplatform/LINEAGE.yml
     dependency_receipt_ref: skills/design-compose-multiplatform/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1949,6 +1949,7 @@ events:
   - {event_id: EVT-SKL-CMP-H03-002, event_order: 2, skill_id: design-compose-multiplatform, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMP-H03-003, event_order: 3, skill_id: design-compose-multiplatform, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMP-H03-004, event_order: 4, skill_id: design-compose-multiplatform, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMP-H03-005, event_order: 5, skill_id: design-compose-multiplatform, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-GJM-H03-001, event_order: 1, skill_id: design-genjutsu-gsap-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GJM-H03-002, event_order: 2, skill_id: design-genjutsu-gsap-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GJM-H03-003, event_order: 3, skill_id: design-genjutsu-gsap-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
