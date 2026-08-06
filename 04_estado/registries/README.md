@@ -3,7 +3,7 @@
 `registries/` is the governed-asset store: the canonical YAML/JSON registers that
 the DAG, agents, renderers and checks resolve against. Every subregistry is
 owned under the one-writer-per-path policy in
-`docs/program/ownership-manifest.yml` and validated by a dedicated `scripts/check-*`
+`01_intencion/program/ownership-manifest.yml` and validated by a dedicated `scripts/check-*`
 script (run via `pnpm check:repo`, unless noted).
 
 | Subregistry          | Owner                       | Canonical files                                                                                            | Validator                                            |
@@ -23,7 +23,7 @@ script (run via `pnpm check:repo`, unless noted).
 | `sources/`           | sources                     | `source-registry.yml`, `lifecycle-contract.yml`, `canonical-source-gaps.yml`                               | `check-sources.ts`                                   |
 | `visual-references/` | _unassigned (post-closure)_ | `visual-reference-register-v1.jsonl`                                                                       | `check-visual-reference-register.mjs`                |
 
-[CONFIG] Owners resolved from `docs/program/ownership-manifest.yml`.
+[CONFIG] Owners resolved from `01_intencion/program/ownership-manifest.yml`.
 `contributions/` and `visual-references/` were added after the V2 closure commit
 and are not yet assigned a writer; they are still validated by their checks.
 

@@ -1,6 +1,6 @@
 # Program docs
 
-Canonical program documents under `docs/program/`. Grouped by concern.
+Canonical program documents under `01_intencion/program/`. Grouped by concern.
 
 ## Governance & policy
 

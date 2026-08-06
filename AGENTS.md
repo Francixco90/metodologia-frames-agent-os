@@ -1,7 +1,7 @@
 # Reglas de agentes
 
 1. MetodologIA es la única identidad visible.
-2. Leer `docs/program/dag.yml` y `docs/program/ownership-manifest.yml` antes de escribir.
+2. Leer `01_intencion/program/dag.yml` y `01_intencion/program/ownership-manifest.yml` antes de escribir.
 3. Escribir solo dentro de la allowlist asignada; un writer por ruta.
 4. Usar `[CÓDIGO]`, `[CONFIG]`, `[DOC]`, `[INFERENCIA]`, `[SUPUESTO]` o `coverage_gap` en decisiones materiales.
 5. No persistir chain-of-thought, secretos, PII ni locators privados.
