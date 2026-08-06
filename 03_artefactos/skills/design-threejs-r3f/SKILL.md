@@ -1,7 +1,7 @@
 ---
 name: design-threejs-r3f
 description: This skill should be used when the operator requests Three.js or React Three Fiber guidance — scene setup, materials, lighting, useFrame animation loops, instancing for 10k+ objects, custom shaders, postprocessing (Bloom/Noise/Vignette), or Drei helpers. It delivers prose guidance and pseudocode snippets for local evaluation only; it never executes a WebGL render, runs a dev server, or auto-launches build tooling.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -14,11 +14,8 @@ metadata:
 Derivada de genjutsu/_jutsu/threejs-r3f/SKILL.md (AThevon/genjutsu, MIT, commit 08a792f). El
 homólogo MetodologIA adapta el conocimiento de escena 3D web (Three.js + React Three Fiber) al
 contexto local-evaluation: produce prosa explicativa y snippets de pseudocódigo para evaluación
-local del operador. Nunca ejecuta un render WebGL, no levanta un dev server, no instala
-dependencias, no toca la red. Toda ejecución de CLI externo (vite, npm run dev, npx, build
-tooling) requiere confirmación explícita del operador; por defecto se describe la capability y
-se marca `coverage_gap` si falta tooling local. fail-closed: una ausencia no se sustituye por
-una inferencia pulida.
+local del operador. Vease §fail-closed / coverage_gap para la política de no-ejecución y
+no-instalación.
 
 ## Cuándo usar
 

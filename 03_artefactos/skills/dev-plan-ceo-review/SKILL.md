@@ -1,7 +1,7 @@
 ---
 name: dev-plan-ceo-review
 description: This skill should be used when el operador pide una revisión ejecutiva (modo CEO) del plan — alineación estratégica, impacto de negocio, riesgo, secuenciación de alcance, capacidad del equipo, dependencias y timing — con recomendaciones opinadas, sin auto-ejecutar git, tests ni commits.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -23,7 +23,6 @@ recomendaciones concretas. No código. No commits. No ejecución automática.
 El plan es materia prima; la revisión lo interroga hasta que la decisión
 estratégica queda clara y reversible solo cuando conviene. No se adivina: si
 falta contexto del negocio, se dice y se pregunta, o se marca `coverage_gap`.
-Toda recomendación queda detrás de confirmación explícita del operador.
 
 ## Cuándo usar
 
@@ -164,5 +163,3 @@ operador.
 - El checker local `skills/dev-plan-ceo-review/scripts/check-skill.mjs`
   verifica presencia de tokens de gobernabilidad, ausencia de APIs
   prohibidas y completitud del fixture negativo.
-- Si no hay contexto de plan (no hay plan, no hay modo claro), se emite
-  `coverage_gap` en lugar de fabricar una revisión genérica.

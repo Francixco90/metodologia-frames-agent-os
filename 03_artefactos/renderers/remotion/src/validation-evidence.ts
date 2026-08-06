@@ -2,6 +2,11 @@ import {createHash} from 'node:crypto';
 
 import {z} from 'zod';
 
+// Hash-bound literal: `createdAt: z.literal('2026-07-19T12:00:00.000Z')` (and
+// the plain-string twin below) are sealed to the validation-evidence chain
+// hash. ADR 0027 excepciones: preserve the literal value inline; do NOT
+// extract to `deterministic-epoch.ts` (would risk the evidence-chain hash).
+
 const sha256 = (value: string): string => createHash('sha256').update(value).digest('hex');
 const sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const portableJsonPathPattern =

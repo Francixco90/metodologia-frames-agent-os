@@ -11,9 +11,9 @@ import {describe, expect, it} from 'vitest';
 import YAML from 'yaml';
 
 import {TaskContractSchema} from '../../../02_proceso/core/contracts/index.ts';
+import {DETERMINISTIC_EPOCH as FIXED_TS} from '../../scripts/lib/deterministic-epoch.ts';
 
 const FIXTURE_DIR = resolve(__dirname, 'fixture');
-const FIXED_TS = '2026-08-01T00:00:00+00:00';
 
 interface LoadedTask {
   taskId: string;

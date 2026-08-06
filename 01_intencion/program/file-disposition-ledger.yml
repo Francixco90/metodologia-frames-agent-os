@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 78
-    generator_fixed: 4
+    refactored: 80
+    generator_fixed: 6
     superseded: 0
-    verified_no_change: 206
+    verified_no_change: 202
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 92083
-    v3_rolling_adjustment_words: 4775
+    baseline_words: 92187
+    v3_rolling_adjustment_words: 4879
     original_baseline_words: 87308
-    final_words: 113941
+    final_words: 109264
     maximum_multiplier: 1.5
-    maximum_words: 138124
-    actual_multiplier: 1.2374
+    maximum_words: 138280
+    actual_multiplier: 1.1852
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 92083
-    v3_rolling_adjustment_words: 4775
+    baseline_words: 92187
+    v3_rolling_adjustment_words: 4879
     original_baseline_words: 87308
-    final_words: 113941
-    maximum_words: 184166
-    word_multiplier: 1.2374
-    baseline_loc: 34775
-    v3_rolling_adjustment_loc: 2034
+    final_words: 109264
+    maximum_words: 184374
+    word_multiplier: 1.1852
+    baseline_loc: 34789
+    v3_rolling_adjustment_loc: 2048
     original_baseline_loc: 32741
-    final_loc: 42868
-    maximum_loc: 69550
-    loc_multiplier: 1.2327
+    final_loc: 41128
+    maximum_loc: 69578
+    loc_multiplier: 1.1822
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -2940,9 +2940,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: dade31ae11ea2e9f72de9f0e0e2314562ef47e8b133a65e8827fbc0a2373d248
-      current_words: 539
-      current_loc: 133
+      current_sha256: 96cf94825bea615a475af7160fe1b28ec0f02c26fbf17929a72af0120404f148
+      current_words: 561
+      current_loc: 135
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -5454,19 +5454,19 @@ entries:
     initial_words: 1901
     initial_loc: 657
     resolved_owner: remotion
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: generator_fixed
+    justification: The canonical generator changed; derived outputs must be regenerated and verified, never patched as source.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/components/component-registry.yml
       current_ref: working-tree:registries/components/component-registry.yml
       current_state: present
-      current_sha256: 6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2
+      current_sha256: fcbd2f47a2bece6dd5182bef1ad1aeb100ec790189f88303583cb413525bef36
       current_words: 1901
       current_loc: 657
-      byte_identical: true
-      material_change: false
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:remotion:registries/components/**
-      generator_ref: null
+      generator_ref: renderers/remotion/scripts/prepare-project.ts
       successor_path: null
   - path: registries/memory/memory-policy.yml
     artifact_class: canonical_editable
@@ -5748,19 +5748,19 @@ entries:
     initial_words: 1758
     initial_loc: 642
     resolved_owner: remotion
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: generator_fixed
+    justification: The canonical generator changed; derived outputs must be regenerated and verified, never patched as source.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:renderers/remotion/scripts/prepare-project.ts
       current_ref: working-tree:renderers/remotion/scripts/prepare-project.ts
       current_state: present
-      current_sha256: 8b33294e9df5a384cd088fecc091b9dd772e167d25252951a9404f77e2c53391
-      current_words: 1758
-      current_loc: 642
-      byte_identical: true
-      material_change: false
+      current_sha256: 283ca69639a27e23548e89219919771bfb3c89f96d0fe5e5b980c1fb0606c3d5
+      current_words: 294
+      current_loc: 88
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:remotion:renderers/remotion/**
-      generator_ref: null
+      generator_ref: renderers/remotion/scripts/prepare-project.ts
       successor_path: null
   - path: renderers/remotion/scripts/render-project.ts
     artifact_class: code_script
@@ -5832,17 +5832,17 @@ entries:
     initial_words: 1096
     initial_loc: 419
     resolved_owner: remotion
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:renderers/remotion/src/append-only-evidence.ts
       current_ref: working-tree:renderers/remotion/src/append-only-evidence.ts
       current_state: present
-      current_sha256: c1d45286015e4c246ecb4abf054312c5b16988489baf918c40a9a7414e051648
-      current_words: 1096
-      current_loc: 419
-      byte_identical: true
-      material_change: false
+      current_sha256: 6b3280341ecbb425187e9dc2b89d0a1d3c5f74ba0e01f8ed8e70d2cdd15b1f66
+      current_words: 1120
+      current_loc: 423
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:remotion:renderers/remotion/**
       generator_ref: null
       successor_path: null
@@ -6336,17 +6336,17 @@ entries:
     initial_words: 722
     initial_loc: 267
     resolved_owner: remotion
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:renderers/remotion/src/validation-evidence.ts
       current_ref: working-tree:renderers/remotion/src/validation-evidence.ts
       current_state: present
-      current_sha256: be6fd9ce84d1e06eca0e045905d11b2a8ef31327fbd00af722430fc75fcd7c77
-      current_words: 722
-      current_loc: 267
-      byte_identical: true
-      material_change: false
+      current_sha256: cad9ab0b29e5307b6bb1f41d5999208d83df99ffbbdc6413499c989e76b4e038
+      current_words: 760
+      current_loc: 272
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:remotion:renderers/remotion/**
       generator_ref: null
       successor_path: null
@@ -6531,9 +6531,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-privacy.ts
       current_ref: working-tree:scripts/check-privacy.ts
       current_state: present
-      current_sha256: 61ade0023cca5d729093f0ccbf6647cec01e431ef111e6fee9a9d19b342c8e1a
-      current_words: 248
-      current_loc: 82
+      current_sha256: a850f83ff5e58526db75b6c2c7ecc0dc4a9f50e94d669123a9cd3750d4c41b4c
+      current_words: 264
+      current_loc: 84
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -8190,9 +8190,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/unit/core/fixtures.ts
       current_ref: working-tree:tests/unit/core/fixtures.ts
       current_state: present
-      current_sha256: ca8666ccc77f2b017af8207d1effce8395021f67222b4d57b9b70c1bc152e45f
-      current_words: 139
-      current_loc: 67
+      current_sha256: 21cc4aa8b6c7b15fb182ae8f3e493d08d982a8d1312dc6e7da86da88280711f3
+      current_words: 143
+      current_loc: 68
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:tests/unit/core/**

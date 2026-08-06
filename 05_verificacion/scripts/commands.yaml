@@ -221,7 +221,6 @@ gates:
     allowed_tools: [Bash]
     write_set_globs:
       - "receipts/check-runs/**"
-      - "quality/reports/env-drift-*.yml"
     idempotency: true
     danger_level: low
     manual: false
@@ -245,7 +244,18 @@ gates:
     command: "pnpm check:grants"
     allowed_tools: [Bash, Read]
     write_set_globs:
-      - "governance/reports/tool-grants-*.yml"
+      - "receipts/check-runs/**"
+    idempotency: true
+    danger_level: low
+    manual: false
+    fail_closed: false
+    owner: qa
+
+  - gate: G21
+    label: atemporal naming
+    command: "pnpm check:atemporal"
+    allowed_tools: [Bash]
+    write_set_globs: []
     idempotency: true
     danger_level: low
     manual: false

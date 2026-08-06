@@ -5,9 +5,9 @@
  *
  * Reads `04_estado/registries/env/env-manifest-v1.yml`, probes the runtime
  * toolchain (node, pnpm, remotion, ffmpeg, playwright; chromium is
- * coverage_gap until pinned), diffs declared vs observed, emits:
- *   - a check-run receipt at `04_estado/receipts/check-runs/C-NNN/receipt.yml`
- *   - a drift report at `05_verificacion/quality/reports/env-drift-{ISO-date}.yml`
+ * coverage_gap until pinned), diffs declared vs observed, emits an append-only
+ * check-run receipt at `04_estado/receipts/check-runs/C-NNN/receipt.yml` plus
+ * an atemporal drift detail at `.../C-NNN/env-drift-detail.yml` (ADR 0027).
  * Exit 0 if no drift; exit 1 if any tool drifts. coverage_gap tools (chromium)
  * warn, never fail. [CÓDIGO]
  *
@@ -31,7 +31,6 @@ import {CheckRunReceiptSchema} from './lib/check-run-receipt-schema.ts';
 const ROOT = process.cwd();
 const MANIFEST_PATH = resolve(ROOT, '04_estado/registries/env/env-manifest-v1.yml');
 const CHECK_RUNS_DIR = resolve(ROOT, '04_estado/receipts/check-runs');
-const REPORTS_DIR = resolve(ROOT, '05_verificacion/quality/reports');
 
 interface ToolProbe {
   tool: string;
@@ -53,11 +52,6 @@ const isoWithOffset = (date: Date): string => {
   if (tzOffsetMin === 0) return `${base}Z`;
   return `${base}${sign}${hh}:${mm}`;
 };
-
-const isoDateUtc = (date: Date): string =>
-  `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(
-    date.getUTCDate(),
-  ).padStart(2, '0')}`;
 
 const run = (cmd: string, args: string[]): string | null => {
   try {
@@ -186,32 +180,30 @@ const main = (): void => {
   const stdoutText = stdoutLines.join('\n');
   const stderrText = driftCount === 0 ? '' : stdoutText;
 
-  // Emit drift report.
-  mkdirSync(REPORTS_DIR, {recursive: true});
-  const reportDate = isoDateUtc(new Date());
-  const reportPath = resolve(REPORTS_DIR, `env-drift-${reportDate}.yml`);
-  const reportLines: string[] = [];
-  reportLines.push(`schema_version: env-drift-report-v1`);
-  reportLines.push(`generated_at: ${JSON.stringify(isoWithOffset(new Date()))}`);
-  reportLines.push(`manifest_ref: 04_estado/registries/env/env-manifest-v1.yml`);
-  reportLines.push(`tools:`);
-  for (const p of probes) {
-    reportLines.push(`  - tool: ${p.tool}`);
-    reportLines.push(`    declared: ${JSON.stringify(p.declared)}`);
-    reportLines.push(`    observed: ${p.observed === null ? 'null' : JSON.stringify(p.observed)}`);
-    reportLines.push(`    status: ${p.status}`);
-  }
-  reportLines.push(`summary:`);
-  reportLines.push(`  match: ${matches.length}`);
-  reportLines.push(`  drift: ${drift.length}`);
-  reportLines.push(`  missing: ${missing.length}`);
-  reportLines.push(`  coverage_gap: ${gaps.length}`);
-  writeFileSync(reportPath, `${reportLines.join('\n')}\n`, 'utf8');
-
-  // Emit check-run receipt (append-only).
+  // Emit check-run receipt (append-only) + atemporal detail (ADR 0027).
   const receiptId = nextReceiptId();
   const receiptDir = resolve(CHECK_RUNS_DIR, receiptId);
   mkdirSync(receiptDir, {recursive: true});
+
+  // Drift detail lives alongside the receipt (atemporal path under receipts/).
+  const detailLines: string[] = [];
+  detailLines.push(`schema_version: env-drift-detail-v1`);
+  detailLines.push(`generated_at: ${JSON.stringify(isoWithOffset(new Date()))}`);
+  detailLines.push(`manifest_ref: 04_estado/registries/env/env-manifest-v1.yml`);
+  detailLines.push(`tools:`);
+  for (const p of probes) {
+    detailLines.push(`  - tool: ${p.tool}`);
+    detailLines.push(`    declared: ${JSON.stringify(p.declared)}`);
+    detailLines.push(`    observed: ${p.observed === null ? 'null' : JSON.stringify(p.observed)}`);
+    detailLines.push(`    status: ${p.status}`);
+  }
+  detailLines.push(`summary:`);
+  detailLines.push(`  match: ${matches.length}`);
+  detailLines.push(`  drift: ${drift.length}`);
+  detailLines.push(`  missing: ${missing.length}`);
+  detailLines.push(`  coverage_gap: ${gaps.length}`);
+  writeFileSync(resolve(receiptDir, 'env-drift-detail.yml'), `${detailLines.join('\n')}\n`, 'utf8');
+
   const started = Date.now();
   const receipt = {
     schema_version: 'check-run-receipt-v1' as const,
@@ -255,7 +247,7 @@ const main = (): void => {
     else if (line.startsWith('[WARN]')) console.warn(line);
     else console.info(line);
   }
-  console.info(`CHECK:ENV report=${reportPath} receipt=${resolve(receiptDir, 'receipt.yml')}`);
+  console.info(`CHECK:ENV receipt=${resolve(receiptDir, 'receipt.yml')} detail=${resolve(receiptDir, 'env-drift-detail.yml')}`);
 
   if (driftCount > 0) process.exitCode = 1;
 };

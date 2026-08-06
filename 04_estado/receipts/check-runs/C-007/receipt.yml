@@ -1,0 +1,11 @@
+schema_version: check-run-receipt-v1
+receipt_id: C-007
+gate: G20
+command: "pnpm check:grants"
+exit_code: 0
+stdout_sha256: a97b54b385990875544ae3d8753baad08d7b52732d06229ffeeecc60fa4941ed
+stderr_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+duration_ms: 0
+ran_at: "2026-08-06T07:57:02-05:00"
+append_only: true
+runner_actor: governance

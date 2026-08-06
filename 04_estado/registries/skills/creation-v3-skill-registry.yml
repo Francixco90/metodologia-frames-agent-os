@@ -245,11 +245,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-hyperframes-cli/scripts/check-skill.mjs]
   - skill_id: content-os-captions-overlay
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3dfde5d95e268a44e874b739c923330552586fb3149076b551d4fba2b0990f4b
-    package_manifest_sha256: 710ff6b18f63b28ff74b803d434d98f86f3f2ee88da8cd65a0abd802a37ee10c
+    content_sha256: bff2c6bd25b17ba575031ee2018abf3337024f11456e0baae6efc7407a786732
+    package_manifest_sha256: 9f728e2145f4e5f270e433ce746526b6c00fd64cc991352bdeaeaf4b19d94313
     lineage_ref: skills/content-os-captions-overlay/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-captions-overlay/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -586,11 +586,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-audit-genjutsu/scripts/check-skill.mjs]
   - skill_id: design-framer-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 92aa41f83a8541ccc215fe3fe189b0485bc99c7e5899df3985977d727a1b1e57
-    package_manifest_sha256: b5d4f3bf9115549c20f2ce7b6cb39da65df0664882d3edc2c7e9006a0963264c
+    content_sha256: 9c0c80f87f8732011009b636447f5060cf239f18592be26e3885d1fcd657cf4b
+    package_manifest_sha256: 422cf709f3dddcc7137849b89f80659d467494d216f3d2eae8bc99b51f32c2fc
     lineage_ref: skills/design-framer-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-framer-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -663,11 +663,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-canvas-generative/scripts/check-skill.mjs]
   - skill_id: design-desktop-principles
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 0993e95d565ba4b1a3a0cd66bfadd725638045e5ec3bc2b916d3aeb8d73d53d6
-    package_manifest_sha256: 7f6b91481a7bf32df46aef654d9b647fccb730020c06fb5e2c331864bc07dcdd
+    content_sha256: e6ec1ab69af87d12ed7c239726862d9eb9c2b5afa8dadc9d93070ffcf3c0ff31
+    package_manifest_sha256: c7b4926a5e2e47fbb5a4bb67a349476caee999e4ec50916539c9b899f2b6f099
     lineage_ref: skills/design-desktop-principles/LINEAGE.yml
     dependency_receipt_ref: skills/design-desktop-principles/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -685,11 +685,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-swiftui-motion/scripts/check-skill.mjs]
   - skill_id: design-threejs-r3f
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 213979a794d1286386b068467fd5e8cff28ea234624d3e41eab2965eabc4166c
-    package_manifest_sha256: 4b0cb406ade5f7d38e9f532287d651777541a55652987f5c14db41d3a3daad22
+    content_sha256: beee2a774b9aac9f3945344471a311b1f1c1a4d838b4dd732a6b9dd3585e4ffe
+    package_manifest_sha256: 8deadd72b3c55025aa5a86ec49adca5d5533533897e36bb8bbe346538678a2c4
     lineage_ref: skills/design-threejs-r3f/LINEAGE.yml
     dependency_receipt_ref: skills/design-threejs-r3f/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -883,11 +883,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-plan-design-review/scripts/check-skill.mjs]
   - skill_id: dev-plan-ceo-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3df03fe152c18b331c0bbe7911d27186b07fb25283427291ccec6ecf3ef1e037
-    package_manifest_sha256: 3f77c18915a5ca21fd839033cc286f939a7e8daa724130bc7f4bf39e26bea198
+    content_sha256: 14e1a4aad99fca7b3e604c4a7e253e886ff53b5545ade67945e8226c1a530af9
+    package_manifest_sha256: eb6a1a39f9474465efdfe1e56cc3f8df8093c4c498e1b632f42c003fca0c5bed
     lineage_ref: skills/dev-plan-ceo-review/LINEAGE.yml
     dependency_receipt_ref: skills/dev-plan-ceo-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -960,22 +960,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-design-shotgun/scripts/check-skill.mjs]
   - skill_id: dev-document-generate
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 36c8dd3d6d0a503fad72397ea3b04475b5086fe2ea2857bb5b786da946ed388c
-    package_manifest_sha256: 4a674cc0bae565f795d604f28a73e0c86f4e12f2766b30a2806a76f106af35fc
+    content_sha256: d562537d6fe6a4fe0cbdff567345ccdd5b12cd5cbf0c8909a03638ce7253a276
+    package_manifest_sha256: ef4a089e02a0eaa304042e30151cbe4e5d39bba854a5cdf76076c99d76711c75
     lineage_ref: skills/dev-document-generate/LINEAGE.yml
     dependency_receipt_ref: skills/dev-document-generate/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-document-generate/scripts/check-skill.mjs]
   - skill_id: dev-document-release
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 6c0a39a6012073966cb10f2825eeab04db2965eb7148f2da3605d0142e5b9207
-    package_manifest_sha256: 934230b6c18fdcab645fb64e89b0cf49c56a7c743e80ca923f90ebfc1b2af868
+    content_sha256: 20a47d4815adcce60390a5f04340245ba04bcb98da51583733e9b7fb52e6e4db
+    package_manifest_sha256: efab8279c2974ab2d3302197b2150d8b30bd4fcba878dffdd28aea0bbce7a411
     lineage_ref: skills/dev-document-release/LINEAGE.yml
     dependency_receipt_ref: skills/dev-document-release/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1015,11 +1015,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-guard/scripts/check-skill.mjs]
   - skill_id: dev-health
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 66cc7f79b851bb2ea914ef67c3a35f816e7be12b1be1da39356ef33f1ea13156
-    package_manifest_sha256: 562b909e953bd33e4781f3acbe4497a1d7853b40949bb4018853f4800ba01640
+    content_sha256: f0f809ea6cf2ec6a7a7c810f7065b2400c2191de841a02fe5a07acc4b1558ca0
+    package_manifest_sha256: 6c5aa7a03dea3707c3a9ff538cbefab70253cfcee123ba0c1e2a466bf1d386b9
     lineage_ref: skills/dev-health/LINEAGE.yml
     dependency_receipt_ref: skills/dev-health/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1136,22 +1136,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs]
   - skill_id: dev-executing-plans
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 1fd8ce908c88510c22d0ebb0ce6bc81a8fb860e0e75a035278df58b8090a2820
-    package_manifest_sha256: b1b805e5920e1e75667c3a6f5a84896a18c6a8dfa805f071f609fda475bf52c1
+    content_sha256: da59482a563993a1a2a2fb4898a2bc5ade7c5fede24e0c1ad3f08b4a59aefb09
+    package_manifest_sha256: b3a2a778fd5f86eb926b94f8f0a747c8da0653c128e31b8b5adfa40ce105c71f
     lineage_ref: skills/dev-executing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-executing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-executing-plans/scripts/check-skill.mjs]
   - skill_id: dev-writing-plans
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 14b1490d016018c1e3e0e4091a3ec23eb0fb98d9651b49809d8bc463043031a8
-    package_manifest_sha256: f2ccc3811165676cab1466478c08f9b1293c2284e0805db8204593f5e8519204
+    content_sha256: c86d54482b5c5975cd141dd3dab8a7460fd2d242f33a56b8d4c94c1bba8294af
+    package_manifest_sha256: 565b429c363d9e37d9f8bd4377ca02c541fe3a3261f974e1645cd79da4217e8d
     lineage_ref: skills/dev-writing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1235,11 +1235,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-verification-before-completion/scripts/check-skill.mjs]
   - skill_id: dev-writing-skills
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: bed8166eb6759b28149532513c52060b04684c4eec593fa440d887f71991c7c4
-    package_manifest_sha256: 77333ba6534c57cacd15bd68578fab9a6f46b41b508aa5510a238fc51f64077d
+    content_sha256: 511f2e25cf747bed76fa467829f73b4d2b4fd475d06c585e79ec4a4a58046b40
+    package_manifest_sha256: 7196f760aad5abe78e9f24a0c6e38b0b9fdaa0f9098c4eefe4c5d1e996c8850d
     lineage_ref: skills/dev-writing-skills/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-skills/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1768,6 +1768,7 @@ events:
   - {event_id: EVT-SKL-COV-H03-002, event_order: 2, skill_id: content-os-captions-overlay, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COV-H03-003, event_order: 3, skill_id: content-os-captions-overlay, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COV-H03-004, event_order: 4, skill_id: content-os-captions-overlay, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COV-H03-005, event_order: 5, skill_id: content-os-captions-overlay, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — Why-section bullets collapsed to dense prose, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-MDR-H03-001, event_order: 1, skill_id: content-os-motion-doctrine, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-002, event_order: 2, skill_id: content-os-motion-doctrine, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-003, event_order: 3, skill_id: content-os-motion-doctrine, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1892,6 +1893,7 @@ events:
   - {event_id: EVT-SKL-FRM-H03-002, event_order: 2, skill_id: design-framer-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FRM-H03-003, event_order: 3, skill_id: design-framer-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-FRM-H03-004, event_order: 4, skill_id: design-framer-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FRM-H03-005, event_order: 5, skill_id: design-framer-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — intro fail-closed recap dropped (duplicated in Fail-closed section), coverage_gap restatement removed, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-MPR-H03-001, event_order: 1, skill_id: design-motion-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1920,6 +1922,7 @@ events:
   - {event_id: EVT-SKL-DKP-H03-002, event_order: 2, skill_id: design-desktop-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DKP-H03-003, event_order: 3, skill_id: design-desktop-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DKP-H03-004, event_order: 4, skill_id: design-desktop-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DKP-H03-005, event_order: 5, skill_id: design-desktop-principles, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — blockquote fail-closed recap dropped (duplicated in Runtime Boundary), generic fail-closed boilerplate removed, density + animation prose tightened, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-SWM-H03-001, event_order: 1, skill_id: design-swiftui-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-002, event_order: 2, skill_id: design-swiftui-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-003, event_order: 3, skill_id: design-swiftui-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1928,6 +1931,7 @@ events:
   - {event_id: EVT-SKL-TRF-H03-002, event_order: 2, skill_id: design-threejs-r3f, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-003, event_order: 3, skill_id: design-threejs-r3f, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-TRF-H03-004, event_order: 4, skill_id: design-threejs-r3f, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-TRF-H03-005, event_order: 5, skill_id: design-threejs-r3f, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1218->1171w + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-CMP-H03-001, event_order: 1, skill_id: design-compose-multiplatform, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMP-H03-002, event_order: 2, skill_id: design-compose-multiplatform, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMP-H03-003, event_order: 3, skill_id: design-compose-multiplatform, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2000,6 +2004,7 @@ events:
   - {event_id: EVT-SKL-PCR-H03-002, event_order: 2, skill_id: dev-plan-ceo-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PCR-H03-003, event_order: 3, skill_id: dev-plan-ceo-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PCR-H03-004, event_order: 4, skill_id: dev-plan-ceo-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PCR-H03-005, event_order: 5, skill_id: dev-plan-ceo-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — redundant operator-confirmation + coverage_gap restatements removed (duplicated in Como and Fail-closed sections), body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-PTU-H03-001, event_order: 1, skill_id: dev-plan-tune, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PTU-H03-002, event_order: 2, skill_id: dev-plan-tune, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PTU-H03-003, event_order: 3, skill_id: dev-plan-tune, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2028,10 +2033,12 @@ events:
   - {event_id: EVT-SKL-DGN-H03-002, event_order: 2, skill_id: dev-document-generate, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DGN-H03-003, event_order: 3, skill_id: dev-document-generate, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DGN-H03-004, event_order: 4, skill_id: dev-document-generate, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DGN-H03-005, event_order: 5, skill_id: dev-document-generate, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1218->1189w + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-DRL-H03-001, event_order: 1, skill_id: dev-document-release, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DRL-H03-002, event_order: 2, skill_id: dev-document-release, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DRL-H03-003, event_order: 3, skill_id: dev-document-release, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DRL-H03-004, event_order: 4, skill_id: dev-document-release, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DRL-H03-005, event_order: 5, skill_id: dev-document-release, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — anti-skip restatement tightened, redundant coverage_gap line removed (duplicated in dim 1 and Fail-closed), body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-FZE-H03-001, event_order: 1, skill_id: dev-freeze, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FZE-H03-002, event_order: 2, skill_id: dev-freeze, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FZE-H03-003, event_order: 3, skill_id: dev-freeze, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2048,6 +2055,7 @@ events:
   - {event_id: EVT-SKL-HLT-H03-002, event_order: 2, skill_id: dev-health, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-HLT-H03-003, event_order: 3, skill_id: dev-health, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-HLT-H03-004, event_order: 4, skill_id: dev-health, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-HLT-H03-005, event_order: 5, skill_id: dev-health, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1240->1189w + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-CNR-H03-001, event_order: 1, skill_id: dev-canary, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CNR-H03-002, event_order: 2, skill_id: dev-canary, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CNR-H03-003, event_order: 3, skill_id: dev-canary, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2092,10 +2100,12 @@ events:
   - {event_id: EVT-SKL-EXE-H03-002, event_order: 2, skill_id: dev-executing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXE-H03-003, event_order: 3, skill_id: dev-executing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-EXE-H03-004, event_order: 4, skill_id: dev-executing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EXE-H03-005, event_order: 5, skill_id: dev-executing-plans, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, lineage ref moved to top"}
   - {event_id: EVT-SKL-WPL-H03-001, event_order: 1, skill_id: dev-writing-plans, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WPL-H03-002, event_order: 2, skill_id: dev-writing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WPL-H03-003, event_order: 3, skill_id: dev-writing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WPL-H03-004, event_order: 4, skill_id: dev-writing-plans, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WPL-H03-005, event_order: 5, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, fixtures renamed example.md to descriptive .yml"}
   - {event_id: EVT-SKL-FNB-H03-001, event_order: 1, skill_id: dev-finishing-a-development-branch, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-002, event_order: 2, skill_id: dev-finishing-a-development-branch, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-003, event_order: 3, skill_id: dev-finishing-a-development-branch, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2128,6 +2138,7 @@ events:
   - {event_id: EVT-SKL-WSK-H03-002, event_order: 2, skill_id: dev-writing-skills, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-WSK-H03-003, event_order: 3, skill_id: dev-writing-skills, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-WSK-H03-004, event_order: 4, skill_id: dev-writing-skills, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-WSK-H03-005, event_order: 5, skill_id: dev-writing-skills, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — body trimmed to <=1200 words, redundancy eliminated"}
   - {event_id: EVT-SKL-PNY-H03-001, event_order: 1, skill_id: dev-ponytail, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNY-H03-002, event_order: 2, skill_id: dev-ponytail, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNY-H03-003, event_order: 3, skill_id: dev-ponytail, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

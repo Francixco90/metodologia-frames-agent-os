@@ -8,8 +8,8 @@ const required = [
   `skills/${id}/LINEAGE.yml`,
   `skills/${id}/scripts/check-skill.mjs`,
   `skills/${id}/receipts/runtime-boundary.yml`,
-  `skills/${id}/fixtures/positive/example.md`,
-  `skills/${id}/fixtures/negative/example.md`,
+  `skills/${id}/fixtures/positive/plan-with-verifiable-steps.yml`,
+  `skills/${id}/fixtures/negative/plan-with-vague-steps-and-auto-exec.yml`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
@@ -46,7 +46,7 @@ for (const pattern of [
   }
 }
 
-const negative = contents.get(`skills/${id}/fixtures/negative/example.md`);
+const negative = contents.get(`skills/${id}/fixtures/negative/plan-with-vague-steps-and-auto-exec.yml`);
 if (!negative.includes('violation:')) {
   throw new Error(`${id.toUpperCase()}_NEGATIVE_FIXTURE_INCOMPLETE`);
 }

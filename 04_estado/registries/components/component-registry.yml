@@ -646,7 +646,7 @@ components:
       - formal registry approval receipt absent
       - human playback approval absent
     state: REGISTRY_DRAFT
-asset_manifest_sha256: 54e56ea7116d991a3dcd32132b5cef8044d841e171e49bf64577f9e02b4c8d35
+asset_manifest_sha256: e5a7bf30c0f2d7e49ebc4002c205b658dacf559eaee4e81c916e5e1e3fefd0f4
 forbidden_runtime_behaviors:
   - network
   - clock

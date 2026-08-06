@@ -1,7 +1,7 @@
 ---
 name: dev-health
 description: This skill should be used when <diagnosing repository or project health and triaging decay signals> — inventariar la pila de herramientas de salud, inspeccionar seguridad de tipos, lint, tests, código muerto y scripts, calcular un score compuesto 0-10, identificar regresiones contra el histórico y priorizar recomendaciones — sin auto-ejecutar git, tests, installs, fixes ni deploys.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -25,9 +25,7 @@ La premisa es simple: un repo que no se diagnostica se pudre en silencio. "Funci
 no es salud — los tests pasan pero el typechecker grita, el lint acumula warnings,
 knip reporta exports huérfanos y nadie lo mira. Este skill hace visible el decay:
 corre las herramientas del proyecto (no las suyas), puntúa cada categoría, arma un
-compuesto y compara contra el histórico. No adivina: si una herramienta no existe,
-se salta y se redistribuye el peso; si el histórico no existe, se dice "primera
-medición, sin tendencia todavía".
+compuesto y compara contra el histórico.
 
 ## Cuándo usar
 
@@ -136,5 +134,3 @@ El único entregable es el dashboard de salud en prosa, revisable por el operado
 - El checker local `skills/dev-health/scripts/check-skill.mjs` verifica
   presencia de tokens de gobernabilidad, ausencia de APIs prohibidas y
   completitud del fixture negativo.
-- Si no hay contexto de salud (no hay herramientas, no hay repo que diagnosticar),
-  se emite `coverage_gap` en lugar de fabricar un dashboard genérico.
