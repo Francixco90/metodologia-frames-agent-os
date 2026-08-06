@@ -97,6 +97,7 @@
   },
   {
     "id": "content-os-embedded-captions",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-embedded-captions/scripts/check-skill.mjs"

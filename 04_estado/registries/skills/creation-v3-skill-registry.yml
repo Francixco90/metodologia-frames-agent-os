@@ -146,11 +146,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-motion-graphics/scripts/check-skill.mjs]
   - skill_id: content-os-embedded-captions
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: ea0dd7aeaff7d4f19c5f8319a38d0b18955a1a513d5a5875b231c2f120e872bb
-    package_manifest_sha256: 88489499f1a4358ee4661a1b76e4f0d28f6b5d2d8f1457c8fc725c27c59d48cf
+    content_sha256: 90452afef48dc1401130cb43412107048217a533bd60c7016ee18322a6d746a5
+    package_manifest_sha256: 3c39ad8d555a85bc329fa0b6e8dfe352915ac42c9b0927df0a5dfe19392ed574
     lineage_ref: skills/content-os-embedded-captions/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-embedded-captions/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1734,6 +1734,7 @@ events:
   - {event_id: EVT-SKL-CEC-H03-002, event_order: 2, skill_id: content-os-embedded-captions, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CEC-H03-003, event_order: 3, skill_id: content-os-embedded-captions, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CEC-H03-004, event_order: 4, skill_id: content-os-embedded-captions, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CEC-H03-005, event_order: 5, skill_id: content-os-embedded-captions, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CSL-H03-001, event_order: 1, skill_id: content-os-slideshow, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSL-H03-002, event_order: 2, skill_id: content-os-slideshow, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSL-H03-003, event_order: 3, skill_id: content-os-slideshow, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
