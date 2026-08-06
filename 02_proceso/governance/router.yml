@@ -1,6 +1,6 @@
 schema_version: 1
 manifest_id: router-v1
-source_of_truth: true   # CLAUDE.md is a local adapter pointing here. [CONFIG]
+source_of_truth: true   # CLAUDE.md/GEMINI.md are shared agent-CLI adapters pointing here. [CONFIG]
 # Router de intención (R0-R5). Supera al router de 4 rutas embebido en CLAUDE.md
 # (líneas 17-46), que pasa a ser un adaptador local que apunta a este manifiesto
 # versionado. [CONFIG]
