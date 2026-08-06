@@ -4,8 +4,7 @@
 
 - **ID**: H-E001
 - **Subsistema**: State
-- **Estado**: spec-only (runner: deferred — bootstrap del harness no cableado aún)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

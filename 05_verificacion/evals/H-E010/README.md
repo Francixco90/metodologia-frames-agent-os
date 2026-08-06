@@ -4,8 +4,7 @@
 
 - **ID**: H-E010
 - **Subsistema**: Environment
-- **Estado**: spec-only (runner: deferred — bootstrap no cableado aún)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

@@ -1,0 +1,61 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P00
+command: /definir-sistema
+title: "Define tu sistema creativo"
+purpose: "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación."
+discipline: "Marca y dirección creativa"
+phase: "Fundamentos"
+tags:
+  - identity
+  - voice
+  - brand-os
+  - pilot
+modes:
+  - id: perfil-verificable
+    name: "Perfil verificable"
+    description: "Perfil verificable"
+  - id: brand-os
+    name: "Brand OS"
+    description: "Brand OS"
+  - id: calibracion-de-voz
+    name: "Calibración de voz"
+    description: "Calibración de voz"
+  - id: piloto-y-autonomia
+    name: "Piloto y autonomía"
+    description: "Piloto y autonomía"
+inputs:
+  []
+outputs:
+  - artifact: "Brand OS"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Calibration sample"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Pilot plan"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: DEFINED
+gates:
+  - G13
+  - G14
+next_workflow: P01
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Si el contexto es insuficiente, entrega el artefacto mínimo provisional y las tres preguntas de mayor impacto; si falta consentimiento o existe mezcla de perfiles, detén el proceso. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

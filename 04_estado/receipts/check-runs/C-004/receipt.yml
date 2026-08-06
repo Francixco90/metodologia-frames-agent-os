@@ -1,0 +1,11 @@
+schema_version: check-run-receipt-v1
+receipt_id: C-004
+gate: G18
+command: "pnpm check:env"
+exit_code: 0
+stdout_sha256: 59cb33f54972f3228a9408c315508f98d1c22b619c6d8d67dd5be34c8e3d7aa8
+stderr_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+duration_ms: 0
+ran_at: "2026-08-05T19:11:29-05:00"
+append_only: true
+runner_actor: qa

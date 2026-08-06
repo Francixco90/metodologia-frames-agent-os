@@ -1,0 +1,37 @@
+schema_version: multimedia-workflow-receipt-v1
+workflow_id: P00
+command: /definir-sistema
+mode: perfil-verificable
+inputs:
+  - artifact: "workflow.yml"
+    ref: 02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml
+    sha256: fa8f232943462f9f7be4e19ded2c4e7df25739f3d665b212f2244e15eb0fcb47
+  - artifact: "prompt-spec.md"
+    ref: 02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md
+    sha256: 8b5d248106d2f79582f366d3a5382f2539f2e48e2d1d5f94890727bd6c40b5c7
+  - artifact: "task-template.yaml"
+    ref: 02_proceso/workflows/multimedia/p00-definir-sistema/task-template.yaml
+    sha256: 0b477e1cd32a342ac6016698abb64e31789b993e080a7172c599fbc91e9dac10
+outputs:
+  - artifact: "Brand OS"
+    ref: 03_artefactos/content/multimedia/p00-definir-sistema/brand-os.yml
+    sha256: d678c3240467a974f7e49ee34d4c9edfb259eb78aa5f251f2eda087f5cf194b3
+    required: true
+  - artifact: "Calibration sample"
+    ref: 03_artefactos/content/multimedia/p00-definir-sistema/calibration-sample.yml
+    sha256: eb7989469dce77d34fc64c726391f22ed4b46f1e0d68fa2152107f739e607a9f
+    required: true
+  - artifact: "Pilot plan"
+    ref: 03_artefactos/content/multimedia/p00-definir-sistema/pilot-plan.yml
+    sha256: 3504cca0d328b7951445c68530c4fd7de709a673feda4e5f039c54ff4fc0cef7
+    required: true
+work_product_state_from: INTAKE
+work_product_state_to: DEFINED
+gate: G13
+actor: qa
+ran_at: "2026-08-05T21:55:13-05:00"
+append_only: true
+human_approved: false
+coverage_gaps:
+  - "dry-run: outputs declared but not materialized"
+  - "state-advance: work-product state machine advance not implemented in candidate phase"

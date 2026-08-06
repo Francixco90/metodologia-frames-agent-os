@@ -1,0 +1,68 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P07
+command: /revisar
+title: "Revisa material multimedia"
+purpose: "Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas."
+discipline: "Dirección editorial y QC"
+phase: "Revisión"
+tags:
+  - review
+  - verdict
+  - guardian
+modes:
+  - id: guion-o-concepto
+    name: "Guion o concepto"
+    description: "Guion o concepto"
+  - id: imagen-o-fotografia
+    name: "Imagen o fotografía"
+    description: "Imagen o fotografía"
+  - id: audio-o-voz
+    name: "Audio o voz"
+    description: "Audio o voz"
+  - id: clip-o-video
+    name: "Clip o video"
+    description: "Clip o video"
+  - id: rough-cut
+    name: "Rough cut"
+    description: "Rough cut"
+  - id: composicion-hibrida
+    name: "Composición híbrida"
+    description: "Composición híbrida"
+  - id: qc-final
+    name: "QC final"
+    description: "QC final"
+inputs:
+  - p06-crear-activos/workflow.yml
+outputs:
+  - artifact: "Review Report"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Verdict"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Top-5 changes"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: REVIEW_SHOTS_APPROVED
+gates:
+  - G14
+next_workflow: P08
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Si solo hay texto o frames, limita la revisión a eso y entrega checklist para la revisión completa; si el material no abre, solicita una copia o descripción sin inventar. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

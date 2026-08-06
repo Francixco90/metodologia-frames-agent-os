@@ -17,13 +17,24 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 23 gates', () => {
-    expect(manifest.gates).toHaveLength(23);
+  it('declares 30 gates', () => {
+    expect(manifest.gates).toHaveLength(30);
   });
 
-  it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u', () => {
+  it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u or ^MW_[A-Z_]+$/u', () => {
     for (const gate of manifest.gates) {
-      expect(gate.gate).toMatch(/^G[0-9]{2}([A-Z_]+)?$/u);
+      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u);
+    }
+  });
+
+  it('MW_* multimedia gates are manual, fail_closed and have command null', () => {
+    const mw = ['MW_SPEC_APPROVED', 'MW_ASSET_REVIEW', 'MW_EDIT_APPROVED', 'MW_DISTRIBUTION_AUTHORIZED'];
+    for (const id of mw) {
+      const gate = manifest.gates.find((g) => g.gate === id);
+      expect(gate).toBeDefined();
+      expect(gate?.manual).toBe(true);
+      expect(gate?.fail_closed).toBe(true);
+      expect(gate?.command).toBeNull();
     }
   });
 

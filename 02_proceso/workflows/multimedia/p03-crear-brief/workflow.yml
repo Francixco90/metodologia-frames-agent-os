@@ -1,0 +1,60 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P03
+command: /crear-brief
+title: "Crea el brief o la campaña"
+purpose: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
+discipline: "Arquitectura editorial"
+phase: "Estrategia"
+tags:
+  - strategy
+  - brief
+  - campaign
+modes:
+  - id: pieza-unica
+    name: "Pieza única"
+    description: "Pieza única"
+  - id: pieza-matriz-con-derivados
+    name: "Pieza matriz con derivados"
+    description: "Pieza matriz con derivados"
+  - id: miniserie-de-2-4-piezas
+    name: "Miniserie de 2–4 piezas"
+    description: "Miniserie de 2–4 piezas"
+  - id: campana-o-colaboracion
+    name: "Campaña o colaboración"
+    description: "Campaña o colaboración"
+inputs:
+  - p02-investigar/workflow.yml
+outputs:
+  - artifact: "Brief/Campaign Map"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "A/B concepts"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Definition of Ready"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: DIRECTION_APPROVED
+gates:
+  - G13
+  - G14
+next_workflow: P04
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Si la oportunidad no soporta una campaña, crea una pieza única con un derivado; si la evidencia es insuficiente, regresa a investigación. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

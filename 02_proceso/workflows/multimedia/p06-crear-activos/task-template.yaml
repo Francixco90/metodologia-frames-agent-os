@@ -1,0 +1,31 @@
+schema_version: task-contract-v1
+task_id: TASK-mw-p06-000
+project_id: null
+objetivo: "Genera, guía o especifica activos por etapas, con evidencia y estado exacto."
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 02_proceso/workflows/multimedia/p06-crear-activos/prompt-spec.md
+write_set:
+  - 03_artefactos/content/multimedia/p06-crear-activos/**
+no_objetivos:
+  - "No generar likeness o voz de una persona sin autorización."
+  - "No alterar logos, empaques o productos reales de forma engañosa."
+  - "No reemplazar evidencia documental por simulación sin disclosure."
+  - "No producir video largo antes de validar identidad y continuidad en una prueba corta."
+  - "No usar texto generado dentro de imagen cuando la exactitud sea crítica sin revisión/composición."
+  - "No afirmar generación, captura, render o validación sin evidencia."
+  - "Un fallo de herramienta no invalida la especificación ni activos previos."
+  - "No montar ni publicar."
+done: "Definition of Done"
+validacion: "pnpm mw:run P06 --dry-run && pnpm check:tasks"
+gaps: []
+state: INTAKE
+created_from_route: R3-LOOSE
+gate_target: "G14"
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  prompt_source: DOC
+created_at: 2026-08-05T00:00:00+00:00
+updated_at: 2026-08-05T00:00:00+00:00

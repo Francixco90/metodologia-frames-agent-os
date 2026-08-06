@@ -6,3 +6,5 @@ receipt_ref: "PR #16 merged `6f43c8d`"
 backfilled: true
 note: migrated from flat TASK.md cola — state inferred from section, human amend
   expected
+provenance:
+  - triage_r3_loose

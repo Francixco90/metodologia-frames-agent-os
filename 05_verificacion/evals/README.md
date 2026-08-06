@@ -4,24 +4,24 @@ Catálogo de 12 evals del harness de `metodologia-frames-agent-os` (SPEC
 v2.0.0-candidate). Cada eval vive en `H-E0XX/` con su `README.md` (hipótesis,
 precondiciones, pasos, oráculo, subsistema, estado, atribución-de-fallo). Tres
 evals (`H-E002`, `H-E005`, `H-E008`) incluyen `runner.ts` ejecutable (vitest);
-los nueve restantes son spec-only con `runner: deferred`. [DOC]
+los nueve restantes ahora exponen `oracle.ts` ejecutable vía el runner genérico (`pnpm eval:run`). [DOC]
 
 ## Índice
 
 | ID | Título | Tipo | Subsistema | Estado |
 |----|--------|------|------------|--------|
-| H-E001 | Harness bootstraps a task from R3 route, task.yaml parses, state INTAKE | spec-only | State | runner: deferred |
+| H-E001 | Harness bootstraps a task from R3 route, task.yaml parses, state INTAKE | executable | State | oracle.ts |
 | H-E002 | Duplicate `task_id` detection | executable | State | runner.ts |
-| H-E003 | State machine rejects illegal skip (INTAKE -> COMPILADO) | spec-only | State | runner: deferred |
-| H-E004 | BLOQUEADO -> ESPECIFICADO replan allowed; BLOQUEADO -> COMPILADO rejected | spec-only | State | runner: deferred |
+| H-E003 | State machine rejects illegal skip (INTAKE -> COMPILADO) | executable | State | oracle.ts |
+| H-E004 | BLOQUEADO -> ESPECIFICADO replan allowed; BLOQUEADO -> COMPILADO rejected | executable | State | oracle.ts |
 | H-E005 | Resume from PROGRESS.md + continuity/state.yaml reconstructs task context | executable | State | runner.ts |
-| H-E006 | tool-policy denies guardian Edit/Write | spec-only | Tools | runner: deferred |
-| H-E007 | commands.yaml marks G13-G17 manual + fail_closed | spec-only | Feedback | runner: deferred |
+| H-E006 | tool-policy denies guardian Edit/Write | executable | Tools | oracle.ts |
+| H-E007 | commands.yaml marks G13-G17 manual + fail_closed | executable | Feedback | oracle.ts |
 | H-E008 | Adversarial write-set violation — path outside owner allowlist is rejected | executable | Tools | runner.ts |
-| H-E009 | run-check receipt is append-only + sha256-bound | spec-only | Feedback | runner: deferred |
-| H-E010 | Router R3-LOOSE creates `project_id: null` task | spec-only | Environment | runner: deferred |
-| H-E011 | doctor reports 5 receipt families | spec-only | Feedback | runner: deferred |
-| H-E012 | backfill dedup preserves `meta.original_id` | spec-only | State | runner: deferred |
+| H-E009 | run-check receipt is append-only + sha256-bound | executable | Feedback | oracle.ts |
+| H-E010 | Router R3-LOOSE creates `project_id: null` task | executable | Environment | oracle.ts |
+| H-E011 | doctor reports 6 receipt families | executable | Feedback | oracle.ts |
+| H-E012 | backfill dedup preserves `meta.original_id` | executable | State | oracle.ts |
 
 Subsistemas SPEC (5, canónicos): Instructions, Tools, Environment, State,
 Feedback. Mapping SPEC ↔ harness-creator (7, scoring interno) en

@@ -1,0 +1,104 @@
+# Multimedia Quality Gate — declarative checklist the Guardian runs before any
+# multimedia workflow (P00–P09) advances past its approval gate. [CONFIG]
+#
+# Source: plan D5 (reliability assets). This gate is a pre-advance assertion
+# wired into each `build.ts` runner: the runner refuses to flip the work-product
+# state to the workflow's approval gate unless every checklist item below is
+# satisfied. It complements — does not replace — the manual fail-closed gates
+# (G13–G17, MW_DISTRIBUTION_AUTHORIZED) that still require explicit
+# `HUMAN_APPROVED`. [CONFIG]
+#
+# Fail-closed rule: an unverified item is NEVER auto-passed. A missing
+# artifact, evidence tag, or receipt blocks the advance; `build.ts` exits
+# nonzero and writes nothing. [CONFIG]
+
+schema_version: multimedia-quality-gate-v1
+gate_id: MW_QUALITY
+applies_to:
+  - P00
+  - P01
+  - P02
+  - P03
+  - P04
+  - P05
+  - P06
+  - P07
+  - P08
+  - P09
+owner: guardian
+fail_closed: true
+
+# Pre-advance assertions. Each item names the evidence the Guardian demands
+# before the workflow's approval gate flips. [CONFIG]
+checks:
+  - id: MW-Q01
+    name: workflow.yml schema-valid
+    predicate: MultimediaWorkflowSchema parses the workflow's workflow.yml
+    evidence: workflow.yml content hash pinned in the run receipt
+    block_on: schema parse failure
+
+  - id: MW-Q02
+    name: task-template.yaml schema-valid
+    predicate: TaskContractSchema parses the workflow's task-template.yaml
+    evidence: task-template.yaml content hash pinned in the run receipt
+    block_on: schema parse failure
+
+  - id: MW-Q03
+    name: O/I/A/R evidence tuple present
+    predicate: the prompt-spec.md declares all four evidence slots (Observado, Inferido, Supuesto, Dato requerido)
+    evidence: prompt-spec.md frontmatter parse
+    block_on: any slot missing
+
+  - id: MW-Q04
+    name: no-regression checklist acknowledged
+    predicate: the run receipt records the no-regression checklist version from _assets/no-regression-checklist.md
+    evidence: receipt.no_regression_version
+    block_on: missing version
+
+  - id: MW-Q05
+    name: receipt emitted for this run
+    predicate: a multimedia-workflow-receipt-v1 record exists for the workflow_id + mode + run
+    evidence: 04_estado/receipts/workflows/{WF-PNN}/{ISO}/receipt.yml
+    block_on: no receipt
+
+  - id: MW-Q06
+    name: prior workflow outputs present (chain handoff)
+    predicate: every input declared in workflow.yml resolves to an existing file from the prior workflow (or a repo-internal 02_proceso/ path); P00 is exempt (root)
+    evidence: input file existence + prior-receipt ref
+    block_on: missing prior artifact
+
+  - id: MW-Q07
+    name: state advance stops at approval gate
+    predicate: build.ts does NOT auto-flip HUMAN_APPROVED, READY or PUBLISHED; it stops at the workflow's declared gate and requires a separate human action
+    evidence: receipt.work_product_state_to is the gate state, never a terminal human state
+    block_on: illegal auto-advance
+
+  - id: MW-Q08
+    name: evidence tags present on substantive claims
+    predicate: every substantive claim in the run output carries [CÓDIGO]/[CONFIG]/[DOC]/[INFERENCIA]/[SUPUESTO] or coverage_gap
+    evidence: receipt.evidence_tags
+    block_on: untagged substantive claim
+
+  - id: MW-Q09
+    name: no irreversible state auto-passed
+    predicate: manual fail-closed gates (G13–G17, MW_DISTRIBUTION_AUTHORIZED) are NOT auto-passed by build.ts
+    evidence: receipt requires human approval for those gates
+    block_on: manual gate auto-passed
+
+  - id: MW-Q10
+    name: scope explicit (no invented execution)
+    predicate: the run receipt records observed scope; no fabricated execution, approval, or artifact is claimed
+    evidence: receipt.scope + O/I/A/R tuple
+    block_on: invented execution
+
+# Wiring: each `build.ts` runner imports this gate and asserts MW-Q01..MW-Q10
+# before calling the work-product state advance. A failing check writes nothing
+# to the work-product state and emits a gate-fail receipt instead. [CONFIG]
+wiring:
+  runner_import: 02_proceso/governance/multimedia-quality-gate.yml
+  assertion_point: before state-machine advance in 02_proceso/workflows/multimedia/_runner/run.ts
+  failure_receipt_schema: multimedia-workflow-receipt-v1
+  failure_state: gate-fail
+
+gaps:
+  - "coverage_gap: MW-Q04 (no-regression version) requires a version field in _assets/no-regression-checklist.md; until added, the runner pins the file sha256 instead."

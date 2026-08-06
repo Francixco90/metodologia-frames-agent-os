@@ -1,0 +1,59 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P04
+command: /calendarizar
+title: "Construye un calendario editorial realista"
+purpose: "Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje."
+discipline: "Operaciones de contenido"
+phase: "Operaciones"
+tags:
+  - operations
+  - calendar
+  - batching
+modes:
+  - id: sprint-semanal
+    name: "Sprint semanal"
+    description: "Sprint semanal"
+  - id: calendario-de-30-dias
+    name: "Calendario de 30 días"
+    description: "Calendario de 30 días"
+  - id: calendario-de-campana
+    name: "Calendario de campaña"
+    description: "Calendario de campaña"
+  - id: sistema-evergreen-y-reactivo
+    name: "Sistema evergreen y reactivo"
+    description: "Sistema evergreen y reactivo"
+inputs:
+  - p03-crear-brief/workflow.yml
+outputs:
+  - artifact: "Editorial Calendar"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Board"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Batch Plan"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: DEFINED
+gates:
+  - G14
+next_workflow: P05
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Si faltan briefs, crea un sprint mínimo con una pieza matriz y un derivado; si la capacidad es incierta, planifica la primera semana y mide antes de extender. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

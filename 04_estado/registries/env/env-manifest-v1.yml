@@ -1,0 +1,30 @@
+schema_version: 1
+registry_id: env-manifest-v1
+manifest_id: env-manifest-v1
+mutation_policy: append-only-records-and-events
+source_of_truth: package.json#toolchain
+purpose: |
+  Repo-level toolchain contract. Drift between this manifest and the runtime
+  environment is detected by `05_verificacion/scripts/check-env-drift.ts`
+  (gate G18, `pnpm check:env`). Per-render toolchain is recorded separately in
+  render receipts (`04_estado/receipts/renders/`); this manifest is the
+  repo-wide baseline. [CONFIG]
+toolchain:
+  node: "22.23.1"
+  pnpm: "11.9.0"
+  remotion: "4.0.494"
+  zod: "4.3.6"
+  ffmpeg: "8.1.1"
+  playwright: "1.61.1"
+  # chromium is bundled with @remotion/renderer; its version is not pinned in
+  # package.json and is recorded per-render as `remotion-local-headless-shell-*`.
+  # Marked coverage_gap until a deterministic pin exists. [SUPUESTO]
+  chromium: coverage_gap
+drift_gates: [G18]
+events:
+  - event_id: EVT-ENV-001
+    event_order: 1
+    recorded_at: '2026-08-05T00:00:00+00:00'
+    actor_id: repo
+    transition: {from: null, to: baseline}
+    decision: initial_baseline_from_package_json_toolchain

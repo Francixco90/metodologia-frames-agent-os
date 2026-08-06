@@ -1,0 +1,59 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P01
+command: /curar-material
+title: "Convierte tu día a día en oportunidades de contenido"
+purpose: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
+discipline: "Edición documental"
+phase: "Documentación"
+tags:
+  - documentary
+  - curation
+  - capture
+modes:
+  - id: captura-registrar-una-entrada
+    name: "Captura: registrar una entrada"
+    description: "Captura: registrar una entrada"
+  - id: triage-decidir-su-destino
+    name: "Triage: decidir su destino"
+    description: "Triage: decidir su destino"
+  - id: digest-curar-un-lote
+    name: "Digest: curar un lote"
+    description: "Digest: curar un lote"
+  - id: recuperacion-encontrar-material-previo-p
+    name: "Recuperación: encontrar material previo pertinente"
+    description: "Recuperación: encontrar material previo pertinente"
+inputs:
+  - p00-definir-sistema/workflow.yml
+outputs:
+  - artifact: "Capture Card"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Triage Record"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Digest/Shortlist"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: CLASSIFIED
+gates:
+  - G14
+next_workflow: P02
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Cuando el material sea insuficiente, acumúlalo y propone la captura mínima que permitiría evaluarlo; cuando exista riesgo, protege antes de producir. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

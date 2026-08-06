@@ -4,8 +4,7 @@
 
 - **ID**: H-E012
 - **Subsistema**: State
-- **Estado**: spec-only (runner: deferred — backfill es script one-shot)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

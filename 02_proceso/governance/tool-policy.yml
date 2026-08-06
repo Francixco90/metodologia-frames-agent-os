@@ -167,10 +167,36 @@ rules:
         - "n8n remains dry-run; no connector activation or publish. [CONFIG] AGENTS.md rule 8"
       source_ref: "ownership-manifest writers.n8n; dag package A11 gate G11"
 convergence_notes:
-  - "settings.local.json currently grants 43 ad-hoc allow entries spanning Bash, Read, MCP (notebooklm, tessl, playwright) and WebFetch. [CONFIG] This manifest is the target those grants must converge to; runtime enforcement stays in settings.local.json until the harness reads this manifest directly."
+  - "settings.local.json currently grants 89 ad-hoc allow entries spanning Bash, Read, MCP (notebooklm, tessl, playwright) and WebFetch. [CONFIG] This manifest is the target those grants must converge to; runtime enforcement stays in settings.local.json until the harness reads this manifest directly."
   - "MCP tool grants (notebooklm, tessl, playwright) are not yet role-mapped here. [SUPUESTO] MCP allowlisting will be reconciled in a follow-up governance pass once MCP usage is scoped per role."
   - "No Zod schema here by design; governance creates that in P5-S16. [CONFIG] task scope S3"
+runtime_grants:
+  # Convergence (A6): the 7 grants in settings.local.json whose tool prefix was
+  # absent from every role's `tools.allow` are explicitly admitted here with
+  # rationale, so `pnpm check:grants` (G20) converges to 0 unapproved. These
+  # are read-only / external-tool surfaces; none grant write or publish. [CONFIG]
+  - tool: WebFetch
+    allowed_for: [lead, sources, governance]
+    rationale: "Read-only web fetch for skill-first source extraction and doc lookup. [CONFIG] convergence A6"
+  - tool: mcp__notebooklm-mcp__notebook_list
+    allowed_for: [lead, sources]
+    rationale: "Read-only NotebookLM notebook inventory for source management. [CONFIG] convergence A6"
+  - tool: mcp__plugin_playwright_playwright__browser_navigate
+    allowed_for: [web, qa]
+    rationale: "Headless browser navigation for carousel/visual validation. [CONFIG] convergence A6"
+  - tool: mcp__plugin_playwright_playwright__browser_console_messages
+    allowed_for: [web, qa]
+    rationale: "Read-only console harvest during visual validation. [CONFIG] convergence A6"
+  - tool: mcp__plugin_playwright_playwright__browser_take_screenshot
+    allowed_for: [web, qa]
+    rationale: "Read-only screenshot capture for visual review. [CONFIG] convergence A6"
+  - tool: mcp__tessl__search
+    allowed_for: [governance, skill-foundry]
+    rationale: "Read-only Tessl registry search for skill discovery. [CONFIG] convergence A6"
+  - tool: mcp__tessl__status
+    allowed_for: [governance, repo]
+    rationale: "Read-only Tessl auth/manifest status check. [CONFIG] convergence A6"
 gaps:
   - "coverage_gap: 8 stub owners (sources, agents-committee, skill-foundry, web, content, remotion, static-social, n8n) lack concrete allow/deny; requires agent-by-agent audit of RT-02..RT-08 contracts."
   - "coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5."
-  - "coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) not role-mapped in this pass."
+  - "coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit."
