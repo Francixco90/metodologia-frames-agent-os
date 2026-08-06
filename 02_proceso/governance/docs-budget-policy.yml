@@ -39,12 +39,15 @@ budgets:
     mode: enforce
     rationale: "Reference doc density ceiling"
 
-# Working docs (CONTEXT.md, TASK.md, CLAUDE.md) are gitignored local cabinas —
-# excluded from versioned budget enforcement. Their temporal trace lives in
-# changelog.md (append-only). [CONFIG]
+# Working docs (CONTEXT.md, TASK.md, PROJECT.md) are gitignored local cabinas —
+# excluded from versioned budget enforcement. CLAUDE.md and GEMINI.md are
+# committed shared agent-CLI adapters but stay excluded from budget (routing
+# cabins, not authored content). Temporal trace lives in changelog.md. [CONFIG]
 exclusions:
   - "CONTEXT.md"
   - "TASK.md"
+  - "PROJECT.md"
   - "CLAUDE.md"
+  - "GEMINI.md"
   - "**/node_modules/**"
   - "03_artefactos/skills/vendor/**"

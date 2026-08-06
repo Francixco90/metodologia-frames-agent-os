@@ -13,14 +13,13 @@ no_objetivos: []
 done: "Fase 2: homólogo batches (~18 PRs: 2A HF 9-10, 2B Remotion 4, 2C Bento 1,
   2D scroll multi-provider 3)"
 validacion: see original TASK.md
-gaps:
-  - backfilled from flat TASK.md — state inferred, human amend
-state: INTAKE
+gaps: []
+state: ENTREGADO
 created_from_route: R3-LOOSE
 gate_target: null
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:
-  historical: coverage_gap
+  historical: DOC
 created_at: 2026-08-02T00:00:00+00:00
-updated_at: 2026-08-02T00:00:00+00:00
+updated_at: 2026-08-06T00:00:00+00:00

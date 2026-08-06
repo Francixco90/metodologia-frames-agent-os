@@ -1,7 +1,7 @@
 # Reglas de agentes
 
 1. MetodologIA es la única identidad visible.
-2. Leer `docs/program/dag.yml` y `docs/program/ownership-manifest.yml` antes de escribir.
+2. Leer `01_intencion/program/dag.yml` y `01_intencion/program/ownership-manifest.yml` antes de escribir.
 3. Escribir solo dentro de la allowlist asignada; un writer por ruta.
 4. Usar `[CÓDIGO]`, `[CONFIG]`, `[DOC]`, `[INFERENCIA]`, `[SUPUESTO]` o `coverage_gap` en decisiones materiales.
 5. No persistir chain-of-thought, secretos, PII ni locators privados.
@@ -10,7 +10,7 @@
 8. No activar conectores ni publicar; n8n permanece en dry-run.
 9. Producer, verifier y Guardian deben ser distintos.
 10. Cerrar cada paquete con outputs hash-bound, tests, riesgos, gaps y próximo gate.
-11. Antes de escribir, leer `governance/router.yml` + `governance/tool-policy.yml` + `scripts/commands.yaml`. El `CLAUDE.md` es un adaptador local; la fuente versionada vive en `governance/` y `scripts/commands.yaml`. [CONFIG]
+11. Antes de escribir, leer `02_proceso/governance/router.yml` + `02_proceso/governance/tool-policy.yml` + `05_verificacion/scripts/commands.yaml`. `CLAUDE.md` y `GEMINI.md` son adaptadores de agent CLI que apuntan aquí; la fuente versionada vive en `02_proceso/governance/` y `05_verificacion/scripts/commands.yaml`. Cómo adaptar el repo a otros CLIs: `02_proceso/governance/agent-cli-adapters.md`. [CONFIG]
 
 ## Token efficiency microprofiles
 
