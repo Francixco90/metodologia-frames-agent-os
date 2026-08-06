@@ -90,6 +90,7 @@
   },
   {
     "id": "content-os-motion-graphics",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-motion-graphics/scripts/check-skill.mjs"

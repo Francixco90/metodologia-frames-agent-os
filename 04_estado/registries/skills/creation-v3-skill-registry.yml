@@ -135,11 +135,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-product-launch-video/scripts/check-skill.mjs]
   - skill_id: content-os-motion-graphics
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 64b4dc0f9be95628beb18f4171583bc38fe990a961667845704fb2f0ee783355
-    package_manifest_sha256: 6249b26bb84bc2259c759b7d180960141c0c2c4f76cbdeac7b24e8681051c40a
+    content_sha256: 233cc75752ca29c32b0ce86858c7f51bf20a74397129ea2790f42724a91afa29
+    package_manifest_sha256: 3b274bd6c8b10750babdd36fc522b187400183f2e504512450de53e9b599b01b
     lineage_ref: skills/content-os-motion-graphics/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-motion-graphics/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1730,6 +1730,7 @@ events:
   - {event_id: EVT-SKL-CMG-H03-002, event_order: 2, skill_id: content-os-motion-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMG-H03-003, event_order: 3, skill_id: content-os-motion-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMG-H03-004, event_order: 4, skill_id: content-os-motion-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMG-H03-005, event_order: 5, skill_id: content-os-motion-graphics, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CEC-H03-001, event_order: 1, skill_id: content-os-embedded-captions, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CEC-H03-002, event_order: 2, skill_id: content-os-embedded-captions, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CEC-H03-003, event_order: 3, skill_id: content-os-embedded-captions, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
