@@ -1,0 +1,18 @@
+schema_version: 1
+workflow_id: P02
+entrypoints:
+  - workflows/multimedia/p02-investigar/build.ts
+notebooklm:
+  contract_ref: registries/notebooks/work-unit-binding-contract.yml
+  adapter_id: notebooklm-grounding-readonly-v1
+  binding_id: null
+  purpose: "Bind P02 prompt-spec to NotebookLM grounding when sources are mapped."
+  binding:
+    mode: none
+    reason_code: binding_not_selected
+    locator_material_present: false
+  coverage:
+    status: coverage_gap
+    expected_source_ids: []
+    covered_source_ids: []
+    missing_source_ids: []

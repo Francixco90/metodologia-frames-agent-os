@@ -1,0 +1,30 @@
+schema_version: task-contract-v1
+task_id: TASK-mw-p07-000
+project_id: null
+objetivo: "Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas."
+repo: metodologia-frames-agent-os
+responsable: guardian
+inputs:
+  - 02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md
+write_set:
+  - guardian/multimedia/p07-revisar/**
+no_objetivos:
+  - "No simules reproducción, escucha, metadata o calidad."
+  - "No uses una puntuación como sustituto de evidencia."
+  - "No pidas regeneración completa cuando un patch local resuelve."
+  - "No elimines autenticidad por perfección técnica."
+  - "Un resultado atractivo falla si altera identidad, producto, hecho o permiso."
+  - "Claims sensibles y derechos pueden producir HOLD."
+  - "No ejecutes correcciones ni apruebes en nombre del creador."
+done: "Definition of Done"
+validacion: "pnpm mw:run P07 --dry-run && pnpm check:tasks"
+gaps: []
+state: INTAKE
+created_from_route: R3-LOOSE
+gate_target: "G14"
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  prompt_source: DOC
+created_at: 2026-08-05T00:00:00+00:00
+updated_at: 2026-08-05T00:00:00+00:00

@@ -1,0 +1,29 @@
+schema_version: task-contract-v1
+task_id: TASK-mw-p02-000
+project_id: null
+objetivo: "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 02_proceso/workflows/multimedia/p02-investigar/prompt-spec.md
+write_set:
+  - 03_artefactos/content/multimedia/p02-investigar/**
+no_objetivos:
+  - "Información actual, médica, legal, financiera, científica o de plataforma exige verificación al ejecutar."
+  - "Sin navegación, no simules fuentes: crea un plan de verificación."
+  - "Desacuerdo entre fuentes debe permanecer visible."
+  - "Una fuente popular no prueba consenso."
+  - "No conviertas experiencia personal en recomendación universal."
+  - "No investigues más de lo necesario para decidir."
+done: "Definition of Done"
+validacion: "pnpm mw:run P02 --dry-run && pnpm check:tasks"
+gaps: []
+state: INTAKE
+created_from_route: R3-LOOSE
+gate_target: "G14"
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  prompt_source: DOC
+created_at: 2026-08-05T00:00:00+00:00
+updated_at: 2026-08-05T00:00:00+00:00

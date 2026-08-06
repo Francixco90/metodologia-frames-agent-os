@@ -1,0 +1,52 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P05
+command: /disenar-pieza
+title: "Diseña la pieza multimedia"
+purpose: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
+discipline: "Guion y diseño multimedia"
+phase: "Diseño creativo"
+tags:
+  - design
+  - spec
+  - continuity
+  - asset-map
+modes:
+  - id: single
+    name: "single-mode"
+    description: "Prompt executes as a single stage."
+inputs:
+  - p04-calendarizar/workflow.yml
+outputs:
+  - artifact: "Creative Spec"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Continuity Bible"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Asset Map"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: SPEC_APPROVED
+gates:
+  - MW_SPEC_APPROVED
+  - G14
+next_workflow: P06
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Si el brief no permite escoger medio o ruta, diseña un prototipo de bajo costo: una imagen o frame, un clip corto o una prueba de voz antes de comprometer la pieza completa. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

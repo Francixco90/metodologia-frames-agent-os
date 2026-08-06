@@ -4,9 +4,7 @@
 
 - **ID**: H-E009
 - **Subsistema**: Feedback
-- **Estado**: spec-only (runner: deferred — receipt format no cableado como
-  contrato validable aún)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

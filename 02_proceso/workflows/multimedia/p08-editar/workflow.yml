@@ -1,0 +1,66 @@
+schema_version: multimedia-workflow-v1
+workflow_id: P08
+command: /editar
+title: "Edita, compone y reutiliza"
+purpose: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
+discipline: "Edición y composición"
+phase: "Postproducción"
+tags:
+  - edit
+  - edl
+  - postproduction
+modes:
+  - id: plan-de-edicion
+    name: "Plan de edición"
+    description: "Plan de edición"
+  - id: ejecucion-de-edicion
+    name: "Ejecución de edición"
+    description: "Ejecución de edición"
+  - id: composicion-hibrida
+    name: "Composición híbrida"
+    description: "Composición híbrida"
+  - id: largo-a-corto
+    name: "Largo a corto"
+    description: "Largo a corto"
+  - id: localizacion
+    name: "Localización"
+    description: "Localización"
+  - id: qc
+    name: "QC"
+    description: "QC"
+inputs:
+  - p07-revisar/workflow.yml
+outputs:
+  - artifact: "Edit Candidate"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "EDL"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+  - artifact: "Export Matrix"
+    schema_ref: _assets/artifact-registry.md
+    required: true
+work_product_state: POSTPRODUCTION_VALIDATED
+gates:
+  - MW_EDIT_APPROVED
+  - G14
+next_workflow: P09
+task_template_ref: task-template.yaml
+prompt_spec_ref: prompt-spec.md
+model:
+  preferred: "Modelo recomendado"
+  alt: "asistente general con buen manejo de contexto"
+  avoid: "generador multimedia como único decisor estratégico"
+no_regression:
+  - "Checklist de no regresión"
+dod:
+  - "Definition of Done"
+fallback: "Sin herramientas, entrega EDL y handoff completo; si el material no alcanza, crea un corte mínimo o vuelve a P06 para un activo de rescate. interpreta, planifica, ejecuta."
+metadata:
+  source_id: MIA-MEDIA-LIB-2.0.0
+  version: 2.0.0-candidato
+  status: candidate
+  locale:
+    - es
+    - en
+    - pt

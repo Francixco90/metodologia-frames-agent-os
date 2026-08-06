@@ -1,0 +1,31 @@
+schema_version: task-contract-v1
+task_id: TASK-mw-p09-000
+project_id: null
+objetivo: "Separa empaque, publicación, comunidad y aprendizaje para operar con control."
+repo: metodologia-frames-agent-os
+responsable: governance
+inputs:
+  - 02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md
+write_set:
+  - 03_artefactos/content/multimedia/p09-distribuir/**
+no_objetivos:
+  - "No publicar en todas las redes por obligación."
+  - "No inventar horarios, tendencias, specs, resultados ni razones del algoritmo."
+  - "Package no autoriza publicación."
+  - "Silencio no equivale a aprobación."
+  - "Una respuesta sensible no se automatiza."
+  - "No comparar métricas de plataformas como equivalentes."
+  - "Muestra pequeña no prueba causalidad."
+  - "Música, marcas o permisos dudosos producen HOLD."
+done: "Definition of Done"
+validacion: "pnpm mw:run P09 --dry-run && pnpm check:tasks"
+gaps: []
+state: INTAKE
+created_from_route: R3-LOOSE
+gate_target: "G15"
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  prompt_source: DOC
+created_at: 2026-08-05T00:00:00+00:00
+updated_at: 2026-08-05T00:00:00+00:00

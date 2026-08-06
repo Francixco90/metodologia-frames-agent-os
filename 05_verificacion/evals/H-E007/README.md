@@ -4,8 +4,7 @@
 
 - **ID**: H-E007
 - **Subsistema**: Feedback
-- **Estado**: spec-only (runner: deferred — afirmación estática sobre manifiesto)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

@@ -4,9 +4,7 @@
 
 - **ID**: H-E003
 - **Subsistema**: State
-- **Estado**: spec-only (runner: deferred — se cubre vía unit test S16 sobre
-  `task-machine.ts`)
-- **Tipo**: spec-only
+- **Estado**: executable (oracle.ts vía generic runner)
 
 ## Hipótesis
 

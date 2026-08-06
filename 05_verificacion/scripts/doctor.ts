@@ -97,12 +97,35 @@ const readPackageJson = (): {
   packageManager?: string;
 };
 
-// --- Check 1: toolchain — node/pnpm versions match package.json engines ---
+// --- Check 1: toolchain — node/pnpm vs env-manifest-v1.yml (single source) ---
+// Full toolchain drift (remotion/ffmpeg/playwright/chromium) is gate G18
+// (`pnpm check:env`). Doctor checks node/pnpm only, warn-level, against the
+// env manifest; falls back to package.json engines if the manifest is absent.
+// [CONFIG]
 const checkToolchain = (): void => {
   try {
-    const manifest = readPackageJson();
-    const expectedNode = manifest.engines?.node;
-    const expectedPnpm = manifest.engines?.pnpm;
+    const envManifestPath = resolve(ROOT, '04_estado/registries/env/env-manifest-v1.yml');
+    let expectedNode: string | undefined;
+    let expectedPnpm: string | undefined;
+    let source = 'package.json engines';
+    if (existsSync(envManifestPath)) {
+      const parsedEnv: unknown = parse(readFileSync(envManifestPath, 'utf8'));
+      if (parsedEnv !== null && typeof parsedEnv === 'object') {
+        const toolchain = (parsedEnv as Record<string, unknown>).toolchain as
+          | Record<string, string>
+          | undefined;
+        if (toolchain !== undefined) {
+          expectedNode = toolchain.node;
+          expectedPnpm = toolchain.pnpm;
+          source = 'env-manifest-v1.yml';
+        }
+      }
+    }
+    if (expectedNode === undefined || expectedPnpm === undefined) {
+      const pkg = readPackageJson();
+      expectedNode = expectedNode ?? pkg.engines?.node;
+      expectedPnpm = expectedPnpm ?? pkg.engines?.pnpm;
+    }
     const issues: string[] = [];
     if (expectedNode !== undefined && process.version !== `v${expectedNode}`) {
       issues.push(`node esperado v${expectedNode}, observado ${process.version}`);
@@ -117,9 +140,9 @@ const checkToolchain = (): void => {
       }
     }
     if (issues.length > 0) {
-      record('toolchain', 'fail', issues.join('; '));
+      record('toolchain', 'fail', `${source}: ${issues.join('; ')}`);
     } else {
-      record('toolchain', 'pass', `node ${process.version}, pnpm ${expectedPnpm ?? '?'}`);
+      record('toolchain', 'pass', `node ${process.version}, pnpm ${expectedPnpm ?? '?'} (${source})`);
     }
   } catch (err) {
     record('toolchain', 'fail', `no se pudo verificar: ${(err as Error).message}`);
@@ -328,8 +351,15 @@ const checkTaskCounter = (): void => {
   }
 };
 
-// --- Check 9: receipts families — 5 family dirs exist under 04_estado/receipts/ ---
-const RECEIPTS_FAMILIES = ['imports', 'renders', 'dependency-audits', 'migrations', 'check-runs'] as const;
+// --- Check 9: receipts families — 6 family dirs exist under 04_estado/receipts/ ---
+const RECEIPTS_FAMILIES = [
+  'imports',
+  'renders',
+  'dependency-audits',
+  'migrations',
+  'check-runs',
+  'workflows',
+] as const;
 const checkReceipts = (): void => {
   const receiptsDir = resolve(ROOT, '04_estado/receipts');
   const missing: string[] = [];
@@ -341,7 +371,65 @@ const checkReceipts = (): void => {
   if (missing.length > 0) {
     record('receipts', 'fail', `family dirs ausentes: ${missing.join(', ')}`);
   } else {
-    record('receipts', 'pass', `5 family dirs presentes: ${RECEIPTS_FAMILIES.join(', ')}`);
+    record('receipts', 'pass', `${RECEIPTS_FAMILIES.length} family dirs presentes: ${RECEIPTS_FAMILIES.join(', ')}`);
+  }
+};
+
+// --- Check 10: continuity — PROGRESS.md + continuity/state.yaml + continuity/resume.md per task ---
+const checkContinuity = (): void => {
+  const tasksDir = resolve(ROOT, '04_estado/tasks');
+  if (!existsSync(tasksDir)) {
+    record('continuity', 'warn', '04_estado/tasks ausente');
+    return;
+  }
+  const dirs = readdirSync(tasksDir, {withFileTypes: true})
+    .filter((e) => e.isDirectory() && !e.name.startsWith('.'))
+    .filter((e) => existsSync(resolve(tasksDir, e.name, 'task.yaml')));
+  let missingProgress = 0;
+  let missingState = 0;
+  let missingResume = 0;
+  let failMissingProgress = 0;
+  for (const entry of dirs) {
+    const dir = resolve(tasksDir, entry.name);
+    const hasProgress = existsSync(resolve(dir, 'PROGRESS.md'));
+    const hasState = existsSync(resolve(dir, 'continuity/state.yaml'));
+    const hasResume = existsSync(resolve(dir, 'continuity/resume.md'));
+    if (!hasProgress) missingProgress++;
+    if (!hasState) missingState++;
+    if (!hasResume) missingResume++;
+    // Fail if a task in COMPILADO/EVALUADO lacks PROGRESS.md (execution in
+    // flight without continuity = resumption risk). [CONFIG]
+    if (!hasProgress) {
+      let state: string | undefined;
+      try {
+        const parsed: unknown = parse(readFileSync(resolve(dir, 'task.yaml'), 'utf8'));
+        if (parsed !== null && typeof parsed === 'object') {
+          state = (parsed as Record<string, unknown>).state as string | undefined;
+        }
+      } catch {
+        state = undefined;
+      }
+      if (state === 'COMPILADO' || state === 'EVALUADO') failMissingProgress++;
+    }
+  }
+  const total = dirs.length;
+  if (failMissingProgress > 0) {
+    record(
+      'continuity',
+      'fail',
+      `${failMissingProgress} task(s) in COMPILADO/EVALUADO lack PROGRESS.md (resumption risk)`,
+    );
+    return;
+  }
+  const missing = missingProgress + missingState + missingResume;
+  if (missing > 0) {
+    record(
+      'continuity',
+      'warn',
+      `${total} tasks: missing PROGRESS.md=${missingProgress}, continuity/state.yaml=${missingState}, continuity/resume.md=${missingResume} (run: pnpm task:scaffold-continuity)`,
+    );
+  } else {
+    record('continuity', 'pass', `${total} tasks have PROGRESS.md + continuity/{state.yaml,resume.md}`);
   }
 };
 
@@ -355,6 +443,7 @@ checkGovernance();
 checkTasksSymlink();
 checkTaskCounter();
 checkReceipts();
+checkContinuity();
 
 const pass = checks.filter((c) => c.status === 'pass').length;
 const fail = checks.filter((c) => c.status === 'fail').length;

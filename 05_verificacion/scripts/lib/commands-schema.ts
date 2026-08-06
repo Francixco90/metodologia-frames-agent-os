@@ -1,7 +1,7 @@
 import {z} from 'zod';
 
 export const CommandEntrySchema = z.strictObject({
-  gate: z.string().regex(/^G[0-9]{2}([A-Z_]+)?$/u),
+  gate: z.string().regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u, 'Expected a gate id (GNN or MW_*)'),
   label: z.string(),
   command: z.string().nullable(),
   allowed_tools: z.array(z.string()),

@@ -1,0 +1,30 @@
+schema_version: task-contract-v1
+task_id: TASK-mw-p03-000
+project_id: null
+objetivo: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 02_proceso/workflows/multimedia/p03-crear-brief/prompt-spec.md
+write_set:
+  - 03_artefactos/content/multimedia/p03-crear-brief/**
+no_objetivos:
+  - "Una pieza no debe cargar varias tesis."
+  - "No crear campaña para llenar canales."
+  - "No calendarizar ni producir todavía."
+  - "No prometer resultados de plataforma."
+  - "Claims, terceros, marcas y derechos no resueltos bloquean las partes afectadas."
+  - "Una pieza derivada debe funcionar sola o recibir nuevo contexto."
+  - "Si el esfuerzo supera la capacidad, reduce a pieza matriz y un derivado."
+done: "Definition of Done"
+validacion: "pnpm mw:run P03 --dry-run && pnpm check:tasks"
+gaps: []
+state: INTAKE
+created_from_route: R3-LOOSE
+gate_target: "G13"
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  prompt_source: DOC
+created_at: 2026-08-05T00:00:00+00:00
+updated_at: 2026-08-05T00:00:00+00:00

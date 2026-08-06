@@ -6,3 +6,5 @@ receipt_ref: commit `bfb6d5a` + CI run 30825203390
 backfilled: true
 note: migrated from flat TASK.md cola — state inferred from section, human amend
   expected
+provenance:
+  - triage_r3_loose
