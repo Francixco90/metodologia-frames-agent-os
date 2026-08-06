@@ -359,6 +359,7 @@
   },
   {
     "id": "design-emil",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-emil/scripts/check-skill.mjs"

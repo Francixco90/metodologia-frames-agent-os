@@ -542,11 +542,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-redesign/scripts/check-skill.mjs]
   - skill_id: design-emil
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: b168e6db0ba33ee06a4242d2b99b3ad9db9d92f1337fb366c7ac30b2ea2f0ac8
-    package_manifest_sha256: e1c86c9097deeb9c7cae55c3ad85479d8c726f70ec143211f1d8c2d8cad10dc8
+    content_sha256: d73ee3d0cad7260dfbccade166b749f791a760c011b6d01f1c691fea3d0192cd
+    package_manifest_sha256: 99d881e93bc844248dd01a805e42845652812aef4cecfed40b65b1545bc9eb95
     lineage_ref: skills/design-emil/LINEAGE.yml
     dependency_receipt_ref: skills/design-emil/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1888,6 +1888,7 @@ events:
   - {event_id: EVT-SKL-EML-H03-002, event_order: 2, skill_id: design-emil, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EML-H03-003, event_order: 3, skill_id: design-emil, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-EML-H03-004, event_order: 4, skill_id: design-emil, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EML-H03-005, event_order: 5, skill_id: design-emil, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-EXT-H03-001, event_order: 1, skill_id: design-extract, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXT-H03-002, event_order: 2, skill_id: design-extract, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXT-H03-003, event_order: 3, skill_id: design-extract, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
