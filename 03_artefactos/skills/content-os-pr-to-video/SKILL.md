@@ -1,7 +1,7 @@
 ---
 name: content-os-pr-to-video
 description: This skill should be used when the user asks to "turn a GitHub pull request into a code-change explainer video", "make a PR walkthrough video from a diff", "build a changelog or feature-reveal video from a PR", "create a fix-explainer or refactor-walkthrough video from a PR URL or owner/repo#N", or "render a code-change explainer from a merged or open PR".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML→MP4 adapter), content-os-animation (motion), content-os-keyframes (pose), content-os-creative (brand/story/pacing, code-editorial preset), content-os-media (offline TTS/audio), content-os-registry (code-* blocks). Input is a code change (PR via gh), not a website. No capture, no footage. Output RENDERED_DRAFT.
 metadata:
@@ -159,22 +159,6 @@ Transitions inject + `content-os-keyframes` lint + `content-os-core` check +
 snapshot. User review (user-gated). Render `renders/video.mp4` via
 `content-os-core` HTML→MP4 adapter. Gate: checks pass + user approval + MP4
 exists.
-
-## Critical Constraints
-
-- No `Date.now()`/`Math.random()`/`new Date()`/`performance.now()` en
-  compositions (hereda `content-os-core`).
-- No `fetch`/`setTimeout`/`setInterval` en compositions (hereda core).
-- No external assets / network / Google Fonts CDN en frames (render-path
-  offline-first). Único network step: Step 1 ingest via `gh`.
-- No `repeat: -1` / relative `+=` / CSS `transition:` en animated elements
-  (hereda `content-os-animation` + `content-os-keyframes`).
-- No web capture, no footage, no asset inventory (code-change input). Únicos real
-  assets: contributor avatars (best-effort).
-- No fabricar PR contents si `gh` falla. Reportar stderr, STOP.
-- Style siempre `code-editorial` (fijo en Step 2, nunca preguntado).
-- Sin gate pasado, no avanzas. Steps user-gated pausan.
-- `renders/video.mp4` = `RENDERED_DRAFT`, no `HUMAN_APPROVED`.
 
 ## Stop rules
 

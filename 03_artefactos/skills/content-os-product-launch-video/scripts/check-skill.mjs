@@ -52,7 +52,7 @@ if (!skillMd.startsWith('---\nname: content-os-product-launch-video\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.1.0')) {
+if (!skillMd.includes('version: 0.2.0')) {
   errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 }
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {

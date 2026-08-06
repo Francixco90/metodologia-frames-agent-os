@@ -1,7 +1,7 @@
 ---
 name: content-os-product-launch-video
 description: This skill should be used when the user asks to "turn a product or marketing URL into a launch or promo video", "make a SaaS promo or feature-reveal video", "build a product demo or app launch video", "create a company launch video from a brief", or "make a site tour or showcase video from a captured website".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML→MP4 adapter), content-os-animation (motion), content-os-keyframes (pose), content-os-creative (brand/preset/story/pacing), content-os-media (offline TTS/audio), content-os-registry (blocks). Input = product URL / pasted script / brief. Capture via Playwright. No footage. Output RENDERED_DRAFT.
 metadata:
@@ -15,19 +15,13 @@ metadata:
 Orquestador source→video: producto o marketing URL / pasted script / brief → product
 launch / promo video (SaaS promos, feature reveals, product demos, app y company
 launches, site tours/showcases). Adaptado de `product-launch-video` (vendor,
-referencia, Apache 2.0) al arquitectura local fail-closed + hash-bound +
+referencia, Apache 2.0) al arquitectura local fail-closed + sha256 hash-bound +
 render-path offline-first.
 
-Diferencia con el vendor: no `npx hyperframes` CLI, no `npx hyperframes
-capture`. El capture lo hace **Playwright** (1.61.1 pinned, ya en el repo para
-carousel screenshots) → `capture/extracted/` + `capture/assets/` +
-`capture/screenshots/`. El render lo hace `content-os-core` (HTML→MP4 adapter,
-Playwright + FFmpeg). Media via `content-os-media` (offline cascade: Piper/Coqui
-TTS, whisper.cpp; remoto opt-in auth-gated). Design via `content-os-creative`
-(frame preset, brand tokens remix, story-spine). Motion via `content-os-animation`
-
-- `content-os-keyframes`. Bloques via `content-os-registry`. El router
-  (`content-os-router`) despacha a este workflow.
+Diferencia con el vendor: no `npx hyperframes` CLI ni `npx hyperframes capture`.
+Capture via **playwright** (1.61.1 pinned) → `capture/extracted/` +
+`capture/assets/` + `capture/screenshots/`. Render, media, design, motion y bloques
+delegados a capabilities (ver Routing).
 
 Eres el **orchestrator**. Trabaja en `videos/<project>/`. Corre steps en orden,
 pasa cada gate antes de continuar. Steps user-gated: Step 0, Step 3, Step 6.
@@ -82,7 +76,7 @@ design system → Step 3 storyboard/script → Step 3.1 audio → Step 4 visual 
    synthetic no-capture fallback. Script/brief sin URL → no-capture path (tokens
    vacíos, visible-text = brief, asset-descriptions = none). `capture_blocked:
 true` en state = violación.
-3. **Step-gated.** Cada step tiene gate. Sin gate pasado, no avanzas. Steps
+3. **step-gated.** Cada step tiene gate. Sin gate pasado, no avanzas. Steps
    user-gated (0, 3, 6) pausan para approval.
 4. **Delega capabilities on-demand.** Carga solo lo que el step activo necesita.
    Capabilities nunca son owners del deliverable; el workflow sí.
@@ -167,22 +161,6 @@ Transitions inject + `content-os-keyframes` lint + `content-os-core` check +
 snapshot. User review (user-gated). Render `renders/video.mp4` via
 `content-os-core` HTML→MP4 adapter. Gate: checks pass + user approval + MP4
 exists.
-
-## Critical Constraints
-
-- step-gated orchestrator (setup→capture→design→storyboard→audio→visual-design→build-frames→finalize); capture via playwright (Step 1 only); hash-bound via sha256 (registry + 4 lifecycle events).
-- No `Date.now()`/`Math.random()`/`new Date()`/`performance.now()` en
-  compositions (hereda `content-os-core`).
-- No `fetch`/`setTimeout`/`setInterval` en compositions (hereda core).
-- No external assets / network / Google Fonts CDN en frames (render-path
-  offline-first). Único network step: Step 1 capture via Playwright.
-- No `repeat: -1` / relative `+=` / CSS `transition:` en animated elements
-  (hereda `content-os-animation` + `content-os-keyframes`).
-- No fabricar capture si `capture/BLOCKED.md`. Reportar razón, STOP.
-- No rebuild full website in HTML para site tour (usar captured screenshots).
-- No footage (real video footage). Captured screenshots son assets, no footage.
-- Sin gate pasado, no avanzas. Steps user-gated pausan.
-- `renders/video.mp4` = `RENDERED_DRAFT`, no `HUMAN_APPROVED`.
 
 ## Stop rules
 

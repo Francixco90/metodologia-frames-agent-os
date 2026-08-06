@@ -1,7 +1,7 @@
 ---
 name: design-canvas-generative
 description: This skill should be used when the operator requests algorithmic or generative art with HTML Canvas 2D — particles, flow fields, noise, fractals, L-systems, particle pools, double buffer trails, or DPR-aware canvas rendering. It delivers prose guidance and pseudocode snippets for local evaluation only; it never executes canvas code, runs a browser, or auto-launches build tooling.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -11,7 +11,7 @@ metadata:
 
 # Canvas Generative — arte algorítmico con Canvas 2D
 
-Derivada de genjutsu/_jutsu/canvas-generative/SKILL.md (AThevon/genjutsu, MIT, commit 08a792f). El homólogo MetodologIA expone la misma capability — arte generativo y algorítmico con HTML Canvas 2D — en voz MetodologIA: prosa terse, imperativa, fail-closed. No copia prosa vendor; adapta el principio y reorganiza secciones. Cubre partículas, flow fields, ruido (Perlin/Simplex/Worley), fractales, L-systems, particle pool pattern (sin GC), double buffer, sizing con DPR y loop con requestAnimationFrame. El agente aplica estos patrones dentro de deliverables de contenido (HTML/markdown que citan pseudocódigo canvas) sin ejecutar canvas, abrir navegador, ni auto-lanzar build tooling. Sin runtime Canvas disponible, marca `coverage_gap`. Todo snippet es pseudocódigo para evaluación local: el operador debe confirmar antes de cualquier ejecución.
+Derivada de genjutsu/_jutsu/canvas-generative/SKILL.md (AThevon/genjutsu, MIT, commit 08a792f). El homólogo MetodologIA adapta el principio — arte generativo y algorítmico con HTML Canvas 2D — en voz terse e imperativa, sin copiar prosa vendor. Todo snippet es pseudocódigo para evaluación local; el operador confirma antes de cualquier ejecución. Sin runtime Canvas disponible, marca `coverage_gap`.
 
 ## Cuándo usar
 
@@ -136,8 +136,6 @@ update():
       p.activo = false
 ```
 
-Regla: usar `rng()` o "fuente aleatoria" sembrada, nunca `Math.random` dentro del hot loop.
-
 ## Flow Fields
 
 Grilla de vectores angulares que dirigen partículas. Receta clásica generativa.
@@ -221,8 +219,6 @@ render():
 2. **Nunca `getImageData` dentro del animation loop.** `getImageData` hace readback desde GPU — extremadamente lento. Muestrear una vez y cachear el colorMap si es imprescindible.
 3. **Siempre respetar DPR para sharpness.** Un canvas sin scaling DPR se ve blurry en Retina. Ver setup arriba.
 4. **Nunca allocate en el hot loop.** Sin `new`, sin spread, sin creación de arrays dentro de `update()` o `render()`. Pre-asignar todo (pool pattern).
-
-Estas reglas son `fail-closed`: violarlas degrada silenciosamente el render o el framerate. El agente las marca como `coverage_gap` cuando el operador pide un patrón que las contradice.
 
 ## Runtime boundary
 

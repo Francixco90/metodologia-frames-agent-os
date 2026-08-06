@@ -1,7 +1,7 @@
 ---
 name: content-os-remotion-bridge
 description: This skill should be used when translating an existing composition between the two Frames ContentOS paradigms — Remotion (React, frame-driven) and HTML+GSAP (seekable composition). Use ONLY on an explicit ask to port/convert/migrate/translate a composition from one paradigm to the other. A passing mention, reference-only code, or "make something like my Remotion video" is a fresh build (content-os-general-video). Unclear → content-os-router.
-version: 0.1.0
+version: 0.2.0
 lifecycle_state: active
 license: LicenseRef-MetodologIA-Internal
 metadata:
@@ -25,12 +25,7 @@ Both directions **preserve the determinism contract** of the target paradigm and
 
 ## When to use
 
-**Use this skill ONLY when the user explicitly asks to translate between paradigms.** Trigger phrases:
-
-- "port my Remotion project to HTML+GSAP" / "convert this Remotion comp to Frames ContentOS HTML"
-- "migrate from Remotion to HTML+GSAP" / "translate this Remotion source"
-- "port my HTML+GSAP composition to Remotion" / "convert this Frames ContentOS HTML to Remotion"
-- "translate this GSAP composition back to Remotion"
+**Use this skill ONLY when the user explicitly asks to translate between paradigms.**
 
 **Do NOT use this skill when:**
 
@@ -76,7 +71,7 @@ Custom subcomponents inline as repeated markup (R→H) or pure prop-driven React
 
 Run the eval. R→H: render the Remotion baseline (`npx remotion render`) + the HTML translation (Frames ContentOS render adapter), SSIM-diff the two outputs. H→R: render the HTML original + the Remotion translation, SSIM-diff. Threshold: ~0.02 below the source's complexity tier baseline. If the diff fails, run the frame strip to see which frames diverged, re-read the relevant mapping ref, and re-translate.
 
-Critical: both renders must use matching pixel format (`Config.setVideoImageFormat("png")` + `Config.setColorSpace("bt709")` for the Remotion side) — otherwise the diff measures encoder differences, not translation fidelity. Skipping the eval or proceeding below threshold is the `silent-divergence` violation — a translation that "looks right" but renders 0.05 SSIM lower than the validated baseline is silently wrong.
+Critical: both renders must use matching pixel format (`Config.setVideoImageFormat("png")` + `Config.setColorSpace("bt709")` for the Remotion side) — otherwise the diff measures encoder differences, not translation fidelity. Skipping the eval or proceeding below threshold is the `silent-divergence` violation — a translation that "looks right" but renders 0.05 ssim lower than the validated baseline is silently wrong.
 
 ### Step 6: finalize
 
@@ -89,12 +84,6 @@ Write `TRANSLATION_NOTES.md` next to the target output: every gap that didn't tr
 - **Author new content.** The bridge translates existing compositions; it does not create. Use `content-os-general-video` for new builds.
 - **Mix paradigms in one output.** The target is fully in one paradigm. Hybrid output is the interop pattern, not a translation.
 
-## Determinism + seek-safety
-
-R→H output follows the Frames ContentOS HTML contract: `window.__timelines["<id>"]`, `paused: true`, scrubbed via `tl.seek(frame/fps)`, no `Date.now()`/`Math.random()`/`new Date()`/`performance.now()`/`fetch`/`setTimeout`/`setInterval`, no `repeat: -1`, finite repeats, no CSS `transition:` on animated elements, system fonts (concrete-render-safe). H→R output follows the Remotion contract: `useCurrentFrame()`-driven, `interpolate`/`spring` derivations, no state-driven animation, `Config.setVideoImageFormat("png")` + `Config.setColorColor("bt709")` for eval parity. Both directions are offline-first; remote media is opt-in auth-gated via `content-os-media` and never in the render path without credentials.
-
 ## Delegation
 
 This skill is an orchestrator — it carries no rules of its own beyond the workflow contract. It delegates composition structure to `content-os-core`, tween mapping to `content-os-animation`, pose/determinism to `content-os-keyframes`, block reuse to `content-os-registry`, and media element mapping to `content-os-media`. Brand/voice/channel (`content-os-creative`) is out of scope — the bridge translates existing compositions, it does not re-author creative. The intent router (`content-os-router`) owns route decisions; this skill is invoked only after the router resolves a translation intent.
-
-step-gated orchestrator (setup → lint → plan → translate → validate → finalize); bidirectional (R→H adapted from vendor remotion-to-hyperframes + H→R inverse mapping native to Frames ContentOS); hash-bound via sha256 (registry + 4 lifecycle events). deterministic seek-safe (window.__timelines, paused: true, tl.seek(frame/fps)); offline-first render path (compositions + frames + composite all offline); interop escape-hatch for blockers (runtime adapter, not silent translation); ssim-graded eval (no silent divergence).

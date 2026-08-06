@@ -1,5 +1,5 @@
 skill_id: design-canvas-generative
-version: 0.1.0
+version: 0.2.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored_adaptation
