@@ -1,10 +1,22 @@
 schema_version: 1
 original_id: TASK-0029
 section: INTAKE
-inferred_state: INTAKE
 receipt_ref: null
 backfilled: true
 note: migrated from flat TASK.md cola — state inferred from section, human amend
   expected
 provenance:
   - triage_r3_loose
+  - close_loose_001
+close_loose_001:
+  date: 2026-08-06
+  actor: lead
+  decision: >
+    Fase 2 homólogo batches complete (42/42 vendor skills have homólogos).
+    Scroll skills (scroll-experience-foundations, scroll-world-agnostic,
+    cinematic-scroll-quality) remain in v2 skill-registry.yml by design — v2 IS
+    the homólogo tier; creation-v3 H-03 is the original-creation tier.
+    check-instagram-v2-skills.ts hash-binds them (lines 60-82);
+    reconcile-skill-registries.ts reports 0 orphans / 0 cross-registry dupes.
+    Ground truth = green pnpm verify:skills. State INTAKE -> ENTREGADO,
+    evidence_tags.historical coverage_gap -> DOC per loose-task-policy rule 5.
