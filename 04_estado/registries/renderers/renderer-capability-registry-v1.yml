@@ -6,7 +6,7 @@ capabilities:
     capabilityId: d3
     adapterId: d3-svg-geometry-v1
     adapterVersion: 0.1.0
-    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/d3-adapter.ts, sha256: 1812ce8b0ba64371e687e80c5cfc71663aa0a95d1eb77498ee590c24e110c2f5}
+    adapterRef: {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/d3-adapter.ts, sha256: f1624f7965ab3dd31a39784c03f80be1f3301120b8e2e33b384baf803f159858}
     positiveFixtureRef: {schemaVersion: hash-bound-ref-v1, ref: skills/data-visual-composition/fixtures/positive/categorical-matrix.json, sha256: b994e94541ecaa24428cdfc987ca96fb0c95bd9e040e7be0ff606818c1b68738}
     hostileFixtureRef: {schemaVersion: hash-bound-ref-v1, ref: skills/data-visual-composition/fixtures/hostile/empty-series.json, sha256: d5b49d747bf800058856c201f8a9b663815908968872fdb4bb26a982a820d1bc}
     dependencies:
@@ -97,7 +97,7 @@ capabilities:
     positiveFixtureRef: *motionPositive
     hostileFixtureRef: *motionHostile
     dependencies:
-      - {packageName: remotion, version: 4.0.494, lockIntegrity: 'sha512-WiAUJ5rjhoYvBJzwp8ZLybhJZLe6VAwWk7pbs9Jv1yYLbHAV9RraUaNHuegaIKbbmgW2c9UDPgKjdZ9k9XjTyA==', licenseId: Remotion-License, licenseVerdict: evaluation_only, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-REMOTION-001.yml, sha256: ad5e9954c0ef6d1b8663a3c7f7e64cc3e5386a2e90bbf71b1a9a7034f7593fbf}}
+      - {packageName: remotion, version: 4.0.494, lockIntegrity: 'sha512-WiAUJ5rjhoYvBJzwp8ZLybhJZLe6VAwWk7pbs9Jv1yYLbHAV9RraUaNHuegaIKbbmgW2c9UDPgKjdZ9k9XjTyA==', licenseId: Remotion-License, licenseVerdict: evaluation_only, licenseRef: {schemaVersion: hash-bound-ref-v1, ref: receipts/dependency-audits/H03-LIC-REMOTION-001.yml, sha256: c8537ad2478e8451590a8e04ca0174a4ff661f07f5224eeec45348d1a1df842a}}
     inputKinds: [explicit_frame]
     outputKinds: [frame_sample, local_probe_frame]
     supportedEvidenceModes: [conceptual, categorical, quantitative_claims]
@@ -118,11 +118,11 @@ adapterSpecs:
 supportingRefs:
   - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/adapter-runtime.ts, sha256: d853277a9c2447acb0c634c20092b7a90e8e81ce48a1b6498028f6a18d069cff}
   - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/adapters/h03-probe-components.tsx, sha256: 0970fbc7a3520cd3cff3c51e367f0f33788a61aa558fa495c491c512381fc9bf}
-  - {schemaVersion: hash-bound-ref-v1, ref: tests/fixtures/renderers/h03-probe-entry.tsx, sha256: 15f552fd188598d8ed0de255bd1e8fccc265949f05c3aa8f201355fac9fb2103}
+  - {schemaVersion: hash-bound-ref-v1, ref: tests/fixtures/renderers/h03-probe-entry.tsx, sha256: 450f1ac17e7d42f6611524a134b85f9882a8d8dc4b578e58cce612895420502b}
   - {schemaVersion: hash-bound-ref-v1, ref: renderers/remotion/src/network-guard.ts, sha256: b1644bb2d9b17859bb7c07fb1b8845eee3b863334b36e31a5f69b14213dbfb9f}
-  - {schemaVersion: hash-bound-ref-v1, ref: scripts/render-h03-probe.ts, sha256: 789bd15f9585c7ccc3d235f89da222515a664f71b8ec6e7e1466c677383052ad}
-  - {schemaVersion: hash-bound-ref-v1, ref: quality/reports/creation-v3-h03-render-smoke.yml, sha256: be9369ad51bed604f53521d73ad8ec6ac7c8c09bb2be2f7341a9a7d90c8f2c68}
-registrySha256: 25f5b569aa3d729e12421f5bdfc96c0959ea2e1fc03c63b2f3e91741d1ac3cd5
+  - {schemaVersion: hash-bound-ref-v1, ref: scripts/render-h03-probe.ts, sha256: b1fb844dafcb2ad5353e8197eee30ec2d6b7237b46d1afe2445c2992384be76d}
+  - {schemaVersion: hash-bound-ref-v1, ref: quality/reports/creation-v3-h03-render-smoke.yml, sha256: b86064748f55dab423edfb6a5d6e8da5cb016dec236746ade871e5978a8c99b0}
+registrySha256: e762c7b2d094120efbc63512a892c2b7445fe990be2bca632338c7f0a3fc7b60
 productionState: BLOCKED_LICENSE
 distributionState: NOT_DESIGNED
 publicationAuthority: false

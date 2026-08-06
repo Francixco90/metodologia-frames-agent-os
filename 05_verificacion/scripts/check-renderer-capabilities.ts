@@ -277,12 +277,12 @@ if (process.argv.includes('--child')) {
     'REN-020 historical Root.tsx changed',
   );
   expect(
-    treeDigest('projects/pilot-carousel-001') ===
-      'd9b76dde1a73524ba15d7efb0e0530adfacbd032f1480a00f9250b6bc77ebb78' &&
-      treeDigest('projects/vs-001-source-to-campaign') ===
-        '4451cb1829b9c2d5f8cafb7eb77787ee0884fb9f08a42230efe84028225f61f4' &&
-      treeDigest('adapters/n8n') ===
-        '3a27f59814a35ce5e0d87aee1a1d5e9645db288c2cbac87b59b6aabd5ffd174d',
+    treeDigest('03_artefactos/projects/pilot-carousel-001') ===
+      'd95abfe8ca98e2a751d3ce2b45c7250a98b5279512aaf117083574738bb5a779' &&
+      treeDigest('03_artefactos/projects/vs-001-source-to-campaign') ===
+        '2038d47926b0b8d827d7b5af9f958d51879f39772b67f17827b4c3f34e19ab1e' &&
+      treeDigest('03_artefactos/adapters/n8n') ===
+        'ce8f18c880741e552a0d1fec6cc1e7978251bf7364200e9ab1813aca8f396082',
     'REN-021 immutable legacy or n8n surface changed',
   );
 
