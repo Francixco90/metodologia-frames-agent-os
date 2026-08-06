@@ -674,11 +674,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-desktop-principles/scripts/check-skill.mjs]
   - skill_id: design-swiftui-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3c7eca3ebaa761b74592f1e9f290a5d56404c85b522b1f3701f40075c3ba40d3
-    package_manifest_sha256: df4855625c632ceb2a6a9b34877470ae2f9ad9f5ff447ea15c1ee050088603e5
+    content_sha256: 2474b85f265b5b305696cdc420b4fb7e5b4df85dbabb17d4110ad8444a8f930b
+    package_manifest_sha256: 409878adfe2be3f127051a0650c50f263d0b3e41a8021ad399145171ef6b29f9
     lineage_ref: skills/design-swiftui-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-swiftui-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1941,6 +1941,7 @@ events:
   - {event_id: EVT-SKL-SWM-H03-002, event_order: 2, skill_id: design-swiftui-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-003, event_order: 3, skill_id: design-swiftui-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SWM-H03-004, event_order: 4, skill_id: design-swiftui-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWM-H03-005, event_order: 5, skill_id: design-swiftui-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-TRF-H03-001, event_order: 1, skill_id: design-threejs-r3f, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-002, event_order: 2, skill_id: design-threejs-r3f, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-003, event_order: 3, skill_id: design-threejs-r3f, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
