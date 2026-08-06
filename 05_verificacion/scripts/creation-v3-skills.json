@@ -158,6 +158,7 @@
   },
   {
     "id": "content-os-captions-overlay",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-captions-overlay/scripts/check-skill.mjs"

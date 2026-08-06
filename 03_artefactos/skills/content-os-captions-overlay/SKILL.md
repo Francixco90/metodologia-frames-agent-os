@@ -1,7 +1,7 @@
 ---
 name: content-os-captions-overlay
 description: This skill should be used when the user asks to "add captions to a video", "decide whether a phrase should be dropped, ride the rail, or be promoted to an embedded climax", "lay out a composition that will carry captions", "center a composition under captions", or "apply the caption overlay doctrine". Caption overlay doctrine for the Frames ContentOS toolchain: the caption model (drop / rail / embed) and the overlay law — captions are an OVERLAY composited on top of the film, never a reserved bottom band you shift content up to avoid. Applies ON TOP of content-os-embedded-captions. Load when adding captions/subtitles to a talking-head or launch video, when centering a composition on the true frame center under captions, or when reserving a keep-out band (do NOT). Unclear → content-os-router.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Applies ON TOP of content-os-embedded-captions (the rail+embed model). Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-embedded-captions (verbatim rail, embed behind subject). Input = transcript + composition. Caption line composited ON TOP as overlay (bottom ~5-8% of canvas height). Output RENDERED_DRAFT. Constraint #13 (captions overlay, keep-out band retired) from the product-launch-video scene agent.
 metadata:
@@ -86,14 +86,10 @@ exist.
 The model says the rail rides **in front** and an embed is a rare word composited **behind
 the subject** — both are layers added to footage that ships untouched. The overlay law says
 the caption line is a layer composited **on top** of the whole film, not a band carved out
-of the layout. So in both the captioning pipeline and the launch-video pipeline, captions
-are an overlay you add, not a zone you reserve:
-
-- Keep the full frame; center on true center; let content run to the edges.
-- Make the rail (or the small overlay caption line) carry the verbatim words.
-- Promote a word to an embed only at a genuine peak — scarce, spaced, never two at once.
-- Reserve nothing; judge legibility of captions-over-content visually, not by a keep-out
-  gate.
+of the layout. In both the captioning and launch-video pipelines, captions are an overlay
+you add, not a zone you reserve: keep the full frame, center on true center, let the rail
+carry the verbatim words, and promote an embed only at a genuine peak — scarce, spaced,
+never two at once. Judge legibility of captions-over-content visually, not by a keep-out gate.
 
 ## Determinism contract (inherited from content-os-core)
 

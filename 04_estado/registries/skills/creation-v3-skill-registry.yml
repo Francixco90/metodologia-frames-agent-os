@@ -245,11 +245,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-hyperframes-cli/scripts/check-skill.mjs]
   - skill_id: content-os-captions-overlay
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3dfde5d95e268a44e874b739c923330552586fb3149076b551d4fba2b0990f4b
-    package_manifest_sha256: 710ff6b18f63b28ff74b803d434d98f86f3f2ee88da8cd65a0abd802a37ee10c
+    content_sha256: bff2c6bd25b17ba575031ee2018abf3337024f11456e0baae6efc7407a786732
+    package_manifest_sha256: 9f728e2145f4e5f270e433ce746526b6c00fd64cc991352bdeaeaf4b19d94313
     lineage_ref: skills/content-os-captions-overlay/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-captions-overlay/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1768,6 +1768,7 @@ events:
   - {event_id: EVT-SKL-COV-H03-002, event_order: 2, skill_id: content-os-captions-overlay, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-COV-H03-003, event_order: 3, skill_id: content-os-captions-overlay, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COV-H03-004, event_order: 4, skill_id: content-os-captions-overlay, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-COV-H03-005, event_order: 5, skill_id: content-os-captions-overlay, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — Why-section bullets collapsed to dense prose, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-MDR-H03-001, event_order: 1, skill_id: content-os-motion-doctrine, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-002, event_order: 2, skill_id: content-os-motion-doctrine, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-003, event_order: 3, skill_id: content-os-motion-doctrine, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
