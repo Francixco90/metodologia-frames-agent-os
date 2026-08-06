@@ -10,6 +10,7 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/brainstorm-design-system-thesis.yml`,
   `skills/${id}/fixtures/negative/skip-brainstorm-auto-implement.yml`,
+  `skills/${id}/references/stack-specifics.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
