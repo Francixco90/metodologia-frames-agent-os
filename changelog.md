@@ -6,6 +6,19 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
 
 ## 2026-08 — Atemporal + simplicity lift
 
+- **Fase 7 phase 2** — continued `.md` 10× lift on the quick-win band
+  (1201–1299 words). **3 more advisory skills cleared** (6/47 total):
+  `design-framer-motion` (1261→1191, intro fail-closed recap dropped —
+  duplicated in §Fail-closed), `design-desktop-principles` (1251→1192,
+  blockquote fail-closed recap dropped — duplicated in §Runtime Boundary,
+  generic fail-closed boilerplate removed, density + animation prose
+  tightened), `content-os-captions-overlay` (1201→1178, Why-section
+  restatement bullets collapsed to dense prose). Each underwent the full
+  hash-bound cascade (0.1.0→0.2.0 in 4 places + both sha256 recomputed +
+  5th revision event `EVT-SKL-{FRM,DKP,COV}-H03-005`).
+  `verify:skills` PASS after each (152 H03 + 11 v2). md-budgets advisory
+  46→43. Gates green: check:repo, typecheck, tests 630/630. **Remaining 43
+  advisory** as coverage_gap worklist (phased remediation continues).
 - **Fase 7** — `.md` 10× lift (B3): densify authored SKILL.md corpus to the
   ≤1200-word budget, respecting the hash-bound append-only registry cascade.
   Phase 1 of phased remediation: **3/47 advisory skills cleared** —
