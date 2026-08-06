@@ -12,6 +12,7 @@ const required = [
   'fixtures/negative',
   'scripts/check-skill.mjs',
   'receipts/runtime-boundary.yml',
+  'references/ceo-review-receta.md',
 ];
 
 const lineageFields = [

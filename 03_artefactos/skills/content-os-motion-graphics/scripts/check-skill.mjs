@@ -27,6 +27,7 @@ const required = [
   'references/director.md',
   'references/motion-vocabulary.md',
   'references/asset-strategy.md',
+  'references/steps-receta.md',
   'rules/workflow-contract.md',
   'examples/storyboard-brief.jsonl',
   'examples/frame-sequence.jsonl',
@@ -50,7 +51,7 @@ if (!skillMd.startsWith('---\nname: content-os-motion-graphics\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.1.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
+if (!skillMd.includes('version: 0.2.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {
   errors.push(`${PREFIX}FRONTMATTER_LICENSE`);
 }
@@ -136,6 +137,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.info(
-    'PASS content-os-motion-graphics: 14 files, frontmatter, tokens, forbidden-scan, negative-completeness.',
+    'PASS content-os-motion-graphics: 15 files, frontmatter, tokens, forbidden-scan, negative-completeness.',
   );
 }

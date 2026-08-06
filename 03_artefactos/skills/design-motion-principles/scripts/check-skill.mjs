@@ -10,6 +10,7 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/enter-exit-symmetric.yml`,
   `skills/${id}/fixtures/negative/animate-layout-props.yml`,
+  `skills/${id}/references/motion-principles-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

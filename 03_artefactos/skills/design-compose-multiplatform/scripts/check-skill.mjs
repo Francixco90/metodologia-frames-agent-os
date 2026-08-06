@@ -10,6 +10,7 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/expect-actual-share-sheet.yml`,
   `skills/${id}/fixtures/negative/auto-run-gradle-kmp.yml`,
+  `skills/${id}/references/cmp-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

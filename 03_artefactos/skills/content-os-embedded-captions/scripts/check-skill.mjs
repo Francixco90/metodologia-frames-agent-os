@@ -27,6 +27,7 @@ const required = [
   'references/identity-catalog.md',
   'references/caption-model.md',
   'references/visual-qa.md',
+  'references/steps-receta.md',
   'rules/workflow-contract.md',
   'examples/storyboard-brief.jsonl',
   'examples/frame-sequence.jsonl',
@@ -50,7 +51,7 @@ if (!skillMd.startsWith('---\nname: content-os-embedded-captions\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.1.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
+if (!skillMd.includes('version: 0.2.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {
   errors.push(`${PREFIX}FRONTMATTER_LICENSE`);
 }
@@ -138,6 +139,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.info(
-    'PASS content-os-embedded-captions: 14 files, frontmatter, tokens, forbidden-scan, negative-completeness.',
+    'PASS content-os-embedded-captions: 15 files, frontmatter, tokens, forbidden-scan, negative-completeness.',
   );
 }

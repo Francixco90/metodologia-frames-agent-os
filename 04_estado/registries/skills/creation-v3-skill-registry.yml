@@ -135,44 +135,44 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-product-launch-video/scripts/check-skill.mjs]
   - skill_id: content-os-motion-graphics
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 64b4dc0f9be95628beb18f4171583bc38fe990a961667845704fb2f0ee783355
-    package_manifest_sha256: 6249b26bb84bc2259c759b7d180960141c0c2c4f76cbdeac7b24e8681051c40a
+    content_sha256: 233cc75752ca29c32b0ce86858c7f51bf20a74397129ea2790f42724a91afa29
+    package_manifest_sha256: 3b274bd6c8b10750babdd36fc522b187400183f2e504512450de53e9b599b01b
     lineage_ref: skills/content-os-motion-graphics/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-motion-graphics/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-motion-graphics/scripts/check-skill.mjs]
   - skill_id: content-os-embedded-captions
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: ea0dd7aeaff7d4f19c5f8319a38d0b18955a1a513d5a5875b231c2f120e872bb
-    package_manifest_sha256: 88489499f1a4358ee4661a1b76e4f0d28f6b5d2d8f1457c8fc725c27c59d48cf
+    content_sha256: 90452afef48dc1401130cb43412107048217a533bd60c7016ee18322a6d746a5
+    package_manifest_sha256: 3c39ad8d555a85bc329fa0b6e8dfe352915ac42c9b0927df0a5dfe19392ed574
     lineage_ref: skills/content-os-embedded-captions/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-embedded-captions/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-embedded-captions/scripts/check-skill.mjs]
   - skill_id: content-os-slideshow
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3992b4cde63c08a757ee4ecbc51809dbe6335869c73b72fe185acef923b7b156
-    package_manifest_sha256: 54bd2c884360c1b13bdd25e7ef71a0d00bf24f042363941d3567d0faf63df946
+    content_sha256: d5ae1caa58578d44d1b655814307be9ae2748e24166cac870d1a7ec1f156f1fe
+    package_manifest_sha256: 9025d8c74bf62779260376ddfdb1f6844a2bbf500faaa8365aa9efa93543e9e1
     lineage_ref: skills/content-os-slideshow/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-slideshow/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-slideshow/scripts/check-skill.mjs]
   - skill_id: content-os-general-video
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: bcc10954a261000eadaa615477ada5600edd11c797d04bae100c07ddae109995
-    package_manifest_sha256: ac373e835b3cca90571573a4761788c016f2741e470af85a50e2ad5c422a5f27
+    content_sha256: e995664a0923b4e3bd9ca9ff2637c98dce769099fae5397f190b87174e7226ab
+    package_manifest_sha256: fa289558704ddab22834d72e41cc2dab04fd825d7057b5ffd25575eab66849fe
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -256,11 +256,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-captions-overlay/scripts/check-skill.mjs]
   - skill_id: content-os-motion-doctrine
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5d3ef2aa0be998630113f318d743ea19b71b5284bb28dd206b5cbd6a6713a10f
-    package_manifest_sha256: 2693e5a458065913fd1997e0601c378748e6d8a12030330e69b8f9361400b01c
+    content_sha256: d4b8b35e04a6067a83edacb7c5a4685d3e3f37aaa33008354da76140138dcbb8
+    package_manifest_sha256: 39a8dc9723d458e083686ddd6820254eaf5addceee180b022ae4d9152f21ca20
     lineage_ref: skills/content-os-motion-doctrine/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-motion-doctrine/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -289,11 +289,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-seam-craft/scripts/check-skill.mjs]
   - skill_id: content-os-oversized-cursor
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 897c43f6135b228da34aeaf51e84ea0ed929d9aac09cde46cc2cc3431246814b
-    package_manifest_sha256: 830c8ac5442d95094a5d8cc238c0ba69bc4735b74925660a52aadb769867bd22
+    content_sha256: 76028fa5786e3c0753ed6e2eb08f6edb56d74632f446773d59b2dc1150b2b0ad
+    package_manifest_sha256: 443d4f64b919f49b7012539d6999ae4299512d78d10f93f31fd378b06dff6a01
     lineage_ref: skills/content-os-oversized-cursor/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-oversized-cursor/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -542,11 +542,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-redesign/scripts/check-skill.mjs]
   - skill_id: design-emil
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: b168e6db0ba33ee06a4242d2b99b3ad9db9d92f1337fb366c7ac30b2ea2f0ac8
-    package_manifest_sha256: e1c86c9097deeb9c7cae55c3ad85479d8c726f70ec143211f1d8c2d8cad10dc8
+    content_sha256: d73ee3d0cad7260dfbccade166b749f791a760c011b6d01f1c691fea3d0192cd
+    package_manifest_sha256: 99d881e93bc844248dd01a805e42845652812aef4cecfed40b65b1545bc9eb95
     lineage_ref: skills/design-emil/LINEAGE.yml
     dependency_receipt_ref: skills/design-emil/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -597,22 +597,22 @@ entries:
     publication_authority: false
     tests: [node skills/design-framer-motion/scripts/check-skill.mjs]
   - skill_id: design-motion-principles
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 02a809dbe82fe0b94eba05885489ea0b4ba9f588b870b98437ef58ec70c07bd4
-    package_manifest_sha256: abbb756f66cf61c1f2eb8b15c2eb700902698503f706566e479ba7f24989374a
+    content_sha256: 1a4c5af86f0655f66bd4da24f1a2c172d557742083ad09faae0921b6c3c88f0e
+    package_manifest_sha256: 307aff503231645a0940369416e4ed45c7b63db522ce39acda83fb911dff27bc
     lineage_ref: skills/design-motion-principles/LINEAGE.yml
     dependency_receipt_ref: skills/design-motion-principles/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-motion-principles/scripts/check-skill.mjs]
   - skill_id: design-swiftui-graphics
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 39f3cbd0d5ba62197433520949db511b7d756d75084ac7f0a46f40e853499e90
-    package_manifest_sha256: b982ff4a5aa1a611e4753cb462cedddbae5c24f5c2f73ec52defc3e07892945e
+    content_sha256: 2587288b6072149aa1cb3c44560002420b64530dbb51a26225bb9dd0af92767e
+    package_manifest_sha256: bfbc5ff4c8526ff58222637301319ac447887f49804a69a350b1230a76fc7177
     lineage_ref: skills/design-swiftui-graphics/LINEAGE.yml
     dependency_receipt_ref: skills/design-swiftui-graphics/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -630,11 +630,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-compose-graphics/scripts/check-skill.mjs]
   - skill_id: design-compose-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 128d818db8ff2e90b423f4d1311dca5e285d1bc9b1a7d5dd40a0f60f2c413acd
-    package_manifest_sha256: 1ff62262949b932d9ddcccbe5b6a81330007e08d72062b91d9b4d2d23429a9f0
+    content_sha256: ee2ec7ab607168af0f4798c5bb8f7147eaf72e531ca51dc987e890ecf63f94a8
+    package_manifest_sha256: c8ec10ef5edefbc2610d23c43f0872e46af4c585ee0f6a9e87a1037db644941f
     lineage_ref: skills/design-compose-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-compose-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -674,11 +674,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-desktop-principles/scripts/check-skill.mjs]
   - skill_id: design-swiftui-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3c7eca3ebaa761b74592f1e9f290a5d56404c85b522b1f3701f40075c3ba40d3
-    package_manifest_sha256: df4855625c632ceb2a6a9b34877470ae2f9ad9f5ff447ea15c1ee050088603e5
+    content_sha256: 2474b85f265b5b305696cdc420b4fb7e5b4df85dbabb17d4110ad8444a8f930b
+    package_manifest_sha256: 409878adfe2be3f127051a0650c50f263d0b3e41a8021ad399145171ef6b29f9
     lineage_ref: skills/design-swiftui-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-swiftui-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -696,11 +696,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-threejs-r3f/scripts/check-skill.mjs]
   - skill_id: design-compose-multiplatform
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 2f54aa2f009742f0f0880c7a8d1448114a27c6b7e26e1483a41e1dd501390902
-    package_manifest_sha256: deddd333b0a3ab94db94b9ed0b79932631ce1011442d0894e86a7561566bf769
+    content_sha256: eeac7a3eb495086d21efd028404c419072c251bdf82a4601b63db718c7210092
+    package_manifest_sha256: 2942fb8ac6cb6a90db3b39a14211219d8b462b71621f4ee53b6255c38ac888b4
     lineage_ref: skills/design-compose-multiplatform/LINEAGE.yml
     dependency_receipt_ref: skills/design-compose-multiplatform/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -916,11 +916,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-devex-review/scripts/check-skill.mjs]
   - skill_id: dev-design-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 41ec201987398cccc65a2258f1ab37b66e8173c31f0ad86a6e64ad16d4a8ccf0
-    package_manifest_sha256: e863287d01f158f444d3814651c134e8326980eb19b689128c8e8f424ccc5c92
+    content_sha256: eaa1ab110e339ebc4b25caaca20834ead657f03ad80bab1b5db4d17679c71feb
+    package_manifest_sha256: 42b5a6d8170a22aeaf6b30d92940552a23d3d04e42a992ad7c05adedaec5003a
     lineage_ref: skills/dev-design-review/LINEAGE.yml
     dependency_receipt_ref: skills/dev-design-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1158,11 +1158,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-writing-plans/scripts/check-skill.mjs]
   - skill_id: dev-finishing-a-development-branch
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 38e1cada17cf2fdba0a9df55d312e62ab50671cbc7043115894568a0bbd88f11
-    package_manifest_sha256: 82c5ae3209e80e7353cec741f201106c926e218703cbc5cd905905ad5ac81a40
+    content_sha256: b632b13d6361554153db1779338defe61ea89efd0e75a04628116567f43187f2
+    package_manifest_sha256: 5822d12d0b37b93e5cdafa814de6f875841988d906f0958f85eb88473c364a80
     lineage_ref: skills/dev-finishing-a-development-branch/LINEAGE.yml
     dependency_receipt_ref: skills/dev-finishing-a-development-branch/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1191,11 +1191,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-requesting-code-review/scripts/check-skill.mjs]
   - skill_id: dev-subagent-driven-development
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 25919493695333416ae256c54b1f55c4ce084501a0b731d56bc0fa2e3c1e0ee2
-    package_manifest_sha256: 9fb8793ad184ee5cf1363528797bc2ca4a9421f33b1c4fe43cd031786c04a238
+    content_sha256: 2746336492c47c099b45f4be0217407f70f71333adfe8fccff5fafef9430ead3
+    package_manifest_sha256: 34ebb1c563fcc306c2e9c1d518903a878567bc23bc2677974c3a7fc5673e0c4f
     lineage_ref: skills/dev-subagent-driven-development/LINEAGE.yml
     dependency_receipt_ref: skills/dev-subagent-driven-development/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1631,11 +1631,11 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-codex/scripts/check-skill.mjs]
   - skill_id: gstack-openclaw-ceo-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e37c2bb810f6c1d2b5627e1083d9f263a1033dc930a1131428919abcb2365895
-    package_manifest_sha256: 925c9b5cbe9875b2727247b6dcc0a0aa6c9382f17f69478f72883d300e3b71aa
+    content_sha256: df297558325b7e942152fb38c7e4b0e39f0ec74f7178d30e8c04f5b5384fb99f
+    package_manifest_sha256: 4aec3cf214e097322ee682a9eb77ce07eda849868568fd84953dbee66418b6ab
     lineage_ref: skills/gstack-openclaw-ceo-review/LINEAGE.yml
     dependency_receipt_ref: skills/gstack-openclaw-ceo-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1730,18 +1730,22 @@ events:
   - {event_id: EVT-SKL-CMG-H03-002, event_order: 2, skill_id: content-os-motion-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMG-H03-003, event_order: 3, skill_id: content-os-motion-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMG-H03-004, event_order: 4, skill_id: content-os-motion-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMG-H03-005, event_order: 5, skill_id: content-os-motion-graphics, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CEC-H03-001, event_order: 1, skill_id: content-os-embedded-captions, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CEC-H03-002, event_order: 2, skill_id: content-os-embedded-captions, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CEC-H03-003, event_order: 3, skill_id: content-os-embedded-captions, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CEC-H03-004, event_order: 4, skill_id: content-os-embedded-captions, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CEC-H03-005, event_order: 5, skill_id: content-os-embedded-captions, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CSL-H03-001, event_order: 1, skill_id: content-os-slideshow, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSL-H03-002, event_order: 2, skill_id: content-os-slideshow, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSL-H03-003, event_order: 3, skill_id: content-os-slideshow, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSL-H03-004, event_order: 4, skill_id: content-os-slideshow, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSL-H03-005, event_order: 5, skill_id: content-os-slideshow, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CGV-H03-001, event_order: 1, skill_id: content-os-general-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CGV-H03-002, event_order: 2, skill_id: content-os-general-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CGV-H03-003, event_order: 3, skill_id: content-os-general-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CGV-H03-004, event_order: 4, skill_id: content-os-general-video, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CGV-H03-005, event_order: 5, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CRB-H03-001, event_order: 1, skill_id: content-os-remotion-bridge, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1777,6 +1781,7 @@ events:
   - {event_id: EVT-SKL-MDR-H03-002, event_order: 2, skill_id: content-os-motion-doctrine, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-003, event_order: 3, skill_id: content-os-motion-doctrine, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MDR-H03-004, event_order: 4, skill_id: content-os-motion-doctrine, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MDR-H03-005, event_order: 5, skill_id: content-os-motion-doctrine, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CTC-H03-001, event_order: 1, skill_id: content-os-cut-the-curve, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTC-H03-002, event_order: 2, skill_id: content-os-cut-the-curve, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTC-H03-003, event_order: 3, skill_id: content-os-cut-the-curve, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1790,6 +1795,7 @@ events:
   - {event_id: EVT-SKL-OCR-H03-002, event_order: 2, skill_id: content-os-oversized-cursor, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCR-H03-003, event_order: 3, skill_id: content-os-oversized-cursor, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCR-H03-004, event_order: 4, skill_id: content-os-oversized-cursor, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCR-H03-005, event_order: 5, skill_id: content-os-oversized-cursor, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-RBP-H03-001, event_order: 1, skill_id: content-os-remotion-best-practices, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RBP-H03-002, event_order: 2, skill_id: content-os-remotion-best-practices, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RBP-H03-003, event_order: 3, skill_id: content-os-remotion-best-practices, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1882,6 +1888,7 @@ events:
   - {event_id: EVT-SKL-EML-H03-002, event_order: 2, skill_id: design-emil, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EML-H03-003, event_order: 3, skill_id: design-emil, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-EML-H03-004, event_order: 4, skill_id: design-emil, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-EML-H03-005, event_order: 5, skill_id: design-emil, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-EXT-H03-001, event_order: 1, skill_id: design-extract, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXT-H03-002, event_order: 2, skill_id: design-extract, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXT-H03-003, event_order: 3, skill_id: design-extract, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1903,10 +1910,12 @@ events:
   - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MPR-H03-004, event_order: 4, skill_id: design-motion-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPR-H03-005, event_order: 5, skill_id: design-motion-principles, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-SWG-H03-001, event_order: 1, skill_id: design-swiftui-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWG-H03-002, event_order: 2, skill_id: design-swiftui-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWG-H03-003, event_order: 3, skill_id: design-swiftui-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SWG-H03-004, event_order: 4, skill_id: design-swiftui-graphics, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWG-H03-005, event_order: 5, skill_id: design-swiftui-graphics, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CPG-H03-001, event_order: 1, skill_id: design-compose-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPG-H03-002, event_order: 2, skill_id: design-compose-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CPG-H03-003, event_order: 3, skill_id: design-compose-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1915,6 +1924,7 @@ events:
   - {event_id: EVT-SKL-CMT-H03-002, event_order: 2, skill_id: design-compose-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMT-H03-003, event_order: 3, skill_id: design-compose-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMT-H03-004, event_order: 4, skill_id: design-compose-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMT-H03-005, event_order: 5, skill_id: design-compose-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-MOP-H03-001, event_order: 1, skill_id: design-mobile-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MOP-H03-002, event_order: 2, skill_id: design-mobile-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MOP-H03-003, event_order: 3, skill_id: design-mobile-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1933,6 +1943,7 @@ events:
   - {event_id: EVT-SKL-SWM-H03-002, event_order: 2, skill_id: design-swiftui-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-003, event_order: 3, skill_id: design-swiftui-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SWM-H03-004, event_order: 4, skill_id: design-swiftui-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SWM-H03-005, event_order: 5, skill_id: design-swiftui-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-TRF-H03-001, event_order: 1, skill_id: design-threejs-r3f, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-002, event_order: 2, skill_id: design-threejs-r3f, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-TRF-H03-003, event_order: 3, skill_id: design-threejs-r3f, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1942,6 +1953,7 @@ events:
   - {event_id: EVT-SKL-CMP-H03-002, event_order: 2, skill_id: design-compose-multiplatform, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CMP-H03-003, event_order: 3, skill_id: design-compose-multiplatform, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CMP-H03-004, event_order: 4, skill_id: design-compose-multiplatform, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CMP-H03-005, event_order: 5, skill_id: design-compose-multiplatform, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-GJM-H03-001, event_order: 1, skill_id: design-genjutsu-gsap-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GJM-H03-002, event_order: 2, skill_id: design-genjutsu-gsap-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GJM-H03-003, event_order: 3, skill_id: design-genjutsu-gsap-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2028,6 +2040,7 @@ events:
   - {event_id: EVT-SKL-DSR-H03-002, event_order: 2, skill_id: dev-design-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DSR-H03-003, event_order: 3, skill_id: dev-design-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DSR-H03-004, event_order: 4, skill_id: dev-design-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DSR-H03-005, event_order: 5, skill_id: dev-design-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-DHT-H03-001, event_order: 1, skill_id: dev-design-html, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DHT-H03-002, event_order: 2, skill_id: dev-design-html, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DHT-H03-003, event_order: 3, skill_id: dev-design-html, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2124,6 +2137,7 @@ events:
   - {event_id: EVT-SKL-FNB-H03-002, event_order: 2, skill_id: dev-finishing-a-development-branch, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FNB-H03-003, event_order: 3, skill_id: dev-finishing-a-development-branch, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-FNB-H03-004, event_order: 4, skill_id: dev-finishing-a-development-branch, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FNB-H03-005, event_order: 5, skill_id: dev-finishing-a-development-branch, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-RCV-H03-001, event_order: 1, skill_id: dev-receiving-code-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RCV-H03-002, event_order: 2, skill_id: dev-receiving-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RCV-H03-003, event_order: 3, skill_id: dev-receiving-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2137,6 +2151,7 @@ events:
   - {event_id: EVT-SKL-SDD-H03-002, event_order: 2, skill_id: dev-subagent-driven-development, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SDD-H03-003, event_order: 3, skill_id: dev-subagent-driven-development, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SDD-H03-004, event_order: 4, skill_id: dev-subagent-driven-development, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDD-H03-005, event_order: 5, skill_id: dev-subagent-driven-development, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-UGW-H03-001, event_order: 1, skill_id: dev-using-git-worktrees, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-UGW-H03-002, event_order: 2, skill_id: dev-using-git-worktrees, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-UGW-H03-003, event_order: 3, skill_id: dev-using-git-worktrees, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2300,6 +2315,7 @@ events:
   - {event_id: EVT-SKL-OCC-H03-002, event_order: 2, skill_id: gstack-openclaw-ceo-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCC-H03-003, event_order: 3, skill_id: gstack-openclaw-ceo-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCC-H03-004, event_order: 4, skill_id: gstack-openclaw-ceo-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCC-H03-005, event_order: 5, skill_id: gstack-openclaw-ceo-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-OCI-H03-001, event_order: 1, skill_id: gstack-openclaw-investigate, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCI-H03-002, event_order: 2, skill_id: gstack-openclaw-investigate, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCI-H03-003, event_order: 3, skill_id: gstack-openclaw-investigate, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

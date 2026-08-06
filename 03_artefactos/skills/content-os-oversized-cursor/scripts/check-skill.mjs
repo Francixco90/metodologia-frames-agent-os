@@ -12,6 +12,7 @@ const required = [
   `${skill}/fixtures/negative/broken-cursor-plan.yml`,
   `${skill}/examples/cursor-sequence.jsonl`,
   `${skill}/receipts/runtime-boundary.yml`,
+  `${skill}/references/cursor-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

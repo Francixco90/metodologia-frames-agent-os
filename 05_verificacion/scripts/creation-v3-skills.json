@@ -90,6 +90,7 @@
   },
   {
     "id": "content-os-motion-graphics",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-motion-graphics/scripts/check-skill.mjs"
@@ -97,6 +98,7 @@
   },
   {
     "id": "content-os-embedded-captions",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-embedded-captions/scripts/check-skill.mjs"
@@ -104,6 +106,7 @@
   },
   {
     "id": "content-os-slideshow",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-slideshow/scripts/check-skill.mjs"
@@ -111,6 +114,7 @@
   },
   {
     "id": "content-os-general-video",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-general-video/scripts/check-skill.mjs"
@@ -170,6 +174,7 @@
   },
   {
     "id": "content-os-motion-doctrine",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-motion-doctrine/scripts/check-skill.mjs"
@@ -192,6 +197,7 @@
   },
   {
     "id": "content-os-oversized-cursor",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-oversized-cursor/scripts/check-skill.mjs"
@@ -353,6 +359,7 @@
   },
   {
     "id": "design-emil",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-emil/scripts/check-skill.mjs"
@@ -389,6 +396,7 @@
   },
   {
     "id": "design-motion-principles",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-motion-principles/scripts/check-skill.mjs"
@@ -396,6 +404,7 @@
   },
   {
     "id": "design-swiftui-graphics",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-swiftui-graphics/scripts/check-skill.mjs"
@@ -410,6 +419,7 @@
   },
   {
     "id": "design-compose-motion",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-compose-motion/scripts/check-skill.mjs"
@@ -440,6 +450,7 @@
   },
   {
     "id": "design-swiftui-motion",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-swiftui-motion/scripts/check-skill.mjs"
@@ -455,6 +466,7 @@
   },
   {
     "id": "design-compose-multiplatform",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-compose-multiplatform/scripts/check-skill.mjs"
@@ -601,6 +613,7 @@
   },
   {
     "id": "dev-design-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-design-review/scripts/check-skill.mjs"
@@ -763,6 +776,7 @@
   },
   {
     "id": "dev-finishing-a-development-branch",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-finishing-a-development-branch/scripts/check-skill.mjs"
@@ -785,6 +799,7 @@
   },
   {
     "id": "dev-subagent-driven-development",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-subagent-driven-development/scripts/check-skill.mjs"
@@ -1068,6 +1083,7 @@
   },
   {
     "id": "gstack-openclaw-ceo-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs"
