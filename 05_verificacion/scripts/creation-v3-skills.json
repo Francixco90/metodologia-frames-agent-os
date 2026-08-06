@@ -376,6 +376,7 @@
   },
   {
     "id": "design-framer-motion",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-framer-motion/scripts/check-skill.mjs"
@@ -425,6 +426,7 @@
   },
   {
     "id": "design-desktop-principles",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-desktop-principles/scripts/check-skill.mjs"

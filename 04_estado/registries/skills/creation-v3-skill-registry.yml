@@ -586,11 +586,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-audit-genjutsu/scripts/check-skill.mjs]
   - skill_id: design-framer-motion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 92aa41f83a8541ccc215fe3fe189b0485bc99c7e5899df3985977d727a1b1e57
-    package_manifest_sha256: b5d4f3bf9115549c20f2ce7b6cb39da65df0664882d3edc2c7e9006a0963264c
+    content_sha256: 9c0c80f87f8732011009b636447f5060cf239f18592be26e3885d1fcd657cf4b
+    package_manifest_sha256: 422cf709f3dddcc7137849b89f80659d467494d216f3d2eae8bc99b51f32c2fc
     lineage_ref: skills/design-framer-motion/LINEAGE.yml
     dependency_receipt_ref: skills/design-framer-motion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -663,11 +663,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-canvas-generative/scripts/check-skill.mjs]
   - skill_id: design-desktop-principles
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 0993e95d565ba4b1a3a0cd66bfadd725638045e5ec3bc2b916d3aeb8d73d53d6
-    package_manifest_sha256: 7f6b91481a7bf32df46aef654d9b647fccb730020c06fb5e2c331864bc07dcdd
+    content_sha256: e6ec1ab69af87d12ed7c239726862d9eb9c2b5afa8dadc9d93070ffcf3c0ff31
+    package_manifest_sha256: c7b4926a5e2e47fbb5a4bb67a349476caee999e4ec50916539c9b899f2b6f099
     lineage_ref: skills/design-desktop-principles/LINEAGE.yml
     dependency_receipt_ref: skills/design-desktop-principles/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1893,6 +1893,7 @@ events:
   - {event_id: EVT-SKL-FRM-H03-002, event_order: 2, skill_id: design-framer-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-FRM-H03-003, event_order: 3, skill_id: design-framer-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-FRM-H03-004, event_order: 4, skill_id: design-framer-motion, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-FRM-H03-005, event_order: 5, skill_id: design-framer-motion, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — intro fail-closed recap dropped (duplicated in Fail-closed section), coverage_gap restatement removed, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-MPR-H03-001, event_order: 1, skill_id: design-motion-principles, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1921,6 +1922,7 @@ events:
   - {event_id: EVT-SKL-DKP-H03-002, event_order: 2, skill_id: design-desktop-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DKP-H03-003, event_order: 3, skill_id: design-desktop-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DKP-H03-004, event_order: 4, skill_id: design-desktop-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DKP-H03-005, event_order: 5, skill_id: design-desktop-principles, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "0.2.0 densification — blockquote fail-closed recap dropped (duplicated in Runtime Boundary), generic fail-closed boilerplate removed, density + animation prose tightened, body trimmed to <=1200 words"}
   - {event_id: EVT-SKL-SWM-H03-001, event_order: 1, skill_id: design-swiftui-motion, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-002, event_order: 2, skill_id: design-swiftui-motion, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWM-H03-003, event_order: 3, skill_id: design-swiftui-motion, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

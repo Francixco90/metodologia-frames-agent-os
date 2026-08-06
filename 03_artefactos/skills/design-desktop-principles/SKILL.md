@@ -1,7 +1,7 @@
 ---
 name: design-desktop-principles
 description: This skill should be used when the operator requests desktop-specific UX guidance — hover states, pointer precision, keyboard shortcuts, multi-window flows, or focus management for macOS, Windows, Linux, or web desktop surfaces. It delivers prose guidance and pseudocode snippets for local evaluation only; it never executes code, runs a desktop shell, or auto-launches build tooling.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -13,7 +13,7 @@ metadata:
 
 Derivada de genjutsu/_jutsu/desktop-principles/SKILL.md (AThevon/genjutsu, MIT, commit 08a792f).
 
-> Desktop UX context. Loaded when a desktop surface is in scope (macOS, Windows, Linux desktop, web desktop). Prose + pseudocode only — local-evaluation, fail-closed. Never executes build tooling or a desktop shell without explicit operator confirmation. execution_scope: local-evaluation.
+> Desktop UX context. Loaded when a desktop surface is in scope (macOS, Windows, Linux desktop, web desktop). Prose + pseudocode only; see §Runtime Boundary.
 
 ---
 
@@ -114,13 +114,13 @@ SwiftUI: `@FocusState` drives field focus; `@FocusState private var focused: Fie
 
 ## Information Density
 
-Desktop users sit on a 13–32 inch screen with a precise pointer and full keyboard. They can — and want to — parse more per viewport than on mobile. Use an 8px base grid (vs 4–8px mobile), persistent sidebars instead of bottom tabs, command palettes (`⌘K`) for power users, and dense data tables when the data warrants it. Linear, Things 3, and Notion are the touchstones: information-rich without feeling cramped, every pixel earns its keep.
+Desktop users sit on a 13–32 inch screen with a precise pointer and full keyboard, and want to parse more per viewport than on mobile. Use an 8px base grid (vs 4–8px mobile), persistent sidebars instead of bottom tabs, command palettes (`⌘K`) for power users, and dense data tables when warranted. Linear, Things 3, Notion: information-rich without feeling cramped.
 
 ---
 
 ## Subtle Animations Doctrine
 
-Desktop apps are stared at for hours. Animations that feel delightful once become unbearable on the hundredth repetition. Prefer short, purely functional motion: opacity and small translations under 200ms, no bounces on routine interactions, no playful overshoots on hover. Save expressive motion for one-shot moments (onboarding, success states), never daily UI.
+Desktop apps are stared at for hours; animations delightful once become unbearable on the hundredth repetition. Prefer short functional motion: opacity and small translations under 200ms, no bounces or playful overshoots on routine interactions. Save expressive motion for one-shot moments (onboarding, success states), never daily UI.
 
 fail-closed: if an animation is decorative rather than functional, gate it behind operator confirmation; do not ship ambient motion by default.
 
@@ -136,11 +136,9 @@ fail-closed: if an animation is decorative rather than functional, gate it behin
 
 ## Runtime Boundary
 
-execution_scope: local-evaluation. This skill describes capability in prose and pseudocode; it never executes code, runs a desktop shell, launches a build, or opens a window without explicit operator confirmation. Autonomous clock, network, and fallback must be observable; see `receipts/runtime-boundary.yml`.
+execution_scope: local-evaluation. This skill describes capability in prose and pseudocode; it never executes code, runs a desktop shell, launches a build, or opens a window without explicit operator confirmation. See `receipts/runtime-boundary.yml`.
 
 coverage_gap: if a target platform (Fluent 2, GNOME HIG, KDE) needs a token-level spec, surface the gap rather than inferring it.
-
-fail-closed: an absence is never substituted by a polished inference. Mark `coverage_gap` explicitly. Escalation over assumption.
 
 ---
 

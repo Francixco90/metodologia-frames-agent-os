@@ -1,7 +1,7 @@
 ---
 name: design-framer-motion
 description: This skill should be used when the user needs declarative React UI animations and interactions — AnimatePresence exit animations, shared layout animations with layoutId, gesture handlers (whileHover, whileTap, drag with constraints), and motion values for scroll-driven or reactive animation without re-renders. It produces production-ready Framer Motion / Motion for React component snippets, variant definitions, and AnimatePresence wiring, evaluated locally with no network, no CLI, no publication.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -11,7 +11,7 @@ metadata:
 
 # Framer Motion — Animaciones React declarativas (AnimatePresence, layout, gestures, motion values)
 
-Derivada de framer-motion (AThevon/genjutsu, MIT). El homólogo MetodologIA expone la misma capability — animaciones declarativas en React via Framer Motion / Motion — en voz MetodologIA: prosa terse, imperativa, fail-closed. No copia prosa vendor; adapta el principio. La skill describe cómo aplicar AnimatePresence, layout animations, gestures y motion values para que el agente las incorpore en deliverables de contenido (componentes React, snippets, variantes) sin invocar tooling externo, sin abrir red, sin publicar. El entorno es fail-closed; si no hay runtime Framer Motion instalado en el proyecto destino, marcar coverage_gap y describir la capability en prosa — no auto-instalar.
+Derivada de framer-motion (AThevon/genjutsu, MIT). Homólogo MetodologIA: animaciones declarativas en React via Framer Motion / Motion — AnimatePresence, layout animations, gestures, motion values — en voz terse, imperativa, fail-closed. No copia prosa vendor; adapta el principio. Vease §Fail-closed para la política de no-instalación y coverage_gap.
 
 ## Cuándo usar
 
@@ -35,7 +35,7 @@ Derivada de framer-motion (AThevon/genjutsu, MIT). El homólogo MetodologIA expo
 | < 3 animaciones simples en la página                             | CSS nativo — @keyframes                  |
 | Entrar desde display:none sin JS                                 | CSS nativo — @starting-style             |
 
-Regla: Framer Motion para UI interactions React (modals, toasts, reorder, shared layout, gestures). GSAP para timelines cinemáticos y SVG morphing. CSS nativo para animaciones simples sin React. Si el entorno no tiene la librería instalada, marcar coverage_gap y describir la capability — no auto-instalar.
+Regla: Framer Motion para UI interactions React (modals, toasts, reorder, shared layout, gestures). GSAP para timelines cinemáticos y SVG morphing. CSS nativo para animaciones simples sin React.
 
 ## Cómo
 
