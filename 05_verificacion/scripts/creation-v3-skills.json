@@ -396,6 +396,7 @@
   },
   {
     "id": "design-motion-principles",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-motion-principles/scripts/check-skill.mjs"

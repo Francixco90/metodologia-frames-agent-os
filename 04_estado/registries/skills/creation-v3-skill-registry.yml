@@ -597,11 +597,11 @@ entries:
     publication_authority: false
     tests: [node skills/design-framer-motion/scripts/check-skill.mjs]
   - skill_id: design-motion-principles
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 02a809dbe82fe0b94eba05885489ea0b4ba9f588b870b98437ef58ec70c07bd4
-    package_manifest_sha256: abbb756f66cf61c1f2eb8b15c2eb700902698503f706566e479ba7f24989374a
+    content_sha256: 1a4c5af86f0655f66bd4da24f1a2c172d557742083ad09faae0921b6c3c88f0e
+    package_manifest_sha256: 307aff503231645a0940369416e4ed45c7b63db522ce39acda83fb911dff27bc
     lineage_ref: skills/design-motion-principles/LINEAGE.yml
     dependency_receipt_ref: skills/design-motion-principles/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1910,6 +1910,7 @@ events:
   - {event_id: EVT-SKL-MPR-H03-002, event_order: 2, skill_id: design-motion-principles, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MPR-H03-003, event_order: 3, skill_id: design-motion-principles, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MPR-H03-004, event_order: 4, skill_id: design-motion-principles, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MPR-H03-005, event_order: 5, skill_id: design-motion-principles, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-SWG-H03-001, event_order: 1, skill_id: design-swiftui-graphics, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWG-H03-002, event_order: 2, skill_id: design-swiftui-graphics, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SWG-H03-003, event_order: 3, skill_id: design-swiftui-graphics, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
