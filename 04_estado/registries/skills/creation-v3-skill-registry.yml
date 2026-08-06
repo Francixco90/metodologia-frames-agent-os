@@ -157,11 +157,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-embedded-captions/scripts/check-skill.mjs]
   - skill_id: content-os-slideshow
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3992b4cde63c08a757ee4ecbc51809dbe6335869c73b72fe185acef923b7b156
-    package_manifest_sha256: 54bd2c884360c1b13bdd25e7ef71a0d00bf24f042363941d3567d0faf63df946
+    content_sha256: d5ae1caa58578d44d1b655814307be9ae2748e24166cac870d1a7ec1f156f1fe
+    package_manifest_sha256: 9025d8c74bf62779260376ddfdb1f6844a2bbf500faaa8365aa9efa93543e9e1
     lineage_ref: skills/content-os-slideshow/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-slideshow/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1739,6 +1739,7 @@ events:
   - {event_id: EVT-SKL-CSL-H03-002, event_order: 2, skill_id: content-os-slideshow, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CSL-H03-003, event_order: 3, skill_id: content-os-slideshow, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CSL-H03-004, event_order: 4, skill_id: content-os-slideshow, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CSL-H03-005, event_order: 5, skill_id: content-os-slideshow, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CGV-H03-001, event_order: 1, skill_id: content-os-general-video, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CGV-H03-002, event_order: 2, skill_id: content-os-general-video, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CGV-H03-003, event_order: 3, skill_id: content-os-general-video, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
