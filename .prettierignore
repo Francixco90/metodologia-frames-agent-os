@@ -1,33 +1,37 @@
-projects/**/web/artifact/index.html
-projects/*/artifacts/**
-projects/*/orchestration/**
-projects/pilot-carousel-001/spec/carousel-spec.yml
-projects/pilot-carousel-001/spec/content-type-definition.json
-content/*/generated/**
-inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
-quality/reports/v2-baseline-protection.yml
-skills/remotion-video-production/scripts/check-sources.mjs
-content/pilot-carousel-002/generated/atom-graph.json
-content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
+03_artefactos/projects/**/web/artifact/index.html
+03_artefactos/projects/*/artifacts/**
+03_artefactos/projects/*/orchestration/**
+03_artefactos/projects/pilot-carousel-001/spec/carousel-spec.yml
+03_artefactos/projects/pilot-carousel-001/spec/content-type-definition.json
+03_artefactos/content/*/generated/**
+00_inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
+05_verificacion/quality/reports/v2-baseline-protection.yml
+03_artefactos/skills/remotion-video-production/scripts/check-sources.mjs
+03_artefactos/content/pilot-carousel-002/generated/atom-graph.json
+03_artefactos/content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
 # Wide canonical records are governed by dedicated structure and hash checks.
-registries/renderers/renderer-capability-registry-v1.yml
-registries/skills/creation-v3-skill-registry.yml
-quality/reports/creation-v3-h03-render-smoke.yml
-receipts/dependency-audits/H03-LIC-D3-001.yml
-receipts/dependency-audits/H03-LIC-GSAP-001.yml
-receipts/dependency-audits/H03-LIC-LOTTIE-001.yml
-receipts/dependency-audits/H03-LIC-THREE-001.yml
-skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
-skills/motion-library-adapters/schemas/motion-adapter-spec-v1.schema.json
-skills/data-visual-composition/fixtures/**/*.json
-skills/data-visual-composition/LINEAGE.yml
-skills/data-visual-composition/receipts/*.yml
-skills/motion-library-adapters/fixtures/**/*.yml
-skills/motion-library-adapters/LINEAGE.yml
-skills/motion-library-adapters/receipts/*.yml
-tests/fixtures/renderers/h03-hostile-motion-adapters.yml
-# Vendor sources are reference-only, frozen at audited commits — do not reformat
-skills/vendor/**
-# External Instagram post samples in inbox/Muestras are third-party reference
+04_estado/registries/renderers/renderer-capability-registry-v1.yml
+04_estado/registries/skills/creation-v3-skill-registry.yml
+05_verificacion/quality/reports/creation-v3-h03-render-smoke.yml
+# ADR 0027: 04_estado/receipts/** and 04_estado/tasks/** are the repo's
+# append-only temporal trace — not subject to reformatting.
+04_estado/receipts/**
+04_estado/tasks/**
+03_artefactos/skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
+03_artefactos/skills/motion-library-adapters/schemas/motion-adapter-spec-v1.schema.json
+03_artefactos/skills/data-visual-composition/fixtures/**/*.json
+03_artefactos/skills/data-visual-composition/LINEAGE.yml
+03_artefactos/skills/data-visual-composition/receipts/*.yml
+03_artefactos/skills/motion-library-adapters/fixtures/**/*.yml
+03_artefactos/skills/motion-library-adapters/LINEAGE.yml
+03_artefactos/skills/motion-library-adapters/receipts/*.yml
+03_artefactos/skills/dev-writing-plans/fixtures/**/*.yml
+05_verificacion/tests/fixtures/renderers/h03-hostile-motion-adapters.yml
+# Vendor sources are reference-only, frozen at audited commits — do not reformat.
+# Migrated from skills/vendor/** to the real cardinal path (taxonomy move 3ed6873)
+# and extended to .agents/**, the canonical home of vendored harness-creator.
+03_artefactos/skills/vendor/**
+.agents/**
+# External Instagram post samples in 00_inbox/Muestras are third-party reference
 # artifacts; their inline formatting is not governed by the project style.
-inbox/Muestras/**
+00_inbox/Muestras/**
