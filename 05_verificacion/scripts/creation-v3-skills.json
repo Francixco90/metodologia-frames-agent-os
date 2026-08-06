@@ -611,6 +611,7 @@
   },
   {
     "id": "dev-design-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/dev-design-review/scripts/check-skill.mjs"
