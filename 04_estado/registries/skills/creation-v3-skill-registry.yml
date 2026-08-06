@@ -1631,11 +1631,11 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-codex/scripts/check-skill.mjs]
   - skill_id: gstack-openclaw-ceo-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e37c2bb810f6c1d2b5627e1083d9f263a1033dc930a1131428919abcb2365895
-    package_manifest_sha256: 925c9b5cbe9875b2727247b6dcc0a0aa6c9382f17f69478f72883d300e3b71aa
+    content_sha256: df297558325b7e942152fb38c7e4b0e39f0ec74f7178d30e8c04f5b5384fb99f
+    package_manifest_sha256: 4aec3cf214e097322ee682a9eb77ce07eda849868568fd84953dbee66418b6ab
     lineage_ref: skills/gstack-openclaw-ceo-review/LINEAGE.yml
     dependency_receipt_ref: skills/gstack-openclaw-ceo-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2303,6 +2303,7 @@ events:
   - {event_id: EVT-SKL-OCC-H03-002, event_order: 2, skill_id: gstack-openclaw-ceo-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCC-H03-003, event_order: 3, skill_id: gstack-openclaw-ceo-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCC-H03-004, event_order: 4, skill_id: gstack-openclaw-ceo-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCC-H03-005, event_order: 5, skill_id: gstack-openclaw-ceo-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-OCI-H03-001, event_order: 1, skill_id: gstack-openclaw-investigate, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCI-H03-002, event_order: 2, skill_id: gstack-openclaw-investigate, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCI-H03-003, event_order: 3, skill_id: gstack-openclaw-investigate, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

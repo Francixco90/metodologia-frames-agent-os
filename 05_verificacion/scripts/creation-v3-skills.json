@@ -1071,6 +1071,7 @@
   },
   {
     "id": "gstack-openclaw-ceo-review",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs"
