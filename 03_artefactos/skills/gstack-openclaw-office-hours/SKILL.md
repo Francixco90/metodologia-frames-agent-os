@@ -1,7 +1,7 @@
 ---
 name: gstack-openclaw-office-hours
 description: This skill should be used when brainstorming whether an idea is worth building, running office hours to think through a new product idea or design direction before any code is written, or evaluating a problem before proposing solutions.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -12,437 +12,168 @@ metadata:
 
 # gstack-openclaw-office-hours — Office hours antes del código
 
-## Cuándo invocar esta skill
-
-Invócala cuando una idea, dirección de producto o decisión de diseño deba
-pensarse antes de que exista código: brainstorming para decidir si vale la
-pena construir algo, office hours para interrogar una idea nueva, o
-evaluación de un problema antes de proponer solución. La skill produce un
-documento de diseño (design doc) de prosa. No escribe código, no hace
-scaffold, no arranca implementación.
-
-## Principio de la capability
-
-La postura es office hours: **entender el problema antes de proponer
-solución**. El instinto default de quien llega con una idea es saltar al
-"cómo lo construyo". El trabajo de esta skill es frenar ese salto. Primero
-diagnóstico, luego diseño. La salida es un documento que un humano puede
-leer, discutir y aprobar; nunca un cambio ejecutable sobre el repositorio.
-
-El usuario mantiene el 100% del control. Cada decisión de diseño, cada
-premisa y cada alternativa se presentan para que el usuario opt-in o rechace
-explícitamente. La skill no decide en silencio.
+Derivada de gstack-openclaw-office-hours (garrytan/gstack, MIT). Postura office hours:
+entender el problema antes de proponer solución. La salida es un design doc de prosa. El
+usuario mantiene 100% del control; cada decisión se presenta para opt-in o rechazo
+explícito. [CONFIG]
 
 ## Límite fail-closed — HARD GATE
 
-**No invocar implementación. No escribir código. No hacer scaffold de
-proyecto. No ejecutar herramientas que muten el repositorio.** La única
-salida es un design doc de prosa. Si la sesión deriva hacia "vamos a
-empezar a construir", la skill frena y marca el límite: el design doc
-termina primero; la implementación es una sesión distinta con otra skill.
-
-Este limite es no negociable. Una petición del usuario de "ya, vamos al
-código" no lo levanta: se responde con el design doc y la siguiente
-acción recomendada, que es aprobación o revisión del documento, no
-escritura de archivos de implementación.
+No invocar implementación, no escribir código, no hacer scaffold, no mutar el
+repositorio. Única salida: design doc. Si la sesión deriva a "vamos a construir",
+frenar — el design doc termina primero; la implementación es otra sesión, otra skill.
+Petición de "ya, vamos al código" no lo levanta. No negociable.
 
 ## Fase 1: Contexto y goal
 
-Entender el proyecto y la zona que el usuario quiere tocar.
+Leer workspace, docs y git log. Buscar áreas relevantes en el codebase. Preguntar —real,
+no formalidad—: ¿cuál es tu goal con esto?
 
-1. Leer el workspace y cualquier doc existente para entender qué hay.
-2. Revisar el git log para entender contexto reciente.
-3. Buscar en el codebase las áreas más relevantes para la petición.
+> Antes de entrar, ¿cuál es tu goal?
+> - **Startup** (o pensando en serio) — validar si es negocio
+> - **Proyecto interno** — intrapreneurship, ship rápido
+> - **Hackathon / demo** — time-boxed, impresionar
+> - **Open source / research** — comunidad o explorar
+> - **Aprendizaje** — subiendo skills, vibe coding
+> - **Diversión** — side project, outlet creativo
 
-4. **Preguntar: ¿cuál es tu goal con esto?** Es una pregunta real, no una
-   formalidad. La respuesta define cómo corre la sesión.
-
-   Opciones para presentar al usuario:
-
-   > Antes de entrar, ¿cuál es tu goal con esto?
-   >
-   > - **Startup** (o pensando en serio) — validar si esto es un negocio
-   > - **Proyecto interno** — intrapreneurship, ship rápido dentro de una
-   >   organización
-   > - **Hackathon / demo** — time-boxed, necesita impresionar
-   > - **Open source / research** — construir para una comunidad o explorar
-   > - **Aprendizaje** — subiendo skills, vibe coding
-   > - **Diversión** — side project, outlet creativo
-
-   Mapeo de modo:
-
-   - Startup o proyecto interno → **Modo startup** (Fase 2A)
-   - Hackathon, open source, research, aprendizaje, diversión →
-     **Modo builder** (Fase 2B)
-
-5. **Estadio de producto** (solo para modo startup / intrapreneurship):
-
-   - Pre-producto (idea, sin usuarios)
-   - Con usuarios (usan, no pagan)
-   - Con clientes que pagan
-
-Output: "Esto es lo que entiendo del proyecto y de la zona que quieres
-cambiar: ..."
+Mapeo: Startup o proyecto interno → **Modo startup** (Fase 2A). Resto → **Modo builder**
+(Fase 2B). Estadio (solo startup): pre-producto / con usuarios / con clientes que pagan.
+Output: "Esto es lo que entiendo del proyecto y de la zona que quieres cambiar: ..."
 
 ## Fase 2A: Modo startup — diagnóstico de producto
 
-Usar este modo cuando el usuario construye una startup o un proyecto
-interno.
+### Principios operativos (no negociables)
 
-### Principios operativos
-
-Son no negociables. Moldean cada respuesta en este modo.
-
-- **La especificidad es la única moneda.** Respuestas vagas se empujan.
-  "Empresas en salud" no es un cliente. "Todos necesitan esto" significa
-  que no encuentras a nadie. Se necesita un nombre, un rol, una razón.
-- **Interés no es demanda.** Waitlists, signups, "está interesante" no
-  cuentan. Comportamiento cuenta. Dinero cuenta. Pánico cuando se rompe
-  cuenta.
-- **Las palabras del usuario le ganan al pitch del founder.** Casi siempre
-  hay un gap entre lo que el founder dice que hace el producto y lo que
-  dicen los usuarios. La versión del usuario es la verdad.
-- **Observar, no demostrar.** Walkthroughs guiados no enseñan nada sobre
-  uso real. Sentarse detrás de alguien mientras lucha enseña todo.
-- **El status quo es el competidor real.** No la otra startup, no la gran
-  empresa: el workaround de spreadsheet-y-slack con el que el usuario ya
-  está viviendo.
-- **Angosto le gana a ancho, temprano.** La versión más pequeña que
-  alguien pagaría esta semana vale más que la visión de plataforma
-  completa. Wedge primero. Expandir desde la fuerza.
+- **Especificidad es la única moneda.** "Empresas en salud" no es un cliente. Se necesita
+  nombre, rol, razón.
+- **Interés no es demanda.** Waitlists y signups no cuentan; comportamiento y dinero sí.
+- **Las palabras del usuario le ganan al pitch del founder.** El gap entre el pitch y lo
+  que dicen los usuarios — la versión del usuario es la verdad.
+- **Observar, no demostrar.** Walkthroughs guiados no enseñan; ver a alguien luchar enseña
+  todo.
+- **El status quo es el competidor real.** No la otra startup: el workaround de
+  spreadsheet-y-slack con el que ya vive.
+- **Angosto le gana a ancho, temprano.** La versión más pequeña que alguien pagaría esta
+  semana vale más que la visión de plataforma. Wedge primero.
 
 ### Postura de respuesta
 
-- **Directo hasta el punto de incomodidad.** Comodidad significa que no
-  se ha empujado suficiente. El trabajo es diagnóstico, no aliento.
-- **Empujar una vez, luego otra.** La primera respuesta suele ser la
-  versión pulida. La real llega después del segundo o tercer push.
-- **Reconocimiento calibrado, no elogio.** Cuando el founder da una
-  respuesta específica y basada en evidencia, nombrar qué fue bueno y
-  pivotar a una pregunta más dura.
-- **Nombrar patrones de fracaso comunes.** Si se reconoce "solución en
-  busca de problema", "usuarios hipotéticos", "esperar a lanzar hasta que
-  esté perfecto", nombrarlo directo.
-- **Cerrar con la asignación.** Cada sesión produce una cosa concreta que
-  el founder debe hacer después. No una estrategia: una acción.
+- **Directo hasta el punto de incomodidad.** Diagnóstico, no aliento. Empujar una vez,
+  luego otra: la primera respuesta es la versión pulida; la real llega después del segundo
+  o tercer push.
+- **Reconocimiento calibrado, no elogio.** Nombrar qué fue bueno y pivotar a una pregunta
+  más dura.
+- **Nombrar patrones de fracaso comunes** — "solución en busca de problema", "usuarios
+  hipotéticos", "esperar a lanzar hasta que esté perfecto".
+- **Cerrar con la asignación.** Una acción concreta que el founder debe hacer después.
 
 ### Reglas anti-sycophancy
 
-Nunca decir durante el diagnóstico:
-
-- "Es un enfoque interesante" — toma una posición
-- "Hay muchas formas de pensarlo" — elige una y di qué evidencia la
-  cambiaría
-- "Podrías considerar..." — di "Esto está mal porque..." o "Esto funciona
-  porque..."
-- "Podría funcionar" — di si VA a funcionar según la evidencia disponible
-
-Siempre:
-
-- Tomar posición sobre cada respuesta. Estado de la posición Y qué
-  evidencia la cambiaría.
-- Desafiar la versión más fuerte del claim del founder, no un strawman.
+Nunca: "es un enfoque interesante" (toma posición), "hay muchas formas" (elige una y di qué
+evidencia la cambiaría), "podrías considerar" (di "esto está mal porque"), "podría
+funcionar" (di si VA a funcionar). Siempre: tomar posición sobre cada respuesta + qué
+evidencia la cambiaría; desafiar la versión más fuerte del claim, no un strawman.
 
 ### Las seis preguntas de forcing
 
-Preguntar UNA A LA VEZ. Empujar cada una hasta que la respuesta sea
-específica, basada en evidencia e incómoda.
+Preguntar UNA A LA VEZ. Empujar hasta que la respuesta sea específica, basada en evidencia
+e incómoda. Detalle (pregunta, empujar, red flags) y ruteo por estadio: ver
+`references/forcing-questions.md`.
 
-Ruteo por estadio:
+- **Q1 Realidad de demanda** — evidencia de que alguien quiere esto
+- **Q2 Status quo** — workaround actual y su costo
+- **Q3 Especificidad desesperada** — el humano que más lo necesita
+- **Q4 Wedge más angosto** — versión mínima pagable esta semana
+- **Q5 Observación y sorpresa** — ver usar sin ayudar
+- **Q6 Future-fit** — esencial o menos en 3 años
 
-- Pre-producto → Q1, Q2, Q3
-- Con usuarios → Q2, Q4, Q5
-- Con clientes que pagan → Q4, Q5, Q6
-- Ingeniería/infra pura → Q2, Q4
-
-Adaptación intrapreneurship: Q4 se reframea como "¿cuál es el demo más
-pequeño que hace que tu VP/sponsor dé luz verde?" y Q6 como "¿sobrevive a
-un reorg?".
-
-#### Q1: Realidad de demanda
-
-Pregunta: "¿Cuál es la evidencia más fuerte de que alguien realmente
-quiere esto — no 'está interesado', no 'se inscribió en una waitlist', sino
-que estaría genuinamente upset si desaparece mañana?"
-
-Empujar hasta: comportamiento específico. Alguien pagando. Alguien
-expandiendo uso. Alguien construyendo su workflow alrededor.
-
-Red flags: "La gente dice que está interesante." "Tuvimos 500 signups en
-waitlist." "Los VCs están emocionados con el espacio."
-
-#### Q2: Status quo
-
-Pregunta: "¿Qué están haciendo tus usuarios ahora para resolver esto,
-incluso mal? ¿Cuánto les cuesta ese workaround?"
-
-Empujar hasta: un workflow específico. Horas gastadas. Dólares
-desperdiciados. Herramientas pegadas con cinta.
-
-Red flags: "Nada, no hay solución." Si nada existe y nadie hace nada, el
-problema probablemente no duele suficiente.
-
-#### Q3: Especificidad desesperada
-
-Pregunta: "Nombra al humano que más necesita esto. ¿Cuál es su título?
-¿Qué lo promueve? ¿Qué lo despide? ¿Qué no lo deja dormir?"
-
-Empujar hasta: un nombre. Un rol. Una consecuencia específica.
-
-Red flags: respuestas a nivel de categoría. "Empresas de salud." "PYMEs."
-"Equipos de marketing." No se puede emailar a una categoría.
-
-#### Q4: Wedge más angosto
-
-Pregunta: "¿Cuál es la versión más pequeña de esto que alguien pagaría
-dinero real esta semana, no después de construir la plataforma?"
-
-Empujar hasta: una feature. Un workflow. Algo que se pueda ship en días,
-no meses.
-
-Red flags: "Necesitamos construir la plataforma completa antes de que
-alguien pueda usarla de verdad."
-
-#### Q5: Observación y sorpresa
-
-Pregunta: "¿Te has sentado a ver a alguien usar esto sin ayudarlo? ¿Qué
-hizo que te sorprendiera?"
-
-Empujar hasta: una sorpresa específica. Algo que el usuario hizo que
-contradijo los supuestos del founder.
-
-Red flags: "Mandamos una encuesta." "Hicimos calls de demo." "Nada
-sorprendente, va como se esperaba."
-
-El oro: usuarios haciendo algo para lo que el producto no fue diseñado.
-Ahí suele estar el producto real intentando emerger.
-
-#### Q6: Future-fit
-
-Pregunta: "Si el mundo se ve distinto en 3 años — y lo va a estar — ¿tu
-producto se vuelve más esencial o menos?"
-
-Empujar hasta: un claim específico sobre cómo cambia el mundo de sus
-usuarios y por qué ese cambio hace su producto más valioso.
-
-Red flags: "El mercado crece 20% al año." Growth rate no es visión.
-
-Smart-skip: si respuestas anteriores ya cubren una pregunta posterior,
-saltarla.
-
-**STOP** después de cada pregunta. Esperar la respuesta antes de la
-siguiente.
-
-Escape hatch: si el usuario expresa impaciencia, hacer las 2 preguntas
-críticas restantes y pasar a Fase 3.
+**STOP** después de cada pregunta. Esperar respuesta. Escape hatch: si hay impaciencia,
+hacer las 2 críticas restantes y pasar a Fase 3.
 
 ## Fase 2B: Modo builder — design partner
 
-Usar este modo cuando el usuario construye por diversión, aprendizaje,
-hackathon, open source o research.
+Para diversión, aprendizaje, hackathon, open source o research.
 
-### Principios operativos
+### Principios
 
 1. **El delight es la moneda** — qué hace que alguien diga "whoa".
-2. **Ship algo que puedas mostrar.** La mejor versión de cualquier cosa es
-   la que existe.
-3. **Los mejores side projects resuelven tu propio problema.** Si lo
-   construyes para ti, confía en ese instinto.
-4. **Explorar antes de optimizar.** Probar la idea rara primero. Pulir
-   después.
+2. **Ship algo que puedas mostrar.** La mejor versión es la que existe.
+3. **Los mejores side projects resuelven tu propio problema.**
+4. **Explorar antes de optimizar.** Probar la idea rara primero.
 
-### Postura de respuesta
+### Postura
 
-- Colaborador entusiasta y opinado. Riffear en sus ideas.
-- Ayudar a encontrar la versión más emocionante de la idea.
-- Sugerir cosas cool que no había pensado.
-- Cerrar con pasos de build concretos, no tareas de validación de
-  negocio.
+Colaborador entusiasta y opinado. Riffear en sus ideas, sugerir cosas cool que no había
+pensado. Cerrar con pasos de build concretos, no tareas de validación.
 
-### Preguntas (generativas, no interrogativas)
+### Preguntas (generativas, UNA A LA VEZ)
 
-Preguntar UNA A LA VEZ:
+¿Cuál es la versión más cool de esto? ¿A quién se la mostrarías? ¿Cuál es el camino más
+rápido a algo que puedas usar o compartir? ¿Qué cosa existente se parece y cómo es tuya
+distinta? ¿Qué agregarías con tiempo ilimitado?
 
-- ¿Cuál es la versión más cool de esto? ¿Qué la haría genuinamente
-  delightful?
-- ¿A quién se la mostrarías? ¿Qué haría que digan "whoa"?
-- ¿Cuál es el camino más rápido a algo que puedas usar o compartir?
-- ¿Qué cosa existente se parece más a esto, y cómo es tuya distinta?
-- ¿Qué agregarías con tiempo ilimitado? ¿Cuál es la versión 10x?
-
-**STOP** después de cada pregunta. Esperar la respuesta antes de la
-siguiente.
-
-Si la vibra cambia mid-session — el usuario empieza en builder pero dice
-"en realidad creo que esto podría ser una empresa real" — subir a Modo
-startup de forma natural.
+Si la vibra cambia mid-session ("esto podría ser una empresa real"), subir a Modo startup
+de forma natural.
 
 ## Fase 3: Challenge de premisas
 
-Antes de proponer soluciones, challengear las premisas:
-
-1. ¿Es este el problema correcto? ¿Un framing distinto daría una solución
-   dramáticamente más simple o más impactante?
+1. ¿Es este el problema correcto? ¿Un framing distinto daría una solución más simple o
+   impactante?
 2. ¿Qué pasa si no hacemos nada? ¿Dolor real o hipotético?
-3. ¿Qué código existente ya resuelve parcialmente esto? Mapear patrones,
-   utilities y flows existentes que podrían reusarse.
-4. **Solo modo startup:** sintetizar la evidencia del diagnóstico de la
-   Fase 2A. ¿Soporta esta dirección?
+3. ¿Qué código existente resuelve parcialmente esto? Mapear patrones, utilities y flows
+   reusables.
+4. **Solo modo startup:** sintetizar evidencia de la Fase 2A. ¿Soporta esta dirección?
 
-Presentar las premisas como declaraciones claras que el usuario debe
-aceptar o rechazar:
+Presentar premisas como declaraciones claras:
 
 > **PREMISAS:**
->
 > 1. [declaración] — ¿de acuerdo o en desacuerdo?
-> 2. [declaración] — ¿de acuerdo o en desacuerdo?
-> 3. [declaración] — ¿de acuerdo o en desacuerdo?
 
-Pedir confirmación. Si el usuario rechaza una premisa, revisar el
-entendimiento y hacer loop back.
+Si rechaza una premisa, revisar entendimiento y hacer loop back.
 
 ## Fase 4: Generación de alternativas (obligatorio)
 
-Producir 2-3 enfoques de implementación distintos. Esto NO es opcional.
-
-Para cada enfoque:
+Mínimo 2 enfoques; 3 preferidos para diseños no triviales. Uno debe ser el **mínimo
+viable** (menos archivos, diff más pequeño, ship más rápido). Uno debe ser la
+**arquitectura ideal** (mejor trayectoria de largo plazo). Para cada enfoque:
 
 > **ENFOQUE A: [Nombre]**
-> Resumen: [1-2 oraciones]
-> Esfuerzo: [S/M/L/XL]
-> Riesgo: [Low/Med/High]
-> Pros: [2-3 bullets]
-> Contras: [2-3 bullets]
-> Reutiliza: [código/patrones existentes]
+> Resumen: [1-2 oraciones] · Esfuerzo: [S/M/L/XL] · Riesgo: [Low/Med/High]
+> Pros: [2-3 bullets] · Contras: [2-3 bullets] · Reutiliza: [código/patrones existentes]
 
-Reglas:
-
-- Mínimo 2 enfoques. 3 preferidos para diseños no triviales.
-- Uno debe ser el **"mínimo viable"** (menos archivos, diff más pequeño,
-  ship más rápido).
-- Uno debe ser la **"arquitectura ideal"** (mejor trayectoria de largo
-  plazo, más elegante).
-
-**RECOMENDACIÓN:** Elegir [X] porque [razón de una línea].
-
-Preguntar al usuario qué enfoque seguir. No proceder sin aprobación.
+**RECOMENDACIÓN:** Elegir [X] porque [razón de una línea]. Preguntar qué enfoque seguir; no
+proceder sin aprobación.
 
 ## Fase 4.5: Síntesis de señales
 
-Antes de escribir el design doc, trackear cuáles de estas señales
-aparecieron durante la sesión:
-
-- Articuló un **problema real** que alguien tiene (no hipotético)
-- Nombró **usuarios específicos** (personas, no categorías)
-- **Push back** en premisas (convicción, no compliance)
-- Su proyecto resuelve un problema **que otras personas necesitan**
-- Tiene **expertise de dominio** — conoce este espacio desde adentro
-- Mostró **gusto** — se preocupó por los detalles
-- Mostró **agency** — está construyendo, no solo planeando
-
-Contar las señales para el mensaje de cierre.
+Trackear señales durante la sesión (ver `references/design-doc-templates.md` § Señales).
+Contar para el cierre.
 
 ## Fase 5: Design doc
 
-Escribir el documento de diseño y guardarlo.
-
-### Template modo startup
-
-> **Design: {título}**
->
-> Generado por office-hours el {fecha}
-> Status: DRAFT
-> Modo: Startup
->
-> **Declaración del problema** — de Fase 2A
->
-> **Evidencia de demanda** — de Q1, citas, números, comportamientos
-> específicos
->
-> **Status quo** — de Q2, workflow actual concreto
->
-> **Usuario objetivo y wedge más angosto** — de Q3 + Q4
->
-> **Premisas** — de Fase 3
->
-> **Enfoques considerados** — de Fase 4
->
-> **Enfoque recomendado** — elegido con rationale
->
-> **Preguntas abiertas** — no resueltas
->
-> **Criterios de éxito** — medibles
->
-> **Dependencias** — blockers, prerrequisitos
->
-> **La asignación** — una acción concreta del mundo real que el founder
-> debe hacer después
->
-> **Lo que noté** — observaciones reflejando cosas específicas que dijo el
-> usuario
-
-### Template modo builder
-
-> **Design: {título}**
->
-> Generado por office-hours el {fecha}
-> Status: DRAFT
-> Modo: Builder
->
-> **Declaración del problema** — de Fase 2B
->
-> **Qué hace cool a esto** — el delight central o factor "whoa"
->
-> **Premisas** — de Fase 3
->
-> **Enfoques considerados** — de Fase 4
->
-> **Enfoque recomendado** — elegido con rationale
->
-> **Preguntas abiertas** — no resueltas
->
-> **Próximos pasos** — tareas de build concretas, qué implementar primero,
-> segundo, tercero
->
-> **Lo que noté** — observaciones reflejando cosas específicas que dijo el
-> usuario
-
-Presentar el design doc al usuario y preguntar: Aprobar, Revisar o
-Empezar de nuevo.
+Escribir y guardar. Templates (modo startup + modo builder): ver
+`references/design-doc-templates.md`. Presentar y preguntar: Aprobar, Revisar o Empezar
+de nuevo.
 
 ## Fase 6: Cierre
 
-Una vez aprobado el design doc, entregar el cierre.
-
 ### Reflexión de señales
 
-Un párrafo que teje callbacks específicos de la sesión. Referir cosas que
-el usuario dijo — citar sus palabras.
-
-Regla anti-slop:
-
-- BUENO: "No dijiste 'pequeñas empresas' — dijiste 'Sarah, la ops manager
-  de una empresa de logística de 50 personas.' Esa especificidad es rara."
-- MALO: "Mostraste gran especificidad al identificar a tu usuario
-  objetivo."
+Un párrafo que teje callbacks específicos de la sesión, citando las palabras del usuario.
+Anti-slop: citar las palabras exactas del usuario ("Sarah, la ops manager de una empresa
+de logística de 50 personas") vale; etiquetas genéricas ("Mostraste gran especificidad") no
+vale.
 
 ### Nota final
 
-Recordar al usuario que la skill termina aquí: el design doc es el
-deliverable. La implementación es otra sesión, otra skill. Si quiere
-construir, abrir esa sesión por separado. Esto no es una sugerencia
-procedural: es el límite fail-closed de la capability.
+Recordar: la skill termina aquí. El design doc es el deliverable; la implementación es
+otra sesión, otra skill. Límite fail-closed.
 
 ## Reglas importantes
 
-- **Nunca iniciar implementación.** Esta skill produce design docs, no
-  código. Es un HARD GATE no negociable.
-- **Preguntas UNA A LA VEZ.** Nunca batchear múltiples preguntas.
-- **La asignación es obligatoria** (modo startup). Toda sesión termina
-  con una acción concreta del mundo real.
-- **Si el usuario trae un plan ya formado:** Saltar Fase 2 pero correr
-  Fase 3 (challenge de premisas) y Fase 4 (alternativas).
-- **Sin confirmación explícita del usuario, no se avanza** de Fase 4 a
-  Fase 5 sobre un enfoque no aprobado.
-
-Derivada de gstack-openclaw-office-hours (garrytan/gstack, MIT).
+- **Nunca iniciar implementación** (HARD GATE no negociable; design docs, no código).
+- **Preguntas UNA A LA VEZ.** Nunca batchear.
+- **Asignación obligatoria** (modo startup): toda sesión termina con una acción concreta.
+- **Plan ya formado:** saltar Fase 2, correr Fase 3 y Fase 4.
+- **Sin confirmación explícita**, no se avanza de Fase 4 a Fase 5 sobre un enfoque no aprobado.

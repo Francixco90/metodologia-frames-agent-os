@@ -12,6 +12,13 @@ const required = [
   `${skill}/fixtures/negative/broken-seam-catalog.yml`,
   `${skill}/examples/seam-catalog-sequence.jsonl`,
   `${skill}/receipts/runtime-boundary.yml`,
+  `${skill}/references/zoom-through.md`,
+  `${skill}/references/inverse-zoom-through.md`,
+  `${skill}/references/cut-the-curve.md`,
+  `${skill}/references/waterfall-cut.md`,
+  `${skill}/references/rack-focus-blur-cut.md`,
+  `${skill}/references/waterfall-entry.md`,
+  `${skill}/references/nudge-curve.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

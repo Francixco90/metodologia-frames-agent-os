@@ -10,6 +10,8 @@ const required = [
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/hero-scroll-parallax-thesis.yml`,
   `skills/${id}/fixtures/negative/auto-install-gsap-without-asking.yml`,
+  `skills/${id}/references/audit-per-stack.md`,
+  `skills/${id}/references/sub-skill-routing.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

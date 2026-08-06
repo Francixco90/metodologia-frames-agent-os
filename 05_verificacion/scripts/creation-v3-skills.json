@@ -177,6 +177,7 @@
   },
   {
     "id": "content-os-cut-the-curve",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-cut-the-curve/scripts/check-skill.mjs"
@@ -476,6 +477,7 @@
   },
   {
     "id": "design-cast",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-cast/scripts/check-skill.mjs"
@@ -483,6 +485,7 @@
   },
   {
     "id": "design-paint",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/design-paint/scripts/check-skill.mjs"
@@ -1079,6 +1082,7 @@
   },
   {
     "id": "gstack-openclaw-office-hours",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/gstack-openclaw-office-hours/scripts/check-skill.mjs"

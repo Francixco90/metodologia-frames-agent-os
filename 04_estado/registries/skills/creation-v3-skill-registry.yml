@@ -267,11 +267,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-motion-doctrine/scripts/check-skill.mjs]
   - skill_id: content-os-cut-the-curve
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e30ef08877dd1e8bd06f1630853c8f6c7644f9ef2b7c4a403d251a24d5f90b85
-    package_manifest_sha256: 5dcd3236564776b212af7df8f7efc91065536e33bdc1e9dea54bd3566b19f61e
+    content_sha256: 43878260967622f05f733e1dc78439ce82d1120962023b1bdd4b7f2b6cc511b7
+    package_manifest_sha256: dad2acc948cda2495a8c7976cd41a5031eb0f08841ca9f58eaa984be1873e480
     lineage_ref: skills/content-os-cut-the-curve/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-cut-the-curve/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -729,22 +729,22 @@ entries:
     publication_authority: false
     tests: [node skills/design-genjutsu-uiux/scripts/check-skill.mjs]
   - skill_id: design-cast
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: c8352a258372b6980e9cf6c5515af77b6f1e7cadb40e0a84f4f89d8e80259218
-    package_manifest_sha256: 64ebe77541d932f8f9847c77bbed3b1a17159c43fbbc372578800d50c7058fd2
+    content_sha256: 72d0929ada3f08507c216e01b118b354c4e51db678fb27c55f28122f68197a49
+    package_manifest_sha256: 27bef1f91a5e6687a06b74797e73f09df9b3df2d3eda1fa9db67d1d9ebb76bfb
     lineage_ref: skills/design-cast/LINEAGE.yml
     dependency_receipt_ref: skills/design-cast/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/design-cast/scripts/check-skill.mjs]
   - skill_id: design-paint
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f3682b35cabfc1b025c16fdac94d75a4f4e6b188d3e84c19181b05ce244018bc
-    package_manifest_sha256: ba786856cbb133045c567ee63b75bdf909346756b421108fb985ad39d6e01c5d
+    content_sha256: 383c4a5adf6770a36b87c12c935fa8887d0752b0a9a18e73693b0d2d52666d05
+    package_manifest_sha256: f47e14a36aa4070c2a4d84ec9fdb73dab47d9b7f152a56d112271f4aa8b44f83
     lineage_ref: skills/design-paint/LINEAGE.yml
     dependency_receipt_ref: skills/design-paint/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1653,11 +1653,11 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-openclaw-investigate/scripts/check-skill.mjs]
   - skill_id: gstack-openclaw-office-hours
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5f81a8518e5fb9295e2278039272442ed02c7ef235913326444f9af56e871db9
-    package_manifest_sha256: e6f8e304b6c928df8ad519920a8bfe21bfcfd9f6bbf9433459d09da70f50561a
+    content_sha256: 5fbcbf99438cd3ab3b1fe346243242322b96274ae56e3e2eba1b9cf5078a15e6
+    package_manifest_sha256: e5c680c29656dbcd5c8781c1b0db5552614043f8bb2c3e9516faef8c197c6c96
     lineage_ref: skills/gstack-openclaw-office-hours/LINEAGE.yml
     dependency_receipt_ref: skills/gstack-openclaw-office-hours/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1781,6 +1781,7 @@ events:
   - {event_id: EVT-SKL-CTC-H03-002, event_order: 2, skill_id: content-os-cut-the-curve, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTC-H03-003, event_order: 3, skill_id: content-os-cut-the-curve, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CTC-H03-004, event_order: 4, skill_id: content-os-cut-the-curve, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CTC-H03-005, event_order: 5, skill_id: content-os-cut-the-curve, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_atemporal_simplicity_lift_2849_to_645_router_plus_7_reference_modules_restatement_trim}
   - {event_id: EVT-SKL-SMC-H03-001, event_order: 1, skill_id: content-os-seam-craft, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SMC-H03-002, event_order: 2, skill_id: content-os-seam-craft, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SMC-H03-003, event_order: 3, skill_id: content-os-seam-craft, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -1954,10 +1955,12 @@ events:
   - {event_id: EVT-SKL-CST-H03-002, event_order: 2, skill_id: design-cast, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CST-H03-003, event_order: 3, skill_id: design-cast, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-CST-H03-004, event_order: 4, skill_id: design-cast, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-CST-H03-005, event_order: 5, skill_id: design-cast, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-PNT-H03-001, event_order: 1, skill_id: design-paint, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNT-H03-002, event_order: 2, skill_id: design-paint, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNT-H03-003, event_order: 3, skill_id: design-paint, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PNT-H03-004, event_order: 4, skill_id: design-paint, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNT-H03-005, event_order: 5, skill_id: design-paint, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_atemporal_simplicity_lift_2599_to_1193_router_plus_stack_specifics_reference_module}
   - {event_id: EVT-SKL-DDA-H03-001, event_order: 1, skill_id: design-dna, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DDA-H03-002, event_order: 2, skill_id: design-dna, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DDA-H03-003, event_order: 3, skill_id: design-dna, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2305,6 +2308,7 @@ events:
   - {event_id: EVT-SKL-OCO-H03-002, event_order: 2, skill_id: gstack-openclaw-office-hours, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCO-H03-003, event_order: 3, skill_id: gstack-openclaw-office-hours, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCO-H03-004, event_order: 4, skill_id: gstack-openclaw-office-hours, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCO-H03-005, event_order: 5, skill_id: gstack-openclaw-office-hours, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-ORE-H03-001, event_order: 1, skill_id: gstack-openclaw-retro, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-ORE-H03-002, event_order: 2, skill_id: gstack-openclaw-retro, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-ORE-H03-003, event_order: 3, skill_id: gstack-openclaw-retro, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
