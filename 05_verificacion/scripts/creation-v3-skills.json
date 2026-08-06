@@ -196,6 +196,7 @@
   },
   {
     "id": "content-os-oversized-cursor",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-oversized-cursor/scripts/check-skill.mjs"

@@ -289,11 +289,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-seam-craft/scripts/check-skill.mjs]
   - skill_id: content-os-oversized-cursor
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 897c43f6135b228da34aeaf51e84ea0ed929d9aac09cde46cc2cc3431246814b
-    package_manifest_sha256: 830c8ac5442d95094a5d8cc238c0ba69bc4735b74925660a52aadb769867bd22
+    content_sha256: 76028fa5786e3c0753ed6e2eb08f6edb56d74632f446773d59b2dc1150b2b0ad
+    package_manifest_sha256: 443d4f64b919f49b7012539d6999ae4299512d78d10f93f31fd378b06dff6a01
     lineage_ref: skills/content-os-oversized-cursor/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-oversized-cursor/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1794,6 +1794,7 @@ events:
   - {event_id: EVT-SKL-OCR-H03-002, event_order: 2, skill_id: content-os-oversized-cursor, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-OCR-H03-003, event_order: 3, skill_id: content-os-oversized-cursor, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-OCR-H03-004, event_order: 4, skill_id: content-os-oversized-cursor, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-OCR-H03-005, event_order: 5, skill_id: content-os-oversized-cursor, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-RBP-H03-001, event_order: 1, skill_id: content-os-remotion-best-practices, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RBP-H03-002, event_order: 2, skill_id: content-os-remotion-best-practices, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RBP-H03-003, event_order: 3, skill_id: content-os-remotion-best-practices, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
