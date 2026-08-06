@@ -1,7 +1,7 @@
 ---
 name: dev-dispatching-parallel-agents
 description: This skill should be used when el operador enfrenta dos o mas tareas independientes que pueden delegarse a sub-agentes en paralelo — descomponer el trabajo, aislar el contexto de cada agente, agregar resultados y decidir cuándo no paralelizar — sin auto-despachar ni auto-ejecutar mutaciones, commits ni dispatches.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -20,14 +20,12 @@ verificar que los resultados no colisionen y agregarlos en un solo cierre. Este
 skill recorre el despacho en cinco fases y entrega un plan de despacho en prosa,
 revisable por el operador. No despacha. No ejecuta. No commitea.
 
-La premisa es simple: investigar tres fallos independientes en secuencia
-desperdicia tiempo. Si cada fallo vive en su propio dominio — su propio archivo,
-su propio subsistema, su propio estado — puede trabajarse de forma concurrente
-sin que un agente pise al otro. Pero "independiente" es una propiedad que se
-verifica, no se asume: dos fallos que parecen separados pueden compartir causa
-raíz, y dos agentes que editan el mismo archivo se pisan sin saberlo. El skill
-declara la frontera de aislamiento antes de despachar y la re-verifica al
-agregar.
+La premisa: tres fallos independientes en secuencia desperdicia tiempo. Si cada
+fallo vive en su propio dominio (archivo, subsistema, estado), puede trabajarse
+concurrente sin pisarse. Pero "independiente" se verifica, no se asume: dos
+fallos pueden compartir causa raíz, dos agentes que editan el mismo archivo se
+pisan sin saberlo. El skill declara la frontera de aislamiento antes de
+despachar y la re-verifica al agregar.
 
 ## Cuándo usar
 
@@ -64,8 +62,7 @@ operador revisa antes de avanzar.
    (resumen de causa raíz y cambios, no "lo arreglé"). El agente no hereda el
    contexto ni el historial de la sesión — se construye exactamente lo que
    necesita. Un prompt vago ("arregla los tests") pierde al agente; un prompt sin
-   restricciones deriva en refactor no pedido. El contexto que se ahorra aquí
-   protege también al orquestador, que se queda con budget para coordinar.
+   restricciones deriva en refactor no pedido.
 
 3. **Verificar aislamiento.** Antes de despachar, declarar la frontera de cada
    agente: qué archivos puede tocar, qué recursos puede usar, qué comandos
@@ -96,29 +93,26 @@ salta a despachar sin aislar ni sin autorización. Despacha en orden — siempre
 
 ## Cuándo NO paralelizar
 
-- **Fallos relacionados:** fixing uno puede resolver otros — investigar juntos
-  primero, en un solo agente, antes de dividir.
-- **Se necesita estado completo del sistema:** entender el problema requiere
-  ver todo el sistema a la vez; un agente con contexto parcial no llega.
-- **Debugging exploratorio:** aún no se sabe qué está roto — dividir a ciegas
-  produce agentes perdidos.
-- **Estado compartido:** los agentes interferirían (mismos archivos, mismos
-  recursos, mismos locks) — secuenciar o rediseñar el reparto.
+- **Fallos relacionados o estado completo:** fixing uno puede resolver otros, o
+  entender el problema requiere ver todo el sistema a la vez — investigar juntos
+  primero en un solo agente.
+- **Debugging exploratorio o estado compartido:** aún no se sabe qué está roto,
+  o los agentes interferirían (mismos archivos, recursos, locks) — secuenciar o
+  rediseñar el reparto.
 
 ## Riesgos
 
 - **Colisión silenciosa:** dos agentes editan el mismo archivo sin saberlo y se
-  pisan. Mitigación: declarar fronteras de aislamiento y re-verificar al
-  integrar.
+  pisan. Mitigación: declarar fronteras de aislamiento y re-verificar al integrar.
 - **Contexto diluido:** un prompt vago pierde al agente o lo deriva a refactor no
-  pedido. Mitigación: prompt auto-contenido con alcance, objetivo,
-  restricciones y salida esperada.
-- **Falsa independencia:** dos dominios que parecen separados comparten causa
-  raíz; despacharlos por separado duplica trabajo o genera fixes contradictorios.
+  pedido. Mitigación: prompt auto-contenido con alcance, objetivo, restricciones y
+  salida esperada.
+- **Falsa independencia:** dos dominios que parecen separados comparten causa raíz;
+  despacharlos por separado duplica trabajo o genera fixes contradictorios.
   Mitigación: verificar independencia antes de dividir.
 - **Agregación saltada:** tres fixes sueltos se asumen como "sistema verde" sin
-  verificar la integración. Mitigación: la revisión y agregación son el gate
-  final, no un paso opcional.
+  verificar la integración. Mitigación: la revisión y agregación son el gate final,
+  no un paso opcional.
 
 ## Fail-closed
 

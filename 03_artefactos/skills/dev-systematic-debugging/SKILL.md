@@ -1,7 +1,7 @@
 ---
 name: dev-systematic-debugging
 description: This skill should be used when el operador enfrenta un bug, test fallido o comportamiento inesperado y necesita encontrar la causa raíz antes de corregir — reproducir el defecto, aislar la causa, formar una hipótesis, probar la corrección mínima y prevenir la regresión — sin auto-ejecutar tests, mutaciones de código ni commits.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -21,12 +21,10 @@ y entrega un diagnóstico en prosa, revisable por el operador. No código
 mutado. No tests auto-ejecutados. No commits.
 
 La regla de hierro: ninguna corrección sin investigación de causa raíz previa.
-Si no se completó la fase de investigación, no se proponen arreglos. "Ya vi el
-síntoma" no sirve — se reproduce el defecto de forma fiable—; "más o menos
-entiendo" no sirve — se aísla la causa con evidencia—; "creo que es esto" no
-sirve — se formula una hipótesis y se prueba la corrección mínima antes de
-tocar nada. No se adivina: si no se sabe algo, se dice y se pregunta, o se
-reúne más evidencia primero.
+"Ya vi el síntoma" no sirve — se reproduce el defecto de forma fiable; "más o
+menos entiendo" no sirve — se aísla la causa con evidencia; "creo que es esto"
+no sirve — se formula una hipótesis y se prueba la corrección mínima antes de
+tocar nada. Si no se sabe algo, se dice o se reúne más evidencia.
 
 ## Cuándo usar
 
@@ -39,11 +37,11 @@ Usar este skill cuando el operador pide:
 - cualquier defecto, test fallido o comportamiento inesperado que el operador
   quiere depurar de forma metódica antes de tocar el código.
 
-Especialmente usar cuando hay presión de tiempo (la urgencia invita a
-adivinar), cuando "un arreglo rápido" parece obvio, cuando ya se intentaron
-varios arreglos sin éxito, o cuando no se entiende del todo el problema. No
-saltar el proceso aunque el issue parezca simple: los bugs simples también
-tienen causa raíz, y el método es más rápido que adivinar y reintentar.
+Especialmente cuando hay presión de tiempo (la urgencia invita a adivinar),
+cuando "un arreglo rápido" parece obvio, cuando ya se intentaron varios
+arreglos sin éxito, o cuando no se entiende del todo el problema. No saltar el
+proceso aunque el issue parezca simple: los bugs simples también tienen causa
+raíz.
 
 ## Las fases de la depuración
 
@@ -100,41 +98,35 @@ corregir sin investigar ni probar. Depura en orden — siempre.
 
 La distinción que define este skill: corregir la causa raíz, no parchear el
 síntoma. El síntoma es lo que se ve; la causa raíz es lo que lo produce. Un
-parche en el síntoma mueve el problema, lo enmascara, o siembra una regresión
-más cara. La investigación de causa raíz traza el defecto hacia atrás —desde
-el valor defectuoso hasta su origen— y corrige en el origen. Si tras
-investigar resulta que el issue es ambiental, de timing o externo, se
-documenta lo investigado y se implementa el manejo apropiado (retry, timeout,
-mensaje de error) con monitoreo — pero la mayoría de los "no hay causa raíz"
-son investigación incompleta.
+parche en el síntoma mueve el problema, lo enmascara o siembra una regresión
+más cara. La investigación traza el defecto hacia atrás —desde el valor
+defectuoso hasta su origen— y corrige en el origen. Si el issue es ambiental,
+de timing o externo, se documenta y se implementa el manejo apropiado (retry,
+timeout, mensaje de error) con monitoreo — pero la mayoría de los "no hay
+causa raíz" son investigación incompleta.
 
 ## Prevenir la regresión
 
-La corrección no termina con el fix: previene la regresión. Un caso de
-prueba que falle antes del fix y pase después es el gate que separa "creo que
-arreglé" de "arreglé". Sin esa prueba, el arreglo no pega. La prevención de
-regresión es parte de la fase de implementación, no un paso opcional después.
+La corrección no termina con el fix: previene la regresión. Un caso de prueba
+que falle antes del fix y pase después es el gate que separa "creo que arreglé"
+de "arreglé". La prevención de regresión es parte de la fase de implementación,
+no un paso opcional.
 
 ## Fail-closed
 
 Este skill es **fail-closed** y de **local-evaluation**:
 
-- NO ejecuta git, commits, pushes ni merges. Toda operación git queda detrás
-  de confirmación explícita del operador.
-- NO ejecuta tests, builds, installs ni comandos de CLI externos. Toda
-  ejecución de tests o mutación de código queda detrás de confirmación
-  explícita del operador.
+- NO ejecuta git, commits, pushes, merges, tests, builds, installs ni comandos
+  de CLI externos. Toda operación git, de tests o mutación de código queda
+  detrás de confirmación explícita del operador.
 - NO abre conexiones de red. No publica. No despliega.
 - NO invoca tooling de vendor (`superpowers:test-driven-development`,
-  `superpowers:verification-before-completion`, `${CLAUDE_PLUGIN_ROOT}`,
-  hooks, telemetría). Esos artefactos del referenciador se descartaron en la
-  adaptación.
-- NO auto-muta código, no auto-arranca tests ni comandos con side effects.
-  Todo gate de ejecución (git, tests, mutaciones, deploys) queda detrás de
-  confirmación explícita del operador.
+  `superpowers:verification-before-completion`, `${CLAUDE_PLUGIN_ROOT}`, hooks,
+  telemetría) — esos artefactos del referenciador se descartaron en la adaptación.
+- NO auto-muta código ni auto-arranca tests ni comandos con side effects.
 - Si una fase no puede completarse por falta de contexto o de acceso al
-  código, se marca `coverage_gap` y se detiene — no se infiere ni se
-  sustituye con una pulida conjetura.
+  código, se marca `coverage_gap` y se detiene — no se infiere ni se sustituye
+  con una pulida conjetura.
 
 El único entregable es el diagnóstico en prosa, revisable por el operador.
 

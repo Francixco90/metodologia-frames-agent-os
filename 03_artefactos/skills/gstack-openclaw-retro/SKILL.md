@@ -1,7 +1,7 @@
 ---
 name: gstack-openclaw-retro
 description: This skill should be used when generating a weekly engineering retrospective, analyzing commit history and work patterns, producing team-aware per-contributor praise and growth areas, or tracking engineering trends over time.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -17,9 +17,7 @@ metadata:
 Invócala cuando se necesite una retrospectiva semanal de ingeniería: analizar
 el historial de commits de un periodo, extraer patrones de trabajo, producir
 un análisis por contribuidor con praise y growth areas anclados en commits
-reales, y comparar contra retros previas para detectar tendencias. La skill
-produce prosa auditable; no ejecuta comandos git por sí misma y no toca la
-red.
+reales, y comparar contra retros previas para detectar tendencias.
 
 ## Principio de la capability
 
@@ -32,11 +30,8 @@ profundidad en primera persona, y a cada compañera con praise específico y
 growth area específico, ambos anclados en commits reales — nunca "buen trabajo"
 sin nombrar qué fue bueno.
 
-El usuario mantiene el 100% del control sobre la ejecución. Toda invocación de
-git (log, shortlog, fetch, config) requiere confirmación explícita del
-usuario. La skill nunca ejecuta git en silencio, nunca hace fetch de la red, y
-nunca muta el repositorio. La salida es prosa; el usuario decide qué comandos
-correr.
+El usuario mantiene el 100% del control; la salida es prosa y el usuario decide
+qué comandos correr.
 
 ## Argumentos
 
@@ -52,11 +47,10 @@ correr.
 ### Paso 1: Acordar ventana y confirmar comandos
 
 Confirmar con el usuario la ventana temporal antes de cualquier consulta. Para
-unidades de día, alinear el inicio a medianoche del timezone local del usuario.
-Para unidades de hora, usar "N hours ago". Presentar al usuario la lista exacta
-de comandos git que se ejecutarán y esperar confirmación explícita. Sin
-confirmación, no hay ejecución. Marcar `coverage_gap` si el usuario no está en
-un repo git o si no hay commits en la ventana.
+unidades de día, alinear el inicio a medianoche del timezone local. Para horas,
+usar "N hours ago". Presentar la lista exacta de comandos git que se ejecutarán
+y esperar confirmación explícita; sin confirmación no hay ejecución. Marcar
+`coverage_gap` si no es un repo git o no hay commits en la ventana.
 
 ### Paso 2: Recolectar historial
 
@@ -176,29 +170,21 @@ deben ser específicos, accionables y anclados en commits.
 
 ## Modo compare
 
-Cuando el usuario pida "compare": correr la retrospectiva para la ventana
-actual, correr para la ventana previa de igual longitud, presentar métricas
-lado a lado con flechas de mejora/regresión, y una breve narrativa sobre los
-mayores cambios.
+Cuando el usuario pida "compare": correr la retro para la ventana actual y la
+previa de igual longitud, presentar métricas lado a lado con flechas de
+mejora/regresión y una narrativa de los mayores cambios.
 
 ## Límite de fail-closed
 
-La skill no ejecuta git por sí misma. No hace fetch de la red. No muta el
-repositorio. Toda invocación de git requiere confirmación explícita del usuario
-antes de correr. La salida es prosa auditable. Sin confirmación, no hay
-ejecución. Marcar `coverage_gap` si falta contexto bloqueante.
+La skill no ejecuta git, no hace fetch de la red, no muta el repositorio. Toda
+invocación de git requiere confirmación explícita; sin confirmación no hay
+ejecución. La salida es prosa auditable. Marcar `coverage_gap` si falta contexto
+bloqueante.
 
-## Reglas importantes
+## Estado de completitud
 
-- Todos los tiempos en timezone local del usuario. Nunca forzar `TZ`.
-- Praise anclado en commits. Nunca "buen trabajo" sin nombrar qué fue bueno.
-- Growth areas ancladas en datos. Nunca criticar sin evidencia.
-- Guardar historial. Cada retrospectiva persiste para trend tracking.
-- Toda ejecución de git requiere confirmación explícita del usuario.
-- Estado de completitud:
-  - DONE — retrospectiva generada, historial guardado.
-  - DONE_WITH_CONCERNS — generada pero con datos faltantes (ej. sin retros
-    previas para comparar).
-  - BLOCKED — no es un repo git o no hay commits en la ventana.
+- DONE — retrospectiva generada, historial guardado.
+- DONE_WITH_CONCERNS — generada con datos faltantes (ej. sin retros previas).
+- BLOCKED — no es un repo git o no hay commits en la ventana.
 
 Derivada de gstack-openclaw-retro (garrytan/gstack, MIT).

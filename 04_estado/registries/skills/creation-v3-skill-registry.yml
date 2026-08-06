@@ -861,11 +861,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-plan-eng-review/scripts/check-skill.mjs]
   - skill_id: dev-plan-devex-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 56d9fbd5484ac37827c15239adc0a57501cf81980f1e0c172f67dce937a486d9
-    package_manifest_sha256: 05a7d229d819a76f8645f5d0a0c245405cae1b4ce8047952952a08fadce6e7e7
+    content_sha256: f6560e6ebac09bea33776b9e824d11e896a7afb78833a4df292b66bea67896da
+    package_manifest_sha256: 7dd77e7cdf19d8c2cc0d77796d115312fb8158b396827120fd02edcaa50822f1
     lineage_ref: skills/dev-plan-devex-review/LINEAGE.yml
     dependency_receipt_ref: skills/dev-plan-devex-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1037,11 +1037,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-canary/scripts/check-skill.mjs]
   - skill_id: dev-land-and-deploy
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: a94ff7bb3f3e2b5de650fbec75d0e7b3dc124452c4436183b649655ce7536089
-    package_manifest_sha256: cba18110e252d21dae49277b0fe211d38970f5948dbc31a5029a42ee4ccef0ca
+    content_sha256: 0a56b2d3221bc18137cd276ea4a94c1326317dcc4dacbfa74f34631195c3e5ee
+    package_manifest_sha256: d12d4baf5d14992aea34936da5c7c3b5d34cd071d4b87ecd572a912216a5bb2a
     lineage_ref: skills/dev-land-and-deploy/LINEAGE.yml
     dependency_receipt_ref: skills/dev-land-and-deploy/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1103,11 +1103,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-test-driven-development/scripts/check-skill.mjs]
   - skill_id: dev-systematic-debugging
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 49710a7a9caa15dc30a3d0a8ef82b1395278be36b9cf480f91af93249a9ddbe1
-    package_manifest_sha256: 5ac84ab1ef3a9701b742e1eb0c3b3aa1ab0365540a2ffcf8a96a1686400614c1
+    content_sha256: bd6d3fb41bd7881625301cc0004be7cb4c5c15f448202262126d16b42b4efaaa
+    package_manifest_sha256: f5e262d0624f84680799d911941525b1ab60d033c52b581307f9c892349f342d
     lineage_ref: skills/dev-systematic-debugging/LINEAGE.yml
     dependency_receipt_ref: skills/dev-systematic-debugging/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1125,11 +1125,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-brainstorming/scripts/check-skill.mjs]
   - skill_id: dev-dispatching-parallel-agents
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e72064a0d61abc1d0c6930c8b9919c6e56865ebda12db83a3f412aebc8e9a5ee
-    package_manifest_sha256: 61c8e2df46021d202f61357ac090db6ccdbb5859f9137b0ae2c1722c853df026
+    content_sha256: 53b4b37f86a8ab29fdfb013aa9144421e5b724ba005513fd72335aa2ad53927b
+    package_manifest_sha256: 4db0373e1c6f1aeec6c224c9f705128814ffea5d467665cd1d1407485a639ebf
     lineage_ref: skills/dev-dispatching-parallel-agents/LINEAGE.yml
     dependency_receipt_ref: skills/dev-dispatching-parallel-agents/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1169,11 +1169,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-finishing-a-development-branch/scripts/check-skill.mjs]
   - skill_id: dev-receiving-code-review
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e2b067f6dc2ac941966f832176050278b64ba4fb2100564119b782a1fdba525b
-    package_manifest_sha256: 881b49c855242dd86b6e255048788fd4179238147cdff340c1d45779cac71afb
+    content_sha256: 79ff056253074678e4ca778607fc3e6f055e282b530751b0189e2c75f3a4fa18
+    package_manifest_sha256: e742a38f21bcdef1b9883793d382c24dd4eb1e5623d402b39905f2635a65039b
     lineage_ref: skills/dev-receiving-code-review/LINEAGE.yml
     dependency_receipt_ref: skills/dev-receiving-code-review/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1246,11 +1246,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-writing-skills/scripts/check-skill.mjs]
   - skill_id: dev-ponytail
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e0759f9394debf490edaae4fe1b52500b69f6b9746e399442dd7185514b7b0e5
-    package_manifest_sha256: d9622d25f0bc0214a94ddeb0d763bd05311e626e2694e62570e07b7780fdc261
+    content_sha256: 25b2d24b4ef4b7fe622a2462aebef3eaf7a89609c4e581d140edeff8cae85b59
+    package_manifest_sha256: 5c4080d2713345acab10dd79e7cbd0bab37e8c16b4f65fe5ae58351c919ccc4e
     lineage_ref: skills/dev-ponytail/LINEAGE.yml
     dependency_receipt_ref: skills/dev-ponytail/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1587,11 +1587,11 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-ios-design-review/scripts/check-skill.mjs]
   - skill_id: gstack-ios-fix
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 7cd7be9ef331d3d7f196f26a6100d2383f6fe0bb660494fc43a80ce6424a966d
-    package_manifest_sha256: d69531fee9fd21231cbfecf8dd53d2006fb353ef52b9eb911694bcca17b89b9f
+    content_sha256: deb05c77da96fe2c585eefff877d35e3edc571fc9ac54a53047b92b2eb129617
+    package_manifest_sha256: 96f13e501a686a664febb74776db91d3bdcdfe6702c644d3f5e1bcd81a55e9e7
     lineage_ref: skills/gstack-ios-fix/LINEAGE.yml
     dependency_receipt_ref: skills/gstack-ios-fix/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1664,11 +1664,11 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-openclaw-office-hours/scripts/check-skill.mjs]
   - skill_id: gstack-openclaw-retro
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3948cb49fce7e1c492d1f0854c6a55ea288c019ac33059ce243a1d8b5ca45705
-    package_manifest_sha256: f83e8c2dea3041ded471b7dc9daf3f181126427ce307f79b5462cdc2f06a8615
+    content_sha256: ed3dffbe78705333d902187f5fa93be535d0fde6bbb751f44375658ed2908e73
+    package_manifest_sha256: 79f518467f10564f86f9b86aceb6b615fe5524fc813b8578c82288e66f48e52b
     lineage_ref: skills/gstack-openclaw-retro/LINEAGE.yml
     dependency_receipt_ref: skills/gstack-openclaw-retro/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2003,6 +2003,7 @@ events:
   - {event_id: EVT-SKL-PXR-H03-002, event_order: 2, skill_id: dev-plan-devex-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PXR-H03-003, event_order: 3, skill_id: dev-plan-devex-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PXR-H03-004, event_order: 4, skill_id: dev-plan-devex-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PXR-H03-005, event_order: 5, skill_id: dev-plan-devex-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1340->1199w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-PDR-H03-001, event_order: 1, skill_id: dev-plan-design-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PDR-H03-002, event_order: 2, skill_id: dev-plan-design-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PDR-H03-003, event_order: 3, skill_id: dev-plan-design-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2071,6 +2072,7 @@ events:
   - {event_id: EVT-SKL-LAD-H03-002, event_order: 2, skill_id: dev-land-and-deploy, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-LAD-H03-003, event_order: 3, skill_id: dev-land-and-deploy, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-LAD-H03-004, event_order: 4, skill_id: dev-land-and-deploy, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-LAD-H03-005, event_order: 5, skill_id: dev-land-and-deploy, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1281->1199w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-SKF-H03-001, event_order: 1, skill_id: dev-skillify, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SKF-H03-002, event_order: 2, skill_id: dev-skillify, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SKF-H03-003, event_order: 3, skill_id: dev-skillify, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2095,6 +2097,7 @@ events:
   - {event_id: EVT-SKL-SDB-H03-002, event_order: 2, skill_id: dev-systematic-debugging, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-SDB-H03-003, event_order: 3, skill_id: dev-systematic-debugging, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-SDB-H03-004, event_order: 4, skill_id: dev-systematic-debugging, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-SDB-H03-005, event_order: 5, skill_id: dev-systematic-debugging, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1268->1194w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-BRN-H03-001, event_order: 1, skill_id: dev-brainstorming, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-BRN-H03-002, event_order: 2, skill_id: dev-brainstorming, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-BRN-H03-003, event_order: 3, skill_id: dev-brainstorming, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2103,6 +2106,7 @@ events:
   - {event_id: EVT-SKL-DPA-H03-002, event_order: 2, skill_id: dev-dispatching-parallel-agents, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-DPA-H03-003, event_order: 3, skill_id: dev-dispatching-parallel-agents, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-DPA-H03-004, event_order: 4, skill_id: dev-dispatching-parallel-agents, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-DPA-H03-005, event_order: 5, skill_id: dev-dispatching-parallel-agents, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1252->1188w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-EXE-H03-001, event_order: 1, skill_id: dev-executing-plans, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXE-H03-002, event_order: 2, skill_id: dev-executing-plans, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-EXE-H03-003, event_order: 3, skill_id: dev-executing-plans, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2121,6 +2125,7 @@ events:
   - {event_id: EVT-SKL-RCV-H03-002, event_order: 2, skill_id: dev-receiving-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RCV-H03-003, event_order: 3, skill_id: dev-receiving-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-RCV-H03-004, event_order: 4, skill_id: dev-receiving-code-review, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-RCV-H03-005, event_order: 5, skill_id: dev-receiving-code-review, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1332->1193w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-RQR-H03-001, event_order: 1, skill_id: dev-requesting-code-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RQR-H03-002, event_order: 2, skill_id: dev-requesting-code-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-RQR-H03-003, event_order: 3, skill_id: dev-requesting-code-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2150,6 +2155,7 @@ events:
   - {event_id: EVT-SKL-PNY-H03-002, event_order: 2, skill_id: dev-ponytail, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNY-H03-003, event_order: 3, skill_id: dev-ponytail, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-PNY-H03-004, event_order: 4, skill_id: dev-ponytail, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-PNY-H03-005, event_order: 5, skill_id: dev-ponytail, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1256->1198w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-PNR-H03-001, event_order: 1, skill_id: dev-ponytail-review, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNR-H03-002, event_order: 2, skill_id: dev-ponytail-review, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-PNR-H03-003, event_order: 3, skill_id: dev-ponytail-review, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2274,6 +2280,7 @@ events:
   - {event_id: EVT-SKL-GIF-H03-002, event_order: 2, skill_id: gstack-ios-fix, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GIF-H03-003, event_order: 3, skill_id: gstack-ios-fix, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-GIF-H03-004, event_order: 4, skill_id: gstack-ios-fix, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-GIF-H03-005, event_order: 5, skill_id: gstack-ios-fix, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1253->1198w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-GIS-H03-001, event_order: 1, skill_id: gstack-ios-sync, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GIS-H03-002, event_order: 2, skill_id: gstack-ios-sync, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-GIS-H03-003, event_order: 3, skill_id: gstack-ios-sync, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2302,3 +2309,4 @@ events:
   - {event_id: EVT-SKL-ORE-H03-002, event_order: 2, skill_id: gstack-openclaw-retro, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-ORE-H03-003, event_order: 3, skill_id: gstack-openclaw-retro, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-ORE-H03-004, event_order: 4, skill_id: gstack-openclaw-retro, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-ORE-H03-005, event_order: 5, skill_id: gstack-openclaw-retro, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1317->1186w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
