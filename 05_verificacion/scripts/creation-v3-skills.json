@@ -172,6 +172,7 @@
   },
   {
     "id": "content-os-motion-doctrine",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": [
       "skills/content-os-motion-doctrine/scripts/check-skill.mjs"

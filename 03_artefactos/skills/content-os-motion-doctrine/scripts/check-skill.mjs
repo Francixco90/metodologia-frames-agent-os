@@ -12,6 +12,7 @@ const required = [
   `${skill}/fixtures/negative/broken-motion-plan.yml`,
   `${skill}/examples/motion-doctrine-sequence.jsonl`,
   `${skill}/receipts/runtime-boundary.yml`,
+  `${skill}/references/doctrine-receta.md`,
 ];
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));

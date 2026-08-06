@@ -256,11 +256,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-captions-overlay/scripts/check-skill.mjs]
   - skill_id: content-os-motion-doctrine
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5d3ef2aa0be998630113f318d743ea19b71b5284bb28dd206b5cbd6a6713a10f
-    package_manifest_sha256: 2693e5a458065913fd1997e0601c378748e6d8a12030330e69b8f9361400b01c
+    content_sha256: d4b8b35e04a6067a83edacb7c5a4685d3e3f37aaa33008354da76140138dcbb8
+    package_manifest_sha256: 39a8dc9723d458e083686ddd6820254eaf5addceee180b022ae4d9152f21ca20
     lineage_ref: skills/content-os-motion-doctrine/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-motion-doctrine/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1779,6 +1779,7 @@ events:
   - {event_id: EVT-SKL-MDR-H03-002, event_order: 2, skill_id: content-os-motion-doctrine, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-MDR-H03-003, event_order: 3, skill_id: content-os-motion-doctrine, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-MDR-H03-004, event_order: 4, skill_id: content-os-motion-doctrine, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
+  - {event_id: EVT-SKL-MDR-H03-005, event_order: 5, skill_id: content-os-motion-doctrine, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CTC-H03-001, event_order: 1, skill_id: content-os-cut-the-curve, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTC-H03-002, event_order: 2, skill_id: content-os-cut-the-curve, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTC-H03-003, event_order: 3, skill_id: content-os-cut-the-curve, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
