@@ -46,6 +46,7 @@
     "mw:scaffold": "node --import tsx scripts/scaffold-multimedia-workflow.ts",
     "mw:run": "node --import tsx 02_proceso/workflows/multimedia/_runner/run.ts",
     "mw:render-schematics": "node --import tsx 02_proceso/workflows/multimedia/_runner/render-schematic-html.ts",
+    "mw:scaffold-artifacts": "node --import tsx 05_verificacion/scripts/scaffold-artifact-schemas.ts",
     "eval:run": "node --import tsx 05_verificacion/evals/runner.ts",
     "ablation:run": "node --import tsx 05_verificacion/evals/ablation/runner.ts run",
     "ablation:report": "node --import tsx 05_verificacion/evals/ablation/runner.ts report",

@@ -11,14 +11,16 @@
  *              skill registry, the v2 skill registry, or a direct skill dir
  *              at `03_artefactos/skills/<id>/SKILL.md` (vendor skills excluded
  *              from registries are reachable via the dir check).
- *   MW-CAP-04: `capability_map.assets` each resolve against the artifact
- *              registry (`_assets/artifact-registry.md`) by schema basename.
+ *   MW-CAP-04: `capability_map.assets` each resolve to a materialized schema file
+ *              at `_schema/artifacts/<id>.schema.ts` AND be listed in the artifact
+ *              registry (`_assets/artifact-registry.md`). File-existence check
+ *              upgrades the binding from forward-contract to real contract.
  *
  * Fail-closed: any unresolved binding fails the gate. The generator
  * (`render-schematic-html.ts`) depends on the same contract, so a green gate
  * implies regenerable schematics. [CÓDIGO]
  */
-import {readFileSync, readdirSync, statSync, existsSync} from 'node:fs';
+import {readFileSync, readdirSync, existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {parse} from 'yaml';
 
@@ -27,7 +29,13 @@ import {MultimediaWorkflowSchema} from '../../02_proceso/workflows/multimedia/_s
 const root = process.cwd();
 const MW_DIR = join(root, '02_proceso', 'workflows', 'multimedia');
 const ARTIFACT_REGISTRY = join(MW_DIR, '_assets', 'artifact-registry.md');
-const V3_REGISTRY = join(root, '04_estado', 'registries', 'skills', 'creation-v3-skill-registry.yml');
+const V3_REGISTRY = join(
+  root,
+  '04_estado',
+  'registries',
+  'skills',
+  'creation-v3-skill-registry.yml',
+);
 const V2_REGISTRY = join(root, '04_estado', 'registries', 'skills', 'skill-registry.yml');
 const SKILLS_DIR = join(root, '03_artefactos', 'skills');
 
@@ -59,9 +67,11 @@ function skillExists(id: string): boolean {
 }
 
 function assetExists(id: string): boolean {
-  // asset ids are schema basenames (e.g. brand-os-v1); registry lists them as
-  // `…/<id>.schema.ts` or `<id>.schema.ts`. Substring match is deterministic.
-  return artifactText.includes(`${id}.schema.ts`);
+  // Asset ids are schema basenames (e.g. brand-os-v1). A real binding requires
+  // BOTH the materialized schema file AND a registry entry. Forward-contract
+  // (registry listing without a file) fails this gate — materialization closes it.
+  const schemaFile = join(MW_DIR, '_schema', 'artifacts', `${id}.schema.ts`);
+  return existsSync(schemaFile) && artifactText.includes(`${id}.schema.ts`);
 }
 
 const errors: string[] = [];
