@@ -1674,7 +1674,22 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/gstack-openclaw-retro/scripts/check-skill.mjs]
+  - skill_id: frames-token-efficiency-orchestrator
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: ca3d4ac4cd8233ab12fb983e43bbdd56b929c33c997ea4ca9f5e60243b554267
+    package_manifest_sha256: dff257bdb776fc8ae8b191869f93a19eb54f68419278002d9a3bd692a43431b5
+    lineage_ref: skills/frames-token-efficiency-orchestrator/LINEAGE.yml
+    dependency_receipt_ref: skills/frames-token-efficiency-orchestrator/receipts/runtime-boundary.yml
+    production_runtime_status: local_governance_only
+    publication_authority: false
+    tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
 events:
+  - {event_id: EVT-SKL-FTO-H03-001, event_order: 1, skill_id: frames-token-efficiency-orchestrator, from: null, to: candidate, actor_id: RT-07-FTEO-PRODUCER}
+  - {event_id: EVT-SKL-FTO-H03-002, event_order: 2, skill_id: frames-token-efficiency-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-FTEO-PRODUCER}
+  - {event_id: EVT-SKL-FTO-H03-003, event_order: 3, skill_id: frames-token-efficiency-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-FTEO-INTEGRATION}
+  - {event_id: EVT-SKL-FTO-H03-004, event_order: 4, skill_id: frames-token-efficiency-orchestrator, from: evaluated, to: active, actor_id: RT-10-FTEO-INTEGRATION}
   - {event_id: EVT-SKL-DVC-H03-001, event_order: 1, skill_id: data-visual-composition, from: null, to: candidate, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-002, event_order: 2, skill_id: data-visual-composition, from: candidate, to: quarantined, actor_id: RT-08-H03-PRODUCER}
   - {event_id: EVT-SKL-DVC-H03-003, event_order: 3, skill_id: data-visual-composition, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

@@ -1,0 +1,15 @@
+name: route_terminal_output_with_observer
+scenario: A local test command emits repetitive output and the operator also requests usage measurement.
+intent_signals: [terminal_output, usage_observation]
+expected_behavior: Select RTK as the only transformer and ccusage as read-only observer after version, budget and raw-recovery preflight.
+expected_chapters: [references/adapters.md#rtk, references/adapters.md#ccusage]
+must_preserve: [exit_code, errors, warnings, evidence_tags, material_hashes]
+next_gate: G07
+trigger_phrases: [usar RTK, medir consumo con ccusage, comprimir contexto con Headroom, mapear código con Graphify, usar Caveman, auto-orquestar con Claude Native Toolkit]
+route_matrix:
+  - {signal: operator_concision, route: caveman, mode: internal_only}
+  - {signal: code_relationships, route: graphify, mode: private_dev_only}
+  - {signal: context_window_pressure, route: headroom, mode: shadow_quarantined}
+  - {signal: orchestration_choice, route: claude-native-toolkit, mode: least_power_primitive}
+  - {signal: usage_observation, route: ccusage, mode: read_only_observer}
+  - {signal: terminal_output, route: rtk, mode: single_transformer}
