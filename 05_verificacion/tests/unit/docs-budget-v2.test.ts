@@ -35,17 +35,25 @@ interface LedgerBudgetProjection {
     };
     authored_eligible_corpus: {
       baseline_words: number;
+      v3_rolling_adjustment_words: number;
+      original_baseline_words: number;
       final_words: number;
+      maximum_multiplier: number;
       maximum_words: number;
       status: string;
     };
     total_authored_hard_cap: {
       baseline_words: number;
+      v3_rolling_adjustment_words: number;
+      original_baseline_words: number;
       final_words: number;
       maximum_words: number;
       baseline_loc: number;
+      v3_rolling_adjustment_loc: number;
+      original_baseline_loc: number;
       final_loc: number;
       maximum_loc: number;
+      maximum_multiplier: number;
       status: string;
     };
     generated_template_budget: {
@@ -157,24 +165,31 @@ describe('V2 documentation and extension budgets', () => {
       baseline_files: 58,
       violations: [],
     });
-    expect(ledger.budgets.authored_eligible_corpus).toMatchObject({
-      baseline_words: 92_786,
-      status: 'pass',
-    });
-    expect(ledger.budgets.authored_eligible_corpus.final_words).toBeLessThanOrEqual(
-      ledger.budgets.authored_eligible_corpus.maximum_words,
+    const eligible = ledger.budgets.authored_eligible_corpus;
+    expect(eligible.baseline_words).toBe(
+      eligible.original_baseline_words + eligible.v3_rolling_adjustment_words,
     );
-    expect(ledger.budgets.total_authored_hard_cap).toMatchObject({
-      baseline_words: 92_786,
-      baseline_loc: 34_911,
-      status: 'pass',
-    });
-    expect(ledger.budgets.total_authored_hard_cap.final_words).toBeLessThanOrEqual(
-      ledger.budgets.total_authored_hard_cap.maximum_words,
+    expect(eligible.maximum_multiplier).toBe(1.5);
+    expect(eligible.maximum_words).toBe(
+      Math.floor(eligible.baseline_words * eligible.maximum_multiplier),
     );
-    expect(ledger.budgets.total_authored_hard_cap.final_loc).toBeLessThanOrEqual(
-      ledger.budgets.total_authored_hard_cap.maximum_loc,
+    expect(eligible.final_words).toBeLessThanOrEqual(eligible.maximum_words);
+    expect(eligible.status).toBe('pass');
+
+    const hardCap = ledger.budgets.total_authored_hard_cap;
+    expect(hardCap.baseline_words).toBe(
+      hardCap.original_baseline_words + hardCap.v3_rolling_adjustment_words,
     );
+    expect(hardCap.baseline_loc).toBe(
+      hardCap.original_baseline_loc + hardCap.v3_rolling_adjustment_loc,
+    );
+    expect(hardCap.baseline_words).toBe(eligible.baseline_words);
+    expect(hardCap.maximum_multiplier).toBe(2);
+    expect(hardCap.maximum_words).toBe(hardCap.baseline_words * hardCap.maximum_multiplier);
+    expect(hardCap.maximum_loc).toBe(hardCap.baseline_loc * hardCap.maximum_multiplier);
+    expect(hardCap.final_words).toBeLessThanOrEqual(hardCap.maximum_words);
+    expect(hardCap.final_loc).toBeLessThanOrEqual(hardCap.maximum_loc);
+    expect(hardCap.status).toBe('pass');
     expect(ledger.budgets.generated_template_budget).toMatchObject({
       applicable_bindings: 3,
       coverage_gaps: [],

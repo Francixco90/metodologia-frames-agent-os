@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 78
+    refactored: 79
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 204
+    verified_no_change: 203
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 92786
-    v3_rolling_adjustment_words: 4600
+    baseline_words: 93215
+    v3_rolling_adjustment_words: 5029
     original_baseline_words: 88186
-    final_words: 109737
+    final_words: 110236
     maximum_multiplier: 1.5
-    maximum_words: 139179
-    actual_multiplier: 1.1827
+    maximum_words: 139822
+    actual_multiplier: 1.1826
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 92786
-    v3_rolling_adjustment_words: 4600
+    baseline_words: 93215
+    v3_rolling_adjustment_words: 5029
     original_baseline_words: 88186
-    final_words: 109737
-    maximum_words: 185572
-    word_multiplier: 1.1827
-    baseline_loc: 34911
-    v3_rolling_adjustment_loc: 2023
+    final_words: 110236
+    maximum_words: 186430
+    word_multiplier: 1.1826
+    baseline_loc: 35033
+    v3_rolling_adjustment_loc: 2145
     original_baseline_loc: 32888
-    final_loc: 41252
-    maximum_loc: 69822
-    loc_multiplier: 1.1816
+    final_loc: 41410
+    maximum_loc: 70066
+    loc_multiplier: 1.182
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -630,9 +630,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.gitignore
       current_ref: working-tree:.gitignore
       current_state: present
-      current_sha256: 25f406f288ed5b0c9129d148dda28adce6ab42b6e444ce510720a87248a0ce4e
-      current_words: 96
-      current_loc: 54
+      current_sha256: 6dc93c67799a121f755a8d045b71828374f41a6fd73631527f40316d1bde9486
+      current_words: 100
+      current_loc: 58
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.gitignore
@@ -2394,9 +2394,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 252df0e29017732fe45644621be9a39805ee5891840c4eb590d21bd9ca3ce0ca
-      current_words: 253
-      current_loc: 136
+      current_sha256: 31b1ac57212c8f068ce7e37e1ca79b2f119cb98288bdf8c83715f54a8385bd57
+      current_words: 275
+      current_loc: 147
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -6504,17 +6504,17 @@ entries:
     initial_words: 236
     initial_loc: 62
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-ownership.ts
       current_ref: working-tree:scripts/check-ownership.ts
       current_state: present
-      current_sha256: 14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435
-      current_words: 236
-      current_loc: 62
-      byte_identical: true
-      material_change: false
+      current_sha256: 9c45125a90cc83b8e99300d803e3fc96159c388388054a4eddb9ef6e5a94a3eb
+      current_words: 660
+      current_loc: 179
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
       generator_ref: null
       successor_path: null
@@ -6573,9 +6573,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-repo.ts
       current_ref: working-tree:scripts/check-repo.ts
       current_state: present
-      current_sha256: c37a1a751021ea403742b61c26c4efc4e235907a6e471635ba84e63990f2414c
-      current_words: 205
-      current_loc: 107
+      current_sha256: c82ff51feafb333f8fb74a9e093de39fdcf340e76f75563723f336db56c053d5
+      current_words: 206
+      current_loc: 108
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**

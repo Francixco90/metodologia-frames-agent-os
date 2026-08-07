@@ -6,6 +6,7 @@ writers:
     - AGENTS.md
     - CLAUDE.md
     - GEMINI.md
+    - changelog.md
     - CONTRIBUTING.md
     - SECURITY.md
     - docs/**
@@ -67,6 +68,7 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/committee/**
     - projects/pilot-carousel-001/orchestration/**
   skill-foundry:
+    - .agents/skills/harness-creator/templates/CLAUDE.md
     - skills/**
     - registries/skills/**
   web:
@@ -126,6 +128,10 @@ writers:
     - receipts/dependency-audits/**
     - receipts/check-runs/**
     - evals/**
+    - 05_verificacion/evals/**
+    - 05_verificacion/tests/unit/docs-budget-v2.test.ts
+    - 05_verificacion/tests/unit/ledger-decision.test.ts
+    - 05_verificacion/tests/unit/ledger-path-utils.test.ts
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**

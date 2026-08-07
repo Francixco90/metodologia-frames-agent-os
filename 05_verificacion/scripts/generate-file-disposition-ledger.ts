@@ -13,7 +13,14 @@
 // cohesive computation rather than decoupling concerns. Kept intact as a
 // documented carve-out; flagged coverage_gap against the 100-line norm.
 // [CONFIG]
-import {existsSync, readFileSync, realpathSync, writeFileSync} from 'node:fs';
+import {
+  existsSync,
+  readFileSync,
+  realpathSync,
+  renameSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {parse, stringify} from 'yaml';
@@ -390,13 +397,26 @@ export const buildLedger = (root = process.cwd()) => {
 
 export type Ledger = ReturnType<typeof buildLedger>;
 
+const writeProjectionAtomically = (path: string, contents: string): void => {
+  const temporaryPath = `${path}.${process.pid}.tmp`;
+  try {
+    writeFileSync(temporaryPath, contents);
+    renameSync(temporaryPath, path);
+  } finally {
+    if (existsSync(temporaryPath)) unlinkSync(temporaryPath);
+  }
+};
+
 export const writeLedger = (root = process.cwd()): void => {
   const ledger = buildLedger(root);
-  writeFileSync(
+  writeProjectionAtomically(
     resolve(root, 'docs/program/file-disposition-ledger.yml'),
     stringify(ledger, {lineWidth: 0}),
   );
-  writeFileSync(resolve(root, 'docs/program/file-disposition-ledger.md'), markdownFor(ledger));
+  writeProjectionAtomically(
+    resolve(root, 'docs/program/file-disposition-ledger.md'),
+    markdownFor(ledger),
+  );
 };
 
 export const validateDispositionLedger = (root = process.cwd()): string[] => {
