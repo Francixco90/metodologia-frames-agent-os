@@ -3,6 +3,28 @@
 8 reglas que gobiernan el workflow. Source of truth para
 `scripts/workflow-audit.mjs` y `scripts/check-skill.mjs`.
 
+## Outputs
+
+- Composición HTML+GSAP determinista (offline-first)
+- Render final verificado (frames Playwright + FFmpeg)
+- Audit PASS con gates step-gated cubiertas
+
+## Deliverables
+
+- `renders/final.mp4` (RENDERED_DRAFT)
+- reporte de audit `workflow-audit.mjs` PASS
+- design source resuelto (`frame.md` → `design.md` → `DESIGN.md`)
+
+## Schematic
+
+```mermaid
+flowchart LR
+  S[setup] --> P[plan] --> R[resolve] --> B[build] --> A[assemble] --> V{verify}
+  V -->|PASS| F[finalize]
+  V -->|FAIL| R
+  F --> G["G13-G17 manual"]
+```
+
 ## Reglas
 
 1. **Hash-bound.** Workflow state auditable (`workflow-audit.mjs` PASS). Sin

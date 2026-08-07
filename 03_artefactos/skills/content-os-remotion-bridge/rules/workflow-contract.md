@@ -5,6 +5,28 @@ workflow contract. It translates existing compositions between the two Content
 OS paradigms (Remotion ↔ HTML+GSAP) and enforces the determinism contract of
 the target paradigm.
 
+## Outputs
+
+- Composición traducida entre Remotion ↔ HTML+GSAP
+- Contrato de determinismo del paradigma destino enforced
+- Audit PASS (`workflow-audit.mjs`)
+
+## Deliverables
+
+- composición destino (HTML+GSAP o Remotion)
+- mapeo tween/pose/media trazable
+- reporte de audit PASS
+
+## Schematic
+
+```mermaid
+flowchart LR
+  S[setup] --> P[plan] --> R[resolve] --> B[build] --> A[assemble] --> V{verify}
+  V -->|PASS| F[finalize]
+  V -->|FAIL| R
+  F --> G["G13-G17 manual"]
+```
+
 ## Rules
 
 1. **Orchestrator, no rules of its own.** The bridge delegates composition structure to `content-os-core`, tween mapping to `content-os-animation`, pose/determinism to `content-os-keyframes`, block reuse to `content-os-registry`, media element mapping to `content-os-media`. It does not author creative (`content-os-creative` is out of scope).
