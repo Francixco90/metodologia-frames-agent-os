@@ -2,6 +2,19 @@ export const BASELINE_COMMIT = '4c8c16820aa3abe9f4089a1f88c093e2ea58140f';
 export const BASELINE_FILE_COUNT = 387;
 export const V2_CLOSURE_COMMIT = '7c26b6719451de7b0101262f3c379f85a251f939';
 
+// Per-file baseline overrides (targeted re-baseline). [CONFIG]
+// Map of path -> commit whose blob stands in for BASELINE_COMMIT for that path.
+// Used when a file's growth is accepted as a new baseline (governance decision),
+// without re-baselining the whole corpus. Each override pins the file's
+// initial_words/initial_sha256 to the override commit's content; future growth
+// is still measured against the override (2x cap applies).
+// - README.md -> 65ace0b: PR-B system update (legitimate growth accepted).
+// - AGENTS.md -> 8856e18: canonical-cardinal refactor (pre-existing accepted).
+export const BASELINE_OVERRIDES: Readonly<Record<string, string>> = {
+  'README.md': '65ace0b',
+  'AGENTS.md': '8856e18',
+};
+
 export const artifactClasses = [
   'canonical_editable',
   'generated',

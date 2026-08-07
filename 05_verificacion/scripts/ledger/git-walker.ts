@@ -4,7 +4,11 @@
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 
-import {BASELINE_COMMIT, type TextMetrics} from '../lib/file-disposition-policy-v3.ts';
+import {
+  BASELINE_COMMIT,
+  BASELINE_OVERRIDES,
+  type TextMetrics,
+} from '../lib/file-disposition-policy-v3.ts';
 
 export const sha256 = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
 
@@ -81,5 +85,16 @@ export const baselineBlobs = (root: string) => {
     output,
     refs.map(({objectId}) => objectId),
   );
-  return refs.map((ref, index) => ({...ref, bytes: bytes[index] as Buffer}));
+  return refs.map((ref, index) => {
+    let bytesForPath = bytes[index] as Buffer;
+    // Apply per-file baseline overrides (targeted re-baseline). [CONFIG]
+    const overrideCommit = BASELINE_OVERRIDES[ref.path];
+    if (overrideCommit) {
+      bytesForPath = execFileSync('git', ['show', `${overrideCommit}:${ref.path}`], {
+        cwd: root,
+        maxBuffer: 256 * 1024 * 1024,
+      });
+    }
+    return {...ref, bytes: bytesForPath};
+  });
 };
