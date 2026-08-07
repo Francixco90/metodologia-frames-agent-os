@@ -1,6 +1,6 @@
 # Artifact Registry — Multimedia P00–P09
 
-**Fuente**: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato. Los 28 artefactos nombrados que circulan por la cadena P00→P09. [DOC]
+**Fuente**: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato. Los 33 artefactos nombrados que circulan por la cadena P00→P09. [DOC]
 
 Cada artefacto tiene un `schema_ref` (relativo al repo) que valida su estructura. El `workflow.yml.outputs` de cada etapa declara qué artefactos produce; el `workflow.yml.inputs` de la etapa siguiente los consume (handoff fail-closed).
 
@@ -44,7 +44,18 @@ Cada artefacto tiene un `schema_ref` (relativo al repo) que valida su estructura
 
 ## Estado de los schemas
 
-Los `schema_ref` listados apuntan a `02_proceso/workflows/multimedia/_schema/artifacts/`. **Estado: `coverage_gap`** — los schemas por-artefacto no están materializados en esta fase candidate; el `workflow.yml.outputs.schema_ref` los declara como contrato forward. El runner valida el `workflow.yml` contra `multimedia-workflow-v1` (que valida que `schema_ref` sea un `RelativePathSchema` válido), pero no valida aún el contenido del artefacto contra su schema específico. [SUPUESTO] se resuelve en Phase 3 D4 (evals por workflow).
+Los `schema_ref` listados apuntan a `02_proceso/workflows/multimedia/_schema/artifacts/`. **Estado:
+envelope materializado** — 33 schemas Zod emitidos por `05_verificacion/scripts/scaffold-artifact-schemas.ts`
+(`pnpm mw:scaffold-artifacts`). Cada schema valida el **envelope** del artefacto (identity + handoff:
+`artifact_id`, `display_name`, `stage`, `producer_stage`/`consumer_stage`, `required`, `provenance`)
+contra la tabla anterior — contrato real, no forward.
+
+**`coverage_gap`**: el campo `content` (`z.unknown()`) no valida contenido creativo. Los field
+definitions de `MIA-MEDIA-LIB-2.0.0` no están en este repo; fabricarlos violaría fail-closed. La
+validación de contenido se resuelve cuando la lib aterrice (Phase 3 D4, evals por workflow).
+
+El gate `MW_CAPABILITY` (MW-CAP-04) ahora verifica **file existence** del `.schema.ts` + entrada en
+este registro — el binding `capability_map.assets` → schema es real, no forward-contract.
 
 ## Handoff
 
