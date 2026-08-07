@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P05
 command: /disenar-pieza
-title: "Diseña la pieza multimedia"
-purpose: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
+title: 'Diseña la pieza multimedia'
+purpose: 'Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.'
 variables:
   - name: BRIEF_APROBADO
-    default: "Una audiencia situada, una tesis, una promesa, evidencia visible, límites de marca y una acción esperada."
+    default: 'Una audiencia situada, una tesis, una promesa, evidencia visible, límites de marca y una acción esperada.'
   - name: PIEZA_Y_RUTA
-    default: "Recomienda entre imagen, serie/carrusel, miniclip, video, audio, pieza sin rostro o híbrida, y entre IA nativa, captura real asistida o combinación."
+    default: 'Recomienda entre imagen, serie/carrusel, miniclip, video, audio, pieza sin rostro o híbrida, y entre IA nativa, captura real asistida o combinación.'
   - name: ACTIVOS_Y_RESTRICCIONES
-    default: "Usa activos existentes cuando aporten; recursos moderados, derechos visibles, identidad protegida y diseño reutilizable para las plataformas pertinentes."
+    default: 'Usa activos existentes cuando aporten; recursos moderados, derechos visibles, identidad protegida y diseño reutilizable para las plataformas pertinentes.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,30 @@ metadata:
 # Diseña la pieza multimedia · P05
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · guion · storyboard · activos · continuidad [DOC]
+
+## Outputs
+
+- Especificación creativa del guion y la secuencia
+- Continuidad y mapa de activos coordinados
+- Prompts universales y derivados listos
+
+## Deliverables
+
+- `creative-spec-v1`
+- `continuity-bible-v1`
+- `asset-map-v1`
+- `universal-prompts-v1`
+- `derivatives-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Brief aprobado"] --> P{"Diseño creativo"}
+  P --> O1["Creative Spec"] & O2["Continuity Bible"] & O3["Asset Map"] & O4["Universal prompts"] & O5["Derivatives"]
+  O1 & O2 & O3 & O4 & O5 --> G["MW_SPEC_APPROVED / G14"]
+  G --> N["P06 crear-activos"]
+```
 
 ## ES — SPEC verbatim
 

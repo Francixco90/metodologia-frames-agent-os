@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P09
 command: /distribuir
-title: "Empaqueta, publica, conversa o aprende"
-purpose: "Separa empaque, publicación, comunidad y aprendizaje para operar con control."
+title: 'Empaqueta, publica, conversa o aprende'
+purpose: 'Separa empaque, publicación, comunidad y aprendizaje para operar con control.'
 variables:
   - name: PAQUETE_O_RESULTADOS
-    default: "Máster y derivados aprobados, captions, portada, Brief, Brand OS, derechos y, para Aprendizaje, métricas y observaciones disponibles."
+    default: 'Máster y derivados aprobados, captions, portada, Brief, Brand OS, derechos y, para Aprendizaje, métricas y observaciones disponibles.'
   - name: OBJETIVO_Y_PLATAFORMAS
-    default: "Construir confianza y conversación en Instagram, TikTok, LinkedIn, YouTube, Facebook y X, publicando solo donde la pieza tenga una función clara."
+    default: 'Construir confianza y conversación en Instagram, TikTok, LinkedIn, YouTube, Facebook y X, publicando solo donde la pieza tenga una función clara.'
   - name: MODO_Y_AUTORIZACIÓN
-    default: "Selecciona solo Empaque, Publicación, Comunidad o Aprendizaje; publicación manual por defecto y ninguna acción irreversible sin versión, cuenta y aprobación explícitas."
+    default: 'Selecciona solo Empaque, Publicación, Comunidad o Aprendizaje; publicación manual por defecto y ninguna acción irreversible sin versión, cuenta y aprobación explícitas.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Empaqueta, publica, conversa o aprende · P09
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · copy · plataformas · comunidad · analítica [DOC]
+
+## Outputs
+
+- Paquete por plataforma listo
+- Registro de publicación trazable
+- Reporte de aprendizaje cerrando el ciclo
+
+## Deliverables
+
+- `platform-package-v1`
+- `publication-record-v1`
+- `learning-report-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Export Matrix"] --> P{"Distribuir"}
+  P --> O1["Platform Package"] & O2["Publication Record"] & O3["Learning Report"]
+  O1 & O2 & O3 --> G["MW_DISTRIBUTION_AUTHORIZED / READY"]
+  G --> N["ciclo cerrado"]
+```
 
 ## ES — SPEC verbatim
 

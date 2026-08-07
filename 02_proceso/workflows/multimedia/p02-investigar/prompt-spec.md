@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P02
 command: /investigar
-title: "Investiga y fortalece una idea"
-purpose: "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
+title: 'Investiga y fortalece una idea'
+purpose: 'Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.'
 variables:
   - name: TEMA_O_AFIRMACIÓN
-    default: "Una hipótesis, pregunta, dato, tendencia, referencia o claim que podría convertirse en contenido."
+    default: 'Una hipótesis, pregunta, dato, tendencia, referencia o claim que podría convertirse en contenido.'
   - name: AUDIENCIA_Y_ÁNGULO
-    default: "Audiencia no técnica; busco una perspectiva propia, útil y matizada, no una recopilación genérica ni una imitación de referentes."
+    default: 'Audiencia no técnica; busco una perspectiva propia, útil y matizada, no una recopilación genérica ni una imitación de referentes.'
   - name: PROFUNDIDAD_Y_VIGENCIA
-    default: "Prioriza fuentes primarias u oficiales, verifica información actual al ejecutar, registra fecha y limita la investigación a lo necesario para decidir la pieza."
+    default: 'Prioriza fuentes primarias u oficiales, verifica información actual al ejecutar, registra fecha y limita la investigación a lo necesario para decidir la pieza.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Investiga y fortalece una idea · P02
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · claims · fuentes · objeciones · precisión [DOC]
+
+## Outputs
+
+- Claims verificados contra fuentes rastreables
+- Oportunidades y matices mapeados
+- Banco de preguntas editorial priorizado
+
+## Deliverables
+
+- `claim-register-v1`
+- `opportunity-map-v1`
+- `question-bank-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Shortlist + claims"] --> P{"Investigar"}
+  P --> O1["Claim Register"] & O2["Opportunity Map"] & O3["Question Bank"]
+  O1 & O2 & O3 --> G["DISCOVERED"]
+  G --> N["P03 crear-brief"]
+```
 
 ## ES — SPEC verbatim
 

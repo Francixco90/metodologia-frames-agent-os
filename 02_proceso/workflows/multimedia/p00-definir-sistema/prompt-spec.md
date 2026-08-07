@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P00
 command: /definir-sistema
-title: "Define tu sistema creativo"
-purpose: "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación."
+title: 'Define tu sistema creativo'
+purpose: 'Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.'
 variables:
   - name: CONTEXTO_PERSONAL
-    default: "Soy una persona experta en mi campo; quiero crear contenido, pero todavía no tengo un sistema de marca consolidado ni deseo sobreactuar autoridad."
+    default: 'Soy una persona experta en mi campo; quiero crear contenido, pero todavía no tengo un sistema de marca consolidado ni deseo sobreactuar autoridad.'
   - name: OBJETIVO_FUNDACIONAL
-    default: "Construir confianza, comunidad y oportunidades mediante contenido útil, reconocible y sostenible; selecciona una sola modalidad entre Perfil, Brand OS, Calibración de voz o Piloto según lo que ya exista."
+    default: 'Construir confianza, comunidad y oportunidades mediante contenido útil, reconocible y sostenible; selecciona una sola modalidad entre Perfil, Brand OS, Calibración de voz o Piloto según lo que ya exista.'
   - name: LÍMITES_Y_RECURSOS
-    default: "Usa solo información confirmada del mismo creador, recursos existentes, exposición personal controlada, publicación manual inicial y máximo tres preguntas por ronda."
+    default: 'Usa solo información confirmada del mismo creador, recursos existentes, exposición personal controlada, publicación manual inicial y máximo tres preguntas por ronda.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Define tu sistema creativo · P00
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · identidad · voz · Brand OS · piloto [DOC]
+
+## Outputs
+
+- Perfil creativo y Brand OS definidos bajo aprobación
+- Modalidad piloto elegida, una por vez
+- Calibración y plan piloto listos para ejecución
+
+## Deliverables
+
+- `brand-os-v1`
+- `calibration-sample-v1`
+- `pilot-plan-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Perfil + consentimiento"] --> P{"Definir sistema"}
+  P --> O1["Brand OS"] & O2["Calibration"] & O3["Pilot plan"]
+  O1 & O2 & O3 --> G["DEFINED"]
+  G --> N["P01 curar-material"]
+```
 
 ## ES — SPEC verbatim
 

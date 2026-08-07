@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P07
 command: /revisar
-title: "Revisa material multimedia"
-purpose: "Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas."
+title: 'Revisa material multimedia'
+purpose: 'Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas.'
 variables:
   - name: MATERIAL
-    default: "Guion, imágenes, fotografías, audio, clips, video, transcripción, rough cut o pieza híbrida; usa solo lo realmente accesible."
+    default: 'Guion, imágenes, fotografías, audio, clips, video, transcripción, rough cut o pieza híbrida; usa solo lo realmente accesible.'
   - name: REFERENCIA
-    default: "Brief, Creative Specification, Brand OS y criterios de aceptación aprobados; si faltan, reconstruye un objetivo provisional y márcalo."
+    default: 'Brief, Creative Specification, Brand OS y criterios de aceptación aprobados; si faltan, reconstruye un objetivo provisional y márcalo.'
   - name: ETAPA_Y_PRIORIDAD
-    default: "Revisión del material existente, priorizando fidelidad, claridad, derechos, accesibilidad y cambios de mayor retorno antes de invertir más."
+    default: 'Revisión del material existente, priorizando fidelidad, claridad, derechos, accesibilidad y cambios de mayor retorno antes de invertir más.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Revisa material multimedia · P07
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · diagnóstico · fidelidad · QC · correcciones [DOC]
+
+## Outputs
+
+- Reporte de revisión solo de lo observable
+- Veredicto accionable
+- Top-5 correcciones priorizadas
+
+## Deliverables
+
+- `review-report-v1`
+- `verdict-v1`
+- `top5-changes-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Asset Package"] --> P{"Revisar"}
+  P --> O1["Review Report"] & O2["Verdict"] & O3["Top-5 changes"]
+  O1 & O2 & O3 --> G["REVIEW_SHOTS_APPROVED"]
+  G --> N["P08 editar"]
+```
 
 ## ES — SPEC verbatim
 

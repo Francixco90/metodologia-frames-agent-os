@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P08
 command: /editar
-title: "Edita, compone y reutiliza"
-purpose: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
+title: 'Edita, compone y reutiliza'
+purpose: 'Monta, compone, localiza y reutiliza con lineage, QC y rollback.'
 variables:
   - name: ACTIVOS_Y_REVISIÓN
-    default: "Activos aprobados, Brief, Creative Specification, Brand OS y Review Report; conserva versiones, procedencia y derechos."
+    default: 'Activos aprobados, Brief, Creative Specification, Brand OS y Review Report; conserva versiones, procedencia y derechos.'
   - name: RESULTADO
-    default: "Crear un máster candidato y derivados autónomos; selecciona una modalidad entre Plan, Ejecución, Híbrido, Largo a corto, Localización o QC."
+    default: 'Crear un máster candidato y derivados autónomos; selecciona una modalidad entre Plan, Ejecución, Híbrido, Largo a corto, Localización o QC.'
   - name: ENTORNO_Y_RESTRICCIONES
-    default: "Inspecciona herramientas reales, prioriza edición mínima y patches locales, protege identidad, accesibilidad y rollback, y entrega handoff cuando no puedas ejecutar."
+    default: 'Inspecciona herramientas reales, prioriza edición mínima y patches locales, protege identidad, accesibilidad y rollback, y entrega handoff cuando no puedas ejecutar.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Edita, compone y reutiliza · P08
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · EDL · composición · derivados · rollback [DOC]
+
+## Outputs
+
+- Candidato de edición montado con lineage
+- EDL y handoff QC completos
+- Matriz de exportación con rollback
+
+## Deliverables
+
+- `edit-candidate-v1`
+- `edl-v1`
+- `export-matrix-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Veredicto + top-5"] --> P{"Editar"}
+  P --> O1["Edit Candidate"] & O2["EDL"] & O3["Export Matrix"]
+  O1 & O2 & O3 --> G["MW_EDIT_APPROVED / POSTPRODUCTION_VALIDATED"]
+  G --> N["P09 distribuir"]
+```
 
 ## ES — SPEC verbatim
 

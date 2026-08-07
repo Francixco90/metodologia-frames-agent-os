@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P04
 command: /calendarizar
-title: "Construye un calendario editorial realista"
-purpose: "Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje."
+title: 'Construye un calendario editorial realista'
+purpose: 'Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.'
 variables:
   - name: TRABAJO_DISPONIBLE
-    default: "Briefs aprobados, banco de ideas y activos existentes; si hay poco material, prioriza una pieza matriz y un derivado."
+    default: 'Briefs aprobados, banco de ideas y activos existentes; si hay poco material, prioriza una pieza matriz y un derivado.'
   - name: HORIZONTE_Y_CANALES
-    default: "Diseña un sprint semanal o calendario de 30 días para las plataformas que tengan una función clara; conserva espacio evergreen y reactivo."
+    default: 'Diseña un sprint semanal o calendario de 30 días para las plataformas que tengan una función clara; conserva espacio evergreen y reactivo.'
   - name: CAPACIDAD_OPERATIVA
-    default: "Una persona, recursos existentes, publicación manual, máximo dos piezas en curso, un bloque de trabajo principal por semana y buffers para revisión."
+    default: 'Una persona, recursos existentes, publicación manual, máximo dos piezas en curso, un bloque de trabajo principal por semana y buffers para revisión.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Construye un calendario editorial realista · P04
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · calendario · capacidad · WIP · buffers [DOC]
+
+## Outputs
+
+- Calendario editorial realista con dependencias
+- Tablero de capacidad por sprint
+- Plan por lote medible antes de extender
+
+## Deliverables
+
+- `editorial-calendar-v1`
+- `board-v1`
+- `batch-plan-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Brief aprobado"] --> P{"Calendarizar"}
+  P --> O1["Editorial Calendar"] & O2["Board"] & O3["Batch Plan"]
+  O1 & O2 & O3 --> G["DEFINED"]
+  G --> N["P05 disenar-pieza"]
+```
 
 ## ES — SPEC verbatim
 
