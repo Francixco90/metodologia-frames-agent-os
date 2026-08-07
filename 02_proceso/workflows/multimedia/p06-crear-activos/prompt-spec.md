@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P06
 command: /crear-activos
-title: "Crea los activos multimedia"
-purpose: "Genera, guía o especifica activos por etapas, con evidencia y estado exacto."
+title: 'Crea los activos multimedia'
+purpose: 'Genera, guía o especifica activos por etapas, con evidencia y estado exacto.'
 variables:
   - name: ESPECIFICACIÓN_Y_REFERENCIAS
-    default: "Creative Specification, Asset Map, Biblia de continuidad y referencias aprobadas; usa únicamente archivos realmente accesibles."
+    default: 'Creative Specification, Asset Map, Biblia de continuidad y referencias aprobadas; usa únicamente archivos realmente accesibles.'
   - name: RUTA_Y_ACTIVOS
-    default: "Recomienda o ejecuta una sola ruta: IA nativa, captura real asistida, híbrida o rescate; crea solo los activos necesarios para la siguiente revisión."
+    default: 'Recomienda o ejecuta una sola ruta: IA nativa, captura real asistida, híbrida o rescate; crea solo los activos necesarios para la siguiente revisión.'
   - name: ENTORNO_Y_LÍMITES
-    default: "Inspecciona capacidades reales, evita compras, protege rostros, voces, marcas y terceros, registra versiones y entrega handoff si no puedes ejecutar."
+    default: 'Inspecciona capacidades reales, evita compras, protege rostros, voces, marcas y terceros, registra versiones y entrega handoff si no puedes ejecutar.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,29 @@ metadata:
 # Crea los activos multimedia · P06
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · generación · captura · híbrido · handoff [DOC]
+
+## Outputs
+
+- Paquete de activos generado por etapas con estado exacto
+- Manifiesto de activos trazable
+- Reporte de capacidad y evidencia de herramienta
+
+## Deliverables
+
+- `asset-package-v1`
+- `asset-manifest-v1`
+- `capability-report-v1`
+- `tool-run-evidence-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Creative Spec + Asset Map"] --> P{"Crear activos"}
+  P --> O1["Asset Package"] & O2["Manifest"] & O3["Capability Report"] & O4["Tool Evidence"]
+  O1 & O2 & O3 & O4 --> G["MW_ASSET_REVIEW / BUILD_VALIDATED"]
+  G --> N["P07 revisar"]
+```
 
 ## ES — SPEC verbatim
 

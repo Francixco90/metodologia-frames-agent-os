@@ -2,6 +2,28 @@
 
 Ground-truth rules. Orchestrator enforces; capabilities execute.
 
+## Outputs
+
+- Composición HTML+GSAP determinista (offline-first)
+- Render final verificado (frames Playwright + FFmpeg)
+- Audit PASS con gates step-gated cubiertas
+
+## Deliverables
+
+- `renders/final.mp4` (RENDERED_DRAFT)
+- reporte de audit `workflow-audit.mjs` PASS
+- design source resuelto (`frame.md` → `design.md` → `DESIGN.md`)
+
+## Schematic
+
+```mermaid
+flowchart LR
+  S[setup] --> P[plan] --> R[resolve] --> B[build] --> A[assemble] --> V{verify}
+  V -->|PASS| F[finalize]
+  V -->|FAIL| R
+  F --> G["G13-G17 manual"]
+```
+
 1. **Orchestrator, no rules.** This workflow orchestrates steps + gates. Design
    and motion rules live in capabilities. Do not duplicate.
 2. **Capture is Step 1 (URL input), no fabrication.** Explicit URL → Playwright

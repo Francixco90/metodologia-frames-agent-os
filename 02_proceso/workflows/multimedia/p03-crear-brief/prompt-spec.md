@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P03
 command: /crear-brief
-title: "Crea el brief o la campaña"
-purpose: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
+title: 'Crea el brief o la campaña'
+purpose: 'Define una pieza, sistema de derivados, serie o campaña con funciones distintas.'
 variables:
   - name: OPORTUNIDAD_VALIDADA
-    default: "Una idea, experiencia o hipótesis con audiencia provisional, materiales disponibles y claims pendientes claramente identificados."
+    default: 'Una idea, experiencia o hipótesis con audiencia provisional, materiales disponibles y claims pendientes claramente identificados.'
   - name: OBJETIVO_Y_AUDIENCIA
-    default: "Construir confianza y conversación con una audiencia situada; define una acción coherente y un puente hacia comunidad, colaboración u oportunidad."
+    default: 'Construir confianza y conversación con una audiencia situada; define una acción coherente y un puente hacia comunidad, colaboración u oportunidad.'
   - name: ALCANCE_Y_RECURSOS
-    default: "Recomienda pieza única, pieza matriz, miniserie de máximo cuatro piezas o campaña; considera IA nativa, captura real o híbrida sin calendarizar todavía."
+    default: 'Recomienda pieza única, pieza matriz, miniserie de máximo cuatro piezas o campaña; considera IA nativa, captura real o híbrida sin calendarizar todavía.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Crea el brief o la campaña · P03
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · brief · campaña · A/B · audiencia [DOC]
+
+## Outputs
+
+- Brief o campaña definidos con funciones distintas
+- Conceptos A/B listos para decisión
+- Definition of Ready cumplido
+
+## Deliverables
+
+- `brief-campaign-map-v1`
+- `ab-concepts-v1`
+- `definition-of-ready-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Claims verificados"] --> P{"Crear brief"}
+  P --> O1["Brief/Campaign"] & O2["A/B concepts"] & O3["DoR"]
+  O1 & O2 & O3 --> G["MW_SPEC_APPROVED / DIRECTION_APPROVED"]
+  G --> N["P04 calendarizar"]
+```
 
 ## ES — SPEC verbatim
 

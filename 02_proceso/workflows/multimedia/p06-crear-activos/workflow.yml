@@ -50,6 +50,29 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Si ninguna herramienta puede ejecutar, entrega prompts/instrucciones universales y orden de validación; si un riesgo de identidad, derechos o evidencia permanece abierto, produce solo prototipos no publicables o detén el activo afectado. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Paquete de activos generado por etapas con estado exacto"
+    - "Manifiesto de activos trazable"
+    - "Reporte de capacidad y evidencia de herramienta"
+  deliverables:
+    - asset-package-v1
+    - asset-manifest-v1
+    - capability-report-v1
+    - tool-run-evidence-v1
+  context: "Genera, guía o especifica activos por etapas, con evidencia y estado exacto."
+  cta: "Someter a MW_ASSET_REVIEW; avanzar a P07 revisar."
+capability_map:
+  skills:
+    - content-os-core
+    - content-os-remotion-create
+    - content-os-remotion-render
+    - content-os-media
+  assets:
+    - asset-package-v1
+    - asset-manifest-v1
+    - capability-report-v1
+    - tool-run-evidence-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

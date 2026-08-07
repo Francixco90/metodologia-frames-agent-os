@@ -2,15 +2,15 @@
 schema_version: prompt-spec-v1
 prompt_id: P01
 command: /curar-material
-title: "Convierte tu día a día en oportunidades de contenido"
-purpose: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
+title: 'Convierte tu día a día en oportunidades de contenido'
+purpose: 'Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.'
 variables:
   - name: MATERIAL_COTIDIANO
-    default: "Una idea, nota de voz, foto, video, conversación, pregunta, decisión, error o experiencia reciente; usa solo lo que esté realmente accesible."
+    default: 'Una idea, nota de voz, foto, video, conversación, pregunta, decisión, error o experiencia reciente; usa solo lo que esté realmente accesible.'
   - name: RESULTADO_RELACIONAL
-    default: "Encontrar contenido que pueda generar reconocimiento, confianza o conversación, sin publicar por obligación ni exponer asuntos privados."
+    default: 'Encontrar contenido que pueda generar reconocimiento, confianza o conversación, sin publicar por obligación ni exponer asuntos privados.'
   - name: CAPACIDAD_Y_PRIVACIDAD
-    default: "Puedo trabajar una pieza simple esta semana; conserva como privado lo sensible, pide permiso para terceros y selecciona una sola modalidad: Captura, Triage, Digest o Recuperación."
+    default: 'Puedo trabajar una pieza simple esta semana; conserva como privado lo sensible, pide permiso para terceros y selecciona una sola modalidad: Captura, Triage, Digest o Recuperación.'
 evidence_tuple:
   observado: true
   inferido: true
@@ -25,9 +25,9 @@ sections:
   - DEFINITION_OF_DONE
   - FALLBACK
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
@@ -41,6 +41,28 @@ metadata:
 # Convierte tu día a día en oportunidades de contenido · P01
 
 > Provenance: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato · Estado: candidate · captura · triage · ideas · privacidad [DOC]
+
+## Outputs
+
+- Material cotidiano clasificado en oportunidades trazables
+- Captura mínima propuesta sin obligar a publicar
+- Shortlist digerible priorizada
+
+## Deliverables
+
+- `capture-card-v1`
+- `triage-record-v1`
+- `digest-shortlist-v1`
+
+## Schematic
+
+```mermaid
+flowchart LR
+  I["Material cotidiano"] --> P{"Curar"}
+  P --> O1["Capture Card"] & O2["Triage"] & O3["Shortlist"]
+  O1 & O2 & O3 --> G["CLASSIFIED"]
+  G --> N["P02 investigar"]
+```
 
 ## ES — SPEC verbatim
 

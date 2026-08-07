@@ -24,9 +24,10 @@ vigente está en
 - `02_proceso/agents/RT-01` … `02_proceso/agents/RT-11`: responsabilidades separadas; RT-11 es Guardian.
 - `02_proceso/committees/`: protocolo de cinco especialistas, síntesis, dissent y rúbrica.
 - `03_artefactos/skills/remotion-video-production/`: skill router canónica con 15 módulos.
-- `03_artefactos/skills/vendor/`: publishers vendored reference-only (4 originales + 13 expansión);
+- `03_artefactos/skills/vendor/`: 25 publisher dirs vendored reference-only (originales dual
+  paradigm + expansión multi-vendor, `source-lock.json` hash-bound);
   `03_artefactos/skills/<homólogo>/`: homólogos H-03 hash-bound (`content-os-*`, `design-*`,
-  `dev-*`) ver § Frames ContentOS.
+  `dev-*`, `gstack-*`, `context-*`, `web-*`, `media-*`, `motion-*`) ver § Frames ContentOS.
 - `03_artefactos/adapters/notebooklm/`: contrato de grounding read-only y fail-closed.
 - `03_artefactos/adapters/n8n/`: transporte opcional, inactivo y dry-run; no toma decisiones creativas.
 - `03_artefactos/projects/vs-001-source-to-campaign/`: primer vertical slice y toda su evidencia.
@@ -111,39 +112,115 @@ nuevo entra al registro H-03 (recibo per-skill `receipts/runtime-boundary.yml`,
 ### Publishers vendored (reference-only, bypass `verify:skills`)
 
 Bajo `skills/vendor/` (text-only, `source-lock.json` hash-bound, sin `package.json`,
-sin runtime deps). 4 publishers originales del dual paradigm + 13 repos de expansión:
+sin runtime deps). **25 publisher dirs**: originales del dual paradigm + expansión
+multi-vendor (Fases 2A-2I):
 
-- **Originales**: 48 HyperFrames (15 Fase 0 + 33 Fase 1A, Apache-2.0), 11 Remotion
-  publisher, 3 Bento, 3 Scroll.
-- **Expansión**: gstack (59, MIT), genjutsu (17, MIT), superpowers (14, MIT),
-  ponytail (6, MIT), dn-memory (6, Apache-2.0), taste-skill, emil-skills,
-  extract-design-system, impeccable, ui-ux-pro-max, gsap-skills, anthropics
-  frontend-design (Apache-2.0), vercel web-design-guidelines, design-dna, karpathy,
-  rembg, crawl4ai (MIT/Apache-2.0 dual).
+- **Originales dual paradigm**: `hyperframes` (28 sub-skills Apache-2.0),
+  `remotion-publisher` (12), `bento`, `scroll-experience`, `scroll-world`,
+  `cinematic-scroll`.
+- **Expansión**: `gstack`, `genjutsu`, `superpowers`, `ponytail`, `dn-memory`,
+  `taste-skill`, `emil-skills`, `extract-design-system`, `impeccable`,
+  `ui-ux-pro-max`, `gsap-skills`, `anthropics-skills`, `vercel-skills`,
+  `vercel-agent-skills`, `design-dna`, `karpathy-skills`, `rembg-bg-removal`,
+  `crawl4ai-skill`, `harness-creator`.
 
-### Homólogos hash-bound
+### Homólogos hash-bound (H-03 v3)
 
-- **39 `content-os-*`** en `04_estado/registries/skills/creation-v3-skill-registry.yml`:
-  15 originales (Fase 2-3 + `remotion-bridge`) + 10 Fase 2A HyperFrames
-  (PRs #35/#36/#37/#39/#41) + 11 Fase 2B Remotion (PRs #42-#45) + 3 Fase 2C Bento
-  (#46).
+**152 entradas** en `04_estado/registries/skills/creation-v3-skill-registry.yml`
+(append-only events + versioned current view). Desglose por familia:
+
+- **39 `content-os-*`**: 15 originales (Fase 2-3 + `remotion-bridge`) + 10 Fase 2A
+  HyperFrames (PRs #35/#36/#37/#39/#41) + 11 Fase 2B Remotion (PRs #42-#45) + 3
+  Fase 2C Bento (#46).
 - **28 `design-*`**: 11 design-OS originales (#59-#61) + 16 genjutsu Fase 2F
   (#62-#65) + 1 design-dna Fase 2I (#66).
-- **12 `dev-*`**: 8 Fase 2J batch 1+2 (#67: spec, qa, review, ship, investigate,
-  careful, retro, qa-only) + 4 plan-review Fase 2J batch 3 (#68: plan-eng-review,
-  plan-devex-review, plan-design-review, plan-ceo-review).
+- **51 `dev-*`**: 8 Fase 2J batch 1+2 (#67: spec, qa, review, ship, investigate,
+  careful, retro, qa-only) + 4 plan-review Fase 2J batch 3 (#68) + 39 Fase 7
+  densification (ADR 0027 atemporal naming lift).
+- **14 `gstack-*`**, **10 `context-*`**, **6 `web-*`**, **2 `media-*`**,
+  **1 `motion-*`**, **2 `scroll-*`** homólogos, **2 `remotion-*`** base.
 - **2 base**: `data-visual-composition`, `motion-library-adapters`.
-- **v2** en `04_estado/registries/skills/skill-registry.yml` (shared receipt): familia meta
-  `metodologia-*` + `instagram-*` + `scroll-*` + `remotion-video-production-v2`.
 
-Total H-03 v3: 81 entradas. El gate `verify:skills` corre v2 + v3 + reconcile
-(`scripts/reconcile-skill-registries.ts`) en cada PR: 0 orphans, 0 cross-registry
-dupes, event_ids únicos. Estado del programa multi-vendor (Fases 2A-2D, registry
-reconcile, receipt cascade):
-[`01_intencion/content-os/roadmap.md`](01_intencion/content-os/roadmap.md). Mapeo vendor→nativas:
+**v2** — 10 entradas en `04_estado/registries/skills/skill-registry.yml` (shared
+receipt): familia meta `metodologia-*` + `instagram-*` + `scroll-*` +
+`remotion-video-production-v2`.
+
+**Total: 162 skills** (152 v3 + 10 v2). El gate `verify:skills` corre v2 + v3 +
+reconcile (`scripts/reconcile-skill-registries.ts`) en cada PR: 0 orphans, 0
+cross-registry dupes, event_ids únicos. Estado del programa multi-vendor (Fases
+2A-2D, registry reconcile, receipt cascade, Fase 7 densification):
+[`01_intencion/content-os/roadmap.md`](01_intencion/content-os/roadmap.md). Mapeo
+vendor→nativas:
 [`01_intencion/content-os/capability-matrix.md`](01_intencion/content-os/capability-matrix.md).
 Arquitectura dual paradigm + media model:
 [`01_intencion/content-os/architecture.md`](01_intencion/content-os/architecture.md). [DOC]
+
+### Multimedia workflows (P00-P09)
+
+Cadena determinista de 10 stages en `02_proceso/workflows/multimedia/`
+(`definir-sistema` → `distribuir`), schema `multimedia-workflow-v1` (Zod). Cada
+stage: `workflow.yml` (source of truth con `brief` BLUF + `capability_map`
+skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
+`build.ts`, `notebooklm-binding.yml`, `schematic.html` (brand-ready, generado desde
+template). Quality-gate `MW-Q01..Q10` fail-closed (`_runner/quality-gate.ts`).
+Generator `pnpm mw:render-schematics` (1 template + 1 script → 10 HTML,
+determinista, regenerable). Checker `pnpm verify:multimedia` (gate `MW_CAPABILITY`).
+Chain schematic:
+[`02_proceso/workflows/multimedia/_assets/chain-schematic.md`](02_proceso/workflows/multimedia/_assets/chain-schematic.md). [DOC]
+
+## Governance
+
+`02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
+apunta aquí, no duplica):
+
+- `router.yml` — router R0-R5 (binds_to task/project/eval).
+- `tool-policy.yml` — política de herramientas permitidas por gate.
+- `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
+- `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
+- `loose-task-policy.md` — política de tareas sueltas (harness-creator).
+- `docs-budget-policy.yml` — presupuesto de docs (corpus, hard-cap, history).
+- `multimedia-quality-gate.yml` — quality-gate MW-Q01..Q10 multimedia.
+- `harness-subsystem-reconciliation.md` — reconciliación SPEC 5 subsistemas ↔ harness-creator 7.
+- `ownership-scripts-decision.md` — decisión de ownership de scripts.
+- `a09-a10-cross-verifier-verdict.yml` — veredicto cross-verifier.
+
+Gates → comandos: `05_verificacion/scripts/commands.yaml` (manifiesto `commands-v1`).
+[CONFIG]
+
+## Verification
+
+`05_verificacion/` — subsistema de verificación integral:
+
+- **Gates G00-G21 + MW_**_: `scripts/commands.yaml`. G13-G17 manuales fail-closed
+  (H01 human approval, Guardian lock, readiness, publish). G18-G21 (env drift,
+  eval suite, tool grants convergence, atemporal naming) automatizados. MW__
+  (multimedia: `MW_CAPABILITY`, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
+  `MW_EDIT_APPROVED` P08, `MW_DISTRIBUTION_AUTHORIZED` P09).
+- **Evals**: `evals/H-E001`..`H-E023` + `ablation/` — 23 eval suites con `runner.ts`.
+- **Tests**: 550+ casos (unit/contract/integration) en `tests/`. Harness contract:
+  `tests/contract/harness/`.
+- **Check scripts**: 35 scripts `check-*.ts`/`.mjs` en `scripts/` (brand, repo, skills,
+  env-drift, tool-grants, privacy, multimedia-capabilities, content-os, etc.).
+- **Guardian**: `guardian/` — verificador independiente (producer, verifier, Guardian
+  son distintos).
+- **Receipts append-only**: `04_estado/receipts/check-runs/` (check-run receipts
+  hash-bound), `04_estado/receipts/dependency-audits/` (auditoría de dependencias,
+  schema `dependency-audit-receipt-v1`, `supersedesReceiptId` append-only).
+- **Quality reports**: `quality/` — reports de drift, brand, env.
+
+Verify aggregate: `pnpm verify` (check:repo, check:atemporal, check:md-budgets,
+verify:docs, verify:multimedia, verify:content-os, typecheck, lint, test,
+format:check). [CONFIG]
+
+## ADRs
+
+`01_intencion/adrs/` — Architecture Decision Records (27 decisiones):
+
+- `0001-0020-decisions.md` — decisiones fundacionales (gobernanza, dual paradigm, receipts).
+- `0021-0026-renderer-adapters.md` — renderer adapters (Remotion, HTML+GSAP, Bento, Scroll).
+- `0027-atemporal-naming.md` — naming atemporal (Fase 7 densification 81→152 skills).
+
+[DOC]
 
 ## Principios no negociables
 

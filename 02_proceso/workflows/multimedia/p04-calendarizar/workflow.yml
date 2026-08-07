@@ -49,6 +49,25 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Si faltan briefs, crea un sprint mínimo con una pieza matriz y un derivado; si la capacidad es incierta, planifica la primera semana y mide antes de extender. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Calendario editorial realista con dependencias"
+    - "Tablero de capacidad por sprint"
+    - "Plan por lote medible antes de extender"
+  deliverables:
+    - editorial-calendar-v1
+    - board-v1
+    - batch-plan-v1
+  context: "Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje."
+  cta: "Avanzar a P05 disenar-pieza con calendario aprobado."
+capability_map:
+  skills:
+    - dev-executing-plans
+    - content-os-core
+  assets:
+    - editorial-calendar-v1
+    - board-v1
+    - batch-plan-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
