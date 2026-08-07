@@ -1,0 +1,15 @@
+schema_version: 1
+skill_id: frames-token-efficiency-orchestrator
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_adaptation
+derivation_mode: clean-room-contracts-from-permissive-references
+authority_refs:
+  - skills/frames-token-efficiency-orchestrator/references/source-lock.yml
+  - skills/content-os-router/SKILL.md
+  - skills/dev-dispatching-parallel-agents/SKILL.md
+external_fragments_reused: false
+publication_authority: false
+network_allowed: false
+execution_boundary: requires_user_confirmation

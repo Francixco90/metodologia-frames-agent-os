@@ -805,5 +805,10 @@
     "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/gstack-openclaw-retro/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "frames-token-efficiency-orchestrator",
+    "scope": "local-evaluation",
+    "check": ["skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs"]
   }
 ]

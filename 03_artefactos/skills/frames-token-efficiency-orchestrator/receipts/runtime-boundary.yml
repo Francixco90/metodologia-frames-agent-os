@@ -1,0 +1,21 @@
+schema_version: 1
+receipt_id: frames-token-efficiency-runtime-boundary-v1
+skill_id: frames-token-efficiency-orchestrator
+network_allowed: false
+execution_boundary: requires_user_confirmation
+publication_authority: false
+persistent_proxy_allowed: false
+background_index_allowed: false
+shell_profile_mutation_allowed: false
+global_hook_mutation_allowed: false
+private_runtime_state: required_outside_git
+raw_recovery: required
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
+runtime_status:
+  rtk: eligible_after_preflight
+  ccusage: eligible_read_only_after_preflight
+  caveman: operator_only
+  graphify: opt_in_dev_only
+  claude-native-toolkit: reference_only
+  headroom: shadow_quarantined
+coverage_gap: ChatGPT Desktop account-level routing cannot be enforced from this repository.

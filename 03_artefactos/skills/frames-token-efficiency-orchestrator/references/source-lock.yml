@@ -1,0 +1,43 @@
+schema_version: 1
+lock_id: frames-token-efficiency-sources-v1
+vendor: MetodologIA
+reuse_policy: clean-room-contracts-no-external-fragments
+sources:
+  - id: rtk
+    repository: https://github.com/rtk-ai/rtk
+    version: 0.45.0
+    tag: v0.45.0
+    commit: b34be37caf3796b69a50952a28e60e32b5daad43
+    license: Apache-2.0
+  - id: caveman
+    repository: https://github.com/JuliusBrussee/caveman
+    version: 1.10.0
+    tag: v1.10.0
+    commit: fcf7663366c217dc8f334a11028de52ed950ceab
+    license: MIT
+  - id: graphify
+    repository: https://github.com/Graphify-Labs/graphify
+    version: 0.9.35
+    tag: v0.9.35
+    commit: 9f25a3aaa1050913c2d8a1b9f0b0f0ed18296abd
+    license: Apache-2.0
+  - id: claude-native-toolkit
+    repository: https://github.com/JaviMontano/claude-plugins
+    subpath: plugins/claude-native-toolkit
+    version: 2.11.2
+    tag: v2.11.2
+    commit: ffbcbde19352a09beacef445f793192d5d237960
+    package_sha256: 73ca6575af29ab49a701b4d5befc227568e25e5d2f1deac741d9edd3de2ad308
+    license: MIT
+  - id: ccusage
+    repository: https://github.com/ccusage/ccusage
+    version: 20.0.19
+    tag: v20.0.19
+    commit: caf89e8c0291a2acec09e01ff609e6253f6dd81b
+    license: MIT
+  - id: headroom
+    repository: https://github.com/headroomlabs-ai/headroom
+    version: 0.34.0
+    tag: v0.34.0
+    commit: 9fd5ae3d530b5d9eb9e9127e413235a5a3b2faf6
+    license: Apache-2.0
