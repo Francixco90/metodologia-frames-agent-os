@@ -51,4 +51,8 @@ tmp/
 02_proceso/governance/reports/tool-grants-*.yml
 
 # local agent cabin (settings, scripts) — personal, not for upstream
-.claude/
+.claude/**
+!.claude/agents/
+!.claude/agents/**
+!.claude/workflows/
+!.claude/workflows/**

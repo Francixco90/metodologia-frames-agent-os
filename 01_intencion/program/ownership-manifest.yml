@@ -4,6 +4,8 @@ writers:
   lead:
     - README.md
     - AGENTS.md
+    - CLAUDE.md
+    - GEMINI.md
     - CONTRIBUTING.md
     - SECURITY.md
     - docs/**
@@ -52,6 +54,8 @@ writers:
     - workflows/core/**
     - tests/unit/core/**
   agents-committee:
+    - .claude/agents/**
+    - .claude/workflows/**
     - agents/RT-0[1-9]/**
     - agents/RT-10/**
     - agents/RT-11/**
@@ -73,6 +77,7 @@ writers:
     - content/**
     - networks/content/**
     - workflows/content/**
+    - workflows/multimedia/**
     - registries/content-types/**
     - projects/pilot-carousel-001/editorial/**
     - projects/pilot-carousel-001/spec/**

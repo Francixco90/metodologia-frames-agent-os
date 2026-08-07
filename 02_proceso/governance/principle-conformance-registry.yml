@@ -1,0 +1,248 @@
+schema_version: 1
+registry_id: principle-conformance-v1
+source_of_truth: true
+unknown_defaults_to: GAP
+
+principles:
+  - id: PC-01
+    key: identity_metodologia
+    requirement: MetodologIA es la unica identidad visible
+    responsible: brand
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: AGENTS.md,
+          anchor: 'MetodologIA es la única identidad visible.',
+          evidence_tag: '[CONFIG]',
+        }
+    partial_control_refs:
+      - {implementation_ref: scripts/check-brand.ts}
+      - {implementation_ref: scripts/check-privacy.ts}
+    limit: Los controles actuales no cubren toda salida producida en runtime
+    gap:
+      {missing_control: Escaner integral de identidad sobre outputs runtime, blocking_effect: BLOCK}
+
+  - id: PC-02
+    key: route_before_init
+    requirement: Detectar y bloquear la ruta antes de inicializar ejecucion
+    responsible: lead
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: CLAUDE.md, anchor: 'Clasificar intención', evidence_tag: '[CONFIG]'}
+    limit: El router vigente es declarativo y no procesa el primer prompt
+    gap: {missing_control: Dispatcher ejecutable de intencion, blocking_effect: BLOCK}
+
+  - id: PC-03
+    key: canonical_pipelines_only
+    requirement: Ejecutar solo pipelines y comandos canonicos resolubles
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: CLAUDE.md, anchor: 'Ejecutar comando existente', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-dag.ts}
+    limit: La integridad estatica no vincula prompt ruta workflow y comando
+    gap: {missing_control: Resolucion causal previa a ejecucion, blocking_effect: BLOCK}
+
+  - id: PC-04
+    key: source_first
+    requirement: No promover claims sin hash procedencia derechos y autoridad
+    responsible: sources
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: AGENTS.md, anchor: 'No promover una fuente sin hashes', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-sources.ts}
+      - {implementation_ref: scripts/check-claims.ts}
+    limit: Los checks existentes no autorizan universalmente cada accion runtime
+    gap: {missing_control: Preclear obligatorio por accion, blocking_effect: BLOCK}
+
+  - id: PC-05
+    key: task_dag_authorization
+    requirement: Exigir task contract estado DAG ownership y write set antes de actuar
+    responsible: lead
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: CLAUDE.md, anchor: 'sin write-set claro, no se edita', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-dag.ts}
+      - {implementation_ref: scripts/check-tasks.ts}
+    limit: Los validadores son estaticos y no median cada accion
+    gap: {missing_control: Autorizador causal de ejecucion, blocking_effect: BLOCK}
+
+  - id: PC-06
+    key: one_writer_realpath
+    requirement: Resolver un unico writer por ruta real y verificar el diff
+    responsible: repo
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: AGENTS.md, anchor: 'un writer por ruta', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-ownership.ts}
+    limit: El checker resuelve realpath y valida el diff observado pero no media acciones runtime
+    gap: {missing_control: ACL y autorizacion runtime por accion, blocking_effect: BLOCK}
+
+  - id: PC-07
+    key: minimal_context
+    requirement: Cargar el menor contexto suficiente bajo budget declarado
+    responsible: lead
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: AGENTS.md, anchor: 'Context router', evidence_tag: '[DOC]'}
+    limit: El microprofile es orientativo y permanece apagado por defecto
+    gap: {missing_control: Context budget ejecutable por work order, blocking_effect: BLOCK}
+
+  - id: PC-08
+    key: deterministic_offline
+    requirement: Producir resultados reproducibles sin reloj azar o red no gobernados
+    responsible: remotion
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: README.md, anchor: 'sin red durante render', evidence_tag: '[DOC]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-determinism.ts}
+      - {implementation_ref: scripts/check-multimedia-capabilities.ts}
+    limit: La cobertura estatica no demuestra replay determinista integral
+    gap: {missing_control: Replay material doble y hashes de disco, blocking_effect: BLOCK}
+
+  - id: PC-09
+    key: strict_states
+    requirement: Separar estados tecnicos editoriales humanos readiness y publicacion
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: AGENTS.md,
+          anchor: 'RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED',
+          evidence_tag: '[CONFIG]',
+        }
+    partial_control_refs:
+      - {implementation_ref: scripts/check-projects.ts}
+    limit: El check de proyectos no gobierna todas las transiciones runtime
+    gap: {missing_control: Tabla unica de transiciones autorizadas, blocking_effect: BLOCK}
+
+  - id: PC-10
+    key: fail_closed
+    requirement: Tratar ausencia ambiguedad y UNKNOWN como bloqueo
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: CLAUDE.md,
+          anchor: 'Una ausencia no se sustituye por una inferencia pulida',
+          evidence_tag: '[CONFIG]',
+        }
+    partial_control_refs:
+      - {implementation_ref: scripts/check-multimedia-capabilities.ts}
+    limit: Persisten decisiones parciales que pueden aprobar evidencia desconocida
+    gap: {missing_control: Semantica PASS FAIL UNKNOWN BLOCKED uniforme, blocking_effect: BLOCK}
+
+  - id: PC-11
+    key: role_separation
+    requirement: Mantener producer verifier Guardian y H01 como identidades distintas
+    responsible: agents-committee
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: AGENTS.md,
+          anchor: 'Producer, verifier y Guardian deben ser distintos.',
+          evidence_tag: '[CONFIG]',
+        }
+    partial_control_refs:
+      - {
+          implementation_ref: projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts,
+        }
+    limit: Los contratos estaticos no acreditan instancias runtime distintas
+    gap: {missing_control: Acreditacion de actor y sesion por invocation, blocking_effect: BLOCK}
+
+  - id: PC-12
+    key: guardian_non_remediation
+    requirement: Mantener RT-11 read only y separado de la persistencia del veredicto
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: 02_proceso/governance/tool-policy.yml,
+          anchor: 'may_remediate: false',
+          evidence_tag: '[CONFIG]',
+        }
+    limit: Ownership y tool policy no resuelven quien persiste el veredicto
+    gap: {missing_control: Recorder minimo separado y hash bound, blocking_effect: BLOCK}
+
+  - id: PC-13
+    key: no_cot_private_data
+    requirement: No persistir chain of thought secretos PII ni locators privados
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: AGENTS.md, anchor: 'No persistir chain-of-thought', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-privacy.ts}
+    limit: El scanner versionable no cubre invocaciones y receipts runtime
+    gap: {missing_control: Sanitizacion previa a persistencia, blocking_effect: BLOCK}
+
+  - id: PC-14
+    key: external_effects_disabled
+    requirement: Bloquear publicacion envio y conectores sin autoridad humana
+    responsible: n8n
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {path: AGENTS.md, anchor: 'No activar conectores ni publicar', evidence_tag: '[CONFIG]'}
+    partial_control_refs:
+      - {implementation_ref: scripts/check-n8n.ts}
+    limit: El kill switch existente cubre n8n pero no todo adapter futuro
+    gap: {missing_control: Effect class y kill switch global, blocking_effect: BLOCK}
+
+  - id: PC-15
+    key: atemporal_evolution
+    requirement: Reservar temporalidad para tasks receipts y allowlists declaradas
+    responsible: governance
+    status: ENFORCED
+    evidence_tag: '[CÓDIGO]'
+    source_refs:
+      - {
+          path: 02_proceso/governance/atemporal-naming-policy.md,
+          anchor: 'Gate G21 `check:atemporal`',
+          evidence_tag: '[CÓDIGO]',
+        }
+    limit: Solo nombres versionables; receipts tasks y vendor siguen la allowlist declarada
+    enforcement:
+      control_refs:
+        - {implementation_ref: scripts/check-atemporal.ts, aggregate_ref: package.json}
+      test_refs: [tests/unit/check-atemporal.test.ts]
+      fail_effect: BLOCK
+
+  - id: PC-16
+    key: budgets_as_contract
+    requirement: Resolver budget y hard max para cada archivo nuevo o tocado
+    responsible: governance
+    status: GAP
+    evidence_tag: coverage_gap
+    source_refs:
+      - {
+          path: 02_proceso/governance/docs-budget-policy.yml,
+          anchor: 'budgets:',
+          evidence_tag: '[CONFIG]',
+        }
+    partial_control_refs:
+      - {implementation_ref: scripts/check-md-budgets.ts}
+    limit: La politica vigente cubre Markdown por superficies y conserva deuda legacy en report
+    gap:
+      {
+        missing_control: Policy v2 y checker agregado para todo archivo nuevo o tocado,
+        blocking_effect: BLOCK,
+      }

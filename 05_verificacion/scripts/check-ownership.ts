@@ -1,17 +1,10 @@
-import {readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
-import {parse} from 'yaml';
-import {z} from 'zod';
+import {execFileSync} from 'node:child_process';
 
-const manifestSchema = z.object({
-  version: z.literal(1),
-  policy: z.literal('one-writer-per-path'),
-  writers: z.record(z.string(), z.array(z.string().min(1))),
-  non_writers: z.object({
-    human_approver: z.object({actor_id: z.literal('H01')}),
-    guardian: z.object({may_remediate: z.literal(false)}),
-  }),
-});
+import {
+  buildOwnerResolver,
+  compileOwnershipRoutes,
+  readOwnershipManifest,
+} from './ledger/ownership.ts';
 
 const staticPrefix = (pattern: string): string => pattern.split(/[*?[{]/u, 1)[0] ?? '';
 
@@ -23,34 +16,101 @@ const patternsMayOverlap = (left: string, right: string): boolean => {
   return leftPrefix.startsWith(rightPrefix) || rightPrefix.startsWith(leftPrefix);
 };
 
-export const validateOwnership = (root = process.cwd()): string[] => {
-  const path = resolve(root, 'docs/program/ownership-manifest.yml');
-  const manifest = manifestSchema.parse(parse(readFileSync(path, 'utf8')));
-  const errors: string[] = [];
-  const entries = Object.entries(manifest.writers).flatMap(([writer, patterns]) =>
-    patterns.map((pattern) => ({writer, pattern})),
-  );
+const gitPaths = (root: string, args: string[]): string[] =>
+  execFileSync('git', [args[0] ?? '', '-z', ...args.slice(1)], {cwd: root, encoding: 'utf8'})
+    .split('\0')
+    .filter((path) => path.length > 0);
 
-  for (let leftIndex = 0; leftIndex < entries.length; leftIndex += 1) {
-    const left = entries[leftIndex];
+const commitSha = (root: string, ref: string, required: boolean): string | undefined => {
+  try {
+    return execFileSync(
+      'git',
+      ['rev-parse', '--verify', '--quiet', '--end-of-options', `${ref}^{commit}`],
+      {cwd: root, encoding: 'utf8'},
+    ).trim();
+  } catch {
+    if (required) throw new Error(`OWNERSHIP_BASE_REF no resuelve a commit: ${ref}`);
+    return undefined;
+  }
+};
+
+const changedPaths = (root: string): string[] => {
+  const paths = new Set<string>();
+  const configuredBase = process.env.OWNERSHIP_BASE_REF?.trim();
+  const base = commitSha(
+    root,
+    configuredBase && configuredBase.length > 0 ? configuredBase : 'HEAD^1',
+    configuredBase !== undefined && configuredBase.length > 0,
+  );
+  if (base !== undefined) {
+    for (const path of gitPaths(root, ['diff', '--name-only', `${base}...HEAD`, '--'])) {
+      paths.add(path);
+    }
+  }
+  for (const path of gitPaths(root, ['diff', '--cached', '--name-only', '--'])) paths.add(path);
+  for (const path of gitPaths(root, ['diff', '--name-only', '--'])) paths.add(path);
+  for (const path of gitPaths(root, ['ls-files', '--others', '--exclude-standard']))
+    paths.add(path);
+  return [...paths].sort();
+};
+
+const requiredOwnerProbes = [
+  ['docs/program/dag.yml', 'lead'],
+  ['01_intencion/program/dag.yml', 'lead'],
+  ['docs/program/ownership-manifest.yml', 'lead'],
+  ['01_intencion/program/ownership-manifest.yml', 'lead'],
+  ['CLAUDE.md', 'lead'],
+  ['GEMINI.md', 'lead'],
+  ['.claude/agents/RT-01.md', 'agents-committee'],
+  ['.claude/workflows/pr-00b.ts', 'agents-committee'],
+  ['workflows/multimedia/index.ts', 'content'],
+  ['02_proceso/workflows/multimedia/index.ts', 'content'],
+] as const;
+
+export const validateOwnership = (root = process.cwd()): string[] => {
+  const manifest = readOwnershipManifest(root);
+  const routes = compileOwnershipRoutes(root, manifest);
+  const resolveOwner = buildOwnerResolver(root);
+  const errors: string[] = [];
+
+  for (let leftIndex = 0; leftIndex < routes.length; leftIndex += 1) {
+    const left = routes[leftIndex];
     if (!left) continue;
-    for (let rightIndex = leftIndex + 1; rightIndex < entries.length; rightIndex += 1) {
-      const right = entries[rightIndex];
-      if (!right || left.writer === right.writer) continue;
-      if (patternsMayOverlap(left.pattern, right.pattern)) {
+    for (let rightIndex = leftIndex + 1; rightIndex < routes.length; rightIndex += 1) {
+      const right = routes[rightIndex];
+      if (!right || left.owner === right.owner) continue;
+      if (patternsMayOverlap(left.canonicalPattern, right.canonicalPattern)) {
         errors.push(
-          `colisión potencial: ${left.writer}:${left.pattern} ↔ ${right.writer}:${right.pattern}`,
+          `colisión canónica: ${left.owner}:${left.pattern} ↔ ${right.owner}:${right.pattern}`,
         );
       }
     }
   }
 
-  const forbidden = entries.filter(({pattern}) => pattern === '**' || pattern === '**/*');
-  for (const entry of forbidden) {
-    errors.push(`allowlist global prohibida: ${entry.writer}:${entry.pattern}`);
+  for (const route of routes) {
+    if (route.pattern === '**' || route.pattern === '**/*') {
+      errors.push(`allowlist global prohibida: ${route.owner}:${route.pattern}`);
+    }
   }
 
-  return errors;
+  const assertOwner = (path: string, expected?: string): void => {
+    try {
+      const resolution = resolveOwner(path);
+      if (expected !== undefined && resolution.owner !== expected) {
+        errors.push(`owner incorrecto para ${path}: ${resolution.owner}; esperado ${expected}`);
+      }
+    } catch (error) {
+      errors.push(error instanceof Error ? error.message : String(error));
+    }
+  };
+
+  for (const [path, owner] of requiredOwnerProbes) assertOwner(path, owner);
+  for (const path of gitPaths(root, ['ls-files', '02_proceso/workflows/multimedia/**'])) {
+    assertOwner(path, 'content');
+  }
+  for (const path of changedPaths(root)) assertOwner(path);
+
+  return [...new Set(errors)];
 };
 
 const errors = validateOwnership();
@@ -58,5 +118,7 @@ if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
-  console.info('PASS G04 OWNERSHIP: un writer por allowlist; H01 y Guardian son no-writers.');
+  console.info(
+    'PASS G04 OWNERSHIP: aliases físicos, rutas cambiadas y allowlists resuelven un writer; H01 y Guardian son no-writers.',
+  );
 }
