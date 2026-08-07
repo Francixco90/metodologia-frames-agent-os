@@ -63,6 +63,7 @@ const checks = [
   'check-toolchain.ts',
   'check-dag.ts',
   'check-ownership.ts',
+  'check-principle-conformance.ts',
   'check-projects.ts',
   'check-memory.ts',
   'check-notebooklm.ts',
