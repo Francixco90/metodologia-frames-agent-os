@@ -24,7 +24,10 @@ export const PromptSpecSectionSchema = z.enum([
 export const PromptSpecVariableSchema = z.strictObject({
   name: z
     .string()
-    .regex(/^[\p{Lu}][\p{Lu}\p{N}_]*$/u, 'Expected an UPPER_SNAKE variable name (Unicode uppercase allowed)'),
+    .regex(
+      /^[\p{Lu}][\p{Lu}\p{N}_]*$/u,
+      'Expected an UPPER_SNAKE variable name (Unicode uppercase allowed)',
+    ),
   default: z.string().min(1).max(600),
 });
 

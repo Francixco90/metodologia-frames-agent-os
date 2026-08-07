@@ -17,7 +17,9 @@ export const oracle: Oracle = {
   run: (): OracleOutcome => {
     const checks: OracleOutcome['oracle_checks'] = [];
     const evidence: string[] = [];
-    const dirs = readdirSync(TASKS_DIR, {withFileTypes: true}).filter((e) => e.isDirectory() && e.name.startsWith('TASK-')).map((e) => e.name);
+    const dirs = readdirSync(TASKS_DIR, {withFileTypes: true})
+      .filter((e) => e.isDirectory() && e.name.startsWith('TASK-'))
+      .map((e) => e.name);
     const ids: string[] = [];
     let withOriginal = 0;
     for (const d of dirs) {
@@ -35,11 +37,25 @@ export const oracle: Oracle = {
         withOriginal += 1;
       }
     }
-    checks.push({name: 'at least one backfill-notes with original_id', passed: withOriginal > 0, detail: `${withOriginal} note(s)`});
-    if (withOriginal === 0) return {status: 'skipped', oracle_checks: checks, evidence_hashes: evidence, notes: 'no backfill-notes found'};
+    checks.push({
+      name: 'at least one backfill-notes with original_id',
+      passed: withOriginal > 0,
+      detail: `${withOriginal} note(s)`,
+    });
+    if (withOriginal === 0)
+      return {
+        status: 'skipped',
+        oracle_checks: checks,
+        evidence_hashes: evidence,
+        notes: 'no backfill-notes found',
+      };
     const unique = new Set(ids);
     const dedupOk = unique.size === ids.length;
-    checks.push({name: `dedup: ${ids.length} ids all unique`, passed: dedupOk, detail: dedupOk ? `${unique.size} unique` : `${ids.length - unique.size} duplicates`});
+    checks.push({
+      name: `dedup: ${ids.length} ids all unique`,
+      passed: dedupOk,
+      detail: dedupOk ? `${unique.size} unique` : `${ids.length - unique.size} duplicates`,
+    });
     return {status: dedupOk ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};
   },
 };

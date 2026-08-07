@@ -15,7 +15,7 @@ La máquina de estados de tarea permite la única transición no-monótona
 ## Precondiciones
 
 - `taskPolicies` incluye `{from: 'BLOQUEADO', to: 'ESPECIFICADO', guard:
-  replanGuard}`. [CÓDIGO]
+replanGuard}`. [CÓDIGO]
 - `taskPolicies` no incluye ninguna política con `from: 'BLOQUEADO'` y
   `to: 'COMPILADO'`. [CÓDIGO]
 - `replanGuard` exige evidencia kind `replan`. [CÓDIGO]

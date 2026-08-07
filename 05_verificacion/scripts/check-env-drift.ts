@@ -16,13 +16,7 @@
  */
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from 'node:fs';
+import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {parse} from 'yaml';
 
@@ -127,8 +121,7 @@ const nextReceiptId = (): string => {
   return `C-${String(max + 1).padStart(3, '0')}`;
 };
 
-const sha256 = (text: string): string =>
-  createHash('sha256').update(text).digest('hex');
+const sha256 = (text: string): string => createHash('sha256').update(text).digest('hex');
 
 const main = (): void => {
   if (!existsSync(MANIFEST_PATH)) {
@@ -143,8 +136,7 @@ const main = (): void => {
     return;
   }
   const toolchain = (parsed as Record<string, unknown>).toolchain as
-    | Record<string, string>
-    | undefined;
+    Record<string, string> | undefined;
   if (toolchain === undefined) {
     console.error('[FAIL] env manifest missing toolchain');
     process.exitCode = 1;
@@ -247,7 +239,9 @@ const main = (): void => {
     else if (line.startsWith('[WARN]')) console.warn(line);
     else console.info(line);
   }
-  console.info(`CHECK:ENV receipt=${resolve(receiptDir, 'receipt.yml')} detail=${resolve(receiptDir, 'env-drift-detail.yml')}`);
+  console.info(
+    `CHECK:ENV receipt=${resolve(receiptDir, 'receipt.yml')} detail=${resolve(receiptDir, 'env-drift-detail.yml')}`,
+  );
 
   if (driftCount > 0) process.exitCode = 1;
 };

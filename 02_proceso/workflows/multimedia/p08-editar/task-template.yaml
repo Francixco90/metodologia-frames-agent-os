@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-mw-p08-000
 project_id: null
-objetivo: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
+objetivo: 'Monta, compone, localiza y reutiliza con lineage, QC y rollback.'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,20 +9,20 @@ inputs:
 write_set:
   - 03_artefactos/content/multimedia/p08-editar/**
 no_objetivos:
-  - "Preview no equivale a render; render no equivale a aprobación."
-  - "No alteres rostros, voces, marcas, productos, hechos o atribuciones."
-  - "No uses efectos para ocultar una tesis débil."
-  - "No sincronices captions sensibles por aproximación."
-  - "No regenere todo por un fallo local."
-  - "No publiques ni adaptes a plataformas sin package aprobado."
-  - "Un tool run sin evidencia se marca “especificado, no ejecutado”."
-  - "Si cambió la tesis, regresa al brief."
-done: "Definition of Done"
-validacion: "pnpm mw:run P08 --dry-run && pnpm check:tasks"
+  - 'Preview no equivale a render; render no equivale a aprobación.'
+  - 'No alteres rostros, voces, marcas, productos, hechos o atribuciones.'
+  - 'No uses efectos para ocultar una tesis débil.'
+  - 'No sincronices captions sensibles por aproximación.'
+  - 'No regenere todo por un fallo local.'
+  - 'No publiques ni adaptes a plataformas sin package aprobado.'
+  - 'Un tool run sin evidencia se marca “especificado, no ejecutado”.'
+  - 'Si cambió la tesis, regresa al brief.'
+done: 'Definition of Done'
+validacion: 'pnpm mw:run P08 --dry-run && pnpm check:tasks'
 gaps: []
 state: INTAKE
 created_from_route: R3-LOOSE
-gate_target: "G14"
+gate_target: 'G14'
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:

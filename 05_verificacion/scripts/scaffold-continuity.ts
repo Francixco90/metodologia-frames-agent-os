@@ -14,16 +14,8 @@
  * `TaskContractSchema` is reported and skipped (no inference substituted for
  * the missing contract — escalation, not assumption). [CONFIG]
  */
-import {
-  createHash,
-} from 'node:crypto';
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {parse} from 'yaml';
 
@@ -72,10 +64,8 @@ const blockersFor = (state: string, gaps: string[]): string => {
 };
 
 /** Render a template by substituting `{{key}}` placeholders. [CÓDIGO] */
-const render = (
-  template: string,
-  vars: Record<string, string>,
-): string => template.replaceAll(/\{\{(\w+)\}\}/gu, (_, key: string) => vars[key] ?? '');
+const render = (template: string, vars: Record<string, string>): string =>
+  template.replaceAll(/\{\{(\w+)\}\}/gu, (_, key: string) => vars[key] ?? '');
 
 const listVar = (items: string[]): string =>
   items.length === 0 ? '(none)' : items.map((i) => `- ${i}`).join('\n');
@@ -188,17 +178,11 @@ const materialize = (plan: Plan & {vars?: Record<string, string>}): void => {
     mkdirSync(continuityDir, {recursive: true});
   }
   if (plan.create.includes('continuity/state.yaml')) {
-    const tmpl = readFileSync(
-      resolve(TEMPLATES_DIR, 'continuity/state.yaml.tmpl'),
-      'utf8',
-    );
+    const tmpl = readFileSync(resolve(TEMPLATES_DIR, 'continuity/state.yaml.tmpl'), 'utf8');
     writeFileSync(resolve(continuityDir, 'state.yaml'), render(tmpl, vars), 'utf8');
   }
   if (plan.create.includes('continuity/resume.md')) {
-    const tmpl = readFileSync(
-      resolve(TEMPLATES_DIR, 'continuity/resume.md.tmpl'),
-      'utf8',
-    );
+    const tmpl = readFileSync(resolve(TEMPLATES_DIR, 'continuity/resume.md.tmpl'), 'utf8');
     writeFileSync(resolve(continuityDir, 'resume.md'), render(tmpl, vars), 'utf8');
   }
 };
@@ -248,8 +232,12 @@ const main = (): void => {
     );
   }
 
-  const manifest = createdPaths.map((p) => p.replace(ROOT + '/', '')).sort().join('\n');
-  const manifestSha = manifest.length === 0 ? '' : createHash('sha256').update(manifest).digest('hex');
+  const manifest = createdPaths
+    .map((p) => p.replace(ROOT + '/', ''))
+    .sort()
+    .join('\n');
+  const manifestSha =
+    manifest.length === 0 ? '' : createHash('sha256').update(manifest).digest('hex');
   console.info(
     `SCAFFOLD-CONTINUITY summary: created=${created} skipped=${skipped} dry_run=${args.dryRun} files_sha256=${manifestSha || '(none)'}`,
   );

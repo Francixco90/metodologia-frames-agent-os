@@ -16,7 +16,7 @@ proyecto existente. [CONFIG]
 ## Precondiciones
 
 - `router.yml` define la ruta R3 con output `new tasks/{id}/task.yaml state
-  INTAKE bound to project_id`. [CONFIG]
+INTAKE bound to project_id`. [CONFIG]
 - `TaskContractSchema` (02_proceso/core/contracts/task-contract.ts) valida el
   shape generado. [CÓDIGO]
 - `created_from_route` admite `R3` en el enum del schema. [CÓDIGO]

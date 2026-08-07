@@ -16,9 +16,21 @@ export const oracle: Oracle = {
   run: (): OracleOutcome => {
     const checks: OracleOutcome['oracle_checks'] = [];
     const evidence: string[] = [];
-    const dirs = readdirSync(CHECK_RUNS, {withFileTypes: true}).filter((e) => e.isDirectory()).map((e) => e.name);
-    checks.push({name: 'check-runs family has ≥1 receipt dir', passed: dirs.length > 0, detail: `${dirs.length} dir(s)`});
-    if (dirs.length === 0) return {status: 'skipped', oracle_checks: checks, evidence_hashes: evidence, notes: 'no check-run receipts'};
+    const dirs = readdirSync(CHECK_RUNS, {withFileTypes: true})
+      .filter((e) => e.isDirectory())
+      .map((e) => e.name);
+    checks.push({
+      name: 'check-runs family has ≥1 receipt dir',
+      passed: dirs.length > 0,
+      detail: `${dirs.length} dir(s)`,
+    });
+    if (dirs.length === 0)
+      return {
+        status: 'skipped',
+        oracle_checks: checks,
+        evidence_hashes: evidence,
+        notes: 'no check-run receipts',
+      };
     let allPass = true;
     let inspected = 0;
     for (const d of dirs) {
@@ -30,14 +42,23 @@ export const oracle: Oracle = {
         continue;
       }
       evidence.push(sha256(raw));
-      const r = parse(raw) as {schema_version?: string; append_only?: boolean; stdout_sha256?: string; stderr_sha256?: string};
+      const r = parse(raw) as {
+        schema_version?: string;
+        append_only?: boolean;
+        stdout_sha256?: string;
+        stderr_sha256?: string;
+      };
       const isAppend = r.append_only === true;
       const isCheckRun = r.schema_version === 'check-run-receipt-v1';
       const hasHash = HEX64.test(r.stdout_sha256 ?? '') && HEX64.test(r.stderr_sha256 ?? '');
       if (!isAppend || !isCheckRun || !hasHash) allPass = false;
       inspected += 1;
     }
-    checks.push({name: `all ${inspected} inspected receipts append-only + sha256-bound`, passed: allPass, detail: allPass ? 'ok' : 'one or more receipts malformed'});
+    checks.push({
+      name: `all ${inspected} inspected receipts append-only + sha256-bound`,
+      passed: allPass,
+      detail: allPass ? 'ok' : 'one or more receipts malformed',
+    });
     return {status: allPass ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};
   },
 };

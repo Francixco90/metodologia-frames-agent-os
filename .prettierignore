@@ -13,6 +13,13 @@
 04_estado/registries/renderers/renderer-capability-registry-v1.yml
 04_estado/registries/skills/creation-v3-skill-registry.yml
 05_verificacion/quality/reports/creation-v3-h03-render-smoke.yml
+04_estado/registries/env/env-manifest-v1.yml
+# H03 hash-bound skill packages: the package_manifest_sha256 lock (creation-v3 +
+# v2 registries) is the authority for skill content, not Prettier. Blanket
+# reformatting a skill dir mutates its package digest and silently breaks the
+# H03 lock succession (SKL-H03-005 stale). Exempt the whole skills tree so
+# `prettier --write .` cannot desynchronize a hash-bound package. [CONFIG]
+03_artefactos/skills/**
 # ADR 0027: 04_estado/receipts/** and 04_estado/tasks/** are the repo's
 # append-only temporal trace — not subject to reformatting.
 04_estado/receipts/**

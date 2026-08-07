@@ -1,37 +1,37 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P03
 command: /crear-brief
-title: "Crea el brief o la campaña"
-purpose: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
-discipline: "Arquitectura editorial"
-phase: "Estrategia"
+title: 'Crea el brief o la campaña'
+purpose: 'Define una pieza, sistema de derivados, serie o campaña con funciones distintas.'
+discipline: 'Arquitectura editorial'
+phase: 'Estrategia'
 tags:
   - strategy
   - brief
   - campaign
 modes:
   - id: pieza-unica
-    name: "Pieza única"
-    description: "Pieza única"
+    name: 'Pieza única'
+    description: 'Pieza única'
   - id: pieza-matriz-con-derivados
-    name: "Pieza matriz con derivados"
-    description: "Pieza matriz con derivados"
+    name: 'Pieza matriz con derivados'
+    description: 'Pieza matriz con derivados'
   - id: miniserie-de-2-4-piezas
-    name: "Miniserie de 2–4 piezas"
-    description: "Miniserie de 2–4 piezas"
+    name: 'Miniserie de 2–4 piezas'
+    description: 'Miniserie de 2–4 piezas'
   - id: campana-o-colaboracion
-    name: "Campaña o colaboración"
-    description: "Campaña o colaboración"
+    name: 'Campaña o colaboración'
+    description: 'Campaña o colaboración'
 inputs:
   - p02-investigar/workflow.yml
 outputs:
-  - artifact: "Brief/Campaign Map"
+  - artifact: 'Brief/Campaign Map'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "A/B concepts"
+  - artifact: 'A/B concepts'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Definition of Ready"
+  - artifact: 'Definition of Ready'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: DIRECTION_APPROVED
@@ -42,25 +42,25 @@ next_workflow: P04
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Si la oportunidad no soporta una campaña, crea una pieza única con un derivado; si la evidencia es insuficiente, regresa a investigación. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Si la oportunidad no soporta una campaña, crea una pieza única con un derivado; si la evidencia es insuficiente, regresa a investigación. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Brief o campaña definidos con funciones distintas"
-    - "Conceptos A/B listos para decisión"
-    - "Definition of Ready cumplido"
+    - 'Brief o campaña definidos con funciones distintas'
+    - 'Conceptos A/B listos para decisión'
+    - 'Definition of Ready cumplido'
   deliverables:
     - brief-campaign-map-v1
     - ab-concepts-v1
     - definition-of-ready-v1
-  context: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
-  cta: "Someter a MW_SPEC_APPROVED; avanzar a P04 calendarizar."
+  context: 'Define una pieza, sistema de derivados, serie o campaña con funciones distintas.'
+  cta: 'Someter a MW_SPEC_APPROVED; avanzar a P04 calendarizar.'
 capability_map:
   skills:
     - content-os-creative

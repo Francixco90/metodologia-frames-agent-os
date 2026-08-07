@@ -1,43 +1,43 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P08
 command: /editar
-title: "Edita, compone y reutiliza"
-purpose: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
-discipline: "Edición y composición"
-phase: "Postproducción"
+title: 'Edita, compone y reutiliza'
+purpose: 'Monta, compone, localiza y reutiliza con lineage, QC y rollback.'
+discipline: 'Edición y composición'
+phase: 'Postproducción'
 tags:
   - edit
   - edl
   - postproduction
 modes:
   - id: plan-de-edicion
-    name: "Plan de edición"
-    description: "Plan de edición"
+    name: 'Plan de edición'
+    description: 'Plan de edición'
   - id: ejecucion-de-edicion
-    name: "Ejecución de edición"
-    description: "Ejecución de edición"
+    name: 'Ejecución de edición'
+    description: 'Ejecución de edición'
   - id: composicion-hibrida
-    name: "Composición híbrida"
-    description: "Composición híbrida"
+    name: 'Composición híbrida'
+    description: 'Composición híbrida'
   - id: largo-a-corto
-    name: "Largo a corto"
-    description: "Largo a corto"
+    name: 'Largo a corto'
+    description: 'Largo a corto'
   - id: localizacion
-    name: "Localización"
-    description: "Localización"
+    name: 'Localización'
+    description: 'Localización'
   - id: qc
-    name: "QC"
-    description: "QC"
+    name: 'QC'
+    description: 'QC'
 inputs:
   - p07-revisar/workflow.yml
 outputs:
-  - artifact: "Edit Candidate"
+  - artifact: 'Edit Candidate'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "EDL"
+  - artifact: 'EDL'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Export Matrix"
+  - artifact: 'Export Matrix'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: POSTPRODUCTION_VALIDATED
@@ -48,25 +48,25 @@ next_workflow: P09
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Sin herramientas, entrega EDL y handoff completo; si el material no alcanza, crea un corte mínimo o vuelve a P06 para un activo de rescate. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Sin herramientas, entrega EDL y handoff completo; si el material no alcanza, crea un corte mínimo o vuelve a P06 para un activo de rescate. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Candidato de edición montado con lineage"
-    - "EDL y handoff QC completos"
-    - "Matriz de exportación con rollback"
+    - 'Candidato de edición montado con lineage'
+    - 'EDL y handoff QC completos'
+    - 'Matriz de exportación con rollback'
   deliverables:
     - edit-candidate-v1
     - edl-v1
     - export-matrix-v1
-  context: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
-  cta: "Someter a MW_EDIT_APPROVED; avanzar a P09 distribuir."
+  context: 'Monta, compone, localiza y reutiliza con lineage, QC y rollback.'
+  cta: 'Someter a MW_EDIT_APPROVED; avanzar a P09 distribuir.'
 capability_map:
   skills:
     - content-os-remotion-render

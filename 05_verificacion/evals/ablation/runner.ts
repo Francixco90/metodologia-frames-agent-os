@@ -14,7 +14,15 @@
 // "tasa de tareas aceptadas por oracle fijo" across variants. [DOC]
 
 import {createHash} from 'node:crypto';
-import {existsSync, mkdtempSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {
+  existsSync,
+  mkdtempSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, resolve, sep} from 'node:path';
 import YAML from 'yaml';
@@ -87,10 +95,7 @@ function mutateTaskForVariant(
       // out-of-allowlist path (`secrets/key.pem`). Schema-valid relative path;
       // the fixed shape oracle accepts (allowlist enforcement is H-E008's
       // domain, not this oracle's). [CONFIG]
-      task.write_set = [
-        '04_estado/tasks/TASK-ablation-001/task.yaml',
-        'secrets/key.pem',
-      ];
+      task.write_set = ['04_estado/tasks/TASK-ablation-001/task.yaml', 'secrets/key.pem'];
       break;
     case 'H-E':
       // Environment excluded → no layout validation. inputs reference a
@@ -119,17 +124,11 @@ function writeTaskYaml(taskDir: string, task: Record<string, unknown>): void {
   writeFileSync(join(taskDir, 'task.yaml'), YAML.stringify(task));
 }
 
-function writeArtifactMarkers(
-  harnessDir: string,
-  excluded: Subsystem | null,
-): void {
+function writeArtifactMarkers(harnessDir: string, excluded: Subsystem | null): void {
   mkdirSync(harnessDir, {recursive: true});
   for (const sub of ALL_SUBSYSTEMS) {
     if (sub === excluded) continue;
-    writeFileSync(
-      join(harnessDir, artifactMarkerFor(sub)),
-      `${sub} artifact present\n`,
-    );
+    writeFileSync(join(harnessDir, artifactMarkerFor(sub)), `${sub} artifact present\n`);
   }
 }
 
@@ -142,9 +141,7 @@ export function runVariant(variantId: string): VariantResult {
   const config: VariantConfig = loadVariantConfig(configPath);
 
   if (config.variant_id !== variantId) {
-    throw new Error(
-      `config variant_id mismatch: expected ${variantId}, got ${config.variant_id}`,
-    );
+    throw new Error(`config variant_id mismatch: expected ${variantId}, got ${config.variant_id}`);
   }
 
   const root = mkdtempSync(join(tmpdir(), `ablation-${variantId}-`));
@@ -258,7 +255,9 @@ const report = (): void => {
   for (const v of VARIANTS) {
     const dir = resolve(RESULTS_DIR, v);
     if (!existsSync(dir)) continue;
-    const files = readdirSync(dir).filter((f) => f.endsWith('.yml')).sort();
+    const files = readdirSync(dir)
+      .filter((f) => f.endsWith('.yml'))
+      .sort();
     if (files.length === 0) continue;
     const latest = files[files.length - 1];
     if (latest === undefined) continue;
@@ -281,7 +280,9 @@ const report = (): void => {
     lines.push(`    reason: ${JSON.stringify(r.reason)}`);
   }
   writeFileSync(reportPath, `${lines.join('\n')}\n`, 'utf8');
-  console.info(`ablation:report -> ${reportPath.split(sep).slice(-3).join(sep)} (${rows.length} variants)`);
+  console.info(
+    `ablation:report -> ${reportPath.split(sep).slice(-3).join(sep)} (${rows.length} variants)`,
+  );
 };
 
 const isMain =

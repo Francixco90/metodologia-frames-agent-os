@@ -11,7 +11,7 @@ manifest_id: commands-v1
 gates:
   - gate: G00
     label: toolchain
-    command: "pnpm check:toolchain"
+    command: 'pnpm check:toolchain'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -22,7 +22,7 @@ gates:
 
   - gate: G04
     label: repo / G01-G09 estructura
-    command: "pnpm check:repo"
+    command: 'pnpm check:repo'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -33,7 +33,7 @@ gates:
 
   - gate: G02_PRECLEAR
     label: sources preclearance
-    command: "pnpm check:sources"
+    command: 'pnpm check:sources'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -44,7 +44,7 @@ gates:
 
   - gate: G03_PRECLEAR
     label: governance provenance preclearance
-    command: "pnpm check:claims"
+    command: 'pnpm check:claims'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -55,7 +55,7 @@ gates:
 
   - gate: G02
     label: sources
-    command: "pnpm check:sources"
+    command: 'pnpm check:sources'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -66,7 +66,7 @@ gates:
 
   - gate: G03_BRAND
     label: brand
-    command: "pnpm check:brand"
+    command: 'pnpm check:brand'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -77,7 +77,7 @@ gates:
 
   - gate: G08
     label: core contracts
-    command: "pnpm typecheck && pnpm test"
+    command: 'pnpm typecheck && pnpm test'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -88,7 +88,7 @@ gates:
 
   - gate: G10
     label: agents-committee
-    command: "pnpm committee:validate"
+    command: 'pnpm committee:validate'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -99,7 +99,7 @@ gates:
 
   - gate: G07
     label: skills
-    command: "pnpm verify:skills"
+    command: 'pnpm verify:skills'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -110,11 +110,11 @@ gates:
 
   - gate: G09_WEB
     label: web build
-    command: "pnpm web:build"
+    command: 'pnpm web:build'
     allowed_tools: [Bash]
     write_set_globs:
-      - "networks/web/**"
-      - "projects/vs-001-source-to-campaign/web/**"
+      - 'networks/web/**'
+      - 'projects/vs-001-source-to-campaign/web/**'
     idempotency: false
     danger_level: medium
     manual: false
@@ -123,11 +123,11 @@ gates:
 
   - gate: G09_CONTENT
     label: content build
-    command: "pnpm content:build"
+    command: 'pnpm content:build'
     allowed_tools: [Bash]
     write_set_globs:
-      - "content/**"
-      - "networks/content/**"
+      - 'content/**'
+      - 'networks/content/**'
     idempotency: false
     danger_level: medium
     manual: false
@@ -136,11 +136,11 @@ gates:
 
   - gate: G12_CAROUSEL
     label: static-social carousel build
-    command: "pnpm carousel:build"
+    command: 'pnpm carousel:build'
     allowed_tools: [Bash]
     write_set_globs:
-      - "renderers/static-social/**"
-      - "receipts/carousel/**"
+      - 'renderers/static-social/**'
+      - 'receipts/carousel/**'
     idempotency: false
     danger_level: medium
     manual: false
@@ -149,11 +149,11 @@ gates:
 
   - gate: G12
     label: remotion
-    command: "pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all"
+    command: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
     allowed_tools: [Bash]
     write_set_globs:
-      - "renderers/remotion/**"
-      - "receipts/renders/**"
+      - 'renderers/remotion/**'
+      - 'receipts/renders/**'
     idempotency: false
     danger_level: medium
     manual: false
@@ -162,7 +162,7 @@ gates:
 
   - gate: G08_CONTRACTS
     label: qa core contracts
-    command: "pnpm typecheck && pnpm test"
+    command: 'pnpm typecheck && pnpm test'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -173,7 +173,7 @@ gates:
 
   - gate: G11
     label: n8n dry-run
-    command: "pnpm check:n8n"
+    command: 'pnpm check:n8n'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -184,7 +184,7 @@ gates:
 
   - gate: G12_QA
     label: media QA
-    command: "pnpm verify:media"
+    command: 'pnpm verify:media'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -195,7 +195,7 @@ gates:
 
   - gate: G13_CAROUSEL_QA
     label: carousel QA
-    command: "pnpm verify:carousel"
+    command: 'pnpm verify:carousel'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -206,7 +206,7 @@ gates:
 
   - gate: G08_AI_RUNTIME
     label: ai-runtime contracts
-    command: "pnpm verify:ai-runtime"
+    command: 'pnpm verify:ai-runtime'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -217,10 +217,10 @@ gates:
 
   - gate: G18
     label: env drift
-    command: "pnpm check:env"
+    command: 'pnpm check:env'
     allowed_tools: [Bash]
     write_set_globs:
-      - "receipts/check-runs/**"
+      - 'receipts/check-runs/**'
     idempotency: true
     danger_level: low
     manual: false
@@ -229,10 +229,10 @@ gates:
 
   - gate: G19
     label: eval suite
-    command: "pnpm eval:run"
+    command: 'pnpm eval:run'
     allowed_tools: [Bash]
     write_set_globs:
-      - "evals/results/**"
+      - 'evals/results/**'
     idempotency: true
     danger_level: low
     manual: false
@@ -241,10 +241,10 @@ gates:
 
   - gate: G20
     label: tool grants convergence
-    command: "pnpm check:grants"
+    command: 'pnpm check:grants'
     allowed_tools: [Bash, Read]
     write_set_globs:
-      - "receipts/check-runs/**"
+      - 'receipts/check-runs/**'
     idempotency: true
     danger_level: low
     manual: false
@@ -253,7 +253,7 @@ gates:
 
   - gate: G21
     label: atemporal naming
-    command: "pnpm check:atemporal"
+    command: 'pnpm check:atemporal'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
@@ -264,7 +264,7 @@ gates:
 
   - gate: MW_CAPABILITY
     label: multimedia capability_map + BLUF binding (P00–P09)
-    command: "pnpm verify:multimedia"
+    command: 'pnpm verify:multimedia'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true

@@ -1,37 +1,37 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P01
 command: /curar-material
-title: "Convierte tu día a día en oportunidades de contenido"
-purpose: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
-discipline: "Edición documental"
-phase: "Documentación"
+title: 'Convierte tu día a día en oportunidades de contenido'
+purpose: 'Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.'
+discipline: 'Edición documental'
+phase: 'Documentación'
 tags:
   - documentary
   - curation
   - capture
 modes:
   - id: captura-registrar-una-entrada
-    name: "Captura: registrar una entrada"
-    description: "Captura: registrar una entrada"
+    name: 'Captura: registrar una entrada'
+    description: 'Captura: registrar una entrada'
   - id: triage-decidir-su-destino
-    name: "Triage: decidir su destino"
-    description: "Triage: decidir su destino"
+    name: 'Triage: decidir su destino'
+    description: 'Triage: decidir su destino'
   - id: digest-curar-un-lote
-    name: "Digest: curar un lote"
-    description: "Digest: curar un lote"
+    name: 'Digest: curar un lote'
+    description: 'Digest: curar un lote'
   - id: recuperacion-encontrar-material-previo-p
-    name: "Recuperación: encontrar material previo pertinente"
-    description: "Recuperación: encontrar material previo pertinente"
+    name: 'Recuperación: encontrar material previo pertinente'
+    description: 'Recuperación: encontrar material previo pertinente'
 inputs:
   - p00-definir-sistema/workflow.yml
 outputs:
-  - artifact: "Capture Card"
+  - artifact: 'Capture Card'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Triage Record"
+  - artifact: 'Triage Record'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Digest/Shortlist"
+  - artifact: 'Digest/Shortlist'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: CLASSIFIED
@@ -41,25 +41,25 @@ next_workflow: P02
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Cuando el material sea insuficiente, acumúlalo y propone la captura mínima que permitiría evaluarlo; cuando exista riesgo, protege antes de producir. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Cuando el material sea insuficiente, acumúlalo y propone la captura mínima que permitiría evaluarlo; cuando exista riesgo, protege antes de producir. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Material cotidiano clasificado en oportunidades trazables"
-    - "Captura mínima propuesta sin obligar a publicar"
-    - "Shortlist digerible priorizada"
+    - 'Material cotidiano clasificado en oportunidades trazables'
+    - 'Captura mínima propuesta sin obligar a publicar'
+    - 'Shortlist digerible priorizada'
   deliverables:
     - capture-card-v1
     - triage-record-v1
     - digest-shortlist-v1
-  context: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
-  cta: "Avanzar a P02 investigar con shortlist clasificado."
+  context: 'Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.'
+  cta: 'Avanzar a P02 investigar con shortlist clasificado.'
 capability_map:
   skills:
     - content-os-registry

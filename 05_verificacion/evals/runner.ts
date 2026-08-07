@@ -138,7 +138,9 @@ const main = async (): Promise<void> => {
     const path = persist(entry.id, outcome, ranAt);
     const rel = path.split(sep).slice(-4).join(sep);
     const tag = outcome.status.toUpperCase();
-    console.info(`[${tag}] ${entry.id} -> ${rel} (${outcome.oracle_checks.length} checks, ${outcome.evidence_hashes.length} hashes)`);
+    console.info(
+      `[${tag}] ${entry.id} -> ${rel} (${outcome.oracle_checks.length} checks, ${outcome.evidence_hashes.length} hashes)`,
+    );
     if (outcome.status === 'fail') blocking += 1;
     else if (outcome.status === 'pass') passed += 1;
     else skipped += 1;

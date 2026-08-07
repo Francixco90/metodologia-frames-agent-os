@@ -40,7 +40,10 @@ export const buildRenderManifest = ({
   profile: preflight.profile,
   audio: {expected_streams: ['video'], mode: 'silent-first'},
   inputs: [
-    {path: 'projects/vs-001-source-to-campaign/remotion/05-input-props.json', sha256: digests.inputProps},
+    {
+      path: 'projects/vs-001-source-to-campaign/remotion/05-input-props.json',
+      sha256: digests.inputProps,
+    },
     {
       path: 'projects/vs-001-source-to-campaign/remotion/assets-manifest.yml',
       sha256: digests.assetsManifest,

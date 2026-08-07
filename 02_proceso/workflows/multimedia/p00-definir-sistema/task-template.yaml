@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-mw-p00-000
 project_id: null
-objetivo: "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación."
+objetivo: 'Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,18 +9,18 @@ inputs:
 write_set:
   - 03_artefactos/content/multimedia/p00-definir-sistema/**
 no_objetivos:
-  - "No asumas consentimiento, memoria, derechos, identidad pública, experiencia ni resultados."
-  - "Si hay varias marcas o identidades, sepáralas antes de construir reglas."
-  - "Si aparecen salud, menores, pacientes, datos privados o claims sensibles, señala revisión especializada."
-  - "Una preferencia aislada no se convierte en regla estable."
-  - "Si falta información, crea una versión provisional, excepto cuando la ausencia afecte privacidad, autoridad o una acción irreversible."
-  - "No redactes contenido público todavía."
-done: "Definition of Done"
-validacion: "pnpm mw:run P00 --dry-run && pnpm check:tasks"
+  - 'No asumas consentimiento, memoria, derechos, identidad pública, experiencia ni resultados.'
+  - 'Si hay varias marcas o identidades, sepáralas antes de construir reglas.'
+  - 'Si aparecen salud, menores, pacientes, datos privados o claims sensibles, señala revisión especializada.'
+  - 'Una preferencia aislada no se convierte en regla estable.'
+  - 'Si falta información, crea una versión provisional, excepto cuando la ausencia afecte privacidad, autoridad o una acción irreversible.'
+  - 'No redactes contenido público todavía.'
+done: 'Definition of Done'
+validacion: 'pnpm mw:run P00 --dry-run && pnpm check:tasks'
 gaps: []
 state: INTAKE
 created_from_route: R3-LOOSE
-gate_target: "G13"
+gate_target: 'G13'
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:

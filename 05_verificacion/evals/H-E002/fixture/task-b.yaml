@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-dup-001
 project_id: proj-eval
-objetivo: "Eval fixture B — duplicate task_id probe (same id as task-a)"
+objetivo: 'Eval fixture B — duplicate task_id probe (same id as task-a)'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,8 +9,8 @@ inputs:
 write_set:
   - 04_estado/tasks/TASK-dup-001-b/task.yaml
 no_objetivos: []
-done: "Two task.yaml share TASK-dup-001; check-tasks logic must WARN"
-validacion: "assert WARN on duplicate task_id"
+done: 'Two task.yaml share TASK-dup-001; check-tasks logic must WARN'
+validacion: 'assert WARN on duplicate task_id'
 gaps: []
 state: INTAKE
 created_from_route: R3

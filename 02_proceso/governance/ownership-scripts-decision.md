@@ -56,19 +56,20 @@ manifiesto como fuente de permisos.
 
 ## Cobertura nueva (additive, sin overlaps)
 
-| Writer | Patrón nuevo | Prefijo estático | Colisiona con |
-|--------|--------------|------------------|---------------|
-| lead   | `registries/tasks/**` | `registries/tasks/` | ninguno cross-writer |
-| lead   | `tasks/**` | `tasks/` | ninguno |
-| lead   | `registries/README.md` | `registries/README.md` | ninguno |
+| Writer | Patrón nuevo             | Prefijo estático       | Colisiona con        |
+| ------ | ------------------------ | ---------------------- | -------------------- |
+| lead   | `registries/tasks/**`    | `registries/tasks/`    | ninguno cross-writer |
+| lead   | `tasks/**`               | `tasks/`               | ninguno              |
+| lead   | `registries/README.md`   | `registries/README.md` | ninguno              |
 | qa     | `receipts/check-runs/**` | `receipts/check-runs/` | ninguno cross-writer |
-| qa     | `evals/**` | `evals/` | ninguno cross-writer |
+| qa     | `evals/**`               | `evals/`               | ninguno cross-writer |
 
 Verificación: `pnpm check:ownership` → `PASS G04 OWNERSHIP`. [CONFIG]
 
 ## Revisitación
 
 Revisitar esta decisión si:
+
 1. Se introduce un ACL runtime que lea `ownership-manifest.yml` como fuente de
    permisos de ejecución (no solo auto-consistencia). [SUPUESTO]
 2. `check-ownership.ts` cambia su regla de overlap (p.ej. a coincidencia de

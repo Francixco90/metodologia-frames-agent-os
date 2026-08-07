@@ -3,8 +3,14 @@ import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
-import {transitionTaskState, TaskStateTransitionError} from '../../../02_proceso/core/state-machine/task-machine.ts';
-import type {TaskTransitionRequest, TaskWorkState} from '../../../02_proceso/core/contracts/index.ts';
+import {
+  transitionTaskState,
+  TaskStateTransitionError,
+} from '../../../02_proceso/core/state-machine/task-machine.ts';
+import type {
+  TaskTransitionRequest,
+  TaskWorkState,
+} from '../../../02_proceso/core/contracts/index.ts';
 import type {Oracle, OracleOutcome} from '../lib/eval-result-schema.ts';
 
 const ROOT = process.cwd();
@@ -29,10 +35,18 @@ export const oracle: Oracle = {
     let rejected = false;
     try {
       transitionTaskState(req('INTAKE', 'COMPILADO'));
-      checks.push({name: 'INTAKE->COMPILADO rejected', passed: false, detail: 'transition accepted (illegal)'});
+      checks.push({
+        name: 'INTAKE->COMPILADO rejected',
+        passed: false,
+        detail: 'transition accepted (illegal)',
+      });
     } catch (err) {
       rejected = err instanceof TaskStateTransitionError;
-      checks.push({name: 'INTAKE->COMPILADO rejected', passed: rejected, detail: rejected ? 'TaskStateTransitionError raised' : (err as Error).message});
+      checks.push({
+        name: 'INTAKE->COMPILADO rejected',
+        passed: rejected,
+        detail: rejected ? 'TaskStateTransitionError raised' : (err as Error).message,
+      });
     }
     return {status: rejected ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};
   },

@@ -14,11 +14,7 @@ const ROOT = process.cwd();
 const DATE_PATTERNS = [/\d{4}-\d{2}-\d{2}/u, /20\d{6}/u];
 // Paths allowed to carry dates: task traces (ADR 0027) + vendored external
 // content (captured snapshots whose date is semantic, not repo versioning).
-const ALLOW_PREFIXES = [
-  '04_estado/receipts/',
-  '04_estado/tasks/',
-  '03_artefactos/skills/vendor/',
-];
+const ALLOW_PREFIXES = ['04_estado/receipts/', '04_estado/tasks/', '03_artefactos/skills/vendor/'];
 
 const versionable = (): string[] =>
   execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {

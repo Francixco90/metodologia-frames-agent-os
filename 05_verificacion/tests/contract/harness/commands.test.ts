@@ -28,7 +28,12 @@ describe('commands.yaml contract', () => {
   });
 
   it('MW_* multimedia gates are manual, fail_closed and have command null', () => {
-    const mw = ['MW_SPEC_APPROVED', 'MW_ASSET_REVIEW', 'MW_EDIT_APPROVED', 'MW_DISTRIBUTION_AUTHORIZED'];
+    const mw = [
+      'MW_SPEC_APPROVED',
+      'MW_ASSET_REVIEW',
+      'MW_EDIT_APPROVED',
+      'MW_DISTRIBUTION_AUTHORIZED',
+    ];
     for (const id of mw) {
       const gate = manifest.gates.find((g) => g.gate === id);
       expect(gate).toBeDefined();

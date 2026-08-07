@@ -28,9 +28,7 @@ describe('router.yml contract', () => {
   it('declares 7 routes (R0, R1, R2, R3, R3-LOOSE, R4, R5)', () => {
     const ids = router.routes.map((r) => r.id);
     expect(ids).toHaveLength(7);
-    expect(ids).toEqual(
-      expect.arrayContaining(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5']),
-    );
+    expect(ids).toEqual(expect.arrayContaining(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5']));
   });
 
   it('R3-LOOSE binds to task with project_id null semantics', () => {

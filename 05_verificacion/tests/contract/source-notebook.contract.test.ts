@@ -3,7 +3,10 @@ import path from 'node:path';
 
 import {parse} from 'yaml';
 
-import {prepareReadOnlyGrounding, groundingRequestSchema} from '../../../adapters/notebooklm/index.ts';
+import {
+  prepareReadOnlyGrounding,
+  groundingRequestSchema,
+} from '../../../adapters/notebooklm/index.ts';
 import {
   CanonicalSourceGapsSchema,
   ClaimRegistrySchema,

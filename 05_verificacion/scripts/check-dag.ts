@@ -139,9 +139,7 @@ const validateCommands = (root = process.cwd()): string[] => {
   ]);
 
   const manifestPath = resolve(root, '05_verificacion/scripts/commands.yaml');
-  const manifest = CommandsManifestSchema.parse(
-    parse(readFileSync(manifestPath, 'utf8')),
-  );
+  const manifest = CommandsManifestSchema.parse(parse(readFileSync(manifestPath, 'utf8')));
   const entryByGate = new Map(manifest.gates.map((entry) => [entry.gate, entry]));
 
   // 1. todo gate del DAG tiene entrada en el manifiesto.
@@ -172,7 +170,9 @@ const validateCommands = (root = process.cwd()): string[] => {
     //    allowlist del owner en ownership-manifest.
     const ownerPatterns = ownership.writers[entry.owner];
     if (ownerPatterns === undefined) {
-      errors.push(`COMMANDS: gate ${entry.gate} owner "${entry.owner}" no declarado en ownership-manifest`);
+      errors.push(
+        `COMMANDS: gate ${entry.gate} owner "${entry.owner}" no declarado en ownership-manifest`,
+      );
       continue;
     }
     for (const glob of entry.write_set_globs) {

@@ -2,1114 +2,808 @@
   {
     "id": "data-visual-composition",
     "scope": "local-evaluation",
-    "check": [
-      "--import",
-      "tsx",
-      "skills/data-visual-composition/scripts/check.ts"
-    ]
+    "check": ["--import", "tsx", "skills/data-visual-composition/scripts/check.ts"]
   },
   {
     "id": "motion-library-adapters",
     "scope": "local-evaluation-only",
     "version": "0.2.0",
-    "check": [
-      "skills/motion-library-adapters/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/motion-library-adapters/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-core",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-core/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-core/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-animation",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-animation/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-animation/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-keyframes",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-keyframes/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-keyframes/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-creative",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-creative/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-creative/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-media",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-media/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-media/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-registry",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-registry/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-registry/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-router",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-router/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-router/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-faceless-explainer",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-faceless-explainer/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-faceless-explainer/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-pr-to-video",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-pr-to-video/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-pr-to-video/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-product-launch-video",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-product-launch-video/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-product-launch-video/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-motion-graphics",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-motion-graphics/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-motion-graphics/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-embedded-captions",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-embedded-captions/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-embedded-captions/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-slideshow",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-slideshow/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-slideshow/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-general-video",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-general-video/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-general-video/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-bridge",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-bridge/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-bridge/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-talking-head-recut",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-talking-head-recut/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-talking-head-recut/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-music-to-video",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-music-to-video/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-music-to-video/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-changelog-video",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-changelog-video/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-changelog-video/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-figma",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-figma/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-figma/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-hyperframes-cli",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-hyperframes-cli/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-hyperframes-cli/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-captions-overlay",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-captions-overlay/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-captions-overlay/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-motion-doctrine",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-motion-doctrine/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-motion-doctrine/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-cut-the-curve",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-cut-the-curve/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-cut-the-curve/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-seam-craft",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-seam-craft/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-seam-craft/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-oversized-cursor",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-oversized-cursor/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-oversized-cursor/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-best-practices",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-best-practices/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-best-practices/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-create",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-create/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-create/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-markup",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-markup/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-markup/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-render",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-render/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-render/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-maps",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-maps/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-maps/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-multimedia",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-multimedia/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-multimedia/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-captions",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-captions/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-captions/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-interactivity",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-interactivity/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-interactivity/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-saas",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-saas/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-saas/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-docs",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-docs/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-docs/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-remotion-upgrade",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-remotion-upgrade/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-remotion-upgrade/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-bento-grid",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-bento-grid/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-bento-grid/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-bento-slides",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-bento-slides/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-bento-slides/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-bento-apple-grid",
     "scope": "local-evaluation",
-    "check": [
-      "skills/content-os-bento-apple-grid/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/content-os-bento-apple-grid/scripts/check-skill.mjs"]
   },
   {
     "id": "design-impeccable",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-impeccable/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-impeccable/scripts/check-skill.mjs"]
   },
   {
     "id": "design-ui-ux-pro-max",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-ui-ux-pro-max/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-ui-ux-pro-max/scripts/check-skill.mjs"]
   },
   {
     "id": "design-frontend-design",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-frontend-design/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-frontend-design/scripts/check-skill.mjs"]
   },
   {
     "id": "design-web-design-guidelines",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-web-design-guidelines/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-web-design-guidelines/scripts/check-skill.mjs"]
   },
   {
     "id": "design-taste-frontend",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-taste-frontend/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-taste-frontend/scripts/check-skill.mjs"]
   },
   {
     "id": "design-high-end-visual",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-high-end-visual/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-high-end-visual/scripts/check-skill.mjs"]
   },
   {
     "id": "design-minimalist-ui",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-minimalist-ui/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-minimalist-ui/scripts/check-skill.mjs"]
   },
   {
     "id": "design-redesign",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-redesign/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-redesign/scripts/check-skill.mjs"]
   },
   {
     "id": "design-emil",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-emil/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-emil/scripts/check-skill.mjs"]
   },
   {
     "id": "design-extract",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-extract/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-extract/scripts/check-skill.mjs"]
   },
   {
     "id": "design-css-native",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-css-native/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-css-native/scripts/check-skill.mjs"]
   },
   {
     "id": "design-audit-genjutsu",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-audit-genjutsu/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-audit-genjutsu/scripts/check-skill.mjs"]
   },
   {
     "id": "design-framer-motion",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-framer-motion/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-framer-motion/scripts/check-skill.mjs"]
   },
   {
     "id": "design-motion-principles",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-motion-principles/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-motion-principles/scripts/check-skill.mjs"]
   },
   {
     "id": "design-swiftui-graphics",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-swiftui-graphics/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-swiftui-graphics/scripts/check-skill.mjs"]
   },
   {
     "id": "design-compose-graphics",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-compose-graphics/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-compose-graphics/scripts/check-skill.mjs"]
   },
   {
     "id": "design-compose-motion",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-compose-motion/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-compose-motion/scripts/check-skill.mjs"]
   },
   {
     "id": "design-mobile-principles",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-mobile-principles/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-mobile-principles/scripts/check-skill.mjs"]
   },
   {
     "id": "design-canvas-generative",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-canvas-generative/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-canvas-generative/scripts/check-skill.mjs"]
   },
   {
     "id": "design-desktop-principles",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-desktop-principles/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-desktop-principles/scripts/check-skill.mjs"]
   },
   {
     "id": "design-swiftui-motion",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-swiftui-motion/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-swiftui-motion/scripts/check-skill.mjs"]
   },
   {
     "id": "design-threejs-r3f",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-threejs-r3f/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-threejs-r3f/scripts/check-skill.mjs"]
   },
   {
     "id": "design-compose-multiplatform",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-compose-multiplatform/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-compose-multiplatform/scripts/check-skill.mjs"]
   },
   {
     "id": "design-genjutsu-gsap-motion",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-genjutsu-gsap-motion/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-genjutsu-gsap-motion/scripts/check-skill.mjs"]
   },
   {
     "id": "design-genjutsu-uiux",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-genjutsu-uiux/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-genjutsu-uiux/scripts/check-skill.mjs"]
   },
   {
     "id": "design-cast",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-cast/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-cast/scripts/check-skill.mjs"]
   },
   {
     "id": "design-paint",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-paint/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-paint/scripts/check-skill.mjs"]
   },
   {
     "id": "design-dna",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/design-dna/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/design-dna/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-spec",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-spec/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-spec/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-qa",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-qa/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-qa/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ship",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ship/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ship/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-investigate",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-investigate/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-investigate/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-careful",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-careful/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-careful/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-retro",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-retro/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-retro/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-qa-only",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-qa-only/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-qa-only/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-plan-eng-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-plan-eng-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-plan-eng-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-plan-devex-review",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-plan-devex-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-plan-devex-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-plan-design-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-plan-design-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-plan-design-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-plan-ceo-review",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-plan-ceo-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-plan-ceo-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-plan-tune",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-plan-tune/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-plan-tune/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-devex-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-devex-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-devex-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-design-review",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-design-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-design-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-design-html",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-design-html/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-design-html/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-design-consultation",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-design-consultation/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-design-consultation/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-design-shotgun",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-design-shotgun/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-design-shotgun/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-document-generate",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-document-generate/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-document-generate/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-document-release",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-document-release/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-document-release/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-freeze",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-freeze/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-freeze/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-unfreeze",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-unfreeze/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-unfreeze/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-guard",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-guard/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-guard/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-health",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-health/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-health/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-canary",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-canary/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-canary/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-land-and-deploy",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-land-and-deploy/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-land-and-deploy/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-skillify",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-skillify/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-skillify/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-learn",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-learn/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-learn/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-pair-agent",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-pair-agent/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-pair-agent/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-setup-deploy",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-setup-deploy/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-setup-deploy/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-test-driven-development",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-test-driven-development/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-test-driven-development/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-systematic-debugging",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-systematic-debugging/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-systematic-debugging/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-brainstorming",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-brainstorming/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-brainstorming/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-dispatching-parallel-agents",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-executing-plans",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-executing-plans/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-executing-plans/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-writing-plans",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-writing-plans/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-writing-plans/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-finishing-a-development-branch",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-finishing-a-development-branch/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-finishing-a-development-branch/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-receiving-code-review",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-receiving-code-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-receiving-code-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-requesting-code-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-requesting-code-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-requesting-code-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-subagent-driven-development",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-subagent-driven-development/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-subagent-driven-development/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-using-git-worktrees",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-using-git-worktrees/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-using-git-worktrees/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-using-superpowers",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-using-superpowers/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-using-superpowers/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-verification-before-completion",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-verification-before-completion/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-verification-before-completion/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-writing-skills",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-writing-skills/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-writing-skills/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail-review/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail-audit",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail-audit/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail-audit/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail-debt",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail-debt/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail-debt/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail-gain",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail-gain/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail-gain/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-ponytail-help",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-ponytail-help/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-ponytail-help/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-karpathy-guidelines",
     "scope": "local-evaluation",
-    "check": [
-      "skills/dev-karpathy-guidelines/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/dev-karpathy-guidelines/scripts/check-skill.mjs"]
   },
   {
     "id": "context-save",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-save/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-save/scripts/check-skill.mjs"]
   },
   {
     "id": "context-restore",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-restore/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-restore/scripts/check-skill.mjs"]
   },
   {
     "id": "context-sync-gbrain",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-sync-gbrain/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-sync-gbrain/scripts/check-skill.mjs"]
   },
   {
     "id": "context-setup-gbrain",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-setup-gbrain/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-setup-gbrain/scripts/check-skill.mjs"]
   },
   {
     "id": "context-agents-dox",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-agents-dox/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-agents-dox/scripts/check-skill.mjs"]
   },
   {
     "id": "context-codebase-guardian",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-codebase-guardian/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-codebase-guardian/scripts/check-skill.mjs"]
   },
   {
     "id": "context-lsp",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-lsp/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-lsp/scripts/check-skill.mjs"]
   },
   {
     "id": "context-memory",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-memory/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-memory/scripts/check-skill.mjs"]
   },
   {
     "id": "context-schema-aware-db",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-schema-aware-db/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-schema-aware-db/scripts/check-skill.mjs"]
   },
   {
     "id": "context-teammates",
     "scope": "local-evaluation",
-    "check": [
-      "skills/context-teammates/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/context-teammates/scripts/check-skill.mjs"]
   },
   {
     "id": "media-rembg",
     "scope": "local-evaluation",
-    "check": [
-      "skills/media-rembg/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/media-rembg/scripts/check-skill.mjs"]
   },
   {
     "id": "media-make-pdf",
     "scope": "local-evaluation",
-    "check": [
-      "skills/media-make-pdf/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/media-make-pdf/scripts/check-skill.mjs"]
   },
   {
     "id": "web-crawl4ai",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-crawl4ai/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-crawl4ai/scripts/check-skill.mjs"]
   },
   {
     "id": "web-scrape",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-scrape/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-scrape/scripts/check-skill.mjs"]
   },
   {
     "id": "web-browse",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-browse/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-browse/scripts/check-skill.mjs"]
   },
   {
     "id": "web-open-browser",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-open-browser/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-open-browser/scripts/check-skill.mjs"]
   },
   {
     "id": "web-setup-browser-cookies",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-setup-browser-cookies/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-setup-browser-cookies/scripts/check-skill.mjs"]
   },
   {
     "id": "web-hackernews-frontpage",
     "scope": "local-evaluation",
-    "check": [
-      "skills/web-hackernews-frontpage/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/web-hackernews-frontpage/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-autoplan",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-autoplan/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-autoplan/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-benchmark",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-benchmark/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-benchmark/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-benchmark-models",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-benchmark-models/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-benchmark-models/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-upgrade",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-upgrade/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-upgrade/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-ios-clean",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-ios-clean/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-ios-clean/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-ios-design-review",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-ios-design-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-ios-design-review/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-ios-fix",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-ios-fix/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-ios-fix/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-ios-sync",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-ios-sync/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-ios-sync/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-cso",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-cso/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-cso/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-codex",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-codex/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-codex/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-openclaw-ceo-review",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-openclaw-ceo-review/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-openclaw-investigate",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-openclaw-investigate/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-openclaw-investigate/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-openclaw-office-hours",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-openclaw-office-hours/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-openclaw-office-hours/scripts/check-skill.mjs"]
   },
   {
     "id": "gstack-openclaw-retro",
     "version": "0.2.0",
     "scope": "local-evaluation",
-    "check": [
-      "skills/gstack-openclaw-retro/scripts/check-skill.mjs"
-    ]
+    "check": ["skills/gstack-openclaw-retro/scripts/check-skill.mjs"]
   }
 ]

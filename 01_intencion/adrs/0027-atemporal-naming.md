@@ -28,7 +28,7 @@ tiempos/versiones**. Tres concerns, tres tratamientos:
   (cuyo valor literal está sellado a un hash) se preservan literales; solo se
   parametriza el nombre vía `deterministic-epoch.ts`. [CONFIG]
 - **Lifecycle**: ortogonal a versiones. `RENDERED_DRAFT != FINAL !=
-  HUMAN_APPROVED != READY != PUBLISHED` se preserva; un build/render nunca
+HUMAN_APPROVED != READY != PUBLISHED` se preserva; un build/render nunca
   concede estos estados. [CONFIG]
 
 ## Consecuencias

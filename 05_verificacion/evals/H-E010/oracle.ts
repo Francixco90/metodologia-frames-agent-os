@@ -16,7 +16,9 @@ export const oracle: Oracle = {
   run: (): OracleOutcome => {
     const checks: OracleOutcome['oracle_checks'] = [];
     const evidence: string[] = [];
-    const dirs = readdirSync(TASKS_DIR, {withFileTypes: true}).filter((e) => e.isDirectory() && e.name.startsWith('TASK-')).map((e) => e.name);
+    const dirs = readdirSync(TASKS_DIR, {withFileTypes: true})
+      .filter((e) => e.isDirectory() && e.name.startsWith('TASK-'))
+      .map((e) => e.name);
     const loose: string[] = [];
     for (const d of dirs) {
       const p = resolve(TASKS_DIR, d, 'task.yaml');
@@ -32,8 +34,18 @@ export const oracle: Oracle = {
         evidence.push(sha256(raw));
       }
     }
-    checks.push({name: 'at least one R3-LOOSE task discovered', passed: loose.length > 0, detail: `${loose.length} loose task(s)`});
-    if (loose.length === 0) return {status: 'skipped', oracle_checks: checks, evidence_hashes: evidence, notes: 'no R3-LOOSE task in repo'};
+    checks.push({
+      name: 'at least one R3-LOOSE task discovered',
+      passed: loose.length > 0,
+      detail: `${loose.length} loose task(s)`,
+    });
+    if (loose.length === 0)
+      return {
+        status: 'skipped',
+        oracle_checks: checks,
+        evidence_hashes: evidence,
+        notes: 'no R3-LOOSE task in repo',
+      };
     let allPass = true;
     for (const d of loose) {
       const raw = readFileSync(resolve(TASKS_DIR, d, 'task.yaml'), 'utf8');
@@ -46,7 +58,11 @@ export const oracle: Oracle = {
       const c = parsed.data;
       const pidOk = c.project_id === null;
       const routeOk = c.created_from_route === 'R3-LOOSE';
-      checks.push({name: `${d} project_id=null`, passed: pidOk, detail: `project_id=${c.project_id ?? 'null'}`});
+      checks.push({
+        name: `${d} project_id=null`,
+        passed: pidOk,
+        detail: `project_id=${c.project_id ?? 'null'}`,
+      });
       checks.push({name: `${d} created_from_route=R3-LOOSE`, passed: routeOk});
       if (!pidOk || !routeOk) allPass = false;
     }

@@ -59,14 +59,7 @@ const parseFrontmatter = (md: string): Record<string, unknown> | null => {
 const TERMINAL_HUMAN_STATES = new Set(['HUMAN_APPROVED', 'READY', 'PUBLISHED']);
 
 /** Manual fail-closed gates that require explicit human approval. [CONFIG] */
-const MANUAL_GATES = new Set([
-  'G13',
-  'G14',
-  'G15',
-  'G16',
-  'G17',
-  'MW_DISTRIBUTION_AUTHORIZED',
-]);
+const MANUAL_GATES = new Set(['G13', 'G14', 'G15', 'G16', 'G17', 'MW_DISTRIBUTION_AUTHORIZED']);
 
 export type QualityGateCheckResult = {
   id: string;
@@ -212,10 +205,12 @@ export const evaluateQualityGate = (ctx: QualityGateContext): QualityGateResult 
       allResolved && allExist,
       allResolved && allExist
         ? `${ctx.inputResolutions.length} input(s) resolved`
-        : `missing input: ${ctx.inputResolutions
-            .filter((r) => !r.exists)
-            .map((r) => r.input)
-            .join(', ') || 'count mismatch'}`,
+        : `missing input: ${
+            ctx.inputResolutions
+              .filter((r) => !r.exists)
+              .map((r) => r.input)
+              .join(', ') || 'count mismatch'
+          }`,
     );
   }
 
@@ -224,8 +219,7 @@ export const evaluateQualityGate = (ctx: QualityGateContext): QualityGateResult 
   // exactly the workflow's declared gate state. [CONFIG]
   const targetState = ctx.workflowParsed.work_product_state;
   const receiptTargetRaw = ctx.receiptPayload.work_product_state_to;
-  const receiptTarget =
-    typeof receiptTargetRaw === 'string' ? receiptTargetRaw : '';
+  const receiptTarget = typeof receiptTargetRaw === 'string' ? receiptTargetRaw : '';
   const notTerminal = !TERMINAL_HUMAN_STATES.has(targetState);
   const matches = receiptTarget === targetState;
   add(

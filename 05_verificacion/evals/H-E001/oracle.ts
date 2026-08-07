@@ -37,17 +37,29 @@ export const oracle: Oracle = {
     checks.push({
       name: 'at least one R3 task discovered',
       passed: r3Tasks.length > 0,
-      detail: r3Tasks.length === 0 ? 'no task with created_from_route: R3 found' : `${r3Tasks.length} R3 task(s)`,
+      detail:
+        r3Tasks.length === 0
+          ? 'no task with created_from_route: R3 found'
+          : `${r3Tasks.length} R3 task(s)`,
     });
     if (r3Tasks.length === 0) {
-      return {status: 'skipped', oracle_checks: checks, evidence_hashes: evidence, notes: 'precondition absent: no R3 task in repo'};
+      return {
+        status: 'skipped',
+        oracle_checks: checks,
+        evidence_hashes: evidence,
+        notes: 'precondition absent: no R3 task in repo',
+      };
     }
     let allPass = true;
     for (const d of r3Tasks) {
       const raw = readFileSync(resolve(TASKS_DIR, d, 'task.yaml'), 'utf8');
       const parsed = TaskContractSchema.safeParse(parse(raw) as unknown);
       if (!parsed.success) {
-        checks.push({name: `${d} parses TaskContractSchema`, passed: false, detail: parsed.error.issues[0]?.message});
+        checks.push({
+          name: `${d} parses TaskContractSchema`,
+          passed: false,
+          detail: parsed.error.issues[0]?.message,
+        });
         allPass = false;
         continue;
       }
@@ -55,7 +67,11 @@ export const oracle: Oracle = {
       const stateOk = c.state === 'INTAKE';
       const pidOk = c.project_id !== null && /^[a-z0-9-]+$/u.test(c.project_id);
       checks.push({name: `${d} state=INTAKE`, passed: stateOk, detail: `state=${c.state}`});
-      checks.push({name: `${d} project_id non-null + slug`, passed: pidOk, detail: `project_id=${c.project_id ?? 'null'}`});
+      checks.push({
+        name: `${d} project_id non-null + slug`,
+        passed: pidOk,
+        detail: `project_id=${c.project_id ?? 'null'}`,
+      });
       if (!stateOk || !pidOk) allPass = false;
     }
     return {status: allPass ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};

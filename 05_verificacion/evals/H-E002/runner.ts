@@ -4,7 +4,16 @@
 // 05_verificacion/scripts/check-tasks.ts) and asserts a WARN is emitted.
 // Deterministic: fixed timestamps + hashes; no Date.now/Math.random. [CÓDIGO]
 
-import {mkdtempSync, mkdirSync, readdirSync, existsSync, readFileSync, writeFileSync, statSync, rmSync} from 'node:fs';
+import {
+  mkdtempSync,
+  mkdirSync,
+  readdirSync,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+  statSync,
+  rmSync,
+} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, resolve} from 'node:path';
 import {describe, expect, it} from 'vitest';

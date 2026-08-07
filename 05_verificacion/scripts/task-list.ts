@@ -136,10 +136,7 @@ function carryForward(content: string | null): string {
   const picks: string[] = [];
   for (const sec of sections) {
     const h = sec.header;
-    if (
-      h.startsWith('TASK-TAX-001') ||
-      h.toLowerCase().startsWith('plantilla de task-contract')
-    ) {
+    if (h.startsWith('TASK-TAX-001') || h.toLowerCase().startsWith('plantilla de task-contract')) {
       picks.push(`## ${h}\n${sec.body.trimEnd()}\n`);
     }
   }
@@ -194,9 +191,7 @@ function main(): void {
   const output = parts.join('\n');
   writeFileSync(TASK_MD, output, 'utf8');
 
-  const counts = STATE_ORDER.map(
-    (s) => `${s}:${byState.get(s)?.length ?? 0}`,
-  ).join(' ');
+  const counts = STATE_ORDER.map((s) => `${s}:${byState.get(s)?.length ?? 0}`).join(' ');
   console.info(`PASS task-list: ${loaded.length} tasks indexados (${counts}).`);
 }
 

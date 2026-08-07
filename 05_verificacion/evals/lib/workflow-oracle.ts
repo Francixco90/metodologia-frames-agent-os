@@ -22,7 +22,7 @@ const workflowDir = (id: string): string | null => {
   const entries = readdirSync(MULTIMEDIA, {withFileTypes: true})
     .filter((e) => e.isDirectory() && e.name.startsWith(id.toLowerCase().replace('p', 'p')))
     .map((e) => resolve(MULTIMEDIA, e.name));
-  return entries.length === 1 ? entries[0] ?? null : null;
+  return entries.length === 1 ? (entries[0] ?? null) : null;
 };
 
 export const runWorkflowOracle = (id: string): OracleOutcome => {
@@ -38,20 +38,36 @@ export const runWorkflowOracle = (id: string): OracleOutcome => {
   const wfRaw = readFileSync(wfPath, 'utf8');
   evidence.push(sha256(wfRaw));
   const wfParsed = MultimediaWorkflowSchema.safeParse(parse(wfRaw));
-  checks.push({name: `${id} workflow.yml parses MultimediaWorkflowSchema`, passed: wfParsed.success, detail: wfParsed.success ? 'schema-valid' : wfParsed.error.issues[0]?.message});
+  checks.push({
+    name: `${id} workflow.yml parses MultimediaWorkflowSchema`,
+    passed: wfParsed.success,
+    detail: wfParsed.success ? 'schema-valid' : wfParsed.error.issues[0]?.message,
+  });
   const ttRaw = readFileSync(ttPath, 'utf8');
   evidence.push(sha256(ttRaw));
   const ttParsed = TaskContractSchema.safeParse(parse(ttRaw));
-  checks.push({name: `${id} task-template.yaml parses TaskContractSchema`, passed: ttParsed.success, detail: ttParsed.success ? 'schema-valid' : ttParsed.error.issues[0]?.message});
+  checks.push({
+    name: `${id} task-template.yaml parses TaskContractSchema`,
+    passed: ttParsed.success,
+    detail: ttParsed.success ? 'schema-valid' : ttParsed.error.issues[0]?.message,
+  });
   if (wfParsed.success && ttParsed.success) {
     const gates = wfParsed.data.gates ?? [];
     const gateTarget = ttParsed.data.gate_target;
     const gateOk = gateTarget === null || gates.includes(gateTarget);
-    checks.push({name: `${id} task gate_target in workflow gates`, passed: gateOk, detail: `gate_target=${gateTarget ?? 'null'} gates=[${gates.join(',')}]`});
+    checks.push({
+      name: `${id} task gate_target in workflow gates`,
+      passed: gateOk,
+      detail: `gate_target=${gateTarget ?? 'null'} gates=[${gates.join(',')}]`,
+    });
     const idOk = wfParsed.data.workflow_id === id;
     checks.push({name: `${id} workflow_id matches`, passed: idOk});
   }
-  return {status: checks.every((c) => c.passed) ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};
+  return {
+    status: checks.every((c) => c.passed) ? 'pass' : 'fail',
+    oracle_checks: checks,
+    evidence_hashes: evidence,
+  };
 };
 
 export const runChainOracle = (): OracleOutcome => {
@@ -88,12 +104,18 @@ export const runChainOracle = (): OracleOutcome => {
     if (id === undefined) continue;
     const dir = dirByWorkflow.get(id);
     if (!dir) continue;
-    const parsed = MultimediaWorkflowSchema.safeParse(parse(readFileSync(resolve(dir, 'workflow.yml'), 'utf8')));
+    const parsed = MultimediaWorkflowSchema.safeParse(
+      parse(readFileSync(resolve(dir, 'workflow.yml'), 'utf8')),
+    );
     if (!parsed.success) continue;
     const inputs = parsed.data.inputs ?? [];
     if (i === 0) {
       const rootOk = inputs.length === 0;
-      checks.push({name: `${id} root has no prior inputs`, passed: rootOk, detail: inputs.length === 0 ? 'root' : `${inputs.length} inputs`});
+      checks.push({
+        name: `${id} root has no prior inputs`,
+        passed: rootOk,
+        detail: inputs.length === 0 ? 'root' : `${inputs.length} inputs`,
+      });
       if (!rootOk) allPass = false;
       continue;
     }
@@ -108,20 +130,30 @@ export const runChainOracle = (): OracleOutcome => {
         inputsOk = false;
         break;
       }
-      if (priorDir !== undefined && !resolved.startsWith(priorDir + '/') && !resolved.startsWith(dir + '/')) {
+      if (
+        priorDir !== undefined &&
+        !resolved.startsWith(priorDir + '/') &&
+        !resolved.startsWith(dir + '/')
+      ) {
         inputsOk = false;
         break;
       }
     }
-    checks.push({name: `${id} inputs resolve to prior-workflow or repo-internal files`, passed: inputsOk, detail: `inputs=[${inputs.map(String).join(',')}]`});
+    checks.push({
+      name: `${id} inputs resolve to prior-workflow or repo-internal files`,
+      passed: inputsOk,
+      detail: `inputs=[${inputs.map(String).join(',')}]`,
+    });
     if (!inputsOk) allPass = false;
   }
   const chainOk = ids.every((id, i) => {
     const dir = dirByWorkflow.get(id);
     if (!dir) return false;
-    const parsed = MultimediaWorkflowSchema.safeParse(parse(readFileSync(resolve(dir, 'workflow.yml'), 'utf8')));
+    const parsed = MultimediaWorkflowSchema.safeParse(
+      parse(readFileSync(resolve(dir, 'workflow.yml'), 'utf8')),
+    );
     if (!parsed.success) return false;
-    const expectedNext = i === ids.length - 1 ? null : ids[i + 1] ?? null;
+    const expectedNext = i === ids.length - 1 ? null : (ids[i + 1] ?? null);
     return parsed.data.next_workflow === expectedNext;
   });
   checks.push({name: 'P00->P01->...->P09 next_workflow chain intact', passed: chainOk});

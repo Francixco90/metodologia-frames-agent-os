@@ -231,9 +231,7 @@ const extractPrompt = (html: string, nn: string): PromptExtract | null => {
   if (!am || am[1] === undefined) return null;
   const art = am[1];
 
-  const commandMatch = /<div class="card-num">MIA-MEDIA-[A-Z0-9]+ · (\/[\w-]+)<\/div>/u.exec(
-    art,
-  );
+  const commandMatch = /<div class="card-num">MIA-MEDIA-[A-Z0-9]+ · (\/[\w-]+)<\/div>/u.exec(art);
   const command = commandMatch?.[1] ?? '';
 
   const h3Match = /<h3>([\s\S]*?)<\/h3>/u.exec(art);
@@ -262,19 +260,22 @@ const extractPrompt = (html: string, nn: string): PromptExtract | null => {
   const phase = tagEs(tagMatches[1] ?? '');
 
   // SPEC panel.
-  const specRe = /<div class="prompt-block"[^>]*data-block="spec"[^>]*>[\s\S]*?<code>([\s\S]*?)<\/code>/u;
+  const specRe =
+    /<div class="prompt-block"[^>]*data-block="spec"[^>]*>[\s\S]*?<code>([\s\S]*?)<\/code>/u;
   const specBlock = specRe.exec(art)?.[1] ?? '';
   const specEs = decodeSpan(specBlock, 'es');
   const specEn = decodeSpan(specBlock, 'en');
   const specPt = decodeSpan(specBlock, 'pt');
 
   // parametros panel → variables (es span).
-  const paramRe = /<div class="prompt-block"[^>]*data-block="parametros"[^>]*>[\s\S]*?<code>([\s\S]*?)<\/code>/u;
+  const paramRe =
+    /<div class="prompt-block"[^>]*data-block="parametros"[^>]*>[\s\S]*?<code>([\s\S]*?)<\/code>/u;
   const paramBlock = paramRe.exec(art)?.[1] ?? '';
   const paramEs = decodeSpan(paramBlock, 'es');
-  const variables = Array.from(
-    paramEs.matchAll(/\{\{(\S+?)\s*=\s*"([^"]*)"\}\}/gu),
-  ).map((m) => ({name: m[1] ?? '', default: m[2] ?? ''}));
+  const variables = Array.from(paramEs.matchAll(/\{\{(\S+?)\s*=\s*"([^"]*)"\}\}/gu)).map((m) => ({
+    name: m[1] ?? '',
+    default: m[2] ?? '',
+  }));
 
   // callouts.
   const calloutEs = (blockId: string): string => {
@@ -392,7 +393,11 @@ const extractModes = (pedido: string): Array<{id: string; name: string; descript
     }
   }
   if (modes.length === 0) {
-    modes.push({id: 'single', name: 'single-mode', description: 'Prompt executes as a single stage.'});
+    modes.push({
+      id: 'single',
+      name: 'single-mode',
+      description: 'Prompt executes as a single stage.',
+    });
   }
   return modes;
 };
@@ -505,7 +510,9 @@ const generatePromptSpec = (entry: B2Entry, ex: PromptExtract): string => {
   fm.push(``);
   fm.push(`# ${ex.titleEs} · ${entry.nn}`);
   fm.push(``);
-  fm.push(`> Provenance: \`MIA-MEDIA-LIB-2.0.0\` v2.0.0-candidato · Estado: candidate · ${ex.metaTags} [DOC]`);
+  fm.push(
+    `> Provenance: \`MIA-MEDIA-LIB-2.0.0\` v2.0.0-candidato · Estado: candidate · ${ex.metaTags} [DOC]`,
+  );
   fm.push(``);
   fm.push(`## ES — SPEC verbatim`);
   fm.push(``);
@@ -565,12 +572,17 @@ const generateTaskTemplate = (entry: B2Entry, ex: PromptExtract): string => {
   lines.push(`repo: metodologia-frames-agent-os`);
   lines.push(`responsable: ${entry.responsable}`);
   lines.push(`inputs:`);
-  lines.push(`  - 02_proceso/workflows/multimedia/p${entry.nn.slice(1)}-${entry.slug}/prompt-spec.md`);
+  lines.push(
+    `  - 02_proceso/workflows/multimedia/p${entry.nn.slice(1)}-${entry.slug}/prompt-spec.md`,
+  );
   lines.push(`write_set:`);
   lines.push(`  - ${writeSetPrefix}/p${entry.nn.slice(1)}-${entry.slug}/**`);
   lines.push(`no_objetivos:`);
   for (const l of limits) lines.push(`  - ${JSON.stringify(yq(l)).slice(0, 200)}`);
-  if (limits.length === 0) lines.push(`  - ${JSON.stringify(yq('No inventar identidad, consentimiento, derechos ni resultados.'))}`);
+  if (limits.length === 0)
+    lines.push(
+      `  - ${JSON.stringify(yq('No inventar identidad, consentimiento, derechos ni resultados.'))}`,
+    );
   lines.push(`done: ${JSON.stringify(yq(ex.dodEs)).slice(0, 500)}`);
   lines.push(`validacion: "pnpm mw:run ${entry.nn} --dry-run && pnpm check:tasks"`);
   lines.push(`gaps: []`);
@@ -599,7 +611,9 @@ const generateNotebookBinding = (entry: B2Entry): string => {
   lines.push(`  contract_ref: registries/notebooks/work-unit-binding-contract.yml`);
   lines.push(`  adapter_id: notebooklm-grounding-readonly-v1`);
   lines.push(`  binding_id: null`);
-  lines.push(`  purpose: "Bind ${entry.nn} prompt-spec to NotebookLM grounding when sources are mapped."`);
+  lines.push(
+    `  purpose: "Bind ${entry.nn} prompt-spec to NotebookLM grounding when sources are mapped."`,
+  );
   lines.push(`  binding:`);
   lines.push(`    mode: none`);
   lines.push(`    reason_code: binding_not_selected`);
@@ -612,8 +626,16 @@ const generateNotebookBinding = (entry: B2Entry): string => {
   return `${lines.join('\n')}\n`;
 };
 
-const parseArgs = (argv: string[]): {from: string; all: boolean; only: string | undefined; dryRun: boolean; force: boolean} => {
-  const out = {from: '', all: false, only: undefined as string | undefined, dryRun: false, force: false};
+const parseArgs = (
+  argv: string[],
+): {from: string; all: boolean; only: string | undefined; dryRun: boolean; force: boolean} => {
+  const out = {
+    from: '',
+    all: false,
+    only: undefined as string | undefined,
+    dryRun: false,
+    force: false,
+  };
   for (const arg of argv.slice(2)) {
     if (arg.startsWith('--from=')) out.from = arg.slice('--from='.length);
     else if (arg === '--all') out.all = true;
@@ -643,9 +665,7 @@ const main = (): void => {
   }
   const html = readFileSync(htmlPath, 'utf8');
 
-  const targets = args.all
-    ? B2_TABLE
-    : B2_TABLE.filter((e) => e.nn === args.only);
+  const targets = args.all ? B2_TABLE : B2_TABLE.filter((e) => e.nn === args.only);
   if (targets.length === 0) {
     console.error(`[FAIL] no prompts matched --only=${args.only ?? '(none)'}`);
     process.exitCode = 1;

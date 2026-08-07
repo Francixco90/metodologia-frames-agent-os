@@ -19,12 +19,7 @@ import YAML from 'yaml';
 
 import {TaskContractSchema} from '../../../02_proceso/core/contracts/index.ts';
 
-export type Subsystem =
-  | 'Instructions'
-  | 'Tools'
-  | 'Environment'
-  | 'State'
-  | 'Feedback';
+export type Subsystem = 'Instructions' | 'Tools' | 'Environment' | 'State' | 'Feedback';
 
 export const ALL_SUBSYSTEMS: readonly Subsystem[] = [
   'Instructions',
@@ -72,12 +67,9 @@ export function loadVariantConfig(configPath: string): VariantConfig {
   const excluded = raw.excluded_subsystem;
   return {
     variant_id: String(raw.variant_id),
-    excluded_subsystem:
-      excluded === null ? null : (excluded as Subsystem),
+    excluded_subsystem: excluded === null ? null : (excluded as Subsystem),
     description: String(raw.description),
-    levers_disabled: Array.isArray(raw.levers_disabled)
-      ? (raw.levers_disabled as string[])
-      : [],
+    levers_disabled: Array.isArray(raw.levers_disabled) ? (raw.levers_disabled as string[]) : [],
     n: Number(raw.n),
     oracle_ref: String(raw.oracle_ref),
     benchmark_ref: String(raw.benchmark_ref),

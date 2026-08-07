@@ -1,6 +1,9 @@
 import {describe, expect, it} from 'vitest';
 
-import {assertFontFaceLoaded, localFontSpecs} from '../../../../renderers/remotion/src/font-loader.ts';
+import {
+  assertFontFaceLoaded,
+  localFontSpecs,
+} from '../../../../renderers/remotion/src/font-loader.ts';
 
 describe('local font gate', () => {
   it('binds exactly four unique local font declarations at weights 400 and 700', () => {

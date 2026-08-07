@@ -46,7 +46,10 @@ export type ComponentEntry = {
 export const buildComponents = (root: string, sha256: Sha256): readonly ComponentEntry[] =>
   componentFiles.map((path) => {
     const content = readFileSync(resolve(root, path));
-    const componentId = path.split('/').at(-1)?.replace(/\.[^.]+$/u, '');
+    const componentId = path
+      .split('/')
+      .at(-1)
+      ?.replace(/\.[^.]+$/u, '');
     if (componentId === undefined) throw new Error(`Cannot derive component ID from ${path}.`);
     const category = componentCategories[path];
     const visual = isVisualCategory(category);
