@@ -1,37 +1,37 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P06
 command: /crear-activos
-title: "Crea los activos multimedia"
-purpose: "Genera, guía o especifica activos por etapas, con evidencia y estado exacto."
-discipline: "Generación y captura"
-phase: "Producción"
+title: 'Crea los activos multimedia'
+purpose: 'Genera, guía o especifica activos por etapas, con evidencia y estado exacto.'
+discipline: 'Generación y captura'
+phase: 'Producción'
 tags:
   - assets
   - build
   - capability
 modes:
   - id: ia-nativa
-    name: "IA nativa"
-    description: "IA nativa"
+    name: 'IA nativa'
+    description: 'IA nativa'
   - id: captura-real-asistida
-    name: "Captura real asistida"
-    description: "Captura real asistida"
+    name: 'Captura real asistida'
+    description: 'Captura real asistida'
   - id: hibrida
-    name: "Híbrida"
-    description: "Híbrida"
+    name: 'Híbrida'
+    description: 'Híbrida'
   - id: rescate-de-activo
-    name: "Rescate de activo"
-    description: "Rescate de activo"
+    name: 'Rescate de activo'
+    description: 'Rescate de activo'
 inputs:
   - p05-disenar-pieza/workflow.yml
 outputs:
-  - artifact: "Asset Package"
+  - artifact: 'Asset Package'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Asset Manifest"
+  - artifact: 'Asset Manifest'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Capability Report"
+  - artifact: 'Capability Report'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: BUILD_VALIDATED
@@ -42,26 +42,26 @@ next_workflow: P07
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Si ninguna herramienta puede ejecutar, entrega prompts/instrucciones universales y orden de validación; si un riesgo de identidad, derechos o evidencia permanece abierto, produce solo prototipos no publicables o detén el activo afectado. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Si ninguna herramienta puede ejecutar, entrega prompts/instrucciones universales y orden de validación; si un riesgo de identidad, derechos o evidencia permanece abierto, produce solo prototipos no publicables o detén el activo afectado. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Paquete de activos generado por etapas con estado exacto"
-    - "Manifiesto de activos trazable"
-    - "Reporte de capacidad y evidencia de herramienta"
+    - 'Paquete de activos generado por etapas con estado exacto'
+    - 'Manifiesto de activos trazable'
+    - 'Reporte de capacidad y evidencia de herramienta'
   deliverables:
     - asset-package-v1
     - asset-manifest-v1
     - capability-report-v1
     - tool-run-evidence-v1
-  context: "Genera, guía o especifica activos por etapas, con evidencia y estado exacto."
-  cta: "Someter a MW_ASSET_REVIEW; avanzar a P07 revisar."
+  context: 'Genera, guía o especifica activos por etapas, con evidencia y estado exacto.'
+  cta: 'Someter a MW_ASSET_REVIEW; avanzar a P07 revisar.'
 capability_map:
   skills:
     - content-os-core

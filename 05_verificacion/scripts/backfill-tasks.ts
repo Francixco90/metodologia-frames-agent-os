@@ -25,11 +25,7 @@ import {resolve} from 'node:path';
 import YAML from 'yaml';
 
 import {TaskContractSchema, type TaskContract} from '../../core/contracts/index.ts';
-import {
-  mintTaskId,
-  type TaskCounter,
-  bumpCounter,
-} from './lib/mint-task-id.ts';
+import {mintTaskId, type TaskCounter, bumpCounter} from './lib/mint-task-id.ts';
 import {BACKFILL_EPOCH as BACKFILL_TIMESTAMP} from './lib/deterministic-epoch.ts';
 
 const root = process.cwd();
@@ -61,7 +57,10 @@ const SECTION_MAP: ReadonlyMap<string, Section> = new Map([
 
 /** Extract the slug key for a header line (lowercased, trimmed). */
 function sectionKey(header: string): string {
-  return header.replace(/^#+\s*/u, '').trim().toLowerCase();
+  return header
+    .replace(/^#+\s*/u, '')
+    .trim()
+    .toLowerCase();
 }
 
 /**
@@ -80,7 +79,10 @@ function parseTableBody(lines: string[]): string[][] {
         continue;
       }
       sawSeparator = true; // tolerate tables without an explicit separator
-      const cells = trimmed.slice(1, -1).split('|').map((c) => c.trim());
+      const cells = trimmed
+        .slice(1, -1)
+        .split('|')
+        .map((c) => c.trim());
       rows.push(cells);
     } else if (rows.length > 0) {
       // first non-table line ends the table
@@ -166,8 +168,8 @@ function atomicWrite(path: string, content: string): void {
 
 /** Serialize the counter back to its canonical YAML form. [CÓDIGO] */
 function serializeCounter(c: TaskCounter): string {
-  const projectSeqEntries = Object.entries(c.counters.project_sequences).sort(
-    ([a], [b]) => a.localeCompare(b),
+  const projectSeqEntries = Object.entries(c.counters.project_sequences).sort(([a], [b]) =>
+    a.localeCompare(b),
   );
   const projectSeqYaml =
     projectSeqEntries.length === 0
@@ -231,9 +233,7 @@ function buildContract(item: BackfillPlanItem): TaskContract {
   // an id or field the contract rejects. [CÓDIGO]
   const parsed = TaskContractSchema.safeParse(contract);
   if (!parsed.success) {
-    const issues = parsed.error.issues
-      .map((i) => `${i.path.join('.')}: ${i.message}`)
-      .join('; ');
+    const issues = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ');
     throw new Error(
       `backfill-tasks: contract for ${item.mintedId} (orig ${item.originalId}) fails schema — ${issues}`,
     );

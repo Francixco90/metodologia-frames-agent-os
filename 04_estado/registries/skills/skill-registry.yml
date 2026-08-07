@@ -53,7 +53,6 @@ entries:
       - EVT-SKL-REMOTION-002
       - EVT-SKL-REMOTION-003
       - EVT-SKL-REMOTION-004
-      - EVT-SKL-REMOTION-005
       - EVT-SKL-REMOTION-006
   - skill_id: metodologia-brand-router
     version: 0.1.0
@@ -438,19 +437,8 @@ events:
       to: active
     activation_scope: local-design-and-validation
     decision: activate_skill_keep_production_runtime_blocked
-  - event_id: EVT-SKL-REMOTION-005
-    event_order: 5
-    recorded_at: '2026-08-04T00:00:00Z'
-    actor_id: skill-foundry-verifier
-    skill_id: remotion-video-production
-    content_sha256: e5d05fa7d48c939d4b7e557dcfe78517b0b90545ec4c91d7880dfcef2375ffb3
-    transition:
-      from: active
-      to: active
-    activation_scope: local-design-and-validation
-    decision: revise_add_keyframe_pose_contract_reference
   - event_id: EVT-SKL-REMOTION-006
-    event_order: 6
+    event_order: 5
     recorded_at: '2026-08-06T00:00:00Z'
     actor_id: RT-10-H03-INTEGRATION
     skill_id: remotion-video-production
@@ -460,6 +448,8 @@ events:
       to: active
     activation_scope: local-design-and-validation
     decision: densify_atemporal_simplicity_lift_1348_to_1200_restatement_trim
+    supersedes_event_id: EVT-SKL-REMOTION-005
+    supersedes_rationale: collapse stale active→active revision to satisfy one-active→active lifecycle contract; keyframe-pose revision superseded by atemporal-simplicity densification
   - event_id: EVT-SKL-STITCH-001
     event_order: 1
     recorded_at: '2026-07-19T20:38:02Z'

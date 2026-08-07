@@ -9,7 +9,10 @@ import {resolve} from 'node:path';
 
 import {validateBrand} from './check-brand/validate-brand.ts';
 import {validateSourceBundleObject, validateVoiceProfileObject} from './check-brand/validators.ts';
-import {evaluateChannelFreshness, validateChannelProfileObject} from './check-brand/channel-validators.ts';
+import {
+  evaluateChannelFreshness,
+  validateChannelProfileObject,
+} from './check-brand/channel-validators.ts';
 
 export {
   evaluateChannelFreshness,

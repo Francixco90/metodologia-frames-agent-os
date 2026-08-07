@@ -1,9 +1,6 @@
 import {describe, expect, it} from 'vitest';
 
-import {
-  type TaskTransitionRequest,
-  type TaskWorkState,
-} from '../../../../core/contracts/index.ts';
+import {type TaskTransitionRequest, type TaskWorkState} from '../../../../core/contracts/index.ts';
 import {
   TaskStateTransitionError,
   assertDirectTaskTransition,
@@ -114,9 +111,7 @@ describe('task state machine', () => {
     }
 
     it('accepts ENTREGADO when consumer differs from producer (rule 9)', () => {
-      expect(transitionTaskState(transitionRequest() as TaskTransitionRequest)).toBe(
-        'ENTREGADO',
-      );
+      expect(transitionTaskState(transitionRequest() as TaskTransitionRequest)).toBe('ENTREGADO');
     });
 
     it('rejects ENTREGADO when consumer === producer (rule 9: distinct actors)', () => {
@@ -126,9 +121,7 @@ describe('task state machine', () => {
       expect(() => transitionTaskState(same as TaskTransitionRequest)).toThrow(
         TaskStateTransitionError,
       );
-      expect(() => transitionTaskState(same as TaskTransitionRequest)).toThrow(
-        /distinct actors/u,
-      );
+      expect(() => transitionTaskState(same as TaskTransitionRequest)).toThrow(/distinct actors/u);
     });
 
     it('rejects ENTREGADO when handoff decision is not accepted', () => {

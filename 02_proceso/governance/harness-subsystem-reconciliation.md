@@ -45,13 +45,13 @@ subsistemas de harness-creator. La proyección es inclusiva (⊂), no biyectiva.
 [DOC] · [SUPUESTO: la alineación nominal se infiere de los artefactos mínimos
 declarados en SKILL.md, no de un mapeo explícito publicado.]
 
-| SPEC (canónico) | ⊂ harness-creator (scoring) | Nota |
-|---|---|---|
-| Instructions | {Instructions, Structure} | Instrucciones raíz + layout navegable. |
-| Tools | {Verification, Scope, Orchestration} | Comandos verificables, boundaries, gates/DAG. |
-| Environment | {Structure, Orchestration} | Taxonomía de carpetas, DAG, aislamiento. |
-| State | {State, Lifecycle} | feature_list/progress + session-handoff. |
-| Feedback | {Verification, Lifecycle} | Gates dan feedback; lifecycle cierra el ciclo. |
+| SPEC (canónico) | ⊂ harness-creator (scoring)          | Nota                                           |
+| --------------- | ------------------------------------ | ---------------------------------------------- |
+| Instructions    | {Instructions, Structure}            | Instrucciones raíz + layout navegable.         |
+| Tools           | {Verification, Scope, Orchestration} | Comandos verificables, boundaries, gates/DAG.  |
+| Environment     | {Structure, Orchestration}           | Taxonomía de carpetas, DAG, aislamiento.       |
+| State           | {State, Lifecycle}                   | feature_list/progress + session-handoff.       |
+| Feedback        | {Verification, Lifecycle}            | Gates dan feedback; lifecycle cierra el ciclo. |
 
 Inversa (no canónica, sólo para auditoría de cobertura de scoring): cada
 subsistema de harness-creator cae bajo al menos un subsistema SPEC, por lo que

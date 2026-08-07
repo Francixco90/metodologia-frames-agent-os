@@ -17,7 +17,7 @@ familia existen. [CÓDIGO]
 ## Precondiciones
 
 - `doctor.ts` define `RECEIPTS_FAMILIES = ['imports', 'renders',
-  'dependency-audits', 'migrations', 'check-runs', 'workflows']`. [CÓDIGO]
+'dependency-audits', 'migrations', 'check-runs', 'workflows']`. [CÓDIGO]
 - `doctor.ts` Check 9 recorre las 6 familias y emite PASS si todas existen. [CÓDIGO]
 
 ## Pasos
@@ -25,7 +25,7 @@ familia existen. [CÓDIGO]
 1. Asegurar que `04_estado/receipts/` contiene los 6 subdirectorios familia.
 2. Ejecutar `pnpm doctor`.
 3. Verificar que el reporte incluye `5 family dirs presentes: imports, renders,
-   dependency-audits, migrations, check-runs, workflows`.
+dependency-audits, migrations, check-runs, workflows`.
 
 ## Orálogo
 

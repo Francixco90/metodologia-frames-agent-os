@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-mw-p01-000
 project_id: null
-objetivo: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
+objetivo: 'Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,18 +9,18 @@ inputs:
 write_set:
   - 03_artefactos/content/multimedia/p01-curar-material/**
 no_objetivos:
-  - "No conviertas dolor, intimidad o información de terceros en contenido por defecto."
-  - "No inventes contexto para un archivo incompleto."
-  - "No recuperes activos de otro creador ni material protegido, retirado o sin permiso."
-  - "Si hay varias historias, sepáralas antes del brief."
-  - "Si la entrada no tiene valor público, puede conservar valor privado."
-  - "Si el volumen es bajo, no simules un digest: entrega la mejor tarjeta disponible."
-done: "Definition of Done"
-validacion: "pnpm mw:run P01 --dry-run && pnpm check:tasks"
+  - 'No conviertas dolor, intimidad o información de terceros en contenido por defecto.'
+  - 'No inventes contexto para un archivo incompleto.'
+  - 'No recuperes activos de otro creador ni material protegido, retirado o sin permiso.'
+  - 'Si hay varias historias, sepáralas antes del brief.'
+  - 'Si la entrada no tiene valor público, puede conservar valor privado.'
+  - 'Si el volumen es bajo, no simules un digest: entrega la mejor tarjeta disponible.'
+done: 'Definition of Done'
+validacion: 'pnpm mw:run P01 --dry-run && pnpm check:tasks'
 gaps: []
 state: INTAKE
 created_from_route: R3-LOOSE
-gate_target: "G14"
+gate_target: 'G14'
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:

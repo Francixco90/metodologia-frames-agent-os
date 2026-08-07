@@ -1,10 +1,10 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P05
 command: /disenar-pieza
-title: "Diseña la pieza multimedia"
-purpose: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
-discipline: "Guion y diseño multimedia"
-phase: "Diseño creativo"
+title: 'Diseña la pieza multimedia'
+purpose: 'Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.'
+discipline: 'Guion y diseño multimedia'
+phase: 'Diseño creativo'
 tags:
   - design
   - spec
@@ -12,18 +12,18 @@ tags:
   - asset-map
 modes:
   - id: single
-    name: "single-mode"
-    description: "Prompt executes as a single stage."
+    name: 'single-mode'
+    description: 'Prompt executes as a single stage.'
 inputs:
   - p04-calendarizar/workflow.yml
 outputs:
-  - artifact: "Creative Spec"
+  - artifact: 'Creative Spec'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Continuity Bible"
+  - artifact: 'Continuity Bible'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Asset Map"
+  - artifact: 'Asset Map'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: SPEC_APPROVED
@@ -34,27 +34,27 @@ next_workflow: P06
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Si el brief no permite escoger medio o ruta, diseña un prototipo de bajo costo: una imagen o frame, un clip corto o una prueba de voz antes de comprometer la pieza completa. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Si el brief no permite escoger medio o ruta, diseña un prototipo de bajo costo: una imagen o frame, un clip corto o una prueba de voz antes de comprometer la pieza completa. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Especificación creativa del guion y la secuencia"
-    - "Continuidad y mapa de activos coordinados"
-    - "Prompts universales y derivados listos"
+    - 'Especificación creativa del guion y la secuencia'
+    - 'Continuidad y mapa de activos coordinados'
+    - 'Prompts universales y derivados listos'
   deliverables:
     - creative-spec-v1
     - continuity-bible-v1
     - asset-map-v1
     - universal-prompts-v1
     - derivatives-v1
-  context: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
-  cta: "Someter a MW_SPEC_APPROVED + G14; avanzar a P06 crear-activos."
+  context: 'Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.'
+  cta: 'Someter a MW_SPEC_APPROVED + G14; avanzar a P06 crear-activos.'
 capability_map:
   skills:
     - content-os-creative

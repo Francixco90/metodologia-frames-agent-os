@@ -38,14 +38,19 @@ const isLooseDir = (name: string): boolean => name.startsWith('TASK-loose-');
 
 const readYaml = <T>(path: string): T => parse(readFileSync(path, 'utf8')) as T;
 
-const triageOne = (dir: string, dryRun: boolean): {id: string; changed: boolean; reason: string} => {
+const triageOne = (
+  dir: string,
+  dryRun: boolean,
+): {id: string; changed: boolean; reason: string} => {
   const taskPath = resolve(dir, 'task.yaml');
-  if (!existsSync(taskPath)) return {id: dir.split(sep).pop() ?? dir, changed: false, reason: 'no task.yaml'};
+  if (!existsSync(taskPath))
+    return {id: dir.split(sep).pop() ?? dir, changed: false, reason: 'no task.yaml'};
   const id = dir.split(sep).pop() ?? dir;
   const task = readYaml<Record<string, unknown>>(taskPath);
   const notesPath = resolve(dir, 'meta/backfill-notes.yml');
   const notes = existsSync(notesPath) ? readYaml<BackfillNotes>(notesPath) : {};
-  const alreadyTouched = Array.isArray(notes.provenance) && notes.provenance.includes(PROVENANCE_KEY);
+  const alreadyTouched =
+    Array.isArray(notes.provenance) && notes.provenance.includes(PROVENANCE_KEY);
   const routeChanged = task.created_from_route === 'R4';
   const inferred = typeof notes.inferred_state === 'string' && notes.inferred_state.length > 0;
   const tags = (task.evidence_tags ?? {}) as Record<string, string>;
@@ -60,7 +65,8 @@ const triageOne = (dir: string, dryRun: boolean): {id: string; changed: boolean;
   const provenance = Array.isArray(notes.provenance) ? notes.provenance.slice() : [];
   if (!provenance.includes(PROVENANCE_KEY)) provenance.push(PROVENANCE_KEY);
   notes.provenance = provenance;
-  if (notes.note === undefined) notes.note = 'migrated from flat TASK.md cola — state inferred, human amend expected';
+  if (notes.note === undefined)
+    notes.note = 'migrated from flat TASK.md cola — state inferred, human amend expected';
   if (!dryRun) {
     writeFileSync(taskPath, `${stringify(task)}`, 'utf8');
     writeFileSync(notesPath, `${stringify(notes)}`, 'utf8');

@@ -6,12 +6,12 @@
 
 Todo artefacto producido por un workflow P00–P09 debe acompañarse de la 4-tupla:
 
-| Slot | Significado | Tag |
-|------|------------|-----|
-| **O — Observado** | Hecho constatable directamente del input, artefacto previo o ejecución. | `[CÓDIGO]` / `[CONFIG]` / `[DOC]` |
-| **I — Inferido** | Conclusión derivada por razonamiento a partir de lo observado. | `[INFERENCIA]` |
-| **A — Supuesto** | Hipótesis no verificada que sostiene la inferencia; debe marcarse. | `[SUPUESTO]` |
-| **R — Dato requerido** | Información faltante necesaria para promover el artefacto; bloqueante si ausente. | `coverage_gap` |
+| Slot                   | Significado                                                                       | Tag                               |
+| ---------------------- | --------------------------------------------------------------------------------- | --------------------------------- |
+| **O — Observado**      | Hecho constatable directamente del input, artefacto previo o ejecución.           | `[CÓDIGO]` / `[CONFIG]` / `[DOC]` |
+| **I — Inferido**       | Conclusión derivada por razonamiento a partir de lo observado.                    | `[INFERENCIA]`                    |
+| **A — Supuesto**       | Hipótesis no verificada que sostiene la inferencia; debe marcarse.                | `[SUPUESTO]`                      |
+| **R — Dato requerido** | Información faltante necesaria para promover el artefacto; bloqueante si ausente. | `coverage_gap`                    |
 
 ## Reglas
 

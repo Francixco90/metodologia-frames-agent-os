@@ -55,22 +55,14 @@ export const TaskContractSchema = z
     schema_version: z.literal('task-contract-v1'),
     task_id: z
       .string()
-      .regex(
-        /^TASK-(?:[a-z0-9-]+-)?[0-9]{3,}$/u,
-        'Expected TASK-{slug}-{NNN} or TASK-LOOSE-{NNN}',
-      ),
-    project_id: z.string().regex(/^[a-z0-9-]+$/u).nullable(),
+      .regex(/^TASK-(?:[a-z0-9-]+-)?[0-9]{3,}$/u, 'Expected TASK-{slug}-{NNN} or TASK-LOOSE-{NNN}'),
+    project_id: z
+      .string()
+      .regex(/^[a-z0-9-]+$/u)
+      .nullable(),
     objetivo: z.string().min(1).max(500),
     repo: z.literal('metodologia-frames-agent-os'),
-    responsable: z.enum([
-      'lead',
-      'support',
-      'guardian',
-      'qa',
-      'governance',
-      'core',
-      'repo',
-    ]),
+    responsable: z.enum(['lead', 'support', 'guardian', 'qa', 'governance', 'core', 'repo']),
     inputs: z.array(RelativePathSchema).min(1),
     write_set: z.array(RelativePathSchema).min(1),
     no_objetivos: z.array(z.string().min(1)).default([]),
@@ -88,37 +80,22 @@ export const TaskContractSchema = z
     evidence_tags: z
       .record(
         z.string(),
-        z.enum([
-          'CÓDIGO',
-          'CONFIG',
-          'DOC',
-          'INFERENCIA',
-          'SUPUESTO',
-          'coverage_gap',
-        ]),
+        z.enum(['CÓDIGO', 'CONFIG', 'DOC', 'INFERENCIA', 'SUPUESTO', 'coverage_gap']),
       )
       .default({}),
     created_at: TimestampSchema,
     updated_at: TimestampSchema,
   })
   .superRefine((c, ctx) => {
-    if (
-      c.responsable === 'guardian' &&
-      c.write_set.some((p) => !p.startsWith('guardian/'))
-    ) {
+    if (c.responsable === 'guardian' && c.write_set.some((p) => !p.startsWith('guardian/'))) {
       ctx.addIssue({
         code: 'custom',
-        message:
-          'Guardian may_remediate:false — write_set must be guardian/ only',
+        message: 'Guardian may_remediate:false — write_set must be guardian/ only',
         path: ['write_set'],
       });
     }
 
-    if (
-      c.state === 'ENTREGADO' &&
-      c.gate_target !== null &&
-      /^G1[3-7]/.test(c.gate_target)
-    ) {
+    if (c.state === 'ENTREGADO' && c.gate_target !== null && /^G1[3-7]/.test(c.gate_target)) {
       ctx.addIssue({
         code: 'custom',
         message: 'G13-G17 manual fail-closed — cannot auto-ENTREGADO',

@@ -1,6 +1,6 @@
 schema_version: 1
 manifest_id: router-v1
-source_of_truth: true   # CLAUDE.md/GEMINI.md are shared agent-CLI adapters pointing here. [CONFIG]
+source_of_truth: true # CLAUDE.md/GEMINI.md are shared agent-CLI adapters pointing here. [CONFIG]
 # Router de intención (R0-R5). Supera al router de 4 rutas embebido en CLAUDE.md
 # (líneas 17-46), que pasa a ser un adaptador local que apunta a este manifiesto
 # versionado. [CONFIG]
@@ -12,65 +12,65 @@ source_of_truth: true   # CLAUDE.md/GEMINI.md are shared agent-CLI adapters poin
 # readiness_gate G16, publish_gate G17). No los automatices. [CONFIG]
 routes:
   - id: R0
-    signal: "ambiguo"
-    signal_patterns: ["ambiguo", "sin contexto claro"]
-    reads: ["CONTEXT.md"]
-    output: "pedir dato bloqueante o coverage_gap"
+    signal: 'ambiguo'
+    signal_patterns: ['ambiguo', 'sin contexto claro']
+    reads: ['CONTEXT.md']
+    output: 'pedir dato bloqueante o coverage_gap'
     binds_to: null
   - id: R1
-    signal: "nuevo proyecto / crear proyecto"
-    reads: ["01_intencion/program/dag.yml", "03_artefactos/projects/_template/project.yml"]
-    output: "scaffold projects/{id}/ + registro append-only en project-registry.yml + claims-ledger.yml"
+    signal: 'nuevo proyecto / crear proyecto'
+    reads: ['01_intencion/program/dag.yml', '03_artefactos/projects/_template/project.yml']
+    output: 'scaffold projects/{id}/ + registro append-only en project-registry.yml + claims-ledger.yml'
     binds_to: project
   - id: R2
-    signal: "retomar / continuar / nombre proyecto conocido"
+    signal: 'retomar / continuar / nombre proyecto conocido'
     reads:
-      - "04_estado/registries/projects/project-registry.yml"
-      - "03_artefactos/projects/{id}/project.yml"
-      - "04_estado/tasks/*/task.yaml"
-      - "05_verificacion/scripts/ongoing-projects.ts"
-    output: "LIST ongoing projects + open tasks + next gate per project"
+      - '04_estado/registries/projects/project-registry.yml'
+      - '03_artefactos/projects/{id}/project.yml'
+      - '04_estado/tasks/*/task.yaml'
+      - '05_verificacion/scripts/ongoing-projects.ts'
+    output: 'LIST ongoing projects + open tasks + next gate per project'
     binds_to: project
   - id: R3
-    signal: "tarea nueva + proyecto activo"
+    signal: 'tarea nueva + proyecto activo'
     reads:
-      - "05_verificacion/scripts/lib/mint-task-id.ts"
-      - "task.yaml template"
-      - "01_intencion/program/dag.yml"
-    output: "new tasks/{id}/task.yaml state INTAKE bound to project_id"
+      - '05_verificacion/scripts/lib/mint-task-id.ts'
+      - 'task.yaml template'
+      - '01_intencion/program/dag.yml'
+    output: 'new tasks/{id}/task.yaml state INTAKE bound to project_id'
     binds_to: task
   - id: R3-LOOSE
-    signal: "tarea nueva sin proyecto"
-    reads: ["05_verificacion/scripts/lib/mint-task-id.ts"]
-    output: "new tasks/{id}/task.yaml with project_id: null — first-class loose task"
+    signal: 'tarea nueva sin proyecto'
+    reads: ['05_verificacion/scripts/lib/mint-task-id.ts']
+    output: 'new tasks/{id}/task.yaml with project_id: null — first-class loose task'
     binds_to: task
   - id: R4
-    signal: "seguir / ongoing / tarea en progreso"
+    signal: 'seguir / ongoing / tarea en progreso'
     reads:
-      - "04_estado/tasks/{id}/PROGRESS.md"
-      - "04_estado/tasks/{id}/continuity/state.yaml"
-      - "04_estado/tasks/{id}/continuity/resume.md"
-    output: "resume in-progress task"
+      - '04_estado/tasks/{id}/PROGRESS.md'
+      - '04_estado/tasks/{id}/continuity/state.yaml'
+      - '04_estado/tasks/{id}/continuity/resume.md'
+    output: 'resume in-progress task'
     binds_to: task
   - id: R5
-    signal: "eval / ablation"
-    reads: ["05_verificacion/evals/"]
-    output: "run eval or ablation variant in isolated worktree"
+    signal: 'eval / ablation'
+    reads: ['05_verificacion/evals/']
+    output: 'run eval or ablation variant in isolated worktree'
     binds_to: eval
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
 gate_commands:
-  G00_toolchain: "pnpm check:toolchain"
-  G04_repo: "pnpm check:repo"
-  G01_G09_estructura: "pnpm check:repo"
-  G02_sources: "pnpm check:sources"
-  G03_brand: "pnpm check:brand"
-  G07_skills: "pnpm verify:skills"
-  G08_core_contracts: "pnpm typecheck && pnpm test"
-  G09_WEB_web_build: "pnpm web:build"
-  G09_CONTENT_content_build: "pnpm content:build"
-  G12_remotion: "pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all"
-  G12_QA_media: "pnpm verify:media"
-  preflight_VS_001: "pnpm slice:build"
-  verificacion_total: "pnpm verify"
+  G00_toolchain: 'pnpm check:toolchain'
+  G04_repo: 'pnpm check:repo'
+  G01_G09_estructura: 'pnpm check:repo'
+  G02_sources: 'pnpm check:sources'
+  G03_brand: 'pnpm check:brand'
+  G07_skills: 'pnpm verify:skills'
+  G08_core_contracts: 'pnpm typecheck && pnpm test'
+  G09_WEB_web_build: 'pnpm web:build'
+  G09_CONTENT_content_build: 'pnpm content:build'
+  G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
+  G12_QA_media: 'pnpm verify:media'
+  preflight_VS_001: 'pnpm slice:build'
+  verificacion_total: 'pnpm verify'
 # Gates manuales fail-closed — no automatizar. Documenta en TASK.md como bloqueados. [CONFIG]
 manual_fail_closed_gates: [G13, G14, G15, G16, G17]

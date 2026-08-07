@@ -1,37 +1,37 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P09
 command: /distribuir
-title: "Empaqueta, publica, conversa o aprende"
-purpose: "Separa empaque, publicación, comunidad y aprendizaje para operar con control."
-discipline: "Publicación y aprendizaje"
-phase: "Distribución"
+title: 'Empaqueta, publica, conversa o aprende'
+purpose: 'Separa empaque, publicación, comunidad y aprendizaje para operar con control.'
+discipline: 'Publicación y aprendizaje'
+phase: 'Distribución'
 tags:
   - distribution
   - publish
   - learning
 modes:
   - id: empaque
-    name: "Empaque"
-    description: "Empaque"
+    name: 'Empaque'
+    description: 'Empaque'
   - id: publicacion
-    name: "Publicación"
-    description: "Publicación"
+    name: 'Publicación'
+    description: 'Publicación'
   - id: comunidad
-    name: "Comunidad"
-    description: "Comunidad"
+    name: 'Comunidad'
+    description: 'Comunidad'
   - id: aprendizaje
-    name: "Aprendizaje"
-    description: "Aprendizaje"
+    name: 'Aprendizaje'
+    description: 'Aprendizaje'
 inputs:
   - p08-editar/workflow.yml
 outputs:
-  - artifact: "Platform Package"
+  - artifact: 'Platform Package'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Publication Record"
+  - artifact: 'Publication Record'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Learning Report"
+  - artifact: 'Learning Report'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: READY
@@ -43,25 +43,25 @@ next_workflow: null
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Sin navegación, crea package evergreen; sin herramienta, checklist manual; sin aprobación, detente; sin datos, establece baseline cualitativo; ante riesgo, escala. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Sin navegación, crea package evergreen; sin herramienta, checklist manual; sin aprobación, detente; sin datos, establece baseline cualitativo; ante riesgo, escala. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Paquete por plataforma listo"
-    - "Registro de publicación trazable"
-    - "Reporte de aprendizaje cerrando el ciclo"
+    - 'Paquete por plataforma listo'
+    - 'Registro de publicación trazable'
+    - 'Reporte de aprendizaje cerrando el ciclo'
   deliverables:
     - platform-package-v1
     - publication-record-v1
     - learning-report-v1
-  context: "Separa empaque, publicación, comunidad y aprendizaje para operar con control."
-  cta: "Someter a MW_DISTRIBUTION_AUTHORIZED; cerrar ciclo P00→P09."
+  context: 'Separa empaque, publicación, comunidad y aprendizaje para operar con control.'
+  cta: 'Someter a MW_DISTRIBUTION_AUTHORIZED; cerrar ciclo P00→P09.'
 capability_map:
   skills:
     - metodologia-brand-router

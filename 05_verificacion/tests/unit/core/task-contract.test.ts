@@ -39,9 +39,7 @@ describe('TaskContractSchema', () => {
   });
 
   it('rejects a task_id that violates the regex', () => {
-    const result = TaskContractSchema.safeParse(
-      validInput({task_id: 'task-loose-1'}),
-    );
+    const result = TaskContractSchema.safeParse(validInput({task_id: 'task-loose-1'}));
     expect(result.success).toBe(false);
   });
 
@@ -110,9 +108,7 @@ describe('TaskContractSchema', () => {
   });
 
   it('rejects an unknown field (strict object)', () => {
-    const result = TaskContractSchema.safeParse(
-      validInput({extra_field: 'nope'}),
-    );
+    const result = TaskContractSchema.safeParse(validInput({extra_field: 'nope'}));
     expect(result.success).toBe(false);
   });
 
@@ -121,9 +117,7 @@ describe('TaskContractSchema', () => {
     // sentinel to confirm the schema does not accept arbitrary noise on a
     // constrained field. [SUPUESTO]
     void HASH_A;
-    const result = TaskContractSchema.safeParse(
-      validInput({created_at: 'not-a-timestamp'}),
-    );
+    const result = TaskContractSchema.safeParse(validInput({created_at: 'not-a-timestamp'}));
     expect(result.success).toBe(false);
   });
 });

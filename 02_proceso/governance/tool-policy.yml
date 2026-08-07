@@ -40,136 +40,136 @@ phases:
 rules:
   # --- 6 active owners: concrete allow/deny ---
   - role: lead
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - "Write only within ownership-manifest allowlist for lead (README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, docs/**, registries/projects/**, registries/memory/**, projects/_template/**, projects/vs-001-source-to-campaign/project.yml, projects/pilot-carousel-001/{README.md,project.yml})"
-        - "Bash restricted to git read-only + declared local validators (pnpm check:toolchain, pnpm check:repo)"
-        - "No publish, deploy or live send. [CONFIG] RT-01 contract.forbidden"
-      source_ref: "RT-01 contract.yml tools.allowed/forbidden; ownership-manifest writers.lead"
+        - 'Write only within ownership-manifest allowlist for lead (README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, docs/**, registries/projects/**, registries/memory/**, projects/_template/**, projects/vs-001-source-to-campaign/project.yml, projects/pilot-carousel-001/{README.md,project.yml})'
+        - 'Bash restricted to git read-only + declared local validators (pnpm check:toolchain, pnpm check:repo)'
+        - 'No publish, deploy or live send. [CONFIG] RT-01 contract.forbidden'
+      source_ref: 'RT-01 contract.yml tools.allowed/forbidden; ownership-manifest writers.lead'
   - role: repo
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - "Write only within ownership-manifest allowlist for repo (package.json, pnpm-lock.yaml, tsconfig.json, eslint.config.js, .prettierrc.json, .gitignore, .nvmrc, vitest.config.ts, .github/**, scripts/**, types/**, receipts/builds/**)"
-        - "Bash restricted to toolchain + repo validators (pnpm check:toolchain, pnpm install, pnpm typecheck, pnpm lint, pnpm test, pnpm check:repo)"
-        - "No writes outside repo-config allowlist. [CONFIG] ownership-manifest writers.repo"
-      source_ref: "ownership-manifest writers.repo; dag packages A01/A13 gate G00/G04/G08_AI_RUNTIME"
+        - 'Write only within ownership-manifest allowlist for repo (package.json, pnpm-lock.yaml, tsconfig.json, eslint.config.js, .prettierrc.json, .gitignore, .nvmrc, vitest.config.ts, .github/**, scripts/**, types/**, receipts/builds/**)'
+        - 'Bash restricted to toolchain + repo validators (pnpm check:toolchain, pnpm install, pnpm typecheck, pnpm lint, pnpm test, pnpm check:repo)'
+        - 'No writes outside repo-config allowlist. [CONFIG] ownership-manifest writers.repo'
+      source_ref: 'ownership-manifest writers.repo; dag packages A01/A13 gate G00/G04/G08_AI_RUNTIME'
   - role: qa
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - "Write only within ownership-manifest allowlist for qa (tests/contract/**, tests/integration/**, tests/e2e/**, tests/negative/**, tests/visual/**, tests/fixtures/**, quality/reports/**, quality/reviews/**, projects/pilot-carousel-001/quality/**, receipts/dependency-audits/**)"
-        - "Bash restricted to test runners + contract validators (pnpm test, pnpm typecheck)"
-        - "Cannot grant HUMAN_APPROVED, READY or PUBLISHED. [CONFIG] derived from RT-10/QA role semantics"
-      source_ref: "ownership-manifest writers.qa; dag packages A10a/A10b/A10c gates G08_CONTRACTS/G12_QA/G13_CAROUSEL_QA"
+        - 'Write only within ownership-manifest allowlist for qa (tests/contract/**, tests/integration/**, tests/e2e/**, tests/negative/**, tests/visual/**, tests/fixtures/**, quality/reports/**, quality/reviews/**, projects/pilot-carousel-001/quality/**, receipts/dependency-audits/**)'
+        - 'Bash restricted to test runners + contract validators (pnpm test, pnpm typecheck)'
+        - 'Cannot grant HUMAN_APPROVED, READY or PUBLISHED. [CONFIG] derived from RT-10/QA role semantics'
+      source_ref: 'ownership-manifest writers.qa; dag packages A10a/A10b/A10c gates G08_CONTRACTS/G12_QA/G13_CAROUSEL_QA'
   - role: core
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - "Write only within ownership-manifest allowlist for core (core/**, workflows/core/**, tests/unit/core/**)"
-        - "Bash restricted to build + unit validators (pnpm typecheck, pnpm test)"
-        - "No edits to agents, skills, content or remotion paths. [CONFIG] ownership-manifest writers.core"
-      source_ref: "ownership-manifest writers.core; dag package A03 gate G08"
+        - 'Write only within ownership-manifest allowlist for core (core/**, workflows/core/**, tests/unit/core/**)'
+        - 'Bash restricted to build + unit validators (pnpm typecheck, pnpm test)'
+        - 'No edits to agents, skills, content or remotion paths. [CONFIG] ownership-manifest writers.core'
+      source_ref: 'ownership-manifest writers.core; dag package A03 gate G08'
   - role: governance
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - "Write only within ownership-manifest allowlist for governance (governance/**, quality/reviews/rights-accessibility-security/**, receipts/migrations/**)"
-        - "Bash restricted to read-only audits + static scanners; no live deployment"
-        - "Cannot grant HUMAN_APPROVED, READY or PUBLISHED. [CONFIG] ownership-manifest writers.governance; RT-09 contract.forbidden"
-      source_ref: "RT-09 contract.yml tools.allowed/forbidden; ownership-manifest writers.governance; dag packages A09a/A09b gates G03_PRECLEAR/G13"
+        - 'Write only within ownership-manifest allowlist for governance (governance/**, quality/reviews/rights-accessibility-security/**, receipts/migrations/**)'
+        - 'Bash restricted to read-only audits + static scanners; no live deployment'
+        - 'Cannot grant HUMAN_APPROVED, READY or PUBLISHED. [CONFIG] ownership-manifest writers.governance; RT-09 contract.forbidden'
+      source_ref: 'RT-09 contract.yml tools.allowed/forbidden; ownership-manifest writers.governance; dag packages A09a/A09b gates G03_PRECLEAR/G13'
   - role: guardian
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob, Bash]
       deny: [Edit, Write]
       conditional:
-        - "may_remediate: false — non-writer. [CONFIG] ownership-manifest non_writers.guardian"
-        - "Bash restricted to read-only validators, hash comparators and reproducible scanners"
-        - "Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden"
+        - 'may_remediate: false — non-writer. [CONFIG] ownership-manifest non_writers.guardian'
+        - 'Bash restricted to read-only validators, hash comparators and reproducible scanners'
+        - 'Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden'
         - "Writes (verdicts/reports) land in guardian/** via a separate writer delegation, not Guardian's own Edit/Write. [SUPUESTO] pending Guardian write-path clarification"
-      source_ref: "RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14"
+      source_ref: 'RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14'
   # --- 8 stub owners: gap, full mapping requires agent-by-agent audit ---
   - role: sources
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of RT-02/RT-03 source roles"
-      source_ref: "ownership-manifest writers.sources; dag packages A02a/A02b gate G02_PRECLEAR/G02"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of RT-02/RT-03 source roles'
+      source_ref: 'ownership-manifest writers.sources; dag packages A02a/A02b gate G02_PRECLEAR/G02'
   - role: agents-committee
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of RT-04..RT-08 committee roles"
-      source_ref: "ownership-manifest writers.agents-committee; dag package A04 gate G10"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of RT-04..RT-08 committee roles'
+      source_ref: 'ownership-manifest writers.agents-committee; dag package A04 gate G10'
   - role: skill-foundry
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of skill-foundry role"
-      source_ref: "ownership-manifest writers.skill-foundry; dag package A05 gate G07"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of skill-foundry role'
+      source_ref: 'ownership-manifest writers.skill-foundry; dag package A05 gate G07'
   - role: web
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of web role"
-      source_ref: "ownership-manifest writers.web; dag package A06 gate G09_WEB"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of web role'
+      source_ref: 'ownership-manifest writers.web; dag package A06 gate G09_WEB'
   - role: content
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of content role"
-      source_ref: "ownership-manifest writers.content; dag package A07 gate G09_CONTENT"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of content role'
+      source_ref: 'ownership-manifest writers.content; dag package A07 gate G09_CONTENT'
   - role: remotion
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of remotion role"
-      source_ref: "ownership-manifest writers.remotion; dag package A08 gate G12"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of remotion role'
+      source_ref: 'ownership-manifest writers.remotion; dag package A08 gate G12'
   - role: static-social
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of static-social role"
-      source_ref: "ownership-manifest writers.static-social; dag package A07s gate G12_CAROUSEL"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of static-social role'
+      source_ref: 'ownership-manifest writers.static-social; dag package A07s gate G12_CAROUSEL'
   - role: n8n
-    phase: "*"
+    phase: '*'
     tools:
       allow: [Read, Grep, Glob]
       deny: []
       conditional:
-        - "coverage_gap: full mapping requires agent-by-agent audit of n8n role"
-        - "n8n remains dry-run; no connector activation or publish. [CONFIG] AGENTS.md rule 8"
-      source_ref: "ownership-manifest writers.n8n; dag package A11 gate G11"
+        - 'coverage_gap: full mapping requires agent-by-agent audit of n8n role'
+        - 'n8n remains dry-run; no connector activation or publish. [CONFIG] AGENTS.md rule 8'
+      source_ref: 'ownership-manifest writers.n8n; dag package A11 gate G11'
 convergence_notes:
-  - "settings.local.json currently grants 89 ad-hoc allow entries spanning Bash, Read, MCP (notebooklm, tessl, playwright) and WebFetch. [CONFIG] This manifest is the target those grants must converge to; runtime enforcement stays in settings.local.json until the harness reads this manifest directly."
-  - "MCP tool grants (notebooklm, tessl, playwright) are not yet role-mapped here. [SUPUESTO] MCP allowlisting will be reconciled in a follow-up governance pass once MCP usage is scoped per role."
-  - "No Zod schema here by design; governance creates that in P5-S16. [CONFIG] task scope S3"
+  - 'settings.local.json currently grants 89 ad-hoc allow entries spanning Bash, Read, MCP (notebooklm, tessl, playwright) and WebFetch. [CONFIG] This manifest is the target those grants must converge to; runtime enforcement stays in settings.local.json until the harness reads this manifest directly.'
+  - 'MCP tool grants (notebooklm, tessl, playwright) are not yet role-mapped here. [SUPUESTO] MCP allowlisting will be reconciled in a follow-up governance pass once MCP usage is scoped per role.'
+  - 'No Zod schema here by design; governance creates that in P5-S16. [CONFIG] task scope S3'
 runtime_grants:
   # Convergence (A6): the 7 grants in settings.local.json whose tool prefix was
   # absent from every role's `tools.allow` are explicitly admitted here with
@@ -177,26 +177,26 @@ runtime_grants:
   # are read-only / external-tool surfaces; none grant write or publish. [CONFIG]
   - tool: WebFetch
     allowed_for: [lead, sources, governance]
-    rationale: "Read-only web fetch for skill-first source extraction and doc lookup. [CONFIG] convergence A6"
+    rationale: 'Read-only web fetch for skill-first source extraction and doc lookup. [CONFIG] convergence A6'
   - tool: mcp__notebooklm-mcp__notebook_list
     allowed_for: [lead, sources]
-    rationale: "Read-only NotebookLM notebook inventory for source management. [CONFIG] convergence A6"
+    rationale: 'Read-only NotebookLM notebook inventory for source management. [CONFIG] convergence A6'
   - tool: mcp__plugin_playwright_playwright__browser_navigate
     allowed_for: [web, qa]
-    rationale: "Headless browser navigation for carousel/visual validation. [CONFIG] convergence A6"
+    rationale: 'Headless browser navigation for carousel/visual validation. [CONFIG] convergence A6'
   - tool: mcp__plugin_playwright_playwright__browser_console_messages
     allowed_for: [web, qa]
-    rationale: "Read-only console harvest during visual validation. [CONFIG] convergence A6"
+    rationale: 'Read-only console harvest during visual validation. [CONFIG] convergence A6'
   - tool: mcp__plugin_playwright_playwright__browser_take_screenshot
     allowed_for: [web, qa]
-    rationale: "Read-only screenshot capture for visual review. [CONFIG] convergence A6"
+    rationale: 'Read-only screenshot capture for visual review. [CONFIG] convergence A6'
   - tool: mcp__tessl__search
     allowed_for: [governance, skill-foundry]
-    rationale: "Read-only Tessl registry search for skill discovery. [CONFIG] convergence A6"
+    rationale: 'Read-only Tessl registry search for skill discovery. [CONFIG] convergence A6'
   - tool: mcp__tessl__status
     allowed_for: [governance, repo]
-    rationale: "Read-only Tessl auth/manifest status check. [CONFIG] convergence A6"
+    rationale: 'Read-only Tessl auth/manifest status check. [CONFIG] convergence A6'
 gaps:
-  - "coverage_gap: 8 stub owners (sources, agents-committee, skill-foundry, web, content, remotion, static-social, n8n) lack concrete allow/deny; requires agent-by-agent audit of RT-02..RT-08 contracts."
-  - "coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5."
-  - "coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit."
+  - 'coverage_gap: 8 stub owners (sources, agents-committee, skill-foundry, web, content, remotion, static-social, n8n) lack concrete allow/deny; requires agent-by-agent audit of RT-02..RT-08 contracts.'
+  - 'coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5.'
+  - 'coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit.'

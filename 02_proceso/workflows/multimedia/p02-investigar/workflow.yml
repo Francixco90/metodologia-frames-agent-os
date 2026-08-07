@@ -1,37 +1,37 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P02
 command: /investigar
-title: "Investiga y fortalece una idea"
-purpose: "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
-discipline: "Investigación editorial"
-phase: "Investigación"
+title: 'Investiga y fortalece una idea'
+purpose: 'Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.'
+discipline: 'Investigación editorial'
+phase: 'Investigación'
 tags:
   - research
   - claims
   - opportunity
 modes:
   - id: mapa-de-oportunidad
-    name: "Mapa de oportunidad"
-    description: "Mapa de oportunidad"
+    name: 'Mapa de oportunidad'
+    description: 'Mapa de oportunidad'
   - id: verificacion-de-claims
-    name: "Verificación de claims"
-    description: "Verificación de claims"
+    name: 'Verificación de claims'
+    description: 'Verificación de claims'
   - id: preguntas-de-audiencia
-    name: "Preguntas de audiencia"
-    description: "Preguntas de audiencia"
+    name: 'Preguntas de audiencia'
+    description: 'Preguntas de audiencia'
   - id: analisis-de-referencias
-    name: "Análisis de referencias"
-    description: "Análisis de referencias"
+    name: 'Análisis de referencias'
+    description: 'Análisis de referencias'
 inputs:
   - p01-curar-material/workflow.yml
 outputs:
-  - artifact: "Claim Register"
+  - artifact: 'Claim Register'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Opportunity Map"
+  - artifact: 'Opportunity Map'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Question Bank"
+  - artifact: 'Question Bank'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: DISCOVERED
@@ -41,25 +41,25 @@ next_workflow: P03
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Sin fuentes suficientes, reformula como experiencia, pregunta o hipótesis y entrega la lista mínima de verificación; ante alto riesgo, HOLD. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Sin fuentes suficientes, reformula como experiencia, pregunta o hipótesis y entrega la lista mínima de verificación; ante alto riesgo, HOLD. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Claims verificados contra fuentes rastreables"
-    - "Oportunidades y matices mapeados"
-    - "Banco de preguntas editorial priorizado"
+    - 'Claims verificados contra fuentes rastreables'
+    - 'Oportunidades y matices mapeados'
+    - 'Banco de preguntas editorial priorizado'
   deliverables:
     - claim-register-v1
     - opportunity-map-v1
     - question-bank-v1
-  context: "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
-  cta: "Avanzar a P03 crear-brief con claims verificados."
+  context: 'Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.'
+  cta: 'Avanzar a P03 crear-brief con claims verificados.'
 capability_map:
   skills:
     - content-os-core

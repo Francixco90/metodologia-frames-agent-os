@@ -15,7 +15,14 @@ const RECEIPTS = resolve(ROOT, '04_estado/receipts');
 const DOCTOR = resolve(ROOT, '05_verificacion/scripts/doctor.ts');
 const sha256 = (t: string): string => createHash('sha256').update(t).digest('hex');
 
-const FAMILIES = ['imports', 'renders', 'dependency-audits', 'migrations', 'check-runs', 'workflows'];
+const FAMILIES = [
+  'imports',
+  'renders',
+  'dependency-audits',
+  'migrations',
+  'check-runs',
+  'workflows',
+];
 
 export const oracle: Oracle = {
   hypothesis_id: 'H-E011',

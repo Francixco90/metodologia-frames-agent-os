@@ -23,7 +23,11 @@ export const oracle: Oracle = {
     for (const id of ['G13', 'G14', 'G15', 'G16', 'G17']) {
       const g = manifest.gates?.find((x) => x.gate === id);
       const ok = g?.manual === true && g?.fail_closed === true;
-      checks.push({name: `${id} manual+fail_closed`, passed: ok, detail: ok ? 'ok' : `manual=${g?.manual} fail_closed=${g?.fail_closed}`});
+      checks.push({
+        name: `${id} manual+fail_closed`,
+        passed: ok,
+        detail: ok ? 'ok' : `manual=${g?.manual} fail_closed=${g?.fail_closed}`,
+      });
       if (!ok) allPass = false;
     }
     return {status: allPass ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};

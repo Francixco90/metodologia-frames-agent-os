@@ -13,14 +13,28 @@
  *
  * Source: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato. [DOC]
  */
-export {MultimediaWorkflowSchema, MultimediaWorkflowIdSchema} from './_schema/workflow-v1.schema.ts';
+export {
+  MultimediaWorkflowSchema,
+  MultimediaWorkflowIdSchema,
+} from './_schema/workflow-v1.schema.ts';
 export {PromptSpecFrontmatterSchema} from './_schema/prompt-spec-v1.schema.ts';
 export {runWorkflow as runMultimediaWorkflow} from './_runner/run.ts';
 
 import {runWorkflow} from './_runner/run.ts';
 
 /** Ordered chain of workflow ids P00→P09. [CONFIG] */
-export const MULTIMEDIA_CHAIN = ['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09'] as const;
+export const MULTIMEDIA_CHAIN = [
+  'P00',
+  'P01',
+  'P02',
+  'P03',
+  'P04',
+  'P05',
+  'P06',
+  'P07',
+  'P08',
+  'P09',
+] as const;
 
 /** Run every stage in chain order (dry-run by default; never auto-advances). */
 export const runMultimediaChain = (dryRun = true): void => {

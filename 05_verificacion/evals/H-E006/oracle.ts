@@ -26,10 +26,22 @@ export const oracle: Oracle = {
     }
     const deny = guardian.tools?.deny ?? [];
     const denyOk = deny.includes('Edit') && deny.includes('Write');
-    checks.push({name: 'guardian.tools.deny includes Edit + Write', passed: denyOk, detail: `deny=[${deny.join(', ')}]`});
+    checks.push({
+      name: 'guardian.tools.deny includes Edit + Write',
+      passed: denyOk,
+      detail: `deny=[${deny.join(', ')}]`,
+    });
     const conditional = (guardian.tools?.conditional ?? []).join(' ');
     const remediateOk = /may_remediate:\s*false/u.test(conditional);
-    checks.push({name: 'guardian may_remediate: false', passed: remediateOk, detail: remediateOk ? 'declared false' : 'not found in conditional'});
-    return {status: denyOk && remediateOk ? 'pass' : 'fail', oracle_checks: checks, evidence_hashes: evidence};
+    checks.push({
+      name: 'guardian may_remediate: false',
+      passed: remediateOk,
+      detail: remediateOk ? 'declared false' : 'not found in conditional',
+    });
+    return {
+      status: denyOk && remediateOk ? 'pass' : 'fail',
+      oracle_checks: checks,
+      evidence_hashes: evidence,
+    };
   },
 };

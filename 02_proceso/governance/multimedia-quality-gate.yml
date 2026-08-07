@@ -101,4 +101,4 @@ wiring:
   failure_state: gate-fail
 
 gaps:
-  - "coverage_gap: MW-Q04 (no-regression version) requires a version field in _assets/no-regression-checklist.md; until added, the runner pins the file sha256 instead."
+  - 'coverage_gap: MW-Q04 (no-regression version) requires a version field in _assets/no-regression-checklist.md; until added, the runner pins the file sha256 instead.'

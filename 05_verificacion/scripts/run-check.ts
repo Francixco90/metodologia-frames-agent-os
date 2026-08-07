@@ -17,13 +17,7 @@
  * pnpm scripts (S12 does that).
  */
 import {createHash} from 'node:crypto';
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from 'node:fs';
+import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -85,11 +79,7 @@ const nextIndex = (): number => {
 const formatIndex = (n: number): string => `C-${String(n).padStart(3, '0')}`;
 
 /** Scans prior receipts for the same gate+command+exit_code; returns the prior id or undefined. */
-const findDuplicate = (
-  gate: string,
-  command: string,
-  exitCode: number,
-): string | undefined => {
+const findDuplicate = (gate: string, command: string, exitCode: number): string | undefined => {
   if (!existsSync(RECEIPTS_DIR)) return undefined;
   const dirs = readdirSync(RECEIPTS_DIR, {withFileTypes: true})
     .filter((entry) => entry.isDirectory())
@@ -101,11 +91,7 @@ const findDuplicate = (
     if (!existsSync(receiptPath)) continue;
     try {
       const data = parse(readFileSync(receiptPath, 'utf8')) as Record<string, unknown>;
-      if (
-        data.gate === gate &&
-        data.command === command &&
-        data.exit_code === exitCode
-      ) {
+      if (data.gate === gate && data.command === command && data.exit_code === exitCode) {
         return typeof data.receipt_id === 'string' ? data.receipt_id : name;
       }
     } catch {

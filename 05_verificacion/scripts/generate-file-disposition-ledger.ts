@@ -43,11 +43,22 @@ import {
 } from './ledger/git-walker.ts';
 import {versionablePaths} from './ledger/path-utils.ts';
 import {buildOwnerResolver} from './ledger/ownership.ts';
-import {currentBytesFor, decisionFor, isAuthoredEligible, isGeneratedProjection} from './ledger/decision.ts';
+import {
+  currentBytesFor,
+  decisionFor,
+  isAuthoredEligible,
+  isGeneratedProjection,
+} from './ledger/decision.ts';
 import {ledgerSchema} from './ledger/schemas.ts';
 import {markdownFor} from './ledger/markdown.ts';
 
-export {BASELINE_COMMIT, BASELINE_FILE_COUNT, classifyArtifact, isHistoricalEvidence, V2_CLOSURE_COMMIT};
+export {
+  BASELINE_COMMIT,
+  BASELINE_FILE_COUNT,
+  classifyArtifact,
+  isHistoricalEvidence,
+  V2_CLOSURE_COMMIT,
+};
 export type {LedgerEntry};
 export {parseGitCatFileBatch};
 

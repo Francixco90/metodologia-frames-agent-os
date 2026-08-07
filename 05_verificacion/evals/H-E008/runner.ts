@@ -23,13 +23,7 @@ const TASK_PATH = resolve(FIXTURE_DIR, 'task.yaml');
  * [CONFIG]
  */
 const OWNER_ALLOWLIST: Readonly<Record<string, readonly string[]>> = {
-  lead: [
-    '04_estado/tasks/**',
-    'docs/**',
-    'registries/projects/**',
-    'README.md',
-    'AGENTS.md',
-  ],
+  lead: ['04_estado/tasks/**', 'docs/**', 'registries/projects/**', 'README.md', 'AGENTS.md'],
   repo: ['package.json', 'tsconfig.json', 'scripts/**', 'receipts/builds/**'],
   qa: ['tests/**', 'quality/**', 'receipts/dependency-audits/**'],
   core: ['core/**', 'workflows/core/**', 'tests/unit/core/**'],
@@ -59,10 +53,7 @@ function pathInAllowlist(path: string, patterns: readonly string[]): boolean {
  * algún patrón de la allowlist del responsable. Devuelve las rutas
  * fuera-de-allowlist (violaciones). [CÓDIGO]
  */
-function findWriteSetViolations(
-  writeSet: readonly string[],
-  responsable: string,
-): string[] {
+function findWriteSetViolations(writeSet: readonly string[], responsable: string): string[] {
   const patterns = OWNER_ALLOWLIST[responsable];
   if (patterns === undefined) {
     // No allowlist registered for this owner → all writes are violations

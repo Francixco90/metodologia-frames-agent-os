@@ -9,10 +9,7 @@ import {resolve, join} from 'node:path';
 import YAML from 'yaml';
 
 import {TaskContractSchema, type TaskContract} from '../../core/contracts/index.ts';
-import {
-  TaskWorkStateSchema,
-  type TaskWorkState,
-} from '../../core/contracts/index.ts';
+import {TaskWorkStateSchema, type TaskWorkState} from '../../core/contracts/index.ts';
 import {taskOrder} from '../../core/state-machine/index.ts';
 
 const root = process.cwd();
@@ -59,9 +56,7 @@ for (const dir of dirs) {
   }
   const parsed = TaskContractSchema.safeParse(raw);
   if (!parsed.success) {
-    const issues = parsed.error.issues
-      .map((i) => `${i.path.join('.')}: ${i.message}`)
-      .join('; ');
+    const issues = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ');
     errors.push(`G_TASK_01: ${filePath}: schema parse error — ${issues}`);
     continue;
   }
@@ -130,13 +125,18 @@ for (const {taskId, contract, dir} of loaded) {
 
   // --- Invariante: evidence_tags values en el enum ---
   // Garantizado por schema; re-chequeo defensivo por si se relaja el schema.
-  const allowedEvidence = ['CÓDIGO', 'CONFIG', 'DOC', 'INFERENCIA', 'SUPUESTO', 'coverage_gap'] as const;
+  const allowedEvidence = [
+    'CÓDIGO',
+    'CONFIG',
+    'DOC',
+    'INFERENCIA',
+    'SUPUESTO',
+    'coverage_gap',
+  ] as const;
   const allowedSet = new Set<string>(allowedEvidence);
   for (const [key, value] of Object.entries(contract.evidence_tags)) {
     if (!allowedSet.has(value)) {
-      errors.push(
-        `G_TASK: ${taskId}: evidence_tags["${key}"]="${value}" fuera del enum.`,
-      );
+      errors.push(`G_TASK: ${taskId}: evidence_tags["${key}"]="${value}" fuera del enum.`);
     }
   }
 
@@ -176,7 +176,5 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   for (const w of warnings) console.warn(`[WARN] ${w}`);
-  console.info(
-    `PASS G_TASK: ${total} tasks validas, ${warnings.length} warnings.`,
-  );
+  console.info(`PASS G_TASK: ${total} tasks validas, ${warnings.length} warnings.`);
 }

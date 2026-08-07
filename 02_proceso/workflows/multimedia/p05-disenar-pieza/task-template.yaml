@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-mw-p05-000
 project_id: null
-objetivo: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
+objetivo: 'Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,19 +9,19 @@ inputs:
 write_set:
   - 03_artefactos/content/multimedia/p05-disenar-pieza/**
 no_objetivos:
-  - "No generes archivos ni afirmes que existen."
-  - "No uses una persona, voz, rostro, marca o producto sin autorización o representación fiel."
-  - "Una estética no sustituye la función narrativa."
-  - "Si el texto debe aparecer dentro de una imagen generada y la exactitud importa, planifica composición posterior."
-  - "Si la continuidad de personaje es crítica, define referencias y pruebas antes de un video largo."
-  - "Si una escena real aporta evidencia irremplazable, no la sustituyas por una simulación sin disclosure."
-  - "No diseñes derivados que dependan de contexto ausente."
-done: "Definition of Done"
-validacion: "pnpm mw:run P05 --dry-run && pnpm check:tasks"
+  - 'No generes archivos ni afirmes que existen.'
+  - 'No uses una persona, voz, rostro, marca o producto sin autorización o representación fiel.'
+  - 'Una estética no sustituye la función narrativa.'
+  - 'Si el texto debe aparecer dentro de una imagen generada y la exactitud importa, planifica composición posterior.'
+  - 'Si la continuidad de personaje es crítica, define referencias y pruebas antes de un video largo.'
+  - 'Si una escena real aporta evidencia irremplazable, no la sustituyas por una simulación sin disclosure.'
+  - 'No diseñes derivados que dependan de contexto ausente.'
+done: 'Definition of Done'
+validacion: 'pnpm mw:run P05 --dry-run && pnpm check:tasks'
 gaps: []
 state: INTAKE
 created_from_route: R3-LOOSE
-gate_target: "G14"
+gate_target: 'G14'
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:

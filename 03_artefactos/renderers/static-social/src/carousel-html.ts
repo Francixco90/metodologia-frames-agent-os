@@ -1,7 +1,4 @@
-import type {
-  CarouselCardV1,
-  CarouselSpecV1,
-} from 'workflows/content/types/carousel/schema.ts';
+import type {CarouselCardV1, CarouselSpecV1} from 'workflows/content/types/carousel/schema.ts';
 
 const escapeHtml = (value: string): string =>
   value

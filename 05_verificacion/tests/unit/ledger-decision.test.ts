@@ -1,6 +1,11 @@
 import {describe, expect, it} from 'vitest';
 
-import {currentBytesFor, decisionFor, isAuthoredEligible, isGeneratedProjection} from '../../scripts/ledger/decision.ts';
+import {
+  currentBytesFor,
+  decisionFor,
+  isAuthoredEligible,
+  isGeneratedProjection,
+} from '../../scripts/ledger/decision.ts';
 
 const root = process.cwd();
 

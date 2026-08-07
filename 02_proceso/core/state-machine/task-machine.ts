@@ -75,9 +75,7 @@ const gateFailGuard: TaskPolicy['guard'] = (req) =>
     : 'Transition to BLOQUEADO requires evidence kind "gate-fail"';
 
 const replanGuard: TaskPolicy['guard'] = (req) =>
-  hasEvidence(req, 'replan')
-    ? true
-    : 'BLOQUEADO -> ESPECIFICADO requires evidence kind "replan"';
+  hasEvidence(req, 'replan') ? true : 'BLOQUEADO -> ESPECIFICADO requires evidence kind "replan"';
 
 const handoffAcceptedGuard: TaskPolicy['guard'] = (req) => {
   if (req.handoff === undefined) {
@@ -105,21 +103,14 @@ export const taskPolicies: readonly TaskPolicy[] = [
   {from: 'BLOQUEADO', to: 'ESPECIFICADO', guard: replanGuard},
 ];
 
-export function assertDirectTaskTransition(
-  current: TaskWorkState,
-  next: TaskWorkState,
-): void {
+export function assertDirectTaskTransition(current: TaskWorkState, next: TaskWorkState): void {
   const matches = taskPolicies.some((p) => p.from === current && p.to === next);
   if (!matches) {
-    throw new TaskStateTransitionError(
-      `Illegal task state transition: ${current} -> ${next}`,
-    );
+    throw new TaskStateTransitionError(`Illegal task state transition: ${current} -> ${next}`);
   }
 }
 
-export function transitionTaskState(
-  req: TaskTransitionRequest,
-): TaskWorkState {
+export function transitionTaskState(req: TaskTransitionRequest): TaskWorkState {
   // Validate the input shape even when called with a typed value, mirroring
   // executeTransition's `TransitionRequestSchema.parse(input)` step. [CÓDIGO]
   const request = TaskTransitionRequestSchema.parse(req);
@@ -130,9 +121,7 @@ export function transitionTaskState(
   // assertDirectTaskTransition guarantees a match; guard for the type system
   // under noUncheckedIndexedAccess. [SUPUESTO]
   if (policy === undefined) {
-    throw new TaskStateTransitionError(
-      `Illegal task state transition: ${current} -> ${next}`,
-    );
+    throw new TaskStateTransitionError(`Illegal task state transition: ${current} -> ${next}`);
   }
   const guardResult = policy.guard(request);
   if (guardResult !== true) {
@@ -163,8 +152,6 @@ const monotonicForward: Readonly<Record<TaskWorkState, TaskWorkState | undefined
   BLOQUEADO: undefined,
 };
 
-export function nextTaskState(
-  current: TaskWorkState,
-): TaskWorkState | undefined {
+export function nextTaskState(current: TaskWorkState): TaskWorkState | undefined {
   return monotonicForward[current];
 }

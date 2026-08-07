@@ -1,7 +1,7 @@
 schema_version: task-contract-v1
 task_id: TASK-mw-p04-000
 project_id: null
-objetivo: "Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje."
+objetivo: 'Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.'
 repo: metodologia-frames-agent-os
 responsable: lead
 inputs:
@@ -9,19 +9,19 @@ inputs:
 write_set:
   - 03_artefactos/content/multimedia/p04-calendarizar/**
 no_objetivos:
-  - "No programes un rodaje por defecto."
-  - "No mezcles tarea y publicación como si fueran una sola fecha."
-  - "Una pieza con blocker no entra en producción final."
-  - "Contenido reactivo no desplaza compromisos sin criterio."
-  - "Si la capacidad baja, reduce piezas o acabado antes de sacrificar derechos y claridad."
-  - "No distribuir la misma pieza en todas las plataformas por obligación."
-  - "Un calendario puede incluir días sin publicación."
-done: "Definition of Done"
-validacion: "pnpm mw:run P04 --dry-run && pnpm check:tasks"
+  - 'No programes un rodaje por defecto.'
+  - 'No mezcles tarea y publicación como si fueran una sola fecha.'
+  - 'Una pieza con blocker no entra en producción final.'
+  - 'Contenido reactivo no desplaza compromisos sin criterio.'
+  - 'Si la capacidad baja, reduce piezas o acabado antes de sacrificar derechos y claridad.'
+  - 'No distribuir la misma pieza en todas las plataformas por obligación.'
+  - 'Un calendario puede incluir días sin publicación.'
+done: 'Definition of Done'
+validacion: 'pnpm mw:run P04 --dry-run && pnpm check:tasks'
 gaps: []
 state: INTAKE
 created_from_route: R3-LOOSE
-gate_target: "G14"
+gate_target: 'G14'
 spawned_subtasks: []
 parent_task_id: null
 evidence_tags:

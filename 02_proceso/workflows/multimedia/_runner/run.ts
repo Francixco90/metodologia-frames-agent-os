@@ -129,9 +129,21 @@ export const runWorkflow = (workflowId: string): void => {
   const ranAt = isoWithOffset(date);
 
   const inputsReceipt = [
-    {artifact: 'workflow.yml', ref: workflowPath.replace(ROOT + '/', ''), sha256: sha256(readFileSync(workflowPath, 'utf8'))},
-    {artifact: 'prompt-spec.md', ref: promptSpecPath.replace(ROOT + '/', ''), sha256: sha256(readFileSync(promptSpecPath, 'utf8'))},
-    {artifact: 'task-template.yaml', ref: taskTemplatePath.replace(ROOT + '/', ''), sha256: sha256(readFileSync(taskTemplatePath, 'utf8'))},
+    {
+      artifact: 'workflow.yml',
+      ref: workflowPath.replace(ROOT + '/', ''),
+      sha256: sha256(readFileSync(workflowPath, 'utf8')),
+    },
+    {
+      artifact: 'prompt-spec.md',
+      ref: promptSpecPath.replace(ROOT + '/', ''),
+      sha256: sha256(readFileSync(promptSpecPath, 'utf8')),
+    },
+    {
+      artifact: 'task-template.yaml',
+      ref: taskTemplatePath.replace(ROOT + '/', ''),
+      sha256: sha256(readFileSync(taskTemplatePath, 'utf8')),
+    },
   ];
 
   const outputsReceipt = workflow.outputs.map((o) => ({
@@ -173,7 +185,11 @@ export const runWorkflow = (workflowId: string): void => {
   }
 
   const wfReceiptDir = resolve(RECEIPTS_DIR, `WF-${id}`, ranAt.replace(/[:+]/gu, '-'));
-  const noRegressionChecklistPath = resolve(MULTIMEDIA_DIR, '_assets', 'no-regression-checklist.md');
+  const noRegressionChecklistPath = resolve(
+    MULTIMEDIA_DIR,
+    '_assets',
+    'no-regression-checklist.md',
+  );
 
   // Quality gate — pre-advance assertion. Runs BEFORE the work-product state
   // advances and BEFORE the success receipt is written. A failing MW-Q check
@@ -221,9 +237,15 @@ export const runWorkflow = (workflowId: string): void => {
         `command: ${gateFailReceipt.command}`,
         `mode: ${gateFailReceipt.mode}`,
         `inputs:`,
-        ...gateFailReceipt.inputs.map((i) => `  - artifact: ${JSON.stringify(i.artifact)}\n    ref: ${i.ref}\n    sha256: ${i.sha256}`),
+        ...gateFailReceipt.inputs.map(
+          (i) =>
+            `  - artifact: ${JSON.stringify(i.artifact)}\n    ref: ${i.ref}\n    sha256: ${i.sha256}`,
+        ),
         `outputs:`,
-        ...gateFailReceipt.outputs.map((o) => `  - artifact: ${JSON.stringify(o.artifact)}\n    ref: ${o.ref}\n    sha256: ${o.sha256}\n    required: ${o.required}`),
+        ...gateFailReceipt.outputs.map(
+          (o) =>
+            `  - artifact: ${JSON.stringify(o.artifact)}\n    ref: ${o.ref}\n    sha256: ${o.sha256}\n    required: ${o.required}`,
+        ),
         `work_product_state_from: ${gateFailReceipt.work_product_state_from}`,
         `work_product_state_to: ${gateFailReceipt.work_product_state_to}`,
         `gate: ${gateFailReceipt.gate}`,
@@ -235,9 +257,13 @@ export const runWorkflow = (workflowId: string): void => {
         ...gateFailReceipt.coverage_gaps.map((c) => `  - ${JSON.stringify(c)}`),
       ].join('\n');
       writeFileSync(failReceiptPath, `${failYml}\n`, 'utf8');
-      console.error(`[GATE-FAIL] ${id}: gate-fail receipt written to ${failReceiptPath.replace(ROOT + '/', '')}`);
+      console.error(
+        `[GATE-FAIL] ${id}: gate-fail receipt written to ${failReceiptPath.replace(ROOT + '/', '')}`,
+      );
     } else {
-      console.error(`[GATE-FAIL] ${id}: gate-fail receipt rejected by schema: ${failParsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')}`);
+      console.error(
+        `[GATE-FAIL] ${id}: gate-fail receipt rejected by schema: ${failParsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')}`,
+      );
     }
     process.exitCode = 1;
     return;
@@ -252,9 +278,15 @@ export const runWorkflow = (workflowId: string): void => {
     `command: ${receipt.command}`,
     `mode: ${receipt.mode}`,
     `inputs:`,
-    ...receipt.inputs.map((i) => `  - artifact: ${JSON.stringify(i.artifact)}\n    ref: ${i.ref}\n    sha256: ${i.sha256}`),
+    ...receipt.inputs.map(
+      (i) =>
+        `  - artifact: ${JSON.stringify(i.artifact)}\n    ref: ${i.ref}\n    sha256: ${i.sha256}`,
+    ),
     `outputs:`,
-    ...receipt.outputs.map((o) => `  - artifact: ${JSON.stringify(o.artifact)}\n    ref: ${o.ref}\n    sha256: ${o.sha256}\n    required: ${o.required}`),
+    ...receipt.outputs.map(
+      (o) =>
+        `  - artifact: ${JSON.stringify(o.artifact)}\n    ref: ${o.ref}\n    sha256: ${o.sha256}\n    required: ${o.required}`,
+    ),
     `work_product_state_from: ${receipt.work_product_state_from}`,
     `work_product_state_to: ${receipt.work_product_state_to}`,
     `gate: ${receipt.gate}`,
@@ -281,11 +313,14 @@ export const runWorkflow = (workflowId: string): void => {
   console.info(`  ${gateSummary}`);
 
   // Always stop at the gate — never advance. [CONFIG]
-  console.info(`  STOP at gate ${gate} (manual approval required; RENDERED_DRAFT != HUMAN_APPROVED).`);
+  console.info(
+    `  STOP at gate ${gate} (manual approval required; RENDERED_DRAFT != HUMAN_APPROVED).`,
+  );
 };
 
 const isMain =
-  process.argv[1] !== undefined && resolve(process.argv[1]) === resolve(import.meta.url.replace(/^file:\/\//u, ''));
+  process.argv[1] !== undefined &&
+  resolve(process.argv[1]) === resolve(import.meta.url.replace(/^file:\/\//u, ''));
 if (isMain) {
   const args = parseArgs(process.argv);
   if (args.workflow === '') {

@@ -6,11 +6,11 @@ tiempos/versiones**. Tres concerns distintos, tres tratamientos. Ver ADR 0027.
 
 ## Tres concerns
 
-| Concern | Tratamiento | Ejemplos |
-|---------|-------------|----------|
-| Contrato | Preservar (identidad, no versión) | `-vN` suffix, `schema_version`, `manifest_id`, gates `GNN`/`MW_*`, rutas `R0`..`R5`, roles `RT-01`..`RT-11` |
-| Tiempo | Solo en `04_estado/receipts/**` y `04_estado/tasks/**` | timestamps en contenido de receipts, dirs timestamped, `task.yaml` |
-| Lifecycle | Ortogonal a versiones | `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED` |
+| Concern   | Tratamiento                                            | Ejemplos                                                                                                    |
+| --------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| Contrato  | Preservar (identidad, no versión)                      | `-vN` suffix, `schema_version`, `manifest_id`, gates `GNN`/`MW_*`, rutas `R0`..`R5`, roles `RT-01`..`RT-11` |
+| Tiempo    | Solo en `04_estado/receipts/**` y `04_estado/tasks/**` | timestamps en contenido de receipts, dirs timestamped, `task.yaml`                                          |
+| Lifecycle | Ortogonal a versiones                                  | `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`                                           |
 
 ## Allowlist (trazas legítimas — preservar)
 

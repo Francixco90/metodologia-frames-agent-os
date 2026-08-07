@@ -14,7 +14,10 @@ import {parse} from 'yaml';
 import {describe, expect, it} from 'vitest';
 
 import {MultimediaWorkflowSchema} from 'workflows/multimedia/_schema/workflow-v1.schema.ts';
-import {evaluateQualityGate, type QualityGateContext} from 'workflows/multimedia/_runner/quality-gate.ts';
+import {
+  evaluateQualityGate,
+  type QualityGateContext,
+} from 'workflows/multimedia/_runner/quality-gate.ts';
 
 const ROOT = process.cwd();
 const MULTIMEDIA = resolve(ROOT, '02_proceso/workflows/multimedia');
@@ -31,12 +34,29 @@ const buildP00Receipt = (overrides: Record<string, unknown> = {}): Record<string
   command: '/definir-sistema',
   mode: 'perfil-verificable',
   inputs: [
-    {artifact: 'workflow.yml', ref: '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml', sha256: 'a'.repeat(64)},
-    {artifact: 'prompt-spec.md', ref: '02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md', sha256: 'b'.repeat(64)},
-    {artifact: 'task-template.yaml', ref: '02_proceso/workflows/multimedia/p00-definir-sistema/task-template.yaml', sha256: 'c'.repeat(64)},
+    {
+      artifact: 'workflow.yml',
+      ref: '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml',
+      sha256: 'a'.repeat(64),
+    },
+    {
+      artifact: 'prompt-spec.md',
+      ref: '02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md',
+      sha256: 'b'.repeat(64),
+    },
+    {
+      artifact: 'task-template.yaml',
+      ref: '02_proceso/workflows/multimedia/p00-definir-sistema/task-template.yaml',
+      sha256: 'c'.repeat(64),
+    },
   ],
   outputs: [
-    {artifact: 'Brand OS', ref: '03_artefactos/content/multimedia/p00-definir-sistema/brand-os.yml', sha256: 'd'.repeat(64), required: true},
+    {
+      artifact: 'Brand OS',
+      ref: '03_artefactos/content/multimedia/p00-definir-sistema/brand-os.yml',
+      sha256: 'd'.repeat(64),
+      required: true,
+    },
   ],
   work_product_state_from: 'INTAKE',
   work_product_state_to: 'DEFINED',
@@ -102,7 +122,11 @@ describe('evaluateQualityGate', () => {
     const ctx = buildP00Context({
       workflowParsed: tamperedWorkflow,
       inputResolutions: [
-        {input: 'p99-nonexistent/missing.yml', resolved: resolve(MULTIMEDIA, 'p99-nonexistent/missing.yml'), exists: false},
+        {
+          input: 'p99-nonexistent/missing.yml',
+          resolved: resolve(MULTIMEDIA, 'p99-nonexistent/missing.yml'),
+          exists: false,
+        },
       ],
     });
     const result = evaluateQualityGate(ctx);

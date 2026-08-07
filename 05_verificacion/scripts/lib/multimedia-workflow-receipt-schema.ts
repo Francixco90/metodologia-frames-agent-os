@@ -19,18 +19,7 @@ import {z} from 'zod';
 
 export const MultimediaWorkflowReceiptSchema = z.strictObject({
   schema_version: z.literal('multimedia-workflow-receipt-v1'),
-  workflow_id: z.enum([
-    'P00',
-    'P01',
-    'P02',
-    'P03',
-    'P04',
-    'P05',
-    'P06',
-    'P07',
-    'P08',
-    'P09',
-  ]),
+  workflow_id: z.enum(['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']),
   command: z.string().min(1),
   mode: z.string().min(1),
   inputs: z.array(
@@ -58,6 +47,4 @@ export const MultimediaWorkflowReceiptSchema = z.strictObject({
   coverage_gaps: z.array(z.string().min(1)).default([]),
 });
 
-export type MultimediaWorkflowReceipt = z.infer<
-  typeof MultimediaWorkflowReceiptSchema
->;
+export type MultimediaWorkflowReceipt = z.infer<typeof MultimediaWorkflowReceiptSchema>;

@@ -64,53 +64,55 @@ const enforceReleaseGates = (
   },
   ctx: z.RefinementCtx,
 ): void => {
-    if (TIER_A_LOCKED_PROJECT_IDS.has(entry.project_id)) {
-      const flags: Array<['source_locked' | 'guardian_passed' | 'human_approved' | 'ready' | 'published', boolean]> = [
-        ['source_locked', entry.source_locked],
-        ['guardian_passed', entry.guardian_passed],
-        ['human_approved', entry.human_approved],
-        ['ready', entry.ready],
-        ['published', entry.published],
-      ];
-      for (const [field, value] of flags) {
-        if (value !== false) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: `Tier A locked: ${field} must remain false for ${entry.project_id} (advance via manual fail-closed gate)`,
-            path: [field],
-          });
-        }
+  if (TIER_A_LOCKED_PROJECT_IDS.has(entry.project_id)) {
+    const flags: Array<
+      ['source_locked' | 'guardian_passed' | 'human_approved' | 'ready' | 'published', boolean]
+    > = [
+      ['source_locked', entry.source_locked],
+      ['guardian_passed', entry.guardian_passed],
+      ['human_approved', entry.human_approved],
+      ['ready', entry.ready],
+      ['published', entry.published],
+    ];
+    for (const [field, value] of flags) {
+      if (value !== false) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Tier A locked: ${field} must remain false for ${entry.project_id} (advance via manual fail-closed gate)`,
+          path: [field],
+        });
       }
     }
-    if (entry.guardian_passed && !entry.source_locked) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'guardian_passed requires source_locked',
-        path: ['guardian_passed'],
-      });
-    }
-    if (entry.human_approved && !entry.guardian_passed) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'human_approved requires guardian_passed',
-        path: ['human_approved'],
-      });
-    }
-    if (entry.ready && !entry.human_approved) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'ready requires human_approved',
-        path: ['ready'],
-      });
-    }
-    if (entry.published && !entry.ready) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'published requires ready',
-        path: ['published'],
-      });
-    }
-  };
+  }
+  if (entry.guardian_passed && !entry.source_locked) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'guardian_passed requires source_locked',
+      path: ['guardian_passed'],
+    });
+  }
+  if (entry.human_approved && !entry.guardian_passed) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'human_approved requires guardian_passed',
+      path: ['human_approved'],
+    });
+  }
+  if (entry.ready && !entry.human_approved) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'ready requires human_approved',
+      path: ['ready'],
+    });
+  }
+  if (entry.published && !entry.ready) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'published requires ready',
+      path: ['published'],
+    });
+  }
+};
 
 const registryEntrySchema = z
   .strictObject({

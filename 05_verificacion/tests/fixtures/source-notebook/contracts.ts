@@ -5,7 +5,11 @@ import path from 'node:path';
 import {parse} from 'yaml';
 import {z} from 'zod';
 
-import {RelativePathSchema, Sha256Schema, TimestampSchema} from '../../../../core/contracts/index.ts';
+import {
+  RelativePathSchema,
+  Sha256Schema,
+  TimestampSchema,
+} from '../../../../core/contracts/index.ts';
 
 const SourceIdSchema = z.string().regex(/^SRC-[A-Z0-9-]+$/u);
 const ClaimIdSchema = z.string().regex(/^CLM-[A-Z0-9-]+$/u);

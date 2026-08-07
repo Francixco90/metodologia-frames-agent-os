@@ -1,9 +1,16 @@
 import {CommitteeApprovalSchema} from '../../../approvals/schemas/index.ts';
 import {CommitteeSessionSchema, adjudicateCommittee} from '../../../committees/src/index.ts';
-import {ApprovalSchema, ReleaseReceiptSchema, type Approval} from '../../../core/contracts/index.ts';
+import {
+  ApprovalSchema,
+  ReleaseReceiptSchema,
+  type Approval,
+} from '../../../core/contracts/index.ts';
 import {AppendOnlyMemory} from '../../../core/memory/index.ts';
 import {createRenderReceiptStore} from '../../../core/receipts/index.ts';
-import {transitionAudiovisualState, transitionGlobalState} from '../../../core/state-machine/index.ts';
+import {
+  transitionAudiovisualState,
+  transitionGlobalState,
+} from '../../../core/state-machine/index.ts';
 import {makeValidSession} from '../unit/committee/fixtures.ts';
 import {HASH_A, HASH_B, HASH_C, NOW, approval, portableRef} from '../unit/core/fixtures.ts';
 

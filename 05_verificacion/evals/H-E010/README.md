@@ -15,7 +15,7 @@ La ruta R3-LOOSE del router crea una tarea loose con `project_id: null`
 ## Precondiciones
 
 - `router.yml` define R3-LOOSE con output `new tasks/{id}/task.yaml with
-  project_id: null — first-class loose task`. [CONFIG]
+project_id: null — first-class loose task`. [CONFIG]
 - `TaskContractSchema.project_id` es `z.string().nullable()`. [CÓDIGO]
 - `TaskContractSchema.created_from_route` admite `'R3-LOOSE'`. [CÓDIGO]
 - Fixture real: `04_estado/tasks/TASK-loose-001/task.yaml` con

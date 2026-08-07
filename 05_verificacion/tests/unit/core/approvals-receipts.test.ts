@@ -1,6 +1,9 @@
 import {describe, expect, it} from 'vitest';
 
-import {applyApprovedTransition, validateApprovalBinding} from '../../../../core/approvals/index.ts';
+import {
+  applyApprovedTransition,
+  validateApprovalBinding,
+} from '../../../../core/approvals/index.ts';
 import {
   createReleaseReceiptStore,
   createRenderReceiptStore,

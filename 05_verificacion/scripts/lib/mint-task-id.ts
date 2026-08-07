@@ -69,9 +69,7 @@ export function mintTaskId({projectSlug, counter}: MintInput): MintResult {
       throw new Error('mintTaskId: projectSlug must be non-empty or null');
     }
     if (!/^[a-z0-9-]+$/u.test(projectSlug)) {
-      throw new Error(
-        `mintTaskId: projectSlug "${projectSlug}" must match [a-z0-9-]+`,
-      );
+      throw new Error(`mintTaskId: projectSlug "${projectSlug}" must match [a-z0-9-]+`);
     }
     const prev = counter.counters.project_sequences[projectSlug] ?? 0;
     const next = prev + 1;
@@ -148,8 +146,7 @@ export function bumpCounter(counter: TaskCounter, task_id: string): TaskCounter 
 
 /** Parsed task_id: either loose or project-bound. */
 export type ParsedTaskId =
-  | {kind: 'loose'; seq: number}
-  | {kind: 'project'; slug: string; seq: number};
+  {kind: 'loose'; seq: number} | {kind: 'project'; slug: string; seq: number};
 
 /**
  * Parse a minted task_id into its kind + sequence. Accepts:
@@ -182,9 +179,7 @@ function assertValidTaskId(task_id: string): void {
   // keep it in sync with 02_proceso/core/contracts/task-contract.ts. [CONFIG]
   const re = /^TASK-(?:[a-z0-9-]+-)?[0-9]{3,}$/u;
   if (!re.test(task_id)) {
-    throw new Error(
-      `mintTaskId: produced task_id "${task_id}" fails contract regex`,
-    );
+    throw new Error(`mintTaskId: produced task_id "${task_id}" fails contract regex`);
   }
   // Also run the full contract regex via a minimal safeParse to stay in lock
   // with the schema should it tighten. We only validate the id field shape

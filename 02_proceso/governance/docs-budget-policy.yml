@@ -12,42 +12,42 @@ manifest_id: docs-budget-policy-v1
 # surface is marked `mode: report` (phased remediation, coverage_gap).
 budgets:
   - surface: SKILL.md
-    match: "03_artefactos/skills/**/SKILL.md"
-    exclude: "03_artefactos/skills/vendor/**"
+    match: '03_artefactos/skills/**/SKILL.md'
+    exclude: '03_artefactos/skills/vendor/**'
     max_words: 1200
     max_lines: 300
-    mode: report  # 15+ pre-existing over-budget; Fase 7 split remediation
-    rationale: "Progressive-disclosure budget (adding-artifacts.md § Skill)"
+    mode: report # 15+ pre-existing over-budget; Fase 7 split remediation
+    rationale: 'Progressive-disclosure budget (adding-artifacts.md § Skill)'
   - surface: prompt-spec.md
-    match: "**/prompt-spec.md"
+    match: '**/prompt-spec.md'
     max_lines: 400
     mode: enforce
-    rationale: "Spec density ceiling"
+    rationale: 'Spec density ceiling'
   - surface: authored-governance-md
-    match: "02_proceso/governance/*.md"
+    match: '02_proceso/governance/*.md'
     max_lines: 400
     mode: enforce
-    rationale: "Governance doc density ceiling"
+    rationale: 'Governance doc density ceiling'
   - surface: authored-decisions-md
-    match: "01_intencion/adrs/*.md"
+    match: '01_intencion/adrs/*.md'
     max_lines: 120
     mode: enforce
-    rationale: "ADR density ceiling (ADR 0027 = 50 lines norm)"
+    rationale: 'ADR density ceiling (ADR 0027 = 50 lines norm)'
   - surface: harness-creator-references
-    match: "03_artefactos/skills/harness-creator/references/*.md"
+    match: '03_artefactos/skills/harness-creator/references/*.md'
     max_lines: 300
     mode: enforce
-    rationale: "Reference doc density ceiling"
+    rationale: 'Reference doc density ceiling'
 
 # Working docs (CONTEXT.md, TASK.md, PROJECT.md) are gitignored local cabinas —
 # excluded from versioned budget enforcement. CLAUDE.md and GEMINI.md are
 # committed shared agent-CLI adapters but stay excluded from budget (routing
 # cabins, not authored content). Temporal trace lives in changelog.md. [CONFIG]
 exclusions:
-  - "CONTEXT.md"
-  - "TASK.md"
-  - "PROJECT.md"
-  - "CLAUDE.md"
-  - "GEMINI.md"
-  - "**/node_modules/**"
-  - "03_artefactos/skills/vendor/**"
+  - 'CONTEXT.md'
+  - 'TASK.md'
+  - 'PROJECT.md'
+  - 'CLAUDE.md'
+  - 'GEMINI.md'
+  - '**/node_modules/**'
+  - '03_artefactos/skills/vendor/**'

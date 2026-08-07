@@ -1,10 +1,10 @@
 schema_version: multimedia-workflow-v1
 workflow_id: P00
 command: /definir-sistema
-title: "Define tu sistema creativo"
-purpose: "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación."
-discipline: "Marca y dirección creativa"
-phase: "Fundamentos"
+title: 'Define tu sistema creativo'
+purpose: 'Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.'
+discipline: 'Marca y dirección creativa'
+phase: 'Fundamentos'
 tags:
   - identity
   - voice
@@ -12,27 +12,26 @@ tags:
   - pilot
 modes:
   - id: perfil-verificable
-    name: "Perfil verificable"
-    description: "Perfil verificable"
+    name: 'Perfil verificable'
+    description: 'Perfil verificable'
   - id: brand-os
-    name: "Brand OS"
-    description: "Brand OS"
+    name: 'Brand OS'
+    description: 'Brand OS'
   - id: calibracion-de-voz
-    name: "Calibración de voz"
-    description: "Calibración de voz"
+    name: 'Calibración de voz'
+    description: 'Calibración de voz'
   - id: piloto-y-autonomia
-    name: "Piloto y autonomía"
-    description: "Piloto y autonomía"
-inputs:
-  []
+    name: 'Piloto y autonomía'
+    description: 'Piloto y autonomía'
+inputs: []
 outputs:
-  - artifact: "Brand OS"
+  - artifact: 'Brand OS'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Calibration sample"
+  - artifact: 'Calibration sample'
     schema_ref: _assets/artifact-registry.md
     required: true
-  - artifact: "Pilot plan"
+  - artifact: 'Pilot plan'
     schema_ref: _assets/artifact-registry.md
     required: true
 work_product_state: DEFINED
@@ -43,25 +42,25 @@ next_workflow: P01
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
 model:
-  preferred: "Modelo recomendado"
-  alt: "asistente general con buen manejo de contexto"
-  avoid: "generador multimedia como único decisor estratégico"
+  preferred: 'Modelo recomendado'
+  alt: 'asistente general con buen manejo de contexto'
+  avoid: 'generador multimedia como único decisor estratégico'
 no_regression:
-  - "Checklist de no regresión"
+  - 'Checklist de no regresión'
 dod:
-  - "Definition of Done"
-fallback: "Si el contexto es insuficiente, entrega el artefacto mínimo provisional y las tres preguntas de mayor impacto; si falta consentimiento o existe mezcla de perfiles, detén el proceso. interpreta, planifica, ejecuta."
+  - 'Definition of Done'
+fallback: 'Si el contexto es insuficiente, entrega el artefacto mínimo provisional y las tres preguntas de mayor impacto; si falta consentimiento o existe mezcla de perfiles, detén el proceso. interpreta, planifica, ejecuta.'
 brief:
   outputs:
-    - "Perfil creativo y Brand OS definidos bajo aprobación"
-    - "Modalidad piloto elegida, una por vez"
-    - "Calibración y plan piloto listos para ejecución"
+    - 'Perfil creativo y Brand OS definidos bajo aprobación'
+    - 'Modalidad piloto elegida, una por vez'
+    - 'Calibración y plan piloto listos para ejecución'
   deliverables:
     - brand-os-v1
     - calibration-sample-v1
     - pilot-plan-v1
-  context: "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación."
-  cta: "Avanzar a P01 curar-material con Brand OS aprobado."
+  context: 'Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.'
+  cta: 'Avanzar a P01 curar-material con Brand OS aprobado.'
 capability_map:
   skills:
     - metodologia-brand-router
