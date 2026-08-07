@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 31 gates', () => {
-    expect(manifest.gates).toHaveLength(31);
+  it('declares 32 gates', () => {
+    expect(manifest.gates).toHaveLength(32);
   });
 
   it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u or ^MW_[A-Z_]+$/u', () => {

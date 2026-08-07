@@ -27,7 +27,6 @@ import {parse} from 'yaml';
 import {MultimediaWorkflowSchema} from '../_schema/workflow-v1.schema.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(HERE, '..', '..', '..', '..');
 const MW_DIR = join(HERE, '..');
 const TEMPLATE_PATH = join(MW_DIR, '_assets', 'schematic-template.html');
 
@@ -99,7 +98,7 @@ function render(): {ok: number; fail: number} {
   for (const dir of stageDirs) {
     const wfPath = join(MW_DIR, dir, 'workflow.yml');
     if (!existsSync(wfPath)) continue;
-    const raw = parse(readFileSync(wfPath, 'utf8'));
+    const raw = parse(readFileSync(wfPath, 'utf8')) as unknown;
     let wf;
     try {
       wf = MultimediaWorkflowSchema.parse(raw);
@@ -132,12 +131,14 @@ function render(): {ok: number; fail: number} {
       .replace(/{{CTA}}/g, esc(brief.cta));
     const outPath = join(MW_DIR, dir, 'schematic.html');
     writeFileSync(outPath, html, 'utf8');
-    console.log(`OK ${dir} -> schematic.html (${wf.workflow_id}, ${brief.outputs.length} outputs, ${cap.skills.length} skills)`);
+    console.info(
+      `OK ${dir} -> schematic.html (${wf.workflow_id}, ${brief.outputs.length} outputs, ${cap.skills.length} skills)`,
+    );
     ok++;
   }
   return {ok, fail};
 }
 
 const {ok, fail} = render();
-console.log(`--- ${ok} ok, ${fail} fail`);
+console.info(`--- ${ok} ok, ${fail} fail`);
 if (fail > 0) process.exit(1);
