@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       78 |
+| `refactored`         |       79 |
 | `generator_fixed`    |        6 |
 | `superseded`         |        0 |
-| `verified_no_change` |      204 |
+| `verified_no_change` |      203 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            92786 |            109737 |     139179 (1.5×) | 1.1827× | `pass` |
-| Total authored (palabras)     |            92786 |            109737 |       185572 (2×) | 1.1827× | `pass` |
-| Total authored (LOC)          |            34911 |             41252 |        69822 (2×) | 1.1816× | `pass` |
+| Corpus authored elegible      |            93215 |            110236 |     139822 (1.5×) | 1.1826× | `pass` |
+| Total authored (palabras)     |            93215 |            110236 |       186430 (2×) | 1.1826× | `pass` |
+| Total authored (LOC)          |            35033 |             41410 |        70066 (2×) |  1.182× | `pass` |
 | Generated/template aplicables | 52 inventariados | 3 checks + 49 N/A | 2× palabras y LOC |   52/52 | `pass` |
 | Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -61,7 +61,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
 | `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 134               | 33          | 41         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
-| `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 96                | 15          | 54         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
+| `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 100               | 15          | 58         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
 | `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 176               | 3           | 44         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
@@ -145,7 +145,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `docs/program/execution-ledger.md`                                                                            | `lead`             | `immutable_history`  | 314                | 314               | 41          | 41         | `3d6afb6cfbeb9d4756a621712b062beafb99cc6d59e587a4f627b71bba5b7e1b` | `byte-identical` |
 | `docs/program/formal-scope.md`                                                                                | `lead`             | `verified_no_change` | 592                | 592               | 70          | 70         | `35748c31dca00e9cf769c0f2b85ec9dd83c5434b8a52796d1167a0519b05ba08` | `byte-identical` |
 | `docs/program/operator-runbook.md`                                                                            | `lead`             | `verified_no_change` | 542                | 542               | 108         | 108        | `56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274` | `byte-identical` |
-| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 253               | 104         | 136        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
+| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 275               | 104         | 147        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
 | `docs/program/requirements-traceability.md`                                                                   | `lead`             | `verified_no_change` | 835                | 835               | 53          | 53         | `207c511ff8eade696fcbeedf33f1d4c305f63b72e59351cff28d3c1e40e03e33` | `byte-identical` |
 | `docs/program/system-architecture.md`                                                                         | `lead`             | `verified_no_change` | 596                | 596               | 89          | 89         | `c1a8fcc5ece81e28d99d5771435fdc01c441b042c86f1c6247688cbdf8b45692` | `byte-identical` |
 | `docs/program/test-strategy.md`                                                                               | `lead`             | `verified_no_change` | 556                | 556               | 51          | 51         | `49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7` | `byte-identical` |
@@ -341,10 +341,10 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-memory.ts`                                                                                     | `repo`             | `verified_no_change` | 96                 | 96                | 49          | 49         | `0cbf348498f900262045a74c7477cd97fb7781adf4c67de2ee04fa866438d6c2` | `byte-identical` |
 | `scripts/check-n8n.ts`                                                                                        | `repo`             | `refactored`         | 230                | 230               | 93          | 93         | `baa7d9ae544580203129a696bc31b62200b6e466718e5352220bbf8a48ad64a3` | `changed`        |
 | `scripts/check-notebooklm.ts`                                                                                 | `repo`             | `refactored`         | 529                | 529               | 191         | 191        | `a8cb42cb494864e30e3594305a790d98ba2b98b728c6497b6a6822a634f6352a` | `changed`        |
-| `scripts/check-ownership.ts`                                                                                  | `repo`             | `verified_no_change` | 236                | 236               | 62          | 62         | `14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435` | `byte-identical` |
+| `scripts/check-ownership.ts`                                                                                  | `repo`             | `refactored`         | 236                | 660               | 62          | 179        | `14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435` | `changed`        |
 | `scripts/check-privacy.ts`                                                                                    | `repo`             | `refactored`         | 188                | 264               | 72          | 84         | `f3239e066d1f3b997671da2b1140702ceb0ea4360abeb73f3fc787d432e62e1e` | `changed`        |
 | `scripts/check-projects.ts`                                                                                   | `repo`             | `refactored`         | 596                | 918               | 219         | 304        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `changed`        |
-| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 205               | 84          | 107        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
+| `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 206               | 84          | 108        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 394               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |
 | `scripts/hooks/pre-commit-pii-guard.sh`                                                                       | `repo`             | `verified_no_change` | 103                | 103               | 21          | 21         | `5bbb2fbf2694db30d0a2550f54f83896b28b0776cf750b1fb5f9a1e1a93fda8e` | `byte-identical` |
