@@ -1,53 +1,178 @@
-# docs-budget-policy.yml — default .md text budgets (ADR 0027, plan D7).
-#
-# Extends the per-file ledger budgets (58 editable_markdown_per_file) and the
-# V2 SKILL.md ≤1200-word rule (adding-artifacts.md § Skill) to the ~459 .md
-# files without an explicit budget. Respects existing budgets where they exist.
-# Owner: governance. [CONFIG]
+# Multi-format size budgets. Changed files must resolve one effective rule;
+# target overruns warn and hard overruns fail. [CONFIG]
+schema_version: file-budget-policy-v2
+manifest_id: file-budget-policy-v2
+defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
+pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 
-schema_version: docs-budget-policy-v1
-manifest_id: docs-budget-policy-v1
-
-# Hard caps. Violations are enforced by `pnpm check-md-budgets` unless the
-# surface is marked `mode: report` (phased remediation, coverage_gap).
 budgets:
+  - surface: generated-bound-output
+    kind: generated
+    match: '03_artefactos/brand/generated/**'
+    baseline: template
+    target: {multiplier: 1}
+    hard: {multiplier: 2}
+    rationale: 'Generated outputs require a declared size-comparable template.'
+  - surface: generated-ledger-projection
+    kind: exempt
+    match:
+      [
+        '01_intencion/program/file-disposition-ledger.yml',
+        '01_intencion/program/file-disposition-ledger.md',
+        'docs/program/file-disposition-ledger.yml',
+        'docs/program/file-disposition-ledger.md',
+      ]
+    target: {}
+    hard: {}
+    rationale: 'Self-validating paired projections are governed by deterministic regeneration.'
+  - surface: generated-explicit-fallback
+    kind: generated
+    fallback: true
+    match: '**'
+    target: {max_words: 2000, max_lines: 500}
+    hard: {max_words: 4000, max_lines: 1000}
+    rationale: 'Unbound generated outputs receive explicit conservative caps until a template binding exists.'
+  - surface: vendor-import
+    kind: exempt
+    match: '03_artefactos/skills/vendor/**'
+    target: {}
+    hard: {}
+    changed_mode: report
+    rationale: 'Vendored bytes use provenance and import receipts, not authored caps.'
+  - surface: immutable-runtime-evidence
+    kind: exempt
+    match:
+      [
+        '04_estado/receipts/**',
+        '05_verificacion/quality/reports/**',
+        '05_verificacion/quality/reviews/**',
+        '02_proceso/committees/creation/**',
+      ]
+    target: {}
+    hard: {}
+    changed_mode: report
+    rationale: 'Append-only evidence uses hashes and immutability checks.'
+  - surface: local-cabin
+    kind: exempt
+    match: [CONTEXT.md, TASK.md, PROJECT.md]
+    target: {}
+    hard: {}
+    changed_mode: report
+    rationale: 'Gitignored task cabins are runtime context, not versioned authored corpus.'
+  - surface: baseline-root-doc
+    match: [README.md, AGENTS.md]
+    baseline: file-disposition
+    target: {multiplier: 1.5}
+    hard: {multiplier: 2}
+    rationale: 'Root documents retain their approved per-file baseline.'
+  - surface: agent-cli-adapter
+    match: [CLAUDE.md, GEMINI.md]
+    target: {max_words: 1000, max_lines: 150}
+    hard: {max_words: 2500, max_lines: 400}
+    rationale: 'Shared CLI adapters use the governance-document budget.'
   - surface: SKILL.md
     match: '03_artefactos/skills/**/SKILL.md'
-    exclude: '03_artefactos/skills/vendor/**'
-    max_words: 1200
-    max_lines: 300
-    mode: report # 15+ pre-existing over-budget; Fase 7 split remediation
-    rationale: 'Progressive-disclosure budget (adding-artifacts.md § Skill)'
+    exclude: ['03_artefactos/skills/vendor/**']
+    target: {max_words: 800, max_lines: 180}
+    hard: {max_words: 1200, max_lines: 300}
+    scope: all
+    mode: report
+    rationale: 'Untouched debt reports; new or touched skills enforce the hard cap.'
   - surface: prompt-spec.md
     match: '**/prompt-spec.md'
-    max_lines: 400
-    mode: enforce
-    rationale: 'Spec density ceiling'
+    target: {max_words: 1500, max_lines: 300}
+    hard: {max_words: 2200, max_lines: 400}
+    scope: all
+    rationale: 'Prompt specifications remain dense and reviewable.'
   - surface: authored-governance-md
-    match: '02_proceso/governance/*.md'
-    max_lines: 400
-    mode: enforce
-    rationale: 'Governance doc density ceiling'
+    match:
+      [
+        '02_proceso/governance/*.md',
+        '02_proceso/governance/*.yml',
+        '02_proceso/governance/*.yaml',
+        '02_proceso/governance/*.json',
+      ]
+    target: {max_words: 1000, max_lines: 150}
+    hard: {max_words: 2500, max_lines: 400}
+    scope: all
+    rationale: 'Governance documents use the approved density ceiling.'
   - surface: authored-decisions-md
     match: '01_intencion/adrs/*.md'
-    max_lines: 120
-    mode: enforce
-    rationale: 'ADR density ceiling (ADR 0027 = 50 lines norm)'
+    target: {max_words: 500, max_lines: 50}
+    hard: {max_words: 1000, max_lines: 120}
+    scope: all
+    rationale: 'ADRs preserve the 50-line norm and 120-line hard cap.'
   - surface: harness-creator-references
-    match: '03_artefactos/skills/harness-creator/references/*.md'
-    max_lines: 300
-    mode: enforce
-    rationale: 'Reference doc density ceiling'
-
-# Working docs (CONTEXT.md, TASK.md, PROJECT.md) are gitignored local cabinas —
-# excluded from versioned budget enforcement. CLAUDE.md and GEMINI.md are
-# committed shared agent-CLI adapters but stay excluded from budget (routing
-# cabins, not authored content). Temporal trace lives in changelog.md. [CONFIG]
-exclusions:
-  - 'CONTEXT.md'
-  - 'TASK.md'
-  - 'PROJECT.md'
-  - 'CLAUDE.md'
-  - 'GEMINI.md'
-  - '**/node_modules/**'
-  - '03_artefactos/skills/vendor/**'
+    match: '03_artefactos/skills/**/references/*.md'
+    exclude: ['03_artefactos/skills/vendor/**']
+    target: {max_words: 800, max_lines: 150}
+    hard: {max_words: 1500, max_lines: 300}
+    scope: changed
+    rationale: 'Skill references remain independently loadable under the existing cap.'
+  - surface: agent-contract-yaml
+    match: '02_proceso/agents/RT-*/contract.yml'
+    target: {max_lines: 100}
+    hard: {max_lines: 150}
+    rationale: 'Agent contracts stay bounded for selective loading.'
+  - surface: workflow-manifest-yaml
+    match: '02_proceso/workflows/**/workflow.yml'
+    target: {max_lines: 90}
+    hard: {max_lines: 150}
+    rationale: 'Workflow manifests remain orchestration-focused.'
+  - surface: canonical-control-config
+    match:
+      [
+        '01_intencion/program/dag.yml',
+        '01_intencion/program/ownership-manifest.yml',
+        '05_verificacion/scripts/commands.yaml',
+      ]
+    target: {max_words: 1000, max_lines: 150}
+    hard: {max_words: 2500, max_lines: 400}
+    rationale: 'Canonical control manifests use governance limits.'
+  - surface: test-code
+    match:
+      [
+        '05_verificacion/tests/**/*.ts',
+        '05_verificacion/tests/**/*.tsx',
+        '05_verificacion/tests/**/*.mjs',
+      ]
+    target: {max_lines: 200}
+    hard: {max_lines: 350}
+    rationale: 'Tests may be broader than production modules.'
+  - surface: production-code
+    match: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.mjs', '**/*.js']
+    exclude: ['05_verificacion/tests/**', '03_artefactos/skills/vendor/**']
+    target: {max_lines: 100}
+    hard: {max_lines: 200}
+    rationale: 'Production modules split before 200 lines.'
+  - surface: root-repo-control
+    match:
+      [
+        .gitignore,
+        .gitattributes,
+        .prettierignore,
+        .prettierrc.json,
+        .npmrc,
+        .nvmrc,
+        package.json,
+        pnpm-workspace.yaml,
+        tsconfig.json,
+        vitest.config.ts,
+        eslint.config.js,
+      ]
+    target: {max_words: 1000, max_lines: 150}
+    hard: {max_words: 2500, max_lines: 400}
+    rationale: 'Root controls use an explicit budget, not an invisible exclusion.'
+  - surface: dependency-lockfile
+    kind: exempt
+    match: pnpm-lock.yaml
+    target: {}
+    hard: {}
+    changed_mode: report
+    rationale: 'Frozen lockfile churn is reviewed separately from authored size.'
+  - surface: authored-explicit-fallback
+    fallback: true
+    match: '**'
+    target: {max_words: 1500, max_lines: 300}
+    hard: {max_words: 2500, max_lines: 500}
+    rationale: 'Every other changed authored file receives an explicit conservative budget.'

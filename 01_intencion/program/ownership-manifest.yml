@@ -129,7 +129,10 @@ writers:
     - receipts/check-runs/**
     - evals/**
     - 05_verificacion/evals/**
+    - 05_verificacion/tests/unit/check-md-budgets.test.ts
     - 05_verificacion/tests/unit/docs-budget-v2.test.ts
+    - 05_verificacion/tests/unit/file-budget-git.test.ts
+    - 05_verificacion/tests/unit/file-budget-policy.test.ts
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
   governance:
