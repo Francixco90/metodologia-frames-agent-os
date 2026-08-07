@@ -103,7 +103,7 @@ export const validatePrincipleConformance = (
 ): string[] => {
   const errors: string[] = [];
   const ownershipPath = resolve(root, '01_intencion/program/ownership-manifest.yml');
-  let owners = new Set<string>();
+  let owners: Set<string>;
   try {
     const ownership = OwnershipSchema.parse(parse(readFileSync(ownershipPath, 'utf8')));
     owners = new Set([
