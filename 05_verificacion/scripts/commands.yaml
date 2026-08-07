@@ -262,6 +262,17 @@ gates:
     fail_closed: false
     owner: governance
 
+  - gate: MW_CAPABILITY
+    label: multimedia capability_map + BLUF binding (P00–P09)
+    command: "pnpm verify:multimedia"
+    allowed_tools: [Bash]
+    write_set_globs: []
+    idempotency: true
+    danger_level: low
+    manual: false
+    fail_closed: false
+    owner: governance
+
   # --- Multimedia workflow approval gates (MW_*) — manual fail-closed ---
   # Guard approval/irreversible state transitions in the P00–P09 chain.
   # Never auto-passed; build.ts stops at each and requires human approval

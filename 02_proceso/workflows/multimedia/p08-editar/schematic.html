@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es" data-stage="P08">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MetodologIA · Multimedia · P08 — Edita, compone y reutiliza</title>
+    <meta name="state" content="RENDERED_DRAFT" />
+    <meta name="provenance" content="MIA-MEDIA-LIB-2.0.0 v2.0.0-candidato" />
+    <style>
+      :root {
+        --brand-canvas: #f5f7fa;
+        --brand-canvas-deep: #e2e8f0;
+        --brand-ink: #0a122a;
+        --brand-surface: #ffffff;
+        --brand-surface-alt: #f1f5f9;
+        --brand-gold: #e0b400;
+        --brand-gold-text: #8a6d00;
+        --brand-gold-soft: #f0c820;
+        --brand-text: var(--brand-ink);
+        --brand-text-soft: #334155;
+        --brand-muted: #576472;
+        --brand-border: rgba(10, 18, 42, 0.12);
+        --brand-radius: 16px;
+        --brand-radius-lg: 24px;
+        --font-head: 'Poppins', system-ui, sans-serif;
+        --font-body: 'Montserrat', system-ui, sans-serif;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--font-body);
+        color: var(--brand-text);
+        background: var(--brand-canvas);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: clamp(1.5rem, 4vw, 3rem);
+      }
+      /* HERO */
+      .hero {
+        position: relative;
+        background: linear-gradient(135deg, var(--brand-ink) 0%, #161f44 60%, #1f2c5c 100%);
+        color: var(--brand-surface);
+        border-radius: var(--brand-radius-lg);
+        padding: clamp(1.75rem, 5vw, 2.75rem);
+        overflow: hidden;
+        box-shadow: 0 24px 60px -28px rgba(10, 18, 42, 0.55);
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: auto -10% -60% auto;
+        width: 55%;
+        height: 140%;
+        background: radial-gradient(closest-side, rgba(224, 180, 0, 0.28), transparent 70%);
+        pointer-events: none;
+      }
+      .wordmark {
+        font-family: var(--font-head);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: clamp(1rem, 2.4vw, 1.25rem);
+        color: var(--brand-gold);
+        margin: 0 0 0.5rem;
+      }
+      .wordmark span {
+        color: var(--brand-surface);
+      }
+      .stage-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand-ink);
+        background: var(--brand-gold);
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-family: var(--font-head);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.05;
+        font-size: clamp(1.9rem, 5.4vw, 3rem);
+        margin: 0 0 0.6rem;
+      }
+      .purpose {
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        color: rgba(245, 247, 250, 0.82);
+        max-width: 62ch;
+        margin: 0;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+      }
+      .badge {
+        font-family: var(--font-head);
+        font-weight: 600;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(245, 247, 250, 0.22);
+        color: rgba(245, 247, 250, 0.88);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .badge.state {
+        border-color: var(--brand-gold);
+        color: var(--brand-gold);
+        background: rgba(224, 180, 0, 0.08);
+      }
+      /* CHAIN SVG */
+      .chain-card {
+        background: var(--brand-surface);
+        border: 1px solid var(--brand-border);
+        border-radius: var(--brand-radius-lg);
+        padding: clamp(1rem, 3vw, 1.75rem);
+        margin-top: 1.5rem;
+        box-shadow: 0 14px 40px -24px rgba(10, 18, 42, 0.3);
+      }
+      .chain-title {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand-muted);
+        margin: 0 0 0.9rem;
+      }
+      .chain-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+      .chain-svg .node rect {
+        fill: var(--brand-surface-alt);
+        stroke: var(--brand-border);
+        stroke-width: 1.5;
+        transition: all 0.5s var(--ease-out-expo);
+      }
+      .chain-svg .node text.id {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 13px;
+        fill: var(--brand-ink);
+      }
+      .chain-svg .node text.slug {
+        font-family: var(--font-body);
+        font-size: 9.5px;
+        fill: var(--brand-muted);
+      }
+      .chain-svg .connector {
+        stroke: var(--brand-border);
+        stroke-width: 1.5;
+        fill: none;
+      }
+      .chain-svg .node.active rect {
+        fill: var(--brand-gold);
+        stroke: var(--brand-gold-text);
+        stroke-width: 2.5;
+        filter: drop-shadow(0 8px 18px rgba(224, 180, 0, 0.45));
+      }
+      .chain-svg .node.active text.id {
+        fill: var(--brand-ink);
+      }
+      .chain-svg .node.active text.slug {
+        fill: var(--brand-ink);
+        opacity: 0.7;
+      }
+      .chain-svg .node.done rect {
+        fill: var(--brand-ink);
+        stroke: var(--brand-ink);
+      }
+      .chain-svg .node.done text.id,
+      .chain-svg .node.done text.slug {
+        fill: var(--brand-surface);
+      }
+      /* GRID */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+      .card {
+        background: var(--brand-surface);
+        border: 1px solid var(--brand-border);
+        border-radius: var(--brand-radius);
+        padding: clamp(1.25rem, 3vw, 1.75rem);
+        box-shadow: 0 10px 30px -22px rgba(10, 18, 42, 0.28);
+      }
+      .card h2 {
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand-muted);
+        margin: 0 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .card h2::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        background: var(--brand-gold);
+        display: inline-block;
+      }
+      .card.outputs {
+        grid-column: span 7;
+      }
+      .card.deliverables {
+        grid-column: span 5;
+      }
+      .card.capabilities {
+        grid-column: span 7;
+      }
+      .card.gate {
+        grid-column: span 5;
+      }
+      .outputs ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.7rem;
+      }
+      .outputs li {
+        font-size: 1rem;
+        color: var(--brand-text);
+        padding-left: 1.4rem;
+        position: relative;
+      }
+      .outputs li::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: var(--brand-gold-text);
+        font-weight: 700;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .chip {
+        font-family: var(--font-head);
+        font-weight: 600;
+        font-size: 0.82rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 8px;
+        background: var(--brand-surface-alt);
+        border: 1px solid var(--brand-border);
+        color: var(--brand-text-soft);
+      }
+      .chip.skill {
+        background: rgba(10, 18, 42, 0.04);
+        border-color: rgba(10, 18, 42, 0.16);
+      }
+      .chip.asset {
+        background: rgba(224, 180, 0, 0.08);
+        border-color: rgba(224, 180, 0, 0.4);
+        color: var(--brand-gold-text);
+      }
+      .gate .state-pill {
+        display: inline-block;
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--brand-ink);
+        background: var(--brand-gold);
+        padding: 0.5rem 0.9rem;
+        border-radius: 10px;
+        margin-bottom: 0.8rem;
+      }
+      .gate .gates-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .gate .gates-list .chip {
+        font-size: 0.76rem;
+        background: var(--brand-ink);
+        color: var(--brand-surface);
+        border-color: var(--brand-ink);
+      }
+      .cta {
+        grid-column: span 12;
+        background: linear-gradient(135deg, var(--brand-surface) 0%, var(--brand-surface-alt) 100%);
+        border: 1px solid var(--brand-border);
+        border-left: 4px solid var(--brand-gold);
+        border-radius: var(--brand-radius);
+        padding: 1.25rem 1.5rem;
+        font-size: 1.02rem;
+        color: var(--brand-text);
+      }
+      .cta strong {
+        font-family: var(--font-head);
+        color: var(--brand-gold-text);
+      }
+      footer {
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--brand-border);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        color: var(--brand-muted);
+      }
+      footer .state-note {
+        font-family: var(--font-head);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--brand-gold-text);
+      }
+      /* ENTRANCE ANIMATIONS */
+      @media (prefers-reduced-motion: no-preference) {
+        .hero,
+        .chain-card,
+        .card,
+        .cta {
+          opacity: 0;
+          transform: translateY(18px);
+          animation: rise 0.7s var(--ease-out-expo) forwards;
+        }
+        .chain-card {
+          animation-delay: 0.08s;
+        }
+        .card.outputs {
+          animation-delay: 0.16s;
+        }
+        .card.deliverables {
+          animation-delay: 0.22s;
+        }
+        .card.capabilities {
+          animation-delay: 0.28s;
+        }
+        .card.gate {
+          animation-delay: 0.34s;
+        }
+        .cta {
+          animation-delay: 0.4s;
+        }
+        .chain-svg .node.active rect {
+          animation: pulse 2.4s var(--ease) infinite 0.8s;
+        }
+      }
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          filter: drop-shadow(0 8px 18px rgba(224, 180, 0, 0.45));
+        }
+        50% {
+          filter: drop-shadow(0 10px 26px rgba(224, 180, 0, 0.7));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <p class="wordmark">Metodo<span>logIA</span></p>
+        <span class="stage-tag">P08 · Multimedia P00 → P09</span>
+        <h1>Edita, compone y reutiliza</h1>
+        <p class="purpose">Monta, compone, localiza y reutiliza con lineage, QC y rollback.</p>
+        <div class="meta-row">
+          <span class="badge state">Estado: POSTPRODUCTION_VALIDATED</span>
+          <span class="badge">Fuente: MIA-MEDIA-LIB-2.0.0</span>
+          <span class="badge">v2.0.0-candidato</span>
+        </div>
+      </header>
+
+      <section class="chain-card" aria-label="Cadena P00 a P09">
+        <p class="chain-title">Cadena P00 → P09 · etapa activa en oro</p>
+        <svg class="chain-svg" viewBox="0 0 1120 130" role="img" aria-label="Diagrama de la cadena P00 a P09">
+          <!-- connectors -->
+              <line class="connector" x1="104" y1="60" x2="126" y2="60" />
+    <line class="connector" x1="214" y1="60" x2="236" y2="60" />
+    <line class="connector" x1="324" y1="60" x2="346" y2="60" />
+    <line class="connector" x1="434" y1="60" x2="456" y2="60" />
+    <line class="connector" x1="544" y1="60" x2="566" y2="60" />
+    <line class="connector" x1="654" y1="60" x2="676" y2="60" />
+    <line class="connector" x1="764" y1="60" x2="786" y2="60" />
+    <line class="connector" x1="874" y1="60" x2="896" y2="60" />
+    <line class="connector" x1="984" y1="60" x2="1006" y2="60" />
+          <!-- nodes -->
+              <g class="node done" data-stage="P00">
+      <rect x="16" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="60" y="55" text-anchor="middle">P00</text>
+      <text class="slug" x="60" y="75" text-anchor="middle">definir-sistema</text>
+    </g>
+    <g class="node done" data-stage="P01">
+      <rect x="126" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="170" y="55" text-anchor="middle">P01</text>
+      <text class="slug" x="170" y="75" text-anchor="middle">curar-material</text>
+    </g>
+    <g class="node done" data-stage="P02">
+      <rect x="236" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="280" y="55" text-anchor="middle">P02</text>
+      <text class="slug" x="280" y="75" text-anchor="middle">investigar</text>
+    </g>
+    <g class="node done" data-stage="P03">
+      <rect x="346" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="390" y="55" text-anchor="middle">P03</text>
+      <text class="slug" x="390" y="75" text-anchor="middle">crear-brief</text>
+    </g>
+    <g class="node done" data-stage="P04">
+      <rect x="456" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="500" y="55" text-anchor="middle">P04</text>
+      <text class="slug" x="500" y="75" text-anchor="middle">calendarizar</text>
+    </g>
+    <g class="node done" data-stage="P05">
+      <rect x="566" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="610" y="55" text-anchor="middle">P05</text>
+      <text class="slug" x="610" y="75" text-anchor="middle">disenar-pieza</text>
+    </g>
+    <g class="node done" data-stage="P06">
+      <rect x="676" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="720" y="55" text-anchor="middle">P06</text>
+      <text class="slug" x="720" y="75" text-anchor="middle">crear-activos</text>
+    </g>
+    <g class="node done" data-stage="P07">
+      <rect x="786" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="830" y="55" text-anchor="middle">P07</text>
+      <text class="slug" x="830" y="75" text-anchor="middle">revisar</text>
+    </g>
+    <g class="node active" data-stage="P08">
+      <rect x="896" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="940" y="55" text-anchor="middle">P08</text>
+      <text class="slug" x="940" y="75" text-anchor="middle">editar</text>
+    </g>
+    <g class="node" data-stage="P09">
+      <rect x="1006" y="25" width="88" height="70" rx="12" />
+      <text class="id" x="1050" y="55" text-anchor="middle">P09</text>
+      <text class="slug" x="1050" y="75" text-anchor="middle">distribuir</text>
+    </g>
+        </svg>
+      </section>
+
+      <main class="grid">
+        <section class="card outputs">
+          <h2>Outputs</h2>
+          <ul>
+                        <li>Candidato de edición montado con lineage</li>
+            <li>EDL y handoff QC completos</li>
+            <li>Matriz de exportación con rollback</li>
+          </ul>
+        </section>
+        <section class="card deliverables">
+          <h2>Deliverables</h2>
+          <div class="chips"><span class="chip asset">edit-candidate-v1</span><span class="chip asset">edl-v1</span><span class="chip asset">export-matrix-v1</span></div>
+        </section>
+        <section class="card capabilities">
+          <h2>Capabilities · skills vinculados</h2>
+          <div class="chips"><span class="chip skill">content-os-remotion-render</span><span class="chip skill">remotion-video-production-v2</span><span class="chip skill">content-os-seam-craft</span><span class="chip skill">stitch-remotion-walkthrough</span></div>
+        </section>
+        <section class="card gate">
+          <h2>Gate</h2>
+          <span class="state-pill">POSTPRODUCTION_VALIDATED</span>
+          <div class="gates-list"><span class="chip ">MW_EDIT_APPROVED</span><span class="chip ">G14</span></div>
+        </section>
+        <p class="cta"><strong>Siguiente →</strong> Someter a MW_EDIT_APPROVED; avanzar a P09 distribuir.</p>
+      </main>
+
+      <footer>
+        <span>Provenance: MIA-MEDIA-LIB-2.0.0 · 02_proceso/workflows/multimedia/p08-editar/workflow.yml</span>
+        <span class="state-note">RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED</span>
+      </footer>
+    </div>
+  </body>
+</html>
