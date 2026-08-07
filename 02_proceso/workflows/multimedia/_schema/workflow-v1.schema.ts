@@ -72,6 +72,25 @@ export const MultimediaWorkflowSchema = z.strictObject({
   no_regression: z.array(z.string().min(1)).min(1),
   dod: z.array(z.string().min(1)).min(1),
   fallback: z.string().min(1).max(800),
+  // BLUF brief — Bottom Line Up Front. outputs/deliverables declared first
+  // so the stage's verifiable result is visible before context. [CONFIG]
+  brief: z
+    .strictObject({
+      outputs: z.array(z.string().min(1).max(200)).min(1),
+      deliverables: z.array(z.string().min(1).max(200)).min(1),
+      context: z.string().min(1).max(400),
+      cta: z.string().min(1).max(200),
+    })
+    .optional(),
+  // Deterministic skill + asset binding. skills resolve against creation-v3 /
+  // v2 skill registries or vendor skills (03_artefactos/skills/vendor/*);
+  // assets resolve against _assets/artifact-registry.md IDs. [CONFIG]
+  capability_map: z
+    .strictObject({
+      skills: z.array(z.string().min(1).max(80)).default([]),
+      assets: z.array(z.string().min(1).max(80)).default([]),
+    })
+    .optional(),
   metadata: z.strictObject({
     source_id: z.literal('MIA-MEDIA-LIB-2.0.0'),
     version: z.literal('2.0.0-candidato'),

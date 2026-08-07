@@ -42,6 +42,31 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Si el brief no permite escoger medio o ruta, diseña un prototipo de bajo costo: una imagen o frame, un clip corto o una prueba de voz antes de comprometer la pieza completa. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Especificación creativa del guion y la secuencia"
+    - "Continuidad y mapa de activos coordinados"
+    - "Prompts universales y derivados listos"
+  deliverables:
+    - creative-spec-v1
+    - continuity-bible-v1
+    - asset-map-v1
+    - universal-prompts-v1
+    - derivatives-v1
+  context: "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
+  cta: "Someter a MW_SPEC_APPROVED + G14; avanzar a P06 crear-activos."
+capability_map:
+  skills:
+    - content-os-creative
+    - content-os-motion-graphics
+    - content-os-remotion-bridge
+    - design-compose-graphics
+  assets:
+    - creative-spec-v1
+    - continuity-bible-v1
+    - asset-map-v1
+    - universal-prompts-v1
+    - derivatives-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

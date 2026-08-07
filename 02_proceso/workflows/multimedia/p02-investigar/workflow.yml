@@ -49,6 +49,25 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Sin fuentes suficientes, reformula como experiencia, pregunta o hipótesis y entrega la lista mínima de verificación; ante alto riesgo, HOLD. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Claims verificados contra fuentes rastreables"
+    - "Oportunidades y matices mapeados"
+    - "Banco de preguntas editorial priorizado"
+  deliverables:
+    - claim-register-v1
+    - opportunity-map-v1
+    - question-bank-v1
+  context: "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
+  cta: "Avanzar a P03 crear-brief con claims verificados."
+capability_map:
+  skills:
+    - content-os-core
+    - content-os-registry
+  assets:
+    - claim-register-v1
+    - opportunity-map-v1
+    - question-bank-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

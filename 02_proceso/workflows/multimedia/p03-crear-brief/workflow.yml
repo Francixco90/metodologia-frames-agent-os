@@ -50,6 +50,26 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Si la oportunidad no soporta una campaña, crea una pieza única con un derivado; si la evidencia es insuficiente, regresa a investigación. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Brief o campaña definidos con funciones distintas"
+    - "Conceptos A/B listos para decisión"
+    - "Definition of Ready cumplido"
+  deliverables:
+    - brief-campaign-map-v1
+    - ab-concepts-v1
+    - definition-of-ready-v1
+  context: "Define una pieza, sistema de derivados, serie o campaña con funciones distintas."
+  cta: "Someter a MW_SPEC_APPROVED; avanzar a P04 calendarizar."
+capability_map:
+  skills:
+    - content-os-creative
+    - content-os-product-launch-video
+    - dev-writing-plans
+  assets:
+    - brief-campaign-map-v1
+    - ab-concepts-v1
+    - definition-of-ready-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

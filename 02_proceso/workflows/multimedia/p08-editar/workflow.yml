@@ -56,6 +56,27 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Sin herramientas, entrega EDL y handoff completo; si el material no alcanza, crea un corte mínimo o vuelve a P06 para un activo de rescate. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Candidato de edición montado con lineage"
+    - "EDL y handoff QC completos"
+    - "Matriz de exportación con rollback"
+  deliverables:
+    - edit-candidate-v1
+    - edl-v1
+    - export-matrix-v1
+  context: "Monta, compone, localiza y reutiliza con lineage, QC y rollback."
+  cta: "Someter a MW_EDIT_APPROVED; avanzar a P09 distribuir."
+capability_map:
+  skills:
+    - content-os-remotion-render
+    - remotion-video-production-v2
+    - content-os-seam-craft
+    - stitch-remotion-walkthrough
+  assets:
+    - edit-candidate-v1
+    - edl-v1
+    - export-matrix-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

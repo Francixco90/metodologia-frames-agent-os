@@ -58,6 +58,25 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Si solo hay texto o frames, limita la revisión a eso y entrega checklist para la revisión completa; si el material no abre, solicita una copia o descripción sin inventar. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Reporte de revisión solo de lo observable"
+    - "Veredicto accionable"
+    - "Top-5 correcciones priorizadas"
+  deliverables:
+    - review-report-v1
+    - verdict-v1
+    - top5-changes-v1
+  context: "Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas."
+  cta: "Avanzar a P08 editar con veredicto y top-5."
+capability_map:
+  skills:
+    - design-audit-genjutsu
+    - content-os-core
+  assets:
+    - review-report-v1
+    - verdict-v1
+    - top5-changes-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

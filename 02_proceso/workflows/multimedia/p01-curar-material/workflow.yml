@@ -49,6 +49,26 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Cuando el material sea insuficiente, acumúlalo y propone la captura mínima que permitiría evaluarlo; cuando exista riesgo, protege antes de producir. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Material cotidiano clasificado en oportunidades trazables"
+    - "Captura mínima propuesta sin obligar a publicar"
+    - "Shortlist digerible priorizada"
+  deliverables:
+    - capture-card-v1
+    - triage-record-v1
+    - digest-shortlist-v1
+  context: "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
+  cta: "Avanzar a P02 investigar con shortlist clasificado."
+capability_map:
+  skills:
+    - content-os-registry
+    - content-os-media
+    - metodologia-find-skills
+  assets:
+    - capture-card-v1
+    - triage-record-v1
+    - digest-shortlist-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

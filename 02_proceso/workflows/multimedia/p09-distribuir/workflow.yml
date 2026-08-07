@@ -51,6 +51,26 @@ no_regression:
 dod:
   - "Definition of Done"
 fallback: "Sin navegación, crea package evergreen; sin herramienta, checklist manual; sin aprobación, detente; sin datos, establece baseline cualitativo; ante riesgo, escala. interpreta, planifica, ejecuta."
+brief:
+  outputs:
+    - "Paquete por plataforma listo"
+    - "Registro de publicación trazable"
+    - "Reporte de aprendizaje cerrando el ciclo"
+  deliverables:
+    - platform-package-v1
+    - publication-record-v1
+    - learning-report-v1
+  context: "Separa empaque, publicación, comunidad y aprendizaje para operar con control."
+  cta: "Someter a MW_DISTRIBUTION_AUTHORIZED; cerrar ciclo P00→P09."
+capability_map:
+  skills:
+    - metodologia-brand-router
+    - instagram-content-orchestration
+    - instagram-carousel-production
+  assets:
+    - platform-package-v1
+    - publication-record-v1
+    - learning-report-v1
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
