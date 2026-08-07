@@ -1,4 +1,7 @@
 import {execFileSync} from 'node:child_process';
+import {realpathSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import {
   buildOwnerResolver,
@@ -16,41 +19,87 @@ const patternsMayOverlap = (left: string, right: string): boolean => {
   return leftPrefix.startsWith(rightPrefix) || rightPrefix.startsWith(leftPrefix);
 };
 
+const git = (root: string, args: string[]): string =>
+  execFileSync('git', args, {cwd: root, encoding: 'utf8'});
+
 const gitPaths = (root: string, args: string[]): string[] =>
-  execFileSync('git', [args[0] ?? '', '-z', ...args.slice(1)], {cwd: root, encoding: 'utf8'})
+  git(root, args)
     .split('\0')
     .filter((path) => path.length > 0);
 
 const commitSha = (root: string, ref: string, required: boolean): string | undefined => {
   try {
-    return execFileSync(
-      'git',
-      ['rev-parse', '--verify', '--quiet', '--end-of-options', `${ref}^{commit}`],
-      {cwd: root, encoding: 'utf8'},
-    ).trim();
+    return git(root, [
+      'rev-parse',
+      '--verify',
+      '--quiet',
+      '--end-of-options',
+      `${ref}^{commit}`,
+    ]).trim();
   } catch {
     if (required) throw new Error(`OWNERSHIP_BASE_REF no resuelve a commit: ${ref}`);
     return undefined;
   }
 };
 
-const changedPaths = (root: string): string[] => {
-  const paths = new Set<string>();
-  const configuredBase = process.env.OWNERSHIP_BASE_REF?.trim();
-  const base = commitSha(
-    root,
-    configuredBase && configuredBase.length > 0 ? configuredBase : 'HEAD^1',
-    configuredBase !== undefined && configuredBase.length > 0,
-  );
-  if (base !== undefined) {
-    for (const path of gitPaths(root, ['diff', '--name-only', `${base}...HEAD`, '--'])) {
-      paths.add(path);
-    }
+const tryGit = (root: string, args: string[]): string | undefined => {
+  try {
+    return git(root, args).trim();
+  } catch {
+    return undefined;
   }
-  for (const path of gitPaths(root, ['diff', '--cached', '--name-only', '--'])) paths.add(path);
-  for (const path of gitPaths(root, ['diff', '--name-only', '--'])) paths.add(path);
-  for (const path of gitPaths(root, ['ls-files', '--others', '--exclude-standard']))
+};
+
+const fallbackIsAllowed = (root: string): boolean => {
+  const branch = tryGit(root, ['symbolic-ref', '--quiet', '--short', 'HEAD']);
+  const githubRef = process.env.GITHUB_REF?.trim();
+  const parents = tryGit(root, ['show', '-s', '--format=%P', 'HEAD'])
+    ?.split(/\s+/u)
+    .filter(Boolean);
+  return (
+    branch === 'main' ||
+    branch === 'master' ||
+    githubRef === 'refs/heads/main' ||
+    githubRef === 'refs/heads/master' ||
+    (parents?.length ?? 0) > 1
+  );
+};
+
+const resolveBase = (root: string): string => {
+  const configuredBase = process.env.OWNERSHIP_BASE_REF?.trim();
+  if (configuredBase) return commitSha(root, configuredBase, true) as string;
+
+  const head = commitSha(root, 'HEAD', true) as string;
+  for (const ref of ['upstream/main', 'origin/main']) {
+    const candidate = commitSha(root, ref, false);
+    if (candidate === undefined || candidate === head) continue;
+    const mergeBase = tryGit(root, ['merge-base', 'HEAD', candidate]);
+    if (mergeBase !== undefined && mergeBase.length > 0 && mergeBase !== head) return mergeBase;
+  }
+
+  if (fallbackIsAllowed(root)) {
+    const firstParent = commitSha(root, 'HEAD^1', false);
+    if (firstParent !== undefined) return firstParent;
+  }
+  throw new Error(
+    'No se pudo acreditar una base de ownership; define OWNERSHIP_BASE_REF explícitamente.',
+  );
+};
+
+export const changedPaths = (root: string): string[] => {
+  const paths = new Set<string>();
+  const base = resolveBase(root);
+  const diffs = [
+    ['diff', '--name-only', '-z', '--no-renames', `${base}...HEAD`, '--'],
+    ['diff', '--cached', '--name-only', '-z', '--no-renames', '--'],
+    ['diff', '--name-only', '-z', '--no-renames', '--'],
+  ];
+  for (const args of diffs) {
+    for (const path of gitPaths(root, args)) paths.add(path);
+  }
+  for (const path of gitPaths(root, ['ls-files', '-z', '--others', '--exclude-standard'])) {
     paths.add(path);
+  }
   return [...paths].sort();
 };
 
@@ -105,7 +154,7 @@ export const validateOwnership = (root = process.cwd()): string[] => {
   };
 
   for (const [path, owner] of requiredOwnerProbes) assertOwner(path, owner);
-  for (const path of gitPaths(root, ['ls-files', '02_proceso/workflows/multimedia/**'])) {
+  for (const path of gitPaths(root, ['ls-files', '-z', '02_proceso/workflows/multimedia/**'])) {
     assertOwner(path, 'content');
   }
   for (const path of changedPaths(root)) assertOwner(path);
@@ -113,12 +162,18 @@ export const validateOwnership = (root = process.cwd()): string[] => {
   return [...new Set(errors)];
 };
 
-const errors = validateOwnership();
-if (errors.length > 0) {
-  console.error(errors.join('\n'));
-  process.exitCode = 1;
-} else {
-  console.info(
-    'PASS G04 OWNERSHIP: aliases físicos, rutas cambiadas y allowlists resuelven un writer; H01 y Guardian son no-writers.',
-  );
+const isMain =
+  process.argv[1] !== undefined &&
+  realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url));
+
+if (isMain) {
+  const errors = validateOwnership();
+  if (errors.length > 0) {
+    console.error(errors.join('\n'));
+    process.exitCode = 1;
+  } else {
+    console.info(
+      'PASS G04 OWNERSHIP: aliases físicos, rutas cambiadas y allowlists resuelven un writer; H01 y Guardian son no-writers.',
+    );
+  }
 }
