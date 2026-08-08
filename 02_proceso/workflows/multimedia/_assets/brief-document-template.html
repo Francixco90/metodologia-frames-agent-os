@@ -257,22 +257,22 @@
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#brief-content">Saltar al brief</a>
+    <a class="skip-link" href="#{{CONTENT_ID}}">{{SKIP_LABEL}}</a>
     <header>
-      <div class="eyebrow">MetodologIA · Brief canónico</div>
+      <div class="eyebrow">{{KICKER}}</div>
       <h1>{{TITLE}}</h1>
       <div class="meta">
-        <span class="pill">{{BRIEF_ID}}</span>
+        <span class="pill">{{DOCUMENT_ID}}</span>
         <span class="pill">Estado: {{STATE}}</span>
         <span class="pill">Gate: {{NEXT_GATE}}</span>
       </div>
       <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
     </header>
-    <main id="brief-content" data-content-sha256="{{CONTENT_HASH}}">{{SECTIONS}}</main>
-    <script id="frames-brief-data" type="application/json">
+    <main id="{{CONTENT_ID}}" data-content-sha256="{{CONTENT_HASH}}">{{SECTIONS}}</main>
+    <script id="{{CANONICAL_DATA_ID}}" type="application/json">
       {{CANONICAL_JSON}}
     </script>
-    <footer class="note">Proyección determinista del brief Markdown · {{CONTENT_HASH}}</footer>
+    <footer class="note">{{PROJECTION_LABEL}} · {{CONTENT_HASH}}</footer>
     <script>
       (() => {
         const root = document.documentElement;

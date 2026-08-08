@@ -29,12 +29,17 @@ const renderFromModel = (brief: FramesBriefV1, template: string): string => {
     .join('\n');
   const values: Record<string, string> = {
     TITLE: escapeHtml(`Brief · ${brief.frontmatter.intent.content_class}`),
-    BRIEF_ID: brief.frontmatter.brief_id,
+    KICKER: 'MetodologIA · Brief canónico',
+    SKIP_LABEL: 'Saltar al brief',
+    DOCUMENT_ID: brief.frontmatter.brief_id,
     STATE: brief.frontmatter.state,
     NEXT_GATE: escapeHtml(brief.frontmatter.next_gate),
+    CONTENT_ID: 'brief-content',
     CONTENT_HASH: brief.frontmatter.content_sha256,
     SECTIONS: sections,
+    CANONICAL_DATA_ID: 'frames-brief-data',
     CANONICAL_JSON: htmlSafeJson(brief),
+    PROJECTION_LABEL: 'Proyección determinista del brief Markdown',
   };
   const rendered = Object.entries(values).reduce(
     (result, [token, value]) => replaceToken(result, token, value),
