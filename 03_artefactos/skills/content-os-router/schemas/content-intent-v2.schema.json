@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://metodologia.internal/schemas/content-intent-v2.schema.json",
+  "title": "Frames Content Intent v2",
+  "description": "Deterministic source-to-content intent selecting the minimum P00-P09 path and a canonical brief.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "request", "request_hash", "content_class", "audience", "outcome", "sources", "source_authority", "channels", "restrictions", "effect_class", "brief_sufficiency", "blocking_questions", "route_candidates", "selected_stage_path", "brief_ref", "next_gate", "decision"],
+  "properties": {
+    "schema_version": {"const": "content-intent-v2"},
+    "request": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "request_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "content_class": {"type": "string", "minLength": 1, "maxLength": 80},
+    "audience": {"type": ["string", "null"]},
+    "outcome": {"type": ["string", "null"]},
+    "sources": {"type": "array", "maxItems": 40, "items": {"type": "string", "minLength": 1}},
+    "source_authority": {"enum": ["verified", "partial", "unknown"]},
+    "channels": {"type": "array", "maxItems": 20, "items": {"type": "string", "minLength": 1}},
+    "restrictions": {"type": "array", "maxItems": 30, "items": {"type": "string", "minLength": 1}},
+    "effect_class": {"enum": ["read_only", "local_reversible", "external_reversible", "irreversible"]},
+    "brief_sufficiency": {"enum": ["complete", "partial", "insufficient"]},
+    "blocking_questions": {"type": "array", "maxItems": 3, "items": {"type": "string", "minLength": 1}},
+    "route_candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["route_id", "score", "reason_codes"],
+        "properties": {
+          "route_id": {"type": "string", "minLength": 1},
+          "score": {"type": "number", "minimum": 0, "maximum": 1},
+          "reason_codes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,79}$"}}
+        }
+      }
+    },
+    "selected_stage_path": {"type": "array", "minItems": 1, "maxItems": 10, "items": {"enum": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P08", "P09"]}},
+    "brief_ref": {"type": ["string", "null"]},
+    "next_gate": {"type": "string", "minLength": 1},
+    "decision": {"enum": ["ROUTED", "NEEDS_INPUT", "BLOCKED"]}
+  }
+}

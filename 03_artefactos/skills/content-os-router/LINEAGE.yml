@@ -1,11 +1,11 @@
 skill_id: content-os-router
-version: 0.1.0
+version: 0.2.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1
+compatibility_contract: router-intent-v1 + content-intent-v2
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md
@@ -19,9 +19,12 @@ provenance:
   source_skill: hyperframes
   source_repo: https://github.com/heygen-com/hyperframes
   source_license: Apache-2.0
-  adaptation: local declarative router (no npx CLI install); route-once + route-by-deliverable; dispatch to Fase 2 capabilities + Fase 3 workflows; extends Capa A cabin router with source-to-video routes
+  adaptation: local declarative router; preserves source-to-video v1 and adds brief-first source-to-content routing over P00-P09 with a maximum of three blocking questions
 supported_request_types:
   - intent_route_source_to_video
+  - intent_route_source_to_content
+  - canonical_brief_binding
+  - adaptive_p00_p09_selection
   - capability_dispatch
   - intent_brief_audit
   - route_resolution

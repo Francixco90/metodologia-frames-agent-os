@@ -1,4 +1,17 @@
-# Routes — source→video
+# Routes — source-to-content
+
+## Adaptive P00-P09 route
+
+For every new content piece, route through P03, P05, P07 and P08. Prepend P00
+when brand/voice/channel is unresolved, P01 when source materials require
+curation, and P02 when evidence is insufficient. Add P04 for a series or
+campaign, P06 when assets must be created, and P09 only when distribution was
+requested. Editing an existing governed piece may use P07→P08. [CONFIG]
+
+The route produces a canonical `brief.md` and stops at `MW_BRIEF_APPROVED`.
+P09 always stops at `MW_DISTRIBUTION_AUTHORIZED`; it never publishes. [CONFIG]
+
+The table below is the backward-compatible source-to-video specialization.
 
 Route table para deliverables Frames ContentOS. First-match por **deliverable**, no
 por keyword. Route-once: el router escribe el `intent-brief.jsonl` y sale.
