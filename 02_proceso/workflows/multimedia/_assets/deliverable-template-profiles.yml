@@ -1,0 +1,72 @@
+schema_version: deliverable-template-profiles-v1
+unknown_sentinel: '⟦UNKNOWN:{field_id}⟧'
+sections:
+  - id: Resultado y decisión
+    guidance: Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.
+  - id: Audiencia y uso
+    guidance: Precisar quién usa el entregable, para qué decisión y quién lo consume después.
+  - id: Entradas, evidencia y supuestos
+    guidance: Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.
+  - id: Contenido estructurado
+    guidance: Exponer cada campo contractual sin completar valores desconocidos por inferencia.
+  - id: Componentes, activos y prompts
+    guidance: Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.
+  - id: Secuencia, hitos y dependencias
+    guidance: Vincular los pasos productores, sus dependencias y sus condiciones de parada.
+  - id: Skills, ownership y handoffs
+    guidance: Declarar skill principal, apoyos, verifier y consumidores del handoff.
+  - id: Riesgos, límites y casos borde
+    guidance: Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.
+  - id: Criterios de aceptación y QA
+    guidance: Convertir campos, gate y evidencia requerida en comprobaciones observables.
+  - id: Estado, lineage y siguiente gate
+    guidance: Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.
+class_profiles:
+  - deliverable_class: brand
+    focus: identidad, voz, sistema visual, restricciones y autoridad de marca
+    evidence_rule: Toda regla de marca debe resolver a una fuente o permanecer unknown.
+    risk_rule: Bloquear mezcla de marcas, claims no aprobados y tokens sin autoridad.
+  - deliverable_class: source
+    focus: procedencia, hash, derechos, autoridad, relevancia y limitaciones
+    evidence_rule: Cada fuente material requiere referencia portable y hash verificable.
+    risk_rule: Bloquear material sin derechos, autoridad o integridad demostrable.
+  - deliverable_class: research
+    focus: preguntas, claims, evidencia, límites y oportunidades justificadas
+    evidence_rule: Separar evidencia observada, inferencia y preguntas todavía abiertas.
+    risk_rule: Bloquear claims sin fuente y síntesis que exceda la evidencia disponible.
+  - deliverable_class: strategy
+    focus: objetivo, audiencia, arquitectura de pieza, alternativas y decisión
+    evidence_rule: Cada decisión estratégica debe citar el input que la habilita.
+    risk_rule: Bloquear estrategia sin objetivo, audiencia o suficiencia de evidencia.
+  - deliverable_class: planning
+    focus: prioridades, hitos, dependencias, capacidad, medición y stop rules
+    evidence_rule: Fechas y capacidad permanecen unknown hasta tener owner y restricción verificable.
+    risk_rule: Bloquear secuencias imposibles, dependencias omitidas y capacidad inventada.
+  - deliverable_class: creative-spec
+    focus: medio, narrativa, continuidad, mapa de activos y especificación producible
+    evidence_rule: Toda especificación debe resolver al brief y a restricciones aprobadas.
+    risk_rule: Bloquear contradicciones de continuidad, formato o identidad.
+  - deliverable_class: prompt-pack
+    focus: prompts, variables, negativos, inputs, outputs y criterios de repetibilidad
+    evidence_rule: Los prompts deben ligar variables y referencias al spec, sin datos privados.
+    risk_rule: Bloquear prompts ambiguos, no reproducibles o con efectos no autorizados.
+  - deliverable_class: asset
+    focus: activo material, variante, procedencia, continuidad y paquete companion
+    evidence_rule: Un activo solo deja DRAFT cuando existe material y su hash fue leído del disco.
+    risk_rule: Bloquear activos inexistentes, hashes sintéticos y companions divergentes.
+  - deliverable_class: review
+    focus: hallazgos, severidad, evidencia, decisión y alcance de verificación
+    evidence_rule: Cada veredicto debe enlazar evidencia material y checks realmente ejecutados.
+    risk_rule: Bloquear aprobación ante UNKNOWN, cobertura incompleta o autoevaluación.
+  - deliverable_class: edit
+    focus: cambios priorizados, comparación, regresión, lineage y candidate successor
+    evidence_rule: Cada cambio debe resolver a un hallazgo y conservar el candidate anterior.
+    risk_rule: Bloquear edición sin diff, ownership o prueba de no regresión.
+  - deliverable_class: distribution
+    focus: canal, adaptación, paquete, autorización y detención previa a publicación
+    evidence_rule: La autorización humana debe ser específica, vigente y separada del build.
+    risk_rule: Bloquear publicación, envío o conector sin aprobación explícita.
+  - deliverable_class: measurement
+    focus: objetivo, métrica, fuente, ventana, interpretación y siguiente decisión
+    evidence_rule: Toda métrica debe declarar origen, método y límite de interpretación.
+    risk_rule: Bloquear métricas sin fuente, causalidad no demostrada y optimización prematura.
