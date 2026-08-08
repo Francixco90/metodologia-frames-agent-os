@@ -48,6 +48,11 @@ stages.push('P07', 'P08');
 if (input.distributionRequested === true) stages.push('P09');
 
 const uniqueStages = [...new Set(stages)];
+const nextGate = uniqueStages.includes('P03')
+  ? 'MW_BRIEF_APPROVED'
+  : uniqueStages.includes('P08')
+    ? 'MW_EDIT_APPROVED'
+    : 'G14';
 const reasons = [pieceClass === 'intervention' ? 'EXISTING_PIECE' : 'NEW_PIECE'];
 if (uniqueStages.includes('P00')) reasons.push('BRAND_REQUIRED');
 if (uniqueStages.includes('P01')) reasons.push('MATERIALS_AVAILABLE');
@@ -74,7 +79,10 @@ const intent = {
   route_candidates: [{route_id: 'R6_CONTENT', score: 1, reason_codes: reasons}],
   selected_stage_path: uniqueStages,
   brief_ref: normalize(input.briefRef) || 'work/content/brief.md',
-  next_gate: uniqueStages.includes('P09') ? 'MW_DISTRIBUTION_AUTHORIZED' : 'MW_BRIEF_APPROVED',
+  // The next gate is the first pending human decision in the selected path.
+  // P09 may be planned, but distribution authorization remains a future gate
+  // until the brief and candidate have passed their preceding decisions.
+  next_gate: nextGate,
   decision: questions.length === 0 ? 'ROUTED' : 'NEEDS_INPUT',
 };
 
