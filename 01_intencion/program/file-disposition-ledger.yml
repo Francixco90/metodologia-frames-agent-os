@@ -443,10 +443,10 @@ budgets:
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 64
+    inventory_count: 142
     applicable_bindings: 13
-    not_applicable_count: 51
-    coverage: 64/64
+    not_applicable_count: 129
+    coverage: 142/142
     coverage_gaps: []
     status: pass
     checks:
@@ -683,6 +683,162 @@ budgets:
         reason: Canonical generator output without a declared one-to-one size-comparable template.
       - path: workflows/multimedia/_assets/multimedia-library.md
         reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-os-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-os-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/calibration-sample-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/calibration-sample-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/pilot-plan-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/pilot-plan-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/capture-card-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/capture-card-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/digest-shortlist-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/digest-shortlist-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/triage-record-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/triage-record-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/claim-register-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/claim-register-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/opportunity-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/opportunity-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/question-bank-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/question-bank-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/ab-concepts-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/ab-concepts-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/brief-campaign-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/brief-campaign-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/definition-of-ready-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/definition-of-ready-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/executive-presentation-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/executive-presentation-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/batch-plan-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/batch-plan-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/board-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/board-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/content-grid-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/content-grid-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/editorial-calendar-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/editorial-calendar-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/asset-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/asset-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/continuity-bible-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/continuity-bible-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/creative-spec-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/creative-spec-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/derivatives-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/derivatives-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/piece-family-spec-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/piece-family-spec-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/universal-prompts-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/universal-prompts-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-manifest-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-manifest-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-package-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-package-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/capability-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/capability-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/tool-run-evidence-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/tool-run-evidence-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/review-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/review-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/top5-changes-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/top5-changes-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/verdict-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/verdict-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edit-candidate-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edit-candidate-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edl-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edl-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/export-matrix-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/export-matrix-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/learning-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/learning-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/platform-package-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/platform-package-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
   runtime_generated_evidence:
     excluded_from_authored_budgets: true
     files: 6
