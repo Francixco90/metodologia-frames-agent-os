@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{{TITLE}} · MetodologIA</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --gold: #ffd700;
+        --blue: #137dc5;
+        --bg: #ffffff;
+        --surface: #f0f4f8;
+        --card: #ffffff;
+        --text: #122562;
+        --muted: #42526e;
+        --border: #d9e2ec;
+        --shadow: 0 12px 32px rgb(18 37 98 / 10%);
+      }
+      [data-theme='dark'] {
+        --bg: #081433;
+        --surface: #10234d;
+        --card: #122562;
+        --text: #ffffff;
+        --muted: #d9e2ec;
+        --border: #36558c;
+        --shadow: 0 12px 32px rgb(0 0 0 / 28%);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: 'Montserrat', 'Avenir Next', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.65;
+      }
+      a,
+      button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        left: 1rem;
+        top: -6rem;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        background: var(--blue);
+        border-radius: 999px;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+      header {
+        padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+        color: #ffffff;
+        background: var(--navy);
+      }
+      .eyebrow,
+      .note {
+        font-family: 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.08em;
+      }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      h1 {
+        max-width: 18ch;
+        margin-bottom: 1rem;
+        font-size: clamp(2.25rem, 7vw, 5.5rem);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0.55rem 1rem;
+        border: 1px solid rgb(255 255 255 / 45%);
+        border-radius: 999px;
+      }
+      #theme-toggle {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1rem;
+        color: var(--navy);
+        background: var(--gold);
+        border: 0;
+        border-radius: 999px;
+        font:
+          700 1rem 'Montserrat',
+          sans-serif;
+        cursor: pointer;
+      }
+      main {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 3rem 0 5rem;
+      }
+      section {
+        position: relative;
+        margin: 0 0 1.25rem;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+      section h2 {
+        padding-left: 1rem;
+        border-left: 6px solid var(--gold);
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .step-index {
+        position: absolute;
+        right: 1.25rem;
+        top: 1rem;
+        color: var(--blue);
+        font:
+          700 0.85rem 'Trebuchet MS',
+          sans-serif;
+      }
+      .section-body {
+        color: var(--muted);
+      }
+      .section-body strong,
+      .section-body h3 {
+        color: var(--text);
+      }
+      code,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      code {
+        padding: 0.15rem 0.35rem;
+        background: var(--surface);
+        border-radius: 6px;
+      }
+      pre {
+        overflow: auto;
+        padding: 1rem;
+        background: var(--surface);
+        border-radius: 16px;
+      }
+      .brief-diagram {
+        width: 100%;
+        height: auto;
+        color: var(--navy);
+      }
+      .brief-diagram rect {
+        fill: var(--surface);
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram line {
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram path {
+        fill: var(--blue);
+      }
+      .brief-diagram text {
+        fill: var(--text);
+        font:
+          700 14px 'Montserrat',
+          sans-serif;
+      }
+      footer {
+        padding: 2rem 1.25rem;
+        color: var(--muted);
+        background: var(--surface);
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        main {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.25rem;
+        }
+        section {
+          margin: 0;
+        }
+        section:nth-child(1),
+        section:nth-child(11),
+        section:nth-child(12) {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (min-width: 1280px) {
+        header {
+          padding-inline: max(6rem, calc((100vw - 1120px) / 2));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+      @media print {
+        :root {
+          --bg: #ffffff;
+          --card: #ffffff;
+          --text: #122562;
+          --muted: #263b66;
+        }
+        #theme-toggle,
+        .skip-link {
+          display: none;
+        }
+        header {
+          padding: 1rem 0;
+          color: var(--navy);
+          background: #ffffff;
+        }
+        .eyebrow {
+          color: var(--navy);
+        }
+        main {
+          display: block;
+          width: 100%;
+          padding: 0;
+        }
+        section {
+          break-inside: avoid;
+          margin-bottom: 0.75rem;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#brief-content">Saltar al brief</a>
+    <header>
+      <div class="eyebrow">MetodologIA · Brief canónico</div>
+      <h1>{{TITLE}}</h1>
+      <div class="meta">
+        <span class="pill">{{BRIEF_ID}}</span>
+        <span class="pill">Estado: {{STATE}}</span>
+        <span class="pill">Gate: {{NEXT_GATE}}</span>
+      </div>
+      <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
+    </header>
+    <main id="brief-content" data-content-sha256="{{CONTENT_HASH}}">{{SECTIONS}}</main>
+    <script id="frames-brief-data" type="application/json">
+      {{CANONICAL_JSON}}
+    </script>
+    <footer class="note">Proyección determinista del brief Markdown · {{CONTENT_HASH}}</footer>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector('#theme-toggle');
+        const stored = localStorage.getItem('metodologia-theme');
+        if (stored === 'dark') root.dataset.theme = 'dark';
+        button?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+        button?.addEventListener('click', () => {
+          const dark = root.dataset.theme !== 'dark';
+          root.dataset.theme = dark ? 'dark' : 'light';
+          button.setAttribute('aria-pressed', String(dark));
+          localStorage.setItem('metodologia-theme', root.dataset.theme);
+        });
+      })();
+    </script>
+  </body>
+</html>
