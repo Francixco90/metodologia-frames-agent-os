@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Agrupar producción compatible sin romper dependencias, calidad ni capacidad." />
+    <meta name="author" content="MetodologIA" />
+    <meta name="application-name" content="Frames · MetodologIA" />
+    <meta name="generator" content="Frames · MetodologIA" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#122562" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#081433" />
+    <meta name="frames:document-type" content="deliverable" />
+    <meta name="frames:schema-version" content="frames-deliverable-v1" />
+    <meta name="frames:model-id" content="batch-plan-v1" />
+    <meta name="frames:workflow-id" content="P04" />
+    <meta name="frames:content-sha256" content="9d4fe0a90d32b740a45c2241711df8bcc87e20b3f91744ca14c39c571cf12fa4" />
+    <meta name="frames:state" content="DRAFT" />
+    <meta name="frames:next-gate" content="G14" />
+    <meta name="frames:source-count" content="6" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Plan por lotes · Template · MetodologIA" />
+    <meta property="og:description" content="Agrupar producción compatible sin romper dependencias, calidad ni capacidad." />
+    <meta name="twitter:card" content="summary" />
+    <title>Plan por lotes · Template · MetodologIA</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --gold: #ffd700;
+        --blue: #137dc5;
+        --bg: #ffffff;
+        --surface: #f0f4f8;
+        --card: #ffffff;
+        --text: #122562;
+        --muted: #42526e;
+        --border: #d9e2ec;
+        --shadow: 0 12px 32px rgb(18 37 98 / 10%);
+      }
+      [data-theme='dark'] {
+        --bg: #081433;
+        --surface: #10234d;
+        --card: #122562;
+        --text: #ffffff;
+        --muted: #d9e2ec;
+        --border: #36558c;
+        --shadow: 0 12px 32px rgb(0 0 0 / 28%);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: 'Montserrat', 'Avenir Next', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.65;
+      }
+      a,
+      button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        left: 1rem;
+        top: -6rem;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        background: var(--blue);
+        border-radius: 999px;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+      header {
+        padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+        color: #ffffff;
+        background: var(--navy);
+      }
+      .eyebrow,
+      .note {
+        font-family: 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.08em;
+      }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      h1 {
+        max-width: 18ch;
+        margin-bottom: 1rem;
+        font-size: clamp(2.25rem, 7vw, 5.5rem);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0.55rem 1rem;
+        border: 1px solid rgb(255 255 255 / 45%);
+        border-radius: 999px;
+      }
+      #theme-toggle {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1rem;
+        color: var(--navy);
+        background: var(--gold);
+        border: 0;
+        border-radius: 999px;
+        font:
+          700 1rem 'Montserrat',
+          sans-serif;
+        cursor: pointer;
+      }
+      main {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 3rem 0 5rem;
+      }
+      .toc {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: -1.5rem auto 2rem;
+        padding: 1.25rem;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+      .toc strong {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+      }
+      .toc ol {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.35rem 1.5rem;
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .toc a {
+        display: inline-flex;
+        align-items: center;
+        color: var(--blue);
+        font-weight: 700;
+        text-underline-offset: 0.2em;
+      }
+      .governance-strip {
+        padding: 0.8rem 1.25rem;
+        color: #ffffff;
+        background: var(--blue);
+        text-align: center;
+        font-family: 'Trebuchet MS', sans-serif;
+        font-weight: 700;
+      }
+      section {
+        position: relative;
+        margin: 0 0 1.25rem;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+      section h2 {
+        padding-left: 1rem;
+        border-left: 6px solid var(--gold);
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .step-index {
+        position: absolute;
+        right: 1.25rem;
+        top: 1rem;
+        color: var(--blue);
+        font:
+          700 0.85rem 'Trebuchet MS',
+          sans-serif;
+      }
+      .section-body {
+        color: var(--muted);
+      }
+      .section-body strong,
+      .section-body h3 {
+        color: var(--text);
+      }
+      code,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      code {
+        padding: 0.15rem 0.35rem;
+        background: var(--surface);
+        border-radius: 6px;
+      }
+      pre {
+        overflow: auto;
+        padding: 1rem;
+        background: var(--surface);
+        border-radius: 16px;
+      }
+      .brief-diagram {
+        width: 100%;
+        height: auto;
+        color: var(--navy);
+      }
+      .brief-diagram rect {
+        fill: var(--surface);
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram line {
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram path {
+        fill: var(--blue);
+      }
+      .brief-diagram text {
+        fill: var(--text);
+        font:
+          700 14px 'Montserrat',
+          sans-serif;
+      }
+      footer {
+        padding: 2rem 1.25rem;
+        color: var(--muted);
+        background: var(--surface);
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        main {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.25rem;
+        }
+        section {
+          margin: 0;
+        }
+        section:nth-child(1),
+        section:nth-child(11),
+        section:nth-child(12) {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (min-width: 1280px) {
+        header {
+          padding-inline: max(6rem, calc((100vw - 1120px) / 2));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+      @media print {
+        :root {
+          --bg: #ffffff;
+          --card: #ffffff;
+          --text: #122562;
+          --muted: #263b66;
+        }
+        #theme-toggle,
+        .skip-link,
+        .toc {
+          display: none;
+        }
+        header {
+          padding: 1rem 0;
+          color: var(--navy);
+          background: #ffffff;
+        }
+        .eyebrow {
+          color: var(--navy);
+        }
+        main {
+          display: block;
+          width: 100%;
+          padding: 0;
+        }
+        section {
+          break-inside: avoid;
+          margin-bottom: 0.75rem;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#deliverable-content">Saltar al entregable</a>
+    <header>
+      <div class="eyebrow">MetodologIA · Entregable canónico</div>
+      <h1>Plan por lotes · Template</h1>
+      <div class="meta">
+        <span class="pill">DELIV-P04-BATCH-PLAN</span>
+        <span class="pill">Estado: DRAFT</span>
+        <span class="pill">Gate: G14</span>
+      </div>
+      <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
+    </header>
+    <div class="governance-strip" role="note">
+      RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED
+    </div>
+    <nav class="toc" aria-label="Contenido del documento"><strong>En este documento</strong><ol><li><a href="#section-resultado-y-decision">Resultado y decisión</a></li><li><a href="#section-audiencia-y-uso">Audiencia y uso</a></li><li><a href="#section-entradas-evidencia-y-supuestos">Entradas, evidencia y supuestos</a></li><li><a href="#section-contenido-estructurado">Contenido estructurado</a></li><li><a href="#section-componentes-activos-y-prompts">Componentes, activos y prompts</a></li><li><a href="#section-secuencia-hitos-y-dependencias">Secuencia, hitos y dependencias</a></li><li><a href="#section-skills-ownership-y-handoffs">Skills, ownership y handoffs</a></li><li><a href="#section-riesgos-limites-y-casos-borde">Riesgos, límites y casos borde</a></li><li><a href="#section-criterios-de-aceptacion-y-qa">Criterios de aceptación y QA</a></li><li><a href="#section-estado-lineage-y-siguiente-gate">Estado, lineage y siguiente gate</a></li></ol></nav>
+    <main id="deliverable-content" data-content-sha256="9d4fe0a90d32b740a45c2241711df8bcc87e20b3f91744ca14c39c571cf12fa4"><section id="section-resultado-y-decision" data-brief-section="Resultado y decisión" data-rendered-sha256="f7a7549b9b83196285c440ec237bcc8b9e783f00ee32778467a87f6735ad358c"><span class="step-index" aria-hidden="true">01</span>
+<h2>Resultado y decisión</h2>
+<div class="section-body"><p>Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.</p>
+<p>Agrupar producción compatible sin romper dependencias, calidad ni capacidad. Decisión pendiente en G14; este DRAFT no concede aprobación.</p></div></section>
+<section id="section-audiencia-y-uso" data-brief-section="Audiencia y uso" data-rendered-sha256="74a1d731bdd83c2dd6a2761453ff7e3df44c27f62b0b8ca3bac282d610ef7e84"><span class="step-index" aria-hidden="true">02</span>
+<h2>Audiencia y uso</h2>
+<div class="section-body"><p>Precisar quién usa el entregable, para qué decisión y quién lo consume después.</p>
+<p>Producer y operaciones. Consumidores: P05, P06. Foco: prioridades, hitos, dependencias, capacidad, medición y stop rules.</p></div></section>
+<section id="section-entradas-evidencia-y-supuestos" data-brief-section="Entradas, evidencia y supuestos" data-rendered-sha256="402ca8e89de21603ce033843257a5e62b62080daa73c27b219d982cb60358431"><span class="step-index" aria-hidden="true">03</span>
+<h2>Entradas, evidencia y supuestos</h2>
+<div class="section-body"><p>Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.</p>
+<p>Inputs: editorial-calendar-v1, board-v1. Fechas y capacidad permanecen unknown hasta tener owner y restricción verificable.</p></div></section>
+<section id="section-contenido-estructurado" data-brief-section="Contenido estructurado" data-rendered-sha256="c4dbb00d0a687606e4bfef3724c11b1dafa41ea6184491006ee59e35a91817f3"><span class="step-index" aria-hidden="true">04</span>
+<h2>Contenido estructurado</h2>
+<div class="section-body"><p>Exponer cada campo contractual sin completar valores desconocidos por inferencia.</p>
+<ul>
+<li>batch: ⟦UNKNOWN:batch⟧</li>
+<li>items: ⟦UNKNOWN:items⟧</li>
+<li>shared-inputs: ⟦UNKNOWN:shared-inputs⟧</li>
+<li>capacity: ⟦UNKNOWN:capacity⟧</li>
+<li>sequence: ⟦UNKNOWN:sequence⟧</li>
+<li>quality-gate: ⟦UNKNOWN:quality-gate⟧</li>
+<li>learning: ⟦UNKNOWN:learning⟧</li>
+</ul></div></section>
+<section id="section-componentes-activos-y-prompts" data-brief-section="Componentes, activos y prompts" data-rendered-sha256="d7f54bf635ef3d7096adc1105b3bed4325f0966aea916faac55d5c1468e469ac"><span class="step-index" aria-hidden="true">05</span>
+<h2>Componentes, activos y prompts</h2>
+<div class="section-body"><p>Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.</p>
+<p>Formatos: md, html. Familias: image, miniclip, graphic, carousel, story. Foco: prioridades, hitos, dependencias, capacidad, medición y stop rules.</p></div></section>
+<section id="section-secuencia-hitos-y-dependencias" data-brief-section="Secuencia, hitos y dependencias" data-rendered-sha256="7015a818ad151fe1a6f89932cf7380acf5e037e8fbd43099f12ac512158f94af"><span class="step-index" aria-hidden="true">06</span>
+<h2>Secuencia, hitos y dependencias</h2>
+<div class="section-body"><p>Vincular los pasos productores, sus dependencias y sus condiciones de parada.</p>
+<ul>
+<li>S03: Definir lotes y medición antes de extender. Stop: Bloquear un lote que exceda capacidad o no tenga criterio de aprendizaje.</li>
+</ul></div></section>
+<section id="section-skills-ownership-y-handoffs" data-brief-section="Skills, ownership y handoffs" data-rendered-sha256="12cf054e2631db2c0b705f242fbbadeba558417762148dae46e1dd83520c8c49"><span class="step-index" aria-hidden="true">07</span>
+<h2>Skills, ownership y handoffs</h2>
+<div class="section-body"><p>Declarar skill principal, apoyos, verifier y consumidores del handoff.</p>
+<ul>
+<li>S03: owner content-os-core; apoyos dev-executing-plans; verifier RT-11.</li>
+</ul></div></section>
+<section id="section-riesgos-limites-y-casos-borde" data-brief-section="Riesgos, límites y casos borde" data-rendered-sha256="a62cc94f08edb111d060a4e32963001839dfb9a1e20f5766b119cf6ff4c0828c"><span class="step-index" aria-hidden="true">08</span>
+<h2>Riesgos, límites y casos borde</h2>
+<div class="section-body"><p>Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.</p>
+<p>Bloquear secuencias imposibles, dependencias omitidas y capacidad inventada. UNKNOWN conserva DRAFT/BLOCKED; sin publicación.</p></div></section>
+<section id="section-criterios-de-aceptacion-y-qa" data-brief-section="Criterios de aceptación y QA" data-rendered-sha256="2ef94799fd48896eda5ae22cffebd6419a4c037b6359c066c64f94bf18bea326"><span class="step-index" aria-hidden="true">09</span>
+<h2>Criterios de aceptación y QA</h2>
+<div class="section-body"><p>Convertir campos, gate y evidencia requerida en comprobaciones observables.</p>
+<p>Campos: batch, items, shared-inputs, capacity, sequence, quality-gate, learning. Gate: G14.</p></div></section>
+<section id="section-estado-lineage-y-siguiente-gate" data-brief-section="Estado, lineage y siguiente gate" data-rendered-sha256="928f174f40b5c70fb8e4e9625a5889a813f8e4e8654c3f4a705d75c1ceff48b0"><span class="step-index" aria-hidden="true">10</span>
+<h2>Estado, lineage y siguiente gate</h2>
+<div class="section-body"><p>Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.</p>
+<p>P04 → P05, P06. DRAFT; gate G14.</p></div></section></main>
+    <script id="frames-deliverable-data" type="application/json">
+      {"frontmatter":{"audience":"Producer y operaciones.","companion_for":null,"content_sha256":"9d4fe0a90d32b740a45c2241711df8bcc87e20b3f91744ca14c39c571cf12fa4","deliverable_class":"planning","deliverable_id":"batch-plan-v1","display_name":"Plan por lotes · Template","fields":[{"field_id":"batch","label":"batch","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:batch⟧","value_type":"text"},{"field_id":"items","label":"items","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:items⟧","value_type":"text"},{"field_id":"shared-inputs","label":"shared-inputs","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:shared-inputs⟧","value_type":"text"},{"field_id":"capacity","label":"capacity","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:capacity⟧","value_type":"text"},{"field_id":"sequence","label":"sequence","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:sequence⟧","value_type":"text"},{"field_id":"quality-gate","label":"quality-gate","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:quality-gate⟧","value_type":"text"},{"field_id":"learning","label":"learning","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:learning⟧","value_type":"text"}],"formats":["md","html"],"identity":{"brand":"MetodologIA","owner":"Operaciones de contenido"},"instance_id":"DELIV-P04-BATCH-PLAN","next_gate":"G14","piece_families":["image","miniclip","graphic","carousel","story"],"purpose":"Agrupar producción compatible sin romper dependencias, calidad ni capacidad.","schema_version":"frames-deliverable-v1","skills":["content-os-core","dev-executing-plans"],"sources":[{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml","rights":"cleared","sha256":"54ae8fd7dedbc29e7159817fec55c538f02a6a7a9cdfc82ede8240fc89349caa","source_id":"generator-definitions"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-profiles.yml","rights":"cleared","sha256":"0d4d477752a3b9f820fef87c52e88be7f7b2756845ec4d34e1abab75a9ed9738","source_id":"generator-profiles"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-registry.yml","rights":"cleared","sha256":"1b02aebf7bacfe98b3acf783db4957f68da2096d1ac0aa9d93006f3da0bf6c62","source_id":"generator-template-registry"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/brief-document-template.html","rights":"cleared","sha256":"158d89afc64f9d3c2573acda17fc3a1afe631e5f3f6eb9378a86efc4f6c76f46","source_id":"generator-html-shell"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/metodologia-html-v7.yml","rights":"cleared","sha256":"e18e0c81140a2a25d076993b2249b987b4bb1871aab88fae422c82ae0109b7b4","source_id":"generator-design-profile"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/p04-calendarizar/workflow.yml","rights":"cleared","sha256":"89318760b114f8c344b7bffd46a38e16861e25a5554f8d180d760a82f4eb4f19","source_id":"generator-workflow-p04"}],"state":"DRAFT","touchpoint":"intermediate","workflow_id":"P04"},"sections":[{"id":"Resultado y decisión","markdown":"Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.\n\nAgrupar producción compatible sin romper dependencias, calidad ni capacidad. Decisión pendiente en G14; este DRAFT no concede aprobación."},{"id":"Audiencia y uso","markdown":"Precisar quién usa el entregable, para qué decisión y quién lo consume después.\n\nProducer y operaciones. Consumidores: P05, P06. Foco: prioridades, hitos, dependencias, capacidad, medición y stop rules."},{"id":"Entradas, evidencia y supuestos","markdown":"Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.\n\nInputs: editorial-calendar-v1, board-v1. Fechas y capacidad permanecen unknown hasta tener owner y restricción verificable."},{"id":"Contenido estructurado","markdown":"Exponer cada campo contractual sin completar valores desconocidos por inferencia.\n\n- batch: ⟦UNKNOWN:batch⟧\n- items: ⟦UNKNOWN:items⟧\n- shared-inputs: ⟦UNKNOWN:shared-inputs⟧\n- capacity: ⟦UNKNOWN:capacity⟧\n- sequence: ⟦UNKNOWN:sequence⟧\n- quality-gate: ⟦UNKNOWN:quality-gate⟧\n- learning: ⟦UNKNOWN:learning⟧"},{"id":"Componentes, activos y prompts","markdown":"Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.\n\nFormatos: md, html. Familias: image, miniclip, graphic, carousel, story. Foco: prioridades, hitos, dependencias, capacidad, medición y stop rules."},{"id":"Secuencia, hitos y dependencias","markdown":"Vincular los pasos productores, sus dependencias y sus condiciones de parada.\n\n- S03: Definir lotes y medición antes de extender. Stop: Bloquear un lote que exceda capacidad o no tenga criterio de aprendizaje."},{"id":"Skills, ownership y handoffs","markdown":"Declarar skill principal, apoyos, verifier y consumidores del handoff.\n\n- S03: owner content-os-core; apoyos dev-executing-plans; verifier RT-11."},{"id":"Riesgos, límites y casos borde","markdown":"Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.\n\nBloquear secuencias imposibles, dependencias omitidas y capacidad inventada. UNKNOWN conserva DRAFT/BLOCKED; sin publicación."},{"id":"Criterios de aceptación y QA","markdown":"Convertir campos, gate y evidencia requerida en comprobaciones observables.\n\nCampos: batch, items, shared-inputs, capacity, sequence, quality-gate, learning. Gate: G14."},{"id":"Estado, lineage y siguiente gate","markdown":"Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.\n\nP04 → P05, P06. DRAFT; gate G14."}]}
+    </script>
+    <footer class="note">Proyección determinista del entregable Markdown · 9d4fe0a90d32b740a45c2241711df8bcc87e20b3f91744ca14c39c571cf12fa4</footer>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector('#theme-toggle');
+        let stored = null;
+        try {
+          stored = localStorage.getItem('metodologia-theme');
+        } catch {}
+        if (stored === 'dark') root.dataset.theme = 'dark';
+        button?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+        button?.addEventListener('click', () => {
+          const dark = root.dataset.theme !== 'dark';
+          root.dataset.theme = dark ? 'dark' : 'light';
+          button.setAttribute('aria-pressed', String(dark));
+          try {
+            localStorage.setItem('metodologia-theme', root.dataset.theme);
+          } catch {}
+        });
+      })();
+    </script>
+  </body>
+</html>
