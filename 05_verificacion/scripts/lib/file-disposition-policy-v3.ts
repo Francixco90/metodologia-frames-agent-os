@@ -1,3 +1,9 @@
+import {
+  multimediaGeneratedPaths,
+  multimediaTemplateBindings,
+} from './multimedia-generated-policy.ts';
+import {rootCodePaths} from './repository-code-paths.ts';
+
 export const BASELINE_COMMIT = '4c8c16820aa3abe9f4089a1f88c093e2ea58140f';
 export const BASELINE_FILE_COUNT = 387;
 export const V2_CLOSURE_COMMIT = '7c26b6719451de7b0101262f3c379f85a251f939';
@@ -95,6 +101,7 @@ export interface LedgerEntry {
 }
 
 export const generatedPaths = new Set([
+  ...multimediaGeneratedPaths,
   'projects/vs-001-source-to-campaign/remotion/00-source-script.md',
   'projects/vs-001-source-to-campaign/remotion/01-video-spec.yml',
   'projects/vs-001-source-to-campaign/remotion/02-beat-map.yml',
@@ -109,19 +116,6 @@ export const generatedPaths = new Set([
   'registries/components/component-registry.yml',
 ]);
 
-const rootCodePaths = new Set([
-  '.gitignore',
-  '.npmrc',
-  '.nvmrc',
-  '.prettierrc.json',
-  'eslint.config.js',
-  'package.json',
-  'pnpm-lock.yaml',
-  'pnpm-workspace.yaml',
-  'tsconfig.json',
-  'vitest.config.ts',
-]);
-
 export const quarantinePrefix = 'skills/stitch-remotion-walkthrough/';
 export const generatorSourcePaths = new Set([
   'scripts/build-vertical-slice.ts',
@@ -132,6 +126,7 @@ export const generatorSourcePaths = new Set([
 ]);
 export const supersessionByPath = new Map<string, string>();
 export const generatedTemplateBindings = [
+  ...multimediaTemplateBindings,
   {
     output_path: 'brand/generated/social-light.tokens.json',
     template_path: 'brand/tokens/brand-tokens.yml',
