@@ -5,7 +5,7 @@
 # wired into each `build.ts` runner: the runner refuses to flip the work-product
 # state to the workflow's approval gate unless every checklist item below is
 # satisfied. It complements — does not replace — the manual fail-closed gates
-# (G13–G17, MW_DISTRIBUTION_AUTHORIZED) that still require explicit
+# (G13–G17, MW_BRIEF_APPROVED, MW_DISTRIBUTION_AUTHORIZED) that still require explicit
 # `HUMAN_APPROVED`. [CONFIG]
 #
 # Fail-closed rule: an unverified item is NEVER auto-passed. A missing
@@ -51,9 +51,9 @@ checks:
 
   - id: MW-Q04
     name: no-regression checklist acknowledged
-    predicate: the run receipt records the no-regression checklist version from _assets/no-regression-checklist.md
-    evidence: receipt.no_regression_version
-    block_on: missing version
+    predicate: the run receipt pins the sha256 of _assets/no-regression-checklist.md
+    evidence: receipt.no_regression_sha256 verified against the material source
+    block_on: missing or stale hash
 
   - id: MW-Q05
     name: receipt emitted for this run
@@ -81,15 +81,15 @@ checks:
 
   - id: MW-Q09
     name: no irreversible state auto-passed
-    predicate: manual fail-closed gates (G13–G17, MW_DISTRIBUTION_AUTHORIZED) are NOT auto-passed by build.ts
+    predicate: manual fail-closed gates (G13–G17, MW_BRIEF_APPROVED, MW_DISTRIBUTION_AUTHORIZED) are NOT auto-passed by build.ts
     evidence: receipt requires human approval for those gates
     block_on: manual gate auto-passed
 
   - id: MW-Q10
     name: scope explicit (no invented execution)
-    predicate: the run receipt records observed scope; no fabricated execution, approval, or artifact is claimed
-    evidence: receipt.scope + O/I/A/R tuple
-    block_on: invented execution
+    predicate: the run receipt records observed scope and every declared output resolves to a staged material file with matching sha256; no fabricated execution, approval, or artifact is claimed
+    evidence: receipt.scope + receipt.outputs + staged file read-back + O/I/A/R tuple
+    block_on: invented execution, missing material output or hash mismatch
 
 # Wiring: each `build.ts` runner imports this gate and asserts MW-Q01..MW-Q10
 # before calling the work-product state advance. A failing check writes nothing
@@ -100,5 +100,4 @@ wiring:
   failure_receipt_schema: multimedia-workflow-receipt-v1
   failure_state: gate-fail
 
-gaps:
-  - 'coverage_gap: MW-Q04 (no-regression version) requires a version field in _assets/no-regression-checklist.md; until added, the runner pins the file sha256 instead.'
+gaps: []
