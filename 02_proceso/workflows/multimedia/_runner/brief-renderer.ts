@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 
 import type {FramesBriefV1} from '../_schema/brief-v1.schema.ts';
 import {parseFramesBriefMarkdown, stableStringify} from './brief-model.ts';
-import {renderBriefSection} from './brief-markup.ts';
+import {renderBriefSection, renderSectionNavigation} from './brief-markup.ts';
 
 const DEFAULT_TEMPLATE_PATH = fileURLToPath(
   new URL('../_assets/brief-document-template.html', import.meta.url),
@@ -29,6 +29,12 @@ const renderFromModel = (brief: FramesBriefV1, template: string): string => {
     .join('\n');
   const values: Record<string, string> = {
     TITLE: escapeHtml(`Brief · ${brief.frontmatter.intent.content_class}`),
+    META_DESCRIPTION: escapeHtml(brief.frontmatter.objective),
+    META_DOCUMENT_TYPE: 'brief',
+    META_SCHEMA_VERSION: brief.frontmatter.schema_version,
+    META_MODEL_ID: brief.frontmatter.brief_id,
+    META_WORKFLOW_ID: brief.frontmatter.workflow_selected.join(','),
+    META_SOURCE_COUNT: String(brief.frontmatter.sources.length),
     KICKER: 'MetodologIA · Brief canónico',
     SKIP_LABEL: 'Saltar al brief',
     DOCUMENT_ID: brief.frontmatter.brief_id,
@@ -36,6 +42,7 @@ const renderFromModel = (brief: FramesBriefV1, template: string): string => {
     NEXT_GATE: escapeHtml(brief.frontmatter.next_gate),
     CONTENT_ID: 'brief-content',
     CONTENT_HASH: brief.frontmatter.content_sha256,
+    TOC: renderSectionNavigation(brief.sections.map(({id}) => id)),
     SECTIONS: sections,
     CANONICAL_DATA_ID: 'frames-brief-data',
     CANONICAL_JSON: htmlSafeJson(brief),

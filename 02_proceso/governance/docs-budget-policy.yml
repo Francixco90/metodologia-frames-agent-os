@@ -23,6 +23,18 @@ budgets:
     target: {max_words: 800, max_lines: 100}
     hard: {max_words: 1500, max_lines: 200}
     rationale: 'Artifact schemas and their human index are deterministic projections of the deliverable registry.'
+  - surface: generated-deliverable-template-markdown
+    kind: generated
+    match: '02_proceso/workflows/multimedia/p*/templates/*.template.md'
+    target: {max_words: 900, max_lines: 180}
+    hard: {max_words: 1500, max_lines: 300}
+    rationale: 'Each Markdown template is a deterministic DRAFT projection of one deliverable definition and class profile.'
+  - surface: generated-deliverable-template-html
+    kind: generated
+    match: '02_proceso/workflows/multimedia/p*/templates/*.template.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the MetodologIA shell.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'

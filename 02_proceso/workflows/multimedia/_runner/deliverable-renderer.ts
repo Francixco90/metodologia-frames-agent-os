@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 
 import type {FramesDeliverableV1} from '../_schema/deliverable-v1.schema.ts';
 import {stableStringify} from './brief-model.ts';
-import {renderBriefSection} from './brief-markup.ts';
+import {renderBriefSection, renderSectionNavigation} from './brief-markup.ts';
 import {parseFramesDeliverableMarkdown} from './deliverable-model.ts';
 
 const DEFAULT_TEMPLATE_PATH = fileURLToPath(
@@ -28,6 +28,12 @@ const renderFromModel = (document: FramesDeliverableV1, template: string): strin
   const meta = document.frontmatter;
   const values: Record<string, string> = {
     TITLE: escapeHtml(meta.display_name),
+    META_DESCRIPTION: escapeHtml(meta.purpose),
+    META_DOCUMENT_TYPE: 'deliverable',
+    META_SCHEMA_VERSION: meta.schema_version,
+    META_MODEL_ID: meta.deliverable_id,
+    META_WORKFLOW_ID: meta.workflow_id,
+    META_SOURCE_COUNT: String(meta.sources.length),
     KICKER: 'MetodologIA · Entregable canónico',
     SKIP_LABEL: 'Saltar al entregable',
     DOCUMENT_ID: meta.instance_id,
@@ -35,6 +41,7 @@ const renderFromModel = (document: FramesDeliverableV1, template: string): strin
     NEXT_GATE: escapeHtml(meta.next_gate),
     CONTENT_ID: 'deliverable-content',
     CONTENT_HASH: meta.content_sha256,
+    TOC: renderSectionNavigation(document.sections.map(({id}) => id)),
     SECTIONS: sections,
     CANONICAL_DATA_ID: 'frames-deliverable-data',
     CANONICAL_JSON: safeJson(document),

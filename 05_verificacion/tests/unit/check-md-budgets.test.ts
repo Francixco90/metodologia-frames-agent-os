@@ -128,6 +128,12 @@ describe('check-md-budgets helpers', () => {
       ),
     ).toBe(true);
     expect(isBudgetGeneratedPath('README.md', 'README.md')).toBe(false);
+    expect(
+      isBudgetGeneratedPath(
+        '02_proceso/workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html',
+        'workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html',
+      ),
+    ).toBe(true);
   });
 
   it('docs-budget-policy.yml exists and parses with required surfaces', async () => {
