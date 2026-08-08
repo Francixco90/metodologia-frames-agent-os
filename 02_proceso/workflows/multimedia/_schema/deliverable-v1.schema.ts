@@ -54,30 +54,40 @@ export const DeliverableFieldV1Schema = z.strictObject({
   source_refs: z.array(z.string().min(1).max(500)).max(40),
 });
 
-export const FramesDeliverableFrontmatterV1Schema = z.strictObject({
-  schema_version: z.literal('frames-deliverable-v1'),
-  instance_id: z.string().regex(/^DELIV-[A-Z0-9][A-Z0-9-]{2,79}$/u),
-  deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
-  display_name: z.string().min(1).max(160),
-  workflow_id: MultimediaWorkflowIdSchema,
-  deliverable_class: DeliverableClassV1Schema,
-  touchpoint: z.enum(['intermediate', 'final']),
-  identity: z.strictObject({brand: z.literal('MetodologIA'), owner: z.string().min(1).max(120)}),
-  audience: z.string().min(1).max(600),
-  purpose: z.string().min(1).max(600),
-  sources: z.array(BriefSourceSchema).max(40),
-  formats: z
-    .array(z.enum(['md', 'html', 'json', 'csv', 'image', 'video', 'audio', 'pdf', 'pptx']))
-    .min(1)
-    .max(9),
-  piece_families: z.array(PieceFamilyV1Schema).max(9),
-  companion_for: z.string().min(1).max(500).nullable(),
-  skills: z.array(z.string().min(1).max(80)).min(1).max(20),
-  fields: z.array(DeliverableFieldV1Schema).min(1).max(80),
-  state: z.enum(['DRAFT', 'RENDERED_DRAFT', 'REVIEWED', 'HUMAN_APPROVED', 'BLOCKED']),
-  next_gate: z.string().min(1).max(80),
-  content_sha256: Sha256Schema,
-});
+export const FramesDeliverableFrontmatterV1Schema = z
+  .strictObject({
+    schema_version: z.literal('frames-deliverable-v1'),
+    instance_id: z.string().regex(/^DELIV-[A-Z0-9][A-Z0-9-]{2,79}$/u),
+    deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
+    display_name: z.string().min(1).max(160),
+    workflow_id: MultimediaWorkflowIdSchema,
+    deliverable_class: DeliverableClassV1Schema,
+    touchpoint: z.enum(['intermediate', 'final']),
+    identity: z.strictObject({brand: z.literal('MetodologIA'), owner: z.string().min(1).max(120)}),
+    audience: z.string().min(1).max(600),
+    purpose: z.string().min(1).max(600),
+    sources: z.array(BriefSourceSchema).max(40),
+    formats: z
+      .array(z.enum(['md', 'html', 'json', 'csv', 'image', 'video', 'audio', 'pdf', 'pptx']))
+      .min(1)
+      .max(9),
+    piece_families: z.array(PieceFamilyV1Schema).max(9),
+    companion_for: z.string().min(1).max(500).nullable(),
+    skills: z.array(z.string().min(1).max(80)).min(1).max(20),
+    fields: z.array(DeliverableFieldV1Schema).min(1).max(80),
+    state: z.enum(['DRAFT', 'RENDERED_DRAFT', 'REVIEWED', 'HUMAN_APPROVED', 'BLOCKED']),
+    next_gate: z.string().min(1).max(80),
+    content_sha256: Sha256Schema,
+  })
+  .superRefine(({fields, state}, context) => {
+    if (!['DRAFT', 'BLOCKED'].includes(state) && fields.some(({status}) => status === 'unknown')) {
+      context.addIssue({
+        code: 'custom',
+        path: ['fields'],
+        message: `state ${state} forbids unknown fields`,
+      });
+    }
+  });
 
 export const DeliverableSectionV1Schema = z.strictObject({
   id: z.enum(FRAMES_DELIVERABLE_SECTIONS),

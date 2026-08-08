@@ -66,16 +66,16 @@ describe('FramesDeliverableV1 markdown/html contract', () => {
     expect(first).toContain('data-content-sha256=');
   });
 
-  it('rejects unknown content fields and editorial drift', () => {
+  it('blocks unknown fields from RENDERED_DRAFT and rejects editorial drift', () => {
     expect(() =>
       createFramesDeliverableMarkdown(
         {
           ...draft,
-          fields: [{...draft.fields[0]!, status: 'unknown', unexpected: true} as never],
+          fields: [{...draft.fields[0]!, status: 'unknown'}],
         },
         sections,
       ),
-    ).toThrow();
+    ).toThrow(/forbids unknown fields/u);
 
     const markdown = createFramesDeliverableMarkdown(draft, sections);
     expect(() =>

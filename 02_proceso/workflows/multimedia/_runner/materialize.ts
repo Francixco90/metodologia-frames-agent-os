@@ -38,12 +38,22 @@ export const stageWorkflowOutputs = (
   root: string,
   workflowDir: string,
   workflow: MultimediaWorkflow,
+  selectedConditional?: ReadonlySet<string>,
 ): {tempDir: string; outputs: StagedOutput[]} => {
+  const conditional = workflow.outputs.filter(({condition}) => condition !== undefined);
+  if (conditional.length > 0 && selectedConditional === undefined) {
+    throw new Error(
+      `MW-OUTPUT-CONDITION001 unresolved: ${conditional.map(({deliverable_id}) => deliverable_id).join(', ')}`,
+    );
+  }
+  const selectedOutputs = workflow.outputs.filter(
+    ({deliverable_id, required}) => required || selectedConditional?.has(deliverable_id),
+  );
   const tempDir = mkdtempSync(join(tmpdir(), `frames-${workflow.workflow_id.toLowerCase()}-`));
   const stageDir = basename(workflowDir);
   const consumer = workflow.next_workflow ? `[${workflow.next_workflow}]` : '[]';
   const definitions = loadDeliverableDefinitions(root);
-  const outputs = workflow.outputs.map((output, index) => {
+  const outputs = selectedOutputs.map((output, index) => {
     const artifactId = output.deliverable_id;
     const definition = definitions.get(artifactId);
     if (!definition) throw new Error(`MW-DELIVERABLE001 unresolved ${artifactId}`);
@@ -79,9 +89,9 @@ export const stageWorkflowOutputs = (
       `consumer_stage: ${consumer}`,
       `required: ${output.required}`,
       'content:',
-      '  status: RENDERED_DRAFT',
-      '  evidence_status: known',
-      '  evidence_tags: ["[CONFIG]"]',
+      '  status: DRAFT',
+      '  evidence_status: unknown',
+      '  evidence_tags: ["[SUPUESTO]"]',
       `  template_id: ${output.template_id}`,
       '  limitation: "Declarative candidate only; no approval or publication authority."',
       `  markdown_ref: ${companions[0]?.ref}`,
