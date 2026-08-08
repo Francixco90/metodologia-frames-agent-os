@@ -1,6 +1,7 @@
 import type {AddCheck, QualityGateContext} from './quality-gate-types.ts';
+import {inspectMaterialEvidence, inspectOutputIntegrity} from './material-integrity.ts';
 
-const TERMINAL_HUMAN_STATES = new Set(['HUMAN_APPROVED', 'READY', 'PUBLISHED']);
+const CANDIDATE_STATE = 'RENDERED_DRAFT';
 const MANUAL_GATES = new Set([
   'G13',
   'G14',
@@ -32,26 +33,22 @@ export const evaluateRuntimeChecks = (ctx: QualityGateContext, add: AddCheck): v
           }`,
   );
 
-  const targetState = ctx.workflowParsed.work_product_state;
   const receiptTarget =
     typeof ctx.receiptPayload.work_product_state_to === 'string'
       ? ctx.receiptPayload.work_product_state_to
       : '';
-  const notTerminal = !TERMINAL_HUMAN_STATES.has(targetState);
-  const stateMatches = receiptTarget === targetState;
+  const candidateOnly =
+    receiptTarget === CANDIDATE_STATE && ctx.receiptPayload.human_approved === false;
   add(
     'MW-Q07',
-    notTerminal && stateMatches,
-    !notTerminal
-      ? `target=${targetState} is a terminal human state`
-      : stateMatches
-        ? `target=${targetState} (not terminal); receipt matches`
-        : `receipt work_product_state_to=${receiptTarget} != workflow ${targetState}`,
+    candidateOnly,
+    candidateOnly
+      ? `candidate=${CANDIDATE_STATE}; declared target=${ctx.workflowParsed.work_product_state} not promoted`
+      : `receipt target=${receiptTarget}; only ${CANDIDATE_STATE} is allowed without governed transition evidence`,
   );
 
-  const tags = ctx.receiptPayload.evidence_tags;
-  const tagsPresent = Array.isArray(tags) && tags.length > 0;
-  add('MW-Q08', tagsPresent, tagsPresent ? `${tags.length} tag(s)` : 'missing evidence_tags');
+  const evidence = inspectMaterialEvidence(ctx);
+  add('MW-Q08', evidence.passed, evidence.detail);
 
   const hasManualGate = ctx.workflowParsed.gates.some((gate) => MANUAL_GATES.has(gate));
   add(
@@ -67,12 +64,10 @@ export const evaluateRuntimeChecks = (ctx: QualityGateContext, add: AddCheck): v
     scope?.workflow_id === ctx.workflowId &&
     typeof scope.mode === 'string' &&
     scope.effect_class === 'local_reversible';
-  const outputsExist =
-    ctx.outputResolutions.length === ctx.workflowParsed.outputs.length &&
-    ctx.outputResolutions.every((output) => output.exists && /^[a-f0-9]{64}$/u.test(output.sha256));
+  const integrity = inspectOutputIntegrity(ctx);
   add(
     'MW-Q10',
-    scopeMatches && outputsExist,
-    `scope=${scopeMatches ? 'valid' : 'invalid'}; material_outputs=${ctx.outputResolutions.filter((output) => output.exists).length}/${ctx.workflowParsed.outputs.length}`,
+    scopeMatches && integrity.passed,
+    `scope=${scopeMatches ? 'valid' : 'invalid'}; ${integrity.detail}`,
   );
 };

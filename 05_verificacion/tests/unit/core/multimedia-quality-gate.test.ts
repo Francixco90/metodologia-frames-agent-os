@@ -9,10 +9,11 @@
  * Source: plan D5 (reliability assets). [DOC]
  */
 import {createHash} from 'node:crypto';
-import {readFileSync} from 'node:fs';
+import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {parse} from 'yaml';
-import {describe, expect, it} from 'vitest';
+import {afterAll, describe, expect, it} from 'vitest';
 
 import {MultimediaWorkflowSchema} from 'workflows/multimedia/_schema/workflow-v1.schema.ts';
 import {
@@ -31,11 +32,28 @@ const noRegressionSha = createHash('sha256')
   .update(readFileSync(noRegressionChecklistPath, 'utf8'))
   .digest('hex');
 
-const outputResolutions = p00Workflow.outputs.map((output, index) => ({
-  ref: `03_artefactos/content/multimedia/p00-definir-sistema/output-${index + 1}.yml`,
-  resolved: resolve(ROOT, `.tmp/multimedia/P00/output-${index + 1}.yml`),
-  exists: true,
-  sha256: `${index + 4}`.repeat(64),
+const materialDir = mkdtempSync(resolve(tmpdir(), 'frames-gate-test-'));
+const materialYaml = (status = 'known'): string =>
+  `content:\n  evidence_status: ${status}\n  evidence_tags: ["[CONFIG]"]\n`;
+const outputResolutions = p00Workflow.outputs.map((_output, index) => {
+  const stagedPath = resolve(materialDir, `output-${index + 1}.yml`);
+  writeFileSync(stagedPath, materialYaml(), 'utf8');
+  return {
+    ref: `03_artefactos/content/multimedia/p00-definir-sistema/output-${index + 1}.yml`,
+    stagedPath,
+    exists: true,
+    sha256: createHash('sha256').update(readFileSync(stagedPath)).digest('hex'),
+  };
+});
+
+afterAll(() => rmSync(materialDir, {recursive: true, force: true}));
+
+const p00ReceiptOutputs = p00Workflow.outputs.map((output, index) => ({
+  artifact: output.artifact,
+  ref: outputResolutions[index]?.ref,
+  sha256: outputResolutions[index]?.sha256,
+  required: output.required,
+  materialized: true,
 }));
 
 /** Build the P00 receipt payload the runner would emit (schema-valid). */
@@ -61,15 +79,9 @@ const buildP00Receipt = (overrides: Record<string, unknown> = {}): Record<string
       sha256: 'c'.repeat(64),
     },
   ],
-  outputs: p00Workflow.outputs.map((output, index) => ({
-    artifact: output.artifact,
-    ref: outputResolutions[index]?.ref,
-    sha256: outputResolutions[index]?.sha256,
-    required: output.required,
-    materialized: true,
-  })),
+  outputs: p00ReceiptOutputs,
   work_product_state_from: 'INTAKE',
-  work_product_state_to: 'DEFINED',
+  work_product_state_to: 'RENDERED_DRAFT',
   gate: 'G13',
   actor: 'qa',
   ran_at: '2026-08-05T00:00:00+00:00',
@@ -125,19 +137,18 @@ describe('evaluateQualityGate', () => {
     expect(result.checks.find((c) => c.id === 'MW-Q10')?.passed).toBe(true);
   });
 
-  it('case 2: tampering work_product_state to HUMAN_APPROVED fails MW-Q07', () => {
-    const tamperedWorkflow = {...p00Workflow, work_product_state: 'HUMAN_APPROVED' as never};
-    const ctx = buildP00Context({
-      workflowParsed: tamperedWorkflow,
-      receiptPayload: buildP00Receipt({work_product_state_to: 'HUMAN_APPROVED'}),
-    });
-    const result = evaluateQualityGate(ctx);
-    expect(result.passed).toBe(false);
-    const q07 = result.checks.find((c) => c.id === 'MW-Q07');
-    expect(q07?.passed).toBe(false);
-    expect(q07?.detail).toContain('terminal human state');
-    expect(result.failures.some((f) => f.startsWith('MW-Q07'))).toBe(true);
-  });
+  it.each(['DIRECTION_APPROVED', 'SPEC_APPROVED', 'REVIEW_SHOTS_APPROVED', 'READY'])(
+    'case 2: cannot claim %s without governed transition evidence',
+    (target) => {
+      const result = evaluateQualityGate(
+        buildP00Context({receiptPayload: buildP00Receipt({work_product_state_to: target})}),
+      );
+      const q07 = result.checks.find((check) => check.id === 'MW-Q07');
+      expect(result.passed).toBe(false);
+      expect(q07?.passed).toBe(false);
+      expect(q07?.detail).toContain('only RENDERED_DRAFT');
+    },
+  );
 
   it('case 3: a non-existent prior input fails MW-Q06', () => {
     const tamperedWorkflow = {...p00Workflow, inputs: ['p99-nonexistent/missing.yml'] as never};
@@ -184,6 +195,8 @@ describe('evaluateQualityGate', () => {
     ['wrong checklist pin', {no_regression_sha256: 'f'.repeat(64)}, 'MW-Q04'],
     ['missing evidence tags', {evidence_tags: undefined}, 'MW-Q08'],
     ['empty evidence tags', {evidence_tags: []}, 'MW-Q08'],
+    ['coverage gap tag', {evidence_tags: ['coverage_gap']}, 'MW-Q08'],
+    ['reported coverage gap', {coverage_gaps: ['unknown rights']}, 'MW-Q08'],
     ['missing scope', {scope: undefined}, 'MW-Q10'],
     [
       'wrong scope workflow',
@@ -222,6 +235,92 @@ describe('evaluateQualityGate', () => {
     expect(result.passed).toBe(false);
     const q10 = result.checks.find((check) => check.id === 'MW-Q10');
     expect(q10?.passed).toBe(false);
-    expect(q10?.detail).toContain('material_outputs=');
+    expect(q10?.detail).toMatch(/not bijective|invalid output binding|hash unavailable/u);
+  });
+
+  it('fails MW-Q08 when a material output declares unknown evidence', () => {
+    const stagedPath = resolve(materialDir, 'unknown.yml');
+    writeFileSync(stagedPath, materialYaml('unknown'), 'utf8');
+    const sha256 = createHash('sha256').update(readFileSync(stagedPath)).digest('hex');
+    const resolutions = outputResolutions.map((output, index) =>
+      index === 0 ? {...output, stagedPath, sha256} : output,
+    );
+    const outputs = p00Workflow.outputs.map((output, index) => ({
+      artifact: output.artifact,
+      ref: resolutions[index]?.ref,
+      sha256: resolutions[index]?.sha256,
+      required: output.required,
+      materialized: true,
+    }));
+    const result = evaluateQualityGate(
+      buildP00Context({outputResolutions: resolutions, receiptPayload: buildP00Receipt({outputs})}),
+    );
+    expect(result.checks.find((check) => check.id === 'MW-Q08')?.passed).toBe(false);
+  });
+
+  it('fails MW-Q08 when coverage_gap appears inside material evidence', () => {
+    const stagedPath = resolve(materialDir, 'material-gap.yml');
+    writeFileSync(stagedPath, `${materialYaml()}  limitation: coverage_gap\n`, 'utf8');
+    const sha256 = createHash('sha256').update(readFileSync(stagedPath)).digest('hex');
+    const resolutions = outputResolutions.map((output, index) =>
+      index === 0 ? {...output, stagedPath, sha256} : output,
+    );
+    const outputs = p00Workflow.outputs.map((output, index) => ({
+      ...p00ReceiptOutputs[index],
+      artifact: output.artifact,
+      sha256: resolutions[index]?.sha256,
+    }));
+    const result = evaluateQualityGate(
+      buildP00Context({outputResolutions: resolutions, receiptPayload: buildP00Receipt({outputs})}),
+    );
+    expect(result.checks.find((check) => check.id === 'MW-Q08')?.passed).toBe(false);
+  });
+
+  it.each([
+    [
+      'a syntactically valid but false SHA-256',
+      buildP00Receipt({
+        outputs: p00Workflow.outputs.map((output, index) => ({
+          artifact: output.artifact,
+          ref: outputResolutions[index]?.ref,
+          sha256: index === 0 ? 'f'.repeat(64) : outputResolutions[index]?.sha256,
+          required: output.required,
+          materialized: true,
+        })),
+      }),
+    ],
+    [
+      'crossed receipt refs',
+      buildP00Receipt({
+        outputs: p00Workflow.outputs.map((output, index) => ({
+          artifact: output.artifact,
+          ref: outputResolutions[(index + 1) % outputResolutions.length]?.ref,
+          sha256: outputResolutions[index]?.sha256,
+          required: output.required,
+          materialized: true,
+        })),
+      }),
+    ],
+    [
+      'duplicate receipt refs',
+      buildP00Receipt({
+        outputs: p00Workflow.outputs.map((output, index) => ({
+          artifact: output.artifact,
+          ref: outputResolutions[0]?.ref,
+          sha256: outputResolutions[index]?.sha256,
+          required: output.required,
+          materialized: true,
+        })),
+      }),
+    ],
+    [
+      'a missing receipt output',
+      buildP00Receipt({
+        outputs: p00ReceiptOutputs.slice(1),
+      }),
+    ],
+  ])('fails MW-Q10 for %s', (_label, receiptPayload) => {
+    const result = evaluateQualityGate(buildP00Context({receiptPayload}));
+    expect(result.checks.find((check) => check.id === 'MW-Q10')?.passed).toBe(false);
   });
 });
