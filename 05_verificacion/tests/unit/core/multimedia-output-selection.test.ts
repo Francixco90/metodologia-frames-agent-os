@@ -1,3 +1,4 @@
+import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -16,33 +17,29 @@ const originalArgv = process.argv;
 const originalExitCode = process.exitCode;
 const digest = (path: string): string =>
   createHash('sha256').update(readFileSync(path)).digest('hex');
-const textDigest = (value: string): string => createHash('sha256').update(value).digest('hex');
 
 const intentPath = resolve(directory, 'intent.yml');
-const request = 'Crear una campaña.';
 writeFileSync(
-  intentPath,
-  stringify({
-    schema_version: 'content-intent-v2',
-    request,
-    request_hash: textDigest(request),
-    content_class: 'campaign',
+  resolve(directory, 'request.json'),
+  JSON.stringify({
+    request: '  Crear   UNA campaña para NIÑEZ.  ',
     audience: 'Equipo de contenidos.',
     outcome: 'Campaña definida.',
-    sources: [],
-    source_authority: 'unknown',
+    source: {type: 'document', ref: 'sources/campaign.md', authority: 'verified'},
     channels: ['web'],
-    restrictions: ['No publicar.'],
-    effect_class: 'local_reversible',
-    brief_sufficiency: 'complete',
-    blocking_questions: [],
-    route_candidates: [{route_id: 'R6', score: 1, reason_codes: ['CONTENT_REQUEST']}],
-    selected_stage_path: ['P03'],
-    brief_ref: null,
-    next_gate: 'MW_BRIEF_APPROVED',
-    decision: 'ROUTED',
+    constraints: ['No publicar.'],
   }),
   'utf8',
+);
+execFileSync(
+  process.execPath,
+  [
+    resolve(process.cwd(), '03_artefactos/skills/content-os-router/scripts/route-content.mjs'),
+    resolve(directory, 'request.json'),
+    '--out',
+    intentPath,
+  ],
+  {cwd: process.cwd()},
 );
 const intentHash = digest(intentPath);
 const workOrderPath = resolve(directory, 'work-order.yml');

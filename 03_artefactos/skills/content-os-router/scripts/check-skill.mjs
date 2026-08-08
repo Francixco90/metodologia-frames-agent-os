@@ -8,6 +8,7 @@ const required = [
   'skills/content-os-router/schemas/router-intent-v1.schema.json',
   'skills/content-os-router/schemas/content-intent-v2.schema.json',
   'skills/content-os-router/scripts/check-skill.mjs',
+  'skills/content-os-router/scripts/content-intent-request.mjs',
   'skills/content-os-router/scripts/route-audit.mjs',
   'skills/content-os-router/scripts/route-content.mjs',
   'skills/content-os-router/references/routes.md',

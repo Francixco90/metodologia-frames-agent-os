@@ -95,7 +95,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 206797a374a8d811095ee2c6669c7bbf1dc7126f03f7b02a05db0dce7110c9f8
-    package_manifest_sha256: 8a20cb650ef773461117b8d8d52e0ffb013f203834885fa2f6f027c59ba1cf26
+    package_manifest_sha256: d135c2979f3ae9a082b45a28201fc0422c0b2487da12702bbe53a3923bddf6bf
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

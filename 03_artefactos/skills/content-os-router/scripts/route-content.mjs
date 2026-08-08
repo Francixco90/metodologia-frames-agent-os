@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import {createHash} from 'node:crypto';
 import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
+
+import {hashContentRequestV1, normalizeContentRequest} from './content-intent-request.mjs';
 
 const [inputArg, ...rest] = process.argv.slice(2);
 if (!inputArg) {
@@ -12,11 +13,11 @@ if (!inputArg) {
 const outFlag = rest.indexOf('--out');
 const outputArg = outFlag >= 0 ? rest[outFlag + 1] : undefined;
 const input = JSON.parse(readFileSync(resolve(inputArg), 'utf8'));
-const normalize = (value) => String(value ?? '').trim().replace(/\s+/gu, ' ');
+const normalize = normalizeContentRequest;
 const request = normalize(input.request);
 if (!request) throw new Error('CONTENT-INTENT-001 request is required');
 
-const digest = createHash('sha256').update(request.toLocaleLowerCase('es')).digest('hex');
+const digest = hashContentRequestV1(request);
 const source = input.source ?? {type: 'none', authority: 'unknown'};
 const lower = request.toLocaleLowerCase('es');
 const pieceClass =
