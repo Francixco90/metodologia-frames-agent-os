@@ -8,6 +8,7 @@ import {
   MultimediaWorkflowSchema,
   type MultimediaWorkflow,
 } from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
+import {runDeliverableTemplateGeneration} from '../../02_proceso/workflows/multimedia/_runner/generate-deliverable-templates.ts';
 import {
   loadDeliverableDefinitions,
   type TemplateRegistryEntry,
@@ -152,6 +153,13 @@ errors.push(
     (issue) => `MW-CAP-08 ${issue}`,
   ),
 );
+try {
+  const result = runDeliverableTemplateGeneration({root, selector: {kind: 'all'}});
+  if (result.selected !== 39)
+    errors.push(`MW-CAP-09 expected 39 template pairs; got ${result.selected}`);
+} catch (error) {
+  errors.push(`MW-CAP-09 deliverable template projections invalid: ${String(error)}`);
+}
 
 if (
   process.argv[1] &&
