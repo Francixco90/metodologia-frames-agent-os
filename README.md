@@ -159,8 +159,8 @@ Arquitectura dual paradigm + media model:
 
 Cadena determinista de 10 stages en `02_proceso/workflows/multimedia/`
 (`definir-sistema` → `distribuir`), schema `multimedia-workflow-v1` (Zod). Cada
-stage: `workflow.yml` (source of truth con `brief` BLUF + `capability_map`
-skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
+stage: `workflow.yml` (source of truth con `brief`, `execution_steps`, templates y
+`capability_map` skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
 `build.ts`, `notebooklm-binding.yml`, `schematic.html` (brand-ready, generado desde
 template). Quality-gate `MW-Q01..Q10` fail-closed (`_runner/quality-gate.ts`).
 Generator `pnpm mw:render-schematics` (1 template + 1 script → 10 HTML,
@@ -168,12 +168,21 @@ determinista, regenerable). Checker `pnpm verify:multimedia` (gate `MW_CAPABILIT
 Chain schematic:
 [`02_proceso/workflows/multimedia/_assets/chain-schematic.md`](02_proceso/workflows/multimedia/_assets/chain-schematic.md). [DOC]
 
+Todo pedido de pieza entra por R6: el router formula hasta tres preguntas
+bloqueantes y selecciona solo los stages necesarios. P03 genera siempre el
+`brief.md` canónico de 12 secciones; su HTML es una proyección determinista del
+mismo modelo, usa el perfil `metodologia-html-v7` y no puede añadir contenido
+editorial. La producción se detiene en `MW_BRIEF_APPROVED`; P09 prepara el
+paquete, pero nunca distribuye ni publica sin autorización humana separada.
+La biblioteca P00–P09 se regenera desde los workflows mediante
+`_runner/render-library.ts`. [CONFIG]
+
 ## Governance
 
 `02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
 apunta aquí, no duplica):
 
-- `router.yml` — router R0-R5 (binds_to task/project/eval).
+- `router.yml` — router R0-R6 (binds_to task/project/eval/content).
 - `tool-policy.yml` — política de herramientas permitidas por gate.
 - `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
 - `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
@@ -194,7 +203,7 @@ Gates → comandos: `05_verificacion/scripts/commands.yaml` (manifiesto `command
 - **Gates G00-G21 + MW_**_: `scripts/commands.yaml`. G13-G17 manuales fail-closed
   (H01 human approval, Guardian lock, readiness, publish). G18-G21 (env drift,
   eval suite, tool grants convergence, atemporal naming) automatizados. MW__
-  (multimedia: `MW_CAPABILITY`, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
+  (multimedia: `MW_CAPABILITY`, `MW_BRIEF_APPROVED` P03, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
   `MW_EDIT_APPROVED` P08, `MW_DISTRIBUTION_AUTHORIZED` P09).
 - **Evals**: `evals/H-E001`..`H-E023` + `ablation/` — 23 eval suites con `runner.ts`.
 - **Tests**: 550+ casos (unit/contract/integration) en `tests/`. Harness contract:

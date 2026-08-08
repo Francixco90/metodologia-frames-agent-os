@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="state" content="RENDERED_DRAFT" />
+    <meta
+      name="content-sha256"
+      content="ead38d52c5f72080c217dc45c38929c6fad3c207e73ce1b2fc3da614a1eda788"
+    />
+    <meta name="design-system" content="metodologia-html-v7" />
+    <title>MetodologIA · Biblioteca Multimedia</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --gold: #ffd700;
+        --blue: #137dc5;
+        --bg: #fff;
+        --soft: #f0f4f8;
+        --text: #122562;
+        --surface: #fff;
+      }
+      html[data-theme='dark'] {
+        --bg: #09143a;
+        --soft: #182f73;
+        --text: #f8fafc;
+        --surface: #122562;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          400 1rem Montserrat,
+          system-ui,
+          sans-serif;
+        line-height: 1.55;
+      }
+      header,
+      main,
+      footer {
+        max-width: 1180px;
+        margin: auto;
+        padding: 1.5rem;
+      }
+      h1,
+      h2 {
+        font-family: Poppins, system-ui, sans-serif;
+        font-weight: 700;
+      }
+      h2 {
+        border-left: 5px solid var(--gold);
+        padding-left: 0.75rem;
+      }
+      .hero {
+        background: var(--navy);
+        color: #fff;
+        border-radius: 24px;
+        padding: clamp(1.5rem, 5vw, 3rem);
+      }
+      button,
+      a {
+        min-height: 44px;
+      }
+      button {
+        float: right;
+        border: 2px solid var(--blue);
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+      }
+      .chain {
+        overflow: auto;
+        background: var(--surface);
+        border: 1px solid #137dc544;
+        border-radius: 16px;
+        margin: 1rem 0;
+      }
+      .chain svg {
+        min-width: 960px;
+        width: 100%;
+      }
+      .chain rect {
+        fill: var(--gold);
+        stroke: var(--navy);
+      }
+      .chain text {
+        font: 700 12px Poppins;
+        text-anchor: middle;
+        fill: var(--navy);
+      }
+      .chain line {
+        stroke: var(--blue);
+        stroke-width: 3;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid #137dc544;
+        border-radius: 16px;
+        padding: 1.25rem;
+      }
+      .eyebrow,
+      small {
+        display: block;
+        font-family: 'Trebuchet MS', sans-serif;
+      }
+      .eyebrow {
+        color: var(--blue);
+        font-weight: 700;
+      }
+      li {
+        margin: 0.65rem 0;
+      }
+      a {
+        color: var(--blue);
+        font-weight: 700;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+      @media print {
+        button {
+          display: none;
+        }
+        .card {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <section class="hero">
+        <button type="button" aria-label="Cambiar tema">Tema</button>
+        <p>MetodologIA · Frames ContentOS</p>
+        <h1>Biblioteca Universal de Creación Multimedia</h1>
+        <p>P00–P09 con steps, skills, deliverables y gates verificables.</p>
+      </section>
+    </header>
+    <main>
+      <section class="chain" aria-label="Cadena P00 a P09">
+        <svg viewBox="0 0 980 84" role="img">
+          <line x1="92" y1="42" x2="114" y2="42" />
+          <line x1="186" y1="42" x2="208" y2="42" />
+          <line x1="280" y1="42" x2="302" y2="42" />
+          <line x1="374" y1="42" x2="396" y2="42" />
+          <line x1="468" y1="42" x2="490" y2="42" />
+          <line x1="562" y1="42" x2="584" y2="42" />
+          <line x1="656" y1="42" x2="678" y2="42" />
+          <line x1="750" y1="42" x2="772" y2="42" />
+          <line x1="844" y1="42" x2="866" y2="42" />
+          <g>
+            <rect x="20" y="20" width="72" height="44" rx="12" />
+            <text x="56" y="47">P00</text>
+          </g>
+          <g>
+            <rect x="114" y="20" width="72" height="44" rx="12" />
+            <text x="150" y="47">P01</text>
+          </g>
+          <g>
+            <rect x="208" y="20" width="72" height="44" rx="12" />
+            <text x="244" y="47">P02</text>
+          </g>
+          <g>
+            <rect x="302" y="20" width="72" height="44" rx="12" />
+            <text x="338" y="47">P03</text>
+          </g>
+          <g>
+            <rect x="396" y="20" width="72" height="44" rx="12" />
+            <text x="432" y="47">P04</text>
+          </g>
+          <g>
+            <rect x="490" y="20" width="72" height="44" rx="12" />
+            <text x="526" y="47">P05</text>
+          </g>
+          <g>
+            <rect x="584" y="20" width="72" height="44" rx="12" />
+            <text x="620" y="47">P06</text>
+          </g>
+          <g>
+            <rect x="678" y="20" width="72" height="44" rx="12" />
+            <text x="714" y="47">P07</text>
+          </g>
+          <g>
+            <rect x="772" y="20" width="72" height="44" rx="12" />
+            <text x="808" y="47">P08</text>
+          </g>
+          <g>
+            <rect x="866" y="20" width="72" height="44" rx="12" />
+            <text x="902" y="47">P09</text>
+          </g>
+        </svg>
+      </section>
+      <section class="grid">
+        <article class="card" id="P00">
+          <p class="eyebrow">P00 · DEFINED</p>
+          <h2>Define tu sistema creativo</h2>
+          <p>Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Resolver identidad y autoridad de marca.<small
+                >metodologia-brand-router · G13</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Definir voz, canal y audiencia sin mezclar perfiles.<small
+                >content-os-core · G13</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Fijar tokens creativos y restricciones del piloto.<small
+                >dev-writing-plans · G14</small
+              >
+            </li>
+          </ol>
+          <p><strong>Deliverables</strong> brand-os-v1 · calibration-sample-v1 · pilot-plan-v1</p>
+          <a href="../p00-definir-sistema/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P01">
+          <p class="eyebrow">P01 · CLASSIFIED</p>
+          <h2>Convierte tu día a día en oportunidades de contenido</h2>
+          <p>Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Inventariar y preservar material con procedencia.<small
+                >content-os-registry · G14</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Clasificar relevancia, sensibilidad, derechos y destino.<small
+                >content-os-media · G14</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Seleccionar y priorizar el material utilizable.<small
+                >metodologia-find-skills · G14</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> capture-card-v1 · triage-record-v1 · digest-shortlist-v1
+          </p>
+          <a href="../p01-curar-material/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P02">
+          <p class="eyebrow">P02 · DISCOVERED</p>
+          <h2>Investiga y fortalece una idea</h2>
+          <p>Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Formular preguntas verificables desde el shortlist.<small
+                >content-os-core · G14</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Buscar evidencia solo en fuentes autorizadas.<small
+                >content-os-registry · G14</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Sintetizar oportunidades, matices y límites.<small
+                >content-os-core · G14</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> claim-register-v1 · opportunity-map-v1 · question-bank-v1
+          </p>
+          <a href="../p02-investigar/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P03">
+          <p class="eyebrow">P03 · DIRECTION_APPROVED</p>
+          <h2>Crea el brief o la campaña</h2>
+          <p>Define una pieza, sistema de derivados, serie o campaña con funciones distintas.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Interpretar intención, audiencia, objetivo y evidencia.<small
+                >content-os-creative · G13</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Elegir arquitectura de pieza, serie o campaña.<small
+                >dev-writing-plans · G13</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Definir conceptos A/B, riesgos y criterios de éxito.<small
+                >content-os-creative · G13</small
+              >
+            </li>
+            <li>
+              <strong>S04</strong> Comprobar Definition of Ready y solicitar decisión.<small
+                >dev-writing-plans · MW_BRIEF_APPROVED</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> brief-campaign-map-v1 · ab-concepts-v1 ·
+            definition-of-ready-v1
+          </p>
+          <a href="../p03-crear-brief/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P04">
+          <p class="eyebrow">P04 · DEFINED</p>
+          <h2>Construye un calendario editorial realista</h2>
+          <p>Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Priorizar entregables y secuencia de producción.<small
+                >dev-executing-plans · G14</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Asignar hitos, dependencias y capacidad.<small
+                >dev-executing-plans · G14</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Definir lotes y medición antes de extender.<small
+                >content-os-core · G14</small
+              >
+            </li>
+          </ol>
+          <p><strong>Deliverables</strong> editorial-calendar-v1 · board-v1 · batch-plan-v1</p>
+          <a href="../p04-calendarizar/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P05">
+          <p class="eyebrow">P05 · SPEC_APPROVED</p>
+          <h2>Diseña la pieza multimedia</h2>
+          <p>Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Elegir medio y ruta creativa desde el brief aprobado.<small
+                >content-os-creative · MW_SPEC_APPROVED</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Diseñar narrativa, secuencia y continuidad.<small
+                >content-os-motion-graphics · MW_SPEC_APPROVED</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Mapear activos, prompts y derivados.<small
+                >design-compose-graphics · G14</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> creative-spec-v1 · continuity-bible-v1 · asset-map-v1 ·
+            universal-prompts-v1 · derivatives-v1
+          </p>
+          <a href="../p05-disenar-pieza/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P06">
+          <p class="eyebrow">P06 · BUILD_VALIDATED</p>
+          <h2>Crea los activos multimedia</h2>
+          <p>Genera, guía o especifica activos por etapas, con evidencia y estado exacto.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Ejecutar preflight de capacidad, derechos y herramientas.<small
+                >content-os-core · MW_ASSET_REVIEW</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Producir o capturar activos por etapas.<small
+                >content-os-remotion-create · MW_ASSET_REVIEW</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Registrar procedencia y comprobar continuidad.<small
+                >content-os-media · MW_ASSET_REVIEW</small
+              >
+            </li>
+            <li>
+              <strong>S04</strong> Empaquetar el candidate sin promover su estado.<small
+                >content-os-remotion-render · G14</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> asset-package-v1 · asset-manifest-v1 ·
+            capability-report-v1 · tool-run-evidence-v1
+          </p>
+          <a href="../p06-crear-activos/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P07">
+          <p class="eyebrow">P07 · REVIEW_SHOTS_APPROVED</p>
+          <h2>Revisa material multimedia</h2>
+          <p>Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Revisar contenido y marca solo sobre material observable.<small
+                >design-audit-genjutsu · G14</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Verificar evidencia, derechos y accesibilidad.<small
+                >content-os-core · G14</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Priorizar hasta cinco correcciones verificables.<small
+                >design-audit-genjutsu · G14</small
+              >
+            </li>
+          </ol>
+          <p><strong>Deliverables</strong> review-report-v1 · verdict-v1 · top5-changes-v1</p>
+          <a href="../p07-revisar/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P08">
+          <p class="eyebrow">P08 · POSTPRODUCTION_VALIDATED</p>
+          <h2>Edita, compone y reutiliza</h2>
+          <p>Monta, compone, localiza y reutiliza con lineage, QC y rollback.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Priorizar cambios y preparar un successor candidate.<small
+                >content-os-seam-craft · MW_EDIT_APPROVED</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Editar, componer o localizar según el EDL.<small
+                >content-os-remotion-render · MW_EDIT_APPROVED</small
+              >
+            </li>
+            <li>
+              <strong>S03</strong> Comparar, probar regresiones y definir exportación.<small
+                >content-os-remotion-render · G14</small
+              >
+            </li>
+          </ol>
+          <p><strong>Deliverables</strong> edit-candidate-v1 · edl-v1 · export-matrix-v1</p>
+          <a href="../p08-editar/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+        <article class="card" id="P09">
+          <p class="eyebrow">P09 · READY</p>
+          <h2>Empaqueta, publica, conversa o aprende</h2>
+          <p>Separa empaque, publicación, comunidad y aprendizaje para operar con control.</p>
+          <ol>
+            <li>
+              <strong>S01</strong> Validar autorización, estado y hash del candidate.<small
+                >metodologia-brand-router · MW_DISTRIBUTION_AUTHORIZED</small
+              >
+            </li>
+            <li>
+              <strong>S02</strong> Adaptar el paquete al canal sin mutar el contenido
+              aprobado.<small>instagram-content-orchestration · G15</small>
+            </li>
+            <li>
+              <strong>S03</strong> Preparar checklist y registro de publicación.<small
+                >instagram-carousel-production · G17</small
+              >
+            </li>
+            <li>
+              <strong>S04</strong> Registrar baseline y aprendizaje sin inventar métricas.<small
+                >instagram-content-orchestration · G17</small
+              >
+            </li>
+          </ol>
+          <p>
+            <strong>Deliverables</strong> platform-package-v1 · publication-record-v1 ·
+            learning-report-v1
+          </p>
+          <a href="../p09-distribuir/prompt-spec.md">Abrir prompt canónico</a>
+        </article>
+      </section>
+    </main>
+    <footer>RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED</footer>
+    <script type="application/json" id="library-model">
+      {
+        "schema_version": "multimedia-library-v1",
+        "stages": [
+          {
+            "id": "P00",
+            "title": "Define tu sistema creativo",
+            "purpose": "Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.",
+            "state": "DEFINED",
+            "prompt": "p00-definir-sistema/prompt-spec.md",
+            "outputs": [
+              "Perfil creativo y Brand OS definidos bajo aprobación",
+              "Modalidad piloto elegida, una por vez",
+              "Calibración y plan piloto listos para ejecución"
+            ],
+            "deliverables": ["brand-os-v1", "calibration-sample-v1", "pilot-plan-v1"],
+            "skills": ["metodologia-brand-router", "content-os-core", "dev-writing-plans"],
+            "gates": ["G13", "G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Resolver identidad y autoridad de marca.",
+                "skill": "metodologia-brand-router",
+                "gate": "G13",
+                "stop": "Bloquear si identidad, autoridad o consentimiento no son inequívocos."
+              },
+              {
+                "id": "S02",
+                "purpose": "Definir voz, canal y audiencia sin mezclar perfiles.",
+                "skill": "content-os-core",
+                "gate": "G13",
+                "stop": "Bloquear ante mezcla de perfiles o contexto insuficiente."
+              },
+              {
+                "id": "S03",
+                "purpose": "Fijar tokens creativos y restricciones del piloto.",
+                "skill": "dev-writing-plans",
+                "gate": "G14",
+                "stop": "Detener si el piloto excede alcance o carece de aprobación."
+              }
+            ]
+          },
+          {
+            "id": "P01",
+            "title": "Convierte tu día a día en oportunidades de contenido",
+            "purpose": "Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.",
+            "state": "CLASSIFIED",
+            "prompt": "p01-curar-material/prompt-spec.md",
+            "outputs": [
+              "Material cotidiano clasificado en oportunidades trazables",
+              "Captura mínima propuesta sin obligar a publicar",
+              "Shortlist digerible priorizada"
+            ],
+            "deliverables": ["capture-card-v1", "triage-record-v1", "digest-shortlist-v1"],
+            "skills": ["content-os-registry", "content-os-media", "metodologia-find-skills"],
+            "gates": ["G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Inventariar y preservar material con procedencia.",
+                "skill": "content-os-registry",
+                "gate": "G14",
+                "stop": "Bloquear si faltan fuente, hash o autoridad."
+              },
+              {
+                "id": "S02",
+                "purpose": "Clasificar relevancia, sensibilidad, derechos y destino.",
+                "skill": "content-os-media",
+                "gate": "G14",
+                "stop": "Bloquear material sensible o sin derechos verificables."
+              },
+              {
+                "id": "S03",
+                "purpose": "Seleccionar y priorizar el material utilizable.",
+                "skill": "metodologia-find-skills",
+                "gate": "G14",
+                "stop": "Detener si ningún elemento supera el preclear de evidencia y derechos."
+              }
+            ]
+          },
+          {
+            "id": "P02",
+            "title": "Investiga y fortalece una idea",
+            "purpose": "Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.",
+            "state": "DISCOVERED",
+            "prompt": "p02-investigar/prompt-spec.md",
+            "outputs": [
+              "Claims verificados contra fuentes rastreables",
+              "Oportunidades y matices mapeados",
+              "Banco de preguntas editorial priorizado"
+            ],
+            "deliverables": ["claim-register-v1", "opportunity-map-v1", "question-bank-v1"],
+            "skills": ["content-os-core", "content-os-registry"],
+            "gates": ["G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Formular preguntas verificables desde el shortlist.",
+                "skill": "content-os-core",
+                "gate": "G14",
+                "stop": "Detener si la pregunta no puede vincularse a una decisión editorial."
+              },
+              {
+                "id": "S02",
+                "purpose": "Buscar evidencia solo en fuentes autorizadas.",
+                "skill": "content-os-registry",
+                "gate": "G14",
+                "stop": "Marcar UNKNOWN y bloquear si la evidencia es insuficiente."
+              },
+              {
+                "id": "S03",
+                "purpose": "Sintetizar oportunidades, matices y límites.",
+                "skill": "content-os-core",
+                "gate": "G14",
+                "stop": "Bloquear cualquier oportunidad basada en claims no verificados."
+              }
+            ]
+          },
+          {
+            "id": "P03",
+            "title": "Crea el brief o la campaña",
+            "purpose": "Define una pieza, sistema de derivados, serie o campaña con funciones distintas.",
+            "state": "DIRECTION_APPROVED",
+            "prompt": "p03-crear-brief/prompt-spec.md",
+            "outputs": [
+              "Brief o campaña definidos con funciones distintas",
+              "Conceptos A/B listos para decisión",
+              "Definition of Ready cumplido"
+            ],
+            "deliverables": ["brief-campaign-map-v1", "ab-concepts-v1", "definition-of-ready-v1"],
+            "skills": [
+              "content-os-creative",
+              "content-os-product-launch-video",
+              "content-os-core",
+              "dev-writing-plans"
+            ],
+            "gates": ["G13", "G14", "MW_BRIEF_APPROVED"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Interpretar intención, audiencia, objetivo y evidencia.",
+                "skill": "content-os-creative",
+                "gate": "G13",
+                "stop": "Formular como máximo tres preguntas; volver a P02 si falta evidencia."
+              },
+              {
+                "id": "S02",
+                "purpose": "Elegir arquitectura de pieza, serie o campaña.",
+                "skill": "dev-writing-plans",
+                "gate": "G13",
+                "stop": "Reducir a pieza única si la oportunidad no sostiene una campaña."
+              },
+              {
+                "id": "S03",
+                "purpose": "Definir conceptos A/B, riesgos y criterios de éxito.",
+                "skill": "content-os-creative",
+                "gate": "G13",
+                "stop": "Bloquear conceptos que alteren claims o excedan restricciones."
+              },
+              {
+                "id": "S04",
+                "purpose": "Comprobar Definition of Ready y solicitar decisión.",
+                "skill": "dev-writing-plans",
+                "gate": "MW_BRIEF_APPROVED",
+                "stop": "Detener antes de producir hasta recibir aprobación inequívoca del brief."
+              }
+            ]
+          },
+          {
+            "id": "P04",
+            "title": "Construye un calendario editorial realista",
+            "purpose": "Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.",
+            "state": "DEFINED",
+            "prompt": "p04-calendarizar/prompt-spec.md",
+            "outputs": [
+              "Calendario editorial realista con dependencias",
+              "Tablero de capacidad por sprint",
+              "Plan por lote medible antes de extender"
+            ],
+            "deliverables": ["editorial-calendar-v1", "board-v1", "batch-plan-v1"],
+            "skills": ["dev-executing-plans", "content-os-core"],
+            "gates": ["G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Priorizar entregables y secuencia de producción.",
+                "skill": "dev-executing-plans",
+                "gate": "G14",
+                "stop": "Omitir P04 para una pieza única sin dependencias ni calendario."
+              },
+              {
+                "id": "S02",
+                "purpose": "Asignar hitos, dependencias y capacidad.",
+                "skill": "dev-executing-plans",
+                "gate": "G14",
+                "stop": "Reducir al primer sprint si la capacidad no es verificable."
+              },
+              {
+                "id": "S03",
+                "purpose": "Definir lotes y medición antes de extender.",
+                "skill": "content-os-core",
+                "gate": "G14",
+                "stop": "Bloquear un lote que exceda capacidad o no tenga criterio de aprendizaje."
+              }
+            ]
+          },
+          {
+            "id": "P05",
+            "title": "Diseña la pieza multimedia",
+            "purpose": "Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.",
+            "state": "SPEC_APPROVED",
+            "prompt": "p05-disenar-pieza/prompt-spec.md",
+            "outputs": [
+              "Especificación creativa del guion y la secuencia",
+              "Continuidad y mapa de activos coordinados",
+              "Prompts universales y derivados listos"
+            ],
+            "deliverables": [
+              "creative-spec-v1",
+              "continuity-bible-v1",
+              "asset-map-v1",
+              "universal-prompts-v1",
+              "derivatives-v1"
+            ],
+            "skills": [
+              "content-os-creative",
+              "content-os-motion-graphics",
+              "content-os-remotion-bridge",
+              "design-compose-graphics"
+            ],
+            "gates": ["MW_SPEC_APPROVED", "G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Elegir medio y ruta creativa desde el brief aprobado.",
+                "skill": "content-os-creative",
+                "gate": "MW_SPEC_APPROVED",
+                "stop": "Crear un prototipo de bajo costo si el medio no puede justificarse."
+              },
+              {
+                "id": "S02",
+                "purpose": "Diseñar narrativa, secuencia y continuidad.",
+                "skill": "content-os-motion-graphics",
+                "gate": "MW_SPEC_APPROVED",
+                "stop": "Bloquear si la narrativa altera claims o rompe continuidad."
+              },
+              {
+                "id": "S03",
+                "purpose": "Mapear activos, prompts y derivados.",
+                "skill": "design-compose-graphics",
+                "gate": "G14",
+                "stop": "Bloquear cualquier activo sin fuente, owner, formato o criterio de aceptación."
+              }
+            ]
+          },
+          {
+            "id": "P06",
+            "title": "Crea los activos multimedia",
+            "purpose": "Genera, guía o especifica activos por etapas, con evidencia y estado exacto.",
+            "state": "BUILD_VALIDATED",
+            "prompt": "p06-crear-activos/prompt-spec.md",
+            "outputs": [
+              "Paquete de activos generado por etapas con estado exacto",
+              "Manifiesto de activos trazable",
+              "Reporte de capacidad y evidencia de herramienta"
+            ],
+            "deliverables": [
+              "asset-package-v1",
+              "asset-manifest-v1",
+              "capability-report-v1",
+              "tool-run-evidence-v1"
+            ],
+            "skills": [
+              "content-os-core",
+              "content-os-remotion-create",
+              "content-os-remotion-render",
+              "content-os-media"
+            ],
+            "gates": ["MW_ASSET_REVIEW", "G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Ejecutar preflight de capacidad, derechos y herramientas.",
+                "skill": "content-os-core",
+                "gate": "MW_ASSET_REVIEW",
+                "stop": "Bloquear herramienta, fuente o activo no autorizado."
+              },
+              {
+                "id": "S02",
+                "purpose": "Producir o capturar activos por etapas.",
+                "skill": "content-os-remotion-create",
+                "gate": "MW_ASSET_REVIEW",
+                "stop": "Limitar a prototipo no publicable si persiste riesgo o falta capacidad."
+              },
+              {
+                "id": "S03",
+                "purpose": "Registrar procedencia y comprobar continuidad.",
+                "skill": "content-os-media",
+                "gate": "MW_ASSET_REVIEW",
+                "stop": "Bloquear outputs sin archivo material, hash o lineage."
+              },
+              {
+                "id": "S04",
+                "purpose": "Empaquetar el candidate sin promover su estado.",
+                "skill": "content-os-remotion-render",
+                "gate": "G14",
+                "stop": "RENDERED_DRAFT no concede aprobación, readiness ni publicación."
+              }
+            ]
+          },
+          {
+            "id": "P07",
+            "title": "Revisa material multimedia",
+            "purpose": "Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas.",
+            "state": "REVIEW_SHOTS_APPROVED",
+            "prompt": "p07-revisar/prompt-spec.md",
+            "outputs": [
+              "Reporte de revisión solo de lo observable",
+              "Veredicto accionable",
+              "Top-5 correcciones priorizadas"
+            ],
+            "deliverables": ["review-report-v1", "verdict-v1", "top5-changes-v1"],
+            "skills": ["design-audit-genjutsu", "content-os-core"],
+            "gates": ["G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Revisar contenido y marca solo sobre material observable.",
+                "skill": "design-audit-genjutsu",
+                "gate": "G14",
+                "stop": "Solicitar copia o descripción si el material no abre; nunca inventar."
+              },
+              {
+                "id": "S02",
+                "purpose": "Verificar evidencia, derechos y accesibilidad.",
+                "skill": "content-os-core",
+                "gate": "G14",
+                "stop": "UNKNOWN, evidencia ausente o check manual no ejecutado bloquean."
+              },
+              {
+                "id": "S03",
+                "purpose": "Priorizar hasta cinco correcciones verificables.",
+                "skill": "design-audit-genjutsu",
+                "gate": "G14",
+                "stop": "No remediar desde el rol verifier; emitir REVISE o BLOCKED."
+              }
+            ]
+          },
+          {
+            "id": "P08",
+            "title": "Edita, compone y reutiliza",
+            "purpose": "Monta, compone, localiza y reutiliza con lineage, QC y rollback.",
+            "state": "POSTPRODUCTION_VALIDATED",
+            "prompt": "p08-editar/prompt-spec.md",
+            "outputs": [
+              "Candidato de edición montado con lineage",
+              "EDL y handoff QC completos",
+              "Matriz de exportación con rollback"
+            ],
+            "deliverables": ["edit-candidate-v1", "edl-v1", "export-matrix-v1"],
+            "skills": [
+              "content-os-remotion-render",
+              "remotion-video-production-v2",
+              "content-os-seam-craft"
+            ],
+            "gates": ["MW_EDIT_APPROVED", "G14"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Priorizar cambios y preparar un successor candidate.",
+                "skill": "content-os-seam-craft",
+                "gate": "MW_EDIT_APPROVED",
+                "stop": "Preservar el candidate anterior y su lineage inmutable."
+              },
+              {
+                "id": "S02",
+                "purpose": "Editar, componer o localizar según el EDL.",
+                "skill": "content-os-remotion-render",
+                "gate": "MW_EDIT_APPROVED",
+                "stop": "Volver a P06 si falta un activo; no fabricar sustitutos no autorizados."
+              },
+              {
+                "id": "S03",
+                "purpose": "Comparar, probar regresiones y definir exportación.",
+                "skill": "content-os-remotion-render",
+                "gate": "G14",
+                "stop": "Bloquear diferencias no explicadas, QC incompleto o rollback ausente."
+              }
+            ]
+          },
+          {
+            "id": "P09",
+            "title": "Empaqueta, publica, conversa o aprende",
+            "purpose": "Separa empaque, publicación, comunidad y aprendizaje para operar con control.",
+            "state": "READY",
+            "prompt": "p09-distribuir/prompt-spec.md",
+            "outputs": [
+              "Paquete por plataforma listo",
+              "Registro de publicación trazable",
+              "Reporte de aprendizaje cerrando el ciclo"
+            ],
+            "deliverables": ["platform-package-v1", "publication-record-v1", "learning-report-v1"],
+            "skills": [
+              "metodologia-brand-router",
+              "instagram-content-orchestration",
+              "instagram-carousel-production"
+            ],
+            "gates": ["MW_DISTRIBUTION_AUTHORIZED", "G15", "G17"],
+            "steps": [
+              {
+                "id": "S01",
+                "purpose": "Validar autorización, estado y hash del candidate.",
+                "skill": "metodologia-brand-router",
+                "gate": "MW_DISTRIBUTION_AUTHORIZED",
+                "stop": "Sin aprobación humana inequívoca, preparar package y detener."
+              },
+              {
+                "id": "S02",
+                "purpose": "Adaptar el paquete al canal sin mutar el contenido aprobado.",
+                "skill": "instagram-content-orchestration",
+                "gate": "G15",
+                "stop": "Bloquear adaptación que altere claims, marca o autorización."
+              },
+              {
+                "id": "S03",
+                "purpose": "Preparar checklist y registro de publicación.",
+                "skill": "instagram-carousel-production",
+                "gate": "G17",
+                "stop": "No publicar, enviar ni activar conectores desde este workflow."
+              },
+              {
+                "id": "S04",
+                "purpose": "Registrar baseline y aprendizaje sin inventar métricas.",
+                "skill": "instagram-content-orchestration",
+                "gate": "G17",
+                "stop": "Marcar coverage_gap si no existen datos observables."
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script>
+      document.querySelector('button')?.addEventListener('click', () => {
+        const r = document.documentElement;
+        r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+      });
+    </script>
+  </body>
+</html>

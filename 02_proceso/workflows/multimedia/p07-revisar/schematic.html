@@ -1,21 +1,23 @@
 <!doctype html>
-<html lang="es" data-stage="P07">
+<html lang="es" data-stage="P07" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MetodologIA · Multimedia · P07 — Revisa material multimedia</title>
     <meta name="state" content="RENDERED_DRAFT" />
     <meta name="provenance" content="MIA-MEDIA-LIB-2.0.0 v2.0.0-candidato" />
+    <meta name="design-system" content="metodologia-html-v7" />
     <style>
       :root {
-        --brand-canvas: #f5f7fa;
-        --brand-canvas-deep: #e2e8f0;
-        --brand-ink: #0a122a;
+        --brand-canvas: #ffffff;
+        --brand-canvas-deep: #f0f4f8;
+        --brand-ink: #122562;
         --brand-surface: #ffffff;
-        --brand-surface-alt: #f1f5f9;
-        --brand-gold: #e0b400;
-        --brand-gold-text: #8a6d00;
-        --brand-gold-soft: #f0c820;
+        --brand-surface-alt: #f0f4f8;
+        --brand-gold: #ffd700;
+        --brand-gold-text: #122562;
+        --brand-gold-soft: #ffe34d;
+        --brand-blue: #137dc5;
         --brand-text: var(--brand-ink);
         --brand-text-soft: #334155;
         --brand-muted: #576472;
@@ -28,6 +30,18 @@
         --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
         --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       }
+      [data-theme='dark'] {
+        --brand-canvas: #09143a;
+        --brand-canvas-deep: #122562;
+        --brand-ink: #f8fafc;
+        --brand-surface: #122562;
+        --brand-surface-alt: #182f73;
+        --brand-text: #f8fafc;
+        --brand-text-soft: #dbeafe;
+        --brand-muted: #bfdbfe;
+        --brand-border: rgba(255, 255, 255, 0.2);
+        --brand-gold-text: #ffd700;
+      }
       * {
         box-sizing: border-box;
       }
@@ -35,6 +49,33 @@
       body {
         margin: 0;
         padding: 0;
+      }
+      .skip-link {
+        position: fixed;
+        left: 1rem;
+        top: -5rem;
+        z-index: 10;
+        padding: 0.75rem 1rem;
+        background: var(--brand-blue);
+        color: #ffffff;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+      :focus-visible {
+        outline: 3px solid var(--brand-blue);
+        outline-offset: 3px;
+      }
+      .theme-toggle {
+        min-width: 44px;
+        min-height: 44px;
+        float: right;
+        border: 2px solid var(--brand-blue);
+        border-radius: 999px;
+        background: var(--brand-surface);
+        color: var(--brand-text);
+        font: 700 0.8rem var(--font-body);
+        cursor: pointer;
       }
       body {
         font-family: var(--font-body);
@@ -69,7 +110,7 @@
       }
       .wordmark {
         font-family: var(--font-head);
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -0.02em;
         font-size: clamp(1rem, 2.4vw, 1.25rem);
         color: var(--brand-gold);
@@ -95,7 +136,7 @@
       }
       h1 {
         font-family: var(--font-head);
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -0.025em;
         line-height: 1.05;
         font-size: clamp(1.9rem, 5.4vw, 3rem);
@@ -388,11 +429,53 @@
           filter: drop-shadow(0 10px 26px rgba(224, 180, 0, 0.7));
         }
       }
+      @media (max-width: 768px) {
+        .card.outputs,
+        .card.deliverables,
+        .card.capabilities,
+        .card.gate,
+        .cta {
+          grid-column: span 12;
+        }
+        .chain-card {
+          overflow-x: auto;
+        }
+        .chain-svg {
+          min-width: 920px;
+        }
+      }
+      @media (max-width: 375px) {
+        .wrap {
+          padding: 1rem;
+        }
+        .hero {
+          border-radius: 16px;
+        }
+      }
+      @media print {
+        .theme-toggle,
+        .skip-link {
+          display: none;
+        }
+        body,
+        .card,
+        .chain-card {
+          background: #ffffff;
+          color: #122562;
+          box-shadow: none;
+        }
+        .hero {
+          background: #122562;
+          print-color-adjust: exact;
+        }
+      }
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <div class="wrap">
       <header class="hero">
+        <button class="theme-toggle" type="button" aria-label="Cambiar tema">Tema</button>
         <p class="wordmark">Metodo<span>logIA</span></p>
         <span class="stage-tag">P07 · Multimedia P00 → P09</span>
         <h1>Revisa material multimedia</h1>
@@ -478,7 +561,7 @@
         </svg>
       </section>
 
-      <main class="grid">
+      <main class="grid" id="contenido">
         <section class="card outputs">
           <h2>Outputs</h2>
           <ul>
@@ -518,5 +601,12 @@
         <span class="state-note">RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED</span>
       </footer>
     </div>
+    <script>
+      const toggle = document.querySelector('.theme-toggle');
+      toggle?.addEventListener('click', () => {
+        const root = document.documentElement;
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      });
+    </script>
   </body>
 </html>

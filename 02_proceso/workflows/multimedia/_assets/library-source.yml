@@ -1,0 +1,25 @@
+schema_version: multimedia-library-source-v1
+source_id: MIA-MEDIA-LIB-2.0.0
+title: MetodologIA Biblioteca Universal de Creación Multimedia
+version: 2.0.0-candidato
+origin: user_provided_local_artifact
+portable_locator: supplied-artifact:metodologia-multimedia-library-v2-candidate
+sha256: 8746bd9d7ca025713664ad3c92a353ce1fea7140bc10de47b0255c673c95093f
+bytes: 416297
+lines: 4990
+authority: first_party_candidate
+raw_content_copied: false
+normalized_into:
+  - 02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p01-curar-material/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p02-investigar/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p03-crear-brief/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p04-calendarizar/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p05-disenar-pieza/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p06-crear-activos/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p08-editar/prompt-spec.md
+  - 02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md
+gate_effect:
+  allows: [candidate_generation]
+  does_not_allow: [HUMAN_APPROVED, READY, PUBLISHED]
