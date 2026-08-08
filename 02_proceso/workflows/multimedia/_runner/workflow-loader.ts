@@ -21,8 +21,20 @@ const parseFrontmatter = (md: string): Record<string, unknown> | null => {
 
 export const parseArgs = (
   argv: string[],
-): {workflow: string; dryRun: boolean; outputSelection?: string} => {
-  const result: {workflow: string; dryRun: boolean; outputSelection?: string} = {
+): {
+  workflow: string;
+  dryRun: boolean;
+  outputSelection?: string;
+  intent?: string;
+  workOrder?: string;
+} => {
+  const result: {
+    workflow: string;
+    dryRun: boolean;
+    outputSelection?: string;
+    intent?: string;
+    workOrder?: string;
+  } = {
     workflow: '',
     dryRun: false,
   };
@@ -31,7 +43,9 @@ export const parseArgs = (
     else if (arg.startsWith('--workflow=')) result.workflow = arg.slice('--workflow='.length);
     else if (arg.startsWith('--output-selection=')) {
       result.outputSelection = arg.slice('--output-selection='.length);
-    } else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
+    } else if (arg.startsWith('--intent=')) result.intent = arg.slice('--intent='.length);
+    else if (arg.startsWith('--work-order=')) result.workOrder = arg.slice('--work-order='.length);
+    else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
   }
   return result;
 };
