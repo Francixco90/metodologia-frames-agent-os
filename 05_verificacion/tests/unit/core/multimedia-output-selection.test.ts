@@ -48,6 +48,7 @@ const unsignedWorkOrder = {
   work_order_id: 'WO-P03-TEST',
   workflow_id: 'P03' as const,
   intent_hash: intentHash,
+  producer_actor_id: 'content-producer-local',
   allowed_outputs: ['campaign-charter-v1', 'executive-presentation-v1'],
   effect_class: 'local_reversible' as const,
   publication_policy: 'forbidden' as const,

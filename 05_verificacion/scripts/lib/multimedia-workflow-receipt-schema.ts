@@ -52,6 +52,14 @@ export const MultimediaWorkflowReceiptSchema = z.strictObject({
   work_product_state_to: z.string().min(1),
   gate: z.string().regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u),
   actor: z.string().min(1),
+  producer_actor_id: z
+    .string()
+    .regex(/^[a-z][a-z0-9-]{2,79}$/u)
+    .optional(),
+  ingestor_actor_id: z
+    .string()
+    .regex(/^[a-z][a-z0-9-]{2,79}$/u)
+    .optional(),
   ran_at: z.iso.datetime({offset: true}),
   append_only: z.literal(true),
   human_approved: z.literal(false),

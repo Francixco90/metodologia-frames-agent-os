@@ -14,6 +14,7 @@ import {resolve} from 'node:path';
 import {parse, stringify} from 'yaml';
 import {afterAll, describe, expect, it, vi} from 'vitest';
 
+import {MultimediaWorkflowReceiptSchema} from '../../../scripts/lib/multimedia-workflow-receipt-schema.ts';
 import {FRAMES_DELIVERABLE_SECTIONS} from 'workflows/multimedia/_schema/deliverable-v1.schema.ts';
 import {MultimediaWorkflowSchema} from 'workflows/multimedia/_schema/workflow-v1.schema.ts';
 import {loadDeliverableDefinitions} from 'workflows/multimedia/_runner/deliverable-material.ts';
@@ -50,6 +51,18 @@ const originalExitCode = process.exitCode;
 const digestText = (text: string): string => createHash('sha256').update(text).digest('hex');
 const digestFile = (path: string): string => digestText(readFileSync(path, 'utf8'));
 const runAt = new Date('2026-08-08T12:00:00Z');
+const sourceText = 'Fuente local verificable para la campaña.\n';
+const sourceSha = digestText(sourceText);
+const sourceRef = 'fixture-campaign';
+const declaredSources = [
+  {
+    source_id: sourceRef,
+    ref: 'sources/campaign.txt',
+    sha256: sourceSha,
+    authority: 'verified' as const,
+    rights: 'cleared' as const,
+  },
+];
 
 afterAll(() => {
   process.argv = originalArgv;
@@ -60,7 +73,10 @@ afterAll(() => {
 const prepareAuthority = (name: string, unknown = false) => {
   const lane = resolve(directory, name);
   const materialsDir = resolve(lane, 'materials');
+  const sourcesDir = resolve(lane, 'sources');
   mkdirSync(materialsDir, {recursive: true});
+  mkdirSync(sourcesDir, {recursive: true});
+  writeFileSync(resolve(sourcesDir, 'campaign.txt'), sourceText, 'utf8');
   const requestPath = resolve(lane, 'request.json');
   const intentPath = resolve(lane, 'intent.yml');
   writeFileSync(
@@ -92,6 +108,7 @@ const prepareAuthority = (name: string, unknown = false) => {
     work_order_id: `WO-P03-${name.toUpperCase()}`,
     workflow_id: 'P03' as const,
     intent_hash: intentHash,
+    producer_actor_id: 'content-producer-local',
     allowed_outputs: effectiveIds,
     effect_class: 'local_reversible' as const,
     publication_policy: 'forbidden' as const,
@@ -137,7 +154,7 @@ const prepareAuthority = (name: string, unknown = false) => {
         identity: {brand: 'MetodologIA', owner: 'content-producer-local'},
         audience: definition.audience,
         purpose: definition.purpose,
-        sources: [],
+        sources: declaredSources,
         formats: definition.formats,
         piece_families: definition.piece_families,
         companion_for: null,
@@ -148,7 +165,7 @@ const prepareAuthority = (name: string, unknown = false) => {
           value_type: 'text' as const,
           status: state === 'DRAFT' ? ('unknown' as const) : ('observed' as const),
           value: state === 'DRAFT' ? 'Pendiente.' : `Contenido verificado para ${field}.`,
-          source_refs: state === 'DRAFT' ? [] : [`fixture://${id}/${field}`],
+          source_refs: state === 'DRAFT' ? [] : [sourceRef],
         })),
         state,
         next_gate: definition.acceptance_gate,
@@ -277,36 +294,28 @@ describe('causal material runner', () => {
     expect(readdirSync(outputDir).some((name) => name.includes('presentacion-ejecutiva'))).toBe(
       false,
     );
-    const envelopeName = readdirSync(outputDir).find((name) => name.endsWith('.yml'))!;
-    const envelope = parse(readFileSync(resolve(outputDir, envelopeName), 'utf8')) as {
-      content: {evidence_status: string; producer_actor_id: string; source_sha256: string};
-    };
-    expect(envelope.content).toMatchObject({
-      evidence_status: 'known',
-      producer_actor_id: 'content-producer-local',
-    });
-    expect(envelope.content.source_sha256).toMatch(/^[a-f0-9]{64}$/u);
     const receiptLane = resolve(result.receiptsRoot, 'WF-P03');
-    const receipt = parse(
-      readFileSync(resolve(receiptLane, readdirSync(receiptLane)[0]!, 'receipt.yml'), 'utf8'),
-    ) as {
-      work_product_state_to: string;
-      actor: string;
-      inputs: Array<{artifact: string}>;
-      outputs: unknown[];
-    };
+    const receipt = MultimediaWorkflowReceiptSchema.parse(
+      parse(
+        readFileSync(resolve(receiptLane, readdirSync(receiptLane)[0]!, 'receipt.yml'), 'utf8'),
+      ),
+    );
     expect(receipt).toMatchObject({
       work_product_state_to: 'RENDERED_DRAFT',
       actor: 'local-material-ingestor',
+      producer_actor_id: 'content-producer-local',
+      ingestor_actor_id: 'local-material-ingestor',
     });
     expect(receipt.inputs.map(({artifact}) => artifact)).toContain('material-input-manifest-v1');
     expect(receipt.outputs).toHaveLength(4);
   });
 
-  it('blocks an unknown produced model before artifacts or receipts exist', () => {
-    const result = invoke(prepareAuthority('unknown', true));
+  it('blocks a declared source when its local content no longer matches the hash', () => {
+    const authority = prepareAuthority('source-drift');
+    writeFileSync(resolve(authority.lane, 'sources/campaign.txt'), 'tampered\n', 'utf8');
+    const result = invoke(authority);
     expect(process.exitCode).toBe(1);
-    expect(result.errors.join('\n')).toContain('MW-MATERIAL-EVIDENCE001');
+    expect(result.errors.join('\n')).toContain('MW-MATERIAL-SOURCE001');
     expect(existsSync(result.artifactRoot)).toBe(false);
     expect(existsSync(result.receiptsRoot)).toBe(false);
   });

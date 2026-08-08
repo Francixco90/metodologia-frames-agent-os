@@ -44,6 +44,10 @@ export const PieceFamilyV1Schema = z.enum([
 ]);
 
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u, 'Expected lowercase SHA-256');
+const SOURCE_REF_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$/u;
+export const DeliverableSourceRefSchema = z
+  .string()
+  .regex(SOURCE_REF_PATTERN, 'Expected a portable source_id');
 
 export const DeliverableFieldV1Schema = z.strictObject({
   field_id: z.string().regex(/^[a-z][a-z0-9-]{1,79}$/u),
@@ -51,7 +55,7 @@ export const DeliverableFieldV1Schema = z.strictObject({
   value_type: z.enum(['text', 'list', 'number', 'boolean', 'date', 'table', 'reference']),
   status: z.enum(['observed', 'inferred', 'assumed', 'unknown']),
   value: z.union([z.string().max(20_000), z.array(z.string().max(2_000)).max(200)]),
-  source_refs: z.array(z.string().min(1).max(500)).max(40),
+  source_refs: z.array(DeliverableSourceRefSchema).max(40),
 });
 
 export const FramesDeliverableFrontmatterV1Schema = z
@@ -79,7 +83,10 @@ export const FramesDeliverableFrontmatterV1Schema = z
     next_gate: z.string().min(1).max(80),
     content_sha256: Sha256Schema,
   })
-  .superRefine(({fields, state}, context) => {
+  // Conservative evidence policy: observed requires verified material; inferred
+  // requires a hash-bound verified/user source; assumed may omit a source, but
+  // any SourceRef it declares must still resolve and may never be UNKNOWN.
+  .superRefine(({fields, sources, state}, context) => {
     if (!['DRAFT', 'BLOCKED'].includes(state) && fields.some(({status}) => status === 'unknown')) {
       context.addIssue({
         code: 'custom',
@@ -87,6 +94,33 @@ export const FramesDeliverableFrontmatterV1Schema = z
         message: `state ${state} forbids unknown fields`,
       });
     }
+    const sourceById = new Map(sources.map((source) => [source.source_id, source]));
+    if (sourceById.size !== sources.length) {
+      context.addIssue({code: 'custom', path: ['sources'], message: 'Duplicate source_id'});
+    }
+    fields.forEach((field, fieldIndex) => {
+      if (['observed', 'inferred'].includes(field.status) && field.source_refs.length === 0) {
+        context.addIssue({
+          code: 'custom',
+          path: ['fields', fieldIndex, 'source_refs'],
+          message: `${field.status} field requires a declared hash-bound source`,
+        });
+      }
+      field.source_refs.forEach((ref, refIndex) => {
+        const source = sourceById.get(ref);
+        const unresolved = !source || source.sha256 === null || source.authority === 'unknown';
+        const observedWithoutVerified =
+          field.status === 'observed' && source?.authority !== 'verified';
+        if (unresolved || observedWithoutVerified) {
+          context.addIssue({
+            code: 'custom',
+            path: ['fields', fieldIndex, 'source_refs', refIndex],
+            message:
+              'SourceRef must resolve to a declared hash-bound source with sufficient authority',
+          });
+        }
+      });
+    });
   });
 
 export const DeliverableSectionV1Schema = z.strictObject({

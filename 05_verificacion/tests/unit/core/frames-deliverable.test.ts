@@ -20,7 +20,15 @@ const draft: FramesDeliverableDraftV1 = {
   identity: {brand: 'MetodologIA', owner: 'Content Producer'},
   audience: 'Equipo de campaña y aprobadores.',
   purpose: 'Alinear alcance, resultado, piezas y decisión antes de producir.',
-  sources: [],
+  sources: [
+    {
+      source_id: 'campaign-source',
+      ref: 'fixture://campaign',
+      sha256: 'e'.repeat(64),
+      authority: 'verified',
+      rights: 'cleared',
+    },
+  ],
   formats: ['md', 'html'],
   piece_families: ['carousel', 'story', 'miniclip'],
   companion_for: null,
@@ -32,7 +40,7 @@ const draft: FramesDeliverableDraftV1 = {
       value_type: 'text',
       status: 'observed',
       value: 'Conseguir una decisión verificable.',
-      source_refs: [],
+      source_refs: ['campaign-source'],
     },
   ],
   state: 'RENDERED_DRAFT',
@@ -81,6 +89,18 @@ describe('FramesDeliverableV1 markdown/html contract', () => {
     expect(() =>
       parseFramesDeliverableMarkdown(markdown.replace('Contenido verificable 1.', 'Alterado.')),
     ).toThrow(/content_sha256 mismatch/u);
+  });
+
+  it('blocks observed evidence without a declared or referenced source', () => {
+    expect(() => createFramesDeliverableMarkdown({...draft, sources: []}, sections)).toThrow(
+      /SourceRef must resolve/u,
+    );
+    expect(() =>
+      createFramesDeliverableMarkdown(
+        {...draft, fields: [{...draft.fields[0]!, source_refs: []}]},
+        sections,
+      ),
+    ).toThrow(/requires a declared hash-bound source/u);
   });
 
   it('fails parity when HTML canonical data drifts', () => {
