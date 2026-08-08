@@ -24,7 +24,19 @@ export type QualityGateContext = {
   receiptPayload: Record<string, unknown>;
   receiptDir: string;
   inputResolutions: Array<{input: string; resolved: string; exists: boolean}>;
-  outputResolutions: Array<{ref: string; stagedPath: string; exists: boolean; sha256: string}>;
+  outputResolutions: Array<{
+    ref: string;
+    stagedPath: string;
+    exists: boolean;
+    sha256: string;
+    companions: Array<{
+      format: 'md' | 'html';
+      ref: string;
+      stagedPath: string;
+      exists: boolean;
+      sha256: string;
+    }>;
+  }>;
   autoAdvance: boolean;
 };
 

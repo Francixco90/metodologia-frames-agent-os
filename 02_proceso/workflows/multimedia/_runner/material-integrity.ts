@@ -17,6 +17,7 @@ type ReceiptOutput = {
   sha256?: unknown;
   required?: unknown;
   materialized?: unknown;
+  companions?: unknown;
 };
 
 export const inspectMaterialEvidence = (
@@ -105,6 +106,28 @@ export const inspectOutputIntegrity = (
       const materialHash = digestFile(resolution.stagedPath);
       if (materialHash !== output.sha256 || materialHash !== resolution.sha256) {
         return {passed: false, detail: `material hash mismatch: ${ref}`};
+      }
+      const receiptCompanions = Array.isArray(output.companions) ? output.companions : [];
+      if (receiptCompanions.length !== 2 || resolution.companions.length !== 2) {
+        return {passed: false, detail: `missing md/html companions: ${ref}`};
+      }
+      for (const companion of resolution.companions) {
+        const receiptCompanion = receiptCompanions.find(
+          (item) =>
+            typeof item === 'object' &&
+            item !== null &&
+            (item as {ref?: unknown}).ref === companion.ref,
+        ) as {sha256?: unknown; materialized?: unknown} | undefined;
+        if (
+          !companion.exists ||
+          !['md', 'html'].includes(companion.format) ||
+          !receiptCompanion ||
+          receiptCompanion.materialized !== true ||
+          receiptCompanion.sha256 !== companion.sha256 ||
+          digestFile(companion.stagedPath) !== companion.sha256
+        ) {
+          return {passed: false, detail: `invalid companion binding: ${companion.ref}`};
+        }
       }
     }
   } catch (error) {

@@ -21,6 +21,9 @@ export const ArtifactEnvelopeV1 = z.strictObject({
     evidence_tags: z.array(z.string().min(1)).min(1),
     template_id: z.string().regex(/^TPL-[A-Z0-9][A-Z0-9-]{2,79}$/u),
     limitation: z.string().min(1),
+    markdown_ref: z.string().min(1),
+    html_ref: z.string().min(1),
+    content_sha256: z.string().regex(/^[a-f0-9]{64}$/u),
   }),
   provenance: z
     .strictObject({
