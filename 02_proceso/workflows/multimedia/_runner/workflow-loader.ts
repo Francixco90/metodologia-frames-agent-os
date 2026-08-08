@@ -27,6 +27,7 @@ export const parseArgs = (
   outputSelection?: string;
   intent?: string;
   workOrder?: string;
+  materialManifest?: string;
 } => {
   const result: {
     workflow: string;
@@ -34,6 +35,7 @@ export const parseArgs = (
     outputSelection?: string;
     intent?: string;
     workOrder?: string;
+    materialManifest?: string;
   } = {
     workflow: '',
     dryRun: false,
@@ -45,7 +47,9 @@ export const parseArgs = (
       result.outputSelection = arg.slice('--output-selection='.length);
     } else if (arg.startsWith('--intent=')) result.intent = arg.slice('--intent='.length);
     else if (arg.startsWith('--work-order=')) result.workOrder = arg.slice('--work-order='.length);
-    else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
+    else if (arg.startsWith('--material-manifest=')) {
+      result.materialManifest = arg.slice('--material-manifest='.length);
+    } else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
   }
   return result;
 };

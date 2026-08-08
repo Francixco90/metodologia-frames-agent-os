@@ -37,6 +37,7 @@ export type QualityGateContext = {
       sha256: string;
     }>;
   }>;
+  effectiveOutputIds?: string[];
   autoAdvance: boolean;
 };
 
