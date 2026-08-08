@@ -163,7 +163,7 @@ const prepareAuthority = (name: string, sentinel?: 'field' | 'section') => {
         : sentinel === 'section' && index === 0
           ? cleanMarkdown.replace(
               'Resultado y decisión: contenido verificado.',
-              'Resultado y decisión:\n\n- TODO',
+              'Resultado y decisión:\n\n- TODO: completar claim',
             )
           : cleanMarkdown;
     const markdownPath = resolve(materialsDir, `${id}.md`);

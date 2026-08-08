@@ -14,9 +14,8 @@ const bracketedPlaceholder = new RegExp(
   `(?:⟦|\\[\\[?|\\{\\{?|<)\\s*${MARKERS}(?:\\s*[:_-][^⟧\\]}>]*)?\\s*(?:⟧|\\]\\]?|\\}\\}?|>)`,
   'iu',
 );
-const barePlaceholder = new RegExp(`^\\s*${MARKERS}(?:\\s+DE[^\\n]*)?[.!]?\\s*$`, 'iu');
-const bulletPlaceholder = new RegExp(
-  `(?:^|\\n)\\s*[-*+]\\s+${MARKERS}(?:\\s+DE[^\\n]*)?[.!]?\\s*(?=\\n|$)`,
+const lineItemPlaceholder = new RegExp(
+  `(?:^|\\n)\\s*(?:[-*+]\\s+)?${MARKERS}(?:(?:\\s*(?::|_|-|–|—)\\s*|\\s+DE\\s+)[^\\n]*)?[.!]?\\s*(?=\\n|$)`,
   'iu',
 );
 const structuredPlaceholder = new RegExp(
@@ -28,8 +27,7 @@ export const containsUnresolvedPlaceholder = (value: string | string[]): boolean
   (Array.isArray(value) ? value : [value]).some(
     (item) =>
       bracketedPlaceholder.test(item) ||
-      barePlaceholder.test(item) ||
-      bulletPlaceholder.test(item) ||
+      lineItemPlaceholder.test(item) ||
       structuredPlaceholder.test(item),
   );
 
