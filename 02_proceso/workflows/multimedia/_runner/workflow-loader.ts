@@ -19,12 +19,19 @@ const parseFrontmatter = (md: string): Record<string, unknown> | null => {
   return match?.[1] ? (parse(match[1]) as Record<string, unknown>) : null;
 };
 
-export const parseArgs = (argv: string[]): {workflow: string; dryRun: boolean} => {
-  const result = {workflow: '', dryRun: false};
+export const parseArgs = (
+  argv: string[],
+): {workflow: string; dryRun: boolean; outputSelection?: string} => {
+  const result: {workflow: string; dryRun: boolean; outputSelection?: string} = {
+    workflow: '',
+    dryRun: false,
+  };
   for (const arg of argv.slice(2)) {
     if (arg === '--dry-run') result.dryRun = true;
     else if (arg.startsWith('--workflow=')) result.workflow = arg.slice('--workflow='.length);
-    else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
+    else if (arg.startsWith('--output-selection=')) {
+      result.outputSelection = arg.slice('--output-selection='.length);
+    } else if (/^P[0-9]{2}$/u.test(arg)) result.workflow = arg;
   }
   return result;
 };
