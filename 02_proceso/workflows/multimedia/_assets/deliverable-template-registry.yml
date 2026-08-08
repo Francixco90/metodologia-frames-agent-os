@@ -1,105 +1,103 @@
 schema_version: deliverable-template-registry-v1
 templates:
   - template_id: TPL-P00-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: &deliverable_md 02_proceso/workflows/multimedia/_assets/deliverable-document-template.md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
     required_sections:
-      &brief_sections [
-        resultado-esperado,
-        pedido-interpretado,
-        audiencia-problema-accion,
-        evidencia-fuentes-supuestos,
-        propuesta-creativa,
-        steps-milestones,
-        deliverables,
-        skills-responsabilidades,
+      &deliverable_sections [
+        resultado-decision,
+        audiencia-uso,
+        entradas-evidencia-supuestos,
+        contenido-estructurado,
+        componentes-activos-prompts,
+        secuencia-hitos-dependencias,
+        skills-ownership-handoffs,
         riesgos-limites-casos-borde,
-        criterios-aceptacion,
-        diagrama,
-        decision-siguiente-gate,
+        criterios-aceptacion-qa,
+        estado-lineage-siguiente-gate,
       ]
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    data_schema_ref: &deliverable_schema 02_proceso/workflows/multimedia/_schema/deliverable-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 900, max: 1800}
   - template_id: TPL-P01-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P02-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 900, max: 1800}
   - template_id: TPL-P03-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: MW_BRIEF_APPROVED
     word_budget: {target: 1200, max: 2500}
   - template_id: TPL-P04-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 900, max: 1800}
   - template_id: TPL-P05-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 1200, max: 2500}
   - template_id: TPL-P06-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P07-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P08-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P09-DELIVERABLE-V1
-    markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
+    markdown_template_ref: *deliverable_md
     html_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.html
-    required_sections: *brief_sections
-    data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
+    required_sections: *deliverable_sections
+    data_schema_ref: *deliverable_schema
     parity: semantic
     design_profile: metodologia-html-v7
     acceptance_gate: G17

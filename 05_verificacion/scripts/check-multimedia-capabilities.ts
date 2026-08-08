@@ -1,16 +1,4 @@
-/**
- * check-multimedia-capabilities.ts — deterministic capability_map + BLUF
- * enforcement for the multimedia P00–P09 chain.
- *
- * CLI: `pnpm verify:multimedia`
- *
- * MW-CAP-01..07 cover schema, brief, skills, assets, templates, step bindings
- * and final template-gate integrity for every P00–P09 workflow.
- *
- * Fail-closed: any unresolved binding fails the gate. The generator
- * (`render-schematic-html.ts`) depends on the same contract, so a green gate
- * implies regenerable schematics. [CÓDIGO]
- */
+// Fail-closed P00–P09 capability, template, gate and deliverable integrity. [CÓDIGO]
 import {readFileSync, readdirSync, existsSync, realpathSync} from 'node:fs';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -20,6 +8,17 @@ import {
   MultimediaWorkflowSchema,
   type MultimediaWorkflow,
 } from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
+import {
+  loadDeliverableDefinitions,
+  type TemplateRegistryEntry,
+  validateCatalogCoverage,
+  validateTemplateAcceptanceGates,
+  validateWorkflowDeliverables,
+} from './lib/multimedia-deliverables.ts';
+export {
+  type TemplateRegistryEntry,
+  validateTemplateAcceptanceGates,
+} from './lib/multimedia-deliverables.ts';
 
 const root = process.cwd();
 const MW_DIR = join(root, '02_proceso', 'workflows', 'multimedia');
@@ -37,14 +36,6 @@ const V2_REGISTRY = join(root, '04_estado', 'registries', 'skills', 'skill-regis
 const SKILLS_DIR = join(root, '03_artefactos', 'skills');
 
 type Registry = {entries?: Array<{skill_id?: string}>; entries_inline?: string[]};
-export type TemplateRegistryEntry = {
-  template_id?: string;
-  markdown_template_ref?: string;
-  html_template_ref?: string;
-  data_schema_ref?: string;
-  design_profile?: string;
-  acceptance_gate?: string;
-};
 type TemplateRegistry = {templates?: TemplateRegistryEntry[]};
 
 function collectSkillIds(path: string): Set<string> {
@@ -71,6 +62,8 @@ const templateRegistry = existsSync(TEMPLATE_REGISTRY)
 const templates = new Map(
   (templateRegistry.templates ?? []).map((entry) => [entry.template_id ?? '', entry]),
 );
+const deliverableDefinitions = loadDeliverableDefinitions(root);
+const deliverables = new Map(deliverableDefinitions.map((item) => [item.deliverable_id, item]));
 
 function skillExists(id: string): boolean {
   if (v3Ids.has(id) || v2Ids.has(id)) return true;
@@ -96,38 +89,9 @@ function templateExists(id: string): boolean {
   );
 }
 
-/** Bind template acceptance to the declared final step, not intermediate gates. [METODOLOGIA] */
-export function validateTemplateAcceptanceGates(
-  workflow: MultimediaWorkflow,
-  registry: ReadonlyMap<string, TemplateRegistryEntry>,
-): string[] {
-  const finalStep = workflow.execution_steps[workflow.execution_steps.length - 1];
-  if (!finalStep) return [`MW-CAP-07 ${workflow.workflow_id}: missing final execution step`];
-
-  const issues: string[] = [];
-  if (!workflow.gates.includes(finalStep.gate)) {
-    issues.push(
-      `MW-CAP-07 ${workflow.workflow_id}: final step gate is not declared by workflow: ${finalStep.gate}`,
-    );
-  }
-
-  const templateIds = new Set([
-    ...workflow.outputs.map((output) => output.template_id),
-    ...workflow.execution_steps.map((step) => step.template_id),
-  ]);
-  for (const templateId of templateIds) {
-    const acceptanceGate = registry.get(templateId)?.acceptance_gate;
-    if (acceptanceGate && acceptanceGate !== finalStep.gate) {
-      issues.push(
-        `MW-CAP-07 ${workflow.workflow_id}: template ${templateId} accepts at ${acceptanceGate}, expected final gate ${finalStep.gate}`,
-      );
-    }
-  }
-  return issues;
-}
-
 const errors: string[] = [];
 let checked = 0;
+const workflows: MultimediaWorkflow[] = [];
 
 const stageDirs = readdirSync(MW_DIR).filter((d) => d.startsWith('p0'));
 for (const dir of stageDirs) {
@@ -137,6 +101,7 @@ for (const dir of stageDirs) {
   let wf;
   try {
     wf = MultimediaWorkflowSchema.parse(parse(readFileSync(wfPath, 'utf8')));
+    workflows.push(wf);
   } catch (e) {
     errors.push(`MW-CAP-01 ${dir}: schema parse failed — ${(e as Error).message.split('\n')[0]}`);
     continue;
@@ -178,7 +143,15 @@ for (const dir of stageDirs) {
     }
   }
   errors.push(...validateTemplateAcceptanceGates(wf, templates));
+  errors.push(
+    ...validateWorkflowDeliverables(root, wf, deliverables).map((issue) => `MW-CAP-08 ${issue}`),
+  );
 }
+errors.push(
+  ...validateCatalogCoverage(workflows, deliverableDefinitions).map(
+    (issue) => `MW-CAP-08 ${issue}`,
+  ),
+);
 
 if (
   process.argv[1] &&
