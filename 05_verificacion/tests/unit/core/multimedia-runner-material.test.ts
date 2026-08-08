@@ -163,7 +163,7 @@ const prepareAuthority = (name: string, sentinel?: 'field' | 'section') => {
         : sentinel === 'section' && index === 0
           ? cleanMarkdown.replace(
               'Resultado y decisión: contenido verificado.',
-              'Resultado y decisión: ⟦UNKNOWN:section⟧',
+              'Resultado y decisión:\n\n- TODO',
             )
           : cleanMarkdown;
     const markdownPath = resolve(materialsDir, `${id}.md`);
@@ -313,7 +313,7 @@ describe('causal material runner', () => {
   });
 
   it.each(['field', 'section'] as const)(
-    'blocks an observed %s sentinel before artifacts or receipts',
+    'blocks an observed %s placeholder before artifacts or receipts',
     (location) => {
       const result = invoke(prepareAuthority(`sentinel-${location}`, location));
       expect(process.exitCode).toBe(1);
