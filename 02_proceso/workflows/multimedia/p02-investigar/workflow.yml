@@ -27,12 +27,15 @@ inputs:
 outputs:
   - artifact: 'Claim Register'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P02-DELIVERABLE-V1
     required: true
   - artifact: 'Opportunity Map'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P02-DELIVERABLE-V1
     required: true
   - artifact: 'Question Bank'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P02-DELIVERABLE-V1
     required: true
 work_product_state: DISCOVERED
 gates:
@@ -68,6 +71,40 @@ capability_map:
     - claim-register-v1
     - opportunity-map-v1
     - question-bank-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Formular preguntas verificables desde el shortlist.'
+    inputs: [digest-shortlist-v1]
+    primary_skill: content-os-core
+    optional_skills: [content-os-registry]
+    verifier: RT-09
+    outputs: [question-bank-v1]
+    template_id: TPL-P02-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Detener si la pregunta no puede vincularse a una decisión editorial.'
+    context_budget: {target_files: 6, max_files: 10, target_tokens: 6000, max_tokens: 10000}
+  - step_id: S02
+    purpose: 'Buscar evidencia solo en fuentes autorizadas.'
+    inputs: [question-bank-v1, governed-sources]
+    primary_skill: content-os-registry
+    optional_skills: [content-os-core]
+    verifier: RT-09
+    outputs: [claim-register-v1]
+    template_id: TPL-P02-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Marcar UNKNOWN y bloquear si la evidencia es insuficiente.'
+    context_budget: {target_files: 10, max_files: 20, target_tokens: 10000, max_tokens: 16000}
+  - step_id: S03
+    purpose: 'Sintetizar oportunidades, matices y límites.'
+    inputs: [claim-register-v1, question-bank-v1]
+    primary_skill: content-os-core
+    optional_skills: [content-os-registry]
+    verifier: RT-09
+    outputs: [opportunity-map-v1]
+    template_id: TPL-P02-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Bloquear cualquier oportunidad basada en claims no verificados.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
