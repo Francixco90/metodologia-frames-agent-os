@@ -13,6 +13,16 @@ budgets:
     target: {multiplier: 1}
     hard: {multiplier: 2}
     rationale: 'P00-P09 schematics are deterministic projections of one governed HTML template.'
+  - surface: generated-multimedia-artifact-contract
+    kind: generated
+    match:
+      [
+        '02_proceso/workflows/multimedia/_schema/artifacts/**',
+        '02_proceso/workflows/multimedia/_assets/artifact-registry.md',
+      ]
+    target: {max_words: 800, max_lines: 100}
+    hard: {max_words: 1500, max_lines: 200}
+    rationale: 'Artifact schemas and their human index are deterministic projections of the deliverable registry.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'
@@ -112,6 +122,11 @@ budgets:
     target: {max_lines: 400}
     hard: {max_lines: 800}
     rationale: 'HTML templates use the approved document-specific ceiling.'
+  - surface: multimedia-deliverable-registry
+    match: '02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml'
+    target: {max_words: 4000, max_lines: 650}
+    hard: {max_words: 6000, max_lines: 800}
+    rationale: 'The 39-entry canonical catalog stays reviewable as one complete cross-workflow matrix.'
   - surface: authored-decisions-md
     match: '01_intencion/adrs/*.md'
     target: {max_words: 500, max_lines: 50}
