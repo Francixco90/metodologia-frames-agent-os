@@ -34,7 +34,7 @@ export const stageWorkflowOutputs = (
   const stageDir = basename(workflowDir);
   const consumer = workflow.next_workflow ? `[${workflow.next_workflow}]` : '[]';
   const outputs = workflow.outputs.map((output, index) => {
-    const artifactId = workflow.brief.deliverables[index] ?? slug(output.artifact);
+    const artifactId = output.deliverable_id;
     const ref = `03_artefactos/content/multimedia/${stageDir}/${slug(output.artifact)}.yml`;
     const contents = [
       `artifact_id: ${artifactId}`,

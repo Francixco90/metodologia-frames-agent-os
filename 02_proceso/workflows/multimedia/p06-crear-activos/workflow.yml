@@ -25,16 +25,24 @@ modes:
 inputs:
   - p05-disenar-pieza/workflow.yml
 outputs:
-  - artifact: 'Asset Package'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: asset-package-v1
+    artifact: 'Paquete de piezas candidatas'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/asset-package-v1.schema.ts
     template_id: TPL-P06-DELIVERABLE-V1
     required: true
-  - artifact: 'Asset Manifest'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: asset-manifest-v1
+    artifact: 'Manifiesto de activos'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/asset-manifest-v1.schema.ts
     template_id: TPL-P06-DELIVERABLE-V1
     required: true
-  - artifact: 'Capability Report'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: capability-report-v1
+    artifact: 'Reporte de capacidad'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/capability-report-v1.schema.ts
+    template_id: TPL-P06-DELIVERABLE-V1
+    required: true
+  - deliverable_id: tool-run-evidence-v1
+    artifact: 'Evidencia de ejecución'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/tool-run-evidence-v1.schema.ts
     template_id: TPL-P06-DELIVERABLE-V1
     required: true
 work_product_state: BUILD_VALIDATED

@@ -25,16 +25,25 @@ modes:
 inputs:
   - p03-crear-brief/workflow.yml
 outputs:
-  - artifact: 'Editorial Calendar'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: editorial-calendar-v1
+    artifact: 'Cronograma editorial'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/editorial-calendar-v1.schema.ts
     template_id: TPL-P04-DELIVERABLE-V1
     required: true
-  - artifact: 'Board'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: content-grid-v1
+    artifact: 'Parrilla de contenidos'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/content-grid-v1.schema.ts
+    template_id: TPL-P04-DELIVERABLE-V1
+    required: false
+    condition: 'content_count>1 or mode=calendario-de-campana'
+  - deliverable_id: board-v1
+    artifact: 'Tablero de producción'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/board-v1.schema.ts
     template_id: TPL-P04-DELIVERABLE-V1
     required: true
-  - artifact: 'Batch Plan'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: batch-plan-v1
+    artifact: 'Plan por lotes'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/batch-plan-v1.schema.ts
     template_id: TPL-P04-DELIVERABLE-V1
     required: true
 work_product_state: DEFINED
@@ -59,6 +68,7 @@ brief:
     - 'Plan por lote medible antes de extender'
   deliverables:
     - editorial-calendar-v1
+    - content-grid-v1
     - board-v1
     - batch-plan-v1
   context: 'Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.'
@@ -69,6 +79,7 @@ capability_map:
     - content-os-core
   assets:
     - editorial-calendar-v1
+    - content-grid-v1
     - board-v1
     - batch-plan-v1
 execution_steps:
@@ -78,7 +89,7 @@ execution_steps:
     primary_skill: dev-executing-plans
     optional_skills: [content-os-core]
     verifier: RT-11
-    outputs: [editorial-calendar-v1]
+    outputs: [editorial-calendar-v1, content-grid-v1]
     template_id: TPL-P04-DELIVERABLE-V1
     gate: G14
     stop_rule: 'Omitir P04 para una pieza única sin dependencias ni calendario.'

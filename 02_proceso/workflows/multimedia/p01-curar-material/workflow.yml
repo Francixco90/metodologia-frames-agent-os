@@ -25,16 +25,19 @@ modes:
 inputs:
   - p00-definir-sistema/workflow.yml
 outputs:
-  - artifact: 'Capture Card'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: capture-card-v1
+    artifact: 'Ficha de captura'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/capture-card-v1.schema.ts
     template_id: TPL-P01-DELIVERABLE-V1
     required: true
-  - artifact: 'Triage Record'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: triage-record-v1
+    artifact: 'Registro de triage'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/triage-record-v1.schema.ts
     template_id: TPL-P01-DELIVERABLE-V1
     required: true
-  - artifact: 'Digest/Shortlist'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: digest-shortlist-v1
+    artifact: 'Digest y shortlist'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/digest-shortlist-v1.schema.ts
     template_id: TPL-P01-DELIVERABLE-V1
     required: true
 work_product_state: CLASSIFIED

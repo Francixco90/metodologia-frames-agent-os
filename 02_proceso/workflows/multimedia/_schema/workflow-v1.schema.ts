@@ -41,10 +41,12 @@ export const WorkflowModeSchema = z.strictObject({
 });
 
 export const WorkflowOutputSchema = z.strictObject({
+  deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
   artifact: z.string().min(1).max(120),
   schema_ref: RelativePathSchema,
   template_id: z.string().regex(/^TPL-[A-Z0-9][A-Z0-9-]{2,79}$/u),
   required: z.boolean(),
+  condition: z.string().min(1).max(240).optional(),
 });
 
 export const WorkflowModelSchema = z.strictObject({

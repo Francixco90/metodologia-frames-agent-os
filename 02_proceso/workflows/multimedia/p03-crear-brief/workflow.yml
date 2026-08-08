@@ -25,16 +25,31 @@ modes:
 inputs:
   - p02-investigar/workflow.yml
 outputs:
-  - artifact: 'Brief/Campaign Map'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: brief-campaign-map-v1
+    artifact: 'Brief y mapa de campaña'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/brief-campaign-map-v1.schema.ts
     template_id: TPL-P03-DELIVERABLE-V1
     required: true
-  - artifact: 'A/B concepts'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: campaign-charter-v1
+    artifact: 'Charter de campaña'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/campaign-charter-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
+    required: false
+    condition: 'mode=campana-o-colaboracion'
+  - deliverable_id: executive-presentation-v1
+    artifact: 'Presentación ejecutiva'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/executive-presentation-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
+    required: false
+    condition: 'requested=true or decision_audience=leadership'
+  - deliverable_id: ab-concepts-v1
+    artifact: 'Conceptos A/B'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/ab-concepts-v1.schema.ts
     template_id: TPL-P03-DELIVERABLE-V1
     required: true
-  - artifact: 'Definition of Ready'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: definition-of-ready-v1
+    artifact: 'Definition of Ready'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/definition-of-ready-v1.schema.ts
     template_id: TPL-P03-DELIVERABLE-V1
     required: true
 work_product_state: DIRECTION_APPROVED
@@ -61,6 +76,8 @@ brief:
     - 'Definition of Ready cumplido'
   deliverables:
     - brief-campaign-map-v1
+    - campaign-charter-v1
+    - executive-presentation-v1
     - ab-concepts-v1
     - definition-of-ready-v1
   context: 'Define una pieza, sistema de derivados, serie o campaña con funciones distintas.'
@@ -73,6 +90,8 @@ capability_map:
     - dev-writing-plans
   assets:
     - brief-campaign-map-v1
+    - campaign-charter-v1
+    - executive-presentation-v1
     - ab-concepts-v1
     - definition-of-ready-v1
 execution_steps:
@@ -82,7 +101,7 @@ execution_steps:
     primary_skill: content-os-creative
     optional_skills: [dev-writing-plans]
     verifier: RT-09
-    outputs: [brief-campaign-map-v1]
+    outputs: [brief-campaign-map-v1, campaign-charter-v1]
     template_id: TPL-P03-DELIVERABLE-V1
     gate: G13
     stop_rule: 'Formular como máximo tres preguntas; volver a P02 si falta evidencia.'
@@ -104,7 +123,7 @@ execution_steps:
     primary_skill: content-os-creative
     optional_skills: [content-os-product-launch-video]
     verifier: RT-09
-    outputs: [ab-concepts-v1]
+    outputs: [ab-concepts-v1, executive-presentation-v1]
     template_id: TPL-P03-DELIVERABLE-V1
     gate: G13
     stop_rule: 'Bloquear conceptos que alteren claims o excedan restricciones.'
