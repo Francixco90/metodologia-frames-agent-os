@@ -1,0 +1,12 @@
+schema_version: source-lifecycle-v1
+receipt_id: RCP-FRAMES-EXPERIENCE-SOURCE-004
+source_id: SRC-FRAMES-EXPERIENCE-PIVOTE-V1
+event_order: 4
+actor_id: RT-10-EXPERIENCE-INTEGRATOR
+transition: {from: evaluated, to: active}
+projection_sha256: b5b8eba5e146ac5534b298af9535c3ffcedf767d5b97bc678c94dd0c10351cd0
+source_normalized_sha256: 5e2b59ce6e9e49aab5c1b9035079660d407b7f87e51657a6d4134c32f000c93e
+decision: activate_for_internal_experience_implementation_only
+execution_scope: local-evaluation
+publication_authority: false
+append_only: true

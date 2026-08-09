@@ -1,0 +1,11 @@
+schema_version: source-lifecycle-v1
+receipt_id: RCP-FRAMES-EXPERIENCE-SOURCE-003
+source_id: SRC-FRAMES-EXPERIENCE-PIVOTE-V1
+event_order: 3
+actor_id: RT-04-EXPERIENCE-ARCHITECT
+transition: {from: quarantined, to: evaluated}
+projection_sha256: b5b8eba5e146ac5534b298af9535c3ffcedf767d5b97bc678c94dd0c10351cd0
+decision: adopt_bounded_patterns_without_copying_runtime
+coverage_gaps: [source_runtime_behavior_not_independently_proven]
+publication_authority: false
+append_only: true
