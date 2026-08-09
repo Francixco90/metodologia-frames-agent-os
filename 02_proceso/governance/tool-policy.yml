@@ -85,7 +85,8 @@ rules:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - 'Write only within ownership-manifest allowlist for governance (governance/**, quality/reviews/rights-accessibility-security/**, receipts/migrations/**)'
+        - 'Write only within ownership-manifest allowlist for governance (governance/**, quality/reviews/rights-accessibility-security/**, receipts/migrations/**, receipts/experience/**, 04_estado/releases/experience/**)'
+        - 'Experience release recording is mechanical and APPROVED-only; governance cannot substitute for RT-09, RT-11 or H01.'
         - 'Bash restricted to read-only audits + static scanners; no live deployment'
         - 'Cannot grant HUMAN_APPROVED, READY or PUBLISHED. [CONFIG] ownership-manifest writers.governance; RT-09 contract.forbidden'
       source_ref: 'RT-09 contract.yml tools.allowed/forbidden; ownership-manifest writers.governance; dag packages A09a/A09b gates G03_PRECLEAR/G13'
@@ -141,7 +142,7 @@ rules:
       allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'Write only within workflows/content/**, workflows/multimedia/** and workflows/career/** plus declared content artifacts.'
+        - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/** and workflows/experience/** plus declared content artifacts and registries/experience/**.'
         - 'Career C09 is prepare-and-stop: no browser submission, connector, publish or external effect.'
         - 'Bash restricted to local typecheck, tests and deterministic workflow validators.'
       source_ref: 'ownership-manifest writers.content; dag packages A07/A07c gates G09_CONTENT/G09_CAREER'

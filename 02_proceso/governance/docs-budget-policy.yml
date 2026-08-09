@@ -47,6 +47,18 @@ budgets:
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
     rationale: 'Career HTML templates are deterministic offline projections of their canonical Markdown twins.'
+  - surface: generated-experience-blueprint-html
+    kind: generated
+    match: '03_artefactos/content/experience/frames-experience-blueprint.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'The Experience HTML blueprint is regenerated deterministically from its canonical Markdown model.'
+  - surface: generated-experience-projection-manifest
+    kind: generated
+    match: '03_artefactos/content/experience/projection-manifest.json'
+    target: {max_words: 500, max_lines: 200}
+    hard: {max_words: 1000, max_lines: 400}
+    rationale: 'The projection manifest is emitted by the same renderer and remains hash-bound to the blueprint.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'
@@ -148,6 +160,36 @@ budgets:
     target: {max_lines: 400}
     hard: {max_lines: 800}
     rationale: 'HTML templates use the approved document-specific ceiling.'
+  - surface: experience-blueprint-source
+    match: '03_artefactos/content/experience/frames-experience-blueprint.md'
+    target: {max_words: 1800, max_lines: 250}
+    hard: {max_words: 2500, max_lines: 400}
+    rationale: 'The canonical Experience blueprint remains comprehensive but independently reviewable.'
+  - surface: experience-control-assets
+    match:
+      [
+        '02_proceso/workflows/experience/component-registry.yml',
+        '02_proceso/workflows/experience/microcopy.es.yml',
+        '02_proceso/workflows/experience/service-blueprint.yml',
+      ]
+    target: {max_words: 1000, max_lines: 250}
+    hard: {max_words: 1800, max_lines: 400}
+    rationale: 'Allowlisted components, microcopy and service choreography stay concise and auditable.'
+  - surface: experience-release-manifest
+    match: '04_estado/releases/experience/**/release-manifest.json'
+    target: {max_words: 800, max_lines: 300}
+    hard: {max_words: 1500, max_lines: 500}
+    rationale: 'Approved release manifests preserve bounded hashes, compatibility and evidence.'
+  - surface: experience-release-guidance
+    match:
+      [
+        '04_estado/releases/experience/**/compatibility.md',
+        '04_estado/releases/experience/**/migration.md',
+        '04_estado/releases/experience/**/restore.md',
+      ]
+    target: {max_words: 500, max_lines: 150}
+    hard: {max_words: 1000, max_lines: 300}
+    rationale: 'Release compatibility, migration and restore instructions stay operationally dense.'
   - surface: career-deliverable-registry
     match: '02_proceso/workflows/career/_assets/deliverable-registry.yml'
     target: {max_words: 2500, max_lines: 500}
