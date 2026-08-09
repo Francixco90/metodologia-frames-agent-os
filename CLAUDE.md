@@ -32,7 +32,7 @@ local cuando el intake y el write set son suficientes; luego se detiene en
 
 - R6/R7 son brief-first; R4 exige `candidate_id`; R0 bloquea ambigüedad.
 - R1–R3/R5 conservan `coverage_gap` hasta tener handler productivo.
-- Cargar solo `context.md`, workflow, paso, template, skill y fuentes activos.
+- Cargar solo workflow, paso, template, skill, fuentes activas y su `context.md`.
 - El contexto privado vive en `work/private/CONTEXT.md` y solo se carga después
   del route lock con autoridad explícita.
 - Una skill sin receipt material permanece `planned`; `UNKNOWN` bloquea.

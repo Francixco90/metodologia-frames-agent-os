@@ -62,7 +62,8 @@ handler productivo. [CONFIG]
 | R6            | contenido P00–P09                   | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
 | R7            | Career C00–C09                      | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
 
-Una ruta sin handler puede orientar, no ejecutar ni inventar un sustituto.
+Una ruta sin handler puede orientar, no ejecutar. Nunca inventa un pipeline ni un
+sustituto para ocultar el `coverage_gap`.
 
 ## Workflow manager
 
