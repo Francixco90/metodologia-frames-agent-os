@@ -5,6 +5,7 @@ const id = 'career-application-orchestrator';
 const base = `skills/${id}`;
 const required = [
   'SKILL.md',
+  'context.md',
   'LINEAGE.yml',
   'references/orchestration-contract.md',
   'schemas/career-application-contract-v1.schema.json',
@@ -22,7 +23,9 @@ const negative = JSON.parse(docs.get('fixtures/negative/fail-closed-routes.json'
 for (const token of [
   `name: ${id}`,
   'description: This skill should be used when',
-  'version: 0.1.0',
+  'version: 0.2.0',
+  '## 1. Propósito y activación',
+  '## 6. Gates, handoff y contextos hijos',
   'lifecycle_state: active',
   'local-evaluation',
   'C00 → C01 → C02 → C06 → C08',

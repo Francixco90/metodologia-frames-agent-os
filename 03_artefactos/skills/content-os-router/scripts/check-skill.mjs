@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 const root = process.cwd();
 const required = [
   'skills/content-os-router/SKILL.md',
+  'skills/content-os-router/context.md',
   'skills/content-os-router/LINEAGE.yml',
   'skills/content-os-router/schemas/router-intent-v1.schema.json',
   'skills/content-os-router/schemas/content-intent-v2.schema.json',
@@ -35,6 +36,9 @@ const runtimeCombined = [
   .join('\n');
 
 for (const token of [
+  'version: 0.5.0',
+  '## 1. Activación',
+  '## 8. Handoff',
   'intent-router',
   'capability-map',
   'source-to-video',
