@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {ExperienceReleaseCapsuleV1Schema} from '../../core/contracts/experience-release-v1.ts';
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
 import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
+import {readSafeReleaseFile} from './safe-release-file.ts';
 
 const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
 const CAPSULE_FILES = [
@@ -74,16 +75,15 @@ export const verifyReleaseCapsule = (
   }
   for (const file of manifest.artifacts) {
     try {
-      const absolute = resolve(repositoryRoot, file.ref);
-      if (!lstatSync(absolute).isFile() || lstatSync(absolute).isSymbolicLink()) {
-        errors.push(`source-not-regular:${file.ref}`);
-        continue;
-      }
-      if (hash(readFileSync(absolute)) !== file.sha256) {
+      const observed = readSafeReleaseFile(repositoryRoot, file.ref);
+      if (observed.sha256 !== file.sha256) {
         errors.push(`source-hash-drift:${file.ref}`);
       }
-    } catch {
-      errors.push(`source-file-missing:${file.ref}`);
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException).code;
+      errors.push(
+        code === 'ENOENT' ? `source-file-missing:${file.ref}` : `source-path-unsafe:${file.ref}`,
+      );
     }
   }
   if (manifest.status === 'APPROVED') {
