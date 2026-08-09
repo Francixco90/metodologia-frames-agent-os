@@ -1,7 +1,12 @@
-# Intent interview — source→video
+# Intent interview — source-to-content
 
 Protocolo de captura de intent para routing source→video. Route-once: corre una
 vez, escribe `intent-brief.jsonl`, sale. Nada re-abre el router.
+
+Para `content-intent-v2`, preguntar solo por campos materialmente bloqueantes y
+no superar tres preguntas: audiencia, resultado y fuente/autoridad. Registrar
+los demás faltantes como supuestos visibles en el brief. Toda pieza nueva crea
+`brief.md`; HTML se ofrece como proyección. [CONFIG]
 
 ## 1. Estado del proyecto
 

@@ -24,6 +24,10 @@
    `setTimeout`/`setInterval` en el router (hereda core).
 8. **No render.** El router no renderiza. El HTML→MP4 adapter vive en
    `content-os-core`. El workflow orquesta; el router solo enruta.
+9. **Brief-first.** `content-intent-v2` siempre referencia un `brief.md` canónico;
+   una pieza nueva incluye P03 y no produce antes de `MW_BRIEF_APPROVED`.
+10. **Minimum stage path.** P00/P01/P02/P04/P06/P09 se añaden por señales
+    explícitas; P07/P08 permanecen obligatorios. P09 nunca publica.
    `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`.
 
 ## Example manifest entry
