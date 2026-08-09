@@ -10,10 +10,11 @@ import {
 } from './primitives.ts';
 import {ExperienceRouteIdV1Schema} from './experience-assistance-v1.ts';
 
-const MaterialReferenceV1Schema = z.strictObject({
+export const MaterialReferenceV1Schema = z.strictObject({
   ref: RelativePathSchema,
   sha256: Sha256Schema,
 });
+export type MaterialReferenceV1 = z.infer<typeof MaterialReferenceV1Schema>;
 const BudgetEnvelopeV1Schema = z.strictObject({
   targetFiles: z.number().int().positive(),
   maxFiles: z.number().int().positive(),

@@ -7,13 +7,9 @@ import {
   SkillInvocationReceiptV1Schema,
   hashExperienceValue,
   type FramesWorkOrderV1,
+  type MaterialReferenceV1,
   type SkillInvocationReceiptV1,
 } from '../../core/contracts/index.ts';
-
-interface MaterialReferenceV1 {
-  ref: string;
-  sha256: string;
-}
 
 interface MaterialSkillResultV1 {
   status: 'PASS' | 'FAIL' | 'UNKNOWN' | 'BLOCKED';
@@ -30,37 +26,46 @@ export type MaterialSkillHandlerV1 = (
 const inside = (parent: string, child: string): boolean =>
   child === parent || child.startsWith(`${parent}${sep}`);
 
-const authorized = (ref: string, writeSet: readonly string[]): boolean =>
-  writeSet.some((rule) => {
+const authorized = (ref: string, allowedRefs: readonly string[]): boolean =>
+  allowedRefs.some((rule) => {
     const normalized = rule.replaceAll('\\', '/');
     if (!normalized.endsWith('/**')) return ref === normalized;
     const base = normalized.slice(0, -3);
     return ref === base || ref.startsWith(`${base}/`);
   });
 
-async function readAuthorizedOutput(
+async function readAuthorizedMaterial(
   rootRealPath: string,
-  output: MaterialReferenceV1,
-  writeSet: readonly string[],
+  material: MaterialReferenceV1,
+  allowedRefs: readonly string[],
+  kind: 'Evidence' | 'Output',
 ): Promise<MaterialReferenceV1> {
-  const normalizedRef = output.ref.replaceAll('\\', '/');
+  const normalizedRef = material.ref.replaceAll('\\', '/');
   const lexicalPath = resolve(rootRealPath, normalizedRef);
-  if (!inside(rootRealPath, lexicalPath) || !authorized(normalizedRef, writeSet)) {
-    throw new Error('Output is outside the authorized write set.');
+  if (!inside(rootRealPath, lexicalPath) || !authorized(normalizedRef, allowedRefs)) {
+    throw new Error(
+      kind === 'Output'
+        ? 'Output is outside the authorized write set.'
+        : 'Evidence is outside the authorized read/write set.',
+    );
   }
   const stat = await lstat(lexicalPath);
   if (stat.isSymbolicLink() || !stat.isFile()) {
-    throw new Error('Output must be a regular non-symlink file.');
+    throw new Error(`${kind} must be a regular non-symlink file.`);
   }
   const materialPath = await realpath(lexicalPath);
   const materialRef = relative(rootRealPath, materialPath).split(sep).join('/');
-  if (!inside(rootRealPath, materialPath) || !authorized(materialRef, writeSet)) {
-    throw new Error('Output realpath escapes the authorized write set.');
+  if (!inside(rootRealPath, materialPath) || !authorized(materialRef, allowedRefs)) {
+    throw new Error(
+      kind === 'Output'
+        ? 'Output realpath escapes the authorized write set.'
+        : 'Evidence realpath escapes the authorized read/write set.',
+    );
   }
   const digest = createHash('sha256')
     .update(await readFile(materialPath))
     .digest('hex');
-  if (digest !== output.sha256) throw new Error('Output read-back hash mismatch.');
+  if (digest !== material.sha256) throw new Error(`${kind} read-back hash mismatch.`);
   return {ref: materialRef, sha256: digest};
 }
 
@@ -100,40 +105,37 @@ export class MaterialSkillAdapterV1 {
     }
     try {
       const result = await handler(workOrder);
+      const rootRealPath = await realpath(this.#root);
+      const evidenceScope = [...workOrder.readSet, ...workOrder.writeSet];
       if (result.status !== 'PASS') {
-        return this.#receipt(
-          input,
-          workOrder,
-          result.status,
-          [],
-          result.evidence,
-          result.publicSummary,
+        const evidence = await Promise.all(
+          result.evidence.map((item) =>
+            readAuthorizedMaterial(rootRealPath, item, evidenceScope, 'Evidence'),
+          ),
         );
+        return this.#receipt(input, workOrder, result.status, [], evidence, result.publicSummary);
       }
       const declaredRefs = result.outputs.map(({ref}) => ref).sort();
       const expectedRefs = [...workOrder.expectedOutputs].sort();
       if (JSON.stringify(declaredRefs) !== JSON.stringify(expectedRefs)) {
         throw new Error('Declared outputs do not match the work order.');
       }
-      const rootRealPath = await realpath(this.#root);
       const outputs = await Promise.all(
         result.outputs.map((output) =>
-          readAuthorizedOutput(rootRealPath, output, workOrder.writeSet),
+          readAuthorizedMaterial(rootRealPath, output, workOrder.writeSet, 'Output'),
         ),
       );
-      return this.#receipt(
-        input,
-        workOrder,
-        'PASS',
-        outputs,
-        result.evidence,
-        result.publicSummary,
-        {
-          ...result.metrics,
-          materialExecutionAccredited: true,
-          simulationOnly: false,
-        },
+      const evidence = await Promise.all(
+        result.evidence.map((item) =>
+          readAuthorizedMaterial(rootRealPath, item, evidenceScope, 'Evidence'),
+        ),
       );
+      if (evidence.length === 0) throw new Error('PASS requires verified material evidence.');
+      return this.#receipt(input, workOrder, 'PASS', outputs, evidence, result.publicSummary, {
+        ...result.metrics,
+        materialExecutionAccredited: true,
+        simulationOnly: false,
+      });
     } catch (error) {
       const summary =
         error instanceof Error ? error.message : 'Material output could not be verified.';
