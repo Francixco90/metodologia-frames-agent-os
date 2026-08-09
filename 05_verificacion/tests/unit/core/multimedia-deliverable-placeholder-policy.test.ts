@@ -50,67 +50,35 @@ const validDocument = () => ({
   })),
 });
 
-type Document = ReturnType<typeof validDocument>;
-const promotedCases: Array<{
-  name: string;
-  path: string;
-  mutate: (document: Document) => void;
-}> = [
-  {
-    name: 'scalar bullet with colon suffix',
-    path: 'frontmatter.fields.0.value',
-    mutate: (document) => {
-      document.frontmatter.fields[0]!.value = '- TODO: completar claim';
-    },
-  },
-  {
-    name: 'array bullet with hyphen suffix',
-    path: 'frontmatter.fields.0.value',
-    mutate: (document) => {
-      document.frontmatter.fields[0]!.value = ['Hallazgo verificado.', '* TBD - definir fecha'];
-    },
-  },
-  {
-    name: 'section bullet with colon suffix',
-    path: 'sections.0.markdown',
-    mutate: (document) => {
-      document.sections[0]!.markdown = '+ PENDIENTE: aprobación';
-    },
-  },
-  {
-    name: 'bare marker with colon suffix',
-    path: 'frontmatter.fields.0.value',
-    mutate: (document) => {
-      document.frontmatter.fields[0]!.value = 'TODO: completar claim';
-    },
-  },
-  {
-    name: 'array marker with underscore suffix',
-    path: 'frontmatter.fields.0.value',
-    mutate: (document) => {
-      document.frontmatter.fields[0]!.value = ['UNRESOLVED_definir owner'];
-    },
-  },
-  {
-    name: 'section bullet with em dash suffix',
-    path: 'sections.0.markdown',
-    mutate: (document) => {
-      document.sections[0]!.markdown = '- PENDING — aprobar copy';
-    },
-  },
+type Surface = 'scalar' | 'array' | 'section';
+const promotedCases: Array<[name: string, surface: Surface, value: string]> = [
+  ['scalar bullet with colon suffix', 'scalar', '- TODO: completar claim'],
+  ['array bullet with hyphen suffix', 'array', '* TBD - definir fecha'],
+  ['section bullet with colon suffix', 'section', '+ PENDIENTE: aprobación'],
+  ['bare marker with colon suffix', 'scalar', 'TODO: completar claim'],
+  ['array marker with underscore suffix', 'array', 'UNRESOLVED_definir owner'],
+  ['section bullet with em dash suffix', 'section', '- PENDING — aprobar copy'],
+  ['structured scalar', 'scalar', 'Campo: TODO: completar'],
+  ['structured scalar bullet', 'scalar', '- Campo: TODO — completar'],
+  ['structured array', 'array', 'Campo: TODO: completar'],
+  ['structured array bullet', 'array', '- Campo: TODO — completar'],
+  ['structured section', 'section', 'Campo: TODO: completar'],
+  ['structured section bullet', 'section', '- Campo: TODO — completar'],
 ];
 
 describe('deliverable placeholder policy', () => {
-  it.each(promotedCases)('blocks promoted $name at its exact surface', ({mutate, path}) => {
+  it.each(promotedCases)('blocks promoted %s at its exact surface', (_name, surface, value) => {
     const document = validDocument();
-    mutate(document);
+    const section = surface === 'section';
+    if (section) document.sections[0]!.markdown = value;
+    else document.frontmatter.fields[0]!.value = surface === 'array' ? [value] : value;
     const result = FramesDeliverableV1Schema.safeParse(document);
 
     expect(result.success).toBe(false);
     if (result.success) return;
-    const expectedPath = path
-      .split('.')
-      .map((part) => (/^[0-9]+$/u.test(part) ? Number(part) : part));
+    const expectedPath = section
+      ? ['sections', 0, 'markdown']
+      : ['frontmatter', 'fields', 0, 'value'];
     expect(
       result.error.issues.some(
         (issue) =>

@@ -10,16 +10,17 @@ type PromotableDeliverable = {
 
 const MARKERS =
   '(?:UNKNOWN|UNRESOLVED|TBD|TODO|PENDING|PENDIENTE|POR\\s+(?:DEFINIR|COMPLETAR)|NO\\s+DETERMINADO|N\\/?A)';
+const MARKER_TAIL = `${MARKERS}(?:(?:\\s*(?::|_|-|–|—)\\s*|\\s+DE\\s+)[^\\n]*)?[.!]?`;
 const bracketedPlaceholder = new RegExp(
   `(?:⟦|\\[\\[?|\\{\\{?|<)\\s*${MARKERS}(?:\\s*[:_-][^⟧\\]}>]*)?\\s*(?:⟧|\\]\\]?|\\}\\}?|>)`,
   'iu',
 );
 const lineItemPlaceholder = new RegExp(
-  `(?:^|\\n)\\s*(?:[-*+]\\s+)?${MARKERS}(?:(?:\\s*(?::|_|-|–|—)\\s*|\\s+DE\\s+)[^\\n]*)?[.!]?\\s*(?=\\n|$)`,
+  `(?:^|\\n)\\s*(?:[-*+]\\s+)?${MARKER_TAIL}\\s*(?=\\n|$)`,
   'iu',
 );
 const structuredPlaceholder = new RegExp(
-  `(?:^|\\n)\\s*(?:[-*]\\s*)?[^:\\n]{1,100}:\\s*${MARKERS}(?:\\s+DE[^\\n]*)?[.!]?\\s*(?=\\n|$)`,
+  `(?:^|\\n)\\s*(?:[-*+]\\s+)?[^:\\n]{1,100}:\\s*${MARKER_TAIL}\\s*(?=\\n|$)`,
   'iu',
 );
 
