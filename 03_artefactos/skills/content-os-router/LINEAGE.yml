@@ -1,11 +1,11 @@
 skill_id: content-os-router
-version: 0.2.0
+version: 0.3.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1 + content-intent-v2
+compatibility_contract: router-intent-v1 + content-intent-v2 + frames-route-decision-v1
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md
@@ -23,6 +23,7 @@ provenance:
 supported_request_types:
   - intent_route_source_to_video
   - intent_route_source_to_content
+  - intent_route_career_application
   - canonical_brief_binding
   - adaptive_p00_p09_selection
   - capability_dispatch
