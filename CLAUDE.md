@@ -9,7 +9,7 @@ Cómo adaptar el repo a otros agent CLIs (Gemini CLI, Cursor, etc.): `02_proceso
 ## Cómo operar aquí (loop de atención desde prompt #1)
 
 1. **Iniciar sesión**: leer `CLAUDE.md` (este) → `CONTEXT.md` → `PROJECT.md` → `TASK.md`.
-2. **Clasificar intención** del prompt con el router de 4 rutas (abajo).
+2. **Clasificar intención, asistir y enrutar** con el First-Turn Gateway; el router R0-R7 sigue siendo autoridad.
 3. **Procesar input** (carpeta `inbox/` o attachment/prompt) → `source_id` + `raw_sha256` → registrar en `CONTEXT.md`.
 4. **Ejecutar comando existente** del gate del DAG (NO inventar pipeline). Emitir receipt hash-bound.
 5. **Actualizar** `TASK.md` + `CONTEXT.md` + `PROJECT.md`.
@@ -17,14 +17,19 @@ Cómo adaptar el repo a otros agent CLIs (Gemini CLI, Cursor, etc.): `02_proceso
 
 ## Router + gates — fuente versionada
 
-El router R0-R5 y la tabla gate→command viven en archivos versionados (no en esta cabina):
+El gateway, el router R0-R7 y la tabla gate→command viven en archivos versionados:
 
-- Router: `02_proceso/governance/router.yml` (R0-R5, binds_to task/project/eval)
+- Gateway: `02_proceso/workflows/core/first-turn-gateway-v1.ts`
+- Router: `02_proceso/governance/router.yml` (R0-R7)
 - Gates→comandos: `05_verificacion/scripts/commands.yaml` (G00-G17, manual fail-closed G13-G17)
 - Tool policy: `02_proceso/governance/tool-policy.yml`
 - Reconciliación SPEC 5 subsistemas ↔ harness-creator 7: `02_proceso/governance/harness-subsystem-reconciliation.md`
 
 Esta cabina es el adaptador de Claude Code. Leer esas fuentes antes de editar. [CONFIG]
+
+Saludo: identidad y `Crear · Mejorar · Planear · Explorar`, sin writes. Pedido
+accionable: interpretar, despachar el adapter R6/R7 y preparar el brief; no pedir
+IDs internos ni mostrar menú si ya existe una ruta inequívoca. [CONFIG]
 
 ## Inbox dual — carpeta + attachments de prompt
 

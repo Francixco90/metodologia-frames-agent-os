@@ -177,12 +177,27 @@ paquete, pero nunca distribuye ni publica sin autorización humana separada.
 La biblioteca P00–P09 se regenera desde los workflows mediante
 `_runner/render-library.ts`. [CONFIG]
 
+### Frames Experience OS
+
+**Frames ContentOS · por MetodologIA** recibe lenguaje cotidiano y lo convierte
+en un recorrido gobernado. Un saludo ofrece `Crear · Mejorar · Planear · Explorar`
+sin escribir; un pedido claro omite el menú, ejecuta el adapter R6 o R7 y prepara
+el brief canónico. Skills declaradas permanecen `planned` hasta que exista un
+receipt de invocación ligado al WorkOrder y a outputs materiales. [CONFIG]
+
+El Blueprint Markdown y su HTML offline viven en
+`03_artefactos/content/experience/`; componentes, microcopy, paridad y cápsulas
+están en `02_proceso/workflows/experience/`. El estado máximo es
+`active/local-evaluation`: publicación, conectores y efectos externos siguen
+bloqueados. Solo una cápsula con RT-09 `PASS`, RT-11 `PASS` y H01 `APPROVE`
+puede entrar al vault inmutable. [CONFIG]
+
 ## Governance
 
 `02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
 apunta aquí, no duplica):
 
-- `router.yml` — router R0-R6 (binds_to task/project/eval/content).
+- `router.yml` — router R0-R7 con First-Turn Gateway (proyecto/tarea/eval/contenido/carrera).
 - `tool-policy.yml` — política de herramientas permitidas por gate.
 - `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
 - `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
