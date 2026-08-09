@@ -1,0 +1,4 @@
+schema_version: skill-system-fixture-v1
+skill_id: skill-authoring-engineer
+input: {authority: missing}
+expected: BLOCKED
