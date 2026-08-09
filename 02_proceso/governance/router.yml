@@ -32,7 +32,7 @@ routes:
   - id: R0
     signal: 'ambiguo'
     signal_patterns: ['ambiguo', 'sin contexto claro']
-    reads: ['CONTEXT.md']
+    reads: ['context.md']
     output: 'pedir dato bloqueante o coverage_gap'
     binds_to: null
   - id: R1
