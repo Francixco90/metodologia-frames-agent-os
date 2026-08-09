@@ -1,0 +1,642 @@
+schema_version: deliverable-definition-registry-v1
+definitions:
+  # P00 · brand: charter humano + sistema operativo + calibración + piloto. [CONFIG]
+  - deliverable_id: brand-charter-v1
+    display_name: Charter de marca
+    workflow_id: P00
+    deliverable_class: brand
+    touchpoint: final
+    purpose: Alinear identidad, promesa, audiencia, voz, canales, límites y autoridad de marca.
+    audience: Owner de marca, equipo creativo y aprobadores.
+    formats: [md, html, pdf]
+    piece_families: [other]
+    required_fields:
+      [
+        brand-purpose,
+        audience,
+        promise,
+        voice,
+        channels,
+        visual-system,
+        restrictions,
+        approval-owner,
+      ]
+    consumers: [P03, P05, human]
+    template_id: TPL-P00-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 900, max: 1800}
+  - deliverable_id: brand-os-v1
+    display_name: Brand OS
+    workflow_id: P00
+    deliverable_class: brand
+    touchpoint: intermediate
+    purpose: Traducir el charter aprobado a reglas, tokens y decisiones reutilizables por herramientas.
+    audience: Productores, skills y renderers.
+    formats: [md, html, json]
+    piece_families: [other]
+    required_fields:
+      [identity, voice-rules, visual-tokens, channel-rules, forbidden-uses, source-version]
+    consumers: [P03, P05, P07]
+    template_id: TPL-P00-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: calibration-sample-v1
+    display_name: Muestra de calibración
+    workflow_id: P00
+    deliverable_class: brand
+    touchpoint: intermediate
+    purpose: Demostrar voz y sistema visual con ejemplos aprobables y contraejemplos.
+    audience: Owner de marca y productor.
+    formats: [md, html]
+    piece_families: [image, graphic, other]
+    required_fields: [sample, rationale, anti-sample, evaluation-criteria, decision]
+    consumers: [P03, P05, human]
+    template_id: TPL-P00-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: pilot-plan-v1
+    display_name: Plan piloto
+    workflow_id: P00
+    deliverable_class: planning
+    touchpoint: final
+    purpose: Acotar el primer uso del sistema con alcance, owner, coste, riesgo y criterio de aprendizaje.
+    audience: Sponsor y equipo de ejecución.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields: [scope, owner, milestones, resources, risks, success-criteria, stop-rule]
+    consumers: [P04, human]
+    template_id: TPL-P00-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 600, max: 1200}
+
+  # P01–P02 · evidencia y oportunidades. [CONFIG]
+  - deliverable_id: capture-card-v1
+    display_name: Ficha de captura
+    workflow_id: P01
+    deliverable_class: source
+    touchpoint: intermediate
+    purpose: Registrar una fuente con hash, autoridad, derechos, relevancia y limitaciones.
+    audience: Curador, investigador y verifier.
+    formats: [md, html, json]
+    piece_families: [other]
+    required_fields: [source-ref, source-hash, authority, rights, relevance, limitations]
+    consumers: [P01, P02]
+    template_id: TPL-P01-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 300, max: 600}
+  - deliverable_id: triage-record-v1
+    display_name: Registro de triage
+    workflow_id: P01
+    deliverable_class: source
+    touchpoint: intermediate
+    purpose: Clasificar material por utilidad, riesgo, duplicidad, vigencia y siguiente acción.
+    audience: Curador y owner de fuentes.
+    formats: [md, html, csv]
+    piece_families: [other]
+    required_fields: [item, classification, relevance, risk, freshness, decision]
+    consumers: [P01, P02]
+    template_id: TPL-P01-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+  - deliverable_id: digest-shortlist-v1
+    display_name: Digest y shortlist
+    workflow_id: P01
+    deliverable_class: source
+    touchpoint: final
+    purpose: Seleccionar materiales utilizables y declarar exclusiones y gaps.
+    audience: Estratega, investigador y aprobador.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields: [selected-sources, rationale, excluded-sources, rights-state, coverage-gaps]
+    consumers: [P02, P03, human]
+    template_id: TPL-P01-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 600, max: 1200}
+  - deliverable_id: claim-register-v1
+    display_name: Registro de claims
+    workflow_id: P02
+    deliverable_class: research
+    touchpoint: intermediate
+    purpose: Vincular cada afirmación con evidencia, autoridad, límite, estado y revisor.
+    audience: Investigador, productor y verifier.
+    formats: [md, html, csv]
+    piece_families: [other]
+    required_fields: [claim, source-ref, evidence-status, limitation, reviewer, decision]
+    consumers: [P03, P05, P07]
+    template_id: TPL-P02-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: opportunity-map-v1
+    display_name: Mapa de oportunidades
+    workflow_id: P02
+    deliverable_class: research
+    touchpoint: final
+    purpose: Priorizar problemas, audiencias, mensajes y formatos respaldados por evidencia.
+    audience: Estratega y sponsor.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation]
+    required_fields: [opportunity, audience, evidence, value, effort, risk, priority]
+    consumers: [P03, human]
+    template_id: TPL-P02-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: question-bank-v1
+    display_name: Banco de preguntas
+    workflow_id: P02
+    deliverable_class: research
+    touchpoint: intermediate
+    purpose: Conservar preguntas abiertas, impacto, owner, fuente esperada y stop rule.
+    audience: Investigador y cliente.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields: [question, impact, owner, expected-source, due-gate, status]
+    consumers: [P02, P03, human]
+    template_id: TPL-P02-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+
+  # P03 · estrategia y decisión. [CONFIG]
+  - deliverable_id: brief-campaign-map-v1
+    display_name: Brief y mapa de campaña
+    workflow_id: P03
+    deliverable_class: strategy
+    touchpoint: final
+    purpose: Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación.
+    audience: Cliente, sponsor y equipo creativo.
+    formats: [md, html, pdf]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation]
+    required_fields:
+      [request, audience, objective, evidence, architecture, deliverables, acceptance]
+    consumers: [P04, P05, human]
+    template_id: TPL-P03-DELIVERABLE-V1
+    acceptance_gate: MW_BRIEF_APPROVED
+    word_budget: {target: 1200, max: 2500}
+  - deliverable_id: campaign-charter-v1
+    display_name: Charter de campaña
+    workflow_id: P03
+    deliverable_class: strategy
+    touchpoint: final
+    purpose: Fijar alcance, resultado, governance, piezas, hitos, medición y autoridad de campaña.
+    audience: Sponsor, cliente y responsables de ejecución.
+    formats: [md, html, pdf]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation, dashboard]
+    required_fields:
+      [
+        mission,
+        scope,
+        audience,
+        outcomes,
+        piece-system,
+        governance,
+        milestones,
+        measurement,
+        stop-rule,
+      ]
+    consumers: [P04, P05, P09, human]
+    template_id: TPL-P03-DELIVERABLE-V1
+    acceptance_gate: MW_BRIEF_APPROVED
+    word_budget: {target: 900, max: 1800}
+  - deliverable_id: executive-presentation-v1
+    display_name: Presentación ejecutiva
+    workflow_id: P03
+    deliverable_class: strategy
+    touchpoint: intermediate
+    purpose: Sintetizar decisión, evidencia, propuesta, inversión, riesgos y próximos gates para liderazgo.
+    audience: Sponsor y comité de decisión.
+    formats: [md, html, pptx, pdf]
+    piece_families: [presentation]
+    required_fields:
+      [executive-summary, problem, evidence, proposal, plan, investment, risks, decision]
+    consumers: [human]
+    template_id: TPL-P03-DELIVERABLE-V1
+    acceptance_gate: MW_BRIEF_APPROVED
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: ab-concepts-v1
+    display_name: Conceptos A/B
+    workflow_id: P03
+    deliverable_class: strategy
+    touchpoint: intermediate
+    purpose: Comparar dos rutas creativas con hipótesis, evidencia, coste, riesgo y criterio de decisión.
+    audience: Cliente y dirección creativa.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [concept-a, concept-b, hypothesis, invariant-claims, cost, risk, decision-criteria]
+    consumers: [P05, human]
+    template_id: TPL-P03-DELIVERABLE-V1
+    acceptance_gate: MW_BRIEF_APPROVED
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: definition-of-ready-v1
+    display_name: Definition of Ready
+    workflow_id: P03
+    deliverable_class: strategy
+    touchpoint: final
+    purpose: Bloquear producción hasta resolver evidencia, ownership, formato, assets, presupuesto y aprobación.
+    audience: Producer, verifier y aprobador.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields:
+      [evidence-ready, owner-ready, format-ready, assets-ready, budget-ready, approval-ready]
+    consumers: [P04, P05, human]
+    template_id: TPL-P03-DELIVERABLE-V1
+    acceptance_gate: MW_BRIEF_APPROVED
+    word_budget: {target: 300, max: 600}
+
+  # P04 · cronograma, parrilla y capacidad. [CONFIG]
+  - deliverable_id: editorial-calendar-v1
+    display_name: Cronograma editorial
+    workflow_id: P04
+    deliverable_class: planning
+    touchpoint: final
+    purpose: Secuenciar piezas, hitos, dependencias, owners y gates en el tiempo.
+    audience: Equipo de campaña y operaciones.
+    formats: [md, html, csv]
+    piece_families: [calendar]
+    required_fields: [milestone, deliverable, owner, dependency, target-date, gate, status]
+    consumers: [P05, P06, human]
+    template_id: TPL-P04-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: content-grid-v1
+    display_name: Parrilla de contenidos
+    workflow_id: P04
+    deliverable_class: planning
+    touchpoint: final
+    purpose: Mapear cada publicación a audiencia, objetivo, canal, formato, hook, CTA, fuente y métrica.
+    audience: Content manager, productor y cliente.
+    formats: [md, html, csv]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [slot, audience, objective, channel, piece-family, hook, cta, source-ref, metric]
+    consumers: [P05, P06, P09, human]
+    template_id: TPL-P04-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 900, max: 1800}
+  - deliverable_id: board-v1
+    display_name: Tablero de producción
+    workflow_id: P04
+    deliverable_class: planning
+    touchpoint: intermediate
+    purpose: Exponer trabajo, estado, capacidad, bloqueos y siguiente gate por ítem.
+    audience: Equipo de ejecución.
+    formats: [md, html, csv]
+    piece_families: [other]
+    required_fields: [work-item, owner, state, capacity, blocker, next-gate]
+    consumers: [P05, P06, P08]
+    template_id: TPL-P04-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: batch-plan-v1
+    display_name: Plan por lotes
+    workflow_id: P04
+    deliverable_class: planning
+    touchpoint: intermediate
+    purpose: Agrupar producción compatible sin romper dependencias, calidad ni capacidad.
+    audience: Producer y operaciones.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [batch, items, shared-inputs, capacity, sequence, quality-gate, learning]
+    consumers: [P05, P06]
+    template_id: TPL-P04-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+
+  # P05 · especificación de piezas y prompts. [CONFIG]
+  - deliverable_id: creative-spec-v1
+    display_name: Especificación creativa
+    workflow_id: P05
+    deliverable_class: creative-spec
+    touchpoint: final
+    purpose: Definir narrativa, formato, estructura, copy, visuales, audio, CTA y aceptación de la pieza.
+    audience: Productores visuales, copy y motion.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation]
+    required_fields:
+      [
+        piece-objective,
+        narrative,
+        format,
+        structure,
+        copy,
+        visual-direction,
+        audio,
+        cta,
+        acceptance,
+      ]
+    consumers: [P06, P07, human]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 900, max: 1800}
+  - deliverable_id: piece-family-spec-v1
+    display_name: Ficha de familia de pieza
+    workflow_id: P05
+    deliverable_class: creative-spec
+    touchpoint: intermediate
+    purpose: Especializar la pieza como imagen, miniclip, gráfica, carrusel o historia sin perder el brief.
+    audience: Producer especializado y verifier.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [
+        piece-family,
+        dimensions,
+        duration,
+        frame-count,
+        safe-zones,
+        copy-limits,
+        interaction,
+        export,
+      ]
+    consumers: [P06, P07]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: continuity-bible-v1
+    display_name: Biblia de continuidad
+    workflow_id: P05
+    deliverable_class: creative-spec
+    touchpoint: intermediate
+    purpose: Mantener personajes, objetos, estilo, secuencia, claims y transiciones coherentes.
+    audience: Producer de series y motion.
+    formats: [md, html]
+    piece_families: [miniclip, carousel, story]
+    required_fields: [entities, style-rules, chronology, continuity-rules, claim-locks, exceptions]
+    consumers: [P06, P07, P08]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: asset-map-v1
+    display_name: Mapa de activos
+    workflow_id: P05
+    deliverable_class: creative-spec
+    touchpoint: intermediate
+    purpose: Enumerar cada activo, fuente, owner, formato, dependencia y criterio de aceptación.
+    audience: Producer y asset manager.
+    formats: [md, html, csv]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation]
+    required_fields: [asset-id, role, source, owner, format, dependency, acceptance]
+    consumers: [P06, P07]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: universal-prompts-v1
+    display_name: Pack de prompts de producción
+    workflow_id: P05
+    deliverable_class: prompt-pack
+    touchpoint: final
+    purpose: Proveer prompts trazables para imágenes, miniclips, gráficas, carruseles e historias.
+    audience: Operadores de herramientas generativas y verifier.
+    formats: [md, html, json]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [
+        piece-family,
+        objective,
+        input-refs,
+        prompt,
+        negative-constraints,
+        parameters,
+        expected-output,
+        acceptance,
+      ]
+    consumers: [P06, human]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 900, max: 1800}
+  - deliverable_id: derivatives-v1
+    display_name: Sistema de derivados
+    workflow_id: P05
+    deliverable_class: creative-spec
+    touchpoint: final
+    purpose: Derivar formatos y canales desde una pieza matriz preservando claims, identidad y lineage.
+    audience: Content manager y productores.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [master-piece, derivative, transformation, invariant, channel, acceptance]
+    consumers: [P06, P07]
+    template_id: TPL-P05-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 600, max: 1200}
+
+  # P06–P08 · producción, QA y sucesores. [CONFIG]
+  - deliverable_id: asset-package-v1
+    display_name: Paquete de piezas candidatas
+    workflow_id: P06
+    deliverable_class: asset
+    touchpoint: final
+    purpose: Empaquetar piezas materiales y companions hash-bound sin afirmar aprobación.
+    audience: Reviewer y cliente.
+    formats: [md, html, image, video, audio]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [candidate-id, material-files, companion-files, hashes, state, limitations]
+    consumers: [P07, human]
+    template_id: TPL-P06-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+  - deliverable_id: asset-manifest-v1
+    display_name: Manifiesto de activos
+    workflow_id: P06
+    deliverable_class: asset
+    touchpoint: intermediate
+    purpose: Registrar archivo, hash, procedencia, derechos, tool run y relación con la especificación.
+    audience: Reviewer, verifier y Guardian.
+    formats: [md, html, json]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [asset-id, file-ref, hash, provenance, rights, tool-run, spec-ref]
+    consumers: [P07, P08]
+    template_id: TPL-P06-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: capability-report-v1
+    display_name: Reporte de capacidad
+    workflow_id: P06
+    deliverable_class: asset
+    touchpoint: intermediate
+    purpose: Declarar qué pudo producirse, qué quedó bloqueado y qué requiere una ruta alternativa.
+    audience: Producer, lead y cliente.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields: [requested-capability, available-capability, result, gaps, fallback, decision]
+    consumers: [P07, human]
+    template_id: TPL-P06-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+  - deliverable_id: tool-run-evidence-v1
+    display_name: Evidencia de ejecución
+    workflow_id: P06
+    deliverable_class: asset
+    touchpoint: intermediate
+    purpose: Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run.
+    audience: Verifier y Guardian.
+    formats: [md, html, json]
+    piece_families: [other]
+    required_fields: [run-id, tool, version, input-hashes, parameters, output-hashes, errors]
+    consumers: [P07, P08]
+    template_id: TPL-P06-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 300, max: 600}
+  - deliverable_id: review-report-v1
+    display_name: Reporte de revisión
+    workflow_id: P07
+    deliverable_class: review
+    touchpoint: final
+    purpose: Evaluar contenido, marca, evidencia, derechos, accesibilidad y calidad visual.
+    audience: Producer, cliente y aprobador.
+    formats: [md, html]
+    piece_families: [image, miniclip, graphic, carousel, story, presentation]
+    required_fields:
+      [
+        candidate-ref,
+        content-findings,
+        brand-findings,
+        evidence-findings,
+        rights-findings,
+        accessibility-findings,
+        visual-findings,
+      ]
+    consumers: [P08, human]
+    template_id: TPL-P07-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: verdict-v1
+    display_name: Veredicto
+    workflow_id: P07
+    deliverable_class: review
+    touchpoint: final
+    purpose: Emitir PASS, REVISE o BLOCKED con evidencia y siguiente gate, sin remediar.
+    audience: Producer, lead y aprobador.
+    formats: [md, html, json]
+    piece_families: [other]
+    required_fields: [candidate-hash, decision, evidence, blockers, limitations, next-gate]
+    consumers: [P08, human]
+    template_id: TPL-P07-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 300, max: 600}
+  - deliverable_id: top5-changes-v1
+    display_name: Cambios prioritarios
+    workflow_id: P07
+    deliverable_class: review
+    touchpoint: intermediate
+    purpose: Priorizar hasta cinco cambios por impacto, evidencia, owner y riesgo de regresión.
+    audience: Editor y producer.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields: [change, rationale, evidence, priority, owner, regression-risk]
+    consumers: [P08]
+    template_id: TPL-P07-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 300, max: 600}
+  - deliverable_id: edit-candidate-v1
+    display_name: Candidate editado
+    workflow_id: P08
+    deliverable_class: edit
+    touchpoint: final
+    purpose: Materializar un successor candidate preservando lineage, claims, assets y estado.
+    audience: Reviewer y cliente.
+    formats: [md, html, image, video, audio]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [successor-id, parent-hash, changes, material-files, hashes, state, limitations]
+    consumers: [P07, P09, human]
+    template_id: TPL-P08-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+  - deliverable_id: edl-v1
+    display_name: Lista de decisiones de edición
+    workflow_id: P08
+    deliverable_class: edit
+    touchpoint: intermediate
+    purpose: Trazar cada cambio a un hallazgo, ubicación, acción, owner y resultado.
+    audience: Editor y verifier.
+    formats: [md, html, csv]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [finding-ref, location, action, owner, before-hash, after-hash, result]
+    consumers: [P07, P09]
+    template_id: TPL-P08-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: export-matrix-v1
+    display_name: Matriz de exportación
+    workflow_id: P08
+    deliverable_class: edit
+    touchpoint: intermediate
+    purpose: Definir formatos, dimensiones, duración, peso, nombre, canal y checksum de exportación.
+    audience: Producer y distribuidor.
+    formats: [md, html, csv]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields:
+      [variant, format, dimensions, duration, size-limit, filename, channel, checksum]
+    consumers: [P09]
+    template_id: TPL-P08-DELIVERABLE-V1
+    acceptance_gate: G14
+    word_budget: {target: 400, max: 800}
+
+  # P09 · empaque y medición; publicar sigue fuera del workflow. [CONFIG]
+  - deliverable_id: platform-package-v1
+    display_name: Paquete por plataforma
+    workflow_id: P09
+    deliverable_class: distribution
+    touchpoint: final
+    purpose: Preparar archivos, copy, metadata, alt text y checklist por canal sin publicar.
+    audience: Operador autorizado y aprobador.
+    formats: [md, html, json]
+    piece_families: [image, miniclip, graphic, carousel, story]
+    required_fields: [channel, files, copy, metadata, alt-text, authorization, checklist]
+    consumers: [human]
+    template_id: TPL-P09-DELIVERABLE-V1
+    acceptance_gate: G17
+    word_budget: {target: 500, max: 1000}
+  - deliverable_id: publication-record-v1
+    display_name: Registro de publicación
+    workflow_id: P09
+    deliverable_class: distribution
+    touchpoint: intermediate
+    purpose: Preparar el registro que solo se completa con evidencia externa de publicación autorizada.
+    audience: Operador, verifier y Guardian.
+    formats: [md, html, json]
+    piece_families: [other]
+    required_fields:
+      [authorization-ref, channel, candidate-hash, external-ref, published-at, actor, state]
+    consumers: [human]
+    template_id: TPL-P09-DELIVERABLE-V1
+    acceptance_gate: G17
+    word_budget: {target: 300, max: 600}
+  - deliverable_id: results-dashboard-v1
+    display_name: Dashboard de resultados
+    workflow_id: P09
+    deliverable_class: measurement
+    touchpoint: final
+    purpose: Comparar baseline, objetivos y métricas observadas sin inventar datos ni causalidad.
+    audience: Sponsor, cliente y equipo de contenido.
+    formats: [md, html, csv]
+    piece_families: [dashboard]
+    required_fields:
+      [
+        measurement-window,
+        baseline,
+        objective,
+        metric,
+        observed-value,
+        source-ref,
+        variance,
+        limitation,
+      ]
+    consumers: [P00, P02, human]
+    template_id: TPL-P09-DELIVERABLE-V1
+    acceptance_gate: G17
+    word_budget: {target: 700, max: 1400}
+  - deliverable_id: learning-report-v1
+    display_name: Reporte de aprendizaje
+    workflow_id: P09
+    deliverable_class: measurement
+    touchpoint: final
+    purpose: Convertir resultados observados en decisiones, límites, hipótesis y siguiente experimento.
+    audience: Sponsor, estrategia y equipo creativo.
+    formats: [md, html]
+    piece_families: [other]
+    required_fields:
+      [observations, evidence, interpretation, limitations, decision, next-experiment]
+    consumers: [P00, P02, P03, human]
+    template_id: TPL-P09-DELIVERABLE-V1
+    acceptance_gate: G17
+    word_budget: {target: 600, max: 1200}

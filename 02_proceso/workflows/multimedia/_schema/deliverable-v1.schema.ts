@@ -104,5 +104,50 @@ export const FramesDeliverableV1Schema = z.strictObject({
   sections: DeliverableSectionsV1Schema,
 });
 
+export const DeliverableDefinitionV1Schema = z
+  .strictObject({
+    deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
+    display_name: z.string().min(1).max(160),
+    workflow_id: MultimediaWorkflowIdSchema,
+    deliverable_class: DeliverableClassV1Schema,
+    touchpoint: z.enum(['intermediate', 'final']),
+    purpose: z.string().min(1).max(600),
+    audience: z.string().min(1).max(300),
+    formats: z.array(
+      z.enum(['md', 'html', 'json', 'csv', 'image', 'video', 'audio', 'pdf', 'pptx']),
+    ),
+    piece_families: z.array(PieceFamilyV1Schema),
+    required_fields: z
+      .array(z.string().regex(/^[a-z][a-z0-9-]{1,79}$/u))
+      .min(1)
+      .max(40),
+    consumers: z.array(z.union([MultimediaWorkflowIdSchema, z.literal('human')])).min(1),
+    template_id: z.string().regex(/^TPL-[A-Z0-9][A-Z0-9-]{2,79}$/u),
+    acceptance_gate: z.string().regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u),
+    word_budget: z
+      .strictObject({target: z.number().int().positive(), max: z.number().int().positive()})
+      .refine(({target, max}) => target <= max, 'target must not exceed max'),
+  })
+  .refine(({formats}) => formats.includes('md') && formats.includes('html'), {
+    message: 'Every deliverable requires canonical md and regenerable html',
+    path: ['formats'],
+  });
+
+export const DeliverableDefinitionRegistryV1Schema = z
+  .strictObject({
+    schema_version: z.literal('deliverable-definition-registry-v1'),
+    definitions: z.array(DeliverableDefinitionV1Schema).min(1),
+  })
+  .superRefine(({definitions}, context) => {
+    const seen = new Set<string>();
+    definitions.forEach(({deliverable_id}, index) => {
+      if (seen.has(deliverable_id)) {
+        context.addIssue({code: 'custom', path: ['definitions', index], message: 'Duplicate id'});
+      }
+      seen.add(deliverable_id);
+    });
+  });
+
 export type FramesDeliverableFrontmatterV1 = z.infer<typeof FramesDeliverableFrontmatterV1Schema>;
 export type FramesDeliverableV1 = z.infer<typeof FramesDeliverableV1Schema>;
+export type DeliverableDefinitionV1 = z.infer<typeof DeliverableDefinitionV1Schema>;
