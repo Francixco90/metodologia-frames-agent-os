@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 const root = process.cwd();
 const required = [
   'skills/content-os-core/SKILL.md',
+  'skills/content-os-core/context.md',
   'skills/content-os-core/LINEAGE.yml',
   'skills/content-os-core/schemas/html-composition-v1.schema.json',
   'skills/content-os-core/scripts/render-html.ts',
@@ -37,6 +38,9 @@ const runtimeCombined = [
   .join('\n');
 
 for (const token of [
+  'version: 0.2.0',
+  '## 1. Activación',
+  '## 8. Handoff',
   'data-composition-id',
   'data-duration',
   'data-start',

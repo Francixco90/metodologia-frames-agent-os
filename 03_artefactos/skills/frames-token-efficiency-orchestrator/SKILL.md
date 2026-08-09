@@ -1,7 +1,7 @@
 ---
 name: frames-token-efficiency-orchestrator
 description: This skill should be used when the user asks to "usar RTK", "medir consumo con ccusage", "comprimir contexto con Headroom", "mapear código con Graphify", "usar Caveman", "auto-orquestar con Claude Native Toolkit", reduce terminal output, inspect token cost, or choose a cost-aware Frames orchestration primitive.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -11,6 +11,10 @@ metadata:
 ---
 
 # Frames Token Efficiency Orchestrator
+
+## Contexto operativo
+
+Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
 
 Router Frames para seis capacidades externas homologadas mediante contratos
 propios. Carga este archivo primero; abre un solo capítulo de `references/`
