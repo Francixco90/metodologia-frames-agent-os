@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93847
-    v3_rolling_adjustment_words: 5661
+    baseline_words: 93857
+    v3_rolling_adjustment_words: 5671
     original_baseline_words: 88186
-    final_words: 110266
+    final_words: 110276
     maximum_multiplier: 1.5
-    maximum_words: 140770
-    actual_multiplier: 1.175
+    maximum_words: 140785
+    actual_multiplier: 1.1749
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93847
-    v3_rolling_adjustment_words: 5661
+    baseline_words: 93857
+    v3_rolling_adjustment_words: 5671
     original_baseline_words: 88186
-    final_words: 110266
-    maximum_words: 187694
-    word_multiplier: 1.175
-    baseline_loc: 35143
-    v3_rolling_adjustment_loc: 2255
+    final_words: 110276
+    maximum_words: 187714
+    word_multiplier: 1.1749
+    baseline_loc: 35145
+    v3_rolling_adjustment_loc: 2257
     original_baseline_loc: 32888
-    final_loc: 41234
-    maximum_loc: 70286
+    final_loc: 41236
+    maximum_loc: 70290
     loc_multiplier: 1.1733
     maximum_multiplier: 2
     status: pass
@@ -953,9 +953,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: ad12f85cd0cdf25f2512f44635d36daa9c63e233826747c6bfa4571beb181177
-      current_words: 245
-      current_loc: 55
+      current_sha256: 14bfe8e4caab860dea88b16232818fb8600fafcabe753c53fdb6735da2689148
+      current_words: 255
+      current_loc: 57
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore

@@ -1,0 +1,137 @@
+schema_version: skill-systems-template-registry-v1
+templates:
+  - template_id: skill-system-case-v2
+    title: Caso de sistema de skills
+    purpose: Decidir si crear, ampliar, dividir, fusionar, degradar o retirar una capacidad.
+    owner: skill-system-architect
+    sections:
+      - {
+          id: outcome,
+          title: Resultado que se busca,
+          prompt: 'Describe el cambio útil para la persona y su señal de éxito.',
+        }
+      - {
+          id: evidence,
+          title: Evidencia y autoridad,
+          prompt: 'Lista fuentes, hashes, derechos, límites y datos todavía desconocidos.',
+        }
+      - {
+          id: existing,
+          title: Capacidades existentes,
+          prompt: 'Explica qué skills, tools o referencias ya cubren parte del resultado.',
+        }
+      - {
+          id: demotion,
+          title: Prueba de componente mínimo,
+          prompt: 'Demuestra por qué no basta una instrucción, referencia, template o tool.',
+        }
+      - {
+          id: topology,
+          title: Topología propuesta,
+          prompt: 'Asigna responsabilidades, owners, efectos y límites sin overlaps.',
+        }
+      - {
+          id: acceptance,
+          title: Aceptación observable,
+          prompt: 'Define TRIGGER, DECISION y OUTCOME con baseline y oráculos.',
+        }
+      - {
+          id: risks,
+          title: Riesgos y recuperación,
+          prompt: 'Declara abuso, fallos, rollback y condición de bloqueo.',
+        }
+      - {
+          id: decision,
+          title: Decisión y siguiente gate,
+          prompt: 'Registra create keep evolve merge split demote retire o block.',
+        }
+  - template_id: skill-resource-plan-v1
+    title: Plan de recursos de una skill
+    purpose: Seleccionar assets, scripts, referencias y templates sin copiar ni inflar el paquete.
+    owner: skill-authoring-engineer
+    sections:
+      - {
+          id: job,
+          title: Trabajo del usuario,
+          prompt: 'Explica qué esfuerzo reduce el recurso y cuándo se carga.',
+        }
+      - {
+          id: inventory,
+          title: Inventario de fuentes,
+          prompt: 'Lista cada recurso, locator portable, hash y autoridad.',
+        }
+      - {
+          id: disposition,
+          title: Disposición,
+          prompt: 'Marca ADOPT ADAPT REFERENCE REJECT o GAP con razón verificable.',
+        }
+      - {
+          id: progressive,
+          title: Carga progresiva,
+          prompt: 'Separa SKILL compacto, referencias, assets y scripts.',
+        }
+      - {
+          id: contracts,
+          title: Contratos y efectos,
+          prompt: 'Liga inputs, outputs, tools, write set, effects y fallback.',
+        }
+      - {
+          id: templates,
+          title: Templates y paridad,
+          prompt: 'Define Markdown canónico, HTML derivado y campos obligatorios.',
+        }
+      - {
+          id: tests,
+          title: Fixtures y evaluaciones,
+          prompt: 'Incluye positivos, adversariales, replay y no-skill baseline.',
+        }
+      - {
+          id: closure,
+          title: Handoff y cierre,
+          prompt: 'Indica owner, verifier, hashes, documentación y stop rule.',
+        }
+  - template_id: dual-oracle-review-v1
+    title: Revisión con dos oráculos
+    purpose: Validar un candidate con contratos Frames y criterios PIVOTE sin promediar conflictos.
+    owner: skill-security-auditor
+    sections:
+      - {
+          id: candidate,
+          title: Candidate congelado,
+          prompt: 'Registra ref, hash, producer, base y alcance accesible.',
+        }
+      - {
+          id: frames,
+          title: Oráculo Frames,
+          prompt: 'Aplica autoridad, contratos, effects, paths, receipts y lifecycle.',
+        }
+      - {
+          id: pivote,
+          title: Oráculo PIVOTE,
+          prompt: 'Aplica UCC, rights, accessibility, security, provenance y recovery.',
+        }
+      - {
+          id: evidence,
+          title: Evidencia observada,
+          prompt: 'Lista materiales realmente accesibles y denominador.',
+        }
+      - {
+          id: differences,
+          title: Diferencias y conflictos,
+          prompt: 'Explica desacuerdos sin ocultarlos con un score.',
+        }
+      - {
+          id: adversarial,
+          title: Casos adversariales,
+          prompt: 'Prueba injection, secrets, supply chain, authority y sandbox.',
+        }
+      - {
+          id: corrections,
+          title: Correcciones mínimas,
+          prompt: 'Prioriza hasta cinco cambios y revalidación adyacente.',
+        }
+      - {
+          id: verdict,
+          title: Veredicto y siguiente gate,
+          prompt: 'Emite PASS REVISE BLOCKED o UNKNOWN con actor independiente.',
+        }

@@ -20,7 +20,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - ROUTE: 11
 - SKILL: 181
 - SOURCE: 11
-- TEMPLATE: 128
+- TEMPLATE: 134
 - WORKFLOW: 43
 
 ## Capacidades
@@ -858,6 +858,12 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | TEMPLATE | 02_proceso/workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.md` |
 | TEMPLATE | 02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.html` |
 | TEMPLATE | 02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.html` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.html` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.html` |
+| TEMPLATE | 02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md` |
 | TEMPLATE | 03_artefactos/skills/vendor/gstack/qa/templates/qa-report-template.md | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/gstack/qa/templates/qa-report-template.md` |
 | TEMPLATE | 03_artefactos/skills/vendor/hyperframes/hyperframes-creative/templates/design-picker.html | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/hyperframes-creative/templates/design-picker.html` |
 | TEMPLATE | 03_artefactos/skills/vendor/hyperframes/music-to-video/references/templates/card-flyby/index.html | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/music-to-video/references/templates/card-flyby/index.html` |
@@ -919,4 +925,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `b8b17a713dadc1ee4d9fa4b94e0b21fada69e1db58398d39cd979051483b42e2`.
+Hash de fuentes: `68029efc1160153c324f488e86d93a4a7dea5b92465c0cd707f184c4972fc6a8`.
