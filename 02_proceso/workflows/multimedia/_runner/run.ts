@@ -73,6 +73,12 @@ export const runWorkflow = (workflowId: string): void => {
       sha256: output.sha256,
       required: output.required,
       materialized: output.materialized,
+      companions: output.companions.map(({format, ref, sha256, materialized}) => ({
+        format,
+        ref,
+        sha256,
+        materialized,
+      })),
     })),
     work_product_state_from: 'INTAKE',
     work_product_state_to: 'RENDERED_DRAFT',
@@ -118,6 +124,13 @@ export const runWorkflow = (workflowId: string): void => {
       stagedPath: output.stagedPath,
       exists: existsSync(output.stagedPath),
       sha256: output.sha256,
+      companions: output.companions.map((companion) => ({
+        format: companion.format,
+        ref: companion.ref,
+        stagedPath: companion.stagedPath,
+        exists: existsSync(companion.stagedPath),
+        sha256: companion.sha256,
+      })),
     })),
     autoAdvance: false,
   });

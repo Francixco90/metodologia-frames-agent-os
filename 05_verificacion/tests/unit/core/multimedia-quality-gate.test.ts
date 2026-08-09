@@ -38,11 +38,23 @@ const materialYaml = (status = 'known'): string =>
 const outputResolutions = p00Workflow.outputs.map((_output, index) => {
   const stagedPath = resolve(materialDir, `output-${index + 1}.yml`);
   writeFileSync(stagedPath, materialYaml(), 'utf8');
+  const companions = (['md', 'html'] as const).map((format) => {
+    const companionPath = resolve(materialDir, `output-${index + 1}.${format}`);
+    writeFileSync(companionPath, `${format} companion ${index + 1}\n`, 'utf8');
+    return {
+      format,
+      ref: `03_artefactos/content/multimedia/p00/output-${index + 1}.${format}`,
+      stagedPath: companionPath,
+      exists: true,
+      sha256: createHash('sha256').update(readFileSync(companionPath)).digest('hex'),
+    };
+  });
   return {
     ref: `03_artefactos/content/multimedia/p00-definir-sistema/output-${index + 1}.yml`,
     stagedPath,
     exists: true,
     sha256: createHash('sha256').update(readFileSync(stagedPath)).digest('hex'),
+    companions,
   };
 });
 
@@ -54,6 +66,12 @@ const p00ReceiptOutputs = p00Workflow.outputs.map((output, index) => ({
   sha256: outputResolutions[index]?.sha256,
   required: output.required,
   materialized: true,
+  companions: outputResolutions[index]?.companions.map(({format, ref, sha256}) => ({
+    format,
+    ref,
+    sha256,
+    materialized: true,
+  })),
 }));
 
 /** Build the P00 receipt payload the runner would emit (schema-valid). */
