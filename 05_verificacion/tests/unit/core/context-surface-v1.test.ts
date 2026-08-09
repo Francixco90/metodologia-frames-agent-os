@@ -80,12 +80,12 @@ describe('ContextSurfaceV1', () => {
       projection_name: 'context.md',
       private_cabin: 'work/private/CONTEXT.md',
       expected_non_skill_projections: 54,
-      expected_skill_projections: 24,
+      expected_skill_projections: 25,
       shards: ['public.yml'],
       skill_shards: ['skills.yml'],
     });
     expect(registry.skill_shards).toEqual(['skills.yml']);
-    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(78);
+    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(79);
     expect(readFileSync(resolve(root, '.gitignore'), 'utf8')).toContain('work/private/CONTEXT.md');
     const router = readFileSync(resolve(root, '02_proceso/governance/router.yml'), 'utf8');
     expect(router).toContain("reads: ['context.md']");
