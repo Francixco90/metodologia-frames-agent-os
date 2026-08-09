@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "experience-host-launch-probe-v1",
+  "probeId": "PROBE-CODEX-EXPERIENCE-001",
+  "host": "CODEX",
+  "status": "PASS",
+  "releaseId": "EXP-EXPERIENCE-LOCAL-001",
+  "candidateCommit": "8a18fe403cba923d1f28512c931691c79a573535",
+  "candidateSha256": "601d6aa951e0fec52acbaed878c9ee52c015f75280c534badc15b8d3a772be67",
+  "adapterRef": "03_artefactos/skills/content-os-router/scripts/route-intent.mjs",
+  "localOnly": true,
+  "externalEffects": false
+}
