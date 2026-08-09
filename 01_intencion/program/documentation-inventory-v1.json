@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "3766b1bd3550b24584522a77ed6433e6f789b332d8bfa346dfc2be03ce200629",
-  "totalMarkdown": 1668,
-  "auditedAuthored": 462,
+  "repositoryTreeSha256": "28143a43da35778a7b9cd4291b3e60d57da2dfbcdbd5ad0db924bc3363c180db",
+  "totalMarkdown": 1675,
+  "auditedAuthored": 469,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -75,6 +75,12 @@
       "01_intencion/gstack/architecture.md",
       "01_intencion/gstack/audit-report.md",
       "01_intencion/gstack/verification-report.md",
+      "01_intencion/guides/README.md",
+      "01_intencion/guides/capabilities.md",
+      "01_intencion/guides/career.md",
+      "01_intencion/guides/content-multimedia.md",
+      "01_intencion/guides/guided-use.md",
+      "01_intencion/guides/technical-reference.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
       "01_intencion/hyperframes/verification-report.md",
@@ -144,6 +150,7 @@
       "02_proceso/governance/loose-task-policy.md",
       "02_proceso/governance/ownership-scripts-decision.md",
       "02_proceso/governance/scripting-and-tool-use.md",
+      "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
@@ -3595,6 +3602,162 @@
       }
     },
     {
+      "path": "01_intencion/guides/README.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/README.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e47a5713037a3a21dc3d8b7cb584433fb70774a85b4b0fae5bedcd8a785035ff",
+      "words": 308,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/capabilities.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/capabilities.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/capabilities.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "590a500707bea2ebaa44d0c03f34c0fb8b437f8304d439ace19b62d61a456e47",
+      "words": 584,
+      "lines": 60,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 1
+      }
+    },
+    {
+      "path": "01_intencion/guides/career.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/career.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/career.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "563496b2d453ab0df6646b8c447093054b9b98288fc48a299dd319b080dd4b2f",
+      "words": 466,
+      "lines": 68,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/content-multimedia.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/content-multimedia.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/content-multimedia.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b19cbdd926888f3d595dea5e4f093c6e29cfaaed493312483de4994526ad3c9f",
+      "words": 598,
+      "lines": 77,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/guided-use.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/guided-use.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/guided-use.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e878fd2b11a341105145a25e2de02fa5cce0660fa876e95fd14dbc8c8650fdf5",
+      "words": 432,
+      "lines": 70,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/technical-reference.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/technical-reference.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/technical-reference.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "567d039518a8d5992d515167e89e5867c06345c1fd42f7dca95164d092b1dbac",
+      "words": 539,
+      "lines": 81,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/hyperframes/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -3996,7 +4159,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "8ca384a59cbd55c651b183d23cc565714cf54e4d8f43b690a6cbc15008d01def",
+      "sha256": "4c6950445bcccdf0af9020377c92b89e1bb08fead20e2847b4e3842dc09a5c86",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -5444,6 +5607,33 @@
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/governance/ux-writing-policy.md",
+      "class": "authored_control",
+      "owner": "governance",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:governance:governance/**",
+      "authorityRefs": [
+        "AGENTS.md",
+        "02_proceso/governance/ux-writing-policy.md"
+      ],
+      "budgetSurface": "authored-governance-md",
+      "sourceRef": "02_proceso/governance/ux-writing-policy.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c5842b60be076b72bcfdd01c3ccbf03df311669350c646038ea0e7cf03987bc5",
+      "words": 383,
+      "lines": 41,
+      "score": 100,
+      "threshold": 90,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
         "hasNextAction": true,
         "duplicateHeadings": 0
       }
@@ -14107,13 +14297,13 @@
         "AGENTS.md",
         "README.md"
       ],
-      "budgetSurface": "baseline-root-doc",
+      "budgetSurface": "user-facing-explanatory-documentation",
       "sourceRef": "README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "8e43fae000e38e5453075a41280c73e0a066134e653177ae0ce1a71e1d7559e0",
-      "words": 1502,
-      "lines": 266,
+      "sha256": "f2dff0f44d127d1e1fcd6e0ad8264bd0f0dd01e7ddbfb936f200d2d89e79f5d7",
+      "words": 1298,
+      "lines": 128,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -14179,7 +14369,7 @@
     }
   ],
   "summary": {
-    "keep": 450,
+    "keep": 457,
     "refactor": 0,
     "split": 0,
     "regenerate": 64,

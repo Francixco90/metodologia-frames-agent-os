@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 
 import {validateContentMatrix} from './check-content-matrix.ts';
 import {validateDispositionLedger} from './generate-file-disposition-ledger.ts';
+import {validateUserFacingDocs} from './check-user-facing-docs.ts';
 
 const requiredSections = [
   '## 1. Decisión operativa',
@@ -124,7 +125,11 @@ export const validateDocs = (root = process.cwd()): string[] => {
       errors.push(`SOC-DOC012 channel freshness contract missing: ${freshnessMarker}`);
     }
   }
-  errors.push(...validateContentMatrix(root), ...validateDispositionLedger(root));
+  errors.push(
+    ...validateContentMatrix(root),
+    ...validateDispositionLedger(root),
+    ...validateUserFacingDocs(root),
+  );
   return errors;
 };
 
