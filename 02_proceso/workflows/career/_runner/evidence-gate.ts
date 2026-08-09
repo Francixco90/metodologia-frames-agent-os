@@ -21,8 +21,10 @@ export const calculateEvidenceBankHash = (bank: EvidenceBankV1): string =>
   sha256Text(stableStringify({candidate_id: bank.candidate_id, evidence: bank.evidence}));
 
 const cvSurface = (document: CareerCvV1): Array<{path: string; text: string}> => [
+  {path: '/name', text: document.name},
   {path: '/headline', text: document.headline},
   {path: '/summary', text: document.summary},
+  ...document.contact_lines.map((text, index) => ({path: `/contact_lines/${index}`, text})),
   ...document.skills.map((text, index) => ({path: `/skills/${index}`, text})),
   ...document.education.map((text, index) => ({path: `/education/${index}`, text})),
   ...document.experience.flatMap((item, index) => [
@@ -32,6 +34,18 @@ const cvSurface = (document: CareerCvV1): Array<{path: string; text: string}> =>
     ...(item.location ? [{path: `/experience/${index}/location`, text: item.location}] : []),
   ]),
 ];
+
+const visibleSurfaces = (document: CareerDocument): Array<{path: string; text: string}> =>
+  document.schema_version === 'career-cv-v1'
+    ? cvSurface(document)
+    : [
+        {path: '/addressee', text: document.addressee},
+        ...(document.subject ? [{path: '/subject', text: document.subject}] : []),
+        ...document.paragraphs.map((text, index) => ({path: `/paragraphs/${index}`, text})),
+      ];
+
+export const visibleSurfacePaths = (document: CareerDocument): readonly string[] =>
+  visibleSurfaces(document).map(({path}) => path);
 
 export const assertCareerEvidence = (
   documentInput: unknown,
@@ -63,11 +77,8 @@ export const assertCareerEvidence = (
       }
     });
   };
-  const surfaces =
-    document.schema_version === 'career-cv-v1'
-      ? cvSurface(document)
-      : document.paragraphs.map((text, index) => ({path: `/paragraphs/${index}`, text}));
-  const expected = surfaces.map(({path}) => path);
+  const surfaces = visibleSurfaces(document);
+  const expected = visibleSurfacePaths(document);
   const bindings = new Map(document.surface_bindings.map((binding) => [binding.path, binding]));
   if (bindings.size !== document.surface_bindings.length) issues.push('DUPLICATE_SURFACE_BINDING');
   for (const {path, text} of surfaces) {

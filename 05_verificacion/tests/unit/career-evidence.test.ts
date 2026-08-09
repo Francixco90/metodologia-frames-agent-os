@@ -65,7 +65,9 @@ const binding = (
 });
 
 const cvBindings = () => [
+  binding('/name'),
   binding('/headline'),
+  binding('/contact_lines/0'),
   binding('/summary'),
   binding('/experience/0/organization'),
   binding('/experience/0/role'),
@@ -73,7 +75,12 @@ const cvBindings = () => [
   binding('/skills/0'),
 ];
 
-const letterBindings = () => [binding('/paragraphs/0'), binding('/paragraphs/1')];
+const letterBindings = () => [
+  binding('/addressee'),
+  binding('/subject'),
+  binding('/paragraphs/0'),
+  binding('/paragraphs/1'),
+];
 
 const cv = (claimOverrides: Record<string, unknown> = {}) => ({
   schema_version: 'career-cv-v1',
@@ -116,7 +123,7 @@ const letter = (claimOverrides: Record<string, unknown> = {}) => ({
   authorized_brand: null,
   generated_by: 'MetodologIA',
   addressee: 'Hiring team',
-  subject: null,
+  subject: 'Product Lead',
   paragraphs: ['Párrafo sintético uno.', 'Párrafo sintético dos.'],
   claims: [claim(claimOverrides)],
   source_refs: ['work/private/evidence/result.md'],
@@ -250,6 +257,33 @@ describe('Career evidence boundary', () => {
     document.surface_bindings = [binding('/paragraphs/1')];
     expect(() => assertCareerEvidence(document, bank())).toThrow(/UNBOUND_VISIBLE_TEXT/u);
   });
+
+  it.each([
+    ['CV name', cv(), '/name'],
+    ['CV contact', cv(), '/contact_lines/0'],
+    ['letter addressee', letter(), '/addressee'],
+    ['letter subject', letter(), '/subject'],
+  ])('requires an exact surface binding for rendered %s', (_label, document, path) => {
+    document.surface_bindings = document.surface_bindings.filter(
+      ({path: candidate}: SurfaceBindingFixture) => candidate !== path,
+    );
+    expect(() => assertCareerEvidence(document, bank())).toThrow(
+      new RegExp(`UNBOUND_VISIBLE_TEXT:${path}`, 'u'),
+    );
+  });
+
+  it.each([
+    ['CV', cv(), '/contact_lines/9'],
+    ['letter', letter(), '/paragraphs/9'],
+  ])(
+    'rejects a valid auxiliary claim plus an extra non-rendered %s binding',
+    (_label, document, path) => {
+      document.surface_bindings.push(binding(path));
+      expect(() => assertCareerEvidence(document, bank())).toThrow(
+        new RegExp(`NON_RENDERED_BINDING:${path}`, 'u'),
+      );
+    },
+  );
 
   it.each([
     ['CV summary', cv(), '/summary'],

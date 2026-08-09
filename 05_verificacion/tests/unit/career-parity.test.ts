@@ -106,7 +106,9 @@ const cvWithoutHash = {
   skills: ['Product Operations', 'Evidence systems'],
   source_refs: ['work/private/evidence/profile.yml'],
   surface_bindings: [
+    '/name',
     '/headline',
+    '/contact_lines/0',
     '/summary',
     '/experience/0/organization',
     '/experience/0/role',
@@ -137,7 +139,7 @@ const letterWithoutHash = {
   paragraphs: [words('evidencia', 90), words('impacto', 90)],
   claims: [claim],
   source_refs: ['work/private/evidence/profile.yml'],
-  surface_bindings: ['/paragraphs/0', '/paragraphs/1'].map(surface),
+  surface_bindings: ['/addressee', '/subject', '/paragraphs/0', '/paragraphs/1'].map(surface),
 } as const;
 const letter = {
   ...letterWithoutHash,
@@ -206,4 +208,29 @@ describe('Career Markdown, HTML and document parity', () => {
       expect.arrayContaining(['SEMANTIC_MODEL_MISMATCH', 'HTML_PROJECTION_NOT_DETERMINISTIC']),
     );
   });
+
+  it.each([
+    ['CV name', cvWithoutHash, '/name', renderCareerCvHtml],
+    ['CV contact', cvWithoutHash, '/contact_lines/0', renderCareerCvHtml],
+    ['letter addressee', letterWithoutHash, '/addressee', renderCareerLetterHtml],
+    ['letter subject', letterWithoutHash, '/subject', renderCareerLetterHtml],
+  ] as const)(
+    'blocks %s omissions before render and parity output',
+    (_label, draft, path, render) => {
+      const invalidDraft = {
+        ...draft,
+        surface_bindings: draft.surface_bindings.filter((binding) => binding.path !== path),
+      };
+      const invalid = {
+        ...invalidDraft,
+        content_sha256: calculateCareerDocumentHash(invalidDraft as never),
+      };
+      expect(() => render(invalid, evidenceBank)).toThrow(
+        new RegExp(`UNBOUND_VISIBLE_TEXT:${path}`, 'u'),
+      );
+      expect(() => verifyCareerDocumentParity(invalid, evidenceBank, '')).toThrow(
+        new RegExp(`UNBOUND_VISIBLE_TEXT:${path}`, 'u'),
+      );
+    },
+  );
 });
