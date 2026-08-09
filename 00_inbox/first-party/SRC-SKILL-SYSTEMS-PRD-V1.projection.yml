@@ -1,0 +1,47 @@
+schema_version: governed-source-projection-v1
+source_id: SRC-SKILL-SYSTEMS-PRD-V1
+title: Skill Systems Specialist v1.2.1 — proyección portable
+source_kind: first_party_requirements
+raw_sha256: 29dd7a0fd498901dcb2e8185dfddf54c1b46e5f43d06e1a3cbada199116b3b72
+rights: {holder: MetodologIA, allowed_use: internal_architecture_and_local_evaluation}
+authority: {class: first_party_requirement, verdict: verified_hash_not_runtime_proof}
+normalized_requirements:
+  - separar skill, tool, reference, schema, state, evaluator, adapter y autoridad humana
+  - aplicar demotion antes de crear y exigir dos razones operativas para split
+  - mantener TRIGGER distinto de autorización y efectos tipados E0-E4
+  - evaluar TRIGGER DECISION OUTCOME contra no-skill o versión anterior
+  - excluir fallos de infraestructura del denominador y conservar atribución por owner_component
+  - empaquetar releases inmutables con compatibilidad rollback y restore verificables
+  - tratar adapters externos como reemplazables y nunca como autoridad
+frames_contextualization:
+  route_authority: [R8, R9]
+  workflow_family: [S00, S01, S02, S03, S04, S05, S06, S07, S08, S09]
+  lifecycle: H-03
+  verification: [RT-09, RT-11, H01]
+  documentation: Documentation OS
+  maximum_state: active/local-evaluation
+coverage_gaps:
+  - K02_pivote_language_state.md
+  - K03_intake_evidence.md
+  - K04
+  - K05_audience_editorial.md
+  - K06
+  - K07_briefs_formats_campaigns.md
+  - K08
+  - K09_multimedia_ontology_ucc.md
+  - K10
+  - K11_video_motion.md
+  - K12_audio_voice_captions.md
+  - K13_accessibility.md
+  - K14_rights_privacy_disclosure.md
+  - K15_ai_prompts_security.md
+  - K16_pipeline_handoffs_provenance.md
+  - K17
+  - K18
+  - K19_specops_version_rollback.md
+  - K20_review_measurement_evals.md
+limitations:
+  - PRD status GENERATED does not prove execution or outcomes
+  - owner and approver in the source remain DATA_REQUIRED
+  - runtime adapters remain UNKNOWN without material HOST_BEHAVIOR probes
+  - no media execution is authorized by the spoken-video fixture
