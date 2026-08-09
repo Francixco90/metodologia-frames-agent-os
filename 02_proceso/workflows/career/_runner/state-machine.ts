@@ -4,6 +4,7 @@ import {
   type CareerApplicationState,
   type CareerEventV1,
 } from '../_schema/state-v1.schema.ts';
+import {assertMaterialConfirmation} from './confirmation-evidence.ts';
 
 const allowed: Readonly<Record<CareerApplicationState, readonly CareerApplicationState[]>> = {
   DISCOVERED: ['VALIDATED', 'BLOCKED', 'CLOSED'],
@@ -37,7 +38,7 @@ export class CareerStateTransitionError extends Error {
   }
 }
 
-const assertSubmittedEvidence = (input: unknown): CareerEventV1 => {
+const assertSubmittedEvidence = (input: unknown, root: string | undefined): CareerEventV1 => {
   const packet = SubmittedTransitionV1Schema.parse(input);
   const {authorization, confirmation, event} = packet;
   const actors = [
@@ -71,10 +72,19 @@ const assertSubmittedEvidence = (input: unknown): CareerEventV1 => {
       'SUBMITTED authorization or confirmation binding mismatch',
     );
   }
+  if (!root) throw new CareerStateTransitionError('SUBMITTED requires an explicit runtime root');
+  assertMaterialConfirmation({
+    root,
+    ref: confirmation.confirmation_ref,
+    sha256: confirmation.confirmation_sha256,
+  });
   return event;
 };
 
-export const transitionCareerState = (input: unknown): CareerApplicationState => {
+export const transitionCareerState = (
+  input: unknown,
+  runtime?: {root: string},
+): CareerApplicationState => {
   const possibleEvent =
     typeof input === 'object' && input !== null && 'event' in input ? input.event : input;
   const event = CareerEventV1Schema.parse(possibleEvent);
@@ -91,6 +101,6 @@ export const transitionCareerState = (input: unknown): CareerApplicationState =>
   if (kind && event.kind !== kind) {
     throw new CareerStateTransitionError(`${event.to} requires event kind ${kind}`);
   }
-  if (event.to === 'SUBMITTED') assertSubmittedEvidence(input);
+  if (event.to === 'SUBMITTED') assertSubmittedEvidence(input, runtime?.root);
   return event.to;
 };
