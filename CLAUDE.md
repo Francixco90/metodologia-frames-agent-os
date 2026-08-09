@@ -2,40 +2,39 @@
 
 @AGENTS.md
 
-Adaptador de Claude Code. La experiencia y el workflow management canónicos viven
-en `02_proceso/governance/experience-first-orchestration.md`; este archivo solo
-define el arranque del host. [CONFIG]
+Adaptador de Claude Code. `AGENTS.md` manda; `context.md` enruta; la operación
+detallada vive en `02_proceso/governance/experience-first-orchestration.md`.
+[CONFIG]
 
 ## Primer turno
 
-1. **Clasificar intención, asistir y enrutar** antes de cargar contexto profundo.
+1. Clasificar intención y enrutar antes de cargar contexto profundo.
 2. Saludo: `Frames ContentOS · por MetodologIA` +
    `Crear · Mejorar · Planear · Explorar`; cero writes.
-3. Pedido claro: confirmar en una frase qué se entendió y ejecutar el First-Turn
-   Gateway. No mostrar menú ni pedir IDs internos.
-4. Pedido incompleto: máximo tres preguntas que cambien ruta, evidencia,
-   entregable o autorización; mantener preview en memoria.
-5. `/menu` y `/ruta`: vistas read-only. Resume: solo desde lineage hash-bound.
+3. Pedido claro: confirmar el resultado en una frase y omitir el menú.
+4. Preguntar como máximo tres gaps que cambien ruta, evidencia, entregable o
+   autorización. Mantener el preview en memoria.
+5. `/menu` y `/ruta` son read-only. Resume exige lineage hash-bound.
 
-## Ejecución gobernada
+## Comandos project-local
 
-- R6 y R7 pueden materializar brief Markdown/HTML y receipt local mediante el
-  dispatcher productivo; detenerse en el gate de aprobación del brief.
-- R4 requiere state root y `candidate_id` exactos. R0 bloquea ambigüedad. R1–R3 y
-  R5 orientan con `coverage_gap` hasta disponer de handler productivo.
-- Cargar solo workflow, paso, template, skill y fuentes activos. Después construir
-  WorkOrder con read/write set, tools, budget, aceptación y stop rule.
-- No afirmar uso de skill, producción o validación sin receipt y archivos releídos.
-- No cargar `CONTEXT.md`, `PROJECT.md` o `TASK.md` hasta que la ruta los requiera.
+```bash
+printf '%s\n' 'Ayúdame a crear una pieza' | pnpm frames:assist
+pnpm frames:assist -- --input request.json --apply
+pnpm check:repo && pnpm typecheck
+```
 
-## Autoridad y cierre
+El primer comando interpreta sin escribir. `--apply` solo materializa el brief
+local cuando el intake y el write set son suficientes; luego se detiene en
+`EXP_BRIEF_APPROVED`.
 
-- Router: `02_proceso/governance/router.yml`.
-- Workflows: `02_proceso/workflows/{multimedia,career}/`.
-- Gates: `05_verificacion/scripts/commands.yaml`.
-- Tools: `02_proceso/governance/tool-policy.yml`.
-- Ownership: `01_intencion/program/ownership-manifest.yml`.
+## Ejecución y cierre
 
-Antes de cerrar: validar lo tocado, ejecutar `pnpm check:repo`, revisar
-`git status` y declarar gaps, privacidad, efectos y siguiente gate. Un PASS técnico
-no concede merge, distribución ni publicación. [CONFIG]
+- R6/R7 son brief-first; R4 exige `candidate_id`; R0 bloquea ambigüedad.
+- R1–R3/R5 conservan `coverage_gap` hasta tener handler productivo.
+- Cargar solo `context.md`, workflow, paso, template, skill y fuentes activos.
+- El contexto privado vive en `work/private/CONTEXT.md` y solo se carga después
+  del route lock con autoridad explícita.
+- Una skill sin receipt material permanece `planned`; `UNKNOWN` bloquea.
+- Antes de cerrar: validar lo tocado, revisar `git status` y declarar privacidad,
+  efectos, gaps y siguiente gate. PASS técnico no concede publicación. [CONFIG]

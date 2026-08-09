@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "b9e34eab87f41e9bb854e43030e3b712ef02533d763a4dbbed9c269d4106fcd7",
+  "repositoryTreeSha256": "61c2e0030939dabad2bf9a148925f51e2d3d67b50ee6757e85fb786846f14341",
   "totalMarkdown": 1602,
   "auditedAuthored": 458,
   "classPaths": {
@@ -13989,9 +13989,9 @@
       "sourceRef": "AGENTS.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "fb69bd063575e6bbb3d92c656f5e09723f98a668d585a98b9f4c99ffbbdf2729",
-      "words": 246,
-      "lines": 36,
+      "sha256": "3a596e2a21746a1179807302800d59662a37645d453b74a0af1a6b0dc58d0e39",
+      "words": 254,
+      "lines": 37,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -14016,23 +14016,17 @@
       "sourceRef": "CLAUDE.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "a8cbcbdeb31770a4737f869e2c3408db50a57fedb63a8a7118a9b12fba021ee5",
-      "words": 257,
-      "lines": 42,
-      "score": 80,
+      "sha256": "96f73b8620b988a562d2f992e937f74becae960006d311160ab4b26c833b61cc",
+      "words": 230,
+      "lines": 41,
+      "score": 100,
       "threshold": 90,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-COMMAND001",
-          "severity": "medium",
-          "detail": "Falta un bloque de comandos ejecutables."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": true,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -14075,9 +14069,9 @@
       "sourceRef": "GEMINI.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "7010de7758ae45101933a44ed042840bb08693157370ba33066d06594cda783c",
-      "words": 251,
-      "lines": 41,
+      "sha256": "199c3dcf77734e016988f84cfa61abc081a1e6a3162168e149c40e939e56e992",
+      "words": 255,
+      "lines": 42,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -14102,19 +14096,13 @@
       "sourceRef": "README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "f9e3fa772608816e67b1583364f68cfb303784d2371aa5b335402d4f2df10eaa",
-      "words": 1575,
-      "lines": 275,
-      "score": 80,
+      "sha256": "cfc6ed3a7378e1219e016f430c2b82d16eccab9b3c7751cfa3cfb960bfcd5fe0",
+      "words": 1438,
+      "lines": 255,
+      "score": 100,
       "threshold": 90,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-DRIFT001",
-          "severity": "high",
-          "detail": "Conserva conteos manuales obsoletos."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
@@ -14182,8 +14170,8 @@
     }
   ],
   "summary": {
-    "keep": 418,
-    "refactor": 28,
+    "keep": 420,
+    "refactor": 26,
     "split": 2,
     "regenerate": 0,
     "freeze": 990

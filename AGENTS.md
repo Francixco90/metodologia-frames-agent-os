@@ -27,6 +27,7 @@ visible. [CONFIG]
 ## Fuentes operativas
 
 - Experiencia y workflow management: `02_proceso/governance/experience-first-orchestration.md`.
+- Contexto público mínimo: `context.md`; privado autorizado: `work/private/CONTEXT.md`.
 - Routing y herramientas: `02_proceso/governance/router.yml` y `tool-policy.yml`.
 - Gates: `05_verificacion/scripts/commands.yaml`; ownership: `01_intencion/program/ownership-manifest.yml`.
 - Adapters de host: `02_proceso/governance/agent-cli-adapters.md`.

@@ -126,29 +126,9 @@ multi-vendor (Fases 2A-2I):
 
 ### Homólogos hash-bound (H-03 v3)
 
-**152 entradas** en `04_estado/registries/skills/creation-v3-skill-registry.yml`
-(append-only events + versioned current view). Desglose por familia:
-
-- **39 `content-os-*`**: 15 originales (Fase 2-3 + `remotion-bridge`) + 10 Fase 2A
-  HyperFrames (PRs #35/#36/#37/#39/#41) + 11 Fase 2B Remotion (PRs #42-#45) + 3
-  Fase 2C Bento (#46).
-- **28 `design-*`**: 11 design-OS originales (#59-#61) + 16 genjutsu Fase 2F
-  (#62-#65) + 1 design-dna Fase 2I (#66).
-- **51 `dev-*`**: 8 Fase 2J batch 1+2 (#67: spec, qa, review, ship, investigate,
-  careful, retro, qa-only) + 4 plan-review Fase 2J batch 3 (#68) + 39 Fase 7
-  densification (ADR 0027 atemporal naming lift).
-- **14 `gstack-*`**, **10 `context-*`**, **6 `web-*`**, **2 `media-*`**,
-  **1 `motion-*`**, **2 `scroll-*`** homólogos, **2 `remotion-*`** base.
-- **2 base**: `data-visual-composition`, `motion-library-adapters`.
-
-**v2** — 10 entradas en `04_estado/registries/skills/skill-registry.yml` (shared
-receipt): familia meta `metodologia-*` + `instagram-*` + `scroll-*` +
-`remotion-video-production-v2`.
-
-**Total: 162 skills** (152 v3 + 10 v2). El gate `verify:skills` corre v2 + v3 +
-reconcile (`scripts/reconcile-skill-registries.ts`) en cada PR: 0 orphans, 0
-cross-registry dupes, event_ids únicos. Estado del programa multi-vendor (Fases
-2A-2D, registry reconcile, receipt cascade, Fase 7 densification):
+Los registros v2 y v3 son la única autoridad del inventario; este README no fija
+conteos que puedan quedar obsoletos. `pnpm verify:skills` comprueba entradas,
+paquetes, eventos, huérfanos y duplicados entre registros. Estado del programa:
 [`01_intencion/content-os/roadmap.md`](01_intencion/content-os/roadmap.md). Mapeo
 vendor→nativas:
 [`01_intencion/content-os/capability-matrix.md`](01_intencion/content-os/capability-matrix.md).
@@ -228,7 +208,7 @@ Gates → comandos: `05_verificacion/scripts/commands.yaml` (manifiesto `command
   (multimedia: `MW_CAPABILITY`, `MW_BRIEF_APPROVED` P03, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
   `MW_EDIT_APPROVED` P08, `MW_DISTRIBUTION_AUTHORIZED` P09).
 - **Evals**: `evals/H-E001`..`H-E023` + `ablation/` — 23 eval suites con `runner.ts`.
-- **Tests**: 550+ casos (unit/contract/integration) en `tests/`. Harness contract:
+- **Tests**: inventario vivo en `tests/`; `pnpm test` informa el conteo ejecutado. Harness contract:
   `tests/contract/harness/`.
 - **Check scripts**: 35 scripts `check-*.ts`/`.mjs` en `scripts/` (brand, repo, skills,
   env-drift, tool-grants, privacy, multimedia-capabilities, content-os, etc.).
