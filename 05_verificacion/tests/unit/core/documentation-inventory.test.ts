@@ -11,17 +11,24 @@ describe('DocumentationInventoryV1', () => {
     );
     expect(classified).toBe(inventory.totalMarkdown);
     expect(inventory.totalMarkdown).toBeGreaterThanOrEqual(1602);
-    expect(inventory.auditedAuthored).toBe(458);
+    expect(inventory.auditedAuthored).toBe(462);
     expect(inventory.classPaths.vendor).toHaveLength(975);
+    expect(inventory.classPaths.generated).toEqual(
+      expect.arrayContaining([
+        '01_intencion/program/file-disposition-ledger.md',
+        '02_proceso/workflows/multimedia/_assets/multimedia-library.md',
+      ]),
+    );
   });
 
-  it('records actionable root findings without rewriting frozen history', () => {
+  it('records corrected root quality without rewriting frozen history', () => {
     const inventory = buildDocumentationInventory();
     const claude = inventory.evaluations.find(({path}) => path === 'CLAUDE.md');
     const readme = inventory.evaluations.find(({path}) => path === 'README.md');
     const lessons = inventory.evaluations.find(({path}) => path.endsWith('lessons-learned.md'));
-    expect(claude).toMatchObject({score: 80, decision: 'REFACTOR'});
-    expect(readme?.findings.map(({code}) => code)).toContain('DOC-DRIFT001');
+    expect(claude).toMatchObject({score: 100, decision: 'KEEP'});
+    expect(readme).toMatchObject({score: 100, decision: 'KEEP', findings: []});
     expect(lessons?.decision).toBe('FREEZE');
+    expect(inventory.evaluations.filter(({decision}) => decision === 'REGENERATE')).toHaveLength(2);
   });
 });

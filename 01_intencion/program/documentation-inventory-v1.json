@@ -1,10 +1,11 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "61c2e0030939dabad2bf9a148925f51e2d3d67b50ee6757e85fb786846f14341",
-  "totalMarkdown": 1602,
-  "auditedAuthored": 458,
+  "repositoryTreeSha256": "b3882f2f3374eac1866bf8bddd32dd289053060187932617d46ae742d4e0b745",
+  "totalMarkdown": 1668,
+  "auditedAuthored": 462,
   "classPaths": {
     "authored_control": [
+      ".agents/skills/frames-assist/SKILL.md",
       ".agents/skills/harness-creator/README-UK.md",
       ".agents/skills/harness-creator/README.md",
       ".agents/skills/harness-creator/SKILL.md",
@@ -28,6 +29,8 @@
       ".agents/skills/harness-creator/templates/prompts/P-03-evaluator.md",
       ".agents/skills/harness-creator/templates/prompts/P-04-registrar.md",
       ".agents/skills/harness-creator/templates/session-handoff.md",
+      ".claude/commands/frames/assist.md",
+      ".claude/skills/frames-assist/SKILL.md",
       ".github/pull_request_template.md",
       "00_inbox/Contratos/README.md",
       "00_inbox/Firmas/README.md",
@@ -87,7 +90,6 @@
       "01_intencion/program/README.md",
       "01_intencion/program/content-atom-graph-v1.md",
       "01_intencion/program/execution-ledger.md",
-      "01_intencion/program/file-disposition-ledger.md",
       "01_intencion/program/formal-scope.md",
       "01_intencion/program/instagram-content-creation-network-v3.md",
       "01_intencion/program/instagram-content-network-v2.md",
@@ -141,6 +143,7 @@
       "02_proceso/governance/harness-subsystem-reconciliation.md",
       "02_proceso/governance/loose-task-policy.md",
       "02_proceso/governance/ownership-scripts-decision.md",
+      "02_proceso/governance/scripting-and-tool-use.md",
       "03_artefactos/adapters/n8n/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
@@ -393,7 +396,6 @@
       "02_proceso/workflows/multimedia/_assets/deliverable-document-template.md",
       "02_proceso/workflows/multimedia/_assets/dod-template.md",
       "02_proceso/workflows/multimedia/_assets/evidence-tuple.md",
-      "02_proceso/workflows/multimedia/_assets/multimedia-library.md",
       "02_proceso/workflows/multimedia/_assets/no-regression-checklist.md",
       "02_proceso/workflows/multimedia/_assets/recovery-faq.md",
       "02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md",
@@ -629,7 +631,72 @@
       "03_artefactos/skills/web-scrape/SKILL.md",
       "03_artefactos/skills/web-setup-browser-cookies/SKILL.md"
     ],
-    "generated": [],
+    "generated": [
+      "00_inbox/context.md",
+      "01_intencion/context.md",
+      "01_intencion/program/file-disposition-ledger.md",
+      "02_proceso/agents/RT-01/context.md",
+      "02_proceso/agents/RT-02/context.md",
+      "02_proceso/agents/RT-03/context.md",
+      "02_proceso/agents/RT-04/context.md",
+      "02_proceso/agents/RT-05/context.md",
+      "02_proceso/agents/RT-06/context.md",
+      "02_proceso/agents/RT-07/context.md",
+      "02_proceso/agents/RT-08/context.md",
+      "02_proceso/agents/RT-09/context.md",
+      "02_proceso/agents/RT-10/context.md",
+      "02_proceso/agents/RT-11/context.md",
+      "02_proceso/agents/context.md",
+      "02_proceso/committees/context.md",
+      "02_proceso/context.md",
+      "02_proceso/core/context.md",
+      "02_proceso/governance/context.md",
+      "02_proceso/workflows/adapters/context.md",
+      "02_proceso/workflows/career/c00-intake/context.md",
+      "02_proceso/workflows/career/c01-evidence/context.md",
+      "02_proceso/workflows/career/c02-positioning/context.md",
+      "02_proceso/workflows/career/c03-discovery/context.md",
+      "02_proceso/workflows/career/c04-scoring/context.md",
+      "02_proceso/workflows/career/c05-application-design/context.md",
+      "02_proceso/workflows/career/c06-cv/context.md",
+      "02_proceso/workflows/career/c07-cover-letter/context.md",
+      "02_proceso/workflows/career/c08-package-qa/context.md",
+      "02_proceso/workflows/career/c09-submission/context.md",
+      "02_proceso/workflows/career/context.md",
+      "02_proceso/workflows/context.md",
+      "02_proceso/workflows/experience/context.md",
+      "02_proceso/workflows/multimedia/_assets/multimedia-library.md",
+      "02_proceso/workflows/multimedia/context.md",
+      "02_proceso/workflows/multimedia/p00-definir-sistema/context.md",
+      "02_proceso/workflows/multimedia/p01-curar-material/context.md",
+      "02_proceso/workflows/multimedia/p02-investigar/context.md",
+      "02_proceso/workflows/multimedia/p03-crear-brief/context.md",
+      "02_proceso/workflows/multimedia/p04-calendarizar/context.md",
+      "02_proceso/workflows/multimedia/p05-disenar-pieza/context.md",
+      "02_proceso/workflows/multimedia/p06-crear-activos/context.md",
+      "02_proceso/workflows/multimedia/p07-revisar/context.md",
+      "02_proceso/workflows/multimedia/p08-editar/context.md",
+      "02_proceso/workflows/multimedia/p09-distribuir/context.md",
+      "03_artefactos/context.md",
+      "03_artefactos/host-adapters/context.md",
+      "03_artefactos/skills/career-application-orchestrator/context.md",
+      "03_artefactos/skills/content-os-core/context.md",
+      "03_artefactos/skills/content-os-creative/context.md",
+      "03_artefactos/skills/content-os-router/context.md",
+      "03_artefactos/skills/context-memory/context.md",
+      "03_artefactos/skills/context-restore/context.md",
+      "03_artefactos/skills/context-save/context.md",
+      "03_artefactos/skills/context-teammates/context.md",
+      "03_artefactos/skills/dev-verification-before-completion/context.md",
+      "03_artefactos/skills/dev-writing-plans/context.md",
+      "03_artefactos/skills/frames-token-efficiency-orchestrator/context.md",
+      "03_artefactos/skills/metodologia-brand-router/context.md",
+      "04_estado/context.md",
+      "04_estado/registries/context.md",
+      "05_verificacion/context.md",
+      "05_verificacion/scripts/context.md",
+      "context.md"
+    ],
     "vendor": [
       "03_artefactos/skills/vendor/README.md",
       "03_artefactos/skills/vendor/anthropics-skills/frontend-design/SKILL.md",
@@ -1624,10 +1691,36 @@
   },
   "evaluations": [
     {
+      "path": ".agents/skills/frames-assist/SKILL.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/frames-assist/**",
+      "authorityRefs": [
+        ".agents/skills/frames-assist/SKILL.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": ".agents/skills/frames-assist/SKILL.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "5462a1191b8a2d2003d9b48f47d7722518d38b1e617c363679a292510281f757",
+      "words": 127,
+      "lines": 17,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": ".agents/skills/harness-creator/README-UK.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/README-UK.md"
       ],
@@ -1638,16 +1731,10 @@
       "sha256": "075c752ef5ae76d80304cf7c8f016ebab5027ff8aa3c40a98ea4960bf192c7c4",
       "words": 280,
       "lines": 84,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": false,
@@ -1658,8 +1745,8 @@
     {
       "path": ".agents/skills/harness-creator/README.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/README.md"
       ],
@@ -1670,16 +1757,10 @@
       "sha256": "f388d7869cf5e383c811726ee694a686b115dfe2b940df4edb048a9be8e3f498",
       "words": 284,
       "lines": 84,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": false,
@@ -1690,8 +1771,8 @@
     {
       "path": ".agents/skills/harness-creator/SKILL.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/SKILL.md"
       ],
@@ -1702,16 +1783,10 @@
       "sha256": "dcb80eda5f1b187561b0892a7e4d8cb707ab4b308a50b588fedbe845125aa819",
       "words": 879,
       "lines": 149,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
@@ -1722,8 +1797,8 @@
     {
       "path": ".agents/skills/harness-creator/references/context-engineering-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/context-engineering-pattern.md"
       ],
@@ -1734,16 +1809,10 @@
       "sha256": "13008d846e539f351c4708296780aca103267249f5e625db6c3594308ede3271",
       "words": 776,
       "lines": 151,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1754,8 +1823,8 @@
     {
       "path": ".agents/skills/harness-creator/references/gotchas.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/gotchas.md"
       ],
@@ -1766,16 +1835,10 @@
       "sha256": "6c90a161cd2f928df5109ad12bf5d849d838256de61e76fc1c8868d0d5d154e6",
       "words": 909,
       "lines": 210,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
@@ -1786,8 +1849,8 @@
     {
       "path": ".agents/skills/harness-creator/references/lifecycle-bootstrap-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/lifecycle-bootstrap-pattern.md"
       ],
@@ -1798,16 +1861,10 @@
       "sha256": "183bb9138a9a434d51a126c2dd72bb6ca580477af61bda3d46a60f3abc85329c",
       "words": 1086,
       "lines": 265,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1818,8 +1875,8 @@
     {
       "path": ".agents/skills/harness-creator/references/memory-persistence-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/memory-persistence-pattern.md"
       ],
@@ -1830,16 +1887,10 @@
       "sha256": "45b9e1950b4c9e0738214b3cc5329d9e1e17621a02d9d09e2a3fb0a6a2704d94",
       "words": 646,
       "lines": 111,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1850,8 +1901,8 @@
     {
       "path": ".agents/skills/harness-creator/references/multi-agent-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/multi-agent-pattern.md"
       ],
@@ -1862,16 +1913,10 @@
       "sha256": "b307660cd1043408e6dec50e4dd9a18e61b460a41bd66bd59c59d12adb5b0ed9",
       "words": 874,
       "lines": 194,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1882,8 +1927,8 @@
     {
       "path": ".agents/skills/harness-creator/references/orchestration-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/orchestration-pattern.md"
       ],
@@ -1894,16 +1939,10 @@
       "sha256": "7dd1e3f7ffa7ca38965c74305f207c3e84a5cd0e0ab63ca2389b304f0eb8f045",
       "words": 834,
       "lines": 68,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1914,8 +1953,8 @@
     {
       "path": ".agents/skills/harness-creator/references/skill-runtime-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/skill-runtime-pattern.md"
       ],
@@ -1926,16 +1965,10 @@
       "sha256": "642164a949e91c5e73ffbd5f4f049573a3aeacf1ef2c41af61e113198da8468d",
       "words": 281,
       "lines": 44,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -1946,8 +1979,8 @@
     {
       "path": ".agents/skills/harness-creator/references/tool-registry-pattern.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/references/tool-registry-pattern.md"
       ],
@@ -1958,16 +1991,10 @@
       "sha256": "5b4ea1447dca0baf3745daa5e8fb1dc94ab6a7a81dbcdb2d40fd66e7615adf98",
       "words": 859,
       "lines": 200,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -1979,7 +2006,7 @@
       "path": ".agents/skills/harness-creator/templates/CLAUDE.md",
       "class": "authored_control",
       "owner": "skill-foundry",
-      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/templates/CLAUDE.md",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/CLAUDE.md"
       ],
@@ -2004,8 +2031,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/CONSTITUTION.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/CONSTITUTION.md"
       ],
@@ -2016,16 +2043,10 @@
       "sha256": "44baee47902c4e633b49db5ffa1bdfec3c6b9e9b9db1736a00092ccef81f93e4",
       "words": 422,
       "lines": 62,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2036,8 +2057,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/GEMINI.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/GEMINI.md"
       ],
@@ -2048,16 +2069,10 @@
       "sha256": "333911afb60382c5e1828f9eb5b3d6ac75f6b31cd68dcfb865d6bab71c35f059",
       "words": 749,
       "lines": 104,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
@@ -2068,8 +2083,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/README.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/README.md"
       ],
@@ -2080,16 +2095,10 @@
       "sha256": "bd694f9b41a01fb0c32e08f228f11e58c2ce508f90d3e33ced6f32dc2cacd297",
       "words": 355,
       "lines": 60,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
@@ -2100,8 +2109,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/agents.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/agents.md"
       ],
@@ -2112,16 +2121,10 @@
       "sha256": "cc63903d01fe749d6bd3e82cc637a7abcce15e2b8fe7d3aa4c2f75f7bd6e188c",
       "words": 418,
       "lines": 79,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": false,
@@ -2132,8 +2135,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/assets/brand.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/assets/brand.md"
       ],
@@ -2144,16 +2147,10 @@
       "sha256": "031daec158843b15b0f1d387e71b45a7e415c0b64f9378492e608e42d8e00173",
       "words": 123,
       "lines": 26,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2164,8 +2161,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/progress.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/progress.md"
       ],
@@ -2176,16 +2173,10 @@
       "sha256": "dc8ed5780eb7daa861597a59e0d0ae096e7e23e7dcd7ae4bde7eeed691ee4433",
       "words": 167,
       "lines": 52,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2196,8 +2187,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/prompts/P-01-compiler.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/prompts/P-01-compiler.md"
       ],
@@ -2208,16 +2199,10 @@
       "sha256": "0d92f766854c748d1cea2481a10f70eaad0e2df2597328c840ae9f02f8cdc50e",
       "words": 603,
       "lines": 106,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2228,8 +2213,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/prompts/P-02-executor.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/prompts/P-02-executor.md"
       ],
@@ -2240,16 +2225,10 @@
       "sha256": "e1041b3269afe135f2fed6c54e42919026f54f0eef50bd41e431867189fd3357",
       "words": 441,
       "lines": 49,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2260,8 +2239,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/prompts/P-03-evaluator.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/prompts/P-03-evaluator.md"
       ],
@@ -2272,16 +2251,10 @@
       "sha256": "240c7dc36f6ce9cac55e24f67f39cee9f41a7d2366bde0a4a858d5db2d6731e7",
       "words": 459,
       "lines": 89,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2292,8 +2265,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/prompts/P-04-registrar.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/prompts/P-04-registrar.md"
       ],
@@ -2304,16 +2277,10 @@
       "sha256": "38e53c2958391d6f858b0d32e5bdcf7127743a178ad2b255f4b0c902d70563aa",
       "words": 422,
       "lines": 69,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2324,8 +2291,8 @@
     {
       "path": ".agents/skills/harness-creator/templates/session-handoff.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.agents/skills/harness-creator/**",
       "authorityRefs": [
         ".agents/skills/harness-creator/templates/session-handoff.md"
       ],
@@ -2336,16 +2303,62 @@
       "sha256": "a71e92389c56f9a84e7afd2ee0578377f08e40afcb7a8efe15105553d234fc49",
       "words": 84,
       "lines": 41,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": ".claude/commands/frames/assist.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.claude/commands/frames/**",
+      "authorityRefs": [
+        ".claude/commands/frames/assist.md"
       ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": ".claude/commands/frames/assist.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "6e32ae19d50fd82b4942a38d1040d2494631e1454934df8632aeefd86ead9fcc",
+      "words": 134,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": ".claude/skills/frames-assist/SKILL.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:.claude/skills/frames-assist/**",
+      "authorityRefs": [
+        ".claude/skills/frames-assist/SKILL.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": ".claude/skills/frames-assist/SKILL.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "09b1cc41f6832b82ae816125053c00d8f72bc75597b8978defd573ca7112f346",
+      "words": 122,
+      "lines": 17,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
@@ -2738,16 +2751,10 @@
       "sha256": "e5b137e320c0eb52a7c51a335bf67d4be6caa1de3adce5188ffc72501e569765",
       "words": 677,
       "lines": 106,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-PRIVACY001",
-          "severity": "high",
-          "detail": "Contiene un locator local absoluto."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -3628,16 +3635,10 @@
       "sha256": "f645334916d541b7156d14f506557a81fc9e8edf656e3ec61f390c20c2df8990",
       "words": 1309,
       "lines": 139,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-PRIVACY001",
-          "severity": "high",
-          "detail": "Contiene un locator local absoluto."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -3985,22 +3986,22 @@
     },
     {
       "path": "01_intencion/program/file-disposition-ledger.md",
-      "class": "authored_control",
+      "class": "generated",
       "owner": "lead",
       "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
       "authorityRefs": [
         "01_intencion/program/file-disposition-ledger.md"
       ],
       "budgetSurface": "generated-ledger-projection",
-      "sourceRef": "01_intencion/program/file-disposition-ledger.md",
+      "sourceRef": null,
       "derivatives": [],
-      "lifecycle": "active",
+      "lifecycle": "generated",
       "sha256": "5067cdbeb903f8f2db98b32f2cbad4b5f7fd046079edcafaa52eac03d89ff465",
       "words": 7788,
       "lines": 450,
       "score": 100,
       "threshold": 80,
-      "decision": "SPLIT",
+      "decision": "REGENERATE",
       "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
@@ -4362,16 +4363,10 @@
       "sha256": "5cc7f79ad37d8b323babba7177f93e5053dd5095b9f9b6437584c838245471ba",
       "words": 843,
       "lines": 114,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-PRIVACY001",
-          "severity": "high",
-          "detail": "Contiene un locator local absoluto."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -5304,9 +5299,9 @@
       "sourceRef": "02_proceso/governance/experience-first-orchestration.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "f18e6c8b34113f2da9b52c4e84910647db12df36e0dd9a086a3c703db137fc41",
-      "words": 920,
-      "lines": 123,
+      "sha256": "dbebe5c99f132fba317efe7c1c47fd67fdb2e4733946fe47249c5c5403ea6dd9",
+      "words": 972,
+      "lines": 130,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -5423,6 +5418,33 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/governance/scripting-and-tool-use.md",
+      "class": "authored_control",
+      "owner": "governance",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:governance:governance/**",
+      "authorityRefs": [
+        "AGENTS.md",
+        "02_proceso/governance/scripting-and-tool-use.md"
+      ],
+      "budgetSurface": "authored-governance-md",
+      "sourceRef": "02_proceso/governance/scripting-and-tool-use.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3742456153548568f5b1f28aa56e5de0d2c10a4622b007ef8fe65fee13b9a904",
+      "words": 778,
+      "lines": 126,
+      "score": 100,
+      "threshold": 90,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -5904,24 +5926,24 @@
     },
     {
       "path": "02_proceso/workflows/multimedia/_assets/multimedia-library.md",
-      "class": "workflow",
+      "class": "generated",
       "owner": "content",
       "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/multimedia/**",
       "authorityRefs": [
         "02_proceso/workflows/multimedia/_assets/multimedia-library.md"
       ],
-      "budgetSurface": "authored-explicit-fallback",
-      "sourceRef": "02_proceso/workflows/multimedia/_assets/multimedia-library.md",
+      "budgetSurface": "generated-explicit-fallback",
+      "sourceRef": null,
       "derivatives": [
         "02_proceso/workflows/multimedia/_assets/multimedia-library.html"
       ],
-      "lifecycle": "active",
+      "lifecycle": "generated",
       "sha256": "829bd089a7b2540871d26b563043a99ab209921a1e0df534be7c3dbb88e0b92d",
       "words": 2531,
       "lines": 200,
       "score": 100,
       "threshold": 80,
-      "decision": "SPLIT",
+      "decision": "REGENERATE",
       "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
@@ -7634,9 +7656,9 @@
         "03_artefactos/content/experience/frames-experience-blueprint.html"
       ],
       "lifecycle": "active",
-      "sha256": "9cf6d6a20ac7ef2fc6dae79391e15a7fec8f53d8c75e2fd4177595c055a21568",
-      "words": 642,
-      "lines": 79,
+      "sha256": "016cba2d80db7ae06e118aa49996a1da8130d127fcec42180bb3ce715f5d15c7",
+      "words": 949,
+      "lines": 87,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -11503,8 +11525,8 @@
     {
       "path": "04_estado/registries/contributions/README.md",
       "class": "authored_control",
-      "owner": "UNRESOLVED",
-      "ownerEvidence": "coverage_gap:ownership",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:registries/contributions/**",
       "authorityRefs": [
         "04_estado/registries/contributions/README.md"
       ],
@@ -11515,16 +11537,10 @@
       "sha256": "8b3e86a231c12c9c122688787c1559f423299f46bd73bbbe3cee5d61cb682697",
       "words": 170,
       "lines": 46,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
-      "decision": "REFACTOR",
-      "findings": [
-        {
-          "code": "DOC-OWNER001",
-          "severity": "high",
-          "detail": "No resuelve un owner canónico."
-        }
-      ],
+      "decision": "KEEP",
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": false,
@@ -13982,7 +13998,6 @@
       "owner": "lead",
       "ownerEvidence": "docs/program/ownership-manifest.yml:lead:AGENTS.md",
       "authorityRefs": [
-        "AGENTS.md",
         "AGENTS.md"
       ],
       "budgetSurface": "baseline-root-doc",
@@ -14096,9 +14111,9 @@
       "sourceRef": "README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "cfc6ed3a7378e1219e016f430c2b82d16eccab9b3c7751cfa3cfb960bfcd5fe0",
-      "words": 1438,
-      "lines": 255,
+      "sha256": "8e43fae000e38e5453075a41280c73e0a066134e653177ae0ce1a71e1d7559e0",
+      "words": 1502,
+      "lines": 266,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -14151,16 +14166,10 @@
       "sha256": "f582ba8e1bd9faa64d41c4886fd806ccb2df24a67697e42d4d9e00939b7ac164",
       "words": 2064,
       "lines": 268,
-      "score": 70,
+      "score": 100,
       "threshold": 80,
       "decision": "FREEZE",
-      "findings": [
-        {
-          "code": "DOC-PRIVACY001",
-          "severity": "high",
-          "detail": "Contiene un locator local absoluto."
-        }
-      ],
+      "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
@@ -14170,10 +14179,10 @@
     }
   ],
   "summary": {
-    "keep": 420,
-    "refactor": 26,
-    "split": 2,
-    "regenerate": 0,
-    "freeze": 990
+    "keep": 450,
+    "refactor": 0,
+    "split": 0,
+    "regenerate": 64,
+    "freeze": 985
   }
 }

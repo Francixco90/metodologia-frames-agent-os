@@ -22,7 +22,15 @@ export const classifyMarkdown = (path: string): MarkdownClass => {
     return 'evidence';
   }
   if (/^03_artefactos\/skills\/[^/]+\/SKILL\.md$/u.test(path)) return 'skill';
-  if (path.includes('/generated/') || path.endsWith('.generated.md')) return 'generated';
+  if (
+    path === 'context.md' ||
+    path.endsWith('/context.md') ||
+    path.includes('/generated/') ||
+    path.endsWith('.generated.md') ||
+    path.endsWith('/file-disposition-ledger.md') ||
+    path === '02_proceso/workflows/multimedia/_assets/multimedia-library.md'
+  )
+    return 'generated';
   if (path === 'changelog.md' || path.endsWith('/lessons-learned.md') || path.includes('/adrs/')) {
     return 'historical';
   }
@@ -76,7 +84,11 @@ export const evaluateMarkdown = (
   if (rules.length !== 1)
     add('DOC-BUDGET001', 'high', `Resuelve ${rules.length} reglas de presupuesto.`, 30);
   if (!/^#\s+\S/mu.test(content)) add('DOC-HEADING001', 'medium', 'Falta un H1.', 15);
-  if (/\/Users\/|\/home\/|[A-Za-z]:\\Users\\/u.test(content))
+  if (
+    /\/Users\/(?!…|\.\.\.)[^/\s`]+\/[^\s`]+|\/home\/(?!…|\.\.\.)[^/\s`]+\/[^\s`]+|[A-Za-z]:\\Users\\[^\\\s`]+\\[^\s`]+/u.test(
+      content,
+    )
+  )
     add('DOC-PRIVACY001', 'high', 'Contiene un locator local absoluto.', 30);
   const broken = brokenLinks(root, path, content);
   if (broken.length > 0)
@@ -94,18 +106,20 @@ export const evaluateMarkdown = (
   const decision =
     docClass === 'historical' || docClass === 'evidence'
       ? 'FREEZE'
-      : lines > 400 || words > 2500
-        ? 'SPLIT'
-        : score < threshold
-          ? 'REFACTOR'
-          : 'KEEP';
+      : docClass === 'generated'
+        ? 'REGENERATE'
+        : lines > 400 || words > 2500
+          ? 'SPLIT'
+          : score < threshold
+            ? 'REFACTOR'
+            : 'KEEP';
   const htmlPeer = path.endsWith('.md') ? path.slice(0, -3) + '.html' : '';
   return {
     path,
     class: docClass,
     owner: owner.owner,
     ownerEvidence: owner.evidence,
-    authorityRefs: isCritical(path) ? ['AGENTS.md', path] : [path],
+    authorityRefs: isCritical(path) && path !== 'AGENTS.md' ? ['AGENTS.md', path] : [path],
     budgetSurface: rules.length === 1 ? rules[0]!.surface : `UNRESOLVED:${rules.length}`,
     sourceRef: docClass === 'generated' ? null : path,
     derivatives: htmlPeer && existsSync(resolve(root, htmlPeer)) ? [htmlPeer] : [],

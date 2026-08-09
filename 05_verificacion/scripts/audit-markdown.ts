@@ -49,9 +49,13 @@ export const buildDocumentationInventory = (root = process.cwd()): Documentation
     'historical',
     'evidence',
   ]);
+  const auditedGenerated = new Set([
+    '01_intencion/program/file-disposition-ledger.md',
+    '02_proceso/workflows/multimedia/_assets/multimedia-library.md',
+  ]);
   const evaluations = paths
     .map((path) => [path, classifyMarkdown(path)] as const)
-    .filter(([, docClass]) => auditedClasses.has(docClass))
+    .filter(([path, docClass]) => auditedClasses.has(docClass) || auditedGenerated.has(path))
     .map(([path, docClass]) => evaluateMarkdown(root, path, docClass, resolveOwner, budgetRules));
   const repositoryTreeSha256 = hashText(
     paths
@@ -71,9 +75,7 @@ export const buildDocumentationInventory = (root = process.cwd()): Documentation
       split: evaluations.filter(({decision}) => decision === 'SPLIT').length,
       regenerate: classPaths.generated.length,
       freeze:
-        classPaths.vendor.length +
-        classPaths.evidence.length +
-        evaluations.filter(({decision}) => decision === 'FREEZE').length,
+        classPaths.vendor.length + evaluations.filter(({decision}) => decision === 'FREEZE').length,
     },
   });
 };
