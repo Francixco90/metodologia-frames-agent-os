@@ -1,0 +1,14 @@
+{
+  "candidate_id": "CAND-SYNTH-001",
+  "brief_id": "CBRIEF-SYNTH-APP-001",
+  "intent_class": "targeted_cv",
+  "language": "es",
+  "design_profile": "candidate-neutral-ats",
+  "evidence_ids": ["EVD-SYNTH-001"],
+  "outputs": [
+    {"kind": "markdown", "path": "work/private/career/cv-source.md", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "materialized": true},
+    {"kind": "html", "path": "work/private/career/cv.html", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "materialized": true}
+  ],
+  "state": "DRAFTED",
+  "next_gate": "CR_PACKAGE_QA"
+}
