@@ -26,7 +26,7 @@ export const CareerSurfaceBindingV1Schema = z
     path: z
       .string()
       .regex(
-        /^\/(headline|summary|skills\/[0-9]+|experience\/[0-9]+\/(organization|role|period|location)|education\/[0-9]+|paragraphs\/[0-9]+)$/u,
+        /^\/(name|headline|summary|contact_lines\/[0-9]+|skills\/[0-9]+|experience\/[0-9]+\/(organization|role|period|location)|education\/[0-9]+|addressee|subject|paragraphs\/[0-9]+)$/u,
       ),
     classification: z.enum(['evidence', 'non_claim']),
     evidence_ids: z.array(z.string().regex(/^EVD-[A-Z0-9-]{3,79}$/u)).max(12),
