@@ -19,6 +19,8 @@ productive_handlers:
   R5: {status: coverage_gap, effect: none}
   R6: {status: active, effect: local_reversible, stop: EXP_BRIEF_APPROVED}
   R7: {status: active, effect: local_reversible, stop: EXP_BRIEF_APPROVED}
+  R8: {status: active, effect: local_reversible, stop: LX_BRIEF_APPROVED}
+  R9: {status: active, effect: local_reversible, stop: HM_CHANGE_APPROVED}
 # El First-Turn Gateway clasifica asistencia, acción, reanudación o ambigüedad;
 # este manifiesto R0-R7 conserva la autoridad de routing. Los adapters solo
 # ejecutan una ruta cuando su handler es resoluble. [CONFIG]
@@ -114,6 +116,34 @@ routes:
     output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
     binds_to: task
     runtime_status: active_brief_first
+  - id: R8
+    signal: 'crear, ampliar, corregir o retirar una extensión privada de Frames'
+    signal_patterns:
+      - 'crear una skill local'
+      - 'crear un workflow privado'
+      - 'extender Frames localmente'
+      - 'corregir extensión local'
+    reads:
+      - '02_proceso/workflows/local-extensions/contracts.ts'
+      - '03_artefactos/skills/frames-local-extension-foundry/SKILL.md'
+    output: 'brief local + recorrido L00-L05; STOP en LX_BRIEF_APPROVED antes de materializar'
+    binds_to: task
+    runtime_status: active_brief_first
+  - id: R9
+    signal: 'corregir, evolucionar, migrar o deprecar el arnés Frames'
+    signal_patterns:
+      - 'corregir Frames'
+      - 'mantener el arnés'
+      - 'evolucionar Frames'
+      - 'migrar workflow'
+      - 'deprecar capacidad'
+    reads:
+      - '02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts'
+      - '02_proceso/core/contracts/documentation-governance-v1.ts'
+      - '03_artefactos/skills/frames-harness-maintainer/SKILL.md'
+    output: 'impact plan + recorrido M00-M06; STOP en HM_CHANGE_APPROVED'
+    binds_to: task
+    runtime_status: active_brief_first
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
 gate_commands:
   G00_toolchain: 'pnpm check:toolchain'
@@ -145,4 +175,8 @@ manual_fail_closed_gates:
     CR_SUBMISSION_AUTHORIZED,
     EXP_BRIEF_APPROVED,
     EXP_RELEASE_APPROVED,
+    LX_BRIEF_APPROVED,
+    DOCS_TRANSVERSAL_COMPLETE,
+    HM_CHANGE_APPROVED,
+    HM_PROMOTION_APPROVED,
   ]

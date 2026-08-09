@@ -1,0 +1,11 @@
+schema_version: 1
+receipt_id: frames-ecosystem-inventory-runtime-boundary-v1
+skill_id: frames-ecosystem-inventory
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+registry_mutation_allowed: false
+private_locator_publication_allowed: false
+deterministic_replay_required: true
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

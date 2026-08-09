@@ -1,0 +1,4 @@
+fixture_id: docs-stale-projection-negative
+request: cerrar cambio con HTML editado manualmente
+input: {source_resolvable: true, projection_matches_source: false}
+expected: {result: BLOCKED, reason: GENERATED_PROJECTION_DRIFT}

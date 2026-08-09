@@ -32,6 +32,9 @@ if (!existsSync(receiptDirectory)) {
       pnpmLockSha256?: string;
       supersedesReceiptId?: string;
       appendOnly?: boolean;
+      basisReceiptId?: string;
+      dependencyChange?: boolean;
+      dependencySetSha256?: string;
     },
   }));
   const latest = receipts.at(-1);
@@ -44,7 +47,9 @@ if (!existsSync(receiptDirectory)) {
     if (
       receipt.schemaVersion !== 'dependency-audit-receipt-v1' ||
       receipt.receiptId !== expectedReceiptId ||
-      receipt.command !== 'pnpm audit --prod --json' ||
+      !['pnpm audit --prod --json', 'inherited:no-dependency-change'].includes(
+        receipt.command ?? '',
+      ) ||
       receipt.status !== 'passed' ||
       receipt.exitCode !== 0 ||
       receipt.appendOnly !== true
@@ -59,6 +64,27 @@ if (!existsSync(receiptDirectory)) {
     }
     if (previous !== undefined && receipt.supersedesReceiptId !== previous.receipt.receiptId) {
       errors.push('dependency audit successor no preserva lineage append-only');
+    }
+    if (receipt.command === 'inherited:no-dependency-change') {
+      const packageJson = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')) as {
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
+      };
+      const dependencySetSha256 = sha256(
+        JSON.stringify({
+          dependencies: packageJson.dependencies,
+          devDependencies: packageJson.devDependencies,
+        }),
+      );
+      if (
+        previous === undefined ||
+        receipt.basisReceiptId !== previous.receipt.receiptId ||
+        receipt.dependencyChange !== false ||
+        receipt.dependencySetSha256 !== dependencySetSha256 ||
+        receipt.pnpmLockSha256 !== previous.receipt.pnpmLockSha256
+      ) {
+        errors.push('dependency audit heredado no demuestra grafo de dependencias estable');
+      }
     }
     if (receipt.packageJsonSha256 !== sha256(readFileSync(resolve(root, 'package.json')))) {
       errors.push('dependency audit package.json hash stale');

@@ -36,7 +36,7 @@ const validatePaths = (root: string, surface: ContextSurfaceV1): string[] => {
 export const validateContextGraph = (
   root: string,
   surfaces: ContextSurfaceV1[],
-  expectedCount = 50,
+  expectedCount = 53,
 ): string[] => {
   const issues: string[] = [];
   const ids = new Map(surfaces.map((surface) => [surface.context_id, surface]));

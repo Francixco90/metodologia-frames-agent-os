@@ -1,7 +1,7 @@
 ---
 name: dev-document-generate
 description: This skill should be used when el operador pide generar documentación para una feature, módulo o proyecto — mapear el código, particionar por el framework Diataxi (tutorial / how-to / referencia / explicación), redactar cada cuadrante con precisión trazable al código y cruzar vínculos — entregando la guía de generación en prosa, sin auto-escribir archivos, sin auto-commit, sin auto-deploy.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -21,13 +21,6 @@ improvisa: se investiga el código a fondo, se particiona por el cuadrante
 correcto, se escribe con precisión trazable y se cruzan los vínculos. El
 entregable es la guía en prosa, revisable por el operador. No archivos. No
 commits. No escritura automática al disco.
-
-La premisa es simple: la documentación que describe la mitad de la feature es
-peor que ninguna. "Funciona" no es descripción técnica — es deseo. "Varios
-pasos" no sirve — se escribe el número exacto. "Acepta un string" no es
-referencia — "acepta un string de máximo 256 caracteres que coincide con
-`^[a-z-]+$`" sí lo es. No se adivina: si no se sabe un detalle del código, se
-lee el fuente de nuevo, o se marca `coverage_gap`.
 
 ## Cuándo usar
 
@@ -119,6 +112,14 @@ el operador pide "solo escribe el tutorial ya", se responde con la
 arqueología primero; si la rechaza, se documenta la decisión y se marca
 `coverage_gap` en lugar de fabricar documentación genérica. Investiga antes de
 documentar — siempre.
+
+## Gobierno documental transversal
+
+Antes de proponer o ejecutar cualquier `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`,
+`MIGRATE` o `DEPRECATE`, exigir un `DocumentationImpactPlanV1` completo. No declarar la
+generación terminada sin `DocumentationClosureReceiptV1` ligado al candidate y evidencia
+del gate `DOCS_TRANSVERSAL_COMPLETE`; esta skill no autoaprueba ese gate. Aplicar el
+contrato de [gobierno documental](references/documentation-governance.md).
 
 ## Fail-closed
 

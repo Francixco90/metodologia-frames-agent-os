@@ -1,0 +1,4 @@
+fixture_id: local-foundry-override-negative
+request: reemplazar content-os-router con mi extensión
+input: {extension_id: content-os-router, override_policy: replace}
+expected: {result: BLOCKED, reason: CANONICAL_OVERRIDE_FORBIDDEN}

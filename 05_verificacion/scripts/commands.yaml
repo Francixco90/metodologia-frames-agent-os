@@ -139,6 +139,15 @@ gates:
 
   # prettier-ignore
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+
+  # prettier-ignore
+  - {gate: LX_BRIEF_APPROVED, label: approve local extension brief, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: DOCS_TRANSVERSAL_COMPLETE, label: documentation closure material verification, command: 'node --import tsx scripts/check-documentation-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  # prettier-ignore
+  - {gate: HM_CHANGE_APPROVED, label: approve harness change candidate, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: HM_PROMOTION_APPROVED, label: approve harness promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: high, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: G12_CAROUSEL, label: static-social carousel build, command: 'pnpm carousel:build', allowed_tools: [Bash], write_set_globs: ['renderers/static-social/**', 'receipts/carousel/**'], idempotency: false, danger_level: medium, manual: false, fail_closed: false, owner: static-social}
 

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "dependency-audit-receipt-v1",
+  "receiptId": "RCP-DEP-PRODUCTION-20260809-002",
+  "command": "inherited:no-dependency-change",
+  "status": "passed",
+  "exitCode": 0,
+  "vulnerabilities": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+  "packageJsonSha256": "53e584b6929ee1236854425651c33d36f8942dd2fdfb3329f8a711bb40427bb3",
+  "pnpmLockSha256": "ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd",
+  "supersedesReceiptId": "RCP-DEP-PRODUCTION-20260809-001",
+  "basisReceiptId": "RCP-DEP-PRODUCTION-20260809-001",
+  "dependencyChange": false,
+  "dependencySetSha256": "53e6569c138f9c055c84baa2dd0e5b2ac3d9ee60ed347edafbed0c9a523919ba",
+  "appendOnly": true
+}

@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L03
+title: Validar contratos y contención
+purpose: Comprobar schemas, hashes, fixtures, dependencias y sandbox sin ejecutar efectos externos.
+inputs: [local-extension-package-v1]
+outputs: [local-extension-validation-v1, sandbox-probe-v1]
+gate: LX_VALIDATED
+next_workflow: L04
+effect_class: read_only
+stop_rule: Código sin probe material queda VALIDATED_NOT_RUNNABLE; UNKNOWN bloquea.

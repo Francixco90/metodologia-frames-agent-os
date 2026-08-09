@@ -1,7 +1,7 @@
 ---
 name: dev-document-release
 description: This skill should be used when el operador pide redactar o sincronizar la documentación de un release — notas de versión, changelog, README/ARCHITECTURE/CONTRIBUTING/CLAUDE.md alineados con lo que se envió, mapa de cobertura Diataxis, drift de diagramas y limpieza de TODOS — dejando los artefactos en prosa lista para revisión, sin auto-commits, auto-tags, auto-publish ni auto-release.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -20,12 +20,6 @@ documentación que lo acompaña: notas de versión, changelog, README,
 ARCHITECTURE, CONTRIBUTING y CLAUDE.md alineados con lo que realmente se
 envió. El entregable es prosa y ediciones propuestas, revisable por el
 operador. No commits. No tags. No publicaciones. No ejecución automática.
-
-La premisa es simple: un release cuya documentación no refleja lo que se
-envió es un release mentiroso. "Varios cambios" no sirve — se enumera qué
-cambió—; "mejoras de rendimiento" no sirve — se dice qué medición cambió—;
-"ver notas de versión" no sirve — se escriben las notas. No se adivina: si no
-se sabe qué se envió, se lee el diff o se pide el contexto primero.
 
 ## Cuándo usar
 
@@ -114,6 +108,14 @@ avanzar.
 explícita del operador. Si el operador pide "publica ya", se entrega la
 documentación redactada primero; si la rechaza, se documenta la decisión y
 se marca `coverage_gap`. Documenta antes de liberar — siempre.
+
+## Gobierno documental transversal
+
+Antes de proponer o ejecutar cualquier `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`,
+`MIGRATE` o `DEPRECATE`, exigir un `DocumentationImpactPlanV1` completo. No declarar el
+release documental terminado sin `DocumentationClosureReceiptV1` ligado al candidate y
+evidencia del gate `DOCS_TRANSVERSAL_COMPLETE`; esta skill no autoaprueba ese gate.
+Aplicar el contrato de [gobierno documental](references/documentation-governance.md).
 
 ## Fail-closed
 

@@ -1,7 +1,7 @@
 ---
 name: dev-writing-skills
 description: This skill should be used when se crean nuevas skills, se editan skills existentes, o se verifica que las skills funcionan antes de su despliegue — cubre autoría, estructura, frontmatter, fixtures y validación de skills
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -20,12 +20,6 @@ reproducible — estructura, frontmatter, fixtures, checker, frontera de
 ejecución — que un operador inspeccione y un agente cargue sin ambigüedad.
 Este skill recorre la receta H-03 y entrega la guía en prosa, revisable por
 el operador. No crea, no valida automáticamente, no publica.
-
-Premisa: sin estructura es ruido, sin fixtures es opinión, sin checker es fe
-ciega, sin frontera es riesgo. "Ya quedó" se verifica con el checker; "es
-claro para mí" se prueba con fixtures positivo y negativo; "se parece al
-referenciador" se declara en LINEAGE.yml y se reescribe en limpio. Si no se
-sabe un campo, se pregunta o se lee el contrato — no se adivina.
 
 ## Cuándo usar
 
@@ -59,6 +53,13 @@ El autor los produce a mano y el checker local los verifica.
    confirmación del operador, auto-creación/auto-publicación. Por defecto:
    red prohibida, confirmación requerida, auto-creación y auto-publicación
    prohibidas. Fail-closed declarado, no asumido.
+
+Antes de modificar cualquiera de estos recursos, completar un
+`DocumentationImpactPlanV1`; `NOT_APPLICABLE` exige reason code. Tras congelar el
+candidate, sincronizar las superficies requeridas y obtener un
+`DocumentationClosureReceiptV1` hash-bound con PASS. Solo declarar terminada la
+autoría cuando RT-09 conceda `DOCS_TRANSVERSAL_COMPLETE`. Cambios posteriores
+invalidan el receipt y abren successor; el gate no autoriza publicación.
 
 ## Estructura
 
@@ -96,7 +97,7 @@ tokens de gobernabilidad — no son decorativos.
 YAML, no markdown: `.yml` porque los escalares plegados (`>`, `>-`) se rompen
 al pasarlos por prettier dentro de markdown. Positivo: `case`, `context`,
 `request` (`>-` o `>`), `expect` (lista verificable). Negativo: mismos campos
-+ `violation` (plegado `>`) + `expect_reject` (lista de rechazos). El checker
+con `violation` (plegado `>`) y `expect_reject` (lista de rechazos). El checker
 verifica que el negativo tenga `violation:` — sin eso, la frontera fail-closed
 no se prueba. El positivo muestra la receta aplicada; el negativo, la
 infracción típica (publicar sin validar, auto-ejecutar, saltar fixtures) que

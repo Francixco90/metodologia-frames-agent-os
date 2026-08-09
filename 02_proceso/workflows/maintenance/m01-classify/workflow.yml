@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M01
+title: Clasificar mantenimiento
+purpose: Separar defecto, deuda, evolución, migración o deprecación y fijar su impacto observable.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-harness-maintainer, dev-systematic-debugging]
+authority_refs: [02_proceso/governance/lessons-learned.md]
+execution_steps:
+  - step_id: S01
+    purpose: Reproducir o delimitar el cambio y asignar una única change class.
+    primary_skill: frames-harness-maintainer
+    verifier: RT-09
+    inputs: [maintenance-baseline]
+    outputs: [maintenance-classification]
+    gate: HM_CHANGE_APPROVED
+    stop_rule: Una hipótesis sin reproducción o resultado verificable queda UNKNOWN.
+next_workflow: M02
+stop_rule: No implementar durante la clasificación.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

@@ -1,0 +1,4 @@
+fixture_id: ecosystem-inventory-positive
+request: actualizar el inventario público de Frames
+input: {registries_resolvable: true, private_entries: 2, replay_equal: true}
+expected: {result: PASS, private_entries_published: 0, projections: [json, markdown, html]}

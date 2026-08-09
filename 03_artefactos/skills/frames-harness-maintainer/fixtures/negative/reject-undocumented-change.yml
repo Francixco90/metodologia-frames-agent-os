@@ -1,0 +1,4 @@
+fixture_id: harness-maintainer-undocumented-negative
+request: cerrar el cambio sin actualizar índices
+input: {implementation_tests: PASS, documentation_closure: UNKNOWN}
+expected: {result: BLOCKED, reason: DOCS_TRANSVERSAL_INCOMPLETE}

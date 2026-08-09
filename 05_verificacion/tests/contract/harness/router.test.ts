@@ -4,7 +4,7 @@ import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `02_proceso/governance/router.yml` (router-v1).
- * Asserts the 9 routes, R3-LOOSE project_id null, R6 content and R7 career,
+ * Asserts the 11 routes, R3-LOOSE project_id null, productive routes,
  * manual fail-closed gates and source_of_truth true. [CONFIG]
  */
 describe('router.yml contract', () => {
@@ -32,12 +32,47 @@ describe('router.yml contract', () => {
     expect(router.source_of_truth).toBe(true);
   });
 
-  it('declares R0-R7 plus R3-LOOSE', () => {
+  it('declares R0-R9 plus R3-LOOSE', () => {
     const ids = router.routes.map((r) => r.id);
-    expect(ids).toHaveLength(9);
+    expect(ids).toHaveLength(11);
     expect(ids).toEqual(
-      expect.arrayContaining(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7']),
+      expect.arrayContaining([
+        'R0',
+        'R1',
+        'R2',
+        'R3',
+        'R3-LOOSE',
+        'R4',
+        'R5',
+        'R6',
+        'R7',
+        'R8',
+        'R9',
+      ]),
     );
+  });
+
+  it('R8 and R9 resolve local extension and maintenance workflows fail-closed', () => {
+    const local = router.routes.find((route) => route.id === 'R8');
+    expect(local?.reads).toEqual(
+      expect.arrayContaining([
+        '02_proceso/workflows/local-extensions/contracts.ts',
+        '03_artefactos/skills/frames-local-extension-foundry/SKILL.md',
+      ]),
+    );
+    expect(local?.output).toMatch(/L00-L05/u);
+    expect(local?.output).toMatch(/LX_BRIEF_APPROVED/u);
+
+    const maintenance = router.routes.find((route) => route.id === 'R9');
+    expect(maintenance?.reads).toEqual(
+      expect.arrayContaining([
+        '02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts',
+        '02_proceso/core/contracts/documentation-governance-v1.ts',
+        '03_artefactos/skills/frames-harness-maintainer/SKILL.md',
+      ]),
+    );
+    expect(maintenance?.output).toMatch(/M00-M06/u);
+    expect(maintenance?.output).toMatch(/HM_CHANGE_APPROVED/u);
   });
 
   it('R7 resolves career intent and stops at an explicit human gate', () => {
@@ -96,6 +131,14 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining(['EXP_BRIEF_APPROVED', 'EXP_RELEASE_APPROVED']),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(11);
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining([
+        'LX_BRIEF_APPROVED',
+        'HM_CHANGE_APPROVED',
+        'DOCS_TRANSVERSAL_COMPLETE',
+        'HM_PROMOTION_APPROVED',
+      ]),
+    );
+    expect(router.manual_fail_closed_gates).toHaveLength(15);
   });
 });

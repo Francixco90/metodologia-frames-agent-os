@@ -23,6 +23,11 @@ for (const [name, version] of Object.entries({remotion: '4.0.494', react: '19.2.
 }
 
 const combined = [...contents.values()].join('\n');
+const skillMd = contents.get(`${skill}/SKILL.md`);
+const lineage = contents.get(`${skill}/LINEAGE.yml`);
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  throw new Error('COS_RCR_VERSION_MISMATCH');
+}
 const runtimeCombined = [
   `${skill}/fixtures/positive/valid-composition-registration.yml`,
   `${skill}/examples/composition-sequence.jsonl`,
@@ -48,6 +53,9 @@ for (const token of [
   'determinism',
   'source-available',
   'H03-LIC-REMOTION-001',
+  'DocumentationImpactPlanV1',
+  'DocumentationClosureReceiptV1',
+  'DOCS_TRANSVERSAL_COMPLETE',
 ]) {
   if (!combined.includes(token)) throw new Error(`COS_RCR_CONTRACT_MISSING: ${token}`);
 }

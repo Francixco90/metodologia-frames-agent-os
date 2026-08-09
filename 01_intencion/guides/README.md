@@ -9,6 +9,9 @@ Estas guías están escritas para personas que quieren lograr un resultado, no p
 - **Quiero crear contenido, una campaña o una presentación:** [contenido y multimedia](content-multimedia.md).
 - **Quiero mejorar mi CV o buscar empleo:** [Career OS](career.md).
 - **Quiero entender rutas, workflows y verificaciones:** [referencia técnica](technical-reference.md).
+- **Quiero crear una skill o workflow privado:** [ampliar Frames localmente](extend-frames.md).
+- **Quiero corregir o evolucionar el arnés:** [mantener Frames](maintain-frames.md).
+- **Quiero ver todos los recorridos:** [portal offline de workflows](../../03_artefactos/content/documentation/index.html).
 
 ## Recorrido recomendado
 

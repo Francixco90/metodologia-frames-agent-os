@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Descubre qué puede hacer Frames y cómo funciona cada recorrido."
+    />
+    <meta name="frames:schema" content="documentation-manifest-v1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'sha256-f43yToyS80A8JYh8lJTrPeU02mEzwgqif6mjIWor+Pc='; base-uri 'none'; form-action 'none'"
+    />
+    <title>Frames · Recorridos</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --blue: #137dc5;
+        --gold: #ffd700;
+        --soft: #f3f7fc;
+        --ink: #17213d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Montserrat, Arial, sans-serif;
+        color: var(--ink);
+        background: white;
+        line-height: 1.6;
+      }
+      header {
+        background: var(--navy);
+        color: white;
+        padding: 2rem max(5vw, 1rem);
+      }
+      main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 2rem max(4vw, 1rem);
+      }
+      h1,
+      h2 {
+        font-family: Poppins, Arial, sans-serif;
+        color: var(--navy);
+      }
+      header h1 {
+        color: white;
+      }
+      a {
+        color: #075f9d;
+      }
+      input {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin: 0.5rem 0 1.5rem;
+        padding: 0.65rem;
+        border: 2px solid #9cabc2;
+        border-radius: 10px;
+        font: inherit;
+      }
+      .card,
+      section {
+        border: 1px solid #d8e2f0;
+        border-radius: 16px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+        background: white;
+      }
+      .meta {
+        color: #4a5874;
+      }
+      .pill {
+        display: inline-block;
+        background: var(--soft);
+        border-radius: 999px;
+        padding: 0.25rem 0.65rem;
+        margin: 0.2rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.7rem;
+        border-bottom: 1px solid #d8e2f0;
+      }
+      th {
+        background: var(--soft);
+      }
+      svg {
+        width: 100%;
+        height: auto;
+        background: var(--soft);
+        border-radius: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #091126;
+          color: #eef4ff;
+        }
+        .card,
+        section {
+          background: #111d3b;
+          border-color: #314369;
+        }
+        h1,
+        h2,
+        a {
+          color: #7dc9ff;
+        }
+        .meta {
+          color: #b7c5df;
+        }
+        th {
+          background: #1d2b4f;
+        }
+      }
+      @media print {
+        header {
+          background: white;
+          color: var(--navy);
+          padding: 0;
+        }
+        nav {
+          display: none;
+        }
+        .card,
+        section {
+          break-inside: avoid;
+        }
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p>Frames ContentOS · por MetodologIA</p>
+      <h1>Elige por lo que quieres conseguir</h1>
+      <p>
+        Crea contenido, fortalece tu carrera o inspecciona cómo Frames convierte una intención en
+        resultados verificables.
+      </p>
+    </header>
+    <main>
+      <label for="q"><strong>Buscar un resultado</strong></label
+      ><input
+        id="q"
+        type="search"
+        placeholder="Ejemplo: CV, investigar, distribuir"
+        autocomplete="off"
+      />
+      <section>
+        <h2>Contenido y multimedia</h2>
+        <article
+          class="card"
+          data-search="p00 define tu sistema creativo define perfil, brand os, voz o piloto, una modalidad por vez y bajo aprobación."
+        >
+          <span class="pill">P00</span>
+          <h2><a href="workflows/p00.html">Define tu sistema creativo</a></h2>
+          <p>Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p01 convierte tu día a día en oportunidades de contenido convierte material cotidiano en oportunidades trazables sin obligar a publicarlo."
+        >
+          <span class="pill">P01</span>
+          <h2>
+            <a href="workflows/p01.html">Convierte tu día a día en oportunidades de contenido</a>
+          </h2>
+          <p>Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p02 investiga y fortalece una idea verifica claims, encuentra matices y convierte fuentes en decisiones editoriales."
+        >
+          <span class="pill">P02</span>
+          <h2><a href="workflows/p02.html">Investiga y fortalece una idea</a></h2>
+          <p>Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p03 crea el brief o la campaña define una pieza, sistema de derivados, serie o campaña con funciones distintas."
+        >
+          <span class="pill">P03</span>
+          <h2><a href="workflows/p03.html">Crea el brief o la campaña</a></h2>
+          <p>Define una pieza, sistema de derivados, serie o campaña con funciones distintas.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p04 construye un calendario editorial realista ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje."
+        >
+          <span class="pill">P04</span>
+          <h2><a href="workflows/p04.html">Construye un calendario editorial realista</a></h2>
+          <p>Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p05 diseña la pieza multimedia convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos."
+        >
+          <span class="pill">P05</span>
+          <h2><a href="workflows/p05.html">Diseña la pieza multimedia</a></h2>
+          <p>Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p06 crea los activos multimedia genera, guía o especifica activos por etapas, con evidencia y estado exacto."
+        >
+          <span class="pill">P06</span>
+          <h2><a href="workflows/p06.html">Crea los activos multimedia</a></h2>
+          <p>Genera, guía o especifica activos por etapas, con evidencia y estado exacto.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p07 revisa material multimedia diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas."
+        >
+          <span class="pill">P07</span>
+          <h2><a href="workflows/p07.html">Revisa material multimedia</a></h2>
+          <p>Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p08 edita, compone y reutiliza monta, compone, localiza y reutiliza con lineage, qc y rollback."
+        >
+          <span class="pill">P08</span>
+          <h2><a href="workflows/p08.html">Edita, compone y reutiliza</a></h2>
+          <p>Monta, compone, localiza y reutiliza con lineage, QC y rollback.</p>
+        </article>
+        <article
+          class="card"
+          data-search="p09 empaqueta, publica, conversa o aprende separa empaque, publicación, comunidad y aprendizaje para operar con control."
+        >
+          <span class="pill">P09</span>
+          <h2><a href="workflows/p09.html">Empaqueta, publica, conversa o aprende</a></h2>
+          <p>Separa empaque, publicación, comunidad y aprendizaje para operar con control.</p>
+        </article>
+      </section>
+      <section>
+        <h2>Carrera profesional</h2>
+        <article
+          class="card"
+          data-search="c00 intake privado del candidato clasificar identidad, privacidad, alcance y preguntas bloqueantes antes de crear artefactos."
+        >
+          <span class="pill">C00</span>
+          <h2><a href="workflows/c00.html">Intake privado del candidato</a></h2>
+          <p>
+            Clasificar identidad, privacidad, alcance y preguntas bloqueantes antes de crear
+            artefactos.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c01 reconciliación de evidencia convertir fuentes autorizadas en claims trazables sin pulir gaps o contradicciones."
+        >
+          <span class="pill">C01</span>
+          <h2><a href="workflows/c01.html">Reconciliación de evidencia</a></h2>
+          <p>Convertir fuentes autorizadas en claims trazables sin pulir gaps o contradicciones.</p>
+        </article>
+        <article
+          class="card"
+          data-search="c02 posicionamiento profesional definir familias de rol y restricciones a partir de evidencia, no de aspiraciones tratadas como hechos."
+        >
+          <span class="pill">C02</span>
+          <h2><a href="workflows/c02.html">Posicionamiento profesional</a></h2>
+          <p>
+            Definir familias de rol y restricciones a partir de evidencia, no de aspiraciones
+            tratadas como hechos.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c03 descubrimiento de oportunidades preparar búsquedas y capturar oportunidades públicas con procedencia, vigencia y deduplicación."
+        >
+          <span class="pill">C03</span>
+          <h2><a href="workflows/c03.html">Descubrimiento de oportunidades</a></h2>
+          <p>
+            Preparar búsquedas y capturar oportunidades públicas con procedencia, vigencia y
+            deduplicación.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c04 validación y scoring de vacantes verificar vigencia, extraer requisitos y producir un score explicable con hard stops."
+        >
+          <span class="pill">C04</span>
+          <h2><a href="workflows/c04.html">Validación y scoring de vacantes</a></h2>
+          <p>
+            Verificar vigencia, extraer requisitos y producir un score explicable con hard stops.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c05 diseño de candidatura fijar vacante, evidencia utilizable, gaps, narrativa y entregables antes de redactar."
+        >
+          <span class="pill">C05</span>
+          <h2><a href="workflows/c05.html">Diseño de candidatura</a></h2>
+          <p>
+            Fijar vacante, evidencia utilizable, gaps, narrativa y entregables antes de redactar.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c06 cv evidence-first componer un cv recruiter-first, ats-safe y trazable desde el brief y la evidencia seleccionada."
+        >
+          <span class="pill">C06</span>
+          <h2><a href="workflows/c06.html">CV evidence-first</a></h2>
+          <p>
+            Componer un CV recruiter-first, ATS-safe y trazable desde el brief y la evidencia
+            seleccionada.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c07 carta basada en evidencia redactar carta, respuesta de formulario o mensaje que complemente el cv sin repetirlo."
+        >
+          <span class="pill">C07</span>
+          <h2><a href="workflows/c07.html">Carta basada en evidencia</a></h2>
+          <p>
+            Redactar carta, respuesta de formulario o mensaje que complemente el CV sin repetirlo.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c08 qa del paquete de candidatura congelar y verificar claims, idioma, ats, legibilidad, paridad y hashes antes de autorizar."
+        >
+          <span class="pill">C08</span>
+          <h2><a href="workflows/c08.html">QA del paquete de candidatura</a></h2>
+          <p>
+            Congelar y verificar claims, idioma, ATS, legibilidad, paridad y hashes antes de
+            autorizar.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="c09 preparación de postulación y aprendizaje revalidar, mostrar preview, comprobar autorización y preparar seguimiento sin enviar desde local-evaluation."
+        >
+          <span class="pill">C09</span>
+          <h2><a href="workflows/c09.html">Preparación de postulación y aprendizaje</a></h2>
+          <p>
+            Revalidar, mostrar preview, comprobar autorización y preparar seguimiento sin enviar
+            desde local-evaluation.
+          </p>
+        </article>
+      </section>
+      <section>
+        <h2>Extensiones locales</h2>
+        <article
+          class="card"
+          data-search="l00 comprender la capacidad local convertir una necesidad cotidiana en un brief privado sin crear archivos todavía."
+        >
+          <span class="pill">L00</span>
+          <h2><a href="workflows/l00.html">Comprender la capacidad local</a></h2>
+          <p>Convertir una necesidad cotidiana en un brief privado sin crear archivos todavía.</p>
+        </article>
+        <article
+          class="card"
+          data-search="l01 diseñar la extensión definir si la solución mínima es una skill, un workflow o un bundle."
+        >
+          <span class="pill">L01</span>
+          <h2><a href="workflows/l01.html">Diseñar la extensión</a></h2>
+          <p>Definir si la solución mínima es una skill, un workflow o un bundle.</p>
+        </article>
+        <article
+          class="card"
+          data-search="l02 preparar el paquete privado materializar el scaffold aprobado únicamente dentro del root local autorizado."
+        >
+          <span class="pill">L02</span>
+          <h2><a href="workflows/l02.html">Preparar el paquete privado</a></h2>
+          <p>Materializar el scaffold aprobado únicamente dentro del root local autorizado.</p>
+        </article>
+        <article
+          class="card"
+          data-search="l03 validar contratos y contención comprobar schemas, hashes, fixtures, dependencias y sandbox sin ejecutar efectos externos."
+        >
+          <span class="pill">L03</span>
+          <h2><a href="workflows/l03.html">Validar contratos y contención</a></h2>
+          <p>
+            Comprobar schemas, hashes, fixtures, dependencias y sandbox sin ejecutar efectos
+            externos.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="l04 activar e indexar localmente hacer descubrible una extensión válida sin cambiar registries públicos."
+        >
+          <span class="pill">L04</span>
+          <h2><a href="workflows/l04.html">Activar e indexar localmente</a></h2>
+          <p>Hacer descubrible una extensión válida sin cambiar registries públicos.</p>
+        </article>
+        <article
+          class="card"
+          data-search="l05 evolucionar o retirar crear una versión sucesora, corregirla o retirarla conservando trazabilidad."
+        >
+          <span class="pill">L05</span>
+          <h2><a href="workflows/l05.html">Evolucionar o retirar</a></h2>
+          <p>Crear una versión sucesora, corregirla o retirarla conservando trazabilidad.</p>
+        </article>
+      </section>
+      <section>
+        <h2>Mantenimiento del harness</h2>
+        <article
+          class="card"
+          data-search="m00 congelar base e inventario capturar base, estado, ownership e inventario antes de diagnosticar o cambiar frames."
+        >
+          <span class="pill">M00</span>
+          <h2><a href="workflows/m00.html">Congelar base e inventario</a></h2>
+          <p>
+            Capturar base, estado, ownership e inventario antes de diagnosticar o cambiar Frames.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="m01 clasificar mantenimiento separar defecto, deuda, evolución, migración o deprecación y fijar su impacto observable."
+        >
+          <span class="pill">M01</span>
+          <h2><a href="workflows/m01.html">Clasificar mantenimiento</a></h2>
+          <p>
+            Separar defecto, deuda, evolución, migración o deprecación y fijar su impacto
+            observable.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="m02 planear cambio e impacto documental producir workorder, aceptación, rollback y documentationimpactplan antes de editar."
+        >
+          <span class="pill">M02</span>
+          <h2><a href="workflows/m02.html">Planear cambio e impacto documental</a></h2>
+          <p>Producir WorkOrder, aceptación, rollback y DocumentationImpactPlan antes de editar.</p>
+        </article>
+        <article
+          class="card"
+          data-search="m03 implementar cambio acotado ejecutar el workorder aprobado en rutas, efectos y presupuesto autorizados."
+        >
+          <span class="pill">M03</span>
+          <h2><a href="workflows/m03.html">Implementar cambio acotado</a></h2>
+          <p>Ejecutar el WorkOrder aprobado en rutas, efectos y presupuesto autorizados.</p>
+        </article>
+        <article
+          class="card"
+          data-search="m04 verificar candidate congelar candidate y comprobar requisitos, regresión, privacidad, ownership y budgets."
+        >
+          <span class="pill">M04</span>
+          <h2><a href="workflows/m04.html">Verificar candidate</a></h2>
+          <p>
+            Congelar candidate y comprobar requisitos, regresión, privacidad, ownership y budgets.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="m05 sincronizar documentación e inventarios actualizar fuentes aplicables y regenerar portal, secuencias, índices e inventarios."
+        >
+          <span class="pill">M05</span>
+          <h2><a href="workflows/m05.html">Sincronizar documentación e inventarios</a></h2>
+          <p>
+            Actualizar fuentes aplicables y regenerar portal, secuencias, índices e inventarios.
+          </p>
+        </article>
+        <article
+          class="card"
+          data-search="m06 entregar y preparar promoción emitir handoff, rollback y límites sin confundir validación, merge o publicación."
+        >
+          <span class="pill">M06</span>
+          <h2><a href="workflows/m06.html">Entregar y preparar promoción</a></h2>
+          <p>Emitir handoff, rollback y límites sin confundir validación, merge o publicación.</p>
+        </article>
+      </section>
+      <p class="meta">
+        Portal offline generado desde los workflows canónicos. No publica ni ejecuta efectos
+        externos.
+      </p>
+    </main>
+    <script>
+      const q = document.querySelector('#q');
+      q.addEventListener('input', () => {
+        const v = q.value.toLocaleLowerCase('es');
+        document.querySelectorAll('[data-search]').forEach((c) => {
+          c.hidden = !c.dataset.search.includes(v);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L01
+title: Diseñar la extensión
+purpose: Definir si la solución mínima es una skill, un workflow o un bundle.
+inputs: [local-extension-brief-v1]
+outputs: [local-extension-design-v1, documentation-impact-plan-v1]
+gate: LX_DESIGN_READY
+next_workflow: L02
+effect_class: read_only
+stop_rule: Bloquear IDs no locales, overrides y capacidades sin owner o límites.

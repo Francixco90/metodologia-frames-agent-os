@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M03
+title: Implementar cambio acotado
+purpose: Ejecutar el WorkOrder aprobado en rutas, efectos y presupuesto autorizados.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-harness-maintainer, dev-executing-plans]
+authority_refs: [02_proceso/governance/scripting-and-tool-use.md]
+execution_steps:
+  - step_id: S01
+    purpose: Aplicar el cambio y su regresión sin ampliar alcance ni efectos.
+    primary_skill: dev-executing-plans
+    verifier: RT-09
+    inputs: [maintenance-work-order, documentation-impact-plan]
+    outputs: [maintenance-candidate, regression-evidence]
+    gate: HM_CHANGE_APPROVED
+    stop_rule: Cualquier mutación fuera del write set bloquea y preserva evidencia.
+next_workflow: M04
+stop_rule: No promover ni documentar PASS antes de verificación fresca.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: dev-document-generate
-version: 0.2.0
+version: 0.3.0
 owner: MetodologIA
 content_origin: locally_authored_adaptation
 content_license: LicenseRef-MetodologIA-Internal

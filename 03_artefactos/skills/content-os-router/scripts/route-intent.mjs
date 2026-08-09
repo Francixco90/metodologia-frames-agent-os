@@ -11,9 +11,10 @@ import {
   runFirstTurnGatewayV1,
 } from '../../../../02_proceso/workflows/core/index.ts';
 import {assertContainedWorkspaceV1} from '../../../../02_proceso/workflows/core/safe-local-path-v1.ts';
+import {routeLocalExtensionIntent} from '../../../../02_proceso/workflows/local-extensions/index.ts';
+import {routeMaintenanceIntent} from '../../../../02_proceso/workflows/maintenance/index.ts';
 import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
 import {routeContentIntent} from './route-content.mjs';
-
 const normalize = (value) => String(value ?? '').normalize('NFKC').trim().replace(/\s+/gu, ' ');
 const CONTROL_FIELDS = new Set([
   'actor_id', 'activeProjectId', 'completed_at', 'completedAt', 'intent_domain', 'knownInputs',
@@ -24,7 +25,6 @@ const CONTROL_FIELDS = new Set([
 const domainInputFor = (input) => Object.fromEntries(
   Object.entries(input).filter(([key]) => !CONTROL_FIELDS.has(key)),
 );
-
 const resolveResume = (input) => {
   const stateRoot = input.state_root ?? input.stateRoot;
   const candidateId = input.resume_candidate_id ?? input.resumeCandidateId;
@@ -42,9 +42,8 @@ const resolveResume = (input) => {
     },
   };
 };
-
 const planFromDomain = (routeId, domain) => {
-  const workflowPlan = domain.selected_stage_path ?? [];
+  const workflowPlan = domain.selected_stage_path ?? domain.stage_path ?? [];
   const activeStep = workflowPlan[0];
   if (!activeStep) throw new Error(`${routeId}-DISPATCH: domain adapter returned no active step`);
   return {
@@ -53,10 +52,16 @@ const planFromDomain = (routeId, domain) => {
     activeStep,
     skillBindings: [{
       stepId: activeStep,
-      primarySkillId: routeId === 'R7' ? 'career-application-orchestrator' : 'content-os-router',
+      primarySkillId:
+        routeId === 'R7' ? 'career-application-orchestrator'
+          : routeId === 'R8' ? 'frames-local-extension-foundry'
+            : routeId === 'R9' ? 'frames-harness-maintainer' : 'content-os-router',
     }],
     briefPreview: {
-      briefKind: routeId === 'R7' ? 'career-brief' : 'content-brief',
+      briefKind:
+        routeId === 'R7' ? 'career-brief'
+          : routeId === 'R8' ? 'local-extension-brief'
+            : routeId === 'R9' ? 'maintenance-brief' : 'content-brief',
       ...(domain.brief_ref ? {canonicalRef: domain.brief_ref} : {}),
       summary: `Brief ${routeId} preparado para revisión.`,
       materialized: false,
@@ -90,7 +95,9 @@ export const dispatchIntent = (input) => {
     explicitRoute:
       normalize(input.intent_domain).toLowerCase() === 'content'
         ? 'R6'
-        : normalize(input.intent_domain).toLowerCase() === 'career' ? 'R7' : undefined,
+        : normalize(input.intent_domain).toLowerCase() === 'career' ? 'R7'
+          : normalize(input.intent_domain).toLowerCase() === 'local-extension' ? 'R8'
+            : normalize(input.intent_domain).toLowerCase() === 'maintenance' ? 'R9' : undefined,
     resumeCandidate: resume,
   }, {
     R6: () => {
@@ -101,12 +108,22 @@ export const dispatchIntent = (input) => {
       domainIntent = routeCareerIntent({...domainInput, request});
       return planFromDomain('R7', domainIntent);
     },
+    R8: () => {
+      domainIntent = routeLocalExtensionIntent({...domainInput, request});
+      return planFromDomain('R8', domainIntent);
+    },
+    R9: () => {
+      domainIntent = routeMaintenanceIntent({...domainInput, request});
+      return planFromDomain('R9', domainIntent);
+    },
   });
   const routeId = envelope.selectedRoute ?? 'R0';
-  const adapterInvoked = domainIntent !== null && (routeId === 'R6' || routeId === 'R7');
+  const adapterInvoked = domainIntent !== null && ['R6', 'R7', 'R8', 'R9'].includes(routeId);
   const adapter = routeId === 'R7'
     ? 'career-application-orchestrator/scripts/route-career.mjs'
-    : routeId === 'R6' ? 'content-os-router/scripts/route-content.mjs' : null;
+    : routeId === 'R6' ? 'content-os-router/scripts/route-content.mjs'
+      : routeId === 'R8' ? 'workflows/local-extensions/route-local-extension-v1.ts'
+        : routeId === 'R9' ? 'workflows/maintenance/route-maintenance-v1.ts' : null;
   const nextGate = domainIntent?.next_gate ?? routeId;
   const decision = domainIntent?.decision ?? (
     envelope.interactionClass === 'ASSIST_ONLY' ? 'ASSIST_ONLY'
@@ -135,6 +152,13 @@ export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
   if (decision.command_view || !decision.domain_intent || decision.experience_envelope.state !== 'READY_FOR_BRIEF') {
     return {...decision, local_execution: {
       status: 'NEEDS_INPUT', materialized: false, next_gate: 'EXP_BRIEF_APPROVED',
+    }};
+  }
+  if (decision.route_id === 'R8' || decision.route_id === 'R9') {
+    return {...decision, local_execution: {
+      status: 'AWAITING_APPROVAL', materialized: false,
+      next_gate: decision.route_id === 'R8' ? 'LX_BRIEF_APPROVED' : 'HM_CHANGE_APPROVED',
+      coverage_gap: null,
     }};
   }
   const root = input.workspace_root ?? input.workspaceRoot;

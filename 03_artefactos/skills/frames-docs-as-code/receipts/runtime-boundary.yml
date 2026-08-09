@@ -1,0 +1,11 @@
+schema_version: 1
+receipt_id: frames-docs-as-code-runtime-boundary-v1
+skill_id: frames-docs-as-code
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+generated_outputs_only: true
+requires_candidate_freeze: true
+requires_rt09: true
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

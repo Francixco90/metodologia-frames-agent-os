@@ -98,6 +98,10 @@ writers:
     - workflows/multimedia/**
     - workflows/career/**
     - workflows/experience/**
+    - workflows/documentation/**
+    - workflows/local-extensions/**
+    - workflows/maintenance/**
+    - 03_artefactos/content/documentation/**
     - workflows/context.md
     - registries/experience/**
     - registries/content-types/**
@@ -158,6 +162,8 @@ writers:
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
+    - 05_verificacion/tests/unit/documentation-*.test.ts
+    - 05_verificacion/tests/unit/local-extension-*.test.ts
     - 05_verificacion/tests/unit/host-adapter-contract.test.ts
     - 05_verificacion/tests/integration/career-*.test.ts
     - 05_verificacion/context.md

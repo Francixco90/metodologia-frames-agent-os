@@ -1,6 +1,70 @@
 schema_version: context-surface-shard-v1
 shard_id: CTX-SHARD-WORKFLOWS
 surfaces:
+  - context_id: CTX-DOCUMENTATION
+    root: 02_proceso/workflows/documentation
+    kind: workflow
+    owner: content
+    applies_when: Se debe explicar, proyectar o verificar una capacidad de Frames.
+    authority_refs:
+      [
+        02_proceso/workflows/documentation/README.md,
+        02_proceso/core/contracts/documentation-governance-v1.ts,
+      ]
+    load_first: [02_proceso/workflows/documentation/README.md]
+    load_on_demand: [02_proceso/workflows/documentation/contracts.ts]
+    defer: [Páginas de workflows no afectados]
+    routes: [R9]
+    workflows: [M05]
+    primary_skills: [frames-docs-as-code]
+    tools: [documentation_generator]
+    read_set: [02_proceso/workflows/documentation/README.md]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/documentation/context.md]}
+    gates: [DOCS_TRANSVERSAL_COMPLETE]
+    stop_rules: [Derivados no se editan, Drift o referencia rota bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-LOCAL-EXTENSIONS
+    root: 02_proceso/workflows/local-extensions
+    kind: workflow
+    owner: content
+    applies_when: R8 resolvió crear o evolucionar una capacidad privada.
+    authority_refs: [02_proceso/workflows/local-extensions/contracts.ts]
+    load_first: [02_proceso/workflows/local-extensions/intent-router.ts]
+    load_on_demand: [02_proceso/workflows/local-extensions/loader.ts]
+    defer: [Extensiones no candidatas y locators privados]
+    routes: [R8]
+    workflows: [L00, L01, L02, L03, L04, L05]
+    primary_skills: [frames-local-extension-foundry]
+    tools: [local_extension_loader]
+    read_set: [02_proceso/workflows/local-extensions/contracts.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/local-extensions/context.md]}
+    gates: [LX_BRIEF_APPROVED]
+    stop_rules: [Capacidad canónica prevalece, Código sin sandbox no ejecuta]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-MAINTENANCE
+    root: 02_proceso/workflows/maintenance
+    kind: workflow
+    owner: content
+    applies_when: R9 resolvió corregir evolucionar migrar o retirar Frames.
+    authority_refs: [02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts]
+    load_first: [02_proceso/workflows/maintenance/route-maintenance-v1.ts]
+    load_on_demand: [02_proceso/workflows/maintenance/documentation-gate-v1.ts]
+    defer: [Superficies fuera del write set]
+    routes: [R9]
+    workflows: [M00, M01, M02, M03, M04, M05, M06]
+    primary_skills: [frames-harness-maintainer]
+    tools: [maintenance_plan]
+    read_set: [02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/maintenance/context.md]}
+    gates: [HM_CHANGE_APPROVED, DOCS_TRANSVERSAL_COMPLETE, HM_PROMOTION_APPROVED]
+    stop_rules: [Impact plan antes de editar, Promoción separada]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-MULTIMEDIA
     root: 02_proceso/workflows/multimedia
     kind: workflow

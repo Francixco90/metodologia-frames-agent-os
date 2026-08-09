@@ -19,7 +19,7 @@ const skillMd = contents.get(`skills/${id}/SKILL.md`);
 const publicContext = contents.get(`skills/${id}/context.md`);
 const lineage = contents.get(`skills/${id}/LINEAGE.yml`);
 
-if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+if (!/^version: 0\.3\.0$/mu.test(skillMd) || !/^version: 0\.3\.0$/mu.test(lineage)) {
   throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
 }
 for (let section = 1; section <= 6; section += 1) {
@@ -46,6 +46,9 @@ for (const token of [
   'verificación',
   'evidencia',
   'afirmación',
+  'DocumentationImpactPlanV1',
+  'DocumentationClosureReceiptV1',
+  'DOCS_TRANSVERSAL_COMPLETE',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`${id.toUpperCase()}_CONTRACT_MISSING: ${token}`);

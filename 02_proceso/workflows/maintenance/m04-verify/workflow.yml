@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M04
+title: Verificar candidate
+purpose: Congelar candidate y comprobar requisitos, regresión, privacidad, ownership y budgets.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [dev-verification-before-completion, frames-harness-maintainer]
+authority_refs: [05_verificacion/scripts/commands.yaml]
+execution_steps:
+  - step_id: S01
+    purpose: Ejecutar checks focales y completos sobre el candidate congelado.
+    primary_skill: dev-verification-before-completion
+    verifier: RT-09
+    inputs: [maintenance-candidate, regression-evidence]
+    outputs: [verification-verdict]
+    gate: DOCS_TRANSVERSAL_COMPLETE
+    stop_rule: FAIL, UNKNOWN o candidate mutable impiden continuar.
+next_workflow: M05
+stop_rule: RT-09 no remedia el candidate que verifica.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

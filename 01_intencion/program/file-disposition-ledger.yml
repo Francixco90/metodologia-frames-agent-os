@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12500
+    current_words_for_baseline_files: 12542
     violations: []
     checks:
       - path: AGENTS.md
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1298
+        current_words: 1340
         maximum_words: 2656
-        ratio: 0.9774
+        ratio: 1.009
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93487
-    v3_rolling_adjustment_words: 5301
+    baseline_words: 93541
+    v3_rolling_adjustment_words: 5355
     original_baseline_words: 88186
-    final_words: 109786
+    final_words: 109960
     maximum_multiplier: 1.5
-    maximum_words: 140230
-    actual_multiplier: 1.1743
+    maximum_words: 140311
+    actual_multiplier: 1.1755
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93487
-    v3_rolling_adjustment_words: 5301
+    baseline_words: 93541
+    v3_rolling_adjustment_words: 5355
     original_baseline_words: 88186
-    final_words: 109786
-    maximum_words: 186974
-    word_multiplier: 1.1743
-    baseline_loc: 35116
-    v3_rolling_adjustment_loc: 2228
+    final_words: 109960
+    maximum_words: 187082
+    word_multiplier: 1.1755
+    baseline_loc: 35126
+    v3_rolling_adjustment_loc: 2238
     original_baseline_loc: 32888
-    final_loc: 41167
-    maximum_loc: 70232
-    loc_multiplier: 1.1723
+    final_loc: 41207
+    maximum_loc: 70252
+    loc_multiplier: 1.1731
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -953,9 +953,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: ebfd8e5b756e5c8351a9a302a441aac7dbc54657ea4f5c670ad551abb5cf5f4f
-      current_words: 234
-      current_loc: 52
+      current_sha256: ad12f85cd0cdf25f2512f44635d36daa9c63e233826747c6bfa4571beb181177
+      current_words: 245
+      current_loc: 55
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore
@@ -1037,9 +1037,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: f2dff0f44d127d1e1fcd6e0ad8264bd0f0dd01e7ddbfb936f200d2d89e79f5d7
-      current_words: 1298
-      current_loc: 127
+      current_sha256: dd8d982b830a8b081112654c0017da42bb8fec35252ce44617bc15f9cefdae92
+      current_words: 1340
+      current_loc: 129
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md
@@ -2192,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: e59f6b7f92d5e9ef5b3e01c69f2e56739af656c2ba0ca04fa3b4aa83d4d58b18
-      current_words: 79
-      current_loc: 19
+      current_sha256: fddfed33ce3ccc0209b23776df656aa6d5f5bc36d911809113d28d8a01d745eb
+      current_words: 87
+      current_loc: 21
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 0695484be4033120d7a54b3c428ae47082b97642c43b8264fe11e40ec82ad4a1
-      current_words: 355
-      current_loc: 182
+      current_sha256: 72154be9e19694a8e4f33f3e685d6aadcd14a3c4ca501cc2f2448fa6e0cceded
+      current_words: 367
+      current_loc: 188
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -3200,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 26c9eadf06b25e68b645a1b0bc52d8c9b0af6a246b46ba6638ec3fd1dee2c728
-      current_words: 626
-      current_loc: 146
+      current_sha256: 53e584b6929ee1236854425651c33d36f8942dd2fdfb3329f8a711bb40427bb3
+      current_words: 648
+      current_loc: 150
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -6833,9 +6833,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-repo.ts
       current_ref: working-tree:scripts/check-repo.ts
       current_state: present
-      current_sha256: eb6043423ceb8afeac3df73da30ec622d7b18a9b823880d63a06799ae45d52ba
-      current_words: 208
-      current_loc: 110
+      current_sha256: cd1b80d765fcf07cd0a913434301005c2be2f4470bbb8ee45bc2e4208178c39e
+      current_words: 209
+      current_loc: 111
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
