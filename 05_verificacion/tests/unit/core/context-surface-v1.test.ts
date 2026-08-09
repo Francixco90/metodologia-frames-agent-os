@@ -18,18 +18,18 @@ import {
 const root = process.cwd();
 
 describe('ContextSurfaceV1', () => {
-  it('loads exactly 53 governed non-skill surfaces with a valid DAG', () => {
+  it('loads exactly 54 governed non-skill surfaces with a valid DAG', () => {
     const surfaces = loadContextSurfaces(root);
-    expect(surfaces).toHaveLength(53);
-    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(53);
-    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(53);
+    expect(surfaces).toHaveLength(54);
+    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(54);
+    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(54);
     expect(validateContextGraph(root, surfaces)).toEqual([]);
   });
 
   it('renders byte-stable projections with six sections below target', () => {
     const all = loadContextSurfaces(root, 'all');
-    expect(all).toHaveLength(69);
-    expect(validateContextGraph(root, all, 69)).toEqual([]);
+    expect(all).toHaveLength(78);
+    expect(validateContextGraph(root, all, 78)).toEqual([]);
     const first = projections(all);
     const second = projections(all);
     expect([...first]).toEqual([...second]);
@@ -68,7 +68,7 @@ describe('ContextSurfaceV1', () => {
       'CTX-GRAPH003 unknown child CTX-ROOT:CTX-UNKNOWN',
     );
     expect(validateContextGraph(root, surfaces.slice(1))).toContain(
-      'CTX-COVERAGE001 expected 53, found 52',
+      'CTX-COVERAGE001 expected 54, found 53',
     );
   });
 
@@ -79,13 +79,13 @@ describe('ContextSurfaceV1', () => {
       source_of_truth: true,
       projection_name: 'context.md',
       private_cabin: 'work/private/CONTEXT.md',
-      expected_non_skill_projections: 53,
-      expected_skill_projections: 16,
+      expected_non_skill_projections: 54,
+      expected_skill_projections: 24,
       shards: ['public.yml'],
       skill_shards: ['skills.yml'],
     });
     expect(registry.skill_shards).toEqual(['skills.yml']);
-    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(69);
+    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(78);
     expect(readFileSync(resolve(root, '.gitignore'), 'utf8')).toContain('work/private/CONTEXT.md');
     const router = readFileSync(resolve(root, '02_proceso/governance/router.yml'), 'utf8');
     expect(router).toContain("reads: ['context.md']");

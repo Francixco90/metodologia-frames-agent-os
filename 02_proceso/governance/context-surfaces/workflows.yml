@@ -66,6 +66,26 @@ surfaces:
     privacy: public_only
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-SYSTEMS
+    root: 02_proceso/workflows/skill-systems
+    kind: workflow
+    owner: content
+    applies_when: R8 o R9 fijó alcance y debe diseñarse evaluarse o versionarse una skill.
+    authority_refs: [02_proceso/workflows/skill-systems/contracts.ts]
+    load_first: [02_proceso/workflows/skill-systems/skill-suite.yml]
+    load_on_demand: [02_proceso/workflows/skill-systems/governance.ts]
+    defer: [Pasos S no activos, corpus, adapters y releases]
+    routes: [R8, R9]
+    workflows: [S00, S01, S02, S03, S04, S05, S06, S07, S08, S09]
+    primary_skills: [skill-system-architect]
+    tools: [skills:inspect, skills:validate, skills:evaluate]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/skill-systems/context.md]}
+    gates: [SSS_CASE_READY, SSS_ARCHITECTURE_READY, SSS_RELEASE_CANDIDATE]
+    stop_rules: [Trigger no autoriza, E3 sin sandbox no ejecuta, E4 fuera del MVP]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-MULTIMEDIA
     root: 02_proceso/workflows/multimedia
     kind: workflow

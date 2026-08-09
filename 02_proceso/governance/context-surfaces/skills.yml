@@ -1,6 +1,175 @@
 schema_version: context-surface-shard-v1
 shard_id: CTX-SHARD-SKILLS
 surfaces:
+  - context_id: CTX-SKILL-SYSTEM-ARCHITECT
+    root: 03_artefactos/skills/skill-system-architect
+    kind: skill
+    owner: skill-foundry
+    applies_when: R8 o R9 necesita Skill Case demotion topología o Architecture Decision.
+    authority_refs: [03_artefactos/skills/skill-system-architect/SKILL.md]
+    load_first: [03_artefactos/skills/skill-system-architect/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-system-architect/references/operating-contract.md]
+    defer: [Autoría evaluación y release]
+    routes: [R8, R9]
+    workflows: [S00, S01, S02]
+    primary_skills: [skill-system-architect]
+    tools: [skills:inspect]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-system-architect/context.md]}
+    gates: [SSS_CASE_READY, SSS_ARCHITECTURE_READY]
+    stop_rules: [Elegir el componente suficiente más pequeño]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-AUTHORING-ENGINEER
+    root: 03_artefactos/skills/skill-authoring-engineer
+    kind: skill
+    owner: skill-foundry
+    applies_when: S04 tiene contratos aprobados y WorkOrder material.
+    authority_refs: [03_artefactos/skills/skill-authoring-engineer/SKILL.md]
+    load_first: [03_artefactos/skills/skill-authoring-engineer/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-authoring-engineer/references/operating-contract.md]
+    defer: [Portfolio completo y releases]
+    routes: [R8, R9]
+    workflows: [S04]
+    primary_skills: [skill-authoring-engineer]
+    tools: [skills:scaffold]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-authoring-engineer/context.md]}
+    gates: [SSS_CANDIDATE_READY]
+    stop_rules: [Sin WorkOrder dry-run y cero writes]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTRACT-VALIDATOR
+    root: 03_artefactos/skills/skill-contract-validator
+    kind: skill
+    owner: skill-foundry
+    applies_when: S03 o S05 debe validar contratos paquete paths o supply chain.
+    authority_refs: [03_artefactos/skills/skill-contract-validator/SKILL.md]
+    load_first: [03_artefactos/skills/skill-contract-validator/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-contract-validator/references/operating-contract.md]
+    defer: [Corpus de outcome]
+    routes: [R8, R9]
+    workflows: [S03, S05]
+    primary_skills: [skill-contract-validator]
+    tools: [skills:validate]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-contract-validator/context.md]}
+    gates: [SSS_STATIC_VALIDATED]
+    stop_rules: [Referencia stale escape o permiso extra bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-EVALUATION-ENGINEER
+    root: 03_artefactos/skills/skill-evaluation-engineer
+    kind: skill
+    owner: skill-foundry
+    applies_when: S03 o S06 necesita baseline casos assertions y replay.
+    authority_refs: [03_artefactos/skills/skill-evaluation-engineer/SKILL.md]
+    load_first: [03_artefactos/skills/skill-evaluation-engineer/SKILL.md]
+    load_on_demand:
+      [03_artefactos/skills/skill-evaluation-engineer/references/operating-contract.md]
+    defer: [Casos fuera del corpus activo]
+    routes: [R8, R9]
+    workflows: [S03, S06]
+    primary_skills: [skill-evaluation-engineer]
+    tools: [skills:evaluate]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-evaluation-engineer/context.md]}
+    gates: [SSS_EVAL_VALIDATED]
+    stop_rules: [Infraestructura fallida no entra al denominador]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-PORTFOLIO-GOVERNOR
+    root: 03_artefactos/skills/skill-portfolio-governor
+    kind: skill
+    owner: skill-foundry
+    applies_when: S01 o S07 debe resolver overlap owner deuda o retiro.
+    authority_refs: [03_artefactos/skills/skill-portfolio-governor/SKILL.md]
+    load_first: [03_artefactos/skills/skill-portfolio-governor/SKILL.md]
+    load_on_demand: [04_estado/registries/skills/skill-system-migration.yml]
+    defer: [Contenido privado de extensiones]
+    routes: [R8, R9]
+    workflows: [S01, S07]
+    primary_skills: [skill-portfolio-governor]
+    tools: [skills:inspect]
+    read_set: [04_estado/registries/skills/skill-system-migration.yml]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-portfolio-governor/context.md]}
+    gates: [SSS_REVIEW_VALIDATED]
+    stop_rules: [Propuesta no equivale a mutación]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-RELEASE-GOVERNOR
+    root: 03_artefactos/skills/skill-release-governor
+    kind: skill
+    owner: skill-foundry
+    applies_when: S08 o S09 congela capsule restore lifecycle y compatibilidad.
+    authority_refs: [03_artefactos/skills/skill-release-governor/SKILL.md]
+    load_first: [03_artefactos/skills/skill-release-governor/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-release-governor/references/operating-contract.md]
+    defer: [Hosts sin adapter seleccionado]
+    routes: [R9]
+    workflows: [S08, S09]
+    primary_skills: [skill-release-governor]
+    tools: [skills:package]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-release-governor/context.md]}
+    gates: [SSS_RELEASE_CANDIDATE, DOCS_TRANSVERSAL_COMPLETE]
+    stop_rules: [Capsule no se sobrescribe y H01 permanece separado]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-EXPERT-DISTILLER
+    root: 03_artefactos/skills/skill-expert-distiller
+    kind: skill
+    owner: skill-foundry
+    applies_when: Práctica experta debe convertirse en reglas y oráculos trazables.
+    authority_refs: [03_artefactos/skills/skill-expert-distiller/SKILL.md]
+    load_first: [03_artefactos/skills/skill-expert-distiller/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-expert-distiller/references/operating-contract.md]
+    defer: [Material experto no seleccionado]
+    routes: [R8, R9]
+    workflows: [S00, S03]
+    primary_skills: [skill-expert-distiller]
+    tools: [skills:inspect]
+    read_set: [00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-expert-distiller/context.md]}
+    gates: [SSS_CASE_READY]
+    stop_rules: [Preferencia no se vuelve regla sin evidencia]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-RUNTIME-ADAPTER
+    root: 03_artefactos/skills/skill-runtime-adapter
+    kind: skill
+    owner: skill-foundry
+    applies_when: S04 o S08 compila el core portable para un runtime específico.
+    authority_refs: [03_artefactos/skills/skill-runtime-adapter/SKILL.md]
+    load_first: [03_artefactos/skills/skill-runtime-adapter/SKILL.md]
+    load_on_demand: [03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md]
+    defer: [Adapters y hosts no seleccionados]
+    routes: [R8, R9]
+    workflows: [S04, S08]
+    primary_skills: [skill-runtime-adapter]
+    tools: [skills:validate]
+    read_set: [02_proceso/workflows/skill-systems/contracts.ts]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-runtime-adapter/context.md]}
+    gates: [SSS_RELEASE_CANDIDATE]
+    stop_rules: [Host sin probe material permanece UNKNOWN]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-SKILL-FRAMES-DOCS-AS-CODE
     root: 03_artefactos/skills/frames-docs-as-code
     kind: skill
