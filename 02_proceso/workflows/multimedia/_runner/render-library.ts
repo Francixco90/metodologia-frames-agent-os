@@ -50,6 +50,8 @@ const stages = readdirSync(DIR)
           required: output.required,
           condition: output.condition ?? null,
           gate: definition.acceptance_gate,
+          template_markdown: `${name}/templates/${definition.deliverable_id}.template.md`,
+          template_html: `${name}/templates/${definition.deliverable_id}.template.html`,
         };
       }),
       skills: workflow.capability_map.skills,
@@ -95,7 +97,7 @@ const markdown = [
     '- Deliverables:',
     ...stage.deliverables.map(
       (item) =>
-        `  - **${item.name}** (\`${item.id}\`) · ${item.touchpoint} · ${item.required ? 'obligatorio' : `condicional: ${item.condition}`} · ${item.formats.join('/')} · gate \`${item.gate}\` — ${item.purpose}`,
+        `  - **${item.name}** (\`${item.id}\`) · ${item.touchpoint} · ${item.required ? 'obligatorio' : `condicional: ${item.condition}`} · ${item.formats.join('/')} · gate \`${item.gate}\` — ${item.purpose} · [template MD](../${item.template_markdown}) · [template HTML](../${item.template_html})`,
     ),
     `- Skills: ${stage.skills.join(', ')}`,
     `- Gates: ${stage.gates.join(', ')}`,
@@ -113,7 +115,7 @@ const markdown = [
 const cards = stages
   .map(
     (stage) =>
-      `<article class="card" id="${stage.id}"><p class="eyebrow">${stage.id} · ${esc(stage.state)}</p><h2>${esc(stage.title)}</h2><p>${esc(stage.purpose)}</p><h3>Pasos</h3><ol>${stage.steps.map((step) => `<li><strong>${step.id}</strong> ${esc(step.purpose)}<small>${esc(step.skill)} · ${esc(step.gate)}</small></li>`).join('')}</ol><h3>Entregables</h3><ul>${stage.deliverables.map((item) => `<li><strong>${esc(item.name)}</strong><small>${esc(item.class)} · ${esc(item.touchpoint)} · ${esc(item.formats.join('/'))} · ${esc(item.gate)}</small><span>${esc(item.purpose)}</span></li>`).join('')}</ul><a href="../${stage.prompt}">Abrir prompt canónico</a></article>`,
+      `<article class="card" id="${stage.id}"><p class="eyebrow">${stage.id} · ${esc(stage.state)}</p><h2>${esc(stage.title)}</h2><p>${esc(stage.purpose)}</p><h3>Pasos</h3><ol>${stage.steps.map((step) => `<li><strong>${step.id}</strong> ${esc(step.purpose)}<small>${esc(step.skill)} · ${esc(step.gate)}</small></li>`).join('')}</ol><h3>Entregables</h3><ul>${stage.deliverables.map((item) => `<li><strong>${esc(item.name)}</strong><small>${esc(item.class)} · ${esc(item.touchpoint)} · ${esc(item.formats.join('/'))} · ${esc(item.gate)}</small><span>${esc(item.purpose)}</span><a href="../${item.template_markdown}">MD</a> · <a href="../${item.template_html}">HTML</a></li>`).join('')}</ul><a href="../${stage.prompt}">Abrir prompt canónico</a></article>`,
   )
   .join('');
 const nodes = stages
