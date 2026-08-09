@@ -1,0 +1,36 @@
+schema_version: career-workflow-v1
+workflow_id: C01
+command: /career-evidence
+title: Reconciliación de evidencia
+purpose: Convertir fuentes autorizadas en claims trazables sin pulir gaps o contradicciones.
+inputs: [candidate-foundation-brief-v1, candidate-sources]
+deliverables: [evidence-bank-v1, contradiction-ledger-v1, evidence-gap-report-v1]
+capability_map: [candidate-evidence-reconciler]
+execution_steps:
+  - step_id: S01
+    purpose: Ingerir y normalizar claims desde fuentes hash-bound.
+    inputs: [candidate-sources]
+    primary_skill: candidate-evidence-reconciler
+    optional_skills: []
+    verifier: RT-09
+    outputs: [evidence-bank-v1]
+    template_id: TPL-C01-EVIDENCE
+    gate: G13
+    stop_rule: Un claim sin fuente queda inferred o missing; nunca verified.
+    context_budget: {target_files: 8, max_files: 16, target_tokens: 12000, max_tokens: 20000}
+  - step_id: S02
+    purpose: Resolver contradicciones y declarar gaps utilizables.
+    inputs: [evidence-bank-v1]
+    primary_skill: candidate-evidence-reconciler
+    optional_skills: []
+    verifier: RT-09
+    outputs: [contradiction-ledger-v1, evidence-gap-report-v1]
+    template_id: TPL-C01-EVIDENCE
+    gate: G14
+    stop_rule: Contradicción material no resuelta bloquea el claim afectado.
+    context_budget: {target_files: 8, max_files: 16, target_tokens: 12000, max_tokens: 20000}
+gates: [G13, G14]
+next_workflow: C02
+template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md
+stop_rule: No convertir inferred o missing en capacidad demostrada.
+metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}
