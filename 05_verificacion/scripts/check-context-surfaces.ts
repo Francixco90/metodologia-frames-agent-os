@@ -34,7 +34,9 @@ export const checkContextSurfaces = (root: string): string[] => {
   );
   const surfaces = loadContextSurfaces(root, 'all');
   const expected = projections(surfaces);
-  issues.push(...validateContextGraph(root, surfaces, 78));
+  const expectedTotal =
+    registry.expected_non_skill_projections + registry.expected_skill_projections;
+  issues.push(...validateContextGraph(root, surfaces, expectedTotal));
   for (const [path, content] of expected) {
     const absolute = resolve(root, path);
     if (!existsSync(absolute)) issues.push(`CTX-COVERAGE002 missing ${path}`);
@@ -105,5 +107,12 @@ if (isMain) {
   if (issues.length > 0) {
     console.error(issues.join('\n'));
     process.exitCode = 1;
-  } else console.info('PASS context surfaces: 54 public + 24 skill projections');
+  } else {
+    const registry = ContextSurfaceRegistryV1Schema.parse(
+      parse(readFileSync(resolve(process.cwd(), REGISTRY_PATH), 'utf8')),
+    );
+    console.info(
+      `PASS context surfaces: ${registry.expected_non_skill_projections} public + ${registry.expected_skill_projections} skill projections`,
+    );
+  }
 }
