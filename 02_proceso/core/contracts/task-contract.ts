@@ -73,7 +73,7 @@ export const TaskContractSchema = z
     created_from_route: z.enum(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7']),
     gate_target: z
       .string()
-      .regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+)$/u)
+      .regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_(BRIEF|RELEASE)_APPROVED)$/u)
       .nullable(),
     spawned_subtasks: z.array(PortableIdSchema).default([]),
     parent_task_id: PortableIdSchema.nullable(),
@@ -98,7 +98,7 @@ export const TaskContractSchema = z
     if (
       c.state === 'ENTREGADO' &&
       c.gate_target !== null &&
-      (/^G1[3-7]/u.test(c.gate_target) || /^(MW_|CR_)/u.test(c.gate_target))
+      (/^G1[3-7]/u.test(c.gate_target) || /^(MW_|CR_|EXP_)/u.test(c.gate_target))
     ) {
       ctx.addIssue({
         code: 'custom',
