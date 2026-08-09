@@ -27,8 +27,11 @@ describe('ContextSurfaceV1', () => {
   });
 
   it('renders byte-stable projections with six sections below target', () => {
-    const first = projections(loadContextSurfaces(root));
-    const second = projections(loadContextSurfaces(root));
+    const all = loadContextSurfaces(root, 'all');
+    expect(all).toHaveLength(62);
+    expect(validateContextGraph(root, all, 62)).toEqual([]);
+    const first = projections(all);
+    const second = projections(all);
     expect([...first]).toEqual([...second]);
     for (const [path, markdown] of first) {
       expect(readFileSync(resolve(root, path), 'utf8')).toBe(markdown);

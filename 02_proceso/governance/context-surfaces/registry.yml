@@ -10,4 +10,4 @@ shards:
   - 02_proceso/governance/context-surfaces/operation.yml
   - 02_proceso/governance/context-surfaces/workflows.yml
   - 02_proceso/governance/context-surfaces/control.yml
-skill_shards: []
+skill_shards: [02_proceso/governance/context-surfaces/skills.yml]

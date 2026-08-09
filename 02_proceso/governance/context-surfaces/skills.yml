@@ -1,0 +1,258 @@
+schema_version: context-surface-shard-v1
+shard_id: CTX-SHARD-SKILLS
+surfaces:
+  - context_id: CTX-SKILL-CONTENT-ROUTER
+    root: 03_artefactos/skills/content-os-router
+    kind: skill
+    owner: skill-foundry
+    applies_when: Clasificar lenguaje normal, fijar R6/R7/R4 o devolver una aclaración fail-closed.
+    authority_refs:
+      [03_artefactos/skills/content-os-router/SKILL.md, 02_proceso/governance/router.yml]
+    load_first: [03_artefactos/skills/content-os-router/SKILL.md, 02_proceso/governance/router.yml]
+    load_on_demand: [03_artefactos/skills/content-os-router/LINEAGE.yml]
+    defer: [Workflows no seleccionados, templates, corpus y estado privado]
+    routes: [R0, R4, R6, R7]
+    workflows: [P00-P09, C00-C09]
+    primary_skills: [content-os-router]
+    tools: [frames:assist, route_lock]
+    read_set: [03_artefactos/skills/content-os-router/SKILL.md, 02_proceso/governance/router.yml]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/content-os-router/context.md]}
+    gates: [route_lock, EXP_BRIEF_APPROVED]
+    stop_rules: [Empate material bloquea, Skill sin receipt permanece planned]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CAREER-ORCHESTRATOR
+    root: 03_artefactos/skills/career-application-orchestrator
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un pedido Career requiere brief, reanudación, paquete o preparación de postulación.
+    authority_refs: [03_artefactos/skills/career-application-orchestrator/SKILL.md]
+    load_first: [03_artefactos/skills/career-application-orchestrator/SKILL.md]
+    load_on_demand: [03_artefactos/skills/career-application-orchestrator/LINEAGE.yml]
+    defer: [PII no autorizada, evidencia no seleccionada y C09 sin autorización]
+    routes: [R7, R4]
+    workflows: [C00-C09]
+    primary_skills: [career-application-orchestrator]
+    tools: [career_route, resume_lineage]
+    read_set: [03_artefactos/skills/career-application-orchestrator/SKILL.md]
+    write_policy:
+      {
+        mode: generated_only,
+        paths: [03_artefactos/skills/career-application-orchestrator/context.md],
+      }
+    gates: [CR_BRIEF_APPROVED, CR_SUBMISSION_AUTHORIZED]
+    stop_rules: [C09 prepara y detiene, PII y evidencia UNKNOWN bloquean]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-TOKEN-EFFICIENCY
+    root: 03_artefactos/skills/frames-token-efficiency-orchestrator
+    kind: skill
+    owner: skill-foundry
+    applies_when: La ruta permite optimizar contexto medido sin degradar marca evidencia o calidad.
+    authority_refs: [03_artefactos/skills/frames-token-efficiency-orchestrator/SKILL.md]
+    load_first: [03_artefactos/skills/frames-token-efficiency-orchestrator/SKILL.md]
+    load_on_demand: [03_artefactos/skills/frames-token-efficiency-orchestrator/LINEAGE.yml]
+    defer: [Sidecars no activados, perfiles humanos y contenido publicable]
+    routes: [R0, R4, R6, R7]
+    workflows: []
+    primary_skills: [frames-token-efficiency-orchestrator]
+    tools: [one_transformer, one_observer]
+    read_set: [03_artefactos/skills/frames-token-efficiency-orchestrator/SKILL.md]
+    write_policy:
+      {
+        mode: generated_only,
+        paths: [03_artefactos/skills/frames-token-efficiency-orchestrator/context.md],
+      }
+    gates: [token_policy, raw_evidence]
+    stop_rules: [Opt-in únicamente, Preservar evidencia raw y rollback]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTENT-CORE
+    root: 03_artefactos/skills/content-os-core
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un paso Content necesita contratos composición determinista o límites de escritura.
+    authority_refs: [03_artefactos/skills/content-os-core/SKILL.md]
+    load_first: [03_artefactos/skills/content-os-core/SKILL.md]
+    load_on_demand: [03_artefactos/skills/content-os-core/LINEAGE.yml]
+    defer: [Renderers y canales no elegidos]
+    routes: [R6]
+    workflows: [P03, P05, P06, P08]
+    primary_skills: [content-os-core]
+    tools: [work_order, deterministic_compose]
+    read_set: [03_artefactos/skills/content-os-core/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/content-os-core/context.md]}
+    gates: [execution_authz, material_receipt]
+    stop_rules: [Output no material bloquea, Escribir solo dentro del write set]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTENT-CREATIVE
+    root: 03_artefactos/skills/content-os-creative
+    kind: skill
+    owner: skill-foundry
+    applies_when: Una pieza necesita dirección creativa narrativa assets o criterios wow adecuados.
+    authority_refs: [03_artefactos/skills/content-os-creative/SKILL.md]
+    load_first: [03_artefactos/skills/content-os-creative/SKILL.md]
+    load_on_demand: [03_artefactos/skills/content-os-creative/LINEAGE.yml]
+    defer: [Motion, canales y assets no requeridos]
+    routes: [R6]
+    workflows: [P03, P05, P06, P07]
+    primary_skills: [content-os-creative]
+    tools: [creative_spec, evidence_map]
+    read_set: [03_artefactos/skills/content-os-creative/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/content-os-creative/context.md]}
+    gates: [MW_BRIEF_APPROVED, MW_SPEC_APPROVED]
+    stop_rules: [Wow no sustituye evidencia, Marca y derechos desconocidos bloquean]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-BRAND-ROUTER
+    root: 03_artefactos/skills/metodologia-brand-router
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un entregable debe resolver identidad voz canal tokens o drift de MetodologIA.
+    authority_refs: [03_artefactos/skills/metodologia-brand-router/SKILL.md]
+    load_first: [03_artefactos/skills/metodologia-brand-router/SKILL.md]
+    load_on_demand: [03_artefactos/skills/metodologia-brand-router/LINEAGE.yml]
+    defer: [Perfiles de otros canales y corpus visual no requerido]
+    routes: [R6]
+    workflows: [P00, P05, P07]
+    primary_skills: [metodologia-brand-router]
+    tools: [brand_profile, brand_check]
+    read_set: [03_artefactos/skills/metodologia-brand-router/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/metodologia-brand-router/context.md]}
+    gates: [brand_source, brand_conformance]
+    stop_rules: [Fuente o licencia ausente bloquea, No descargar assets remotos]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTEXT-SAVE
+    root: 03_artefactos/skills/context-save
+    kind: skill
+    owner: skill-foundry
+    applies_when: El usuario autoriza conservar continuidad útil de una tarea o candidate.
+    authority_refs: [03_artefactos/skills/context-save/SKILL.md]
+    load_first: [03_artefactos/skills/context-save/SKILL.md]
+    load_on_demand: [03_artefactos/skills/context-save/LINEAGE.yml]
+    defer: [Conversación completa, chain-of-thought, secretos y PII innecesaria]
+    routes: [R4]
+    workflows: []
+    primary_skills: [context-save]
+    tools: [private_append_only_state]
+    read_set: [03_artefactos/skills/context-save/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/context-save/context.md]}
+    gates: [consent, private_state]
+    stop_rules: [Sin consentimiento no persistir, Guardar decisiones no razonamiento privado]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTEXT-RESTORE
+    root: 03_artefactos/skills/context-restore
+    kind: skill
+    owner: skill-foundry
+    applies_when: Una petición de continuar debe resolver exactamente un lineage verificable.
+    authority_refs: [03_artefactos/skills/context-restore/SKILL.md]
+    load_first: [03_artefactos/skills/context-restore/SKILL.md]
+    load_on_demand: [03_artefactos/skills/context-restore/LINEAGE.yml]
+    defer: [Candidates no seleccionados y contexto privado no ligado]
+    routes: [R4]
+    workflows: []
+    primary_skills: [context-restore]
+    tools: [lineage_resolver, hash_read_back]
+    read_set: [03_artefactos/skills/context-restore/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/context-restore/context.md]}
+    gates: [resume_lineage]
+    stop_rules: [Cardinalidad cero o N bloquea, Symlink o hash stale bloquea]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTEXT-MEMORY
+    root: 03_artefactos/skills/context-memory
+    kind: skill
+    owner: skill-foundry
+    applies_when: Una decisión durable y autorizada aporta continuidad entre sesiones.
+    authority_refs: [03_artefactos/skills/context-memory/SKILL.md]
+    load_first: [03_artefactos/skills/context-memory/SKILL.md]
+    load_on_demand: [03_artefactos/skills/context-memory/LINEAGE.yml]
+    defer: [Trazas de sesión, razonamiento privado y datos transitorios]
+    routes: [R4]
+    workflows: []
+    primary_skills: [context-memory]
+    tools: [memory_supersedes]
+    read_set: [03_artefactos/skills/context-memory/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/context-memory/context.md]}
+    gates: [consent, durable_fact]
+    stop_rules: [No convertir inferencias en hechos, Nueva verdad crea supersedes]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CONTEXT-TEAMMATES
+    root: 03_artefactos/skills/context-teammates
+    kind: skill
+    owner: skill-foundry
+    applies_when: Especialistas independientes requieren WorkOrders y handoffs acotados.
+    authority_refs: [03_artefactos/skills/context-teammates/SKILL.md]
+    load_first: [03_artefactos/skills/context-teammates/SKILL.md]
+    load_on_demand: [03_artefactos/skills/context-teammates/LINEAGE.yml]
+    defer: [Contexto de otros agentes y trabajo duplicado]
+    routes: [R4, R6, R7]
+    workflows: []
+    primary_skills: [context-teammates]
+    tools: [work_order, implementation_handoff]
+    read_set: [03_artefactos/skills/context-teammates/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/context-teammates/context.md]}
+    gates: [ownership, handoff]
+    stop_rules: [Un writer por ruta, Producer y verifier separados cuando aplica]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-WRITING-PLANS
+    root: 03_artefactos/skills/dev-writing-plans
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un cambio complejo necesita plan ejecutable con base write sets budgets y aceptación.
+    authority_refs: [03_artefactos/skills/dev-writing-plans/SKILL.md]
+    load_first: [03_artefactos/skills/dev-writing-plans/SKILL.md]
+    load_on_demand: [03_artefactos/skills/dev-writing-plans/LINEAGE.yml]
+    defer: [Corpus no tocado y soluciones fuera de alcance]
+    routes: [R2, R3, R4, R6, R7]
+    workflows: []
+    primary_skills: [dev-writing-plans]
+    tools: [plan, budget_envelope]
+    read_set: [03_artefactos/skills/dev-writing-plans/SKILL.md]
+    write_policy: {mode: generated_only, paths: [03_artefactos/skills/dev-writing-plans/context.md]}
+    gates: [plan_acceptance, ownership]
+    stop_rules: [Ambigüedad material se resuelve, Hard max obliga a dividir]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-VERIFICATION
+    root: 03_artefactos/skills/dev-verification-before-completion
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un candidate congelado requiere evidencia actual antes de afirmar cierre.
+    authority_refs: [03_artefactos/skills/dev-verification-before-completion/SKILL.md]
+    load_first: [03_artefactos/skills/dev-verification-before-completion/SKILL.md]
+    load_on_demand: [03_artefactos/skills/dev-verification-before-completion/LINEAGE.yml]
+    defer: [Suites no afectadas y evidencia de candidates anteriores]
+    routes: [R4, R6, R7]
+    workflows: [P07, P08, C08]
+    primary_skills: [dev-verification-before-completion]
+    tools: [focused_checks, candidate_verify]
+    read_set: [03_artefactos/skills/dev-verification-before-completion/SKILL.md]
+    write_policy:
+      {
+        mode: generated_only,
+        paths: [03_artefactos/skills/dev-verification-before-completion/context.md],
+      }
+    gates: [candidate_freeze, verification]
+    stop_rules: [Manual no simula runtime, Sin evidencia material no declarar PASS]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
