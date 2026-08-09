@@ -1,0 +1,6 @@
+schema_version: runtime-boundary-v1
+skill_id: skill-expert-distiller
+network_allowed: false
+publication_authority: false
+external_execution: false
+maximum_effect: advisory
