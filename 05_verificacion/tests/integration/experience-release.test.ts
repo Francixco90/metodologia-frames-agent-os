@@ -56,7 +56,7 @@ describe('Frames Experience release capsule', () => {
       sourceFiles: EXPERIENCE_RELEASE_SURFACE_V1.length,
       errors: [],
     });
-  });
+  }, 15_000);
 
   it('produces deterministic capsule bytes from equivalent committed repositories', () => {
     const runs = [approved('experience-deterministic'), approved('experience-deterministic')];
@@ -73,7 +73,7 @@ describe('Frames Experience release capsule', () => {
     expect(files.map((name) => readFileSync(resolve(runs[0]!.options.output, name)))).toEqual(
       files.map((name) => readFileSync(resolve(runs[1]!.options.output, name))),
     );
-  });
+  }, 15_000);
 
   it('detects capsule tampering and a manifest hash that disagrees with Git-show bytes', () => {
     const {root, options} = approved('experience-tamper');

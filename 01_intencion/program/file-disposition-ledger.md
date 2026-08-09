@@ -39,8 +39,8 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             93659 |              110811 |     140488 (1.5×) | 1.1831× | `pass` |
-| Total authored (palabras)     |             93659 |              110811 |       187318 (2×) | 1.1831× | `pass` |
+| Corpus authored elegible      |             93660 |              110813 |     140490 (1.5×) | 1.1831× | `pass` |
+| Total authored (palabras)     |             93660 |              110813 |       187320 (2×) | 1.1831× | `pass` |
 | Total authored (LOC)          |             35137 |               41573 |        70274 (2×) | 1.1832× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
@@ -401,7 +401,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `tests/contract/notebooklm-work-units.contract.test.ts`                                                       | `qa`               | `refactored`         | 452                | 452               | 171         | 171        | `af2a7e643f6f62844e28b1854288210227febe030260eb88443ea3b6b3594137` | `changed`        |
 | `tests/contract/qa-verdict.contract.test.ts`                                                                  | `qa`               | `verified_no_change` | 238                | 238               | 117         | 117        | `c2db93bef6a75c1e1396d8432d457162705a6a467fec00fa901867388c0e10fd` | `byte-identical` |
 | `tests/contract/remotion-documentation.contract.test.ts`                                                      | `qa`               | `verified_no_change` | 811                | 811               | 323         | 323        | `1cbdcf5701225081a7320aed4224822e9a5cd6504520b5f5e9f81d7603faee32` | `byte-identical` |
-| `tests/contract/skill-foundry.contract.test.ts`                                                               | `qa`               | `refactored`         | 1299               | 1327              | 633         | 648        | `58056b01692a6bc67daec0cf719faa62dc63ec11b8211403f1d6feec921b609e` | `changed`        |
+| `tests/contract/skill-foundry.contract.test.ts`                                                               | `qa`               | `refactored`         | 1299               | 1328              | 633         | 648        | `58056b01692a6bc67daec0cf719faa62dc63ec11b8211403f1d6feec921b609e` | `changed`        |
 | `tests/contract/source-notebook.contract.test.ts`                                                             | `qa`               | `refactored`         | 1272               | 1277              | 539         | 545        | `137e4b97d77660b8678106b65deb8892a8a9563744a6944f1b55f40bc08b62e4` | `changed`        |
 | `tests/contract/web.contract.test.ts`                                                                         | `qa`               | `refactored`         | 281                | 281               | 111         | 111        | `8832e625e16b165eb86bb76554eaf59ce7332f88e22ddee3917a69aaf9275a9d` | `changed`        |
 | `tests/fixtures/source-notebook/contracts.ts`                                                                 | `qa`               | `refactored`         | 2205               | 2207              | 913         | 917        | `3c079d9b93f524f4fd3bc4f38e4b587edf1eed5c8208a7db6c59fb0cf9c22452` | `changed`        |

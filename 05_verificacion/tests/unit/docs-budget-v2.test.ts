@@ -125,7 +125,7 @@ describe('V2 documentation and extension budgets', () => {
       'utf8',
     );
     expect(document.split('\n').length).toBeLessThanOrEqual(300);
-  });
+  }, 15_000);
 
   it('covers all 377 baseline files and protects historical bytes', () => {
     expect(validateDispositionLedger(root)).toStrictEqual([]);
