@@ -1,0 +1,22 @@
+{
+  "job_id": "JOB-SYNTH-001",
+  "candidate_id": "CAND-SYNTH-001",
+  "canonical_url": "https://example.invalid/jobs/synthetic-001",
+  "snapshot_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "observed_state": "open",
+  "hard_requirements_pass": true,
+  "score": {
+    "core_evidence": 27,
+    "hard_requirements": 20,
+    "conditions": 15,
+    "transferability": 8,
+    "publication_quality": 10,
+    "sector": 4,
+    "application_friction": 4,
+    "legitimate_contact": 2,
+    "total": 90
+  },
+  "bucket": "main",
+  "application_state": "SHORTLISTED",
+  "next_gate": "CR_APPLICATION_BRIEF"
+}
