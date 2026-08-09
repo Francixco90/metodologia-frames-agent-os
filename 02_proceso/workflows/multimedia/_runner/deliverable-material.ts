@@ -74,7 +74,7 @@ export const createDeliverableMaterial = (
       value: 'Pendiente de producción gobernada.',
       source_refs: [],
     })),
-    state: 'RENDERED_DRAFT' as const,
+    state: 'DRAFT' as const,
     next_gate: definition.acceptance_gate,
   };
   const copy = sectionText(definition, workflow);

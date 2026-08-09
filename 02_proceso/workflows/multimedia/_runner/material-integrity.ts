@@ -3,6 +3,8 @@ import {readFileSync} from 'node:fs';
 import {parse} from 'yaml';
 
 import type {QualityGateContext} from './quality-gate-types.ts';
+import {parseFramesDeliverableMarkdown} from './deliverable-model.ts';
+import {verifyDeliverableParity} from './deliverable-parity.ts';
 
 const SHA256 = /^[a-f0-9]{64}$/u;
 
@@ -48,6 +50,17 @@ export const inspectMaterialEvidence = (
         outputTags.includes('coverage_gap')
       ) {
         return {passed: false, detail: `unknown material evidence: ${output.ref}`};
+      }
+      const markdown = output.companions.find(({format}) => format === 'md');
+      if (!markdown?.exists) {
+        return {passed: false, detail: `markdown companion missing: ${output.ref}`};
+      }
+      const deliverable = parseFramesDeliverableMarkdown(readFileSync(markdown.stagedPath, 'utf8'));
+      if (
+        deliverable.frontmatter.state !== 'RENDERED_DRAFT' ||
+        deliverable.frontmatter.fields.some(({status}) => status === 'unknown')
+      ) {
+        return {passed: false, detail: `deliverable evidence unresolved: ${markdown.ref}`};
       }
     }
   } catch (error) {
@@ -107,17 +120,26 @@ export const inspectOutputIntegrity = (
       if (materialHash !== output.sha256 || materialHash !== resolution.sha256) {
         return {passed: false, detail: `material hash mismatch: ${ref}`};
       }
-      const receiptCompanions = Array.isArray(output.companions) ? output.companions : [];
+      const receiptCompanions = Array.isArray(output.companions)
+        ? (output.companions as Array<{
+            format?: unknown;
+            ref?: unknown;
+            sha256?: unknown;
+            materialized?: unknown;
+          }>)
+        : [];
       if (receiptCompanions.length !== 2 || resolution.companions.length !== 2) {
         return {passed: false, detail: `missing md/html companions: ${ref}`};
       }
+      const receiptFormats = receiptCompanions.map(({format}) => String(format)).sort();
+      const resolutionFormats = resolution.companions.map(({format}) => format).sort();
+      if (receiptFormats.join(',') !== 'html,md' || resolutionFormats.join(',') !== 'html,md') {
+        return {passed: false, detail: `companion formats invalid: ${ref}`};
+      }
       for (const companion of resolution.companions) {
         const receiptCompanion = receiptCompanions.find(
-          (item) =>
-            typeof item === 'object' &&
-            item !== null &&
-            (item as {ref?: unknown}).ref === companion.ref,
-        ) as {sha256?: unknown; materialized?: unknown} | undefined;
+          (item) => item.ref === companion.ref && item.format === companion.format,
+        );
         if (
           !companion.exists ||
           !['md', 'html'].includes(companion.format) ||
@@ -128,6 +150,22 @@ export const inspectOutputIntegrity = (
         ) {
           return {passed: false, detail: `invalid companion binding: ${companion.ref}`};
         }
+      }
+      const document = parse(readFileSync(resolution.stagedPath, 'utf8')) as {
+        content?: {markdown_ref?: string; html_ref?: string; content_sha256?: string};
+      };
+      const markdown = resolution.companions.find(({format}) => format === 'md')!;
+      const html = resolution.companions.find(({format}) => format === 'html')!;
+      const markdownText = readFileSync(markdown.stagedPath, 'utf8');
+      const htmlText = readFileSync(html.stagedPath, 'utf8');
+      const parsedMarkdown = parseFramesDeliverableMarkdown(markdownText);
+      if (
+        document.content?.markdown_ref !== markdown.ref ||
+        document.content.html_ref !== html.ref ||
+        document.content.content_sha256 !== parsedMarkdown.frontmatter.content_sha256 ||
+        verifyDeliverableParity(markdownText, htmlText).status !== 'PASS'
+      ) {
+        return {passed: false, detail: `semantic companion mismatch: ${ref}`};
       }
     }
   } catch (error) {

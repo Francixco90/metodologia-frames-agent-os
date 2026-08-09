@@ -61,7 +61,7 @@ export const ArtifactEnvelopeV1 = z.strictObject({
   consumer_stage: z.array(z.string().regex(/^P0[0-9]$/)).default([]),
   required: z.boolean().default(false),
   content: z.strictObject({
-    status: z.literal('RENDERED_DRAFT'),
+    status: z.enum(['DRAFT', 'RENDERED_DRAFT']),
     evidence_status: z.enum(['known', 'unknown']),
     evidence_tags: z.array(z.string().min(1)).min(1),
     template_id: z.string().regex(/^TPL-[A-Z0-9][A-Z0-9-]{2,79}$/u),

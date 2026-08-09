@@ -20,6 +20,7 @@ import {
   evaluateQualityGate,
   type QualityGateContext,
 } from 'workflows/multimedia/_runner/quality-gate.ts';
+import {writeVerifiedCompanions} from '../../fixtures/multimedia-deliverable-fixture.ts';
 
 const ROOT = process.cwd();
 const MULTIMEDIA = resolve(ROOT, '02_proceso/workflows/multimedia');
@@ -33,28 +34,33 @@ const noRegressionSha = createHash('sha256')
   .digest('hex');
 
 const materialDir = mkdtempSync(resolve(tmpdir(), 'frames-gate-test-'));
-const materialYaml = (status = 'known'): string =>
-  `content:\n  evidence_status: ${status}\n  evidence_tags: ["[CONFIG]"]\n`;
+const materialYaml = (
+  status = 'known',
+  document?: {markdownRef: string; htmlRef: string; contentSha256: string},
+): string =>
+  `content:\n  evidence_status: ${status}\n  evidence_tags: ["[CONFIG]"]\n${
+    document
+      ? `  markdown_ref: ${document.markdownRef}\n  html_ref: ${document.htmlRef}\n  content_sha256: ${document.contentSha256}\n`
+      : ''
+  }`;
 const outputResolutions = p00Workflow.outputs.map((_output, index) => {
+  const verified = writeVerifiedCompanions(materialDir, index, p00Workflow);
   const stagedPath = resolve(materialDir, `output-${index + 1}.yml`);
-  writeFileSync(stagedPath, materialYaml(), 'utf8');
-  const companions = (['md', 'html'] as const).map((format) => {
-    const companionPath = resolve(materialDir, `output-${index + 1}.${format}`);
-    writeFileSync(companionPath, `${format} companion ${index + 1}\n`, 'utf8');
-    return {
-      format,
-      ref: `03_artefactos/content/multimedia/p00/output-${index + 1}.${format}`,
-      stagedPath: companionPath,
-      exists: true,
-      sha256: createHash('sha256').update(readFileSync(companionPath)).digest('hex'),
-    };
-  });
+  writeFileSync(
+    stagedPath,
+    materialYaml('known', {
+      markdownRef: verified.companions[0]!.ref,
+      htmlRef: verified.companions[1]!.ref,
+      contentSha256: verified.contentSha256,
+    }),
+    'utf8',
+  );
   return {
     ref: `03_artefactos/content/multimedia/p00-definir-sistema/output-${index + 1}.yml`,
     stagedPath,
     exists: true,
     sha256: createHash('sha256').update(readFileSync(stagedPath)).digest('hex'),
-    companions,
+    companions: verified.companions,
   };
 });
 
