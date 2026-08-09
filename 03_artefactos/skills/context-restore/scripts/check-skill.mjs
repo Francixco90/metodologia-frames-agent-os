@@ -7,6 +7,7 @@ const skillDir = join(root, 'skills', id);
 
 const required = [
   'SKILL.md',
+  'context.md',
   'LINEAGE.yml',
   'receipts/runtime-boundary.yml',
   'fixtures/positive/case-01.yml',
@@ -16,6 +17,8 @@ const required = [
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(skillDir, p), 'utf8')]));
 const combined = [...contents.values()].join('\n');
 const failures = [];
+const skillMd = contents.get('SKILL.md');
+const lineage = contents.get('LINEAGE.yml');
 
 // Forbidden APIs and absolute path literals must be absent across all governed files.
 for (const pattern of [
@@ -30,6 +33,19 @@ for (const pattern of [
   if (pattern.test(combined)) {
     failures.push(`forbidden API or absolute path detected: ${String(pattern)}`);
   }
+}
+
+const publicContext = contents.get('context.md');
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  failures.push('version mismatch; expected 0.2.0');
+}
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) failures.push(`context.md missing section ${section}`);
+}
+if (!skillMd.includes('[context.md](context.md)')) failures.push('SKILL.md must link context.md');
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  failures.push('skill/context budget exceeded');
 }
 
 // Governance tokens must be present.
@@ -47,7 +63,6 @@ for (const token of [
 }
 
 // SKILL.md frontmatter must declare 4 scalar fields: name, description, version, license.
-const skillMd = contents.get('SKILL.md');
 const fmMatch = /^---\n([\s\S]*?)\n---/u.exec(skillMd);
 if (!fmMatch) {
   failures.push('SKILL.md frontmatter not found');
@@ -61,7 +76,6 @@ if (!fmMatch) {
 }
 
 // LINEAGE.yml must declare 5 top-level fields.
-const lineage = contents.get('LINEAGE.yml');
 const lineageKeys = [
   'content_origin',
   'derivation_mode',
