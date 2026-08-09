@@ -4,6 +4,7 @@ import {z} from 'zod';
 
 import {ContentIntentV2Schema} from '../_schema/content-intent-v2.schema.ts';
 import type {MultimediaWorkflow} from '../_schema/workflow-v1.schema.ts';
+import {hashContentRequestV1} from '../../../../03_artefactos/skills/content-os-router/scripts/content-intent-request.mjs';
 import {sha256Text, stableStringify} from './brief-model.ts';
 
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
@@ -64,7 +65,10 @@ export const resolveOutputSelection = (
   const intentText = readFileSync(authority.intentPath, 'utf8');
   const intent = ContentIntentV2Schema.parse(parse(intentText) as unknown);
   const intentHash = sha256Text(intentText);
-  if (sha256Text(intent.request) !== intent.request_hash || intent.decision !== 'ROUTED') {
+  if (
+    hashContentRequestV1(intent.request) !== intent.request_hash ||
+    intent.decision !== 'ROUTED'
+  ) {
     throw new Error('MW-OUTPUT-AUTHORITY006 intent integrity or decision mismatch');
   }
   if (intent.effect_class !== 'local_reversible') {
