@@ -1,0 +1,18 @@
+schema_version: experience-source-lock-v1
+lock_id: frames-experience-pivote-v1
+source_id: SRC-FRAMES-EXPERIENCE-PIVOTE-V1
+projection_ref: 00_inbox/first-party/SRC-FRAMES-EXPERIENCE-PIVOTE-V1.projection.yml
+projection_sha256: b5b8eba5e146ac5534b298af9535c3ffcedf767d5b97bc678c94dd0c10351cd0
+ordered_bundle_sha256: 5e2b59ce6e9e49aab5c1b9035079660d407b7f87e51657a6d4134c32f000c93e
+authority: verified_user_supplied_product_reference
+rights: allowed_internal_implementation
+scope: experience_os_only
+global_source_registry_mutated: false
+reason: preserve unrelated hash-frozen content candidates and their immutable history
+restrictions:
+  - no_verbatim_system_prompt_copy
+  - no_runtime_execution_claim
+  - no_publication_authority
+coverage_gaps:
+  - source_package_not_versioned
+  - source_runtime_behavior_not_independently_proven
