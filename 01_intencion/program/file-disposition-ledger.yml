@@ -62,14 +62,14 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12747
+    current_words_for_baseline_files: 12769
     violations: []
     checks:
       - path: AGENTS.md
         baseline_words: 222
-        current_words: 274
+        current_words: 246
         maximum_words: 444
-        ratio: 1.2342
+        ratio: 1.1081
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1525
+        current_words: 1575
         maximum_words: 2656
-        ratio: 1.1483
+        ratio: 1.186
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93563
-    v3_rolling_adjustment_words: 5377
+    baseline_words: 93585
+    v3_rolling_adjustment_words: 5399
     original_baseline_words: 88186
-    final_words: 110683
+    final_words: 110705
     maximum_multiplier: 1.5
-    maximum_words: 140344
-    actual_multiplier: 1.183
+    maximum_words: 140377
+    actual_multiplier: 1.1829
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93563
-    v3_rolling_adjustment_words: 5377
+    baseline_words: 93585
+    v3_rolling_adjustment_words: 5399
     original_baseline_words: 88186
-    final_words: 110683
-    maximum_words: 187126
-    word_multiplier: 1.183
-    baseline_loc: 35084
-    v3_rolling_adjustment_loc: 2196
+    final_words: 110705
+    maximum_words: 187170
+    word_multiplier: 1.1829
+    baseline_loc: 35102
+    v3_rolling_adjustment_loc: 2214
     original_baseline_loc: 32888
-    final_loc: 41511
-    maximum_loc: 70168
-    loc_multiplier: 1.1832
+    final_loc: 41529
+    maximum_loc: 70204
+    loc_multiplier: 1.1831
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -995,9 +995,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:AGENTS.md
       current_ref: working-tree:AGENTS.md
       current_state: present
-      current_sha256: 536d0c7baa04e8b774985ad53471a0cc1b508c9f56a0e539f320799c28110789
-      current_words: 274
-      current_loc: 24
+      current_sha256: fb69bd063575e6bbb3d92c656f5e09723f98a668d585a98b9f4c99ffbbdf2729
+      current_words: 246
+      current_loc: 35
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:AGENTS.md
@@ -1037,9 +1037,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: eb77e7d9100b92c06a604cd7d1958d1aae4f40b067c987898a32d280e22aa451
-      current_words: 1525
-      current_loc: 267
+      current_sha256: f9e3fa772608816e67b1583364f68cfb303784d2371aa5b335402d4f2df10eaa
+      current_words: 1575
+      current_loc: 274
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md
