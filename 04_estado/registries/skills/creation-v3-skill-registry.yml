@@ -25,11 +25,11 @@ entries:
     publication_authority: false
     tests: [node skills/motion-library-adapters/scripts/check-skill.mjs]
   - skill_id: content-os-core
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e9633f6e1bd418742f652eaf9c77ac27124de9a7c60f32eded682adfb6bad782
-    package_manifest_sha256: 7590860ded1af9ed25f1f66fdacde7043bb423bf523ed287c34f9edecd74d0d2
+    content_sha256: 37891918f0680dc0739fa047513577f0249a485f192468b374378c6599687aee
+    package_manifest_sha256: 7304b87786ee9915690fe96fc1cf83d9a045ac8a1b3b192076265428d029a8db
     lineage_ref: skills/content-os-core/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-core/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -58,11 +58,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-keyframes/scripts/check-skill.mjs]
   - skill_id: content-os-creative
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 6414b6f45409b1ff16bb003efc28f040c6995d674f18fe452dfc8261de3a9a79
-    package_manifest_sha256: dd2ace2cebdf8b06b0fc8da3e8591208fe4848d6bc51dd2dfcec8cff42645c8a
+    content_sha256: 165a2e6447bee71ed42ef9a48233d4c5c9c9fb54db4aa0bf0d15fdaa84635643
+    package_manifest_sha256: fbef64c530c03e6f478431d9bb14cfb8ecf2ef7c54a3bab9641bb099a054f25d
     lineage_ref: skills/content-os-creative/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -91,11 +91,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.4.0
+    version: 0.5.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f4894b1ff0407145a8dc933575ab48d73884857c0277775e9ae2550157098c8f
-    package_manifest_sha256: 73af63889be4fc8fccaae61956e0fcd19ce09b9526412bf5ee87cf4c3fd8c454
+    content_sha256: 3adbf4729f7777f2ecce0351d78547695fee2fc31fc412012d8abbfd8c7eec0a
+    package_manifest_sha256: e86e7bfaf55944a0f9bec2309904be49c025597f8bce6360e7f80e66bc940229
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1147,11 +1147,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-executing-plans/scripts/check-skill.mjs]
   - skill_id: dev-writing-plans
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: c86d54482b5c5975cd141dd3dab8a7460fd2d242f33a56b8d4c94c1bba8294af
-    package_manifest_sha256: 565b429c363d9e37d9f8bd4377ca02c541fe3a3261f974e1645cd79da4217e8d
+    content_sha256: b37464d7f40adfdf4938fa35ea0f94632c65ee8c7281e721067c9392ea9e7944
+    package_manifest_sha256: 0993004c111e46fc3399517d2ad425c36f6554f881324d1d783646b8ca93ce51
     lineage_ref: skills/dev-writing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1224,11 +1224,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-using-superpowers/scripts/check-skill.mjs]
   - skill_id: dev-verification-before-completion
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: be41a7aece34389a9bec79621a5aebcfb6b79331f63446e5cf5f57d86da2e745
-    package_manifest_sha256: decb87006f69f2ec2f45b28499c3aec9a07f387693aa8c92166ff09ea495e12a
+    content_sha256: fa7d55c93f31ed8da4047bf4cc2a73137bb95643d658de8436369eb58abbe94f
+    package_manifest_sha256: 9ffa80cbf00a08310012baa8fc896fc0c57fa3c52868c1eb2ac13dc24961850f
     lineage_ref: skills/dev-verification-before-completion/LINEAGE.yml
     dependency_receipt_ref: skills/dev-verification-before-completion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1323,22 +1323,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-karpathy-guidelines/scripts/check-skill.mjs]
   - skill_id: context-save
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 0e173f4cc2ffbf2429c736e521e34e6a79cdb7e768a2856a330a2d8723165f94
-    package_manifest_sha256: 260f5c6edaf05fff3b222d842a8e1a98d5a192204986ac898a7040a63b6a2514
+    content_sha256: 9605bba1f01690fea79160ce8d1e08cc4e161767d9de299a67f6ffa970f2e445
+    package_manifest_sha256: c9ab6751be12d697a3695366fadd057d62d8d40cdb1b008d8ed1b78204ebdd0f
     lineage_ref: skills/context-save/LINEAGE.yml
     dependency_receipt_ref: skills/context-save/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/context-save/scripts/check-skill.mjs]
   - skill_id: context-restore
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3925b7327131930c4c06f6b25f03fd5e322abbcc8ba7d653922ee96b52459bc6
-    package_manifest_sha256: e5a3f14c57ab735de6dcaf4ee5349d3b693590ac29219937b0f5aed9f47a802c
+    content_sha256: d78e1417137c05b9f2018dfe7d68daa2ec7b6000a6e94632e8169f668a80be0f
+    package_manifest_sha256: 7389614a150612c727fce9f8a346173325f8d1453ac79d6bbfdca91448bbd4f8
     lineage_ref: skills/context-restore/LINEAGE.yml
     dependency_receipt_ref: skills/context-restore/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1400,11 +1400,11 @@ entries:
     publication_authority: false
     tests: [node skills/context-lsp/scripts/check-skill.mjs]
   - skill_id: context-memory
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 921b808c6fc809606a99f4d5ded45f28d622e0a6f793242aec9537b2eaaa4ee3
-    package_manifest_sha256: a894acf660c14ede1706db179830801d1098418312b358f0fc64c6346e918461
+    content_sha256: 0ce3164aab4bdc3745636ef64e57d54bf9d676811acf3dd8ee5dea6f3e00dd19
+    package_manifest_sha256: 44af9c4cc0c9f169a5ebdb935324b276fa3460f6bc438e2bd1842f2736693921
     lineage_ref: skills/context-memory/LINEAGE.yml
     dependency_receipt_ref: skills/context-memory/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1422,11 +1422,11 @@ entries:
     publication_authority: false
     tests: [node skills/context-schema-aware-db/scripts/check-skill.mjs]
   - skill_id: context-teammates
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 466d4976e2db4db18f3c6527262d1f3e459b87b2ad4cdfc03e7821cf9fc70bf3
-    package_manifest_sha256: 96a22d01cf27d140d49f18b52ffee905e0f0044a2d81b821bddcf9507caf15b0
+    content_sha256: 27b94aa2b80e75809ffc4ca06214e4f98373b4e2653953e7439b5829332d9a3f
+    package_manifest_sha256: 419114bc77211d68491f27c0c2f17c25025ef8a9c78fd27432149c06a68536ea
     lineage_ref: skills/context-teammates/LINEAGE.yml
     dependency_receipt_ref: skills/context-teammates/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1675,22 +1675,22 @@ entries:
     publication_authority: false
     tests: [node skills/gstack-openclaw-retro/scripts/check-skill.mjs]
   - skill_id: frames-token-efficiency-orchestrator
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: ca3d4ac4cd8233ab12fb983e43bbdd56b929c33c997ea4ca9f5e60243b554267
-    package_manifest_sha256: dff257bdb776fc8ae8b191869f93a19eb54f68419278002d9a3bd692a43431b5
+    content_sha256: c7b912817900231a9d1222712a27e79fd116acb9540cea60fb5b888eac90099f
+    package_manifest_sha256: b844df5252e2f61f32a4ca40e9fabad2bc17a004ba24ad955ed71f254d0ce7ee
     lineage_ref: skills/frames-token-efficiency-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/frames-token-efficiency-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_governance_only
     publication_authority: false
     tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
   - skill_id: career-application-orchestrator
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f546eb7e48ff2995839bd29fbf66bdbb4ee6f0020874925fd75635dc3da8018c
-    package_manifest_sha256: cae4cb9554cd97d06d65571f9d6277bebbb187347f3329be560fa281af14fc15
+    content_sha256: f3674a900bf1f5f2bfffb992c6a870d9564d4bb5d3a556d4a185e52821ee4ec7
+    package_manifest_sha256: 9d1b95978569f47d7cedc5c0e7111d6dbbec57398cbcdd57fb7510f972860cd4
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2423,3 +2423,14 @@ events:
   - {event_id: EVT-SKL-ORE-H03-003, event_order: 3, skill_id: gstack-openclaw-retro, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-ORE-H03-004, event_order: 4, skill_id: gstack-openclaw-retro, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-ORE-H03-005, event_order: 5, skill_id: gstack-openclaw-retro, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1317->1186w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
+  - {event_id: EVT-SKL-COR-H03-008, event_order: 8, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CSC-H03-005, event_order: 5, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CSV-H03-005, event_order: 5, skill_id: context-save, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CRT-H03-005, event_order: 5, skill_id: context-restore, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CMM-H03-005, event_order: 5, skill_id: context-memory, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CTM-H03-005, event_order: 5, skill_id: context-teammates, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-WPL-H03-006, event_order: 6, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-VBC-H03-005, event_order: 5, skill_id: dev-verification-before-completion, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
