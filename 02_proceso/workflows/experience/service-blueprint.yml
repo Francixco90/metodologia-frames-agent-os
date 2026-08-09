@@ -1,0 +1,82 @@
+schema_version: frames-service-blueprint-v1
+blueprint_id: frames-contentos-experience
+identity: Frames ContentOS · por MetodologIA
+promise: Estandarizar lo repetible y personalizar lo significativo.
+stages:
+  - {
+      id: arrival,
+      moment: Llegada,
+      user_job: Entender cómo puede ayudar Frames,
+      frontstage: Identidad y menú Crear · Mejorar · Planear · Explorar,
+      backstage: Clasificar ASSIST_ONLY y cargar el manifest estático,
+      support: [microcopy.es.yml, component-registry.yml],
+      evidence: Cero writes y menos de 120 tokens,
+    }
+  - {
+      id: understanding,
+      moment: Comprensión,
+      user_job: Sentirse entendido sin aprender el arnés,
+      frontstage: Resultado entendido y preguntas materialmente bloqueantes,
+      backstage: Compilar intención sensibilidad y candidatos,
+      support: [AssistanceEnvelopeV1, router.yml],
+      evidence: Request hash gaps y reason codes,
+    }
+  - {
+      id: orientation,
+      moment: Orientación,
+      user_job: Saber qué ocurrirá y corregir la dirección,
+      frontstage: Recomendación y hasta dos alternativas,
+      backstage: AutoPrime route lock WorkflowPlan y SkillBinding,
+      support: [AutoPrimeV1, WorkflowPlanV1, SkillBindingV1],
+      evidence: Ruta workflow skill y budget resolubles,
+    }
+  - {
+      id: codesign,
+      moment: Co-diseño,
+      user_job: Aprobar un resultado concreto,
+      frontstage: Preview del brief entregables límites y aceptación,
+      backstage: Brief Markdown y proyección HTML,
+      support: [FramesBriefV1, DeliverableTemplateV1],
+      evidence: Paridad y aprobación hash-bound,
+    }
+  - {
+      id: production,
+      moment: Producción,
+      user_job: Ver progreso útil,
+      frontstage: Hito output material y siguiente acción,
+      backstage: WorkOrders invocaciones y gates causales,
+      support: [WorkOrderV1, SkillInvocationReceiptV1],
+      evidence: Outputs en disco e invocation receipts,
+    }
+  - {
+      id: review,
+      moment: Revisión,
+      user_job: Comprender calidad gaps y correcciones,
+      frontstage: Candidate veredicto y cambios,
+      backstage: Producer RT-09 successor y RT-11 separados,
+      support: [QualityProfileV1, GuardianVerdict],
+      evidence: Candidate congelado y veredictos independientes,
+    }
+  - {
+      id: continuity,
+      moment: Continuidad,
+      user_job: Retomar sin repetir contexto,
+      frontstage: Estado último artefacto y recomendación,
+      backstage: Session lineage hashes y resume policy,
+      support: [ResumeCard, RunReceipt],
+      evidence: Reanudación desde el mismo lineage,
+    }
+  - {
+      id: recovery,
+      moment: Recuperación,
+      user_job: No perder trabajo ni quedar sin salida,
+      frontstage: Qué se conservó qué falló y cómo resolverlo,
+      backstage: Bloqueo fail-closed y candidate preservado,
+      support: [RecoveryCard, FailureReceipt],
+      evidence: Cero promoción y reparación concreta,
+    }
+service_rules:
+  - El texto libre prevalece sobre menús.
+  - Un plus-one se ofrece; no se ejecuta sin autoridad.
+  - UNKNOWN evidencia ausente u output inexistente bloquean.
+  - Publicación conectores y distribución requieren autorización separada.
