@@ -2350,6 +2350,41 @@
     },
     {
       "kind": "COMMAND",
+      "id": "skills:evaluate",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
+      "id": "skills:inspect",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
+      "id": "skills:package",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
+      "id": "skills:scaffold",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
+      "id": "skills:validate",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
       "id": "slice:build",
       "ref": "package.json",
       "scope": "CANONICAL",
@@ -3499,6 +3534,55 @@
     {
       "kind": "GATE",
       "id": "MW_SPEC_APPROVED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_ARCHITECTURE_READY",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_CANDIDATE_READY",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_CASE_READY",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_EVAL_VALIDATED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_RELEASE_CANDIDATE",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_REVIEW_VALIDATED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "SSS_STATIC_VALIDATED",
       "ref": "05_verificacion/scripts/commands.yaml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -4779,6 +4863,62 @@
     },
     {
       "kind": "SKILL",
+      "id": "skill-authoring-engineer",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-contract-validator",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-evaluation-engineer",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-expert-distiller",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-portfolio-governor",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-release-governor",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-runtime-adapter",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
+      "id": "skill-system-architect",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
       "id": "web-browse",
       "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
       "scope": "CANONICAL",
@@ -6022,7 +6162,77 @@
       "ref": "02_proceso/workflows/multimedia/p09-distribuir/workflow.yml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S00",
+      "ref": "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S01",
+      "ref": "02_proceso/workflows/skill-systems/s01-discovery/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S02",
+      "ref": "02_proceso/workflows/skill-systems/s02-architecture/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S03",
+      "ref": "02_proceso/workflows/skill-systems/s03-contract/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S04",
+      "ref": "02_proceso/workflows/skill-systems/s04-author/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S05",
+      "ref": "02_proceso/workflows/skill-systems/s05-validate/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S06",
+      "ref": "02_proceso/workflows/skill-systems/s06-evaluate/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S07",
+      "ref": "02_proceso/workflows/skill-systems/s07-review/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S08",
+      "ref": "02_proceso/workflows/skill-systems/s08-package/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
+      "id": "S09",
+      "ref": "02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "b8edaae259c95efcae9ec3b43ebf30d3713744ecf392c809a6515e98c1b4ca16"
+  "sourceSha256": "4bde6fc0177f2eb0be92af862c5b5ba0a2e90465c1eb136d67998601724e2666"
 }

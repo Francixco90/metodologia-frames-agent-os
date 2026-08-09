@@ -328,5 +328,105 @@
     "hasSequence": true,
     "referencesResolvable": true,
     "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S00",
+    "source": "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s00.md",
+    "html": "03_artefactos/content/documentation/workflows/s00.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S01",
+    "source": "02_proceso/workflows/skill-systems/s01-discovery/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s01.md",
+    "html": "03_artefactos/content/documentation/workflows/s01.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S02",
+    "source": "02_proceso/workflows/skill-systems/s02-architecture/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s02.md",
+    "html": "03_artefactos/content/documentation/workflows/s02.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S03",
+    "source": "02_proceso/workflows/skill-systems/s03-contract/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s03.md",
+    "html": "03_artefactos/content/documentation/workflows/s03.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S04",
+    "source": "02_proceso/workflows/skill-systems/s04-author/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s04.md",
+    "html": "03_artefactos/content/documentation/workflows/s04.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S05",
+    "source": "02_proceso/workflows/skill-systems/s05-validate/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s05.md",
+    "html": "03_artefactos/content/documentation/workflows/s05.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S06",
+    "source": "02_proceso/workflows/skill-systems/s06-evaluate/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s06.md",
+    "html": "03_artefactos/content/documentation/workflows/s06.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S07",
+    "source": "02_proceso/workflows/skill-systems/s07-review/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s07.md",
+    "html": "03_artefactos/content/documentation/workflows/s07.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S08",
+    "source": "02_proceso/workflows/skill-systems/s08-package/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s08.md",
+    "html": "03_artefactos/content/documentation/workflows/s08.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "S09",
+    "source": "02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/s09.md",
+    "html": "03_artefactos/content/documentation/workflows/s09.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
   }
 ]
