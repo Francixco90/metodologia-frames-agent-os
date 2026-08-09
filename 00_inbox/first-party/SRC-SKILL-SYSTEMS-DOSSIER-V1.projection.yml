@@ -1,0 +1,34 @@
+schema_version: governed-source-projection-v1
+source_id: SRC-SKILL-SYSTEMS-DOSSIER-V1
+title: Dossier 8 Skills — Skill Systems Specialist v1.0.0
+source_kind: first_party_design_dossier
+raw_sha256: 9bbbaacd8e6b21e7a5fdb6d435d5375eeda01fcc202a8b3bc69a7927471ade21
+rights: {holder: MetodologIA, allowed_use: internal_architecture_and_local_evaluation}
+authority: {class: first_party_design, verdict: verified_hash_not_runtime_proof}
+observed_portfolio:
+  - skill-system-architect
+  - skill-knowledge-distiller
+  - skill-contract-engineer
+  - skill-package-author
+  - skill-evaluation-engineer
+  - skill-security-auditor
+  - skill-critical-review
+  - skill-release-governor
+normalized_requirements:
+  - comparar la propuesta con el portfolio Frames antes de crear paquetes
+  - separar arquitectura autoría contratos evaluación seguridad revisión y release
+  - conservar progressive disclosure con assets scripts fixtures y referencias enfocadas
+  - ligar cada handoff a contratos efectos aceptación evidencia y stop rules
+  - evaluar con TRIGGER DECISION OUTCOME y casos adversariales observables
+  - declarar ejecución aprobación y compatibilidad como estados separados
+frames_contextualization:
+  portfolio_decision_ref: 02_proceso/workflows/skill-systems/dossier-adoption.yml
+  route_authority: [R8, R9]
+  workflow_family: [S00, S01, S02, S03, S04, S05, S06, S07, S08, S09]
+  lifecycle: H-03
+  maximum_state: active/local-evaluation
+limitations:
+  - SPECIFIED o DESIGNED no acredita ejecución
+  - los 242 casos descritos son inventario provisional hasta materializar corpus y replay
+  - aliases propuestos no crean autoridad ni justifican duplicados
+  - ninguna aprobación publicación instalación o efecto externo queda autorizado

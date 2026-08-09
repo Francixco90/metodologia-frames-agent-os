@@ -16,8 +16,24 @@ sources:
     projection_ref: 00_inbox/first-party/SRC-SKILL-SYSTEMS-BASELINE-V1.projection.yml
     projection_sha256: d8b5660a61f1b33b6316f0cacc6154b4443c57f7be13fbf771b5b8ed2074e422
     rights: allowed_internal_architecture_and_local_evaluation
+  - source_id: SRC-SKILL-SYSTEMS-DOSSIER-V1
+    title: Dossier 8 Skills Skill Systems Specialist v1.0.0
+    authority_class: first_party_design
+    raw_sha256: 9bbbaacd8e6b21e7a5fdb6d435d5375eeda01fcc202a8b3bc69a7927471ade21
+    projection_ref: 00_inbox/first-party/SRC-SKILL-SYSTEMS-DOSSIER-V1.projection.yml
+    projection_sha256: 98f8a6152ae0ca924eb0c10bdab47af558d42f93963acec5eb67e6e2d31fed4d
+    rights: allowed_internal_architecture_and_local_evaluation
+  - source_id: SRC-MULTIMEDIA-PIVOTE-20PLUS1-V4
+    title: MetodologIA Multimedia Architect PIVOTE 20+1 v4.0.0
+    authority_class: first_party_reference
+    raw_sha256: 9c25fc08d770ebff762595b9e1d0b5a78830b8f3666d8d1638b48c4a7ddc182e
+    projection_ref: 00_inbox/first-party/SRC-MULTIMEDIA-PIVOTE-20PLUS1-V4.projection.yml
+    projection_sha256: 26353c5eb6b773bc6173f6933868aec4201dd77ec3ab0bbdf48c92967fa6cbe6
+    rights: allowed_internal_architecture_and_local_evaluation
 coverage_gaps:
-  - K02_through_K20_not_observed
+  - pivote_package_self_test_requires_unprovided_root_name
+  - pivote_has_no_markdown_html_output_templates
+  - dossier_eval_inventory_not_materialized_as_replay_corpus
 restrictions:
   - no_runtime_proof
   - no_external_host_claim

@@ -1,0 +1,65 @@
+schema_version: governed-source-projection-v1
+source_id: SRC-MULTIMEDIA-PIVOTE-20PLUS1-V4
+title: MetodologIA Multimedia Architect PIVOTE 20+1 v4.0.0
+source_kind: first_party_reference_bundle
+bundle_sha256: 9c25fc08d770ebff762595b9e1d0b5a78830b8f3666d8d1638b48c4a7ddc182e
+bundle_hash_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines_excluding_ds_store
+file_count: 59
+rights: {holder: MetodologIA, allowed_use: internal_architecture_and_local_evaluation}
+authority: {class: first_party_reference, verdict: verified_checksums_not_provider_runtime_proof}
+observed_modules:
+  [
+    K01,
+    K02,
+    K03,
+    K04,
+    K05,
+    K06,
+    K07,
+    K08,
+    K09,
+    K10,
+    K11,
+    K12,
+    K13,
+    K14,
+    K15,
+    K16,
+    K17,
+    K18,
+    K19,
+    K20,
+  ]
+adopt_as_secondary_oracle:
+  - universal creative contract and artifact graph
+  - provider-neutral prompt packs and capability truth
+  - rights privacy accessibility and disclosure gates
+  - manifests handoffs receipts provenance and local recovery
+  - gate-before-score review and adversarial evaluation families
+  - deterministic packaging compatibility restore and rollback
+observed_assets:
+  schemas: [Skill/assets/config.schema.json]
+  policies: [Skill/assets/default_policy.json]
+  scripts: [Skill/scripts/specops.py, Skill/scripts/package_skill.py]
+  references:
+    [
+      Skill/references/artifact_graph_and_gates.md,
+      Skill/references/provider_neutral_prompt_packs.md,
+      Skill/references/rights_accessibility_disclosure.md,
+      Skill/references/evals_dogfood_and_versioning.md,
+    ]
+  runtime_archive: Runtime.zip
+validation:
+  sha256sums: PASS
+  specops_self_test: PASS_26_OF_26
+  python_compile: PASS
+  package_self_test: BLOCKED_SKILL_ROOT_INVALID
+coverage_gaps:
+  - extracted bundle names the skill directory Skill while package_skill.py requires pivote-multimedia-specops
+  - provider live rendered and publication behavior remain NOT_EXECUTED
+  - source contains no canonical Markdown or HTML output templates
+restrictions:
+  - no external execution
+  - no provider compatibility claim
+  - no media generation
+  - no publication authorization

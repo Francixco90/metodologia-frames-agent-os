@@ -1,4 +1,5 @@
 export * from './contracts.ts';
+export * from './adoption-contracts.ts';
 export * from './gate-contracts.ts';
 export * from './governance.ts';
 export * from './router.ts';
