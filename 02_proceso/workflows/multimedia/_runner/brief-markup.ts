@@ -13,6 +13,19 @@ const inline = (value: string): string =>
     .replace(/`([^`]+)`/gu, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/gu, '<strong>$1</strong>');
 
+const sectionAnchor = (value: string): string =>
+  `section-${value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/gu, '')
+    .replace(/[^a-z0-9]+/giu, '-')
+    .replace(/^-|-$/gu, '')
+    .toLowerCase()}`;
+
+export const renderSectionNavigation = (ids: readonly string[]): string =>
+  `<nav class="toc" aria-label="Contenido del documento"><strong>En este documento</strong><ol>${ids
+    .map((id) => `<li><a href="#${sectionAnchor(id)}">${escapeHtml(id)}</a></li>`)
+    .join('')}</ol></nav>`;
+
 const nodeParts = (raw: string): {id: string; label: string} => {
   const match = /^([A-Za-z0-9_-]+)(?:\[(.*)\])?$/u.exec(raw.trim());
   const id = match?.[1] ?? raw.trim();
@@ -100,5 +113,5 @@ export const markdownToHtml = (markdown: string): string => {
 
 export const renderBriefSection = (id: string, markdown: string, index: number): string => {
   const inner = `<span class="step-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>\n<h2>${escapeHtml(id)}</h2>\n<div class="section-body">${markdownToHtml(markdown)}</div>`;
-  return `<section data-brief-section="${escapeHtml(id)}" data-rendered-sha256="${sha256Text(inner)}">${inner}</section>`;
+  return `<section id="${sectionAnchor(id)}" data-brief-section="${escapeHtml(id)}" data-rendered-sha256="${sha256Text(inner)}">${inner}</section>`;
 };

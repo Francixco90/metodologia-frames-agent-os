@@ -72,6 +72,13 @@ describe('FramesDeliverableV1 markdown/html contract', () => {
     expect(first).toContain('MetodologIA · Entregable canónico');
     expect(first).toContain('id="frames-deliverable-data"');
     expect(first).toContain('data-content-sha256=');
+    expect(first).toContain('name="robots" content="noindex,nofollow,noarchive"');
+    expect(first).toContain('http-equiv="Content-Security-Policy"');
+    expect(first).toContain('name="frames:document-type" content="deliverable"');
+    expect(first).toContain(`name="frames:model-id" content="${draft.deliverable_id}"`);
+    expect(first).toContain(`name="frames:workflow-id" content="${draft.workflow_id}"`);
+    expect(first).toContain('aria-label="Contenido del documento"');
+    expect(first).toContain('RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED');
   });
 
   it('blocks unknown fields from RENDERED_DRAFT and rejects editorial drift', () => {

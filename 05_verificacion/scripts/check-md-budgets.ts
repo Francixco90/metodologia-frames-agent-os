@@ -79,6 +79,9 @@ export const isBudgetGeneratedPath = (path: string, logicalPath: string): boolea
   ledgerProjectionPaths.has(logicalPath) ||
   /^02_proceso\/workflows\/multimedia\/p\d{2}-[^/]+\/schematic\.html$/u.test(path) ||
   /^02_proceso\/workflows\/multimedia\/_assets\/multimedia-library\.(?:md|html)$/u.test(path) ||
+  /^02_proceso\/workflows\/multimedia\/p\d{2}-[^/]+\/templates\/[^/]+\.template\.(?:md|html)$/u.test(
+    path,
+  ) ||
   /^02_proceso\/workflows\/multimedia\/(?:_schema\/artifacts\/|_assets\/artifact-registry\.md$)/u.test(
     path,
   ) ||

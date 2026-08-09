@@ -1,7 +1,7 @@
 schema_version: metodologia-html-design-system-v1
 profile_id: metodologia-html-v7
 brand_id: metodologia
-default_for: [brief_html, schematic_html, multimedia_library_html]
+default_for: [brief_html, deliverable_html, schematic_html, multimedia_library_html]
 source:
   source_repo_id: metodologia-public-site
   observed_commit: 082d22981f0f295a8aff6cf96b5ec898b9eaf073

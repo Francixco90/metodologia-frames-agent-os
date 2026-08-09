@@ -4,6 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="{{META_DESCRIPTION}}" />
+    <meta name="author" content="MetodologIA" />
+    <meta name="application-name" content="Frames · MetodologIA" />
+    <meta name="generator" content="Frames · MetodologIA" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#122562" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#081433" />
+    <meta name="frames:document-type" content="{{META_DOCUMENT_TYPE}}" />
+    <meta name="frames:schema-version" content="{{META_SCHEMA_VERSION}}" />
+    <meta name="frames:model-id" content="{{META_MODEL_ID}}" />
+    <meta name="frames:workflow-id" content="{{META_WORKFLOW_ID}}" />
+    <meta name="frames:content-sha256" content="{{CONTENT_HASH}}" />
+    <meta name="frames:state" content="{{STATE}}" />
+    <meta name="frames:next-gate" content="{{NEXT_GATE}}" />
+    <meta name="frames:source-count" content="{{META_SOURCE_COUNT}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{TITLE}} · MetodologIA" />
+    <meta property="og:description" content="{{META_DESCRIPTION}}" />
+    <meta name="twitter:card" content="summary" />
     <title>{{TITLE}} · MetodologIA</title>
     <style>
       :root {
@@ -122,6 +146,42 @@
         margin: 0 auto;
         padding: 3rem 0 5rem;
       }
+      .toc {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: -1.5rem auto 2rem;
+        padding: 1.25rem;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+      .toc strong {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+      }
+      .toc ol {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.35rem 1.5rem;
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .toc a {
+        display: inline-flex;
+        align-items: center;
+        color: var(--blue);
+        font-weight: 700;
+        text-underline-offset: 0.2em;
+      }
+      .governance-strip {
+        padding: 0.8rem 1.25rem;
+        color: #ffffff;
+        background: var(--blue);
+        text-align: center;
+        font-family: 'Trebuchet MS', sans-serif;
+        font-weight: 700;
+      }
       section {
         position: relative;
         margin: 0 0 1.25rem;
@@ -232,7 +292,8 @@
           --muted: #263b66;
         }
         #theme-toggle,
-        .skip-link {
+        .skip-link,
+        .toc {
           display: none;
         }
         header {
@@ -268,6 +329,10 @@
       </div>
       <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
     </header>
+    <div class="governance-strip" role="note">
+      RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED
+    </div>
+    {{TOC}}
     <main id="{{CONTENT_ID}}" data-content-sha256="{{CONTENT_HASH}}">{{SECTIONS}}</main>
     <script id="{{CANONICAL_DATA_ID}}" type="application/json">
       {{CANONICAL_JSON}}
@@ -277,14 +342,19 @@
       (() => {
         const root = document.documentElement;
         const button = document.querySelector('#theme-toggle');
-        const stored = localStorage.getItem('metodologia-theme');
+        let stored = null;
+        try {
+          stored = localStorage.getItem('metodologia-theme');
+        } catch {}
         if (stored === 'dark') root.dataset.theme = 'dark';
         button?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
         button?.addEventListener('click', () => {
           const dark = root.dataset.theme !== 'dark';
           root.dataset.theme = dark ? 'dark' : 'light';
           button.setAttribute('aria-pressed', String(dark));
-          localStorage.setItem('metodologia-theme', root.dataset.theme);
+          try {
+            localStorage.setItem('metodologia-theme', root.dataset.theme);
+          } catch {}
         });
       })();
     </script>
