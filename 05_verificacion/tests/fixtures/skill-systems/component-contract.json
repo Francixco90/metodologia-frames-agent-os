@@ -1,0 +1,14 @@
+{
+  "schema_version": "skill-component-contract-v1",
+  "component_id": "COMP-CLI-001",
+  "kind": "SKILL",
+  "inputs_schema_ref": "02_proceso/workflows/skill-systems/contracts.ts",
+  "outputs_schema_ref": "02_proceso/workflows/skill-systems/contracts.ts",
+  "effect_class": "E1",
+  "read_set": ["02_proceso/workflows/skill-systems"],
+  "write_set": [],
+  "fallback": "Bloquear activación y conservar el candidate",
+  "acceptance": ["Contrato y referencias releídos por hash"],
+  "owner": "RT-07-SKILL-PRODUCER",
+  "content_sha256": "ffcd6f201e16e9b47271f0c7493fa3ee04e43ae57bc3bba61e0894197c48bb54"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "capability-map-v1",
+  "map_id": "MAP-CLI-001",
+  "case_id": "CASE-CLI-001",
+  "existing_capabilities": ["metodologia-find-skills"],
+  "components": [
+    {
+      "component_id": "COMP-CLI-001",
+      "kind": "SKILL",
+      "responsibility": "Validar contratos repetibles antes de activar",
+      "owner": "RT-07-SKILL-PRODUCER",
+      "effect_class": "E1"
+    }
+  ],
+  "demotion_results": ["Una referencia aislada no cubre el juicio repetible"],
+  "split_reasons": [],
+  "content_sha256": "bba5932e40f8c8d30c0ec6a7b6189de0213f288cb088abe74ed0fec8dbd22dd9"
+}

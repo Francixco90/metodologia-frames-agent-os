@@ -1,4 +1,5 @@
-import {mkdtemp, readFile, writeFile} from 'node:fs/promises';
+import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
+import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
@@ -18,10 +19,19 @@ describe('Skill Systems project-local tools', () => {
     expect(
       await runSkillSystemCli(
         'inspect',
-        ['--input', '05_verificacion/tests/fixtures/skill-systems/case.json'],
+        ['--input', '05_verificacion/tests/fixtures/skill-systems/case-gate.json'],
         root,
       ),
     ).toMatchObject({status: 'PASS', case_id: 'CASE-CLI-001'});
+    const bundle = JSON.parse(
+      readFileSync('05_verificacion/tests/fixtures/skill-systems/case-gate.json', 'utf8'),
+    ) as {source_refs: {ref: string; sha256: string}[]};
+    bundle.source_refs[0]!.ref = 'does/not/exist.yml';
+    const dir = await mkdtemp(path.join(root, 'work/private/sss-case-'));
+    const inputRef = path.relative(root, path.join(dir, 'bundle.json'));
+    await writeFile(path.join(dir, 'bundle.json'), JSON.stringify(bundle));
+    await expect(runSkillSystemCli('inspect', ['--input', inputRef], root)).rejects.toThrow();
+    await rm(dir, {recursive: true});
   });
 
   it('keeps scaffold and package dry-run by default', async () => {
@@ -76,6 +86,45 @@ describe('Skill Systems project-local tools', () => {
     );
   });
 
+  it('uses gate-specific architecture and static bundles', async () => {
+    expect(
+      await runSkillSystemCli(
+        'validate',
+        [
+          '--gate',
+          'architecture',
+          '--input',
+          '05_verificacion/tests/fixtures/skill-systems/architecture-gate.json',
+        ],
+        root,
+      ),
+    ).toMatchObject({status: 'PASS', map_id: 'MAP-CLI-001', decision_id: 'DEC-CLI-001'});
+    expect(
+      await runSkillSystemCli(
+        'validate',
+        [
+          '--gate',
+          'static',
+          '--input',
+          '05_verificacion/tests/fixtures/skill-systems/static-gate.json',
+        ],
+        root,
+      ),
+    ).toMatchObject({status: 'PASS', component_ids: ['COMP-CLI-001']});
+    await expect(
+      runSkillSystemCli(
+        'validate',
+        [
+          '--gate',
+          'architecture',
+          '--input',
+          '05_verificacion/tests/fixtures/skill-systems/case.json',
+        ],
+        root,
+      ),
+    ).rejects.toThrow();
+  });
+
   it('requires a material evaluation and excludes failed infrastructure', async () => {
     expect(await runSkillSystemCli('evaluate', ['--check'], root)).toMatchObject({
       denominator: 0,
@@ -93,6 +142,15 @@ describe('Skill Systems project-local tools', () => {
       excluded_infrastructure: 1,
       verdict: 'PASS',
     });
+    const run = JSON.parse(
+      readFileSync('05_verificacion/tests/fixtures/skill-systems/eval-run.json', 'utf8'),
+    ) as {cases: {evidence_refs: {ref: string; sha256: string}[]}[]};
+    run.cases[0]!.evidence_refs[0]!.ref = 'does/not/exist.json';
+    const dir = await mkdtemp(path.join(root, 'work/private/sss-eval-'));
+    const inputRef = path.relative(root, path.join(dir, 'run.json'));
+    await writeFile(path.join(dir, 'run.json'), JSON.stringify(run));
+    await expect(runSkillSystemCli('evaluate', ['--input', inputRef], root)).rejects.toThrow();
+    await rm(dir, {recursive: true});
   });
 
   it('fails closed at the process boundary when an automatic gate has no input', () => {
@@ -105,5 +163,19 @@ describe('Skill Systems project-local tools', () => {
       expect(result.status, `${action}: ${result.stderr}`).toBe(2);
       expect(result.stdout).toContain('UNKNOWN');
     }
+  });
+
+  it('returns a non-zero process result for insufficient material coverage', () => {
+    const run = JSON.parse(
+      readFileSync('05_verificacion/tests/fixtures/skill-systems/eval-run.json', 'utf8'),
+    ) as Record<string, unknown>;
+    run.coverage_policy = {minimum_eligible_cases: 3, maximum_infrastructure_failure_ratio: 0.34};
+    const result = spawnSync(
+      process.execPath,
+      ['--import', 'tsx', '05_verificacion/scripts/skills-system-cli.ts', 'evaluate', '--stdin'],
+      {cwd: root, encoding: 'utf8', input: JSON.stringify(run)},
+    );
+    expect(result.status).toBe(2);
+    expect(result.stdout).toContain('UNKNOWN');
   });
 });

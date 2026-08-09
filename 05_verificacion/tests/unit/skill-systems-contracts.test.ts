@@ -96,6 +96,7 @@ describe('Skill Systems contracts', () => {
     const summary = evaluateSkillRunV1({
       schema_version: 'skill-eval-run-v1',
       run_id: 'RUN-001',
+      candidate_ref: 'candidate/SKILL.md',
       candidate_sha256: hash,
       cases: [
         {
@@ -103,14 +104,14 @@ describe('Skill Systems contracts', () => {
           infrastructure_status: 'PASS',
           baseline_pass: false,
           candidate_pass: true,
-          evidence_refs: ['evidence/one.json'],
+          evidence_refs: [{ref: 'evidence/one.json', sha256: hash}],
         },
         {
           eval_case_id: 'CASE-002',
           infrastructure_status: 'PASS',
           baseline_pass: false,
           candidate_pass: true,
-          evidence_refs: ['evidence/two.json'],
+          evidence_refs: [{ref: 'evidence/two.json', sha256: hash}],
         },
         {
           eval_case_id: 'CASE-003',
@@ -120,6 +121,7 @@ describe('Skill Systems contracts', () => {
           evidence_refs: [],
         },
       ],
+      replay_ref: 'evidence/replay.json',
       replay_sha256: hash,
       actor_id: 'RT-07-EVAL-PRODUCER',
       coverage_policy: {
@@ -135,6 +137,7 @@ describe('Skill Systems contracts', () => {
       evaluateSkillRunV1({
         schema_version: 'skill-eval-run-v1',
         run_id: 'RUN-LOW-COVERAGE',
+        candidate_ref: 'candidate/SKILL.md',
         candidate_sha256: hash,
         cases: [
           {
@@ -142,9 +145,10 @@ describe('Skill Systems contracts', () => {
             infrastructure_status: 'PASS',
             baseline_pass: false,
             candidate_pass: true,
-            evidence_refs: ['evidence/one.json'],
+            evidence_refs: [{ref: 'evidence/one.json', sha256: hash}],
           },
         ],
+        replay_ref: 'evidence/replay.json',
         replay_sha256: hash,
         actor_id: 'RT-07-EVAL-PRODUCER',
         coverage_policy: {

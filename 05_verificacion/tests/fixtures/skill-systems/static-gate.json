@@ -1,0 +1,13 @@
+{
+  "schema_version": "skill-static-gate-input-v1",
+  "candidate_ref": {
+    "ref": "03_artefactos/skills/skill-system-architect/SKILL.md",
+    "sha256": "64a31f488fd41edfd1ec744e2989a7ec998d08827b8872b3dd475bd22d168bf3"
+  },
+  "contract_refs": [
+    {
+      "ref": "05_verificacion/tests/fixtures/skill-systems/component-contract.json",
+      "sha256": "3b6428b6fbc2c4b606163d60afadf11321d263794fa8c7471a1c558d8e87c6bd"
+    }
+  ]
+}

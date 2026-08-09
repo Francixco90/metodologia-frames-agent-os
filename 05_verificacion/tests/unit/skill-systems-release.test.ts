@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {mkdtemp, mkdir, readFile, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
@@ -9,8 +10,6 @@ import {
 } from '../../../02_proceso/workflows/skill-systems/release.ts';
 
 const sha = (value: string) => createHash('sha256').update(value).digest('hex');
-const commit = 'a'.repeat(40);
-
 const fixture = async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'frames-sss-release-'));
   await mkdir(path.join(root, 'skills/demo'), {recursive: true});
@@ -22,6 +21,12 @@ const fixture = async () => {
   await writeFile(path.join(root, 'restore.md'), restore);
   const fileHash = sha(skill);
   const packageSha = sha(`${fileHash}  skills/demo/SKILL.md\n`);
+  execFileSync('git', ['-C', root, 'init', '--quiet']);
+  execFileSync('git', ['-C', root, 'config', 'user.email', 'fixture@example.invalid']);
+  execFileSync('git', ['-C', root, 'config', 'user.name', 'Fixture']);
+  execFileSync('git', ['-C', root, 'add', 'skills/demo/SKILL.md', 'restore.md']);
+  execFileSync('git', ['-C', root, 'commit', '--quiet', '-m', 'fixture']);
+  const commit = execFileSync('git', ['-C', root, 'rev-parse', 'HEAD'], {encoding: 'utf8'}).trim();
   const roles = ['AUTHOR', 'REVIEWER', 'GUARDIAN', 'APPROVER'] as const;
   const approvals = [];
   for (const role of roles) {
@@ -84,7 +89,7 @@ describe('Skill release capsule', () => {
     );
   });
 
-  it('blocks stale approvals and unproven host PASS', async () => {
+  it('blocks stale approvals and every unproven host PASS', async () => {
     const {root, capsule} = await fixture();
     await writeFile(path.join(root, 'approvals/reviewer.json'), '{}');
     expect(() => buildSkillReleaseCapsuleV1(capsule, root)).toThrow('SSS_RELEASE_APPROVAL001');
@@ -96,7 +101,7 @@ describe('Skill release capsule', () => {
       probe_sha256: null,
     };
     expect(() => buildSkillReleaseCapsuleV1(next.capsule, next.root)).toThrow(
-      'SSS_RELEASE_HOST_PROBE_REQUIRED:Codex',
+      'SSS_RELEASE_HOST_UNPROVEN:Codex',
     );
   });
 
@@ -112,7 +117,7 @@ describe('Skill release capsule', () => {
     );
   });
 
-  it('accepts host PASS only with a material HOST_BEHAVIOR probe', async () => {
+  it('keeps host compatibility UNKNOWN until a separately promoted probe contract exists', async () => {
     const {root, capsule} = await fixture();
     const probeRef = 'approvals/codex-host-probe.json';
     const probe = JSON.stringify({
@@ -132,10 +137,16 @@ describe('Skill release capsule', () => {
       probe_ref: probeRef,
       probe_sha256: sha(probe),
     };
-    expect(buildSkillReleaseCapsuleV1(capsule, root).compatibility[1]).toMatchObject({
-      profile: 'Codex',
-      status: 'PASS',
-    });
+    expect(() => buildSkillReleaseCapsuleV1(capsule, root)).toThrow(
+      'SSS_RELEASE_HOST_UNPROVEN:Codex',
+    );
+  });
+
+  it('binds the capsule to the actual frozen Git candidate', async () => {
+    const {root, capsule} = await fixture();
+    expect(() =>
+      buildSkillReleaseCapsuleV1({...capsule, commit_sha: 'a'.repeat(40)}, root),
+    ).toThrow('SSS_RELEASE_COMMIT001');
   });
 
   it('never treats CANDIDATE evidence as H01 approval', async () => {
