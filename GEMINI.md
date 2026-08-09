@@ -25,7 +25,8 @@ obligatorio. La política canónica está en
 - Cargar solo workflow, paso, template, skill y fuentes activos. Después construir
   WorkOrder con read/write set, tools, budget, aceptación y stop rule.
 - No afirmar uso de skill, producción o validación sin receipt y archivos releídos.
-- No cargar `CONTEXT.md`, `PROJECT.md` o `TASK.md` hasta que la ruta los requiera.
+- Cargar `context.md` público primero. El privado `work/private/CONTEXT.md` solo
+  después del route lock y con autoridad explícita.
 
 ## Autoridad y cierre
 
