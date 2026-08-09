@@ -41,6 +41,17 @@ La arquitectura, DAG, propiedad de rutas y estrategia de pruebas están document
 
 ## Inicio rápido
 
+Para entrar por la experiencia asistida, escribe una petición normal. El modo por
+defecto interpreta y orienta sin escribir:
+
+```bash
+printf '%s\n' 'Ayúdame a crear una pieza' | pnpm frames:assist
+```
+
+`/menu` y `/ruta` inspeccionan sin writes. La materialización local exige un JSON
+completo y `--apply`; siempre se detiene en la aprobación del brief. Las rutas,
+contextos y adapters se verifican con `pnpm verify:instructions`.
+
 Requiere las versiones exactas declaradas en `package.json`: Node, pnpm, Remotion, Zod, Playwright
 y FFmpeg. Chrome estable es un prerrequisito local para la inspección Web.
 
