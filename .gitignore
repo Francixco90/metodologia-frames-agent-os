@@ -7,13 +7,16 @@ coverage/
 .env
 .env.*
 !.env.example
+# Private cabin is uppercase and never versioned; lowercase context.md is public.
 work/private/**
+work/private/CONTEXT.md
+03_artefactos/work/private/**
+03_artefactos/work/private/CONTEXT.md
 !work/private/.gitkeep
 projects/**/remotion/renders/*.mp4
 projects/**/remotion/renders/*.mov
 projects/**/remotion/renders/*.webm
 receipts/**/raw-logs/
-CONTEXT.md
 PROJECT.md
 TASK.md
 local
@@ -56,3 +59,19 @@ tmp/
 !.claude/agents/**
 !.claude/workflows/
 !.claude/workflows/**
+!.claude/skills/
+!.claude/skills/frames-assist/
+!.claude/skills/frames-assist/**
+!.claude/commands/
+!.claude/commands/frames/
+!.claude/commands/frames/**
+!.gemini/
+!.gemini/commands/
+!.gemini/commands/frames/
+!.gemini/commands/frames/**
+!.agents/
+!.agents/skills/
+!.agents/skills/frames-assist/
+!.agents/skills/frames-assist/**
+!.agents/plugins/
+!.agents/plugins/marketplace.json

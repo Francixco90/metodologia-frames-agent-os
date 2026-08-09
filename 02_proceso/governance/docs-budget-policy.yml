@@ -6,6 +6,17 @@ defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
 pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 
 budgets:
+  - surface: generated-context-projection
+    kind: generated
+    match: ['context.md', '**/context.md']
+    target: {max_lines: 80}
+    hard: {max_lines: 120}
+    rationale: 'Public context surfaces are deterministic projections of the canonical sharded registry.'
+  - surface: context-surface-registry
+    match: '02_proceso/governance/context-surfaces/*.yml'
+    target: {max_words: 3500, max_lines: 500}
+    hard: {max_words: 6000, max_lines: 800}
+    rationale: 'Shards preserve the complete 49-surface graph while keeping each authority independently reviewable.'
   - surface: generated-documentation-inventory
     kind: exempt
     match: '01_intencion/program/documentation-inventory-v1.json'
@@ -113,7 +124,7 @@ budgets:
     rationale: 'Append-only evidence uses hashes and immutability checks.'
   - surface: local-cabin
     kind: exempt
-    match: [CONTEXT.md, TASK.md, PROJECT.md]
+    match: [CONTEXT.md, work/private/CONTEXT.md, TASK.md, PROJECT.md]
     target: {}
     hard: {}
     changed_mode: report
@@ -151,6 +162,7 @@ budgets:
         '02_proceso/governance/*.yaml',
         '02_proceso/governance/*.json',
       ]
+    exclude: ['02_proceso/governance/context.md']
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 400}
     scope: all
