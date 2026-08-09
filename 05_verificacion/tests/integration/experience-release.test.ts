@@ -137,6 +137,22 @@ describe('Frames Experience release capsule', () => {
     );
   });
 
+  it('rejects a byte-identical source reached through an escaping symlink ancestor', () => {
+    const root = createRoot();
+    const options = approvedOptions(root, 'experience-source-link');
+    buildReleaseCapsule(options);
+    const sourceDir = resolve(root, '03_artefactos/content/experience');
+    const externalDir = mkdtempSync(resolve(tmpdir(), 'frames-experience-external-source-'));
+    temporary.push(externalDir);
+    cpSync(sourceDir, externalDir, {recursive: true});
+    rmSync(sourceDir, {recursive: true});
+    symlinkSync(externalDir, sourceDir, 'dir');
+
+    const report = verifyReleaseCapsule(options.output, root);
+    expect(report.ok).toBe(false);
+    expect(report.errors).toContain(`source-path-unsafe:${trackedFiles[0]}`);
+  });
+
   it('keeps candidates outside the immutable vault', () => {
     const root = createRoot();
     expect(() =>
@@ -199,7 +215,7 @@ describe('Frames Experience release capsule', () => {
           decisions[2]!,
         ],
       }),
-    ).toThrow(/non-symlink/u);
+    ).toThrow(/unsafe path segment|non-symlink/u);
     expect(() =>
       buildReleaseCapsule({
         ...base,
