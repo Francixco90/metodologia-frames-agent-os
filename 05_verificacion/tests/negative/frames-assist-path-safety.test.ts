@@ -163,7 +163,39 @@ describe('frames:assist path containment', () => {
     }
   });
 
-  it('accepts JSON from stdin with the authorized repository workspace', async () => {
+  it('blocks a symlink ancestor in the output path without touching either side', async () => {
+    const {repository, outside} = sandbox();
+    symlinkSync(outside, join(repository, 'escape'));
+    const repositoryBefore = snapshot(repository);
+    const outsideBefore = snapshot(outside);
+    const output = await runFramesAssist({
+      argv: ['--apply'],
+      stdin: JSON.stringify({
+        ...request,
+        workspace_root: repository,
+        output_directory_ref: 'escape/generated',
+      }),
+      cwd: repository,
+    });
+    const result = JSON.parse(output.stdout) as {
+      local_execution: {
+        status: string;
+        materialized: boolean;
+        coverageGap: string;
+        receiptRef: string | null;
+      };
+    };
+    expect(result.local_execution).toMatchObject({
+      status: 'BLOCKED',
+      materialized: false,
+      receiptRef: null,
+    });
+    expect(result.local_execution.coverageGap).toBe('FRAMES-OUTPUT-PATH002');
+    expect(snapshot(repository)).toEqual(repositoryBefore);
+    expect(snapshot(outside)).toEqual(outsideBefore);
+  });
+
+  it('accepts JSON from stdin with an authorized root and nested non-symlink output', async () => {
     const {repository} = sandbox();
     const output = await runFramesAssist({
       argv: ['--apply'],
