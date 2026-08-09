@@ -17,13 +17,25 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 33 gates', () => {
-    expect(manifest.gates).toHaveLength(33);
+  it('declares 37 gates', () => {
+    expect(manifest.gates).toHaveLength(37);
   });
 
-  it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u or ^MW_[A-Z_]+$/u', () => {
+  it('every gate id belongs to GNN, MW_* or CR_*', () => {
     for (const gate of manifest.gates) {
-      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u);
+      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+)$/u);
+    }
+  });
+
+  it('CR_* career decisions are manual and fail closed', () => {
+    for (const id of ['CR_BRIEF_APPROVED', 'CR_PACKAGE_APPROVED', 'CR_SUBMISSION_AUTHORIZED']) {
+      const gate = manifest.gates.find((candidate) => candidate.gate === id);
+      expect(gate).toMatchObject({
+        command: null,
+        allowed_tools: [],
+        manual: true,
+        fail_closed: true,
+      });
     }
   });
 
