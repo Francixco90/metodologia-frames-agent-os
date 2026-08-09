@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "experience-version-diff-v1",
+  "releaseId": "EXP-EXPERIENCE-LOCAL-001",
+  "parentReleaseId": null,
+  "releaseClass": "COMPATIBLE",
+  "releaseSurface": "frames-experience-release-surface-v1",
+  "invalidatedObjects": [],
+  "revalidation": [
+    "RT-09",
+    "RT-11",
+    "H01"
+  ]
+}

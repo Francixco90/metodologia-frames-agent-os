@@ -24,6 +24,9 @@
 # append-only temporal trace — not subject to reformatting.
 04_estado/receipts/**
 04_estado/tasks/**
+# Experience release capsules are immutable, generator-owned and SHA256SUMS-bound.
+# Their dedicated restore verifier, not a blanket formatter, governs exact bytes.
+04_estado/releases/experience/**
 03_artefactos/skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
 03_artefactos/skills/motion-library-adapters/schemas/motion-adapter-spec-v1.schema.json
 03_artefactos/skills/data-visual-composition/fixtures/**/*.json

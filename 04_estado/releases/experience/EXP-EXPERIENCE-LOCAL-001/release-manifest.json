@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "experience-release-capsule-v1",
+  "releaseId": "EXP-EXPERIENCE-LOCAL-001",
+  "parentReleaseId": null,
+  "commitSha": "8a18fe403cba923d1f28512c931691c79a573535",
+  "releaseClass": "COMPATIBLE",
+  "status": "APPROVED",
+  "artifacts": [
+    {
+      "ref": "02_proceso/core/contracts/experience-assistance-v1.ts",
+      "sha256": "d9bcc4765d45de9b80d85a7659ba738782148fba6a04e13f7040063c17538ff5"
+    },
+    {
+      "ref": "02_proceso/core/contracts/experience-command-v1.ts",
+      "sha256": "3ff373bb498dab3a0b7fb3d94f5bf8bc254b6e3c072c7a47613c59222398c10f"
+    },
+    {
+      "ref": "02_proceso/core/contracts/experience-execution-v1.ts",
+      "sha256": "12f0b04ec49a33346fd482fdc4e142d3fe73871e8485f91ceca09c31b2c3ea92"
+    },
+    {
+      "ref": "02_proceso/core/contracts/experience-release-v1.ts",
+      "sha256": "77ca9796a46c179d976182fec1646130b19574ff5ca3e0c925089a4d4e0d3979"
+    },
+    {
+      "ref": "02_proceso/core/contracts/experience-resume-v1.ts",
+      "sha256": "40633a9b63516c9ce877c3df3c1f64785f5e23d28f481728da32edef04ec2c4e"
+    },
+    {
+      "ref": "02_proceso/workflows/core/brief-material-handlers-v1.ts",
+      "sha256": "5662a80be0b046285cfdeae2ffc7c62440d58900f097b215dc975dd16e6c07dc"
+    },
+    {
+      "ref": "02_proceso/workflows/core/experience-command-view-v1.ts",
+      "sha256": "77468a497f8a0b47c8669904f7357d2b426bbac73ecc279a3ba5372c5c043a15"
+    },
+    {
+      "ref": "02_proceso/workflows/core/experience-planner-v1.ts",
+      "sha256": "a9f32673731103e24fc7d8dc5d72ff8b02285154c6b095f7c0d52b6a065bda3e"
+    },
+    {
+      "ref": "02_proceso/workflows/core/first-turn-gateway-v1.ts",
+      "sha256": "317f21aa68a763b80878a4ca080a2e438301672be77b30231ebfa26e2d837cd9"
+    },
+    {
+      "ref": "02_proceso/workflows/core/material-skill-adapter-v1.ts",
+      "sha256": "366e07cba7ff6abae056872c71c790678717177e3000352786ed45e2c12ab4fc"
+    },
+    {
+      "ref": "02_proceso/workflows/core/productive-workflow-definitions-v1.ts",
+      "sha256": "707736169454ee059a466e1a530852825103bba79de6c0e1ba890cc42a1597f4"
+    },
+    {
+      "ref": "02_proceso/workflows/core/resume-lineage-resolver-v1.ts",
+      "sha256": "14860ac845c69f751078c321292f6a1acc8d4d60d403e5fa3564158ef470fc29"
+    },
+    {
+      "ref": "02_proceso/workflows/experience/component-registry.yml",
+      "sha256": "ea9a64eba8aa698c23d1e3dabbfcf8e3e6ed91ad0b4f0a92ef80b898762785e5"
+    },
+    {
+      "ref": "02_proceso/workflows/experience/microcopy.es.yml",
+      "sha256": "728388fb039851c34e00fec78df44b0edbd00b0d219312374b458568e17c2dc7"
+    },
+    {
+      "ref": "02_proceso/workflows/experience/render-experience-view.ts",
+      "sha256": "c0dc5008772946da82becc1100e4b3990207eb443a053274bfb7bcec6b16e75e"
+    },
+    {
+      "ref": "03_artefactos/content/experience/frames-experience-blueprint.html",
+      "sha256": "f2137e660de9be10cb15a9bddd1e8b00f11dce694a5e73e34d94a41a8b396766"
+    },
+    {
+      "ref": "03_artefactos/content/experience/frames-experience-blueprint.md",
+      "sha256": "9cf6d6a20ac7ef2fc6dae79391e15a7fec8f53d8c75e2fd4177595c055a21568"
+    },
+    {
+      "ref": "03_artefactos/content/experience/projection-manifest.json",
+      "sha256": "dfcb31f6ed4b6d4450d5ae352ce0e14551005b4ce0202d30a0d70f9931b031d7"
+    },
+    {
+      "ref": "03_artefactos/skills/content-os-router/scripts/route-content.mjs",
+      "sha256": "f295250d545864de79f99ee580aebe8327d7f601c2584ef855041730c690cfad"
+    },
+    {
+      "ref": "03_artefactos/skills/content-os-router/scripts/route-intent.mjs",
+      "sha256": "ac9822ebc359d93da35c2a3c7a4cd91071738cab6871d5566f7b263970c42cb1"
+    }
+  ],
+  "compatibleRoutes": [
+    "R0",
+    "R1",
+    "R2",
+    "R3",
+    "R3-LOOSE",
+    "R4",
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "compatibleHosts": [
+    "CODEX"
+  ],
+  "invalidatedObjects": [],
+  "gaps": [
+    "Host compatibility UNKNOWN: CLAUDE",
+    "Host compatibility UNKNOWN: CHATGPT",
+    "Host compatibility UNKNOWN: TEXT_FALLBACK"
+  ],
+  "migration": {
+    "ref": "migration.md",
+    "sha256": "41961898d6d316836023a984e2d1b8218b518409f8bbd98254f141e3965d8ad4"
+  },
+  "restore": {
+    "ref": "restore.md",
+    "sha256": "66c06644ae2f004d3a8b66840c68ba3a8cf900bee85ee63931145edbcc4b0f25"
+  },
+  "acceptanceEvidence": [
+    {
+      "ref": "acceptance-evidence.json",
+      "sha256": "67dbe9bea27131c21378b3f0e7f720fcf59fca48769b6be2b47251e8cbd42db7"
+    },
+    {
+      "ref": "04_estado/receipts/experience/launch-probes/codex-experience-promotion-001.json",
+      "sha256": "0e95a105b5a4d6dedffc6a7cb14b22bc2ed7fca3c0bf0d179159ac8c70a4b0e8"
+    }
+  ],
+  "decisions": [
+    {
+      "actorId": "RT-09-EXPERIENCE-PROMOTION-001",
+      "role": "RT-09",
+      "decision": "PASS",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/rt09-experience-promotion-001.json",
+        "sha256": "55164c9d8b4a27e2d66201b8fecbc4b47c00b2309bce8c36d474193f5c6c90f2"
+      }
+    },
+    {
+      "actorId": "RT-11-EXPERIENCE-PROMOTION-001",
+      "role": "RT-11",
+      "decision": "PASS",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/rt11-experience-promotion-001.json",
+        "sha256": "ac17aa91105a32c350b650ca7c966f5ccafc0868dbb737d43457dc3973c53cd8"
+      }
+    },
+    {
+      "actorId": "H01-JAVIER-PROMOTION-001",
+      "role": "H01",
+      "decision": "APPROVE",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/h01-experience-promotion-001.json",
+        "sha256": "b05406a98c69fe3009d067b353e97de1bd54b4dd62aefd03cc762419be55e8ca"
+      }
+    }
+  ],
+  "canonicalSha256": "601d6aa951e0fec52acbaed878c9ee52c015f75280c534badc15b8d3a772be67"
+}

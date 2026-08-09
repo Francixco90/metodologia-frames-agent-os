@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "experience-acceptance-evidence-v1",
+  "releaseId": "EXP-EXPERIENCE-LOCAL-001",
+  "approvalEvidence": [
+    {
+      "role": "RT-09",
+      "decision": "PASS",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/rt09-experience-promotion-001.json",
+        "sha256": "55164c9d8b4a27e2d66201b8fecbc4b47c00b2309bce8c36d474193f5c6c90f2"
+      }
+    },
+    {
+      "role": "RT-11",
+      "decision": "PASS",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/rt11-experience-promotion-001.json",
+        "sha256": "ac17aa91105a32c350b650ca7c966f5ccafc0868dbb737d43457dc3973c53cd8"
+      }
+    },
+    {
+      "role": "H01",
+      "decision": "APPROVE",
+      "evidence": {
+        "ref": "04_estado/receipts/experience/promotion/h01-experience-promotion-001.json",
+        "sha256": "b05406a98c69fe3009d067b353e97de1bd54b4dd62aefd03cc762419be55e8ca"
+      }
+    }
+  ],
+  "hostProbeEvidence": [
+    {
+      "ref": "04_estado/receipts/experience/launch-probes/codex-experience-promotion-001.json",
+      "sha256": "0e95a105b5a4d6dedffc6a7cb14b22bc2ed7fca3c0bf0d179159ac8c70a4b0e8"
+    }
+  ],
+  "compatibleHosts": [
+    "CODEX"
+  ],
+  "unknownHosts": [
+    "CLAUDE",
+    "CHATGPT",
+    "TEXT_FALLBACK"
+  ],
+  "metrics": {
+    "baseline": "UNKNOWN",
+    "result": "UNKNOWN"
+  },
+  "verdict": "PASS",
+  "nextGate": "H01_COMPLETE"
+}
