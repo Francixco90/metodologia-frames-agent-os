@@ -1,7 +1,7 @@
 ---
 name: dev-verification-before-completion
-description: This skill should be used when se va a afirmar que un trabajo está completo, corregido o pasando, antes de commits o crear PRs — requiere ejecutar comandos de verificación y confirmar la salida antes de hacer cualquier afirmación de éxito
-version: 0.1.0
+description: This skill should be used when an agent is about to claim work is complete, fixed, passing, or ready and must obtain fresh, scope-matched evidence before that claim.
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -10,114 +10,76 @@ metadata:
   model_agnostic: true
 ---
 
-Derivada de verification-before-completion (obra/superpowers, MIT).
+# Verification Before Completion
 
-# Verificación antes de cerrar
+Aplica una regla: ninguna afirmación de éxito sin evidencia fresca que pruebe exactamente
+esa afirmación. Derivada de verification-before-completion (obra/superpowers, MIT) mediante
+adaptación clean-room.
 
-## Principio rector
+## Activación
 
-Evidencia antes que afirmaciones, siempre. Ninguna afirmación de completitud,
-corrección o éxito es válida sin verificación fresca ejecutada en el turno actual.
+Usar antes de decir “listo”, “corregido”, “pasa”, “ready”, cerrar tarea, avanzar de gate,
+commit o PR. También después de un reporte de otro agente. Leer [context.md](context.md), el
+contrato de tarea, candidate congelado y checks aplicables.
 
-Violar la letra de esta regla es violar su espíritu. Una paráfrasis o sinónimo
-no exime la regla: "debería pasar", "ya quedó", "funciona" son afirmaciones de
-éxito y exigen evidencia.
+## Gate de evidencia
 
-## Ley de hierro
+1. Escribir la afirmación propuesta.
+2. Identificar qué prueba material la demostraría y qué no demostraría.
+3. Ejecutar el comando completo y fresco mediante argv seguro, si la tarea autoriza
+   ejecución local; de lo contrario pedir al operador el receipt.
+4. Leer exit code, salida, conteos y alcance. No extrapolar un check focal al corpus.
+5. Comparar evidencia con requisitos, no solo con expectativas técnicas.
+6. Emitir `PASS | FAIL | UNKNOWN | BLOCKED`; solo PASS permite la afirmación.
 
-Ninguna afirmación de completitud sin evidencia de verificación fresca.
+Una salida truncada, stale, de otra base o sin comando/artefacto identificable es UNKNOWN.
 
-Si no ejecutaste el comando de verificación en este turno, no puedes afirmar
-que pasa. La verificación previa, el sentido común, la confianza en el agente o
-el "debería funcionar" no cuentan como evidencia.
+## Matriz mínima
 
-## Función de gate
+| Afirmación | Evidencia suficiente | Insuficiente |
+| --- | --- | --- |
+| Tests pasan | suite declarada, 0 fallos, exit 0 | ejecución previa |
+| Build correcto | build completo, exit 0 | lint o typecheck aislado |
+| Bug corregido | reproducción original + regresión | diff plausible |
+| Requisitos cumplidos | checklist requisito-evidencia | tests verdes |
+| Agente terminó | diff, outputs y checks releídos | reporte del agente |
+| Publicable | aprobación humana y receipt exacto | merge o Guardian PASS |
 
-Antes de afirmar cualquier estado o expresar satisfacción:
+## Independencia
 
-1. Identificar: ¿qué comando prueba esta afirmación?
-2. Ejecutar: correr el comando completo, fresco, sin atajos.
-3. Leer: salida completa, código de salida, conteo de fallos.
-4. Verificar: ¿la salida confirma la afirmación?
-   - Si no: declarar el estado real con evidencia.
-   - Si sí: declarar la afirmación con evidencia.
-5. Solo entonces: hacer la afirmación.
+Verificar solo el candidate congelado. Un verifier no remedia: `REVISE` devuelve defectos y
+abre successor. Producer, RT-09 y Guardian usan identidades distintas cuando lo exige el
+contrato. Una skill declarada sin invocation receipt permanece `planned`.
 
-Omitir un paso equivale a mentir, no a verificar.
+## Determinismo y replay
 
-## Modo de operación
+Fijar base, inputs, versiones, reloj/azar cuando aplique y red denegada. Hashes se calculan
+desde outputs materiales; timestamp y duración quedan fuera del digest. Si dos replays
+normalizados difieren, el estado es FAIL o UNKNOWN según evidencia.
 
-El homólogo NO auto-ejecuta tests, NO auto-commitea, NO crea PRs. Los comandos
-de verificación se listan y el operador los ejecuta y confirma la salida. El
-skill enumera los comandos pertinentes (tests, build, lint, typecheck) y espera
-la confirmación del operador antes de aceptar cualquier afirmación de éxito.
+## Casos borde
 
-## Errores comunes
+- Check parcial: declarar exactamente qué superficie pasó.
+- Test flaky: no reintentar hasta verde sin registrar intentos y causa.
+- Herramienta ausente: `coverage_gap`; no sustituir con revisión visual.
+- Cambios posteriores al check: invalidar evidencia y repetir.
+- Check manual: requiere observación humana real, no simulación.
+- Fallo externo: preservar outputs válidos y separar defecto de cobertura.
 
-| Afirmación                 | Requiere                              | No es suficiente                     |
-| -------------------------- | ------------------------------------- | ------------------------------------ |
-| Tests pasan                | Salida del comando de tests: 0 fallos | Ejecución previa, "debería pasar"    |
-| Linter limpio              | Salida del linter: 0 errores          | Chequeo parcial, extrapolación       |
-| Build correcto             | Comando de build: exit 0              | Linter pasando, logs que se ven bien |
-| Bug corregido              | Test del síntoma original: pasa       | Código cambiado, se asume corregido  |
-| Test de regresión funciona | Ciclo rojo-verde verificado           | Test pasa una vez                    |
-| Agente completó            | Diff de VCS muestra los cambios       | El agente reporta "éxito"            |
-| Requisitos cumplidos       | Checklist línea por línea             | Tests pasando                        |
-| Tipo de cambio correcto    | Typecheck: 0 errores                  | Build exitoso                        |
+## Reporte
 
-## Banderas rojas — detente
+Entregar afirmación evaluada, base/candidate hash, comandos, resultados, gaps, riesgos,
+efectos externos y siguiente gate. Evitar satisfacción o lenguaje de cierre si el estado no
+es PASS.
 
-- Usar "debería", "probablemente", "parece"
-- Expresar satisfacción antes de verificar ("listo", "perfecto", "ya quedó")
-- Estar a punto de commit/push/PR sin verificación
-- Confiar en reportes de éxito de un agente
-- Apoyarse en verificación parcial
-- Pensar "solo esta vez"
-- Cualquier redacción que implique éxito sin haber corrido verificación
+## Límites
 
-## Prevención de racionalización
+Operación **fail-closed** y `local-evaluation`: no commit, push, merge, publicación ni
+remediación implícita. Los checks locales reversibles requieren autorización del contrato;
+efectos externos quedan bloqueados. Sin evidencia fresca, declarar `coverage_gap`.
 
-| Excusa                      | Realidad                         |
-| --------------------------- | -------------------------------- |
-| "Debería funcionar ya"      | Ejecuta la verificación          |
-| "Estoy seguro"              | Confianza no es evidencia        |
-| "Solo esta vez"             | Sin excepciones                  |
-| "El linter pasó"            | Linter no es compilador          |
-| "El agente dijo éxito"      | Verifica de forma independiente  |
-| "Estoy cansado"             | Cansancio no es excusa           |
-| "Chequeo parcial basta"     | Parcial no prueba nada           |
-| "Otras palabras, no aplica" | El espíritu manda sobre la letra |
+## Validación
 
-## Patrones clave
-
-Tests: ejecuta el comando de tests, observa el conteo de pasados/fallidos, luego
-afirma "tests pasan" con la evidencia. No afirmes "parece correcto" sin ejecutar.
-
-Tests de regresión (TDD rojo-verde): escribe, ejecuta (pasa), revierte el fix,
-ejecuta (debe fallar), restaura, ejecuta (pasa). No afirmes "escribí un test de
-regresión" sin el ciclo rojo-verde.
-
-Build: ejecuta el build, observa exit 0, luego afirma "build pasa". No afirmes
-"linter pasó" como proxy de build — el linter no verifica compilación.
-
-Requisitos: relee el plan, construye un checklist, verifica cada ítem, reporta
-gaps o completitud. No afirmes "tests pasan, fase completa" como prueba de
-requisitos.
-
-Delegación a agentes: el agente reporta éxito, verifica el diff de VCS, confirma
-los cambios, reporta el estado real. No confíes en el reporte del agente.
-
-## Cuándo aplicar
-
-Siempre antes de: cualquier variación de afirmación de éxito o completitud,
-cualquier expresión de satisfacción, commit, creación de PR, cierre de tarea,
-paso a la siguiente tarea, delegación a agentes.
-
-La regla aplica a frases exactas, paráfrasis, sinónimos, implicaciones de éxito y
-cualquier comunicación que sugiera completitud o corrección.
-
-## fail-closed
-
-Una afirmación de éxito sin evidencia es una suposición. Marca coverage_gap si
-falta verificación. La ausencia de evidencia no se sustituye por una inferencia
-pulida. Escalada antes que asunción.
+El checker local exige versión, lineage, fixtures, [context.md](context.md), ocho headings,
+presupuesto y ausencia de APIs/rutas prohibidas. `pnpm verify:skills` valida integración;
+configuración o intención no equivale a ejecución.
