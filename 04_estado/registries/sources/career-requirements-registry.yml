@@ -7,15 +7,15 @@ projection_ref: inbox/first-party/SRC-CAREER-REQUIREMENTS-V1.projection.yml
 projection_sha256: 1fd22c3c438ba5e63f4f954bf2c395731b99e43cb005340e7b50b1d46a761972
 ordered_bundle_sha256: ae63a954430be2f13cbe6bd675e204552328a83797f5a9bbb08a9af2a566516c
 requirements:
-  - requirement_id: REQ-CAREER-CV-V1
+  - requirement_id: REQ-CAREER-CV
     raw_sha256: 74427bf96f6b4991b1af6f2855b69b08a986a2cf02b20ea945452c5f32356fcf
-  - requirement_id: REQ-CAREER-JOBS-V1
+  - requirement_id: REQ-CAREER-SEARCH
     raw_sha256: a0f72d51a1619f0f7a578c83c8e0cb206943dc5f2d4e36831f8b132ca0eeed2e
-  - requirement_id: REQ-CAREER-LETTER-V1
+  - requirement_id: REQ-CAREER-LETTER
     raw_sha256: b225684c3e3ed45050e34e92dd096e15d14ef4d8edfd3c9de8798d51da33d9d7
-  - requirement_id: REQ-CAREER-RETROSPECTIVE-V1
+  - requirement_id: REQ-CAREER-RETRO
     raw_sha256: b56957807f0c808eeb5aec002c7481af2281b65537413fa3a802355f66c8cd0a
-  - requirement_id: REQ-CAREER-SHARED-CONTRACT-V1
+  - requirement_id: REQ-CAREER-SHARED
     raw_sha256: 62cc477b6f51f0e855fb56f74994aea3fe7d526b98d57f4f29d216845e08c592
 authority:
   authority_class: first_party_product_requirements
@@ -30,4 +30,9 @@ effects:
   network: false
   submission: false
   publication: false
+receipts:
+  - receipts/career/SRC-CAREER-REQUIREMENTS-V1-candidate.yml
+  - receipts/career/SRC-CAREER-REQUIREMENTS-V1-quarantined.yml
+  - receipts/career/SRC-CAREER-REQUIREMENTS-V1-evaluated.yml
+  - receipts/career/SRC-CAREER-REQUIREMENTS-V1-active.yml
 decision: one_hash_bound_bundle_preserves_five_requirement_identities_without_copying_raw_documents

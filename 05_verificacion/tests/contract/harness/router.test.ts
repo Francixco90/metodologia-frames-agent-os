@@ -46,8 +46,8 @@ describe('router.yml contract', () => {
     expect(career?.reads).toEqual(
       expect.arrayContaining([
         '03_artefactos/skills/career-application-orchestrator/SKILL.md',
-        '02_proceso/workflows/career/_schema/career-intent-v1.schema.ts',
-        '02_proceso/workflows/career/_schema/career-brief-v1.schema.ts',
+        '02_proceso/workflows/career/_schema/intent-v1.schema.ts',
+        '02_proceso/workflows/career/_schema/brief-v1.schema.ts',
       ]),
     );
     expect(career?.output).toMatch(/C00-C09/u);

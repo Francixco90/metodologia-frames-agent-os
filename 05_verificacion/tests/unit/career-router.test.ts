@@ -1,9 +1,10 @@
 import {execFileSync} from 'node:child_process';
-import {mkdtempSync, rmSync, writeFileSync} from 'node:fs';
+import {existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
+import {parse} from 'yaml';
 
 import {routeCareerIntent} from 'workflows/career/_runner/route-career.ts';
 
@@ -157,5 +158,36 @@ describe('R7 Career intent router', () => {
 
   it('returns the same dispatch decision and digest for normalized identical input', () => {
     expect(dispatch({request: '  Crear   mi CV  '})).toEqual(dispatch({request: 'Crear mi CV'}));
+  });
+
+  it('keeps every R7 schema, skill adapter and executable gate command resolvable', () => {
+    const manifest = parse(
+      readFileSync(resolve(ROOT, '02_proceso/governance/router.yml'), 'utf8'),
+    ) as {
+      routes: Array<{id: string; reads: string[]}>;
+      gate_commands: Record<string, string>;
+    };
+    const route = manifest.routes.find(({id}) => id === 'R7');
+    expect(route).toBeDefined();
+    for (const reference of route!.reads) {
+      expect(existsSync(resolve(ROOT, reference)), `R7 read reference ${reference}`).toBe(true);
+    }
+    expect(existsSync(DISPATCHER), 'single dispatcher').toBe(true);
+    expect(
+      existsSync(
+        resolve(
+          ROOT,
+          '03_artefactos/skills/career-application-orchestrator/scripts/route-career.mjs',
+        ),
+      ),
+      'R7 dispatcher adapter',
+    ).toBe(true);
+
+    const command = manifest.gate_commands.G09_CAREER_career_contracts;
+    expect(command).toBeTypeOf('string');
+    if (!command) throw new Error('Career gate command missing');
+    const script = command.match(/(?:^|\s)([^\s]+\.ts)(?:\s|$)/u)?.[1];
+    expect(script, 'career command must name a TypeScript verifier').toBeDefined();
+    expect(existsSync(resolve(ROOT, script!)), `career verifier ${script}`).toBe(true);
   });
 });

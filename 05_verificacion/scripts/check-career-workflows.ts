@@ -31,13 +31,8 @@ const workflows = workflowFiles.map((path) => {
   }
 });
 const parsedWorkflows = workflows.filter((workflow) => workflow !== null);
-
-if (
-  parsedWorkflows
-    .map(({workflow_id}) => workflow_id)
-    .sort()
-    .join(',') !== expected.join(',')
-) {
+const actual = parsedWorkflows.map(({workflow_id}) => workflow_id).sort();
+if (actual.join(',') !== expected.join(',')) {
   errors.push('CAREER-WORKFLOW-002 expected exactly C00-C09');
 }
 
@@ -128,9 +123,17 @@ const requirementRegistry = readYaml(
   projection_ref?: string;
   projection_sha256?: string;
   requirements?: Array<{requirement_id?: string; raw_sha256?: string}>;
+  receipts?: string[];
   effects?: {network?: boolean; submission?: boolean; publication?: boolean};
 };
 const careerRequirements = requirementRegistry.requirements ?? [];
+const requirementProjection = requirementRegistry.projection_ref
+  ? (readYaml(requirementRegistry.projection_ref) as {
+      documents?: Array<{requirement_id?: string; raw_sha256?: string}>;
+    })
+  : {};
+const requirementKey = (value: {requirement_id?: string; raw_sha256?: string}): string =>
+  `${value.requirement_id ?? ''}:${value.raw_sha256 ?? ''}`;
 if (
   requirementRegistry.source_id !== 'SRC-CAREER-REQUIREMENTS-V1' ||
   requirementRegistry.current_state !== 'active' ||
@@ -152,12 +155,44 @@ if (
 ) {
   errors.push('CAREER-SOURCE-002 requirements authority cannot grant external effects');
 }
+if (
+  (requirementProjection.documents ?? []).map(requirementKey).sort().join('|') !==
+  careerRequirements.map(requirementKey).sort().join('|')
+) {
+  errors.push('CAREER-SOURCE-003 registry IDs and hashes must equal the projection');
+}
+const careerReceipts = (requirementRegistry.receipts ?? []).map((ref) => readYaml(ref)) as Array<{
+  event_order?: number;
+  actor_id?: string;
+  verifier_id?: string;
+  transition?: {from?: string | null; to?: string};
+  projection_sha256?: string;
+  publication_authority?: boolean;
+  append_only?: boolean;
+}>;
+if (
+  careerReceipts.length !== 4 ||
+  careerReceipts.some(
+    (receipt, index) =>
+      receipt.event_order !== index + 1 ||
+      `${String(receipt.transition?.from)}> ${receipt.transition?.to}`.replace('> ', '>') !==
+        ['null>candidate', 'candidate>quarantined', 'quarantined>evaluated', 'evaluated>active'][
+          index
+        ] ||
+      receipt.projection_sha256 !== requirementRegistry.projection_sha256 ||
+      receipt.publication_authority !== false ||
+      receipt.append_only !== true,
+  ) ||
+  careerReceipts[3]?.actor_id === careerReceipts[3]?.verifier_id
+) {
+  errors.push('CAREER-SOURCE-004 lifecycle incomplete or not independently activated');
+}
 
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exitCode = 1;
 } else {
   console.info(
-    `PASS CAREER OS: ${parsedWorkflows.length} workflows, ${registry.definitions.length} deliverables, C09 prepare-and-stop.`,
+    `PASS CAREER OS: ${parsedWorkflows.length}/${registry.definitions.length}; C09 STOP.`,
   );
 }

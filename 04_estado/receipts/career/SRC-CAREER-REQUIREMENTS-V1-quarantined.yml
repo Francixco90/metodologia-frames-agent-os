@@ -1,0 +1,11 @@
+schema_version: career-source-lifecycle-v1
+receipt_id: RCP-CAREER-SOURCE-002
+source_id: SRC-CAREER-REQUIREMENTS-V1
+event_order: 2
+actor_id: RT-02-CAREER-SOURCE
+transition: {from: candidate, to: quarantined}
+projection_sha256: 1fd22c3c438ba5e63f4f954bf2c395731b99e43cb005340e7b50b1d46a761972
+ordered_bundle_sha256: ae63a954430be2f13cbe6bd675e204552328a83797f5a9bbb08a9af2a566516c
+decision: raw_documents_external_and_projection_private_safe
+publication_authority: false
+append_only: true
