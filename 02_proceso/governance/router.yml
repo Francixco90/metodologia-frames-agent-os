@@ -1,9 +1,9 @@
 schema_version: 1
 manifest_id: router-v1
 source_of_truth: true # CLAUDE.md/GEMINI.md are shared agent-CLI adapters pointing here. [CONFIG]
-# Router de intención (R0-R7). Supera al router de 4 rutas embebido en CLAUDE.md
-# (líneas 17-46), que pasa a ser un adaptador local que apunta a este manifiesto
-# versionado. [CONFIG]
+# El First-Turn Gateway clasifica asistencia, acción, reanudación o ambigüedad;
+# este manifiesto R0-R7 conserva la autoridad de routing. Los adapters solo
+# ejecutan una ruta cuando su handler es resoluble. [CONFIG]
 #
 # Estados de tarea (task-contract.ts): INTAKE, ESPECIFICADO, COMPILADO, EVALUADO,
 # ENTREGADO, BLOQUEADO. El enum `created_from_route` valida R0-R7. [CÓDIGO]
@@ -100,6 +100,7 @@ gate_commands:
   G09_WEB_web_build: 'pnpm web:build'
   G09_CONTENT_content_build: 'pnpm content:build'
   G09_CAREER_career_contracts: 'node --import tsx scripts/check-career-workflows.ts'
+  G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
   preflight_VS_001: 'pnpm slice:build'
@@ -116,4 +117,6 @@ manual_fail_closed_gates:
     CR_BRIEF_APPROVED,
     CR_PACKAGE_APPROVED,
     CR_SUBMISSION_AUTHORIZED,
+    EXP_BRIEF_APPROVED,
+    EXP_RELEASE_APPROVED,
   ]
