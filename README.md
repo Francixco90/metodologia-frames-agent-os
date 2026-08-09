@@ -1,265 +1,127 @@
-# MetodologIA Creative Agent OS
+# Frames ContentOS · por MetodologIA
 
-Repositorio local y autocontenido para transformar fuentes gobernadas en productos Web y
-Contenido/Motion mediante decisiones trazables, comités creativos, aprobaciones separadas y
-receipts reproducibles.
+Frames te ayuda a convertir una idea, una fuente o una necesidad de comunicación en un trabajo claro, revisable y listo para avanzar. Puedes pedir ayuda con palabras normales: el sistema interpreta el resultado, prepara un brief, elige el recorrido adecuado y te acompaña hasta un borrador validado, sin obligarte a conocer prompts complejos.
 
-## Estado exacto
+Puedes usarlo para crear o mejorar contenido, organizar una campaña, diseñar la narrativa de una presentación, preparar carruseles y piezas multimedia, mejorar un CV, redactar una carta de presentación o estructurar una búsqueda laboral basada en evidencia.
 
-`PARTIAL_CONTROLLED`. El vertical slice usa una fixture first-party para demostrar el flujo técnico
-Web + Motion, pero el corpus canónico permanece incompleto (`0/4`). Por ello el workflow gobernado
-se detiene antes de `SOURCE_LOCKED` aunque un artefacto pueda obtener evidencia técnica
-`BUILD_VALIDATED` o `RENDER_VALIDATED`. En el slice actual, Web está `BUILD_VALIDATED` y Motion está
-`RENDER_VALIDATED`; ambos permanecen `RENDERED_DRAFT` para uso local.
+> Empieza diciendo qué quieres lograr. Frames te preguntará solo lo que realmente haga falta.
 
-Un build o render exitoso nunca concede `HUMAN_APPROVED`, `READY` ni `PUBLISHED`. El manifiesto
-vigente está en
-[`04_estado/registries/projects/project-registry.yml`](04_estado/registries/projects/project-registry.yml).
+## Qué puedes lograr
 
-## Qué contiene
+| Si necesitas…                                  | Frames puede ayudarte a…                                                                  | Qué recibirás                                                                                                                  |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Crear una pieza de contenido                   | aclarar audiencia, objetivo, formato y mensaje; proponer una ruta creativa                | acuerdo de trabajo, conceptos, especificación, instrucciones de creación, revisión y versión editable                          |
+| Preparar un carrusel, historia o pieza gráfica | ordenar la narrativa, definir cada pantalla, textos, visuales y criterios de continuidad  | guion por lámina, copy, prompts, mapa de activos y paquete de revisión                                                         |
+| Diseñar una presentación ejecutiva             | convertir información dispersa en una historia para decidir, priorizar o vender una idea  | documento rector, estructura, mensajes clave, guion visual y especificación; el formato final depende del generador disponible |
+| Planear una campaña                            | conectar objetivo, audiencia, canales, hitos, contenidos y medición                       | charter, cronograma, parrilla, dependencias, entregables y riesgos                                                             |
+| Crear imágenes o miniclips                     | traducir la intención en prompts, variantes, restricciones y criterios de calidad         | prompt pack, asset map, continuity notes y candidatos cuando exista herramienta autorizada                                     |
+| Mejorar un CV                                  | ordenar experiencia real, elegir evidencia relevante y adaptar el documento a una vacante | CV Markdown y HTML; PDF ATS cuando el generador local acreditado esté disponible                                               |
+| Escribir una cover letter                      | complementar el CV sin repetirlo ni inventar logros                                       | carta Markdown/HTML, mensaje breve o respuesta de formulario                                                                   |
+| Buscar oportunidades laborales                 | definir búsquedas, comparar vacantes y priorizar por ajuste demostrado                    | query pack, inventario, scorecards y shortlist; nunca postula sin autorización específica                                      |
+| Mejorar algo existente                         | conservar lo válido, localizar el problema y crear una versión sucesora                   | acuerdo de intervención, cambios priorizados, comparación y nueva versión candidata                                            |
 
-- `02_proceso/core/`: contratos, estado, evidencia, receipts, approvals y memoria append-only.
-- `03_artefactos/networks/web/`: modelo, renderer offline, UX, accesibilidad y QA Web.
-- `03_artefactos/networks/content/`: estrategia y producción de Contenido/Motion.
-- `02_proceso/agents/RT-01` … `02_proceso/agents/RT-11`: responsabilidades separadas; RT-11 es Guardian.
-- `02_proceso/committees/`: protocolo de cinco especialistas, síntesis, dissent y rúbrica.
-- `03_artefactos/skills/remotion-video-production/`: skill router canónica con 15 módulos.
-- `03_artefactos/skills/vendor/`: 25 publisher dirs vendored reference-only (originales dual
-  paradigm + expansión multi-vendor, `source-lock.json` hash-bound);
-  `03_artefactos/skills/<homólogo>/`: homólogos H-03 hash-bound (`content-os-*`, `design-*`,
-  `dev-*`, `gstack-*`, `context-*`, `web-*`, `media-*`, `motion-*`) ver § Frames ContentOS.
-- `03_artefactos/adapters/notebooklm/`: contrato de grounding read-only y fail-closed.
-- `03_artefactos/adapters/n8n/`: transporte opcional, inactivo y dry-run; no toma decisiones creativas.
-- `03_artefactos/projects/vs-001-source-to-campaign/`: primer vertical slice y toda su evidencia.
-- `04_estado/receipts/`, `04_estado/registries/`, `04_estado/approvals/`, `05_verificacion/quality/`: trazabilidad y controles compartidos.
+Consulta el [catálogo de capacidades](01_intencion/guides/capabilities.md) para distinguir qué está disponible, qué es asistencia guiada y qué permanece bloqueado.
 
-La arquitectura, DAG, propiedad de rutas y estrategia de pruebas están documentados en
-[`01_intencion/program/system-architecture.md`](01_intencion/program/system-architecture.md),
-[`01_intencion/program/dag.yml`](01_intencion/program/dag.yml),
-[`01_intencion/program/ownership-manifest.yml`](01_intencion/program/ownership-manifest.yml) y
-[`01_intencion/program/test-strategy.md`](01_intencion/program/test-strategy.md).
+## Cómo trabaja Frames contigo
 
-## Inicio rápido
+1. **Entiende el resultado.** Resume lo que quieres conseguir y detecta si falta una decisión importante.
+2. **Pregunta lo mínimo.** Formula como máximo tres preguntas bloqueantes; no repite información ya resuelta.
+3. **Prepara el brief.** El brief es el acuerdo de trabajo: objetivo, audiencia, evidencia, entregables, límites y siguiente aprobación.
+4. **Elige el recorrido.** Activa solo los procesos y capacidades especializadas necesarios; no carga todo el sistema para cada tarea.
+5. **Produce y revisa.** Separa creación, verificación y Guardian cuando el riesgo lo exige.
+6. **Se detiene antes de efectos externos.** Publicar, enviar, postular o conectar servicios requiere una autorización humana específica.
 
-Para entrar por la experiencia asistida, escribe una petición normal. El modo por
-defecto interpreta y orienta sin escribir:
+El Markdown es la fuente canónica. Cuando existe una versión HTML, se genera desde el mismo contenido y aplica por defecto el Design System de MetodologIA. El diseño puede enriquecer la lectura, pero no cambiar el significado.
+
+## Cómo empezar
+
+### Opción 1: habla normalmente
+
+Prueba cualquiera de estas frases:
+
+- “Ayúdame a crear un carrusel para explicar esta idea.”
+- “Convierte este informe en una presentación ejecutiva.”
+- “Quiero una campaña de cuatro semanas para lanzar este servicio.”
+- “Mejora mi CV para esta vacante sin inventar experiencia.”
+- “Escribe una cover letter que complemente mi CV.”
+- “Ayúdame a encontrar oportunidades compatibles con mi perfil.”
+
+Un saludo muestra un menú breve: **Crear · Mejorar · Planear · Explorar**. Si el pedido ya es claro, Frames evita el menú y avanza directamente a confirmar el brief.
+
+### Opción 2: usa el asistente local
+
+El modo predeterminado interpreta y orienta sin escribir archivos:
 
 ```bash
 printf '%s\n' 'Ayúdame a crear una pieza' | pnpm frames:assist
 ```
 
-`/menu` y `/ruta` inspeccionan sin writes. La materialización local exige un JSON
-completo y `--apply`; siempre se detiene en la aprobación del brief. Las rutas,
-contextos y adapters se verifican con `pnpm verify:instructions`.
+Comandos conversacionales útiles:
 
-Requiere las versiones exactas declaradas en `package.json`: Node, pnpm, Remotion, Zod, Playwright
-y FFmpeg. Chrome estable es un prerrequisito local para la inspección Web.
+- `/menu`: muestra las entradas principales.
+- `/ruta`: explica qué recorrido, capacidades y aprobaciones usaría.
+- una frase normal: siempre prevalece sobre el menú.
+
+La materialización local usa `--apply`, exige un workspace autorizado y se detiene en la aprobación del brief. Consulta [uso guiado y comandos](01_intencion/guides/guided-use.md) antes de activarla.
+
+## Qué recibirás durante el proceso
+
+- **Brief canónico:** qué se hará, para quién, con qué evidencia y bajo qué límites.
+- **Plan visible:** pasos, hitos, responsables, outputs y puntos de aprobación.
+- **Entregables intermedios:** por ejemplo, charter, cronograma, parrilla, mapa de activos, prompts o matriz requisito–evidencia.
+- **Versión candidata:** un resultado material que todavía puede corregirse sin sobrescribir el anterior.
+- **Estado de calidad:** `PASS`, `FAIL`, `UNKNOWN` o `BLOCKED`, acompañado por evidencia y siguiente acción.
+- **Continuidad:** una tarea válida puede retomarse por su lineage; un cambio estructural crea un successor.
+
+No necesitas memorizar estos nombres. Frames los muestra solo cuando ayudan a comprender una decisión o inspeccionar la ruta.
+
+## Guías por necesidad
+
+- [Explorar todas las guías](01_intencion/guides/README.md)
+- [Qué puede hacer Frames](01_intencion/guides/capabilities.md)
+- [Crear contenido y multimedia](01_intencion/guides/content-multimedia.md)
+- [CV, cartas y búsqueda laboral](01_intencion/guides/career.md)
+- [Trabajar conversando o con comandos](01_intencion/guides/guided-use.md)
+- [Referencia técnica](01_intencion/guides/technical-reference.md)
+
+## Estado actual
+
+La madurez integral sigue en `PARTIAL_CONTROLLED`: Frames ya puede demostrar recorridos locales, pero todavía conserva fuentes, licencias y efectos externos pendientes. Experience OS está en `active/local-evaluation`: puedes probar la asistencia, los briefs, los templates y los recorridos dentro del repositorio, pero esto no equivale a un servicio publicado ni autoriza distribución.
+
+Los controles usan estados exactos que aquí se traducen a lenguaje cotidiano:
+
+- `SOURCE_LOCKED`: las fuentes fueron identificadas, congeladas y verificadas; antes de este punto no se producen afirmaciones nuevas.
+- `HUMAN_APPROVED`: una persona autorizada aprobó esa versión concreta; una revisión automática no concede este estado.
+- `READY`: el paquete superó todos los controles exigidos para su uso previsto.
+- `PUBLISHED`: ocurrió una publicación real y existe evidencia material; preparar un paquete no basta.
+
+Los recorridos multimedia P00–P09 y Career C00–C09 están definidos y verificados. Algunas salidas dependen de generadores, fuentes, derechos o herramientas que pueden no estar acreditados en tu entorno. Cuando falta una capacidad material, Frames muestra una brecha (`coverage_gap`) o un bloqueo (`BLOCKED`); nunca simula que produjo un archivo.
+
+## Límites honestos
+
+- No publica contenido, envía mensajes, postula a empleos ni activa conectores por una petición ambigua.
+- No inventa claims, experiencia profesional, métricas, fuentes, derechos o aprobaciones.
+- Una presentación puede quedar como narrativa y especificación si no existe un generador de formato final registrado.
+- Una imagen, miniclip, video o PDF solo cuenta como producido si existe un archivo material con hash verificable.
+- Los generadores trabajan sin red durante render: las fuentes y los recursos deben estar disponibles y autorizados antes de producir.
+- LinkedIn y otras plataformas son fuentes/adapters; no se usan credenciales, cookies ni scraping no autorizado.
+- `PASS` técnico no significa aprobación humana, distribución ni publicación.
+- La licencia comercial del generador Motion permanece bloqueada (`BLOCKED_LICENSE`) hasta resolver su autoridad.
+
+## Para operadores y contribuidores
+
+Si vas a modificar el sistema, empieza en [AGENTS.md](AGENTS.md) y carga solo el `context.md` correspondiente. La [referencia técnica](01_intencion/guides/technical-reference.md) conecta la experiencia humana con rutas, workflows, ownership y verificadores.
+
+Comprobación integral:
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm check:toolchain
-pnpm check:repo
-pnpm typecheck
-pnpm lint
-pnpm test
-pnpm format:check
+pnpm verify
 ```
 
-Reconstruir el slice y el artefacto Web:
+La fuente de verdad no es este texto por sí solo: contratos, registries, outputs materiales, receipts y gates siguen determinando qué ocurrió realmente.
 
-```bash
-pnpm slice:build
-pnpm web:build
-node scripts/web-visual-smoke.mjs
-```
+## Autoría e identidad
 
-Validar y renderizar Motion desde una única base inmutable:
-
-```bash
-pnpm remotion:prepare
-pnpm remotion:validate
-pnpm render:all
-pnpm verify:media
-```
-
-No se deben modificar inputs entre `remotion:validate` y `render:all`. La secuencia operativa,
-los stop rules y el cierre están en
-[`01_intencion/program/operator-runbook.md`](01_intencion/program/operator-runbook.md).
-
-## Adaptadores de agent CLI
-
-El repo se adapta a distintos agent CLIs sin duplicar gobernanza. `AGENTS.md` es el
-núcleo CLI-agnóstico de reglas; `CLAUDE.md` (Claude Code, `@-import`) y `GEMINI.md`
-(Gemini CLI, enlaces markdown) son cabinas que apuntan a él y a las fuentes versionadas
-en `02_proceso/governance/` + `05_verificacion/scripts/commands.yaml`. La política
-completa y el patrón para añadir un CLI nuevo (Cursor, Copilot CLI, Codex, afines):
-[`02_proceso/governance/agent-cli-adapters.md`](02_proceso/governance/agent-cli-adapters.md). [CONFIG]
-
-## Primer vertical slice
-
-El expediente
-[`03_artefactos/projects/vs-001-source-to-campaign/`](03_artefactos/projects/vs-001-source-to-campaign/) conserva:
-
-- una fuente sintética first-party y tres claims limitados a pruebas locales;
-- cinco propuestas conceptuales, veinte revisiones cruzadas, síntesis y dissent;
-- un artefacto Web offline con build receipt y capturas desktop/mobile;
-- el dossier audiovisual `00`–`07`, assets y fuentes vendorizados, captions, props y composición;
-- smoke render, dos renders completos, review shots críticos y receipts de inspección;
-- estados gobernados y técnicos deliberadamente separados.
-
-Los cuatro textos canónicos, la elegibilidad comercial de la licencia Remotion, el playback humano,
-la aprobación H01 y cualquier distribución externa permanecen como `coverage_gap`.
-
-## Frames ContentOS
-
-> Un producto MetodologIA. Autoría de Franklin Ospina y Javier Montaño.
-
-El programa Frames ContentOS extiende el dual paradigm (Remotion + HTML+GSAP) con un
-programa multi-vendor + homólogos gobernado por receipts reproducibles. Todo skill
-nuevo entra al registro H-03 (recibo per-skill `receipts/runtime-boundary.yml`,
-`LicenseRef-MetodologIA-Internal`); v2 permanece estable (familia meta `metodologia-*`,
-`instagram-*`, `scroll-*` y `remotion-video-production-v2`).
-
-### Publishers vendored (reference-only, bypass `verify:skills`)
-
-Bajo `skills/vendor/` (text-only, `source-lock.json` hash-bound, sin `package.json`,
-sin runtime deps). **25 publisher dirs**: originales del dual paradigm + expansión
-multi-vendor (Fases 2A-2I):
-
-- **Originales dual paradigm**: `hyperframes` (28 sub-skills Apache-2.0),
-  `remotion-publisher` (12), `bento`, `scroll-experience`, `scroll-world`,
-  `cinematic-scroll`.
-- **Expansión**: `gstack`, `genjutsu`, `superpowers`, `ponytail`, `dn-memory`,
-  `taste-skill`, `emil-skills`, `extract-design-system`, `impeccable`,
-  `ui-ux-pro-max`, `gsap-skills`, `anthropics-skills`, `vercel-skills`,
-  `vercel-agent-skills`, `design-dna`, `karpathy-skills`, `rembg-bg-removal`,
-  `crawl4ai-skill`, `harness-creator`.
-
-### Homólogos hash-bound (H-03 v3)
-
-Los registros v2 y v3 son la única autoridad del inventario; este README no fija
-conteos que puedan quedar obsoletos. `pnpm verify:skills` comprueba entradas,
-paquetes, eventos, huérfanos y duplicados entre registros. Estado del programa:
-[`01_intencion/content-os/roadmap.md`](01_intencion/content-os/roadmap.md). Mapeo
-vendor→nativas:
-[`01_intencion/content-os/capability-matrix.md`](01_intencion/content-os/capability-matrix.md).
-Arquitectura dual paradigm + media model:
-[`01_intencion/content-os/architecture.md`](01_intencion/content-os/architecture.md). [DOC]
-
-### Multimedia workflows (P00-P09)
-
-Cadena determinista de 10 stages en `02_proceso/workflows/multimedia/`
-(`definir-sistema` → `distribuir`), schema `multimedia-workflow-v1` (Zod). Cada
-stage: `workflow.yml` (source of truth con `brief`, `execution_steps`, templates y
-`capability_map` skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
-`build.ts`, `notebooklm-binding.yml`, `schematic.html` (brand-ready, generado desde
-template). Quality-gate `MW-Q01..Q10` fail-closed (`_runner/quality-gate.ts`).
-Generator `pnpm mw:render-schematics` (1 template + 1 script → 10 HTML,
-determinista, regenerable). Checker `pnpm verify:multimedia` (gate `MW_CAPABILITY`).
-Chain schematic:
-[`02_proceso/workflows/multimedia/_assets/chain-schematic.md`](02_proceso/workflows/multimedia/_assets/chain-schematic.md). [DOC]
-
-Todo pedido de pieza entra por R6: el router formula hasta tres preguntas
-bloqueantes y selecciona solo los stages necesarios. P03 genera siempre el
-`brief.md` canónico de 12 secciones; su HTML es una proyección determinista del
-mismo modelo, usa el perfil `metodologia-html-v7` y no puede añadir contenido
-editorial. La producción se detiene en `MW_BRIEF_APPROVED`; P09 prepara el
-paquete, pero nunca distribuye ni publica sin autorización humana separada.
-La biblioteca P00–P09 se regenera desde los workflows mediante
-`_runner/render-library.ts`. [CONFIG]
-
-### Frames Experience OS
-
-**Frames ContentOS · por MetodologIA** recibe lenguaje cotidiano y lo convierte
-en un recorrido gobernado. Un saludo ofrece `Crear · Mejorar · Planear · Explorar`
-sin escribir; un pedido claro omite el menú, ejecuta el adapter R6 o R7 y prepara
-el brief canónico. Skills declaradas permanecen `planned` hasta que exista un
-receipt de invocación ligado al WorkOrder y a outputs materiales. [CONFIG]
-
-El Blueprint Markdown y su HTML offline viven en
-`03_artefactos/content/experience/`; componentes, microcopy, paridad y cápsulas
-están en `02_proceso/workflows/experience/`. El estado máximo es
-`active/local-evaluation`: publicación, conectores y efectos externos siguen
-bloqueados. Solo una cápsula con RT-09 `PASS`, RT-11 `PASS` y H01 `APPROVE`
-puede entrar al vault inmutable. [CONFIG]
-
-La operación completa —primer turno, route lock, workflow management, AutoPrime,
-WorkOrder, receipts, continuidad y hospitalidad— está definida en
-[`experience-first-orchestration.md`](02_proceso/governance/experience-first-orchestration.md).
-R6/R7 tienen handlers locales brief-first; R4 exige lineage hash-bound. R1–R3 y
-R5 siguen como `coverage_gap` y no deben presentarse como ejecución disponible.
-
-## Governance
-
-`02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
-apunta aquí, no duplica):
-
-- `router.yml` — router R0-R7 con First-Turn Gateway (proyecto/tarea/eval/contenido/carrera).
-- `experience-first-orchestration.md` — contrato de interacción y workflow manager.
-- `tool-policy.yml` — política de herramientas permitidas por gate.
-- `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
-- `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
-- `loose-task-policy.md` — política de tareas sueltas (harness-creator).
-- `docs-budget-policy.yml` — presupuesto de docs (corpus, hard-cap, history).
-- `multimedia-quality-gate.yml` — quality-gate MW-Q01..Q10 multimedia.
-- `harness-subsystem-reconciliation.md` — reconciliación SPEC 5 subsistemas ↔ harness-creator 7.
-- `ownership-scripts-decision.md` — decisión de ownership de scripts.
-- `a09-a10-cross-verifier-verdict.yml` — veredicto cross-verifier.
-
-Gates → comandos: `05_verificacion/scripts/commands.yaml` (manifiesto `commands-v1`).
-[CONFIG]
-
-## Verification
-
-`05_verificacion/` — subsistema de verificación integral:
-
-- **Gates G00-G21 + MW_**_: `scripts/commands.yaml`. G13-G17 manuales fail-closed
-  (H01 human approval, Guardian lock, readiness, publish). G18-G21 (env drift,
-  eval suite, tool grants convergence, atemporal naming) automatizados. MW__
-  (multimedia: `MW_CAPABILITY`, `MW_BRIEF_APPROVED` P03, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
-  `MW_EDIT_APPROVED` P08, `MW_DISTRIBUTION_AUTHORIZED` P09).
-- **Evals**: `evals/H-E001`..`H-E023` + `ablation/` — 23 eval suites con `runner.ts`.
-- **Tests**: inventario vivo en `tests/`; `pnpm test` informa el conteo ejecutado. Harness contract:
-  `tests/contract/harness/`.
-- **Check scripts**: 35 scripts `check-*.ts`/`.mjs` en `scripts/` (brand, repo, skills,
-  env-drift, tool-grants, privacy, multimedia-capabilities, content-os, etc.).
-- **Guardian**: `guardian/` — verificador independiente (producer, verifier, Guardian
-  son distintos).
-- **Receipts append-only**: `04_estado/receipts/check-runs/` (check-run receipts
-  hash-bound), `04_estado/receipts/dependency-audits/` (auditoría de dependencias,
-  schema `dependency-audit-receipt-v1`, `supersedesReceiptId` append-only).
-- **Quality reports**: `quality/` — reports de drift, brand, env.
-
-Verify aggregate: `pnpm verify` (check:repo, check:atemporal, check:md-budgets,
-verify:docs, verify:multimedia, verify:content-os, typecheck, lint, test,
-format:check). [CONFIG]
-
-## ADRs
-
-`01_intencion/adrs/` — Architecture Decision Records (27 decisiones):
-
-- `0001-0020-decisions.md` — decisiones fundacionales (gobernanza, dual paradigm, receipts).
-- `0021-0026-renderer-adapters.md` — renderer adapters (Remotion, HTML+GSAP, Bento, Scroll).
-- `0027-atemporal-naming.md` — naming atemporal (Fase 7 densification 81→152 skills).
-
-[DOC]
-
-## Principios no negociables
-
-- Source-first: ningún claim material sin snapshot, hash, alcance y autoridad.
-- Fail-closed: una ausencia no se sustituye por una inferencia pulida.
-- Un writer por ruta; producer, verifier, Guardian y H01 son responsabilidades distintas.
-- No se persiste chain-of-thought privado: solo evidencia, supuestos, scores, objeciones y decisión.
-- Assets locales, versiones exactas y render gobernado por frames; sin red durante render.
-- MetodologIA es la única identidad visible.
-- NotebookLM fundamenta; Remotion renderiza; n8n transporta; ninguno gobierna por sí solo.
-- Publicación, envío y conectores permanecen inactivos sin autorización humana explícita.
-
-## Seguridad, derechos y release
-
-No añadas secretos, PII, locators privados ni rutas locales a artefactos versionados. Consulta
-[`SECURITY.md`](SECURITY.md), el registro de fuentes, el ledger de claims y el veredicto de licencia
-antes de ampliar el alcance. Este repositorio no incluye autorización de release.
-
-La trazabilidad integral contra Prompt Maestro V6 está en
-[`01_intencion/program/requirements-traceability.md`](01_intencion/program/requirements-traceability.md).
+Frames ContentOS es un producto MetodologIA, con autoría de Franklin Ospina y Javier Montaño. MetodologIA es la identidad visible del sistema; tecnologías y vendors son capacidades o fuentes, no sustitutos de la marca.

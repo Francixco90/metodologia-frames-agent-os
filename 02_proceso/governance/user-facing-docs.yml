@@ -1,0 +1,49 @@
+schema_version: frames-user-facing-docs-v1
+policy_ref: 02_proceso/governance/ux-writing-policy.md
+budget_surface: user-facing-explanatory-documentation
+documents:
+  - path: README.md
+    audience: first-time-user
+    purpose: Understand what Frames can do and choose a safe starting point.
+    required_headings:
+      [Qué puedes lograr, Cómo trabaja Frames contigo, Cómo empezar, Límites honestos]
+  - path: 01_intencion/guides/README.md
+    audience: any-user
+    purpose: Choose the shortest guide for the desired outcome.
+    required_headings:
+      [Elige por lo que quieres lograr, Recorrido recomendado, Si prefieres comandos]
+  - path: 01_intencion/guides/capabilities.md
+    audience: decision-maker
+    purpose: Distinguish available, assisted and not-yet-enabled capabilities.
+    required_headings:
+      [Qué puede hacer Frames, Niveles de capacidad, Qué entrega cada recorrido, Qué no promete]
+  - path: 01_intencion/guides/guided-use.md
+    audience: operator
+    purpose: Start with normal language or an equivalent command.
+    required_headings:
+      [Empieza con una frase normal, Recorrido conversacional, Recorrido por comandos, Cómo retomar]
+  - path: 01_intencion/guides/content-multimedia.md
+    audience: content-creator
+    purpose: Create or improve content and multimedia deliverables.
+    required_headings:
+      [
+        Qué puedes crear,
+        Cómo se convierte una idea en una pieza,
+        Entregables por necesidad,
+        Límites y aprobaciones,
+      ]
+  - path: 01_intencion/guides/career.md
+    audience: candidate
+    purpose: Improve a CV, letter or job-search process without inventing evidence.
+    required_headings:
+      [Qué puedes resolver, Cómo protege tu evidencia, Recorridos disponibles, Privacidad y límites]
+  - path: 01_intencion/guides/technical-reference.md
+    audience: technical-operator
+    purpose: Map the human experience to routes, workflows, gates and checks.
+    required_headings:
+      [
+        Cuándo necesitas esta referencia,
+        Del pedido al workflow,
+        Estados y gates,
+        Comandos de verificación,
+      ]
