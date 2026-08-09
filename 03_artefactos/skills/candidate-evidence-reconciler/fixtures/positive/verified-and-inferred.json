@@ -1,0 +1,31 @@
+{
+  "candidate_id": "CAND-SYNTH-001",
+  "evidence": [
+    {
+      "evidence_id": "EVD-SYNTH-001",
+      "claim": "Diseñó una estrategia de pruebas trazable",
+      "context": "Proyecto sintético",
+      "action_method": "Convirtió riesgos en casos y criterios verificables",
+      "result": "Habilitó una decisión de salida documentada",
+      "metric": null,
+      "source_ref": "fixtures/synthetic/candidate-source.md",
+      "confidence": "verified",
+      "allowed_channels": ["cv", "letter", "interview"],
+      "constraints": ["mantener contexto sintético"]
+    },
+    {
+      "evidence_id": "EVD-SYNTH-002",
+      "claim": "Podría transferir el método a otro sector",
+      "context": "Hipótesis de adaptación",
+      "action_method": "No demostrado",
+      "result": "No demostrado",
+      "metric": null,
+      "source_ref": "fixtures/synthetic/candidate-source.md",
+      "confidence": "inferred",
+      "allowed_channels": ["interview"],
+      "constraints": ["solo como hipótesis"]
+    }
+  ],
+  "contradictions": [],
+  "gaps": [{"evidence_id": "EVD-SYNTH-002", "blocking": false}]
+}

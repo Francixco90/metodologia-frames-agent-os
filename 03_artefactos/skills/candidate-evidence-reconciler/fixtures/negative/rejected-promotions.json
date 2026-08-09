@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {"id": "job_requirement_as_capability", "confidence": "missing", "expected": "BLOCKED"},
+    {"id": "target_metric_as_achievement", "confidence": "inferred", "expected": "BLOCKED"},
+    {"id": "course_as_certification", "confidence": "user_confirmed", "expected": "BLOCKED"},
+    {"id": "conflicting_dates", "confidence": "verified", "expected": "BLOCKED"},
+    {"id": "missing_source_ref", "confidence": "verified", "expected": "BLOCKED"}
+  ]
+}
