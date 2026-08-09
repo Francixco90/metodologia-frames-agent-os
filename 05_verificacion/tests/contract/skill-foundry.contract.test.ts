@@ -475,7 +475,7 @@ describe('A05 Skill Foundry contracts', () => {
       expect(result.status, output).toBe(0);
       expect(output).toMatch(/PASS/u);
     }
-  }, 15_000);
+  });
 
   it('accepts every declared positive fixture and rejects every declared negative fixture', () => {
     expect(listFileNames(`${canonicalSkillRoot}/fixtures/positive`)).toEqual([
