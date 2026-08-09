@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93535
-    v3_rolling_adjustment_words: 5349
+    baseline_words: 93563
+    v3_rolling_adjustment_words: 5377
     original_baseline_words: 88186
-    final_words: 110655
+    final_words: 110683
     maximum_multiplier: 1.5
-    maximum_words: 140302
+    maximum_words: 140344
     actual_multiplier: 1.183
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93535
-    v3_rolling_adjustment_words: 5349
+    baseline_words: 93563
+    v3_rolling_adjustment_words: 5377
     original_baseline_words: 88186
-    final_words: 110655
-    maximum_words: 187070
+    final_words: 110683
+    maximum_words: 187126
     word_multiplier: 1.183
-    baseline_loc: 35077
-    v3_rolling_adjustment_loc: 2189
+    baseline_loc: 35084
+    v3_rolling_adjustment_loc: 2196
     original_baseline_loc: 32888
-    final_loc: 41504
-    maximum_loc: 70154
+    final_loc: 41511
+    maximum_loc: 70168
     loc_multiplier: 1.1832
     maximum_multiplier: 2
     status: pass
@@ -2192,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: f1f4c64fcddb3a2f4f4978cb72961090320d49403c257710771e86e03fb12860
-      current_words: 71
-      current_loc: 17
+      current_sha256: e59f6b7f92d5e9ef5b3e01c69f2e56739af656c2ba0ca04fa3b4aa83d4d58b18
+      current_words: 79
+      current_loc: 19
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -8912,9 +8912,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:workflows/core/index.ts
       current_ref: working-tree:workflows/core/index.ts
       current_state: present
-      current_sha256: bdd91495e44d38cd5ba28422bafa5fd735774753bb0fe949f20613e93a8a460c
-      current_words: 24
-      current_loc: 6
+      current_sha256: 64d5953b0a1742c0891006ee17f2ba4a9c432e6d64a94cec6e17f29e223d2f22
+      current_words: 44
+      current_loc: 11
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:workflows/core/**
