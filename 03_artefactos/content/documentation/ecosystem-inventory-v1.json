@@ -5822,6 +5822,48 @@
     },
     {
       "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.html",
+      "ref": "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.html",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
+      "ref": "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.html",
+      "ref": "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.html",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md",
+      "ref": "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.html",
+      "ref": "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.html",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
+      "id": "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md",
+      "ref": "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "TEMPLATE",
       "id": "03_artefactos/skills/vendor/gstack/qa/templates/qa-report-template.md",
       "ref": "03_artefactos/skills/vendor/gstack/qa/templates/qa-report-template.md",
       "scope": "CANONICAL",
@@ -6241,5 +6283,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "b8b17a713dadc1ee4d9fa4b94e0b21fada69e1db58398d39cd979051483b42e2"
+  "sourceSha256": "68029efc1160153c324f488e86d93a4a7dea5b92465c0cd707f184c4972fc6a8"
 }

@@ -53,3 +53,5 @@
 # Deterministic HTML projections are byte-bound to Markdown + renderer and use
 # parity/drift checks; formatting them independently would invalidate lineage.
 02_proceso/workflows/multimedia/p*/templates/*.template.html
+# Skill Systems HTML templates are deterministic generator projections.
+02_proceso/workflows/skill-systems/templates/*.template.html
