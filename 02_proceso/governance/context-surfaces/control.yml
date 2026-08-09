@@ -1,0 +1,47 @@
+schema_version: context-surface-shard-v1
+shard_id: CTX-SHARD-CONTROL
+surfaces:
+  - context_id: CTX-REGISTRIES
+    root: 04_estado/registries
+    kind: registry
+    owner: governance
+    applies_when: Resolver IDs, capacidades, owners y referencias canónicas después del route lock.
+    authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_first: [02_proceso/governance/router.yml]
+    load_on_demand:
+      [
+        04_estado/registries/agents/agent-registry-v2.yml,
+        04_estado/registries/skills/creation-v3-skill-registry.yml,
+      ]
+    defer: [Registries no requeridos por el paso activo]
+    routes: [R2, R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [registry_resolve]
+    read_set: [02_proceso/governance/router.yml]
+    write_policy: {mode: generated_only, paths: [04_estado/registries/context.md]}
+    gates: [referential_integrity]
+    stop_rules: [Referencia cero o múltiple queda UNKNOWN]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-VERIFY-SCRIPTS
+    root: 05_verificacion/scripts
+    kind: verification
+    owner: repo
+    applies_when: Ejecutar checkers y generators registrados con argv explícito y modo check por defecto.
+    authority_refs: [AGENTS.md, 05_verificacion/scripts/commands.yaml]
+    load_first: [05_verificacion/scripts/commands.yaml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Generators y suites no afectados]
+    routes: []
+    workflows: []
+    primary_skills: [dev-verification-before-completion]
+    tools: [check, generate]
+    read_set: [05_verificacion/scripts/commands.yaml]
+    write_policy: {mode: generated_only, paths: [05_verificacion/scripts/context.md]}
+    gates: [argv_safety, deterministic_check]
+    stop_rules: [Check no escribe, Generator exige write explícito]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
