@@ -29,12 +29,14 @@ No toda necesidad merece una skill. Frames comprueba primero si basta una instru
 
 Cuando la necesidad es repetible y requiere criterio especializado, Frames usa el recorrido S00–S09 dentro de R8 para una skill privada o R9 para una capacidad canónica. No necesitas memorizar esos códigos: describen una secuencia estable de diseño, autoría, validación, evaluación y versión.
 
-Antes de escribir, puedes usar estas comprobaciones con JSON por stdin:
+Antes de escribir, prepara un bundle material con las referencias y hashes que
+correspondan al gate. Los comandos sin bundle responden `UNKNOWN`; esto evita que
+una comprobación vacía parezca aprobada.
 
 ```sh
-pnpm skills:inspect -- --stdin < solicitud-skill.json
-pnpm skills:validate -- --stdin < candidate-skill.json
-pnpm skills:evaluate -- --stdin < plan-evaluacion.json
+pnpm skills:inspect -- --input work/private/skills/case-bundle.json
+pnpm skills:validate -- --input work/private/skills/static-bundle.json
+pnpm skills:evaluate -- --input work/private/skills/eval-bundle.json
 ```
 
 - `inspect` produce el caso de uso y ayuda a decidir si crear, ampliar, dividir, fusionar o no crear la skill.
@@ -51,6 +53,10 @@ El resultado no se declara compatible con Codex, Claude, Gemini o ChatGPT por te
 - Un hash stale, symlink, dependencia ambigua, ID duplicado o colisión canónica bloquea.
 
 Para convertir una extensión privada en capacidad oficial debes abrir un proceso H‑03 nuevo. Copiarla al repositorio no la promueve.
+
+Si el trabajo incluye diseño creativo, prompts, assets, scripts o templates, consulta
+la [guía de sistemas de skills](skill-systems.md): explica cómo aplicar un segundo
+oráculo multimedia sin duplicar responsabilidades ni conceder autoridad extra.
 
 ## Siguiente lectura
 

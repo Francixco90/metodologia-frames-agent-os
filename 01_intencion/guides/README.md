@@ -10,6 +10,7 @@ Estas guías están escritas para personas que quieren lograr un resultado, no p
 - **Quiero mejorar mi CV o buscar empleo:** [Career OS](career.md).
 - **Quiero entender rutas, workflows y verificaciones:** [referencia técnica](technical-reference.md).
 - **Quiero crear una skill o workflow privado:** [ampliar Frames localmente](extend-frames.md).
+- **Quiero diseñar, evaluar o evolucionar una skill:** [sistemas de skills](skill-systems.md).
 - **Quiero corregir o evolucionar el arnés:** [mantener Frames](maintain-frames.md).
 - **Usé comandos de una guía anterior y apareció un error:** [diagnóstico y recuperación](troubleshooting-old-commands.md).
 - **Quiero ver todos los recorridos:** [portal offline de workflows](../../03_artefactos/content/documentation/index.html).
