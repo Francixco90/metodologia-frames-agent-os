@@ -37,7 +37,8 @@ apuntan a ella y a las fuentes versionadas; no duplican reglas. [CONFIG]
 
 Los adaptadores **enlazan** estas fuentes; **no las duplican** (DRY). [CONFIG]
 
-- Router de intención R0-R5: `02_proceso/governance/router.yml`
+- First-Turn Gateway: `02_proceso/workflows/core/first-turn-gateway-v1.ts`
+- Router de intención R0-R7: `02_proceso/governance/router.yml`
 - Tool policy: `02_proceso/governance/tool-policy.yml`
 - Gates → comandos (G00-G17): `05_verificacion/scripts/commands.yaml`
 - Reconciliación SPEC 5 subsistemas ↔ harness-creator 7: `02_proceso/governance/harness-subsystem-reconciliation.md`
@@ -72,7 +73,7 @@ Los adaptadores **enlazan** estas fuentes; **no las duplican** (DRY). [CONFIG]
 ## Lo que los adaptadores NO hacen
 
 - No duplican las 11 reglas de `AGENTS.md` (importan o enlazan).
-- No duplican el router R0-R5 ni la tabla gate→comando (puntero a fuentes).
+- No duplican el gateway, el router R0-R7 ni la tabla gate→comando.
 - No contienen datos personales, secretos ni chain-of-thought.
 - No activan conectores ni publican (n8n dry-run; gates G13-G17 fail-closed).
 - No mezclan marcas (MetodologIA-only). [CONFIG]
@@ -99,7 +100,8 @@ Los adaptadores **enlazan** estas fuentes; **no las duplican** (DRY). [CONFIG]
 - `AGENTS.md` — núcleo de reglas CLI-agnóstico.
 - `CLAUDE.md` — adaptador Claude Code.
 - `GEMINI.md` — adaptador Gemini CLI.
-- `02_proceso/governance/router.yml` — router R0-R5.
+- `02_proceso/workflows/core/first-turn-gateway-v1.ts` — asistencia inicial causal.
+- `02_proceso/governance/router.yml` — router R0-R7.
 - `05_verificacion/scripts/commands.yaml` — gates → comandos.
 - `02_proceso/governance/harness-subsystem-reconciliation.md` — plantilla de
   spec de gobernanza con alternativas consideradas.
