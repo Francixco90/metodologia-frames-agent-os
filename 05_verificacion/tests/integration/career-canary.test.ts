@@ -1,8 +1,17 @@
+import {existsSync, mkdtempSync, readFileSync, rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {resolve} from 'node:path';
+
 import {describe, expect, it, vi} from 'vitest';
+
+const pdf = vi.hoisted(() => ({render: vi.fn()}));
+vi.mock('workflows/career/_runner/pdf-adapter.ts', () => ({renderCareerPdf: pdf.render}));
 
 import {CAREER_BRIEF_SECTIONS} from 'workflows/career/_schema/brief-v1.schema.ts';
 import {createCareerBriefMarkdown} from 'workflows/career/_runner/brief-model.ts';
 import {renderCareerBriefHtml} from 'workflows/career/_runner/brief-renderer.ts';
+import {runCareerBriefFirst} from 'workflows/career/_runner/career-runner.ts';
+import {runCareerCanary} from 'workflows/career/_runner/canary.ts';
 import {calculateCareerDocumentHash} from 'workflows/career/_runner/document-model.ts';
 import {renderCareerCvHtml} from 'workflows/career/_runner/document-renderer.ts';
 import {routeCareerIntent} from 'workflows/career/_runner/route-career.ts';
@@ -14,6 +23,74 @@ const HASH_A = 'a'.repeat(64);
 const HASH_B = 'b'.repeat(64);
 
 describe('Career OS synthetic local canary', () => {
+  it('runs a vague CV request brief-first and materializes MD plus HTML before its gate', () => {
+    const root = mkdtempSync(resolve(tmpdir(), 'frames-career-runner-'));
+    try {
+      const result = runCareerBriefFirst({root, route: {request: 'Créame un CV'}});
+      const markdown = resolve(root, result.brief.markdown_ref);
+      const html = resolve(root, result.brief.html_ref);
+
+      expect(result).toMatchObject({
+        status: 'NEEDS_INPUT',
+        materialized: true,
+        next_gate: 'CR_BRIEF_APPROVED',
+      });
+      expect(result.intent.selected_stage_path).toEqual(['C00', 'C01', 'C02', 'C06', 'C08']);
+      expect(existsSync(markdown)).toBe(true);
+      expect(existsSync(html)).toBe(true);
+      expect(readFileSync(markdown, 'utf8')).toContain('brief_id: CBRIEF-');
+      expect(readFileSync(html, 'utf8')).toContain('id="career-brief-data"');
+      expect(result.workflows).toHaveLength(5);
+      expect(result.next_gate).toBe('CR_BRIEF_APPROVED');
+    } finally {
+      rmSync(root, {recursive: true, force: true});
+    }
+  });
+
+  it('executes the canary through the integrated runner and stops at the brief gate', async () => {
+    const root = mkdtempSync(resolve(tmpdir(), 'frames-career-integrated-canary-'));
+    pdf.render.mockResolvedValueOnce({
+      schema_version: 'career-pdf-manifest-v1',
+      status: 'UNKNOWN',
+      html_sha256: HASH_A,
+      pdf_sha256: null,
+      extracted_text_sha256: null,
+      semantic_sha256: null,
+      page_count: null,
+      pdf_ref: null,
+      replay: null,
+      blocked_requests: [],
+      toolchain: {
+        playwright: '1.61.1',
+        chromium: 'unavailable',
+        pdftotext: 'unavailable',
+        browser_source: 'unavailable',
+        browser_version: null,
+      },
+      gaps: ['chromium_unavailable'],
+    });
+    try {
+      const result = await runCareerCanary(root);
+      expect(result).toMatchObject({
+        status: 'UNKNOWN',
+        replay_match: true,
+        next_gate: 'CR_BRIEF_APPROVED',
+        external_effects: 'none',
+      });
+      expect(result.route.materialized).toBe(true);
+      expect(result.route.workflows.map(({workflow_id}) => workflow_id)).toEqual([
+        'C02',
+        'C06',
+        'C08',
+      ]);
+      expect(existsSync(resolve(root, result.route.brief.markdown_ref))).toBe(true);
+      expect(existsSync(resolve(root, result.route.brief.html_ref))).toBe(true);
+      expect(pdf.render).toHaveBeenCalledOnce();
+    } finally {
+      rmSync(root, {recursive: true, force: true});
+    }
+  });
+
   it('routes, briefs, scores, drafts and stops before submission without network', () => {
     const fetchSpy = vi.spyOn(globalThis, 'fetch');
     try {
@@ -25,6 +102,21 @@ describe('Career OS synthetic local canary', () => {
         profileReady: true,
         evidenceReady: true,
       });
+      const runnerRoot = mkdtempSync(resolve(tmpdir(), 'frames-career-canary-'));
+      const integrated = runCareerBriefFirst({
+        root: runnerRoot,
+        route: {
+          request: 'Busca vacantes y ayúdame a postular',
+          candidateId: 'CAND-SYNTHETIC-001',
+          targetRole: 'Product Operations Lead',
+          language: 'es',
+          profileReady: true,
+          evidenceReady: true,
+        },
+      });
+      expect(integrated.intent).toEqual(intent);
+      expect(integrated.materialized).toBe(true);
+      rmSync(runnerRoot, {recursive: true, force: true});
       expect(intent.selected_stage_path).toEqual([
         'C02',
         'C03',
