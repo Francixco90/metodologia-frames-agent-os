@@ -1,4 +1,3 @@
-// Multi-format changed-file budget gate with fail-closed coverage. [CONFIG]
 import {execFileSync} from 'node:child_process';
 import {realpathSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -23,6 +22,7 @@ import {
   readBudgetFile,
   versionableBudgetPaths,
 } from './lib/file-budget-git.ts';
+import {validateBudgetTrain} from './lib/file-budget-train.ts';
 import {isGeneratedProjection} from './ledger/decision.ts';
 import {metricsFor} from './ledger/git-walker.ts';
 import {legacyPathInversions, normalizeToLegacyPath} from './ledger/path-utils.ts';
@@ -85,6 +85,9 @@ export const isBudgetGeneratedPath = (path: string, logicalPath: string): boolea
   /^03_artefactos\/content\/experience\/(?:frames-experience-blueprint\.html|projection-manifest\.json)$/u.test(
     path,
   ) ||
+  /^(?:\.agents\/plugins\/marketplace\.json|\.agents\/skills\/frames-assist\/SKILL\.md|\.claude\/(?:commands\/frames\/assist\.md|skills\/frames-assist\/SKILL\.md)|\.gemini\/commands\/frames\/assist\.toml)$/u.test(
+    path,
+  ) ||
   /^02_proceso\/workflows\/multimedia\/(?:_schema\/artifacts\/|_assets\/artifact-registry\.md$)/u.test(
     path,
   ) ||
@@ -96,6 +99,9 @@ export const main = (root = ROOT): void => {
   try {
     const policy = loadPolicy(root);
     const delta = collectBudgetGitState(root);
+    const train = validateBudgetTrain(root, policy, isBudgetGeneratedPath, delta.base.commit);
+    errors.push(...train.errors);
+    warnings.push(...train.warnings);
     const inversions = legacyPathInversions(root);
     const authoredDelta = [...delta.paths].filter((path) => {
       const logicalPath = normalizeToLegacyPath(path, inversions);
@@ -107,14 +113,14 @@ export const main = (root = ROOT): void => {
       0,
     );
     if (
-      authoredDelta.length > policy.pr_budget.target_files ||
-      authoredLoc > policy.pr_budget.target_loc
+      (!train.active && authoredDelta.length > policy.pr_budget.target_files) ||
+      (!train.active && authoredLoc > policy.pr_budget.target_loc)
     ) {
       warnings.push(`BUDGET-PR-TARGET files=${authoredDelta.length} loc=${authoredLoc}`);
     }
     if (
-      authoredDelta.length > policy.pr_budget.hard_files ||
-      authoredLoc > policy.pr_budget.hard_loc
+      (!train.active && authoredDelta.length > policy.pr_budget.hard_files) ||
+      (!train.active && authoredLoc > policy.pr_budget.hard_loc)
     ) {
       errors.push(`BUDGET-PR-HARD files=${authoredDelta.length} loc=${authoredLoc}`);
     }
@@ -176,7 +182,7 @@ export const main = (root = ROOT): void => {
     console.info(
       `file-budgets: base=${delta.base.commit.slice(0, 12)} source=${delta.base.source}` +
         ` authored=${authoredDelta.length}/${authoredLoc} total=${delta.paths.size}/${delta.loc}` +
-        ` measured=${measured}`,
+        ` measured=${measured}${train.summary ? ` train=${train.summary}` : ''}`,
     );
   } catch (error) {
     errors.push(error instanceof Error ? error.message : String(error));

@@ -90,6 +90,18 @@ describe('file-budget Git state', () => {
     });
   });
 
+  it('prefers the product origin when both main remotes exist', () => {
+    const {root, base} = repository();
+    git(root, ['update-ref', 'refs/remotes/upstream/main', base]);
+    git(root, ['update-ref', 'refs/remotes/origin/main', base]);
+
+    expect(resolveBudgetBase(root, {})).toStrictEqual({
+      commit: base,
+      source: 'origin/main',
+      explicit: false,
+    });
+  });
+
   it('fails closed without an explicit or remote main base in CI and locally', () => {
     const {root} = repository();
     expect(() => resolveBudgetBase(root, {})).toThrow('BUDGET-BASE002 no reliable local base');
