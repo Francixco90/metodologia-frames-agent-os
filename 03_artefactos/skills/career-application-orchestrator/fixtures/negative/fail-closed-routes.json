@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {"id": "ambiguous_candidate", "input": {"candidate_matches": 2}, "expected": "BLOCKED"},
+    {"id": "inferred_submitted", "input": {"state": "SUBMITTED", "confirmation_ref": null}, "expected": "BLOCKED"},
+    {"id": "changed_package_hash", "input": {"authorization_hash_matches": false}, "expected": "BLOCKED"},
+    {"id": "captcha_required", "input": {"effect": "solve_captcha"}, "expected": "BLOCKED"},
+    {"id": "pii_to_git", "input": {"target": "versioned_repository", "contains_pii": true}, "expected": "BLOCKED"}
+  ]
+}
