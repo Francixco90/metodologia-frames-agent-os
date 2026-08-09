@@ -165,7 +165,12 @@ for (const skill of skills) {
   if (!existsSync(resolve(root, skillPath)) || !existsSync(resolve(root, lineagePath))) continue;
 
   const text = readFileSync(resolve(root, skillPath), 'utf8');
-  const expectedVersion = skill.id === 'metodologia-certificate-builder' ? '0.4.1' : '0.1.0';
+  const expectedVersion =
+    skill.id === 'metodologia-certificate-builder'
+      ? '0.4.1'
+      : skill.id === 'metodologia-brand-router'
+        ? '0.2.0'
+        : '0.1.0';
   const expectedExternalFragmentsReused =
     skill.id === 'metodologia-certificate-builder' ? true : false;
   const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n/u);
