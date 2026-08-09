@@ -13,6 +13,7 @@ import {
   hashExperienceValue,
 } from 'core/contracts/index.ts';
 import {verifyDocumentationClosureV1} from 'workflows/maintenance/index.ts';
+import {verifyDocumentationGateInputV1} from '../../scripts/check-documentation-closure.ts';
 
 const roots: string[] = [];
 const digest = (value: string): string => createHash('sha256').update(value).digest('hex');
@@ -94,6 +95,27 @@ afterEach(() => {
 });
 
 describe('documentation closure gate security', () => {
+  it('executes the productive gate with mutation profile and material closure together', () => {
+    const {root, receipt} = fixture();
+    expect(
+      verifyDocumentationGateInputV1(
+        {workOrder, impactPlan, closureReceipt: receipt, candidateSha256},
+        root,
+        [
+          {
+            skillId: workOrder.skillId,
+            mutationClasses: ['CORRECT'],
+            documentationImpactRequired: true,
+          },
+        ],
+      ),
+    ).toEqual({
+      schema_version: 'documentation-transversal-gate-v1',
+      gate: 'DOCS_TRANSVERSAL_COMPLETE',
+      status: 'PASS',
+      reason_codes: [],
+    });
+  });
   it('passes only a causally bound, material closure', () => {
     const {root, receipt} = fixture();
     expect(

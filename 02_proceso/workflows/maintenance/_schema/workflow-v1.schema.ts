@@ -20,7 +20,12 @@ const StepSchema = z.strictObject({
   verifier: PortableIdSchema.nullable(),
   inputs: z.array(PortableIdSchema).max(12),
   outputs: z.array(PortableIdSchema).min(1).max(12),
-  gate: z.enum(['HM_CHANGE_APPROVED', 'DOCS_TRANSVERSAL_COMPLETE', 'HM_PROMOTION_APPROVED']),
+  gate: z.enum([
+    'HM_CHANGE_APPROVED',
+    'HM_CANDIDATE_VERIFIED',
+    'DOCS_TRANSVERSAL_COMPLETE',
+    'HM_PROMOTION_APPROVED',
+  ]),
   stop_rule: z.string().min(1).max(400),
 });
 

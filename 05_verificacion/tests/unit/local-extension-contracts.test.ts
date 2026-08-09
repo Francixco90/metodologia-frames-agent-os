@@ -1,4 +1,7 @@
 import {describe, expect, it} from 'vitest';
+import {existsSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
 
 import {
   LocalExtensionManifestSchema,
@@ -96,7 +99,7 @@ describe('local extension contracts', () => {
     expect(result.selected_local).toBeUndefined();
   });
 
-  it('routes ordinary language to R8 without writing before brief approval', () => {
+  it('routes ordinary language to R8 without writing before brief approval', async () => {
     const input = {
       request: 'Crea una skill local para revisar mis presentaciones en este proyecto.',
     };
@@ -114,5 +117,11 @@ describe('local extension contracts', () => {
       state: 'READY_FOR_BRIEF_APPROVAL',
     });
     expect(first.request_hash).toMatch(/^[a-f0-9]{64}$/u);
+    const {dispatchIntent} = (await import(
+      pathToFileURL(resolve('03_artefactos/skills/content-os-router/scripts/route-intent.mjs')).href
+    )) as {dispatchIntent: (value: {request: string}) => {adapter: string}};
+    const dispatch = dispatchIntent(input);
+    expect(dispatch.adapter).toBe('workflows/local-extensions/intent-router.ts');
+    expect(existsSync(`02_proceso/${dispatch.adapter}`)).toBe(true);
   });
 });

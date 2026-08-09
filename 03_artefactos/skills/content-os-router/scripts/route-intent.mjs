@@ -122,7 +122,7 @@ export const dispatchIntent = (input) => {
   const adapter = routeId === 'R7'
     ? 'career-application-orchestrator/scripts/route-career.mjs'
     : routeId === 'R6' ? 'content-os-router/scripts/route-content.mjs'
-      : routeId === 'R8' ? 'workflows/local-extensions/route-local-extension-v1.ts'
+      : routeId === 'R8' ? 'workflows/local-extensions/intent-router.ts'
         : routeId === 'R9' ? 'workflows/maintenance/route-maintenance-v1.ts' : null;
   const nextGate = domainIntent?.next_gate ?? routeId;
   const decision = domainIntent?.decision ?? (
