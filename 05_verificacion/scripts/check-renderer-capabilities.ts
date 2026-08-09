@@ -286,7 +286,7 @@ if (process.argv.includes('--child')) {
     'REN-021 immutable legacy or n8n surface changed',
   );
 
-  const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-001.yml')) as {
+  const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-002.yml')) as {
     previous?: {lock_sha256?: string};
     current?: {lock_sha256?: string};
     approval_phrase?: string;

@@ -57,7 +57,7 @@ describe('H-03 renderer adapters integration', () => {
   });
 
   it('records approved lock succession and a reproducible graphical smoke without readiness claims', () => {
-    const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-001.yml')) as {
+    const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-002.yml')) as {
       approval_phrase?: string;
       previous?: {lock_sha256?: string};
       current?: {lock_sha256?: string};
