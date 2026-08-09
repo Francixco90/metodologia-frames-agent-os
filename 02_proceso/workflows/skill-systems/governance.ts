@@ -55,16 +55,21 @@ export const evaluateSkillRunV1 = (input: unknown) => {
   const eligible = run.cases.filter((item) => item.infrastructure_status === 'PASS');
   const candidatePasses = eligible.filter((item) => item.candidate_pass === true).length;
   const baselinePasses = eligible.filter((item) => item.baseline_pass === true).length;
+  const infrastructureFailureRatio = (run.cases.length - eligible.length) / run.cases.length;
+  const coverageSufficient =
+    eligible.length >= run.coverage_policy.minimum_eligible_cases &&
+    infrastructureFailureRatio <= run.coverage_policy.maximum_infrastructure_failure_ratio;
   return {
     schema_version: 'skill-eval-summary-v1',
     run_id: run.run_id,
     denominator: eligible.length,
     excluded_infrastructure: run.cases.length - eligible.length,
+    infrastructure_failure_ratio: infrastructureFailureRatio,
+    coverage_sufficient: coverageSufficient,
     candidate_passes: candidatePasses,
     baseline_passes: baselinePasses,
     lift: eligible.length === 0 ? null : (candidatePasses - baselinePasses) / eligible.length,
-    verdict:
-      eligible.length === 0 ? 'UNKNOWN' : candidatePasses > baselinePasses ? 'PASS' : 'REVISE',
+    verdict: !coverageSufficient ? 'UNKNOWN' : candidatePasses > baselinePasses ? 'PASS' : 'REVISE',
     summary_sha256: hash(run),
   } as const;
 };

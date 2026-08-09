@@ -1,0 +1,34 @@
+{
+  "schema_version": "skill-eval-run-v1",
+  "run_id": "EVAL-CLI-001",
+  "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "cases": [
+    {
+      "eval_case_id": "CASE-001",
+      "infrastructure_status": "PASS",
+      "baseline_pass": false,
+      "candidate_pass": true,
+      "evidence_refs": ["fixtures/one.json"]
+    },
+    {
+      "eval_case_id": "CASE-002",
+      "infrastructure_status": "PASS",
+      "baseline_pass": false,
+      "candidate_pass": true,
+      "evidence_refs": ["fixtures/two.json"]
+    },
+    {
+      "eval_case_id": "CASE-003",
+      "infrastructure_status": "FAIL",
+      "baseline_pass": null,
+      "candidate_pass": null,
+      "evidence_refs": []
+    }
+  ],
+  "replay_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "actor_id": "RT-07-EVAL-PRODUCER",
+  "coverage_policy": {
+    "minimum_eligible_cases": 2,
+    "maximum_infrastructure_failure_ratio": 0.34
+  }
+}

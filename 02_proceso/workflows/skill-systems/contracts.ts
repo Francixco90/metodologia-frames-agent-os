@@ -2,6 +2,7 @@ import {z} from 'zod';
 
 const Id = z.string().regex(/^[A-Z][A-Z0-9_-]{2,63}$/u);
 const Sha256 = z.string().regex(/^[a-f0-9]{64}$/u);
+const GitCommit = z.string().regex(/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/u);
 const RelativeRef = z
   .string()
   .min(1)
@@ -126,6 +127,21 @@ export const SkillEvalRunV1Schema = z.strictObject({
     .min(1),
   replay_sha256: Sha256,
   actor_id: Actor,
+  coverage_policy: z.strictObject({
+    minimum_eligible_cases: z.number().int().min(2),
+    maximum_infrastructure_failure_ratio: z.number().min(0).max(1),
+  }),
+});
+
+export const SkillHostProbeV1Schema = z.strictObject({
+  schema_version: z.literal('skill-host-probe-v1'),
+  release_id: Id,
+  profile: z.enum(['Codex', 'Claude', 'Gemini', 'ChatGPT']),
+  surface: z.literal('HOST_BEHAVIOR'),
+  status: z.literal('PASS'),
+  package_sha256: Sha256,
+  network_used: z.literal(false),
+  effects: z.array(z.never()).length(0),
 });
 
 export const SkillReviewReportV1Schema = z.strictObject({
@@ -154,12 +170,17 @@ export const SkillReleaseCapsuleV1Schema = z.strictObject({
   schema_version: z.literal('skill-release-capsule-v1'),
   release_id: Id,
   parent_release_id: Id.nullable(),
-  commit_sha: Sha256,
+  commit_sha: GitCommit,
   package_sha256: Sha256,
   files: z.array(z.strictObject({ref: RelativeRef, sha256: Sha256})).min(1),
   compatibility: z
     .array(
-      z.strictObject({profile: z.string().min(2), status: z.enum(['PASS', 'UNKNOWN', 'BLOCKED'])}),
+      z.strictObject({
+        profile: z.string().min(2),
+        status: z.enum(['PASS', 'UNKNOWN', 'BLOCKED']),
+        probe_ref: RelativeRef.nullable().default(null),
+        probe_sha256: Sha256.nullable().default(null),
+      }),
     )
     .min(1),
   approvals: z
@@ -172,6 +193,7 @@ export const SkillReleaseCapsuleV1Schema = z.strictObject({
     )
     .length(4),
   restore_ref: RelativeRef,
+  restore_sha256: Sha256,
   state: z.enum(['DRAFT', 'CANDIDATE', 'APPROVED', 'SUPERSEDED', 'RETIRED', 'REVOKED']),
 });
 

@@ -107,6 +107,13 @@ describe('Skill Systems contracts', () => {
         },
         {
           eval_case_id: 'CASE-002',
+          infrastructure_status: 'PASS',
+          baseline_pass: false,
+          candidate_pass: true,
+          evidence_refs: ['evidence/two.json'],
+        },
+        {
+          eval_case_id: 'CASE-003',
           infrastructure_status: 'FAIL',
           baseline_pass: null,
           candidate_pass: null,
@@ -115,8 +122,37 @@ describe('Skill Systems contracts', () => {
       ],
       replay_sha256: hash,
       actor_id: 'RT-07-EVAL-PRODUCER',
+      coverage_policy: {
+        minimum_eligible_cases: 2,
+        maximum_infrastructure_failure_ratio: 0.34,
+      },
     });
-    expect(summary).toMatchObject({denominator: 1, excluded_infrastructure: 1, verdict: 'PASS'});
+    expect(summary).toMatchObject({denominator: 2, excluded_infrastructure: 1, verdict: 'PASS'});
+  });
+
+  it('returns UNKNOWN when effective evaluation coverage is insufficient', () => {
+    expect(
+      evaluateSkillRunV1({
+        schema_version: 'skill-eval-run-v1',
+        run_id: 'RUN-LOW-COVERAGE',
+        candidate_sha256: hash,
+        cases: [
+          {
+            eval_case_id: 'CASE-ONLY',
+            infrastructure_status: 'PASS',
+            baseline_pass: false,
+            candidate_pass: true,
+            evidence_refs: ['evidence/one.json'],
+          },
+        ],
+        replay_sha256: hash,
+        actor_id: 'RT-07-EVAL-PRODUCER',
+        coverage_policy: {
+          minimum_eligible_cases: 2,
+          maximum_infrastructure_failure_ratio: 0,
+        },
+      }),
+    ).toMatchObject({coverage_sufficient: false, verdict: 'UNKNOWN'});
   });
 
   it('requires four separated release roles', () => {
@@ -129,6 +165,7 @@ describe('Skill Systems contracts', () => {
       files: [{ref: 'skills/a/SKILL.md', sha256: hash}],
       compatibility: [{profile: 'P0_PORTABLE', status: 'PASS'}],
       restore_ref: 'restore.md',
+      restore_sha256: hash,
       state: 'CANDIDATE',
     };
     expect(() => SkillReleaseCapsuleV1Schema.parse({...base, approvals: []})).toThrow();

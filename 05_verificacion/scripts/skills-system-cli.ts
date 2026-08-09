@@ -20,6 +20,7 @@ import {
   decideSmallestComponentV1,
   evaluateSkillRunV1,
 } from '../../02_proceso/workflows/skill-systems/governance.ts';
+import {buildSkillReleaseCapsuleV1} from '../../02_proceso/workflows/skill-systems/release.ts';
 import {stableStringify} from '../../02_proceso/workflows/multimedia/_runner/brief-model.ts';
 
 type Action = 'inspect' | 'scaffold' | 'validate' | 'evaluate' | 'package';
@@ -51,7 +52,7 @@ const inputFromArgs = async (args: string[]): Promise<unknown> => {
   return null;
 };
 
-const inspect = async (root: string) => {
+const inspect = async (root: string, input: unknown) => {
   const suite = parse(
     await readFile(path.join(root, '02_proceso/workflows/skill-systems/skill-suite.yml'), 'utf8'),
   ) as {skills: {id: string}[]};
@@ -66,15 +67,31 @@ const inspect = async (root: string) => {
       };
     }),
   );
+  if (!input)
+    return {
+      schema_version: 'skill-suite-inspection-v1',
+      status: 'UNKNOWN',
+      coverage_gap: 'SKILL_SYSTEM_CASE_REQUIRED',
+      packages,
+    } as const;
+  const materialCase = SkillSystemCaseV1Schema.parse(input);
   return {
     schema_version: 'skill-suite-inspection-v1',
     status: packages.length === 8 ? 'PASS' : 'BLOCKED',
+    case_id: materialCase.case_id,
+    case_sha256: materialCase.content_sha256,
     packages,
-  };
+  } as const;
 };
 
 const validate = (input: unknown) => {
-  if (!input) return {schema_version: 'skill-validation-v1', status: 'PASS', checked_contracts: 9};
+  if (!input)
+    return {
+      schema_version: 'skill-validation-v1',
+      status: 'UNKNOWN',
+      coverage_gap: 'MATERIAL_CONTRACT_REQUIRED',
+      checked_contracts: 0,
+    } as const;
   const record = input as Record<string, unknown>;
   const schema = typeof record.schema_version === 'string' ? record.schema_version : '';
   const schemas = new Map<string, ZodType>([
@@ -96,30 +113,13 @@ const validate = (input: unknown) => {
 
 const evaluate = (input: unknown) => {
   if (input) return evaluateSkillRunV1(input);
-  const digest = 'a'.repeat(64);
-  return evaluateSkillRunV1({
-    schema_version: 'skill-eval-run-v1',
-    run_id: 'EVAL-SMOKE-001',
-    candidate_sha256: digest,
-    cases: [
-      {
-        eval_case_id: 'CASE-001',
-        infrastructure_status: 'PASS',
-        baseline_pass: false,
-        candidate_pass: true,
-        evidence_refs: ['fixtures/pass.json'],
-      },
-      {
-        eval_case_id: 'CASE-002',
-        infrastructure_status: 'FAIL',
-        baseline_pass: null,
-        candidate_pass: null,
-        evidence_refs: [],
-      },
-    ],
-    replay_sha256: digest,
-    actor_id: 'RT-07-EVAL-PRODUCER',
-  });
+  return {
+    schema_version: 'skill-eval-summary-v1',
+    status: 'UNKNOWN',
+    verdict: 'UNKNOWN',
+    denominator: 0,
+    coverage_gap: 'MATERIAL_EVAL_RUN_REQUIRED',
+  } as const;
 };
 
 const scaffold = (input: unknown, apply: boolean) => {
@@ -135,15 +135,24 @@ const scaffold = (input: unknown, apply: boolean) => {
   return {schema_version: 'skill-scaffold-plan-v1', mode: 'DRY_RUN', decision, writes: []};
 };
 
-const packageCandidate = async (root: string, apply: boolean) => {
+const packageCandidate = (root: string, apply: boolean, input: unknown) => {
   if (apply) throw new Error('SSS_PACKAGE_GATE_AND_WORK_ORDER_REQUIRED');
-  const report = await inspect(root);
+  if (!input)
+    return {
+      schema_version: 'skill-package-plan-v1',
+      status: 'UNKNOWN',
+      mode: 'DRY_RUN',
+      coverage_gap: 'MATERIAL_RELEASE_CAPSULE_REQUIRED',
+      writes: [],
+    } as const;
+  const capsule = buildSkillReleaseCapsuleV1(input, root);
   return {
     schema_version: 'skill-package-plan-v1',
+    status: 'PASS',
     mode: 'DRY_RUN',
-    candidate_count: report.packages.length,
+    release_id: capsule.release_id,
     writes: [],
-  };
+  } as const;
 };
 
 export function runSkillSystemCli(
@@ -170,16 +179,16 @@ export function runSkillSystemCli(
   action: 'package',
   args: string[],
   root?: string,
-): ReturnType<typeof packageCandidate>;
+): Promise<ReturnType<typeof packageCandidate>>;
 export function runSkillSystemCli(action: Action, args: string[], root?: string): Promise<unknown>;
 export async function runSkillSystemCli(action: Action, args: string[], root = process.cwd()) {
   const input = await inputFromArgs(args);
   const apply = args.includes('--apply');
-  if (action === 'inspect') return inspect(root);
+  if (action === 'inspect') return inspect(root, input);
   if (action === 'validate') return validate(input);
   if (action === 'evaluate') return evaluate(input);
   if (action === 'scaffold') return scaffold(input, apply);
-  return packageCandidate(root, apply);
+  return packageCandidate(root, apply, input);
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
@@ -189,5 +198,13 @@ if (isMain) {
     throw new Error('SSS_ACTION_REQUIRED');
   const cliArgs = process.argv.slice(3);
   if (!process.stdin.isTTY && !cliArgs.includes('--input')) cliArgs.push('--stdin');
-  console.info(canonical(await runSkillSystemCli(action, cliArgs)));
+  const result = await runSkillSystemCli(action, cliArgs);
+  console.info(canonical(result));
+  if (
+    typeof result === 'object' &&
+    result !== null &&
+    'status' in result &&
+    ['UNKNOWN', 'BLOCKED'].includes(String(result.status))
+  )
+    process.exitCode = 2;
 }

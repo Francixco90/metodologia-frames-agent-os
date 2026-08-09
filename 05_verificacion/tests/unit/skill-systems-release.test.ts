@@ -9,8 +9,7 @@ import {
 } from '../../../02_proceso/workflows/skill-systems/release.ts';
 
 const sha = (value: string) => createHash('sha256').update(value).digest('hex');
-const commit = 'a'.repeat(64);
-const packageSha = 'b'.repeat(64);
+const commit = 'a'.repeat(40);
 
 const fixture = async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'frames-sss-release-'));
@@ -19,6 +18,10 @@ const fixture = async () => {
   await mkdir(path.join(root, 'releases'), {recursive: true});
   const skill = '# Demo\n';
   await writeFile(path.join(root, 'skills/demo/SKILL.md'), skill);
+  const restore = '# Restore\n\nReinstala el paquete ligado al manifest.\n';
+  await writeFile(path.join(root, 'restore.md'), restore);
+  const fileHash = sha(skill);
+  const packageSha = sha(`${fileHash}  skills/demo/SKILL.md\n`);
   const roles = ['AUTHOR', 'REVIEWER', 'GUARDIAN', 'APPROVER'] as const;
   const approvals = [];
   for (const role of roles) {
@@ -37,6 +40,18 @@ const fixture = async () => {
     );
     approvals.push({role, actor_id: actor, receipt_ref: ref});
   }
+  const compatibility: {
+    profile: string;
+    status: 'PASS' | 'UNKNOWN' | 'BLOCKED';
+    probe_ref: string | null;
+    probe_sha256: string | null;
+  }[] = [
+    {profile: 'P0_PORTABLE', status: 'PASS', probe_ref: null, probe_sha256: null},
+    {profile: 'Codex', status: 'UNKNOWN', probe_ref: null, probe_sha256: null},
+    {profile: 'Claude', status: 'UNKNOWN', probe_ref: null, probe_sha256: null},
+    {profile: 'Gemini', status: 'UNKNOWN', probe_ref: null, probe_sha256: null},
+    {profile: 'ChatGPT', status: 'UNKNOWN', probe_ref: null, probe_sha256: null},
+  ];
   return {
     root,
     capsule: {
@@ -45,16 +60,11 @@ const fixture = async () => {
       parent_release_id: null,
       commit_sha: commit,
       package_sha256: packageSha,
-      files: [{ref: 'skills/demo/SKILL.md', sha256: sha(skill)}],
-      compatibility: [
-        {profile: 'P0_PORTABLE', status: 'PASS'},
-        {profile: 'Codex', status: 'UNKNOWN'},
-        {profile: 'Claude', status: 'UNKNOWN'},
-        {profile: 'Gemini', status: 'UNKNOWN'},
-        {profile: 'ChatGPT', status: 'UNKNOWN'},
-      ],
+      files: [{ref: 'skills/demo/SKILL.md', sha256: fileHash}],
+      compatibility,
       approvals,
       restore_ref: 'restore.md',
+      restore_sha256: sha(restore),
       state: 'CANDIDATE',
     },
   };
@@ -79,10 +89,53 @@ describe('Skill release capsule', () => {
     await writeFile(path.join(root, 'approvals/reviewer.json'), '{}');
     expect(() => buildSkillReleaseCapsuleV1(capsule, root)).toThrow('SSS_RELEASE_APPROVAL001');
     const next = await fixture();
-    next.capsule.compatibility[1] = {profile: 'Codex', status: 'PASS'};
+    next.capsule.compatibility[1] = {
+      profile: 'Codex',
+      status: 'PASS',
+      probe_ref: null,
+      probe_sha256: null,
+    };
     expect(() => buildSkillReleaseCapsuleV1(next.capsule, next.root)).toThrow(
       'SSS_RELEASE_HOST_PROBE_REQUIRED:Codex',
     );
+  });
+
+  it('blocks package and restore drift', async () => {
+    const first = await fixture();
+    expect(() =>
+      buildSkillReleaseCapsuleV1({...first.capsule, package_sha256: 'c'.repeat(64)}, first.root),
+    ).toThrow('SSS_RELEASE_PACKAGE_HASH001');
+    const second = await fixture();
+    await writeFile(path.join(second.root, 'restore.md'), 'changed');
+    expect(() => buildSkillReleaseCapsuleV1(second.capsule, second.root)).toThrow(
+      'SSS_RELEASE_RESTORE_HASH001',
+    );
+  });
+
+  it('accepts host PASS only with a material HOST_BEHAVIOR probe', async () => {
+    const {root, capsule} = await fixture();
+    const probeRef = 'approvals/codex-host-probe.json';
+    const probe = JSON.stringify({
+      schema_version: 'skill-host-probe-v1',
+      release_id: capsule.release_id,
+      profile: 'Codex',
+      surface: 'HOST_BEHAVIOR',
+      status: 'PASS',
+      package_sha256: capsule.package_sha256,
+      network_used: false,
+      effects: [],
+    });
+    await writeFile(path.join(root, probeRef), probe);
+    capsule.compatibility[1] = {
+      profile: 'Codex',
+      status: 'PASS',
+      probe_ref: probeRef,
+      probe_sha256: sha(probe),
+    };
+    expect(buildSkillReleaseCapsuleV1(capsule, root).compatibility[1]).toMatchObject({
+      profile: 'Codex',
+      status: 'PASS',
+    });
   });
 
   it('never treats CANDIDATE evidence as H01 approval', async () => {

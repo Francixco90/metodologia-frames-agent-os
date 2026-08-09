@@ -1,0 +1,15 @@
+{
+  "schema_version": "skill-system-case-v1",
+  "case_id": "CASE-CLI-001",
+  "parent_id": null,
+  "request": "Crear una skill repetible para revisar contratos antes de activarlos",
+  "scope": "PROJECT_LOCAL",
+  "desired_outcome": "Bloquear contratos incompletos sin ampliar permisos",
+  "source_refs": ["00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml"],
+  "authority_status": "PARTIAL",
+  "effect_ceiling": "E1",
+  "acceptance": ["Rechaza referencias inexistentes"],
+  "blocking_gaps": ["K02 no observado"],
+  "owner": "RT-07-SKILL-PRODUCER",
+  "content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

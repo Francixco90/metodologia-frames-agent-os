@@ -1,4 +1,5 @@
 import {mkdtemp, readFile, writeFile} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
@@ -7,10 +8,20 @@ import {runSkillSystemCli} from '../../scripts/skills-system-cli.ts';
 const root = process.cwd();
 
 describe('Skill Systems project-local tools', () => {
-  it('inspects the eight governed packages read-only', async () => {
+  it('keeps package inventory UNKNOWN without a material Skill Case', async () => {
     const result = await runSkillSystemCli('inspect', ['--check'], root);
-    expect(result).toMatchObject({status: 'PASS'});
+    expect(result).toMatchObject({status: 'UNKNOWN', coverage_gap: 'SKILL_SYSTEM_CASE_REQUIRED'});
     expect(result.packages).toHaveLength(8);
+  });
+
+  it('binds inspection to a material Skill Case', async () => {
+    expect(
+      await runSkillSystemCli(
+        'inspect',
+        ['--input', '05_verificacion/tests/fixtures/skill-systems/case.json'],
+        root,
+      ),
+    ).toMatchObject({status: 'PASS', case_id: 'CASE-CLI-001'});
   });
 
   it('keeps scaffold and package dry-run by default', async () => {
@@ -20,8 +31,9 @@ describe('Skill Systems project-local tools', () => {
       writes: [],
     });
     expect(await runSkillSystemCli('package', ['--check'], root)).toMatchObject({
+      status: 'UNKNOWN',
       mode: 'DRY_RUN',
-      candidate_count: 8,
+      coverage_gap: 'MATERIAL_RELEASE_CAPSULE_REQUIRED',
       writes: [],
     });
     expect(await readFile('02_proceso/workflows/skill-systems/skill-suite.yml', 'utf8')).toBe(
@@ -45,6 +57,17 @@ describe('Skill Systems project-local tools', () => {
   });
 
   it('validates a material contract supplied by relative ref', async () => {
+    expect(
+      await runSkillSystemCli(
+        'validate',
+        ['--input', '05_verificacion/tests/fixtures/skill-systems/case.json'],
+        root,
+      ),
+    ).toMatchObject({status: 'PASS', validated_schema: 'skill-system-case-v1'});
+    expect(await runSkillSystemCli('validate', ['--check'], root)).toMatchObject({
+      status: 'UNKNOWN',
+      checked_contracts: 0,
+    });
     const dir = await mkdtemp(path.join(tmpdir(), 'frames-sss-'));
     const ref = path.relative(root, path.join(dir, 'case.json'));
     await writeFile(path.join(dir, 'case.json'), JSON.stringify({schema_version: 'unsupported'}));
@@ -53,11 +76,34 @@ describe('Skill Systems project-local tools', () => {
     );
   });
 
-  it('smoke-evaluates without counting failed infrastructure', async () => {
+  it('requires a material evaluation and excludes failed infrastructure', async () => {
     expect(await runSkillSystemCli('evaluate', ['--check'], root)).toMatchObject({
-      denominator: 1,
+      denominator: 0,
+      verdict: 'UNKNOWN',
+      coverage_gap: 'MATERIAL_EVAL_RUN_REQUIRED',
+    });
+    expect(
+      await runSkillSystemCli(
+        'evaluate',
+        ['--input', '05_verificacion/tests/fixtures/skill-systems/eval-run.json'],
+        root,
+      ),
+    ).toMatchObject({
+      denominator: 2,
       excluded_infrastructure: 1,
       verdict: 'PASS',
     });
+  });
+
+  it('fails closed at the process boundary when an automatic gate has no input', () => {
+    for (const action of ['inspect', 'validate', 'evaluate', 'package']) {
+      const result = spawnSync(
+        process.execPath,
+        ['--import', 'tsx', '05_verificacion/scripts/skills-system-cli.ts', action, '--stdin'],
+        {cwd: root, encoding: 'utf8', input: ''},
+      );
+      expect(result.status, `${action}: ${result.stderr}`).toBe(2);
+      expect(result.stdout).toContain('UNKNOWN');
+    }
   });
 });
