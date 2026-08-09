@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 
 import {ExperienceReleaseCapsuleV1Schema} from '../../core/contracts/experience-release-v1.ts';
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
+import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
 
 const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
 const CAPSULE_FILES = [
@@ -38,7 +39,6 @@ export const verifyReleaseCapsule = (
     parentReleaseId: manifest.parentReleaseId,
     commitSha: manifest.commitSha,
     releaseClass: manifest.releaseClass,
-    status: manifest.status,
     artifacts: manifest.artifacts,
   };
   if (hash(canonicalize(identity)) !== manifest.canonicalSha256) {
@@ -106,8 +106,29 @@ export const verifyReleaseCapsule = (
           !real.startsWith(`${realRoot}/`)
         ) {
           errors.push(`approval-not-regular:${ref}`);
-        } else if (hash(readFileSync(real)) !== decision.evidence.sha256) {
-          errors.push(`approval-hash-drift:${ref}`);
+        } else {
+          const content = readFileSync(real, 'utf8');
+          if (hash(content) !== decision.evidence.sha256) {
+            errors.push(`approval-hash-drift:${ref}`);
+            continue;
+          }
+          let receipt;
+          try {
+            receipt = ExperienceApprovalReceiptV1Schema.parse(JSON.parse(content));
+          } catch {
+            errors.push(`approval-receipt-invalid:${ref}`);
+            continue;
+          }
+          if (
+            receipt.releaseId !== manifest.releaseId ||
+            receipt.role !== decision.role ||
+            receipt.actorId !== decision.actorId ||
+            receipt.decision !== decision.decision ||
+            receipt.candidateCommit !== manifest.commitSha ||
+            receipt.candidateSha256 !== manifest.canonicalSha256
+          ) {
+            errors.push(`approval-binding-drift:${ref}`);
+          }
         }
       } catch {
         errors.push(`approval-file-missing:${ref}`);

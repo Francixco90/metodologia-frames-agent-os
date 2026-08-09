@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {lstatSync, mkdirSync, readFileSync, realpathSync, writeFileSync} from 'node:fs';
+import {lstatSync, readFileSync, realpathSync} from 'node:fs';
 import {isAbsolute, relative, resolve} from 'node:path';
 
 import {
@@ -7,6 +7,8 @@ import {
   type ExperienceReleaseCapsuleV1,
 } from '../../core/contracts/experience-release-v1.ts';
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
+import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
+import {writeCapsuleAtomically} from './atomic-capsule-store.ts';
 
 const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
 const portable = (value: string): string => value.replaceAll('\\', '/');
@@ -31,6 +33,11 @@ export type BuildReleaseOptions = {
   status?: 'CANDIDATE' | 'APPROVED';
   decisions?: ExperienceReleaseCapsuleV1['decisions'];
 };
+
+type CandidateIdentityOptions = Pick<
+  BuildReleaseOptions,
+  'root' | 'releaseId' | 'parentRelease' | 'releaseClass' | 'repositoryCommit' | 'files'
+>;
 
 const relativeFile = (root: string, value: string): string => {
   const path = portable(isAbsolute(value) ? relative(root, value) : value);
@@ -62,6 +69,22 @@ const readSafeFile = (
   return {ref, content, sha256: hash(content)};
 };
 
+const candidateIdentity = (options: CandidateIdentityOptions) => ({
+  releaseId: options.releaseId,
+  parentReleaseId: options.parentRelease,
+  commitSha: options.repositoryCommit,
+  releaseClass: options.releaseClass,
+  artifacts: [...new Set(options.files.map((item) => relativeFile(options.root, item)))]
+    .sort()
+    .map((path) => {
+      const {ref, sha256} = readSafeFile(options.root, path);
+      return {ref, sha256};
+    }),
+});
+
+export const computeReleaseCandidateSha256 = (options: CandidateIdentityOptions): string =>
+  hash(canonicalize(candidateIdentity(options)));
+
 export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceReleaseCapsuleV1 => {
   const output = resolve(options.output);
   const status = options.status ?? 'CANDIDATE';
@@ -75,7 +98,8 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
   }
   const files = [...new Set(options.files.map((item) => relativeFile(options.root, item)))].sort();
   if (files.length === 0) throw new Error('EXP-RELEASE-EMPTY: at least one file is required');
-  const sourceArtifacts = files.map((path) => readSafeFile(options.root, path));
+  const identity = candidateIdentity(options);
+  const candidateSha256 = hash(canonicalize(identity));
   const decisions = options.decisions ?? [];
   if (status === 'APPROVED') {
     const actors = new Set(decisions.map(({actorId}) => actorId));
@@ -92,6 +116,22 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
       if (observed.sha256 !== decision.evidence.sha256) {
         throw new Error(`EXP-RELEASE-EVIDENCE: stale evidence hash ${ref}`);
       }
+      let receipt;
+      try {
+        receipt = ExperienceApprovalReceiptV1Schema.parse(JSON.parse(observed.content));
+      } catch {
+        throw new Error(`EXP-RELEASE-EVIDENCE: invalid approval receipt ${ref}`);
+      }
+      if (
+        receipt.releaseId !== options.releaseId ||
+        receipt.role !== decision.role ||
+        receipt.actorId !== decision.actorId ||
+        receipt.decision !== decision.decision ||
+        receipt.candidateCommit !== options.repositoryCommit ||
+        receipt.candidateSha256 !== candidateSha256
+      ) {
+        throw new Error(`EXP-RELEASE-EVIDENCE: approval binding mismatch ${ref}`);
+      }
     }
   }
   const generated: Record<string, string> = {
@@ -103,17 +143,10 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
     'restore.md': `# Restauración\n\nVerificar SHA256SUMS. Recuperar archivos desde \`${options.repositoryCommit}\` y comprobar cada hash. No restaurar estado privado ni receipts de aprobación.\n`,
     'acceptance-evidence.json': `${JSON.stringify({schemaVersion: 'experience-acceptance-evidence-v1', releaseId: options.releaseId, evidence: decisions.map(({role, decision, evidence}) => ({role, decision, evidence})), metrics: {baseline: 'UNKNOWN', result: 'UNKNOWN'}, verdict: status === 'APPROVED' ? 'PASS' : 'UNKNOWN', nextGate: status === 'APPROVED' ? 'H01_COMPLETE' : 'RT-09'}, null, 2)}\n`,
   };
-  const identity = {
-    releaseId: options.releaseId,
-    parentReleaseId: options.parentRelease,
-    commitSha: options.repositoryCommit,
-    releaseClass: options.releaseClass,
-    status,
-    artifacts: sourceArtifacts.map(({ref, sha256}) => ({ref, sha256})),
-  };
   const manifest = ExperienceReleaseCapsuleV1Schema.parse({
     schemaVersion: 'experience-release-capsule-v1',
     ...identity,
+    status,
     compatibleRoutes: ['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7'],
     compatibleHosts: ['CLAUDE', 'CODEX', 'CHATGPT', 'TEXT_FALLBACK'],
     invalidatedObjects: [],
@@ -124,19 +157,16 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
       {ref: 'acceptance-evidence.json', sha256: hash(generated['acceptance-evidence.json']!)},
     ],
     decisions,
-    canonicalSha256: hash(canonicalize(identity)),
+    canonicalSha256: candidateSha256,
   });
   const artifacts = {
     ...generated,
     'release-manifest.json': `${JSON.stringify(manifest, null, 2)}\n`,
   };
-  mkdirSync(output, {recursive: true});
-  for (const [name, value] of Object.entries(artifacts))
-    writeFileSync(resolve(output, name), value, 'utf8');
   const sums = Object.entries(artifacts)
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([name, value]) => `${hash(value)}  ${name}`)
     .join('\n');
-  writeFileSync(resolve(output, 'SHA256SUMS'), `${sums}\n`, 'utf8');
+  writeCapsuleAtomically(options.root, output, {...artifacts, SHA256SUMS: `${sums}\n`});
   return manifest;
 };

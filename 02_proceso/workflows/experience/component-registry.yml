@@ -12,62 +12,62 @@ components:
   - {
       id: WelcomeCard,
       purpose: Recibir e identificar Frames,
-      allowed_states: [ASSIST_ONLY],
-      required_fields: [identity, concise_menu],
+      allowed_states: [ASSISTING],
+      required_fields: [identity, message, conciseMenu],
     }
   - {
       id: IntentSummary,
       purpose: Confirmar el resultado entendido,
-      allowed_states: [ACTIONABLE, AMBIGUOUS, RESUME_CANDIDATE],
-      required_fields: [understood_outcome],
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [understoodOutcome, route, state],
     }
   - {
       id: ConciseMenu,
       purpose: Ofrecer cuatro trabajos solo al saludar o pedir menú,
-      allowed_states: [ASSIST_ONLY],
-      required_fields: [options],
+      allowed_states: [ASSISTING],
+      required_fields: [options, freeTextAllowed],
     }
   - {
       id: BriefPreview,
       purpose: Mostrar el contrato antes de producir,
-      allowed_states: [ACTIONABLE, RESUME_CANDIDATE],
-      required_fields: [brief_id, outcome, deliverables, acceptance],
+      allowed_states: [READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [briefKind, summary, materialized],
     }
   - {
       id: ProgressStepper,
       purpose: Ubicar hito activo y siguiente paso,
-      allowed_states: [ACTIONABLE, RESUME_CANDIDATE],
-      required_fields: [completed, active, next],
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [steps, active],
     }
   - {
       id: EvidenceGapCard,
       purpose: Explicar evidencia faltante y tratamiento,
-      allowed_states: [AMBIGUOUS, BLOCKED],
-      required_fields: [gap, impact, resolution],
+      allowed_states: [ROUTED, READY_FOR_BRIEF, BLOCKED],
+      required_fields: [gaps, resolution],
     }
   - {
       id: DecisionGate,
       purpose: Solicitar una decisión exacta y reversible,
-      allowed_states: [ACTIONABLE, BLOCKED],
-      required_fields: [decision, consequence, primary_action],
+      allowed_states: [ROUTED, READY_FOR_BRIEF],
+      required_fields: [decision, consequence],
     }
   - {
       id: ArtifactGallery,
       purpose: Presentar artefactos y hashes materiales,
-      allowed_states: [ACTIONABLE, RESUME_CANDIDATE],
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE],
       required_fields: [artifacts],
     }
   - {
       id: QualityStatus,
       purpose: Separar checks ejecutados y gaps,
-      allowed_states: [ACTIONABLE, BLOCKED],
-      required_fields: [checks, verdict, next_gate],
+      allowed_states: [ROUTED, READY_FOR_BRIEF, BLOCKED],
+      required_fields: [checks, verdict, nextGate],
     }
   - {
       id: ResumeCard,
       purpose: Reanudar sin repetir el intake,
-      allowed_states: [RESUME_CANDIDATE],
-      required_fields: [lineage, last_artifact, recommended_next_action],
+      allowed_states: [RESUMABLE],
+      required_fields: [state, recommendedNextAction],
     }
   - {
       id: RecoveryCard,
