@@ -45,6 +45,36 @@ const claim = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
+type SurfaceBindingFixture = {
+  path: string;
+  classification: 'evidence' | 'non_claim';
+  evidence_ids: string[];
+  evidence_hashes: string[];
+  rationale: string | null;
+};
+const binding = (
+  path: string,
+  overrides: Partial<SurfaceBindingFixture> = {},
+): SurfaceBindingFixture => ({
+  path,
+  classification: 'evidence',
+  evidence_ids: ['EVD-VERIFIED-001'],
+  evidence_hashes: [HASH],
+  rationale: null,
+  ...overrides,
+});
+
+const cvBindings = () => [
+  binding('/headline'),
+  binding('/summary'),
+  binding('/experience/0/organization'),
+  binding('/experience/0/role'),
+  binding('/experience/0/period'),
+  binding('/skills/0'),
+];
+
+const letterBindings = () => [binding('/paragraphs/0'), binding('/paragraphs/1')];
+
 const cv = (claimOverrides: Record<string, unknown> = {}) => ({
   schema_version: 'career-cv-v1',
   document_id: 'CV-SYNTHETIC-001',
@@ -70,6 +100,7 @@ const cv = (claimOverrides: Record<string, unknown> = {}) => ({
   education: [],
   skills: ['Product Operations'],
   source_refs: ['work/private/evidence/result.md'],
+  surface_bindings: cvBindings(),
   content_sha256: OTHER_HASH,
 });
 
@@ -89,6 +120,7 @@ const letter = (claimOverrides: Record<string, unknown> = {}) => ({
   paragraphs: ['Párrafo sintético uno.', 'Párrafo sintético dos.'],
   claims: [claim(claimOverrides)],
   source_refs: ['work/private/evidence/result.md'],
+  surface_bindings: letterBindings(),
   content_sha256: OTHER_HASH,
 });
 
@@ -199,4 +231,43 @@ describe('Career evidence boundary', () => {
   ])('fails closed on %s', (_label, document, evidenceBank, message) => {
     expect(() => assertCareerEvidence(document, evidenceBank)).toThrow(message);
   });
+
+  it('rejects a CV whose auxiliary claim is valid but a rendered factual surface is unbound', () => {
+    const document = cv();
+    document.summary = 'Dirigió una transformación regional no demostrada.';
+    document.surface_bindings = document.surface_bindings.filter(
+      ({path}: {path: string}) => path !== '/summary',
+    );
+    expect(() => assertCareerEvidence(document, bank())).toThrow(/UNBOUND_VISIBLE_TEXT/u);
+  });
+
+  it('rejects letter paragraphs that make factual claims outside the validated claim array', () => {
+    const document = letter();
+    document.paragraphs = [
+      'Incrementé ingresos un 80% en una región completa.',
+      'El claim auxiliar separado sí tiene evidencia.',
+    ];
+    document.surface_bindings = [binding('/paragraphs/1')];
+    expect(() => assertCareerEvidence(document, bank())).toThrow(/UNBOUND_VISIBLE_TEXT/u);
+  });
+
+  it.each([
+    ['CV summary', cv(), '/summary'],
+    ['letter paragraph', letter(), '/paragraphs/0'],
+  ])(
+    'does not accept non_claim as an escape hatch for factual %s text',
+    (_label, document, path) => {
+      document.surface_bindings = document.surface_bindings.map((surface: SurfaceBindingFixture) =>
+        surface.path === path
+          ? binding(path, {
+              classification: 'non_claim',
+              evidence_ids: [],
+              evidence_hashes: [],
+              rationale: 'Declared non-claim despite factual content.',
+            })
+          : surface,
+      );
+      expect(() => assertCareerEvidence(document, bank())).toThrow(/NON_CLAIM_VISIBLE_TEXT/u);
+    },
+  );
 });

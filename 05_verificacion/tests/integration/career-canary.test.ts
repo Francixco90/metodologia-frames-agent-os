@@ -14,6 +14,7 @@ import {runCareerBriefFirst} from 'workflows/career/_runner/career-runner.ts';
 import {runCareerCanary} from 'workflows/career/_runner/canary.ts';
 import {calculateCareerDocumentHash} from 'workflows/career/_runner/document-model.ts';
 import {renderCareerCvHtml} from 'workflows/career/_runner/document-renderer.ts';
+import {calculateEvidenceBankHash} from 'workflows/career/_runner/evidence-gate.ts';
 import {routeCareerIntent} from 'workflows/career/_runner/route-career.ts';
 import {scoreCareerOpportunity} from 'workflows/career/_runner/scoring.ts';
 import {transitionCareerState} from 'workflows/career/_runner/state-machine.ts';
@@ -182,6 +183,36 @@ describe('Career OS synthetic local canary', () => {
         evidence_ids: ['EVD-SYNTHETIC-001'],
         evidence_hashes: [HASH_A],
       };
+      const unsignedBank = {
+        schema_version: 'evidence-bank-v1' as const,
+        candidate_id: 'CAND-SYNTHETIC-001',
+        evidence: [
+          {
+            evidence_id: 'EVD-SYNTHETIC-001',
+            claim: claim.text,
+            context: 'Contexto sintético.',
+            action_method: 'Método sintético.',
+            result: 'Resultado sintético.',
+            metric: '30% durante un trimestre',
+            source_ref: 'work/private/career/evidence.yml',
+            source_sha256: HASH_A,
+            confidence: 'verified' as const,
+            allowed_channels: ['cv' as const],
+            constraints: [],
+          },
+        ],
+      };
+      const evidenceBank = {
+        ...unsignedBank,
+        bank_sha256: calculateEvidenceBankHash(unsignedBank as never),
+      };
+      const surface = (path: string) => ({
+        path,
+        classification: 'evidence' as const,
+        evidence_ids: ['EVD-SYNTHETIC-001'],
+        evidence_hashes: [HASH_A],
+        rationale: null,
+      });
       const cvDraft = {
         schema_version: 'career-cv-v1',
         document_id: 'CV-SYNTHETIC-001',
@@ -207,9 +238,17 @@ describe('Career OS synthetic local canary', () => {
         education: [],
         skills: ['Product Operations'],
         source_refs: ['work/private/career/evidence.yml'],
+        surface_bindings: [
+          '/headline',
+          '/summary',
+          '/experience/0/organization',
+          '/experience/0/role',
+          '/experience/0/period',
+          '/skills/0',
+        ].map(surface),
       } as const;
       const cv = {...cvDraft, content_sha256: calculateCareerDocumentHash(cvDraft as never)};
-      const cvHtml = renderCareerCvHtml(cv);
+      const cvHtml = renderCareerCvHtml(cv, evidenceBank);
       expect(cvHtml).toContain('data-claim-id="CLM-SYNTHETIC-001"');
       expect(cvHtml).not.toMatch(/(?:src|href)=["']https?:/iu);
 

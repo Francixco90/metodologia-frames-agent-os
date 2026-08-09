@@ -15,6 +15,7 @@ import {
   calculateCareerDocumentHash,
   parseCareerLetter,
 } from 'workflows/career/_runner/document-model.ts';
+import {calculateEvidenceBankHash} from 'workflows/career/_runner/evidence-gate.ts';
 import {
   renderCareerCvHtml,
   renderCareerLetterHtml,
@@ -49,6 +50,36 @@ const claim = {
   evidence_ids: ['EVD-SYNTHETIC-001'],
   evidence_hashes: [HASH],
 };
+const unsignedBank = {
+  schema_version: 'evidence-bank-v1' as const,
+  candidate_id: 'CAND-SYNTHETIC-001',
+  evidence: [
+    {
+      evidence_id: 'EVD-SYNTHETIC-001',
+      claim: claim.text,
+      context: 'Contexto sintético.',
+      action_method: 'Método sintético.',
+      result: 'Resultado sintético.',
+      metric: '30% durante un trimestre',
+      source_ref: 'work/private/evidence/profile.yml',
+      source_sha256: HASH,
+      confidence: 'verified' as const,
+      allowed_channels: ['cv' as const, 'letter' as const],
+      constraints: [],
+    },
+  ],
+};
+const evidenceBank = {
+  ...unsignedBank,
+  bank_sha256: calculateEvidenceBankHash(unsignedBank as never),
+};
+const surface = (path: string) => ({
+  path,
+  classification: 'evidence' as const,
+  evidence_ids: ['EVD-SYNTHETIC-001'],
+  evidence_hashes: [HASH],
+  rationale: null,
+});
 const cvWithoutHash = {
   schema_version: 'career-cv-v1',
   document_id: 'CV-SYNTHETIC-001',
@@ -74,6 +105,17 @@ const cvWithoutHash = {
   education: ['Programa sintético'],
   skills: ['Product Operations', 'Evidence systems'],
   source_refs: ['work/private/evidence/profile.yml'],
+  surface_bindings: [
+    '/headline',
+    '/summary',
+    '/experience/0/organization',
+    '/experience/0/role',
+    '/experience/0/period',
+    '/experience/0/location',
+    '/education/0',
+    '/skills/0',
+    '/skills/1',
+  ].map(surface),
 } as const;
 const cv = {...cvWithoutHash, content_sha256: calculateCareerDocumentHash(cvWithoutHash as never)};
 
@@ -95,6 +137,7 @@ const letterWithoutHash = {
   paragraphs: [words('evidencia', 90), words('impacto', 90)],
   claims: [claim],
   source_refs: ['work/private/evidence/profile.yml'],
+  surface_bindings: ['/paragraphs/0', '/paragraphs/1'].map(surface),
 } as const;
 const letter = {
   ...letterWithoutHash,
@@ -127,9 +170,9 @@ describe('Career Markdown, HTML and document parity', () => {
   });
 
   it('renders an offline ATS-oriented CV while escaping hostile candidate text', () => {
-    const html = renderCareerCvHtml(cv);
-    expect(html).toBe(renderCareerCvHtml(cv));
-    expect(verifyCareerDocumentParity(cv, html)).toEqual([]);
+    const html = renderCareerCvHtml(cv, evidenceBank);
+    expect(html).toBe(renderCareerCvHtml(cv, evidenceBank));
+    expect(verifyCareerDocumentParity(cv, evidenceBank, html)).toEqual([]);
     expect(html).toContain('<html lang="es">');
     expect(html).toContain('<main>');
     expect(html).toMatch(/@page\s*\{\s*size:\s*A4/iu);
@@ -142,24 +185,24 @@ describe('Career Markdown, HTML and document parity', () => {
 
   it('enforces letter channel length before rendering and preserves semantic parity', () => {
     expect(parseCareerLetter(letter).paragraphs.join(' ').split(/\s+/u)).toHaveLength(180);
-    const html = renderCareerLetterHtml(letter);
-    expect(verifyCareerDocumentParity(letter, html)).toEqual([]);
+    const html = renderCareerLetterHtml(letter, evidenceBank);
+    expect(verifyCareerDocumentParity(letter, evidenceBank, html)).toEqual([]);
     expect(() => {
       const short = {
         ...letterWithoutHash,
         paragraphs: ['demasiado breve', 'sin evidencia suficiente'],
       };
-      renderCareerLetterHtml({
-        ...short,
-        content_sha256: calculateCareerDocumentHash(short as never),
-      });
+      renderCareerLetterHtml(
+        {...short, content_sha256: calculateCareerDocumentHash(short as never)},
+        evidenceBank,
+      );
     }).toThrow(/requires 180-280 words/u);
   });
 
   it('detects canonical model tampering even when visible HTML is unchanged', () => {
-    const html = renderCareerCvHtml(cv);
+    const html = renderCareerCvHtml(cv, evidenceBank);
     const tampered = html.replace('"headline":"Product Operations Lead"', '"headline":"Invented"');
-    expect(verifyCareerDocumentParity(cv, tampered)).toEqual(
+    expect(verifyCareerDocumentParity(cv, evidenceBank, tampered)).toEqual(
       expect.arrayContaining(['SEMANTIC_MODEL_MISMATCH', 'HTML_PROJECTION_NOT_DETERMINISTIC']),
     );
   });
