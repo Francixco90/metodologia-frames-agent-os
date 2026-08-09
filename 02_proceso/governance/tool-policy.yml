@@ -100,14 +100,15 @@ rules:
         - 'Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden'
         - "Writes (verdicts/reports) land in guardian/** via a separate writer delegation, not Guardian's own Edit/Write. [SUPUESTO] pending Guardian write-path clarification"
       source_ref: 'RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14'
-  # --- 8 stub owners: gap, full mapping requires agent-by-agent audit ---
+  # --- Source/skill/content writers narrowed for Career OS; remaining stubs stay read-only ---
   - role: sources
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of RT-02/RT-03 source roles'
+        - 'Write only within ownership paths for source projections, source registry and import receipts.'
+        - 'Bash restricted to hashing and pnpm check:sources/check:privacy; no network ingestion or connector mutation.'
       source_ref: 'ownership-manifest writers.sources; dag packages A02a/A02b gate G02_PRECLEAR/G02'
   - role: agents-committee
     phase: '*'
@@ -120,10 +121,11 @@ rules:
   - role: skill-foundry
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of skill-foundry role'
+        - 'Write only under 03_artefactos/skills/** and 04_estado/registries/skills/**.'
+        - 'Bash restricted to declared skill checkers and H-03 reconciliation; no hooks, network or global installation.'
       source_ref: 'ownership-manifest writers.skill-foundry; dag package A05 gate G07'
   - role: web
     phase: '*'
@@ -136,11 +138,13 @@ rules:
   - role: content
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of content role'
-      source_ref: 'ownership-manifest writers.content; dag package A07 gate G09_CONTENT'
+        - 'Write only within workflows/content/**, workflows/multimedia/** and workflows/career/** plus declared content artifacts.'
+        - 'Career C09 is prepare-and-stop: no browser submission, connector, publish or external effect.'
+        - 'Bash restricted to local typecheck, tests and deterministic workflow validators.'
+      source_ref: 'ownership-manifest writers.content; dag packages A07/A07c gates G09_CONTENT/G09_CAREER'
   - role: remotion
     phase: '*'
     tools:
@@ -197,6 +201,6 @@ runtime_grants:
     allowed_for: [governance, repo]
     rationale: 'Read-only Tessl auth/manifest status check. [CONFIG] convergence A6'
 gaps:
-  - 'coverage_gap: 8 stub owners (sources, agents-committee, skill-foundry, web, content, remotion, static-social, n8n) lack concrete allow/deny; requires agent-by-agent audit of RT-02..RT-08 contracts.'
+  - 'coverage_gap: 5 stub owners (agents-committee, web, remotion, static-social, n8n) remain read-only pending agent-by-agent audit.'
   - 'coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5.'
   - 'coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit.'

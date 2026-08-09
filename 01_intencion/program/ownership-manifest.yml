@@ -37,6 +37,8 @@ writers:
     - scripts/**
     - types/**
     - receipts/builds/**
+    - 05_verificacion/scripts/creation-v3-skills.json
+    - 05_verificacion/scripts/check-career-workflows.ts
   brand:
     - brand/**
     - registries/brand/**
@@ -80,6 +82,7 @@ writers:
     - networks/content/**
     - workflows/content/**
     - workflows/multimedia/**
+    - workflows/career/**
     - registries/content-types/**
     - projects/pilot-carousel-001/editorial/**
     - projects/pilot-carousel-001/spec/**
@@ -135,6 +138,8 @@ writers:
     - 05_verificacion/tests/unit/file-budget-policy.test.ts
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
+    - 05_verificacion/tests/unit/career-*.test.ts
+    - 05_verificacion/tests/integration/career-*.test.ts
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**

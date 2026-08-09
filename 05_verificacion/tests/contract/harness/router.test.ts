@@ -4,7 +4,7 @@ import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `02_proceso/governance/router.yml` (router-v1).
- * Asserts the 8 routes, R3-LOOSE project_id null, the R6 content contract,
+ * Asserts the 9 routes, R3-LOOSE project_id null, R6 content and R7 career,
  * manual fail-closed gates and source_of_truth true. [CONFIG]
  */
 describe('router.yml contract', () => {
@@ -32,12 +32,26 @@ describe('router.yml contract', () => {
     expect(router.source_of_truth).toBe(true);
   });
 
-  it('declares 8 routes (R0, R1, R2, R3, R3-LOOSE, R4, R5, R6)', () => {
+  it('declares R0-R7 plus R3-LOOSE', () => {
     const ids = router.routes.map((r) => r.id);
-    expect(ids).toHaveLength(8);
+    expect(ids).toHaveLength(9);
     expect(ids).toEqual(
-      expect.arrayContaining(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6']),
+      expect.arrayContaining(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7']),
     );
+  });
+
+  it('R7 resolves career intent and stops at an explicit human gate', () => {
+    const career = router.routes.find((route) => route.id === 'R7');
+    expect(career?.binds_to).toBe('task');
+    expect(career?.reads).toEqual(
+      expect.arrayContaining([
+        '03_artefactos/skills/career-application-orchestrator/SKILL.md',
+        '02_proceso/workflows/career/_schema/career-intent-v1.schema.ts',
+        '02_proceso/workflows/career/_schema/career-brief-v1.schema.ts',
+      ]),
+    );
+    expect(career?.output).toMatch(/C00-C09/u);
+    expect(career?.output).toMatch(/CR_BRIEF_APPROVED/u);
   });
 
   it('R3-LOOSE binds to task with project_id null semantics', () => {
@@ -72,6 +86,13 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining(['G13', 'G14', 'G15', 'G16', 'G17', 'MW_BRIEF_APPROVED']),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(6);
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining([
+        'CR_BRIEF_APPROVED',
+        'CR_PACKAGE_APPROVED',
+        'CR_SUBMISSION_AUTHORIZED',
+      ]),
+    );
+    expect(router.manual_fail_closed_gates).toHaveLength(9);
   });
 });

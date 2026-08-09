@@ -134,6 +134,17 @@ gates:
     fail_closed: false
     owner: content
 
+  - gate: G09_CAREER
+    label: career contracts and workflows
+    command: 'node --import tsx scripts/check-career-workflows.ts'
+    allowed_tools: [Bash]
+    write_set_globs: []
+    idempotency: true
+    danger_level: low
+    manual: false
+    fail_closed: true
+    owner: content
+
   - gate: G12_CAROUSEL
     label: static-social carousel build
     command: 'pnpm carousel:build'
@@ -332,6 +343,41 @@ gates:
     manual: true
     fail_closed: true
     owner: governance
+
+  # --- Career workflow decisions (CR_*) — manual fail-closed ---
+
+  - gate: CR_BRIEF_APPROVED
+    label: career brief approval before document production
+    command: null
+    allowed_tools: []
+    write_set_globs: []
+    idempotency: true
+    danger_level: medium
+    manual: true
+    fail_closed: true
+    owner: governance
+
+  - gate: CR_PACKAGE_APPROVED
+    label: candidate application package approval
+    command: null
+    allowed_tools: []
+    write_set_globs: []
+    idempotency: true
+    danger_level: medium
+    manual: true
+    fail_closed: true
+    owner: governance
+
+  - gate: CR_SUBMISSION_AUTHORIZED
+    label: one-use submission authorization bound to package hash
+    command: null
+    allowed_tools: []
+    write_set_globs: []
+    idempotency: false
+    danger_level: high
+    manual: true
+    fail_closed: true
+    owner: h01
 
   # --- Gates manuales fail-closed (G13-G17) ---
 

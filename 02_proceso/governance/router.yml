@@ -1,12 +1,12 @@
 schema_version: 1
 manifest_id: router-v1
 source_of_truth: true # CLAUDE.md/GEMINI.md are shared agent-CLI adapters pointing here. [CONFIG]
-# Router de intención (R0-R6). Supera al router de 4 rutas embebido en CLAUDE.md
+# Router de intención (R0-R7). Supera al router de 4 rutas embebido en CLAUDE.md
 # (líneas 17-46), que pasa a ser un adaptador local que apunta a este manifiesto
 # versionado. [CONFIG]
 #
 # Estados de tarea (task-contract.ts): INTAKE, ESPECIFICADO, COMPILADO, EVALUADO,
-# ENTREGADO, BLOQUEADO. El enum `created_from_route` valida R0-R6. [CÓDIGO]
+# ENTREGADO, BLOQUEADO. El enum `created_from_route` valida R0-R7. [CÓDIGO]
 #
 # Gates G13-G17 y MW_BRIEF_APPROVED son manuales fail-closed (dag.yml: release.human_gate G15,
 # readiness_gate G16, publish_gate G17). No los automatices. [CONFIG]
@@ -71,6 +71,23 @@ routes:
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
     output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; STOP en MW_BRIEF_APPROVED'
     binds_to: task
+  - id: R7
+    signal: 'crear CV, carta, buscar empleo, postular o continuar candidatura'
+    signal_patterns:
+      - 'crear CV'
+      - 'hoja de vida'
+      - 'cover letter'
+      - 'buscar empleo'
+      - 'buscar vacantes'
+      - 'LinkedIn'
+      - 'postular'
+      - 'continuar candidatura'
+    reads:
+      - '03_artefactos/skills/career-application-orchestrator/SKILL.md'
+      - '02_proceso/workflows/career/_schema/career-intent-v1.schema.ts'
+      - '02_proceso/workflows/career/_schema/career-brief-v1.schema.ts'
+    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
+    binds_to: task
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
 gate_commands:
   G00_toolchain: 'pnpm check:toolchain'
@@ -82,9 +99,21 @@ gate_commands:
   G08_core_contracts: 'pnpm typecheck && pnpm test'
   G09_WEB_web_build: 'pnpm web:build'
   G09_CONTENT_content_build: 'pnpm content:build'
+  G09_CAREER_career_contracts: 'pnpm verify:career'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
   preflight_VS_001: 'pnpm slice:build'
   verificacion_total: 'pnpm verify'
 # Gates manuales fail-closed — no automatizar. Documenta en TASK.md como bloqueados. [CONFIG]
-manual_fail_closed_gates: [G13, G14, G15, G16, G17, MW_BRIEF_APPROVED]
+manual_fail_closed_gates:
+  [
+    G13,
+    G14,
+    G15,
+    G16,
+    G17,
+    MW_BRIEF_APPROVED,
+    CR_BRIEF_APPROVED,
+    CR_PACKAGE_APPROVED,
+    CR_SUBMISSION_AUTHORIZED,
+  ]

@@ -45,6 +45,10 @@ packages:
     owner: content
     depends_on: [A02b, A02c, A03, A04, A05]
     gate: G09_CONTENT
+  A07c:
+    owner: content
+    depends_on: [A02b, A02c, A03, A04, A05]
+    gate: G09_CAREER
   A07s:
     owner: static-social
     depends_on: [A02c, A03, A04, A05, A07]
@@ -71,7 +75,7 @@ packages:
     gate: G13_CAROUSEL_QA
   A09b:
     owner: governance
-    depends_on: [A05, A06, A07, A07s, A08, A10b, A10c]
+    depends_on: [A05, A06, A07, A07c, A07s, A08, A10b, A10c]
     gate: G13
   A12:
     owner: guardian
