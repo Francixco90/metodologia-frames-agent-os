@@ -1729,6 +1729,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/evidence-based-cover-letter/scripts/check-skill.mjs]
+  - skill_id: career-opportunity-finder
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: d7c8ac441b8b61c881ca2d9b3db7ba300ba7f2e2fb34b16aeacefdc12fc2c5ef
+    package_manifest_sha256: 185417ae2ed2356f76788a20d1e1b1d6fc750733e1586717b8d3c7739d7faaa2
+    lineage_ref: skills/career-opportunity-finder/LINEAGE.yml
+    dependency_receipt_ref: skills/career-opportunity-finder/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-opportunity-finder/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-CAO-H03-001, event_order: 1, skill_id: career-application-orchestrator, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CAO-H03-002, event_order: 2, skill_id: career-application-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
@@ -1746,6 +1757,10 @@ events:
   - {event_id: EVT-SKL-ECL-H03-002, event_order: 2, skill_id: evidence-based-cover-letter, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECL-H03-003, event_order: 3, skill_id: evidence-based-cover-letter, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-ECL-H03-004, event_order: 4, skill_id: evidence-based-cover-letter, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-COF-H03-001, event_order: 1, skill_id: career-opportunity-finder, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-COF-H03-002, event_order: 2, skill_id: career-opportunity-finder, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-COF-H03-003, event_order: 3, skill_id: career-opportunity-finder, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-COF-H03-004, event_order: 4, skill_id: career-opportunity-finder, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-FTO-H03-001, event_order: 1, skill_id: frames-token-efficiency-orchestrator, from: null, to: candidate, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-002, event_order: 2, skill_id: frames-token-efficiency-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-003, event_order: 3, skill_id: frames-token-efficiency-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-FTEO-INTEGRATION}
