@@ -1,6 +1,6 @@
 ---
 schema_version: multimedia-library-v1
-content_sha256: ead38d52c5f72080c217dc45c38929c6fad3c207e73ce1b2fc3da614a1eda788
+content_sha256: 1deeff8fcd4478b23ad6ec152fe7e4717498b5b475bfe9b440926416a390473a
 design_profile: metodologia-html-v7
 state: RENDERED_DRAFT
 ---
@@ -20,7 +20,11 @@ Define perfil, Brand OS, voz o piloto, una modalidad por vez y bajo aprobación.
 
 - Prompt: [p00-definir-sistema/prompt-spec.md](../p00-definir-sistema/prompt-spec.md)
 - Estado: DEFINED
-- Deliverables: brand-os-v1, calibration-sample-v1, pilot-plan-v1
+- Deliverables:
+  - **Charter de marca** (`brand-charter-v1`) · final · obligatorio · md/html/pdf · gate `G14` — Alinear identidad, promesa, audiencia, voz, canales, límites y autoridad de marca.
+  - **Brand OS** (`brand-os-v1`) · intermediate · obligatorio · md/html/json · gate `G14` — Traducir el charter aprobado a reglas, tokens y decisiones reutilizables por herramientas.
+  - **Muestra de calibración** (`calibration-sample-v1`) · intermediate · obligatorio · md/html · gate `G14` — Demostrar voz y sistema visual con ejemplos aprobables y contraejemplos.
+  - **Plan piloto** (`pilot-plan-v1`) · final · obligatorio · md/html · gate `G14` — Acotar el primer uso del sistema con alcance, owner, coste, riesgo y criterio de aprendizaje.
 - Skills: metodologia-brand-router, content-os-core, dev-writing-plans
 - Gates: G13, G14
 
@@ -34,7 +38,10 @@ Convierte material cotidiano en oportunidades trazables sin obligar a publicarlo
 
 - Prompt: [p01-curar-material/prompt-spec.md](../p01-curar-material/prompt-spec.md)
 - Estado: CLASSIFIED
-- Deliverables: capture-card-v1, triage-record-v1, digest-shortlist-v1
+- Deliverables:
+  - **Ficha de captura** (`capture-card-v1`) · intermediate · obligatorio · md/html/json · gate `G14` — Registrar una fuente con hash, autoridad, derechos, relevancia y limitaciones.
+  - **Registro de triage** (`triage-record-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Clasificar material por utilidad, riesgo, duplicidad, vigencia y siguiente acción.
+  - **Digest y shortlist** (`digest-shortlist-v1`) · final · obligatorio · md/html · gate `G14` — Seleccionar materiales utilizables y declarar exclusiones y gaps.
 - Skills: content-os-registry, content-os-media, metodologia-find-skills
 - Gates: G14
 
@@ -48,7 +55,10 @@ Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales
 
 - Prompt: [p02-investigar/prompt-spec.md](../p02-investigar/prompt-spec.md)
 - Estado: DISCOVERED
-- Deliverables: claim-register-v1, opportunity-map-v1, question-bank-v1
+- Deliverables:
+  - **Registro de claims** (`claim-register-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Vincular cada afirmación con evidencia, autoridad, límite, estado y revisor.
+  - **Mapa de oportunidades** (`opportunity-map-v1`) · final · obligatorio · md/html · gate `G14` — Priorizar problemas, audiencias, mensajes y formatos respaldados por evidencia.
+  - **Banco de preguntas** (`question-bank-v1`) · intermediate · obligatorio · md/html · gate `G14` — Conservar preguntas abiertas, impacto, owner, fuente esperada y stop rule.
 - Skills: content-os-core, content-os-registry
 - Gates: G14
 
@@ -62,7 +72,12 @@ Define una pieza, sistema de derivados, serie o campaña con funciones distintas
 
 - Prompt: [p03-crear-brief/prompt-spec.md](../p03-crear-brief/prompt-spec.md)
 - Estado: DIRECTION_APPROVED
-- Deliverables: brief-campaign-map-v1, ab-concepts-v1, definition-of-ready-v1
+- Deliverables:
+  - **Brief y mapa de campaña** (`brief-campaign-map-v1`) · final · obligatorio · md/html/pdf · gate `MW_BRIEF_APPROVED` — Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación.
+  - **Charter de campaña** (`campaign-charter-v1`) · final · condicional: mode=campana-o-colaboracion · md/html/pdf · gate `MW_BRIEF_APPROVED` — Fijar alcance, resultado, governance, piezas, hitos, medición y autoridad de campaña.
+  - **Presentación ejecutiva** (`executive-presentation-v1`) · intermediate · condicional: requested=true or decision_audience=leadership · md/html/pptx/pdf · gate `MW_BRIEF_APPROVED` — Sintetizar decisión, evidencia, propuesta, inversión, riesgos y próximos gates para liderazgo.
+  - **Conceptos A/B** (`ab-concepts-v1`) · intermediate · obligatorio · md/html · gate `MW_BRIEF_APPROVED` — Comparar dos rutas creativas con hipótesis, evidencia, coste, riesgo y criterio de decisión.
+  - **Definition of Ready** (`definition-of-ready-v1`) · final · obligatorio · md/html · gate `MW_BRIEF_APPROVED` — Bloquear producción hasta resolver evidencia, ownership, formato, assets, presupuesto y aprobación.
 - Skills: content-os-creative, content-os-product-launch-video, content-os-core, dev-writing-plans
 - Gates: G13, G14, MW_BRIEF_APPROVED
 
@@ -77,7 +92,11 @@ Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.
 
 - Prompt: [p04-calendarizar/prompt-spec.md](../p04-calendarizar/prompt-spec.md)
 - Estado: DEFINED
-- Deliverables: editorial-calendar-v1, board-v1, batch-plan-v1
+- Deliverables:
+  - **Cronograma editorial** (`editorial-calendar-v1`) · final · obligatorio · md/html/csv · gate `G14` — Secuenciar piezas, hitos, dependencias, owners y gates en el tiempo.
+  - **Parrilla de contenidos** (`content-grid-v1`) · final · condicional: content_count>1 or mode=calendario-de-campana · md/html/csv · gate `G14` — Mapear cada publicación a audiencia, objetivo, canal, formato, hook, CTA, fuente y métrica.
+  - **Tablero de producción** (`board-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Exponer trabajo, estado, capacidad, bloqueos y siguiente gate por ítem.
+  - **Plan por lotes** (`batch-plan-v1`) · intermediate · obligatorio · md/html · gate `G14` — Agrupar producción compatible sin romper dependencias, calidad ni capacidad.
 - Skills: dev-executing-plans, content-os-core
 - Gates: G14
 
@@ -91,7 +110,13 @@ Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.
 
 - Prompt: [p05-disenar-pieza/prompt-spec.md](../p05-disenar-pieza/prompt-spec.md)
 - Estado: SPEC_APPROVED
-- Deliverables: creative-spec-v1, continuity-bible-v1, asset-map-v1, universal-prompts-v1, derivatives-v1
+- Deliverables:
+  - **Especificación creativa** (`creative-spec-v1`) · final · obligatorio · md/html · gate `G14` — Definir narrativa, formato, estructura, copy, visuales, audio, CTA y aceptación de la pieza.
+  - **Ficha de familia de pieza** (`piece-family-spec-v1`) · intermediate · obligatorio · md/html · gate `G14` — Especializar la pieza como imagen, miniclip, gráfica, carrusel o historia sin perder el brief.
+  - **Biblia de continuidad** (`continuity-bible-v1`) · intermediate · obligatorio · md/html · gate `G14` — Mantener personajes, objetos, estilo, secuencia, claims y transiciones coherentes.
+  - **Mapa de activos** (`asset-map-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Enumerar cada activo, fuente, owner, formato, dependencia y criterio de aceptación.
+  - **Pack de prompts de producción** (`universal-prompts-v1`) · final · obligatorio · md/html/json · gate `G14` — Proveer prompts trazables para imágenes, miniclips, gráficas, carruseles e historias.
+  - **Sistema de derivados** (`derivatives-v1`) · final · condicional: content_count>1 or derivative_requested=true · md/html · gate `G14` — Derivar formatos y canales desde una pieza matriz preservando claims, identidad y lineage.
 - Skills: content-os-creative, content-os-motion-graphics, content-os-remotion-bridge, design-compose-graphics
 - Gates: MW_SPEC_APPROVED, G14
 
@@ -105,7 +130,11 @@ Genera, guía o especifica activos por etapas, con evidencia y estado exacto.
 
 - Prompt: [p06-crear-activos/prompt-spec.md](../p06-crear-activos/prompt-spec.md)
 - Estado: BUILD_VALIDATED
-- Deliverables: asset-package-v1, asset-manifest-v1, capability-report-v1, tool-run-evidence-v1
+- Deliverables:
+  - **Paquete de piezas candidatas** (`asset-package-v1`) · final · obligatorio · md/html/image/video/audio · gate `G14` — Empaquetar piezas materiales y companions hash-bound sin afirmar aprobación.
+  - **Manifiesto de activos** (`asset-manifest-v1`) · intermediate · obligatorio · md/html/json · gate `G14` — Registrar archivo, hash, procedencia, derechos, tool run y relación con la especificación.
+  - **Reporte de capacidad** (`capability-report-v1`) · intermediate · obligatorio · md/html · gate `G14` — Declarar qué pudo producirse, qué quedó bloqueado y qué requiere una ruta alternativa.
+  - **Evidencia de ejecución** (`tool-run-evidence-v1`) · intermediate · obligatorio · md/html/json · gate `G14` — Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run.
 - Skills: content-os-core, content-os-remotion-create, content-os-remotion-render, content-os-media
 - Gates: MW_ASSET_REVIEW, G14
 
@@ -120,7 +149,10 @@ Diagnostica solo lo observable y transforma hallazgos en correcciones priorizada
 
 - Prompt: [p07-revisar/prompt-spec.md](../p07-revisar/prompt-spec.md)
 - Estado: REVIEW_SHOTS_APPROVED
-- Deliverables: review-report-v1, verdict-v1, top5-changes-v1
+- Deliverables:
+  - **Reporte de revisión** (`review-report-v1`) · final · obligatorio · md/html · gate `G14` — Evaluar contenido, marca, evidencia, derechos, accesibilidad y calidad visual.
+  - **Veredicto** (`verdict-v1`) · final · obligatorio · md/html/json · gate `G14` — Emitir PASS, REVISE o BLOCKED con evidencia y siguiente gate, sin remediar.
+  - **Cambios prioritarios** (`top5-changes-v1`) · intermediate · obligatorio · md/html · gate `G14` — Priorizar hasta cinco cambios por impacto, evidencia, owner y riesgo de regresión.
 - Skills: design-audit-genjutsu, content-os-core
 - Gates: G14
 
@@ -134,7 +166,10 @@ Monta, compone, localiza y reutiliza con lineage, QC y rollback.
 
 - Prompt: [p08-editar/prompt-spec.md](../p08-editar/prompt-spec.md)
 - Estado: POSTPRODUCTION_VALIDATED
-- Deliverables: edit-candidate-v1, edl-v1, export-matrix-v1
+- Deliverables:
+  - **Candidate editado** (`edit-candidate-v1`) · final · obligatorio · md/html/image/video/audio · gate `G14` — Materializar un successor candidate preservando lineage, claims, assets y estado.
+  - **Lista de decisiones de edición** (`edl-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Trazar cada cambio a un hallazgo, ubicación, acción, owner y resultado.
+  - **Matriz de exportación** (`export-matrix-v1`) · intermediate · obligatorio · md/html/csv · gate `G14` — Definir formatos, dimensiones, duración, peso, nombre, canal y checksum de exportación.
 - Skills: content-os-remotion-render, remotion-video-production-v2, content-os-seam-craft
 - Gates: MW_EDIT_APPROVED, G14
 
@@ -148,7 +183,11 @@ Separa empaque, publicación, comunidad y aprendizaje para operar con control.
 
 - Prompt: [p09-distribuir/prompt-spec.md](../p09-distribuir/prompt-spec.md)
 - Estado: READY
-- Deliverables: platform-package-v1, publication-record-v1, learning-report-v1
+- Deliverables:
+  - **Paquete por plataforma** (`platform-package-v1`) · final · obligatorio · md/html/json · gate `G17` — Preparar archivos, copy, metadata, alt text y checklist por canal sin publicar.
+  - **Registro de publicación** (`publication-record-v1`) · intermediate · obligatorio · md/html/json · gate `G17` — Preparar el registro que solo se completa con evidencia externa de publicación autorizada.
+  - **Dashboard de resultados** (`results-dashboard-v1`) · final · condicional: observed-results available · md/html/csv · gate `G17` — Comparar baseline, objetivos y métricas observadas sin inventar datos ni causalidad.
+  - **Reporte de aprendizaje** (`learning-report-v1`) · final · obligatorio · md/html · gate `G17` — Convertir resultados observados en decisiones, límites, hipótesis y siguiente experimento.
 - Skills: metodologia-brand-router, instagram-content-orchestration, instagram-carousel-production
 - Gates: MW_DISTRIBUTION_AUTHORIZED, G15, G17
 
