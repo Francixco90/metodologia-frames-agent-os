@@ -5,8 +5,8 @@ import {fileURLToPath} from 'node:url';
 import {loadContextSurfaces, projections, validateContextGraph} from './context-surface-lib.ts';
 
 export const generateContextSurfaces = (root: string, write: boolean): string[] => {
-  const surfaces = loadContextSurfaces(root);
-  const issues = validateContextGraph(root, surfaces);
+  const surfaces = loadContextSurfaces(root, 'all');
+  const issues = validateContextGraph(root, surfaces, 62);
   if (issues.length > 0) return issues;
   for (const [path, expected] of projections(surfaces)) {
     const absolute = resolve(root, path);

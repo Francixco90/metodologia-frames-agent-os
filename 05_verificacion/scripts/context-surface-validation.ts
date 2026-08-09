@@ -33,7 +33,11 @@ const validatePaths = (root: string, surface: ContextSurfaceV1): string[] => {
   return issues;
 };
 
-export const validateContextGraph = (root: string, surfaces: ContextSurfaceV1[]): string[] => {
+export const validateContextGraph = (
+  root: string,
+  surfaces: ContextSurfaceV1[],
+  expectedCount = 50,
+): string[] => {
   const issues: string[] = [];
   const ids = new Map(surfaces.map((surface) => [surface.context_id, surface]));
   const roots = new Set<string>();
@@ -60,6 +64,7 @@ export const validateContextGraph = (root: string, surfaces: ContextSurfaceV1[])
     visited.add(id);
   };
   for (const id of ids.keys()) visit(id);
-  if (surfaces.length !== 50) issues.push(`CTX-COVERAGE001 expected 50, found ${surfaces.length}`);
+  if (surfaces.length !== expectedCount)
+    issues.push(`CTX-COVERAGE001 expected ${expectedCount}, found ${surfaces.length}`);
   return [...new Set(issues)].sort();
 };

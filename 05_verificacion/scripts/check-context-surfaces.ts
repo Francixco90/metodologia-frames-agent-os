@@ -32,9 +32,9 @@ export const checkContextSurfaces = (root: string): string[] => {
   const registry = ContextSurfaceRegistryV1Schema.parse(
     parse(readFileSync(resolve(root, REGISTRY_PATH), 'utf8')),
   );
-  const surfaces = loadContextSurfaces(root);
+  const surfaces = loadContextSurfaces(root, 'all');
   const expected = projections(surfaces);
-  issues.push(...validateContextGraph(root, surfaces));
+  issues.push(...validateContextGraph(root, surfaces, 62));
   for (const [path, content] of expected) {
     const absolute = resolve(root, path);
     if (!existsSync(absolute)) issues.push(`CTX-COVERAGE002 missing ${path}`);
@@ -58,17 +58,14 @@ export const checkContextSurfaces = (root: string): string[] => {
     'dev-verification-before-completion',
   ];
   const presentSkills = expectedSkills.filter((skill) =>
-    existsSync(resolve(root, `03_artefactos/skills/${skill}/context.md`)),
+    expected.has(`03_artefactos/skills/${skill}/context.md`),
   );
   if (presentSkills.length !== skillContexts) {
     issues.push(
       `CTX-COVERAGE003 expected ${skillContexts} skill contexts, found ${presentSkills.length}`,
     );
   }
-  const allowed = new Set([
-    ...expected.keys(),
-    ...expectedSkills.map((skill) => `03_artefactos/skills/${skill}/context.md`),
-  ]);
+  const allowed = new Set(expected.keys());
   for (const path of findContextFiles(root)) {
     if (!allowed.has(path)) issues.push(`CTX-COVERAGE004 unregistered ${path}`);
   }
