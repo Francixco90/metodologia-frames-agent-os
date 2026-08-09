@@ -1696,11 +1696,26 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-application-orchestrator/scripts/check-skill.mjs]
+  - skill_id: candidate-evidence-reconciler
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 424fa8b3839a15d43d73cdfea0c2a1301c947fa6b1978363fd53e27c197f5f06
+    package_manifest_sha256: 3e1b78b549f4a883191289ee66401f5a3cac0dd06e1d49881d7b58e8405105b7
+    lineage_ref: skills/candidate-evidence-reconciler/LINEAGE.yml
+    dependency_receipt_ref: skills/candidate-evidence-reconciler/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/candidate-evidence-reconciler/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-CAO-H03-001, event_order: 1, skill_id: career-application-orchestrator, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CAO-H03-002, event_order: 2, skill_id: career-application-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CAO-H03-003, event_order: 3, skill_id: career-application-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CAO-H03-004, event_order: 4, skill_id: career-application-orchestrator, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CER-H03-001, event_order: 1, skill_id: candidate-evidence-reconciler, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CER-H03-002, event_order: 2, skill_id: candidate-evidence-reconciler, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CER-H03-003, event_order: 3, skill_id: candidate-evidence-reconciler, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CER-H03-004, event_order: 4, skill_id: candidate-evidence-reconciler, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-FTO-H03-001, event_order: 1, skill_id: frames-token-efficiency-orchestrator, from: null, to: candidate, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-002, event_order: 2, skill_id: frames-token-efficiency-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-003, event_order: 3, skill_id: frames-token-efficiency-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-FTEO-INTEGRATION}
