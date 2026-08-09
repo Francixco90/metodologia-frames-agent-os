@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import type {CareerCvV1, CareerLetterV1} from '../_schema/document-v1.schema.ts';
 import {escapeHtml, safeJson} from './canonical.ts';
 import {parseCareerCv, parseCareerLetter} from './document-model.ts';
+import {assertCareerEvidence} from './evidence-gate.ts';
 
 const TEMPLATE = fileURLToPath(new URL('../_assets/document-template.html', import.meta.url));
 const li = (values: readonly string[]): string =>
@@ -49,9 +50,11 @@ const renderShell = (
 
 export const renderCareerCvHtml = (
   input: unknown,
+  evidenceBank: unknown,
   template = readFileSync(TEMPLATE, 'utf8'),
 ): string => {
   const cv = parseCareerCv(input);
+  assertCareerEvidence(cv, evidenceBank);
   const experience = cv.experience
     .map(
       (item) =>
@@ -71,9 +74,11 @@ export const renderCareerCvHtml = (
 
 export const renderCareerLetterHtml = (
   input: unknown,
+  evidenceBank: unknown,
   template = readFileSync(TEMPLATE, 'utf8'),
 ): string => {
   const letter = parseCareerLetter(input);
+  assertCareerEvidence(letter, evidenceBank);
   const body = `<section class="letter"><p class="addressee">${escapeHtml(letter.addressee)}</p>${letter.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}</section>`;
   return renderShell(
     letter,
@@ -85,12 +90,16 @@ export const renderCareerLetterHtml = (
   );
 };
 
-export const verifyCareerDocumentParity = (input: unknown, html: string): string[] => {
+export const verifyCareerDocumentParity = (
+  input: unknown,
+  evidenceBank: unknown,
+  html: string,
+): string[] => {
   const record = input as {schema_version?: string};
   const expected =
     record.schema_version === 'career-cv-v1'
-      ? renderCareerCvHtml(input)
-      : renderCareerLetterHtml(input);
+      ? renderCareerCvHtml(input, evidenceBank)
+      : renderCareerLetterHtml(input, evidenceBank);
   const match =
     /<script id="career-document-data" type="application\/json">([\s\S]*?)<\/script>/u.exec(html);
   const issues: string[] = [];
@@ -101,11 +110,16 @@ export const verifyCareerDocumentParity = (input: unknown, html: string): string
 };
 const stable = (value: string): string => JSON.stringify(JSON.parse(value));
 
-export const renderCareerDocumentFile = (inputPath: string, outputPath: string): void => {
+export const renderCareerDocumentFile = (
+  inputPath: string,
+  evidenceBankPath: string,
+  outputPath: string,
+): void => {
   const value = JSON.parse(readFileSync(inputPath, 'utf8')) as {schema_version?: string};
+  const evidenceBank: unknown = JSON.parse(readFileSync(evidenceBankPath, 'utf8'));
   const html =
     value.schema_version === 'career-cv-v1'
-      ? renderCareerCvHtml(value)
-      : renderCareerLetterHtml(value);
+      ? renderCareerCvHtml(value, evidenceBank)
+      : renderCareerLetterHtml(value, evidenceBank);
   writeFileSync(outputPath, html, 'utf8');
 };

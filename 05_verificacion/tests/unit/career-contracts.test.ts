@@ -26,6 +26,13 @@ const verifiedEvidence = {
   allowed_channels: ['cv', 'cover_letter'],
   constraints: ['Conservar el periodo de medición.'],
 } as const;
+const surfaceBinding = (path: string) => ({
+  path,
+  classification: 'evidence' as const,
+  evidence_ids: [verifiedEvidence.evidence_id],
+  evidence_hashes: [HASH_A],
+  rationale: null,
+});
 
 describe('Career OS strict contracts', () => {
   it('accepts a portable candidate profile and rejects undeclared fields', () => {
@@ -165,6 +172,16 @@ describe('Career OS strict contracts', () => {
       education: ['Programa sintético verificable'],
       skills: ['Product Operations'],
       source_refs: [verifiedEvidence.source_ref],
+      surface_bindings: [
+        '/headline',
+        '/summary',
+        '/experience/0/organization',
+        '/experience/0/role',
+        '/experience/0/period',
+        '/experience/0/location',
+        '/education/0',
+        '/skills/0',
+      ].map(surfaceBinding),
       content_sha256: HASH_B,
     });
     const letter = CareerLetterV1Schema.parse({
@@ -183,6 +200,7 @@ describe('Career OS strict contracts', () => {
       paragraphs: ['Presento el ajuste principal.', 'Lo respaldo con evidencia trazable.'],
       claims: [claim],
       source_refs: [verifiedEvidence.source_ref],
+      surface_bindings: ['/paragraphs/0', '/paragraphs/1'].map(surfaceBinding),
       content_sha256: HASH_A,
     });
     expect(cv.experience[0]!.achievements[0]!.evidence_ids).toEqual([verifiedEvidence.evidence_id]);

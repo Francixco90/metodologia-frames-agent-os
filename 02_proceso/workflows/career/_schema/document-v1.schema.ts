@@ -21,6 +21,32 @@ export const CareerClaimV1Schema = z
     }
   });
 
+export const CareerSurfaceBindingV1Schema = z
+  .strictObject({
+    path: z
+      .string()
+      .regex(
+        /^\/(headline|summary|skills\/[0-9]+|experience\/[0-9]+\/(organization|role|period|location)|education\/[0-9]+|paragraphs\/[0-9]+)$/u,
+      ),
+    classification: z.enum(['evidence', 'non_claim']),
+    evidence_ids: z.array(z.string().regex(/^EVD-[A-Z0-9-]{3,79}$/u)).max(12),
+    evidence_hashes: z.array(Sha256Schema).max(12),
+    rationale: z.string().min(1).max(300).nullable(),
+  })
+  .superRefine((binding, context) => {
+    const paired = binding.evidence_ids.length === binding.evidence_hashes.length;
+    if (!paired) context.addIssue({code: 'custom', message: 'Evidence IDs and hashes must pair'});
+    if (binding.classification === 'evidence' && binding.evidence_ids.length === 0) {
+      context.addIssue({code: 'custom', message: 'Evidence binding cannot be empty'});
+    }
+    if (
+      binding.classification === 'non_claim' &&
+      (binding.evidence_ids.length > 0 || !binding.rationale)
+    ) {
+      context.addIssue({code: 'custom', message: 'Non-claim requires rationale and no evidence'});
+    }
+  });
+
 const ExperienceSchema = z.strictObject({
   organization: z.string().min(1).max(200),
   role: z.string().min(1).max(200),
@@ -56,6 +82,7 @@ export const CareerCvV1Schema = z
     education: z.array(z.string().min(1).max(500)).max(12),
     skills: z.array(z.string().min(1).max(120)).min(1).max(40),
     source_refs: z.array(PortableRefSchema).min(1).max(40),
+    surface_bindings: z.array(CareerSurfaceBindingV1Schema).min(1).max(200),
     content_sha256: Sha256Schema,
   })
   .superRefine((document, context) => {
@@ -85,6 +112,7 @@ export const CareerLetterV1Schema = z
     paragraphs: z.array(z.string().min(1).max(1_500)).min(2).max(6),
     claims: z.array(CareerClaimV1Schema).min(1).max(6),
     source_refs: z.array(PortableRefSchema).min(1).max(40),
+    surface_bindings: z.array(CareerSurfaceBindingV1Schema).min(1).max(40),
     content_sha256: Sha256Schema,
   })
   .superRefine((document, context) => {

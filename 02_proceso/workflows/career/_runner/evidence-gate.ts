@@ -8,6 +8,7 @@ import {
 import {sha256Text, stableStringify} from './canonical.ts';
 
 type CareerDocument = CareerCvV1 | CareerLetterV1;
+type Pair = {evidence_ids: readonly string[]; evidence_hashes: readonly string[]};
 
 export class CareerEvidenceError extends Error {
   public constructor(public readonly issues: readonly string[]) {
@@ -19,40 +20,80 @@ export class CareerEvidenceError extends Error {
 export const calculateEvidenceBankHash = (bank: EvidenceBankV1): string =>
   sha256Text(stableStringify({candidate_id: bank.candidate_id, evidence: bank.evidence}));
 
+const cvSurface = (document: CareerCvV1): Array<{path: string; text: string}> => [
+  {path: '/headline', text: document.headline},
+  {path: '/summary', text: document.summary},
+  ...document.skills.map((text, index) => ({path: `/skills/${index}`, text})),
+  ...document.education.map((text, index) => ({path: `/education/${index}`, text})),
+  ...document.experience.flatMap((item, index) => [
+    {path: `/experience/${index}/organization`, text: item.organization},
+    {path: `/experience/${index}/role`, text: item.role},
+    {path: `/experience/${index}/period`, text: item.period},
+    ...(item.location ? [{path: `/experience/${index}/location`, text: item.location}] : []),
+  ]),
+];
+
 export const assertCareerEvidence = (
   documentInput: unknown,
   bankInput: unknown,
 ): CareerDocument => {
+  const record = documentInput as {schema_version?: string};
   const document =
-    typeof documentInput === 'object' && documentInput !== null && 'schema_version' in documentInput
-      ? documentInput.schema_version === 'career-cv-v1'
-        ? CareerCvV1Schema.parse(documentInput)
-        : CareerLetterV1Schema.parse(documentInput)
+    record.schema_version === 'career-cv-v1'
+      ? CareerCvV1Schema.parse(documentInput)
       : CareerLetterV1Schema.parse(documentInput);
   const bank = EvidenceBankV1Schema.parse(bankInput);
   const issues: string[] = [];
   if (bank.candidate_id !== document.candidate_id) issues.push('CANDIDATE_MISMATCH');
   if (calculateEvidenceBankHash(bank) !== bank.bank_sha256) issues.push('BANK_HASH_MISMATCH');
   const channel = document.schema_version === 'career-cv-v1' ? 'cv' : document.channel;
-  const claims =
-    document.schema_version === 'career-cv-v1'
-      ? document.experience.flatMap(({achievements}) => achievements)
-      : document.claims;
   const byId = new Map(bank.evidence.map((item) => [item.evidence_id, item]));
-  for (const claim of claims) {
-    claim.evidence_ids.forEach((id, index) => {
+  const validate = (owner: string, pair: Pair): void => {
+    pair.evidence_ids.forEach((id, index) => {
       const evidence = byId.get(id);
-      if (!evidence) return issues.push(`${claim.claim_id}:EVIDENCE_MISSING:${id}`);
+      if (!evidence) return issues.push(`${owner}:EVIDENCE_MISSING:${id}`);
       if (!['verified', 'user_confirmed'].includes(evidence.confidence)) {
-        issues.push(`${claim.claim_id}:CONFIDENCE_NOT_PROMOTABLE:${id}`);
+        issues.push(`${owner}:CONFIDENCE_NOT_PROMOTABLE:${id}`);
       }
       if (!evidence.allowed_channels.includes(channel)) {
-        issues.push(`${claim.claim_id}:CHANNEL_NOT_ALLOWED:${id}`);
+        issues.push(`${owner}:CHANNEL_NOT_ALLOWED:${id}`);
       }
-      if (!evidence.source_sha256 || evidence.source_sha256 !== claim.evidence_hashes[index]) {
-        issues.push(`${claim.claim_id}:EVIDENCE_HASH_MISMATCH:${id}`);
+      if (!evidence.source_sha256 || evidence.source_sha256 !== pair.evidence_hashes[index]) {
+        issues.push(`${owner}:EVIDENCE_HASH_MISMATCH:${id}`);
       }
     });
+  };
+  const surfaces =
+    document.schema_version === 'career-cv-v1'
+      ? cvSurface(document)
+      : document.paragraphs.map((text, index) => ({path: `/paragraphs/${index}`, text}));
+  const expected = surfaces.map(({path}) => path);
+  const bindings = new Map(document.surface_bindings.map((binding) => [binding.path, binding]));
+  if (bindings.size !== document.surface_bindings.length) issues.push('DUPLICATE_SURFACE_BINDING');
+  for (const {path, text} of surfaces) {
+    const binding = bindings.get(path);
+    if (!binding) issues.push(`UNBOUND_VISIBLE_TEXT:${path}`);
+    else if (binding.classification === 'evidence') validate(path, binding);
+    else if (!text.startsWith('[NO-CLAIM] ')) issues.push(`NON_CLAIM_VISIBLE_TEXT:${path}`);
+  }
+  for (const path of bindings.keys()) {
+    if (!expected.includes(path)) issues.push(`NON_RENDERED_BINDING:${path}`);
+  }
+  if (document.schema_version === 'career-cv-v1') {
+    document.experience
+      .flatMap(({achievements}) => achievements)
+      .forEach((claim) => validate(claim.claim_id, claim));
+  } else {
+    const used = new Set(
+      document.surface_bindings
+        .filter(({classification}) => classification === 'evidence')
+        .flatMap(({evidence_ids}) => evidence_ids),
+    );
+    for (const claim of document.claims) {
+      validate(claim.claim_id, claim);
+      if (!claim.evidence_ids.every((id) => used.has(id)))
+        issues.push(`AUXILIARY_CLAIM:${claim.claim_id}`);
+    }
   }
   if (issues.length > 0) throw new CareerEvidenceError(issues);
   return document;
