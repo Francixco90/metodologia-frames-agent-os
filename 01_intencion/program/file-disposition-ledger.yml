@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93531
-    v3_rolling_adjustment_words: 5345
+    baseline_words: 93535
+    v3_rolling_adjustment_words: 5349
     original_baseline_words: 88186
-    final_words: 110651
+    final_words: 110655
     maximum_multiplier: 1.5
-    maximum_words: 140296
+    maximum_words: 140302
     actual_multiplier: 1.183
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93531
-    v3_rolling_adjustment_words: 5345
+    baseline_words: 93535
+    v3_rolling_adjustment_words: 5349
     original_baseline_words: 88186
-    final_words: 110651
-    maximum_words: 187062
+    final_words: 110655
+    maximum_words: 187070
     word_multiplier: 1.183
-    baseline_loc: 35076
-    v3_rolling_adjustment_loc: 2188
+    baseline_loc: 35077
+    v3_rolling_adjustment_loc: 2189
     original_baseline_loc: 32888
-    final_loc: 41503
-    maximum_loc: 70152
+    final_loc: 41504
+    maximum_loc: 70154
     loc_multiplier: 1.1832
     maximum_multiplier: 2
     status: pass
@@ -8912,9 +8912,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:workflows/core/index.ts
       current_ref: working-tree:workflows/core/index.ts
       current_state: present
-      current_sha256: 0affc4a4b9607d3019c9e449580b6e3f4b28d1af696780d5b61b2f7c2145b6e8
-      current_words: 20
-      current_loc: 5
+      current_sha256: bdd91495e44d38cd5ba28422bafa5fd735774753bb0fe949f20613e93a8a460c
+      current_words: 24
+      current_loc: 6
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:workflows/core/**
