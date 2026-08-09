@@ -1,7 +1,7 @@
 ---
 name: career-application-orchestrator
 description: This skill should be used when the user asks to "crear mi CV", "adaptar mi hoja de vida", "escribir una cover letter", "buscar vacantes", "ayudarme a postular", or continue a governed candidate application.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -11,6 +11,10 @@ metadata:
 ---
 
 # Career Application Orchestrator
+
+## Contexto operativo
+
+Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
 
 Puerta profesional de Frames. Compila un pedido en `CareerIntentV1`, crea siempre
 un brief canónico y selecciona solo las etapas C00–C09 necesarias. Coordina las
