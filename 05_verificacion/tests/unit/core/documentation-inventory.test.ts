@@ -11,7 +11,7 @@ describe('DocumentationInventoryV1', () => {
     );
     expect(classified).toBe(inventory.totalMarkdown);
     expect(inventory.totalMarkdown).toBeGreaterThanOrEqual(1602);
-    expect(inventory.auditedAuthored).toBe(518);
+    expect(inventory.auditedAuthored).toBe(537);
     expect(inventory.classPaths.vendor).toHaveLength(975);
     expect(inventory.classPaths.generated).toEqual(
       expect.arrayContaining([
