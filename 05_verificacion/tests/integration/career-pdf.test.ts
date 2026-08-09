@@ -1,4 +1,4 @@
-import {mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
@@ -118,10 +118,36 @@ describe('Career ATS PDF boundary', () => {
     expect(second.pdf_sha256).toMatch(/^[a-f0-9]{64}$/u);
     expect(second.extracted_text_sha256).toMatch(/^[a-f0-9]{64}$/u);
     expect(second.replay).toMatchObject({
+      bytes_match: true,
       semantic_match: true,
       text_match: true,
       page_count_match: true,
     });
+    expect(second.gaps).not.toContain('pdf_byte_replay_mismatch');
+  });
+
+  it('blocks byte-divergent replays even when semantic PDF evidence is identical', async () => {
+    const input = makeInput();
+    runtime.pdf.mockReset();
+    runtime.pdf
+      .mockResolvedValueOnce(Buffer.from('%PDF-1.4\nSYNTHETIC ATS PDF A\n', 'utf8'))
+      .mockResolvedValueOnce(Buffer.from('%PDF-1.4\nSYNTHETIC ATS PDF B\n', 'utf8'));
+
+    const result = await renderCareerPdf(input);
+
+    expect(result).toMatchObject({
+      status: 'BLOCKED',
+      pdf_sha256: null,
+      pdf_ref: null,
+      replay: {
+        bytes_match: false,
+        semantic_match: true,
+        text_match: true,
+        page_count_match: true,
+      },
+    });
+    expect(result.gaps).toContain('pdf_byte_replay_mismatch');
+    expect(existsSync(input.pdfPath)).toBe(false);
   });
 
   it('keeps system Chrome explicitly UNKNOWN even when text extraction succeeds', async () => {

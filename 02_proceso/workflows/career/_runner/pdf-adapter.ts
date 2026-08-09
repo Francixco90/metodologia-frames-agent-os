@@ -12,6 +12,7 @@ type BrowserSource = 'playwright_bundle' | 'system_chrome' | 'unavailable';
 type Replay = {
   first_pdf_sha256: string;
   second_pdf_sha256: string;
+  bytes_match: boolean;
   semantic_match: boolean;
   text_match: boolean;
   page_count_match: boolean;
@@ -131,16 +132,23 @@ export const renderCareerPdf = async (input: {
     const first = await renderOnce(launched.browser, html);
     const second = await renderOnce(launched.browser, html);
     const blocked = [...new Set([...first.blocked, ...second.blocked])].sort();
+    const firstPdfHash = sha256(first.bytes);
+    const secondPdfHash = sha256(second.bytes);
     const replay: Replay = {
-      first_pdf_sha256: sha256(first.bytes),
-      second_pdf_sha256: sha256(second.bytes),
+      first_pdf_sha256: firstPdfHash,
+      second_pdf_sha256: secondPdfHash,
+      bytes_match: firstPdfHash === secondPdfHash,
       semantic_match: first.evidence?.semantic_sha256 === second.evidence?.semantic_sha256,
       text_match: first.evidence?.text_sha256 === second.evidence?.text_sha256,
       page_count_match: first.evidence?.page_count === second.evidence?.page_count,
     };
     const hasEvidence = Boolean(first.evidence && second.evidence);
     const replayPass =
-      hasEvidence && replay.semantic_match && replay.text_match && replay.page_count_match;
+      hasEvidence &&
+      replay.bytes_match &&
+      replay.semantic_match &&
+      replay.text_match &&
+      replay.page_count_match;
     const blockedResult = blocked.length > 0 || (hasEvidence && !replayPass);
     const status = blockedResult
       ? 'BLOCKED'
@@ -154,7 +162,7 @@ export const renderCareerPdf = async (input: {
     const result: CareerPdfManifestV1 = {
       ...base,
       status,
-      pdf_sha256: blockedResult ? null : sha256(first.bytes),
+      pdf_sha256: blockedResult ? null : firstPdfHash,
       extracted_text_sha256: first.evidence?.text_sha256 ?? null,
       semantic_sha256: first.evidence?.semantic_sha256 ?? null,
       page_count: first.evidence?.page_count ?? null,
@@ -166,6 +174,7 @@ export const renderCareerPdf = async (input: {
       toolchain: {...base.toolchain, pdftotext: hasEvidence ? 'available' : 'unavailable'},
       gaps: [
         ...(!hasEvidence ? ['pdftotext_unavailable_or_empty'] : []),
+        ...(!replay.bytes_match ? ['pdf_byte_replay_mismatch'] : []),
         ...(!replayPass && hasEvidence ? ['pdf_replay_mismatch'] : []),
         ...(blocked.length > 0 ? ['external_request_blocked'] : []),
         ...(launched.source === 'system_chrome' ? ['system_chrome_unpinned'] : []),
