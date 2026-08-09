@@ -1,0 +1,490 @@
+schema_version: context-surface-shard-v1
+shard_id: CTX-SHARD-WORKFLOWS
+surfaces:
+  - context_id: CTX-MULTIMEDIA
+    root: 02_proceso/workflows/multimedia
+    kind: workflow
+    owner: content
+    applies_when: R6 resolvió creación, mejora, planificación o revisión de contenido.
+    authority_refs: [AGENTS.md, 02_proceso/workflows/multimedia/index.ts]
+    load_first: [02_proceso/workflows/multimedia/index.ts]
+    load_on_demand: [02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml]
+    defer: [Etapas no seleccionadas, templates y prompts de otros idiomas]
+    routes: [R6]
+    workflows: [P00, P01, P02, P03, P04, P05, P06, P07, P08, P09]
+    primary_skills: [content-os-router]
+    tools: [workflow_plan]
+    read_set: [02_proceso/workflows/multimedia/index.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/multimedia/context.md]}
+    gates: [MW_BRIEF_APPROVED]
+    stop_rules: [Brief first, P09 no publica sin aprobación específica]
+    privacy: public_only
+    children:
+      [CTX-P00, CTX-P01, CTX-P02, CTX-P03, CTX-P04, CTX-P05, CTX-P06, CTX-P07, CTX-P08, CTX-P09]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P00
+    root: 02_proceso/workflows/multimedia/p00-definir-sistema
+    kind: workflow
+    owner: content
+    applies_when: Falta identidad, voz, canal o sistema visual para una pieza nueva.
+    authority_refs: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
+    load_on_demand: [03_artefactos/brand/brand-profile.yml]
+    defer: [Producción de activos]
+    routes: [R6]
+    workflows: [P00]
+    primary_skills: [metodologia-brand-router]
+    tools: [brand_resolve]
+    read_set: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
+    write_policy:
+      {
+        mode: generated_only,
+        paths: [02_proceso/workflows/multimedia/p00-definir-sistema/context.md],
+      }
+    gates: [brand_system]
+    stop_rules: [Marca o derechos no resueltos bloquean]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P01
+    root: 02_proceso/workflows/multimedia/p01-curar-material
+    kind: workflow
+    owner: content
+    applies_when: Existen materiales que deben inventariarse, verificarse y seleccionarse.
+    authority_refs: [02_proceso/workflows/multimedia/p01-curar-material/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p01-curar-material/workflow.yml]
+    load_on_demand: [04_estado/registries/sources/source-registry.yml]
+    defer: [Material no seleccionado]
+    routes: [R6]
+    workflows: [P01]
+    primary_skills: [content-os-core]
+    tools: [source_check]
+    read_set: [02_proceso/workflows/multimedia/p01-curar-material/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p01-curar-material/context.md]}
+    gates: [source_authority, rights]
+    stop_rules: [Gap de derechos queda UNKNOWN]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P02
+    root: 02_proceso/workflows/multimedia/p02-investigar
+    kind: workflow
+    owner: content
+    applies_when: Faltan evidencia, claims o contexto suficiente para producir.
+    authority_refs: [02_proceso/workflows/multimedia/p02-investigar/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p02-investigar/workflow.yml]
+    load_on_demand: [04_estado/registries/claims]
+    defer: [Fuentes fuera de alcance]
+    routes: [R6]
+    workflows: [P02]
+    primary_skills: [content-os-core]
+    tools: [research_authorized]
+    read_set: [02_proceso/workflows/multimedia/p02-investigar/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p02-investigar/context.md]}
+    gates: [evidence]
+    stop_rules: [Claim no demostrado conserva límite visible]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P03
+    root: 02_proceso/workflows/multimedia/p03-crear-brief
+    kind: workflow
+    owner: content
+    applies_when: Toda pieza nueva requiere interpretar y congelar un brief canónico.
+    authority_refs: [02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml]
+    load_on_demand: [02_proceso/workflows/multimedia/_assets/brief-document-template.md]
+    defer: [Producción y distribución]
+    routes: [R6]
+    workflows: [P03]
+    primary_skills: [content-os-creative]
+    tools: [brief_renderer]
+    read_set: [02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p03-crear-brief/context.md]}
+    gates: [MW_BRIEF_APPROVED]
+    stop_rules: [Máximo tres preguntas bloqueantes, Brief no aprobado no produce]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P04
+    root: 02_proceso/workflows/multimedia/p04-calendarizar
+    kind: workflow
+    owner: content
+    applies_when: El pedido incluye serie, campaña, calendario o múltiples entregables.
+    authority_refs: [02_proceso/workflows/multimedia/p04-calendarizar/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p04-calendarizar/workflow.yml]
+    load_on_demand: [02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml]
+    defer: [Canales y piezas no seleccionados]
+    routes: [R6]
+    workflows: [P04]
+    primary_skills: [content-os-creative]
+    tools: [schedule_plan]
+    read_set: [02_proceso/workflows/multimedia/p04-calendarizar/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p04-calendarizar/context.md]}
+    gates: [capacity]
+    stop_rules: [Dependencia o capacidad desconocida queda visible]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P05
+    root: 02_proceso/workflows/multimedia/p05-disenar-pieza
+    kind: workflow
+    owner: content
+    applies_when: Antes de producir, convertir el brief en especificación creativa ejecutable.
+    authority_refs: [02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml]
+    load_on_demand: [02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml]
+    defer: [Templates de piezas no seleccionadas]
+    routes: [R6]
+    workflows: [P05]
+    primary_skills: [content-os-creative]
+    tools: [creative_spec]
+    read_set: [02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p05-disenar-pieza/context.md]}
+    gates: [creative_readiness]
+    stop_rules: [Output sin template o cap explícito bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P06
+    root: 02_proceso/workflows/multimedia/p06-crear-activos
+    kind: workflow
+    owner: content
+    applies_when: Deben producirse o capturarse activos materiales.
+    authority_refs: [02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Tools no allowlisted y distribución]
+    routes: [R6]
+    workflows: [P06]
+    primary_skills: [content-os-creative]
+    tools: [asset_production]
+    read_set: [02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p06-crear-activos/context.md]}
+    gates: [material_output, provenance]
+    stop_rules: [No declarar output sin archivo y hash releído]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P07
+    root: 02_proceso/workflows/multimedia/p07-revisar
+    kind: workflow
+    owner: content
+    applies_when: Revisar contenido, marca, evidencia, derechos, accesibilidad y QA visual.
+    authority_refs: [02_proceso/workflows/multimedia/p07-revisar/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p07-revisar/workflow.yml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Código mutable fuera del candidate]
+    routes: [R6]
+    workflows: [P07]
+    primary_skills: [dev-verification-before-completion]
+    tools: [review_read_only]
+    read_set: [02_proceso/workflows/multimedia/p07-revisar/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p07-revisar/context.md]}
+    gates: [quality_verdict]
+    stop_rules: [UNKNOWN bloquea, Verifier no remedia]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P08
+    root: 02_proceso/workflows/multimedia/p08-editar
+    kind: workflow
+    owner: content
+    applies_when: Un veredicto exige editar, comparar y crear un candidate successor.
+    authority_refs: [02_proceso/workflows/multimedia/p08-editar/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p08-editar/workflow.yml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Cambios fuera del veredicto]
+    routes: [R6]
+    workflows: [P08]
+    primary_skills: [content-os-creative]
+    tools: [edit, regression]
+    read_set: [02_proceso/workflows/multimedia/p08-editar/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p08-editar/context.md]}
+    gates: [successor_candidate]
+    stop_rules: [No sobrescribir candidate congelado]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-P09
+    root: 02_proceso/workflows/multimedia/p09-distribuir
+    kind: workflow
+    owner: content
+    applies_when: Se solicita preparar distribución de un candidate aprobado.
+    authority_refs: [02_proceso/workflows/multimedia/p09-distribuir/workflow.yml]
+    load_first: [02_proceso/workflows/multimedia/p09-distribuir/workflow.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Conectores y credenciales]
+    routes: [R6]
+    workflows: [P09]
+    primary_skills: [content-os-router]
+    tools: [distribution_preview]
+    read_set: [02_proceso/workflows/multimedia/p09-distribuir/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/multimedia/p09-distribuir/context.md]}
+    gates: [human_distribution_authorization]
+    stop_rules: [Preparar y detener, Nunca publicar por inferencia]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-CAREER
+    root: 02_proceso/workflows/career
+    kind: workflow
+    owner: content
+    applies_when: R7 resolvió CV, carta, búsqueda, postulación o seguimiento laboral.
+    authority_refs: [AGENTS.md, 02_proceso/workflows/career/index.ts]
+    load_first: [02_proceso/workflows/career/index.ts]
+    load_on_demand: [02_proceso/workflows/career/_assets/deliverable-registry.yml]
+    defer: [Datos de otros candidatos y etapas no seleccionadas]
+    routes: [R7]
+    workflows: [C00, C01, C02, C03, C04, C05, C06, C07, C08, C09]
+    primary_skills: [career-application-orchestrator]
+    tools: [career_workflow_plan]
+    read_set: [02_proceso/workflows/career/index.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/career/context.md]}
+    gates: [career_brief_approved]
+    stop_rules: [Privacidad por candidato, C09 prepara y detiene sin autorización]
+    privacy: private_after_route_lock
+    children:
+      [CTX-C00, CTX-C01, CTX-C02, CTX-C03, CTX-C04, CTX-C05, CTX-C06, CTX-C07, CTX-C08, CTX-C09]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C00
+    root: 02_proceso/workflows/career/c00-intake
+    kind: workflow
+    owner: content
+    applies_when: Iniciar candidato, privacidad, alcance y brief de fundación.
+    authority_refs: [02_proceso/workflows/career/c00-intake/workflow.yml]
+    load_first: [02_proceso/workflows/career/c00-intake/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_schema]
+    defer: [PII no necesaria y vacantes no seleccionadas]
+    routes: [R7]
+    workflows: [C00]
+    primary_skills: [career-application-orchestrator]
+    tools: [career_intake]
+    read_set: [02_proceso/workflows/career/c00-intake/workflow.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/career/c00-intake/context.md]}
+    gates: [privacy_classification]
+    stop_rules: [Máximo tres preguntas bloqueantes]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C01
+    root: 02_proceso/workflows/career/c01-evidence
+    kind: workflow
+    owner: content
+    applies_when: Normalizar claims, contradicciones, confianza y gaps del candidato.
+    authority_refs: [02_proceso/workflows/career/c01-evidence/workflow.yml]
+    load_first: [02_proceso/workflows/career/c01-evidence/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_schema]
+    defer: [Evidencia no seleccionada]
+    routes: [R7]
+    workflows: [C01]
+    primary_skills: [candidate-evidence-reconciler]
+    tools: [evidence_reconcile]
+    read_set: [02_proceso/workflows/career/c01-evidence/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c01-evidence/context.md]}
+    gates: [evidence_confidence]
+    stop_rules: [inferred y missing no se convierten en hechos]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C02
+    root: 02_proceso/workflows/career/c02-positioning
+    kind: workflow
+    owner: content
+    applies_when: Definir familias de rol, posicionamiento y restricciones de búsqueda.
+    authority_refs: [02_proceso/workflows/career/c02-positioning/workflow.yml]
+    load_first: [02_proceso/workflows/career/c02-positioning/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_schema]
+    defer: [Roles fuera de alcance]
+    routes: [R7]
+    workflows: [C02]
+    primary_skills: [career-application-orchestrator]
+    tools: [positioning]
+    read_set: [02_proceso/workflows/career/c02-positioning/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c02-positioning/context.md]}
+    gates: [positioning_approved]
+    stop_rules: [Separar roles principal adyacente y stretch]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C03
+    root: 02_proceso/workflows/career/c03-discovery
+    kind: workflow
+    owner: content
+    applies_when: Buscar oportunidades en fuentes públicas y autorizadas.
+    authority_refs: [02_proceso/workflows/career/c03-discovery/workflow.yml]
+    load_first: [02_proceso/workflows/career/c03-discovery/workflow.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Credenciales cookies y scraping no autorizado]
+    routes: [R7]
+    workflows: [C03]
+    primary_skills: [career-opportunity-finder]
+    tools: [read_only_discovery]
+    read_set: [02_proceso/workflows/career/c03-discovery/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c03-discovery/context.md]}
+    gates: [source_authority]
+    stop_rules: [LinkedIn es adapter no autoridad del núcleo]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C04
+    root: 02_proceso/workflows/career/c04-scoring
+    kind: workflow
+    owner: content
+    applies_when: Validar vigencia, requisitos, hard stops, fit y shortlist.
+    authority_refs: [02_proceso/workflows/career/c04-scoring/workflow.yml]
+    load_first: [02_proceso/workflows/career/c04-scoring/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_schema]
+    defer: [Vacantes cerradas o no verificables]
+    routes: [R7]
+    workflows: [C04]
+    primary_skills: [career-opportunity-finder]
+    tools: [job_validate, fit_score]
+    read_set: [02_proceso/workflows/career/c04-scoring/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c04-scoring/context.md]}
+    gates: [job_valid, score_explainable]
+    stop_rules: [Requisito de vacante nunca se convierte en capacidad]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C05
+    root: 02_proceso/workflows/career/c05-application-design
+    kind: workflow
+    owner: content
+    applies_when: Diseñar una candidatura concreta y su mapa requisito-evidencia.
+    authority_refs: [02_proceso/workflows/career/c05-application-design/workflow.yml]
+    load_first: [02_proceso/workflows/career/c05-application-design/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_schema]
+    defer: [Evidencia no elegida]
+    routes: [R7]
+    workflows: [C05]
+    primary_skills: [career-application-orchestrator]
+    tools: [application_brief]
+    read_set: [02_proceso/workflows/career/c05-application-design/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c05-application-design/context.md]}
+    gates: [career_brief_approved]
+    stop_rules: [Gap obligatorio permanece gap o bloquea]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C06
+    root: 02_proceso/workflows/career/c06-cv
+    kind: workflow
+    owner: content
+    applies_when: Componer CV basado en evidencia y renderizar HTML y PDF ATS.
+    authority_refs: [02_proceso/workflows/career/c06-cv/workflow.yml]
+    load_first: [02_proceso/workflows/career/c06-cv/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_assets/deliverable-registry.yml]
+    defer: [Evidencia no autorizada]
+    routes: [R7]
+    workflows: [C06]
+    primary_skills: [evidence-first-cv]
+    tools: [career_render]
+    read_set: [02_proceso/workflows/career/c06-cv/workflow.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/career/c06-cv/context.md]}
+    gates: [ats, parity, evidence]
+    stop_rules: [Claims y métricas deben conservar contexto y límites]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C07
+    root: 02_proceso/workflows/career/c07-cover-letter
+    kind: workflow
+    owner: content
+    applies_when: Crear carta, respuesta de formulario o mensaje que complemente el CV.
+    authority_refs: [02_proceso/workflows/career/c07-cover-letter/workflow.yml]
+    load_first: [02_proceso/workflows/career/c07-cover-letter/workflow.yml]
+    load_on_demand: [02_proceso/workflows/career/_assets/deliverable-registry.yml]
+    defer: [Repetición del CV y claims no demostrados]
+    routes: [R7]
+    workflows: [C07]
+    primary_skills: [evidence-based-cover-letter]
+    tools: [letter_render]
+    read_set: [02_proceso/workflows/career/c07-cover-letter/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c07-cover-letter/context.md]}
+    gates: [channel_fit, evidence]
+    stop_rules: [Respetar longitud del canal y omission record]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C08
+    root: 02_proceso/workflows/career/c08-package-qa
+    kind: workflow
+    owner: content
+    applies_when: Congelar y verificar claims, idioma, paridad, legibilidad y requisitos.
+    authority_refs: [02_proceso/workflows/career/c08-package-qa/workflow.yml]
+    load_first: [02_proceso/workflows/career/c08-package-qa/workflow.yml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Contexto mutable del producer]
+    routes: [R7]
+    workflows: [C08]
+    primary_skills: [dev-verification-before-completion]
+    tools: [package_qa]
+    read_set: [02_proceso/workflows/career/c08-package-qa/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c08-package-qa/context.md]}
+    gates: [candidate_freeze, independent_verdict]
+    stop_rules: [Producer verifier y Guardian son instancias distintas]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-C09
+    root: 02_proceso/workflows/career/c09-submission
+    kind: workflow
+    owner: content
+    applies_when: Preparar preview, autorización de un uso, envío o seguimiento.
+    authority_refs: [02_proceso/workflows/career/c09-submission/workflow.yml]
+    load_first: [02_proceso/workflows/career/c09-submission/workflow.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Credenciales, OTP, CAPTCHA y declaraciones humanas]
+    routes: [R7]
+    workflows: [C09]
+    primary_skills: [career-application-orchestrator]
+    tools: [submission_preview]
+    read_set: [02_proceso/workflows/career/c09-submission/workflow.yml]
+    write_policy:
+      {mode: generated_only, paths: [02_proceso/workflows/career/c09-submission/context.md]}
+    gates: [single_use_authorization, material_confirmation]
+    stop_rules: [Sin confirmación visible queda BLOCKED, Cambiar hash invalida autorización]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-EXPERIENCE
+    root: 02_proceso/workflows/experience
+    kind: workflow
+    owner: content
+    applies_when: Componer First-Turn Gateway, GenUI, hospitalidad, recovery o releases de experiencia.
+    authority_refs: [AGENTS.md, 02_proceso/governance/experience-first-orchestration.md]
+    load_first: [02_proceso/governance/experience-first-orchestration.md]
+    load_on_demand:
+      [
+        02_proceso/workflows/experience/component-registry.yml,
+        02_proceso/workflows/experience/service-blueprint.yml,
+      ]
+    defer: [Componentes no seleccionados y contexto privado antes de route lock]
+    routes: [R0, R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [experience_view]
+    read_set: [02_proceso/governance/experience-first-orchestration.md]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/experience/context.md]}
+    gates: [semantic_parity, accessibility]
+    stop_rules: [Texto libre prevalece, Ghost menu no entra al entregable]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
