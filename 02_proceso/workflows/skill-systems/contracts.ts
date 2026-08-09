@@ -133,17 +133,6 @@ export const SkillEvalRunV1Schema = z.strictObject({
   }),
 });
 
-export const SkillHostProbeV1Schema = z.strictObject({
-  schema_version: z.literal('skill-host-probe-v1'),
-  release_id: Id,
-  profile: z.enum(['Codex', 'Claude', 'Gemini', 'ChatGPT']),
-  surface: z.literal('HOST_BEHAVIOR'),
-  status: z.literal('PASS'),
-  package_sha256: Sha256,
-  network_used: z.literal(false),
-  effects: z.array(z.never()).length(0),
-});
-
 export const SkillReviewReportV1Schema = z.strictObject({
   schema_version: z.literal('skill-review-report-v1'),
   review_id: Id,

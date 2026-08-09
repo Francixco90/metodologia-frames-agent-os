@@ -4,7 +4,8 @@ import path from 'node:path';
 
 import {writeCapsuleAtomically} from '../experience/atomic-capsule-store.ts';
 import {assertSafeReleasePath} from '../experience/safe-release-file.ts';
-import {SkillHostProbeV1Schema, SkillReleaseCapsuleV1Schema} from './contracts.ts';
+import {SkillReleaseCapsuleV1Schema} from './contracts.ts';
+import {SkillHostProbeV1Schema} from './release-contracts.ts';
 
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
 const stable = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;

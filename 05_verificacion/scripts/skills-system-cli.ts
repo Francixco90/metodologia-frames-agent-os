@@ -21,36 +21,10 @@ import {
   evaluateSkillRunV1,
 } from '../../02_proceso/workflows/skill-systems/governance.ts';
 import {buildSkillReleaseCapsuleV1} from '../../02_proceso/workflows/skill-systems/release.ts';
-import {stableStringify} from '../../02_proceso/workflows/multimedia/_runner/brief-model.ts';
+import {canonicalCliJson, skillSystemInputFromArgs} from './skill-system-cli-io.ts';
 
 type Action = 'inspect' | 'scaffold' | 'validate' | 'evaluate' | 'package';
-const canonical = (value: unknown): string => `${stableStringify(value)}\n`;
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
-
-const readStdin = async (): Promise<string> => {
-  process.stdin.setEncoding('utf8');
-  const chunks: string[] = [];
-  for await (const chunk of process.stdin) {
-    if (typeof chunk !== 'string') throw new Error('SSS_INPUT_ENCODING001');
-    chunks.push(chunk);
-  }
-  return chunks.join('');
-};
-
-const inputFromArgs = async (args: string[]): Promise<unknown> => {
-  const index = args.indexOf('--input');
-  if (index >= 0) {
-    const ref = args[index + 1];
-    if (!ref || path.isAbsolute(ref) || ref.includes('..') || ref.includes('\\'))
-      throw new Error('SSS_INPUT_PATH001');
-    return JSON.parse(await readFile(path.resolve(ref), 'utf8'));
-  }
-  if (args.includes('--stdin')) {
-    const body = await readStdin();
-    if (body.trim()) return JSON.parse(body);
-  }
-  return null;
-};
 
 const inspect = async (root: string, input: unknown) => {
   const suite = parse(
@@ -182,7 +156,7 @@ export function runSkillSystemCli(
 ): Promise<ReturnType<typeof packageCandidate>>;
 export function runSkillSystemCli(action: Action, args: string[], root?: string): Promise<unknown>;
 export async function runSkillSystemCli(action: Action, args: string[], root = process.cwd()) {
-  const input = await inputFromArgs(args);
+  const input = await skillSystemInputFromArgs(args);
   const apply = args.includes('--apply');
   if (action === 'inspect') return inspect(root, input);
   if (action === 'validate') return validate(input);
@@ -199,7 +173,7 @@ if (isMain) {
   const cliArgs = process.argv.slice(3);
   if (!process.stdin.isTTY && !cliArgs.includes('--input')) cliArgs.push('--stdin');
   const result = await runSkillSystemCli(action, cliArgs);
-  console.info(canonical(result));
+  console.info(canonicalCliJson(result));
   if (
     typeof result === 'object' &&
     result !== null &&
