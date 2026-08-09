@@ -93,6 +93,9 @@ describe('router.yml contract', () => {
         'CR_SUBMISSION_AUTHORIZED',
       ]),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(9);
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining(['EXP_BRIEF_APPROVED', 'EXP_RELEASE_APPROVED']),
+    );
+    expect(router.manual_fail_closed_gates).toHaveLength(11);
   });
 });

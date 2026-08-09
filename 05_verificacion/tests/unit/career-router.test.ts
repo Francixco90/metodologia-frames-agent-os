@@ -134,13 +134,13 @@ describe('R7 Career intent router', () => {
       route_id: 'R6',
       adapter: 'content-os-router/scripts/route-content.mjs',
       next_gate: 'MW_BRIEF_APPROVED',
-      decision: 'ROUTED',
+      decision: 'NEEDS_INPUT',
     });
     expect(dispatch({request: 'Créame un CV ATS en HTML'})).toMatchObject({
       route_id: 'R7',
       adapter: 'career-application-orchestrator/scripts/route-career.mjs',
       next_gate: 'CR_BRIEF_APPROVED',
-      decision: 'ROUTED',
+      decision: 'NEEDS_INPUT',
     });
   });
 
