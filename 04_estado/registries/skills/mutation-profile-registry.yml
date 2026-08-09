@@ -520,6 +520,9 @@ profiles:
   - skill_id: skill-runtime-adapter
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: skill-security-auditor
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: skill-system-architect
     mutation_classes: []
     documentation_impact_required: false

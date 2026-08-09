@@ -908,5 +908,10 @@
     "id": "skill-runtime-adapter",
     "scope": "local-evaluation",
     "check": ["skills/skill-runtime-adapter/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-security-auditor",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-security-auditor/scripts/check-skill.mjs"]
   }
 ]

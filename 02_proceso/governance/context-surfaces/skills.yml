@@ -170,6 +170,35 @@ surfaces:
     privacy: public_only
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-SECURITY-AUDITOR
+    root: 03_artefactos/skills/skill-security-auditor
+    kind: skill
+    owner: skill-foundry
+    applies_when: S05 o S07 requiere auditoría adversarial de seguridad supply chain o expansión de autoridad.
+    authority_refs: [03_artefactos/skills/skill-security-auditor/SKILL.md]
+    load_first: [03_artefactos/skills/skill-security-auditor/SKILL.md]
+    load_on_demand:
+      [
+        03_artefactos/skills/skill-security-auditor/references/operating-contract.md,
+        02_proceso/workflows/skill-systems/dossier-adoption.yml,
+      ]
+    defer: [Bundle PIVOTE completo y fuentes no seleccionadas]
+    routes: [R8, R9]
+    workflows: [S05, S07]
+    primary_skills: [skill-security-auditor]
+    tools: [skills:validate]
+    read_set:
+      [
+        02_proceso/workflows/skill-systems/adoption-contracts.ts,
+        00_inbox/first-party/SRC-MULTIMEDIA-PIVOTE-20PLUS1-V4.projection.yml,
+      ]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/skill-security-auditor/context.md]}
+    gates: [SSS_STATIC_VALIDATED, SSS_REVIEW_VALIDATED]
+    stop_rules: [UNKNOWN o conflicto no resuelto bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-SKILL-FRAMES-DOCS-AS-CODE
     root: 03_artefactos/skills/frames-docs-as-code
     kind: skill

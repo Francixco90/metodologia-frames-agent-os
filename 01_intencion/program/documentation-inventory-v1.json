@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "afb94b4a0059c0a8cec93612f3946e5496f125198ef69852942c4b695b267ca8",
-  "totalMarkdown": 1772,
-  "auditedAuthored": 538,
+  "repositoryTreeSha256": "1f8d405568f4c49c627bd0e19a0b32fb01937d50f925301d743bcb6a4973eecd",
+  "totalMarkdown": 1775,
+  "auditedAuthored": 539,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -359,6 +359,7 @@
       "03_artefactos/skills/skill-portfolio-governor/references/operating-contract.md",
       "03_artefactos/skills/skill-release-governor/references/operating-contract.md",
       "03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md",
+      "03_artefactos/skills/skill-security-auditor/references/operating-contract.md",
       "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
       "03_artefactos/skills/stitch-remotion-walkthrough/references/quarantine-assessment.md",
       "04_estado/registries/README.md",
@@ -708,6 +709,7 @@
       "03_artefactos/skills/skill-portfolio-governor/SKILL.md",
       "03_artefactos/skills/skill-release-governor/SKILL.md",
       "03_artefactos/skills/skill-runtime-adapter/SKILL.md",
+      "03_artefactos/skills/skill-security-auditor/SKILL.md",
       "03_artefactos/skills/skill-system-architect/SKILL.md",
       "03_artefactos/skills/stitch-remotion-walkthrough/SKILL.md",
       "03_artefactos/skills/web-browse/SKILL.md",
@@ -792,6 +794,7 @@
       "03_artefactos/skills/skill-portfolio-governor/context.md",
       "03_artefactos/skills/skill-release-governor/context.md",
       "03_artefactos/skills/skill-runtime-adapter/context.md",
+      "03_artefactos/skills/skill-security-auditor/context.md",
       "03_artefactos/skills/skill-system-architect/context.md",
       "04_estado/context.md",
       "04_estado/registries/context.md",
@@ -9269,9 +9272,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "44778d13d2a632681f76a8ab8172edc11357cf06b9372a88839e92a1f3a976a2",
-      "words": 9899,
-      "lines": 922,
+      "sha256": "29dc8a0dde318877c080c2b572069b938ce91efe472543746c937449a4012191",
+      "words": 9910,
+      "lines": 923,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -13476,6 +13479,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/skill-security-auditor/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-security-auditor/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-security-auditor/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "bc923c93b72c9f9c2f08edd9fae04115c7abebdb84813acd2988cc8b7cda4b2f",
+      "words": 163,
+      "lines": 24,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -16262,10 +16291,10 @@
     }
   ],
   "summary": {
-    "keep": 523,
+    "keep": 524,
     "refactor": 0,
     "split": 1,
-    "regenerate": 80,
+    "regenerate": 81,
     "freeze": 987
   }
 }
