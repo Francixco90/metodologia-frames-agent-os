@@ -1,7 +1,3 @@
-/**
- * Shared fail-closed runner for multimedia workflows P00-P09. [CONFIG]
- * Dry-run validates contracts and returns before every material or receipt write.
- */
 import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
@@ -37,16 +33,19 @@ export const runWorkflow = (workflowId: string): void => {
     return;
   }
   const {workflow, frontmatter, taskTemplate} = contract;
-  let selectedConditional: ReadonlySet<string> | undefined;
+  let selection: ReturnType<typeof resolveOutputSelection>;
   try {
-    selectedConditional = resolveOutputSelection(args.outputSelection, workflow);
+    selection = resolveOutputSelection(args.outputSelection, workflow, {
+      ...(args.intent === undefined ? {} : {intentPath: args.intent}),
+      ...(args.workOrder === undefined ? {} : {workOrderPath: args.workOrder}),
+    });
   } catch (error) {
     console.error(`[FAIL] ${id}: ${String(error)}`);
     process.exitCode = 1;
     return;
   }
   const plannedOutputs = workflow.outputs.filter(
-    ({deliverable_id, required}) => required || selectedConditional?.has(deliverable_id),
+    ({deliverable_id, required}) => required || selection.selected?.has(deliverable_id),
   );
   if (args.dryRun) {
     console.info(
@@ -58,7 +57,7 @@ export const runWorkflow = (workflowId: string): void => {
 
   const gate = workflow.gates[0] ?? 'G14';
   const ranAt = isoWithOffset(new Date());
-  const staged = stageWorkflowOutputs(ROOT, contract.dir, workflow, selectedConditional);
+  const staged = stageWorkflowOutputs(ROOT, contract.dir, workflow, selection.selected);
   const noRegressionChecklistPath = resolve(
     MULTIMEDIA_DIR,
     '_assets',
@@ -71,14 +70,17 @@ export const runWorkflow = (workflowId: string): void => {
     command: workflow.command,
     mode: workflow.modes[0]?.id ?? 'single',
     inputs: [
-      ['workflow.yml', contract.workflowPath],
-      ['prompt-spec.md', contract.promptSpecPath],
-      ['task-template.yaml', contract.taskTemplatePath],
-    ].map(([artifact, path]) => ({
-      artifact: artifact ?? '',
-      ref: relativeToRoot(path ?? ''),
-      sha256: sha256(readFileSync(path ?? '')),
-    })),
+      ...[
+        ['workflow.yml', contract.workflowPath],
+        ['prompt-spec.md', contract.promptSpecPath],
+        ['task-template.yaml', contract.taskTemplatePath],
+      ].map(([artifact, path]) => ({
+        artifact: artifact ?? '',
+        ref: relativeToRoot(path ?? ''),
+        sha256: sha256(readFileSync(path ?? '')),
+      })),
+      ...selection.inputs,
+    ],
     outputs: staged.outputs.map((output) => ({
       artifact: output.artifact,
       ref: output.ref,
