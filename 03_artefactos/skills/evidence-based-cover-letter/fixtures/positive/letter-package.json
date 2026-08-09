@@ -1,0 +1,13 @@
+{
+  "candidate_id": "CAND-SYNTH-001",
+  "brief_id": "CBRIEF-SYNTH-APP-001",
+  "job_snapshot_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "language": "en",
+  "channel": "letter",
+  "need_ids": ["NEED-01", "NEED-02"],
+  "evidence_ids": ["EVD-SYNTH-001"],
+  "word_count": 224,
+  "outputs": [{"path": "work/private/career/cover-letter.md", "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "materialized": true}],
+  "state": "DRAFTED",
+  "next_gate": "CR_PACKAGE_QA"
+}

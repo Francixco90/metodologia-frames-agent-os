@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metodologia:frames:cover-letter-package:v1",
+  "title": "CoverLetterPackageV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "brief_id", "job_snapshot_sha256", "language", "channel", "need_ids", "evidence_ids", "word_count", "outputs", "state", "next_gate"],
+  "properties": {
+    "candidate_id": {"type": "string", "pattern": "^CAND-[A-Z0-9-]+$"},
+    "brief_id": {"type": "string", "pattern": "^CBRIEF-[A-Z0-9-]+$"},
+    "job_snapshot_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "language": {"enum": ["es", "en", "pt", "unknown"]},
+    "channel": {"enum": ["letter", "form", "recruiter_message"]},
+    "need_ids": {"type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": {"type": "string"}},
+    "evidence_ids": {"type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true, "items": {"pattern": "^EVD-[A-Z0-9-]+$"}},
+    "word_count": {"type": "integer", "minimum": 1, "maximum": 280},
+    "outputs": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["path", "sha256", "materialized"], "properties": {"path": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "materialized": {"const": true}}}},
+    "state": {"const": "DRAFTED"},
+    "next_gate": {"const": "CR_PACKAGE_QA"}
+  }
+}

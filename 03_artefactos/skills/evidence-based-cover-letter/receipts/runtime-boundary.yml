@@ -1,0 +1,16 @@
+schema_version: 1
+receipt_id: evidence-based-cover-letter-runtime-boundary-v1
+skill_id: evidence-based-cover-letter
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+submission_authority: false
+private_state_required: true
+allowed_claim_confidence: [verified, user_confirmed]
+channel_budgets:
+  letter_words: [180, 280]
+  form_words: [80, 140]
+  recruiter_message_words: [40, 70]
+required_gate: CR_PACKAGE_QA
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
