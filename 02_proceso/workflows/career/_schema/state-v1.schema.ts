@@ -54,5 +54,34 @@ export const SubmissionAuthorizationV1Schema = z.strictObject({
   status: z.enum(['pending', 'authorized', 'consumed', 'invalidated']),
 });
 
+export const BoundSubmissionAuthorizationV1Schema = SubmissionAuthorizationV1Schema.extend({
+  candidate_id: z.string().regex(/^CAND-[A-Z0-9-]{3,79}$/u),
+});
+
+export const SubmissionConfirmationReceiptV1Schema = z.strictObject({
+  schema_version: z.literal('submission-confirmation-receipt-v1'),
+  receipt_id: CareerIdSchema,
+  authorization_id: CareerIdSchema,
+  candidate_id: z.string().regex(/^CAND-[A-Z0-9-]{3,79}$/u),
+  application_id: z.string().regex(/^APP-[A-Z0-9-]{3,79}$/u),
+  channel: z.string().min(1).max(120),
+  job_sha256: Sha256Schema,
+  package_sha256: Sha256Schema,
+  confirmation_ref: PortableRefSchema,
+  confirmation_sha256: Sha256Schema,
+  submitted_by_actor_id: CareerIdSchema,
+  status: z.literal('confirmed'),
+});
+
+export const SubmittedTransitionV1Schema = z.strictObject({
+  event: CareerEventV1Schema,
+  authorization: BoundSubmissionAuthorizationV1Schema,
+  confirmation: SubmissionConfirmationReceiptV1Schema,
+  producer_actor_id: CareerIdSchema,
+  verifier_actor_id: CareerIdSchema,
+  guardian_actor_id: CareerIdSchema,
+});
+
 export type CareerApplicationState = z.infer<typeof CareerApplicationStateSchema>;
 export type CareerEventV1 = z.infer<typeof CareerEventV1Schema>;
+export type SubmittedTransitionV1 = z.infer<typeof SubmittedTransitionV1Schema>;

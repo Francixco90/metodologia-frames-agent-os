@@ -1,5 +1,6 @@
 import {
   CareerEventV1Schema,
+  SubmittedTransitionV1Schema,
   type CareerApplicationState,
   type CareerEventV1,
 } from '../_schema/state-v1.schema.ts';
@@ -36,8 +37,47 @@ export class CareerStateTransitionError extends Error {
   }
 }
 
+const assertSubmittedEvidence = (input: unknown): CareerEventV1 => {
+  const packet = SubmittedTransitionV1Schema.parse(input);
+  const {authorization, confirmation, event} = packet;
+  const actors = [
+    packet.producer_actor_id,
+    packet.verifier_actor_id,
+    packet.guardian_actor_id,
+    confirmation.submitted_by_actor_id,
+  ];
+  if (new Set(actors).size !== actors.length || actors.includes(authorization.approver_actor_id)) {
+    throw new CareerStateTransitionError(
+      'SUBMITTED requires distinct producer, verifier, Guardian, submitter and approver',
+    );
+  }
+  if (authorization.status !== 'authorized' || !authorization.single_use) {
+    throw new CareerStateTransitionError('SUBMITTED requires a current single-use authorization');
+  }
+  const bindings = [
+    authorization.authorization_id === confirmation.authorization_id,
+    authorization.candidate_id === confirmation.candidate_id,
+    authorization.application_id === confirmation.application_id,
+    authorization.application_id === event.application_id,
+    authorization.channel === confirmation.channel,
+    authorization.job_sha256 === confirmation.job_sha256,
+    authorization.package_sha256 === confirmation.package_sha256,
+    authorization.package_sha256 === event.artifact_sha256,
+    confirmation.submitted_by_actor_id === event.actor_id,
+    event.evidence_refs.includes(confirmation.confirmation_ref),
+  ];
+  if (bindings.some((binding) => !binding)) {
+    throw new CareerStateTransitionError(
+      'SUBMITTED authorization or confirmation binding mismatch',
+    );
+  }
+  return event;
+};
+
 export const transitionCareerState = (input: unknown): CareerApplicationState => {
-  const event = CareerEventV1Schema.parse(input);
+  const possibleEvent =
+    typeof input === 'object' && input !== null && 'event' in input ? input.event : input;
+  const event = CareerEventV1Schema.parse(possibleEvent);
   if (event.from === null) {
     if (event.to !== 'DISCOVERED' || event.kind !== 'job-captured') {
       throw new CareerStateTransitionError('Initial event must capture a DISCOVERED job');
@@ -51,8 +91,6 @@ export const transitionCareerState = (input: unknown): CareerApplicationState =>
   if (kind && event.kind !== kind) {
     throw new CareerStateTransitionError(`${event.to} requires event kind ${kind}`);
   }
-  if (event.to === 'SUBMITTED' && event.evidence_refs.length === 0) {
-    throw new CareerStateTransitionError('SUBMITTED requires material confirmation evidence');
-  }
+  if (event.to === 'SUBMITTED') assertSubmittedEvidence(input);
   return event.to;
 };
