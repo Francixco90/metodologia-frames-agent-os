@@ -4,6 +4,22 @@ Append-only record of merged PRs and programa milestones (ADR 0027: the
 repo's only versioned temporal trace besides `04_estado/receipts/**` and
 `04_estado/tasks/**`). Newest entry first. Never rewrite past entries. [CONFIG]
 
+## 2026-08 — Frames Content Workflow deployment closure
+
+- **PRs #2–#39** — 41 commits integrados secuencialmente en `origin/main`
+  mediante 38 PRs y merge commits, sin squash, force, admin bypass ni
+  publicación. El train incorpora brief universal, routing adaptativo,
+  contratos y catálogo de 39 entregables, workflows P00–P09, 39 templates
+  Markdown + 39 HTML MetodologIA, generación/paridad determinista, autoridad de
+  fuentes/actores y placeholders fail-closed. Candidate `e4223ead`; merge final
+  `42203b7`; tree común `35a8ff6b`. Read-back limpio y `pnpm verify` post-merge:
+  21 gates, 88 archivos y 746 tests PASS. GitHub Actions permaneció activo pero
+  no emitió runs ante `pull_request` ni `push main`; se registra como
+  `coverage_gap`, no como PASS. Estado máximo: runtime `active/local-evaluation`,
+  templates `DRAFT`, materiales verificados `RENDERED_DRAFT`. Remotion comercial
+  (`BLOCKED_LICENSE`), cuatro textos canónicos, distribución y publicación
+  permanecen fail-closed. Evidencia append-only: PRs y merge commits #2–#39. [CONFIG]
+
 ## 2026-08 — Atemporal + simplicity lift
 
 - **Fase 7 phase 3** — continued `.md` 10× lift on the quick-win band
