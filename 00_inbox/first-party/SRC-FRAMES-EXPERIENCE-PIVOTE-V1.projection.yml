@@ -1,0 +1,38 @@
+schema_version: frames-experience-source-projection-v1
+source_id: SRC-FRAMES-EXPERIENCE-PIVOTE-V1
+title: Arquitecto PIVOTE Multimedia Specs — patrones adoptables para Frames Experience OS
+source_kind: product_requirements_authority
+ordered_bundle_sha256: 5e2b59ce6e9e49aab5c1b9035079660d407b7f87e51657a6d4134c32f000c93e
+source_files:
+  - {ref: canonical/01_assistant_manifest.md, sha256: 186e56635c02a535e2193f505d014bb695ae39bbccf6a13c24316800c721048e, bytes: 2060}
+  - {ref: canonical/02_operating_manual.md, sha256: da7b57f791c52ed63285011197b0170cba6e08cec30408bafa48d4b6a2c0d0d9, bytes: 2448}
+  - {ref: canonical/SYSTEM_PROMPT.md, sha256: b52cba83d84162c74ca3348b33230828a37effbd2b42437cfc0531f393534003, bytes: 8035}
+  - {ref: VERSIONING_POLICY.md, sha256: 8110f1f114c218c5df1527335440a1603c854c709279a1fd65026f00cacacb1b, bytes: 2812}
+  - {ref: templates/SPEC_RELEASE_MANIFEST.template.json, sha256: 30f370915dc969cde3f9b27654260a79c7ccb0b56e4ef8905fbf1649a3b07bf6, bytes: 605}
+  - {ref: templates/VERSION_DIFF.template.json, sha256: bb5b4fa186f97d613aea315d221753e9a887cf0cbf6373d60ce6804e7719369d, bytes: 561}
+adopted_patterns:
+  - case_card_as_internal_session_summary
+  - maximum_three_material_questions
+  - brief_and_spec_before_production
+  - contextual_ghost_actions_with_free_text_override
+  - immutable_release_capsule_with_diff_compatibility_migration_and_restore
+adaptations:
+  - fixed_5_plus_3_menu_becomes_one_recommendation_plus_two_contextual_alternatives
+  - PIVOTE_identity_is_replaced_by_Frames_ContentOS_by_MetodologIA
+  - structural_validation_is_not_runtime_execution_evidence
+rejected_patterns:
+  - copy_full_system_prompt
+  - version_private_or_local_locators
+  - treat_declared_tools_or_skills_as_executed
+  - automatic_publication_or_external_effects
+authority:
+  class: user_supplied_product_reference
+  verdict: verified_for_internal_experience_implementation
+rights:
+  basis: user_supplied_reference_for_requested_refactoring
+  verdict: allowed_internal_implementation
+limits:
+  - source_package_is_not_versioned
+  - package_runtime_behavior_not_independently_proven
+  - local_validation_missing_jsonschema_remains_coverage_gap
+publication_authority: false
