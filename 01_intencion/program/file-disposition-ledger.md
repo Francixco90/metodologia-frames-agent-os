@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       79 |
+| `refactored`         |       80 |
 | `generator_fixed`    |        6 |
 | `superseded`         |        0 |
-| `verified_no_change` |      203 |
+| `verified_no_change` |      202 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -37,13 +37,13 @@ y la historia conserva bytes. [CONFIG]
 
 ## Presupuestos medidos
 
-| Gate                          |         Baseline |             Final |            Límite |   Ratio | Estado |
-| ----------------------------- | ---------------: | ----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            93215 |            110236 |     139822 (1.5×) | 1.1826× | `pass` |
-| Total authored (palabras)     |            93215 |            110236 |       186430 (2×) | 1.1826× | `pass` |
-| Total authored (LOC)          |            35033 |             41410 |        70066 (2×) |  1.182× | `pass` |
-| Generated/template aplicables | 52 inventariados | 3 checks + 49 N/A | 2× palabras y LOC |   52/52 | `pass` |
-| Historia baseline             |      95 archivos | 95 byte-idénticos |                95 |     n/a | `pass` |
+| Gate                          |         Baseline |              Final |            Límite |   Ratio | Estado |
+| ----------------------------- | ---------------: | -----------------: | ----------------: | ------: | ------ |
+| Corpus authored elegible      |            93305 |             110425 |     139957 (1.5×) | 1.1835× | `pass` |
+| Total authored (palabras)     |            93305 |             110425 |       186610 (2×) | 1.1835× | `pass` |
+| Total authored (LOC)          |            35045 |              41472 |        70090 (2×) | 1.1834× | `pass` |
+| Generated/template aplicables | 64 inventariados | 13 checks + 51 N/A | 2× palabras y LOC |   64/64 | `pass` |
+| Historia baseline             |      95 archivos |  95 byte-idénticos |                95 |     n/a | `pass` |
 
 Además, 58 Markdown editables del baseline se
 comprueban individualmente contra un máximo de 2× palabras. Violaciones registradas:
@@ -60,7 +60,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
-| `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 134               | 33          | 41         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
+| `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 143               | 33          | 44         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
 | `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 100               | 15          | 58         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
@@ -68,7 +68,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `verified_no_change` | 222                | 222               | 23          | 23         | `dc598930bfdb0f7da1f9dd46ae8dd5c353375c16802eb8bddd6c5c0c721cd8a7` | `byte-identical` |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `refactored`         | 62                 | 111               | 12          | 21         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `changed`        |
-| `README.md`                                                                                                   | `lead`             | `verified_no_change` | 1328               | 1328              | 243         | 243        | `a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2` | `byte-identical` |
+| `README.md`                                                                                                   | `lead`             | `refactored`         | 1328               | 1409              | 243         | 252        | `a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2` | `changed`        |
 | `SECURITY.md`                                                                                                 | `lead`             | `verified_no_change` | 73                 | 73                | 8           | 8          | `4ef6d9dfca8c3ed939d3bf402362e340efb7ee52684c181a31d77e996235459e` | `byte-identical` |
 | `adapters/n8n/README.md`                                                                                      | `n8n`              | `verified_no_change` | 184                | 184               | 23          | 23         | `99de7683e9276c5c711c76a6519a25335ced04ec8ee41b24851738a2fb4c9e10` | `byte-identical` |
 | `adapters/n8n/callback-policy.json`                                                                           | `n8n`              | `verified_no_change` | 21                 | 21                | 16          | 16         | `be738429c5f1147bfb0e7b533f89465ded788851743dac46bd835dbbbca22474` | `byte-identical` |

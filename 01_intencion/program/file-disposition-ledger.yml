@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 79
+    refactored: 80
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 203
+    verified_no_change: 202
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12498
+    current_words_for_baseline_files: 12579
     violations: []
     checks:
       - path: AGENTS.md
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1328
+        current_words: 1409
         maximum_words: 2656
-        ratio: 1
+        ratio: 1.061
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -416,40 +416,140 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93215
-    v3_rolling_adjustment_words: 5029
+    baseline_words: 93305
+    v3_rolling_adjustment_words: 5119
     original_baseline_words: 88186
-    final_words: 110236
+    final_words: 110425
     maximum_multiplier: 1.5
-    maximum_words: 139822
-    actual_multiplier: 1.1826
+    maximum_words: 139957
+    actual_multiplier: 1.1835
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93215
-    v3_rolling_adjustment_words: 5029
+    baseline_words: 93305
+    v3_rolling_adjustment_words: 5119
     original_baseline_words: 88186
-    final_words: 110236
-    maximum_words: 186430
-    word_multiplier: 1.1826
-    baseline_loc: 35033
-    v3_rolling_adjustment_loc: 2145
+    final_words: 110425
+    maximum_words: 186610
+    word_multiplier: 1.1835
+    baseline_loc: 35045
+    v3_rolling_adjustment_loc: 2157
     original_baseline_loc: 32888
-    final_loc: 41410
-    maximum_loc: 70066
-    loc_multiplier: 1.182
+    final_loc: 41472
+    maximum_loc: 70090
+    loc_multiplier: 1.1834
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 52
-    applicable_bindings: 3
-    not_applicable_count: 49
-    coverage: 52/52
+    inventory_count: 64
+    applicable_bindings: 13
+    not_applicable_count: 51
+    coverage: 64/64
     coverage_gaps: []
     status: pass
     checks:
+      - output_path: workflows/multimedia/p00-definir-sistema/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1595
+        word_ratio: 1.275
+        template_loc: 544
+        output_loc: 615
+        loc_ratio: 1.1305
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p01-curar-material/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1597
+        word_ratio: 1.2766
+        template_loc: 544
+        output_loc: 617
+        loc_ratio: 1.1342
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p02-investigar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1583
+        word_ratio: 1.2654
+        template_loc: 544
+        output_loc: 614
+        loc_ratio: 1.1287
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p03-crear-brief/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1601
+        word_ratio: 1.2798
+        template_loc: 544
+        output_loc: 619
+        loc_ratio: 1.1379
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p04-calendarizar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1586
+        word_ratio: 1.2678
+        template_loc: 544
+        output_loc: 613
+        loc_ratio: 1.1268
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p05-disenar-pieza/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1607
+        word_ratio: 1.2846
+        template_loc: 544
+        output_loc: 621
+        loc_ratio: 1.1415
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p06-crear-activos/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1605
+        word_ratio: 1.283
+        template_loc: 544
+        output_loc: 619
+        loc_ratio: 1.1379
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p07-revisar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1581
+        word_ratio: 1.2638
+        template_loc: 544
+        output_loc: 612
+        loc_ratio: 1.125
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p08-editar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1592
+        word_ratio: 1.2726
+        template_loc: 544
+        output_loc: 614
+        loc_ratio: 1.1287
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p09-distribuir/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1597
+        word_ratio: 1.2766
+        template_loc: 544
+        output_loc: 618
+        loc_ratio: 1.136
+        maximum_multiplier: 2
+        status: pass
       - output_path: brand/generated/social-light.tokens.json
         template_path: brand/tokens/brand-tokens.yml
         template_words: 134
@@ -579,6 +679,10 @@ budgets:
         reason: Canonical generator output without a declared one-to-one size-comparable template.
       - path: registries/components/component-registry.yml
         reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/_assets/multimedia-library.html
+        reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/_assets/multimedia-library.md
+        reason: Canonical generator output without a declared one-to-one size-comparable template.
   runtime_generated_evidence:
     excluded_from_authored_budgets: true
     files: 6
@@ -609,9 +713,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: ac459bc9b0e1bafb1b01a5ff4575bf4dd43fb2ca796fbb3c19af0091019a7d19
-      current_words: 134
-      current_loc: 41
+      current_sha256: de16d2471ef6029fb7cfe9f8ad27234c43d7d8246b962aa16416a95a5f71f2fa
+      current_words: 143
+      current_loc: 44
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
@@ -771,17 +875,17 @@ entries:
     initial_words: 1328
     initial_loc: 243
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2
-      current_words: 1328
-      current_loc: 243
-      byte_identical: true
-      material_change: false
+      current_sha256: 812378f575223fecd659dc7126a173c519df0d2f7575aea1f1df1771a865ce01
+      current_words: 1409
+      current_loc: 252
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md
       generator_ref: null
       successor_path: null
