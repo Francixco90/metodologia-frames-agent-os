@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="generator" content="MetodologIA Frames Career OS" />
+    <meta name="document-id" content="{{DOCUMENT_ID}}" />
+    <meta name="content-sha256" content="{{CONTENT_HASH}}" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'none'; img-src data:; font-src data:"
+    />
+    <title>{{TITLE}}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --navy: #122562;
+        --blue: #137dc5;
+        --gold: #ffd700;
+        --ink: #17223b;
+        --soft: #eef6ff;
+        --line: #cfdded;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #fff;
+        color: var(--ink);
+        font:
+          16px/1.6 Montserrat,
+          Arial,
+          sans-serif;
+      }
+      a {
+        color: var(--navy);
+      }
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+        background: #fff;
+        padding: 0.75rem;
+        z-index: 2;
+      }
+      .hero {
+        background: var(--navy);
+        color: #fff;
+        padding: clamp(2rem, 6vw, 5rem);
+      }
+      .hero h1 {
+        font:
+          700 clamp(2rem, 5vw, 4rem)/1.05 Poppins,
+          Arial,
+          sans-serif;
+        max-width: 18ch;
+      }
+      .meta {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .meta span {
+        border: 1px solid #ffffff66;
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(13rem, 18rem) minmax(0, 52rem);
+        gap: 2rem;
+        max-width: 76rem;
+        margin: auto;
+        padding: 2rem;
+      }
+      .toc {
+        position: sticky;
+        top: 1rem;
+        align-self: start;
+        display: grid;
+        gap: 0.35rem;
+      }
+      .toc a {
+        min-height: 44px;
+        padding: 0.6rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+      }
+      .toc a:hover {
+        background: var(--soft);
+      }
+      section {
+        border-top: 1px solid var(--line);
+        padding: 2rem 0;
+      }
+      h2 {
+        color: var(--navy);
+        font:
+          700 clamp(1.3rem, 3vw, 2rem)/1.2 Poppins,
+          Arial,
+          sans-serif;
+      }
+      .eyebrow {
+        color: #765f00;
+        font-weight: 700;
+      }
+      @media (max-width: 768px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .toc {
+          position: static;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+      @media print {
+        .hero {
+          background: #fff;
+          color: var(--navy);
+          padding: 0;
+        }
+        .toc,
+        .skip {
+          display: none;
+        }
+        .layout {
+          display: block;
+          padding: 0;
+        }
+        section {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#content">Saltar al contenido</a>
+    <header class="hero">
+      <p>MetodologIA · Career OS</p>
+      <h1>{{TITLE}}</h1>
+      <div class="meta">
+        <span>{{DOCUMENT_ID}}</span><span>{{STATE}}</span><span>{{NEXT_GATE}}</span>
+      </div>
+    </header>
+    <div class="layout">
+      <nav class="toc" aria-label="Secciones">{{NAVIGATION}}</nav>
+      <main id="content">{{SECTIONS}}</main>
+    </div>
+    <script id="career-brief-data" type="application/json">
+      {{CANONICAL_JSON}}
+    </script>
+  </body>
+</html>
