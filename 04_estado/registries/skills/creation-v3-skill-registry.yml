@@ -29,7 +29,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 37891918f0680dc0739fa047513577f0249a485f192468b374378c6599687aee
-    package_manifest_sha256: 7304b87786ee9915690fe96fc1cf83d9a045ac8a1b3b192076265428d029a8db
+    package_manifest_sha256: 76d21c9e34a9a2bd126cb97e5dc57ddf5781c7b5f0f5f94cfe48f7c55cfca29f
     lineage_ref: skills/content-os-core/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-core/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -62,7 +62,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 165a2e6447bee71ed42ef9a48233d4c5c9c9fb54db4aa0bf0d15fdaa84635643
-    package_manifest_sha256: fbef64c530c03e6f478431d9bb14cfb8ecf2ef7c54a3bab9641bb099a054f25d
+    package_manifest_sha256: 6f20cf2f720b571ce4a47284ae757482f3f6a4a02649b554b0b4c4f91109788e
     lineage_ref: skills/content-os-creative/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -95,7 +95,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 3adbf4729f7777f2ecce0351d78547695fee2fc31fc412012d8abbfd8c7eec0a
-    package_manifest_sha256: e86e7bfaf55944a0f9bec2309904be49c025597f8bce6360e7f80e66bc940229
+    package_manifest_sha256: 91e0a30793c47722aaeb02c2ef62b331ecba38c24a2d051eb3f44b2b62e4c624
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1151,7 +1151,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: b37464d7f40adfdf4938fa35ea0f94632c65ee8c7281e721067c9392ea9e7944
-    package_manifest_sha256: 0993004c111e46fc3399517d2ad425c36f6554f881324d1d783646b8ca93ce51
+    package_manifest_sha256: e600d1259c6b3aa29dec0e5f6d45d15a3fc76bd523295a5bdf96f79ea13b4a92
     lineage_ref: skills/dev-writing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1228,7 +1228,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: fa7d55c93f31ed8da4047bf4cc2a73137bb95643d658de8436369eb58abbe94f
-    package_manifest_sha256: 9ffa80cbf00a08310012baa8fc896fc0c57fa3c52868c1eb2ac13dc24961850f
+    package_manifest_sha256: 8dcaf7204cebfe77e13e26d3f080c4f0984bfa8d7de3d82f759a167570d0349d
     lineage_ref: skills/dev-verification-before-completion/LINEAGE.yml
     dependency_receipt_ref: skills/dev-verification-before-completion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1327,7 +1327,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 9605bba1f01690fea79160ce8d1e08cc4e161767d9de299a67f6ffa970f2e445
-    package_manifest_sha256: c9ab6751be12d697a3695366fadd057d62d8d40cdb1b008d8ed1b78204ebdd0f
+    package_manifest_sha256: ea256370a2059ed4094d72d58f2652a2f8735f9c13e2726714ab84864a9cfde1
     lineage_ref: skills/context-save/LINEAGE.yml
     dependency_receipt_ref: skills/context-save/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1338,7 +1338,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: d78e1417137c05b9f2018dfe7d68daa2ec7b6000a6e94632e8169f668a80be0f
-    package_manifest_sha256: 7389614a150612c727fce9f8a346173325f8d1453ac79d6bbfdca91448bbd4f8
+    package_manifest_sha256: ebbf1514a2d37223e300c374935705872d9fb70b651e345e217f35f7cf2ebf7e
     lineage_ref: skills/context-restore/LINEAGE.yml
     dependency_receipt_ref: skills/context-restore/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1404,7 +1404,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 0ce3164aab4bdc3745636ef64e57d54bf9d676811acf3dd8ee5dea6f3e00dd19
-    package_manifest_sha256: 44af9c4cc0c9f169a5ebdb935324b276fa3460f6bc438e2bd1842f2736693921
+    package_manifest_sha256: e0d6dce33de71c19f7cabffd84b17b8f256adc535579ed84499525e37bd180d3
     lineage_ref: skills/context-memory/LINEAGE.yml
     dependency_receipt_ref: skills/context-memory/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1426,7 +1426,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 27b94aa2b80e75809ffc4ca06214e4f98373b4e2653953e7439b5829332d9a3f
-    package_manifest_sha256: 419114bc77211d68491f27c0c2f17c25025ef8a9c78fd27432149c06a68536ea
+    package_manifest_sha256: 7305194e413f2145362d6a2791065c5f3f05e9d51d3952edaa837774c46adcba
     lineage_ref: skills/context-teammates/LINEAGE.yml
     dependency_receipt_ref: skills/context-teammates/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1679,7 +1679,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: c7b912817900231a9d1222712a27e79fd116acb9540cea60fb5b888eac90099f
-    package_manifest_sha256: b844df5252e2f61f32a4ca40e9fabad2bc17a004ba24ad955ed71f254d0ce7ee
+    package_manifest_sha256: 81d199cb8872178c02238556195faff6a1f505a2e32d73f68cc3db1fd07b2440
     lineage_ref: skills/frames-token-efficiency-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/frames-token-efficiency-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_governance_only
@@ -1690,7 +1690,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: f3674a900bf1f5f2bfffb992c6a870d9564d4bb5d3a556d4a185e52821ee4ec7
-    package_manifest_sha256: 9d1b95978569f47d7cedc5c0e7111d6dbbec57398cbcdd57fb7510f972860cd4
+    package_manifest_sha256: ae3d3b1068796b5948ee73ddbf03d91cbf005d57568067d73db2e7ba21e77306
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

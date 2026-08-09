@@ -2,6 +2,7 @@
 GENERATED from 02_proceso/governance/context-surfaces/registry.yml. Do not edit this projection.
 context_id: CTX-CAREER
 -->
+
 # Contexto: 02_proceso/workflows/career
 
 ## 1. Propósito y activación
@@ -11,18 +12,22 @@ R7 resolvió CV, carta, búsqueda, postulación o seguimiento laboral.
 ## 2. Autoridad y precedencia
 
 Owner: `content`. Cargar en este orden:
+
 - `AGENTS.md`
 - `02_proceso/workflows/career/index.ts`
 
 ## 3. Carga mínima y contexto diferido
 
 Primero:
+
 - `02_proceso/workflows/career/index.ts`
 
 Solo bajo demanda:
+
 - `02_proceso/workflows/career/_assets/deliverable-registry.yml`
 
 Diferir:
+
 - `Datos de otros candidatos y etapas no seleccionadas`
 
 ## 4. Routing, workflow y skills
@@ -35,9 +40,11 @@ Skills primarias: `career-application-orchestrator`
 
 Tools: `career_workflow_plan`  
 Modo: `generated_only`. Read set mínimo:
+
 - `02_proceso/workflows/career/index.ts`
 
 Write set:
+
 - `02_proceso/workflows/career/context.md`
 
 Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonamiento privado.
@@ -48,6 +55,7 @@ Gates: `career_brief_approved`
 Stop rules: Privacidad por candidato · C09 prepara y detiene sin autorización
 
 Hijos:
+
 - `CTX-C00`
 - `CTX-C01`
 - `CTX-C02`

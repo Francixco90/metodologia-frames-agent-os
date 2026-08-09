@@ -1,5 +1,7 @@
 <!-- GENERATED from 03_artefactos/host-adapters/host-adapter-package.json. Do not edit. -->
+
 ---
+
 description: Route a normal request through Frames ContentOS.
 ---
 

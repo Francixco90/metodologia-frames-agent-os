@@ -2,6 +2,7 @@
 GENERATED from 02_proceso/governance/context-surfaces/registry.yml. Do not edit this projection.
 context_id: CTX-GOVERNANCE
 -->
+
 # Contexto: 02_proceso/governance
 
 ## 1. Propósito y activación
@@ -11,21 +12,25 @@ Resolver precedencia, routing, tools, budgets, privacidad o promoción.
 ## 2. Autoridad y precedencia
 
 Owner: `governance`. Cargar en este orden:
+
 - `AGENTS.md`
 - `02_proceso/governance/router.yml`
 
 ## 3. Carga mínima y contexto diferido
 
 Primero:
+
 - `AGENTS.md`
 - `02_proceso/governance/router.yml`
 
 Solo bajo demanda:
+
 - `02_proceso/governance/experience-first-orchestration.md`
 - `02_proceso/governance/tool-policy.yml`
 - `02_proceso/governance/docs-budget-policy.yml`
 
 Diferir:
+
 - `Políticas no afectadas y evidencia histórica`
 
 ## 4. Routing, workflow y skills
@@ -38,10 +43,12 @@ Skills primarias: `content-os-router`
 
 Tools: `policy_check`  
 Modo: `generated_only`. Read set mínimo:
+
 - `02_proceso/governance/router.yml`
 - `01_intencion/program/ownership-manifest.yml`
 
 Write set:
+
 - `02_proceso/governance/context.md`
 
 Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado.
@@ -52,4 +59,5 @@ Gates: `authority`, `ownership`, `budget`
 Stop rules: La interpretación más restrictiva prevalece
 
 Hijos:
+
 - Ninguno; devolver handoff al contexto padre.
