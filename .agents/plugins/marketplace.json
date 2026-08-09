@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "frames-assist-marketplace-v1",
+  "plugins": [
+    {
+      "id": "frames-assist",
+      "invocation": "@frames-assist",
+      "status": "BLOCKED",
+      "importMode": "assisted",
+      "packageRef": "03_artefactos/host-adapters/host-adapter-package.json",
+      "externalEffects": false
+    }
+  ]
+}
