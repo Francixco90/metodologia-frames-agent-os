@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "0634be519e43f72e551edc6d527337914ee687e73fa41b1ac163dd48c9eb2bfc",
+  "repositoryTreeSha256": "d738333121a35813fcdbd85b6b0a40b429cee0f54e68f74ce48d777f5e78127b",
   "totalMarkdown": 1668,
   "auditedAuthored": 462,
   "classPaths": {
@@ -1698,7 +1698,7 @@
       "authorityRefs": [
         ".agents/skills/frames-assist/SKILL.md"
       ],
-      "budgetSurface": "authored-explicit-fallback",
+      "budgetSurface": "generated-host-adapter-projection",
       "sourceRef": ".agents/skills/frames-assist/SKILL.md",
       "derivatives": [],
       "lifecycle": "active",
@@ -2322,7 +2322,7 @@
       "authorityRefs": [
         ".claude/commands/frames/assist.md"
       ],
-      "budgetSurface": "authored-explicit-fallback",
+      "budgetSurface": "generated-host-adapter-projection",
       "sourceRef": ".claude/commands/frames/assist.md",
       "derivatives": [],
       "lifecycle": "active",
@@ -2348,7 +2348,7 @@
       "authorityRefs": [
         ".claude/skills/frames-assist/SKILL.md"
       ],
-      "budgetSurface": "authored-explicit-fallback",
+      "budgetSurface": "generated-host-adapter-projection",
       "sourceRef": ".claude/skills/frames-assist/SKILL.md",
       "derivatives": [],
       "lifecycle": "active",
@@ -3996,7 +3996,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "05a95a41b47aee4a0562bf292d1eb5f6c9eba4de4080b81491b0341ac85819dd",
+      "sha256": "73cab9c4dc88930b7162761081542aa3fd8740f44a81a2898621f84574b89e40",
       "words": 7788,
       "lines": 450,
       "score": 100,
