@@ -35,6 +35,15 @@ type Microcopy = {
   messages?: {welcome?: {options?: string[]}};
 };
 type SourceLock = {projection_ref?: string; projection_sha256?: string; scope?: string};
+type ExperienceRouter = {
+  experience_policy_ref?: string;
+  workflow_management?: {
+    sequence?: string[];
+    blocking_questions_max?: number;
+    skill_execution_requires_material_receipt?: boolean;
+  };
+  productive_handlers?: Record<string, {status?: string}>;
+};
 const sha256 = (value: Buffer | string): string => createHash('sha256').update(value).digest('hex');
 
 const validateReleaseVault = (root: string): string[] => {
@@ -77,6 +86,9 @@ export const checkExperienceOs = (root = ROOT): string[] => {
   const sourceLock = parse(
     readFileSync(resolve(experienceRoot, 'pivote-source-lock.yml'), 'utf8'),
   ) as SourceLock;
+  const router = parse(
+    readFileSync(resolve(root, '02_proceso/governance/router.yml'), 'utf8'),
+  ) as ExperienceRouter;
   const components = (registry.components ?? []).map(({id}) => id ?? '').sort();
   if (components.join('\n') !== EXPECTED_COMPONENTS.join('\n')) {
     errors.push('EXP-COMPONENT001 registry must contain the exact 11-component allowlist');
@@ -104,6 +116,38 @@ export const checkExperienceOs = (root = ROOT): string[] => {
     sha256(readFileSync(resolve(root, sourceLock.projection_ref))) !== sourceLock.projection_sha256
   ) {
     errors.push('EXP-SOURCE001 PIVOTE projection lock drift');
+  }
+  const policyRef = router.experience_policy_ref;
+  if (policyRef === undefined || !existsSync(resolve(root, policyRef))) {
+    errors.push('EXP-GOV001 experience-first policy is not resolvable');
+  }
+  if (
+    router.workflow_management?.sequence?.join('|') !==
+      'receive|understand|route_lock|auto_prime|work_order|invoke|verify|human_gate' ||
+    router.workflow_management?.blocking_questions_max !== 3 ||
+    router.workflow_management?.skill_execution_requires_material_receipt !== true
+  ) {
+    errors.push('EXP-GOV002 workflow management contract drift');
+  }
+  const handlerStatus = Object.fromEntries(
+    Object.entries(router.productive_handlers ?? {}).map(([route, {status}]) => [route, status]),
+  );
+  if (
+    handlerStatus.R4 !== 'active' ||
+    handlerStatus.R6 !== 'active' ||
+    handlerStatus.R7 !== 'active' ||
+    ['R1', 'R2', 'R3', 'R3-LOOSE', 'R5'].some((route) => handlerStatus[route] !== 'coverage_gap')
+  ) {
+    errors.push('EXP-GOV003 productive handler availability drift');
+  }
+  for (const adapter of ['AGENTS.md', 'CLAUDE.md', 'GEMINI.md']) {
+    const content = readFileSync(resolve(root, adapter), 'utf8');
+    if (
+      !content.includes('Frames ContentOS') ||
+      !content.includes('experience-first-orchestration.md')
+    ) {
+      errors.push(`EXP-GOV004 ${adapter} is not experience-first`);
+    }
   }
   const parity = checkBlueprintParity(root);
   if (!parity.ok) errors.push(...parity.errors.map((error) => `EXP-PARITY001 ${error}`));
