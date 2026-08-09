@@ -91,11 +91,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.5.0
+    version: 0.6.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3adbf4729f7777f2ecce0351d78547695fee2fc31fc412012d8abbfd8c7eec0a
-    package_manifest_sha256: 91e0a30793c47722aaeb02c2ef62b331ecba38c24a2d051eb3f44b2b62e4c624
+    content_sha256: 04f7ab896a5ce40ccf08df63ff198d44b1f34055efbe909454913f28fdafa4b1
+    package_manifest_sha256: 760d0ca6d3a0765b817f1331b407391a0df50da08bbde00540af561cb960b779
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2424,6 +2424,7 @@ events:
   - {event_id: EVT-SKL-ORE-H03-004, event_order: 4, skill_id: gstack-openclaw-retro, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-ORE-H03-005, event_order: 5, skill_id: gstack-openclaw-retro, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1317->1186w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-COR-H03-008, event_order: 8, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-COR-H03-009, event_order: 9, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-INSTRUCTION-SECURITY, decision: bind_local_execution_to_authorized_workspace_boundary}
   - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}

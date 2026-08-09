@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import {readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
 
 import {
   dispatchIntent,
   dispatchIntentLocal,
 } from '../../03_artefactos/skills/content-os-router/scripts/route-intent.mjs';
+import {assertContainedInputFileV1} from '../../02_proceso/workflows/core/safe-local-path-v1.ts';
 
 const usage = `Usage: pnpm frames:assist -- [--input request.json] [--apply]
 
@@ -48,9 +48,13 @@ const parseInput = (value) => {
 export const runFramesAssist = async ({argv, stdin, cwd = process.cwd()}) => {
   const options = parseAssistArgs(argv);
   if (options.help) return {exitCode: 0, stdout: `${usage}\n`};
-  const raw = options.inputPath ? readFileSync(resolve(cwd, options.inputPath), 'utf8') : stdin;
+  const raw = options.inputPath
+    ? readFileSync(assertContainedInputFileV1(cwd, options.inputPath), 'utf8')
+    : stdin;
   const input = parseInput(raw);
-  const result = options.apply ? await dispatchIntentLocal(input) : dispatchIntent(input);
+  const result = options.apply
+    ? await dispatchIntentLocal(input, {authorizedRoot: cwd})
+    : dispatchIntent(input);
   return {exitCode: 0, stdout: `${JSON.stringify(result, null, 2)}\n`};
 };
 

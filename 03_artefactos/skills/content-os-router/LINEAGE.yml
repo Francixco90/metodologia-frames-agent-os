@@ -1,5 +1,5 @@
 skill_id: content-os-router
-version: 0.5.0
+version: 0.6.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored

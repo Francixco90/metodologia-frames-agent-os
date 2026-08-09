@@ -24,7 +24,10 @@ type LocalDecision = {
   };
 };
 
-let dispatchIntentLocal: (input: Record<string, unknown>) => Promise<LocalDecision>;
+let dispatchIntentLocal: (
+  input: Record<string, unknown>,
+  options: {authorizedRoot: string},
+) => Promise<LocalDecision>;
 const roots: string[] = [];
 const digest = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
 const timestamps = {
@@ -79,7 +82,7 @@ describe('Frames local brief-first execution', () => {
     'materializes the complete %s brief pair and receipt, then stops for approval',
     async (route) => {
       const root = workspace();
-      const result = await dispatchIntentLocal(completeInputs(route, root));
+      const result = await dispatchIntentLocal(completeInputs(route, root), {authorizedRoot: root});
       expect(result).toMatchObject({
         route_id: route,
         next_gate: 'EXP_BRIEF_APPROVED',
@@ -120,12 +123,15 @@ describe('Frames local brief-first execution', () => {
 
   it('keeps an incomplete request at zero writes', async () => {
     const root = workspace();
-    const result = await dispatchIntentLocal({
-      request: 'Ayúdame a generar una pieza',
-      intent_domain: 'content',
-      workspace_root: root,
-      ...timestamps,
-    });
+    const result = await dispatchIntentLocal(
+      {
+        request: 'Ayúdame a generar una pieza',
+        intent_domain: 'content',
+        workspace_root: root,
+        ...timestamps,
+      },
+      {authorizedRoot: root},
+    );
     expect(result.local_execution).toMatchObject({status: 'NEEDS_INPUT', materialized: false});
     expect(readdirSync(root)).toEqual([]);
   });
@@ -137,7 +143,10 @@ describe('Frames local brief-first execution', () => {
     'keeps %s read-only even when execution inputs are complete',
     async (request, command) => {
       const root = workspace();
-      const result = await dispatchIntentLocal({...completeInputs('R6', root), request});
+      const result = await dispatchIntentLocal(
+        {...completeInputs('R6', root), request},
+        {authorizedRoot: root},
+      );
       expect(result.command_view).toMatchObject({command, readOnly: true, effects: []});
       expect(result.local_execution).toMatchObject({status: 'NEEDS_INPUT', materialized: false});
       expect(readdirSync(root)).toEqual([]);
