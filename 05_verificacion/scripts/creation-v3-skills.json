@@ -57,6 +57,11 @@
     "check": ["skills/candidate-evidence-reconciler/scripts/check-skill.mjs"]
   },
   {
+    "id": "evidence-first-cv",
+    "scope": "local-evaluation",
+    "check": ["skills/evidence-first-cv/scripts/check-skill.mjs"]
+  },
+  {
     "id": "content-os-faceless-explainer",
     "scope": "local-evaluation",
     "check": ["skills/content-os-faceless-explainer/scripts/check-skill.mjs"]
