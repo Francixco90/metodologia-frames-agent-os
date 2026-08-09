@@ -1,10 +1,17 @@
-import {describe, expect, it} from 'vitest';
+import {createHash} from 'node:crypto';
+import {mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {resolve} from 'node:path';
+
+import {afterEach, describe, expect, it} from 'vitest';
 
 import {transitionCareerState} from 'workflows/career/_runner/state-machine.ts';
 import {SubmissionAuthorizationV1Schema} from 'workflows/career/_schema/state-v1.schema.ts';
 
 const HASH = 'a'.repeat(64);
 const PACKAGE_HASH = 'b'.repeat(64);
+const roots: string[] = [];
+const sha256 = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
 const baseEvent = {
   schema_version: 'career-event-v1',
   event_id: 'EVT-SYNTHETIC-001',
@@ -14,7 +21,7 @@ const baseEvent = {
   evidence_refs: ['work/private/career/evidence/receipt.yml'],
 } as const;
 
-const submittedPacket = () => ({
+const submittedPacket = (confirmationRef = 'work/private/career/confirmation.html') => ({
   event: {
     ...baseEvent,
     from: 'DRAFTED',
@@ -45,7 +52,7 @@ const submittedPacket = () => ({
     channel: 'company-careers',
     job_sha256: HASH,
     package_sha256: PACKAGE_HASH,
-    confirmation_ref: 'work/private/career/confirmation.html',
+    confirmation_ref: confirmationRef,
     confirmation_sha256: 'c'.repeat(64),
     submitted_by_actor_id: 'ACTOR-SUBMITTER-001',
     status: 'confirmed',
@@ -53,6 +60,22 @@ const submittedPacket = () => ({
   producer_actor_id: 'ACTOR-PRODUCER-001',
   verifier_actor_id: 'RT-09',
   guardian_actor_id: 'RT-11',
+});
+
+const materialSubmission = (content = 'Submission confirmed · visible receipt') => {
+  const root = mkdtempSync(resolve(tmpdir(), 'frames-career-submitted-'));
+  roots.push(root);
+  const confirmationRef = 'work/private/career/confirmation.html';
+  const path = resolve(root, confirmationRef);
+  mkdirSync(resolve(root, 'work/private/career'), {recursive: true});
+  writeFileSync(path, content, 'utf8');
+  const packet = submittedPacket(confirmationRef);
+  packet.confirmation.confirmation_sha256 = sha256(content);
+  return {root, path, packet};
+};
+
+afterEach(() => {
+  for (const root of roots.splice(0)) rmSync(root, {recursive: true, force: true});
 });
 
 describe('Career OS fail-closed state machine', () => {
@@ -75,7 +98,8 @@ describe('Career OS fail-closed state machine', () => {
     for (const [from, to, kind] of path) {
       expect(transitionCareerState({...baseEvent, from, to, kind})).toBe(to);
     }
-    expect(transitionCareerState(submittedPacket())).toBe('SUBMITTED');
+    const material = materialSubmission();
+    expect(transitionCareerState(material.packet, {root: material.root})).toBe('SUBMITTED');
   });
 
   it('rejects skipped stages and incorrect evidence kinds', () => {
@@ -139,7 +163,48 @@ describe('Career OS fail-closed state machine', () => {
       }),
     ],
   ])('blocks DRAFTED → SUBMITTED when %s is invalid', (_label, mutate) => {
-    expect(() => transitionCareerState(mutate(submittedPacket()))).toThrow();
+    const material = materialSubmission();
+    expect(() => transitionCareerState(mutate(material.packet), {root: material.root})).toThrow();
+  });
+
+  it('requires visible, non-empty confirmation bytes and their exact read-back hash', () => {
+    const material = materialSubmission();
+    expect(transitionCareerState(material.packet, {root: material.root})).toBe('SUBMITTED');
+
+    const stale = materialSubmission();
+    stale.packet.confirmation.confirmation_sha256 = 'd'.repeat(64);
+    expect(() => transitionCareerState(stale.packet, {root: stale.root})).toThrow(
+      /CONFIRMATION_HASH_MISMATCH/u,
+    );
+
+    const empty = materialSubmission('   \n\t');
+    expect(() => transitionCareerState(empty.packet, {root: empty.root})).toThrow(
+      /CONFIRMATION_EMPTY_OR_NOT_VISIBLE/u,
+    );
+  });
+
+  it('rejects missing confirmation, traversal and symlink escape before SUBMITTED', () => {
+    const missingRoot = mkdtempSync(resolve(tmpdir(), 'frames-career-missing-'));
+    roots.push(missingRoot);
+    mkdirSync(resolve(missingRoot, 'work/private'), {recursive: true});
+    expect(() => transitionCareerState(submittedPacket(), {root: missingRoot})).toThrow(
+      /CONFIRMATION_NOT_FOUND/u,
+    );
+
+    const traversal = submittedPacket('work/private/../outside.html');
+    expect(() => transitionCareerState(traversal, {root: missingRoot})).toThrow();
+
+    const linked = materialSubmission();
+    const outside = resolve(linked.root, 'outside.html');
+    writeFileSync(outside, 'Submission confirmed outside private root', 'utf8');
+    rmSync(linked.path);
+    symlinkSync(outside, linked.path);
+    linked.packet.confirmation.confirmation_sha256 = sha256(
+      'Submission confirmed outside private root',
+    );
+    expect(() => transitionCareerState(linked.packet, {root: linked.root})).toThrow(
+      /CONFIRMATION_NOT_REGULAR_FILE|CONFIRMATION_REALPATH_ESCAPE/u,
+    );
   });
 
   it('keeps CLOSED terminal and constrains recovery from BLOCKED', () => {
