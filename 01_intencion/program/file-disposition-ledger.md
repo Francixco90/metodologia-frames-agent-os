@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             93857 |              110276 |     140785 (1.5×) | 1.1749× | `pass` |
-| Total authored (palabras)     |             93857 |              110276 |       187714 (2×) | 1.1749× | `pass` |
-| Total authored (LOC)          |             35145 |               41236 |        70290 (2×) | 1.1733× | `pass` |
+| Corpus authored elegible      |             93873 |              110292 |     140809 (1.5×) | 1.1749× | `pass` |
+| Total authored (palabras)     |             93873 |              110292 |       187746 (2×) | 1.1749× | `pass` |
+| Total authored (LOC)          |             35147 |               41238 |        70294 (2×) | 1.1733× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -61,7 +61,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | Ruta                                                                                                          | Owner              | Decisión             | Palabras iniciales | Palabras actuales | LOC inicial | LOC actual | SHA-256 inicial                                                    | Evidencia        |
 | ------------------------------------------------------------------------------------------------------------- | ------------------ | -------------------- | ------------------ | ----------------- | ----------- | ---------- | ------------------------------------------------------------------ | ---------------- |
 | `.github/workflows/validate.yml`                                                                              | `repo`             | `refactored`         | 89                 | 143               | 33          | 44         | `216be46b783a654490c28edb980d7efdcd7951666ce3967c0101385def7e8d6e` | `changed`        |
-| `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 130               | 15          | 77         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
+| `.gitignore`                                                                                                  | `repo`             | `refactored`         | 15                 | 146               | 15          | 79         | `42141eb5597b8d49df1d4244d348dd93a16b78fdc3618ac8b65142a4995944e7` | `changed`        |
 | `.npmrc`                                                                                                      | `repo`             | `verified_no_change` | 3                  | 3                 | 3           | 3          | `06fb8d7684f7f219ee36c610666958705959d8922be6cd29cbf9de80973f21e5` | `byte-identical` |
 | `.nvmrc`                                                                                                      | `repo`             | `verified_no_change` | 1                  | 1                 | 1           | 1          | `7d2df647f25529bd87500319c41564e032e2be642e565350fa6136d7a1ec4d10` | `byte-identical` |
 | `.prettierignore`                                                                                             | `repo`             | `refactored`         | 21                 | 255               | 3           | 57         | `8a465affb2364465783f9a5dcc95fec51d0011782f0032af2fa4fbdeae634eca` | `changed`        |
