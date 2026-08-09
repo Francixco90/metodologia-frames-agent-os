@@ -6,6 +6,8 @@ Usa extensiones locales cuando Frames todavía no reconoce una necesidad propia 
 
 Puedes decir: «Crea una skill local para revisar mis fichas de producto». Frames identifica el resultado, pregunta como máximo tres datos y prepara el recorrido L00–L05. Antes de crear archivos se detiene en `LX_BRIEF_APPROVED`.
 
+No toda necesidad merece una skill. Frames comprueba primero si basta una instrucción clara, una referencia reutilizable, una herramienta existente o una mejora de una capacidad actual. Esto evita llenar el sistema de piezas duplicadas que después nadie mantiene.
+
 ## Empieza con el comando
 
 1. Prepara un JSON con `request`, `extension_kind`, `scope`, `desired_capability` y un ID como `local.mi-equipo.fichas`.
@@ -22,6 +24,25 @@ Puedes decir: «Crea una skill local para revisar mis fichas de producto». Fram
    ```
 
 4. Frames crea documentación, secuencia, fixtures, manifest y receipt en el espacio local ignorado.
+
+## Diseña y comprueba una skill
+
+Cuando la necesidad es repetible y requiere criterio especializado, Frames usa el recorrido S00–S09 dentro de R8 para una skill privada o R9 para una capacidad canónica. No necesitas memorizar esos códigos: describen una secuencia estable de diseño, autoría, validación, evaluación y versión.
+
+Antes de escribir, puedes usar estas comprobaciones con JSON por stdin:
+
+```sh
+pnpm skills:inspect -- --stdin < solicitud-skill.json
+pnpm skills:validate -- --stdin < candidate-skill.json
+pnpm skills:evaluate -- --stdin < plan-evaluacion.json
+```
+
+- `inspect` produce el caso de uso y ayuda a decidir si crear, ampliar, dividir, fusionar o no crear la skill.
+- `validate` revisa contratos, rutas, referencias, efectos, fixtures y supply chain.
+- `evaluate` compara el candidate contra no usar skill o contra la versión anterior; los fallos de infraestructura no cuentan como éxito ni como fracaso del candidate.
+- `scaffold` y `package` funcionan en vista previa. Para escribir exigen un WorkOrder, un gate aprobado y un write set exacto.
+
+El resultado no se declara compatible con Codex, Claude, Gemini o ChatGPT por tener una carpeta o un archivo de configuración. Cada host permanece `UNKNOWN` hasta contar con una prueba de comportamiento material. La portabilidad del contrato se valida por separado.
 
 ## Qué se activa
 

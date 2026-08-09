@@ -9,9 +9,9 @@ import {buildSequenceModel, loadWorkflowDocumentation} from './workflow-source.t
 
 const defaultRepoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const generatedPatterns = [
-  /^01_intencion\/reference\/workflows\/(?:index|[pclm]\d{2})\.md$/u,
+  /^01_intencion\/reference\/workflows\/(?:index|[pclms]\d{2})\.md$/u,
   /^03_artefactos\/content\/documentation\/(?:index\.html|documentation-(?:manifest|coverage)-v1\.json)$/u,
-  /^03_artefactos\/content\/documentation\/workflows\/[pclm]\d{2}\.html$/u,
+  /^03_artefactos\/content\/documentation\/workflows\/[pclms]\d{2}\.html$/u,
 ] as const;
 
 export type DocumentationBuildOptions = {repoRoot?: string; allowUnresolved?: boolean};

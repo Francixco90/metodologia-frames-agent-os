@@ -11,7 +11,7 @@ describe('documentation as code generator', () => {
     const outputs = await buildDocumentationOutputs({repoRoot: root});
     expect(workflows.length).toBeGreaterThanOrEqual(33);
     expect(new Set(workflows.map(({family}) => family))).toEqual(
-      new Set(['content', 'career', 'local-extension', 'maintenance']),
+      new Set(['content', 'career', 'local-extension', 'maintenance', 'skill-system']),
     );
     for (const workflow of workflows) {
       const slug = workflow.id.toLowerCase();
