@@ -1,0 +1,68 @@
+schema_version: skills-qa-review-v1
+review_id: CAREER-OS-SKILLS-QA-V1
+reviewed_scope:
+  - career-application-orchestrator
+  - candidate-evidence-reconciler
+  - evidence-first-cv
+  - evidence-based-cover-letter
+  - career-opportunity-finder
+source: first-party MetodologIA
+verdict: READY
+execution_scope: local-evaluation
+structural_gate:
+  validator: claude-meta-tooling/skills-qa/scripts/validate_skill.py
+  result: PASS_5_OF_5
+  validator_self_test: GREEN
+prompt_injection_scan:
+  disclaimer: heuristic_ai_scan_not_a_security_audit
+  findings: []
+  checked_categories:
+    [
+      override,
+      authority_claim,
+      config_override,
+      out_of_scope_read,
+      out_of_scope_write,
+      external_url,
+      hidden_content,
+      shell_execution,
+      credential_request,
+    ]
+dependency_map:
+  upstream:
+    - SRC-CAREER-REQUIREMENTS-V1
+    - workflows/career/_schema
+    - career briefs and private candidate evidence selected by work order
+  downstream:
+    - CareerIntentV1
+    - CareerBriefV1
+    - C00-C09 local deliverables and receipts
+  automatic_triggers: none
+  hooks: none
+  mcp_servers: none
+  network: denied
+  external_effects: denied
+parameters:
+  audience: addressed_multi_candidate_with_human_decision_owner
+  work_shape: addressed_bounded_transactional_plus_accretive_evidence
+  delegation_threshold: addressed_prepare_review_and_stop
+  input_requirements: addressed_max_three_blocking_questions
+  versioning_ownership: addressed_h03_skill_foundry_and_append_only_events
+  confidence_bands: addressed_verified_user_confirmed_inferred_missing
+  failure_modes: addressed_evidence_drift_job_drift_pii_and_false_submission
+  scope_boundaries: addressed_cv_letter_search_and_local_application_preparation
+  escalation_logic: addressed_unknown_blocked_and_human_gates
+  trust_surface: addressed_no_hooks_no_mcp_no_network_no_submission
+  freshness: addressed_hash_bound_requirements_and_job_revalidation_at_runtime
+  schema: addressed_strict_contracts_fixtures_and_checkers
+  conflicts: addressed_single_r6_r7_dispatcher_and_one_primary_skill_per_step
+non_legal_failure_modes:
+  claim_invention: blocked
+  requirement_promoted_to_capability: blocked
+  submitted_without_material_receipt: blocked
+  candidate_pii_in_git: blocked
+limits:
+  - QA does not prove labor-market outcomes.
+  - Live search and authorized submit require a separately promoted adapter and human authorization.
+  - Skill Forge scaffold-manifest.json remains unavailable; Frames H-03 is the executable authority.
+next_gate: RT-09
