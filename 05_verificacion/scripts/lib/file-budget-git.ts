@@ -49,7 +49,7 @@ export const resolveBudgetBase = (
     return {commit, source: explicit, explicit: true};
   }
 
-  for (const source of ['upstream/main', 'origin/main']) {
+  for (const source of ['origin/main', 'upstream/main']) {
     if (!commitFor(root, source)) continue;
     const commit = tryGitText(root, ['merge-base', 'HEAD', source]);
     if (commit) return {commit, source, explicit: false};

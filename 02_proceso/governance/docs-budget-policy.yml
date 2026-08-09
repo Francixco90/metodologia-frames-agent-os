@@ -76,6 +76,19 @@ budgets:
     target: {max_words: 500, max_lines: 200}
     hard: {max_words: 1000, max_lines: 400}
     rationale: 'The projection manifest is emitted by the same renderer and remains hash-bound to the blueprint.'
+  - surface: generated-host-adapter-projection
+    kind: generated
+    match:
+      [
+        '.agents/plugins/marketplace.json',
+        '.agents/skills/frames-assist/SKILL.md',
+        '.claude/commands/frames/assist.md',
+        '.claude/skills/frames-assist/SKILL.md',
+        '.gemini/commands/frames/assist.toml',
+      ]
+    target: {max_words: 500, max_lines: 150}
+    hard: {max_words: 800, max_lines: 250}
+    rationale: 'Host adapter projections are regenerated from one portable package manifest.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'
