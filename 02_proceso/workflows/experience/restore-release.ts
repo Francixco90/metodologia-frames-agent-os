@@ -5,7 +5,10 @@ import {resolve} from 'node:path';
 import {ExperienceReleaseCapsuleV1Schema} from '../../core/contracts/experience-release-v1.ts';
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
 import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
-import {readSafeReleaseFile} from './safe-release-file.ts';
+import {assertLocalReleaseCommit, readCommittedReleaseFile} from './git-release-source.ts';
+import {verifyHostLaunchProbes} from './host-launch-probe.ts';
+import {assertExperienceReleaseSurface} from './release-surface-v1.ts';
+import {assertSafeReleasePath} from './safe-release-file.ts';
 
 const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
 const CAPSULE_FILES = [
@@ -45,6 +48,12 @@ export const verifyReleaseCapsule = (
   if (hash(canonicalize(identity)) !== manifest.canonicalSha256) {
     errors.push('canonical-hash-drift');
   }
+  try {
+    assertLocalReleaseCommit(repositoryRoot, manifest.commitSha);
+    assertExperienceReleaseSurface(manifest.artifacts.map(({ref}) => ref));
+  } catch (error) {
+    errors.push((error as Error).message);
+  }
   const sumLines = readFileSync(resolve(capsuleDir, 'SHA256SUMS'), 'utf8')
     .trim()
     .split('\n')
@@ -75,16 +84,35 @@ export const verifyReleaseCapsule = (
   }
   for (const file of manifest.artifacts) {
     try {
-      const observed = readSafeReleaseFile(repositoryRoot, file.ref);
+      assertSafeReleasePath(repositoryRoot, file.ref);
+    } catch {
+      errors.push(`source-path-unsafe:${file.ref}`);
+      continue;
+    }
+    try {
+      const observed = readCommittedReleaseFile(repositoryRoot, manifest.commitSha, file.ref);
       if (observed.sha256 !== file.sha256) {
         errors.push(`source-hash-drift:${file.ref}`);
       }
-    } catch (error) {
-      const code = (error as NodeJS.ErrnoException).code;
-      errors.push(
-        code === 'ENOENT' ? `source-file-missing:${file.ref}` : `source-path-unsafe:${file.ref}`,
-      );
+    } catch {
+      errors.push(`source-commit-unavailable:${file.ref}`);
     }
+  }
+  const hostEvidence = manifest.acceptanceEvidence.filter(
+    ({ref}) => ref !== 'acceptance-evidence.json',
+  );
+  try {
+    const hostProof = verifyHostLaunchProbes(repositoryRoot, hostEvidence, {
+      releaseId: manifest.releaseId,
+      candidateCommit: manifest.commitSha,
+      candidateSha256: manifest.canonicalSha256,
+      releasedRefs: manifest.artifacts.map(({ref}) => ref),
+    });
+    if (hostProof.compatibleHosts.join('\n') !== [...manifest.compatibleHosts].sort().join('\n')) {
+      errors.push('host-compatibility-claim-drift');
+    }
+  } catch (error) {
+    errors.push((error as Error).message);
   }
   if (manifest.status === 'APPROVED') {
     const actors = new Set(manifest.decisions.map(({actorId}) => actorId));

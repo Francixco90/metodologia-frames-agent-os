@@ -13,19 +13,28 @@ const PRIVATE_DATA = [
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
 const portable = (value: string): string => value.replaceAll('\\', '/');
 
+export const assertReleaseContentSafe = (content: string, ref: string): void => {
+  if (PRIVATE_DATA.some((pattern) => pattern.test(content))) {
+    throw new Error(`EXP-RELEASE-PRIVATE: PII, secret or external effect in ${ref}`);
+  }
+};
+
 export const relativeReleaseFile = (root: string, value: string): string => {
   const absoluteRoot = resolve(root);
   const path = portable(isAbsolute(value) ? relative(absoluteRoot, value) : value);
-  if (path.startsWith('../') || path.includes('/../') || path.startsWith('/')) {
+  const segments = path.split('/');
+  if (
+    path.startsWith('/') ||
+    segments.includes('..') ||
+    segments.includes('.') ||
+    segments.includes('')
+  ) {
     throw new Error(`EXP-RELEASE-PATH: outside repository: ${value}`);
   }
   return path;
 };
 
-export const readSafeReleaseFile = (
-  root: string,
-  value: string,
-): {ref: string; content: string; sha256: string} => {
+export const assertSafeReleasePath = (root: string, value: string): {ref: string; real: string} => {
   const absoluteRoot = resolve(root);
   const rootStat = lstatSync(absoluteRoot);
   if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
@@ -47,9 +56,15 @@ export const readSafeReleaseFile = (
   if (!real.startsWith(`${realRoot}/`)) {
     throw new Error(`EXP-RELEASE-PATH: realpath outside repository: ${ref}`);
   }
+  return {ref, real};
+};
+
+export const readSafeReleaseFile = (
+  root: string,
+  value: string,
+): {ref: string; content: string; sha256: string} => {
+  const {ref, real} = assertSafeReleasePath(root, value);
   const content = readFileSync(real, 'utf8');
-  if (PRIVATE_DATA.some((pattern) => pattern.test(content))) {
-    throw new Error(`EXP-RELEASE-PRIVATE: PII, secret or external effect in ${ref}`);
-  }
+  assertReleaseContentSafe(content, ref);
   return {ref, content, sha256: hash(content)};
 };
