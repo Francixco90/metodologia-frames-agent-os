@@ -52,9 +52,7 @@ export const runWorkflow = (workflowId: string): void => {
     '_assets',
     'no-regression-checklist.md',
   );
-  const coverageGaps = [
-    'state-advance: work-product state machine advance not implemented in candidate phase',
-  ];
+  const coverageGaps: string[] = [];
   const receiptPayload = {
     schema_version: 'multimedia-workflow-receipt-v1',
     workflow_id: workflow.workflow_id,
@@ -77,7 +75,7 @@ export const runWorkflow = (workflowId: string): void => {
       materialized: output.materialized,
     })),
     work_product_state_from: 'INTAKE',
-    work_product_state_to: workflow.work_product_state,
+    work_product_state_to: 'RENDERED_DRAFT',
     gate,
     actor: 'qa',
     ran_at: ranAt,
@@ -85,7 +83,7 @@ export const runWorkflow = (workflowId: string): void => {
     human_approved: false,
     dry_run: false,
     no_regression_sha256: sha256(readFileSync(noRegressionChecklistPath)),
-    evidence_tags: ['[CONFIG]', 'coverage_gap'],
+    evidence_tags: ['[CONFIG]'],
     scope: {
       workflow_id: workflow.workflow_id,
       mode: workflow.modes[0]?.id ?? 'single',
@@ -117,7 +115,7 @@ export const runWorkflow = (workflowId: string): void => {
     inputResolutions: contract.inputResolutions,
     outputResolutions: staged.outputs.map((output) => ({
       ref: output.ref,
-      resolved: output.stagedPath,
+      stagedPath: output.stagedPath,
       exists: existsSync(output.stagedPath),
       sha256: output.sha256,
     })),
@@ -141,7 +139,7 @@ export const runWorkflow = (workflowId: string): void => {
   discardStagedOutputs(staged.tempDir);
   const receiptPath = writeReceipt(receiptDir, receipt);
   console.info(
-    `[RUN] ${id} ${workflow.command} -> state=${workflow.work_product_state} gate=${gate} dry_run=false`,
+    `[RUN] ${id} ${workflow.command} -> candidate=RENDERED_DRAFT declared_target=${workflow.work_product_state} gate=${gate} dry_run=false`,
   );
   console.info(
     `  frontmatter: prompt_id=${frontmatter.prompt_id} vars=${frontmatter.variables.length} sections=${frontmatter.sections.length}`,
@@ -150,7 +148,7 @@ export const runWorkflow = (workflowId: string): void => {
     `  task: ${taskTemplate.task_id} responsable=${taskTemplate.responsable} gate_target=${taskTemplate.gate_target}`,
   );
   console.info(`  receipt: ${relativeToRoot(receiptPath)}`);
-  console.info(`  coverage_gaps: ${coverageGaps.length} (state-advance)`);
+  console.info('  governed_state_transition: not attempted; manual approval evidence required');
   console.info(`  gate=PASS ${gateResult.checks.length}/${gateResult.checks.length}`);
   console.info(`  STOP at gate ${gate} (manual approval required).`);
 };

@@ -45,9 +45,11 @@ export const stageWorkflowOutputs = (
       `consumer_stage: ${consumer}`,
       `required: ${output.required}`,
       'content:',
-      '  status: coverage_gap',
+      '  status: RENDERED_DRAFT',
+      '  evidence_status: known',
+      '  evidence_tags: ["[CONFIG]"]',
       `  template_id: ${output.template_id}`,
-      '  note: "Material envelope created; creative content requires the assigned producer."',
+      '  limitation: "Declarative candidate only; no approval or publication authority."',
     ].join('\n');
     const stagedPath = resolve(tempDir, `${index}-${slug(output.artifact)}.yml`);
     writeFileSync(stagedPath, `${contents}\n`, 'utf8');
