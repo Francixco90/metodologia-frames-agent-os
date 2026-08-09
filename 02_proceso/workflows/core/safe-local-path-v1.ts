@@ -1,4 +1,4 @@
-import {lstatSync, realpathSync} from 'node:fs';
+import {existsSync, lstatSync, mkdirSync, realpathSync} from 'node:fs';
 import {isAbsolute, relative, resolve, sep} from 'node:path';
 
 const contained = (root: string, candidate: string): boolean => {
@@ -47,5 +47,28 @@ export const assertContainedWorkspaceV1 = (
   if (!stat.isDirectory()) throw new Error('FRAMES-WORKSPACE-PATH003');
   const physical = realpathSync(candidate);
   if (!contained(root.physical, physical)) throw new Error('FRAMES-WORKSPACE-PATH001');
+  return physical;
+};
+
+export const prepareContainedDirectoryV1 = (
+  authorizedRoot: string,
+  directoryRef: string,
+): string => {
+  if (!directoryRef || isAbsolute(directoryRef) || directoryRef.includes('\\')) {
+    throw new Error('FRAMES-OUTPUT-PATH001');
+  }
+  const root = safeRoot(authorizedRoot, 'FRAMES-OUTPUT-PATH001');
+  const candidate = resolve(root.lexical, directoryRef);
+  if (!contained(root.lexical, candidate)) throw new Error('FRAMES-OUTPUT-PATH001');
+  let cursor = root.lexical;
+  for (const segment of relative(root.lexical, candidate).split(sep).filter(Boolean)) {
+    cursor = resolve(cursor, segment);
+    if (!existsSync(cursor)) mkdirSync(cursor);
+    const stat = lstatSync(cursor);
+    if (stat.isSymbolicLink()) throw new Error('FRAMES-OUTPUT-PATH002');
+    if (!stat.isDirectory()) throw new Error('FRAMES-OUTPUT-PATH003');
+  }
+  const physical = realpathSync(candidate);
+  if (!contained(root.physical, physical)) throw new Error('FRAMES-OUTPUT-PATH001');
   return physical;
 };

@@ -20,6 +20,7 @@ import {
 } from './experience-planner-v1.ts';
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
+import {prepareContainedDirectoryV1} from './safe-local-path-v1.ts';
 
 interface ContentIntentForBriefV1 {
   request: string;
@@ -61,6 +62,7 @@ export interface LocalExperienceExecutionResultV1 {
   receiptRef: string | null;
   receiptSha256: string | null;
   brief: {markdownRef: string; htmlRef: string} | null;
+  coverageGap?: string;
 }
 
 const atomicWrite = (path: string, value: string): void => {
@@ -97,6 +99,23 @@ export async function orchestrateLocalExperienceV1(
     input.outputDirectoryRef ??
       `work/private/experience/${input.envelope.requestHash.slice(0, 16)}`,
   );
+  let outputDirectory: string;
+  try {
+    outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
+  } catch (error) {
+    return {
+      status: 'BLOCKED',
+      routeId: input.routeId,
+      materialized: false,
+      nextGate: 'EXP_BRIEF_APPROVED',
+      autoPrime: null,
+      workOrderSha256: null,
+      receiptRef: null,
+      receiptSha256: null,
+      brief: null,
+      coverageGap: error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
+    };
+  }
   const markdownRef = `${outputDirectoryRef}/brief.md`;
   const htmlRef = `${outputDirectoryRef}/brief.html`;
   const definitions = createProductiveExperienceWorkflowDefinitionsV1({
@@ -133,7 +152,7 @@ export async function orchestrateLocalExperienceV1(
           root: input.root,
           route: input.domainIntent,
           sources: input.sourceMaterials,
-          outputDirectory: resolve(input.root, outputDirectoryRef),
+          outputDirectory,
         });
   const adapter = new MaterialSkillAdapterV1(input.root, {[workOrder.skillId]: handler});
   const receipt = await adapter.invoke({
