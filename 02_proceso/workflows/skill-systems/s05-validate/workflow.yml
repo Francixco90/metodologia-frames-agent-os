@@ -1,0 +1,22 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S05
+title: Validar candidate y supply chain
+purpose: Verificar estructura referencias paths hashes efectos fixtures y dependencias.
+inputs: [skill-candidate, component-contract-v1]
+outputs: [static-validation-report]
+capability_map: [skill-contract-validator]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Ejecutar validación estática adversarial y releer hashes,
+      primary_skill: skill-contract-validator,
+      verifier: RT-09,
+      inputs: [skill-candidate, component-contract-v1],
+      outputs: [static-validation-report],
+      gate: SSS_STATIC_VALIDATED,
+      stop_rule: Cualquier referencia stale escape o permiso extra bloquea.,
+    }
+gate: SSS_STATIC_VALIDATED
+next_workflow: S06
+stop_rule: E3 sin sandbox material queda VALIDATED_NOT_RUNNABLE.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

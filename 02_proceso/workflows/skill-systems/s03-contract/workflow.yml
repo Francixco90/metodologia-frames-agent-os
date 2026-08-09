@@ -1,0 +1,23 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S03
+title: Contratar componentes y evaluación
+purpose: Fijar inputs outputs efectos fallback aceptación y baseline antes de autoría.
+inputs: [capability-map-v1, architecture-decision-v1]
+outputs: [component-contract-v1, skill-eval-plan]
+capability_map: [skill-contract-validator, skill-evaluation-engineer]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Validar contratos estrictos y diseñar casos TRIGGER DECISION OUTCOME,
+      primary_skill: skill-contract-validator,
+      optional_skills: [skill-evaluation-engineer],
+      verifier: RT-09,
+      inputs: [capability-map-v1, architecture-decision-v1],
+      outputs: [component-contract-v1, skill-eval-plan],
+      gate: SSS_ARCHITECTURE_READY,
+      stop_rule: Trigger no concede efectos y un baseline ausente se declara.,
+    }
+gate: SSS_ARCHITECTURE_READY
+next_workflow: S04
+stop_rule: No autorizar candidate con contratos incompletos.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

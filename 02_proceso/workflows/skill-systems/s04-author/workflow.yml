@@ -1,0 +1,23 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S04
+title: Materializar el candidate
+purpose: Crear el paquete aprobado mediante adapter autorizado y progressive disclosure.
+inputs: [component-contract-v1, skill-eval-plan, work-order]
+outputs: [skill-candidate, authoring-handoff]
+capability_map: [skill-authoring-engineer, skill-runtime-adapter]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Escribir SKILL context referencias fixtures checker y boundary dentro del write set,
+      primary_skill: skill-authoring-engineer,
+      optional_skills: [skill-runtime-adapter],
+      verifier: RT-09,
+      inputs: [component-contract-v1, skill-eval-plan, work-order],
+      outputs: [skill-candidate, authoring-handoff],
+      gate: SSS_CANDIDATE_READY,
+      stop_rule: Dry-run por defecto; sin WorkOrder no escribir.,
+    }
+gate: SSS_CANDIDATE_READY
+next_workflow: S05
+stop_rule: Un adapter externo ausente degrada a handoff o UNKNOWN.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

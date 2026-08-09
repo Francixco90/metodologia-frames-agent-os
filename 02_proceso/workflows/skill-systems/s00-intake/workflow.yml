@@ -1,0 +1,24 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S00
+title: Delimitar el sistema de skills
+purpose: Convertir una petición cotidiana en un Skill Case ligado a evidencia, alcance y autoridad.
+inputs: [request, scope, source-refs]
+outputs: [skill-system-case-v1]
+capability_map: [skill-system-architect]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Resolver alcance,
+      evidencia,
+      efecto y aceptación sin inventar autoridad,
+      primary_skill: skill-system-architect,
+      verifier: RT-09,
+      inputs: [request, source-refs],
+      outputs: [skill-system-case-v1],
+      gate: SSS_CASE_READY,
+      stop_rule: Máximo tres gaps bloqueantes; autoridad ausente permanece MISSING.,
+    }
+gate: SSS_CASE_READY
+next_workflow: S01
+stop_rule: No diseñar topología sin Skill Case resoluble.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}
