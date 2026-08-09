@@ -71,15 +71,19 @@ export const validateSkill = (
     ['evaluated', 'active'],
   ];
   if (skill.version) transitions.push(['active', 'active']);
+  const minimum = transitions.length;
   const badLifecycle =
-    events.length !== transitions.length ||
-    events.some(
-      (e, i) =>
-        e.event_order !== i + 1 ||
-        e.from !== transitions[i]?.[0] ||
-        e.to !== transitions[i]?.[1] ||
-        !e.actor_id,
-    );
+    events.length < minimum ||
+    (!skill.version && events.length !== minimum) ||
+    events.some((event, index) => {
+      const expected = transitions[index] ?? ['active', 'active'];
+      return (
+        event.event_order !== index + 1 ||
+        event.from !== expected[0] ||
+        event.to !== expected[1] ||
+        !event.actor_id
+      );
+    });
   if (badLifecycle) errors.push(`SKL-H03-006 invalid lifecycle ${skill.id}`);
   try {
     execFileSync(process.execPath, skill.check, {cwd: root, encoding: 'utf8'});

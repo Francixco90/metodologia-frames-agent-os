@@ -1,9 +1,9 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Requires the P00-P09 multimedia workflow contract and FramesBriefV1. Preserves router-intent-v1 for source-to-video callers and adds content-intent-v2 for adaptive source-to-content routing. Dispatches only the capabilities needed by the selected steps.
+compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -12,10 +12,14 @@ metadata:
 
 # Frames ContentOS Router
 
-Puerta de entrada de **Frames ContentOS** para `source-to-content`, compatible
+Puerta de entrada única de Frames para `source-to-content` y `career-application`, compatible
 con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities bajo
 demanda y despacha workflows locales hash-bound. No instala, consulta la red ni
 renderiza; `content-os-core` conserva el adapter HTML→MP4.
+
+`scripts/route-intent.mjs` decide R6, R7 o R0. R6 conserva este router y P00–P09;
+R7 delega al adapter gobernado de `career-application-orchestrator` y C00–C09.
+Una señal mixta o ausente termina en R0; nunca fusiona ambos dominios.
 
 - **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
 - **Route** — workflow Fase 3 que posee el deliverable end-to-end.
