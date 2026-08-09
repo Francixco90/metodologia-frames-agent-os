@@ -2147,6 +2147,13 @@
     },
     {
       "kind": "COMMAND",
+      "id": "check:skills-templates",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
       "id": "check:sources",
       "ref": "package.json",
       "scope": "CANONICAL",
@@ -2372,6 +2379,13 @@
     {
       "kind": "COMMAND",
       "id": "skills:scaffold",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
+      "id": "skills:templates",
       "ref": "package.json",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -6283,5 +6297,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "68029efc1160153c324f488e86d93a4a7dea5b92465c0cd707f184c4972fc6a8"
+  "sourceSha256": "514d6ced07a2885d1e5cd0436056d9724ca74424c5c2be4b285804ee443ac084"
 }

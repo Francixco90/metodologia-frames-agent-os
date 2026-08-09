@@ -12,7 +12,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 267
-- COMMAND: 94
+- COMMAND: 96
 - COMPONENT: 16
 - DELIVERABLE: 72
 - GATE: 52
@@ -333,6 +333,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | check:privacy | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:projects | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:repo | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | check:skills-templates | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:sources | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:tasks | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:toolchain | ACTIVE | CANONICAL | `package.json` |
@@ -366,6 +367,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | skills:inspect | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | skills:package | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | skills:scaffold | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:templates | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | skills:validate | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | slice:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | slice:verify-compat | ACTIVE | CANONICAL | `package.json` |
@@ -925,4 +927,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `68029efc1160153c324f488e86d93a4a7dea5b92465c0cd707f184c4972fc6a8`.
+Hash de fuentes: `514d6ced07a2885d1e5cd0436056d9724ca74424c5c2be4b285804ee443ac084`.
