@@ -7,7 +7,7 @@
 00_inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
 05_verificacion/quality/reports/v2-baseline-protection.yml
 # Generated from every tracked Markdown file; exact bytes are enforced by docs:audit.
-05_verificacion/quality/reports/documentation-inventory-v1.json
+01_intencion/program/documentation-inventory-v1.json
 03_artefactos/skills/remotion-video-production/scripts/check-sources.mjs
 03_artefactos/content/pilot-carousel-002/generated/atom-graph.json
 03_artefactos/content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json

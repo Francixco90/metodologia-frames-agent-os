@@ -28,6 +28,13 @@ const FindingSchema = z.strictObject({
 const EvaluationSchema = z.strictObject({
   path: z.string().min(1),
   class: MarkdownClassSchema,
+  owner: z.string().min(1),
+  ownerEvidence: z.string().min(1),
+  authorityRefs: z.array(z.string().min(1)).min(1),
+  budgetSurface: z.string().min(1),
+  sourceRef: z.string().min(1).nullable(),
+  derivatives: z.array(z.string().min(1)),
+  lifecycle: z.enum(['active', 'generated', 'frozen']),
   sha256: z.string().regex(/^[a-f0-9]{64}$/u),
   words: z.number().int().nonnegative(),
   lines: z.number().int().positive(),
@@ -35,6 +42,12 @@ const EvaluationSchema = z.strictObject({
   threshold: z.number().int().min(0).max(100),
   decision: DocumentationDecisionSchema,
   findings: z.array(FindingSchema),
+  qualitySignals: z.strictObject({
+    hasExecutableCommand: z.boolean(),
+    hasAuthorityLink: z.boolean(),
+    hasNextAction: z.boolean(),
+    duplicateHeadings: z.number().int().nonnegative(),
+  }),
 });
 
 export const DocumentationInventoryV1Schema = z.strictObject({
