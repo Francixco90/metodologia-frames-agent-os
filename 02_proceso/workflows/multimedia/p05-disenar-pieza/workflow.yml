@@ -17,15 +17,37 @@ modes:
 inputs:
   - p04-calendarizar/workflow.yml
 outputs:
-  - artifact: 'Creative Spec'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: creative-spec-v1
+    artifact: 'Especificación creativa'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/creative-spec-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
     required: true
-  - artifact: 'Continuity Bible'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: piece-family-spec-v1
+    artifact: 'Ficha de familia de pieza'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/piece-family-spec-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
     required: true
-  - artifact: 'Asset Map'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: continuity-bible-v1
+    artifact: 'Biblia de continuidad'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/continuity-bible-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
     required: true
+  - deliverable_id: asset-map-v1
+    artifact: 'Mapa de activos'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/asset-map-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
+    required: true
+  - deliverable_id: universal-prompts-v1
+    artifact: 'Pack de prompts de producción'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/universal-prompts-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
+    required: true
+  - deliverable_id: derivatives-v1
+    artifact: 'Sistema de derivados'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/derivatives-v1.schema.ts
+    template_id: TPL-P05-DELIVERABLE-V1
+    required: false
+    condition: 'content_count>1 or derivative_requested=true'
 work_product_state: SPEC_APPROVED
 gates:
   - MW_SPEC_APPROVED
@@ -49,6 +71,7 @@ brief:
     - 'Prompts universales y derivados listos'
   deliverables:
     - creative-spec-v1
+    - piece-family-spec-v1
     - continuity-bible-v1
     - asset-map-v1
     - universal-prompts-v1
@@ -63,10 +86,45 @@ capability_map:
     - design-compose-graphics
   assets:
     - creative-spec-v1
+    - piece-family-spec-v1
     - continuity-bible-v1
     - asset-map-v1
     - universal-prompts-v1
     - derivatives-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Elegir medio y ruta creativa desde el brief aprobado.'
+    inputs: [brief-campaign-map-v1, definition-of-ready-v1]
+    primary_skill: content-os-creative
+    optional_skills: [design-compose-graphics]
+    verifier: RT-09
+    outputs: [creative-spec-v1, piece-family-spec-v1]
+    template_id: TPL-P05-DELIVERABLE-V1
+    gate: MW_SPEC_APPROVED
+    stop_rule: 'Crear un prototipo de bajo costo si el medio no puede justificarse.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 9000, max_tokens: 15000}
+  - step_id: S02
+    purpose: 'Diseñar narrativa, secuencia y continuidad.'
+    inputs: [creative-spec-v1, claim-register-v1]
+    primary_skill: content-os-motion-graphics
+    optional_skills: [content-os-creative]
+    verifier: RT-09
+    outputs: [continuity-bible-v1]
+    template_id: TPL-P05-DELIVERABLE-V1
+    gate: MW_SPEC_APPROVED
+    stop_rule: 'Bloquear si la narrativa altera claims o rompe continuidad.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 11000, max_tokens: 18000}
+  - step_id: S03
+    purpose: 'Mapear activos, prompts y derivados.'
+    inputs: [creative-spec-v1, continuity-bible-v1]
+    primary_skill: design-compose-graphics
+    optional_skills: [content-os-remotion-bridge]
+    verifier: RT-09
+    outputs: [asset-map-v1, universal-prompts-v1, derivatives-v1]
+    template_id: TPL-P05-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Bloquear cualquier activo sin fuente, owner, formato o criterio de aceptación.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 12000, max_tokens: 20000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

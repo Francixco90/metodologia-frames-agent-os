@@ -25,14 +25,26 @@ modes:
 inputs:
   - p03-crear-brief/workflow.yml
 outputs:
-  - artifact: 'Editorial Calendar'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: editorial-calendar-v1
+    artifact: 'Cronograma editorial'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/editorial-calendar-v1.schema.ts
+    template_id: TPL-P04-DELIVERABLE-V1
     required: true
-  - artifact: 'Board'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: content-grid-v1
+    artifact: 'Parrilla de contenidos'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/content-grid-v1.schema.ts
+    template_id: TPL-P04-DELIVERABLE-V1
+    required: false
+    condition: 'content_count>1 or mode=calendario-de-campana'
+  - deliverable_id: board-v1
+    artifact: 'Tablero de producción'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/board-v1.schema.ts
+    template_id: TPL-P04-DELIVERABLE-V1
     required: true
-  - artifact: 'Batch Plan'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: batch-plan-v1
+    artifact: 'Plan por lotes'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/batch-plan-v1.schema.ts
+    template_id: TPL-P04-DELIVERABLE-V1
     required: true
 work_product_state: DEFINED
 gates:
@@ -56,6 +68,7 @@ brief:
     - 'Plan por lote medible antes de extender'
   deliverables:
     - editorial-calendar-v1
+    - content-grid-v1
     - board-v1
     - batch-plan-v1
   context: 'Ordena capacidad, dependencias y fechas desde investigación hasta aprendizaje.'
@@ -66,8 +79,43 @@ capability_map:
     - content-os-core
   assets:
     - editorial-calendar-v1
+    - content-grid-v1
     - board-v1
     - batch-plan-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Priorizar entregables y secuencia de producción.'
+    inputs: [brief-campaign-map-v1, definition-of-ready-v1]
+    primary_skill: dev-executing-plans
+    optional_skills: [content-os-core]
+    verifier: RT-11
+    outputs: [editorial-calendar-v1, content-grid-v1]
+    template_id: TPL-P04-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Omitir P04 para una pieza única sin dependencias ni calendario.'
+    context_budget: {target_files: 6, max_files: 10, target_tokens: 6000, max_tokens: 10000}
+  - step_id: S02
+    purpose: 'Asignar hitos, dependencias y capacidad.'
+    inputs: [editorial-calendar-v1]
+    primary_skill: dev-executing-plans
+    optional_skills: [content-os-core]
+    verifier: RT-11
+    outputs: [board-v1]
+    template_id: TPL-P04-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Reducir al primer sprint si la capacidad no es verificable.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 7000, max_tokens: 12000}
+  - step_id: S03
+    purpose: 'Definir lotes y medición antes de extender.'
+    inputs: [editorial-calendar-v1, board-v1]
+    primary_skill: content-os-core
+    optional_skills: [dev-executing-plans]
+    verifier: RT-11
+    outputs: [batch-plan-v1]
+    template_id: TPL-P04-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Bloquear un lote que exceda capacidad o no tenga criterio de aprendizaje.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

@@ -1,0 +1,34 @@
+schema_version: experience-microcopy-v1
+locale: es
+identity: Frames ContentOS · por MetodologIA
+budgets: {greeting_tokens_max: 120, ghost_menu_tokens_max: 35, blocking_questions_max: 3}
+voice:
+  principles: [breve, cálida, concreta, orientada a progreso]
+  avoid: [jerga interna, disculpas vacías, promesas sin evidencia, preguntas repetidas]
+messages:
+  welcome:
+    title: ¿Qué quieres hacer hoy?
+    body: Puedo convertir una idea normal en un brief claro y un recorrido de producción.
+    options: [Crear, Mejorar, Planear, Explorar]
+  understood: Entendí que quieres {outcome}.
+  auto_prime: Prepararé el brief y la ruta mínima para lograrlo.
+  brief_gate: Este es el resultado que produciré. Confírmalo para comenzar.
+  milestone: '{milestone} está listo. Recomiendo {next_action}.'
+  blocked: Conservé {preserved}. Falta {gap}; para continuar, {resolution}.
+  resume: Encontré un trabajo vigente en {state}. Recomiendo retomarlo desde {next_action}.
+  route_inspect: Ruta {route}; paso {step}; skill {skill}; siguiente gate {gate}.
+ghost_menu:
+  labels:
+    {
+      approve: Aprobar y producir,
+      adjust: Ajustar el brief,
+      inspect: Ver la ruta,
+      compare: Comparar variantes,
+      resume: Continuar,
+      stop: Detener aquí,
+    }
+rules:
+  - Mostrar una recomendación y hasta dos alternativas tras un hito material.
+  - Omitir el menú cuando el pedido ya determine una acción segura.
+  - Aceptar siempre texto libre como alternativa a cualquier opción.
+  - Ocultar rutas, IDs y skills salvo inspección explícita.

@@ -1,9 +1,9 @@
 ---
 name: content-os-router
-description: This skill should be used when the user asks to "make a video from a URL", "turn a GitHub PR into a video", "explain a topic with a faceless video", "route a source to a Frames ContentOS workflow", "pick the right Frames ContentOS workflow for a source", or "dispatch capabilities for a source-to-video deliverable".
-version: 0.1.0
+description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
+version: 0.6.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, content-os-creative brand/pacing, content-os-media resolve cascade, and content-os-registry blocks. Routes source→video intents to Fase 3 workflows and dispatches Fase 2 capability skills. Extends the cabin router (Capa A) with source-to-video routes.
+compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -12,27 +12,56 @@ metadata:
 
 # Frames ContentOS Router
 
-Front door de **Frames ContentOS**. Intent router + capability map para deliverables
-**source→video**. Adaptado de `hyperframes` (vendor, referencia, Apache 2.0) al
-arquitectura local: route-once, route-by-deliverable (no por keyword), dispatch a
-capability skills (Fase 2) + workflows source→video (Fase 3). Extiende el router
-de cabina (Capa A en `CLAUDE.md`) con rutas source→video; no lo reemplaza.
+## Contexto operativo
 
-Diferencia con el vendor: no hay `npx hyperframes skills update <workflow>`. Los
-workflows son skills locales hash-bound (Fase 3, pendiente). El router es
-**declarativo**: lee el intent, matchea el deliverable, escribe un
-`intent-brief.jsonl` (route + capability_map), despacha. No renderiza. No instala
-vía network. El render lo hace `content-os-core` (HTML→MP4 adapter).
+Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
+
+Puerta de entrada única de Frames para `source-to-content` y `career-application`, compatible
+con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities bajo
+demanda y despacha workflows locales hash-bound. No instala, consulta la red ni
+renderiza; `content-os-core` conserva el adapter HTML→MP4.
+
+`scripts/route-intent.mjs` conserva la decisión compatible y añade
+`dispatchIntent()`: R6 ejecuta `routeContentIntent`, R7 ejecuta
+`routeCareerIntent`, y R0 no invoca adapter. Un locator sin `adapter_invoked` y
+`domain_intent` es planificación, no ejecución. Una señal mixta o ausente nunca
+fusiona dominios.
 
 - **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
 - **Route** — workflow Fase 3 que posee el deliverable end-to-end.
 - **Capability map** — skills Fase 2 que el workflow carga on-demand (core,
   animation, keyframes, creative, media, registry).
 
-Para el contrato técnico ver `content-os-core`. Para motion ver
-`content-os-animation`. Para brand/pacing ver `content-os-creative`. Para media
-ver `content-os-media`. Para bloques reusables ver `content-os-registry`. Esta
-skill es la **capa de routing** encima del contract.
+## Default v2: brief antes de producir
+
+1. Normaliza el pedido y calcula `requestHash`; no usa reloj ni azar.
+2. Si faltan audiencia, resultado o fuente/autoridad, formula como máximo tres
+   preguntas bloqueantes y conserva `brief_sufficiency: insufficient|partial`.
+3. Selecciona la cadena mínima: P03 siempre para una pieza nueva; P00/P01/P02/P04/P06
+   solo por señales explícitas; P07 y P08 siempre; P09 solo si se pide distribución.
+4. Emite `content-intent-v2` con `selected_stage_path`, reason codes, `brief_ref`
+   y `next_gate`; las capabilities se resuelven desde los workflows seleccionados.
+5. Materializa el `brief.md` con FramesBriefV1 y espera `MW_BRIEF_APPROVED` antes de
+   producir, salvo autorización end-to-end inequívoca ya registrada. La distribución
+   siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`.
+
+Antes de este adapter, `runFirstTurnGatewayV1` emite `AssistanceEnvelopeV1` y diferencia saludo, acción,
+ambigüedad y reanudación. Un saludo muestra **Frames ContentOS · por
+MetodologIA** y `Crear · Mejorar · Planear · Explorar` sin prime ni writes. Un
+pedido accionable omite el menú y prepara un preview del brief. Skills del plan
+permanecen `planned` hasta que un `SkillInvocationReceiptV1` las liga a actor,
+WorkOrder y outputs materiales. [CONFIG]
+
+```bash
+node --import tsx <SKILL_DIR>/scripts/route-intent.mjs request.json
+node <SKILL_DIR>/scripts/route-audit.mjs work/content/content-intent.json --out work/content/audit --strict
+```
+
+El brief Markdown es canónico. El HTML es una proyección opcional y verificable del
+mismo modelo; nunca una segunda fuente editorial. [CONFIG]
+
+Esta skill solo enruta; el capability map siguiente resuelve implementación,
+motion, marca, media y bloques reutilizables.
 
 ## Preflight (siempre)
 
@@ -44,17 +73,6 @@ skill es la **capa de routing** encima del contract.
    bloqueante (R0). No adivines la ruta.
 4. Correr `scripts/route-audit.mjs <intent-brief>` antes de despachar. Fails closed
    si un intent sin route, sin capability_map, o con source_type desconocido.
-
-## Default: route source→video
-
-```bash
-node <SKILL_DIR>/scripts/route-audit.mjs intent/intent-brief.jsonl --out <dir>
-```
-
-Routing: leer el intent (source + deliverable). Matchear deliverable contra la
-route table (`references/routes.md`). Escribir `intent-brief.jsonl` con `route` +
-`capability_map[]`. Despachar al workflow Fase 3 (si existe) o marcar `coverage_gap`
-(Fase 3 pendiente). No network, no CLI fetch, no render.
 
 ## Routing table (source→video)
 
@@ -96,6 +114,8 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
 | Router contract (route-once, route-by-deliverable)  | rules/router-contract.md             |
 | Audit intent-brief (missing-route, unknown-source)  | scripts/route-audit.mjs              |
 | Router intent schema                                | schemas/router-intent-v1.schema.json |
+| Content intent v2 + adaptive P00-P09                | schemas/content-intent-v2.schema.json |
+| Deterministic source-to-content dispatcher          | scripts/route-content.mjs             |
 
 ## Router Contract (ground truth)
 
@@ -120,18 +140,9 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
 8. **RENDERED_DRAFT != HUMAN_APPROVED.** El deliverable produce `RENDERED_DRAFT`.
    `READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
 
-## Resolve common ambiguities
-
-- Un title/logo sting/stat hit/chart hit unnarrated <10s = `content-os-motion-graphics`.
-  Un title card narrado o montaje largo = `content-os-general-video`.
-- Footage existente + captions plain = `content-os-embedded-captions`. Footage +
-  designed overlays = `talking-head-recut` (Fase 3 pendiente, fallback
-  `content-os-general-video`).
-- "Storyboard" cambia el review, no la route. Sin otra señal, `content-os-general-video`.
-- URL + "make a video from this site" = `content-os-website-to-video`. URL como
-  source material de un motion graphic short = `content-os-motion-graphics`.
-- Piece >3min = `content-os-general-video`. Length nunca overridea un port/deck/
-  caption/overlay explícito.
+Las ambigüedades de medio, duración, URL, storyboard y overlays se resuelven con
+las reglas canónicas y casos borde de `references/routes.md`; este archivo no las
+duplica.
 
 ## Critical Constraints
 

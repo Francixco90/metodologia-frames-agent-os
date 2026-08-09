@@ -134,18 +134,13 @@ gates:
     fail_closed: false
     owner: content
 
-  - gate: G12_CAROUSEL
-    label: static-social carousel build
-    command: 'pnpm carousel:build'
-    allowed_tools: [Bash]
-    write_set_globs:
-      - 'renderers/static-social/**'
-      - 'receipts/carousel/**'
-    idempotency: false
-    danger_level: medium
-    manual: false
-    fail_closed: false
-    owner: static-social
+  # prettier-ignore
+  - {gate: G09_CAREER, label: career contracts and workflows, command: 'node --import tsx scripts/check-career-workflows.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+
+  # prettier-ignore
+  - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+  # prettier-ignore
+  - {gate: G12_CAROUSEL, label: static-social carousel build, command: 'pnpm carousel:build', allowed_tools: [Bash], write_set_globs: ['renderers/static-social/**', 'receipts/carousel/**'], idempotency: false, danger_level: medium, manual: false, fail_closed: false, owner: static-social}
 
   - gate: G12
     label: remotion
@@ -278,6 +273,17 @@ gates:
   # Never auto-passed; build.ts stops at each and requires human approval
   # per RENDERED_DRAFT != HUMAN_APPROVED. [CONFIG]
 
+  - gate: MW_BRIEF_APPROVED
+    label: canonical brief approval before production
+    command: null
+    allowed_tools: []
+    write_set_globs: []
+    idempotency: true
+    danger_level: medium
+    manual: true
+    fail_closed: true
+    owner: governance
+
   - gate: MW_SPEC_APPROVED
     label: multimedia spec approval (P05)
     command: null
@@ -321,6 +327,18 @@ gates:
     manual: true
     fail_closed: true
     owner: governance
+
+  # prettier-ignore
+  - {gate: CR_BRIEF_APPROVED, label: career brief approval before document production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: CR_PACKAGE_APPROVED, label: candidate application package approval, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: CR_SUBMISSION_AUTHORIZED, label: one-use submission authorization bound to package hash, command: null, allowed_tools: [], write_set_globs: [], idempotency: false, danger_level: high, manual: true, fail_closed: true, owner: h01}
+
+  # prettier-ignore
+  - {gate: EXP_BRIEF_APPROVED, label: experience brief approval before local production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: EXP_RELEASE_APPROVED, label: immutable Experience release approval bound to candidate hashes, command: null, allowed_tools: [], write_set_globs: [], idempotency: false, danger_level: high, manual: true, fail_closed: true, owner: h01}
 
   # --- Gates manuales fail-closed (G13-G17) ---
 

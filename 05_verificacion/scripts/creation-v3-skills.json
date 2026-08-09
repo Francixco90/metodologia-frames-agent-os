@@ -12,6 +12,7 @@
   },
   {
     "id": "content-os-core",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-core/scripts/check-skill.mjs"]
   },
@@ -27,6 +28,7 @@
   },
   {
     "id": "content-os-creative",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-creative/scripts/check-skill.mjs"]
   },
@@ -42,8 +44,35 @@
   },
   {
     "id": "content-os-router",
+    "version": "0.6.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-router/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "career-application-orchestrator",
+    "version": "0.2.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-application-orchestrator/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "candidate-evidence-reconciler",
+    "scope": "local-evaluation",
+    "check": ["skills/candidate-evidence-reconciler/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "evidence-first-cv",
+    "scope": "local-evaluation",
+    "check": ["skills/evidence-first-cv/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "evidence-based-cover-letter",
+    "scope": "local-evaluation",
+    "check": ["skills/evidence-based-cover-letter/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "career-opportunity-finder",
+    "scope": "local-evaluation",
+    "check": ["skills/career-opportunity-finder/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-faceless-explainer",
@@ -558,7 +587,7 @@
   },
   {
     "id": "dev-writing-plans",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-writing-plans/scripts/check-skill.mjs"]
   },
@@ -597,6 +626,7 @@
   },
   {
     "id": "dev-verification-before-completion",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-verification-before-completion/scripts/check-skill.mjs"]
   },
@@ -644,11 +674,13 @@
   },
   {
     "id": "context-save",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/context-save/scripts/check-skill.mjs"]
   },
   {
     "id": "context-restore",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/context-restore/scripts/check-skill.mjs"]
   },
@@ -679,6 +711,7 @@
   },
   {
     "id": "context-memory",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/context-memory/scripts/check-skill.mjs"]
   },
@@ -689,6 +722,7 @@
   },
   {
     "id": "context-teammates",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/context-teammates/scripts/check-skill.mjs"]
   },
@@ -808,6 +842,7 @@
   },
   {
     "id": "frames-token-efficiency-orchestrator",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs"]
   }

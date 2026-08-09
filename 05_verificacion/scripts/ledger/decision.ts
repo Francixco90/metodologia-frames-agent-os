@@ -28,6 +28,7 @@ export const isGeneratedProjection = (path: string): boolean =>
   ledgerProjectionPaths.has(path) ||
   path.startsWith('brand/generated/') ||
   /^content\/[^/]+\/generated\//u.test(path) ||
+  /^workflows\/multimedia\/p\d{2}-[^/]+\/templates\/[^/]+\.template\.(?:md|html)$/u.test(path) ||
   isRuntimeGeneratedEvidence(path) ||
   /^projects\/[^/]+\/artifacts\//u.test(path);
 

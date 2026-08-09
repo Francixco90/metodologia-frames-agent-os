@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 79
+    refactored: 82
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 203
+    verified_no_change: 200
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,14 +62,14 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12498
+    current_words_for_baseline_files: 12704
     violations: []
     checks:
       - path: AGENTS.md
         baseline_words: 222
-        current_words: 222
+        current_words: 254
         maximum_words: 444
-        ratio: 1
+        ratio: 1.1441
         status: pass
       - path: CONTRIBUTING.md
         baseline_words: 62
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1328
+        current_words: 1502
         maximum_words: 2656
-        ratio: 1
+        ratio: 1.131
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -416,40 +416,140 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93215
-    v3_rolling_adjustment_words: 5029
+    baseline_words: 93661
+    v3_rolling_adjustment_words: 5475
     original_baseline_words: 88186
-    final_words: 110236
+    final_words: 109983
     maximum_multiplier: 1.5
-    maximum_words: 139822
-    actual_multiplier: 1.1826
+    maximum_words: 140491
+    actual_multiplier: 1.1743
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93215
-    v3_rolling_adjustment_words: 5029
+    baseline_words: 93661
+    v3_rolling_adjustment_words: 5475
     original_baseline_words: 88186
-    final_words: 110236
-    maximum_words: 186430
-    word_multiplier: 1.1826
-    baseline_loc: 35033
-    v3_rolling_adjustment_loc: 2145
+    final_words: 109983
+    maximum_words: 187322
+    word_multiplier: 1.1743
+    baseline_loc: 35138
+    v3_rolling_adjustment_loc: 2250
     original_baseline_loc: 32888
-    final_loc: 41410
-    maximum_loc: 70066
-    loc_multiplier: 1.182
+    final_loc: 41300
+    maximum_loc: 70276
+    loc_multiplier: 1.1754
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 52
-    applicable_bindings: 3
-    not_applicable_count: 49
-    coverage: 52/52
+    inventory_count: 142
+    applicable_bindings: 13
+    not_applicable_count: 129
+    coverage: 142/142
     coverage_gaps: []
     status: pass
     checks:
+      - output_path: workflows/multimedia/p00-definir-sistema/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1595
+        word_ratio: 1.275
+        template_loc: 544
+        output_loc: 615
+        loc_ratio: 1.1305
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p01-curar-material/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1597
+        word_ratio: 1.2766
+        template_loc: 544
+        output_loc: 617
+        loc_ratio: 1.1342
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p02-investigar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1583
+        word_ratio: 1.2654
+        template_loc: 544
+        output_loc: 614
+        loc_ratio: 1.1287
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p03-crear-brief/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1601
+        word_ratio: 1.2798
+        template_loc: 544
+        output_loc: 619
+        loc_ratio: 1.1379
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p04-calendarizar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1586
+        word_ratio: 1.2678
+        template_loc: 544
+        output_loc: 613
+        loc_ratio: 1.1268
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p05-disenar-pieza/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1607
+        word_ratio: 1.2846
+        template_loc: 544
+        output_loc: 621
+        loc_ratio: 1.1415
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p06-crear-activos/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1605
+        word_ratio: 1.283
+        template_loc: 544
+        output_loc: 619
+        loc_ratio: 1.1379
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p07-revisar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1581
+        word_ratio: 1.2638
+        template_loc: 544
+        output_loc: 612
+        loc_ratio: 1.125
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p08-editar/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1592
+        word_ratio: 1.2726
+        template_loc: 544
+        output_loc: 614
+        loc_ratio: 1.1287
+        maximum_multiplier: 2
+        status: pass
+      - output_path: workflows/multimedia/p09-distribuir/schematic.html
+        template_path: workflows/multimedia/_assets/schematic-template.html
+        template_words: 1251
+        output_words: 1597
+        word_ratio: 1.2766
+        template_loc: 544
+        output_loc: 618
+        loc_ratio: 1.136
+        maximum_multiplier: 2
+        status: pass
       - output_path: brand/generated/social-light.tokens.json
         template_path: brand/tokens/brand-tokens.yml
         template_words: 134
@@ -579,6 +679,166 @@ budgets:
         reason: Canonical generator output without a declared one-to-one size-comparable template.
       - path: registries/components/component-registry.yml
         reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/_assets/multimedia-library.html
+        reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/_assets/multimedia-library.md
+        reason: Canonical generator output without a declared one-to-one size-comparable template.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-os-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/brand-os-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/calibration-sample-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/calibration-sample-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/pilot-plan-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p00-definir-sistema/templates/pilot-plan-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/capture-card-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/capture-card-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/digest-shortlist-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/digest-shortlist-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/triage-record-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p01-curar-material/templates/triage-record-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/claim-register-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/claim-register-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/opportunity-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/opportunity-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/question-bank-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p02-investigar/templates/question-bank-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/ab-concepts-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/ab-concepts-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/brief-campaign-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/brief-campaign-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/definition-of-ready-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/definition-of-ready-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/executive-presentation-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p03-crear-brief/templates/executive-presentation-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/batch-plan-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/batch-plan-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/board-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/board-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/content-grid-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/content-grid-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/editorial-calendar-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p04-calendarizar/templates/editorial-calendar-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/asset-map-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/asset-map-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/continuity-bible-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/continuity-bible-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/creative-spec-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/creative-spec-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/derivatives-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/derivatives-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/piece-family-spec-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/piece-family-spec-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/universal-prompts-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p05-disenar-pieza/templates/universal-prompts-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-manifest-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-manifest-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-package-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/asset-package-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/capability-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/capability-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/tool-run-evidence-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p06-crear-activos/templates/tool-run-evidence-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/review-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/review-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/top5-changes-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/top5-changes-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/verdict-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p07-revisar/templates/verdict-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edit-candidate-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edit-candidate-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edl-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/edl-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/export-matrix-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p08-editar/templates/export-matrix-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/learning-report-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/learning-report-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/platform-package-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/platform-package-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/publication-record-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.html
+        reason: Generated projection without a declared size-comparable template binding.
+      - path: workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md
+        reason: Generated projection without a declared size-comparable template binding.
   runtime_generated_evidence:
     excluded_from_authored_budgets: true
     files: 6
@@ -609,9 +869,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.github/workflows/validate.yml
       current_ref: working-tree:.github/workflows/validate.yml
       current_state: present
-      current_sha256: ac459bc9b0e1bafb1b01a5ff4575bf4dd43fb2ca796fbb3c19af0091019a7d19
-      current_words: 134
-      current_loc: 41
+      current_sha256: de16d2471ef6029fb7cfe9f8ad27234c43d7d8246b962aa16416a95a5f71f2fa
+      current_words: 143
+      current_loc: 44
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.github/**
@@ -630,9 +890,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.gitignore
       current_ref: working-tree:.gitignore
       current_state: present
-      current_sha256: 6dc93c67799a121f755a8d045b71828374f41a6fd73631527f40316d1bde9486
-      current_words: 100
-      current_loc: 58
+      current_sha256: f74bc6c4797ff25966b9ed47690428890592ea349340a1189500f800c17dcceb
+      current_words: 130
+      current_loc: 77
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.gitignore
@@ -693,9 +953,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: d168b89652367ded799a42a0fac15be979b403fa8ef1b9016ab293045d5268e6
-      current_words: 176
-      current_loc: 44
+      current_sha256: ebfd8e5b756e5c8351a9a302a441aac7dbc54657ea4f5c670ad551abb5cf5f4f
+      current_words: 234
+      current_loc: 52
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore
@@ -729,17 +989,17 @@ entries:
     initial_words: 222
     initial_loc: 23
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:AGENTS.md
       current_ref: working-tree:AGENTS.md
       current_state: present
-      current_sha256: dc598930bfdb0f7da1f9dd46ae8dd5c353375c16802eb8bddd6c5c0c721cd8a7
-      current_words: 222
-      current_loc: 23
-      byte_identical: true
-      material_change: false
+      current_sha256: 3a596e2a21746a1179807302800d59662a37645d453b74a0af1a6b0dc58d0e39
+      current_words: 254
+      current_loc: 36
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:AGENTS.md
       generator_ref: null
       successor_path: null
@@ -771,17 +1031,17 @@ entries:
     initial_words: 1328
     initial_loc: 243
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2
-      current_words: 1328
-      current_loc: 243
-      byte_identical: true
-      material_change: false
+      current_sha256: 8e43fae000e38e5453075a41280c73e0a066134e653177ae0ce1a71e1d7559e0
+      current_words: 1502
+      current_loc: 265
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md
       generator_ref: null
       successor_path: null
@@ -1932,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: 8a9175965748ef94b1fececdf0454cc935bd605025ce455d14a1432599033739
-      current_words: 55
-      current_loc: 13
+      current_sha256: e59f6b7f92d5e9ef5b3e01c69f2e56739af656c2ba0ca04fa3b4aa83d4d58b18
+      current_words: 79
+      current_loc: 19
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -2310,9 +2570,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/dag.yml
       current_ref: working-tree:docs/program/dag.yml
       current_state: present
-      current_sha256: 07163a33d6d52725012549ad4ddd2d7b2c7ba2d1aa989b47fc623e8bf3b57834
-      current_words: 194
-      current_loc: 90
+      current_sha256: 8a34e1b08fb99c68c4a206216f364e5ba1ede08cd82eae93ad56f23161e71a1f
+      current_words: 206
+      current_loc: 94
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2394,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 667abfb2f7a20534a3a5220154de7a1543043bfb3d9d5bc062ae6d3edfd87647
-      current_words: 281
-      current_loc: 150
+      current_sha256: 0695484be4033120d7a54b3c428ae47082b97642c43b8264fe11e40ec82ad4a1
+      current_words: 355
+      current_loc: 182
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2940,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 8fb1c4f6cc2e07faa299842ae62f2a51231afb03f20050b78176155cdae1c83f
-      current_words: 579
-      current_loc: 138
+      current_sha256: 26c9eadf06b25e68b645a1b0bc52d8c9b0af6a246b46ba6638ec3fd1dee2c728
+      current_words: 626
+      current_loc: 146
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -5628,9 +5888,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: c2489a9f6160770ae763119a29576b624ed2a3d6855cd145a0a56218d5e9e60f
-      current_words: 1728
-      current_loc: 807
+      current_sha256: 2be284762189ec0cca7047e740f0062301dfbcb56673b03b1b1b69f363ad844a
+      current_words: 1754
+      current_loc: 818
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**
@@ -6510,9 +6770,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-ownership.ts
       current_ref: working-tree:scripts/check-ownership.ts
       current_state: present
-      current_sha256: 9c45125a90cc83b8e99300d803e3fc96159c388388054a4eddb9ef6e5a94a3eb
-      current_words: 660
-      current_loc: 179
+      current_sha256: 13b3df52708ae85096bbbd6d684932852157c40429e7225fecf156c3b5c955f2
+      current_words: 666
+      current_loc: 182
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -6573,9 +6833,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-repo.ts
       current_ref: working-tree:scripts/check-repo.ts
       current_state: present
-      current_sha256: c82ff51feafb333f8fb74a9e093de39fdcf340e76f75563723f336db56c053d5
-      current_words: 206
-      current_loc: 108
+      current_sha256: eb6043423ceb8afeac3df73da30ec622d7b18a9b823880d63a06799ae45d52ba
+      current_words: 208
+      current_loc: 110
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -8484,9 +8744,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:vitest.config.ts
       current_ref: working-tree:vitest.config.ts
       current_state: present
-      current_sha256: 51be69ebe62e58510967d6aa8dec8b97699c58a42f707026676e2e12ed37d50b
-      current_words: 144
-      current_loc: 57
+      current_sha256: e263183cd956555aac041d920ada5d06a825a33509cc83cb4f1ab392429bd2d9
+      current_words: 146
+      current_loc: 58
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:vitest.config.ts
@@ -8646,17 +8906,17 @@ entries:
     initial_words: 8
     initial_loc: 2
     resolved_owner: core
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:workflows/core/index.ts
       current_ref: working-tree:workflows/core/index.ts
       current_state: present
-      current_sha256: db1ea5a56706b85cb78c19edbcb2afeb610da28d1daa3c5358c4477b3f57fa7e
-      current_words: 8
-      current_loc: 2
-      byte_identical: true
-      material_change: false
+      current_sha256: 64d5953b0a1742c0891006ee17f2ba4a9c432e6d64a94cec6e17f29e223d2f22
+      current_words: 44
+      current_loc: 11
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:workflows/core/**
       generator_ref: null
       successor_path: null

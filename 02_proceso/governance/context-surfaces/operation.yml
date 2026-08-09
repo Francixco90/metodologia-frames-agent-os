@@ -1,0 +1,361 @@
+schema_version: context-surface-shard-v1
+shard_id: CTX-SHARD-OPERATION
+surfaces:
+  - context_id: CTX-GOVERNANCE
+    root: 02_proceso/governance
+    kind: governance
+    owner: governance
+    applies_when: Resolver precedencia, routing, tools, budgets, privacidad o promoción.
+    authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_first: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_on_demand:
+      [
+        02_proceso/governance/experience-first-orchestration.md,
+        02_proceso/governance/tool-policy.yml,
+        02_proceso/governance/docs-budget-policy.yml,
+      ]
+    defer: [Políticas no afectadas y evidencia histórica]
+    routes: [R0, R1, R2, R3, R3-LOOSE, R4, R5, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [policy_check]
+    read_set: [02_proceso/governance/router.yml, 01_intencion/program/ownership-manifest.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/governance/context.md]}
+    gates: [authority, ownership, budget]
+    stop_rules: [La interpretación más restrictiva prevalece]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-CORE
+    root: 02_proceso/core
+    kind: governance
+    owner: core
+    applies_when: Implementar contratos, estado, orquestación, evidencia o receipts del núcleo.
+    authority_refs: [AGENTS.md, 02_proceso/core/contracts/index.ts]
+    load_first: [AGENTS.md, 02_proceso/core/contracts/index.ts]
+    load_on_demand: [01_intencion/program/dag.yml]
+    defer: [Adapters y familias no afectadas]
+    routes: [R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-core]
+    tools: [typecheck, focused_tests]
+    read_set: [02_proceso/core/contracts/index.ts, 01_intencion/program/dag.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/core/context.md]}
+    gates: [contract, state_transition]
+    stop_rules: [UNKNOWN bloquea, Cambios incompatibles exigen successor]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-AGENTS
+    root: 02_proceso/agents
+    kind: agent
+    owner: agents-committee
+    applies_when: Contratar un officer registrado con perspectiva, tools y stop rule explícitos.
+    authority_refs: [AGENTS.md, 04_estado/registries/agents/agent-registry-v2.yml]
+    load_first: [AGENTS.md, 04_estado/registries/agents/agent-registry-v2.yml]
+    load_on_demand: [02_proceso/governance/agent-cli-adapters.md]
+    defer: [Contratos de officers no contratados]
+    routes: []
+    workflows: []
+    primary_skills: []
+    tools: [subagent]
+    read_set: [04_estado/registries/agents/agent-registry-v2.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/context.md]}
+    gates: [agent_identity, separation_of_duties]
+    stop_rules: [No simular delegación, Guardian no remedia]
+    privacy: public_only
+    children:
+      [
+        CTX-RT-01,
+        CTX-RT-02,
+        CTX-RT-03,
+        CTX-RT-04,
+        CTX-RT-05,
+        CTX-RT-06,
+        CTX-RT-07,
+        CTX-RT-08,
+        CTX-RT-09,
+        CTX-RT-10,
+        CTX-RT-11,
+      ]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-01
+    root: 02_proceso/agents/RT-01
+    kind: agent
+    owner: agents-committee
+    applies_when: Liderar alcance, task graph, work orders, integración y handoff.
+    authority_refs: [02_proceso/agents/RT-01/contract.yml]
+    load_first: [02_proceso/agents/RT-01/contract.yml]
+    load_on_demand: [01_intencion/program/dag.yml]
+    defer: [Candidate freeze y veredictos independientes]
+    routes: []
+    workflows: []
+    primary_skills: [dev-writing-plans]
+    tools: [plan, handoff]
+    read_set: [02_proceso/agents/RT-01/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-01/context.md]}
+    gates: [work_order]
+    stop_rules: [Lead no verifica su propio candidate]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-02
+    root: 02_proceso/agents/RT-02
+    kind: agent
+    owner: agents-committee
+    applies_when: Verificar procedencia, fuentes y trazabilidad.
+    authority_refs: [02_proceso/agents/RT-02/contract.yml]
+    load_first: [02_proceso/agents/RT-02/contract.yml]
+    load_on_demand: [04_estado/registries/sources/source-registry.yml]
+    defer: [Fuentes fuera del claim set]
+    routes: []
+    workflows: [P01, P02, C01]
+    primary_skills: []
+    tools: [source_check]
+    read_set: [02_proceso/agents/RT-02/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-02/context.md]}
+    gates: [source_authority]
+    stop_rules: [Claim sin fuente queda UNKNOWN]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-03
+    root: 02_proceso/agents/RT-03
+    kind: agent
+    owner: agents-committee
+    applies_when: Revisar derechos, licencias, privacidad y restricciones de uso.
+    authority_refs: [02_proceso/agents/RT-03/contract.yml]
+    load_first: [02_proceso/agents/RT-03/contract.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Activos no seleccionados]
+    routes: []
+    workflows: [P01, P07, C08]
+    primary_skills: []
+    tools: [rights_check]
+    read_set: [02_proceso/agents/RT-03/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-03/context.md]}
+    gates: [rights, privacy]
+    stop_rules: [Derechos o privacidad desconocidos bloquean]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-04
+    root: 02_proceso/agents/RT-04
+    kind: agent
+    owner: agents-committee
+    applies_when: Diseñar arquitectura, contratos, registries y criterios de aceptación.
+    authority_refs: [02_proceso/agents/RT-04/contract.yml]
+    load_first: [02_proceso/agents/RT-04/contract.yml]
+    load_on_demand: [02_proceso/core/contracts/index.ts]
+    defer: [Implementación no autorizada]
+    routes: [R6, R7]
+    workflows: []
+    primary_skills: [content-os-core]
+    tools: [architecture_review]
+    read_set: [02_proceso/agents/RT-04/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-04/context.md]}
+    gates: [contract]
+    stop_rules: [No fabricar schemas o autoridad faltante]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-05
+    root: 02_proceso/agents/RT-05
+    kind: agent
+    owner: agents-committee
+    applies_when: Producir contenido dentro de brief, evidencia y marca aprobados.
+    authority_refs: [02_proceso/agents/RT-05/contract.yml]
+    load_first: [02_proceso/agents/RT-05/contract.yml]
+    load_on_demand: [02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml]
+    defer: [Distribución y activos no requeridos]
+    routes: [R6]
+    workflows: [P03, P05, P06]
+    primary_skills: [content-os-creative]
+    tools: [produce]
+    read_set: [02_proceso/agents/RT-05/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-05/context.md]}
+    gates: [brief_approved]
+    stop_rules: [Detener antes de distribución o publicación]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-06
+    root: 02_proceso/agents/RT-06
+    kind: agent
+    owner: agents-committee
+    applies_when: Diseñar experiencia, adapters, documentación y accesibilidad.
+    authority_refs: [02_proceso/agents/RT-06/contract.yml]
+    load_first: [02_proceso/agents/RT-06/contract.yml]
+    load_on_demand: [02_proceso/governance/experience-first-orchestration.md]
+    defer: [Hosts no seleccionados]
+    routes: [R0, R6, R7]
+    workflows: []
+    primary_skills: []
+    tools: [experience_review]
+    read_set: [02_proceso/agents/RT-06/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-06/context.md]}
+    gates: [accessibility, host_capability]
+    stop_rules: [Configuración no prueba ejecución]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-07
+    root: 02_proceso/agents/RT-07
+    kind: agent
+    owner: agents-committee
+    applies_when: Materializar, renderizar y verificar outputs multimedia deterministas.
+    authority_refs: [02_proceso/agents/RT-07/contract.yml]
+    load_first: [02_proceso/agents/RT-07/contract.yml]
+    load_on_demand: [02_proceso/workflows/multimedia/_runner]
+    defer: [Renderers no seleccionados]
+    routes: [R6]
+    workflows: [P06, P08]
+    primary_skills: []
+    tools: [render, replay]
+    read_set: [02_proceso/agents/RT-07/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-07/context.md]}
+    gates: [material_output, deterministic_replay]
+    stop_rules: [Hash solo de archivo materializado]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-08
+    root: 02_proceso/agents/RT-08
+    kind: agent
+    owner: agents-committee
+    applies_when: Validar schemas, estados, métricas y compatibilidad.
+    authority_refs: [02_proceso/agents/RT-08/contract.yml]
+    load_first: [02_proceso/agents/RT-08/contract.yml]
+    load_on_demand: [02_proceso/core/contracts/index.ts]
+    defer: [Schemas no afectados]
+    routes: [R6, R7]
+    workflows: []
+    primary_skills: [content-os-core]
+    tools: [schema_check]
+    read_set: [02_proceso/agents/RT-08/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-08/context.md]}
+    gates: [schema, compatibility]
+    stop_rules: [Transición no enumerada bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-09
+    root: 02_proceso/agents/RT-09
+    kind: agent
+    owner: agents-committee
+    applies_when: Verificar un candidate congelado de forma independiente y read-only.
+    authority_refs: [02_proceso/agents/RT-09/contract.yml]
+    load_first: [02_proceso/agents/RT-09/contract.yml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Contexto del producer no necesario para verificar]
+    routes: []
+    workflows: [P07, C08]
+    primary_skills: [dev-verification-before-completion]
+    tools: [verify_read_only]
+    read_set: [02_proceso/agents/RT-09/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-09/context.md]}
+    gates: [candidate_freeze, verification]
+    stop_rules: [REVISE crea successor, Verifier no remedia]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-10
+    root: 02_proceso/agents/RT-10
+    kind: agent
+    owner: agents-committee
+    applies_when: Implementar runtime, adapters, ACL, receipts, retry o kill switch.
+    authority_refs: [02_proceso/agents/RT-10/contract.yml]
+    load_first: [02_proceso/agents/RT-10/contract.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Conectores y efectos externos]
+    routes: [R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-core]
+    tools: [runtime, dry_run]
+    read_set: [02_proceso/agents/RT-10/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-10/context.md]}
+    gates: [execution_authz, receipt]
+    stop_rules: [Dry-run cero writes, Efectos externos denegados]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-RT-11
+    root: 02_proceso/agents/RT-11
+    kind: agent
+    owner: agents-committee
+    applies_when: Auditar gobierno, independencia, privacidad y fail-closed sin remediar.
+    authority_refs: [02_proceso/agents/RT-11/contract.yml]
+    load_first: [02_proceso/agents/RT-11/contract.yml]
+    load_on_demand: [02_proceso/governance/experience-first-orchestration.md]
+    defer: [Código mutable y razonamiento privado]
+    routes: []
+    workflows: []
+    primary_skills: []
+    tools: [guardian_read_only]
+    read_set: [02_proceso/agents/RT-11/contract.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/agents/RT-11/context.md]}
+    gates: [guardian]
+    stop_rules: [Guardian no remedia ni autoaprueba]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-COMMITTEES
+    root: 02_proceso/committees
+    kind: governance
+    owner: agents-committee
+    applies_when: Un gate exige comité, aprobación humana o separación formal.
+    authority_refs: [AGENTS.md, 02_proceso/committees/creation/H-01]
+    load_first: [AGENTS.md, 02_proceso/committees/creation/H-01]
+    load_on_demand: [01_intencion/program/dag.yml]
+    defer: [Comités no convocados y evidencia histórica]
+    routes: []
+    workflows: []
+    primary_skills: []
+    tools: [committee_review]
+    read_set: [02_proceso/committees/creation/H-01]
+    write_policy: {mode: generated_only, paths: [02_proceso/committees/context.md]}
+    gates: [H01, H03]
+    stop_rules: [Aprobación simulada no promueve]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-WORKFLOWS
+    root: 02_proceso/workflows
+    kind: workflow
+    owner: content
+    applies_when: Una route lock resolvió una familia y se requiere compilar sus pasos.
+    authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_first: [02_proceso/governance/router.yml]
+    load_on_demand: [01_intencion/program/dag.yml]
+    defer: [Familias y etapas no seleccionadas]
+    routes: [R6, R7]
+    workflows: [P00-P09, C00-C09]
+    primary_skills: [content-os-router]
+    tools: [workflow_plan]
+    read_set: [02_proceso/governance/router.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/context.md]}
+    gates: [route_lock, workflow_resolution]
+    stop_rules: [No cargar diez prompts simultáneamente]
+    privacy: public_only
+    children: [CTX-WORKFLOW-ADAPTERS, CTX-MULTIMEDIA, CTX-CAREER, CTX-EXPERIENCE]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-WORKFLOW-ADAPTERS
+    root: 02_proceso/workflows/adapters
+    kind: workflow
+    owner: n8n
+    applies_when: Proyectar un workflow canónico hacia un adapter autorizado.
+    authority_refs: [AGENTS.md, 02_proceso/governance/agent-cli-adapters.md]
+    load_first: [02_proceso/governance/agent-cli-adapters.md]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Hosts y conectores no seleccionados]
+    routes: [R6, R7]
+    workflows: []
+    primary_skills: []
+    tools: [adapter_probe]
+    read_set: [02_proceso/governance/agent-cli-adapters.md]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/adapters/context.md]}
+    gates: [adapter_conformance]
+    stop_rules: [Sin probe material la compatibilidad queda UNKNOWN]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}

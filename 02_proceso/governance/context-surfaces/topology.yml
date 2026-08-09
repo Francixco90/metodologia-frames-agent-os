@@ -1,0 +1,168 @@
+schema_version: context-surface-shard-v1
+shard_id: CTX-SHARD-TOPOLOGY
+surfaces:
+  - context_id: CTX-ROOT
+    root: .
+    kind: root
+    owner: lead
+    applies_when: Entrada universal; orientar antes de cargar una familia de trabajo.
+    authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_first: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_on_demand: [README.md, 02_proceso/governance/experience-first-orchestration.md]
+    defer: [Estado privado, corpus, receipts y familias no seleccionadas]
+    routes: [R0, R1, R2, R3, R3-LOOSE, R4, R5, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [frames:assist]
+    read_set: [AGENTS.md, 02_proceso/governance/router.yml]
+    write_policy: {mode: generated_only, paths: [context.md]}
+    gates: [route_lock]
+    stop_rules: [Ambigüedad material bloquea, Saludos y comandos de inspección no escriben]
+    privacy: private_after_route_lock
+    children: [CTX-INBOX, CTX-INTENT, CTX-PROCESS, CTX-ARTIFACTS, CTX-STATE, CTX-VERIFY]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-INBOX
+    root: 00_inbox
+    kind: layer
+    owner: sources
+    applies_when: Ingesta autorizada de fuentes, contratos, firmas, muestras o templates.
+    authority_refs: [AGENTS.md, 04_estado/registries/sources/source-registry.yml]
+    load_first: [AGENTS.md, 04_estado/registries/sources/source-registry.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Archivos no seleccionados, datos privados sin route lock]
+    routes: [R6, R7]
+    workflows: [P01, P02, C00, C01]
+    primary_skills: []
+    tools: [read_only_ingest]
+    read_set: [04_estado/registries/sources/source-registry.yml]
+    write_policy: {mode: generated_only, paths: [00_inbox/context.md]}
+    gates: [source_authority]
+    stop_rules: [Fuente sin procedencia o derechos queda UNKNOWN]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-INTENT
+    root: 01_intencion
+    kind: layer
+    owner: lead
+    applies_when: Consultar intención, ADR, programa, DAG u ownership canónicos.
+    authority_refs:
+      [AGENTS.md, 01_intencion/program/dag.yml, 01_intencion/program/ownership-manifest.yml]
+    load_first: [AGENTS.md, 01_intencion/program/dag.yml]
+    load_on_demand: [01_intencion/program/ownership-manifest.yml]
+    defer: [Fuentes importadas y propuestas no adoptadas]
+    routes: []
+    workflows: []
+    primary_skills: []
+    tools: [read_only]
+    read_set: [01_intencion/program/dag.yml, 01_intencion/program/ownership-manifest.yml]
+    write_policy: {mode: generated_only, paths: [01_intencion/context.md]}
+    gates: [authority, ownership]
+    stop_rules: [Contradicción aplica precedencia más restrictiva]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-PROCESS
+    root: 02_proceso
+    kind: layer
+    owner: governance
+    applies_when: Diseñar o ejecutar gobierno, agentes, core y workflows.
+    authority_refs: [AGENTS.md, 02_proceso/governance/experience-first-orchestration.md]
+    load_first: [AGENTS.md, 02_proceso/governance/router.yml]
+    load_on_demand: [02_proceso/governance/experience-first-orchestration.md]
+    defer: [Familias de workflow no bloqueadas]
+    routes: [R0, R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [route_lock, work_order]
+    read_set: [02_proceso/governance/router.yml]
+    write_policy: {mode: generated_only, paths: [02_proceso/context.md]}
+    gates: [route_lock, ownership]
+    stop_rules: [No inventar workflow, skill, output ni gate]
+    privacy: public_only
+    children: [CTX-GOVERNANCE, CTX-CORE, CTX-AGENTS, CTX-COMMITTEES, CTX-WORKFLOWS]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-ARTIFACTS
+    root: 03_artefactos
+    kind: layer
+    owner: lead
+    applies_when: Resolver outputs, adapters, marca, proyectos, renderers o skills ya seleccionados.
+    authority_refs: [AGENTS.md, 01_intencion/program/ownership-manifest.yml]
+    load_first: [AGENTS.md, 01_intencion/program/ownership-manifest.yml]
+    load_on_demand: [02_proceso/governance/tool-policy.yml]
+    defer: [Skills no vinculadas, proyectos ajenos y outputs privados]
+    routes: [R6, R7]
+    workflows: []
+    primary_skills: []
+    tools: [owner_scoped_write]
+    read_set: [01_intencion/program/ownership-manifest.yml]
+    write_policy: {mode: generated_only, paths: [03_artefactos/context.md]}
+    gates: [ownership, budget]
+    stop_rules: [Un writer por ruta, Editar fuente y regenerar derivados]
+    privacy: private_after_route_lock
+    children: [CTX-HOST-ADAPTERS]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-HOST-ADAPTERS
+    root: 03_artefactos/host-adapters
+    kind: adapter
+    owner: skill-foundry
+    applies_when: Proyectar Frames Assist hacia un host declarado o verificar su capacidad material.
+    authority_refs: [03_artefactos/host-adapters/host-adapter-package.json]
+    load_first: [03_artefactos/host-adapters/host-adapter-package.json]
+    load_on_demand:
+      [
+        03_artefactos/host-adapters/generate-host-adapters.ts,
+        05_verificacion/scripts/install-host-adapter.ts,
+      ]
+    defer: [Hosts no seleccionados, Configuración global, hooks, red y conectores]
+    routes: [R0, R4, R6, R7]
+    workflows: []
+    primary_skills: [content-os-router]
+    tools: [frames:assist, adapter_probe, installer_dry_run]
+    read_set: [03_artefactos/host-adapters/host-adapter-package.json]
+    write_policy: {mode: generated_only, paths: [03_artefactos/host-adapters/context.md]}
+    gates: [host_manifest, launch_probe, semantic_fallback]
+    stop_rules: [Sin probe material la capacidad queda UNKNOWN, Apply exige opt-in y backup]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-STATE
+    root: 04_estado
+    kind: layer
+    owner: governance
+    applies_when: Leer o persistir estado, registries, receipts, releases o tareas autorizadas.
+    authority_refs: [AGENTS.md, 01_intencion/program/dag.yml]
+    load_first: [AGENTS.md, 01_intencion/program/dag.yml]
+    load_on_demand: [01_intencion/program/dag.yml]
+    defer: [Receipts y tareas fuera del lineage activo]
+    routes: [R2, R4]
+    workflows: []
+    primary_skills: []
+    tools: [read_back_hash]
+    read_set: [01_intencion/program/dag.yml]
+    write_policy: {mode: generated_only, paths: [04_estado/context.md]}
+    gates: [state_transition, lineage]
+    stop_rules: [UNKNOWN no promueve, Candidate congelado crea successor]
+    privacy: private_after_route_lock
+    children: [CTX-REGISTRIES]
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-VERIFY
+    root: 05_verificacion
+    kind: layer
+    owner: qa
+    applies_when: Verificar contratos, pruebas, calidad, gates o evidencia de cierre.
+    authority_refs: [AGENTS.md, 05_verificacion/scripts/commands.yaml]
+    load_first: [AGENTS.md, 05_verificacion/scripts/commands.yaml]
+    load_on_demand: [01_intencion/program/test-strategy.md]
+    defer: [Suites no afectadas y evidencia histórica]
+    routes: []
+    workflows: [P07, P08, C08]
+    primary_skills: [dev-verification-before-completion]
+    tools: [focused_checks, verify]
+    read_set: [05_verificacion/scripts/commands.yaml]
+    write_policy: {mode: generated_only, paths: [05_verificacion/context.md]}
+    gates: [tests, evidence]
+    stop_rules: [No declarar PASS sin evidencia material]
+    privacy: public_only
+    children: [CTX-VERIFY-SCRIPTS]
+    budget: {target_lines: 80, hard_lines: 120}

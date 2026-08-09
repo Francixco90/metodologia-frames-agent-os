@@ -1,34 +1,31 @@
-/**
- * check-multimedia-capabilities.ts — deterministic capability_map + BLUF
- * enforcement for the multimedia P00–P09 chain.
- *
- * CLI: `pnpm verify:multimedia`
- *
- * For each `02_proceso/workflows/multimedia/pNN-{slug}/workflow.yml`:
- *   MW-CAP-01: workflow parses against `multimedia-workflow-v1`.
- *   MW-CAP-02: `brief` present with non-empty outputs + deliverables (BLUF enforce).
- *   MW-CAP-03: `capability_map.skills` each resolve against the creation-v3
- *              skill registry, the v2 skill registry, or a direct skill dir
- *              at `03_artefactos/skills/<id>/SKILL.md` (vendor skills excluded
- *              from registries are reachable via the dir check).
- *   MW-CAP-04: `capability_map.assets` each resolve to a materialized schema file
- *              at `_schema/artifacts/<id>.schema.ts` AND be listed in the artifact
- *              registry (`_assets/artifact-registry.md`). File-existence check
- *              upgrades the binding from forward-contract to real contract.
- *
- * Fail-closed: any unresolved binding fails the gate. The generator
- * (`render-schematic-html.ts`) depends on the same contract, so a green gate
- * implies regenerable schematics. [CÓDIGO]
- */
-import {readFileSync, readdirSync, existsSync} from 'node:fs';
+// Fail-closed P00–P09 capability, template, gate and deliverable integrity. [CÓDIGO]
+import {readFileSync, readdirSync, existsSync, realpathSync} from 'node:fs';
 import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
 
-import {MultimediaWorkflowSchema} from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
+import {
+  MultimediaWorkflowSchema,
+  type MultimediaWorkflow,
+} from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
+import {runDeliverableTemplateGeneration} from '../../02_proceso/workflows/multimedia/_runner/generate-deliverable-templates.ts';
+import {
+  loadDeliverableDefinitions,
+  type TemplateRegistryEntry,
+  validateCatalogCoverage,
+  validateTemplateAcceptanceGates,
+  validateWorkflowDeliverables,
+} from './lib/multimedia-deliverables.ts';
+export {
+  type TemplateRegistryEntry,
+  validateTemplateAcceptanceGates,
+} from './lib/multimedia-deliverables.ts';
 
 const root = process.cwd();
 const MW_DIR = join(root, '02_proceso', 'workflows', 'multimedia');
 const ARTIFACT_REGISTRY = join(MW_DIR, '_assets', 'artifact-registry.md');
+const TEMPLATE_REGISTRY = join(MW_DIR, '_assets', 'deliverable-template-registry.yml');
+const DESIGN_PROFILE = join(MW_DIR, '_assets', 'metodologia-html-v7.yml');
 const V3_REGISTRY = join(
   root,
   '04_estado',
@@ -40,6 +37,7 @@ const V2_REGISTRY = join(root, '04_estado', 'registries', 'skills', 'skill-regis
 const SKILLS_DIR = join(root, '03_artefactos', 'skills');
 
 type Registry = {entries?: Array<{skill_id?: string}>; entries_inline?: string[]};
+type TemplateRegistry = {templates?: TemplateRegistryEntry[]};
 
 function collectSkillIds(path: string): Set<string> {
   const ids = new Set<string>();
@@ -59,6 +57,14 @@ function collectSkillIds(path: string): Set<string> {
 const v3Ids = collectSkillIds(V3_REGISTRY);
 const v2Ids = collectSkillIds(V2_REGISTRY);
 const artifactText = existsSync(ARTIFACT_REGISTRY) ? readFileSync(ARTIFACT_REGISTRY, 'utf8') : '';
+const templateRegistry = existsSync(TEMPLATE_REGISTRY)
+  ? (parse(readFileSync(TEMPLATE_REGISTRY, 'utf8')) as TemplateRegistry)
+  : {};
+const templates = new Map(
+  (templateRegistry.templates ?? []).map((entry) => [entry.template_id ?? '', entry]),
+);
+const deliverableDefinitions = loadDeliverableDefinitions(root);
+const deliverables = new Map(deliverableDefinitions.map((item) => [item.deliverable_id, item]));
 
 function skillExists(id: string): boolean {
   if (v3Ids.has(id) || v2Ids.has(id)) return true;
@@ -74,8 +80,19 @@ function assetExists(id: string): boolean {
   return existsSync(schemaFile) && artifactText.includes(`${id}.schema.ts`);
 }
 
+function templateExists(id: string): boolean {
+  const entry = templates.get(id);
+  if (!entry || entry.design_profile !== 'metodologia-html-v7' || !existsSync(DESIGN_PROFILE)) {
+    return false;
+  }
+  return [entry.markdown_template_ref, entry.html_template_ref, entry.data_schema_ref].every(
+    (ref) => typeof ref === 'string' && existsSync(join(root, ref)),
+  );
+}
+
 const errors: string[] = [];
 let checked = 0;
+const workflows: MultimediaWorkflow[] = [];
 
 const stageDirs = readdirSync(MW_DIR).filter((d) => d.startsWith('p0'));
 for (const dir of stageDirs) {
@@ -85,6 +102,7 @@ for (const dir of stageDirs) {
   let wf;
   try {
     wf = MultimediaWorkflowSchema.parse(parse(readFileSync(wfPath, 'utf8')));
+    workflows.push(wf);
   } catch (e) {
     errors.push(`MW-CAP-01 ${dir}: schema parse failed — ${(e as Error).message.split('\n')[0]}`);
     continue;
@@ -108,13 +126,51 @@ for (const dir of stageDirs) {
       if (!assetExists(a)) errors.push(`MW-CAP-04 ${dir}: asset not in artifact-registry: ${a}`);
     }
   }
+  const templateIds = [
+    ...wf.outputs.map((output) => output.template_id),
+    ...wf.execution_steps.map((step) => step.template_id),
+  ];
+  for (const id of templateIds) {
+    if (!templateExists(id)) errors.push(`MW-CAP-05 ${dir}: template does not resolve: ${id}`);
+  }
+  for (const step of wf.execution_steps) {
+    const assigned = [step.primary_skill, ...step.optional_skills];
+    for (const skill of assigned) {
+      if (!skillExists(skill))
+        errors.push(`MW-CAP-06 ${dir}: step skill does not resolve: ${skill}`);
+      if (!cap?.skills.includes(skill)) {
+        errors.push(`MW-CAP-06 ${dir}: step skill absent from capability_map: ${skill}`);
+      }
+    }
+  }
+  errors.push(...validateTemplateAcceptanceGates(wf, templates));
+  errors.push(
+    ...validateWorkflowDeliverables(root, wf, deliverables).map((issue) => `MW-CAP-08 ${issue}`),
+  );
+}
+errors.push(
+  ...validateCatalogCoverage(workflows, deliverableDefinitions).map(
+    (issue) => `MW-CAP-08 ${issue}`,
+  ),
+);
+try {
+  const result = runDeliverableTemplateGeneration({root, selector: {kind: 'all'}});
+  if (result.selected !== 39)
+    errors.push(`MW-CAP-09 expected 39 template pairs; got ${result.selected}`);
+} catch (error) {
+  errors.push(`MW-CAP-09 deliverable template projections invalid: ${String(error)}`);
 }
 
-if (errors.length > 0) {
-  console.error(errors.join('\n'));
-  process.exitCode = 1;
-} else {
-  console.info(
-    `PASS MULTIMEDIA CAPABILITIES: ${checked} stages verified (capability_map + BLUF bindings resolve).`,
-  );
+if (
+  process.argv[1] &&
+  realpathSync(fileURLToPath(import.meta.url)) === realpathSync(process.argv[1])
+) {
+  if (errors.length > 0) {
+    console.error(errors.join('\n'));
+    process.exitCode = 1;
+  } else {
+    console.info(
+      `PASS MULTIMEDIA CAPABILITIES: ${checked} stages verified (skills + assets + steps + templates + gates resolve).`,
+    );
+  }
 }

@@ -5,6 +5,7 @@ const root = process.cwd();
 const id = 'dev-verification-before-completion';
 const required = [
   `skills/${id}/SKILL.md`,
+  `skills/${id}/context.md`,
   `skills/${id}/LINEAGE.yml`,
   `skills/${id}/scripts/check-skill.mjs`,
   `skills/${id}/receipts/runtime-boundary.yml`,
@@ -14,6 +15,25 @@ const required = [
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
 const combined = [...contents.values()].join('\n');
+const skillMd = contents.get(`skills/${id}/SKILL.md`);
+const publicContext = contents.get(`skills/${id}/context.md`);
+const lineage = contents.get(`skills/${id}/LINEAGE.yml`);
+
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
+}
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) {
+    throw new Error(`${id.toUpperCase()}_CONTEXT_SECTION_MISSING: ${section}`);
+  }
+}
+if (!skillMd.includes('[context.md](context.md)')) {
+  throw new Error(`${id.toUpperCase()}_CONTEXT_LINK_MISSING`);
+}
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  throw new Error(`${id.toUpperCase()}_BUDGET_EXCEEDED`);
+}
 
 for (const token of [
   'This skill should be used when',

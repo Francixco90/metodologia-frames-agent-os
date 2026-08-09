@@ -1,0 +1,37 @@
+schema_version: career-workflow-v1
+workflow_id: C07
+command: /career-cover-letter
+title: Carta basada en evidencia
+purpose: Redactar carta, respuesta de formulario o mensaje que complemente el CV sin repetirlo.
+inputs: [application-brief-v1, requirement-evidence-matrix-v1, cv-source-v1]
+deliverables:
+  [cover-letter-v1, application-form-response-v1, recruiter-message-v1, omission-record-v1]
+capability_map: [evidence-based-cover-letter]
+execution_steps:
+  - step_id: S01
+    purpose: Elegir hasta tres necesidades y una señal verificable de empresa.
+    inputs: [application-brief-v1, requirement-evidence-matrix-v1]
+    primary_skill: evidence-based-cover-letter
+    optional_skills: []
+    verifier: RT-09
+    outputs: [omission-record-v1]
+    template_id: TPL-C07-LETTER
+    gate: G13
+    stop_rule: Señal de empresa no verificable se omite; no se elogia por inferencia.
+    context_budget: {target_files: 6, max_files: 12, target_tokens: 9000, max_tokens: 16000}
+  - step_id: S02
+    purpose: Redactar el canal correcto con uno o dos bloques de evidencia.
+    inputs: [omission-record-v1, cv-source-v1]
+    primary_skill: evidence-based-cover-letter
+    optional_skills: []
+    verifier: RT-09
+    outputs: [cover-letter-v1, application-form-response-v1, recruiter-message-v1]
+    template_id: TPL-C07-LETTER
+    gate: CR_PACKAGE_APPROVED
+    stop_rule: Respetar letter 180-280, form 80-140 y message 40-70 palabras.
+    context_budget: {target_files: 6, max_files: 12, target_tokens: 10000, max_tokens: 18000}
+gates: [G13, CR_PACKAGE_APPROVED]
+next_workflow: C08
+template_ref: 02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md
+stop_rule: La carta complementa; no inventa contacto, resultados futuros ni capacidades.
+metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

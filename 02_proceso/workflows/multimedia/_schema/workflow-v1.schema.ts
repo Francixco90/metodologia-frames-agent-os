@@ -13,6 +13,7 @@ import {z} from 'zod';
 
 import {RelativePathSchema} from '../../../core/contracts/primitives.ts';
 import {AnyWorkStateSchema} from '../../../core/contracts/schemas.ts';
+import {WorkflowStepV1Schema} from './workflow-step-v1.schema.ts';
 
 export const MultimediaWorkflowIdSchema = z.enum([
   'P00',
@@ -40,9 +41,12 @@ export const WorkflowModeSchema = z.strictObject({
 });
 
 export const WorkflowOutputSchema = z.strictObject({
+  deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
   artifact: z.string().min(1).max(120),
   schema_ref: RelativePathSchema,
+  template_id: z.string().regex(/^TPL-[A-Z0-9][A-Z0-9-]{2,79}$/u),
   required: z.boolean(),
+  condition: z.string().min(1).max(240).optional(),
 });
 
 export const WorkflowModelSchema = z.strictObject({
@@ -74,23 +78,20 @@ export const MultimediaWorkflowSchema = z.strictObject({
   fallback: z.string().min(1).max(800),
   // BLUF brief — Bottom Line Up Front. outputs/deliverables declared first
   // so the stage's verifiable result is visible before context. [CONFIG]
-  brief: z
-    .strictObject({
-      outputs: z.array(z.string().min(1).max(200)).min(1),
-      deliverables: z.array(z.string().min(1).max(200)).min(1),
-      context: z.string().min(1).max(400),
-      cta: z.string().min(1).max(200),
-    })
-    .optional(),
+  brief: z.strictObject({
+    outputs: z.array(z.string().min(1).max(200)).min(1),
+    deliverables: z.array(z.string().min(1).max(200)).min(1),
+    context: z.string().min(1).max(400),
+    cta: z.string().min(1).max(200),
+  }),
   // Deterministic skill + asset binding. skills resolve against creation-v3 /
   // v2 skill registries or vendor skills (03_artefactos/skills/vendor/*);
   // assets resolve against _assets/artifact-registry.md IDs. [CONFIG]
-  capability_map: z
-    .strictObject({
-      skills: z.array(z.string().min(1).max(80)).default([]),
-      assets: z.array(z.string().min(1).max(80)).default([]),
-    })
-    .optional(),
+  capability_map: z.strictObject({
+    skills: z.array(z.string().min(1).max(80)),
+    assets: z.array(z.string().min(1).max(80)),
+  }),
+  execution_steps: z.array(WorkflowStepV1Schema).min(1),
   metadata: z.strictObject({
     source_id: z.literal('MIA-MEDIA-LIB-2.0.0'),
     version: z.literal('2.0.0-candidato'),

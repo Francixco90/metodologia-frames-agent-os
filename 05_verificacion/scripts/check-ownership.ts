@@ -114,6 +114,9 @@ const requiredOwnerProbes = [
   ['.claude/workflows/pr-00b.ts', 'agents-committee'],
   ['workflows/multimedia/index.ts', 'content'],
   ['02_proceso/workflows/multimedia/index.ts', 'content'],
+  ['02_proceso/workflows/experience/index.ts', 'content'],
+  ['04_estado/registries/experience/component-registry.yml', 'content'],
+  ['04_estado/releases/experience/EXP-EXAMPLE/release-manifest.json', 'governance'],
 ] as const;
 
 export const validateOwnership = (root = process.cwd()): string[] => {

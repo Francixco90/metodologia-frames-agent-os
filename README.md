@@ -41,6 +41,17 @@ La arquitectura, DAG, propiedad de rutas y estrategia de pruebas están document
 
 ## Inicio rápido
 
+Para entrar por la experiencia asistida, escribe una petición normal. El modo por
+defecto interpreta y orienta sin escribir:
+
+```bash
+printf '%s\n' 'Ayúdame a crear una pieza' | pnpm frames:assist
+```
+
+`/menu` y `/ruta` inspeccionan sin writes. La materialización local exige un JSON
+completo y `--apply`; siempre se detiene en la aprobación del brief. Las rutas,
+contextos y adapters se verifican con `pnpm verify:instructions`.
+
 Requiere las versiones exactas declaradas en `package.json`: Node, pnpm, Remotion, Zod, Playwright
 y FFmpeg. Chrome estable es un prerrequisito local para la inspección Web.
 
@@ -126,29 +137,9 @@ multi-vendor (Fases 2A-2I):
 
 ### Homólogos hash-bound (H-03 v3)
 
-**152 entradas** en `04_estado/registries/skills/creation-v3-skill-registry.yml`
-(append-only events + versioned current view). Desglose por familia:
-
-- **39 `content-os-*`**: 15 originales (Fase 2-3 + `remotion-bridge`) + 10 Fase 2A
-  HyperFrames (PRs #35/#36/#37/#39/#41) + 11 Fase 2B Remotion (PRs #42-#45) + 3
-  Fase 2C Bento (#46).
-- **28 `design-*`**: 11 design-OS originales (#59-#61) + 16 genjutsu Fase 2F
-  (#62-#65) + 1 design-dna Fase 2I (#66).
-- **51 `dev-*`**: 8 Fase 2J batch 1+2 (#67: spec, qa, review, ship, investigate,
-  careful, retro, qa-only) + 4 plan-review Fase 2J batch 3 (#68) + 39 Fase 7
-  densification (ADR 0027 atemporal naming lift).
-- **14 `gstack-*`**, **10 `context-*`**, **6 `web-*`**, **2 `media-*`**,
-  **1 `motion-*`**, **2 `scroll-*`** homólogos, **2 `remotion-*`** base.
-- **2 base**: `data-visual-composition`, `motion-library-adapters`.
-
-**v2** — 10 entradas en `04_estado/registries/skills/skill-registry.yml` (shared
-receipt): familia meta `metodologia-*` + `instagram-*` + `scroll-*` +
-`remotion-video-production-v2`.
-
-**Total: 162 skills** (152 v3 + 10 v2). El gate `verify:skills` corre v2 + v3 +
-reconcile (`scripts/reconcile-skill-registries.ts`) en cada PR: 0 orphans, 0
-cross-registry dupes, event_ids únicos. Estado del programa multi-vendor (Fases
-2A-2D, registry reconcile, receipt cascade, Fase 7 densification):
+Los registros v2 y v3 son la única autoridad del inventario; este README no fija
+conteos que puedan quedar obsoletos. `pnpm verify:skills` comprueba entradas,
+paquetes, eventos, huérfanos y duplicados entre registros. Estado del programa:
 [`01_intencion/content-os/roadmap.md`](01_intencion/content-os/roadmap.md). Mapeo
 vendor→nativas:
 [`01_intencion/content-os/capability-matrix.md`](01_intencion/content-os/capability-matrix.md).
@@ -159,8 +150,8 @@ Arquitectura dual paradigm + media model:
 
 Cadena determinista de 10 stages en `02_proceso/workflows/multimedia/`
 (`definir-sistema` → `distribuir`), schema `multimedia-workflow-v1` (Zod). Cada
-stage: `workflow.yml` (source of truth con `brief` BLUF + `capability_map`
-skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
+stage: `workflow.yml` (source of truth con `brief`, `execution_steps`, templates y
+`capability_map` skills/assets), `prompt-spec.md` (outputs-first + mermaid schematic), `task-template.yaml`,
 `build.ts`, `notebooklm-binding.yml`, `schematic.html` (brand-ready, generado desde
 template). Quality-gate `MW-Q01..Q10` fail-closed (`_runner/quality-gate.ts`).
 Generator `pnpm mw:render-schematics` (1 template + 1 script → 10 HTML,
@@ -168,12 +159,43 @@ determinista, regenerable). Checker `pnpm verify:multimedia` (gate `MW_CAPABILIT
 Chain schematic:
 [`02_proceso/workflows/multimedia/_assets/chain-schematic.md`](02_proceso/workflows/multimedia/_assets/chain-schematic.md). [DOC]
 
+Todo pedido de pieza entra por R6: el router formula hasta tres preguntas
+bloqueantes y selecciona solo los stages necesarios. P03 genera siempre el
+`brief.md` canónico de 12 secciones; su HTML es una proyección determinista del
+mismo modelo, usa el perfil `metodologia-html-v7` y no puede añadir contenido
+editorial. La producción se detiene en `MW_BRIEF_APPROVED`; P09 prepara el
+paquete, pero nunca distribuye ni publica sin autorización humana separada.
+La biblioteca P00–P09 se regenera desde los workflows mediante
+`_runner/render-library.ts`. [CONFIG]
+
+### Frames Experience OS
+
+**Frames ContentOS · por MetodologIA** recibe lenguaje cotidiano y lo convierte
+en un recorrido gobernado. Un saludo ofrece `Crear · Mejorar · Planear · Explorar`
+sin escribir; un pedido claro omite el menú, ejecuta el adapter R6 o R7 y prepara
+el brief canónico. Skills declaradas permanecen `planned` hasta que exista un
+receipt de invocación ligado al WorkOrder y a outputs materiales. [CONFIG]
+
+El Blueprint Markdown y su HTML offline viven en
+`03_artefactos/content/experience/`; componentes, microcopy, paridad y cápsulas
+están en `02_proceso/workflows/experience/`. El estado máximo es
+`active/local-evaluation`: publicación, conectores y efectos externos siguen
+bloqueados. Solo una cápsula con RT-09 `PASS`, RT-11 `PASS` y H01 `APPROVE`
+puede entrar al vault inmutable. [CONFIG]
+
+La operación completa —primer turno, route lock, workflow management, AutoPrime,
+WorkOrder, receipts, continuidad y hospitalidad— está definida en
+[`experience-first-orchestration.md`](02_proceso/governance/experience-first-orchestration.md).
+R6/R7 tienen handlers locales brief-first; R4 exige lineage hash-bound. R1–R3 y
+R5 siguen como `coverage_gap` y no deben presentarse como ejecución disponible.
+
 ## Governance
 
 `02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
 apunta aquí, no duplica):
 
-- `router.yml` — router R0-R5 (binds_to task/project/eval).
+- `router.yml` — router R0-R7 con First-Turn Gateway (proyecto/tarea/eval/contenido/carrera).
+- `experience-first-orchestration.md` — contrato de interacción y workflow manager.
 - `tool-policy.yml` — política de herramientas permitidas por gate.
 - `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
 - `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
@@ -194,10 +216,10 @@ Gates → comandos: `05_verificacion/scripts/commands.yaml` (manifiesto `command
 - **Gates G00-G21 + MW_**_: `scripts/commands.yaml`. G13-G17 manuales fail-closed
   (H01 human approval, Guardian lock, readiness, publish). G18-G21 (env drift,
   eval suite, tool grants convergence, atemporal naming) automatizados. MW__
-  (multimedia: `MW_CAPABILITY`, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
+  (multimedia: `MW_CAPABILITY`, `MW_BRIEF_APPROVED` P03, `MW_SPEC_APPROVED` P05, `MW_ASSET_REVIEW` P06,
   `MW_EDIT_APPROVED` P08, `MW_DISTRIBUTION_AUTHORIZED` P09).
 - **Evals**: `evals/H-E001`..`H-E023` + `ablation/` — 23 eval suites con `runner.ts`.
-- **Tests**: 550+ casos (unit/contract/integration) en `tests/`. Harness contract:
+- **Tests**: inventario vivo en `tests/`; `pnpm test` informa el conteo ejecutado. Harness contract:
   `tests/contract/harness/`.
 - **Check scripts**: 35 scripts `check-*.ts`/`.mjs` en `scripts/` (brand, repo, skills,
   env-drift, tool-grants, privacy, multimedia-capabilities, content-os, etc.).

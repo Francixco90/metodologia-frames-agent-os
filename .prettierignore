@@ -6,6 +6,8 @@
 03_artefactos/content/*/generated/**
 00_inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
 05_verificacion/quality/reports/v2-baseline-protection.yml
+# Generated from every tracked Markdown file; exact bytes are enforced by docs:audit.
+01_intencion/program/documentation-inventory-v1.json
 03_artefactos/skills/remotion-video-production/scripts/check-sources.mjs
 03_artefactos/content/pilot-carousel-002/generated/atom-graph.json
 03_artefactos/content/pilot-carousel-002/generated/lineage/atom-graph-0.1.0.json
@@ -24,6 +26,9 @@
 # append-only temporal trace — not subject to reformatting.
 04_estado/receipts/**
 04_estado/tasks/**
+# Experience release capsules are immutable, generator-owned and SHA256SUMS-bound.
+# Their dedicated restore verifier, not a blanket formatter, governs exact bytes.
+04_estado/releases/experience/**
 03_artefactos/skills/data-visual-composition/schemas/d3-geometry-request-v1.schema.json
 03_artefactos/skills/motion-library-adapters/schemas/motion-adapter-spec-v1.schema.json
 03_artefactos/skills/data-visual-composition/fixtures/**/*.json
@@ -42,3 +47,6 @@
 # External Instagram post samples in 00_inbox/Muestras are third-party reference
 # artifacts; their inline formatting is not governed by the project style.
 00_inbox/Muestras/**
+# Deterministic HTML projections are byte-bound to Markdown + renderer and use
+# parity/drift checks; formatting them independently would invalidate lineage.
+02_proceso/workflows/multimedia/p*/templates/*.template.html

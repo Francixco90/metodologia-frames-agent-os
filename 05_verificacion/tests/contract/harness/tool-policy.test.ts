@@ -4,8 +4,8 @@ import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `02_proceso/governance/tool-policy.yml` (tool-policy-v1).
- * Asserts schema_version, the 6 active owners with concrete allow/deny,
- * Guardian deny Edit+Write, and the 8 stub owners flagged coverage_gap. [CONFIG]
+ * Asserts schema_version, concrete owners, Guardian deny Edit+Write,
+ * and the remaining stub owners flagged coverage_gap. [CONFIG]
  */
 describe('tool-policy.yml contract', () => {
   const policy = readRepositoryYaml('02_proceso/governance/tool-policy.yml') as {
@@ -28,8 +28,18 @@ describe('tool-policy.yml contract', () => {
     expect(policy.roles).toHaveLength(14);
   });
 
-  it('has 6 active owners with concrete allow/deny', () => {
-    const active = ['lead', 'repo', 'qa', 'core', 'governance', 'guardian'];
+  it('has 9 active owners with concrete allow/deny', () => {
+    const active = [
+      'lead',
+      'repo',
+      'sources',
+      'qa',
+      'core',
+      'skill-foundry',
+      'content',
+      'governance',
+      'guardian',
+    ];
     for (const role of active) {
       const rule = policy.rules.find((r) => r.role === role);
       expect(rule, `active owner ${role} must have a rule`).toBeDefined();
@@ -47,25 +57,16 @@ describe('tool-policy.yml contract', () => {
     expect(guardian?.tools.deny).toEqual(expect.arrayContaining(['Edit', 'Write']));
   });
 
-  it('flags 8 stub owners with coverage_gap', () => {
-    const stubs = [
-      'sources',
-      'agents-committee',
-      'skill-foundry',
-      'web',
-      'content',
-      'remotion',
-      'static-social',
-      'n8n',
-    ];
+  it('flags 5 stub owners with coverage_gap', () => {
+    const stubs = ['agents-committee', 'web', 'remotion', 'static-social', 'n8n'];
     for (const role of stubs) {
       const rule = policy.rules.find((r) => r.role === role);
       expect(rule, `stub owner ${role} must have a rule`).toBeDefined();
       const conditional = (rule?.tools.conditional ?? []).join('\n');
       expect(conditional).toMatch(/coverage_gap/u);
     }
-    // The manifest gaps section also records the 8-stub gap. [CONFIG]
+    // The manifest gaps section records the same bounded gap. [CONFIG]
     const gaps = (policy.gaps ?? []).join('\n');
-    expect(gaps).toMatch(/8 stub owners/u);
+    expect(gaps).toMatch(/5 stub owners/u);
   });
 });

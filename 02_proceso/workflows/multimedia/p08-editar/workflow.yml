@@ -31,14 +31,20 @@ modes:
 inputs:
   - p07-revisar/workflow.yml
 outputs:
-  - artifact: 'Edit Candidate'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: edit-candidate-v1
+    artifact: 'Candidate editado'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/edit-candidate-v1.schema.ts
+    template_id: TPL-P08-DELIVERABLE-V1
     required: true
-  - artifact: 'EDL'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: edl-v1
+    artifact: 'Lista de decisiones de edición'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/edl-v1.schema.ts
+    template_id: TPL-P08-DELIVERABLE-V1
     required: true
-  - artifact: 'Export Matrix'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: export-matrix-v1
+    artifact: 'Matriz de exportación'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/export-matrix-v1.schema.ts
+    template_id: TPL-P08-DELIVERABLE-V1
     required: true
 work_product_state: POSTPRODUCTION_VALIDATED
 gates:
@@ -72,11 +78,44 @@ capability_map:
     - content-os-remotion-render
     - remotion-video-production-v2
     - content-os-seam-craft
-    - stitch-remotion-walkthrough
   assets:
     - edit-candidate-v1
     - edl-v1
     - export-matrix-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Priorizar cambios y preparar un successor candidate.'
+    inputs: [asset-package-v1, verdict-v1, top5-changes-v1]
+    primary_skill: content-os-seam-craft
+    optional_skills: [remotion-video-production-v2]
+    verifier: RT-09
+    outputs: [edl-v1]
+    template_id: TPL-P08-DELIVERABLE-V1
+    gate: MW_EDIT_APPROVED
+    stop_rule: 'Preservar el candidate anterior y su lineage inmutable.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 10000, max_tokens: 18000}
+  - step_id: S02
+    purpose: 'Editar, componer o localizar según el EDL.'
+    inputs: [asset-package-v1, edl-v1]
+    primary_skill: content-os-remotion-render
+    optional_skills: [remotion-video-production-v2]
+    verifier: RT-09
+    outputs: [edit-candidate-v1]
+    template_id: TPL-P08-DELIVERABLE-V1
+    gate: MW_EDIT_APPROVED
+    stop_rule: 'Volver a P06 si falta un activo; no fabricar sustitutos no autorizados.'
+    context_budget: {target_files: 12, max_files: 20, target_tokens: 14000, max_tokens: 24000}
+  - step_id: S03
+    purpose: 'Comparar, probar regresiones y definir exportación.'
+    inputs: [edit-candidate-v1, edl-v1]
+    primary_skill: content-os-remotion-render
+    optional_skills: [content-os-seam-craft]
+    verifier: RT-09
+    outputs: [export-matrix-v1]
+    template_id: TPL-P08-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Bloquear diferencias no explicadas, QC incompleto o rollback ausente.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 11000, max_tokens: 19000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

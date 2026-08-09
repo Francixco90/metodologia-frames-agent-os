@@ -25,14 +25,25 @@ modes:
 inputs:
   - p05-disenar-pieza/workflow.yml
 outputs:
-  - artifact: 'Asset Package'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: asset-package-v1
+    artifact: 'Paquete de piezas candidatas'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/asset-package-v1.schema.ts
+    template_id: TPL-P06-DELIVERABLE-V1
     required: true
-  - artifact: 'Asset Manifest'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: asset-manifest-v1
+    artifact: 'Manifiesto de activos'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/asset-manifest-v1.schema.ts
+    template_id: TPL-P06-DELIVERABLE-V1
     required: true
-  - artifact: 'Capability Report'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: capability-report-v1
+    artifact: 'Reporte de capacidad'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/capability-report-v1.schema.ts
+    template_id: TPL-P06-DELIVERABLE-V1
+    required: true
+  - deliverable_id: tool-run-evidence-v1
+    artifact: 'Evidencia de ejecución'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/tool-run-evidence-v1.schema.ts
+    template_id: TPL-P06-DELIVERABLE-V1
     required: true
 work_product_state: BUILD_VALIDATED
 gates:
@@ -73,6 +84,51 @@ capability_map:
     - asset-manifest-v1
     - capability-report-v1
     - tool-run-evidence-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Ejecutar preflight de capacidad, derechos y herramientas.'
+    inputs: [creative-spec-v1, asset-map-v1]
+    primary_skill: content-os-core
+    optional_skills: [content-os-media]
+    verifier: RT-09
+    outputs: [capability-report-v1]
+    template_id: TPL-P06-DELIVERABLE-V1
+    gate: MW_ASSET_REVIEW
+    stop_rule: 'Bloquear herramienta, fuente o activo no autorizado.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
+  - step_id: S02
+    purpose: 'Producir o capturar activos por etapas.'
+    inputs: [creative-spec-v1, continuity-bible-v1, capability-report-v1]
+    primary_skill: content-os-remotion-create
+    optional_skills: [content-os-media]
+    verifier: RT-09
+    outputs: [asset-package-v1, tool-run-evidence-v1]
+    template_id: TPL-P06-DELIVERABLE-V1
+    gate: MW_ASSET_REVIEW
+    stop_rule: 'Limitar a prototipo no publicable si persiste riesgo o falta capacidad.'
+    context_budget: {target_files: 12, max_files: 20, target_tokens: 14000, max_tokens: 24000}
+  - step_id: S03
+    purpose: 'Registrar procedencia y comprobar continuidad.'
+    inputs: [asset-package-v1, tool-run-evidence-v1]
+    primary_skill: content-os-media
+    optional_skills: [content-os-core]
+    verifier: RT-09
+    outputs: [asset-manifest-v1]
+    template_id: TPL-P06-DELIVERABLE-V1
+    gate: MW_ASSET_REVIEW
+    stop_rule: 'Bloquear outputs sin archivo material, hash o lineage.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 10000, max_tokens: 18000}
+  - step_id: S04
+    purpose: 'Empaquetar el candidate sin promover su estado.'
+    inputs: [asset-package-v1, asset-manifest-v1]
+    primary_skill: content-os-remotion-render
+    optional_skills: [content-os-core]
+    verifier: RT-09
+    outputs: [asset-package-v1, asset-manifest-v1]
+    template_id: TPL-P06-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'RENDERED_DRAFT no concede aprobación, readiness ni publicación.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 12000, max_tokens: 20000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

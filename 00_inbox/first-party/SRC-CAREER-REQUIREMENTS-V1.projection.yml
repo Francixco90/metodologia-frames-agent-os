@@ -1,0 +1,47 @@
+schema_version: career-requirements-projection-v1
+projection_id: career-requirements-v1
+source_bundle_sha256: ae63a954430be2f13cbe6bd675e204552328a83797f5a9bbb08a9af2a566516c
+documents:
+  - requirement_id: REQ-CAREER-CV
+    raw_sha256: 74427bf96f6b4991b1af6f2855b69b08a986a2cf02b20ea945452c5f32356fcf
+    authority: evidence_first_cv_requirements
+  - requirement_id: REQ-CAREER-SEARCH
+    raw_sha256: a0f72d51a1619f0f7a578c83c8e0cb206943dc5f2d4e36831f8b132ca0eeed2e
+    authority: opportunity_discovery_and_application_requirements
+  - requirement_id: REQ-CAREER-LETTER
+    raw_sha256: b225684c3e3ed45050e34e92dd096e15d14ef4d8edfd3c9de8798d51da33d9d7
+    authority: evidence_based_letter_requirements
+  - requirement_id: REQ-CAREER-RETRO
+    raw_sha256: b56957807f0c808eeb5aec002c7481af2281b65537413fa3a802355f66c8cd0a
+    authority: process_lessons_and_metrics
+  - requirement_id: REQ-CAREER-SHARED
+    raw_sha256: 62cc477b6f51f0e855fb56f74994aea3fe7d526b98d57f4f29d216845e08c592
+    authority: shared_candidate_application_contract
+decisions:
+  workflow_family: [C00, C01, C02, C03, C04, C05, C06, C07, C08, C09]
+  confidence: [verified, user_confirmed, inferred, missing]
+  canonical_formats: [markdown, html]
+  runtime_formats: [pdf]
+  application_states:
+    [
+      DISCOVERED,
+      VALIDATED,
+      SHORTLISTED,
+      PACKAGED,
+      DRAFTED,
+      SUBMITTED,
+      BLOCKED,
+      CLOSED,
+      REJECTED,
+      INTERVIEW,
+      OFFER,
+    ]
+  external_effect_default: prepare_and_stop
+  submitted_requires_material_confirmation: true
+  private_candidate_data_must_not_be_versioned: true
+  requirement_to_capability_promotion_forbidden: true
+restrictions:
+  - internal_product_implementation_only
+  - projection_is_not_a_verbatim_archive
+  - no_candidate_pii
+  - no_submission_authority

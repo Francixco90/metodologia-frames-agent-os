@@ -1,0 +1,11 @@
+{
+  "request": "Créame un CV en HTML desde mi evidencia",
+  "expected": {
+    "intent_class": "general_cv",
+    "brief_type": "candidate-foundation",
+    "selected_stage_path": ["C00", "C01", "C02", "C06", "C08"],
+    "maximum_blocking_questions": 3,
+    "next_gate": "CR_BRIEF_APPROVED",
+    "external_effect": false
+  }
+}

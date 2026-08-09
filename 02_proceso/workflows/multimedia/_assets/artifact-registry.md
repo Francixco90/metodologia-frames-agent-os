@@ -1,62 +1,49 @@
 # Artifact Registry — Multimedia P00–P09
 
-**Fuente**: `MIA-MEDIA-LIB-2.0.0` v2.0.0-candidato. Los 33 artefactos nombrados que circulan por la cadena P00→P09. [DOC]
+**Fuente canónica:** `deliverable-definition-registry.yml`. 39 entregables tipados. [CONFIG]
 
-Cada artefacto tiene un `schema_ref` (relativo al repo) que valida su estructura. El `workflow.yml.outputs` de cada etapa declara qué artefactos produce; el `workflow.yml.inputs` de la etapa siguiente los consume (handoff fail-closed).
+| Etapa | Entregable                     | Clase         | Punto de contacto | Schema                                |
+| ----- | ------------------------------ | ------------- | ----------------- | ------------------------------------- |
+| P00   | Charter de marca               | brand         | final             | `brand-charter-v1.schema.ts`          |
+| P00   | Brand OS                       | brand         | intermediate      | `brand-os-v1.schema.ts`               |
+| P00   | Muestra de calibración         | brand         | intermediate      | `calibration-sample-v1.schema.ts`     |
+| P00   | Plan piloto                    | planning      | final             | `pilot-plan-v1.schema.ts`             |
+| P01   | Ficha de captura               | source        | intermediate      | `capture-card-v1.schema.ts`           |
+| P01   | Registro de triage             | source        | intermediate      | `triage-record-v1.schema.ts`          |
+| P01   | Digest y shortlist             | source        | final             | `digest-shortlist-v1.schema.ts`       |
+| P02   | Registro de claims             | research      | intermediate      | `claim-register-v1.schema.ts`         |
+| P02   | Mapa de oportunidades          | research      | final             | `opportunity-map-v1.schema.ts`        |
+| P02   | Banco de preguntas             | research      | intermediate      | `question-bank-v1.schema.ts`          |
+| P03   | Brief y mapa de campaña        | strategy      | final             | `brief-campaign-map-v1.schema.ts`     |
+| P03   | Charter de campaña             | strategy      | final             | `campaign-charter-v1.schema.ts`       |
+| P03   | Presentación ejecutiva         | strategy      | intermediate      | `executive-presentation-v1.schema.ts` |
+| P03   | Conceptos A/B                  | strategy      | intermediate      | `ab-concepts-v1.schema.ts`            |
+| P03   | Definition of Ready            | strategy      | final             | `definition-of-ready-v1.schema.ts`    |
+| P04   | Cronograma editorial           | planning      | final             | `editorial-calendar-v1.schema.ts`     |
+| P04   | Parrilla de contenidos         | planning      | final             | `content-grid-v1.schema.ts`           |
+| P04   | Tablero de producción          | planning      | intermediate      | `board-v1.schema.ts`                  |
+| P04   | Plan por lotes                 | planning      | intermediate      | `batch-plan-v1.schema.ts`             |
+| P05   | Especificación creativa        | creative-spec | final             | `creative-spec-v1.schema.ts`          |
+| P05   | Ficha de familia de pieza      | creative-spec | intermediate      | `piece-family-spec-v1.schema.ts`      |
+| P05   | Biblia de continuidad          | creative-spec | intermediate      | `continuity-bible-v1.schema.ts`       |
+| P05   | Mapa de activos                | creative-spec | intermediate      | `asset-map-v1.schema.ts`              |
+| P05   | Pack de prompts de producción  | prompt-pack   | final             | `universal-prompts-v1.schema.ts`      |
+| P05   | Sistema de derivados           | creative-spec | final             | `derivatives-v1.schema.ts`            |
+| P06   | Paquete de piezas candidatas   | asset         | final             | `asset-package-v1.schema.ts`          |
+| P06   | Manifiesto de activos          | asset         | intermediate      | `asset-manifest-v1.schema.ts`         |
+| P06   | Reporte de capacidad           | asset         | intermediate      | `capability-report-v1.schema.ts`      |
+| P06   | Evidencia de ejecución         | asset         | intermediate      | `tool-run-evidence-v1.schema.ts`      |
+| P07   | Reporte de revisión            | review        | final             | `review-report-v1.schema.ts`          |
+| P07   | Veredicto                      | review        | final             | `verdict-v1.schema.ts`                |
+| P07   | Cambios prioritarios           | review        | intermediate      | `top5-changes-v1.schema.ts`           |
+| P08   | Candidate editado              | edit          | final             | `edit-candidate-v1.schema.ts`         |
+| P08   | Lista de decisiones de edición | edit          | intermediate      | `edl-v1.schema.ts`                    |
+| P08   | Matriz de exportación          | edit          | intermediate      | `export-matrix-v1.schema.ts`          |
+| P09   | Paquete por plataforma         | distribution  | final             | `platform-package-v1.schema.ts`       |
+| P09   | Registro de publicación        | distribution  | intermediate      | `publication-record-v1.schema.ts`     |
+| P09   | Dashboard de resultados        | measurement   | final             | `results-dashboard-v1.schema.ts`      |
+| P09   | Reporte de aprendizaje         | measurement   | final             | `learning-report-v1.schema.ts`        |
 
-## Registro por etapa
+Cada output resuelve una definición, un schema y un companion Markdown/HTML hash-bound. El contenido runtime es estricto; el significado editorial se valida mediante `FramesDeliverableV1`. [CÓDIGO]
 
-| Etapa                   | Artefacto                 | schema_ref (relativo)                                                     |
-| ----------------------- | ------------------------- | ------------------------------------------------------------------------- |
-| **P00 definir-sistema** | Brand OS                  | `02_proceso/workflows/multimedia/_schema/artifacts/brand-os-v1.schema.ts` |
-| P00                     | Calibration sample        | `…/calibration-sample-v1.schema.ts`                                       |
-| P00                     | Pilot plan                | `…/pilot-plan-v1.schema.ts`                                               |
-| **P01 curar-material**  | Capture Card              | `…/capture-card-v1.schema.ts`                                             |
-| P01                     | Triage Record             | `…/triage-record-v1.schema.ts`                                            |
-| P01                     | Digest / Shortlist        | `…/digest-shortlist-v1.schema.ts`                                         |
-| **P02 investigar**      | Claim Register            | `…/claim-register-v1.schema.ts`                                           |
-| P02                     | Opportunity Map           | `…/opportunity-map-v1.schema.ts`                                          |
-| P02                     | Question Bank             | `…/question-bank-v1.schema.ts`                                            |
-| **P03 crear-brief**     | Brief / Campaign Map      | `…/brief-campaign-map-v1.schema.ts`                                       |
-| P03                     | A/B concepts              | `…/ab-concepts-v1.schema.ts`                                              |
-| P03                     | Definition of Ready (DoR) | `…/definition-of-ready-v1.schema.ts`                                      |
-| **P04 calendarizar**    | Editorial Calendar        | `…/editorial-calendar-v1.schema.ts`                                       |
-| P04                     | Board                     | `…/board-v1.schema.ts`                                                    |
-| P04                     | Batch Plan                | `…/batch-plan-v1.schema.ts`                                               |
-| **P05 disenar-pieza**   | Creative Specification    | `…/creative-spec-v1.schema.ts`                                            |
-| P05                     | Continuity Bible          | `…/continuity-bible-v1.schema.ts`                                         |
-| P05                     | Asset Map                 | `…/asset-map-v1.schema.ts`                                                |
-| P05                     | Universal prompts         | `…/universal-prompts-v1.schema.ts`                                        |
-| P05                     | Derivatives               | `…/derivatives-v1.schema.ts`                                              |
-| **P06 crear-activos**   | Asset Package             | `…/asset-package-v1.schema.ts`                                            |
-| P06                     | Asset Manifest            | `…/asset-manifest-v1.schema.ts`                                           |
-| P06                     | Capability Report         | `…/capability-report-v1.schema.ts`                                        |
-| P06                     | Tool Run Evidence         | `…/tool-run-evidence-v1.schema.ts`                                        |
-| **P07 revisar**         | Review Report             | `…/review-report-v1.schema.ts`                                            |
-| P07                     | Verdict                   | `…/verdict-v1.schema.ts`                                                  |
-| P07                     | Top-5 changes             | `…/top5-changes-v1.schema.ts`                                             |
-| **P08 editar**          | Edit Candidate            | `…/edit-candidate-v1.schema.ts`                                           |
-| P08                     | EDL                       | `…/edl-v1.schema.ts`                                                      |
-| P08                     | Export Matrix             | `…/export-matrix-v1.schema.ts`                                            |
-| **P09 distribuir**      | Platform Package          | `…/platform-package-v1.schema.ts`                                         |
-| P09                     | Publication Record        | `…/publication-record-v1.schema.ts`                                       |
-| P09                     | Learning Report           | `…/learning-report-v1.schema.ts`                                          |
-
-## Estado de los schemas
-
-Los `schema_ref` listados apuntan a `02_proceso/workflows/multimedia/_schema/artifacts/`. **Estado:
-envelope materializado** — 33 schemas Zod emitidos por `05_verificacion/scripts/scaffold-artifact-schemas.ts`
-(`pnpm mw:scaffold-artifacts`). Cada schema valida el **envelope** del artefacto (identity + handoff:
-`artifact_id`, `display_name`, `stage`, `producer_stage`/`consumer_stage`, `required`, `provenance`)
-contra la tabla anterior — contrato real, no forward.
-
-**`coverage_gap`**: el campo `content` (`z.unknown()`) no valida contenido creativo. Los field
-definitions de `MIA-MEDIA-LIB-2.0.0` no están en este repo; fabricarlos violaría fail-closed. La
-validación de contenido se resuelve cuando la lib aterrice (Phase 3 D4, evals por workflow).
-
-El gate `MW_CAPABILITY` (MW-CAP-04) ahora verifica **file existence** del `.schema.ts` + entrada en
-este registro — el binding `capability_map.assets` → schema es real, no forward-contract.
-
-## Handoff
-
-P0N.consume ⊆ P0(N-1).produce. El runner `_runner/run.ts` assertiona existencia del input (fail-closed handoff). La consistencia del contrato de cadena se valida en `H-E023` (chain eval, Phase 3 D4).
+`RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`. [CONFIG]

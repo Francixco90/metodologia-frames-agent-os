@@ -11,11 +11,7 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {
-          path: AGENTS.md,
-          anchor: 'MetodologIA es la única identidad visible.',
-          evidence_tag: '[CONFIG]',
-        }
+      - {path: AGENTS.md, anchor: 'MetodologIA es la única identidad', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {implementation_ref: scripts/check-brand.ts}
       - {implementation_ref: scripts/check-privacy.ts}
@@ -27,12 +23,16 @@ principles:
     key: route_before_init
     requirement: Detectar y bloquear la ruta antes de inicializar ejecucion
     responsible: lead
-    status: GAP
-    evidence_tag: coverage_gap
+    status: ENFORCED
+    evidence_tag: '[CÓDIGO]'
     source_refs:
       - {path: CLAUDE.md, anchor: 'Clasificar intención', evidence_tag: '[CONFIG]'}
-    limit: El router vigente es declarativo y no procesa el primer prompt
-    gap: {missing_control: Dispatcher ejecutable de intencion, blocking_effect: BLOCK}
+    limit: Los handlers no registrados permanecen como coverage_gap y no ejecutan
+    enforcement:
+      control_refs:
+        - {implementation_ref: scripts/check-experience-os.ts, aggregate_ref: scripts/check-repo.ts}
+      test_refs: [tests/integration/experience-local-execution.test.ts]
+      fail_effect: BLOCK
 
   - id: PC-03
     key: canonical_pipelines_only
@@ -41,11 +41,16 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: CLAUDE.md, anchor: 'Ejecutar comando existente', evidence_tag: '[CONFIG]'}
+      - {
+          path: 02_proceso/governance/experience-first-orchestration.md,
+          anchor: 'inventa un pipeline',
+          evidence_tag: '[CONFIG]',
+        }
     partial_control_refs:
       - {implementation_ref: scripts/check-dag.ts}
-    limit: La integridad estatica no vincula prompt ruta workflow y comando
-    gap: {missing_control: Resolucion causal previa a ejecucion, blocking_effect: BLOCK}
+    limit: Experience vincula R6/R7 de forma causal; otros adapters futuros deben aportar el mismo receipt
+    gap:
+      {missing_control: Mediacion causal universal para todo adapter futuro, blocking_effect: BLOCK}
 
   - id: PC-04
     key: source_first
@@ -54,7 +59,7 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: AGENTS.md, anchor: 'No promover una fuente sin hashes', evidence_tag: '[CONFIG]'}
+      - {path: AGENTS.md, anchor: 'No promover una fuente sin hash', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {implementation_ref: scripts/check-sources.ts}
       - {implementation_ref: scripts/check-claims.ts}
@@ -68,12 +73,16 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: CLAUDE.md, anchor: 'sin write-set claro, no se edita', evidence_tag: '[CONFIG]'}
+      - {path: AGENTS.md, anchor: 'Escribir solo en el write set', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {implementation_ref: scripts/check-dag.ts}
       - {implementation_ref: scripts/check-tasks.ts}
-    limit: Los validadores son estaticos y no median cada accion
-    gap: {missing_control: Autorizador causal de ejecucion, blocking_effect: BLOCK}
+    limit: WorkOrder media los handlers Experience R6/R7; otros gates conservan validacion estatica
+    gap:
+      {
+        missing_control: Autorizador causal para toda accion fuera de Experience,
+        blocking_effect: BLOCK,
+      }
 
   - id: PC-06
     key: one_writer_realpath
@@ -82,7 +91,7 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: AGENTS.md, anchor: 'un writer por ruta', evidence_tag: '[CONFIG]'}
+      - {path: AGENTS.md, anchor: 'Un writer por ruta', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {implementation_ref: scripts/check-ownership.ts}
     limit: El checker resuelve realpath y valida el diff observado pero no media acciones runtime
@@ -95,9 +104,9 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: AGENTS.md, anchor: 'Context router', evidence_tag: '[DOC]'}
-    limit: El microprofile es orientativo y permanece apagado por defecto
-    gap: {missing_control: Context budget ejecutable por work order, blocking_effect: BLOCK}
+      - {path: CLAUDE.md, anchor: 'Cargar solo workflow', evidence_tag: '[CONFIG]'}
+    limit: AutoPrime acota archivos y WorkOrder declara budget; tokens facturados dependen del host
+    gap: {missing_control: Medicion comparable de tokens reales por host, blocking_effect: BLOCK}
 
   - id: PC-08
     key: deterministic_offline
@@ -122,7 +131,7 @@ principles:
     source_refs:
       - {
           path: AGENTS.md,
-          anchor: 'RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED',
+          anchor: 'RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED',
           evidence_tag: '[CONFIG]',
         }
     partial_control_refs:
@@ -138,14 +147,14 @@ principles:
     evidence_tag: coverage_gap
     source_refs:
       - {
-          path: CLAUDE.md,
-          anchor: 'Una ausencia no se sustituye por una inferencia pulida',
+          path: 02_proceso/governance/experience-first-orchestration.md,
+          anchor: 'UNKNOWN/BLOCKED',
           evidence_tag: '[CONFIG]',
         }
     partial_control_refs:
       - {implementation_ref: scripts/check-multimedia-capabilities.ts}
-    limit: Persisten decisiones parciales que pueden aprobar evidencia desconocida
-    gap: {missing_control: Semantica PASS FAIL UNKNOWN BLOCKED uniforme, blocking_effect: BLOCK}
+    limit: Experience y sus adapters materiales bloquean UNKNOWN; otros runtimes deben homologar la semantica
+    gap: {missing_control: Semantica uniforme en todo runtime legado, blocking_effect: BLOCK}
 
   - id: PC-11
     key: role_separation
@@ -154,11 +163,7 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {
-          path: AGENTS.md,
-          anchor: 'Producer, verifier y Guardian deben ser distintos.',
-          evidence_tag: '[CONFIG]',
-        }
+      - {path: AGENTS.md, anchor: 'verifier y Guardian distintos', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {
           implementation_ref: projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts,
@@ -188,7 +193,7 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: AGENTS.md, anchor: 'No persistir chain-of-thought', evidence_tag: '[CONFIG]'}
+      - {path: AGENTS.md, anchor: 'persistir chain-of-thought', evidence_tag: '[CONFIG]'}
     partial_control_refs:
       - {implementation_ref: scripts/check-privacy.ts}
     limit: El scanner versionable no cubre invocaciones y receipts runtime
@@ -201,7 +206,11 @@ principles:
     status: GAP
     evidence_tag: coverage_gap
     source_refs:
-      - {path: AGENTS.md, anchor: 'No activar conectores ni publicar', evidence_tag: '[CONFIG]'}
+      - {
+          path: AGENTS.md,
+          anchor: 'distribución y publicación requieren autorización separada',
+          evidence_tag: '[CONFIG]',
+        }
     partial_control_refs:
       - {implementation_ref: scripts/check-n8n.ts}
     limit: El kill switch existente cubre n8n pero no todo adapter futuro
@@ -230,19 +239,17 @@ principles:
     key: budgets_as_contract
     requirement: Resolver budget y hard max para cada archivo nuevo o tocado
     responsible: governance
-    status: GAP
-    evidence_tag: coverage_gap
+    status: ENFORCED
+    evidence_tag: '[CÓDIGO]'
     source_refs:
       - {
           path: 02_proceso/governance/docs-budget-policy.yml,
           anchor: 'budgets:',
           evidence_tag: '[CONFIG]',
         }
-    partial_control_refs:
-      - {implementation_ref: scripts/check-md-budgets.ts}
-    limit: La politica vigente cubre Markdown por superficies y conserva deuda legacy en report
-    gap:
-      {
-        missing_control: Policy v2 y checker agregado para todo archivo nuevo o tocado,
-        blocking_effect: BLOCK,
-      }
+    limit: La deuda legacy no tocada permanece report-only; todo archivo nuevo o cambiado debe resolver una regla
+    enforcement:
+      control_refs:
+        - {implementation_ref: scripts/check-md-budgets.ts, aggregate_ref: package.json}
+      test_refs: [tests/unit/check-md-budgets.test.ts]
+      fail_effect: BLOCK

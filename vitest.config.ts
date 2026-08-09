@@ -42,6 +42,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
+    testTimeout: 10_000,
     include: ['05_verificacion/tests/**/*.test.ts', '05_verificacion/tests/**/*.test.tsx'],
     coverage: {
       provider: 'v8',

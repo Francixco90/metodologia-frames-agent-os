@@ -15,6 +15,10 @@ writers:
     - registries/tasks/**
     - tasks/**
     - registries/README.md
+    - registries/contributions/**
+    - context.md
+    - 01_intencion/context.md
+    - 03_artefactos/context.md
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
     - projects/pilot-carousel-001/README.md
@@ -37,6 +41,10 @@ writers:
     - scripts/**
     - types/**
     - receipts/builds/**
+    - 05_verificacion/scripts/creation-v3-skills.json
+    - 05_verificacion/scripts/check-career-workflows.ts
+    - .agents/plugins/marketplace.json
+    - 05_verificacion/scripts/install-host-adapter.ts
   brand:
     - brand/**
     - registries/brand/**
@@ -48,6 +56,8 @@ writers:
     - registries/notebooks/**
     - registries/claims/**
     - receipts/imports/**
+    - receipts/career/**
+    - 00_inbox/context.md
     - projects/vs-001-source-to-campaign/source-bundle.yml
     - projects/vs-001-source-to-campaign/claims-ledger.yml
   core:
@@ -64,11 +74,17 @@ writers:
     - approvals/schemas/**
     - receipts/schemas/**
     - registries/agents/**
+    - agents/context.md
     - tests/unit/committee/**
     - projects/vs-001-source-to-campaign/remotion/committee/**
     - projects/pilot-carousel-001/orchestration/**
   skill-foundry:
-    - .agents/skills/harness-creator/templates/CLAUDE.md
+    - .agents/skills/harness-creator/**
+    - .agents/skills/frames-assist/**
+    - .claude/skills/frames-assist/**
+    - .claude/commands/frames/**
+    - .gemini/commands/frames/**
+    - 03_artefactos/host-adapters/**
     - skills/**
     - registries/skills/**
   web:
@@ -80,6 +96,10 @@ writers:
     - networks/content/**
     - workflows/content/**
     - workflows/multimedia/**
+    - workflows/career/**
+    - workflows/experience/**
+    - workflows/context.md
+    - registries/experience/**
     - registries/content-types/**
     - projects/pilot-carousel-001/editorial/**
     - projects/pilot-carousel-001/spec/**
@@ -113,6 +133,7 @@ writers:
     - workflows/adapters/**
     - tests/unit/n8n/**
     - receipts/releases/**
+    - workflows/adapters/context.md
   qa:
     - tests/contract/**
     - tests/integration/**
@@ -135,14 +156,25 @@ writers:
     - 05_verificacion/tests/unit/file-budget-policy.test.ts
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
+    - 05_verificacion/tests/unit/career-*.test.ts
+    - 05_verificacion/tests/unit/experience-*.test.ts
+    - 05_verificacion/tests/unit/host-adapter-contract.test.ts
+    - 05_verificacion/tests/integration/career-*.test.ts
+    - 05_verificacion/context.md
   governance:
     - governance/**
+    - 02_proceso/context.md
+    - 04_estado/context.md
+    - 04_estado/registries/context.md
     - quality/reviews/rights-accessibility-security/**
     - receipts/migrations/**
+    - receipts/experience/**
+    - 04_estado/releases/experience/**
   guardian:
     - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
     - projects/pilot-carousel-001/guardian/**
+  # Versioned host adapters are installed only by an explicit, dry-run-first command.
 non_writers:
   human_approver:
     actor_id: H01

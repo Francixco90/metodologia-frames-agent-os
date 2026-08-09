@@ -1,0 +1,10 @@
+{
+  "cases": [
+    {"id": "unsupported_claim", "expected": "BLOCKED"},
+    {"id": "inferred_claim_promoted", "expected": "BLOCKED"},
+    {"id": "missing_material_output", "expected": "BLOCKED"},
+    {"id": "pdf_not_selectable", "expected": "BLOCKED"},
+    {"id": "cross_format_contradiction", "expected": "BLOCKED"},
+    {"id": "remote_asset", "expected": "BLOCKED"}
+  ]
+}

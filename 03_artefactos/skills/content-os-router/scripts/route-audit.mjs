@@ -1,15 +1,5 @@
 #!/usr/bin/env node
-/**
- * Frames ContentOS Router — static intent-brief auditor.
- *
- * Reads an intent brief (JSONL) or brief (YAML-ish) and detects:
- * missing-route, missing-capability-map, unknown-source-type, route-by-keyword,
- * no-deliverable, network-in-route. Emits route-audit.json
- * (schemaVersion content-os-router-audit-v1). --strict exits nonzero. Static
- * (no deps): deterministic, offline, fast.
- *
- * Usage: node skills/content-os-router/scripts/route-audit.mjs <intent-brief> --out <dir> [--strict]
- */
+// Static, deterministic and offline intent-brief auditor. [CÓDIGO]
 import {writeFileSync, mkdirSync, readFileSync} from 'node:fs';
 import {resolve, basename} from 'node:path';
 
@@ -53,6 +43,7 @@ const validCapabilities = new Set([
   'content-os-media',
   'content-os-registry',
 ]);
+const validStages = new Set(['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']);
 const hasNetwork = (s) => /\bhttps?:\/\//iu.test(s);
 const violations = [];
 
@@ -66,8 +57,38 @@ if (isManifest) {
     } catch {
       continue;
     }
-    if (!entry.intentId) continue;
-    const {intentId} = entry;
+    const isContentV2 = entry.schema_version === 'content-intent-v2';
+    if (!entry.intentId && !isContentV2) continue;
+    const intentId = entry.intentId ?? String(entry.request_hash ?? '').slice(0, 12);
+    if (isContentV2) {
+      const path = Array.isArray(entry.selected_stage_path) ? entry.selected_stage_path : [];
+      const intervention = entry.content_class === 'intervention';
+      if (path.length < 2 || path.some((stage) => !validStages.has(stage))) {
+        violations.push({code: 'missing-route', detail: `intent ${intentId} invalid stage path`});
+      }
+      if (!intervention && !path.includes('P03')) {
+        violations.push({code: 'brief-required', detail: `intent ${intentId} new piece omits P03`});
+      }
+      if (!path.includes('P07') || !path.includes('P08')) {
+        violations.push({code: 'review-required', detail: `intent ${intentId} omits P07/P08`});
+      }
+      if (path.includes('P09') && entry.next_gate !== 'MW_DISTRIBUTION_AUTHORIZED') {
+        violations.push({code: 'distribution-gate', detail: `intent ${intentId} P09 lacks manual gate`});
+      }
+      if (!entry.brief_ref || !String(entry.brief_ref).endsWith('/brief.md')) {
+        violations.push({code: 'brief-required', detail: `intent ${intentId} lacks canonical briefRef`});
+      }
+      if (!Array.isArray(entry.blocking_questions) || entry.blocking_questions.length > 3) {
+        violations.push({code: 'question-budget', detail: `intent ${intentId} exceeds three questions`});
+      }
+      if (!Array.isArray(entry.route_candidates) || entry.route_candidates.length === 0) {
+        violations.push({code: 'missing-route', detail: `intent ${intentId} missing route candidates`});
+      }
+      if (entry.effect_class === 'external_reversible' || entry.effect_class === 'irreversible') {
+        violations.push({code: 'external-effect', detail: `intent ${intentId} requests external effect`});
+      }
+      continue;
+    }
     if (!entry.route || !validRoutes.has(entry.route)) {
       violations.push({
         code: 'missing-route',
@@ -102,7 +123,7 @@ if (isManifest) {
     }
   }
 } else {
-  // Brief (YAML-ish): split into entry blocks by top-level `- id:` markers.
+  // YAML-ish brief: split by top-level intent markers.
   const blocks = [];
   let cur = null;
   for (const line of text.split('\n')) {

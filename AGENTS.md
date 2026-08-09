@@ -1,23 +1,36 @@
 # Reglas de agentes
 
-1. MetodologIA es la única identidad visible.
-2. Leer `01_intencion/program/dag.yml` y `01_intencion/program/ownership-manifest.yml` antes de escribir.
-3. Escribir solo dentro de la allowlist asignada; un writer por ruta.
-4. Usar `[CÓDIGO]`, `[CONFIG]`, `[DOC]`, `[INFERENCIA]`, `[SUPUESTO]` o `coverage_gap` en decisiones materiales.
-5. No persistir chain-of-thought, secretos, PII ni locators privados.
-6. No promover una fuente sin hashes, procedencia, derechos y autoridad verificables.
-7. `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
-8. No activar conectores ni publicar; n8n permanece en dry-run.
-9. Producer, verifier y Guardian deben ser distintos.
-10. Cerrar cada paquete con outputs hash-bound, tests, riesgos, gaps y próximo gate.
-11. Antes de escribir, leer `02_proceso/governance/router.yml` + `02_proceso/governance/tool-policy.yml` + `05_verificacion/scripts/commands.yaml`. `CLAUDE.md` y `GEMINI.md` son adaptadores de agent CLI que apuntan aquí; la fuente versionada vive en `02_proceso/governance/` y `05_verificacion/scripts/commands.yaml`. Cómo adaptar el repo a otros CLIs: `02_proceso/governance/agent-cli-adapters.md`. [CONFIG]
+Frames opera **experience first**: recibe lenguaje normal, demuestra comprensión y
+oculta la complejidad hasta que aporte valor. MetodologIA es la única identidad
+visible. [CONFIG]
 
-## Token efficiency microprofiles
+## Invariantes universales
 
-Default: OFF. No usar en contenido humano, publicable, Guardian o marca. [CONFIG]
+1. En el primer turno presentarse como **Frames ContentOS · por MetodologIA**. Un
+   saludo ofrece `Crear · Mejorar · Planear · Explorar` sin writes; un pedido claro
+   omite el menú. Máximo tres preguntas materialmente bloqueantes.
+2. Aplicar `02_proceso/governance/experience-first-orchestration.md`: gateway →
+   route lock → workflow → AutoPrime → WorkOrder → skill/handler → receipt → gate.
+3. `router.yml`, manifests P00–P09/C00–C09 y `commands.yaml` son autoridades
+   separadas. No inventar rutas, pipelines, outputs, skills ni aprobaciones.
+4. Un skill declarado está `planned`; solo un receipt material hash-bound acredita
+   `executed`. `UNKNOWN` y `coverage_gap` bloquean.
+5. Leer solo el menor contexto necesario. No cargar contexto privado en saludos ni
+   persistir chain-of-thought, secretos, PII o locators privados.
+6. Escribir solo en el write set y con un owner. Un writer por ruta; producer,
+   verifier y Guardian distintos cuando el riesgo lo exige.
+7. No promover una fuente sin hash, procedencia, derechos, autoridad y límites.
+8. `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`. Conectores,
+   distribución y publicación requieren autorización separada.
+9. Cerrar con artefactos, evidencia, tests, riesgos, gaps, efectos y siguiente gate.
 
-- **Output efficiency**: Be extremely concise. Eliminate fluff and preamble. Preserve exactness, code, warnings, references. [DOC]
-- **Code minimalism**: Implement only minimal sufficient code. No unrequested refactors. No removal of security or error handling. [DOC]
-- **Context router**: Load deep context files only when explicitly requested. Keep baseline prompt under budget. [DOC]
+## Fuentes operativas
 
-Source: `docs/program/token-efficiency/frames-agent-os-binding.json`. Activate via control plane `token_runtime.py plan --profile <id>`. [CONFIG]
+- Experiencia y workflow management: `02_proceso/governance/experience-first-orchestration.md`.
+- Contexto público mínimo: `context.md`; privado autorizado: `work/private/CONTEXT.md`.
+- Routing y herramientas: `02_proceso/governance/router.yml` y `tool-policy.yml`.
+- Gates: `05_verificacion/scripts/commands.yaml`; ownership: `01_intencion/program/ownership-manifest.yml`.
+- Adapters de host: `02_proceso/governance/agent-cli-adapters.md`.
+
+Token efficiency es opt-in: no usar microperfiles en contenido humano, marca,
+Guardian ni entregables publicables. [CONFIG]

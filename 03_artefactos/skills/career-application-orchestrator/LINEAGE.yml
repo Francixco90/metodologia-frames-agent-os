@@ -1,0 +1,19 @@
+schema_version: 1
+skill_id: career-application-orchestrator
+version: 0.2.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_from_user_supplied_requirements
+external_fragments_reused: false
+publication_authority: false
+network_allowed: false
+authority_refs:
+  - skills/content-os-router/SKILL.md
+  - workflows/career/_schema/intent-v1.schema.ts
+  - workflows/career/_schema/brief-v1.schema.ts
+  - skills/career-application-orchestrator/references/orchestration-contract.md
+  - skills/career-application-orchestrator/schemas/career-application-contract-v1.schema.json
+derivation:
+  method: clean_room_normalization
+  identity: MetodologIA
+  copied_external_prompts: false

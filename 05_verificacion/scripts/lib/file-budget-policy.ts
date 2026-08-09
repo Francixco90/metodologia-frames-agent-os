@@ -156,13 +156,12 @@ export const effectiveRules = (
 ): BudgetRule[] => {
   const exemptions = rules.filter((rule) => rule.kind === 'exempt' && pathMatch(rule, path));
   if (exemptions.length > 0) return exemptions;
-  const kind: RuleKind = generated ? 'generated' : 'authored';
   const specifics = rules.filter(
-    (rule) => rule.kind === kind && !rule.fallback && pathMatch(rule, path),
+    (rule) => rule.kind !== 'exempt' && !rule.fallback && pathMatch(rule, path),
   );
-  return specifics.length > 0
-    ? specifics
-    : rules.filter((rule) => rule.kind === kind && rule.fallback && pathMatch(rule, path));
+  if (specifics.length > 0) return specifics;
+  const kind: RuleKind = generated ? 'generated' : 'authored';
+  return rules.filter((rule) => rule.kind === kind && rule.fallback && pathMatch(rule, path));
 };
 
 export const exceeded = (actual: number, limit: number | undefined): boolean =>

@@ -5,6 +5,9 @@ issued: 2026-08-03
 actor: RT-07-H03-PRODUCER
 scope:
   - intent routing source-to-video
+  - intent routing source-to-content
+  - first-turn assistance and causal R6/R7 adapter dispatch
+  - canonical brief binding
   - capability dispatch on-demand
   - intent brief audit
 runtime_boundary:
@@ -13,6 +16,9 @@ runtime_boundary:
     - local_route_table_match
     - capability_map_declaration
     - deterministic_dispatch
+    - assistance_envelope_preview
+    - invocation_receipt_validation
+    - adaptive_p00_p09_stage_selection
   out_of_scope:
     - network_fetch
     - cli_install
@@ -31,8 +37,11 @@ runtime_rules:
   - no_render
   - hash_bound
   - rendered_draft_not_human_approved
+  - brief_before_production
+  - distribution_manual_gate
+  - declared_skill_is_planned_until_receipted
 notes: >
-  Router no renderiza. El HTML-to-MP4 adapter vive en content-os-core. El router
-  lee intent local, escribe brief local, despacha a Fase 3 workflows (pending) o
-  marca coverage_gap. No network, no CLI fetch. Dual paradigm: html-gsap default,
-  remotion solo si intent explicit.
+  Router no renderiza. Conserva router-intent-v1, ejecuta adapters locales R6/R7
+  y enlaza el plan mínimo con un brief preview. Una skill solo cuenta como
+  ejecutada con receipt material. Se detiene antes de producción, envío o
+  distribución sin el gate humano aplicable. No network ni efectos externos.

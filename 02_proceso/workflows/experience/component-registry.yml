@@ -1,0 +1,77 @@
+schema_version: experience-component-registry-v1
+registry_id: frames-experience-components
+identity: Frames ContentOS · por MetodologIA
+policy:
+  composition: allowlist_only
+  primary_actions_max: 1
+  secondary_actions_max: 2
+  remote_code: forbidden
+  text_fallback: required
+  semantic_source: AssistanceEnvelopeV1
+components:
+  - {
+      id: WelcomeCard,
+      purpose: Recibir e identificar Frames,
+      allowed_states: [ASSISTING],
+      required_fields: [identity, message, conciseMenu],
+    }
+  - {
+      id: IntentSummary,
+      purpose: Confirmar el resultado entendido,
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [understoodOutcome, route, state],
+    }
+  - {
+      id: ConciseMenu,
+      purpose: Ofrecer cuatro trabajos solo al saludar o pedir menú,
+      allowed_states: [ASSISTING],
+      required_fields: [options, freeTextAllowed],
+    }
+  - {
+      id: BriefPreview,
+      purpose: Mostrar el contrato antes de producir,
+      allowed_states: [READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [briefKind, summary, materialized],
+    }
+  - {
+      id: ProgressStepper,
+      purpose: Ubicar hito activo y siguiente paso,
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE, BLOCKED],
+      required_fields: [steps, active],
+    }
+  - {
+      id: EvidenceGapCard,
+      purpose: Explicar evidencia faltante y tratamiento,
+      allowed_states: [ROUTED, READY_FOR_BRIEF, BLOCKED],
+      required_fields: [gaps, resolution],
+    }
+  - {
+      id: DecisionGate,
+      purpose: Solicitar una decisión exacta y reversible,
+      allowed_states: [ROUTED, READY_FOR_BRIEF],
+      required_fields: [decision, consequence],
+    }
+  - {
+      id: ArtifactGallery,
+      purpose: Presentar artefactos y hashes materiales,
+      allowed_states: [ROUTED, READY_FOR_BRIEF, RESUMABLE],
+      required_fields: [artifacts],
+    }
+  - {
+      id: QualityStatus,
+      purpose: Separar checks ejecutados y gaps,
+      allowed_states: [ROUTED, READY_FOR_BRIEF, BLOCKED],
+      required_fields: [checks, verdict, nextGate],
+    }
+  - {
+      id: ResumeCard,
+      purpose: Reanudar sin repetir el intake,
+      allowed_states: [RESUMABLE],
+      required_fields: [state, recommendedNextAction],
+    }
+  - {
+      id: RecoveryCard,
+      purpose: Preservar lo válido y recomendar reparación,
+      allowed_states: [BLOCKED],
+      required_fields: [preserved, failure, recovery],
+    }

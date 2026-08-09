@@ -1,7 +1,7 @@
 ---
 name: metodologia-brand-router
 description: This skill should be used when the user asks to "apply MetodologIA branding", "adapt content to the MetodologIA voice", "resolve the social brand profile", or "check a MetodologIA asset for brand drift".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires BrandProfileV2, VoiceProfileV2, ChannelProfileV1 and generated brand projections.
 metadata:
@@ -11,6 +11,10 @@ metadata:
 ---
 
 # MetodologIA Brand Router
+
+## Contexto operativo
+
+Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
 
 Resolver la identidad visual, la voz y la adaptación de canal antes de producir un candidato. Usar
 esta skill como router; no duplicar tokens, listas de voz o reglas de canal dentro de cada renderer.

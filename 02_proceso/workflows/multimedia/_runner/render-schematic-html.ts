@@ -22,6 +22,7 @@
 import {readFileSync, readdirSync, writeFileSync, existsSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {format} from 'prettier';
 import {parse} from 'yaml';
 
 import {MultimediaWorkflowSchema} from '../_schema/workflow-v1.schema.ts';
@@ -89,7 +90,7 @@ function outputsList(items: string[]): string {
   return items.map((i) => `            <li>${esc(i)}</li>`).join('\n');
 }
 
-function render(): {ok: number; fail: number} {
+async function render(): Promise<{ok: number; fail: number}> {
   if (!existsSync(TEMPLATE_PATH)) throw new Error(`template not found: ${TEMPLATE_PATH}`);
   const template = readFileSync(TEMPLATE_PATH, 'utf8');
   let ok = 0;
@@ -130,7 +131,17 @@ function render(): {ok: number; fail: number} {
       .replace(/{{GATES_CHIPS}}/g, chips(wf.gates, ''))
       .replace(/{{CTA}}/g, esc(brief.cta));
     const outPath = join(MW_DIR, dir, 'schematic.html');
-    writeFileSync(outPath, html, 'utf8');
+    writeFileSync(
+      outPath,
+      await format(html, {
+        parser: 'html',
+        bracketSpacing: false,
+        singleQuote: true,
+        trailingComma: 'all',
+        printWidth: 100,
+      }),
+      'utf8',
+    );
     console.info(
       `OK ${dir} -> schematic.html (${wf.workflow_id}, ${brief.outputs.length} outputs, ${cap.skills.length} skills)`,
     );
@@ -139,6 +150,6 @@ function render(): {ok: number; fail: number} {
   return {ok, fail};
 }
 
-const {ok, fail} = render();
+const {ok, fail} = await render();
 console.info(`--- ${ok} ok, ${fail} fail`);
 if (fail > 0) process.exit(1);

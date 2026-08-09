@@ -1,0 +1,36 @@
+schema_version: career-workflow-v1
+workflow_id: C05
+command: /career-application-design
+title: Diseño de candidatura
+purpose: Fijar vacante, evidencia utilizable, gaps, narrativa y entregables antes de redactar.
+inputs: [immutable-job-snapshot-v1, evidence-bank-v1, fit-scorecard-v1]
+deliverables: [application-brief-v1, requirement-evidence-matrix-v1, application-decision-record-v1]
+capability_map: [career-application-orchestrator, candidate-evidence-reconciler]
+execution_steps:
+  - step_id: S01
+    purpose: Mapear cada requisito a evidencia, adaptación o gap.
+    inputs: [immutable-job-snapshot-v1, evidence-bank-v1]
+    primary_skill: candidate-evidence-reconciler
+    optional_skills: []
+    verifier: RT-09
+    outputs: [requirement-evidence-matrix-v1]
+    template_id: TPL-C05-APPLICATION
+    gate: G13
+    stop_rule: Un requisito de la vacante nunca se vuelve capacidad del candidato.
+    context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 20000}
+  - step_id: S02
+    purpose: Elegir narrativa, documentos, omisiones y límites.
+    inputs: [requirement-evidence-matrix-v1, fit-scorecard-v1]
+    primary_skill: career-application-orchestrator
+    optional_skills: [candidate-evidence-reconciler]
+    verifier: RT-09
+    outputs: [application-brief-v1, application-decision-record-v1]
+    template_id: TPL-C05-APPLICATION
+    gate: CR_BRIEF_APPROVED
+    stop_rule: No redactar sin brief aprobado y job snapshot vigente.
+    context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 20000}
+gates: [G13, CR_BRIEF_APPROVED]
+next_workflow: C06
+template_ref: 02_proceso/workflows/career/c05-application-design/templates/application-brief-v1.template.md
+stop_rule: Gap obligatorio se declara y puede bloquear; nunca se maquilla.
+metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

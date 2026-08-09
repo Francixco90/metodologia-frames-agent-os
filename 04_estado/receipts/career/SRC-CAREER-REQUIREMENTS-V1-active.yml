@@ -1,0 +1,12 @@
+schema_version: career-source-lifecycle-v1
+receipt_id: RCP-CAREER-SOURCE-004
+source_id: SRC-CAREER-REQUIREMENTS-V1
+event_order: 4
+actor_id: RT-10-CAREER-SOURCE-INTEGRATOR
+verifier_id: RT-03-CAREER-SOURCE-VERIFIER
+transition: {from: evaluated, to: active}
+projection_sha256: 1fd22c3c438ba5e63f4f954bf2c395731b99e43cb005340e7b50b1d46a761972
+ordered_bundle_sha256: ae63a954430be2f13cbe6bd675e204552328a83797f5a9bbb08a9af2a566516c
+decision: activate_for_internal_career_implementation_only
+publication_authority: false
+append_only: true

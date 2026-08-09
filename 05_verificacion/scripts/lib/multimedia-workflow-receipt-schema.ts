@@ -35,15 +35,44 @@ export const MultimediaWorkflowReceiptSchema = z.strictObject({
       ref: z.string().min(1).max(512),
       sha256: z.string().regex(/^[a-f0-9]{64}$/u, 'Expected a lowercase SHA-256 digest'),
       required: z.boolean(),
+      materialized: z.boolean(),
+      companions: z
+        .array(
+          z.strictObject({
+            format: z.enum(['md', 'html']),
+            ref: z.string().min(1).max(512),
+            sha256: z.string().regex(/^[a-f0-9]{64}$/u),
+            materialized: z.literal(true),
+          }),
+        )
+        .length(2),
     }),
   ),
   work_product_state_from: z.string().min(1),
   work_product_state_to: z.string().min(1),
   gate: z.string().regex(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u),
   actor: z.string().min(1),
+  producer_actor_id: z
+    .string()
+    .regex(/^[a-z][a-z0-9-]{2,79}$/u)
+    .optional(),
+  ingestor_actor_id: z
+    .string()
+    .regex(/^[a-z][a-z0-9-]{2,79}$/u)
+    .optional(),
   ran_at: z.iso.datetime({offset: true}),
   append_only: z.literal(true),
   human_approved: z.literal(false),
+  dry_run: z.literal(false),
+  no_regression_sha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  evidence_tags: z
+    .array(z.enum(['[CÓDIGO]', '[CONFIG]', '[DOC]', '[INFERENCIA]', '[SUPUESTO]', 'coverage_gap']))
+    .min(1),
+  scope: z.strictObject({
+    workflow_id: z.enum(['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']),
+    mode: z.string().min(1),
+    effect_class: z.literal('local_reversible'),
+  }),
   coverage_gaps: z.array(z.string().min(1)).default([]),
 });
 

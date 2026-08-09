@@ -1,12 +1,15 @@
 import {readFileSync} from 'node:fs';
 import {resolve, join} from 'node:path';
 
+import {parseSimpleYml} from './parse-simple-yml.mjs';
+
 const id = 'context-teammates';
 const root = process.cwd();
 const skillDir = join(root, 'skills', id);
 
 const required = [
   'SKILL.md',
+  'context.md',
   'LINEAGE.yml',
   'receipts/runtime-boundary.yml',
   'fixtures/positive/case-01.yml',
@@ -90,113 +93,17 @@ if (lineagePresent.length !== 10) {
   failures.push(`LINEAGE expected 10 fields, got ${lineagePresent.length}`);
 }
 
-// Minimal YAML parser (node builtins only) for the fixture subset:
-// `key: value`, `key: >` folded scalar, `key:` nested list of `- item`.
-function parseSimpleYml(text) {
-  const lines = text.split('\n');
-  const result = {};
-  let i = 0;
-  while (i < lines.length) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    if (trimmed === '' || trimmed.startsWith('#')) {
-      i += 1;
-      continue;
-    }
-    if (!/^[A-Za-z_]/u.test(raw)) {
-      i += 1;
-      continue;
-    }
-    const m = /^([A-Za-z_][A-Za-z0-9_]*):\s*(.*)$/u.exec(raw);
-    if (!m) {
-      i += 1;
-      continue;
-    }
-    const key = m[1];
-    const rest = m[2];
-    if (rest === '') {
-      const items = [];
-      i += 1;
-      while (i < lines.length) {
-        const l = lines[i];
-        if (l.trim() === '') {
-          i += 1;
-          continue;
-        }
-        if (/^\s/u.test(l)) {
-          const t = l.trim();
-          if (t.startsWith('- ')) {
-            items.push(t.slice(2));
-          } else {
-            items.push(t);
-          }
-          i += 1;
-        } else {
-          break;
-        }
-      }
-      result[key] = items.length > 0 ? items : {};
-    } else if (rest === '>' || rest === '>-' || rest === '|') {
-      const parts = [];
-      i += 1;
-      while (i < lines.length) {
-        const l = lines[i];
-        if (l.trim() === '') {
-          i += 1;
-          continue;
-        }
-        if (/^\s/u.test(l)) {
-          parts.push(l.trim());
-          i += 1;
-        } else {
-          break;
-        }
-      }
-      result[key] = parts.join(' ');
-    } else if (rest.startsWith('> ')) {
-      const parts = [rest.slice(2)];
-      i += 1;
-      while (i < lines.length) {
-        const l = lines[i];
-        if (l.trim() === '') {
-          i += 1;
-          continue;
-        }
-        if (/^\s/u.test(l)) {
-          parts.push(l.trim());
-          i += 1;
-        } else {
-          break;
-        }
-      }
-      result[key] = parts.join(' ');
-    } else if (rest.startsWith('- ')) {
-      const items = [rest.slice(2)];
-      i += 1;
-      while (i < lines.length) {
-        const l = lines[i];
-        if (l.trim() === '') {
-          i += 1;
-          continue;
-        }
-        const lm = /^\s*-\s+(.*)$/u.exec(l);
-        if (lm) {
-          items.push(lm[1]);
-          i += 1;
-        } else if (/^\s\S/u.test(l)) {
-          items[items.length - 1] += ' ' + l.trim();
-          i += 1;
-        } else {
-          break;
-        }
-      }
-      result[key] = items;
-    } else {
-      result[key] = rest;
-      i += 1;
-    }
-  }
-  return result;
+const publicContext = contents.get('context.md');
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  failures.push('version mismatch; expected 0.2.0');
+}
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) failures.push(`context.md missing section ${section}`);
+}
+if (!skillMd.includes('[context.md](context.md)')) failures.push('SKILL.md must link context.md');
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  failures.push('skill/context budget exceeded');
 }
 
 const pos = parseSimpleYml(contents.get('fixtures/positive/case-01.yml'));

@@ -78,6 +78,23 @@ describe('TaskContractSchema', () => {
     }
   });
 
+  it('accepts R6/R7 contracts but blocks delivery at MW/CR human gates', () => {
+    for (const [route, gate] of [
+      ['R6', 'MW_BRIEF_APPROVED'],
+      ['R7', 'CR_BRIEF_APPROVED'],
+    ] as const) {
+      expect(
+        TaskContractSchema.safeParse(validInput({created_from_route: route, gate_target: gate}))
+          .success,
+      ).toBe(true);
+      expect(
+        TaskContractSchema.safeParse(
+          validInput({created_from_route: route, gate_target: gate, state: 'ENTREGADO'}),
+        ).success,
+      ).toBe(false);
+    }
+  });
+
   it('accepts state ENTREGADO with a non-manual gate_target', () => {
     const result = TaskContractSchema.safeParse(
       validInput({state: 'ENTREGADO', gate_target: 'G08'}),

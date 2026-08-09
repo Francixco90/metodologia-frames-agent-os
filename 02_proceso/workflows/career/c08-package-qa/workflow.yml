@@ -1,0 +1,36 @@
+schema_version: career-workflow-v1
+workflow_id: C08
+command: /career-package-qa
+title: QA del paquete de candidatura
+purpose: Congelar y verificar claims, idioma, ATS, legibilidad, paridad y hashes antes de autorizar.
+inputs: [application-brief-v1, cv-source-v1, cv-html-v1, cover-letter-v1]
+deliverables: [application-package-v1, ats-visual-parity-report-v1, independent-qa-verdict-v1]
+capability_map: [career-application-orchestrator, evidence-first-cv, evidence-based-cover-letter]
+execution_steps:
+  - step_id: S01
+    purpose: Verificar claims, vacante, idioma, formatos y paridad.
+    inputs: [application-brief-v1, cv-source-v1, cv-html-v1, cover-letter-v1]
+    primary_skill: career-application-orchestrator
+    optional_skills: [evidence-first-cv, evidence-based-cover-letter]
+    verifier: RT-09
+    outputs: [ats-visual-parity-report-v1]
+    template_id: TPL-C08-PACKAGE-QA
+    gate: G14
+    stop_rule: UNKNOWN, hash stale o claim no trazable impiden PASS.
+    context_budget: {target_files: 10, max_files: 20, target_tokens: 15000, max_tokens: 24000}
+  - step_id: S02
+    purpose: Congelar package y emitir veredicto independiente.
+    inputs: [ats-visual-parity-report-v1]
+    primary_skill: career-application-orchestrator
+    optional_skills: []
+    verifier: RT-11
+    outputs: [application-package-v1, independent-qa-verdict-v1]
+    template_id: TPL-C08-PACKAGE-QA
+    gate: CR_PACKAGE_APPROVED
+    stop_rule: Verifier y Guardian no editan el candidate congelado.
+    context_budget: {target_files: 10, max_files: 20, target_tokens: 14000, max_tokens: 22000}
+gates: [G14, CR_PACKAGE_APPROVED]
+next_workflow: C09
+template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md
+stop_rule: Cualquier mutación posterior crea successor package y nueva revisión.
+metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

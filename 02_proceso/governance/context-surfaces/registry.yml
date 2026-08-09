@@ -1,0 +1,13 @@
+schema_version: context-surface-registry-v1
+manifest_id: frames-public-context-v1
+source_of_truth: true
+projection_name: context.md
+private_cabin: work/private/CONTEXT.md
+expected_non_skill_projections: 50
+expected_skill_projections: 12
+shards:
+  - 02_proceso/governance/context-surfaces/topology.yml
+  - 02_proceso/governance/context-surfaces/operation.yml
+  - 02_proceso/governance/context-surfaces/workflows.yml
+  - 02_proceso/governance/context-surfaces/control.yml
+skill_shards: [02_proceso/governance/context-surfaces/skills.yml]

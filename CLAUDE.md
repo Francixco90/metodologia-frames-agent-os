@@ -1,90 +1,40 @@
-# CLAUDE.md — memoria del agente · metodologia-frames-agent-os
+# Claude Code · Frames ContentOS
 
 @AGENTS.md
 
-Este archivo es la cabina de Claude Code (adaptador compartido, commiteado).
-La fuente versionada vive en `02_proceso/governance/` + `05_verificacion/scripts/commands.yaml`.
-Cómo adaptar el repo a otros agent CLIs (Gemini CLI, Cursor, etc.): `02_proceso/governance/agent-cli-adapters.md`. [CONFIG]
+Adaptador de Claude Code. `AGENTS.md` manda; `context.md` enruta; la operación
+detallada vive en `02_proceso/governance/experience-first-orchestration.md`.
+[CONFIG]
 
-## Cómo operar aquí (loop de atención desde prompt #1)
+## Primer turno
 
-1. **Iniciar sesión**: leer `CLAUDE.md` (este) → `CONTEXT.md` → `PROJECT.md` → `TASK.md`.
-2. **Clasificar intención** del prompt con el router de 4 rutas (abajo).
-3. **Procesar input** (carpeta `inbox/` o attachment/prompt) → `source_id` + `raw_sha256` → registrar en `CONTEXT.md`.
-4. **Ejecutar comando existente** del gate del DAG (NO inventar pipeline). Emitir receipt hash-bound.
-5. **Actualizar** `TASK.md` + `CONTEXT.md` + `PROJECT.md`.
-6. **Cerrar**: `node local/bin/check-inbox-coherence.mjs && pnpm check:repo`.
+1. Clasificar intención y enrutar antes de cargar contexto profundo.
+2. Saludo: `Frames ContentOS · por MetodologIA` +
+   `Crear · Mejorar · Planear · Explorar`; cero writes.
+3. Pedido claro: confirmar el resultado en una frase y omitir el menú.
+4. Preguntar como máximo tres gaps que cambien ruta, evidencia, entregable o
+   autorización. Mantener el preview en memoria.
+5. `/menu` y `/ruta` son read-only. Resume exige lineage hash-bound.
 
-## Router + gates — fuente versionada
+## Comandos project-local
 
-El router R0-R5 y la tabla gate→command viven en archivos versionados (no en esta cabina):
+```bash
+printf '%s\n' 'Ayúdame a crear una pieza' | pnpm frames:assist
+pnpm frames:assist -- --input request.json --apply
+pnpm check:repo && pnpm typecheck
+```
 
-- Router: `02_proceso/governance/router.yml` (R0-R5, binds_to task/project/eval)
-- Gates→comandos: `05_verificacion/scripts/commands.yaml` (G00-G17, manual fail-closed G13-G17)
-- Tool policy: `02_proceso/governance/tool-policy.yml`
-- Reconciliación SPEC 5 subsistemas ↔ harness-creator 7: `02_proceso/governance/harness-subsystem-reconciliation.md`
+El primer comando interpreta sin escribir. `--apply` solo materializa el brief
+local cuando el intake y el write set son suficientes; luego se detiene en
+`EXP_BRIEF_APPROVED`.
 
-Esta cabina es el adaptador de Claude Code. Leer esas fuentes antes de editar. [CONFIG]
+## Ejecución y cierre
 
-## Inbox dual — carpeta + attachments de prompt
-
-El inbox es conceptual: carpeta física `inbox/` **o** attachments/peticiones en el prompt.
-
-- **Carpeta `inbox/`**: contrato en `inbox/README.md`. Asignar `source_id`, conservar bytes, calcular `raw_sha256`, normalizar vía `registries/sources/lifecycle-contract.yml`, emitir receipts append-only. Bloquear promoción sin procedencia/derechos/autoridad.
-- **Attachment/prompt**: registrar en `CONTEXT.md` → Inputs efímeros como `ephemeral_input` (id, `raw_sha256` del contenido, origen, fecha). Promocionable a `inbox/` si el usuario quiere persistencia.
-
-## Task contract (por tarea ejecutable)
-
-Usar cuando una tarea tenga write-set, subagentes o cierre validado. [CONFIG]
-
-| Campo        | Valor                     |
-| ------------ | ------------------------- |
-| Objetivo     | una frase                 |
-| Repo         | repo_id                   |
-| Responsable  | Lead / Support / Guardian |
-| Inputs       | archivos o fuentes        |
-| Write set    | rutas permitidas          |
-| No objetivos | fuera de alcance          |
-| Done         | criterio verificable      |
-| Validación   | comando o revisión        |
-| Gaps         | `coverage_gap` o none     |
-
-**Regla**: sin write-set claro, no se edita. Sin validación, no se marca completo. [CONFIG]
-
-## Checkpoints G0-G3
-
-- **G0 antes de editar**: repo confirmado, reglas leídas, `git status` revisado, write-set declarado, cambios ajenos preservados, gaps marcados.
-- **G1 contrato listo**: objetivo, inputs, no-objetivos, rutas lectura/escritura, done verificable declarados.
-- **G2 antes de cerrar**: no hay escritura fuera del write-set, secretos, PII ni binarios no solicitados. Claims sustantivos con marca de evidencia.
-- **G3 cierre**: validación ejecutada o gap declarado; archivos, riesgos y limitaciones listados.
-- **Stop**: detente si falta write-set, la fuente requerida no existe, aparece un secreto, o la validación mutaría fuera del alcance. [CONFIG]
-
-## Evidence tags
-
-`[CÓDIGO]` `[CONFIG]` `[DOC]` `[INFERENCIA]` `[SUPUESTO]` o `coverage_gap` en toda decisión material.
-
-Cadena de evidencia: claim → fuente → evidencia → limite → revisión. Un claim sin limite no está completo. Un claim sin fuente no puede marcarse `[DOC]`. [CONFIG]
-
-## Estados no negociables
-
-`RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
-
-Un build o render exitoso **nunca** concede `HUMAN_APPROVED`, `READY` ni `PUBLISHED`. El manifiesto vigente: `registries/projects/project-registry.yml`. [CONFIG]
-
-## Fail-closed
-
-Una ausencia no se sustituye por una inferencia pulida. Marca `coverage_gap` explícito. Escalada > asunción. [CONFIG]
-
-## Identidad
-
-MetodologIA es la única identidad visible. No mezclar marcas. [CONFIG]
-
-## Tono
-
-Caveman off para deliverables humanos (contenido, docs para el equipo, PRs). Default: prosa terse. [CONFIG]
-
-## Antes de marcar done
-
-- `node local/bin/check-inbox-coherence.mjs` → `PASS G_INBOX`.
-- `pnpm check:repo` → PASS sin regresión.
-- `git status` → archivos locales no aparecen (CONTEXT/PROJECT/TASK gitignored; CLAUDE.md commiteado).
+- R6/R7 son brief-first; R4 exige `candidate_id`; R0 bloquea ambigüedad.
+- R1–R3/R5 conservan `coverage_gap` hasta tener handler productivo.
+- Cargar solo workflow, paso, template, skill, fuentes activas y su `context.md`.
+- El contexto privado vive en `work/private/CONTEXT.md` y solo se carga después
+  del route lock con autoridad explícita.
+- Una skill sin receipt material permanece `planned`; `UNKNOWN` bloquea.
+- Antes de cerrar: validar lo tocado, revisar `git status` y declarar privacidad,
+  efectos, gaps y siguiente gate. PASS técnico no concede publicación. [CONFIG]

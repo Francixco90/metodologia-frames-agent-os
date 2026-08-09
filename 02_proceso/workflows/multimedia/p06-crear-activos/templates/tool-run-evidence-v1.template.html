@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run." />
+    <meta name="author" content="MetodologIA" />
+    <meta name="application-name" content="Frames · MetodologIA" />
+    <meta name="generator" content="Frames · MetodologIA" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#122562" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#081433" />
+    <meta name="frames:document-type" content="deliverable" />
+    <meta name="frames:schema-version" content="frames-deliverable-v1" />
+    <meta name="frames:model-id" content="tool-run-evidence-v1" />
+    <meta name="frames:workflow-id" content="P06" />
+    <meta name="frames:content-sha256" content="a75943c3f590935fd8ed5fec7b486edc7313db9027c6edbe1ca757a843da7f7c" />
+    <meta name="frames:state" content="DRAFT" />
+    <meta name="frames:next-gate" content="G14" />
+    <meta name="frames:source-count" content="6" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Evidencia de ejecución · Template · MetodologIA" />
+    <meta property="og:description" content="Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run." />
+    <meta name="twitter:card" content="summary" />
+    <title>Evidencia de ejecución · Template · MetodologIA</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --gold: #ffd700;
+        --blue: #137dc5;
+        --bg: #ffffff;
+        --surface: #f0f4f8;
+        --card: #ffffff;
+        --text: #122562;
+        --muted: #42526e;
+        --border: #d9e2ec;
+        --shadow: 0 12px 32px rgb(18 37 98 / 10%);
+      }
+      [data-theme='dark'] {
+        --bg: #081433;
+        --surface: #10234d;
+        --card: #122562;
+        --text: #ffffff;
+        --muted: #d9e2ec;
+        --border: #36558c;
+        --shadow: 0 12px 32px rgb(0 0 0 / 28%);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: 'Montserrat', 'Avenir Next', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.65;
+      }
+      a,
+      button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        left: 1rem;
+        top: -6rem;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        background: var(--blue);
+        border-radius: 999px;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+      header {
+        padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+        color: #ffffff;
+        background: var(--navy);
+      }
+      .eyebrow,
+      .note {
+        font-family: 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.08em;
+      }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      h1 {
+        max-width: 18ch;
+        margin-bottom: 1rem;
+        font-size: clamp(2.25rem, 7vw, 5.5rem);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0.55rem 1rem;
+        border: 1px solid rgb(255 255 255 / 45%);
+        border-radius: 999px;
+      }
+      #theme-toggle {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1rem;
+        color: var(--navy);
+        background: var(--gold);
+        border: 0;
+        border-radius: 999px;
+        font:
+          700 1rem 'Montserrat',
+          sans-serif;
+        cursor: pointer;
+      }
+      main {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 3rem 0 5rem;
+      }
+      .toc {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: -1.5rem auto 2rem;
+        padding: 1.25rem;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+      .toc strong {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+      }
+      .toc ol {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.35rem 1.5rem;
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .toc a {
+        display: inline-flex;
+        align-items: center;
+        color: var(--blue);
+        font-weight: 700;
+        text-underline-offset: 0.2em;
+      }
+      .governance-strip {
+        padding: 0.8rem 1.25rem;
+        color: #ffffff;
+        background: var(--blue);
+        text-align: center;
+        font-family: 'Trebuchet MS', sans-serif;
+        font-weight: 700;
+      }
+      section {
+        position: relative;
+        margin: 0 0 1.25rem;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+      section h2 {
+        padding-left: 1rem;
+        border-left: 6px solid var(--gold);
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .step-index {
+        position: absolute;
+        right: 1.25rem;
+        top: 1rem;
+        color: var(--blue);
+        font:
+          700 0.85rem 'Trebuchet MS',
+          sans-serif;
+      }
+      .section-body {
+        color: var(--muted);
+      }
+      .section-body strong,
+      .section-body h3 {
+        color: var(--text);
+      }
+      code,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      code {
+        padding: 0.15rem 0.35rem;
+        background: var(--surface);
+        border-radius: 6px;
+      }
+      pre {
+        overflow: auto;
+        padding: 1rem;
+        background: var(--surface);
+        border-radius: 16px;
+      }
+      .brief-diagram {
+        width: 100%;
+        height: auto;
+        color: var(--navy);
+      }
+      .brief-diagram rect {
+        fill: var(--surface);
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram line {
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram path {
+        fill: var(--blue);
+      }
+      .brief-diagram text {
+        fill: var(--text);
+        font:
+          700 14px 'Montserrat',
+          sans-serif;
+      }
+      footer {
+        padding: 2rem 1.25rem;
+        color: var(--muted);
+        background: var(--surface);
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        main {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.25rem;
+        }
+        section {
+          margin: 0;
+        }
+        section:nth-child(1),
+        section:nth-child(11),
+        section:nth-child(12) {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (min-width: 1280px) {
+        header {
+          padding-inline: max(6rem, calc((100vw - 1120px) / 2));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+      @media print {
+        :root {
+          --bg: #ffffff;
+          --card: #ffffff;
+          --text: #122562;
+          --muted: #263b66;
+        }
+        #theme-toggle,
+        .skip-link,
+        .toc {
+          display: none;
+        }
+        header {
+          padding: 1rem 0;
+          color: var(--navy);
+          background: #ffffff;
+        }
+        .eyebrow {
+          color: var(--navy);
+        }
+        main {
+          display: block;
+          width: 100%;
+          padding: 0;
+        }
+        section {
+          break-inside: avoid;
+          margin-bottom: 0.75rem;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#deliverable-content">Saltar al entregable</a>
+    <header>
+      <div class="eyebrow">MetodologIA · Entregable canónico</div>
+      <h1>Evidencia de ejecución · Template</h1>
+      <div class="meta">
+        <span class="pill">DELIV-P06-TOOL-RUN-EVIDENCE</span>
+        <span class="pill">Estado: DRAFT</span>
+        <span class="pill">Gate: G14</span>
+      </div>
+      <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
+    </header>
+    <div class="governance-strip" role="note">
+      RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED
+    </div>
+    <nav class="toc" aria-label="Contenido del documento"><strong>En este documento</strong><ol><li><a href="#section-resultado-y-decision">Resultado y decisión</a></li><li><a href="#section-audiencia-y-uso">Audiencia y uso</a></li><li><a href="#section-entradas-evidencia-y-supuestos">Entradas, evidencia y supuestos</a></li><li><a href="#section-contenido-estructurado">Contenido estructurado</a></li><li><a href="#section-componentes-activos-y-prompts">Componentes, activos y prompts</a></li><li><a href="#section-secuencia-hitos-y-dependencias">Secuencia, hitos y dependencias</a></li><li><a href="#section-skills-ownership-y-handoffs">Skills, ownership y handoffs</a></li><li><a href="#section-riesgos-limites-y-casos-borde">Riesgos, límites y casos borde</a></li><li><a href="#section-criterios-de-aceptacion-y-qa">Criterios de aceptación y QA</a></li><li><a href="#section-estado-lineage-y-siguiente-gate">Estado, lineage y siguiente gate</a></li></ol></nav>
+    <main id="deliverable-content" data-content-sha256="a75943c3f590935fd8ed5fec7b486edc7313db9027c6edbe1ca757a843da7f7c"><section id="section-resultado-y-decision" data-brief-section="Resultado y decisión" data-rendered-sha256="b3805a6a117d13f1387f0b1365c32e041488f9a4d157a40f78c687b9e2f3255d"><span class="step-index" aria-hidden="true">01</span>
+<h2>Resultado y decisión</h2>
+<div class="section-body"><p>Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.</p>
+<p>Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run. Decisión pendiente en G14; este DRAFT no concede aprobación.</p></div></section>
+<section id="section-audiencia-y-uso" data-brief-section="Audiencia y uso" data-rendered-sha256="5a550139f88a76a11584ea692dfd9f683544a8bf7fa065a45b6a2fc0f262a43d"><span class="step-index" aria-hidden="true">02</span>
+<h2>Audiencia y uso</h2>
+<div class="section-body"><p>Precisar quién usa el entregable, para qué decisión y quién lo consume después.</p>
+<p>Verifier y Guardian. Consumidores: P07, P08. Foco: activo material, variante, procedencia, continuidad y paquete companion.</p></div></section>
+<section id="section-entradas-evidencia-y-supuestos" data-brief-section="Entradas, evidencia y supuestos" data-rendered-sha256="47c778eb0bbd9e236177e9528ab261a51432537c7a8b2cef1f142847a05d7ba2"><span class="step-index" aria-hidden="true">03</span>
+<h2>Entradas, evidencia y supuestos</h2>
+<div class="section-body"><p>Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.</p>
+<p>Inputs: creative-spec-v1, continuity-bible-v1, capability-report-v1. Un activo solo deja DRAFT cuando existe material y su hash fue leído del disco.</p></div></section>
+<section id="section-contenido-estructurado" data-brief-section="Contenido estructurado" data-rendered-sha256="52422a3f4c42af2677ee613a3d7b79640f4cf2cadfc140548bd63a9369f952e2"><span class="step-index" aria-hidden="true">04</span>
+<h2>Contenido estructurado</h2>
+<div class="section-body"><p>Exponer cada campo contractual sin completar valores desconocidos por inferencia.</p>
+<ul>
+<li>run-id: ⟦UNKNOWN:run-id⟧</li>
+<li>tool: ⟦UNKNOWN:tool⟧</li>
+<li>version: ⟦UNKNOWN:version⟧</li>
+<li>input-hashes: ⟦UNKNOWN:input-hashes⟧</li>
+<li>parameters: ⟦UNKNOWN:parameters⟧</li>
+<li>output-hashes: ⟦UNKNOWN:output-hashes⟧</li>
+<li>errors: ⟦UNKNOWN:errors⟧</li>
+</ul></div></section>
+<section id="section-componentes-activos-y-prompts" data-brief-section="Componentes, activos y prompts" data-rendered-sha256="c8a993b4c6ef1ce21423a07efcccdf053df29a51dae7835a1930d0681c9dd0c5"><span class="step-index" aria-hidden="true">05</span>
+<h2>Componentes, activos y prompts</h2>
+<div class="section-body"><p>Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.</p>
+<p>Formatos: md, html, json. Familias: other. Foco: activo material, variante, procedencia, continuidad y paquete companion.</p></div></section>
+<section id="section-secuencia-hitos-y-dependencias" data-brief-section="Secuencia, hitos y dependencias" data-rendered-sha256="4977e0b2f57092b7c071130ca5735560d802ff8af3f3e0bfc7727981ad198596"><span class="step-index" aria-hidden="true">06</span>
+<h2>Secuencia, hitos y dependencias</h2>
+<div class="section-body"><p>Vincular los pasos productores, sus dependencias y sus condiciones de parada.</p>
+<ul>
+<li>S02: Producir o capturar activos por etapas. Stop: Limitar a prototipo no publicable si persiste riesgo o falta capacidad.</li>
+</ul></div></section>
+<section id="section-skills-ownership-y-handoffs" data-brief-section="Skills, ownership y handoffs" data-rendered-sha256="ee9cc6dd532dfc79aeac9b12d32e93078bfd84b51b3db1ba633c6da3e9464a6a"><span class="step-index" aria-hidden="true">07</span>
+<h2>Skills, ownership y handoffs</h2>
+<div class="section-body"><p>Declarar skill principal, apoyos, verifier y consumidores del handoff.</p>
+<ul>
+<li>S02: owner content-os-remotion-create; apoyos content-os-media; verifier RT-09.</li>
+</ul></div></section>
+<section id="section-riesgos-limites-y-casos-borde" data-brief-section="Riesgos, límites y casos borde" data-rendered-sha256="db641829b406ed56696e5ce7ff9676d27ba7bae3d40ea155b333e2c9914996ce"><span class="step-index" aria-hidden="true">08</span>
+<h2>Riesgos, límites y casos borde</h2>
+<div class="section-body"><p>Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.</p>
+<p>Bloquear activos inexistentes, hashes sintéticos y companions divergentes. UNKNOWN conserva DRAFT/BLOCKED; sin publicación.</p></div></section>
+<section id="section-criterios-de-aceptacion-y-qa" data-brief-section="Criterios de aceptación y QA" data-rendered-sha256="db41400b5f583bd5b96a83a151a148bba52122a65558e3e155c4d583176b9c22"><span class="step-index" aria-hidden="true">09</span>
+<h2>Criterios de aceptación y QA</h2>
+<div class="section-body"><p>Convertir campos, gate y evidencia requerida en comprobaciones observables.</p>
+<p>Campos: run-id, tool, version, input-hashes, parameters, output-hashes, errors. Gate: G14.</p></div></section>
+<section id="section-estado-lineage-y-siguiente-gate" data-brief-section="Estado, lineage y siguiente gate" data-rendered-sha256="53534859017b215059665f108e7cb6d0b950a9db832dbd56fa443b2eba7df1d1"><span class="step-index" aria-hidden="true">10</span>
+<h2>Estado, lineage y siguiente gate</h2>
+<div class="section-body"><p>Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.</p>
+<p>P06 → P07, P08. DRAFT; gate G14.</p></div></section></main>
+    <script id="frames-deliverable-data" type="application/json">
+      {"frontmatter":{"audience":"Verifier y Guardian.","companion_for":null,"content_sha256":"a75943c3f590935fd8ed5fec7b486edc7313db9027c6edbe1ca757a843da7f7c","deliverable_class":"asset","deliverable_id":"tool-run-evidence-v1","display_name":"Evidencia de ejecución · Template","fields":[{"field_id":"run-id","label":"run-id","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:run-id⟧","value_type":"text"},{"field_id":"tool","label":"tool","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:tool⟧","value_type":"text"},{"field_id":"version","label":"version","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:version⟧","value_type":"text"},{"field_id":"input-hashes","label":"input-hashes","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:input-hashes⟧","value_type":"text"},{"field_id":"parameters","label":"parameters","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:parameters⟧","value_type":"text"},{"field_id":"output-hashes","label":"output-hashes","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:output-hashes⟧","value_type":"text"},{"field_id":"errors","label":"errors","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:errors⟧","value_type":"text"}],"formats":["md","html","json"],"identity":{"brand":"MetodologIA","owner":"Generación y captura"},"instance_id":"DELIV-P06-TOOL-RUN-EVIDENCE","next_gate":"G14","piece_families":["other"],"purpose":"Vincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run.","schema_version":"frames-deliverable-v1","skills":["content-os-remotion-create","content-os-media"],"sources":[{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml","rights":"cleared","sha256":"54ae8fd7dedbc29e7159817fec55c538f02a6a7a9cdfc82ede8240fc89349caa","source_id":"generator-definitions"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-profiles.yml","rights":"cleared","sha256":"0d4d477752a3b9f820fef87c52e88be7f7b2756845ec4d34e1abab75a9ed9738","source_id":"generator-profiles"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-registry.yml","rights":"cleared","sha256":"1b02aebf7bacfe98b3acf783db4957f68da2096d1ac0aa9d93006f3da0bf6c62","source_id":"generator-template-registry"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/brief-document-template.html","rights":"cleared","sha256":"158d89afc64f9d3c2573acda17fc3a1afe631e5f3f6eb9378a86efc4f6c76f46","source_id":"generator-html-shell"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/metodologia-html-v7.yml","rights":"cleared","sha256":"e18e0c81140a2a25d076993b2249b987b4bb1871aab88fae422c82ae0109b7b4","source_id":"generator-design-profile"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml","rights":"cleared","sha256":"b99fd92f4ea2fc78fb2595e96a0d3479ea0ad888490441f3d512c8414b6a56af","source_id":"generator-workflow-p06"}],"state":"DRAFT","touchpoint":"intermediate","workflow_id":"P06"},"sections":[{"id":"Resultado y decisión","markdown":"Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.\n\nVincular inputs, herramienta, versión, parámetros, outputs, hashes y errores del run. Decisión pendiente en G14; este DRAFT no concede aprobación."},{"id":"Audiencia y uso","markdown":"Precisar quién usa el entregable, para qué decisión y quién lo consume después.\n\nVerifier y Guardian. Consumidores: P07, P08. Foco: activo material, variante, procedencia, continuidad y paquete companion."},{"id":"Entradas, evidencia y supuestos","markdown":"Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.\n\nInputs: creative-spec-v1, continuity-bible-v1, capability-report-v1. Un activo solo deja DRAFT cuando existe material y su hash fue leído del disco."},{"id":"Contenido estructurado","markdown":"Exponer cada campo contractual sin completar valores desconocidos por inferencia.\n\n- run-id: ⟦UNKNOWN:run-id⟧\n- tool: ⟦UNKNOWN:tool⟧\n- version: ⟦UNKNOWN:version⟧\n- input-hashes: ⟦UNKNOWN:input-hashes⟧\n- parameters: ⟦UNKNOWN:parameters⟧\n- output-hashes: ⟦UNKNOWN:output-hashes⟧\n- errors: ⟦UNKNOWN:errors⟧"},{"id":"Componentes, activos y prompts","markdown":"Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.\n\nFormatos: md, html, json. Familias: other. Foco: activo material, variante, procedencia, continuidad y paquete companion."},{"id":"Secuencia, hitos y dependencias","markdown":"Vincular los pasos productores, sus dependencias y sus condiciones de parada.\n\n- S02: Producir o capturar activos por etapas. Stop: Limitar a prototipo no publicable si persiste riesgo o falta capacidad."},{"id":"Skills, ownership y handoffs","markdown":"Declarar skill principal, apoyos, verifier y consumidores del handoff.\n\n- S02: owner content-os-remotion-create; apoyos content-os-media; verifier RT-09."},{"id":"Riesgos, límites y casos borde","markdown":"Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.\n\nBloquear activos inexistentes, hashes sintéticos y companions divergentes. UNKNOWN conserva DRAFT/BLOCKED; sin publicación."},{"id":"Criterios de aceptación y QA","markdown":"Convertir campos, gate y evidencia requerida en comprobaciones observables.\n\nCampos: run-id, tool, version, input-hashes, parameters, output-hashes, errors. Gate: G14."},{"id":"Estado, lineage y siguiente gate","markdown":"Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.\n\nP06 → P07, P08. DRAFT; gate G14."}]}
+    </script>
+    <footer class="note">Proyección determinista del entregable Markdown · a75943c3f590935fd8ed5fec7b486edc7313db9027c6edbe1ca757a843da7f7c</footer>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector('#theme-toggle');
+        let stored = null;
+        try {
+          stored = localStorage.getItem('metodologia-theme');
+        } catch {}
+        if (stored === 'dark') root.dataset.theme = 'dark';
+        button?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+        button?.addEventListener('click', () => {
+          const dark = root.dataset.theme !== 'dark';
+          root.dataset.theme = dark ? 'dark' : 'light';
+          button.setAttribute('aria-pressed', String(dark));
+          try {
+            localStorage.setItem('metodologia-theme', root.dataset.theme);
+          } catch {}
+        });
+      })();
+    </script>
+  </body>
+</html>

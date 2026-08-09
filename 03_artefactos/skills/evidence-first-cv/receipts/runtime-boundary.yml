@@ -1,0 +1,14 @@
+schema_version: 1
+receipt_id: evidence-first-cv-runtime-boundary-v1
+skill_id: evidence-first-cv
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+submission_authority: false
+private_state_required: true
+canonical_editorial_format: markdown
+derived_formats: [html, pdf]
+allowed_claim_confidence: [verified, user_confirmed]
+required_gate: CR_PACKAGE_QA
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

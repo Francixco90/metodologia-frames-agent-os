@@ -1,7 +1,7 @@
 import {execFileSync} from 'node:child_process';
 import {mkdirSync, mkdtempSync, rmSync, symlinkSync, unlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
-import {join, resolve} from 'node:path';
+import {dirname, join, resolve} from 'node:path';
 
 import {describe, expect, it, vi} from 'vitest';
 
@@ -16,7 +16,10 @@ import {
 const git = (root: string, args: string[]): string =>
   execFileSync('git', args, {cwd: root, encoding: 'utf8'}).trim();
 
-const policy = (extraRules: string): string => `schema_version: file-budget-policy-v2
+const policy = (
+  extraRules: string,
+  prBudget = '{target_files: 50, target_loc: 5000, hard_files: 100, hard_loc: 10000}',
+): string => `schema_version: file-budget-policy-v2
 defaults:
   target: {max_words: 1000, max_lines: 1000}
   hard: {max_words: 2000, max_lines: 2000}
@@ -28,15 +31,24 @@ budgets:
   - {surface: authored-fallback, kind: authored, match: '**', fallback: true}
   - {surface: generated-fallback, kind: generated, match: '**', fallback: true}
 ${extraRules}
-pr_budget: {target_files: 50, target_loc: 5000, hard_files: 100, hard_loc: 10000}
+pr_budget: ${prBudget}
 `;
 
-const createRepo = (extraRules: string, files: Record<string, string | Buffer>) => {
+const createRepo = (
+  extraRules: string,
+  files: Record<string, string | Buffer>,
+  prBudget?: string,
+) => {
   const root = mkdtempSync(join(tmpdir(), 'frames-md-budget-'));
   mkdirSync(resolve(root, '02_proceso/governance'), {recursive: true});
-  writeFileSync(resolve(root, '02_proceso/governance/docs-budget-policy.yml'), policy(extraRules));
-  for (const [path, contents] of Object.entries(files))
+  writeFileSync(
+    resolve(root, '02_proceso/governance/docs-budget-policy.yml'),
+    policy(extraRules, prBudget),
+  );
+  for (const [path, contents] of Object.entries(files)) {
+    mkdirSync(dirname(resolve(root, path)), {recursive: true});
     writeFileSync(resolve(root, path), contents);
+  }
   git(root, ['init', '-q']);
   git(root, ['config', 'user.email', 'test@example.invalid']);
   git(root, ['config', 'user.name', 'Frames Test']);
@@ -45,27 +57,37 @@ const createRepo = (extraRules: string, files: Record<string, string | Buffer>) 
   return {root, base: git(root, ['rev-parse', 'HEAD'])};
 };
 
-const runMain = (root: string, base: string): string[] => {
+const runMainResult = (
+  root: string,
+  base: string,
+): {errors: string[]; warnings: string[]; infos: string[]; exitCode: number | undefined} => {
   const previousBase = process.env.BUDGET_BASE_REF;
   const previousExitCode = process.exitCode;
   const errors: string[] = [];
+  const warnings: string[] = [];
+  const infos: string[] = [];
   const spies = [
     vi.spyOn(console, 'error').mockImplementation((...args) => errors.push(args.join(' '))),
-    vi.spyOn(console, 'warn').mockImplementation(() => undefined),
-    vi.spyOn(console, 'info').mockImplementation(() => undefined),
+    vi.spyOn(console, 'warn').mockImplementation((...args) => warnings.push(args.join(' '))),
+    vi.spyOn(console, 'info').mockImplementation((...args) => infos.push(args.join(' '))),
   ];
   try {
     process.env.BUDGET_BASE_REF = base;
     process.exitCode = undefined;
     main(root);
-    expect(process.exitCode).toBe(1);
-    return errors;
+    return {errors, warnings, infos, exitCode: process.exitCode};
   } finally {
     if (previousBase === undefined) delete process.env.BUDGET_BASE_REF;
     else process.env.BUDGET_BASE_REF = previousBase;
     process.exitCode = previousExitCode;
     spies.forEach((spy) => spy.mockRestore());
   }
+};
+
+const runMain = (root: string, base: string): string[] => {
+  const result = runMainResult(root, base);
+  expect(result.exitCode).toBe(1);
+  return result.errors;
 };
 
 describe('check-md-budgets helpers', () => {
@@ -106,6 +128,12 @@ describe('check-md-budgets helpers', () => {
       ),
     ).toBe(true);
     expect(isBudgetGeneratedPath('README.md', 'README.md')).toBe(false);
+    expect(
+      isBudgetGeneratedPath(
+        '02_proceso/workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html',
+        'workflows/multimedia/p03-crear-brief/templates/campaign-charter-v1.template.html',
+      ),
+    ).toBe(true);
   });
 
   it('docs-budget-policy.yml exists and parses with required surfaces', async () => {
@@ -155,6 +183,69 @@ describe('check-md-budgets helpers', () => {
     try {
       writeFileSync(resolve(root, 'asset.bin'), Buffer.from([0, 1, 3]));
       expect(runMain(root, base)).toContain('[FAIL] BUDGET-BINARY001 asset.bin');
+    } finally {
+      rmSync(root, {recursive: true, force: true});
+    }
+  });
+
+  it('excludes more than twelve generated outputs from the authored PR budget but enforces their file hard cap', () => {
+    const generatedPaths = Object.fromEntries(
+      Array.from({length: 13}, (_, index) => [
+        `02_proceso/workflows/multimedia/p${String(index).padStart(2, '0')}-fixture/schematic.html`,
+        'baseline\n',
+      ]),
+    );
+    const rules = `  - surface: generated-schematic
+    kind: generated
+    match: '02_proceso/workflows/multimedia/*/schematic.html'
+    scope: changed
+    mode: enforce
+    changed_mode: enforce
+    target: {max_words: 20, max_lines: 2}
+    hard: {max_words: 30, max_lines: 2}`;
+    const prBudget = '{target_files: 10, target_loc: 100, hard_files: 12, hard_loc: 1000}';
+    const {root, base} = createRepo(rules, generatedPaths, prBudget);
+    try {
+      for (const path of Object.keys(generatedPaths)) {
+        writeFileSync(resolve(root, path), 'generated\nprojection\n');
+      }
+
+      const withinCap = runMainResult(root, base);
+      expect(withinCap.exitCode).toBeUndefined();
+      expect(withinCap.errors).not.toEqual(
+        expect.arrayContaining([expect.stringContaining('BUDGET-PR-HARD')]),
+      );
+      expect(withinCap.infos.join('\n')).toContain('authored=0/0 total=13/39');
+
+      const firstPath = Object.keys(generatedPaths)[0];
+      expect(firstPath).toBeDefined();
+      writeFileSync(resolve(root, firstPath!), 'generated\nprojection\nover-hard-cap\n');
+      const overFileCap = runMainResult(root, base);
+      expect(overFileCap.exitCode).toBe(1);
+      expect(overFileCap.errors).toContain(`[FAIL] BUDGET-HARD generated-schematic: ${firstPath}`);
+      expect(overFileCap.errors).not.toEqual(
+        expect.arrayContaining([expect.stringContaining('BUDGET-PR-HARD')]),
+      );
+    } finally {
+      rmSync(root, {recursive: true, force: true});
+    }
+  });
+
+  it('counts authored files and their per-path LOC toward BUDGET-PR-HARD', () => {
+    const authoredPaths = Object.fromEntries(
+      Array.from({length: 13}, (_, index) => [`authored-${index + 1}.md`, 'baseline\n']),
+    );
+    const prBudget = '{target_files: 10, target_loc: 100, hard_files: 12, hard_loc: 1000}';
+    const {root, base} = createRepo('', authoredPaths, prBudget);
+    try {
+      for (const path of Object.keys(authoredPaths)) {
+        writeFileSync(resolve(root, path), 'authored change\n');
+      }
+
+      const result = runMainResult(root, base);
+      expect(result.exitCode).toBe(1);
+      expect(result.errors).toContain('[FAIL] BUDGET-PR-HARD files=13 loc=26');
+      expect(result.infos.join('\n')).toContain('authored=13/26 total=13/26');
     } finally {
       rmSync(root, {recursive: true, force: true});
     }

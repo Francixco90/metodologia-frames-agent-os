@@ -15,6 +15,7 @@ export interface BudgetGitState {
   base: BudgetBase;
   paths: Set<string>;
   loc: number;
+  locByPath: Map<string, number>;
 }
 
 const git = (root: string, args: readonly string[]): Buffer =>
@@ -48,7 +49,7 @@ export const resolveBudgetBase = (
     return {commit, source: explicit, explicit: true};
   }
 
-  for (const source of ['upstream/main', 'origin/main']) {
+  for (const source of ['origin/main', 'upstream/main']) {
     if (!commitFor(root, source)) continue;
     const commit = tryGitText(root, ['merge-base', 'HEAD', source]);
     if (commit) return {commit, source, explicit: false};
@@ -100,23 +101,27 @@ export const changedBudgetPaths = (root: string, baseCommit: string): Set<string
     ...nulPaths(git(root, ['ls-files', '-z', '--others', '--exclude-standard'])),
   ]);
 
-const trackedChangedLoc = (root: string, baseCommit: string): number =>
-  nulPaths(git(root, ['diff', '--numstat', '-z', '--no-renames', baseCommit, '--'])).reduce(
-    (total, record) => {
-      const match = /^(\d+|-)\t(\d+|-)\t/u.exec(record);
-      if (!match) throw new Error(`BUDGET-GIT001 invalid numstat record ${record}`);
-      if (match[1] === '-' || match[2] === '-') return total;
-      return total + Number(match[1]) + Number(match[2]);
-    },
-    0,
-  );
+export const changedBudgetLocByPath = (root: string, baseCommit: string): Map<string, number> => {
+  const result = new Map<string, number>();
+  for (const record of nulPaths(
+    git(root, ['diff', '--numstat', '-z', '--no-renames', baseCommit, '--']),
+  )) {
+    const match = /^(\d+|-)\t(\d+|-)\t/u.exec(record);
+    if (!match) throw new Error(`BUDGET-GIT001 invalid numstat record ${record}`);
+    const path = record.slice(match[0].length);
+    result.set(
+      path,
+      match[1] === '-' || match[2] === '-' ? 0 : Number(match[1]) + Number(match[2]),
+    );
+  }
+  for (const path of nulPaths(git(root, ['ls-files', '-z', '--others', '--exclude-standard']))) {
+    result.set(path, metricsFor(readBudgetFile(root, path)).loc);
+  }
+  return result;
+};
 
 export const changedBudgetLoc = (root: string, baseCommit: string): number => {
-  const untracked = nulPaths(git(root, ['ls-files', '-z', '--others', '--exclude-standard']));
-  return (
-    trackedChangedLoc(root, baseCommit) +
-    untracked.reduce((total, path) => total + metricsFor(readBudgetFile(root, path)).loc, 0)
-  );
+  return [...changedBudgetLocByPath(root, baseCommit).values()].reduce((sum, loc) => sum + loc, 0);
 };
 
 export const versionableBudgetPaths = (root: string): string[] =>
@@ -129,9 +134,11 @@ export const collectBudgetGitState = (
   environment: NodeJS.ProcessEnv = process.env,
 ): BudgetGitState => {
   const base = resolveBudgetBase(root, environment);
+  const locByPath = changedBudgetLocByPath(root, base.commit);
   return {
     base,
     paths: changedBudgetPaths(root, base.commit),
-    loc: changedBudgetLoc(root, base.commit),
+    loc: [...locByPath.values()].reduce((sum, loc) => sum + loc, 0),
+    locByPath,
   };
 };

@@ -1,6 +1,6 @@
 # Router contract — ground truth
 
-8 reglas que gobiernan el router source→video. Source of truth para
+Reglas que gobiernan la puerta única de Frames. Source of truth para
 `scripts/route-audit.mjs` y `scripts/check-skill.mjs`.
 
 ## Reglas
@@ -24,7 +24,15 @@
    `setTimeout`/`setInterval` en el router (hereda core).
 8. **No render.** El router no renderiza. El HTML→MP4 adapter vive en
    `content-os-core`. El workflow orquesta; el router solo enruta.
+9. **Brief-first.** `content-intent-v2` siempre referencia un `brief.md` canónico;
+   una pieza nueva incluye P03 y no produce antes de `MW_BRIEF_APPROVED`.
+10. **Minimum stage path.** P00/P01/P02/P04/P06/P09 se añaden por señales
+    explícitas; P07/P08 permanecen obligatorios. P09 nunca publica.
    `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`.
+11. **Causal dispatch.** R6/R7 deben devolver `adapter_invoked: true` y el
+    `domain_intent` validado; un locator solo es `planned`. R0 nunca invoca.
+12. **Receipted skills.** Una skill declarada en el plan no cuenta como ejecutada
+    sin `SkillInvocationReceiptV1` ligado al WorkOrder y a outputs materiales.
 
 ## Example manifest entry
 

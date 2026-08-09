@@ -57,11 +57,22 @@ interface LedgerBudgetProjection {
       status: string;
     };
     generated_template_budget: {
+      maximum_multiplier: number;
       inventory_count: number;
       applicable_bindings: number;
       not_applicable_count: number;
+      coverage: string;
       coverage_gaps: string[];
       status: string;
+      checks: Array<{
+        output_path: string;
+        template_path: string;
+        word_ratio: number | null;
+        loc_ratio: number | null;
+        maximum_multiplier: number;
+        status: string;
+      }>;
+      not_applicable: Array<{path: string; reason: string}>;
     };
     immutable_history: {
       baseline_files: number;
@@ -114,7 +125,7 @@ describe('V2 documentation and extension budgets', () => {
       'utf8',
     );
     expect(document.split('\n').length).toBeLessThanOrEqual(300);
-  });
+  }, 15_000);
 
   it('covers all 377 baseline files and protects historical bytes', () => {
     expect(validateDispositionLedger(root)).toStrictEqual([]);
@@ -190,15 +201,54 @@ describe('V2 documentation and extension budgets', () => {
     expect(hardCap.final_words).toBeLessThanOrEqual(hardCap.maximum_words);
     expect(hardCap.final_loc).toBeLessThanOrEqual(hardCap.maximum_loc);
     expect(hardCap.status).toBe('pass');
-    expect(ledger.budgets.generated_template_budget).toMatchObject({
-      applicable_bindings: 3,
-      coverage_gaps: [],
-      status: 'pass',
-    });
+    const generated = ledger.budgets.generated_template_budget;
+    const schematicChecks = generated.checks.filter(({output_path}) =>
+      /^workflows\/multimedia\/p\d{2}-[^/]+\/schematic\.html$/u.test(output_path),
+    );
+    const brandChecks = generated.checks.filter(({output_path}) =>
+      output_path.startsWith('brand/generated/social-light.'),
+    );
+    expect(schematicChecks.map(({output_path}) => output_path.match(/\/p(\d{2})-/u)?.[1])).toEqual([
+      '00',
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+    ]);
+    expect(brandChecks.map(({output_path}) => output_path).sort()).toEqual([
+      'brand/generated/social-light.css',
+      'brand/generated/social-light.tokens.json',
+      'brand/generated/social-light.tokens.ts',
+    ]);
+    expect(generated.checks).toHaveLength(schematicChecks.length + brandChecks.length);
+    expect(generated.applicable_bindings).toBe(generated.checks.length);
+    expect(new Set(generated.checks.map(({output_path}) => output_path)).size).toBe(
+      generated.applicable_bindings,
+    );
+    for (const check of generated.checks) {
+      expect(check.template_path.length).toBeGreaterThan(0);
+      expect(check.word_ratio).not.toBeNull();
+      expect(check.loc_ratio).not.toBeNull();
+      expect(check.word_ratio!).toBeLessThanOrEqual(check.maximum_multiplier);
+      expect(check.loc_ratio!).toBeLessThanOrEqual(check.maximum_multiplier);
+      expect(check.maximum_multiplier).toBe(generated.maximum_multiplier);
+      expect(check.status).toBe('pass');
+    }
+    expect(generated.coverage_gaps).toEqual([]);
+    expect(generated.not_applicable).toHaveLength(generated.not_applicable_count);
     expect(
-      ledger.budgets.generated_template_budget.applicable_bindings +
-        ledger.budgets.generated_template_budget.not_applicable_count,
-    ).toBe(ledger.budgets.generated_template_budget.inventory_count);
+      generated.not_applicable.every(({path, reason}) => path.length > 0 && reason.length > 0),
+    ).toBe(true);
+    expect(generated.coverage).toBe(`${generated.inventory_count}/${generated.inventory_count}`);
+    expect(generated.status).toBe('pass');
+    expect(generated.applicable_bindings + generated.not_applicable_count).toBe(
+      generated.inventory_count,
+    );
     expect(ledger.budgets.immutable_history).toMatchObject({
       baseline_files: 95,
       byte_identical_files: 95,

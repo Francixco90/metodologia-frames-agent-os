@@ -1,0 +1,16 @@
+schema_version: 1
+receipt_id: candidate-evidence-reconciler-runtime-boundary-v1
+skill_id: candidate-evidence-reconciler
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+private_state_required: true
+allowed_claim_confidence: [verified, user_confirmed]
+gap_only_confidence: [inferred, missing]
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
+forbidden:
+  - promote_job_requirement_to_candidate_evidence
+  - persist_pii_in_git
+  - rewrite_source_history
+  - infer_credential_or_metric

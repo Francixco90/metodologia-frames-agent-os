@@ -17,18 +17,49 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 32 gates', () => {
-    expect(manifest.gates).toHaveLength(32);
+  it('declares 40 gates', () => {
+    expect(manifest.gates).toHaveLength(40);
   });
 
-  it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u or ^MW_[A-Z_]+$/u', () => {
+  it('every gate id belongs to GNN, MW_*, CR_* or EXP_*', () => {
     for (const gate of manifest.gates) {
-      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+)$/u);
+      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+)$/u);
+    }
+  });
+
+  it('keeps Experience execution checkable and both promotions manual fail-closed', () => {
+    expect(manifest.gates.find(({gate}) => gate === 'G09_EXPERIENCE')).toMatchObject({
+      command: 'node --import tsx scripts/check-experience-os.ts',
+      manual: false,
+      fail_closed: true,
+      owner: 'content',
+    });
+    for (const id of ['EXP_BRIEF_APPROVED', 'EXP_RELEASE_APPROVED']) {
+      expect(manifest.gates.find(({gate}) => gate === id)).toMatchObject({
+        command: null,
+        allowed_tools: [],
+        write_set_globs: [],
+        manual: true,
+        fail_closed: true,
+      });
+    }
+  });
+
+  it('CR_* career decisions are manual and fail closed', () => {
+    for (const id of ['CR_BRIEF_APPROVED', 'CR_PACKAGE_APPROVED', 'CR_SUBMISSION_AUTHORIZED']) {
+      const gate = manifest.gates.find((candidate) => candidate.gate === id);
+      expect(gate).toMatchObject({
+        command: null,
+        allowed_tools: [],
+        manual: true,
+        fail_closed: true,
+      });
     }
   });
 
   it('MW_* multimedia gates are manual, fail_closed and have command null', () => {
     const mw = [
+      'MW_BRIEF_APPROVED',
       'MW_SPEC_APPROVED',
       'MW_ASSET_REVIEW',
       'MW_EDIT_APPROVED',
@@ -41,6 +72,22 @@ describe('commands.yaml contract', () => {
       expect(gate?.fail_closed).toBe(true);
       expect(gate?.command).toBeNull();
     }
+  });
+
+  it('makes brief approval a non-executable governance boundary before production', () => {
+    const gate = manifest.gates.find((candidate) => candidate.gate === 'MW_BRIEF_APPROVED');
+
+    expect(gate).toMatchObject({
+      label: 'canonical brief approval before production',
+      command: null,
+      allowed_tools: [],
+      write_set_globs: [],
+      idempotency: true,
+      danger_level: 'medium',
+      manual: true,
+      fail_closed: true,
+      owner: 'governance',
+    });
   });
 
   it('G13-G17 are manual, fail_closed and have command null', () => {

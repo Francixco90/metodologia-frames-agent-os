@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "experience-approval-receipt-v1",
+  "releaseId": "EXP-EXPERIENCE-LOCAL-001",
+  "role": "H01",
+  "actorId": "H01-JAVIER-PROMOTION-001",
+  "decision": "APPROVE",
+  "candidateCommit": "8a18fe403cba923d1f28512c931691c79a573535",
+  "candidateSha256": "601d6aa951e0fec52acbaed878c9ee52c015f75280c534badc15b8d3a772be67"
+}

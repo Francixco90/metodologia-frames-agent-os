@@ -1,0 +1,30 @@
+{
+  "schema_version": "experience-projection-manifest-v1",
+  "blueprint_id": "frames-contentos-experience",
+  "source_ref": "03_artefactos/content/experience/frames-experience-blueprint.md",
+  "projection_ref": "03_artefactos/content/experience/frames-experience-blueprint.html",
+  "source_sha256": "016cba2d80db7ae06e118aa49996a1da8130d127fcec42180bb3ce715f5d15c7",
+  "content_sha256": "695b7026ff565752c103620521be2a3001b49d5a89ec644e1139f6585dae73d9",
+  "section_count": 13,
+  "section_order": [
+    "section-01",
+    "section-02",
+    "section-03",
+    "section-04",
+    "section-05",
+    "section-06",
+    "section-07",
+    "section-08",
+    "section-09",
+    "section-10",
+    "section-11",
+    "section-12",
+    "section-13"
+  ],
+  "design_profile": "metodologia-experience-v1",
+  "typography_status": "system-fallback",
+  "offline": true,
+  "semantic_parity": true,
+  "state": "RENDERED_DRAFT",
+  "next_gate": "RT-09"
+}

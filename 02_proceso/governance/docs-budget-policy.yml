@@ -6,6 +6,89 @@ defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
 pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 
 budgets:
+  - surface: generated-context-projection
+    kind: generated
+    match: ['context.md', '**/context.md']
+    target: {max_lines: 80}
+    hard: {max_lines: 120}
+    rationale: 'Public context surfaces are deterministic projections of the canonical sharded registry.'
+  - surface: context-surface-registry
+    match: '02_proceso/governance/context-surfaces/*.yml'
+    target: {max_words: 3500, max_lines: 500}
+    hard: {max_words: 6000, max_lines: 800}
+    rationale: 'Shards preserve the complete 49-surface graph while keeping each authority independently reviewable.'
+  - surface: generated-documentation-inventory
+    kind: exempt
+    match: '01_intencion/program/documentation-inventory-v1.json'
+    target: {}
+    hard: {}
+    rationale: 'The deterministic full-corpus inventory is governed by docs:audit drift and schema checks.'
+  - surface: generated-multimedia-schematic
+    kind: generated
+    match: '02_proceso/workflows/multimedia/p*/schematic.html'
+    baseline: template
+    target: {multiplier: 1}
+    hard: {multiplier: 2}
+    rationale: 'P00-P09 schematics are deterministic projections of one governed HTML template.'
+  - surface: generated-multimedia-artifact-contract
+    kind: generated
+    match:
+      [
+        '02_proceso/workflows/multimedia/_schema/artifacts/**',
+        '02_proceso/workflows/multimedia/_assets/artifact-registry.md',
+      ]
+    target: {max_words: 800, max_lines: 100}
+    hard: {max_words: 1500, max_lines: 200}
+    rationale: 'Artifact schemas and their human index are deterministic projections of the deliverable registry.'
+  - surface: generated-deliverable-template-markdown
+    kind: generated
+    match: '02_proceso/workflows/multimedia/p*/templates/*.template.md'
+    target: {max_words: 900, max_lines: 180}
+    hard: {max_words: 1500, max_lines: 300}
+    rationale: 'Each Markdown template is a deterministic DRAFT projection of one deliverable definition and class profile.'
+  - surface: generated-deliverable-template-html
+    kind: generated
+    match: '02_proceso/workflows/multimedia/p*/templates/*.template.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the MetodologIA shell.'
+  - surface: generated-career-template-markdown
+    kind: generated
+    match: '02_proceso/workflows/career/c*/templates/*.template.md'
+    target: {max_words: 900, max_lines: 180}
+    hard: {max_words: 1500, max_lines: 300}
+    rationale: 'Career Markdown templates are deterministic DRAFT projections of the career deliverable registry.'
+  - surface: generated-career-template-html
+    kind: generated
+    match: '02_proceso/workflows/career/c*/templates/*.template.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'Career HTML templates are deterministic offline projections of their canonical Markdown twins.'
+  - surface: generated-experience-blueprint-html
+    kind: generated
+    match: '03_artefactos/content/experience/frames-experience-blueprint.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'The Experience HTML blueprint is regenerated deterministically from its canonical Markdown model.'
+  - surface: generated-experience-projection-manifest
+    kind: generated
+    match: '03_artefactos/content/experience/projection-manifest.json'
+    target: {max_words: 500, max_lines: 200}
+    hard: {max_words: 1000, max_lines: 400}
+    rationale: 'The projection manifest is emitted by the same renderer and remains hash-bound to the blueprint.'
+  - surface: generated-host-adapter-projection
+    kind: generated
+    match:
+      [
+        '.agents/plugins/marketplace.json',
+        '.agents/skills/frames-assist/SKILL.md',
+        '.claude/commands/frames/assist.md',
+        '.claude/skills/frames-assist/SKILL.md',
+        '.gemini/commands/frames/assist.toml',
+      ]
+    target: {max_words: 500, max_lines: 150}
+    hard: {max_words: 800, max_lines: 250}
+    rationale: 'Host adapter projections are regenerated from one portable package manifest.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'
@@ -54,7 +137,7 @@ budgets:
     rationale: 'Append-only evidence uses hashes and immutability checks.'
   - surface: local-cabin
     kind: exempt
-    match: [CONTEXT.md, TASK.md, PROJECT.md]
+    match: [CONTEXT.md, work/private/CONTEXT.md, TASK.md, PROJECT.md]
     target: {}
     hard: {}
     changed_mode: report
@@ -92,10 +175,62 @@ budgets:
         '02_proceso/governance/*.yaml',
         '02_proceso/governance/*.json',
       ]
+    exclude: ['02_proceso/governance/context.md']
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 400}
     scope: all
     rationale: 'Governance documents use the approved density ceiling.'
+  - surface: html-document-template
+    match:
+      [
+        '02_proceso/workflows/multimedia/_assets/schematic-template.html',
+        '02_proceso/workflows/multimedia/_assets/brief-document-template.html',
+        '02_proceso/workflows/career/_assets/brief-template.html',
+        '02_proceso/workflows/career/_assets/document-template.html',
+      ]
+    target: {max_lines: 400}
+    hard: {max_lines: 800}
+    rationale: 'HTML templates use the approved document-specific ceiling.'
+  - surface: experience-blueprint-source
+    match: '03_artefactos/content/experience/frames-experience-blueprint.md'
+    target: {max_words: 1800, max_lines: 250}
+    hard: {max_words: 2500, max_lines: 400}
+    rationale: 'The canonical Experience blueprint remains comprehensive but independently reviewable.'
+  - surface: experience-control-assets
+    match:
+      [
+        '02_proceso/workflows/experience/component-registry.yml',
+        '02_proceso/workflows/experience/microcopy.es.yml',
+        '02_proceso/workflows/experience/service-blueprint.yml',
+      ]
+    target: {max_words: 1000, max_lines: 250}
+    hard: {max_words: 1800, max_lines: 400}
+    rationale: 'Allowlisted components, microcopy and service choreography stay concise and auditable.'
+  - surface: experience-release-manifest
+    match: '04_estado/releases/experience/**/release-manifest.json'
+    target: {max_words: 800, max_lines: 300}
+    hard: {max_words: 1500, max_lines: 500}
+    rationale: 'Approved release manifests preserve bounded hashes, compatibility and evidence.'
+  - surface: experience-release-guidance
+    match:
+      [
+        '04_estado/releases/experience/**/compatibility.md',
+        '04_estado/releases/experience/**/migration.md',
+        '04_estado/releases/experience/**/restore.md',
+      ]
+    target: {max_words: 500, max_lines: 150}
+    hard: {max_words: 1000, max_lines: 300}
+    rationale: 'Release compatibility, migration and restore instructions stay operationally dense.'
+  - surface: career-deliverable-registry
+    match: '02_proceso/workflows/career/_assets/deliverable-registry.yml'
+    target: {max_words: 2500, max_lines: 500}
+    hard: {max_words: 5000, max_lines: 800}
+    rationale: 'The complete 33-deliverable Career registry stays reviewable as one canonical matrix.'
+  - surface: multimedia-deliverable-registry
+    match: '02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml'
+    target: {max_words: 4000, max_lines: 650}
+    hard: {max_words: 6000, max_lines: 800}
+    rationale: 'The 39-entry canonical catalog stays reviewable as one complete cross-workflow matrix.'
   - surface: authored-decisions-md
     match: '01_intencion/adrs/*.md'
     target: {max_words: 500, max_lines: 50}
@@ -129,6 +264,21 @@ budgets:
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 400}
     rationale: 'Canonical control manifests use governance limits.'
+  - surface: hash-bound-skill-registry
+    match: '04_estado/registries/skills/creation-v3-skill-registry.yml'
+    target: {max_words: 14000, max_lines: 2600}
+    hard: {max_words: 20000, max_lines: 3500}
+    rationale: 'The canonical H-03 registry has an explicit cap and remains hash-bound.'
+  - surface: hash-bound-v2-skill-registry
+    match: '04_estado/registries/skills/skill-registry.yml'
+    target: {max_words: 9000, max_lines: 1800}
+    hard: {max_words: 14000, max_lines: 2600}
+    rationale: 'The append-only V2 skill registry has an explicit cap and independent lifecycle validation.'
+  - surface: hash-bound-skill-index
+    match: '05_verificacion/scripts/creation-v3-skills.json'
+    target: {max_words: 1800, max_lines: 1000}
+    hard: {max_words: 3000, max_lines: 1600}
+    rationale: 'The generated H-03 index has explicit caps and independent hash validation.'
   - surface: test-code
     match:
       [
@@ -141,7 +291,14 @@ budgets:
     rationale: 'Tests may be broader than production modules.'
   - surface: production-code
     match: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.mjs', '**/*.js']
-    exclude: ['05_verificacion/tests/**', '03_artefactos/skills/vendor/**']
+    exclude:
+      [
+        '05_verificacion/tests/**',
+        '03_artefactos/skills/vendor/**',
+        'tsconfig.json',
+        'vitest.config.ts',
+        'eslint.config.js',
+      ]
     target: {max_lines: 100}
     hard: {max_lines: 200}
     rationale: 'Production modules split before 200 lines.'

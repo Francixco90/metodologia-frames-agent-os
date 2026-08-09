@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metodologia:frames:cv-package:v1",
+  "title": "CvPackageV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "brief_id", "intent_class", "language", "design_profile", "evidence_ids", "outputs", "state", "next_gate"],
+  "properties": {
+    "candidate_id": {"type": "string", "pattern": "^CAND-[A-Z0-9-]+$"},
+    "brief_id": {"type": "string", "pattern": "^CBRIEF-[A-Z0-9-]+$"},
+    "intent_class": {"enum": ["general_cv", "targeted_cv"]},
+    "language": {"enum": ["es", "en", "pt", "unknown"]},
+    "design_profile": {"enum": ["candidate-neutral-ats", "metodologia-career", "authorized-brand"]},
+    "evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"pattern": "^EVD-[A-Z0-9-]+$"}},
+    "outputs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "path", "sha256", "materialized"],
+        "properties": {
+          "kind": {"enum": ["markdown", "html", "pdf"]},
+          "path": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "materialized": {"const": true}
+        }
+      }
+    },
+    "state": {"const": "DRAFTED"},
+    "next_gate": {"const": "CR_PACKAGE_QA"}
+  }
+}

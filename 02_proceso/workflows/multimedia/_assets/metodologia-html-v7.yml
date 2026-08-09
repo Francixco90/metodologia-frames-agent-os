@@ -1,0 +1,42 @@
+schema_version: metodologia-html-design-system-v1
+profile_id: metodologia-html-v7
+brand_id: metodologia
+default_for: [brief_html, deliverable_html, schematic_html, multimedia_library_html]
+source:
+  source_repo_id: metodologia-public-site
+  observed_commit: 082d22981f0f295a8aff6cf96b5ec898b9eaf073
+  relative_path: design-system/metodologia/MASTER.md
+  sha256: 715315206c93e728199e1092cdffade95053a4fadd918d3a43b2c3e5d6dece12
+  commit_bound: true
+  path_clean_at_observation: true
+locator_policy:
+  absolute_path_allowed: false
+  portable_locator_required: true
+tokens:
+  navy: '#122562'
+  gold: '#FFD700'
+  blue: '#137DC5'
+  canvas: '#FFFFFF'
+  surface_alt: '#F0F4F8'
+typography:
+  heading: Poppins
+  body: Montserrat
+  notes: Trebuchet MS
+  max_weight: 700
+accessibility:
+  standard: WCAG-AA
+  focus_color: '#137DC5'
+  target_min_px: 44
+  reduced_motion: required
+  print_styles: required
+responsive_breakpoints_px: [375, 768, 1280]
+rules:
+  - light_first_with_dark_toggle
+  - no_gold_text_on_light
+  - no_warm_ivory
+  - solid_cards
+  - inline_svg_offline
+  - metodologia_only_visible_identity
+gate_effect:
+  allows: [RENDERED_DRAFT]
+  does_not_allow: [HUMAN_APPROVED, READY, PUBLISHED]

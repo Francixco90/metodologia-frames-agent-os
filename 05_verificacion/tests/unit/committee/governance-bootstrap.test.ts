@@ -163,8 +163,8 @@ describe('PR-00B1 governance bootstrap', () => {
 
     expect(summarizePrincipleConformance(registry)).toEqual({
       total: 16,
-      enforced: 1,
-      gaps: 15,
+      enforced: 3,
+      gaps: 13,
       conformance: 'GAP',
     });
   });

@@ -25,19 +25,38 @@ modes:
 inputs:
   - p02-investigar/workflow.yml
 outputs:
-  - artifact: 'Brief/Campaign Map'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: brief-campaign-map-v1
+    artifact: 'Brief y mapa de campaña'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/brief-campaign-map-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
     required: true
-  - artifact: 'A/B concepts'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: campaign-charter-v1
+    artifact: 'Charter de campaña'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/campaign-charter-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
+    required: false
+    condition: 'mode=campana-o-colaboracion'
+  - deliverable_id: executive-presentation-v1
+    artifact: 'Presentación ejecutiva'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/executive-presentation-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
+    required: false
+    condition: 'requested=true or decision_audience=leadership'
+  - deliverable_id: ab-concepts-v1
+    artifact: 'Conceptos A/B'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/ab-concepts-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
     required: true
-  - artifact: 'Definition of Ready'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: definition-of-ready-v1
+    artifact: 'Definition of Ready'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/definition-of-ready-v1.schema.ts
+    template_id: TPL-P03-DELIVERABLE-V1
     required: true
 work_product_state: DIRECTION_APPROVED
 gates:
   - G13
   - G14
+  - MW_BRIEF_APPROVED
 next_workflow: P04
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
@@ -57,6 +76,8 @@ brief:
     - 'Definition of Ready cumplido'
   deliverables:
     - brief-campaign-map-v1
+    - campaign-charter-v1
+    - executive-presentation-v1
     - ab-concepts-v1
     - definition-of-ready-v1
   context: 'Define una pieza, sistema de derivados, serie o campaña con funciones distintas.'
@@ -65,11 +86,59 @@ capability_map:
   skills:
     - content-os-creative
     - content-os-product-launch-video
+    - content-os-core
     - dev-writing-plans
   assets:
     - brief-campaign-map-v1
+    - campaign-charter-v1
+    - executive-presentation-v1
     - ab-concepts-v1
     - definition-of-ready-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Interpretar intención, audiencia, objetivo y evidencia.'
+    inputs: [intent-envelope, claim-register-v1, opportunity-map-v1]
+    primary_skill: content-os-creative
+    optional_skills: [dev-writing-plans]
+    verifier: RT-09
+    outputs: [brief-campaign-map-v1, campaign-charter-v1]
+    template_id: TPL-P03-DELIVERABLE-V1
+    gate: G13
+    stop_rule: 'Formular como máximo tres preguntas; volver a P02 si falta evidencia.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
+  - step_id: S02
+    purpose: 'Elegir arquitectura de pieza, serie o campaña.'
+    inputs: [brief-campaign-map-v1]
+    primary_skill: dev-writing-plans
+    optional_skills: [content-os-product-launch-video]
+    verifier: RT-09
+    outputs: [brief-campaign-map-v1]
+    template_id: TPL-P03-DELIVERABLE-V1
+    gate: G13
+    stop_rule: 'Reducir a pieza única si la oportunidad no sostiene una campaña.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
+  - step_id: S03
+    purpose: 'Definir conceptos A/B, riesgos y criterios de éxito.'
+    inputs: [brief-campaign-map-v1]
+    primary_skill: content-os-creative
+    optional_skills: [content-os-product-launch-video]
+    verifier: RT-09
+    outputs: [ab-concepts-v1, executive-presentation-v1]
+    template_id: TPL-P03-DELIVERABLE-V1
+    gate: G13
+    stop_rule: 'Bloquear conceptos que alteren claims o excedan restricciones.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 9000, max_tokens: 15000}
+  - step_id: S04
+    purpose: 'Comprobar Definition of Ready y solicitar decisión.'
+    inputs: [brief-campaign-map-v1, ab-concepts-v1]
+    primary_skill: dev-writing-plans
+    optional_skills: [content-os-core]
+    verifier: RT-09
+    outputs: [definition-of-ready-v1]
+    template_id: TPL-P03-DELIVERABLE-V1
+    gate: MW_BRIEF_APPROVED
+    stop_rule: 'Detener antes de producir hasta recibir aprobación inequívoca del brief.'
+    context_budget: {target_files: 10, max_files: 16, target_tokens: 10000, max_tokens: 16000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
