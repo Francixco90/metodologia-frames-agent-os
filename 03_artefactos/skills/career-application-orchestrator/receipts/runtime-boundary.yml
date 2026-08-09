@@ -1,0 +1,19 @@
+schema_version: 1
+receipt_id: career-application-orchestrator-runtime-boundary-v1
+skill_id: career-application-orchestrator
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+submission_authority: false
+private_state_required: true
+maximum_blocking_questions: 3
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
+runtime_status:
+  routing: active_local
+  brief_generation: active_local
+  specialist_dispatch: active_local
+  live_search: not_promoted
+  assisted_fill: not_promoted
+  authorized_submit: not_promoted
+stop_on: [captcha, otp, legal_agreement, sensitive_question, recorded_interview, stale_hash]

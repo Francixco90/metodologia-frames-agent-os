@@ -1685,7 +1685,22 @@ entries:
     production_runtime_status: local_governance_only
     publication_authority: false
     tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
+  - skill_id: career-application-orchestrator
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: f546eb7e48ff2995839bd29fbf66bdbb4ee6f0020874925fd75635dc3da8018c
+    package_manifest_sha256: cae4cb9554cd97d06d65571f9d6277bebbb187347f3329be560fa281af14fc15
+    lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
+    dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-application-orchestrator/scripts/check-skill.mjs]
 events:
+  - {event_id: EVT-SKL-CAO-H03-001, event_order: 1, skill_id: career-application-orchestrator, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CAO-H03-002, event_order: 2, skill_id: career-application-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CAO-H03-003, event_order: 3, skill_id: career-application-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CAO-H03-004, event_order: 4, skill_id: career-application-orchestrator, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-FTO-H03-001, event_order: 1, skill_id: frames-token-efficiency-orchestrator, from: null, to: candidate, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-002, event_order: 2, skill_id: frames-token-efficiency-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-FTEO-PRODUCER}
   - {event_id: EVT-SKL-FTO-H03-003, event_order: 3, skill_id: frames-token-efficiency-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-FTEO-INTEGRATION}
