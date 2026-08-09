@@ -5,7 +5,7 @@ import {relative, resolve, sep} from 'node:path';
 import {parse} from 'yaml';
 
 export const H02_LOCK_SHA256 = 'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82';
-export const H03_LOCK_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-005.yml';
+export const H03_LOCK_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-006.yml';
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const fileSha256 = (root, ref) => sha256(readFileSync(resolve(root, ref)));
@@ -34,8 +34,8 @@ export const verifyApprovedH03LockSuccession = (
 
   if (
     receipt.schema_version !== 'dependency-lock-succession-v1' ||
-    receipt.receipt_id !== 'H03-LOCK-SUCCESSION-005' ||
-    receipt.supersedes_receipt_id !== 'H03-LOCK-SUCCESSION-004' ||
+    receipt.receipt_id !== 'H03-LOCK-SUCCESSION-006' ||
+    receipt.supersedes_receipt_id !== 'H03-LOCK-SUCCESSION-005' ||
     receipt.approval_phrase !== 'APRUEBO HITO H-03' ||
     receipt.previous?.lock_sha256 !== (previousLockSha256 ?? currentLockSha256) ||
     receipt.current?.lock_sha256 !== currentLockSha256 ||

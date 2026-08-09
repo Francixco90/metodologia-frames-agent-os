@@ -12,7 +12,7 @@ describe('Skill Systems project-local tools', () => {
   it('keeps package inventory UNKNOWN without a material Skill Case', async () => {
     const result = await runSkillSystemCli('inspect', ['--check'], root);
     expect(result).toMatchObject({status: 'UNKNOWN', coverage_gap: 'SKILL_SYSTEM_CASE_REQUIRED'});
-    expect(result.packages).toHaveLength(8);
+    expect(result.packages).toHaveLength(9);
   });
 
   it('binds inspection to a material Skill Case', async () => {

@@ -74,3 +74,12 @@ skills:
     inputs: [portable-skill-contract, runtime-capabilities]
     outputs: [runtime-adapter, capability-report]
     stop: Codex, Claude, Gemini y ChatGPT permanecen UNKNOWN sin HOST_BEHAVIOR material.
+  - id: skill-security-auditor
+    code: SSAU
+    effect: read_only
+    trigger: auditar autoridad secretos prompt injection supply chain paths efectos o sandbox de una skill
+    responsibility: Ejecutar revisión adversarial con contratos Frames y un segundo oráculo PIVOTE sin corregir el candidate auditado.
+    workflow_steps: [S05, S07]
+    inputs: [skill-candidate, static-validation-report, pivote-oracle-selection]
+    outputs: [security-review-report, dual-oracle-review-v1]
+    stop: Cualquier UNKNOWN conflicto sin resolver o expansión de autoridad bloquea.
