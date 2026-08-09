@@ -1338,7 +1338,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: d78e1417137c05b9f2018dfe7d68daa2ec7b6000a6e94632e8169f668a80be0f
-    package_manifest_sha256: ebbf1514a2d37223e300c374935705872d9fb70b651e345e217f35f7cf2ebf7e
+    package_manifest_sha256: 359a0426397cb880e9091acc15485891996a3fb501e8e75b5d8521d4923ae7f3
     lineage_ref: skills/context-restore/LINEAGE.yml
     dependency_receipt_ref: skills/context-restore/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1426,7 +1426,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 27b94aa2b80e75809ffc4ca06214e4f98373b4e2653953e7439b5829332d9a3f
-    package_manifest_sha256: 7305194e413f2145362d6a2791065c5f3f05e9d51d3952edaa837774c46adcba
+    package_manifest_sha256: 6b0aa9ec8f9f64bff8325a1487c30e2bece99a82eb3a49b0add4772d272ffc9a
     lineage_ref: skills/context-teammates/LINEAGE.yml
     dependency_receipt_ref: skills/context-teammates/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
