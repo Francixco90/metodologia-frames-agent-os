@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación." />
+    <meta name="author" content="MetodologIA" />
+    <meta name="application-name" content="Frames · MetodologIA" />
+    <meta name="generator" content="Frames · MetodologIA" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#122562" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#081433" />
+    <meta name="frames:document-type" content="deliverable" />
+    <meta name="frames:schema-version" content="frames-deliverable-v1" />
+    <meta name="frames:model-id" content="brief-campaign-map-v1" />
+    <meta name="frames:workflow-id" content="P03" />
+    <meta name="frames:content-sha256" content="00f72647fdf525ae4b728c56dc7525fd64bd8e4841648994fba0cb4fe9bf62d9" />
+    <meta name="frames:state" content="DRAFT" />
+    <meta name="frames:next-gate" content="MW_BRIEF_APPROVED" />
+    <meta name="frames:source-count" content="6" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Brief y mapa de campaña · Template · MetodologIA" />
+    <meta property="og:description" content="Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación." />
+    <meta name="twitter:card" content="summary" />
+    <title>Brief y mapa de campaña · Template · MetodologIA</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --gold: #ffd700;
+        --blue: #137dc5;
+        --bg: #ffffff;
+        --surface: #f0f4f8;
+        --card: #ffffff;
+        --text: #122562;
+        --muted: #42526e;
+        --border: #d9e2ec;
+        --shadow: 0 12px 32px rgb(18 37 98 / 10%);
+      }
+      [data-theme='dark'] {
+        --bg: #081433;
+        --surface: #10234d;
+        --card: #122562;
+        --text: #ffffff;
+        --muted: #d9e2ec;
+        --border: #36558c;
+        --shadow: 0 12px 32px rgb(0 0 0 / 28%);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: 'Montserrat', 'Avenir Next', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.65;
+      }
+      a,
+      button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        left: 1rem;
+        top: -6rem;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        background: var(--blue);
+        border-radius: 999px;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+      header {
+        padding: clamp(2.5rem, 7vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+        color: #ffffff;
+        background: var(--navy);
+      }
+      .eyebrow,
+      .note {
+        font-family: 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.08em;
+      }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      h1 {
+        max-width: 18ch;
+        margin-bottom: 1rem;
+        font-size: clamp(2.25rem, 7vw, 5.5rem);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0.55rem 1rem;
+        border: 1px solid rgb(255 255 255 / 45%);
+        border-radius: 999px;
+      }
+      #theme-toggle {
+        margin-top: 1.5rem;
+        padding: 0.6rem 1rem;
+        color: var(--navy);
+        background: var(--gold);
+        border: 0;
+        border-radius: 999px;
+        font:
+          700 1rem 'Montserrat',
+          sans-serif;
+        cursor: pointer;
+      }
+      main {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 3rem 0 5rem;
+      }
+      .toc {
+        width: min(1120px, calc(100% - 2.5rem));
+        margin: -1.5rem auto 2rem;
+        padding: 1.25rem;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+      .toc strong {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-family: 'Poppins', 'Avenir Next', Arial, sans-serif;
+      }
+      .toc ol {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.35rem 1.5rem;
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .toc a {
+        display: inline-flex;
+        align-items: center;
+        color: var(--blue);
+        font-weight: 700;
+        text-underline-offset: 0.2em;
+      }
+      .governance-strip {
+        padding: 0.8rem 1.25rem;
+        color: #ffffff;
+        background: var(--blue);
+        text-align: center;
+        font-family: 'Trebuchet MS', sans-serif;
+        font-weight: 700;
+      }
+      section {
+        position: relative;
+        margin: 0 0 1.25rem;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+      section h2 {
+        padding-left: 1rem;
+        border-left: 6px solid var(--gold);
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .step-index {
+        position: absolute;
+        right: 1.25rem;
+        top: 1rem;
+        color: var(--blue);
+        font:
+          700 0.85rem 'Trebuchet MS',
+          sans-serif;
+      }
+      .section-body {
+        color: var(--muted);
+      }
+      .section-body strong,
+      .section-body h3 {
+        color: var(--text);
+      }
+      code,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+      code {
+        padding: 0.15rem 0.35rem;
+        background: var(--surface);
+        border-radius: 6px;
+      }
+      pre {
+        overflow: auto;
+        padding: 1rem;
+        background: var(--surface);
+        border-radius: 16px;
+      }
+      .brief-diagram {
+        width: 100%;
+        height: auto;
+        color: var(--navy);
+      }
+      .brief-diagram rect {
+        fill: var(--surface);
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram line {
+        stroke: var(--blue);
+        stroke-width: 2;
+      }
+      .brief-diagram path {
+        fill: var(--blue);
+      }
+      .brief-diagram text {
+        fill: var(--text);
+        font:
+          700 14px 'Montserrat',
+          sans-serif;
+      }
+      footer {
+        padding: 2rem 1.25rem;
+        color: var(--muted);
+        background: var(--surface);
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        main {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.25rem;
+        }
+        section {
+          margin: 0;
+        }
+        section:nth-child(1),
+        section:nth-child(11),
+        section:nth-child(12) {
+          grid-column: 1 / -1;
+        }
+      }
+      @media (min-width: 1280px) {
+        header {
+          padding-inline: max(6rem, calc((100vw - 1120px) / 2));
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+      @media print {
+        :root {
+          --bg: #ffffff;
+          --card: #ffffff;
+          --text: #122562;
+          --muted: #263b66;
+        }
+        #theme-toggle,
+        .skip-link,
+        .toc {
+          display: none;
+        }
+        header {
+          padding: 1rem 0;
+          color: var(--navy);
+          background: #ffffff;
+        }
+        .eyebrow {
+          color: var(--navy);
+        }
+        main {
+          display: block;
+          width: 100%;
+          padding: 0;
+        }
+        section {
+          break-inside: avoid;
+          margin-bottom: 0.75rem;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#deliverable-content">Saltar al entregable</a>
+    <header>
+      <div class="eyebrow">MetodologIA · Entregable canónico</div>
+      <h1>Brief y mapa de campaña · Template</h1>
+      <div class="meta">
+        <span class="pill">DELIV-P03-BRIEF-CAMPAIGN-MAP</span>
+        <span class="pill">Estado: DRAFT</span>
+        <span class="pill">Gate: MW_BRIEF_APPROVED</span>
+      </div>
+      <button id="theme-toggle" type="button" aria-pressed="false">Cambiar tema</button>
+    </header>
+    <div class="governance-strip" role="note">
+      RENDERED_DRAFT ≠ HUMAN_APPROVED ≠ READY ≠ PUBLISHED
+    </div>
+    <nav class="toc" aria-label="Contenido del documento"><strong>En este documento</strong><ol><li><a href="#section-resultado-y-decision">Resultado y decisión</a></li><li><a href="#section-audiencia-y-uso">Audiencia y uso</a></li><li><a href="#section-entradas-evidencia-y-supuestos">Entradas, evidencia y supuestos</a></li><li><a href="#section-contenido-estructurado">Contenido estructurado</a></li><li><a href="#section-componentes-activos-y-prompts">Componentes, activos y prompts</a></li><li><a href="#section-secuencia-hitos-y-dependencias">Secuencia, hitos y dependencias</a></li><li><a href="#section-skills-ownership-y-handoffs">Skills, ownership y handoffs</a></li><li><a href="#section-riesgos-limites-y-casos-borde">Riesgos, límites y casos borde</a></li><li><a href="#section-criterios-de-aceptacion-y-qa">Criterios de aceptación y QA</a></li><li><a href="#section-estado-lineage-y-siguiente-gate">Estado, lineage y siguiente gate</a></li></ol></nav>
+    <main id="deliverable-content" data-content-sha256="00f72647fdf525ae4b728c56dc7525fd64bd8e4841648994fba0cb4fe9bf62d9"><section id="section-resultado-y-decision" data-brief-section="Resultado y decisión" data-rendered-sha256="d6ebd7cd82843385bcea870c63e05fa690afd9e446c81eb7f351cc4b0d41bdcc"><span class="step-index" aria-hidden="true">01</span>
+<h2>Resultado y decisión</h2>
+<div class="section-body"><p>Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.</p>
+<p>Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación. Decisión pendiente en MW_BRIEF_APPROVED; este DRAFT no concede aprobación.</p></div></section>
+<section id="section-audiencia-y-uso" data-brief-section="Audiencia y uso" data-rendered-sha256="ce971d4b633a140e9a4964d0f091bad4c8226606789335c1f4cf858e225c8083"><span class="step-index" aria-hidden="true">02</span>
+<h2>Audiencia y uso</h2>
+<div class="section-body"><p>Precisar quién usa el entregable, para qué decisión y quién lo consume después.</p>
+<p>Cliente, sponsor y equipo creativo. Consumidores: P04, P05, human. Foco: objetivo, audiencia, arquitectura de pieza, alternativas y decisión.</p></div></section>
+<section id="section-entradas-evidencia-y-supuestos" data-brief-section="Entradas, evidencia y supuestos" data-rendered-sha256="0fc467dfcda3c5b107c25564c780bcb64c89fca8d2f9da0638555cc890531f4a"><span class="step-index" aria-hidden="true">03</span>
+<h2>Entradas, evidencia y supuestos</h2>
+<div class="section-body"><p>Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.</p>
+<p>Inputs: intent-envelope, claim-register-v1, opportunity-map-v1, brief-campaign-map-v1. Cada decisión estratégica debe citar el input que la habilita.</p></div></section>
+<section id="section-contenido-estructurado" data-brief-section="Contenido estructurado" data-rendered-sha256="bd119d15fd1e93bde43a444ecf19095717e8ff7a0da7d6f4632e9935b51ec278"><span class="step-index" aria-hidden="true">04</span>
+<h2>Contenido estructurado</h2>
+<div class="section-body"><p>Exponer cada campo contractual sin completar valores desconocidos por inferencia.</p>
+<ul>
+<li>request: ⟦UNKNOWN:request⟧</li>
+<li>audience: ⟦UNKNOWN:audience⟧</li>
+<li>objective: ⟦UNKNOWN:objective⟧</li>
+<li>evidence: ⟦UNKNOWN:evidence⟧</li>
+<li>architecture: ⟦UNKNOWN:architecture⟧</li>
+<li>deliverables: ⟦UNKNOWN:deliverables⟧</li>
+<li>acceptance: ⟦UNKNOWN:acceptance⟧</li>
+</ul></div></section>
+<section id="section-componentes-activos-y-prompts" data-brief-section="Componentes, activos y prompts" data-rendered-sha256="fc0afbe14f9b388b033d20e87f6580c3d4247d03d271d7c1823cb08aa8c819ea"><span class="step-index" aria-hidden="true">05</span>
+<h2>Componentes, activos y prompts</h2>
+<div class="section-body"><p>Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.</p>
+<p>Formatos: md, html, pdf. Familias: image, miniclip, graphic, carousel, story, presentation. Foco: objetivo, audiencia, arquitectura de pieza, alternativas y decisión.</p></div></section>
+<section id="section-secuencia-hitos-y-dependencias" data-brief-section="Secuencia, hitos y dependencias" data-rendered-sha256="b6a481c3c3a07af9f8ac0a5a6252fc72b638785fc4acb81e8099adb506506de1"><span class="step-index" aria-hidden="true">06</span>
+<h2>Secuencia, hitos y dependencias</h2>
+<div class="section-body"><p>Vincular los pasos productores, sus dependencias y sus condiciones de parada.</p>
+<ul>
+<li>S01: Interpretar intención, audiencia, objetivo y evidencia. Stop: Formular como máximo tres preguntas; volver a P02 si falta evidencia.</li>
+<li>S02: Elegir arquitectura de pieza, serie o campaña. Stop: Reducir a pieza única si la oportunidad no sostiene una campaña.</li>
+</ul></div></section>
+<section id="section-skills-ownership-y-handoffs" data-brief-section="Skills, ownership y handoffs" data-rendered-sha256="67bd2dd3a5abb75069a37b2c1e1597f2bedab17853d271678ba77b7f90e41df1"><span class="step-index" aria-hidden="true">07</span>
+<h2>Skills, ownership y handoffs</h2>
+<div class="section-body"><p>Declarar skill principal, apoyos, verifier y consumidores del handoff.</p>
+<ul>
+<li>S01: owner content-os-creative; apoyos dev-writing-plans; verifier RT-09.</li>
+<li>S02: owner dev-writing-plans; apoyos content-os-product-launch-video; verifier RT-09.</li>
+</ul></div></section>
+<section id="section-riesgos-limites-y-casos-borde" data-brief-section="Riesgos, límites y casos borde" data-rendered-sha256="f4d119dfc9a135d4e1f637fe32566dc2acabd084a18a27b5d5f8080e49a1bf11"><span class="step-index" aria-hidden="true">08</span>
+<h2>Riesgos, límites y casos borde</h2>
+<div class="section-body"><p>Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.</p>
+<p>Bloquear estrategia sin objetivo, audiencia o suficiencia de evidencia. UNKNOWN conserva DRAFT/BLOCKED; sin publicación.</p></div></section>
+<section id="section-criterios-de-aceptacion-y-qa" data-brief-section="Criterios de aceptación y QA" data-rendered-sha256="9e8f10a8ed97a8d2c7b0d7fc3df356518f1400010601a5990b339ae220490edd"><span class="step-index" aria-hidden="true">09</span>
+<h2>Criterios de aceptación y QA</h2>
+<div class="section-body"><p>Convertir campos, gate y evidencia requerida en comprobaciones observables.</p>
+<p>Campos: request, audience, objective, evidence, architecture, deliverables, acceptance. Gate: MW_BRIEF_APPROVED.</p></div></section>
+<section id="section-estado-lineage-y-siguiente-gate" data-brief-section="Estado, lineage y siguiente gate" data-rendered-sha256="077b742a86f1a15f96afc599e0cea5f3191a9eb7371ca2e8256358fdb12249c5"><span class="step-index" aria-hidden="true">10</span>
+<h2>Estado, lineage y siguiente gate</h2>
+<div class="section-body"><p>Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.</p>
+<p>P03 → P04, P05, human. DRAFT; gate MW_BRIEF_APPROVED.</p></div></section></main>
+    <script id="frames-deliverable-data" type="application/json">
+      {"frontmatter":{"audience":"Cliente, sponsor y equipo creativo.","companion_for":null,"content_sha256":"00f72647fdf525ae4b728c56dc7525fd64bd8e4841648994fba0cb4fe9bf62d9","deliverable_class":"strategy","deliverable_id":"brief-campaign-map-v1","display_name":"Brief y mapa de campaña · Template","fields":[{"field_id":"request","label":"request","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:request⟧","value_type":"text"},{"field_id":"audience","label":"audience","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:audience⟧","value_type":"text"},{"field_id":"objective","label":"objective","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:objective⟧","value_type":"text"},{"field_id":"evidence","label":"evidence","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:evidence⟧","value_type":"text"},{"field_id":"architecture","label":"architecture","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:architecture⟧","value_type":"text"},{"field_id":"deliverables","label":"deliverables","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:deliverables⟧","value_type":"text"},{"field_id":"acceptance","label":"acceptance","source_refs":[],"status":"unknown","value":"⟦UNKNOWN:acceptance⟧","value_type":"text"}],"formats":["md","html","pdf"],"identity":{"brand":"MetodologIA","owner":"Arquitectura editorial"},"instance_id":"DELIV-P03-BRIEF-CAMPAIGN-MAP","next_gate":"MW_BRIEF_APPROVED","piece_families":["image","miniclip","graphic","carousel","story","presentation"],"purpose":"Convertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación.","schema_version":"frames-deliverable-v1","skills":["content-os-creative","dev-writing-plans","content-os-product-launch-video"],"sources":[{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml","rights":"cleared","sha256":"54ae8fd7dedbc29e7159817fec55c538f02a6a7a9cdfc82ede8240fc89349caa","source_id":"generator-definitions"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-profiles.yml","rights":"cleared","sha256":"0d4d477752a3b9f820fef87c52e88be7f7b2756845ec4d34e1abab75a9ed9738","source_id":"generator-profiles"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/deliverable-template-registry.yml","rights":"cleared","sha256":"1b02aebf7bacfe98b3acf783db4957f68da2096d1ac0aa9d93006f3da0bf6c62","source_id":"generator-template-registry"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/brief-document-template.html","rights":"cleared","sha256":"158d89afc64f9d3c2573acda17fc3a1afe631e5f3f6eb9378a86efc4f6c76f46","source_id":"generator-html-shell"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/_assets/metodologia-html-v7.yml","rights":"cleared","sha256":"e18e0c81140a2a25d076993b2249b987b4bb1871aab88fae422c82ae0109b7b4","source_id":"generator-design-profile"},{"authority":"verified","ref":"02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml","rights":"cleared","sha256":"ba2face5692381cdc2b946fd5b1780d4fc379b4c66aa37d2b9a5d783330b837f","source_id":"generator-workflow-p03"}],"state":"DRAFT","touchpoint":"final","workflow_id":"P03"},"sections":[{"id":"Resultado y decisión","markdown":"Expresar el resultado esperado, la decisión pendiente y el límite de autoridad.\n\nConvertir el pedido en audiencia, problema, acción, arquitectura y criterios de aceptación. Decisión pendiente en MW_BRIEF_APPROVED; este DRAFT no concede aprobación."},{"id":"Audiencia y uso","markdown":"Precisar quién usa el entregable, para qué decisión y quién lo consume después.\n\nCliente, sponsor y equipo creativo. Consumidores: P04, P05, human. Foco: objetivo, audiencia, arquitectura de pieza, alternativas y decisión."},{"id":"Entradas, evidencia y supuestos","markdown":"Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.\n\nInputs: intent-envelope, claim-register-v1, opportunity-map-v1, brief-campaign-map-v1. Cada decisión estratégica debe citar el input que la habilita."},{"id":"Contenido estructurado","markdown":"Exponer cada campo contractual sin completar valores desconocidos por inferencia.\n\n- request: ⟦UNKNOWN:request⟧\n- audience: ⟦UNKNOWN:audience⟧\n- objective: ⟦UNKNOWN:objective⟧\n- evidence: ⟦UNKNOWN:evidence⟧\n- architecture: ⟦UNKNOWN:architecture⟧\n- deliverables: ⟦UNKNOWN:deliverables⟧\n- acceptance: ⟦UNKNOWN:acceptance⟧"},{"id":"Componentes, activos y prompts","markdown":"Enumerar componentes y familias de pieza sin fabricar activos ni prompts finales.\n\nFormatos: md, html, pdf. Familias: image, miniclip, graphic, carousel, story, presentation. Foco: objetivo, audiencia, arquitectura de pieza, alternativas y decisión."},{"id":"Secuencia, hitos y dependencias","markdown":"Vincular los pasos productores, sus dependencias y sus condiciones de parada.\n\n- S01: Interpretar intención, audiencia, objetivo y evidencia. Stop: Formular como máximo tres preguntas; volver a P02 si falta evidencia.\n- S02: Elegir arquitectura de pieza, serie o campaña. Stop: Reducir a pieza única si la oportunidad no sostiene una campaña."},{"id":"Skills, ownership y handoffs","markdown":"Declarar skill principal, apoyos, verifier y consumidores del handoff.\n\n- S01: owner content-os-creative; apoyos dev-writing-plans; verifier RT-09.\n- S02: owner dev-writing-plans; apoyos content-os-product-launch-video; verifier RT-09."},{"id":"Riesgos, límites y casos borde","markdown":"Registrar el riesgo dominante, límites de uso y comportamiento fail-closed.\n\nBloquear estrategia sin objetivo, audiencia o suficiencia de evidencia. UNKNOWN conserva DRAFT/BLOCKED; sin publicación."},{"id":"Criterios de aceptación y QA","markdown":"Convertir campos, gate y evidencia requerida en comprobaciones observables.\n\nCampos: request, audience, objective, evidence, architecture, deliverables, acceptance. Gate: MW_BRIEF_APPROVED."},{"id":"Estado, lineage y siguiente gate","markdown":"Conservar DRAFT, lineage del workflow y siguiente gate sin autoaprobar.\n\nP03 → P04, P05, human. DRAFT; gate MW_BRIEF_APPROVED."}]}
+    </script>
+    <footer class="note">Proyección determinista del entregable Markdown · 00f72647fdf525ae4b728c56dc7525fd64bd8e4841648994fba0cb4fe9bf62d9</footer>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector('#theme-toggle');
+        let stored = null;
+        try {
+          stored = localStorage.getItem('metodologia-theme');
+        } catch {}
+        if (stored === 'dark') root.dataset.theme = 'dark';
+        button?.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+        button?.addEventListener('click', () => {
+          const dark = root.dataset.theme !== 'dark';
+          root.dataset.theme = dark ? 'dark' : 'light';
+          button.setAttribute('aria-pressed', String(dark));
+          try {
+            localStorage.setItem('metodologia-theme', root.dataset.theme);
+          } catch {}
+        });
+      })();
+    </script>
+  </body>
+</html>
