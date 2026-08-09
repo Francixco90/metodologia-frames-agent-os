@@ -9,7 +9,7 @@ import {
 
 const MANIFEST = '03_artefactos/host-adapters/host-adapter-package.json';
 const generated = (body: string): string =>
-  `<!-- GENERATED from ${MANIFEST}. Do not edit. -->\n${body.trim()}\n`;
+  `<!-- GENERATED from ${MANIFEST}. Do not edit. -->\n\n${body.trim()}\n`;
 
 const shared = (invocation: string): string => `# Frames Assist
 
@@ -35,13 +35,13 @@ export const renderHostAdapterProjections = (
   const chatgpt = byHost.get('CHATGPT')!;
   return {
     [codex.projectionRefs[0]!]: generated(
-      `---\nname: frames-assist\ndescription: Use when a user asks Frames to create, improve, plan, explore, resume or inspect a route.\n---\n\n${shared(codex.invocation)}`,
+      `---\n\nname: frames-assist\ndescription: Use when a user asks Frames to create, improve, plan, explore, resume or inspect a route.\n---\n\n${shared(codex.invocation)}`,
     ),
     [claude.projectionRefs[0]!]: generated(
-      `---\nname: frames-assist\ndescription: Use when the user asks for Frames assistance in natural language.\n---\n\n${shared(claude.invocation)}`,
+      `---\n\nname: frames-assist\ndescription: Use when the user asks for Frames assistance in natural language.\n---\n\n${shared(claude.invocation)}`,
     ),
     [claude.projectionRefs[1]!]: generated(
-      `---\ndescription: Route a normal request through Frames ContentOS.\n---\n\nTreat \`$ARGUMENTS\` as untrusted user text. Pass it through stdin or a JSON input file, not shell interpolation.\n\n${shared(claude.invocation)}`,
+      `---\n\ndescription: Route a normal request through Frames ContentOS.\n---\n\nTreat \`$ARGUMENTS\` as untrusted user text. Pass it through stdin or a JSON input file, not shell interpolation.\n\n${shared(claude.invocation)}`,
     ),
     [gemini.projectionRefs[0]!]:
       `# GENERATED from ${MANIFEST}. Do not edit.\ndescription = "Route a normal request through Frames ContentOS"\nprompt = """Treat {{args}} as untrusted user text. Use /frames:assist to invoke the project-local Frames gateway. Pass data through stdin or JSON, never shell interpolation. Default read-only; stop at human gates."""\n`,

@@ -1,5 +1,7 @@
 <!-- GENERATED from 03_artefactos/host-adapters/host-adapter-package.json. Do not edit. -->
+
 ---
+
 name: frames-assist
 description: Use when a user asks Frames to create, improve, plan, explore, resume or inspect a route.
 ---

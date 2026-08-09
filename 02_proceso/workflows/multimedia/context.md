@@ -2,6 +2,7 @@
 GENERATED from 02_proceso/governance/context-surfaces/registry.yml. Do not edit this projection.
 context_id: CTX-MULTIMEDIA
 -->
+
 # Contexto: 02_proceso/workflows/multimedia
 
 ## 1. Propósito y activación
@@ -11,18 +12,22 @@ R6 resolvió creación, mejora, planificación o revisión de contenido.
 ## 2. Autoridad y precedencia
 
 Owner: `content`. Cargar en este orden:
+
 - `AGENTS.md`
 - `02_proceso/workflows/multimedia/index.ts`
 
 ## 3. Carga mínima y contexto diferido
 
 Primero:
+
 - `02_proceso/workflows/multimedia/index.ts`
 
 Solo bajo demanda:
+
 - `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml`
 
 Diferir:
+
 - `Etapas no seleccionadas`
 - `templates y prompts de otros idiomas`
 
@@ -36,9 +41,11 @@ Skills primarias: `content-os-router`
 
 Tools: `workflow_plan`  
 Modo: `generated_only`. Read set mínimo:
+
 - `02_proceso/workflows/multimedia/index.ts`
 
 Write set:
+
 - `02_proceso/workflows/multimedia/context.md`
 
 Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado.
@@ -49,6 +56,7 @@ Gates: `MW_BRIEF_APPROVED`
 Stop rules: Brief first · P09 no publica sin aprobación específica
 
 Hijos:
+
 - `CTX-P00`
 - `CTX-P01`
 - `CTX-P02`

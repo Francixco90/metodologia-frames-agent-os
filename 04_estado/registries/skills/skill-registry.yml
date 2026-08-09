@@ -60,7 +60,7 @@ entries:
     owner: MetodologIA
     responsible_actor: skill-foundry-v2
     content_sha256: b0671a748d04cdad3b87669e0c1bcf5cc3dbbad81b7b3831275d047554fca906
-    package_manifest_sha256: 1aa943467a4cd3f5c3996553de62c083e9bd2750ff9181a6ce9c62bd2fa107cc
+    package_manifest_sha256: 6af40a793ff5ddbe07e95d1a257299d1d6bb6827d5749208d6297b4a3bd74456
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-brand-router/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal
