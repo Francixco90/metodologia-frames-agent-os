@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "3e020fd627b96bb51660a83b8f864fbfbe7334b55d50e1dd9a60b61e25d3495d",
-  "totalMarkdown": 1778,
-  "auditedAuthored": 542,
+  "repositoryTreeSha256": "1405ef588069b34edd950379c85a51f9b91033867834023093bb441fce3e64de",
+  "totalMarkdown": 1779,
+  "auditedAuthored": 543,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -82,6 +82,7 @@
       "01_intencion/guides/extend-frames.md",
       "01_intencion/guides/guided-use.md",
       "01_intencion/guides/maintain-frames.md",
+      "01_intencion/guides/skill-systems.md",
       "01_intencion/guides/technical-reference.md",
       "01_intencion/guides/troubleshooting-old-commands.md",
       "01_intencion/hyperframes/architecture.md",
@@ -3768,9 +3769,9 @@
       "sourceRef": "01_intencion/guides/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "369f2da2c816588836bd4d74ecfe1b40db9b9e9a3f94f022176521f960bb7d77",
-      "words": 352,
-      "lines": 46,
+      "sha256": "504466d3fae2192666f6e98d77a34eb9d7b7eb5833b4f29de4b706061e45bd4a",
+      "words": 363,
+      "lines": 47,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -3872,9 +3873,9 @@
       "sourceRef": "01_intencion/guides/extend-frames.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "3af660dd9c0636f0f6b7713dc79478a91639dc0801b6bfce3420805c96dc187c",
-      "words": 477,
-      "lines": 60,
+      "sha256": "19e74522230cba15104eb4605e4ae2e0fcc5b1fe320383eb877960e826ff76c0",
+      "words": 525,
+      "lines": 66,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -3935,6 +3936,32 @@
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/skill-systems.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/skill-systems.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/guides/skill-systems.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "394ba86b9f2fa7981542d0c205b3fa47e4b1bab50d4e784ddf5ffeb3adf3949f",
+      "words": 430,
+      "lines": 63,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -16378,7 +16405,7 @@
     }
   ],
   "summary": {
-    "keep": 527,
+    "keep": 528,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,
