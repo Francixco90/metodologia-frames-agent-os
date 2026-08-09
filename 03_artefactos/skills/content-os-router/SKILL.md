@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.3.0
+version: 0.4.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
@@ -17,9 +17,11 @@ con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities baj
 demanda y despacha workflows locales hash-bound. No instala, consulta la red ni
 renderiza; `content-os-core` conserva el adapter HTML→MP4.
 
-`scripts/route-intent.mjs` decide R6, R7 o R0. R6 conserva este router y P00–P09;
-R7 delega al adapter gobernado de `career-application-orchestrator` y C00–C09.
-Una señal mixta o ausente termina en R0; nunca fusiona ambos dominios.
+`scripts/route-intent.mjs` conserva la decisión compatible y añade
+`dispatchIntent()`: R6 ejecuta `routeContentIntent`, R7 ejecuta
+`routeCareerIntent`, y R0 no invoca adapter. Un locator sin `adapter_invoked` y
+`domain_intent` es planificación, no ejecución. Una señal mixta o ausente nunca
+fusiona dominios.
 
 - **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
 - **Route** — workflow Fase 3 que posee el deliverable end-to-end.
@@ -39,8 +41,15 @@ Una señal mixta o ausente termina en R0; nunca fusiona ambos dominios.
    producir, salvo autorización end-to-end inequívoca ya registrada. La distribución
    siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`.
 
+Antes de este adapter, `runFirstTurnGatewayV1` emite `AssistanceEnvelopeV1` y diferencia saludo, acción,
+ambigüedad y reanudación. Un saludo muestra **Frames ContentOS · por
+MetodologIA** y `Crear · Mejorar · Planear · Explorar` sin prime ni writes. Un
+pedido accionable omite el menú y prepara un preview del brief. Skills del plan
+permanecen `planned` hasta que un `SkillInvocationReceiptV1` las liga a actor,
+WorkOrder y outputs materiales. [CONFIG]
+
 ```bash
-node <SKILL_DIR>/scripts/route-content.mjs request.json --out work/content/content-intent.json
+node --import tsx <SKILL_DIR>/scripts/route-intent.mjs request.json
 node <SKILL_DIR>/scripts/route-audit.mjs work/content/content-intent.json --out work/content/audit --strict
 ```
 
@@ -127,18 +136,9 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
 8. **RENDERED_DRAFT != HUMAN_APPROVED.** El deliverable produce `RENDERED_DRAFT`.
    `READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
 
-## Resolve common ambiguities
-
-- Un title/logo sting/stat hit/chart hit unnarrated <10s = `content-os-motion-graphics`.
-  Un title card narrado o montaje largo = `content-os-general-video`.
-- Footage existente + captions plain = `content-os-embedded-captions`. Footage +
-  designed overlays = `talking-head-recut` (Fase 3 pendiente, fallback
-  `content-os-general-video`).
-- "Storyboard" cambia el review, no la route. Sin otra señal, `content-os-general-video`.
-- URL + "make a video from this site" = `content-os-website-to-video`. URL como
-  source material de un motion graphic short = `content-os-motion-graphics`.
-- Piece >3min = `content-os-general-video`. Length nunca overridea un port/deck/
-  caption/overlay explícito.
+Las ambigüedades de medio, duración, URL, storyboard y overlays se resuelven con
+las reglas canónicas y casos borde de `references/routes.md`; este archivo no las
+duplica.
 
 ## Critical Constraints
 

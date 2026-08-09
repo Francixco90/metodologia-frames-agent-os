@@ -1,11 +1,11 @@
 skill_id: content-os-router
-version: 0.3.0
+version: 0.4.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1 + content-intent-v2 + frames-route-decision-v1
+compatibility_contract: router-intent-v1 + content-intent-v2 + frames-route-decision-v1 + assistance-envelope-v1
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md
@@ -29,3 +29,5 @@ supported_request_types:
   - capability_dispatch
   - intent_brief_audit
   - route_resolution
+  - first_turn_assistance
+  - causal_adapter_dispatch
