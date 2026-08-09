@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 const root = process.cwd();
 const required = [
   'skills/content-os-creative/SKILL.md',
+  'skills/content-os-creative/context.md',
   'skills/content-os-creative/LINEAGE.yml',
   'skills/content-os-creative/schemas/creative-brief-v1.schema.json',
   'skills/content-os-creative/scripts/check-skill.mjs',
@@ -34,6 +35,9 @@ const runtimeCombined = ['skills/content-os-creative/examples/branded-reveal.htm
   .join('\n');
 
 for (const token of [
+  'version: 0.2.0',
+  '## 1. Activación',
+  '## 8. Handoff',
   'metodologia-brand-router',
   'BrandProfileV2',
   'VoiceProfileV2',

@@ -1,7 +1,7 @@
 ---
 name: content-os-creative
 description: This skill should be used when the user asks to "apply brand tokens to a Frames ContentOS composition", "plan story beats and narration for a video", "pick a composition pattern (PiP, title card, stats)", "audit a creative brief for lazy defaults", or "resolve MetodologIA brand profile for a composition".
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, and the metodologia-brand-router (BrandProfileV2, VoiceProfileV2, ChannelProfileV1). Offline render profile only. No external fonts, no external assets, no network.
 metadata:
@@ -11,6 +11,10 @@ metadata:
 ---
 
 # Frames ContentOS Creative
+
+## Contexto operativo
+
+Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
 
 Direction creativa **no-animacion** para composiciones HTML+GSAP de Frames ContentOS: brand
 (tokens, voz, canal), pacing (story spine, beats, rhythm), narration (script, tone,
