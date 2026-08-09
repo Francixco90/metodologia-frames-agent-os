@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93660
-    v3_rolling_adjustment_words: 5474
+    baseline_words: 93661
+    v3_rolling_adjustment_words: 5475
     original_baseline_words: 88186
-    final_words: 110813
+    final_words: 110814
     maximum_multiplier: 1.5
-    maximum_words: 140490
+    maximum_words: 140491
     actual_multiplier: 1.1831
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93660
-    v3_rolling_adjustment_words: 5474
+    baseline_words: 93661
+    v3_rolling_adjustment_words: 5475
     original_baseline_words: 88186
-    final_words: 110813
-    maximum_words: 187320
+    final_words: 110814
+    maximum_words: 187322
     word_multiplier: 1.1831
-    baseline_loc: 35137
-    v3_rolling_adjustment_loc: 2249
+    baseline_loc: 35138
+    v3_rolling_adjustment_loc: 2250
     original_baseline_loc: 32888
-    final_loc: 41573
-    maximum_loc: 70274
+    final_loc: 41574
+    maximum_loc: 70276
     loc_multiplier: 1.1832
     maximum_multiplier: 2
     status: pass
@@ -8030,8 +8030,8 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/contract/skill-foundry.contract.test.ts
       current_ref: working-tree:tests/contract/skill-foundry.contract.test.ts
       current_state: present
-      current_sha256: dd31fadda961020729723820ac8df2ff3a5d7f204489031b25e9d20329e8644f
-      current_words: 1328
+      current_sha256: 7f3c592f9e612d10493204041f8bebcf622ce1aae9d4f8ac988522d499239e64
+      current_words: 1327
       current_loc: 648
       byte_identical: false
       material_change: true
@@ -8744,9 +8744,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:vitest.config.ts
       current_ref: working-tree:vitest.config.ts
       current_state: present
-      current_sha256: 51be69ebe62e58510967d6aa8dec8b97699c58a42f707026676e2e12ed37d50b
-      current_words: 144
-      current_loc: 57
+      current_sha256: e263183cd956555aac041d920ada5d06a825a33509cc83cb4f1ab392429bd2d9
+      current_words: 146
+      current_loc: 58
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:vitest.config.ts
