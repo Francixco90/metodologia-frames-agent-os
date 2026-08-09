@@ -798,7 +798,7 @@
           "verifier": "RT-09",
           "outputs": ["verification-verdict"],
           "templateId": "",
-          "gate": "DOCS_TRANSVERSAL_COMPLETE",
+          "gate": "HM_CANDIDATE_VERIFIED",
           "stopRule": "FAIL, UNKNOWN o candidate mutable impiden continuar."
         }
       ]

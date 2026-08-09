@@ -12,7 +12,7 @@ execution_steps:
     verifier: RT-09
     inputs: [maintenance-candidate, regression-evidence]
     outputs: [verification-verdict]
-    gate: DOCS_TRANSVERSAL_COMPLETE
+    gate: HM_CANDIDATE_VERIFIED
     stop_rule: FAIL, UNKNOWN o candidate mutable impiden continuar.
 next_workflow: M05
 stop_rule: RT-09 no remedia el candidate que verifica.

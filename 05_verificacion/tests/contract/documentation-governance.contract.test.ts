@@ -1,4 +1,5 @@
 import {describe, expect, it} from 'vitest';
+import {readFileSync} from 'node:fs';
 
 import {
   DocumentationClosureReceiptV1Schema,
@@ -73,6 +74,14 @@ const closureReceipt = {
 } as const;
 
 describe('documentation governance contracts', () => {
+  it('binds the executable gate to work order, mutation profile and closure receipt', () => {
+    const commands = readFileSync('05_verificacion/scripts/commands.yaml', 'utf8');
+    const checker = readFileSync('05_verificacion/scripts/check-documentation-closure.ts', 'utf8');
+    expect(commands).toContain('scripts/check-documentation-closure.ts');
+    expect(checker).toContain('verifyWorkOrderMutationProfileV1');
+    expect(checker).toContain('verifyDocumentationClosureV1');
+    expect(checker).toContain('closureReceipt');
+  });
   it('requires every documentation surface exactly once', () => {
     expect(DocumentationImpactPlanV1Schema.parse(impactPlan)).toEqual(impactPlan);
     expect(() =>

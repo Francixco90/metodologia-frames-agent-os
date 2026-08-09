@@ -143,9 +143,11 @@ gates:
   # prettier-ignore
   - {gate: LX_BRIEF_APPROVED, label: approve local extension brief, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
-  - {gate: DOCS_TRANSVERSAL_COMPLETE, label: documentation closure material verification, command: 'node --import tsx scripts/check-documentation-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  - {gate: DOCS_TRANSVERSAL_COMPLETE, label: documentation closure material verification, command: 'node --import tsx scripts/check-documentation-closure.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: HM_CHANGE_APPROVED, label: approve harness change candidate, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: HM_CANDIDATE_VERIFIED, label: verify frozen harness candidate, command: 'pnpm check:repo', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: HM_PROMOTION_APPROVED, label: approve harness promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: high, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore

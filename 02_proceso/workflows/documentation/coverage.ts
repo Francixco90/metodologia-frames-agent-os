@@ -10,6 +10,7 @@ const authorityFiles = [
   '01_intencion/program/dag.yml',
   '02_proceso/governance/router.yml',
   '02_proceso/governance/multimedia-quality-gate.yml',
+  '05_verificacion/scripts/commands.yaml',
   '04_estado/registries/agents/agent-registry-v2.yml',
   '04_estado/registries/skills/skill-registry.yml',
   '04_estado/registries/skills/creation-v3-skill-registry.yml',

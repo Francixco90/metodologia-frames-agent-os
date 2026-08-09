@@ -3421,6 +3421,13 @@
     },
     {
       "kind": "GATE",
+      "id": "HM_CANDIDATE_VERIFIED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
       "id": "HM_CHANGE_APPROVED",
       "ref": "05_verificacion/scripts/commands.yaml",
       "scope": "CANONICAL",
@@ -6003,5 +6010,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "5d1e0aebb5b6148eddf678048fcccbf26facc89301e232deeba9744db11c03e1"
+  "sourceSha256": "c9c1d11bcd5a118dbdf0ad6e3f7cc8a1233445dbd27dd046babc5e5023d08025"
 }
