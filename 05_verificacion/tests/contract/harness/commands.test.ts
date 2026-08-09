@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 32 gates', () => {
-    expect(manifest.gates).toHaveLength(32);
+  it('declares 33 gates', () => {
+    expect(manifest.gates).toHaveLength(33);
   });
 
   it('every gate id matches ^G[0-9]{2}([A-Z_]+)?$/u or ^MW_[A-Z_]+$/u', () => {
@@ -29,6 +29,7 @@ describe('commands.yaml contract', () => {
 
   it('MW_* multimedia gates are manual, fail_closed and have command null', () => {
     const mw = [
+      'MW_BRIEF_APPROVED',
       'MW_SPEC_APPROVED',
       'MW_ASSET_REVIEW',
       'MW_EDIT_APPROVED',
@@ -41,6 +42,22 @@ describe('commands.yaml contract', () => {
       expect(gate?.fail_closed).toBe(true);
       expect(gate?.command).toBeNull();
     }
+  });
+
+  it('makes brief approval a non-executable governance boundary before production', () => {
+    const gate = manifest.gates.find((candidate) => candidate.gate === 'MW_BRIEF_APPROVED');
+
+    expect(gate).toMatchObject({
+      label: 'canonical brief approval before production',
+      command: null,
+      allowed_tools: [],
+      write_set_globs: [],
+      idempotency: true,
+      danger_level: 'medium',
+      manual: true,
+      fail_closed: true,
+      owner: 'governance',
+    });
   });
 
   it('G13-G17 are manual, fail_closed and have command null', () => {

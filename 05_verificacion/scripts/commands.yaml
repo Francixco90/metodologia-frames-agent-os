@@ -278,6 +278,17 @@ gates:
   # Never auto-passed; build.ts stops at each and requires human approval
   # per RENDERED_DRAFT != HUMAN_APPROVED. [CONFIG]
 
+  - gate: MW_BRIEF_APPROVED
+    label: canonical brief approval before production
+    command: null
+    allowed_tools: []
+    write_set_globs: []
+    idempotency: true
+    danger_level: medium
+    manual: true
+    fail_closed: true
+    owner: governance
+
   - gate: MW_SPEC_APPROVED
     label: multimedia spec approval (P05)
     command: null
