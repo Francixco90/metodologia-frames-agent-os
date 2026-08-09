@@ -1,6 +1,7 @@
 import {z} from 'zod';
 
 import {BriefSourceSchema} from './brief-v1.schema.ts';
+import {rejectPromotedDeliverablePlaceholders} from './deliverable-placeholder-policy.ts';
 import {MultimediaWorkflowIdSchema} from './workflow-v1.schema.ts';
 
 export const FRAMES_DELIVERABLE_SECTIONS = [
@@ -83,9 +84,6 @@ export const FramesDeliverableFrontmatterV1Schema = z
     next_gate: z.string().min(1).max(80),
     content_sha256: Sha256Schema,
   })
-  // Conservative evidence policy: observed requires verified material; inferred
-  // requires a hash-bound verified/user source; assumed may omit a source, but
-  // any SourceRef it declares must still resolve and may never be UNKNOWN.
   .superRefine(({fields, sources, state}, context) => {
     if (!['DRAFT', 'BLOCKED'].includes(state) && fields.some(({status}) => status === 'unknown')) {
       context.addIssue({
@@ -143,10 +141,12 @@ const DeliverableSectionsV1Schema = z
     });
   });
 
-export const FramesDeliverableV1Schema = z.strictObject({
-  frontmatter: FramesDeliverableFrontmatterV1Schema,
-  sections: DeliverableSectionsV1Schema,
-});
+export const FramesDeliverableV1Schema = z
+  .strictObject({
+    frontmatter: FramesDeliverableFrontmatterV1Schema,
+    sections: DeliverableSectionsV1Schema,
+  })
+  .superRefine(rejectPromotedDeliverablePlaceholders);
 
 export const DeliverableDefinitionV1Schema = z
   .strictObject({

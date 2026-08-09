@@ -1,14 +1,6 @@
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {
-  existsSync,
-  mkdirSync,
-  mkdtempSync,
-  readFileSync,
-  readdirSync,
-  rmSync,
-  writeFileSync,
-} from 'node:fs';
+import * as fs from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {parse, stringify} from 'yaml';
@@ -21,23 +13,16 @@ import {loadDeliverableDefinitions} from 'workflows/multimedia/_runner/deliverab
 import {createFramesDeliverableMarkdown} from 'workflows/multimedia/_runner/deliverable-model.ts';
 import {inspectOutputIntegrity} from 'workflows/multimedia/_runner/material-integrity.ts';
 import {calculateMaterialManifestHash} from 'workflows/multimedia/_runner/material-input.ts';
-import {
-  discardStagedOutputs,
-  stageWorkflowOutputs,
-} from 'workflows/multimedia/_runner/materialize.ts';
-import {
-  calculateMultimediaWorkOrderHash,
-  calculateOutputSelectionHash,
-} from 'workflows/multimedia/_runner/output-selection.ts';
+import * as materialize from 'workflows/multimedia/_runner/materialize.ts';
+import * as outputSelection from 'workflows/multimedia/_runner/output-selection.ts';
 import type {QualityGateContext} from 'workflows/multimedia/_runner/quality-gate-types.ts';
 import {runWorkflow} from 'workflows/multimedia/_runner/run.ts';
 import {isoWithOffset} from 'workflows/multimedia/_runner/workflow-loader.ts';
-
 const root = process.cwd();
-const directory = mkdtempSync(resolve(tmpdir(), 'frames-material-run-'));
+const directory = fs.mkdtempSync(resolve(tmpdir(), 'frames-material-run-'));
 const workflowDir = resolve(root, '02_proceso/workflows/multimedia/p03-crear-brief');
 const workflow = MultimediaWorkflowSchema.parse(
-  parse(readFileSync(resolve(workflowDir, 'workflow.yml'), 'utf8')),
+  parse(fs.readFileSync(resolve(workflowDir, 'workflow.yml'), 'utf8')),
 );
 const definitions = loadDeliverableDefinitions(root);
 const effectiveIds = [
@@ -49,7 +34,7 @@ const effectiveIds = [
 const originalArgv = process.argv;
 const originalExitCode = process.exitCode;
 const digestText = (text: string): string => createHash('sha256').update(text).digest('hex');
-const digestFile = (path: string): string => digestText(readFileSync(path, 'utf8'));
+const digestFile = (path: string): string => digestText(fs.readFileSync(path, 'utf8'));
 const runAt = new Date('2026-08-08T12:00:00Z');
 const sourceText = 'Fuente local verificable para la campaña.\n';
 const sourceSha = digestText(sourceText);
@@ -63,23 +48,21 @@ const declaredSources = [
     rights: 'cleared' as const,
   },
 ];
-
 afterAll(() => {
   process.argv = originalArgv;
   process.exitCode = originalExitCode;
-  rmSync(directory, {recursive: true, force: true});
+  fs.rmSync(directory, {recursive: true, force: true});
 });
-
-const prepareAuthority = (name: string, unknown = false) => {
+const prepareAuthority = (name: string, sentinel?: 'field' | 'section') => {
   const lane = resolve(directory, name);
   const materialsDir = resolve(lane, 'materials');
   const sourcesDir = resolve(lane, 'sources');
-  mkdirSync(materialsDir, {recursive: true});
-  mkdirSync(sourcesDir, {recursive: true});
-  writeFileSync(resolve(sourcesDir, 'campaign.txt'), sourceText, 'utf8');
+  fs.mkdirSync(materialsDir, {recursive: true});
+  fs.mkdirSync(sourcesDir, {recursive: true});
+  fs.writeFileSync(resolve(sourcesDir, 'campaign.txt'), sourceText, 'utf8');
   const requestPath = resolve(lane, 'request.json');
   const intentPath = resolve(lane, 'intent.yml');
-  writeFileSync(
+  fs.writeFileSync(
     requestPath,
     JSON.stringify({
       request: 'Crear una campaña para familias.',
@@ -113,11 +96,11 @@ const prepareAuthority = (name: string, unknown = false) => {
     effect_class: 'local_reversible' as const,
     publication_policy: 'forbidden' as const,
   };
-  writeFileSync(
+  fs.writeFileSync(
     workOrderPath,
     stringify({
       ...unsignedWorkOrder,
-      canonical_sha256: calculateMultimediaWorkOrderHash(unsignedWorkOrder),
+      canonical_sha256: outputSelection.calculateMultimediaWorkOrderHash(unsignedWorkOrder),
     }),
     'utf8',
   );
@@ -130,19 +113,18 @@ const prepareAuthority = (name: string, unknown = false) => {
     work_order_hash: workOrderHash,
     include_outputs: ['campaign-charter-v1'],
   };
-  writeFileSync(
+  fs.writeFileSync(
     selectionPath,
     stringify({
       ...unsignedSelection,
-      canonical_sha256: calculateOutputSelectionHash(unsignedSelection),
+      canonical_sha256: outputSelection.calculateOutputSelectionHash(unsignedSelection),
     }),
     'utf8',
   );
   const manifestOutputs = effectiveIds.map((id, index) => {
     const output = workflow.outputs.find(({deliverable_id}) => deliverable_id === id)!;
     const definition = definitions.get(id)!;
-    const state = unknown && index === 0 ? 'DRAFT' : 'RENDERED_DRAFT';
-    const markdown = createFramesDeliverableMarkdown(
+    const cleanMarkdown = createFramesDeliverableMarkdown(
       {
         schema_version: 'frames-deliverable-v1',
         instance_id: `DELIV-P03-${name.toUpperCase()}-${index + 1}`,
@@ -163,11 +145,11 @@ const prepareAuthority = (name: string, unknown = false) => {
           field_id: field,
           label: field,
           value_type: 'text' as const,
-          status: state === 'DRAFT' ? ('unknown' as const) : ('observed' as const),
-          value: state === 'DRAFT' ? 'Pendiente.' : `Contenido verificado para ${field}.`,
-          source_refs: state === 'DRAFT' ? [] : [sourceRef],
+          status: 'observed' as const,
+          value: `Contenido verificado para ${field}.`,
+          source_refs: [sourceRef],
         })),
-        state,
+        state: 'RENDERED_DRAFT',
         next_gate: definition.acceptance_gate,
       },
       FRAMES_DELIVERABLE_SECTIONS.map((section) => ({
@@ -175,8 +157,17 @@ const prepareAuthority = (name: string, unknown = false) => {
         markdown: `${section}: contenido verificado.`,
       })),
     );
+    const markdown =
+      sentinel === 'field' && index === 0
+        ? cleanMarkdown.replace('Contenido verificado para request.', '⟦UNKNOWN:request⟧')
+        : sentinel === 'section' && index === 0
+          ? cleanMarkdown.replace(
+              'Resultado y decisión: contenido verificado.',
+              'Resultado y decisión:\n\n- Campo: TODO — completar',
+            )
+          : cleanMarkdown;
     const markdownPath = resolve(materialsDir, `${id}.md`);
-    writeFileSync(markdownPath, markdown, 'utf8');
+    fs.writeFileSync(markdownPath, markdown, 'utf8');
     return {deliverable_id: id, markdown_path: `materials/${id}.md`, sha256: digestText(markdown)};
   });
   const manifestPath = resolve(lane, 'material-manifest.yml');
@@ -188,7 +179,7 @@ const prepareAuthority = (name: string, unknown = false) => {
     producer_actor_id: 'content-producer-local',
     outputs: manifestOutputs,
   };
-  writeFileSync(
+  fs.writeFileSync(
     manifestPath,
     stringify({
       ...unsignedManifest,
@@ -198,7 +189,6 @@ const prepareAuthority = (name: string, unknown = false) => {
   );
   return {lane, intentPath, workOrderPath, selectionPath, manifestPath};
 };
-
 const invoke = (
   authority: ReturnType<typeof prepareAuthority>,
   dryRun = false,
@@ -207,7 +197,7 @@ const invoke = (
   const artifactRoot = resolve(authority.lane, 'artifacts');
   const receiptsRoot = resolve(authority.lane, 'receipts');
   if (precreateReceiptRoot) {
-    mkdirSync(resolve(receiptsRoot, 'WF-P03', isoWithOffset(runAt).replace(/[:+]/gu, '-')), {
+    fs.mkdirSync(resolve(receiptsRoot, 'WF-P03', isoWithOffset(runAt).replace(/[:+]/gu, '-')), {
       recursive: true,
     });
   }
@@ -235,9 +225,8 @@ const invoke = (
   }
   return {artifactRoot, receiptsRoot, errors};
 };
-
 const integrityContext = (
-  staged: ReturnType<typeof stageWorkflowOutputs>,
+  staged: ReturnType<typeof materialize.stageWorkflowOutputs>,
   selectedIds: string[],
 ): QualityGateContext => ({
   workflowId: 'P03',
@@ -290,14 +279,17 @@ describe('causal material runner', () => {
       result.artifactRoot,
       '03_artefactos/content/multimedia/p03-crear-brief',
     );
-    expect(readdirSync(outputDir)).toHaveLength(12);
-    expect(readdirSync(outputDir).some((name) => name.includes('presentacion-ejecutiva'))).toBe(
+    expect(fs.readdirSync(outputDir)).toHaveLength(12);
+    expect(fs.readdirSync(outputDir).some((name) => name.includes('presentacion-ejecutiva'))).toBe(
       false,
     );
     const receiptLane = resolve(result.receiptsRoot, 'WF-P03');
     const receipt = MultimediaWorkflowReceiptSchema.parse(
       parse(
-        readFileSync(resolve(receiptLane, readdirSync(receiptLane)[0]!, 'receipt.yml'), 'utf8'),
+        fs.readFileSync(
+          resolve(receiptLane, fs.readdirSync(receiptLane)[0]!, 'receipt.yml'),
+          'utf8',
+        ),
       ),
     );
     expect(receipt).toMatchObject({
@@ -312,18 +304,29 @@ describe('causal material runner', () => {
 
   it('blocks a declared source when its local content no longer matches the hash', () => {
     const authority = prepareAuthority('source-drift');
-    writeFileSync(resolve(authority.lane, 'sources/campaign.txt'), 'tampered\n', 'utf8');
+    fs.writeFileSync(resolve(authority.lane, 'sources/campaign.txt'), 'tampered\n', 'utf8');
     const result = invoke(authority);
     expect(process.exitCode).toBe(1);
     expect(result.errors.join('\n')).toContain('MW-MATERIAL-SOURCE001');
-    expect(existsSync(result.artifactRoot)).toBe(false);
-    expect(existsSync(result.receiptsRoot)).toBe(false);
+    expect(fs.existsSync(result.artifactRoot)).toBe(false);
+    expect(fs.existsSync(result.receiptsRoot)).toBe(false);
   });
+
+  it.each(['field', 'section'] as const)(
+    'blocks an observed %s placeholder before artifacts or receipts',
+    (location) => {
+      const result = invoke(prepareAuthority(`sentinel-${location}`, location));
+      expect(process.exitCode).toBe(1);
+      expect(result.errors.join('\n')).toMatch(/MW-PLACEHOLDER001/u);
+      expect(fs.existsSync(result.artifactRoot)).toBe(false);
+      expect(fs.existsSync(result.receiptsRoot)).toBe(false);
+    },
+  );
 
   it('accepts omitted conditional output but rejects an extra staged output', () => {
     const selected = new Set(['campaign-charter-v1']);
-    const partial = stageWorkflowOutputs(root, workflowDir, workflow, selected);
-    const extra = stageWorkflowOutputs(
+    const partial = materialize.stageWorkflowOutputs(root, workflowDir, workflow, selected);
+    const extra = materialize.stageWorkflowOutputs(
       root,
       workflowDir,
       workflow,
@@ -333,15 +336,15 @@ describe('causal material runner', () => {
       expect(inspectOutputIntegrity(integrityContext(partial, effectiveIds)).passed).toBe(true);
       expect(inspectOutputIntegrity(integrityContext(extra, effectiveIds)).passed).toBe(false);
     } finally {
-      discardStagedOutputs(partial.tempDir);
-      discardStagedOutputs(extra.tempDir);
+      materialize.discardStagedOutputs(partial.tempDir);
+      materialize.discardStagedOutputs(extra.tempDir);
     }
   });
 
   it('validates authority in dry-run without writing artifacts or receipts', () => {
     const result = invoke(prepareAuthority('dry'), true);
     expect(process.exitCode).toBeUndefined();
-    expect(existsSync(result.artifactRoot)).toBe(false);
-    expect(existsSync(result.receiptsRoot)).toBe(false);
+    expect(fs.existsSync(result.artifactRoot)).toBe(false);
+    expect(fs.existsSync(result.receiptsRoot)).toBe(false);
   });
 });
