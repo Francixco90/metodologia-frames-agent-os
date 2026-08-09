@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {parse} from 'yaml';
 
 import type {QualityGateContext} from './quality-gate-types.ts';
+import {resolveEffectiveOutputs} from './effective-outputs.ts';
 import {parseFramesDeliverableMarkdown} from './deliverable-model.ts';
 import {verifyDeliverableParity} from './deliverable-parity.ts';
 
@@ -75,7 +76,9 @@ export const inspectOutputIntegrity = (
   const receiptOutputs = Array.isArray(ctx.receiptPayload.outputs)
     ? (ctx.receiptPayload.outputs as ReceiptOutput[])
     : [];
-  const declared = ctx.workflowParsed.outputs;
+  const effective = resolveEffectiveOutputs(ctx.workflowParsed, ctx.effectiveOutputIds);
+  if (!effective.passed) return effective;
+  const declared = effective.outputs;
   const declaredArtifacts = declared.map(({artifact}) => artifact);
   const receiptArtifacts = receiptOutputs.map(({artifact}) => String(artifact));
   const receiptRefs = receiptOutputs.map(({ref}) => String(ref));
@@ -95,7 +98,7 @@ export const inspectOutputIntegrity = (
         receiptArtifacts[index] === output.artifact && receiptRefs[index] === resolutionRefs[index],
     );
   if (!cardinality || !bijective) {
-    return {passed: false, detail: 'declared, receipt and staged outputs are not bijective'};
+    return {passed: false, detail: 'effective, receipt and staged outputs are not bijective'};
   }
 
   try {

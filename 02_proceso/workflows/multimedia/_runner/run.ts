@@ -1,11 +1,13 @@
-import {existsSync, readFileSync} from 'node:fs';
+import {existsSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 import type {MultimediaWorkflowReceipt} from '../../../../05_verificacion/scripts/lib/multimedia-workflow-receipt-schema.ts';
 import {evaluateQualityGate} from './quality-gate.ts';
 import {discardStagedOutputs, promoteWorkflowOutputs, stageWorkflowOutputs} from './materialize.ts';
+import {resolveMaterialInput} from './material-input.ts';
 import {resolveOutputSelection} from './output-selection.ts';
 import {buildGateFailReceipt, validateReceipt, writeReceipt} from './receipt-io.ts';
+import {buildRunReceiptPayload} from './run-receipt.ts';
 import {
   MULTIMEDIA_DIR,
   RECEIPTS_DIR,
@@ -13,12 +15,13 @@ import {
   isoWithOffset,
   loadWorkflowContract,
   parseArgs,
-  sha256,
 } from './workflow-loader.ts';
 
 const relativeToRoot = (path: string): string => path.replace(`${ROOT}/`, '');
 
-export const runWorkflow = (workflowId: string): void => {
+export type RunWorkflowOptions = {artifactRoot?: string; receiptsRoot?: string; now?: Date};
+
+export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}): void => {
   const args = parseArgs(process.argv);
   const id = workflowId || args.workflow;
   if (!/^P[0-9]{2}$/u.test(id)) {
@@ -32,7 +35,7 @@ export const runWorkflow = (workflowId: string): void => {
     process.exitCode = 1;
     return;
   }
-  const {workflow, frontmatter, taskTemplate} = contract;
+  const {workflow, taskTemplate} = contract;
   let selection: ReturnType<typeof resolveOutputSelection>;
   try {
     selection = resolveOutputSelection(args.outputSelection, workflow, {
@@ -47,6 +50,22 @@ export const runWorkflow = (workflowId: string): void => {
   const plannedOutputs = workflow.outputs.filter(
     ({deliverable_id, required}) => required || selection.selected?.has(deliverable_id),
   );
+  let materialInput: ReturnType<typeof resolveMaterialInput>;
+  try {
+    materialInput = resolveMaterialInput(
+      args.materialManifest,
+      workflow,
+      plannedOutputs.map(({deliverable_id}) => deliverable_id),
+      {
+        ...(args.intent === undefined ? {} : {intentPath: args.intent}),
+        ...(args.workOrder === undefined ? {} : {workOrderPath: args.workOrder}),
+      },
+    );
+  } catch (error) {
+    console.error(`[FAIL] ${id}: ${String(error)}`);
+    process.exitCode = 1;
+    return;
+  }
   if (args.dryRun) {
     console.info(
       `[DRY] ${id} ${workflow.command} validated; planned_outputs=${plannedOutputs.length}; writes=0`,
@@ -54,63 +73,41 @@ export const runWorkflow = (workflowId: string): void => {
     console.info('  STOP before materialization, receipt, state or gate mutation.');
     return;
   }
+  if (!materialInput) {
+    console.error(`[FAIL] ${id}: MW-MATERIAL-AUTHORITY001 --material-manifest is required`);
+    process.exitCode = 1;
+    return;
+  }
 
   const gate = workflow.gates[0] ?? 'G14';
-  const ranAt = isoWithOffset(new Date());
-  const staged = stageWorkflowOutputs(ROOT, contract.dir, workflow, selection.selected);
+  const ranAt = isoWithOffset(options.now ?? new Date());
+  const artifactRoot = options.artifactRoot ?? ROOT;
+  const staged = stageWorkflowOutputs(
+    artifactRoot,
+    contract.dir,
+    workflow,
+    selection.selected,
+    materialInput.materials,
+    ROOT,
+  );
   const noRegressionChecklistPath = resolve(
     MULTIMEDIA_DIR,
     '_assets',
     'no-regression-checklist.md',
   );
-  const coverageGaps: string[] = [];
-  const receiptPayload = {
-    schema_version: 'multimedia-workflow-receipt-v1',
-    workflow_id: workflow.workflow_id,
-    command: workflow.command,
-    mode: workflow.modes[0]?.id ?? 'single',
-    inputs: [
-      ...[
-        ['workflow.yml', contract.workflowPath],
-        ['prompt-spec.md', contract.promptSpecPath],
-        ['task-template.yaml', contract.taskTemplatePath],
-      ].map(([artifact, path]) => ({
-        artifact: artifact ?? '',
-        ref: relativeToRoot(path ?? ''),
-        sha256: sha256(readFileSync(path ?? '')),
-      })),
-      ...selection.inputs,
-    ],
-    outputs: staged.outputs.map((output) => ({
-      artifact: output.artifact,
-      ref: output.ref,
-      sha256: output.sha256,
-      required: output.required,
-      materialized: output.materialized,
-      companions: output.companions.map(({format, ref, sha256, materialized}) => ({
-        format,
-        ref,
-        sha256,
-        materialized,
-      })),
-    })),
-    work_product_state_from: 'INTAKE',
-    work_product_state_to: 'RENDERED_DRAFT',
+  const receiptPayload = buildRunReceiptPayload({
+    workflow,
+    workflowPath: contract.workflowPath,
+    promptSpecPath: contract.promptSpecPath,
+    taskTemplatePath: contract.taskTemplatePath,
+    stagedOutputs: staged.outputs,
+    authorityInputs: [...selection.inputs, ...materialInput.inputs],
     gate,
-    actor: 'qa',
-    ran_at: ranAt,
-    append_only: true,
-    human_approved: false,
-    dry_run: false,
-    no_regression_sha256: sha256(readFileSync(noRegressionChecklistPath)),
-    evidence_tags: ['[CONFIG]'],
-    scope: {
-      workflow_id: workflow.workflow_id,
-      mode: workflow.modes[0]?.id ?? 'single',
-      effect_class: 'local_reversible',
-    },
-    coverage_gaps: coverageGaps,
-  };
+    actor: 'local-material-ingestor',
+    ranAt,
+    noRegressionChecklistPath,
+    relativeToRoot,
+  });
 
   let receipt: MultimediaWorkflowReceipt;
   try {
@@ -121,7 +118,11 @@ export const runWorkflow = (workflowId: string): void => {
     process.exitCode = 1;
     return;
   }
-  const receiptDir = resolve(RECEIPTS_DIR, `WF-${id}`, ranAt.replace(/[:+]/gu, '-'));
+  const receiptDir = resolve(
+    options.receiptsRoot ?? RECEIPTS_DIR,
+    `WF-${id}`,
+    ranAt.replace(/[:+]/gu, '-'),
+  );
   const gateResult = evaluateQualityGate({
     workflowId: id,
     workflowDir: contract.dir,
@@ -146,6 +147,7 @@ export const runWorkflow = (workflowId: string): void => {
         sha256: companion.sha256,
       })),
     })),
+    effectiveOutputIds: plannedOutputs.map(({deliverable_id}) => deliverable_id),
     autoAdvance: false,
   });
 
@@ -167,9 +169,6 @@ export const runWorkflow = (workflowId: string): void => {
   const receiptPath = writeReceipt(receiptDir, receipt);
   console.info(
     `[RUN] ${id} ${workflow.command} -> candidate=RENDERED_DRAFT declared_target=${workflow.work_product_state} gate=${gate} dry_run=false`,
-  );
-  console.info(
-    `  frontmatter: prompt_id=${frontmatter.prompt_id} vars=${frontmatter.variables.length} sections=${frontmatter.sections.length}`,
   );
   console.info(
     `  task: ${taskTemplate.task_id} responsable=${taskTemplate.responsable} gate_target=${taskTemplate.gate_target}`,
