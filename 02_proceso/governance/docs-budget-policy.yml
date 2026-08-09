@@ -273,7 +273,14 @@ budgets:
     rationale: 'Tests may be broader than production modules.'
   - surface: production-code
     match: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.mjs', '**/*.js']
-    exclude: ['05_verificacion/tests/**', '03_artefactos/skills/vendor/**']
+    exclude:
+      [
+        '05_verificacion/tests/**',
+        '03_artefactos/skills/vendor/**',
+        'tsconfig.json',
+        'vitest.config.ts',
+        'eslint.config.js',
+      ]
     target: {max_lines: 100}
     hard: {max_lines: 200}
     rationale: 'Production modules split before 200 lines.'
