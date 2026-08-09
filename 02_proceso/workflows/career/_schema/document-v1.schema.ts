@@ -2,15 +2,24 @@ import {z} from 'zod';
 
 import {PortableRefSchema, Sha256Schema} from './primitives-v1.schema.ts';
 
-export const CareerClaimV1Schema = z.strictObject({
-  claim_id: z.string().regex(/^CLM-[A-Z0-9-]{3,79}$/u),
-  text: z.string().min(1).max(1_000),
-  evidence_ids: z
-    .array(z.string().regex(/^EVD-[A-Z0-9-]{3,79}$/u))
-    .min(1)
-    .max(12),
-  evidence_hashes: z.array(Sha256Schema).min(1).max(12),
-});
+export const CareerClaimV1Schema = z
+  .strictObject({
+    claim_id: z.string().regex(/^CLM-[A-Z0-9-]{3,79}$/u),
+    text: z.string().min(1).max(1_000),
+    evidence_ids: z
+      .array(z.string().regex(/^EVD-[A-Z0-9-]{3,79}$/u))
+      .min(1)
+      .max(12),
+    evidence_hashes: z.array(Sha256Schema).min(1).max(12),
+  })
+  .superRefine((claim, context) => {
+    if (claim.evidence_ids.length !== claim.evidence_hashes.length) {
+      context.addIssue({code: 'custom', message: 'Evidence IDs and hashes must be paired'});
+    }
+    if (new Set(claim.evidence_ids).size !== claim.evidence_ids.length) {
+      context.addIssue({code: 'custom', message: 'Evidence IDs must be unique'});
+    }
+  });
 
 const ExperienceSchema = z.strictObject({
   organization: z.string().min(1).max(200),

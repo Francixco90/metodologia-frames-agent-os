@@ -41,6 +41,13 @@ export const EvidenceItemV1Schema = z
     }
   });
 
+export const EvidenceBankV1Schema = z.strictObject({
+  schema_version: z.literal('evidence-bank-v1'),
+  candidate_id: z.string().regex(/^CAND-[A-Z0-9-]{3,79}$/u),
+  evidence: z.array(EvidenceItemV1Schema).min(1).max(200),
+  bank_sha256: Sha256Schema,
+});
+
 export const JobRequirementV1Schema = z.strictObject({
   requirement_id: CareerIdSchema,
   text: z.string().min(1).max(1_000),
@@ -78,3 +85,4 @@ export const RequirementEvidenceMapV1Schema = z.strictObject({
 });
 
 export type EvidenceItemV1 = z.infer<typeof EvidenceItemV1Schema>;
+export type EvidenceBankV1 = z.infer<typeof EvidenceBankV1Schema>;
