@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             93531 |              110651 |     140296 (1.5×) |  1.183× | `pass` |
-| Total authored (palabras)     |             93531 |              110651 |       187062 (2×) |  1.183× | `pass` |
-| Total authored (LOC)          |             35076 |               41503 |        70152 (2×) | 1.1832× | `pass` |
+| Corpus authored elegible      |             93535 |              110655 |     140302 (1.5×) |  1.183× | `pass` |
+| Total authored (palabras)     |             93535 |              110655 |       187070 (2×) |  1.183× | `pass` |
+| Total authored (LOC)          |             35077 |               41504 |        70154 (2×) | 1.1832× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -443,7 +443,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `workflows/content/notebooklm-binding.yml`                                                                    | `content`          | `verified_no_change` | 67                 | 67                | 25          | 25         | `035db343c24d282739b7d78ceca8f96c2aef05f2084444d2e7a93accd54c66e2` | `byte-identical` |
 | `workflows/core/advance-work-product.ts`                                                                      | `core`             | `verified_no_change` | 106                | 106               | 43          | 43         | `25f6277c29c52f4c24cd3a024c58e5c8e1addf96ff36bb889242f55b155a16f7` | `byte-identical` |
 | `workflows/core/audiovisual-workflow.ts`                                                                      | `core`             | `verified_no_change` | 101                | 101               | 42          | 42         | `a114c74878ea3771250bc8a50f9272f308ff968095c8491a2c454bb2c8e88e1a` | `byte-identical` |
-| `workflows/core/index.ts`                                                                                     | `core`             | `refactored`         | 8                  | 20                | 2           | 5          | `db1ea5a56706b85cb78c19edbcb2afeb610da28d1daa3c5358c4477b3f57fa7e` | `changed`        |
+| `workflows/core/index.ts`                                                                                     | `core`             | `refactored`         | 8                  | 24                | 2           | 6          | `db1ea5a56706b85cb78c19edbcb2afeb610da28d1daa3c5358c4477b3f57fa7e` | `changed`        |
 | `workflows/core/notebooklm-binding.yml`                                                                       | `core`             | `verified_no_change` | 73                 | 73                | 26          | 26         | `23c80e05ed8b22342bdcd857878706d1ccf022fc1859a2cbced654c7197ae783` | `byte-identical` |
 | `workflows/web/build.ts`                                                                                      | `web`              | `generator_fixed`    | 156                | 156               | 48          | 48         | `556a8d01ae98ff151eb6e357410b1855c28f242cef6283d662221628e88ee262` | `changed`        |
 | `workflows/web/notebooklm-binding.yml`                                                                        | `web`              | `verified_no_change` | 67                 | 67                | 25          | 25         | `8f4c80d3241da96011ee77b454ce7640d1f574163323650f524c0d347b41d184` | `byte-identical` |
