@@ -67,6 +67,11 @@
     "check": ["skills/evidence-based-cover-letter/scripts/check-skill.mjs"]
   },
   {
+    "id": "career-opportunity-finder",
+    "scope": "local-evaluation",
+    "check": ["skills/career-opportunity-finder/scripts/check-skill.mjs"]
+  },
+  {
     "id": "content-os-faceless-explainer",
     "scope": "local-evaluation",
     "check": ["skills/content-os-faceless-explainer/scripts/check-skill.mjs"]

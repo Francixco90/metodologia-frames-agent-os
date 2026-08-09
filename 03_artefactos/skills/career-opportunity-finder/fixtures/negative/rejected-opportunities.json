@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {"id": "closed_job", "expected": "BLOCKED"},
+    {"id": "unknown_vigency", "expected": "BLOCKED"},
+    {"id": "missing_canonical_url", "expected": "BLOCKED"},
+    {"id": "hard_requirement_failed_high_score", "expected": "BLOCKED"},
+    {"id": "duplicate_unresolved", "expected": "BLOCKED"},
+    {"id": "random_contact", "expected": "BLOCKED"},
+    {"id": "live_search_without_adapter", "expected": "BLOCKED"}
+  ]
+}

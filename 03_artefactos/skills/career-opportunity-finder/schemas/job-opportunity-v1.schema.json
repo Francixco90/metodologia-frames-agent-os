@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metodologia:frames:job-opportunity:v1",
+  "title": "JobOpportunityV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job_id", "candidate_id", "canonical_url", "snapshot_sha256", "observed_state", "hard_requirements_pass", "score", "bucket", "application_state", "next_gate"],
+  "properties": {
+    "job_id": {"type": "string", "pattern": "^JOB-[A-Z0-9-]+$"},
+    "candidate_id": {"type": "string", "pattern": "^CAND-[A-Z0-9-]+$"},
+    "canonical_url": {"type": "string", "format": "uri"},
+    "snapshot_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "observed_state": {"enum": ["open", "closed", "unknown"]},
+    "hard_requirements_pass": {"type": "boolean"},
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core_evidence", "hard_requirements", "conditions", "transferability", "publication_quality", "sector", "application_friction", "legitimate_contact", "total"],
+      "properties": {
+        "core_evidence": {"type": "integer", "minimum": 0, "maximum": 30},
+        "hard_requirements": {"type": "integer", "minimum": 0, "maximum": 20},
+        "conditions": {"type": "integer", "minimum": 0, "maximum": 15},
+        "transferability": {"type": "integer", "minimum": 0, "maximum": 10},
+        "publication_quality": {"type": "integer", "minimum": 0, "maximum": 10},
+        "sector": {"type": "integer", "minimum": 0, "maximum": 5},
+        "application_friction": {"type": "integer", "minimum": 0, "maximum": 5},
+        "legitimate_contact": {"type": "integer", "minimum": 0, "maximum": 5},
+        "total": {"type": "integer", "minimum": 0, "maximum": 100}
+      }
+    },
+    "bucket": {"enum": ["main", "adjacent", "stretch", "blocked"]},
+    "application_state": {"enum": ["DISCOVERED", "VALIDATED", "SHORTLISTED", "BLOCKED", "CLOSED"]},
+    "next_gate": {"const": "CR_APPLICATION_BRIEF"}
+  }
+}

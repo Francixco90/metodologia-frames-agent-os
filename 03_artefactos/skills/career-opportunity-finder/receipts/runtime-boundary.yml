@@ -1,0 +1,19 @@
+schema_version: 1
+receipt_id: career-opportunity-finder-runtime-boundary-v1
+skill_id: career-opportunity-finder
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+submission_authority: false
+private_state_required: true
+allowed_inputs: [synthetic_fixture, authorized_local_job_snapshot]
+runtime_status:
+  query_generation: active_local
+  snapshot_normalization: active_local
+  deduplication: active_local
+  scoring: active_local
+  live_search: not_promoted
+  linkedin_adapter: not_promoted
+required_gate: CR_APPLICATION_BRIEF
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
