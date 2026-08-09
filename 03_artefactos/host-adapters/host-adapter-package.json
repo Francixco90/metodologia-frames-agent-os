@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "host-adapter-package-v1",
+  "packageId": "frames-assist-host-adapters",
+  "version": "1.0.0",
+  "identity": "Frames ContentOS · por MetodologIA",
+  "runtimeRef": "05_verificacion/scripts/frames-assist.mjs",
+  "runtimeCommand": "pnpm frames:assist --",
+  "allowedScope": "repository",
+  "blockedScopes": ["user", "plugin"],
+  "adapters": [
+    {
+      "host": "CODEX",
+      "invocation": "$frames-assist",
+      "discovery": "REPOSITORY_MATERIAL",
+      "projectionRefs": [".agents/skills/frames-assist/SKILL.md"],
+      "capabilityStatus": "LOCAL_EVALUATION",
+      "limitations": [
+        "Repository discovery is material; HOST_BEHAVIOR remains unproven until a host probe passes."
+      ]
+    },
+    {
+      "host": "CLAUDE",
+      "invocation": "/frames-assist",
+      "discovery": "PLANNED",
+      "projectionRefs": [
+        ".claude/skills/frames-assist/SKILL.md",
+        ".claude/commands/frames/assist.md"
+      ],
+      "capabilityStatus": "UNKNOWN",
+      "limitations": ["Projection presence does not prove Claude discovery or behavior."]
+    },
+    {
+      "host": "GEMINI",
+      "invocation": "/frames:assist",
+      "discovery": "PLANNED",
+      "projectionRefs": [".gemini/commands/frames/assist.toml"],
+      "capabilityStatus": "UNKNOWN",
+      "limitations": ["Projection presence does not prove Gemini discovery or behavior."]
+    },
+    {
+      "host": "CHATGPT",
+      "invocation": "@frames-assist",
+      "discovery": "BLOCKED",
+      "projectionRefs": [".agents/plugins/marketplace.json"],
+      "capabilityStatus": "BLOCKED",
+      "limitations": [
+        "ChatGPT Desktop requires assisted import or plugin authority not granted by this package."
+      ]
+    }
+  ],
+  "policy": {
+    "network": "FORBIDDEN",
+    "hooks": "FORBIDDEN",
+    "mcp": "FORBIDDEN",
+    "foreignOverwrite": "FORBIDDEN",
+    "defaultMode": "PLAN",
+    "applyRequiresHashConfirmation": true,
+    "atomicWrites": true,
+    "backupBeforeReplace": true
+  }
+}
