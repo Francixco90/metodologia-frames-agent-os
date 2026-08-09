@@ -1,3 +1,4 @@
+import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
@@ -41,6 +42,9 @@ for (const token of [
   'content-intent-v2',
   'career-application',
   'frames-route-decision-v1',
+  'AssistanceEnvelopeV1',
+  'SkillInvocationReceiptV1',
+  'adapter_invoked',
   'MW_BRIEF_APPROVED',
   'selected_stage_path',
   'P03',
@@ -58,6 +62,36 @@ for (const token of [
   if (!combined.includes(token)) {
     throw new Error(`COSR-ROUTER_CONTRACT_MISSING: ${token}`);
   }
+}
+
+const dispatchProbe = JSON.parse(
+  execFileSync(
+    process.execPath,
+    [
+      '--import',
+      'tsx',
+      '--input-type=module',
+      '-e',
+      `import {dispatchIntent} from './skills/content-os-router/scripts/route-intent.mjs';
+       const content = dispatchIntent({request:'crear contenido', audience:'equipos', outcome:'informar', source:{type:'text',authority:'verified'}});
+       const career = dispatchIntent({request:'crear CV', candidateId:'CAND-FIXTURE', targetRole:'arquitectura', profileReady:true, evidenceReady:true});
+       const unknown = dispatchIntent({request:'necesito ayuda'});
+       process.stdout.write(JSON.stringify({content, career, unknown}));`,
+    ],
+    {cwd: root, encoding: 'utf8'},
+  ),
+);
+if (
+  dispatchProbe.content?.route_id !== 'R6' ||
+  dispatchProbe.content?.adapter_invoked !== true ||
+  dispatchProbe.content?.domain_intent?.schema_version !== 'content-intent-v2' ||
+  dispatchProbe.career?.route_id !== 'R7' ||
+  dispatchProbe.career?.adapter_invoked !== true ||
+  dispatchProbe.career?.domain_intent?.schema_version !== 'career-intent-v1' ||
+  dispatchProbe.unknown?.route_id !== 'R0' ||
+  dispatchProbe.unknown?.adapter_invoked !== false
+) {
+  throw new Error('COSR-CAUSAL_DISPATCH_FAILED');
 }
 
 for (const pattern of [

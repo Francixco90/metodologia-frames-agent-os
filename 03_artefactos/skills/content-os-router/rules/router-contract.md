@@ -1,6 +1,6 @@
 # Router contract — ground truth
 
-8 reglas que gobiernan el router source→video. Source of truth para
+Reglas que gobiernan la puerta única de Frames. Source of truth para
 `scripts/route-audit.mjs` y `scripts/check-skill.mjs`.
 
 ## Reglas
@@ -29,6 +29,10 @@
 10. **Minimum stage path.** P00/P01/P02/P04/P06/P09 se añaden por señales
     explícitas; P07/P08 permanecen obligatorios. P09 nunca publica.
    `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`.
+11. **Causal dispatch.** R6/R7 deben devolver `adapter_invoked: true` y el
+    `domain_intent` validado; un locator solo es `planned`. R0 nunca invoca.
+12. **Receipted skills.** Una skill declarada en el plan no cuenta como ejecutada
+    sin `SkillInvocationReceiptV1` ligado al WorkOrder y a outputs materiales.
 
 ## Example manifest entry
 

@@ -91,11 +91,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.3.0
+    version: 0.4.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: dc3ad82ddd281b9dff6890a91bd2ffe6ff8625096512b9221eeba522ca67d5d2
-    package_manifest_sha256: 457784a914cf83d61feb380db4cfdfa964d7128ac329fc959ca1af649a884975
+    content_sha256: f4894b1ff0407145a8dc933575ab48d73884857c0277775e9ae2550157098c8f
+    package_manifest_sha256: f87faa7cf85d2f0401c40c736cec84ae9c642894f065bb79fecd31d584648a8e
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1804,6 +1804,7 @@ events:
   - {event_id: EVT-SKL-COR-H03-004, event_order: 4, skill_id: content-os-router, from: evaluated, to: active, actor_id: RT-10-H03-INTEGRATION}
   - {event_id: EVT-SKL-COR-H03-005, event_order: 5, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "FramesBriefV1 + deterministic ContentIntentV2 routing; densified below 1200 words"}
   - {event_id: EVT-SKL-COR-H03-006, event_order: 6, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-09T00:00:00Z', decision: add_deterministic_r6_r7_dispatch_without_changing_content_intent_v2}
+  - {event_id: EVT-SKL-COR-H03-007, event_order: 7, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, decision: add_first_turn_gateway_causal_dispatch_and_receipted_skill_contract}
   - {event_id: EVT-SKL-CFE-H03-001, event_order: 1, skill_id: content-os-faceless-explainer, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CFE-H03-002, event_order: 2, skill_id: content-os-faceless-explainer, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CFE-H03-003, event_order: 3, skill_id: content-os-faceless-explainer, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}

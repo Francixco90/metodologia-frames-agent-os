@@ -1,5 +1,11 @@
 # Routes — source-to-content
 
+## First-turn dispatch
+
+El gateway recibe saludos sin escribir y solo entrega al dispatcher los pedidos
+accionables. `dispatchIntent()` ejecuta el adapter R6 o R7 seleccionado y conserva
+R0 como parada explícita; no presenta una ruta declarada como ejecución real.
+
 ## Adaptive P00-P09 route
 
 For every new content piece, route through P03, P05, P07 and P08. Prepend P00

@@ -3,6 +3,9 @@ import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
+import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
+import {routeContentIntent} from './route-content.mjs';
+
 const normalize = (value) =>
   String(value ?? '')
     .normalize('NFKC')
@@ -37,10 +40,27 @@ export const routeIntent = (input) => {
   };
 };
 
+/** Execute the selected local adapter. A locator alone is never execution evidence. */
+export const dispatchIntent = (input) => {
+  const decision = routeIntent(input);
+  if (decision.route_id === 'R0') {
+    return {...decision, adapter_invoked: false, domain_intent: null};
+  }
+  const domain_intent =
+    decision.route_id === 'R7' ? routeCareerIntent(input) : routeContentIntent(input);
+  return {
+    ...decision,
+    adapter_invoked: true,
+    next_gate: domain_intent.next_gate,
+    decision: domain_intent.decision,
+    domain_intent,
+  };
+};
+
 const invoked = process.argv[1]?.endsWith('route-intent.mjs');
 if (invoked) {
   const inputPath = process.argv[2];
   if (!inputPath) throw new Error('Usage: route-intent.mjs <request.json>');
   const input = JSON.parse(readFileSync(resolve(inputPath), 'utf8'));
-  process.stdout.write(`${JSON.stringify(routeIntent(input), null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify(dispatchIntent(input), null, 2)}\n`);
 }
