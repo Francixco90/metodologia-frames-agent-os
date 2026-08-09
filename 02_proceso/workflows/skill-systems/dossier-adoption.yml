@@ -1,0 +1,145 @@
+schema_version: skill-systems-dossier-adoption-v1
+reconciliation:
+  schema_version: skill-portfolio-reconciliation-v1
+  source_id: SRC-SKILL-SYSTEMS-DOSSIER-V1
+  source_sha256: 9bbbaacd8e6b21e7a5fdb6d435d5375eeda01fcc202a8b3bc69a7927471ade21
+  decisions:
+    - {
+        proposed_id: skill-system-architect,
+        disposition: KEEP,
+        canonical_ids: [skill-system-architect],
+        reason: La responsabilidad y los límites coinciden con S00-S02.,
+        migration_note: Sin migración.,
+      }
+    - {
+        proposed_id: skill-knowledge-distiller,
+        disposition: ALIAS,
+        canonical_ids: [skill-expert-distiller],
+        reason: Ambos convierten práctica experta en reglas y oráculos trazables.,
+        migration_note: Usar el ID canónico skill-expert-distiller.,
+      }
+    - {
+        proposed_id: skill-contract-engineer,
+        disposition: SPLIT,
+        canonical_ids: [skill-system-architect, skill-authoring-engineer, skill-contract-validator],
+        reason: Diseñar contratos autorarlos y verificarlos requieren owners y efectos distintos.,
+        migration_note: Enrutar según diseño autoría o validación.,
+      }
+    - {
+        proposed_id: skill-package-author,
+        disposition: ALIAS,
+        canonical_ids: [skill-authoring-engineer],
+        reason: La autoría del paquete ya pertenece al engineer limitado por WorkOrder.,
+        migration_note: Usar skill-authoring-engineer.,
+      }
+    - {
+        proposed_id: skill-evaluation-engineer,
+        disposition: KEEP,
+        canonical_ids: [skill-evaluation-engineer],
+        reason: El contrato TRIGGER DECISION OUTCOME y replay coincide.,
+        migration_note: Sin migración.,
+      }
+    - {
+        proposed_id: skill-security-auditor,
+        disposition: ADD,
+        canonical_ids: [skill-security-auditor],
+        reason: El portfolio no tenía owner especializado de seguridad adversarial y supply chain.,
+        migration_note: Nuevo paquete H-03 separado del validator general.,
+      }
+    - {
+        proposed_id: skill-critical-review,
+        disposition: REUSE,
+        canonical_ids: [skill-portfolio-governor],
+        reason: El análisis de portfolio existe y la independencia final sigue en RT-09 y RT-11.,
+        migration_note: No crear una skill que suplante verifier o Guardian.,
+      }
+    - {
+        proposed_id: skill-release-governor,
+        disposition: KEEP,
+        canonical_ids: [skill-release-governor],
+        reason: Capsule compatibilidad rollback y retiro ya tienen owner.,
+        migration_note: Sin migración.,
+      }
+  resulting_active_ids:
+    [
+      skill-system-architect,
+      skill-authoring-engineer,
+      skill-contract-validator,
+      skill-evaluation-engineer,
+      skill-portfolio-governor,
+      skill-release-governor,
+      skill-expert-distiller,
+      skill-runtime-adapter,
+      skill-security-auditor,
+    ]
+  duplicate_active_roles: []
+resource_disposition:
+  schema_version: skill-resource-disposition-v1
+  source_id: SRC-MULTIMEDIA-PIVOTE-20PLUS1-V4
+  bundle_sha256: 9c25fc08d770ebff762595b9e1d0b5a78830b8f3666d8d1638b48c4a7ddc182e
+  resources:
+    - {
+        resource_id: UCC_ARTIFACT_GRAPH,
+        source_refs: [Runtime/K09_multimedia_ontology_ucc.md],
+        disposition: ADAPT,
+        frames_owner: skill-system-architect,
+        acceptance: [Objetos padres hijos y overlays quedan explícitos y sin huérfanos.],
+        limitation: La taxonomía multimedia no reemplaza contratos Frames.,
+      }
+    - {
+        resource_id: PROMPT_SECURITY,
+        source_refs: [Runtime/K15_ai_prompts_security.md],
+        disposition: ADOPT,
+        frames_owner: skill-security-auditor,
+        acceptance: [Contenido no confiable no cambia autoridad permisos estado ni efectos.],
+        limitation: Sin ejecución de proveedores.,
+      }
+    - {
+        resource_id: HANDOFF_PROVENANCE,
+        source_refs: [Runtime/K16_pipeline_handoffs_provenance.md],
+        disposition: ADAPT,
+        frames_owner: skill-authoring-engineer,
+        acceptance: [Inputs outputs owners oráculos y hashes resuelven.],
+        limitation: C2PA no prueba derechos ni verdad.,
+      }
+    - {
+        resource_id: REVIEW_EVALS,
+        source_refs: [Runtime/K20_review_measurement_evals.md],
+        disposition: ADOPT,
+        frames_owner: skill-evaluation-engineer,
+        acceptance: [Gate antes de score y replay antes de claim runtime.],
+        limitation: Casos descritos requieren fixtures materiales Frames.,
+      }
+    - {
+        resource_id: DEFAULT_POLICY,
+        source_refs: [Skill/assets/default_policy.json],
+        disposition: REFERENCE,
+        frames_owner: skill-contract-validator,
+        acceptance: [Defaults no amplían effect class ni autoridad.],
+        limitation: Política fuente no se ejecuta directamente.,
+      }
+    - {
+        resource_id: SPECOPS_SCRIPT,
+        source_refs: [Skill/scripts/specops.py],
+        disposition: REFERENCE,
+        frames_owner: skill-security-auditor,
+        acceptance: [Script pasa self-test y revisión estática antes de adapter.],
+        limitation: No se copia ni ejecuta como autoridad.,
+      }
+    - {
+        resource_id: PACKAGE_SCRIPT,
+        source_refs: [Skill/scripts/package_skill.py],
+        disposition: GAP,
+        frames_owner: skill-release-governor,
+        acceptance: [El self-test debe reproducirse desde el layout entregado.],
+        limitation: Falla SKILL_ROOT_INVALID porque el bundle usa Skill como raíz.,
+      }
+    - {
+        resource_id: OUTPUT_TEMPLATES,
+        source_refs: [Skill/SKILL.md],
+        disposition: GAP,
+        frames_owner: skill-authoring-engineer,
+        acceptance:
+          [Frames genera pares Markdown HTML deterministas y semánticamente equivalentes.],
+        limitation: La fuente no incluye templates de entregables.,
+      }
