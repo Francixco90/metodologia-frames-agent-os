@@ -84,8 +84,8 @@ routes:
       - 'continuar candidatura'
     reads:
       - '03_artefactos/skills/career-application-orchestrator/SKILL.md'
-      - '02_proceso/workflows/career/_schema/career-intent-v1.schema.ts'
-      - '02_proceso/workflows/career/_schema/career-brief-v1.schema.ts'
+      - '02_proceso/workflows/career/_schema/intent-v1.schema.ts'
+      - '02_proceso/workflows/career/_schema/brief-v1.schema.ts'
     output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
     binds_to: task
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
@@ -99,7 +99,7 @@ gate_commands:
   G08_core_contracts: 'pnpm typecheck && pnpm test'
   G09_WEB_web_build: 'pnpm web:build'
   G09_CONTENT_content_build: 'pnpm content:build'
-  G09_CAREER_career_contracts: 'pnpm verify:career'
+  G09_CAREER_career_contracts: 'node --import tsx scripts/check-career-workflows.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
   preflight_VS_001: 'pnpm slice:build'

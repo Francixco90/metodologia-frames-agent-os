@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {existsSync, readFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 
@@ -94,6 +95,34 @@ describe('Career C00-C09 workflow family', () => {
         publication_authority: false,
       });
     }
+  });
+
+  it('binds the first-party projection to the registry with exact ids and hashes', () => {
+    const registry = parse(
+      readFileSync(
+        resolve(ROOT, '04_estado/registries/sources/career-requirements-registry.yml'),
+        'utf8',
+      ),
+    ) as {
+      projection_ref: string;
+      projection_sha256: string;
+      ordered_bundle_sha256: string;
+      requirements: Array<{requirement_id: string; raw_sha256: string}>;
+    };
+    const projectionPath = resolve(ROOT, registry.projection_ref);
+    const projectionBytes = readFileSync(projectionPath);
+    const projection = parse(projectionBytes.toString('utf8')) as {
+      source_bundle_sha256: string;
+      documents: Array<{requirement_id: string; raw_sha256: string}>;
+    };
+
+    expect(createHash('sha256').update(projectionBytes).digest('hex')).toBe(
+      registry.projection_sha256,
+    );
+    expect(projection.source_bundle_sha256).toBe(registry.ordered_bundle_sha256);
+    expect(
+      projection.documents.map(({requirement_id, raw_sha256}) => ({requirement_id, raw_sha256})),
+    ).toEqual(registry.requirements);
   });
 
   it('makes C09 prepare-and-stop and never emits a submission receipt as executed output', () => {

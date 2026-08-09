@@ -50,6 +50,7 @@ writers:
     - registries/notebooks/**
     - registries/claims/**
     - receipts/imports/**
+    - receipts/career/**
     - projects/vs-001-source-to-campaign/source-bundle.yml
     - projects/vs-001-source-to-campaign/claims-ledger.yml
   core:
