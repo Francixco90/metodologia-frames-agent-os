@@ -27,12 +27,15 @@ inputs: []
 outputs:
   - artifact: 'Brand OS'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P00-DELIVERABLE-V1
     required: true
   - artifact: 'Calibration sample'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P00-DELIVERABLE-V1
     required: true
   - artifact: 'Pilot plan'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P00-DELIVERABLE-V1
     required: true
 work_product_state: DEFINED
 gates:
@@ -70,6 +73,40 @@ capability_map:
     - brand-os-v1
     - calibration-sample-v1
     - pilot-plan-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Resolver identidad y autoridad de marca.'
+    inputs: [intent-envelope]
+    primary_skill: metodologia-brand-router
+    optional_skills: []
+    verifier: RT-09
+    outputs: [brand-os-v1]
+    template_id: TPL-P00-DELIVERABLE-V1
+    gate: G13
+    stop_rule: 'Bloquear si identidad, autoridad o consentimiento no son inequívocos.'
+    context_budget: {target_files: 4, max_files: 8, target_tokens: 4000, max_tokens: 8000}
+  - step_id: S02
+    purpose: 'Definir voz, canal y audiencia sin mezclar perfiles.'
+    inputs: [brand-os-v1]
+    primary_skill: content-os-core
+    optional_skills: [metodologia-brand-router]
+    verifier: RT-09
+    outputs: [calibration-sample-v1]
+    template_id: TPL-P00-DELIVERABLE-V1
+    gate: G13
+    stop_rule: 'Bloquear ante mezcla de perfiles o contexto insuficiente.'
+    context_budget: {target_files: 5, max_files: 10, target_tokens: 5000, max_tokens: 9000}
+  - step_id: S03
+    purpose: 'Fijar tokens creativos y restricciones del piloto.'
+    inputs: [brand-os-v1, calibration-sample-v1]
+    primary_skill: dev-writing-plans
+    optional_skills: [content-os-core]
+    verifier: RT-09
+    outputs: [pilot-plan-v1]
+    template_id: TPL-P00-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Detener si el piloto excede alcance o carece de aprobación.'
+    context_budget: {target_files: 6, max_files: 10, target_tokens: 6000, max_tokens: 10000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato

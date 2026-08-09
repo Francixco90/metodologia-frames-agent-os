@@ -36,12 +36,15 @@ inputs:
 outputs:
   - artifact: 'Review Report'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P07-DELIVERABLE-V1
     required: true
   - artifact: 'Verdict'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P07-DELIVERABLE-V1
     required: true
   - artifact: 'Top-5 changes'
     schema_ref: _assets/artifact-registry.md
+    template_id: TPL-P07-DELIVERABLE-V1
     required: true
 work_product_state: REVIEW_SHOTS_APPROVED
 gates:
@@ -77,6 +80,40 @@ capability_map:
     - review-report-v1
     - verdict-v1
     - top5-changes-v1
+execution_steps:
+  - step_id: S01
+    purpose: 'Revisar contenido y marca solo sobre material observable.'
+    inputs: [asset-package-v1, asset-manifest-v1]
+    primary_skill: design-audit-genjutsu
+    optional_skills: [content-os-core]
+    verifier: RT-11
+    outputs: [review-report-v1]
+    template_id: TPL-P07-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'Solicitar copia o descripción si el material no abre; nunca inventar.'
+    context_budget: {target_files: 10, max_files: 18, target_tokens: 10000, max_tokens: 18000}
+  - step_id: S02
+    purpose: 'Verificar evidencia, derechos y accesibilidad.'
+    inputs: [review-report-v1, claim-register-v1, asset-manifest-v1]
+    primary_skill: content-os-core
+    optional_skills: [design-audit-genjutsu]
+    verifier: RT-11
+    outputs: [verdict-v1]
+    template_id: TPL-P07-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'UNKNOWN, evidencia ausente o check manual no ejecutado bloquean.'
+    context_budget: {target_files: 12, max_files: 20, target_tokens: 12000, max_tokens: 20000}
+  - step_id: S03
+    purpose: 'Priorizar hasta cinco correcciones verificables.'
+    inputs: [review-report-v1, verdict-v1]
+    primary_skill: design-audit-genjutsu
+    optional_skills: [content-os-core]
+    verifier: RT-11
+    outputs: [top5-changes-v1]
+    template_id: TPL-P07-DELIVERABLE-V1
+    gate: G14
+    stop_rule: 'No remediar desde el rol verifier; emitir REVISE o BLOCKED.'
+    context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
