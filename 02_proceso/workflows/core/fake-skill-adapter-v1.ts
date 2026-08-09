@@ -19,6 +19,7 @@ export type FakeSkillHandlerV1 = (
 ) => FakeSkillResultV1 | Promise<FakeSkillResultV1>;
 
 export class FakeSkillAdapterV1 {
+  public readonly simulationOnly = true;
   readonly #handlers: ReadonlyMap<string, FakeSkillHandlerV1>;
 
   public constructor(handlers: Readonly<Record<string, FakeSkillHandlerV1>>) {
@@ -53,23 +54,29 @@ export class FakeSkillAdapterV1 {
     }
     try {
       const result = await handler(workOrder);
-      const outputRefs = new Set(result.outputs.map(({ref}) => ref));
-      const outputsMatch =
-        result.outputs.every(({ref}) => workOrder.expectedOutputs.includes(ref)) &&
-        workOrder.expectedOutputs.every((ref) => outputRefs.has(ref));
-      if (
-        result.status === 'PASS' &&
-        (result.outputs.length === 0 || result.evidence.length === 0 || !outputsMatch)
-      ) {
+      if (result.status === 'PASS') {
         return this.#receipt(input, workOrder, {
           status: 'UNKNOWN',
           outputs: result.outputs,
           evidence: result.evidence,
-          publicSummary: 'Skill returned PASS without the exact material outputs and evidence.',
-          metrics: {...result.metrics, handlerInvoked: true},
+          publicSummary: 'Simulation completed; material execution is not accredited.',
+          metrics: {
+            ...result.metrics,
+            handlerInvoked: true,
+            materialExecutionAccredited: false,
+            simulationOnly: true,
+          },
         });
       }
-      return this.#receipt(input, workOrder, result);
+      return this.#receipt(input, workOrder, {
+        ...result,
+        metrics: {
+          ...result.metrics,
+          handlerInvoked: true,
+          materialExecutionAccredited: false,
+          simulationOnly: true,
+        },
+      });
     } catch {
       return this.#receipt(input, workOrder, {
         status: 'UNKNOWN',

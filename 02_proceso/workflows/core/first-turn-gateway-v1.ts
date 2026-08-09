@@ -12,16 +12,13 @@ import {
   normalizeFirstTurnPromptV1,
 } from './first-turn-signals-v1.ts';
 import {buildUnsupportedLegacyRouteEnvelopeV1} from './legacy-route-block-v1.ts';
+import {
+  buildGatewayRouteFailureV1,
+  buildGatewayRouteOutcomeV1,
+  type GatewayRoutePlanV1,
+} from './gateway-route-outcome-v1.ts';
 
-export interface GatewayRoutePlanV1 {
-  routeId: 'R6' | 'R7';
-  workflowPlan: string[];
-  activeStep: string;
-  skillBindings: AssistanceEnvelopeV1['skillBindings'];
-  briefPreview: NonNullable<AssistanceEnvelopeV1['briefPreview']>;
-  recommendedNextAction: string;
-  ghostOptions?: string[];
-}
+export type {GatewayRoutePlanV1} from './gateway-route-outcome-v1.ts';
 
 export interface GatewayResumeCandidateV1 {
   routeId: AssistanceEnvelopeV1['selectedRoute'];
@@ -35,12 +32,13 @@ export interface FirstTurnGatewayInputV1 {
   sensitivity?: AssistanceEnvelopeV1['sensitivity'];
   knownInputs?: string[];
   activeProjectId?: string;
+  explicitRoute?: 'R6' | 'R7';
   resumeCandidate?: GatewayResumeCandidateV1;
 }
 
 export type GatewayRouteHandlerV1 = (
   input: Readonly<FirstTurnGatewayInputV1> & {requestHash: string; routeId: 'R6' | 'R7'},
-) => GatewayRoutePlanV1 | Promise<GatewayRoutePlanV1>;
+) => GatewayRoutePlanV1;
 
 function baseEnvelope(
   input: FirstTurnGatewayInputV1,
@@ -53,10 +51,10 @@ function baseEnvelope(
   };
 }
 
-export async function runFirstTurnGatewayV1(
+export function runFirstTurnGatewayV1(
   input: FirstTurnGatewayInputV1,
   handlers: Readonly<Record<'R6' | 'R7', GatewayRouteHandlerV1>>,
-): Promise<AssistanceEnvelopeV1> {
+): AssistanceEnvelopeV1 {
   const prompt = normalizeFirstTurnPromptV1(input.prompt);
   const requestHash = hashExperienceValue({prompt});
   const common = baseEnvelope(input, requestHash);
@@ -118,8 +116,12 @@ export async function runFirstTurnGatewayV1(
     });
   }
 
-  const contentMatch = hasFirstTurnSignalV1(prompt, CONTENT_SIGNALS_V1);
-  const careerMatch = hasFirstTurnSignalV1(prompt, CAREER_SIGNALS_V1);
+  const contentMatch =
+    input.explicitRoute === 'R6' ||
+    (input.explicitRoute === undefined && hasFirstTurnSignalV1(prompt, CONTENT_SIGNALS_V1));
+  const careerMatch =
+    input.explicitRoute === 'R7' ||
+    (input.explicitRoute === undefined && hasFirstTurnSignalV1(prompt, CAREER_SIGNALS_V1));
   if (contentMatch === careerMatch) {
     const candidates = contentMatch
       ? [
@@ -150,49 +152,13 @@ export async function runFirstTurnGatewayV1(
     });
   }
 
-  const routeId = contentMatch ? 'R6' : 'R7';
+  const routeId: 'R6' | 'R7' = contentMatch ? 'R6' : 'R7';
   const reasonCode = contentMatch ? 'CONTENT_SIGNAL' : 'CAREER_SIGNAL';
+  const context = {...common, understoodOutcome, routeId, reasonCode};
   try {
-    const plan = await handlers[routeId]({...input, requestHash, routeId});
-    if (plan.routeId !== routeId) {
-      throw new Error('Route handler returned a mismatched route.');
-    }
-    return AssistanceEnvelopeV1Schema.parse({
-      schemaVersion: 'assistance-envelope-v1',
-      ...common,
-      interactionClass: 'ACTIONABLE',
-      understoodOutcome,
-      blockingGaps: [],
-      routeCandidates: [{routeId, confidence: 1, reasonCodes: [reasonCode]}],
-      selectedRoute: routeId,
-      workflowPlan: plan.workflowPlan,
-      activeStep: plan.activeStep,
-      skillBindings: plan.skillBindings,
-      briefPreview: plan.briefPreview,
-      recommendedNextAction: plan.recommendedNextAction,
-      ghostOptions: plan.ghostOptions ?? [],
-      writePolicy: 'PREVIEW_ONLY',
-      effects: ['READ_ONLY'],
-      state: 'READY_FOR_BRIEF',
-    });
+    const result = handlers[routeId]({...input, requestHash, routeId});
+    return buildGatewayRouteOutcomeV1(result, context);
   } catch {
-    return AssistanceEnvelopeV1Schema.parse({
-      schemaVersion: 'assistance-envelope-v1',
-      ...common,
-      interactionClass: 'ACTIONABLE',
-      understoodOutcome,
-      blockingGaps: ['La ruta existe, pero su handler no produjo un plan verificable.'],
-      routeCandidates: [{routeId, confidence: 1, reasonCodes: [reasonCode]}],
-      selectedRoute: routeId,
-      workflowPlan: [],
-      activeStep: null,
-      skillBindings: [],
-      briefPreview: null,
-      recommendedNextAction: 'Revisar la configuración de la ruta.',
-      ghostOptions: [],
-      writePolicy: 'NONE',
-      effects: [],
-      state: 'BLOCKED',
-    });
+    return buildGatewayRouteFailureV1(context);
   }
 }
