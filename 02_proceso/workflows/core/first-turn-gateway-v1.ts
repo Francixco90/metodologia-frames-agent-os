@@ -61,7 +61,7 @@ export function runFirstTurnGatewayV1(
   const understoodOutcome =
     input.prompt.trim().slice(0, 280) || 'Solicitar asistencia sin objetivo definido.';
 
-  if (/^(hola|buenas|buenos dias|buenas tardes|buenas noches|hey)[.!?\s]*$/u.test(prompt)) {
+  if (/^(hola|buenas|buenos dias|buenas tardes|buenas noches|hey|menu)[.!?\s]*$/u.test(prompt)) {
     return AssistanceEnvelopeV1Schema.parse({
       schemaVersion: 'assistance-envelope-v1',
       ...common,

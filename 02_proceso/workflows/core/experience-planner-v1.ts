@@ -89,7 +89,13 @@ export function autoPrimeExperienceV1(plan: ExperienceWorkflowPlanV1): AutoPrime
 export function createFramesWorkOrderV1(
   plan: ExperienceWorkflowPlanV1,
   envelope: AssistanceEnvelopeV1,
-  input: {workOrderId: string; actorId: string; inputRefs: Array<{ref: string; sha256: string}>},
+  input: {
+    workOrderId: string;
+    actorId: string;
+    inputRefs: Array<{ref: string; sha256: string}>;
+    writeSet?: string[];
+    effectClass?: 'READ_ONLY' | 'LOCAL_REVERSIBLE';
+  },
 ): FramesWorkOrderV1 {
   const step = plan.steps[0];
   if (step === undefined || envelope.selectedRoute !== plan.routeId) {
@@ -105,11 +111,11 @@ export function createFramesWorkOrderV1(
     skillId: step.primarySkillId,
     actorId: input.actorId,
     readSet: [...new Set([step.templateRef, ...step.sourceRefs])],
-    writeSet: [],
+    writeSet: input.writeSet ?? [],
     inputs: input.inputRefs,
     expectedOutputs: step.expectedOutputs,
     tools: [],
-    effectClass: 'READ_ONLY' as const,
+    effectClass: input.effectClass ?? ('READ_ONLY' as const),
     budget: {targetFiles: 8, maxFiles: 14, targetTokens: 8_000, maxTokens: 14_000},
     acceptanceCriteria: step.acceptanceCriteria,
     stopRule: step.stopRule,
