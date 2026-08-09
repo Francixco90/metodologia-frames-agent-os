@@ -30,7 +30,7 @@ const createRoot = (): string => {
   return root;
 };
 
-const workOrderFor = (output: string, writeSet = ['outputs/**']) => {
+const workOrderFor = (output: string, writeSet = ['outputs/**'], readSet = ['evidence/**']) => {
   const draft = {
     schemaVersion: 'frames-work-order-v1' as const,
     workOrderId: 'WO.EXP.MATERIAL',
@@ -40,7 +40,7 @@ const workOrderFor = (output: string, writeSet = ['outputs/**']) => {
     stepId: 'P06.materialize',
     skillId: 'content-os-creative',
     actorId: 'RT-07',
-    readSet: [],
+    readSet,
     writeSet,
     inputs: [],
     expectedOutputs: [output],
@@ -61,10 +61,11 @@ const invoke = async (
   output: string,
   handler: MaterialSkillHandlerV1,
   writeSet?: string[],
+  readSet?: string[],
 ) =>
   new MaterialSkillAdapterV1(root, {'content-os-creative': handler}).invoke({
     invocationId: 'INV.EXP.MATERIAL',
-    workOrder: workOrderFor(output, writeSet),
+    workOrder: workOrderFor(output, writeSet, readSet),
     ...timestamps,
   });
 
@@ -125,6 +126,56 @@ describe('MaterialSkillAdapterV1 adversarial boundaries', () => {
     expect(unauthorized.publicSummary).toMatch(/outside the authorized write set/u);
   });
 
+  it('rejects missing, stale, symlink and unauthorized evidence before PASS', async () => {
+    const root = createRoot();
+    const output = 'outputs/brief.md';
+    const outputBytes = 'brief material\n';
+    const outputPath = resolve(root, output);
+    mkdirSync(dirname(outputPath), {recursive: true});
+    writeFileSync(outputPath, outputBytes, 'utf8');
+    const resultFor = (candidateEvidence: typeof evidence) => () => ({
+      status: 'PASS' as const,
+      outputs: [{ref: output, sha256: digest(outputBytes)}],
+      evidence: candidateEvidence,
+      publicSummary: 'Evidencia declarada.',
+    });
+
+    const absent = await invoke(root, output, resultFor([]));
+    expect(absent).toMatchObject({status: 'BLOCKED', outputs: []});
+
+    const missing = await invoke(root, output, resultFor(evidence));
+    expect(missing).toMatchObject({status: 'BLOCKED', outputs: []});
+    expect(missing.metrics).not.toMatchObject({materialExecutionAccredited: true});
+
+    const evidencePath = resolve(root, evidence[0]!.ref);
+    mkdirSync(dirname(evidencePath), {recursive: true});
+    writeFileSync(evidencePath, 'evidencia material\n', 'utf8');
+    const stale = await invoke(root, output, resultFor(evidence));
+    expect(stale).toMatchObject({status: 'BLOCKED', outputs: []});
+
+    rmSync(evidencePath);
+    const evidenceTarget = resolve(root, 'evidence-target.json');
+    writeFileSync(evidenceTarget, 'evidencia material\n', 'utf8');
+    symlinkSync(evidenceTarget, evidencePath);
+    const linked = await invoke(
+      root,
+      output,
+      resultFor([{ref: evidence[0]!.ref, sha256: digest('evidencia material\n')}]),
+    );
+    expect(linked).toMatchObject({status: 'BLOCKED', outputs: []});
+
+    rmSync(evidencePath);
+    writeFileSync(evidencePath, 'evidencia material\n', 'utf8');
+    const unauthorized = await invoke(
+      root,
+      output,
+      resultFor([{ref: evidence[0]!.ref, sha256: digest('evidencia material\n')}]),
+      ['outputs/**'],
+      ['evidence/allowed/**'],
+    );
+    expect(unauthorized).toMatchObject({status: 'BLOCKED', outputs: []});
+  });
+
   it('accredits only read-back material and marks the fake adapter simulation-only', async () => {
     const root = createRoot();
     const output = 'outputs/brief.md';
@@ -132,16 +183,22 @@ describe('MaterialSkillAdapterV1 adversarial boundaries', () => {
     const path = resolve(root, output);
     mkdirSync(dirname(path), {recursive: true});
     writeFileSync(path, bytes, 'utf8');
+    const evidenceBytes = 'evidencia material\n';
+    const evidencePath = resolve(root, evidence[0]!.ref);
+    mkdirSync(dirname(evidencePath), {recursive: true});
+    writeFileSync(evidencePath, evidenceBytes, 'utf8');
+    const verifiedEvidence = [{ref: evidence[0]!.ref, sha256: digest(evidenceBytes)}];
     const receipt = await invoke(root, output, () => ({
       status: 'PASS',
       outputs: [{ref: output, sha256: digest(bytes)}],
-      evidence,
+      evidence: verifiedEvidence,
       publicSummary: 'Material verificado.',
     }));
     expect(receipt).toMatchObject({
       status: 'PASS',
       metrics: {materialExecutionAccredited: true, simulationOnly: false},
       outputs: [{ref: output, sha256: digest(bytes)}],
+      evidence: verifiedEvidence,
     });
 
     const fake = new FakeSkillAdapterV1({
