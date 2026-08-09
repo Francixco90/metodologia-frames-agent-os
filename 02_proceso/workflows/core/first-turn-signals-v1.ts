@@ -19,6 +19,7 @@ export const CAREER_SIGNALS_V1 = [
   'empleo',
   'linkedin',
   'postular',
+  'candidatura',
 ] as const;
 export const RESUME_SIGNALS_V1 = ['continuar', 'retomar', 'reanudar', 'seguir con'] as const;
 export const PROJECT_SIGNALS_V1 = ['crear proyecto', 'nuevo proyecto'] as const;
@@ -31,6 +32,7 @@ export const normalizeFirstTurnPromptV1 = (prompt: string): string =>
     .replaceAll(/\p{Diacritic}/gu, '')
     .trim()
     .toLowerCase()
+    .replace(/\s+/gu, ' ')
     .replace(/^[\p{P}\p{S}\s]+|[\p{P}\p{S}\s]+$/gu, '');
 
 export const hasFirstTurnSignalV1 = (prompt: string, signals: readonly string[]): boolean =>
