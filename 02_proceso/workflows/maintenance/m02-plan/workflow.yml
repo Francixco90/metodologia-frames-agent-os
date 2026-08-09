@@ -15,5 +15,6 @@ execution_steps:
     gate: HM_CHANGE_APPROVED
     stop_rule: Sin impacto documental completo o N/A justificado no existe WorkOrder válido.
 next_workflow: M03
+delegates_to: [S00, S01, S02, S03]
 stop_rule: Requiere HM_CHANGE_APPROVED antes de escribir.
 metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

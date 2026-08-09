@@ -1,0 +1,11 @@
+{
+  "schema_version": "skill-architecture-gate-input-v1",
+  "capability_map_ref": {
+    "ref": "05_verificacion/tests/fixtures/skill-systems/capability-map.json",
+    "sha256": "5973a29e58c2ab3d1d5b3abdf4f1362d3d009c188bbf2d9015ccb99c792d009f"
+  },
+  "decision_ref": {
+    "ref": "05_verificacion/tests/fixtures/skill-systems/architecture-decision.json",
+    "sha256": "4d5f74a7476da8b0ac1e48802cb383aa5ff6d72f93dd4b0c3ca4ca39f19e228f"
+  }
+}

@@ -26,6 +26,8 @@ const MUTATING_SKILLS = new Map<string, MutationClassV1[]>([
   ['frames-ecosystem-inventory', ['CREATE', 'CORRECT']],
   ['frames-harness-maintainer', ['EXPAND', 'EXTEND', 'CORRECT', 'MIGRATE', 'DEPRECATE']],
   ['frames-local-extension-foundry', ['CREATE', 'EXPAND', 'EXTEND', 'CORRECT', 'DEPRECATE']],
+  ['skill-authoring-engineer', ['CREATE', 'EXPAND', 'EXTEND', 'CORRECT', 'MIGRATE', 'DEPRECATE']],
+  ['skill-release-governor', ['MIGRATE', 'DEPRECATE']],
 ]);
 
 type Registry = {entries?: Array<{skill_id?: string; current_state?: string}>};

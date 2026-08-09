@@ -1,0 +1,4 @@
+schema_version: skill-system-fixture-v1
+skill_id: skill-release-governor
+expected: PASS
+effect: local_reversible

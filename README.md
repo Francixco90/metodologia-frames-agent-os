@@ -18,6 +18,7 @@ Puedes usarlo para crear o mejorar contenido, organizar una campaña, diseñar l
 | Mejorar un CV                                  | ordenar experiencia real, elegir evidencia relevante y adaptar el documento a una vacante | CV Markdown y HTML; PDF ATS cuando el generador local acreditado esté disponible                                               |
 | Escribir una cover letter                      | complementar el CV sin repetirlo ni inventar logros                                       | carta Markdown/HTML, mensaje breve o respuesta de formulario                                                                   |
 | Buscar oportunidades laborales                 | definir búsquedas, comparar vacantes y priorizar por ajuste demostrado                    | query pack, inventario, scorecards y shortlist; nunca postula sin autorización específica                                      |
+| Crear o mejorar una skill                      | comprobar si realmente hace falta, diseñar responsabilidades y evaluar el resultado       | caso de uso, mapa de capacidades, candidate, validación, comparación contra baseline y plan de versión                         |
 | Mejorar algo existente                         | conservar lo válido, localizar el problema y crear una versión sucesora                   | acuerdo de intervención, cambios priorizados, comparación y nueva versión candidata                                            |
 
 Consulta el [catálogo de capacidades](01_intencion/guides/capabilities.md) para distinguir qué está disponible, qué es asistencia guiada y qué permanece bloqueado.
@@ -47,6 +48,7 @@ Prueba cualquiera de estas frases:
 - “Mejora mi CV para esta vacante sin inventar experiencia.”
 - “Escribe una cover letter que complemente mi CV.”
 - “Ayúdame a encontrar oportunidades compatibles con mi perfil.”
+- “Necesito una skill para revisar propuestas antes de enviarlas.”
 
 Un saludo muestra un menú breve: **Crear · Mejorar · Planear · Explorar**. Si el pedido ya es claro, Frames evita el menú y avanza directamente a confirmar el brief.
 
@@ -115,6 +117,8 @@ Los recorridos multimedia P00–P09 y Career C00–C09 están definidos y verifi
 Si vas a modificar el sistema, empieza en [AGENTS.md](AGENTS.md) y carga solo el `context.md` correspondiente. La [referencia técnica](01_intencion/guides/technical-reference.md) conecta la experiencia humana con rutas, workflows, ownership y verificadores.
 
 Para ampliar Frames sin publicar nada, sigue la guía de [extensiones locales](01_intencion/guides/extend-frames.md). Para corregir o evolucionar el arnés, usa el recorrido de [mantenimiento gobernado](01_intencion/guides/maintain-frames.md). El [portal offline](03_artefactos/content/documentation/index.html) explica cada workflow con su secuencia, y el [inventario del ecosistema](03_artefactos/content/documentation/ecosystem-inventory.md) muestra las capacidades disponibles.
+
+Si la ampliación implica una skill, Frames comprueba primero si una instrucción, una referencia o una herramienta existente ya resuelve el problema. Cuando una skill sí aporta valor repetible, el recorrido especializado diseña su responsabilidad, la prueba contra una línea base y prepara un paquete reversible. Puedes inspeccionar y validar sin escribir con `pnpm skills:inspect` y `pnpm skills:validate`; consulta la guía de extensiones para ejemplos seguros.
 
 Comprobación integral:
 

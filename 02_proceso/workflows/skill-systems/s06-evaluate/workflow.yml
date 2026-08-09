@@ -1,0 +1,22 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S06
+title: Comparar candidate con baseline
+purpose: Ejecutar casos realistas y assertions observables con replay determinista.
+inputs: [skill-candidate, skill-eval-plan, static-validation-report]
+outputs: [skill-eval-run-v1, eval-summary]
+capability_map: [skill-evaluation-engineer]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Comparar no-skill o versión anterior sin contar fallos de infraestructura como PASS,
+      primary_skill: skill-evaluation-engineer,
+      verifier: RT-09,
+      inputs: [skill-candidate, skill-eval-plan],
+      outputs: [skill-eval-run-v1, eval-summary],
+      gate: SSS_EVAL_VALIDATED,
+      stop_rule: Denominador cero produce UNKNOWN y bloquea.,
+    }
+gate: SSS_EVAL_VALIDATED
+next_workflow: S07
+stop_rule: Candidate no avanza si no mejora baseline en casos declarados.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

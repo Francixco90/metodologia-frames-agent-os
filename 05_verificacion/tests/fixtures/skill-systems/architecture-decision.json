@@ -1,0 +1,14 @@
+{
+  "schema_version": "skill-architecture-decision-v1",
+  "decision_id": "DEC-CLI-001",
+  "case_id": "CASE-CLI-001",
+  "capability_map_id": "MAP-CLI-001",
+  "decision": "CREATE",
+  "selected_topology": ["COMP-CLI-001"],
+  "rejected_alternatives": ["Referencia sin evaluación causal"],
+  "tradeoffs": ["Mayor rigor a cambio de un gate adicional"],
+  "migration_required": false,
+  "fallback": "Mantener el flujo actual sin activar el candidate",
+  "owner": "RT-04-SKILL-ARCHITECT",
+  "content_sha256": "70526a67d8a56fa19a8bfe9ea33394c969122a55dc0eb4dce278b7925c5faf62"
+}

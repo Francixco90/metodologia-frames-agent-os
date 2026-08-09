@@ -1,0 +1,22 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S02
+title: Decidir topología y responsabilidades
+purpose: Separar skill tool referencia schema estado evaluator adapter y aprobación humana.
+inputs: [skill-system-case-v1, discovery-report]
+outputs: [capability-map-v1, architecture-decision-v1]
+capability_map: [skill-system-architect]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Producir mapa de capacidades y decisión con tradeoffs fallback y migración,
+      primary_skill: skill-system-architect,
+      verifier: RT-09,
+      inputs: [skill-system-case-v1, discovery-report],
+      outputs: [capability-map-v1, architecture-decision-v1],
+      gate: SSS_ARCHITECTURE_READY,
+      stop_rule: SPLIT exige al menos dos razones operativas.,
+    }
+gate: SSS_ARCHITECTURE_READY
+next_workflow: S03
+stop_rule: Un componente sin owner o efecto queda BLOCKED.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "skill-eval-run-v1",
+  "run_id": "EVAL-CLI-001",
+  "candidate_ref": "05_verificacion/tests/fixtures/skill-systems/case.json",
+  "candidate_sha256": "3fd83fe86ec333e17b02d8f572648ba269514d42c92d708fa65d550bc2922fd9",
+  "cases": [
+    {
+      "eval_case_id": "CASE-001",
+      "infrastructure_status": "PASS",
+      "baseline_pass": false,
+      "candidate_pass": true,
+      "evidence_refs": [
+        {
+          "ref": "05_verificacion/tests/fixtures/skill-systems/case.json",
+          "sha256": "3fd83fe86ec333e17b02d8f572648ba269514d42c92d708fa65d550bc2922fd9"
+        }
+      ]
+    },
+    {
+      "eval_case_id": "CASE-002",
+      "infrastructure_status": "PASS",
+      "baseline_pass": false,
+      "candidate_pass": true,
+      "evidence_refs": [
+        {
+          "ref": "00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml",
+          "sha256": "8b0f01eb42f2d87adece486226a8826b5a48c20b4a04b2a399b01b75a8621268"
+        }
+      ]
+    },
+    {
+      "eval_case_id": "CASE-003",
+      "infrastructure_status": "FAIL",
+      "baseline_pass": null,
+      "candidate_pass": null,
+      "evidence_refs": []
+    }
+  ],
+  "replay_ref": "00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml",
+  "replay_sha256": "8b0f01eb42f2d87adece486226a8826b5a48c20b4a04b2a399b01b75a8621268",
+  "actor_id": "RT-07-EVAL-PRODUCER",
+  "coverage_policy": {
+    "minimum_eligible_cases": 2,
+    "maximum_infrastructure_failure_ratio": 0.34
+  }
+}

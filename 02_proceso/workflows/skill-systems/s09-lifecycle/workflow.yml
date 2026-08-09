@@ -1,0 +1,23 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S09
+title: Resolver lifecycle H-03
+purpose: Versionar superseder retirar o preparar promoción con lineage y documentación sincronizados.
+inputs: [skill-release-capsule-v1, documentation-closure-receipt-v1]
+outputs: [h03-lifecycle-events, migration-guide, inventory-delta]
+capability_map: [skill-release-governor, frames-docs-as-code]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Aplicar lifecycle append-only y cerrar inventarios sin autoaprobar promoción,
+      primary_skill: skill-release-governor,
+      optional_skills: [frames-docs-as-code],
+      verifier: RT-11,
+      inputs: [skill-release-capsule-v1, documentation-closure-receipt-v1],
+      outputs: [h03-lifecycle-events, migration-guide, inventory-delta],
+      gate: DOCS_TRANSVERSAL_COMPLETE,
+      stop_rule: H01 sigue separado de commit push merge instalación y publicación.,
+    }
+gate: DOCS_TRANSVERSAL_COMPLETE
+next_workflow: null
+stop_rule: Estado máximo active/local-evaluation hasta H01 específico.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

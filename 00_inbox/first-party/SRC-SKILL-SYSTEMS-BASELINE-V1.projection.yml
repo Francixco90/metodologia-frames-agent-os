@@ -1,0 +1,15 @@
+schema_version: governed-source-projection-v1
+source_id: SRC-SKILL-SYSTEMS-BASELINE-V1
+title: Media Skill System — baseline v1.1.0 portable
+source_kind: first_party_baseline
+raw_sha256: 9889d84dac93b2c2c79a0a35decfb315103233d0617046cd38db4cd2a0a57a94
+authority: {class: first_party_baseline, verdict: verified_hash_not_runtime_proof}
+observed_baseline:
+  first_candidate: skill-system-architect
+  required_distinctions: [SKILL, TOOL, REFERENCE, SCHEMA, STATE, EVALUATOR, HUMAN_AUTHORITY]
+  lifecycle_state: PLANNED
+  media_execution: NOT_EXECUTED
+frames_decision:
+  adopt: [smallest_sufficient_component, owner_component, blocking_gates_before_scores]
+  refactor: [single_meta_skill_to_specialized_suite, parallel_harness_to_R8_R9]
+  reject: [self_certified_activation, universal_runtime_claims, implicit_write_authority]

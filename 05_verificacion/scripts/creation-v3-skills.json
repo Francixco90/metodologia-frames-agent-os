@@ -868,5 +868,45 @@
     "id": "frames-ecosystem-inventory",
     "scope": "local-evaluation",
     "check": ["skills/frames-ecosystem-inventory/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-system-architect",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-system-architect/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-authoring-engineer",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-authoring-engineer/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-contract-validator",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-contract-validator/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-evaluation-engineer",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-evaluation-engineer/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-portfolio-governor",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-portfolio-governor/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-release-governor",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-release-governor/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-expert-distiller",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-expert-distiller/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "skill-runtime-adapter",
+    "scope": "local-evaluation",
+    "check": ["skills/skill-runtime-adapter/scripts/check-skill.mjs"]
   }
 ]

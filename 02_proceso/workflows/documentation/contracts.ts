@@ -16,7 +16,7 @@ export type WorkflowStepDocumentationV1 = {
 export type WorkflowDocumentationV1 = {
   schemaVersion: 'workflow-documentation-v1';
   id: string;
-  family: 'content' | 'career' | 'local-extension' | 'maintenance';
+  family: 'content' | 'career' | 'local-extension' | 'maintenance' | 'skill-system';
   title: string;
   purpose: string;
   command: string;

@@ -1,0 +1,23 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S01
+title: Descubrir y aplicar demotion
+purpose: Comparar el pedido con el portfolio y elegir el componente suficiente más pequeño.
+inputs: [skill-system-case-v1, ecosystem-inventory]
+outputs: [discovery-report, demotion-decision]
+capability_map: [skill-system-architect, metodologia-find-skills, skill-portfolio-governor]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Buscar capacidades existentes y probar instrucción referencia tool o skill,
+      primary_skill: skill-system-architect,
+      optional_skills: [metodologia-find-skills, skill-portfolio-governor],
+      verifier: RT-09,
+      inputs: [skill-system-case-v1, ecosystem-inventory],
+      outputs: [discovery-report, demotion-decision],
+      gate: SSS_ARCHITECTURE_READY,
+      stop_rule: No crear una skill si una forma menor satisface aceptación.,
+    }
+gate: SSS_ARCHITECTURE_READY
+next_workflow: S02
+stop_rule: Colisiones u owners desconocidos bloquean.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

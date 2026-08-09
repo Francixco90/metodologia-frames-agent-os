@@ -34,7 +34,7 @@ export const checkContextSurfaces = (root: string): string[] => {
   );
   const surfaces = loadContextSurfaces(root, 'all');
   const expected = projections(surfaces);
-  issues.push(...validateContextGraph(root, surfaces, 69));
+  issues.push(...validateContextGraph(root, surfaces, 78));
   for (const [path, content] of expected) {
     const absolute = resolve(root, path);
     if (!existsSync(absolute)) issues.push(`CTX-COVERAGE002 missing ${path}`);
@@ -60,6 +60,14 @@ export const checkContextSurfaces = (root: string): string[] => {
     'frames-local-extension-foundry',
     'frames-harness-maintainer',
     'frames-ecosystem-inventory',
+    'skill-system-architect',
+    'skill-authoring-engineer',
+    'skill-contract-validator',
+    'skill-evaluation-engineer',
+    'skill-portfolio-governor',
+    'skill-release-governor',
+    'skill-expert-distiller',
+    'skill-runtime-adapter',
   ];
   const presentSkills = expectedSkills.filter((skill) =>
     expected.has(`03_artefactos/skills/${skill}/context.md`),
@@ -97,5 +105,5 @@ if (isMain) {
   if (issues.length > 0) {
     console.error(issues.join('\n'));
     process.exitCode = 1;
-  } else console.info('PASS context surfaces: 53 public + 16 skill projections');
+  } else console.info('PASS context surfaces: 54 public + 24 skill projections');
 }

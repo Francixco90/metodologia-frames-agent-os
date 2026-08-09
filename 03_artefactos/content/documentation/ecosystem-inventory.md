@@ -12,16 +12,16 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 267
-- COMMAND: 89
+- COMMAND: 94
 - COMPONENT: 16
 - DELIVERABLE: 72
-- GATE: 45
+- GATE: 52
 - RENDERER: 5
 - ROUTE: 11
-- SKILL: 172
+- SKILL: 180
 - SOURCE: 11
 - TEMPLATE: 128
-- WORKFLOW: 33
+- WORKFLOW: 43
 
 ## Capacidades
 
@@ -362,6 +362,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | remotion:validate | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | render:all | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | report | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:evaluate | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:inspect | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:package | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:scaffold | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | skills:validate | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | slice:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | slice:verify-compat | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | task:backfill | ACTIVE | CANONICAL | `package.json` |
@@ -527,6 +532,13 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | MW_DISTRIBUTION_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_EDIT_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_SPEC_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_ARCHITECTURE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_CANDIDATE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_CASE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_EVAL_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_RELEASE_CANDIDATE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_REVIEW_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | SSS_STATIC_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | RENDERER | d3 | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | gsap | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | lottie | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
@@ -709,6 +721,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | remotion-video-production | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | scroll-experience-foundations | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | scroll-world-agnostic | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
+| SKILL | skill-authoring-engineer | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-contract-validator | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-evaluation-engineer | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-expert-distiller | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-portfolio-governor | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-release-governor | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-runtime-adapter | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | skill-system-architect | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-browse | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-crawl4ai | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-hackernews-frontpage | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
@@ -887,5 +907,15 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | P07 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p07-revisar/workflow.yml` |
 | WORKFLOW | P08 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p08-editar/workflow.yml` |
 | WORKFLOW | P09 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/workflow.yml` |
+| WORKFLOW | S00 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s00-intake/workflow.yml` |
+| WORKFLOW | S01 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s01-discovery/workflow.yml` |
+| WORKFLOW | S02 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s02-architecture/workflow.yml` |
+| WORKFLOW | S03 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s03-contract/workflow.yml` |
+| WORKFLOW | S04 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s04-author/workflow.yml` |
+| WORKFLOW | S05 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s05-validate/workflow.yml` |
+| WORKFLOW | S06 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s06-evaluate/workflow.yml` |
+| WORKFLOW | S07 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s07-review/workflow.yml` |
+| WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
+| WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `b8edaae259c95efcae9ec3b43ebf30d3713744ecf392c809a6515e98c1b4ca16`.
+Hash de fuentes: `4bde6fc0177f2eb0be92af862c5b5ba0a2e90465c1eb136d67998601724e2666`.

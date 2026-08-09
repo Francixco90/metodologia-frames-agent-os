@@ -115,6 +115,7 @@ const requiredOwnerProbes = [
   ['workflows/multimedia/index.ts', 'content'],
   ['02_proceso/workflows/multimedia/index.ts', 'content'],
   ['02_proceso/workflows/experience/index.ts', 'content'],
+  ['02_proceso/workflows/skill-systems/contracts.ts', 'content'],
   ['04_estado/registries/experience/component-registry.yml', 'content'],
   ['04_estado/releases/experience/EXP-EXAMPLE/release-manifest.json', 'governance'],
 ] as const;

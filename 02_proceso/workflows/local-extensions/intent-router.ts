@@ -16,10 +16,13 @@ export interface LocalExtensionIntentRoute {
   request_hash: string;
   normalized_request: string;
   extension_kind?: LocalExtensionKind;
-  scope?: LocalExtensionScope;
+  scope: LocalExtensionScope;
+  scope_inferred: boolean;
+  scope_alternatives: LocalExtensionScope[];
   desired_capability: string;
   blocking_questions: string[];
   stage_path: ['L00', 'L01', 'L02', 'L03', 'L04', 'L05'];
+  skill_system_path: ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07'];
   active_step: 'L00';
   next_gate: 'LX_BRIEF_APPROVED';
   write_policy: 'read_only_until_brief_approved';
@@ -59,7 +62,8 @@ export const routeLocalExtensionIntent = (
   const request = normalized(input.request);
   if (!request) throw new Error('LOCAL_EXTENSION_REQUEST_REQUIRED');
   const extensionKind = input.extension_kind ?? inferKind(request);
-  const scope = input.scope ?? inferScope(request);
+  const explicitScope = input.scope ?? inferScope(request);
+  const scope = explicitScope ?? 'PROJECT_LOCAL';
   const desiredCapability = normalized(input.desired_capability ?? request);
   const questions: string[] = [];
   if (!desiredCapability || desiredCapability.length < 8) {
@@ -67,9 +71,6 @@ export const routeLocalExtensionIntent = (
   }
   if (!extensionKind) {
     questions.push('¿Necesitas una skill, un workflow completo o un paquete de ambos?');
-  }
-  if (!scope) {
-    questions.push('¿Debe estar disponible solo en este proyecto o en todos tus proyectos?');
   }
   const blockingQuestions = questions.slice(0, 3);
   const hashInput = {
@@ -84,10 +85,13 @@ export const routeLocalExtensionIntent = (
     request_hash: createHash('sha256').update(canonical(hashInput)).digest('hex'),
     normalized_request: request,
     ...(extensionKind ? {extension_kind: extensionKind} : {}),
-    ...(scope ? {scope} : {}),
+    scope,
+    scope_inferred: explicitScope === undefined,
+    scope_alternatives: explicitScope === undefined ? ['USER_LOCAL'] : [],
     desired_capability: desiredCapability,
     blocking_questions: blockingQuestions,
     stage_path: ['L00', 'L01', 'L02', 'L03', 'L04', 'L05'],
+    skill_system_path: ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07'],
     active_step: 'L00',
     next_gate: 'LX_BRIEF_APPROVED',
     write_policy: 'read_only_until_brief_approved',

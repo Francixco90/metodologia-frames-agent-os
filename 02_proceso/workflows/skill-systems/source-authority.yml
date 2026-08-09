@@ -1,0 +1,26 @@
+schema_version: skill-systems-source-authority-v1
+authority_id: SSS-SOURCE-AUTHORITY-001
+scope: skill_systems_specialist_local_evaluation
+sources:
+  - source_id: SRC-SKILL-SYSTEMS-PRD-V1
+    title: Skill Systems Specialist v1.2.1
+    authority_class: first_party_requirement
+    raw_sha256: 29dd7a0fd498901dcb2e8185dfddf54c1b46e5f43d06e1a3cbada199116b3b72
+    projection_ref: 00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml
+    projection_sha256: 8b0f01eb42f2d87adece486226a8826b5a48c20b4a04b2a399b01b75a8621268
+    rights: allowed_internal_architecture_and_local_evaluation
+  - source_id: SRC-SKILL-SYSTEMS-BASELINE-V1
+    title: Media Skill System baseline
+    authority_class: first_party_baseline
+    raw_sha256: 9889d84dac93b2c2c79a0a35decfb315103233d0617046cd38db4cd2a0a57a94
+    projection_ref: 00_inbox/first-party/SRC-SKILL-SYSTEMS-BASELINE-V1.projection.yml
+    projection_sha256: d8b5660a61f1b33b6316f0cacc6154b4443c57f7be13fbf771b5b8ed2074e422
+    rights: allowed_internal_architecture_and_local_evaluation
+coverage_gaps:
+  - K02_through_K20_not_observed
+restrictions:
+  - no_runtime_proof
+  - no_external_host_claim
+  - no_media_execution
+  - no_publication_authorization
+state_effect: AUTHORITY_FOR_LOCAL_EVALUATION_ONLY

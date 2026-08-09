@@ -1,0 +1,22 @@
+schema_version: skill-system-workflow-v1
+workflow_id: S07
+title: Revisar y proponer cambio
+purpose: Atribuir fallos al componente dueño y emitir una propuesta sin automutación.
+inputs: [skill-candidate, skill-eval-run-v1]
+outputs: [skill-review-report-v1, skill-change-proposal-v1]
+capability_map: [skill-portfolio-governor]
+execution_steps:
+  - {
+      step_id: S01,
+      purpose: Revisar con actor independiente y decidir keep evolve merge split demote o retire,
+      primary_skill: skill-portfolio-governor,
+      verifier: RT-09,
+      inputs: [skill-candidate, skill-eval-run-v1],
+      outputs: [skill-review-report-v1, skill-change-proposal-v1],
+      gate: SSS_REVIEW_VALIDATED,
+      stop_rule: Author y reviewer deben ser distintos.,
+    }
+gate: SSS_REVIEW_VALIDATED
+next_workflow: S08
+stop_rule: Una propuesta no muta el candidate.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

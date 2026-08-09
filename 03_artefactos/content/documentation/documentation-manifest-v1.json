@@ -33,7 +33,17 @@
     "02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml",
     "02_proceso/workflows/multimedia/p07-revisar/workflow.yml",
     "02_proceso/workflows/multimedia/p08-editar/workflow.yml",
-    "02_proceso/workflows/multimedia/p09-distribuir/workflow.yml"
+    "02_proceso/workflows/multimedia/p09-distribuir/workflow.yml",
+    "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
+    "02_proceso/workflows/skill-systems/s01-discovery/workflow.yml",
+    "02_proceso/workflows/skill-systems/s02-architecture/workflow.yml",
+    "02_proceso/workflows/skill-systems/s03-contract/workflow.yml",
+    "02_proceso/workflows/skill-systems/s04-author/workflow.yml",
+    "02_proceso/workflows/skill-systems/s05-validate/workflow.yml",
+    "02_proceso/workflows/skill-systems/s06-evaluate/workflow.yml",
+    "02_proceso/workflows/skill-systems/s07-review/workflow.yml",
+    "02_proceso/workflows/skill-systems/s08-package/workflow.yml",
+    "02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml"
   ],
   "audiences": ["person", "operator", "maintainer"],
   "workflows": [
@@ -1451,6 +1461,296 @@
           "templateId": "TPL-P09-DELIVERABLE-V1",
           "gate": "G17",
           "stopRule": "Marcar coverage_gap si no existen datos observables."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S00",
+      "family": "skill-system",
+      "title": "Delimitar el sistema de skills",
+      "purpose": "Convertir una petición cotidiana en un Skill Case ligado a evidencia, alcance y autoridad.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
+      "inputs": ["request", "scope", "source-refs"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_CASE_READY"],
+      "nextWorkflow": "S01",
+      "stopRule": "No diseñar topología sin Skill Case resoluble.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Resolver alcance",
+          "inputs": ["request", "source-refs"],
+          "primarySkill": "skill-system-architect",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["skill-system-case-v1"],
+          "templateId": "",
+          "gate": "SSS_CASE_READY",
+          "stopRule": "Máximo tres gaps bloqueantes; autoridad ausente permanece MISSING."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S01",
+      "family": "skill-system",
+      "title": "Descubrir y aplicar demotion",
+      "purpose": "Comparar el pedido con el portfolio y elegir el componente suficiente más pequeño.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s01-discovery/workflow.yml",
+      "inputs": ["skill-system-case-v1", "ecosystem-inventory"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_ARCHITECTURE_READY"],
+      "nextWorkflow": "S02",
+      "stopRule": "Colisiones u owners desconocidos bloquean.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Buscar capacidades existentes y probar instrucción referencia tool o skill",
+          "inputs": ["skill-system-case-v1", "ecosystem-inventory"],
+          "primarySkill": "skill-system-architect",
+          "optionalSkills": ["metodologia-find-skills", "skill-portfolio-governor"],
+          "verifier": "RT-09",
+          "outputs": ["discovery-report", "demotion-decision"],
+          "templateId": "",
+          "gate": "SSS_ARCHITECTURE_READY",
+          "stopRule": "No crear una skill si una forma menor satisface aceptación."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S02",
+      "family": "skill-system",
+      "title": "Decidir topología y responsabilidades",
+      "purpose": "Separar skill tool referencia schema estado evaluator adapter y aprobación humana.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s02-architecture/workflow.yml",
+      "inputs": ["skill-system-case-v1", "discovery-report"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_ARCHITECTURE_READY"],
+      "nextWorkflow": "S03",
+      "stopRule": "Un componente sin owner o efecto queda BLOCKED.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Producir mapa de capacidades y decisión con tradeoffs fallback y migración",
+          "inputs": ["skill-system-case-v1", "discovery-report"],
+          "primarySkill": "skill-system-architect",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["capability-map-v1", "architecture-decision-v1"],
+          "templateId": "",
+          "gate": "SSS_ARCHITECTURE_READY",
+          "stopRule": "SPLIT exige al menos dos razones operativas."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S03",
+      "family": "skill-system",
+      "title": "Contratar componentes y evaluación",
+      "purpose": "Fijar inputs outputs efectos fallback aceptación y baseline antes de autoría.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s03-contract/workflow.yml",
+      "inputs": ["capability-map-v1", "architecture-decision-v1"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_ARCHITECTURE_READY"],
+      "nextWorkflow": "S04",
+      "stopRule": "No autorizar candidate con contratos incompletos.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Validar contratos estrictos y diseñar casos TRIGGER DECISION OUTCOME",
+          "inputs": ["capability-map-v1", "architecture-decision-v1"],
+          "primarySkill": "skill-contract-validator",
+          "optionalSkills": ["skill-evaluation-engineer"],
+          "verifier": "RT-09",
+          "outputs": ["component-contract-v1", "skill-eval-plan"],
+          "templateId": "",
+          "gate": "SSS_ARCHITECTURE_READY",
+          "stopRule": "Trigger no concede efectos y un baseline ausente se declara."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S04",
+      "family": "skill-system",
+      "title": "Materializar el candidate",
+      "purpose": "Crear el paquete aprobado mediante adapter autorizado y progressive disclosure.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s04-author/workflow.yml",
+      "inputs": ["component-contract-v1", "skill-eval-plan", "work-order"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_CANDIDATE_READY"],
+      "nextWorkflow": "S05",
+      "stopRule": "Un adapter externo ausente degrada a handoff o UNKNOWN.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Escribir SKILL context referencias fixtures checker y boundary dentro del write set",
+          "inputs": ["component-contract-v1", "skill-eval-plan", "work-order"],
+          "primarySkill": "skill-authoring-engineer",
+          "optionalSkills": ["skill-runtime-adapter"],
+          "verifier": "RT-09",
+          "outputs": ["skill-candidate", "authoring-handoff"],
+          "templateId": "",
+          "gate": "SSS_CANDIDATE_READY",
+          "stopRule": "Dry-run por defecto; sin WorkOrder no escribir."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S05",
+      "family": "skill-system",
+      "title": "Validar candidate y supply chain",
+      "purpose": "Verificar estructura referencias paths hashes efectos fixtures y dependencias.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s05-validate/workflow.yml",
+      "inputs": ["skill-candidate", "component-contract-v1"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_STATIC_VALIDATED"],
+      "nextWorkflow": "S06",
+      "stopRule": "E3 sin sandbox material queda VALIDATED_NOT_RUNNABLE.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Ejecutar validación estática adversarial y releer hashes",
+          "inputs": ["skill-candidate", "component-contract-v1"],
+          "primarySkill": "skill-contract-validator",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["static-validation-report"],
+          "templateId": "",
+          "gate": "SSS_STATIC_VALIDATED",
+          "stopRule": "Cualquier referencia stale escape o permiso extra bloquea."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S06",
+      "family": "skill-system",
+      "title": "Comparar candidate con baseline",
+      "purpose": "Ejecutar casos realistas y assertions observables con replay determinista.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s06-evaluate/workflow.yml",
+      "inputs": ["skill-candidate", "skill-eval-plan", "static-validation-report"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_EVAL_VALIDATED"],
+      "nextWorkflow": "S07",
+      "stopRule": "Candidate no avanza si no mejora baseline en casos declarados.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Comparar no-skill o versión anterior sin contar fallos de infraestructura como PASS",
+          "inputs": ["skill-candidate", "skill-eval-plan"],
+          "primarySkill": "skill-evaluation-engineer",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["skill-eval-run-v1", "eval-summary"],
+          "templateId": "",
+          "gate": "SSS_EVAL_VALIDATED",
+          "stopRule": "Denominador cero produce UNKNOWN y bloquea."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S07",
+      "family": "skill-system",
+      "title": "Revisar y proponer cambio",
+      "purpose": "Atribuir fallos al componente dueño y emitir una propuesta sin automutación.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s07-review/workflow.yml",
+      "inputs": ["skill-candidate", "skill-eval-run-v1"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_REVIEW_VALIDATED"],
+      "nextWorkflow": "S08",
+      "stopRule": "Una propuesta no muta el candidate.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Revisar con actor independiente y decidir keep evolve merge split demote o retire",
+          "inputs": ["skill-candidate", "skill-eval-run-v1"],
+          "primarySkill": "skill-portfolio-governor",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["skill-review-report-v1", "skill-change-proposal-v1"],
+          "templateId": "",
+          "gate": "SSS_REVIEW_VALIDATED",
+          "stopRule": "Author y reviewer deben ser distintos."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S08",
+      "family": "skill-system",
+      "title": "Empaquetar release candidate",
+      "purpose": "Congelar archivos hashes compatibilidad gaps y restauración sin sobreescritura.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s08-package/workflow.yml",
+      "inputs": ["skill-candidate", "skill-review-report-v1", "skill-change-proposal-v1"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["SSS_RELEASE_CANDIDATE"],
+      "nextWorkflow": "S09",
+      "stopRule": "Capsule existente no se sobrescribe.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Crear capsule inmutable y adapters explícitos sin sobredeclarar hosts",
+          "inputs": ["skill-candidate", "skill-review-report-v1"],
+          "primarySkill": "skill-release-governor",
+          "optionalSkills": ["skill-runtime-adapter"],
+          "verifier": "RT-11",
+          "outputs": ["skill-release-capsule-v1", "compatibility-report", "restore-plan"],
+          "templateId": "",
+          "gate": "SSS_RELEASE_CANDIDATE",
+          "stopRule": "Runtime sin probe material permanece UNKNOWN."
+        }
+      ]
+    },
+    {
+      "schemaVersion": "workflow-documentation-v1",
+      "id": "S09",
+      "family": "skill-system",
+      "title": "Resolver lifecycle H-03",
+      "purpose": "Versionar superseder retirar o preparar promoción con lineage y documentación sincronizados.",
+      "command": "No disponible",
+      "source": "02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml",
+      "inputs": ["skill-release-capsule-v1", "documentation-closure-receipt-v1"],
+      "deliverables": [],
+      "templateRefs": [],
+      "gates": ["DOCS_TRANSVERSAL_COMPLETE"],
+      "nextWorkflow": null,
+      "stopRule": "Estado máximo active/local-evaluation hasta H01 específico.",
+      "steps": [
+        {
+          "id": "S01",
+          "purpose": "Aplicar lifecycle append-only y cerrar inventarios sin autoaprobar promoción",
+          "inputs": ["skill-release-capsule-v1", "documentation-closure-receipt-v1"],
+          "primarySkill": "skill-release-governor",
+          "optionalSkills": ["frames-docs-as-code"],
+          "verifier": "RT-11",
+          "outputs": ["h03-lifecycle-events", "migration-guide", "inventory-delta"],
+          "templateId": "",
+          "gate": "DOCS_TRANSVERSAL_COMPLETE",
+          "stopRule": "H01 sigue separado de commit push merge instalación y publicación."
         }
       ]
     }

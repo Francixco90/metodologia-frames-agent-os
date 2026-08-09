@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "85d5154681917152c63be45ac40a3c0b78de3a4b90735a273612cf10c497c34b",
-  "totalMarkdown": 1734,
-  "auditedAuthored": 517,
+  "repositoryTreeSha256": "864d28e81470aa35fce53dbf6d70e5b343d0a93c5a16b194c1bfc431c6de59dd",
+  "totalMarkdown": 1771,
+  "auditedAuthored": 537,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -83,6 +83,7 @@
       "01_intencion/guides/guided-use.md",
       "01_intencion/guides/maintain-frames.md",
       "01_intencion/guides/technical-reference.md",
+      "01_intencion/guides/troubleshooting-old-commands.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
       "01_intencion/hyperframes/verification-report.md",
@@ -141,6 +142,16 @@
       "01_intencion/reference/workflows/p07.md",
       "01_intencion/reference/workflows/p08.md",
       "01_intencion/reference/workflows/p09.md",
+      "01_intencion/reference/workflows/s00.md",
+      "01_intencion/reference/workflows/s01.md",
+      "01_intencion/reference/workflows/s02.md",
+      "01_intencion/reference/workflows/s03.md",
+      "01_intencion/reference/workflows/s04.md",
+      "01_intencion/reference/workflows/s05.md",
+      "01_intencion/reference/workflows/s06.md",
+      "01_intencion/reference/workflows/s07.md",
+      "01_intencion/reference/workflows/s08.md",
+      "01_intencion/reference/workflows/s09.md",
       "01_intencion/rembg-bg-removal/architecture.md",
       "01_intencion/rembg-bg-removal/audit-report.md",
       "01_intencion/rembg-bg-removal/verification-report.md",
@@ -341,6 +352,14 @@
       "03_artefactos/skills/remotion-video-production/references/three-and-r3f.md",
       "03_artefactos/skills/remotion-video-production/references/timing-and-transitions.md",
       "03_artefactos/skills/remotion-video-production/references/video-spec-authoring.md",
+      "03_artefactos/skills/skill-authoring-engineer/references/operating-contract.md",
+      "03_artefactos/skills/skill-contract-validator/references/operating-contract.md",
+      "03_artefactos/skills/skill-evaluation-engineer/references/operating-contract.md",
+      "03_artefactos/skills/skill-expert-distiller/references/operating-contract.md",
+      "03_artefactos/skills/skill-portfolio-governor/references/operating-contract.md",
+      "03_artefactos/skills/skill-release-governor/references/operating-contract.md",
+      "03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md",
+      "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
       "03_artefactos/skills/stitch-remotion-walkthrough/references/quarantine-assessment.md",
       "04_estado/registries/README.md",
       "04_estado/registries/agents/README.md",
@@ -682,6 +701,14 @@
       "03_artefactos/skills/remotion-video-production/SKILL.md",
       "03_artefactos/skills/scroll-experience-foundations/SKILL.md",
       "03_artefactos/skills/scroll-world-agnostic/SKILL.md",
+      "03_artefactos/skills/skill-authoring-engineer/SKILL.md",
+      "03_artefactos/skills/skill-contract-validator/SKILL.md",
+      "03_artefactos/skills/skill-evaluation-engineer/SKILL.md",
+      "03_artefactos/skills/skill-expert-distiller/SKILL.md",
+      "03_artefactos/skills/skill-portfolio-governor/SKILL.md",
+      "03_artefactos/skills/skill-release-governor/SKILL.md",
+      "03_artefactos/skills/skill-runtime-adapter/SKILL.md",
+      "03_artefactos/skills/skill-system-architect/SKILL.md",
       "03_artefactos/skills/stitch-remotion-walkthrough/SKILL.md",
       "03_artefactos/skills/web-browse/SKILL.md",
       "03_artefactos/skills/web-crawl4ai/SKILL.md",
@@ -739,6 +766,7 @@
       "02_proceso/workflows/multimedia/p07-revisar/context.md",
       "02_proceso/workflows/multimedia/p08-editar/context.md",
       "02_proceso/workflows/multimedia/p09-distribuir/context.md",
+      "02_proceso/workflows/skill-systems/context.md",
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
@@ -757,6 +785,14 @@
       "03_artefactos/skills/frames-local-extension-foundry/context.md",
       "03_artefactos/skills/frames-token-efficiency-orchestrator/context.md",
       "03_artefactos/skills/metodologia-brand-router/context.md",
+      "03_artefactos/skills/skill-authoring-engineer/context.md",
+      "03_artefactos/skills/skill-contract-validator/context.md",
+      "03_artefactos/skills/skill-evaluation-engineer/context.md",
+      "03_artefactos/skills/skill-expert-distiller/context.md",
+      "03_artefactos/skills/skill-portfolio-governor/context.md",
+      "03_artefactos/skills/skill-release-governor/context.md",
+      "03_artefactos/skills/skill-runtime-adapter/context.md",
+      "03_artefactos/skills/skill-system-architect/context.md",
       "04_estado/context.md",
       "04_estado/registries/context.md",
       "05_verificacion/context.md",
@@ -1751,6 +1787,7 @@
       "01_intencion/adrs/0001-0020-decisions.md",
       "01_intencion/adrs/0021-0026-renderer-adapters.md",
       "01_intencion/adrs/0027-atemporal-naming.md",
+      "01_intencion/adrs/ADR-SSS-001-skill-systems-integration.md",
       "02_proceso/governance/lessons-learned.md",
       "changelog.md"
     ]
@@ -2694,6 +2731,32 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/adrs/ADR-SSS-001-skill-systems-integration.md",
+      "class": "historical",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/adrs/ADR-SSS-001-skill-systems-integration.md"
+      ],
+      "budgetSurface": "authored-decisions-md",
+      "sourceRef": "01_intencion/adrs/ADR-SSS-001-skill-systems-integration.md",
+      "derivatives": [],
+      "lifecycle": "frozen",
+      "sha256": "c62eba8db3b148b88841aef0867b6506b161e15ee192fba43d9668c50eecc5a9",
+      "words": 246,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "FREEZE",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
         "hasNextAction": false,
         "duplicateHeadings": 0
       }
@@ -3776,9 +3839,9 @@
       "sourceRef": "01_intencion/guides/extend-frames.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "1becf2f6907f69fb68fee7e74539d930e8d8dc1b77ba57ffd20fe5e86a344d4d",
-      "words": 237,
-      "lines": 39,
+      "sha256": "3af660dd9c0636f0f6b7713dc79478a91639dc0801b6bfce3420805c96dc187c",
+      "words": 477,
+      "lines": 60,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -3864,6 +3927,32 @@
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/troubleshooting-old-commands.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/troubleshooting-old-commands.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/guides/troubleshooting-old-commands.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4835940254522bb338d07a0c949e4bec6e776944fdb79613d7eca996806bfbc2",
+      "words": 528,
+      "lines": 74,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": false,
         "hasNextAction": true,
         "duplicateHeadings": 0
       }
@@ -4270,7 +4359,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "b80b2c6c84d59217932607c1adc4cbcf2b80214c854cd759f6b5332fc579d88a",
+      "sha256": "55c2c06005f3c31a18d6a74358e213e9ed992dcc03c37ba3250e147e9fe21839",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -5399,6 +5488,266 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s00.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s00.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s00.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d23f969bf180f433988766cf13c9569f397fdde0139f1c8b251d161bc1af7cc6",
+      "words": 249,
+      "lines": 67,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s01.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s01.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s01.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "eec46ab064440c2562a02e30e13007ef9b7d903e0d04c25968c23a0f6870a1d8",
+      "words": 258,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s02.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s02.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s02.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "875204f12132f07be32cb159a9d48a03c21a1997b20db4e7339e01bfbb931ff9",
+      "words": 261,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s03.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s03.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s03.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "aed081036bb37a408a336fcf92e2f8d253798a1c92de343202f3cd42b6d9f7d8",
+      "words": 255,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s04.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s04.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s04.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "eaad2e72a837244e653fcd47e7cb7ff1eb2890a21cd2db04fbfd4f4cc7609add",
+      "words": 260,
+      "lines": 67,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s05.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s05.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s05.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0dc23a36e7118a5369e9f7d3ec52ca7295dd5f65e188e40d37b02b1135fd502b",
+      "words": 251,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s06.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s06.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s06.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2f45fc5aa82794d808a65f3b52fda24e1a0c1f42cffa2e2820fe41d27779990e",
+      "words": 265,
+      "lines": 67,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s07.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s07.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s07.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0232573eae657a6f7cbf1b28705d64cd5147ba203e43a67243f1d0ce053245ca",
+      "words": 263,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s08.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s08.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s08.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "66b16a58a4e11847a9977ff399c5a0ce72c52cc2fe810e637ad060d03fad5cf6",
+      "words": 252,
+      "lines": 67,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/s09.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/s09.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/s09.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "857431c668ff9397c5f03e591062e8bbc9b03ae2f610d2e5e97c97e44cfe2908",
+      "words": 256,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -8893,9 +9242,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "3d2a45a53212c4e8dd5b28d3b41152264153a81c2eec57d15e6464455d226f51",
-      "words": 9569,
-      "lines": 892,
+      "sha256": "44778d13d2a632681f76a8ab8172edc11357cf06b9372a88839e92a1f3a976a2",
+      "words": 9899,
+      "lines": 922,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -12918,6 +13267,214 @@
       }
     },
     {
+      "path": "03_artefactos/skills/skill-authoring-engineer/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-authoring-engineer/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-authoring-engineer/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ad05e459c6d9a637dfff0a1c055043d705612438a96a80dd67ed6098f68d4d2b",
+      "words": 37,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-contract-validator/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-contract-validator/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-contract-validator/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b5464a0776e58181f60dc845f2b472360b28107a57297ed188c01a88d4285b97",
+      "words": 30,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-evaluation-engineer/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-evaluation-engineer/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-evaluation-engineer/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f6ca7ff892779bd40ebec1f21b14a882d195047600878348118c8681c5b7b87d",
+      "words": 32,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-expert-distiller/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-expert-distiller/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-expert-distiller/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "cdb5a69a18fb47b75498af31283e3ae95669f769f43555586ff481bf7491907f",
+      "words": 34,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-portfolio-governor/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-portfolio-governor/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-portfolio-governor/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3c7ae6ffecaef474a1f712e74672fc60cbd4c37b4c00fa29298af37358391917",
+      "words": 35,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-release-governor/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-release-governor/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-release-governor/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2fdbe15cfc960845aa7c521c5689e6ca8a907ea3139a2e1e47e4728b9251566a",
+      "words": 33,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-runtime-adapter/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "870fa0567dd82a342f1fcb06617c88de0d3df50f19248070b628d699c4ab2a09",
+      "words": 32,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/skill-system-architect/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d77fd80909885d68656b37b8c042cb6d8c9aa19455e1deb874f780060afe7ef4",
+      "words": 36,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/stitch-remotion-walkthrough/references/quarantine-assessment.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -15610,9 +16167,9 @@
       "sourceRef": "README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "31b993974d5195ff0af0b0c9441e2d45ec138d478e89635377c64d04955d5d48",
-      "words": 1462,
-      "lines": 136,
+      "sha256": "4c47e9c676a5f9458976becbd13446be76cdfd2e56cb2ff6d5557341a2f7d96f",
+      "words": 1573,
+      "lines": 140,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -15678,10 +16235,10 @@
     }
   ],
   "summary": {
-    "keep": 504,
+    "keep": 523,
     "refactor": 0,
     "split": 1,
-    "regenerate": 71,
-    "freeze": 985
+    "regenerate": 80,
+    "freeze": 986
   }
 }

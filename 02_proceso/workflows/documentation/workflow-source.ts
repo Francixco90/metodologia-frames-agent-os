@@ -71,14 +71,16 @@ export const loadWorkflowDocumentation = async (
         throw new Error(`Source escape: ${relativeSource}`);
       const source = asRecord(parse(await readFile(absoluteSource, 'utf8')));
       const id = asString(source.workflow_id);
-      if (!/^[PCLM]\d{2}$/u.test(id)) throw new Error(`Invalid workflow id in ${relativeSource}`);
+      if (!/^[PCLMS]\d{2}$/u.test(id)) throw new Error(`Invalid workflow id in ${relativeSource}`);
       const family = id.startsWith('P')
         ? 'content'
         : id.startsWith('C')
           ? 'career'
           : id.startsWith('L')
             ? 'local-extension'
-            : 'maintenance';
+            : id.startsWith('M')
+              ? 'maintenance'
+              : 'skill-system';
       const directGate = asString(source.gate);
       return {
         schemaVersion: 'workflow-documentation-v1',

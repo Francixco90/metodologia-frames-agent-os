@@ -1,0 +1,11 @@
+schema_version: 1
+skill_id: skill-contract-validator
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_for_frames
+derivation_mode: contextualized_from_governed_prd
+authority_refs: [00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml, 02_proceso/workflows/skill-systems/contracts.ts]
+external_fragments_reused: false
+publication_authority: false
+network_allowed: false

@@ -15,5 +15,6 @@ execution_steps:
     gate: HM_CHANGE_APPROVED
     stop_rule: Cualquier mutación fuera del write set bloquea y preserva evidencia.
 next_workflow: M04
+delegates_to: [S04, S05, S06, S07, S08, S09]
 stop_rule: No promover ni documentar PASS antes de verificación fresca.
 metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

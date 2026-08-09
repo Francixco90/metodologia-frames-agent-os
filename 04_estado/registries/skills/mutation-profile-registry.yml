@@ -499,6 +499,30 @@ profiles:
   - skill_id: scroll-world-agnostic
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: skill-authoring-engineer
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: skill-contract-validator
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: skill-evaluation-engineer
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: skill-expert-distiller
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: skill-portfolio-governor
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: skill-release-governor
+    mutation_classes: [MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: skill-runtime-adapter
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: skill-system-architect
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: web-browse
     mutation_classes: []
     documentation_impact_required: false
