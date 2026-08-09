@@ -5,7 +5,7 @@ const root = process.cwd();
 const id = 'context-save';
 const skillDir = join(root, 'skills', id);
 
-const required = ['SKILL.md', 'LINEAGE.yml', 'receipts/runtime-boundary.yml'];
+const required = ['SKILL.md', 'context.md', 'LINEAGE.yml', 'receipts/runtime-boundary.yml'];
 
 const fixtureFiles = ['fixtures/positive/case-01.yml', 'fixtures/negative/case-01.yml'];
 
@@ -63,6 +63,24 @@ for (const field of lineageFields) {
   if (!re.test(lineage)) {
     throw new Error(`FAIL ${id}: LINEAGE.yml missing field: ${field}`);
   }
+}
+
+// 3b. Version, public context contract, and budgets stay aligned.
+if (!/^version: 0\.2\.0$/mu.test(fm) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  throw new Error(`FAIL ${id}: version mismatch; expected 0.2.0`);
+}
+const publicContext = contents.get('context.md');
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) {
+    throw new Error(`FAIL ${id}: context.md missing section ${section}`);
+  }
+}
+if (!skillMd.includes('[context.md](context.md)')) {
+  throw new Error(`FAIL ${id}: SKILL.md must link context.md`);
+}
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  throw new Error(`FAIL ${id}: skill/context budget exceeded`);
 }
 
 // 4. Fixtures parse as YAML (lightweight structural check — node has no
