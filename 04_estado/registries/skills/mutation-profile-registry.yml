@@ -1,0 +1,519 @@
+schema_version: mutation-profile-registry-v1
+authority: explicit-allowlist-no-keyword-inference
+profiles:
+  - skill_id: candidate-evidence-reconciler
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: career-application-orchestrator
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: career-opportunity-finder
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: cinematic-scroll-quality
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-animation
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-bento-apple-grid
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-bento-grid
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-bento-slides
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-captions-overlay
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-changelog-video
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-core
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-creative
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-cut-the-curve
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-embedded-captions
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-faceless-explainer
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-figma
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-general-video
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-hyperframes-cli
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-keyframes
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-media
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-motion-doctrine
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-motion-graphics
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-music-to-video
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-oversized-cursor
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-pr-to-video
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-product-launch-video
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-registry
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-best-practices
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-bridge
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-captions
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-create
+    mutation_classes: [CREATE]
+    documentation_impact_required: true
+  - skill_id: content-os-remotion-docs
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-interactivity
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-maps
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-markup
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-multimedia
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-render
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-saas
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-remotion-upgrade
+    mutation_classes: [EXPAND, MIGRATE]
+    documentation_impact_required: true
+  - skill_id: content-os-router
+    mutation_classes: [EXPAND, EXTEND, CORRECT]
+    documentation_impact_required: true
+  - skill_id: content-os-seam-craft
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-slideshow
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: content-os-talking-head-recut
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-agents-dox
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-codebase-guardian
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-lsp
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-memory
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-restore
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-save
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-schema-aware-db
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-setup-gbrain
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-sync-gbrain
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: context-teammates
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: data-visual-composition
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-audit-genjutsu
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-canvas-generative
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-cast
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-compose-graphics
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-compose-motion
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-compose-multiplatform
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-css-native
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-desktop-principles
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-dna
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-emil
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-extract
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-framer-motion
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-frontend-design
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-genjutsu-gsap-motion
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-genjutsu-uiux
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-high-end-visual
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-impeccable
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-minimalist-ui
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-mobile-principles
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-motion-principles
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-paint
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-redesign
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-swiftui-graphics
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-swiftui-motion
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-taste-frontend
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-threejs-r3f
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-ui-ux-pro-max
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: design-web-design-guidelines
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-brainstorming
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-canary
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-careful
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-design-consultation
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-design-html
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-design-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-design-shotgun
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-devex-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-dispatching-parallel-agents
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-document-generate
+    mutation_classes: [CREATE, CORRECT]
+    documentation_impact_required: true
+  - skill_id: dev-document-release
+    mutation_classes: [MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: dev-executing-plans
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: dev-finishing-a-development-branch
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-freeze
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-guard
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-health
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-investigate
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-karpathy-guidelines
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-land-and-deploy
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-learn
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-pair-agent
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-plan-ceo-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-plan-design-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-plan-devex-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-plan-eng-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-plan-tune
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail-audit
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail-debt
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail-gain
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail-help
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ponytail-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-qa
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-qa-only
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-receiving-code-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-requesting-code-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-retro
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-setup-deploy
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-ship
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-skillify
+    mutation_classes: [CREATE, EXTEND]
+    documentation_impact_required: true
+  - skill_id: dev-spec
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-subagent-driven-development
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-systematic-debugging
+    mutation_classes: [CORRECT]
+    documentation_impact_required: true
+  - skill_id: dev-test-driven-development
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-unfreeze
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-using-git-worktrees
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-using-superpowers
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: dev-verification-before-completion
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: dev-writing-plans
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: dev-writing-skills
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: evidence-based-cover-letter
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: evidence-first-cv
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: frames-docs-as-code
+    mutation_classes: [CREATE, EXPAND, CORRECT, MIGRATE]
+    documentation_impact_required: true
+  - skill_id: frames-ecosystem-inventory
+    mutation_classes: [CREATE, CORRECT]
+    documentation_impact_required: true
+  - skill_id: frames-harness-maintainer
+    mutation_classes: [EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: frames-local-extension-foundry
+    mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, DEPRECATE]
+    documentation_impact_required: true
+  - skill_id: frames-token-efficiency-orchestrator
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-autoplan
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-benchmark
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-benchmark-models
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-codex
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-cso
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-ios-clean
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-ios-design-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-ios-fix
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-ios-sync
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-openclaw-ceo-review
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-openclaw-investigate
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-openclaw-office-hours
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-openclaw-retro
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: gstack-upgrade
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: instagram-carousel-production
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: instagram-content-orchestration
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: media-make-pdf
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: media-rembg
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-brand-router
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-certificate-builder
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-find-skills
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: motion-library-adapters
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: remotion-video-production
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: remotion-video-production-v2
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: scroll-experience-foundations
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: scroll-world-agnostic
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-browse
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-crawl4ai
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-hackernews-frontpage
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-open-browser
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-scrape
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: web-setup-browser-cookies
+    mutation_classes: []
+    documentation_impact_required: false

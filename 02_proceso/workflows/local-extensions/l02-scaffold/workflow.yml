@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L02
+title: Preparar el paquete privado
+purpose: Materializar el scaffold aprobado únicamente dentro del root local autorizado.
+inputs: [local-extension-design-v1]
+outputs: [local-extension-manifest-v1, local-extension-package-v1]
+gate: LX_PACKAGE_MATERIALIZED
+next_workflow: L03
+effect_class: local_reversible
+stop_rule: Un path inseguro, symlink o write fuera del root bloquea sin dejar estado parcial.

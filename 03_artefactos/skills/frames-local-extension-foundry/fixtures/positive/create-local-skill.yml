@@ -1,0 +1,7 @@
+fixture_id: local-foundry-positive
+request: crear una skill local para revisar presentaciones en este proyecto
+expected:
+  route: R8
+  stage_path: [L00, L01, L02, L03, L04, L05]
+  scope: PROJECT_LOCAL
+  next_gate: LX_BRIEF_APPROVED

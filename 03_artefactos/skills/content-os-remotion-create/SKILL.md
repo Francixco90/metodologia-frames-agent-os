@@ -1,7 +1,7 @@
 ---
 name: content-os-remotion-create
 description: This skill should be used when the user asks to "create a new Remotion video", "scaffold a Remotion project", "new Remotion composition", "set up a Remotion project", "register a composition", or "make a Remotion video from scratch". Scaffold a new Remotion project and author the first composition: project init, Root.tsx + registerRoot, composition registration with {fps, durationInFrames, width, height}, defaultProps, calculateMetadata. Sits beside `remotion-video-production` (MetodologIA canonical). Clean-room prose from the Remotion publisher reference (source-available, Remotion AG). Output stays RENDERED_DRAFT; production gates G13-G17 manual. Unclear → content-os-remotion-best-practices.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires exact H-03 toolchain pins (Remotion 4.0.494, React 19, Node, pnpm, FFmpeg). Sits beside `remotion-video-production`. No runtime dependency added.
 metadata:
@@ -67,11 +67,20 @@ Register exactly one `Root.tsx` per project with `registerRoot(<Composition .../
 
 ## Preflight
 
-1. Confirm exact toolchain pins.
-2. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
-3. If the request is "write markup", route to `content-os-remotion-markup`.
-4. Stop on: network in render path, unpinned assets, ambiguous license, production
+1. Complete `DocumentationImpactPlanV1` before the first scaffold or composition mutation;
+   every surface is `REQUIRED` or `NOT_APPLICABLE` with a reason code.
+2. Confirm exact toolchain pins.
+3. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
+4. If the request is "write markup", route to `content-os-remotion-markup`.
+5. Stop on: network in render path, unpinned assets, ambiguous license, production
    request without human gate approval.
+
+## Transversal documentation closure
+
+After freezing the candidate, synchronize every required documentation surface and obtain
+a hash-bound `DocumentationClosureReceiptV1` with PASS. Do not claim the creation done
+until RT-09 grants `DOCS_TRANSVERSAL_COMPLETE`. Any later change invalidates the receipt
+and opens a successor; this gate grants neither production nor publication.
 
 ## Stop rules
 

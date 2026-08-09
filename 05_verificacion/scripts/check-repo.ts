@@ -80,6 +80,7 @@ const checks = [
   'check-instagram-v2-skills.ts',
   'check-career-workflows.ts',
   'check-experience-os.ts',
+  'check-documentation-os.ts',
   'check-dependency-audit.ts',
   'check-receipts.ts',
   'check-visual-reference-register.mjs',

@@ -1,0 +1,4 @@
+fixture_id: docs-sync-workflow-positive
+request: actualizar documentación y diagrama de un workflow modificado
+input: {source_resolvable: true, impact_plan: true, offline_replay_equal: true}
+expected: {result: PASS, gate: DOCS_TRANSVERSAL_COMPLETE, rt09_required: true}

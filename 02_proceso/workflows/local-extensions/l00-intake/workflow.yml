@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L00
+title: Comprender la capacidad local
+purpose: Convertir una necesidad cotidiana en un brief privado sin crear archivos todavía.
+inputs: [assistance-envelope-v1]
+outputs: [local-extension-brief-v1]
+gate: LX_BRIEF_APPROVED
+next_workflow: L01
+effect_class: read_only
+stop_rule: Preguntar como máximo tres datos bloqueantes y detener antes de materializar.

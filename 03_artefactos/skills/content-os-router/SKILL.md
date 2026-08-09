@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.6.0
+version: 0.7.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
@@ -16,15 +16,15 @@ metadata:
 
 Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
 
-Puerta de entrada única de Frames para `source-to-content` y `career-application`, compatible
+Puerta de entrada única de Frames para contenido, carrera, extensiones privadas y mantenimiento, compatible
 con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities bajo
 demanda y despacha workflows locales hash-bound. No instala, consulta la red ni
 renderiza; `content-os-core` conserva el adapter HTML→MP4.
 
 `scripts/route-intent.mjs` conserva la decisión compatible y añade
-`dispatchIntent()`: R6 ejecuta `routeContentIntent`, R7 ejecuta
-`routeCareerIntent`, y R0 no invoca adapter. Un locator sin `adapter_invoked` y
-`domain_intent` es planificación, no ejecución. Una señal mixta o ausente nunca
+`dispatchIntent()`: R6 ejecuta `routeContentIntent`, R7 `routeCareerIntent`, R8
+`routeLocalExtensionIntent`, R9 `routeMaintenanceIntent`, y R0 no invoca adapter. Un locator sin `adapter_invoked` y
+`domain_intent` es planificación, no ejecución. R8 y R9 se detienen en aprobación antes de mutar. Una señal mixta o ausente nunca
 fusiona dominios.
 
 - **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
@@ -165,8 +165,6 @@ duplica.
 
 ## Done
 
-Intent ruteado (route válida + capability_map[]), `route-audit.mjs` PASS,
-`intent-brief.jsonl` escrito, workflow Fase 3 despachado o `coverage_gap` marcado,
-offline-first + deterministic + route-once heredados. `RENDERED_DRAFT` !=
-`HUMAN_APPROVED`. `READY`/publicación bloquea gates humanos G13-G17 (manuales por
-diseño).
+Intent ruteado con `capability_map[]`, auditoría PASS y workflow o `coverage_gap`.
+Opera offline.
+`RENDERED_DRAFT` no es aprobación; publicar exige gates humanos G13-G17.

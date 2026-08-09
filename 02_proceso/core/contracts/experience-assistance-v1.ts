@@ -30,6 +30,8 @@ export const ExperienceRouteIdV1Schema = z.enum([
   'R5',
   'R6',
   'R7',
+  'R8',
+  'R9',
 ]);
 export type ExperienceRouteIdV1 = z.infer<typeof ExperienceRouteIdV1Schema>;
 
@@ -100,7 +102,7 @@ export const AssistanceEnvelopeV1Schema = z
     if (value.state === 'READY_FOR_BRIEF') {
       const activeBinding = value.skillBindings.find(({stepId}) => stepId === value.activeStep);
       if (
-        (value.selectedRoute !== 'R6' && value.selectedRoute !== 'R7') ||
+        !['R6', 'R7', 'R8', 'R9'].includes(value.selectedRoute ?? '') ||
         value.activeStep === null ||
         !value.workflowPlan.includes(value.activeStep) ||
         activeBinding === undefined ||
@@ -108,8 +110,7 @@ export const AssistanceEnvelopeV1Schema = z
       ) {
         context.addIssue({
           code: 'custom',
-          message:
-            'READY_FOR_BRIEF requires an executable R6/R7 plan, active skill and brief preview.',
+          message: 'READY_FOR_BRIEF requires an executable plan, active skill and brief preview.',
         });
       }
     }

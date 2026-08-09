@@ -1,0 +1,4 @@
+fixture_id: harness-maintainer-positive
+request: corregir un defecto observable y actualizar todo lo relacionado
+input: {change_class: CORRECT, regression_test: PASS, documentation_closure: PASS}
+expected: {result: PASS, next_gate: HM_PROMOTION_APPROVED}

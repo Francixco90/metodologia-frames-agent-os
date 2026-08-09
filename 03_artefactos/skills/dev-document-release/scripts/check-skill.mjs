@@ -6,6 +6,7 @@ const id = 'dev-document-release';
 const required = [
   `skills/${id}/SKILL.md`,
   `skills/${id}/LINEAGE.yml`,
+  `skills/${id}/references/documentation-governance.md`,
   `skills/${id}/scripts/check-skill.mjs`,
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/document-release-draft-and-halt.yml`,
@@ -14,6 +15,12 @@ const required = [
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
 const combined = [...contents.values()].join('\n');
+const skillMd = contents.get(`skills/${id}/SKILL.md`);
+const lineage = contents.get(`skills/${id}/LINEAGE.yml`);
+
+if (!/^version: 0\.3\.0$/mu.test(skillMd) || !/^version: 0\.3\.0$/mu.test(lineage)) {
+  throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
+}
 
 for (const token of [
   'This skill should be used when',
@@ -26,6 +33,23 @@ for (const token of [
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`${id.toUpperCase()}_CONTRACT_MISSING: ${token}`);
+  }
+}
+
+for (const token of [
+  'DocumentationImpactPlanV1',
+  'DocumentationClosureReceiptV1',
+  'DOCS_TRANSVERSAL_COMPLETE',
+  'CREATE',
+  'EXPAND',
+  'EXTEND',
+  'CORRECT',
+  'MIGRATE',
+  'DEPRECATE',
+  '[gobierno documental](references/documentation-governance.md)',
+]) {
+  if (!skillMd.includes(token)) {
+    throw new Error(`${id.toUpperCase()}_DOCUMENTATION_GOVERNANCE_MISSING: ${token}`);
   }
 }
 

@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L04
+title: Activar e indexar localmente
+purpose: Hacer descubrible una extensión válida sin cambiar registries públicos.
+inputs: [local-extension-validation-v1]
+outputs: [local-activation-receipt-v1, local-extension-index-v1]
+gate: LX_ACTIVE_LOCAL
+next_workflow: L05
+effect_class: local_reversible
+stop_rule: Colisiones, hashes stale o dependencias ausentes dejan la extensión BLOCKED.

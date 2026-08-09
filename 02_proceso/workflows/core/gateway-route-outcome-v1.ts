@@ -1,7 +1,7 @@
 import {AssistanceEnvelopeV1Schema, type AssistanceEnvelopeV1} from '../../core/contracts/index.ts';
 
 export interface GatewayRoutePlanV1 {
-  routeId: 'R6' | 'R7';
+  routeId: 'R6' | 'R7' | 'R8' | 'R9';
   workflowPlan: string[];
   activeStep: string;
   skillBindings: AssistanceEnvelopeV1['skillBindings'];
@@ -11,12 +11,35 @@ export interface GatewayRoutePlanV1 {
   ghostOptions?: string[];
 }
 
+export interface GatewayResumeCandidateV1 {
+  routeId: AssistanceEnvelopeV1['selectedRoute'];
+  activeStep: string;
+  summary: string;
+  briefPreview: NonNullable<AssistanceEnvelopeV1['briefPreview']>;
+}
+
+export interface FirstTurnGatewayInputV1 {
+  prompt: string;
+  sensitivity?: AssistanceEnvelopeV1['sensitivity'];
+  knownInputs?: string[];
+  activeProjectId?: string;
+  explicitRoute?: 'R6' | 'R7' | 'R8' | 'R9';
+  resumeCandidate?: GatewayResumeCandidateV1;
+}
+
+export type GatewayRouteHandlerV1 = (
+  input: Readonly<FirstTurnGatewayInputV1> & {
+    requestHash: string;
+    routeId: 'R6' | 'R7' | 'R8' | 'R9';
+  },
+) => GatewayRoutePlanV1;
+
 interface GatewayOutcomeContextV1 {
   requestHash: string;
   understoodOutcome: string;
   knownInputs: string[];
   sensitivity: AssistanceEnvelopeV1['sensitivity'];
-  routeId: 'R6' | 'R7';
+  routeId: 'R6' | 'R7' | 'R8' | 'R9';
   reasonCode: string;
 }
 

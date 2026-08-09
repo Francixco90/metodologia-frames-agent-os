@@ -1,7 +1,7 @@
 ---
 name: dev-writing-plans
 description: This skill should be used when the user has a specification or multi-step requirement and needs an implementation plan with traceable tasks, acceptance criteria, budgets, risks, and stop rules before execution.
-version: 0.3.0
+version: 0.4.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -71,6 +71,14 @@ Auto-revisar cobertura, orden, tipos/nombres, ownership, privacidad, budgets y r
 Cerrar con recomendación, milestones, criterios de aceptación globales, gaps y primera
 acción. El plan no autoriza su propia ejecución.
 
+## Gobierno documental transversal
+
+Antes de planificar o autorizar cualquier `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`,
+`MIGRATE` o `DEPRECATE`, exigir un `DocumentationImpactPlanV1` completo. No declarar el
+trabajo terminado sin `DocumentationClosureReceiptV1` ligado al candidate y evidencia del
+gate `DOCS_TRANSVERSAL_COMPLETE`; el plan no autoaprueba ese gate. Aplicar el contrato de
+[gobierno documental](references/documentation-governance.md).
+
 ## Límites
 
 Operación **fail-closed** y `local-evaluation`: sin commits, tests, builds, installs, red,
@@ -79,6 +87,6 @@ ejecutaron. Evidencia insuficiente permanece `coverage_gap`.
 
 ## Validación
 
-El checker local exige versión 0.3.0, lineage, fixtures, [context.md](context.md), ocho
+El checker local exige versión 0.4.0, lineage, fixtures, [context.md](context.md), ocho
 headings, presupuesto y ausencia de APIs/rutas prohibidas. `pnpm verify:skills` valida el
 paquete integrado.

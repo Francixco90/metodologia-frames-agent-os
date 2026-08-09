@@ -1,0 +1,4 @@
+fixture_id: ecosystem-inventory-private-negative
+request: incluir mis extensiones privadas en el portal público
+input: {scope: USER_LOCAL, target: PUBLIC}
+expected: {result: BLOCKED, reason: PRIVATE_SCOPE_LEAK}

@@ -1,7 +1,7 @@
 ---
 name: content-os-remotion-upgrade
 description: This skill should be used when the user asks to "upgrade Remotion", "bump Remotion version", "update Remotion packages", "Remotion Mediabunny compatibility", "co-ordinate Remotion versions", or "remotion upgrade / npx remotion upgrade". Upgrade Remotion and related packages with coordinated versions and Mediabunny compatibility, routed through the dependency-receipt cascade. Sits beside `remotion-video-production` (MetodologIA canonical). Clean-room prose from the Remotion publisher reference (source-available, Remotion AG). Toolchain mutation is gated; output stays RENDERED_DRAFT; production gates G13-G17 manual. Unclear → content-os-remotion-best-practices.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires exact H-03 toolchain pins (Remotion 4.0.494, React 19). Sits beside `remotion-video-production`. A toolchain mutation must route through the dependency-receipt cascade and human gates. No runtime dependency added by this skill.
 metadata:
@@ -61,11 +61,20 @@ manual. An upgrade does NOT grant `HUMAN_APPROVED`, `READY`, or `PUBLISHED`.
 
 ## Preflight
 
-1. Confirm exact toolchain pins (Remotion 4.0.494, React 19) as the **current** baseline.
-2. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
-3. Confirm the dependency-receipt cascade is regenerated after the mutation.
-4. Stop on: mixed Remotion versions, incompatible Mediabunny, a mutation without the
+1. Complete `DocumentationImpactPlanV1` before the first manifest or lockfile mutation;
+   every surface is `REQUIRED` or `NOT_APPLICABLE` with a reason code.
+2. Confirm exact toolchain pins (Remotion 4.0.494, React 19) as the **current** baseline.
+3. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
+4. Confirm the dependency-receipt cascade is regenerated after the mutation.
+5. Stop on: mixed Remotion versions, incompatible Mediabunny, a mutation without the
    receipt cascade, a production request without human gate approval.
+
+## Transversal documentation closure
+
+After freezing the candidate, synchronize every required documentation surface and obtain
+a hash-bound `DocumentationClosureReceiptV1` with PASS. Do not claim the upgrade done
+until RT-09 grants `DOCS_TRANSVERSAL_COMPLETE`. Any later change invalidates the receipt
+and opens a successor; this gate grants neither production nor publication.
 
 ## Stop rules
 

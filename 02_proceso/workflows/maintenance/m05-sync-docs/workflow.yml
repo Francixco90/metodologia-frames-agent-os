@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M05
+title: Sincronizar documentación e inventarios
+purpose: Actualizar fuentes aplicables y regenerar portal, secuencias, índices e inventarios.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-docs-as-code, frames-ecosystem-inventory, dev-document-release]
+authority_refs: [02_proceso/governance/ux-writing-policy.md]
+execution_steps:
+  - step_id: S01
+    purpose: Resolver todas las superficies REQUIRED y justificar cada NOT_APPLICABLE.
+    primary_skill: frames-docs-as-code
+    verifier: RT-09
+    inputs: [documentation-impact-plan, verification-verdict]
+    outputs: [documentation-closure-receipt, ecosystem-inventory]
+    gate: DOCS_TRANSVERSAL_COMPLETE
+    stop_rule: Derivado stale, enlace roto, inventario huérfano o fuga privada bloquean.
+next_workflow: M06
+stop_rule: No editar manualmente outputs generados.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

@@ -1,0 +1,12 @@
+schema_version: 1
+receipt_id: frames-harness-maintainer-runtime-boundary-v1
+skill_id: frames-harness-maintainer
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+mutation_gate: HM_CHANGE_APPROVED
+promotion_gate: HM_PROMOTION_APPROVED
+producer_verifier_separation: required
+documentation_closure_required: true
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

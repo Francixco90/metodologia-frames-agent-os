@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M06
+title: Entregar y preparar promoción
+purpose: Emitir handoff, rollback y límites sin confundir validación, merge o publicación.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-harness-maintainer, dev-document-release]
+authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+execution_steps:
+  - step_id: S01
+    purpose: Consolidar hashes, evidencias, gaps, rollback y siguiente gate.
+    primary_skill: frames-harness-maintainer
+    verifier: RT-11
+    inputs: [verification-verdict, documentation-closure-receipt, ecosystem-inventory]
+    outputs: [maintenance-handoff]
+    gate: HM_PROMOTION_APPROVED
+    stop_rule: PASS técnico no concede commit, push, merge, deployment o publicación.
+next_workflow: null
+stop_rule: Detener en HM_PROMOTION_APPROVED.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

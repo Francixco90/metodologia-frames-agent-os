@@ -1,6 +1,96 @@
 schema_version: context-surface-shard-v1
 shard_id: CTX-SHARD-SKILLS
 surfaces:
+  - context_id: CTX-SKILL-FRAMES-DOCS-AS-CODE
+    root: 03_artefactos/skills/frames-docs-as-code
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un cambio exige documentación y proyecciones sincronizadas.
+    authority_refs: [03_artefactos/skills/frames-docs-as-code/SKILL.md]
+    load_first: [03_artefactos/skills/frames-docs-as-code/SKILL.md]
+    load_on_demand: [03_artefactos/skills/frames-docs-as-code/references/operating-contract.md]
+    defer: [Páginas no afectadas]
+    routes: [R9]
+    workflows: [M05]
+    primary_skills: [frames-docs-as-code]
+    tools: [documentation_generator]
+    read_set: [03_artefactos/skills/frames-docs-as-code/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/frames-docs-as-code/context.md]}
+    gates: [DOCS_TRANSVERSAL_COMPLETE]
+    stop_rules: [Sin paridad y hashes no cerrar]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-LOCAL-EXTENSION-FOUNDRY
+    root: 03_artefactos/skills/frames-local-extension-foundry
+    kind: skill
+    owner: skill-foundry
+    applies_when: R8 requiere diseñar validar o activar una extensión privada.
+    authority_refs: [03_artefactos/skills/frames-local-extension-foundry/SKILL.md]
+    load_first: [03_artefactos/skills/frames-local-extension-foundry/SKILL.md]
+    load_on_demand:
+      [03_artefactos/skills/frames-local-extension-foundry/references/operating-contract.md]
+    defer: [Otras extensiones y locators privados]
+    routes: [R8]
+    workflows: [L00, L01, L02, L03, L04, L05]
+    primary_skills: [frames-local-extension-foundry]
+    tools: [frames_extend]
+    read_set: [03_artefactos/skills/frames-local-extension-foundry/SKILL.md]
+    write_policy:
+      {
+        mode: generated_only,
+        paths: [03_artefactos/skills/frames-local-extension-foundry/context.md],
+      }
+    gates: [LX_BRIEF_APPROVED]
+    stop_rules: [Nunca reemplazar canónico, Sandbox faltante bloquea código]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-HARNESS-MAINTAINER
+    root: 03_artefactos/skills/frames-harness-maintainer
+    kind: skill
+    owner: skill-foundry
+    applies_when: R9 exige mantenimiento correctivo o evolutivo gobernado.
+    authority_refs: [03_artefactos/skills/frames-harness-maintainer/SKILL.md]
+    load_first: [03_artefactos/skills/frames-harness-maintainer/SKILL.md]
+    load_on_demand:
+      [03_artefactos/skills/frames-harness-maintainer/references/operating-contract.md]
+    defer: [Código fuera del write set]
+    routes: [R9]
+    workflows: [M00, M01, M02, M03, M04, M05, M06]
+    primary_skills: [frames-harness-maintainer]
+    tools: [maintenance_plan]
+    read_set: [03_artefactos/skills/frames-harness-maintainer/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/frames-harness-maintainer/context.md]}
+    gates: [HM_CHANGE_APPROVED, HM_PROMOTION_APPROVED]
+    stop_rules: [No mutar antes de aprobación, No promover por inferencia]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-ECOSYSTEM-INVENTORY
+    root: 03_artefactos/skills/frames-ecosystem-inventory
+    kind: skill
+    owner: skill-foundry
+    applies_when: Se necesita reconciliar capacidades canónicas y locales sin mezclar privacidad.
+    authority_refs: [03_artefactos/skills/frames-ecosystem-inventory/SKILL.md]
+    load_first: [03_artefactos/skills/frames-ecosystem-inventory/SKILL.md]
+    load_on_demand:
+      [03_artefactos/skills/frames-ecosystem-inventory/references/operating-contract.md]
+    defer: [Contenido privado de extensiones]
+    routes: [R8, R9]
+    workflows: [M00, M05]
+    primary_skills: [frames-ecosystem-inventory]
+    tools: [ecosystem_inventory]
+    read_set: [03_artefactos/skills/frames-ecosystem-inventory/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/frames-ecosystem-inventory/context.md]}
+    gates: [DOCS_TRANSVERSAL_COMPLETE]
+    stop_rules: [Inventario público excluye local, ID duplicado bloquea]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-SKILL-CONTENT-ROUTER
     root: 03_artefactos/skills/content-os-router
     kind: skill

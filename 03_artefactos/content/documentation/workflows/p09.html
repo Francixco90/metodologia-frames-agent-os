@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Separa empaque, publicación, comunidad y aprendizaje para operar con control."
+    />
+    <meta name="frames:schema" content="workflow-documentation-v1" />
+    <meta name="frames:workflow" content="P09" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"
+    />
+    <title>P09 · Empaqueta, publica, conversa o aprende</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --blue: #137dc5;
+        --gold: #ffd700;
+        --soft: #f3f7fc;
+        --ink: #17213d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Montserrat, Arial, sans-serif;
+        color: var(--ink);
+        background: white;
+        line-height: 1.6;
+      }
+      header {
+        background: var(--navy);
+        color: white;
+        padding: 2rem max(5vw, 1rem);
+      }
+      main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 2rem max(4vw, 1rem);
+      }
+      h1,
+      h2 {
+        font-family: Poppins, Arial, sans-serif;
+        color: var(--navy);
+      }
+      header h1 {
+        color: white;
+      }
+      a {
+        color: #075f9d;
+      }
+      input {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin: 0.5rem 0 1.5rem;
+        padding: 0.65rem;
+        border: 2px solid #9cabc2;
+        border-radius: 10px;
+        font: inherit;
+      }
+      .card,
+      section {
+        border: 1px solid #d8e2f0;
+        border-radius: 16px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+        background: white;
+      }
+      .meta {
+        color: #4a5874;
+      }
+      .pill {
+        display: inline-block;
+        background: var(--soft);
+        border-radius: 999px;
+        padding: 0.25rem 0.65rem;
+        margin: 0.2rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.7rem;
+        border-bottom: 1px solid #d8e2f0;
+      }
+      th {
+        background: var(--soft);
+      }
+      svg {
+        width: 100%;
+        height: auto;
+        background: var(--soft);
+        border-radius: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #091126;
+          color: #eef4ff;
+        }
+        .card,
+        section {
+          background: #111d3b;
+          border-color: #314369;
+        }
+        h1,
+        h2,
+        a {
+          color: #7dc9ff;
+        }
+        .meta {
+          color: #b7c5df;
+        }
+        th {
+          background: #1d2b4f;
+        }
+      }
+      @media print {
+        header {
+          background: white;
+          color: var(--navy);
+          padding: 0;
+        }
+        nav {
+          display: none;
+        }
+        .card,
+        section {
+          break-inside: avoid;
+        }
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p>Frames ContentOS · por MetodologIA</p>
+      <h1>P09 · Empaqueta, publica, conversa o aprende</h1>
+      <p>Separa empaque, publicación, comunidad y aprendizaje para operar con control.</p>
+    </header>
+    <main>
+      <nav><a href="../index.html">← Volver al catálogo</a></nav>
+      <section>
+        <h2>Qué necesitas y qué recibes</h2>
+        <p><strong>Entradas:</strong> p08-editar/workflow.yml</p>
+        <p>
+          <strong>Entregables:</strong> platform-package-v1, publication-record-v1,
+          results-dashboard-v1, learning-report-v1
+        </p>
+      </section>
+      <section>
+        <h2>Cómo avanza</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Paso</th>
+              <th>Acción</th>
+              <th>Skill</th>
+              <th>Gate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S01</td>
+              <td>Validar autorización, estado y hash del candidate.</td>
+              <td>metodologia-brand-router</td>
+              <td>MW_DISTRIBUTION_AUTHORIZED</td>
+            </tr>
+            <tr>
+              <td>S02</td>
+              <td>Adaptar el paquete al canal sin mutar el contenido aprobado.</td>
+              <td>instagram-content-orchestration</td>
+              <td>G15</td>
+            </tr>
+            <tr>
+              <td>S03</td>
+              <td>Preparar checklist y registro de publicación.</td>
+              <td>instagram-carousel-production</td>
+              <td>G17</td>
+            </tr>
+            <tr>
+              <td>S04</td>
+              <td>Registrar baseline y aprendizaje sin inventar métricas.</td>
+              <td>instagram-content-orchestration</td>
+              <td>G17</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Secuencia</h2>
+        <svg
+          viewBox="0 0 920 902"
+          role="img"
+          aria-labelledby="seq-title seq-desc"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title id="seq-title">Secuencia P09</title>
+          <desc id="seq-desc">
+            La persona solicita Empaqueta, publica, conversa o aprende. S01:
+            metodologia-brand-router produce platform-package-v1; RT-11 decide
+            MW_DISTRIBUTION_AUTHORIZED. S02: instagram-content-orchestration produce
+            platform-package-v1; RT-11 decide G15. S03: instagram-carousel-production produce
+            publication-record-v1; RT-11 decide G17. S04: instagram-content-orchestration produce
+            results-dashboard-v1, learning-report-v1; RT-11 decide G17. Frames entrega el resultado
+            y cierra el recorrido.
+          </desc>
+          <style>
+            .actor {
+              font: 700 14px Arial;
+              fill: #122562;
+            }
+            .label {
+              font: 13px Arial;
+              fill: #26324d;
+            }
+          </style>
+          <line x1="34" y1="45" x2="34" y2="872" stroke="#122562" stroke-width="3" />
+          <g>
+            <circle cx="34" cy="68" r="12" fill="#137DC5" />
+            <line x1="46" y1="68" x2="112" y2="68" stroke="#122562" stroke-width="2" />
+            <text x="126" y="60" class="actor">Persona → Frames</text>
+            <text x="126" y="82" class="label">
+              Solicita Empaqueta, publica, conversa o aprende
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="126" r="12" fill="#137DC5" />
+            <line x1="46" y1="126" x2="112" y2="126" stroke="#122562" stroke-width="2" />
+            <text x="126" y="118" class="actor">Frames → metodologia-brand-router</text>
+            <text x="126" y="140" class="label">
+              S01: Validar autorización, estado y hash del candidate.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="184" r="12" fill="#137DC5" />
+            <line x1="46" y1="184" x2="112" y2="184" stroke="#122562" stroke-width="2" />
+            <text x="126" y="176" class="actor">metodologia-brand-router → RT-11</text>
+            <text x="126" y="198" class="label">Evidencia: platform-package-v1</text>
+          </g>
+          <g>
+            <circle cx="34" cy="242" r="12" fill="#FFD700" />
+            <line x1="46" y1="242" x2="112" y2="242" stroke="#122562" stroke-width="2" />
+            <text x="126" y="234" class="actor">RT-11 → Frames</text>
+            <text x="126" y="256" class="label">Gate MW_DISTRIBUTION_AUTHORIZED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="300" r="12" fill="#137DC5" />
+            <line x1="46" y1="300" x2="112" y2="300" stroke="#122562" stroke-width="2" />
+            <text x="126" y="292" class="actor">Frames → instagram-content-orchestration</text>
+            <text x="126" y="314" class="label">
+              S02: Adaptar el paquete al canal sin mutar el contenido aprobado.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="358" r="12" fill="#137DC5" />
+            <line x1="46" y1="358" x2="112" y2="358" stroke="#122562" stroke-width="2" />
+            <text x="126" y="350" class="actor">instagram-content-orchestration → RT-11</text>
+            <text x="126" y="372" class="label">Evidencia: platform-package-v1</text>
+          </g>
+          <g>
+            <circle cx="34" cy="416" r="12" fill="#FFD700" />
+            <line x1="46" y1="416" x2="112" y2="416" stroke="#122562" stroke-width="2" />
+            <text x="126" y="408" class="actor">RT-11 → Frames</text>
+            <text x="126" y="430" class="label">Gate G15</text>
+          </g>
+          <g>
+            <circle cx="34" cy="474" r="12" fill="#137DC5" />
+            <line x1="46" y1="474" x2="112" y2="474" stroke="#122562" stroke-width="2" />
+            <text x="126" y="466" class="actor">Frames → instagram-carousel-production</text>
+            <text x="126" y="488" class="label">
+              S03: Preparar checklist y registro de publicación.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="532" r="12" fill="#137DC5" />
+            <line x1="46" y1="532" x2="112" y2="532" stroke="#122562" stroke-width="2" />
+            <text x="126" y="524" class="actor">instagram-carousel-production → RT-11</text>
+            <text x="126" y="546" class="label">Evidencia: publication-record-v1</text>
+          </g>
+          <g>
+            <circle cx="34" cy="590" r="12" fill="#FFD700" />
+            <line x1="46" y1="590" x2="112" y2="590" stroke="#122562" stroke-width="2" />
+            <text x="126" y="582" class="actor">RT-11 → Frames</text>
+            <text x="126" y="604" class="label">Gate G17</text>
+          </g>
+          <g>
+            <circle cx="34" cy="648" r="12" fill="#137DC5" />
+            <line x1="46" y1="648" x2="112" y2="648" stroke="#122562" stroke-width="2" />
+            <text x="126" y="640" class="actor">Frames → instagram-content-orchestration</text>
+            <text x="126" y="662" class="label">
+              S04: Registrar baseline y aprendizaje sin inventar métricas.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="706" r="12" fill="#137DC5" />
+            <line x1="46" y1="706" x2="112" y2="706" stroke="#122562" stroke-width="2" />
+            <text x="126" y="698" class="actor">instagram-content-orchestration → RT-11</text>
+            <text x="126" y="720" class="label">
+              Evidencia: results-dashboard-v1, learning-report-v1
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="764" r="12" fill="#FFD700" />
+            <line x1="46" y1="764" x2="112" y2="764" stroke="#122562" stroke-width="2" />
+            <text x="126" y="756" class="actor">RT-11 → Frames</text>
+            <text x="126" y="778" class="label">Gate G17</text>
+          </g>
+          <g>
+            <circle cx="34" cy="822" r="12" fill="#FFD700" />
+            <line x1="46" y1="822" x2="112" y2="822" stroke="#122562" stroke-width="2" />
+            <text x="126" y="814" class="actor">Frames → Persona</text>
+            <text x="126" y="836" class="label">Entrega o siguiente paso: cierre</text>
+          </g>
+        </svg>
+        <ol>
+          <li>La persona solicita Empaqueta, publica, conversa o aprende.</li>
+          <li>
+            S01: metodologia-brand-router produce platform-package-v1; RT-11 decide
+            MW_DISTRIBUTION_AUTHORIZED.
+          </li>
+          <li>
+            S02: instagram-content-orchestration produce platform-package-v1; RT-11 decide G15.
+          </li>
+          <li>
+            S03: instagram-carousel-production produce publication-record-v1; RT-11 decide G17.
+          </li>
+          <li>
+            S04: instagram-content-orchestration produce results-dashboard-v1, learning-report-v1;
+            RT-11 decide G17.
+          </li>
+          <li>Frames entrega el resultado y cierra el recorrido.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Límites</h2>
+        <p>
+          Sin navegación, crea package evergreen; sin herramienta, checklist manual; sin aprobación,
+          detente; sin datos, establece baseline cualitativo; ante riesgo, escala. interpreta,
+          planifica, ejecuta.
+        </p>
+        <p class="meta">
+          Fuente: 02_proceso/workflows/multimedia/p09-distribuir/workflow.yml · Próximo: cierre
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

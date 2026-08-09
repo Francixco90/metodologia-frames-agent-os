@@ -1,7 +1,7 @@
 ---
 name: dev-systematic-debugging
 description: This skill should be used when el operador enfrenta un bug, test fallido o comportamiento inesperado y necesita encontrar la causa raíz antes de corregir — reproducir el defecto, aislar la causa, formar una hipótesis, probar la corrección mínima y prevenir la regresión — sin auto-ejecutar tests, mutaciones de código ni commits.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -19,12 +19,6 @@ investigación no arregla nada: desplaza el problema, lo oculta, o siembra una
 regresión más cara más adelante. Este skill recorre el defecto en cuatro fases
 y entrega un diagnóstico en prosa, revisable por el operador. No código
 mutado. No tests auto-ejecutados. No commits.
-
-La regla de hierro: ninguna corrección sin investigación de causa raíz previa.
-"Ya vi el síntoma" no sirve — se reproduce el defecto de forma fiable; "más o
-menos entiendo" no sirve — se aísla la causa con evidencia; "creo que es esto"
-no sirve — se formula una hipótesis y se prueba la corrección mínima antes de
-tocar nada. Si no se sabe algo, se dice o se reúne más evidencia.
 
 ## Cuándo usar
 
@@ -111,6 +105,14 @@ La corrección no termina con el fix: previene la regresión. Un caso de prueba
 que falle antes del fix y pase después es el gate que separa "creo que arreglé"
 de "arreglé". La prevención de regresión es parte de la fase de implementación,
 no un paso opcional.
+
+## Gobierno documental transversal
+
+Antes de proponer o ejecutar cualquier `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`,
+`MIGRATE` o `DEPRECATE`, exigir un `DocumentationImpactPlanV1` completo. No declarar la
+corrección terminada sin `DocumentationClosureReceiptV1` ligado al candidate y evidencia
+del gate `DOCS_TRANSVERSAL_COMPLETE`; esta skill no autoaprueba ese gate. Aplicar el
+contrato de [gobierno documental](references/documentation-governance.md).
 
 ## Fail-closed
 

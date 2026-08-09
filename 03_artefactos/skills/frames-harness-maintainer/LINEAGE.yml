@@ -1,0 +1,14 @@
+schema_version: 1
+skill_id: frames-harness-maintainer
+version: 0.1.0
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_for_frames
+derivation_mode: repository-native-contract
+authority_refs:
+  - 02_proceso/workflows/maintenance/route-maintenance-v1.ts
+  - 02_proceso/workflows/maintenance/documentation-gate-v1.ts
+  - 02_proceso/core/contracts/task-contract.ts
+external_fragments_reused: false
+publication_authority: false
+network_allowed: false

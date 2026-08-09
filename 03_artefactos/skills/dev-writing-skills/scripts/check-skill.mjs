@@ -14,6 +14,12 @@ const required = [
 
 const contents = new Map(required.map((p) => [p, readFileSync(resolve(root, p), 'utf8')]));
 const combined = [...contents.values()].join('\n');
+const skillMd = contents.get(`skills/${id}/SKILL.md`);
+const lineage = contents.get(`skills/${id}/LINEAGE.yml`);
+
+if (!/^version: 0\.3\.0$/mu.test(skillMd) || !/^version: 0\.3\.0$/mu.test(lineage)) {
+  throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
+}
 
 for (const token of [
   'This skill should be used when',
@@ -27,6 +33,9 @@ for (const token of [
   'autoría',
   'frontmatter',
   'validación',
+  'DocumentationImpactPlanV1',
+  'DocumentationClosureReceiptV1',
+  'DOCS_TRANSVERSAL_COMPLETE',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`${id.toUpperCase()}_CONTRACT_MISSING: ${token}`);

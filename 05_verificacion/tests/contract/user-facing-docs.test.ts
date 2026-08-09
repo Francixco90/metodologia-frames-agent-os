@@ -16,7 +16,7 @@ describe('reader-facing Frames documentation', () => {
       readFileSync(resolve('02_proceso/governance/user-facing-docs.yml'), 'utf8'),
     ) as {documents: Array<{path: string}>};
     const paths = registry.documents.map(({path}) => path);
-    expect(paths).toHaveLength(7);
+    expect(paths).toHaveLength(9);
     expect(paths).toContain('README.md');
     expect(
       paths.every((path) => path === 'README.md' || path.startsWith('01_intencion/guides/')),

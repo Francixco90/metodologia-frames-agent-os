@@ -6,6 +6,26 @@ defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
 pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 
 budgets:
+  - surface: generated-workflow-documentation
+    kind: generated
+    match:
+      - '01_intencion/reference/workflows/*.md'
+      - '03_artefactos/content/documentation/workflows/*.html'
+      - '03_artefactos/content/documentation/index.html'
+      - '03_artefactos/content/documentation/documentation-*.json'
+    target: {max_words: 5000, max_lines: 1500}
+    hard: {max_words: 7500, max_lines: 1800}
+    rationale: 'Workflow pages, sequences and the aggregate manifest scale deterministically with every registered workflow.'
+  - surface: generated-ecosystem-inventory
+    kind: generated
+    match:
+      - '03_artefactos/content/documentation/ecosystem-inventory-v1.json'
+      - '03_artefactos/content/documentation/ecosystem-inventory.md'
+      - '03_artefactos/content/documentation/ecosystem-inventory.html'
+      - '04_estado/registries/skills/mutation-profile-registry.yml'
+    target: {max_words: 12000, max_lines: 6100}
+    hard: {max_words: 24000, max_lines: 6500}
+    rationale: 'Complete inventories are generated, drift-checked and intentionally scale with governed ecosystem cardinality.'
   - surface: user-facing-explanatory-documentation
     kind: exempt
     match:
@@ -16,6 +36,8 @@ budgets:
       - 01_intencion/guides/content-multimedia.md
       - 01_intencion/guides/career.md
       - 01_intencion/guides/technical-reference.md
+      - 01_intencion/guides/extend-frames.md
+      - 01_intencion/guides/maintain-frames.md
     target: {}
     hard: {}
     rationale: 'A closed registry exempts only reader-facing explanations so utility and comprehension take precedence over per-file length.'
@@ -275,8 +297,8 @@ budgets:
         '05_verificacion/scripts/commands.yaml',
       ]
     target: {max_words: 1000, max_lines: 150}
-    hard: {max_words: 2500, max_lines: 400}
-    rationale: 'Canonical control manifests use governance limits.'
+    hard: {max_words: 2500, max_lines: 450}
+    rationale: 'Canonical control manifests remain bounded while accommodating the complete governed gate registry.'
   - surface: hash-bound-skill-registry
     match: '04_estado/registries/skills/creation-v3-skill-registry.yml'
     target: {max_words: 14000, max_lines: 2600}

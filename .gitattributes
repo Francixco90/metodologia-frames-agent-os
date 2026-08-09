@@ -7,3 +7,5 @@ brand/fonts/vendor/**/OFL.txt -whitespace
 inbox/first-party/*.projection.md -whitespace
 projects/*/artifacts/*.html -whitespace
 quality/reports/v2-baseline-protection.yml -whitespace
+# Context projections use Markdown hard line breaks and are byte-checked by their generator.
+**/context.md -whitespace

@@ -112,6 +112,8 @@ Los recorridos multimedia P00–P09 y Career C00–C09 están definidos y verifi
 
 Si vas a modificar el sistema, empieza en [AGENTS.md](AGENTS.md) y carga solo el `context.md` correspondiente. La [referencia técnica](01_intencion/guides/technical-reference.md) conecta la experiencia humana con rutas, workflows, ownership y verificadores.
 
+Para ampliar Frames sin publicar nada, sigue la guía de [extensiones locales](01_intencion/guides/extend-frames.md). Para corregir o evolucionar el arnés, usa el recorrido de [mantenimiento gobernado](01_intencion/guides/maintain-frames.md). El [portal offline](03_artefactos/content/documentation/index.html) explica cada workflow con su secuencia, y el [inventario del ecosistema](03_artefactos/content/documentation/ecosystem-inventory.md) muestra las capacidades disponibles.
+
 Comprobación integral:
 
 ```bash

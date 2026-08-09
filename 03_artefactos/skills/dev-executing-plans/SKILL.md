@@ -1,7 +1,7 @@
 ---
 name: dev-executing-plans
 description: This skill should be used when el operador tiene un plan de implementación escrito y debe ejecutarlo paso a paso en una sesión con checkpoints de revisión tras cada paso, gestionando bloqueadores y escalando en lugar de adivinar — sin auto-ejecutar commits, deploys ni operaciones irreversibles sin confirmación explícita del operador.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -22,14 +22,6 @@ que el plan pida y reportar al terminar — deteniéndose en el primer bloqueado
 en lugar de forzar la marcha. Entrega un reporte de ejecución en prosa,
 revisable por el operador. No auto-ejecuta commits, deploys ni operaciones
 irreversibles sin confirmación explícita.
-
-Un plan sin checkpoints se descontrola. "Ya hice el paso" no sirve — se marca en
-progreso, se siguen los subpasos exactos, se corren las verificaciones y se
-marca completado solo con evidencia; "me trabé, sigo igual" no sirve — se
-detiene y se escala el bloqueador en lugar de adivinar; "creo que el plan dice
-X" no sirve — se sigue el plan como está escrito y, si una instrucción no se
-entiende, se pregunta. No se adivina: si no se sabe, se dice y se escala, o se
-lee el contexto primero.
 
 ## Cuándo usar
 
@@ -118,6 +110,14 @@ bloqueador, se vuelve a la fase de revisión (fase 1) antes de reanudar.
 - **Marcar completado sin verificación.** Cerrar un paso sin correr la
   verificación que el plan pide. Un paso sin verificación es una suposición,
   no un paso completado.
+
+## Gobierno documental transversal
+
+Antes de ejecutar cualquier `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`, `MIGRATE` o
+`DEPRECATE`, exigir un `DocumentationImpactPlanV1` completo. No marcar la ejecución como
+terminada sin `DocumentationClosureReceiptV1` ligado al candidate y evidencia del gate
+`DOCS_TRANSVERSAL_COMPLETE`; esta skill no autoaprueba ese gate. Aplicar el contrato de
+[gobierno documental](references/documentation-governance.md).
 
 ## Fail-closed
 

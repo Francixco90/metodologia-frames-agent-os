@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M00
+title: Congelar base e inventario
+purpose: Capturar base, estado, ownership e inventario antes de diagnosticar o cambiar Frames.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-harness-maintainer, frames-ecosystem-inventory]
+authority_refs: [AGENTS.md, 01_intencion/program/ownership-manifest.yml]
+execution_steps:
+  - step_id: S01
+    purpose: Resolver base, diff, owners, presupuestos e inventario sin escribir.
+    primary_skill: frames-ecosystem-inventory
+    verifier: RT-09
+    inputs: [request, repository-state]
+    outputs: [maintenance-baseline]
+    gate: HM_CHANGE_APPROVED
+    stop_rule: Bloquear si la base, el owner o el alcance no son inequívocos.
+next_workflow: M01
+stop_rule: Esta etapa es read-only y no concede autoridad de cambio.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

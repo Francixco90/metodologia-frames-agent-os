@@ -44,7 +44,7 @@
   },
   {
     "id": "content-os-router",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-router/scripts/check-skill.mjs"]
   },
@@ -183,6 +183,7 @@
   },
   {
     "id": "content-os-remotion-create",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-remotion-create/scripts/check-skill.mjs"]
   },
@@ -228,6 +229,7 @@
   },
   {
     "id": "content-os-remotion-upgrade",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-remotion-upgrade/scripts/check-skill.mjs"]
   },
@@ -495,13 +497,13 @@
   },
   {
     "id": "dev-document-generate",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-document-generate/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-document-release",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-document-release/scripts/check-skill.mjs"]
   },
@@ -539,6 +541,7 @@
   },
   {
     "id": "dev-skillify",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-skillify/scripts/check-skill.mjs"]
   },
@@ -564,7 +567,7 @@
   },
   {
     "id": "dev-systematic-debugging",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-systematic-debugging/scripts/check-skill.mjs"]
   },
@@ -581,13 +584,13 @@
   },
   {
     "id": "dev-executing-plans",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-executing-plans/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-writing-plans",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-writing-plans/scripts/check-skill.mjs"]
   },
@@ -626,13 +629,13 @@
   },
   {
     "id": "dev-verification-before-completion",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-verification-before-completion/scripts/check-skill.mjs"]
   },
   {
     "id": "dev-writing-skills",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/dev-writing-skills/scripts/check-skill.mjs"]
   },
@@ -845,5 +848,25 @@
     "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "frames-docs-as-code",
+    "scope": "local-evaluation",
+    "check": ["skills/frames-docs-as-code/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "frames-local-extension-foundry",
+    "scope": "local-evaluation",
+    "check": ["skills/frames-local-extension-foundry/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "frames-harness-maintainer",
+    "scope": "local-evaluation",
+    "check": ["skills/frames-harness-maintainer/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "frames-ecosystem-inventory",
+    "scope": "local-evaluation",
+    "check": ["skills/frames-ecosystem-inventory/scripts/check-skill.mjs"]
   }
 ]

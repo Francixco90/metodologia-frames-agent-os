@@ -1,7 +1,7 @@
 ---
 name: dev-skillify
 description: This skill should be used when el operador pide convertir un procedimiento o workflow reutilizable en un skill declarado — nombrarlo, redactar el frontmatter, acotar el alcance, diseñar fixtures positivo y negativo, escribir un checker autocontenido y dejar la cadena de lineage y receipt — sin auto-crear archivos ni auto-mutar el registro de skills, todo tras confirmación explícita del operador.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -102,6 +102,16 @@ operador. Si el operador pide "escríbelo ya", se entrega el diseño completo en
 prosa primero; si lo rechaza, se documenta la decisión y se marca
 `coverage_gap` en lugar de escribir a ciegas. Skillifica antes de escribir —
 siempre.
+
+## Cierre documental transversal
+
+Si el operador autoriza materializar o modificar el skill, completar un
+`DocumentationImpactPlanV1` antes de la primera mutación; cada superficie queda
+`REQUIRED` o `NOT_APPLICABLE` con reason code. Tras congelar el candidate,
+sincronizar las superficies requeridas y obtener un
+`DocumentationClosureReceiptV1` hash-bound con PASS. No declarar el trabajo
+terminado hasta que RT-09 conceda `DOCS_TRANSVERSAL_COMPLETE`. Un cambio posterior
+invalida el receipt y abre successor; este gate no concede publicación.
 
 ## Fail-closed
 

@@ -1,7 +1,7 @@
 ---
 name: dev-verification-before-completion
 description: This skill should be used when an agent is about to claim work is complete, fixed, passing, or ready and must obtain fresh, scope-matched evidence before that claim.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -30,20 +30,24 @@ contrato de tarea, candidate congelado y checks aplicables.
    ejecución local; de lo contrario pedir al operador el receipt.
 4. Leer exit code, salida, conteos y alcance. No extrapolar un check focal al corpus.
 5. Comparar evidencia con requisitos, no solo con expectativas técnicas.
-6. Emitir `PASS | FAIL | UNKNOWN | BLOCKED`; solo PASS permite la afirmación.
+6. Para trabajo mutante, comprobar que `DocumentationImpactPlanV1` precedió el cambio y
+   que el candidate congelado tiene `DocumentationClosureReceiptV1` hash-bound con PASS.
+7. Emitir `PASS | FAIL | UNKNOWN | BLOCKED`; solo PASS permite la afirmación.
 
 Una salida truncada, stale, de otra base o sin comando/artefacto identificable es UNKNOWN.
+Una mutación no está terminada hasta que RT-09 conceda `DOCS_TRANSVERSAL_COMPLETE`;
+`NOT_APPLICABLE` exige reason code y un cambio posterior invalida el receipt.
 
 ## Matriz mínima
 
-| Afirmación | Evidencia suficiente | Insuficiente |
-| --- | --- | --- |
-| Tests pasan | suite declarada, 0 fallos, exit 0 | ejecución previa |
-| Build correcto | build completo, exit 0 | lint o typecheck aislado |
-| Bug corregido | reproducción original + regresión | diff plausible |
-| Requisitos cumplidos | checklist requisito-evidencia | tests verdes |
-| Agente terminó | diff, outputs y checks releídos | reporte del agente |
-| Publicable | aprobación humana y receipt exacto | merge o Guardian PASS |
+| Afirmación           | Evidencia suficiente               | Insuficiente             |
+| -------------------- | ---------------------------------- | ------------------------ |
+| Tests pasan          | suite declarada, 0 fallos, exit 0  | ejecución previa         |
+| Build correcto       | build completo, exit 0             | lint o typecheck aislado |
+| Bug corregido        | reproducción original + regresión  | diff plausible           |
+| Requisitos cumplidos | checklist requisito-evidencia      | tests verdes             |
+| Agente terminó       | diff, outputs y checks releídos    | reporte del agente       |
+| Publicable           | aprobación humana y receipt exacto | merge o Guardian PASS    |
 
 ## Independencia
 

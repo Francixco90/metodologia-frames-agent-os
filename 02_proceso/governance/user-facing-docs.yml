@@ -47,3 +47,13 @@ documents:
         Estados y gates,
         Comandos de verificación,
       ]
+  - path: 01_intencion/guides/extend-frames.md
+    audience: capability-creator
+    purpose: Create a private skill or workflow without publishing private material.
+    required_headings:
+      [Empieza conversando, Empieza con el comando, Qué se activa, Siguiente lectura]
+  - path: 01_intencion/guides/maintain-frames.md
+    audience: harness-maintainer
+    purpose: Correct or evolve Frames while keeping documentation and evidence synchronized.
+    required_headings:
+      [Qué hace Frames, Definition of Done documental, Comandos útiles, Siguiente lectura]

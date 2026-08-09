@@ -1,0 +1,19 @@
+schema_version: maintenance-workflow-v1
+workflow_id: M02
+title: Planear cambio e impacto documental
+purpose: Producir WorkOrder, aceptación, rollback y DocumentationImpactPlan antes de editar.
+change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
+capability_map: [frames-harness-maintainer, dev-writing-plans, frames-docs-as-code]
+authority_refs: [02_proceso/governance/docs-budget-policy.yml]
+execution_steps:
+  - step_id: S01
+    purpose: Resolver write set, pruebas, presupuesto, stop rule e impacto documental completo.
+    primary_skill: dev-writing-plans
+    verifier: RT-09
+    inputs: [maintenance-classification]
+    outputs: [maintenance-work-order, documentation-impact-plan]
+    gate: HM_CHANGE_APPROVED
+    stop_rule: Sin impacto documental completo o N/A justificado no existe WorkOrder válido.
+next_workflow: M03
+stop_rule: Requiere HM_CHANGE_APPROVED antes de escribir.
+metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

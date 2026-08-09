@@ -1,0 +1,10 @@
+schema_version: local-extension-workflow-v1
+workflow_id: L05
+title: Evolucionar o retirar
+purpose: Crear una versión sucesora, corregirla o retirarla conservando trazabilidad.
+inputs: [local-activation-receipt-v1]
+outputs: [local-extension-successor-v1, documentation-closure-receipt-v1]
+gate: LX_LIFECYCLE_CLOSED
+next_workflow: null
+effect_class: local_reversible
+stop_rule: Promover al repositorio requiere un proceso H-03 separado y aprobación humana.

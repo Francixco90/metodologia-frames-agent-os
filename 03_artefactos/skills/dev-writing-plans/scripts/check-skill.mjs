@@ -6,6 +6,7 @@ const id = 'dev-writing-plans';
 const required = [
   `skills/${id}/SKILL.md`,
   `skills/${id}/context.md`,
+  `skills/${id}/references/documentation-governance.md`,
   `skills/${id}/LINEAGE.yml`,
   `skills/${id}/scripts/check-skill.mjs`,
   `skills/${id}/receipts/runtime-boundary.yml`,
@@ -19,7 +20,7 @@ const skillMd = contents.get(`skills/${id}/SKILL.md`);
 const publicContext = contents.get(`skills/${id}/context.md`);
 const lineage = contents.get(`skills/${id}/LINEAGE.yml`);
 
-if (!/^version: 0\.3\.0$/mu.test(skillMd) || !/^version: 0\.3\.0$/mu.test(lineage)) {
+if (!/^version: 0\.4\.0$/mu.test(skillMd) || !/^version: 0\.4\.0$/mu.test(lineage)) {
   throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
 }
 for (let section = 1; section <= 6; section += 1) {
@@ -52,6 +53,23 @@ for (const token of [
   }
 }
 
+for (const token of [
+  'DocumentationImpactPlanV1',
+  'DocumentationClosureReceiptV1',
+  'DOCS_TRANSVERSAL_COMPLETE',
+  'CREATE',
+  'EXPAND',
+  'EXTEND',
+  'CORRECT',
+  'MIGRATE',
+  'DEPRECATE',
+  '[gobierno documental](references/documentation-governance.md)',
+]) {
+  if (!skillMd.includes(token)) {
+    throw new Error(`${id.toUpperCase()}_DOCUMENTATION_GOVERNANCE_MISSING: ${token}`);
+  }
+}
+
 for (const pattern of [
   /\bMath\.random\s*\(/u,
   /\bDate\.now\s*\(/u,
@@ -66,7 +84,9 @@ for (const pattern of [
   }
 }
 
-const negative = contents.get(`skills/${id}/fixtures/negative/plan-with-vague-steps-and-auto-exec.yml`);
+const negative = contents.get(
+  `skills/${id}/fixtures/negative/plan-with-vague-steps-and-auto-exec.yml`,
+);
 if (!negative.includes('violation:')) {
   throw new Error(`${id.toUpperCase()}_NEGATIVE_FIXTURE_INCOMPLETE`);
 }

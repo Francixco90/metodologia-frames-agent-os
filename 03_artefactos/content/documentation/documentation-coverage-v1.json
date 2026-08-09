@@ -1,0 +1,332 @@
+[
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C00",
+    "source": "02_proceso/workflows/career/c00-intake/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c00.md",
+    "html": "03_artefactos/content/documentation/workflows/c00.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C01",
+    "source": "02_proceso/workflows/career/c01-evidence/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c01.md",
+    "html": "03_artefactos/content/documentation/workflows/c01.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C02",
+    "source": "02_proceso/workflows/career/c02-positioning/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c02.md",
+    "html": "03_artefactos/content/documentation/workflows/c02.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C03",
+    "source": "02_proceso/workflows/career/c03-discovery/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c03.md",
+    "html": "03_artefactos/content/documentation/workflows/c03.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C04",
+    "source": "02_proceso/workflows/career/c04-scoring/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c04.md",
+    "html": "03_artefactos/content/documentation/workflows/c04.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C05",
+    "source": "02_proceso/workflows/career/c05-application-design/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c05.md",
+    "html": "03_artefactos/content/documentation/workflows/c05.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C06",
+    "source": "02_proceso/workflows/career/c06-cv/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c06.md",
+    "html": "03_artefactos/content/documentation/workflows/c06.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C07",
+    "source": "02_proceso/workflows/career/c07-cover-letter/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c07.md",
+    "html": "03_artefactos/content/documentation/workflows/c07.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C08",
+    "source": "02_proceso/workflows/career/c08-package-qa/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c08.md",
+    "html": "03_artefactos/content/documentation/workflows/c08.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "C09",
+    "source": "02_proceso/workflows/career/c09-submission/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/c09.md",
+    "html": "03_artefactos/content/documentation/workflows/c09.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L00",
+    "source": "02_proceso/workflows/local-extensions/l00-intake/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l00.md",
+    "html": "03_artefactos/content/documentation/workflows/l00.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L01",
+    "source": "02_proceso/workflows/local-extensions/l01-design/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l01.md",
+    "html": "03_artefactos/content/documentation/workflows/l01.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L02",
+    "source": "02_proceso/workflows/local-extensions/l02-scaffold/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l02.md",
+    "html": "03_artefactos/content/documentation/workflows/l02.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L03",
+    "source": "02_proceso/workflows/local-extensions/l03-validate/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l03.md",
+    "html": "03_artefactos/content/documentation/workflows/l03.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L04",
+    "source": "02_proceso/workflows/local-extensions/l04-activate/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l04.md",
+    "html": "03_artefactos/content/documentation/workflows/l04.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "L05",
+    "source": "02_proceso/workflows/local-extensions/l05-evolve/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/l05.md",
+    "html": "03_artefactos/content/documentation/workflows/l05.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M00",
+    "source": "02_proceso/workflows/maintenance/m00-freeze/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m00.md",
+    "html": "03_artefactos/content/documentation/workflows/m00.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M01",
+    "source": "02_proceso/workflows/maintenance/m01-classify/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m01.md",
+    "html": "03_artefactos/content/documentation/workflows/m01.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M02",
+    "source": "02_proceso/workflows/maintenance/m02-plan/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m02.md",
+    "html": "03_artefactos/content/documentation/workflows/m02.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M03",
+    "source": "02_proceso/workflows/maintenance/m03-implement/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m03.md",
+    "html": "03_artefactos/content/documentation/workflows/m03.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M04",
+    "source": "02_proceso/workflows/maintenance/m04-verify/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m04.md",
+    "html": "03_artefactos/content/documentation/workflows/m04.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M05",
+    "source": "02_proceso/workflows/maintenance/m05-sync-docs/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m05.md",
+    "html": "03_artefactos/content/documentation/workflows/m05.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "M06",
+    "source": "02_proceso/workflows/maintenance/m06-handoff/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/m06.md",
+    "html": "03_artefactos/content/documentation/workflows/m06.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P00",
+    "source": "02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p00.md",
+    "html": "03_artefactos/content/documentation/workflows/p00.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P01",
+    "source": "02_proceso/workflows/multimedia/p01-curar-material/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p01.md",
+    "html": "03_artefactos/content/documentation/workflows/p01.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P02",
+    "source": "02_proceso/workflows/multimedia/p02-investigar/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p02.md",
+    "html": "03_artefactos/content/documentation/workflows/p02.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P03",
+    "source": "02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p03.md",
+    "html": "03_artefactos/content/documentation/workflows/p03.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P04",
+    "source": "02_proceso/workflows/multimedia/p04-calendarizar/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p04.md",
+    "html": "03_artefactos/content/documentation/workflows/p04.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P05",
+    "source": "02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p05.md",
+    "html": "03_artefactos/content/documentation/workflows/p05.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P06",
+    "source": "02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p06.md",
+    "html": "03_artefactos/content/documentation/workflows/p06.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P07",
+    "source": "02_proceso/workflows/multimedia/p07-revisar/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p07.md",
+    "html": "03_artefactos/content/documentation/workflows/p07.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P08",
+    "source": "02_proceso/workflows/multimedia/p08-editar/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p08.md",
+    "html": "03_artefactos/content/documentation/workflows/p08.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P09",
+    "source": "02_proceso/workflows/multimedia/p09-distribuir/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p09.md",
+    "html": "03_artefactos/content/documentation/workflows/p09.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  }
+]

@@ -25,6 +25,22 @@ export const RESUME_SIGNALS_V1 = ['continuar', 'retomar', 'reanudar', 'seguir co
 export const PROJECT_SIGNALS_V1 = ['crear proyecto', 'nuevo proyecto'] as const;
 export const TASK_SIGNALS_V1 = ['crear tarea', 'nueva tarea'] as const;
 export const EVAL_SIGNALS_V1 = ['eval', 'evaluacion', 'ablation', 'ablacion'] as const;
+export const LOCAL_EXTENSION_SIGNALS_V1 = [
+  'skill local',
+  'workflow local',
+  'extension local',
+  'capacidad privada',
+  'frames extend',
+] as const;
+export const HARNESS_MAINTENANCE_SIGNALS_V1 = [
+  'mantener frames',
+  'corregir harness',
+  'corregir arnes',
+  'evolucionar frames',
+  'actualizar inventario',
+  'sincronizar documentacion',
+  'mantenimiento del repositorio',
+] as const;
 
 export const normalizeFirstTurnPromptV1 = (prompt: string): string =>
   prompt

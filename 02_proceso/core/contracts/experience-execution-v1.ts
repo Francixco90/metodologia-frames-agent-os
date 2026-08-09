@@ -9,6 +9,10 @@ import {
   TimestampSchema,
 } from './primitives.ts';
 import {ExperienceRouteIdV1Schema} from './experience-assistance-v1.ts';
+import {
+  DocumentationImpactPlanV1Schema,
+  MutationClassV1Schema,
+} from './documentation-governance-v1.ts';
 
 export const MaterialReferenceV1Schema = z.strictObject({
   ref: RelativePathSchema,
@@ -41,6 +45,8 @@ export const FramesWorkOrderV1Schema = z
     budget: BudgetEnvelopeV1Schema,
     acceptanceCriteria: z.array(z.string().trim().min(1).max(280)).min(1).max(12),
     stopRule: z.string().trim().min(1).max(500),
+    changeClass: MutationClassV1Schema.optional(),
+    documentationImpact: DocumentationImpactPlanV1Schema.optional(),
     canonicalSha256: Sha256Schema,
   })
   .superRefine((value, context) => {
@@ -55,6 +61,21 @@ export const FramesWorkOrderV1Schema = z
       value.budget.targetTokens > value.budget.maxTokens
     ) {
       context.addIssue({code: 'custom', message: 'Budget targets cannot exceed hard maxima.'});
+    }
+    if ((value.changeClass === undefined) !== (value.documentationImpact === undefined)) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Mutating work orders require a documentation impact plan.',
+      });
+    }
+    if (
+      value.changeClass !== undefined &&
+      value.documentationImpact?.changeClass !== value.changeClass
+    ) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Work order and documentation change class differ.',
+      });
     }
   });
 export type FramesWorkOrderV1 = z.infer<typeof FramesWorkOrderV1Schema>;

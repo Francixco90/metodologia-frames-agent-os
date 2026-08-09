@@ -91,11 +91,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.6.0
+    version: 0.7.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 04f7ab896a5ce40ccf08df63ff198d44b1f34055efbe909454913f28fdafa4b1
-    package_manifest_sha256: 760d0ca6d3a0765b817f1331b407391a0df50da08bbde00540af561cb960b779
+    content_sha256: f35b2db93111982f8b0fd7dc18d1bb305f3fef762c6a66a952c8754e4aa5ca52
+    package_manifest_sha256: 7b9fc37262e24cfad5daba6426991c920d006821e73ff6fb153b926a5b99b8e8
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -311,11 +311,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-remotion-best-practices/scripts/check-skill.mjs]
   - skill_id: content-os-remotion-create
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 0496f0d27fea2e3a6e823cbdedcb41865d30e709840e970958c8c450d76bea63
-    package_manifest_sha256: 3f7b97575bb50bd605fe86765f4209cc6261e1d1fd51fc0aee6ef42527ffbd0b
+    content_sha256: ce1f2d06a7ee6c0dbab52162a346717a1452bcaad0621eb4b0c7322697bb8565
+    package_manifest_sha256: 8920759a66f3939a57c597af3e9bb9e747ac92ea3d397bb6c421f81bbcbbed22
     lineage_ref: skills/content-os-remotion-create/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-remotion-create/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -410,11 +410,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-remotion-docs/scripts/check-skill.mjs]
   - skill_id: content-os-remotion-upgrade
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 27d045d75e1858a89e5f2c301acf37c98f4cc70ef883c9d9bae629945f955796
-    package_manifest_sha256: bc4c6c26d91e59c2ca3cbf891d36ed7f68eef34aead9b68c514eb57ac9b6ea09
+    content_sha256: 5bb1501de06a414514321df032bcf4d894711b1d7eaecbc30b82d3d3cabecd0b
+    package_manifest_sha256: e08cb9ac2d59980be63642ec64760b62133b672881456863a592093eb686dc80
     lineage_ref: skills/content-os-remotion-upgrade/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-remotion-upgrade/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -960,22 +960,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-design-shotgun/scripts/check-skill.mjs]
   - skill_id: dev-document-generate
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: d562537d6fe6a4fe0cbdff567345ccdd5b12cd5cbf0c8909a03638ce7253a276
-    package_manifest_sha256: ef4a089e02a0eaa304042e30151cbe4e5d39bba854a5cdf76076c99d76711c75
+    content_sha256: da3caeec2bb6bb288d8582ee4489157bffa262097e8c95faef1bf53cfbac7a11
+    package_manifest_sha256: 5acac978bbab5f963459eaa7ef8e58b03a763085e5c3d1e312784bc500aa15d2
     lineage_ref: skills/dev-document-generate/LINEAGE.yml
     dependency_receipt_ref: skills/dev-document-generate/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-document-generate/scripts/check-skill.mjs]
   - skill_id: dev-document-release
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 20a47d4815adcce60390a5f04340245ba04bcb98da51583733e9b7fb52e6e4db
-    package_manifest_sha256: efab8279c2974ab2d3302197b2150d8b30bd4fcba878dffdd28aea0bbce7a411
+    content_sha256: 4a5b6fe3508979177e8db6b941d8956bc255a70daa2a6f542febf4bb182d8e94
+    package_manifest_sha256: 44dd170789cab91e5459cf87ce11c817e22b97c82fd387cf5b96d3cdf567dac4
     lineage_ref: skills/dev-document-release/LINEAGE.yml
     dependency_receipt_ref: skills/dev-document-release/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1048,11 +1048,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-land-and-deploy/scripts/check-skill.mjs]
   - skill_id: dev-skillify
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: c2eaa90a7be0fe20bd29d657adcb37646dd4aaa8accc96c0ea1cd04aa925a183
-    package_manifest_sha256: 29eb3e29a833088349b91de376d74793e81ca9b1d92f360a99fbf71fd4dc2850
+    content_sha256: 262fe689e0353c90f17b1c66a4f48e8e02ca0af546919e09840cff3bf07c2a90
+    package_manifest_sha256: ab91af9f5dc1c7e2ea3982f234956bd9ce4fb7f4f5af06ef2b9a5f2c17f3c892
     lineage_ref: skills/dev-skillify/LINEAGE.yml
     dependency_receipt_ref: skills/dev-skillify/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1103,11 +1103,11 @@ entries:
     publication_authority: false
     tests: [node skills/dev-test-driven-development/scripts/check-skill.mjs]
   - skill_id: dev-systematic-debugging
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: bd6d3fb41bd7881625301cc0004be7cb4c5c15f448202262126d16b42b4efaaa
-    package_manifest_sha256: f5e262d0624f84680799d911941525b1ab60d033c52b581307f9c892349f342d
+    content_sha256: 4ef0b946151a7e6dd6a20590d9da189091fc047650020860ea9d06e40907b24b
+    package_manifest_sha256: d56603bfa054d5f0b452655d486a36575bb18bc2e1709c0d5ba4a20be6874a52
     lineage_ref: skills/dev-systematic-debugging/LINEAGE.yml
     dependency_receipt_ref: skills/dev-systematic-debugging/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1136,22 +1136,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-dispatching-parallel-agents/scripts/check-skill.mjs]
   - skill_id: dev-executing-plans
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: da59482a563993a1a2a2fb4898a2bc5ade7c5fede24e0c1ad3f08b4a59aefb09
-    package_manifest_sha256: b3a2a778fd5f86eb926b94f8f0a747c8da0653c128e31b8b5adfa40ce105c71f
+    content_sha256: 065a717caa9568293acb9027df3973a11943f813c463bc039b39045ee86494f2
+    package_manifest_sha256: 7ae1133d4a114e830b6671b0561edebe7a7b00cafdc623478c9c3d72f275eccf
     lineage_ref: skills/dev-executing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-executing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-executing-plans/scripts/check-skill.mjs]
   - skill_id: dev-writing-plans
-    version: 0.3.0
+    version: 0.4.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: b37464d7f40adfdf4938fa35ea0f94632c65ee8c7281e721067c9392ea9e7944
-    package_manifest_sha256: e600d1259c6b3aa29dec0e5f6d45d15a3fc76bd523295a5bdf96f79ea13b4a92
+    content_sha256: ee562811d5864a4eca2826800d72cbf8ed1ee4fbfd94d642fb2747206f670ddc
+    package_manifest_sha256: b02ad06950c29e1a5af944e56f97b368d3b9b1f693f20e60af604a93f48122da
     lineage_ref: skills/dev-writing-plans/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-plans/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1224,22 +1224,22 @@ entries:
     publication_authority: false
     tests: [node skills/dev-using-superpowers/scripts/check-skill.mjs]
   - skill_id: dev-verification-before-completion
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: fa7d55c93f31ed8da4047bf4cc2a73137bb95643d658de8436369eb58abbe94f
-    package_manifest_sha256: 8dcaf7204cebfe77e13e26d3f080c4f0984bfa8d7de3d82f759a167570d0349d
+    content_sha256: 0d5deb3614b00a2184e43986b376573e27e325d67a0164db52eee9296743b5a3
+    package_manifest_sha256: c3f9d6fa6027785d2a7776118f168b6f813983d994e981aaaff986a16bce5d55
     lineage_ref: skills/dev-verification-before-completion/LINEAGE.yml
     dependency_receipt_ref: skills/dev-verification-before-completion/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/dev-verification-before-completion/scripts/check-skill.mjs]
   - skill_id: dev-writing-skills
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 511f2e25cf747bed76fa467829f73b4d2b4fd475d06c585e79ec4a4a58046b40
-    package_manifest_sha256: 7196f760aad5abe78e9f24a0c6e38b0b9fdaa0f9098c4eefe4c5d1e996c8850d
+    content_sha256: c84915161452266133e58440d259a6f10fbba311b80b0633cdb889853e64bc80
+    package_manifest_sha256: 9e8c4f09a0fe3dd2847a8c63e3cc17ebe8ac47fb66a8c084d80e1ded74d2b72e
     lineage_ref: skills/dev-writing-skills/LINEAGE.yml
     dependency_receipt_ref: skills/dev-writing-skills/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1740,7 +1740,67 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-opportunity-finder/scripts/check-skill.mjs]
+  - skill_id: frames-docs-as-code
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: a2317a2442a7af5de632a1f4600ddc25d11c7676ea0d13f17ce9fbb86c8dc2df
+    package_manifest_sha256: 7da9909dd869d0613771680b6b2853fe417a1e55c1260885b37852e17233acef
+    lineage_ref: skills/frames-docs-as-code/LINEAGE.yml
+    dependency_receipt_ref: skills/frames-docs-as-code/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/frames-docs-as-code/scripts/check-skill.mjs]
+  - skill_id: frames-local-extension-foundry
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 9707da0f70ec1d05e23c4c1e1d56aee91ab12694588cc45e5a7579381163f181
+    package_manifest_sha256: e5ce01b02e42a494fda17e42a9ef7dc1f43f3b8f3cbe6c0408b4e842f2447390
+    lineage_ref: skills/frames-local-extension-foundry/LINEAGE.yml
+    dependency_receipt_ref: skills/frames-local-extension-foundry/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/frames-local-extension-foundry/scripts/check-skill.mjs]
+  - skill_id: frames-harness-maintainer
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: a5978933c36ae0bbea3cc5cf67843f6a3e9468d8c78cdbbd5d02c3338cb766b0
+    package_manifest_sha256: 83defffe00358263320cf5ce1c530d89899b4fa6bd21b0e7b84899eaf904fbe7
+    lineage_ref: skills/frames-harness-maintainer/LINEAGE.yml
+    dependency_receipt_ref: skills/frames-harness-maintainer/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/frames-harness-maintainer/scripts/check-skill.mjs]
+  - skill_id: frames-ecosystem-inventory
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: ef860ea95a4c03c19bf2c2849860a6f87a5784b058462a1cc7178348fcf06c6b
+    package_manifest_sha256: 743bf86796aa157a089f9a12fcca7120e0fd2a6a2811fe12c85f488c7c027b39
+    lineage_ref: skills/frames-ecosystem-inventory/LINEAGE.yml
+    dependency_receipt_ref: skills/frames-ecosystem-inventory/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/frames-ecosystem-inventory/scripts/check-skill.mjs]
 events:
+  - {event_id: EVT-SKL-FDA-H03-001, event_order: 1, skill_id: frames-docs-as-code, from: null, to: candidate, actor_id: RT-07-DOCS-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FDA-H03-002, event_order: 2, skill_id: frames-docs-as-code, from: candidate, to: quarantined, actor_id: RT-07-DOCS-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FDA-H03-003, event_order: 3, skill_id: frames-docs-as-code, from: quarantined, to: evaluated, actor_id: RT-10-DOCS-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FDA-H03-004, event_order: 4, skill_id: frames-docs-as-code, from: evaluated, to: active, actor_id: RT-10-DOCS-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FLE-H03-001, event_order: 1, skill_id: frames-local-extension-foundry, from: null, to: candidate, actor_id: RT-07-EXTENSION-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FLE-H03-002, event_order: 2, skill_id: frames-local-extension-foundry, from: candidate, to: quarantined, actor_id: RT-07-EXTENSION-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FLE-H03-003, event_order: 3, skill_id: frames-local-extension-foundry, from: quarantined, to: evaluated, actor_id: RT-10-EXTENSION-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FLE-H03-004, event_order: 4, skill_id: frames-local-extension-foundry, from: evaluated, to: active, actor_id: RT-10-EXTENSION-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FHM-H03-001, event_order: 1, skill_id: frames-harness-maintainer, from: null, to: candidate, actor_id: RT-07-MAINTENANCE-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FHM-H03-002, event_order: 2, skill_id: frames-harness-maintainer, from: candidate, to: quarantined, actor_id: RT-07-MAINTENANCE-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FHM-H03-003, event_order: 3, skill_id: frames-harness-maintainer, from: quarantined, to: evaluated, actor_id: RT-10-MAINTENANCE-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FHM-H03-004, event_order: 4, skill_id: frames-harness-maintainer, from: evaluated, to: active, actor_id: RT-10-MAINTENANCE-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FEI-H03-001, event_order: 1, skill_id: frames-ecosystem-inventory, from: null, to: candidate, actor_id: RT-07-INVENTORY-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FEI-H03-002, event_order: 2, skill_id: frames-ecosystem-inventory, from: candidate, to: quarantined, actor_id: RT-07-INVENTORY-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-FEI-H03-003, event_order: 3, skill_id: frames-ecosystem-inventory, from: quarantined, to: evaluated, actor_id: RT-10-INVENTORY-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FEI-H03-004, event_order: 4, skill_id: frames-ecosystem-inventory, from: evaluated, to: active, actor_id: RT-10-INVENTORY-SKILL-INTEGRATOR}
   - {event_id: EVT-SKL-CAO-H03-001, event_order: 1, skill_id: career-application-orchestrator, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CAO-H03-002, event_order: 2, skill_id: career-application-orchestrator, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CAO-H03-003, event_order: 3, skill_id: career-application-orchestrator, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
@@ -2425,6 +2485,7 @@ events:
   - {event_id: EVT-SKL-ORE-H03-005, event_order: 5, skill_id: gstack-openclaw-retro, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, note: "densification 1317->1186w (restatement trim, no content cut) + version bump 0.1.0->0.2.0"}
   - {event_id: EVT-SKL-COR-H03-008, event_order: 8, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COR-H03-009, event_order: 9, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-INSTRUCTION-SECURITY, decision: bind_local_execution_to_authorized_workspace_boundary}
+  - {event_id: EVT-SKL-COR-H03-010, event_order: 10, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-DOCS-EXTENSION-INTEGRATOR, decision: add_r8_local_extension_and_r9_maintenance_dispatch}
   - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
@@ -2435,3 +2496,13 @@ events:
   - {event_id: EVT-SKL-CTM-H03-005, event_order: 5, skill_id: context-teammates, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-WPL-H03-006, event_order: 6, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-VBC-H03-005, event_order: 5, skill_id: dev-verification-before-completion, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-RCR-H03-005, event_order: 5, skill_id: content-os-remotion-create, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-UPG-H03-005, event_order: 5, skill_id: content-os-remotion-upgrade, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-DGN-H03-006, event_order: 6, skill_id: dev-document-generate, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-DRL-H03-006, event_order: 6, skill_id: dev-document-release, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-SKF-H03-005, event_order: 5, skill_id: dev-skillify, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-SDB-H03-006, event_order: 6, skill_id: dev-systematic-debugging, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-EXE-H03-006, event_order: 6, skill_id: dev-executing-plans, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-WPL-H03-007, event_order: 7, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-VBC-H03-006, event_order: 6, skill_id: dev-verification-before-completion, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-WSK-H03-006, event_order: 6, skill_id: dev-writing-skills, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
