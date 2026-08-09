@@ -88,6 +88,8 @@
     "committee:validate": "node --import tsx projects/vs-001-source-to-campaign/remotion/committee/validate-committee.ts",
     "content:build": "node --import tsx workflows/content/build.ts",
     "web:build": "node --import tsx workflows/web/build.ts",
+    "web:smoke": "node scripts/web-visual-smoke.mjs",
+    "web:review": "pnpm web:build && pnpm web:smoke",
     "remotion:prepare": "node --import tsx renderers/remotion/scripts/prepare-project.ts",
     "remotion:validate": "node --import tsx renderers/remotion/scripts/validate-project.ts",
     "render:all": "node --import tsx renderers/remotion/scripts/render-project.ts",

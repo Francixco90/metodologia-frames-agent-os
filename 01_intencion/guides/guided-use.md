@@ -27,6 +27,15 @@ Puedes cambiar de dirección con texto libre. La versión candidata anterior no 
 
 ## Recorrido por comandos
 
+Antes de copiar un comando, confirma que estás en la raíz correcta:
+
+```bash
+pwd
+git status --short --branch
+```
+
+El resultado debe corresponder a `metodologia-frames-agent-os`. Si hay archivos modificados, no reconstruyas outputs gobernados hasta saber si pertenecen a tu trabajo.
+
 ### Inspeccionar sin escribir
 
 ```bash
@@ -57,6 +66,16 @@ pnpm verify
 ```
 
 La verificación completa es para operadores del repositorio; no es necesaria para conversar con Frames.
+
+### Revisar el ejemplo Web
+
+Este comando construye el ejemplo Web y solo ejecuta la inspección visual si la construcción terminó correctamente:
+
+```bash
+pnpm web:review
+```
+
+No reemplaza la revisión humana ni publica nada. Para Motion, evita encadenar manualmente `prepare`, `validate`, `render` e `inspect`: los receipts son append-only y una fuente modificada necesita un candidate sucesor. Sigue el [runbook operativo](../program/operator-runbook.md) o revisa el [diagnóstico de comandos anteriores](troubleshooting-old-commands.md).
 
 ## Cómo retomar
 

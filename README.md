@@ -35,6 +35,8 @@ El Markdown es la fuente canónica. Cuando existe una versión HTML, se genera d
 
 ## Cómo empezar
 
+No necesitas construir videos, ejecutar toda la batería técnica ni actualizar herramientas globales para probar Frames. Empieza conversando; usa los comandos de verificación solo si vas a modificar el repositorio.
+
 ### Opción 1: habla normalmente
 
 Prueba cualquiera de estas frases:
@@ -121,6 +123,10 @@ pnpm install --frozen-lockfile
 pnpm check:toolchain
 pnpm verify
 ```
+
+Ejecuta el bloque desde la raíz del repositorio. Cada línea debe terminar correctamente antes de continuar. El aviso de una versión nueva de `pnpm` es informativo: **no ejecutes `pnpm add -g pnpm`**. Frames fija la versión compatible en `package.json`; cambiarla globalmente no mejora el proyecto y puede dejar tu terminal sin una ruta válida.
+
+Si usaste comandos del README anterior —`slice:build`, el smoke Web directo o la secuencia manual de Remotion— consulta [qué significan los errores y cómo recuperarte](01_intencion/guides/troubleshooting-old-commands.md). Esos comandos son recorridos de mantenimiento, no pasos necesarios para usar el asistente.
 
 La fuente de verdad no es este texto por sí solo: contratos, registries, outputs materiales, receipts y gates siguen determinando qué ocurrió realmente.
 
