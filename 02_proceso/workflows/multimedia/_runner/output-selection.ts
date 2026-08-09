@@ -25,6 +25,7 @@ export const MultimediaWorkOrderV1Schema = z.strictObject({
   work_order_id: z.string().regex(/^WO-[A-Z0-9][A-Z0-9-]{2,79}$/u),
   workflow_id: MultimediaOutputSelectionV1Schema.shape.workflow_id,
   intent_hash: Sha256Schema,
+  producer_actor_id: z.string().regex(/^[a-z][a-z0-9-]{2,79}$/u),
   allowed_outputs: z.array(z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u)).max(20),
   effect_class: z.literal('local_reversible'),
   publication_policy: z.literal('forbidden'),

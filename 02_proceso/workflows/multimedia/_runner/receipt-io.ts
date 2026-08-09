@@ -16,9 +16,21 @@ const renderArtifacts = (
         `  - artifact: ${JSON.stringify(item.artifact)}\n    ref: ${item.ref}\n    sha256: ${item.sha256}`,
     );
   }
-  return (artifacts as MultimediaWorkflowReceipt['outputs']).map(
-    (item) =>
-      `  - artifact: ${JSON.stringify(item.artifact)}\n    ref: ${item.ref}\n    sha256: ${item.sha256}\n    required: ${item.required}\n    materialized: ${item.materialized}`,
+  return (artifacts as MultimediaWorkflowReceipt['outputs']).map((item) =>
+    [
+      `  - artifact: ${JSON.stringify(item.artifact)}`,
+      `    ref: ${item.ref}`,
+      `    sha256: ${item.sha256}`,
+      `    required: ${item.required}`,
+      `    materialized: ${item.materialized}`,
+      `    companions:`,
+      ...item.companions.flatMap((companion) => [
+        `      - format: ${companion.format}`,
+        `        ref: ${companion.ref}`,
+        `        sha256: ${companion.sha256}`,
+        `        materialized: true`,
+      ]),
+    ].join('\n'),
   );
 };
 
@@ -28,14 +40,18 @@ export const serializeReceipt = (receipt: MultimediaWorkflowReceipt): string =>
     `workflow_id: ${receipt.workflow_id}`,
     `command: ${receipt.command}`,
     `mode: ${receipt.mode}`,
-    `inputs:`,
-    ...renderArtifacts('inputs', receipt.inputs),
-    `outputs:`,
-    ...renderArtifacts('outputs', receipt.outputs),
+    ...(receipt.inputs.length > 0
+      ? [`inputs:`, ...renderArtifacts('inputs', receipt.inputs)]
+      : [`inputs: []`]),
+    ...(receipt.outputs.length > 0
+      ? [`outputs:`, ...renderArtifacts('outputs', receipt.outputs)]
+      : [`outputs: []`]),
     `work_product_state_from: ${receipt.work_product_state_from}`,
     `work_product_state_to: ${receipt.work_product_state_to}`,
     `gate: ${receipt.gate}`,
     `actor: ${receipt.actor}`,
+    ...(receipt.producer_actor_id ? [`producer_actor_id: ${receipt.producer_actor_id}`] : []),
+    ...(receipt.ingestor_actor_id ? [`ingestor_actor_id: ${receipt.ingestor_actor_id}`] : []),
     `ran_at: ${JSON.stringify(receipt.ran_at)}`,
     `append_only: true`,
     `human_approved: false`,
@@ -46,8 +62,9 @@ export const serializeReceipt = (receipt: MultimediaWorkflowReceipt): string =>
     `  workflow_id: ${receipt.scope.workflow_id}`,
     `  mode: ${JSON.stringify(receipt.scope.mode)}`,
     `  effect_class: ${receipt.scope.effect_class}`,
-    `coverage_gaps:`,
-    ...receipt.coverage_gaps.map((gap) => `  - ${JSON.stringify(gap)}`),
+    ...(receipt.coverage_gaps.length > 0
+      ? [`coverage_gaps:`, ...receipt.coverage_gaps.map((gap) => `  - ${JSON.stringify(gap)}`)]
+      : [`coverage_gaps: []`]),
   ].join('\n') + '\n';
 
 export const validateReceipt = (payload: unknown): MultimediaWorkflowReceipt =>

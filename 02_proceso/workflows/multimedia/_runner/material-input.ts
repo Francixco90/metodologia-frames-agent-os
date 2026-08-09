@@ -10,6 +10,7 @@ import {sha256Text, stableStringify} from './brief-model.ts';
 import {loadDeliverableDefinitions} from './deliverable-material.ts';
 import {parseFramesDeliverableMarkdown} from './deliverable-model.ts';
 import {calculateMultimediaWorkOrderHash, MultimediaWorkOrderV1Schema} from './output-selection.ts';
+import {sha256} from './workflow-loader.ts';
 
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const LocalPathSchema = z
@@ -52,6 +53,12 @@ export type ResolvedMaterialInput = {
 
 export const calculateMaterialManifestHash = (value: Omit<Manifest, 'canonical_sha256'>): string =>
   sha256Text(stableStringify(value));
+
+export const assertProducerAuthority = (authorized: string, declared: string): void => {
+  if (authorized !== declared) {
+    throw new Error('MW-MATERIAL-AUTHORITY005 producer actor mismatch');
+  }
+};
 
 const assertLocalFile = (manifestPath: string, localPath: string): string => {
   const root = realpathSync(dirname(resolve(manifestPath)));
@@ -106,6 +113,7 @@ export const resolveMaterialInput = (
   ) {
     throw new Error('MW-MATERIAL-AUTHORITY004 manifest hash or authority mismatch');
   }
+  assertProducerAuthority(workOrder.producer_actor_id, manifest.producer_actor_id);
   const expected = new Set(effectiveOutputIds);
   const supplied = new Set(manifest.outputs.map(({deliverable_id}) => deliverable_id));
   if (
@@ -148,6 +156,21 @@ export const resolveMaterialInput = (
       model.next_gate !== definition.acceptance_gate
     ) {
       throw new Error(`MW-MATERIAL-EVIDENCE001 unresolved ${item.deliverable_id}`);
+    }
+    for (const source of model.sources) {
+      const evidencePath = assertLocalFile(manifestPath, source.ref);
+      if (
+        source.sha256 === null ||
+        source.authority === 'unknown' ||
+        sha256(readFileSync(evidencePath)) !== source.sha256
+      ) {
+        throw new Error(`MW-MATERIAL-SOURCE001 hash mismatch ${source.source_id}`);
+      }
+      inputs.push({
+        artifact: source.source_id,
+        ref: `runtime://source/${source.source_id}/${source.sha256}`,
+        sha256: source.sha256,
+      });
     }
     materials.set(item.deliverable_id, {
       deliverableId: item.deliverable_id,

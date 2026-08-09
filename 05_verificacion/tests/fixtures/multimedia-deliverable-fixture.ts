@@ -28,6 +28,7 @@ export const writeVerifiedCompanions = (
   }>;
 } => {
   const output = workflow.outputs[index]!;
+  const sourceSha = 'e'.repeat(64);
   const markdown = createFramesDeliverableMarkdown(
     {
       schema_version: 'frames-deliverable-v1',
@@ -40,7 +41,15 @@ export const writeVerifiedCompanions = (
       identity: {brand: 'MetodologIA', owner: 'Test Author'},
       audience: 'Verifier de contrato.',
       purpose: 'Fixture material con evidencia resuelta.',
-      sources: [],
+      sources: [
+        {
+          source_id: 'fixture-verified',
+          ref: 'fixture://verified',
+          sha256: sourceSha,
+          authority: 'verified',
+          rights: 'cleared',
+        },
+      ],
       formats: ['md', 'html'],
       piece_families: ['other'],
       companion_for: null,
@@ -52,7 +61,7 @@ export const writeVerifiedCompanions = (
           value_type: 'text',
           status: 'observed',
           value: 'Verified value',
-          source_refs: ['fixture://verified'],
+          source_refs: ['fixture-verified'],
         },
       ],
       state: 'RENDERED_DRAFT',

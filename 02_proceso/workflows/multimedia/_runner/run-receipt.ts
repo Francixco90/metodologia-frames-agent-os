@@ -17,7 +17,8 @@ export const buildRunReceiptPayload = (input: {
   stagedOutputs: StagedOutput[];
   authorityInputs: InputReceipt[];
   gate: string;
-  actor: string;
+  producerActorId: string;
+  ingestorActorId: string;
   ranAt: string;
   noRegressionChecklistPath: string;
   relativeToRoot: (path: string) => string;
@@ -54,7 +55,9 @@ export const buildRunReceiptPayload = (input: {
   work_product_state_from: 'INTAKE',
   work_product_state_to: 'RENDERED_DRAFT',
   gate: input.gate,
-  actor: input.actor,
+  actor: input.ingestorActorId,
+  producer_actor_id: input.producerActorId,
+  ingestor_actor_id: input.ingestorActorId,
   ran_at: input.ranAt,
   append_only: true,
   human_approved: false,
