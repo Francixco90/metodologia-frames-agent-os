@@ -44,7 +44,7 @@
   },
   {
     "id": "content-os-router",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-router/scripts/check-skill.mjs"]
   },

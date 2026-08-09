@@ -10,6 +10,7 @@ import {
   resolveResumeCandidateV1,
   runFirstTurnGatewayV1,
 } from '../../../../02_proceso/workflows/core/index.ts';
+import {assertContainedWorkspaceV1} from '../../../../02_proceso/workflows/core/safe-local-path-v1.ts';
 import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
 import {routeContentIntent} from './route-content.mjs';
 
@@ -129,7 +130,7 @@ export const dispatchIntent = (input) => {
 
 export const routeIntent = (input) => dispatchIntent(input);
 
-export const dispatchIntentLocal = async (input) => {
+export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
   const decision = dispatchIntent(input);
   if (decision.command_view || !decision.domain_intent || decision.experience_envelope.state !== 'READY_FOR_BRIEF') {
     return {...decision, local_execution: {
@@ -143,9 +144,22 @@ export const dispatchIntentLocal = async (input) => {
     status: 'BLOCKED', materialized: false, next_gate: 'EXP_BRIEF_APPROVED',
     coverage_gap: 'Explicit workspace root and invocation timestamps are required.',
   }};
+  if (!authorizedRoot) return {...decision, local_execution: {
+    status: 'BLOCKED', materialized: false, next_gate: 'EXP_BRIEF_APPROVED',
+    coverage_gap: 'An authorized workspace boundary is required.',
+  }};
+  let safeRoot;
+  try {
+    safeRoot = assertContainedWorkspaceV1(authorizedRoot, root);
+  } catch (error) {
+    return {...decision, local_execution: {
+      status: 'BLOCKED', materialized: false, next_gate: 'EXP_BRIEF_APPROVED',
+      coverage_gap: error instanceof Error ? error.message : 'FRAMES-WORKSPACE-PATH001',
+    }};
+  }
   if (decision.route_id !== 'R6' && decision.route_id !== 'R7') return decision;
   const localExecution = await orchestrateLocalExperienceV1({
-    root, routeId: decision.route_id, envelope: decision.experience_envelope,
+    root: safeRoot, routeId: decision.route_id, envelope: decision.experience_envelope,
     domainIntent: decision.route_id === 'R6' ? decision.domain_intent : domainInputFor(input),
     sourceMaterials: Array.isArray(input.source_materials) ? input.source_materials : [],
     ...(input.output_directory_ref ? {outputDirectoryRef: input.output_directory_ref} : {}),
@@ -158,5 +172,5 @@ if (process.argv[1]?.endsWith('route-intent.mjs')) {
   const inputPath = process.argv[2];
   if (!inputPath) throw new Error('Usage: route-intent.mjs <request.json>');
   const input = JSON.parse(readFileSync(resolve(inputPath), 'utf8'));
-  process.stdout.write(`${JSON.stringify(await dispatchIntentLocal(input), null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify(await dispatchIntentLocal(input, {authorizedRoot: process.cwd()}), null, 2)}\n`);
 }
