@@ -1,48 +1,91 @@
 import {createHash} from 'node:crypto';
 import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {dirname, relative, resolve} from 'node:path';
-import {spawnSync} from 'node:child_process';
 
-import {chromium} from 'playwright';
+import {chromium, type Browser} from 'playwright';
+
+import {extractPdfTextEvidence, type PdfTextEvidence} from './pdf-evidence.ts';
 
 const sha256 = (value: Buffer | string): string => createHash('sha256').update(value).digest('hex');
-const normalizedText = (value: string): string =>
-  value
-    .normalize('NFC')
-    .replaceAll('\r\n', '\n')
-    .replace(/[ \t]+/gu, ' ')
-    .trim();
 
+type BrowserSource = 'playwright_bundle' | 'system_chrome' | 'unavailable';
+type Replay = {
+  first_pdf_sha256: string;
+  second_pdf_sha256: string;
+  bytes_match: boolean;
+  semantic_match: boolean;
+  text_match: boolean;
+  page_count_match: boolean;
+};
 export type CareerPdfManifestV1 = {
   schema_version: 'career-pdf-manifest-v1';
   status: 'PASS' | 'UNKNOWN' | 'BLOCKED';
   html_sha256: string;
   pdf_sha256: string | null;
   extracted_text_sha256: string | null;
+  semantic_sha256: string | null;
+  page_count: number | null;
   pdf_ref: string | null;
+  replay: Replay | null;
+  blocked_requests: string[];
   toolchain: {
     playwright: string;
     chromium: 'available' | 'unavailable';
     pdftotext: 'available' | 'unavailable';
-    browser_source: 'playwright_bundle' | 'system_chrome' | 'unavailable';
+    browser_source: BrowserSource;
     browser_version: string | null;
   };
   gaps: string[];
 };
 
 const assertPrivateOutput = (root: string, output: string): void => {
-  const privateRoot = resolve(root, 'work/private');
-  const target = resolve(output);
-  const offset = relative(privateRoot, target);
-  if (offset.startsWith('..') || offset === '' || resolve(dirname(target)) === resolve(root)) {
-    throw new Error('CAREER-PDF-PRIVATE-001 output must be inside work/private');
-  }
+  const offset = relative(resolve(root, 'work/private'), resolve(output));
+  if (!offset || offset.startsWith('..')) throw new Error('CAREER-PDF-PRIVATE-001');
 };
 
-const persistManifest = (path: string | undefined, manifest: CareerPdfManifestV1): void => {
+const persist = (path: string | undefined, manifest: CareerPdfManifestV1): void => {
   if (!path) return;
   mkdirSync(dirname(path), {recursive: true});
   writeFileSync(path, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+};
+
+const launch = async (): Promise<{browser: Browser | null; source: BrowserSource}> => {
+  try {
+    return {browser: await chromium.launch({headless: true}), source: 'playwright_bundle'};
+  } catch {
+    try {
+      return {
+        browser: await chromium.launch({headless: true, channel: 'chrome'}),
+        source: 'system_chrome',
+      };
+    } catch {
+      return {browser: null, source: 'unavailable'};
+    }
+  }
+};
+
+const renderOnce = async (
+  browser: Browser,
+  html: string,
+): Promise<{bytes: Buffer; blocked: string[]; evidence: PdfTextEvidence | null}> => {
+  const blocked: string[] = [];
+  const context = await browser.newContext({serviceWorkers: 'block'});
+  await context.route('**/*', async (route) => {
+    const url = route.request().url();
+    if (/^(about:|data:|blob:)/u.test(url)) await route.continue();
+    else {
+      blocked.push(url);
+      await route.abort('blockedbyclient');
+    }
+  });
+  try {
+    const page = await context.newPage();
+    await page.setContent(html, {waitUntil: 'domcontentloaded'});
+    const bytes = await page.pdf({format: 'A4', printBackground: true, preferCSSPageSize: true});
+    return {bytes, blocked: [...new Set(blocked)].sort(), evidence: extractPdfTextEvidence(bytes)};
+  } finally {
+    await context.close();
+  }
 };
 
 export const renderCareerPdf = async (input: {
@@ -54,65 +97,92 @@ export const renderCareerPdf = async (input: {
   assertPrivateOutput(input.root, input.pdfPath);
   if (input.manifestPath) assertPrivateOutput(input.root, input.manifestPath);
   const html = readFileSync(input.htmlPath, 'utf8');
-  const base: CareerPdfManifestV1 = {
-    schema_version: 'career-pdf-manifest-v1',
-    status: 'UNKNOWN',
+  const launched = await launch();
+  const chromiumStatus: 'available' | 'unavailable' = launched.browser
+    ? 'available'
+    : 'unavailable';
+  const base = {
+    schema_version: 'career-pdf-manifest-v1' as const,
     html_sha256: sha256(html),
-    pdf_sha256: null,
-    extracted_text_sha256: null,
-    pdf_ref: null,
     toolchain: {
       playwright: '1.61.1',
-      chromium: 'unavailable',
-      pdftotext: 'unavailable',
-      browser_source: 'unavailable',
-      browser_version: null,
+      chromium: chromiumStatus,
+      pdftotext: 'unavailable' as 'available' | 'unavailable',
+      browser_source: launched.source,
+      browser_version: launched.browser?.version() ?? null,
     },
-    gaps: [],
   };
-  let browser;
-  let browserSource: 'playwright_bundle' | 'system_chrome' = 'playwright_bundle';
-  try {
-    browser = await chromium.launch({headless: true});
-  } catch {
-    try {
-      browser = await chromium.launch({headless: true, channel: 'chrome'});
-      browserSource = 'system_chrome';
-    } catch {
-      const manifest = {...base, gaps: ['chromium_unavailable']};
-      persistManifest(input.manifestPath, manifest);
-      return manifest;
-    }
+  if (!launched.browser) {
+    const result: CareerPdfManifestV1 = {
+      ...base,
+      status: 'UNKNOWN',
+      pdf_sha256: null,
+      extracted_text_sha256: null,
+      semantic_sha256: null,
+      page_count: null,
+      pdf_ref: null,
+      replay: null,
+      blocked_requests: [],
+      gaps: ['chromium_unavailable'],
+    };
+    persist(input.manifestPath, result);
+    return result;
   }
   try {
-    const page = await browser.newPage();
-    await page.setContent(html, {waitUntil: 'domcontentloaded'});
-    const bytes = await page.pdf({format: 'A4', printBackground: true, preferCSSPageSize: true});
-    mkdirSync(dirname(input.pdfPath), {recursive: true});
-    writeFileSync(input.pdfPath, bytes);
-    const extracted = spawnSync('pdftotext', [input.pdfPath, '-'], {encoding: 'utf8'});
-    const hasText = extracted.status === 0 && normalizedText(extracted.stdout).length > 0;
-    const manifest: CareerPdfManifestV1 = {
+    const first = await renderOnce(launched.browser, html);
+    const second = await renderOnce(launched.browser, html);
+    const blocked = [...new Set([...first.blocked, ...second.blocked])].sort();
+    const firstPdfHash = sha256(first.bytes);
+    const secondPdfHash = sha256(second.bytes);
+    const replay: Replay = {
+      first_pdf_sha256: firstPdfHash,
+      second_pdf_sha256: secondPdfHash,
+      bytes_match: firstPdfHash === secondPdfHash,
+      semantic_match: first.evidence?.semantic_sha256 === second.evidence?.semantic_sha256,
+      text_match: first.evidence?.text_sha256 === second.evidence?.text_sha256,
+      page_count_match: first.evidence?.page_count === second.evidence?.page_count,
+    };
+    const hasEvidence = Boolean(first.evidence && second.evidence);
+    const replayPass =
+      hasEvidence &&
+      replay.bytes_match &&
+      replay.semantic_match &&
+      replay.text_match &&
+      replay.page_count_match;
+    const blockedResult = blocked.length > 0 || (hasEvidence && !replayPass);
+    const status = blockedResult
+      ? 'BLOCKED'
+      : replayPass && launched.source === 'playwright_bundle'
+        ? 'PASS'
+        : 'UNKNOWN';
+    if (!blockedResult) {
+      mkdirSync(dirname(input.pdfPath), {recursive: true});
+      writeFileSync(input.pdfPath, first.bytes);
+    }
+    const result: CareerPdfManifestV1 = {
       ...base,
-      status: hasText && browserSource === 'playwright_bundle' ? 'PASS' : 'UNKNOWN',
-      pdf_sha256: sha256(bytes),
-      extracted_text_sha256: hasText ? sha256(normalizedText(extracted.stdout)) : null,
-      pdf_ref: relative(resolve(input.root), resolve(input.pdfPath)).replaceAll('\\', '/'),
-      toolchain: {
-        playwright: '1.61.1',
-        chromium: 'available',
-        pdftotext: hasText ? 'available' : 'unavailable',
-        browser_source: browserSource,
-        browser_version: browser.version(),
-      },
+      status,
+      pdf_sha256: blockedResult ? null : firstPdfHash,
+      extracted_text_sha256: first.evidence?.text_sha256 ?? null,
+      semantic_sha256: first.evidence?.semantic_sha256 ?? null,
+      page_count: first.evidence?.page_count ?? null,
+      pdf_ref: blockedResult
+        ? null
+        : relative(resolve(input.root), resolve(input.pdfPath)).replaceAll('\\', '/'),
+      replay,
+      blocked_requests: blocked,
+      toolchain: {...base.toolchain, pdftotext: hasEvidence ? 'available' : 'unavailable'},
       gaps: [
-        ...(hasText ? [] : ['pdftotext_unavailable_or_empty']),
-        ...(browserSource === 'system_chrome' ? ['system_chrome_unpinned'] : []),
+        ...(!hasEvidence ? ['pdftotext_unavailable_or_empty'] : []),
+        ...(!replay.bytes_match ? ['pdf_byte_replay_mismatch'] : []),
+        ...(!replayPass && hasEvidence ? ['pdf_replay_mismatch'] : []),
+        ...(blocked.length > 0 ? ['external_request_blocked'] : []),
+        ...(launched.source === 'system_chrome' ? ['system_chrome_unpinned'] : []),
       ],
     };
-    persistManifest(input.manifestPath, manifest);
-    return manifest;
+    persist(input.manifestPath, result);
+    return result;
   } finally {
-    await browser.close();
+    await launched.browser.close();
   }
 };
