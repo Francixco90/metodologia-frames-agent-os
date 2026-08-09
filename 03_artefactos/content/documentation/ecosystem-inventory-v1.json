@@ -4912,6 +4912,13 @@
     },
     {
       "kind": "SKILL",
+      "id": "skill-security-auditor",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
       "id": "skill-system-architect",
       "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
       "scope": "CANONICAL",
@@ -6234,5 +6241,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "4bde6fc0177f2eb0be92af862c5b5ba0a2e90465c1eb136d67998601724e2666"
+  "sourceSha256": "b8b17a713dadc1ee4d9fa4b94e0b21fada69e1db58398d39cd979051483b42e2"
 }

@@ -1,0 +1,7 @@
+schema_version: runtime-boundary-v1
+skill_id: skill-security-auditor
+network_allowed: false
+publication_authority: false
+external_execution: false
+maximum_effect: read_only
+sandbox_status: NOT_REQUIRED_FOR_READ_ONLY

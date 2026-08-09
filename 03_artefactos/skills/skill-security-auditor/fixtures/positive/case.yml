@@ -1,0 +1,5 @@
+schema_version: skill-system-fixture-v1
+skill_id: skill-security-auditor
+candidate: {effect: E1, network: denied, paths: contained, secrets: absent}
+oracles: {frames: PASS, pivote: PASS}
+expected: PASS

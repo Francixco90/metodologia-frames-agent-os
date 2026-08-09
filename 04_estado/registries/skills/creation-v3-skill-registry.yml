@@ -1872,6 +1872,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/skill-runtime-adapter/scripts/check-skill.mjs]
+  - skill_id: skill-security-auditor
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: afc1af5e9498a0c0831f47c8d88590baaf344ea1a5fd90a8987c0a9c98231d51
+    package_manifest_sha256: 8470afbca7afa4b474eb864c63dc15000ac85b23b6b5b55f17299607efba0af6
+    lineage_ref: skills/skill-security-auditor/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-security-auditor/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-security-auditor/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
@@ -2626,3 +2637,7 @@ events:
   - {event_id: EVT-SKL-WPL-H03-007, event_order: 7, skill_id: dev-writing-plans, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
   - {event_id: EVT-SKL-VBC-H03-006, event_order: 6, skill_id: dev-verification-before-completion, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
   - {event_id: EVT-SKL-WSK-H03-006, event_order: 6, skill_id: dev-writing-skills, from: active, to: active, actor_id: RT-10-DOCS-DOD-INTEGRATOR, decision: enforce_transversal_documentation_definition_of_done}
+  - {event_id: EVT-SKL-SSAU-H03-001, event_order: 1, skill_id: skill-security-auditor, from: null, to: candidate, actor_id: RT-07-SSS-SECURITY-PRODUCER}
+  - {event_id: EVT-SKL-SSAU-H03-002, event_order: 2, skill_id: skill-security-auditor, from: candidate, to: quarantined, actor_id: RT-07-SSS-SECURITY-PRODUCER}
+  - {event_id: EVT-SKL-SSAU-H03-003, event_order: 3, skill_id: skill-security-auditor, from: quarantined, to: evaluated, actor_id: RT-09-SSS-SECURITY-VERIFIER}
+  - {event_id: EVT-SKL-SSAU-H03-004, event_order: 4, skill_id: skill-security-auditor, from: evaluated, to: active, actor_id: RT-10-SSS-SECURITY-INTEGRATOR}

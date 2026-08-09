@@ -70,6 +70,7 @@ export const checkContextSurfaces = (root: string): string[] => {
     'skill-release-governor',
     'skill-expert-distiller',
     'skill-runtime-adapter',
+    'skill-security-auditor',
   ];
   const presentSkills = expectedSkills.filter((skill) =>
     expected.has(`03_artefactos/skills/${skill}/context.md`),
