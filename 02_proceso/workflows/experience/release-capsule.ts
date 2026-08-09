@@ -8,6 +8,12 @@ import {
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
 import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
 import {writeCapsuleAtomically} from './atomic-capsule-store.ts';
+import {readCommittedReleaseFile} from './git-release-source.ts';
+import {type HostLaunchProbeEvidence, verifyHostLaunchProbes} from './host-launch-probe.ts';
+import {
+  assertExperienceReleaseSurface,
+  EXPERIENCE_RELEASE_SURFACE_V1_ID,
+} from './release-surface-v1.ts';
 import {readSafeReleaseFile, relativeReleaseFile} from './safe-release-file.ts';
 
 const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
@@ -23,6 +29,7 @@ export type BuildReleaseOptions = {
   files: string[];
   status?: 'CANDIDATE' | 'APPROVED';
   decisions?: ExperienceReleaseCapsuleV1['decisions'];
+  hostProbes?: HostLaunchProbeEvidence[];
 };
 
 type CandidateIdentityOptions = Pick<
@@ -38,7 +45,7 @@ const candidateIdentity = (options: CandidateIdentityOptions) => ({
   artifacts: [...new Set(options.files.map((item) => relativeReleaseFile(options.root, item)))]
     .sort()
     .map((path) => {
-      const {ref, sha256} = readSafeReleaseFile(options.root, path);
+      const {ref, sha256} = readCommittedReleaseFile(options.root, options.repositoryCommit, path);
       return {ref, sha256};
     }),
 });
@@ -61,8 +68,15 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
     ...new Set(options.files.map((item) => relativeReleaseFile(options.root, item))),
   ].sort();
   if (files.length === 0) throw new Error('EXP-RELEASE-EMPTY: at least one file is required');
+  assertExperienceReleaseSurface(files);
   const identity = candidateIdentity(options);
   const candidateSha256 = hash(canonicalize(identity));
+  const hostProof = verifyHostLaunchProbes(options.root, options.hostProbes ?? [], {
+    releaseId: options.releaseId,
+    candidateCommit: options.repositoryCommit,
+    candidateSha256,
+    releasedRefs: files,
+  });
   const decisions = options.decisions ?? [];
   if (status === 'APPROVED') {
     const actors = new Set(decisions.map(({actorId}) => actorId));
@@ -98,26 +112,29 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
     }
   }
   const generated: Record<string, string> = {
-    'version-diff.json': `${JSON.stringify({schemaVersion: 'experience-version-diff-v1', releaseId: options.releaseId, parentReleaseId: options.parentRelease, releaseClass: options.releaseClass, invalidatedObjects: [], revalidation: ['RT-09', 'RT-11', 'H01']}, null, 2)}\n`,
-    'compatibility.md':
-      '# Compatibilidad\n\nRutas R0–R7; workflows P00–P09 y C00–C09; hosts Claude, Codex, ChatGPT y fallback textual. Cada adapter requiere launch probe; la lista no afirma equivalencia de autoarranque.\n',
+    'version-diff.json': `${JSON.stringify({schemaVersion: 'experience-version-diff-v1', releaseId: options.releaseId, parentReleaseId: options.parentRelease, releaseClass: options.releaseClass, releaseSurface: EXPERIENCE_RELEASE_SURFACE_V1_ID, invalidatedObjects: [], revalidation: ['RT-09', 'RT-11', 'H01']}, null, 2)}\n`,
+    'compatibility.md': `# Compatibilidad\n\nSuperficie: \`${EXPERIENCE_RELEASE_SURFACE_V1_ID}\`.\n\nHosts con launch probe material PASS: ${hostProof.compatibleHosts.join(', ')}.\n\nHosts sin PASS (UNKNOWN/incompatibles): ${hostProof.unknownHosts.join(', ') || 'ninguno'}.\n\nLa compatibilidad aplica solo al commit y candidate hash de esta cápsula; no es un claim global de autoarranque.\n`,
     'migration.md':
       '# Migración\n\n1. Verificar hashes y commit.\n2. Ejecutar paridad y canary sintético.\n3. Congelar candidate.\n4. Obtener RT-09, RT-11 y H01 por separado.\n\nUna cápsula CANDIDATE no migra estado ni activa efectos.\n',
     'restore.md': `# Restauración\n\nVerificar SHA256SUMS. Recuperar archivos desde \`${options.repositoryCommit}\` y comprobar cada hash. No restaurar estado privado ni receipts de aprobación.\n`,
-    'acceptance-evidence.json': `${JSON.stringify({schemaVersion: 'experience-acceptance-evidence-v1', releaseId: options.releaseId, evidence: decisions.map(({role, decision, evidence}) => ({role, decision, evidence})), metrics: {baseline: 'UNKNOWN', result: 'UNKNOWN'}, verdict: status === 'APPROVED' ? 'PASS' : 'UNKNOWN', nextGate: status === 'APPROVED' ? 'H01_COMPLETE' : 'RT-09'}, null, 2)}\n`,
+    'acceptance-evidence.json': `${JSON.stringify({schemaVersion: 'experience-acceptance-evidence-v1', releaseId: options.releaseId, approvalEvidence: decisions.map(({role, decision, evidence}) => ({role, decision, evidence})), hostProbeEvidence: hostProof.refs, compatibleHosts: hostProof.compatibleHosts, unknownHosts: hostProof.unknownHosts, metrics: {baseline: 'UNKNOWN', result: 'UNKNOWN'}, verdict: status === 'APPROVED' ? 'PASS' : 'UNKNOWN', nextGate: status === 'APPROVED' ? 'H01_COMPLETE' : 'RT-09'}, null, 2)}\n`,
   };
   const manifest = ExperienceReleaseCapsuleV1Schema.parse({
     schemaVersion: 'experience-release-capsule-v1',
     ...identity,
     status,
     compatibleRoutes: ['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7'],
-    compatibleHosts: ['CLAUDE', 'CODEX', 'CHATGPT', 'TEXT_FALLBACK'],
+    compatibleHosts: hostProof.compatibleHosts,
     invalidatedObjects: [],
-    gaps: status === 'APPROVED' ? [] : ['Approval evidence remains pending.'],
+    gaps: [
+      ...(status === 'APPROVED' ? [] : ['Approval evidence remains pending.']),
+      ...hostProof.unknownHosts.map((host) => `Host compatibility UNKNOWN: ${host}`),
+    ],
     migration: {ref: 'migration.md', sha256: hash(generated['migration.md']!)},
     restore: {ref: 'restore.md', sha256: hash(generated['restore.md']!)},
     acceptanceEvidence: [
       {ref: 'acceptance-evidence.json', sha256: hash(generated['acceptance-evidence.json']!)},
+      ...hostProof.refs,
     ],
     decisions,
     canonicalSha256: candidateSha256,
