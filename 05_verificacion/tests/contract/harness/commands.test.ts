@@ -17,13 +17,31 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 37 gates', () => {
-    expect(manifest.gates).toHaveLength(37);
+  it('declares 40 gates', () => {
+    expect(manifest.gates).toHaveLength(40);
   });
 
-  it('every gate id belongs to GNN, MW_* or CR_*', () => {
+  it('every gate id belongs to GNN, MW_*, CR_* or EXP_*', () => {
     for (const gate of manifest.gates) {
-      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+)$/u);
+      expect(gate.gate).toMatch(/^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+)$/u);
+    }
+  });
+
+  it('keeps Experience execution checkable and both promotions manual fail-closed', () => {
+    expect(manifest.gates.find(({gate}) => gate === 'G09_EXPERIENCE')).toMatchObject({
+      command: 'node --import tsx scripts/check-experience-os.ts',
+      manual: false,
+      fail_closed: true,
+      owner: 'content',
+    });
+    for (const id of ['EXP_BRIEF_APPROVED', 'EXP_RELEASE_APPROVED']) {
+      expect(manifest.gates.find(({gate}) => gate === id)).toMatchObject({
+        command: null,
+        allowed_tools: [],
+        write_set_globs: [],
+        manual: true,
+        fail_closed: true,
+      });
     }
   });
 
