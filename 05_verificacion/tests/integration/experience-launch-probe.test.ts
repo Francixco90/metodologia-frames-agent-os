@@ -1,4 +1,7 @@
-import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {mkdirSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {dirname, resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 import {describe, expect, it} from 'vitest';
@@ -67,32 +70,53 @@ describe('productive first-turn launch probe', () => {
     const {dispatchIntent} = (await import(
       pathToFileURL(resolve('03_artefactos/skills/content-os-router/scripts/route-intent.mjs')).href
     )) as {dispatchIntent: (input: Record<string, unknown>) => DispatchResult};
-    const result = dispatchIntent({
-      request: 'Continuar con lo anterior',
-      resumeCandidate: {
-        routeId: 'R7',
+    const stateRoot = mkdtempSync(resolve(tmpdir(), 'frames-launch-resume-'));
+    try {
+      const material = (ref: string, content: string) => {
+        const path = resolve(stateRoot, ref);
+        mkdirSync(dirname(path), {recursive: true});
+        writeFileSync(path, content, 'utf8');
+        return {ref, sha256: createHash('sha256').update(content).digest('hex')};
+      };
+      const candidateId = 'CAND-SYNTHETIC';
+      const draft = {
+        schemaVersion: 'resume-lineage-record-v1',
+        candidateId,
+        originRouteId: 'R7',
         activeStep: 'C06.render',
         summary: 'Terminar el CV aprobado.',
-        briefPreview: {
-          briefKind: 'application-brief',
-          summary: 'CV sintético.',
-          materialized: true,
-          canonicalRef: 'work/private/application-brief.md',
-        },
-      },
-    });
-    expect(result).toMatchObject({
-      route_id: 'R4',
-      adapter_invoked: false,
-      domain_intent: null,
-      experience_envelope: {interactionClass: 'RESUME_CANDIDATE', state: 'RESUMABLE'},
-      launch_probe: {
-        gateway_invoked: true,
-        adapter_invoked: false,
+        briefKind: 'application-brief',
+        candidate: material('candidates/candidate.json', '{}\n'),
+        latestArtifact: material('artifacts/application-brief.md', '# CV sintético\n'),
+        receipt: material('receipts/invocation.json', '{}\n'),
+      };
+      const lineagePath = resolve(stateRoot, 'lineages', candidateId, 'resume.json');
+      mkdirSync(dirname(lineagePath), {recursive: true});
+      writeFileSync(
+        lineagePath,
+        `${JSON.stringify({...draft, canonicalSha256: hashExperienceValue(draft)})}\n`,
+        'utf8',
+      );
+      const result = dispatchIntent({
+        request: 'Continuar con lo anterior',
+        state_root: stateRoot,
+        resume_candidate_id: candidateId,
+      });
+      expect(result).toMatchObject({
         route_id: 'R4',
-        external_effects: false,
-      },
-    });
+        adapter_invoked: false,
+        domain_intent: null,
+        experience_envelope: {interactionClass: 'RESUME_CANDIDATE', state: 'RESUMABLE'},
+        launch_probe: {
+          gateway_invoked: true,
+          adapter_invoked: false,
+          route_id: 'R4',
+          external_effects: false,
+        },
+      });
+    } finally {
+      rmSync(stateRoot, {recursive: true, force: true});
+    }
   });
 
   it('keeps unresolved R0 local, blocked and adapter-free', async () => {
