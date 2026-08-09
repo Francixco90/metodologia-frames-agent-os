@@ -37,13 +37,13 @@ y la historia conserva bytes. [CONFIG]
 
 ## Presupuestos medidos
 
-| Gate                          |         Baseline |              Final |            Límite |   Ratio | Estado |
-| ----------------------------- | ---------------: | -----------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |            93305 |             110425 |     139957 (1.5×) | 1.1835× | `pass` |
-| Total authored (palabras)     |            93305 |             110425 |       186610 (2×) | 1.1835× | `pass` |
-| Total authored (LOC)          |            35045 |              41472 |        70090 (2×) | 1.1834× | `pass` |
-| Generated/template aplicables | 64 inventariados | 13 checks + 51 N/A | 2× palabras y LOC |   64/64 | `pass` |
-| Historia baseline             |      95 archivos |  95 byte-idénticos |                95 |     n/a | `pass` |
+| Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
+| ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
+| Corpus authored elegible      |             93305 |              110425 |     139957 (1.5×) | 1.1835× | `pass` |
+| Total authored (palabras)     |             93305 |              110425 |       186610 (2×) | 1.1835× | `pass` |
+| Total authored (LOC)          |             35045 |               41472 |        70090 (2×) | 1.1834× | `pass` |
+| Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
+| Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
 Además, 58 Markdown editables del baseline se
 comprueban individualmente contra un máximo de 2× palabras. Violaciones registradas:
