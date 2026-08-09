@@ -8,6 +8,7 @@ import {resolve} from 'node:path';
 import type {MultimediaWorkflowReceipt} from '../../../../05_verificacion/scripts/lib/multimedia-workflow-receipt-schema.ts';
 import {evaluateQualityGate} from './quality-gate.ts';
 import {discardStagedOutputs, promoteWorkflowOutputs, stageWorkflowOutputs} from './materialize.ts';
+import {resolveOutputSelection} from './output-selection.ts';
 import {buildGateFailReceipt, validateReceipt, writeReceipt} from './receipt-io.ts';
 import {
   MULTIMEDIA_DIR,
@@ -36,9 +37,20 @@ export const runWorkflow = (workflowId: string): void => {
     return;
   }
   const {workflow, frontmatter, taskTemplate} = contract;
+  let selectedConditional: ReadonlySet<string> | undefined;
+  try {
+    selectedConditional = resolveOutputSelection(args.outputSelection, workflow);
+  } catch (error) {
+    console.error(`[FAIL] ${id}: ${String(error)}`);
+    process.exitCode = 1;
+    return;
+  }
+  const plannedOutputs = workflow.outputs.filter(
+    ({deliverable_id, required}) => required || selectedConditional?.has(deliverable_id),
+  );
   if (args.dryRun) {
     console.info(
-      `[DRY] ${id} ${workflow.command} validated; planned_outputs=${workflow.outputs.length}; writes=0`,
+      `[DRY] ${id} ${workflow.command} validated; planned_outputs=${plannedOutputs.length}; writes=0`,
     );
     console.info('  STOP before materialization, receipt, state or gate mutation.');
     return;
@@ -46,7 +58,7 @@ export const runWorkflow = (workflowId: string): void => {
 
   const gate = workflow.gates[0] ?? 'G14';
   const ranAt = isoWithOffset(new Date());
-  const staged = stageWorkflowOutputs(ROOT, contract.dir, workflow);
+  const staged = stageWorkflowOutputs(ROOT, contract.dir, workflow, selectedConditional);
   const noRegressionChecklistPath = resolve(
     MULTIMEDIA_DIR,
     '_assets',
