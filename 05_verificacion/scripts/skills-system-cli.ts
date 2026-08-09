@@ -16,12 +16,15 @@ import {
   SkillReviewReportV1Schema,
   SkillSystemCaseV1Schema,
 } from '../../02_proceso/workflows/skill-systems/contracts.ts';
-import {
-  decideSmallestComponentV1,
-  evaluateSkillRunV1,
-} from '../../02_proceso/workflows/skill-systems/governance.ts';
+import {decideSmallestComponentV1} from '../../02_proceso/workflows/skill-systems/governance.ts';
 import {buildSkillReleaseCapsuleV1} from '../../02_proceso/workflows/skill-systems/release.ts';
 import {canonicalCliJson, skillSystemInputFromArgs} from './skill-system-cli-io.ts';
+import {
+  verifySkillArchitectureGateV1,
+  verifySkillCaseGateV1,
+  verifySkillEvalGateV1,
+  verifySkillStaticGateV1,
+} from './skill-system-gates.ts';
 
 type Action = 'inspect' | 'scaffold' | 'validate' | 'evaluate' | 'package';
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
@@ -48,17 +51,10 @@ const inspect = async (root: string, input: unknown) => {
       coverage_gap: 'SKILL_SYSTEM_CASE_REQUIRED',
       packages,
     } as const;
-  const materialCase = SkillSystemCaseV1Schema.parse(input);
-  return {
-    schema_version: 'skill-suite-inspection-v1',
-    status: packages.length === 8 ? 'PASS' : 'BLOCKED',
-    case_id: materialCase.case_id,
-    case_sha256: materialCase.content_sha256,
-    packages,
-  } as const;
+  return {...verifySkillCaseGateV1(root, input), packages} as const;
 };
 
-const validate = (input: unknown) => {
+const validate = (root: string, input: unknown, gate: string | null) => {
   if (!input)
     return {
       schema_version: 'skill-validation-v1',
@@ -66,6 +62,8 @@ const validate = (input: unknown) => {
       coverage_gap: 'MATERIAL_CONTRACT_REQUIRED',
       checked_contracts: 0,
     } as const;
+  if (gate === 'architecture') return verifySkillArchitectureGateV1(root, input);
+  if (gate === 'static') return verifySkillStaticGateV1(root, input);
   const record = input as Record<string, unknown>;
   const schema = typeof record.schema_version === 'string' ? record.schema_version : '';
   const schemas = new Map<string, ZodType>([
@@ -85,8 +83,8 @@ const validate = (input: unknown) => {
   return {schema_version: 'skill-validation-v1', status: 'PASS', validated_schema: schema};
 };
 
-const evaluate = (input: unknown) => {
-  if (input) return evaluateSkillRunV1(input);
+const evaluate = (root: string, input: unknown) => {
+  if (input) return verifySkillEvalGateV1(root, input);
   return {
     schema_version: 'skill-eval-summary-v1',
     status: 'UNKNOWN',
@@ -158,9 +156,11 @@ export function runSkillSystemCli(action: Action, args: string[], root?: string)
 export async function runSkillSystemCli(action: Action, args: string[], root = process.cwd()) {
   const input = await skillSystemInputFromArgs(args);
   const apply = args.includes('--apply');
+  const gateIndex = args.indexOf('--gate');
+  const gate = gateIndex >= 0 ? (args[gateIndex + 1] ?? null) : null;
   if (action === 'inspect') return inspect(root, input);
-  if (action === 'validate') return validate(input);
-  if (action === 'evaluate') return evaluate(input);
+  if (action === 'validate') return validate(root, input, gate);
+  if (action === 'evaluate') return evaluate(root, input);
   if (action === 'scaffold') return scaffold(input, apply);
   return packageCandidate(root, apply, input);
 }
@@ -177,8 +177,8 @@ if (isMain) {
   if (
     typeof result === 'object' &&
     result !== null &&
-    'status' in result &&
-    ['UNKNOWN', 'BLOCKED'].includes(String(result.status))
+    (('status' in result && ['UNKNOWN', 'BLOCKED', 'REVISE'].includes(String(result.status))) ||
+      ('verdict' in result && ['UNKNOWN', 'BLOCKED', 'REVISE'].includes(String(result.verdict))))
   )
     process.exitCode = 2;
 }

@@ -1,17 +1,26 @@
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import path from 'node:path';
 
 import {writeCapsuleAtomically} from '../experience/atomic-capsule-store.ts';
 import {assertSafeReleasePath} from '../experience/safe-release-file.ts';
 import {SkillReleaseCapsuleV1Schema} from './contracts.ts';
-import {SkillHostProbeV1Schema} from './release-contracts.ts';
 
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
 const stable = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;
 
 export const buildSkillReleaseCapsuleV1 = (input: unknown, root: string) => {
   const capsule = SkillReleaseCapsuleV1Schema.parse(input);
+  let frozenCommit: string;
+  try {
+    frozenCommit = execFileSync('git', ['-C', root, 'rev-parse', 'HEAD'], {
+      encoding: 'utf8',
+    }).trim();
+  } catch {
+    throw new Error('SSS_RELEASE_GIT_CANDIDATE_REQUIRED');
+  }
+  if (capsule.commit_sha !== frozenCommit) throw new Error('SSS_RELEASE_COMMIT001');
   const actors = capsule.approvals.map(({actor_id}) => actor_id);
   if (new Set(actors).size !== 4) throw new Error('SSS_RELEASE_ACTOR_SEPARATION001');
   const roles = capsule.approvals.map(({role}) => role).sort();
@@ -49,21 +58,7 @@ export const buildSkillReleaseCapsuleV1 = (input: unknown, root: string) => {
   if (portable?.status !== 'PASS') throw new Error('SSS_RELEASE_PORTABLE001');
   for (const host of ['Codex', 'Claude', 'Gemini', 'ChatGPT']) {
     const entry = capsule.compatibility.find(({profile}) => profile === host);
-    if (entry?.status === 'PASS') {
-      if (!entry.probe_ref || !entry.probe_sha256)
-        throw new Error(`SSS_RELEASE_HOST_PROBE_REQUIRED:${host}`);
-      const probePath = assertSafeReleasePath(root, entry.probe_ref);
-      const probeBytes = readFileSync(probePath.real, 'utf8');
-      if (sha(probeBytes) !== entry.probe_sha256)
-        throw new Error(`SSS_RELEASE_HOST_PROBE_HASH001:${host}`);
-      const probe = SkillHostProbeV1Schema.parse(JSON.parse(probeBytes));
-      if (
-        probe.release_id !== capsule.release_id ||
-        probe.profile !== host ||
-        probe.package_sha256 !== capsule.package_sha256
-      )
-        throw new Error(`SSS_RELEASE_HOST_PROBE_BINDING001:${host}`);
-    }
+    if (entry?.status === 'PASS') throw new Error(`SSS_RELEASE_HOST_UNPROVEN:${host}`);
   }
   return capsule;
 };

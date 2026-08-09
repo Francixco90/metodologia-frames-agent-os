@@ -153,11 +153,11 @@ gates:
   # prettier-ignore
   - {gate: SSS_CASE_READY, label: skill case evidence complete, command: 'pnpm skills:inspect -- --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
   # prettier-ignore
-  - {gate: SSS_ARCHITECTURE_READY, label: capability map and architecture decision complete, command: 'pnpm skills:validate -- --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
+  - {gate: SSS_ARCHITECTURE_READY, label: capability map and architecture decision complete, command: 'pnpm skills:validate -- --gate architecture --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
   # prettier-ignore
   - {gate: SSS_CANDIDATE_READY, label: skill candidate materialized within work order, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
-  - {gate: SSS_STATIC_VALIDATED, label: skill candidate static validation, command: 'pnpm skills:validate -- --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  - {gate: SSS_STATIC_VALIDATED, label: skill candidate static validation, command: 'pnpm skills:validate -- --gate static --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: SSS_EVAL_VALIDATED, label: baseline comparison and deterministic replay, command: 'pnpm skills:evaluate -- --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore

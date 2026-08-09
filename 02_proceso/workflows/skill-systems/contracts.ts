@@ -9,6 +9,7 @@ const RelativeRef = z
   .max(240)
   .refine((value) => !value.startsWith('/') && !value.includes('..') && !value.includes('\\'));
 const Actor = z.string().min(3).max(80);
+const MaterialRef = z.strictObject({ref: RelativeRef, sha256: Sha256});
 
 export const SkillEffectClassV1Schema = z.enum(['E0', 'E1', 'E2', 'E3', 'E4']);
 export type SkillEffectClassV1 = z.infer<typeof SkillEffectClassV1Schema>;
@@ -113,6 +114,7 @@ export const SkillEvalCaseV1Schema = z.strictObject({
 export const SkillEvalRunV1Schema = z.strictObject({
   schema_version: z.literal('skill-eval-run-v1'),
   run_id: Id,
+  candidate_ref: RelativeRef,
   candidate_sha256: Sha256,
   cases: z
     .array(
@@ -121,10 +123,11 @@ export const SkillEvalRunV1Schema = z.strictObject({
         infrastructure_status: z.enum(['PASS', 'FAIL', 'UNKNOWN']),
         baseline_pass: z.boolean().nullable(),
         candidate_pass: z.boolean().nullable(),
-        evidence_refs: z.array(RelativeRef),
+        evidence_refs: z.array(MaterialRef),
       }),
     )
     .min(1),
+  replay_ref: RelativeRef,
   replay_sha256: Sha256,
   actor_id: Actor,
   coverage_policy: z.strictObject({
