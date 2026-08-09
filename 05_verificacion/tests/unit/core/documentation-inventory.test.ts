@@ -1,3 +1,6 @@
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+
 import {describe, expect, it} from 'vitest';
 
 import {buildDocumentationInventory} from '../../../scripts/audit-markdown.ts';
@@ -9,9 +12,12 @@ describe('DocumentationInventoryV1', () => {
       (total, paths) => total + paths.length,
       0,
     );
+    const stored = JSON.parse(
+      readFileSync(resolve('01_intencion/program/documentation-inventory-v1.json'), 'utf8'),
+    ) as {auditedAuthored: number};
     expect(classified).toBe(inventory.totalMarkdown);
     expect(inventory.totalMarkdown).toBeGreaterThanOrEqual(1602);
-    expect(inventory.auditedAuthored).toBe(538);
+    expect(inventory.auditedAuthored).toBe(stored.auditedAuthored);
     expect(inventory.classPaths.vendor).toHaveLength(975);
     expect(inventory.classPaths.generated).toEqual(
       expect.arrayContaining([

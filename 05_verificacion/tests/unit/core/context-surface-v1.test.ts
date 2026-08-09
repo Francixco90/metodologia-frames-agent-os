@@ -2,6 +2,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 import {describe, expect, it} from 'vitest';
+import {parse} from 'yaml';
 
 import {
   ContextSurfaceRegistryV1Schema,
@@ -28,8 +29,14 @@ describe('ContextSurfaceV1', () => {
 
   it('renders byte-stable projections with six sections below target', () => {
     const all = loadContextSurfaces(root, 'all');
-    expect(all).toHaveLength(78);
-    expect(validateContextGraph(root, all, 78)).toEqual([]);
+    const registry = ContextSurfaceRegistryV1Schema.parse(
+      parse(
+        readFileSync(resolve(root, '02_proceso/governance/context-surfaces/registry.yml'), 'utf8'),
+      ),
+    );
+    const expected = registry.expected_non_skill_projections + registry.expected_skill_projections;
+    expect(all).toHaveLength(expected);
+    expect(validateContextGraph(root, all, expected)).toEqual([]);
     const first = projections(all);
     const second = projections(all);
     expect([...first]).toEqual([...second]);
