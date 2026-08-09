@@ -192,12 +192,19 @@ están en `02_proceso/workflows/experience/`. El estado máximo es
 bloqueados. Solo una cápsula con RT-09 `PASS`, RT-11 `PASS` y H01 `APPROVE`
 puede entrar al vault inmutable. [CONFIG]
 
+La operación completa —primer turno, route lock, workflow management, AutoPrime,
+WorkOrder, receipts, continuidad y hospitalidad— está definida en
+[`experience-first-orchestration.md`](02_proceso/governance/experience-first-orchestration.md).
+R6/R7 tienen handlers locales brief-first; R4 exige lineage hash-bound. R1–R3 y
+R5 siguen como `coverage_gap` y no deben presentarse como ejecución disponible.
+
 ## Governance
 
 `02_proceso/governance/` — fuentes versionadas de gobernanza (la cabina `CLAUDE.md`/`AGENTS.md`
 apunta aquí, no duplica):
 
 - `router.yml` — router R0-R7 con First-Turn Gateway (proyecto/tarea/eval/contenido/carrera).
+- `experience-first-orchestration.md` — contrato de interacción y workflow manager.
 - `tool-policy.yml` — política de herramientas permitidas por gate.
 - `agent-cli-adapters.md` — patrón para adaptar el repo a otros agent CLIs (Cursor, Copilot CLI, Codex).
 - `atemporal-naming-policy.md` — política de naming atemporal (Fase 7, ADR 0027).
