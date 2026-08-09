@@ -22,6 +22,7 @@ import {prepareSubmission} from 'workflows/career/_runner/submission.ts';
 
 const HASH_A = 'a'.repeat(64);
 const HASH_B = 'b'.repeat(64);
+const HASH_C = 'c'.repeat(64);
 
 describe('Career OS synthetic local canary', () => {
   it('runs a vague CV request brief-first and materializes MD plus HTML before its gate', () => {
@@ -200,17 +201,43 @@ describe('Career OS synthetic local canary', () => {
             allowed_channels: ['cv' as const],
             constraints: [],
           },
+          {
+            evidence_id: 'EVD-IDENTITY-001',
+            claim: 'La identidad visible corresponde a Candidata Sintética.',
+            context: 'Perfil privado sintético del canary.',
+            action_method: 'Confirmación explícita en el fixture.',
+            result: 'Nombre autorizado para el CV sintético.',
+            metric: null,
+            source_ref: 'work/private/career/identity.yml',
+            source_sha256: HASH_B,
+            confidence: 'verified' as const,
+            allowed_channels: ['cv' as const],
+            constraints: [],
+          },
+          {
+            evidence_id: 'EVD-CONTACT-001',
+            claim: 'La línea de contacto privada está autorizada para el CV sintético.',
+            context: 'Perfil privado sintético del canary.',
+            action_method: 'Confirmación explícita en el fixture.',
+            result: 'Contacto autorizado para render local.',
+            metric: null,
+            source_ref: 'work/private/career/contact.yml',
+            source_sha256: HASH_C,
+            confidence: 'verified' as const,
+            allowed_channels: ['cv' as const],
+            constraints: [],
+          },
         ],
       };
       const evidenceBank = {
         ...unsignedBank,
         bank_sha256: calculateEvidenceBankHash(unsignedBank as never),
       };
-      const surface = (path: string) => ({
+      const surface = (path: string, evidenceId = 'EVD-SYNTHETIC-001', evidenceHash = HASH_A) => ({
         path,
         classification: 'evidence' as const,
-        evidence_ids: ['EVD-SYNTHETIC-001'],
-        evidence_hashes: [HASH_A],
+        evidence_ids: [evidenceId],
+        evidence_hashes: [evidenceHash],
         rationale: null,
       });
       const cvDraft = {
@@ -239,13 +266,17 @@ describe('Career OS synthetic local canary', () => {
         skills: ['Product Operations'],
         source_refs: ['work/private/career/evidence.yml'],
         surface_bindings: [
-          '/headline',
-          '/summary',
-          '/experience/0/organization',
-          '/experience/0/role',
-          '/experience/0/period',
-          '/skills/0',
-        ].map(surface),
+          surface('/name', 'EVD-IDENTITY-001', HASH_B),
+          surface('/contact_lines/0', 'EVD-CONTACT-001', HASH_C),
+          ...[
+            '/headline',
+            '/summary',
+            '/experience/0/organization',
+            '/experience/0/role',
+            '/experience/0/period',
+            '/skills/0',
+          ].map((path) => surface(path)),
+        ],
       } as const;
       const cv = {...cvDraft, content_sha256: calculateCareerDocumentHash(cvDraft as never)};
       const cvHtml = renderCareerCvHtml(cv, evidenceBank);
