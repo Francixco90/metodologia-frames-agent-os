@@ -1,0 +1,10 @@
+{
+  "cases": [
+    {"id": "missing_job_snapshot", "expected": "BLOCKED"},
+    {"id": "inferred_claim", "expected": "BLOCKED"},
+    {"id": "random_contact", "expected": "BLOCKED"},
+    {"id": "placeholder_remaining", "expected": "BLOCKED"},
+    {"id": "repeats_cv_summary", "expected": "BLOCKED"},
+    {"id": "channel_budget_exceeded", "expected": "BLOCKED"}
+  ]
+}
