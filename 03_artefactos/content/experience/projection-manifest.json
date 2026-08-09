@@ -3,8 +3,8 @@
   "blueprint_id": "frames-contentos-experience",
   "source_ref": "03_artefactos/content/experience/frames-experience-blueprint.md",
   "projection_ref": "03_artefactos/content/experience/frames-experience-blueprint.html",
-  "source_sha256": "9cf6d6a20ac7ef2fc6dae79391e15a7fec8f53d8c75e2fd4177595c055a21568",
-  "content_sha256": "38672a1052235f30320bd39eb43f5231b797c5e29961ddad7846599c6bc47955",
+  "source_sha256": "016cba2d80db7ae06e118aa49996a1da8130d127fcec42180bb3ce715f5d15c7",
+  "content_sha256": "695b7026ff565752c103620521be2a3001b49d5a89ec644e1139f6585dae73d9",
   "section_count": 13,
   "section_order": [
     "section-01",

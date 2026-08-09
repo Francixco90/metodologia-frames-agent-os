@@ -1,82 +1,201 @@
-schema_version: frames-service-blueprint-v1
+schema_version: frames-service-blueprint-v2
 blueprint_id: frames-contentos-experience
 identity: Frames ContentOS · por MetodologIA
 promise: Estandarizar lo repetible y personalizar lo significativo.
+stage_contract:
+  required:
+    [
+      trigger,
+      user_job,
+      user_need,
+      friction,
+      moment_of_truth,
+      frontstage,
+      ghost_menu,
+      backstage,
+      owner,
+      support,
+      evidence,
+      metric,
+      gate,
+      failure_mode,
+      preserved_work,
+      recovery,
+      next_recommended_action,
+    ]
+  ghost_menu: {primary_actions: 1, alternative_actions_max: 2, free_text_wins: true}
+
 stages:
-  - {
-      id: arrival,
-      moment: Llegada,
-      user_job: Entender cómo puede ayudar Frames,
-      frontstage: Identidad y menú Crear · Mejorar · Planear · Explorar,
-      backstage: Clasificar ASSIST_ONLY y cargar el manifest estático,
-      support: [microcopy.es.yml, component-registry.yml],
-      evidence: Cero writes y menos de 120 tokens,
-    }
-  - {
-      id: understanding,
-      moment: Comprensión,
-      user_job: Sentirse entendido sin aprender el arnés,
-      frontstage: Resultado entendido y preguntas materialmente bloqueantes,
-      backstage: Compilar intención sensibilidad y candidatos,
-      support: [AssistanceEnvelopeV1, router.yml],
-      evidence: Request hash gaps y reason codes,
-    }
-  - {
-      id: orientation,
-      moment: Orientación,
-      user_job: Saber qué ocurrirá y corregir la dirección,
-      frontstage: Recomendación y hasta dos alternativas,
-      backstage: AutoPrime route lock WorkflowPlan y SkillBinding,
-      support: [AutoPrimeV1, WorkflowPlanV1, SkillBindingV1],
-      evidence: Ruta workflow skill y budget resolubles,
-    }
-  - {
-      id: codesign,
-      moment: Co-diseño,
-      user_job: Aprobar un resultado concreto,
-      frontstage: Preview del brief entregables límites y aceptación,
-      backstage: Brief Markdown y proyección HTML,
-      support: [FramesBriefV1, DeliverableTemplateV1],
-      evidence: Paridad y aprobación hash-bound,
-    }
-  - {
-      id: production,
-      moment: Producción,
-      user_job: Ver progreso útil,
-      frontstage: Hito output material y siguiente acción,
-      backstage: WorkOrders invocaciones y gates causales,
-      support: [WorkOrderV1, SkillInvocationReceiptV1],
-      evidence: Outputs en disco e invocation receipts,
-    }
-  - {
-      id: review,
-      moment: Revisión,
-      user_job: Comprender calidad gaps y correcciones,
-      frontstage: Candidate veredicto y cambios,
-      backstage: Producer RT-09 successor y RT-11 separados,
-      support: [QualityProfileV1, GuardianVerdict],
-      evidence: Candidate congelado y veredictos independientes,
-    }
-  - {
-      id: continuity,
-      moment: Continuidad,
-      user_job: Retomar sin repetir contexto,
-      frontstage: Estado último artefacto y recomendación,
-      backstage: Session lineage hashes y resume policy,
-      support: [ResumeCard, RunReceipt],
-      evidence: Reanudación desde el mismo lineage,
-    }
-  - {
-      id: recovery,
-      moment: Recuperación,
-      user_job: No perder trabajo ni quedar sin salida,
-      frontstage: Qué se conservó qué falló y cómo resolverlo,
-      backstage: Bloqueo fail-closed y candidate preservado,
-      support: [RecoveryCard, FailureReceipt],
-      evidence: Cero promoción y reparación concreta,
-    }
+  - id: arrival
+    moment: Llegada
+    trigger: Saludo, ayuda o /menu sin intención accionable.
+    user_job: Entender Frames sin aprender comandos.
+    user_need: Bienvenida identificable y opciones breves.
+    friction: Jerga, catálogos o preguntas prematuras.
+    moment_of_truth: Frames aporta valor antes de pedir contexto.
+    frontstage: Identidad y entradas Crear · Mejorar · Planear · Explorar.
+    ghost_menu:
+      {primary: Cuéntame qué quieres lograr, alternatives: [Crear o mejorar, Planear o explorar]}
+    backstage: Clasificar ASSIST_ONLY; cargar solo assets estáticos.
+    owner: RT-01
+    support: [microcopy.es.yml, component-registry.yml, AssistanceEnvelopeV1]
+    evidence: Envelope y fallback equivalentes; snapshot inmutable.
+    metric: Respuesta <120 tokens; cero writes.
+    gate: G09_EXPERIENCE
+    failure_mode: Menú técnico, contexto privado o escritura.
+    preserved_work: Prompt; ningún estado creado.
+    recovery: Volver a ASSIST_ONLY con entrada breve.
+    next_recommended_action: Expresar el resultado en texto libre.
+
+  - id: understanding
+    moment: Comprensión
+    trigger: Pedido nuevo con intención accionable.
+    user_job: Confirmar resultado y límites entendidos.
+    user_need: Progreso sin repetir información.
+    friction: Formularios, preguntas excesivas o supuestos ocultos.
+    moment_of_truth: La reformulación mejora sin desviar.
+    frontstage: Resultado, inputs y gaps bloqueantes.
+    ghost_menu:
+      {primary: Continuar con esta interpretación, alternatives: [Corregir, Ver supuestos]}
+    backstage: Compilar intención, sensibilidad, efectos y rutas.
+    owner: RT-04
+    support: [AssistanceEnvelopeV1, router.yml, microcopy.es.yml]
+    evidence: Hash, hechos, supuestos, gaps y reason codes.
+    metric: Cero repeticiones; máximo tres bloqueantes.
+    gate: G09_EXPERIENCE
+    failure_mode: Ambigüedad, sensibilidad desconocida o falsos hechos.
+    preserved_work: Inputs y pedido hash-bound.
+    recovery: Recomendar interpretación y hasta dos alternativas.
+    next_recommended_action: Confirmar o corregir la interpretación.
+
+  - id: orientation
+    moment: Orientación
+    trigger: Intención suficiente para comparar rutas.
+    user_job: Conocer y corregir la dirección.
+    user_need: Recomendación explicable, no maquinaria.
+    friction: Elección silenciosa, invención o exceso de opciones.
+    moment_of_truth: La ruta reduce trabajo y es inspeccionable.
+    frontstage: Recomendación, alcance, parada y alternativas.
+    ghost_menu: {primary: Preparar el brief, alternatives: [Ajustar alcance, Ver la ruta]}
+    backstage: Resolver route lock, AutoPrime, WorkflowPlan y SkillBinding.
+    owner: RT-04
+    support: [router.yml, AutoPrimeV1, WorkflowPlanV1, SkillBindingV1]
+    evidence: Ruta, workflow, skill, budget y gate resolubles.
+    metric: Route lock reproducible; contexto mínimo.
+    gate: G09_EXPERIENCE
+    failure_mode: Empate, handler ausente o referencia inválida.
+    preserved_work: Candidatos, reason codes e inputs.
+    recovery: Enrutar a R0; pedir una decisión.
+    next_recommended_action: Preparar el brief recomendado.
+
+  - id: codesign
+    moment: Co-diseño
+    trigger: Ruta bloqueada e intake suficiente.
+    user_job: Validar antes de producir.
+    user_need: Alcance, evidencia, riesgos y aceptación unidos.
+    friction: Aprobar sin preview o duplicar contenido HTML.
+    moment_of_truth: El brief revela errores antes de producir.
+    frontstage: Brief, entregables, límites y gate.
+    ghost_menu: {primary: Aprobar y producir, alternatives: [Ajustar el brief, Ver la ruta]}
+    backstage: Materializar Markdown y proyectar HTML determinista.
+    owner: RT-08
+    support: [FramesBriefV1, DeliverableTemplateV1, projection-manifest.json]
+    evidence: Brief hash-bound, paridad y decisión humana.
+    metric: Cero divergencia o aprobación implícita.
+    gate: EXP_BRIEF_APPROVED
+    failure_mode: Intake, template o paridad insuficientes.
+    preserved_work: Brief candidate, decisiones y gaps.
+    recovery: Corregir Markdown y regenerar HTML.
+    next_recommended_action: Aprobar o indicar el ajuste exacto.
+
+  - id: production
+    moment: Producción
+    trigger: Brief aprobado y WorkOrder autorizado.
+    user_job: Obtener progreso material sin supervisión técnica.
+    user_need: Hitos claros, calidad y parada visible.
+    friction: Actividad sin output, receipt o autoridad.
+    moment_of_truth: Cada avance tiene artefacto comprobable.
+    frontstage: Hito, output y siguiente acción.
+    ghost_menu: {primary: Continuar al siguiente hito, alternatives: [Revisar output, Detener aquí]}
+    backstage: Ejecutar WorkOrder y releer antes del receipt.
+    owner: RT-10
+    support: [WorkOrderV1, SkillInvocationReceiptV1, tool-policy.yml]
+    evidence: Output regular, realpath contenido y hash releído.
+    metric: Toda skill ejecutada tiene receipt material.
+    gate: workflow_plan.active_step.gate
+    failure_mode: Output ausente, write escape, timeout o efecto denegado.
+    preserved_work: Candidate y receipts válidos.
+    recovery: Bloquear; proponer retry idempotente o reparación.
+    next_recommended_action: Revisar antes del gate declarado.
+
+  - id: review
+    moment: Revisión
+    trigger: Candidate congelado y lineage íntegro.
+    user_job: Distinguir calidad, cambios y riesgos.
+    user_need: Un veredicto independiente y accionable.
+    friction: Autoaprobación, simulación o edición tras freeze.
+    moment_of_truth: El veredicto explica avance o bloqueo.
+    frontstage: Candidate, veredicto, gaps y corrección.
+    ghost_menu:
+      {
+        primary: Aplicar la corrección prioritaria,
+        alternatives: [Comparar candidate, Inspeccionar evidencia],
+      }
+    backstage: Secuenciar Producer, RT-09 y RT-11 independientes.
+    owner: RT-09
+    support: [QualityProfileV1, GuardianVerdict, successor-candidate policy]
+    evidence: Hash congelado y veredictos independientes.
+    metric: Cero autoaprobación y cero promoción desde UNKNOWN.
+    gate: workflow_plan.active_step.gate
+    failure_mode: Evidencia incompleta, identidad repetida o mutación.
+    preserved_work: Candidate, pruebas y lineage.
+    recovery: Emitir REVISE/BLOCKED; crear successor.
+    next_recommended_action: Resolver el defecto de mayor impacto.
+
+  - id: continuity
+    moment: Continuidad
+    trigger: Pedido de continuación con candidates posibles.
+    user_job: Retomar sin repetir intake.
+    user_need: Estado, artefacto y siguiente acción confiables.
+    friction: Similitud débil o sobrescritura.
+    moment_of_truth: Frames recupera el lineage exacto.
+    frontstage: Resume card con estado, artefacto y recomendación.
+    ghost_menu: {primary: Continuar desde aquí, alternatives: [Inspeccionar, Crear successor]}
+    backstage: Resolver cardinalidad, state root, lineage y hashes.
+    owner: RT-10
+    support: [ResumeCard, RunReceipt, session-lineage-v1]
+    evidence: Candidate ID y hashes vigentes.
+    metric: Cero reanudación arbitraria o intake repetido.
+    gate: G09_EXPERIENCE
+    failure_mode: Cardinalidad inválida, hash obsoleto o cambio estructural.
+    preserved_work: Candidates y receipts inmutables.
+    recovery: Pedir elección o crear successor.
+    next_recommended_action: Continuar desde el gate válido.
+
+  - id: recovery
+    moment: Recuperación
+    trigger: FAIL, UNKNOWN, BLOCKED o interrupción.
+    user_job: Recuperar control sin perder trabajo.
+    user_need: Causa, impacto, evidencia y salida.
+    friction: Mensajes genéricos, falsos verdes o callejones.
+    moment_of_truth: El fallo conserva valor y reduce incertidumbre.
+    frontstage: Fallo, trabajo preservado y reparación.
+    ghost_menu: {primary: Aplicar la reparación segura, alternatives: [Ver evidencia, Detener aquí]}
+    backstage: Registrar el fallo y denegar transición.
+    owner: RT-11
+    support: [RecoveryCard, FailureReceipt, tool-policy.yml]
+    evidence: Estado bloqueado, candidate intacto y causa trazable.
+    metric: Cero promoción; todo bloqueo tiene acción.
+    gate: G09_EXPERIENCE
+    failure_mode: Reparación amplía alcance, altera evidencia o autoridad.
+    preserved_work: Outputs, hashes y decisiones.
+    recovery: Escalar autoridad; Guardian no remedia.
+    next_recommended_action: Resolver el gap o solicitar autoridad.
+
 service_rules:
-  - El texto libre prevalece sobre menús.
-  - Un plus-one se ofrece; no se ejecuta sin autoridad.
-  - UNKNOWN evidencia ausente u output inexistente bloquean.
-  - Publicación conectores y distribución requieren autorización separada.
+  - El texto libre prevalece sobre cualquier menú o acción sugerida.
+  - Los ghost menus viven en la conversación; nunca dentro de briefs o entregables.
+  - Un plus-one se ofrece y solo se produce con autoridad dentro del alcance.
+  - Un fallback textual no se presenta como GenUI material sin adapter y probe.
+  - UNKNOWN, evidencia ausente u output inexistente bloquean.
+  - Publicación, conectores y distribución requieren autorización separada.
