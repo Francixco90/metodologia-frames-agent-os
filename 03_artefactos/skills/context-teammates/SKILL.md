@@ -1,7 +1,7 @@
 ---
 name: context-teammates
-description: This skill should be used when the user wants to model, query, or coordinate a team of agents (teammates) — their roles, handoffs, shared context, and ownership boundaries.
-version: 0.1.0
+description: This skill should be used when the user wants to model or inspect agent roles, ownership boundaries, handoffs, shared context, and separation of duties before orchestration.
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -10,125 +10,78 @@ metadata:
   model_agnostic: true
 ---
 
-# Context Teammates — modelar, consultar y coordinar un equipo de agentes
+# Context Teammates
 
-El rol aqui es el de un arquitecto que describe un equipo de agentes como una
-reticula de roles, ownership y handoffs, no como una jerarquia de comandos. El
-skill modela quienes componen el equipo, que hace cada uno, donde empieza y
-termina su dominio, y como se transfiere el trabajo entre ellos. No ejecuta
-agentes. No despacha tareas. No llama herramientas de vendor. Solo estructura
-el contexto del equipo para que el operador lo inspeccione y actue.
+Compila un modelo de equipo verificable antes de desplegar agentes. No despacha ni simula
+agentes. Derivada de teammates (DN-OpenSource/claude-skills, Apache-2.0) mediante
+adaptación clean-room.
 
-**Gate duro:** no invoca agentes, no escribe estado compartido, no abre red. El
-skill solo lee y presenta el modelo del equipo. Cualquier ejecucion, dispatch
-o escritura queda detras de confirmacion explicita del operador.
+## Activación
 
-## Cuándo usar
+Usar para definir roster, ownership, producer-verifier, handoffs o contexto compartido.
+No usar si una ejecución directa basta, para listar skills ni para lanzar un team. Leer
+[context.md](context.md) y el registry de agentes aplicable; si no hay roster autorizado,
+emitir `coverage_gap`.
 
-Usar este skill cuando el operador pide:
+## Contrato de teammate
 
-- "modelar el equipo" / "quienes participan" / "roles del equipo"
-- "handoff entre agentes" / "quien le pasa a quien"
-- "ownership boundaries" / "que hace cada agente" / "un writer por ruta"
-- "contexto compartido del equipo" / "estado compartido"
-- coordinar handoffs, declarar boundaries, resolver superposicion de
-  ownership antes de ejecutar trabajo
+Cada miembro requiere:
 
-No usar cuando lo que se necesita es ejecutar el equipo (esi es otro skill),
-ni cuando basta un solo agente (no hay equipo que modelar), ni cuando el
-operador solo quiere listar skills disponibles (ese es inventario, no
-modelado). Si no hay equipo declarado o falta el roster, se marca
-`coverage_gap` — no se inventan teammates.
+- `actor_id` y `canonical_perspective`;
+- objetivo y output material;
+- read/deferred/write sets;
+- tools y effect class;
+- presupuesto y stop rule;
+- receptor y gate del handoff.
 
-## Qué es un teammate
+Una personalidad o nombre sin este contrato no es un teammate operativo. Producer,
+verifier y Guardian deben usar actores y sesiones distintos cuando el riesgo lo exige.
 
-Un teammate es una unidad de agencia con cuatro atributos fijos:
+## Decisión de orquestación
 
-1. **Role.** La funcion que cumple en el equipo (researcher, writer, verifier,
-   guardian). El rol define que produce, no a quien obedece — no hay
-   orquestador. Cada teammate es peer de los demas.
-2. **Ownership.** El dominio sobre el que tiene autoridad de escritura. Se
-   expresa como rutas y tipos de artefacto. Fuera de su ownership, un teammate
-   solo lee, propone o pide handoff — nunca escribe.
-3. **Handoff.** El contrato de transferencia a otro teammate: que entrada
-   recibe, en que estado, con que evidencia, y cual es el siguiente rol. Un
-   handoff sin receptor declarado queda bloqueado — no se deja al aire.
-4. **Boundary.** La frontera dura que no se cruza: un writer por ruta, sin
-   excepciones. Si dos teammates reclaman la misma ruta, hay un conflicto de
-   ownership que se resuelve antes de ejecutar, no durante.
+1. Elegir `direct` si una transformación tiene un writer y contexto estrecho.
+2. Elegir `chain` para dependencias secuenciales sin juicio independiente.
+3. Elegir `subagent` por especialización, contexto aislado o separación de funciones.
+4. Elegir team solo si dos especialistas necesitan coordinación entre pares y sus write
+   sets son realmente disjuntos.
 
-Un teammate no es un nombre, una personalidad ni un prompt. Es un contrato de
-rol + ownership + handoff + boundary. La identidad del agente que lo encarna
-es intercambiable; el contrato no.
+Si coordinar no añade evidencia, simplificar. Máximo lead más dos agentes activos salvo
+contrato explícito; verifier y Guardian son secuenciales.
 
-## Cómo modelar el equipo
+## Ownership y handoffs
 
-- **Declarar el roster.** Listar los teammates con su rol y su ownership. Un
-  teammate sin ownership declarado no es modelable — se marca `coverage_gap`
-  antes de seguir.
-- **Declarar los handoffs.** Para cada par productor-consumidor, fijar que
-  artefacto se transfiere, en que estado (draft, reviewed, approved) y con que
-  evidencia (hash, receipt, firma). Un handoff sin estado declarado es
-  ambiguo y se bloquea.
-- **Declarar el contexto compartido.** Que estado es comun a todos los
-  teammates y cual es privado de cada uno. El contexto compartido se lee por
-  todos; el privado solo lo escribe su dueno. Mezclarlos rompe la traza.
-- **Declarar las boundaries.** Una ruta, un writer. Si la allowlist de un
-  teammate se solapa con la de otro, se declara el conflicto y se resuelve
-  antes de cualquier ejecucion — nunca se permite escritura concurrente sobre
-  la misma ruta.
+Resolver rutas por path canónico. Cero o múltiples owners bloquean. Un cambio que cruza dos
+owners se divide; nunca se concede escritura compartida. Cada handoff declara emisor,
+receptor, candidate hash, outputs, evidencia, gaps y siguiente gate. Sin aceptación del
+receptor, el trabajo permanece bloqueado.
 
-## Cómo coordinar
+El contexto compartido contiene estado, decisiones y artefactos mínimos. Mensajes privados,
+chain-of-thought y corpus no asignado no se copian. Cargar solo el work order del rol y las
+fuentes necesarias para su paso.
 
-La coordinacion es por handoffs declarados, no por ordenes:
+## Conflictos y recuperación
 
-- Un teammate termina su trabajo y emite un handoff con receptor, artefacto,
-  estado y evidencia. El receptor acepta explicitamente o rechaza con razon.
-- Si un handoff queda sin receptor, el trabajo se marca bloqueado y se escala
-  — no se asume que alguien lo recoge.
-- El contexto compartido se actualiza solo por el dueno declarado de cada
-  campo. Otro teammate que necesita un cambio lo pide por mensaje, no lo
-  escribe por la mano.
-- Los conflictos de ownership se resuelven antes de ejecutar: dos peers que
-  reclaman la misma ruta es un bug del modelo, no una condicion de carrera.
+- Write sets solapados: detener y reasignar antes de ejecutar.
+- Handoff sin receptor o output: `BLOCKED`.
+- Agente que excede tools/effects: cancelar y preservar candidate.
+- Verifier que remedia: invalidar independencia y crear successor.
+- Reporte sin receipt material: estado `planned`, no `executed`.
+- Falla repetida dos veces: escalar; no abrir equipos anidados.
 
-## Ownership boundaries — un writer por ruta
+## Límites
 
-Esta es la regla mas dura del skill:
+Operación **fail-closed**, read-only y `local-evaluation`: no lanza agentes, no escribe
+estado compartido, no abre red, no publica y no activa conectores. No inventa roster,
+ownership, identidad o resultados. Una ausencia permanece `coverage_gap`.
 
-- Cada ruta writable tiene exactamente un writer declarado. Sin writer
-  declarado, la ruta es read-only para todos.
-- Un teammate puede leer cualquier ruta; solo escribe dentro de su allowlist.
-- Si un cambio toca rutas de dos teammates, se descompone en dos handoffs —
-  cada uno escribe solo su parte. Nunca dos writers sobre la misma ruta.
-- Las boundaries se declaran en el modelo del equipo antes de ejecutar. Si se
-  descubren durante la ejecucion, se detiene, se declara el conflicto y se
-  re-modela — no se improvisa.
+## Salida
 
-## Fail-closed
-
-Este skill es **fail-closed** y de **local-evaluation**:
-
-- NO invoca agentes. No despacha tasks. No llama tools de vendor.
-- NO escribe estado compartido. No muta el repositorio. No abre red.
-- NO publica, no despliega, no activa conectores.
-- Si falta el roster, el ownership, el handoff o el boundary, se marca
-  `coverage_gap` y se detiene — no se infiere un equipo desde fragmentos
-  sueltos. Una ausencia no se sustituye por una conjetura pulida.
-- Si dos teammates reclaman la misma ruta, se declara el conflicto y se
-  bloquea la ejecucion — no se elige un ganador en silencio.
-
-El unico entregable es el modelo del equipo en prosa: roster, ownership,
-handoffs, contexto compartido y boundaries, revisable por el operador antes
-de cualquier ejecucion.
+Entregar una tabla compacta de miembros y un grafo de handoffs, seguida de conflictos,
+presupuesto y recomendación de primitiva. Esta salida es propuesta; la ejecución requiere
+work orders e invocaciones reales.
 
 ## Validación
 
-- El checker local `skills/context-teammates/scripts/check-skill.mjs` verifica
-  presencia de tokens de gobernabilidad, ausencia de APIs prohibidas y paths
-  absolutos, los 4 campos scalar del frontmatter, los 10 campos de LINEAGE, y
-  completitud de los fixtures.
-- Si no hay equipo declarado, se emite `coverage_gap` en lugar de fabricar un
-  modelo generico.
-
-Derivada de teammates (DN-OpenSource/claude-skills, Apache-2.0).
+El checker local exige versión, lineage, fixtures, [context.md](context.md), ocho headings,
+presupuesto y ausencia de APIs/rutas prohibidas. `pnpm verify:skills` valida integración;
+un roster documentado no acredita delegación.

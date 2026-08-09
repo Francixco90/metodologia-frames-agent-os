@@ -5,6 +5,7 @@ const root = process.cwd();
 const id = 'context-memory';
 const required = [
   `skills/${id}/SKILL.md`,
+  `skills/${id}/context.md`,
   `skills/${id}/LINEAGE.yml`,
   `skills/${id}/receipts/runtime-boundary.yml`,
   `skills/${id}/fixtures/positive/case-01.yml`,
@@ -57,6 +58,23 @@ for (const field of lineageFields) {
   if (!re.test(lineage)) {
     throw new Error(`${id.toUpperCase()}_LINEAGE_FIELD_MISSING: ${field}`);
   }
+}
+
+const publicContext = contents.get(`skills/${id}/context.md`);
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  throw new Error(`${id.toUpperCase()}_VERSION_MISMATCH`);
+}
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) {
+    throw new Error(`${id.toUpperCase()}_CONTEXT_SECTION_MISSING: ${section}`);
+  }
+}
+if (!skillMd.includes('[context.md](context.md)')) {
+  throw new Error(`${id.toUpperCase()}_CONTEXT_LINK_MISSING`);
+}
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  throw new Error(`${id.toUpperCase()}_BUDGET_EXCEEDED`);
 }
 
 // --- Fixtures: parse YAML (lightweight structural check, no external deps) ---

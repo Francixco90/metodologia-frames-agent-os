@@ -7,6 +7,7 @@ const skillDir = join(root, 'skills', id);
 
 const required = [
   'SKILL.md',
+  'context.md',
   'LINEAGE.yml',
   'receipts/runtime-boundary.yml',
   'fixtures/positive/case-01.yml',
@@ -88,6 +89,19 @@ const lineageKeys = [
 const lineagePresent = lineageKeys.filter((k) => new RegExp(`^${k}:`, 'mu').test(lineage));
 if (lineagePresent.length !== 10) {
   failures.push(`LINEAGE expected 10 fields, got ${lineagePresent.length}`);
+}
+
+const publicContext = contents.get('context.md');
+if (!/^version: 0\.2\.0$/mu.test(skillMd) || !/^version: 0\.2\.0$/mu.test(lineage)) {
+  failures.push('version mismatch; expected 0.2.0');
+}
+for (let section = 1; section <= 6; section += 1) {
+  if (!publicContext.includes(`## ${section}.`)) failures.push(`context.md missing section ${section}`);
+}
+if (!skillMd.includes('[context.md](context.md)')) failures.push('SKILL.md must link context.md');
+const words = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
+if (words(skillMd) > 800 || words(publicContext) > 400 || publicContext.split('\n').length > 100) {
+  failures.push('skill/context budget exceeded');
 }
 
 // Minimal YAML parser (node builtins only) for the fixture subset:
