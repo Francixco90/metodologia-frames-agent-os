@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "df91dd6f43d6148a352aab46ab8976f14337dd8a22a246f300185fad0d99994a",
-  "totalMarkdown": 1675,
-  "auditedAuthored": 469,
+  "repositoryTreeSha256": "5acb62b59a9539d0b795b0b97586c332bb5d29fa66d834f6e59b76f1072a6625",
+  "totalMarkdown": 1734,
+  "auditedAuthored": 517,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -79,7 +79,9 @@
       "01_intencion/guides/capabilities.md",
       "01_intencion/guides/career.md",
       "01_intencion/guides/content-multimedia.md",
+      "01_intencion/guides/extend-frames.md",
       "01_intencion/guides/guided-use.md",
+      "01_intencion/guides/maintain-frames.md",
       "01_intencion/guides/technical-reference.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
@@ -104,6 +106,41 @@
       "01_intencion/program/requirements-traceability.md",
       "01_intencion/program/system-architecture.md",
       "01_intencion/program/test-strategy.md",
+      "01_intencion/reference/README.md",
+      "01_intencion/reference/workflows/c00.md",
+      "01_intencion/reference/workflows/c01.md",
+      "01_intencion/reference/workflows/c02.md",
+      "01_intencion/reference/workflows/c03.md",
+      "01_intencion/reference/workflows/c04.md",
+      "01_intencion/reference/workflows/c05.md",
+      "01_intencion/reference/workflows/c06.md",
+      "01_intencion/reference/workflows/c07.md",
+      "01_intencion/reference/workflows/c08.md",
+      "01_intencion/reference/workflows/c09.md",
+      "01_intencion/reference/workflows/index.md",
+      "01_intencion/reference/workflows/l00.md",
+      "01_intencion/reference/workflows/l01.md",
+      "01_intencion/reference/workflows/l02.md",
+      "01_intencion/reference/workflows/l03.md",
+      "01_intencion/reference/workflows/l04.md",
+      "01_intencion/reference/workflows/l05.md",
+      "01_intencion/reference/workflows/m00.md",
+      "01_intencion/reference/workflows/m01.md",
+      "01_intencion/reference/workflows/m02.md",
+      "01_intencion/reference/workflows/m03.md",
+      "01_intencion/reference/workflows/m04.md",
+      "01_intencion/reference/workflows/m05.md",
+      "01_intencion/reference/workflows/m06.md",
+      "01_intencion/reference/workflows/p00.md",
+      "01_intencion/reference/workflows/p01.md",
+      "01_intencion/reference/workflows/p02.md",
+      "01_intencion/reference/workflows/p03.md",
+      "01_intencion/reference/workflows/p04.md",
+      "01_intencion/reference/workflows/p05.md",
+      "01_intencion/reference/workflows/p06.md",
+      "01_intencion/reference/workflows/p07.md",
+      "01_intencion/reference/workflows/p08.md",
+      "01_intencion/reference/workflows/p09.md",
       "01_intencion/rembg-bg-removal/architecture.md",
       "01_intencion/rembg-bg-removal/audit-report.md",
       "01_intencion/rembg-bg-removal/verification-report.md",
@@ -153,6 +190,7 @@
       "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
+      "03_artefactos/content/documentation/ecosystem-inventory.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
       "03_artefactos/content/pilot-carousel-002/content.md",
       "03_artefactos/projects/pilot-carousel-001/README.md",
@@ -248,8 +286,11 @@
       "03_artefactos/skills/dev-brainstorming/fixtures/negative/example.md",
       "03_artefactos/skills/dev-brainstorming/fixtures/positive/example.md",
       "03_artefactos/skills/dev-design-review/references/design-review-receta.md",
+      "03_artefactos/skills/dev-document-generate/references/documentation-governance.md",
+      "03_artefactos/skills/dev-document-release/references/documentation-governance.md",
       "03_artefactos/skills/dev-executing-plans/fixtures/negative/example.md",
       "03_artefactos/skills/dev-executing-plans/fixtures/positive/example.md",
+      "03_artefactos/skills/dev-executing-plans/references/documentation-governance.md",
       "03_artefactos/skills/dev-finishing-a-development-branch/references/finishing-receta.md",
       "03_artefactos/skills/dev-pair-agent/fixtures/negative/example.md",
       "03_artefactos/skills/dev-pair-agent/fixtures/positive/example.md",
@@ -264,10 +305,16 @@
       "03_artefactos/skills/dev-subagent-driven-development/references/sdd-receta.md",
       "03_artefactos/skills/dev-systematic-debugging/fixtures/negative/example.md",
       "03_artefactos/skills/dev-systematic-debugging/fixtures/positive/example.md",
+      "03_artefactos/skills/dev-systematic-debugging/references/documentation-governance.md",
       "03_artefactos/skills/dev-test-driven-development/fixtures/negative/example.md",
       "03_artefactos/skills/dev-test-driven-development/fixtures/positive/example.md",
+      "03_artefactos/skills/dev-writing-plans/references/documentation-governance.md",
       "03_artefactos/skills/evidence-based-cover-letter/references/letter-quality-contract.md",
       "03_artefactos/skills/evidence-first-cv/references/cv-quality-contract.md",
+      "03_artefactos/skills/frames-docs-as-code/references/operating-contract.md",
+      "03_artefactos/skills/frames-ecosystem-inventory/references/operating-contract.md",
+      "03_artefactos/skills/frames-harness-maintainer/references/operating-contract.md",
+      "03_artefactos/skills/frames-local-extension-foundry/references/operating-contract.md",
       "03_artefactos/skills/frames-token-efficiency-orchestrator/references/adapters.md",
       "03_artefactos/skills/gstack-openclaw-ceo-review/references/ceo-review-receta.md",
       "03_artefactos/skills/gstack-openclaw-office-hours/references/design-doc-templates.md",
@@ -397,6 +444,7 @@
     ],
     "workflow": [
       "02_proceso/workflows/content/types/carousel/README.md",
+      "02_proceso/workflows/documentation/README.md",
       "02_proceso/workflows/multimedia/_assets/artifact-registry.md",
       "02_proceso/workflows/multimedia/_assets/brief-document-template.md",
       "02_proceso/workflows/multimedia/_assets/chain-schematic.md",
@@ -603,6 +651,10 @@
       "03_artefactos/skills/dev-writing-skills/SKILL.md",
       "03_artefactos/skills/evidence-based-cover-letter/SKILL.md",
       "03_artefactos/skills/evidence-first-cv/SKILL.md",
+      "03_artefactos/skills/frames-docs-as-code/SKILL.md",
+      "03_artefactos/skills/frames-ecosystem-inventory/SKILL.md",
+      "03_artefactos/skills/frames-harness-maintainer/SKILL.md",
+      "03_artefactos/skills/frames-local-extension-foundry/SKILL.md",
       "03_artefactos/skills/frames-token-efficiency-orchestrator/SKILL.md",
       "03_artefactos/skills/gstack-autoplan/SKILL.md",
       "03_artefactos/skills/gstack-benchmark-models/SKILL.md",
@@ -671,7 +723,10 @@
       "02_proceso/workflows/career/c09-submission/context.md",
       "02_proceso/workflows/career/context.md",
       "02_proceso/workflows/context.md",
+      "02_proceso/workflows/documentation/context.md",
       "02_proceso/workflows/experience/context.md",
+      "02_proceso/workflows/local-extensions/context.md",
+      "02_proceso/workflows/maintenance/context.md",
       "02_proceso/workflows/multimedia/_assets/multimedia-library.md",
       "02_proceso/workflows/multimedia/context.md",
       "02_proceso/workflows/multimedia/p00-definir-sistema/context.md",
@@ -696,6 +751,10 @@
       "03_artefactos/skills/context-teammates/context.md",
       "03_artefactos/skills/dev-verification-before-completion/context.md",
       "03_artefactos/skills/dev-writing-plans/context.md",
+      "03_artefactos/skills/frames-docs-as-code/context.md",
+      "03_artefactos/skills/frames-ecosystem-inventory/context.md",
+      "03_artefactos/skills/frames-harness-maintainer/context.md",
+      "03_artefactos/skills/frames-local-extension-foundry/context.md",
       "03_artefactos/skills/frames-token-efficiency-orchestrator/context.md",
       "03_artefactos/skills/metodologia-brand-router/context.md",
       "04_estado/context.md",
@@ -3706,6 +3765,32 @@
       }
     },
     {
+      "path": "01_intencion/guides/extend-frames.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/extend-frames.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/extend-frames.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1becf2f6907f69fb68fee7e74539d930e8d8dc1b77ba57ffd20fe5e86a344d4d",
+      "words": 237,
+      "lines": 39,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/guides/guided-use.md",
       "class": "authored_control",
       "owner": "lead",
@@ -3728,6 +3813,32 @@
         "hasExecutableCommand": true,
         "hasAuthorityLink": false,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/guides/maintain-frames.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/maintain-frames.md"
+      ],
+      "budgetSurface": "user-facing-explanatory-documentation",
+      "sourceRef": "01_intencion/guides/maintain-frames.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9e35a4b017163b427a8622608b4f7621cfe27aeebe6fa8faffe7678a268cfb72",
+      "words": 216,
+      "lines": 38,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -4159,7 +4270,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "39c910b51124c043c6f7cfdaeb2f3d1db1619a87f6d5ca46ae35969ce2dac749",
+      "sha256": "15a7e972dd715bb5c7951b4d8cd7d519f030c35bf0c9d19b51149562b5a9d8f4",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -4370,6 +4481,916 @@
       "sha256": "49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7",
       "words": 556,
       "lines": 52,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/README.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/reference/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b5009317ed2f9f7929261e895ff505f2a6583c7645126e0985ff539563a99595",
+      "words": 242,
+      "lines": 33,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c00.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c00.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c00.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d23028df19029d199a10a34c286e2ffcf62891392e09232aae59317d1333aeac",
+      "words": 296,
+      "lines": 71,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c01.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c01.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c01.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0573d09ba5793505764982181fd47f2a9306f139ac1774e8ee2c1f63beb4d546",
+      "words": 291,
+      "lines": 73,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c02.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c02.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c02.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "75b654093f72916e4fba0b7ba8441fa99c60c2f164b91b9944c501ef72bfabac",
+      "words": 289,
+      "lines": 73,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c03.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c03.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c03.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "41c71626cd6b3a84df0a4dcf26c53bfd2284bd868c81cbb710552004f64a0c74",
+      "words": 299,
+      "lines": 73,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c04.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c04.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c04.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3102f5e492e660f03fb1134ee3d5fb077c993faaabe382284fd58a7aa7002b7d",
+      "words": 306,
+      "lines": 74,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c05.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c05.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c05.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0a2ed2084e9a617fdf1eae09d46f218db8dbb850a6774f9fa4c782fa6bb05b90",
+      "words": 301,
+      "lines": 75,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c06.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c06.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c06.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ffe7692585725c91fd17bb3b34747d9557a12c39373541b7cc17ed4aed64ccd3",
+      "words": 306,
+      "lines": 75,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c07.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c07.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c07.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ae7c30922ba7675d261891ffa24a4071881dfda7a3d62f7ba7b6386e4cd6d1cc",
+      "words": 323,
+      "lines": 75,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c08.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c08.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c08.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a1c9d32d73ff619eeb356f8a83959c892aa709cdfa2673552737798ccda41d50",
+      "words": 312,
+      "lines": 76,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/c09.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/c09.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/c09.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "cd7084e6621d8fde84a01a901820e65b8ecb4e3e3d63c512a6894a56702512ae",
+      "words": 326,
+      "lines": 76,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/index.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/index.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/index.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8c11a219259eb11bc74e147d6fcccdab3dcac68061df948d39dda0a62a5f224b",
+      "words": 697,
+      "lines": 63,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l00.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l00.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l00.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "13ca47ae18ea203a060ca1ff5f66040f3475ce4201f2fce947df1e0aa4a3624e",
+      "words": 257,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l01.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l01.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l01.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8036a88de93befdc43ef68bc288fe8fcad0464d9eb706f648233f7398c4881e6",
+      "words": 255,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l02.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l02.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l02.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "70c4d13c959de9a3e6c0986f1478f8083904b01f16c1fe4d901a7e44cc8cfccc",
+      "words": 254,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l03.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l03.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l03.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1d7720e705881eea44ec67c1c178247354e93187ffafa10daa017aac117e26a8",
+      "words": 251,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l04.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l04.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l04.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3c52711b0e04f0d4bf6036ba78ab10be9cfbb0becf2b666865b90fe6b5dc61c0",
+      "words": 247,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/l05.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/l05.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/l05.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e05bc436c0a468dea00e9bb1fd04058977f4ef71779e267b91fb2b185d3fd35d",
+      "words": 246,
+      "lines": 64,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m00.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m00.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m00.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b9bff97593291fee37fb7ec6b261f2a616435a96c5ff56803eb5c30c74dea16c",
+      "words": 256,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m01.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m01.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m01.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "91bd78cf44d24837c2045cbac14a9ce8d351db338ea5e0fb436e954e9d143daa",
+      "words": 245,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m02.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m02.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m02.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "01f616ef1750bd5f8752d3cd1c447411031e22ed5b88f07cd77fc804ae2e1cb1",
+      "words": 260,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m03.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m03.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m03.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c23a168fcfc350d3d4b7b00bab5180a9055a61bee3cb960acf66df89dabba169",
+      "words": 255,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m04.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m04.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m04.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "927d2c27111dcbfed1a0ce7be5ad1e886bf6723343b6ffcfb886a2c71c6aa948",
+      "words": 241,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m05.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m05.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m05.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "23e3026849fbff45330deb403230ed7012410b7ef56bf97cd921bd6cc227a58e",
+      "words": 252,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/m06.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/m06.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/m06.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "eab8994cd34cfddabfb27a0711b1ed054b00719c124e979390c22afea1eb9c85",
+      "words": 249,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p00.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p00.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p00.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "6c2b89595cd4a96a8a758c676aa69f8444a6026bef318dc141b49e4b234055ad",
+      "words": 375,
+      "lines": 80,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p01.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p01.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p01.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e324d01a9f6d4c5a926a486af7447675f419be1335c6c69077a4ee862f340b4d",
+      "words": 376,
+      "lines": 79,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p02.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p02.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p02.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9cddb1f625d900bf05c70ec0c0176f0894ff23015f8f1ba19d42acf5420ecf24",
+      "words": 349,
+      "lines": 78,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p03.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p03.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p03.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "6aa6eae82c6e0068d3dbcf25fad8ec338533669b16074057bcd1995725c691a0",
+      "words": 420,
+      "lines": 85,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p04.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p04.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p04.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "528bef6394300af03409376b36263e76f6bbb0f9d2fa7173f7438dc7fbc71d3d",
+      "words": 363,
+      "lines": 79,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p05.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p05.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p05.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a76c986f35d800f0b4477d54e586c85bcaf02b67a9e0651bf39aeaac92773e14",
+      "words": 383,
+      "lines": 82,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p06.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p06.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p06.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "686b754f43b4efe1a305d6b193c35b35485fa4a9dc3be71f588905ddd9298755",
+      "words": 419,
+      "lines": 86,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p07.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p07.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p07.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a982039765074c52d3d41ee0f25030afd7aaa7fdb556fc68604f5d7ed8d7fcf9",
+      "words": 351,
+      "lines": 78,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p08.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p08.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p08.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b376e0edfa4949de3d2d4504fe272729371c2bfbf27cd11424a8e4a3159db333",
+      "words": 356,
+      "lines": 78,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/reference/workflows/p09.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/reference/workflows/p09.md"
+      ],
+      "budgetSurface": "generated-workflow-documentation",
+      "sourceRef": "01_intencion/reference/workflows/p09.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "432dcc2f37bfde397f6a1eab2e1588760eea5410b75c9e9eed75ee55bbb1dad4",
+      "words": 417,
+      "lines": 85,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -5941,6 +6962,32 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/documentation/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/documentation/**",
+      "authorityRefs": [
+        "02_proceso/workflows/documentation/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/documentation/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "76bc77082c6d0e34c78e6e60c2eb2da7fd4f440992f744d67ff8e3cf61bffec4",
+      "words": 261,
+      "lines": 38,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -7828,6 +8875,34 @@
       "qualitySignals": {
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/content/documentation/ecosystem-inventory.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:content/**",
+      "authorityRefs": [
+        "03_artefactos/content/documentation/ecosystem-inventory.md"
+      ],
+      "budgetSurface": "generated-ecosystem-inventory",
+      "sourceRef": "03_artefactos/content/documentation/ecosystem-inventory.md",
+      "derivatives": [
+        "03_artefactos/content/documentation/ecosystem-inventory.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "2afe9d38caba8344fa31f061aafaf1f3160a662cdb9b5e47622f018268b421be",
+      "words": 9536,
+      "lines": 889,
+      "score": 100,
+      "threshold": 80,
+      "decision": "SPLIT",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
         "hasNextAction": true,
         "duplicateHeadings": 0
       }
@@ -10317,6 +11392,58 @@
       }
     },
     {
+      "path": "03_artefactos/skills/dev-document-generate/references/documentation-governance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/dev-document-generate/references/documentation-governance.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/dev-document-generate/references/documentation-governance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d2266c9a600f104bdb85b21d926c87fac0f3b7a294d9137faf0016446998aadc",
+      "words": 82,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/dev-document-release/references/documentation-governance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/dev-document-release/references/documentation-governance.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/dev-document-release/references/documentation-governance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d2266c9a600f104bdb85b21d926c87fac0f3b7a294d9137faf0016446998aadc",
+      "words": 82,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/dev-executing-plans/fixtures/negative/example.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -10377,6 +11504,32 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/dev-executing-plans/references/documentation-governance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/dev-executing-plans/references/documentation-governance.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/dev-executing-plans/references/documentation-governance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d2266c9a600f104bdb85b21d926c87fac0f3b7a294d9137faf0016446998aadc",
+      "words": 82,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -10817,6 +11970,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/dev-systematic-debugging/references/documentation-governance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/dev-systematic-debugging/references/documentation-governance.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/dev-systematic-debugging/references/documentation-governance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d2266c9a600f104bdb85b21d926c87fac0f3b7a294d9137faf0016446998aadc",
+      "words": 82,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/dev-test-driven-development/fixtures/negative/example.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -10881,6 +12060,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/dev-writing-plans/references/documentation-governance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/dev-writing-plans/references/documentation-governance.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/dev-writing-plans/references/documentation-governance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d2266c9a600f104bdb85b21d926c87fac0f3b7a294d9137faf0016446998aadc",
+      "words": 82,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/evidence-based-cover-letter/references/letter-quality-contract.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -10921,6 +12126,110 @@
       "sha256": "4c269b590e3c8e87a30dd9e7fb8551751157ca80a1606094480e1c6edcfc0935",
       "words": 120,
       "lines": 22,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/frames-docs-as-code/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/frames-docs-as-code/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/frames-docs-as-code/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "68085a5605f1de0ff99d128398ccf2e2384b89299ea4740222cac3ca6636be2c",
+      "words": 100,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/frames-ecosystem-inventory/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/frames-ecosystem-inventory/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/frames-ecosystem-inventory/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0ca18de66909c0570c1df85bb70674a651c0c2ab9b2007eec50be37951037a25",
+      "words": 105,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/frames-harness-maintainer/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/frames-harness-maintainer/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/frames-harness-maintainer/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b782dc526d7a7cedc6faa29152192bdbf01fbf46b2989bc6ee79b266ef4b4669",
+      "words": 114,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/frames-local-extension-foundry/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/frames-local-extension-foundry/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/frames-local-extension-foundry/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c0a0d33205d0c8f1be1a7a8c8cdd320ade51ae78b2ad8efd4a250eed2c1c56d1",
+      "words": 97,
+      "lines": 18,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -14369,10 +15678,10 @@
     }
   ],
   "summary": {
-    "keep": 457,
+    "keep": 504,
     "refactor": 0,
-    "split": 0,
-    "regenerate": 64,
+    "split": 1,
+    "regenerate": 71,
     "freeze": 985
   }
 }
