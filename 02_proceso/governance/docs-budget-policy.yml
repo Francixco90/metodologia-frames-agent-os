@@ -256,6 +256,11 @@ budgets:
     target: {max_words: 14000, max_lines: 2600}
     hard: {max_words: 20000, max_lines: 3500}
     rationale: 'The canonical H-03 registry has an explicit cap and remains hash-bound.'
+  - surface: hash-bound-v2-skill-registry
+    match: '04_estado/registries/skills/skill-registry.yml'
+    target: {max_words: 9000, max_lines: 1800}
+    hard: {max_words: 14000, max_lines: 2600}
+    rationale: 'The append-only V2 skill registry has an explicit cap and independent lifecycle validation.'
   - surface: hash-bound-skill-index
     match: '05_verificacion/scripts/creation-v3-skills.json'
     target: {max_words: 1800, max_lines: 1000}
