@@ -1,0 +1,76 @@
+schema_version: skill-system-suite-v1
+source_ref: 00_inbox/first-party/SRC-SKILL-SYSTEMS-PRD-V1.projection.yml
+source_authority_ref: 02_proceso/workflows/skill-systems/source-authority.yml
+skills:
+  - id: skill-system-architect
+    code: SSA
+    effect: advisory
+    trigger: diseñar, crear, dividir, fusionar, degradar o retirar una skill o un sistema de skills
+    responsibility: Producir Skill Case, demotion test, Capability Map y Architecture Decision.
+    workflow_steps: [S00, S01, S02]
+    inputs: [request, evidence, ecosystem-inventory]
+    outputs: [skill-system-case-v1, capability-map-v1, architecture-decision-v1]
+    stop: No diseñar una skill si una instrucción, referencia o tool satisface la aceptación.
+  - id: skill-authoring-engineer
+    code: SAE
+    effect: local_reversible
+    trigger: materializar un candidate de skill desde contratos y arquitectura ya aprobados
+    responsibility: Crear el paquete H-03 dentro del WorkOrder sin inventar trigger, efectos, owner ni aceptación.
+    workflow_steps: [S04]
+    inputs: [component-contract-v1, skill-eval-plan, work-order]
+    outputs: [skill-candidate, authoring-handoff]
+    stop: Dry-run por defecto; sin gate y write set exacto no escribir.
+  - id: skill-contract-validator
+    code: SCV
+    effect: read_only
+    trigger: validar estructura, referencias, paths, hashes, effects, fixtures o supply chain de una skill
+    responsibility: Ejecutar validación fail-closed de contratos y paquete antes de evaluar.
+    workflow_steps: [S03, S05]
+    inputs: [component-contract-v1, skill-candidate]
+    outputs: [static-validation-report]
+    stop: Cualquier referencia stale, escape, owner o permiso no resoluble bloquea.
+  - id: skill-evaluation-engineer
+    code: SEE
+    effect: read_only
+    trigger: evaluar una skill contra no-skill o una versión anterior con casos observables
+    responsibility: Diseñar y ejecutar TRIGGER, DECISION y OUTCOME con denominadores honestos y replay.
+    workflow_steps: [S03, S06]
+    inputs: [skill-candidate, baseline, eval-cases]
+    outputs: [skill-eval-run-v1, eval-summary]
+    stop: Infraestructura fallida se excluye; denominador cero produce UNKNOWN.
+  - id: skill-portfolio-governor
+    code: SPG
+    effect: read_only
+    trigger: auditar overlaps, colisiones, huérfanos, deudas, merge, split, demotion o retiro en el portfolio
+    responsibility: Usar inventario para atribuir responsabilidades y emitir Change Proposal, nunca automutación.
+    workflow_steps: [S01, S07]
+    inputs: [ecosystem-inventory, skill-eval-run-v1]
+    outputs: [skill-review-report-v1, skill-change-proposal-v1]
+    stop: Un overlap no se resuelve silenciosamente y una propuesta no muta el candidate.
+  - id: skill-release-governor
+    code: SRG
+    effect: local_reversible
+    trigger: empaquetar, versionar, superseder, retirar, restaurar o preparar promoción de una skill
+    responsibility: Congelar capsule, compatibilidad, rollback, lifecycle H-03 e inventarios.
+    workflow_steps: [S08, S09]
+    inputs: [skill-candidate, review-report, documentation-closure]
+    outputs: [skill-release-capsule-v1, lifecycle-events, restore-plan]
+    stop: Capsule inmutable; H01 no se sustituye y ningún host sin probe pasa.
+  - id: skill-expert-distiller
+    code: SED
+    effect: advisory
+    trigger: convertir práctica experta en reglas, defaults, excepciones, límites y oráculos evaluables
+    responsibility: Separar evidencia, preferencia, heurística y autoridad antes de incorporarlas a una skill.
+    workflow_steps: [S00, S03]
+    inputs: [expert-material, source-refs]
+    outputs: [expert-knowledge-map, eval-oracles]
+    stop: Una preferencia no se convierte en regla universal sin evidencia repetida.
+  - id: skill-runtime-adapter
+    code: SRA
+    effect: read_only
+    trigger: adaptar el core portable de una skill a un runtime sin ampliar permisos ni sobredeclarar compatibilidad
+    responsibility: Compilar adapters y capability reports con fallback portable y probes materiales.
+    workflow_steps: [S04, S08]
+    inputs: [portable-skill-contract, runtime-capabilities]
+    outputs: [runtime-adapter, capability-report]
+    stop: Codex, Claude, Gemini y ChatGPT permanecen UNKNOWN sin HOST_BEHAVIOR material.
