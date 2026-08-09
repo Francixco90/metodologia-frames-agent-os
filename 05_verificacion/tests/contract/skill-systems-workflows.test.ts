@@ -17,13 +17,13 @@ describe('S00-S09 workflow family', () => {
     }
   });
 
-  it('keeps the suite at exactly eight exclusive skill packages', async () => {
+  it('keeps the reconciled suite at exactly nine exclusive skill packages', async () => {
     const suite = parse(
       await readFile('02_proceso/workflows/skill-systems/skill-suite.yml', 'utf8'),
     ) as {skills: {id: string; responsibility: string}[]};
-    expect(suite.skills).toHaveLength(8);
-    expect(new Set(suite.skills.map((item) => item.id)).size).toBe(8);
-    expect(new Set(suite.skills.map((item) => item.responsibility)).size).toBe(8);
+    expect(suite.skills).toHaveLength(9);
+    expect(new Set(suite.skills.map((item) => item.id)).size).toBe(9);
+    expect(new Set(suite.skills.map((item) => item.responsibility)).size).toBe(9);
   });
 
   it('binds automatic SSS gates to material stdin and keeps human gates separate', async () => {
