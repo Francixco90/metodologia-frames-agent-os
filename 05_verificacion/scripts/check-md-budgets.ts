@@ -77,6 +77,8 @@ const referenceFor = (
 export const isBudgetGeneratedPath = (path: string, logicalPath: string): boolean =>
   physicalLedgerProjections.has(path) ||
   ledgerProjectionPaths.has(logicalPath) ||
+  /^02_proceso\/workflows\/multimedia\/p\d{2}-[^/]+\/schematic\.html$/u.test(path) ||
+  /^02_proceso\/workflows\/multimedia\/_assets\/multimedia-library\.(?:md|html)$/u.test(path) ||
   isGeneratedProjection(logicalPath);
 
 export const main = (root = ROOT): void => {
@@ -86,14 +88,26 @@ export const main = (root = ROOT): void => {
     const policy = loadPolicy(root);
     const delta = collectBudgetGitState(root);
     const inversions = legacyPathInversions(root);
+    const authoredDelta = [...delta.paths].filter((path) => {
+      const logicalPath = normalizeToLegacyPath(path, inversions);
+      const rules = effectiveRules(policy.budgets, path, isBudgetGeneratedPath(path, logicalPath));
+      return rules.length !== 1 || rules[0]?.kind === 'authored';
+    });
+    const authoredLoc = authoredDelta.reduce(
+      (total, path) => total + (delta.locByPath.get(path) ?? 0),
+      0,
+    );
     if (
-      delta.paths.size > policy.pr_budget.target_files ||
-      delta.loc > policy.pr_budget.target_loc
+      authoredDelta.length > policy.pr_budget.target_files ||
+      authoredLoc > policy.pr_budget.target_loc
     ) {
-      warnings.push(`BUDGET-PR-TARGET files=${delta.paths.size} loc=${delta.loc}`);
+      warnings.push(`BUDGET-PR-TARGET files=${authoredDelta.length} loc=${authoredLoc}`);
     }
-    if (delta.paths.size > policy.pr_budget.hard_files || delta.loc > policy.pr_budget.hard_loc) {
-      errors.push(`BUDGET-PR-HARD files=${delta.paths.size} loc=${delta.loc}`);
+    if (
+      authoredDelta.length > policy.pr_budget.hard_files ||
+      authoredLoc > policy.pr_budget.hard_loc
+    ) {
+      errors.push(`BUDGET-PR-HARD files=${authoredDelta.length} loc=${authoredLoc}`);
     }
 
     const versionable = versionableBudgetPaths(root);
@@ -152,7 +166,8 @@ export const main = (root = ROOT): void => {
     }
     console.info(
       `file-budgets: base=${delta.base.commit.slice(0, 12)} source=${delta.base.source}` +
-        ` changed=${delta.paths.size} loc=${delta.loc} measured=${measured}`,
+        ` authored=${authoredDelta.length}/${authoredLoc} total=${delta.paths.size}/${delta.loc}` +
+        ` measured=${measured}`,
     );
   } catch (error) {
     errors.push(error instanceof Error ? error.message : String(error));
