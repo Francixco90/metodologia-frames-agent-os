@@ -128,18 +128,18 @@ describe('Frames causal orchestration', () => {
     ['Créame un CV', 'R7', r7Handler, r6Handler],
   ] as const)(
     'dispatches %s only through its selected injected handler',
-    async (prompt, route, selected, other) => {
+    (prompt, route, selected, other) => {
       selected.mockClear();
       other.mockClear();
-      const envelope = await runFirstTurnGatewayV1({prompt}, {R6: r6Handler, R7: r7Handler});
+      const envelope = runFirstTurnGatewayV1({prompt}, {R6: r6Handler, R7: r7Handler});
       expect(envelope).toMatchObject({interactionClass: 'ACTIONABLE', selectedRoute: route});
       expect(selected).toHaveBeenCalledOnce();
       expect(other).not.toHaveBeenCalled();
     },
   );
 
-  it('compiles exact steps and primes only the active context', async () => {
-    const envelope = await runFirstTurnGatewayV1(
+  it('compiles exact steps and primes only the active context', () => {
+    const envelope = runFirstTurnGatewayV1(
       {prompt: 'Ayúdame a generar una pieza'},
       {R6: r6Handler, R7: r7Handler},
     );
@@ -160,7 +160,7 @@ describe('Frames causal orchestration', () => {
   });
 
   it('requires a material invocation receipt before planned becomes executed', async () => {
-    const envelope = await runFirstTurnGatewayV1(
+    const envelope = runFirstTurnGatewayV1(
       {prompt: 'Ayúdame a generar una pieza'},
       {R6: r6Handler, R7: r7Handler},
     );
@@ -199,15 +199,24 @@ describe('Frames causal orchestration', () => {
       workOrder,
       ...timestamps,
     });
-    expect(receipt).toMatchObject({status: 'PASS', skillId: 'content-os-router'});
+    expect(receipt).toMatchObject({
+      status: 'UNKNOWN',
+      skillId: 'content-os-router',
+      metrics: {materialExecutionAccredited: false, simulationOnly: true},
+    });
     expect(receipt.outputs).toHaveLength(1);
     expect(receipt.evidence).toHaveLength(1);
   });
 
-  it('fails closed when a selected route handler is unavailable or invalid', async () => {
-    const envelope = await runFirstTurnGatewayV1(
+  it('fails closed when a selected route handler is unavailable or invalid', () => {
+    const envelope = runFirstTurnGatewayV1(
       {prompt: 'Crear contenido'},
-      {R6: () => Promise.reject(new Error('offline')), R7: r7Handler},
+      {
+        R6: () => {
+          throw new Error('offline');
+        },
+        R7: r7Handler,
+      },
     );
     expect(envelope).toMatchObject({
       interactionClass: 'ACTIONABLE',

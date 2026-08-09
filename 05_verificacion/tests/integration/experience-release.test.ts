@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {
   cpSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -13,21 +14,27 @@ import {dirname, resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
-import {buildReleaseCapsule, verifyReleaseCapsule} from 'workflows/experience/index.ts';
+import {
+  buildReleaseCapsule,
+  computeReleaseCandidateSha256,
+  verifyReleaseCapsule,
+} from 'workflows/experience/index.ts';
 
 const ROOT = process.cwd();
+const COMMIT = 'a'.repeat(40);
 const trackedFiles = [
   '03_artefactos/content/experience/frames-experience-blueprint.md',
   '03_artefactos/content/experience/frames-experience-blueprint.html',
   '03_artefactos/content/experience/projection-manifest.json',
 ];
-const decisionRefs = [
+const receiptRefs = [
   '04_estado/approvals/experience/rt09.json',
   '04_estado/receipts/experience/rt11.json',
   '05_verificacion/quality/experience/h01.json',
 ] as const;
-const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
 const temporary: string[] = [];
+const hash = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
+
 afterEach(() => {
   for (const path of temporary.splice(0)) rmSync(path, {recursive: true, force: true});
 });
@@ -38,51 +45,63 @@ const createRoot = (): string => {
   for (const relative of trackedFiles) {
     const target = resolve(root, relative);
     mkdirSync(dirname(target), {recursive: true});
-    cpSync(resolve(ROOT, relative), target, {recursive: true});
+    cpSync(resolve(ROOT, relative), target);
   }
-  decisionRefs.forEach((relative, index) => {
-    const target = resolve(root, relative);
-    mkdirSync(dirname(target), {recursive: true});
-    writeFileSync(target, `${JSON.stringify({receipt: index + 1, status: 'PASS'})}\n`, 'utf8');
-  });
+  mkdirSync(resolve(root, '04_estado/releases/experience'), {recursive: true});
   return root;
 };
 
-const decisionsFor = (root: string) => {
-  const evidence = decisionRefs.map((ref) => ({
-    ref,
-    sha256: hash(readFileSync(resolve(root, ref))),
-  }));
-  return [
-    {actorId: 'RT-09', role: 'RT-09' as const, decision: 'PASS' as const, evidence: evidence[0]!},
-    {actorId: 'RT-11', role: 'RT-11' as const, decision: 'PASS' as const, evidence: evidence[1]!},
-    {actorId: 'H01', role: 'H01' as const, decision: 'APPROVE' as const, evidence: evidence[2]!},
+const identityOptions = (root: string, releaseId: string) => ({
+  root,
+  releaseId,
+  parentRelease: null,
+  releaseClass: 'COMPATIBLE',
+  repositoryCommit: COMMIT,
+  files: trackedFiles,
+});
+
+const decisionsFor = (root: string, releaseId: string) => {
+  const candidateSha256 = computeReleaseCandidateSha256(identityOptions(root, releaseId));
+  const identities = [
+    {actorId: 'RT-09', role: 'RT-09' as const, decision: 'PASS' as const},
+    {actorId: 'RT-11', role: 'RT-11' as const, decision: 'PASS' as const},
+    {actorId: 'H01', role: 'H01' as const, decision: 'APPROVE' as const},
   ];
+  return identities.map((identity, index) => {
+    const ref = receiptRefs[index]!;
+    const path = resolve(root, ref);
+    mkdirSync(dirname(path), {recursive: true});
+    writeFileSync(
+      path,
+      `${JSON.stringify({
+        schemaVersion: 'experience-approval-receipt-v1',
+        releaseId,
+        ...identity,
+        candidateCommit: COMMIT,
+        candidateSha256,
+      })}\n`,
+      'utf8',
+    );
+    return {...identity, evidence: {ref, sha256: hash(readFileSync(path))}};
+  });
 };
 
-const buildApproved = (root: string): string => {
-  const output = resolve(root, '04_estado/releases/experience/experience-1.0.0');
-  buildReleaseCapsule({
-    root,
-    output,
-    releaseId: 'experience-1.0.0',
-    parentRelease: null,
-    releaseClass: 'COMPATIBLE',
-    repositoryCommit: 'a'.repeat(40),
-    files: trackedFiles,
-    status: 'APPROVED',
-    decisions: decisionsFor(root),
-  });
-  return output;
-};
+const approvedOptions = (root: string, releaseId: string) => ({
+  ...identityOptions(root, releaseId),
+  output: resolve(root, '04_estado/releases/experience', releaseId),
+  status: 'APPROVED' as const,
+  decisions: decisionsFor(root, releaseId),
+});
 
 describe('Frames Experience release capsule', () => {
-  it('builds deterministic candidate bytes and replays every declared hash', () => {
-    const root = createRoot();
-    const secondRoot = createRoot();
-    const first = buildApproved(root);
-    const second = buildApproved(secondRoot);
-    const capsuleFiles = [
+  it('builds deterministic approved bytes from three bound receipts and replays all hashes', () => {
+    const roots = [createRoot(), createRoot()];
+    const outputs = roots.map((root) => {
+      const options = approvedOptions(root, 'experience-1.0.0');
+      buildReleaseCapsule(options);
+      return options.output;
+    });
+    const files = [
       'release-manifest.json',
       'version-diff.json',
       'compatibility.md',
@@ -91,10 +110,10 @@ describe('Frames Experience release capsule', () => {
       'acceptance-evidence.json',
       'SHA256SUMS',
     ];
-    expect(capsuleFiles.map((name) => readFileSync(resolve(first, name)))).toEqual(
-      capsuleFiles.map((name) => readFileSync(resolve(second, name))),
+    expect(files.map((name) => readFileSync(resolve(outputs[0]!, name)))).toEqual(
+      files.map((name) => readFileSync(resolve(outputs[1]!, name))),
     );
-    expect(verifyReleaseCapsule(first, root)).toMatchObject({
+    expect(verifyReleaseCapsule(outputs[0]!, roots[0])).toMatchObject({
       ok: true,
       releaseId: 'experience-1.0.0',
       capsuleFiles: 6,
@@ -103,17 +122,17 @@ describe('Frames Experience release capsule', () => {
     });
   });
 
-  it('detects both capsule tampering and source drift', () => {
+  it('detects capsule tampering and source drift', () => {
     const root = createRoot();
-    const capsule = buildApproved(root);
-    writeFileSync(resolve(capsule, 'compatibility.md'), '# Manipulado\n', 'utf8');
-    expect(verifyReleaseCapsule(capsule, root).errors).toContain(
+    const options = approvedOptions(root, 'experience-tamper');
+    buildReleaseCapsule(options);
+    writeFileSync(resolve(options.output, 'compatibility.md'), '# Manipulado\n', 'utf8');
+    expect(verifyReleaseCapsule(options.output, root).errors).toContain(
       'capsule-hash-drift:compatibility.md',
     );
-
     const source = resolve(root, trackedFiles[0]!);
     writeFileSync(source, `${readFileSync(source, 'utf8')}\nCambio no congelado.\n`, 'utf8');
-    expect(verifyReleaseCapsule(capsule, root).errors).toContain(
+    expect(verifyReleaseCapsule(options.output, root).errors).toContain(
       `source-hash-drift:${trackedFiles[0]}`,
     );
   });
@@ -122,32 +141,17 @@ describe('Frames Experience release capsule', () => {
     const root = createRoot();
     expect(() =>
       buildReleaseCapsule({
-        root,
+        ...identityOptions(root, 'experience-candidate'),
         output: resolve(root, '04_estado/releases/experience/experience-candidate'),
-        releaseId: 'experience-candidate',
-        parentRelease: null,
-        releaseClass: 'COMPATIBLE',
-        repositoryCommit: 'a'.repeat(40),
-        files: trackedFiles,
       }),
     ).toThrow(/only APPROVED releases may enter the vault/u);
   });
 
-  it('blocks invalid approval evidence and separation before writing the vault', () => {
+  it('blocks missing, stale, symlink, traversal and conflated approval evidence', () => {
     const root = createRoot();
-    const output = resolve(root, '04_estado/releases/experience/experience-invalid');
-    const base = {
-      root,
-      output,
-      releaseId: 'experience-invalid',
-      parentRelease: null,
-      releaseClass: 'SAFETY',
-      repositoryCommit: 'a'.repeat(40),
-      files: trackedFiles,
-      status: 'APPROVED' as const,
-    };
-    const decisions = decisionsFor(root);
-
+    const releaseId = 'experience-invalid';
+    const base = approvedOptions(root, releaseId);
+    const decisions = base.decisions;
     expect(() =>
       buildReleaseCapsule({
         ...base,
@@ -179,7 +183,7 @@ describe('Frames Experience release capsule', () => {
     ).toThrow(/three distinct actors/u);
 
     const link = resolve(root, '04_estado/approvals/experience/linked.json');
-    symlinkSync(resolve(root, decisionRefs[0]), link);
+    symlinkSync(resolve(root, receiptRefs[0]), link);
     expect(() =>
       buildReleaseCapsule({
         ...base,
@@ -211,36 +215,83 @@ describe('Frames Experience release capsule', () => {
     ).toThrow(/outside repository/u);
   });
 
-  it('rejects traversal and external-effect or private material', () => {
+  it('binds every parsed receipt to the exact release, commit, candidate, role and actor', () => {
+    const root = createRoot();
+    const base = approvedOptions(root, 'experience-bound');
+    const decision = base.decisions[0]!;
+    const path = resolve(root, decision.evidence.ref);
+    const receipt = JSON.parse(readFileSync(path, 'utf8')) as Record<string, string>;
+    for (const mutation of [
+      {releaseId: 'experience-other'},
+      {candidateCommit: 'b'.repeat(40)},
+      {candidateSha256: 'b'.repeat(64)},
+      {role: 'RT-11'},
+      {actorId: 'another-actor'},
+    ]) {
+      writeFileSync(path, `${JSON.stringify({...receipt, ...mutation})}\n`, 'utf8');
+      const changed = [
+        {...decision, evidence: {...decision.evidence, sha256: hash(readFileSync(path))}},
+        base.decisions[1]!,
+        base.decisions[2]!,
+      ];
+      expect(() => buildReleaseCapsule({...base, decisions: changed})).toThrow(
+        /approval binding mismatch/u,
+      );
+    }
+  });
+
+  it('rejects duplicate overwrite and cleans lock/staging without altering the release', () => {
+    const root = createRoot();
+    const options = approvedOptions(root, 'experience-once');
+    buildReleaseCapsule(options);
+    const before = readFileSync(resolve(options.output, 'release-manifest.json'));
+    expect(() => buildReleaseCapsule(options)).toThrow(/destination already exists/u);
+    expect(readFileSync(resolve(options.output, 'release-manifest.json'))).toEqual(before);
+    expect(existsSync(`${options.output}.lock`)).toBe(false);
+    expect(existsSync(`${options.output}.staging`)).toBe(false);
+  });
+
+  it('rejects unsafe output paths, symlink parents, stale staging and private sources', () => {
     const root = createRoot();
     expect(() =>
       buildReleaseCapsule({
-        root,
-        output: resolve(root, '.candidate/experience-unsafe'),
-        releaseId: 'experience-unsafe',
-        parentRelease: null,
-        releaseClass: 'COMPATIBLE',
-        repositoryCommit: 'a'.repeat(40),
-        files: ['../outside.md'],
+        ...identityOptions(root, 'experience-outside'),
+        output: resolve(root, '../experience-outside'),
       }),
-    ).toThrow(/outside repository/u);
+    ).toThrow(/inside repository/u);
 
-    const unsafe = resolve(root, '03_artefactos/content/experience/private.md');
-    writeFileSync(
-      unsafe,
-      'candidate_email: persona@example.test\neffect: publish\nsecret: synthetic-token\n',
-      'utf8',
-    );
+    const realParent = resolve(root, 'candidate-real');
+    const linkedParent = resolve(root, 'candidate-link');
+    mkdirSync(realParent);
+    symlinkSync(realParent, linkedParent);
     expect(() =>
       buildReleaseCapsule({
-        root,
-        output: resolve(root, '.candidate/experience-private'),
-        releaseId: 'experience-private',
-        parentRelease: null,
-        releaseClass: 'SAFETY',
-        repositoryCommit: 'a'.repeat(40),
+        ...identityOptions(root, 'experience-link'),
+        output: resolve(linkedParent, 'experience-link'),
+      }),
+    ).toThrow(/non-symlink parent/u);
+
+    const candidateParent = resolve(root, '.candidate');
+    const candidateOutput = resolve(candidateParent, 'experience-staging');
+    mkdirSync(candidateParent);
+    mkdirSync(`${candidateOutput}.staging`);
+    expect(() =>
+      buildReleaseCapsule({
+        ...identityOptions(root, 'experience-staging'),
+        output: candidateOutput,
+      }),
+    ).toThrow(/stale staging/u);
+    expect(existsSync(candidateOutput)).toBe(false);
+    expect(existsSync(`${candidateOutput}.lock`)).toBe(false);
+
+    const unsafe = resolve(root, '03_artefactos/content/experience/private.md');
+    writeFileSync(unsafe, 'candidate_email: persona@example.test\neffect: publish\n', 'utf8');
+    expect(() =>
+      buildReleaseCapsule({
+        ...identityOptions(root, 'experience-private'),
+        output: resolve(candidateParent, 'experience-private'),
         files: ['03_artefactos/content/experience/private.md'],
       }),
-    ).toThrow(/PII|private|secret|external effect/iu);
+    ).toThrow(/PII|private|external effect/iu);
   });
 });

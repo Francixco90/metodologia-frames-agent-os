@@ -118,9 +118,11 @@ describe('Frames Experience adversarial fail-closed behavior', () => {
     ).toBe(false);
   });
 
-  it('does not route governed R1-R5 language through R6 or R7 handlers', async () => {
-    const handler = vi.fn(() => Promise.reject(new Error('must not run')));
-    const envelope = await runFirstTurnGatewayV1(
+  it('does not route governed R1-R5 language through R6 or R7 handlers', () => {
+    const handler = vi.fn(() => {
+      throw new Error('must not run');
+    });
+    const envelope = runFirstTurnGatewayV1(
       {prompt: 'crear proyecto nuevo'},
       {R6: handler, R7: handler},
     );

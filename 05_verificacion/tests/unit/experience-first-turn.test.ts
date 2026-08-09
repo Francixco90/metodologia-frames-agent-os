@@ -17,12 +17,12 @@ const neverRoute = vi.fn<GatewayRouteHandlerV1>(() => {
 const handlers = {R6: neverRoute, R7: neverRoute};
 
 describe('Frames first-turn classification', () => {
-  it('greets with identity guidance, no route invocation and zero filesystem writes', async () => {
+  it('greets with identity guidance, no route invocation and zero filesystem writes', () => {
     const directory = mkdtempSync(resolve(tmpdir(), 'frames-experience-greeting-'));
     directories.push(directory);
     const before = readdirSync(directory);
 
-    const envelope = await runFirstTurnGatewayV1({prompt: '¡Hola!'}, handlers);
+    const envelope = runFirstTurnGatewayV1({prompt: '¡Hola!'}, handlers);
 
     expect(envelope).toMatchObject({
       interactionClass: 'ASSIST_ONLY',
@@ -36,8 +36,8 @@ describe('Frames first-turn classification', () => {
     expect(readdirSync(directory)).toEqual(before);
   });
 
-  it('fails closed when no route signal is sufficient', async () => {
-    const envelope = await runFirstTurnGatewayV1({prompt: 'Necesito ayuda con algo'}, handlers);
+  it('fails closed when no route signal is sufficient', () => {
+    const envelope = runFirstTurnGatewayV1({prompt: 'Necesito ayuda con algo'}, handlers);
     expect(envelope).toMatchObject({
       interactionClass: 'AMBIGUOUS',
       selectedRoute: 'R0',
@@ -48,8 +48,8 @@ describe('Frames first-turn classification', () => {
     expect(envelope.ghostOptions).toEqual(['Crear contenido', 'Carrera y empleo']);
   });
 
-  it('surfaces an equal R6/R7 ambiguity instead of choosing silently', async () => {
-    const envelope = await runFirstTurnGatewayV1(
+  it('surfaces an equal R6/R7 ambiguity instead of choosing silently', () => {
+    const envelope = runFirstTurnGatewayV1(
       {prompt: 'Diseña un carrusel para presentar mi CV a una vacante'},
       handlers,
     );
@@ -61,8 +61,8 @@ describe('Frames first-turn classification', () => {
     expect(neverRoute).not.toHaveBeenCalled();
   });
 
-  it('resumes an explicitly bound candidate without repeating routing', async () => {
-    const envelope = await runFirstTurnGatewayV1(
+  it('resumes an explicitly bound candidate without repeating routing', () => {
+    const envelope = runFirstTurnGatewayV1(
       {
         prompt: 'Continuar con lo anterior',
         resumeCandidate: {
@@ -89,9 +89,9 @@ describe('Frames first-turn classification', () => {
     expect(neverRoute).not.toHaveBeenCalled();
   });
 
-  it('normalizes equivalent prompts into the same deterministic request hash', async () => {
-    const first = await runFirstTurnGatewayV1({prompt: '¡Hóla!'}, handlers);
-    const second = await runFirstTurnGatewayV1({prompt: 'hola'}, handlers);
+  it('normalizes equivalent prompts into the same deterministic request hash', () => {
+    const first = runFirstTurnGatewayV1({prompt: '¡Hóla!'}, handlers);
+    const second = runFirstTurnGatewayV1({prompt: 'hola'}, handlers);
     expect(first.requestHash).toBe(second.requestHash);
   });
 });
