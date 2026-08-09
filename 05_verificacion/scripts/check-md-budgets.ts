@@ -82,6 +82,9 @@ export const isBudgetGeneratedPath = (path: string, logicalPath: string): boolea
   /^02_proceso\/workflows\/multimedia\/p\d{2}-[^/]+\/templates\/[^/]+\.template\.(?:md|html)$/u.test(
     path,
   ) ||
+  /^03_artefactos\/content\/experience\/(?:frames-experience-blueprint\.html|projection-manifest\.json)$/u.test(
+    path,
+  ) ||
   /^02_proceso\/workflows\/multimedia\/(?:_schema\/artifacts\/|_assets\/artifact-registry\.md$)/u.test(
     path,
   ) ||

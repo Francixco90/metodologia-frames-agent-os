@@ -84,6 +84,8 @@ writers:
     - workflows/content/**
     - workflows/multimedia/**
     - workflows/career/**
+    - workflows/experience/**
+    - registries/experience/**
     - registries/content-types/**
     - projects/pilot-carousel-001/editorial/**
     - projects/pilot-carousel-001/spec/**
@@ -140,11 +142,14 @@ writers:
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
+    - 05_verificacion/tests/unit/experience-*.test.ts
     - 05_verificacion/tests/integration/career-*.test.ts
   governance:
     - governance/**
     - quality/reviews/rights-accessibility-security/**
     - receipts/migrations/**
+    - receipts/experience/**
+    - 04_estado/releases/experience/**
   guardian:
     - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
