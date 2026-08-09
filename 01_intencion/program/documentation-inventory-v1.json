@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "864d28e81470aa35fce53dbf6d70e5b343d0a93c5a16b194c1bfc431c6de59dd",
-  "totalMarkdown": 1771,
-  "auditedAuthored": 537,
+  "repositoryTreeSha256": "afb94b4a0059c0a8cec93612f3946e5496f125198ef69852942c4b695b267ca8",
+  "totalMarkdown": 1772,
+  "auditedAuthored": 538,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -1788,6 +1788,7 @@
       "01_intencion/adrs/0021-0026-renderer-adapters.md",
       "01_intencion/adrs/0027-atemporal-naming.md",
       "01_intencion/adrs/ADR-SSS-001-skill-systems-integration.md",
+      "01_intencion/adrs/ADR-SSS-002-dossier-and-pivote-adoption.md",
       "02_proceso/governance/lessons-learned.md",
       "changelog.md"
     ]
@@ -2750,6 +2751,32 @@
       "sha256": "c62eba8db3b148b88841aef0867b6506b161e15ee192fba43d9668c50eecc5a9",
       "words": 246,
       "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "FREEZE",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/adrs/ADR-SSS-002-dossier-and-pivote-adoption.md",
+      "class": "historical",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/adrs/ADR-SSS-002-dossier-and-pivote-adoption.md"
+      ],
+      "budgetSurface": "authored-decisions-md",
+      "sourceRef": "01_intencion/adrs/ADR-SSS-002-dossier-and-pivote-adoption.md",
+      "derivatives": [],
+      "lifecycle": "frozen",
+      "sha256": "4a32d87cef2c634a2295ae52885f2ff57b0bcbb2309a7123e34968be0c838f04",
+      "words": 286,
+      "lines": 45,
       "score": 100,
       "threshold": 80,
       "decision": "FREEZE",
@@ -16239,6 +16266,6 @@
     "refactor": 0,
     "split": 1,
     "regenerate": 80,
-    "freeze": 986
+    "freeze": 987
   }
 }
