@@ -25,16 +25,25 @@ modes:
 inputs:
   - p08-editar/workflow.yml
 outputs:
-  - artifact: 'Platform Package'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: platform-package-v1
+    artifact: 'Paquete por plataforma'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/platform-package-v1.schema.ts
     template_id: TPL-P09-DELIVERABLE-V1
     required: true
-  - artifact: 'Publication Record'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: publication-record-v1
+    artifact: 'Registro de publicación'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/publication-record-v1.schema.ts
     template_id: TPL-P09-DELIVERABLE-V1
     required: true
-  - artifact: 'Learning Report'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: results-dashboard-v1
+    artifact: 'Dashboard de resultados'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/results-dashboard-v1.schema.ts
+    template_id: TPL-P09-DELIVERABLE-V1
+    required: false
+    condition: 'observed-results available'
+  - deliverable_id: learning-report-v1
+    artifact: 'Reporte de aprendizaje'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/learning-report-v1.schema.ts
     template_id: TPL-P09-DELIVERABLE-V1
     required: true
 work_product_state: READY
@@ -62,6 +71,7 @@ brief:
   deliverables:
     - platform-package-v1
     - publication-record-v1
+    - results-dashboard-v1
     - learning-report-v1
   context: 'Separa empaque, publicación, comunidad y aprendizaje para operar con control.'
   cta: 'Someter a MW_DISTRIBUTION_AUTHORIZED; cerrar ciclo P00→P09.'
@@ -73,6 +83,7 @@ capability_map:
   assets:
     - platform-package-v1
     - publication-record-v1
+    - results-dashboard-v1
     - learning-report-v1
 execution_steps:
   - step_id: S01
@@ -114,7 +125,7 @@ execution_steps:
     primary_skill: instagram-content-orchestration
     optional_skills: [metodologia-brand-router]
     verifier: RT-11
-    outputs: [learning-report-v1]
+    outputs: [results-dashboard-v1, learning-report-v1]
     template_id: TPL-P09-DELIVERABLE-V1
     gate: G17
     stop_rule: 'Marcar coverage_gap si no existen datos observables.'

@@ -25,16 +25,19 @@ modes:
 inputs:
   - p01-curar-material/workflow.yml
 outputs:
-  - artifact: 'Claim Register'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: claim-register-v1
+    artifact: 'Registro de claims'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/claim-register-v1.schema.ts
     template_id: TPL-P02-DELIVERABLE-V1
     required: true
-  - artifact: 'Opportunity Map'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: opportunity-map-v1
+    artifact: 'Mapa de oportunidades'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/opportunity-map-v1.schema.ts
     template_id: TPL-P02-DELIVERABLE-V1
     required: true
-  - artifact: 'Question Bank'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: question-bank-v1
+    artifact: 'Banco de preguntas'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/question-bank-v1.schema.ts
     template_id: TPL-P02-DELIVERABLE-V1
     required: true
 work_product_state: DISCOVERED

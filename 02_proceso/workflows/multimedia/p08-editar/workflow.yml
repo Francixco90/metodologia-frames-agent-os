@@ -31,16 +31,19 @@ modes:
 inputs:
   - p07-revisar/workflow.yml
 outputs:
-  - artifact: 'Edit Candidate'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: edit-candidate-v1
+    artifact: 'Candidate editado'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/edit-candidate-v1.schema.ts
     template_id: TPL-P08-DELIVERABLE-V1
     required: true
-  - artifact: 'EDL'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: edl-v1
+    artifact: 'Lista de decisiones de edición'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/edl-v1.schema.ts
     template_id: TPL-P08-DELIVERABLE-V1
     required: true
-  - artifact: 'Export Matrix'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: export-matrix-v1
+    artifact: 'Matriz de exportación'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/export-matrix-v1.schema.ts
     template_id: TPL-P08-DELIVERABLE-V1
     required: true
 work_product_state: POSTPRODUCTION_VALIDATED

@@ -25,16 +25,24 @@ modes:
     description: 'Piloto y autonomía'
 inputs: []
 outputs:
-  - artifact: 'Brand OS'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: brand-charter-v1
+    artifact: 'Charter de marca'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/brand-charter-v1.schema.ts
     template_id: TPL-P00-DELIVERABLE-V1
     required: true
-  - artifact: 'Calibration sample'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: brand-os-v1
+    artifact: 'Brand OS'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/brand-os-v1.schema.ts
     template_id: TPL-P00-DELIVERABLE-V1
     required: true
-  - artifact: 'Pilot plan'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: calibration-sample-v1
+    artifact: 'Muestra de calibración'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/calibration-sample-v1.schema.ts
+    template_id: TPL-P00-DELIVERABLE-V1
+    required: true
+  - deliverable_id: pilot-plan-v1
+    artifact: 'Plan piloto'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/pilot-plan-v1.schema.ts
     template_id: TPL-P00-DELIVERABLE-V1
     required: true
 work_product_state: DEFINED
@@ -59,6 +67,7 @@ brief:
     - 'Modalidad piloto elegida, una por vez'
     - 'Calibración y plan piloto listos para ejecución'
   deliverables:
+    - brand-charter-v1
     - brand-os-v1
     - calibration-sample-v1
     - pilot-plan-v1
@@ -70,6 +79,7 @@ capability_map:
     - content-os-core
     - dev-writing-plans
   assets:
+    - brand-charter-v1
     - brand-os-v1
     - calibration-sample-v1
     - pilot-plan-v1
@@ -80,7 +90,7 @@ execution_steps:
     primary_skill: metodologia-brand-router
     optional_skills: []
     verifier: RT-09
-    outputs: [brand-os-v1]
+    outputs: [brand-charter-v1, brand-os-v1]
     template_id: TPL-P00-DELIVERABLE-V1
     gate: G13
     stop_rule: 'Bloquear si identidad, autoridad o consentimiento no son inequívocos.'

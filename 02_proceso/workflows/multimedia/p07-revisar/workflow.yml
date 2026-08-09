@@ -34,16 +34,19 @@ modes:
 inputs:
   - p06-crear-activos/workflow.yml
 outputs:
-  - artifact: 'Review Report'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: review-report-v1
+    artifact: 'Reporte de revisión'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/review-report-v1.schema.ts
     template_id: TPL-P07-DELIVERABLE-V1
     required: true
-  - artifact: 'Verdict'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: verdict-v1
+    artifact: 'Veredicto'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/verdict-v1.schema.ts
     template_id: TPL-P07-DELIVERABLE-V1
     required: true
-  - artifact: 'Top-5 changes'
-    schema_ref: _assets/artifact-registry.md
+  - deliverable_id: top5-changes-v1
+    artifact: 'Cambios prioritarios'
+    schema_ref: 02_proceso/workflows/multimedia/_schema/artifacts/top5-changes-v1.schema.ts
     template_id: TPL-P07-DELIVERABLE-V1
     required: true
 work_product_state: REVIEW_SHOTS_APPROVED
