@@ -6,7 +6,7 @@ import {loadContextSurfaces, projections, validateContextGraph} from './context-
 
 export const generateContextSurfaces = (root: string, write: boolean): string[] => {
   const surfaces = loadContextSurfaces(root, 'all');
-  const issues = validateContextGraph(root, surfaces, 78);
+  const issues = validateContextGraph(root, surfaces, surfaces.length);
   if (issues.length > 0) return issues;
   for (const [path, expected] of projections(surfaces)) {
     const absolute = resolve(root, path);
