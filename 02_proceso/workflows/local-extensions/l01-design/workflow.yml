@@ -6,5 +6,6 @@ inputs: [local-extension-brief-v1]
 outputs: [local-extension-design-v1, documentation-impact-plan-v1]
 gate: LX_DESIGN_READY
 next_workflow: L02
+delegates_to: [S00, S01, S02, S03]
 effect_class: read_only
 stop_rule: Bloquear IDs no locales, overrides y capacidades sin owner o límites.

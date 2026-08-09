@@ -15,6 +15,7 @@ export interface MaintenanceRouteDecisionV1 {
   request_hash: string;
   decision: 'ROUTED' | 'NEEDS_INPUT';
   selected_stage_path: string[];
+  skill_system_path: string[];
   blocking_questions: string[];
   next_gate: 'HM_CHANGE_APPROVED';
 }
@@ -35,6 +36,7 @@ export function routeMaintenanceIntent(input: unknown): MaintenanceRouteDecision
     request_hash: hash(parsed),
     decision: blocking.length === 0 ? 'ROUTED' : 'NEEDS_INPUT',
     selected_stage_path: ['M00', 'M01', 'M02', 'M03', 'M04', 'M05', 'M06'],
+    skill_system_path: ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09'],
     blocking_questions: blocking,
     next_gate: 'HM_CHANGE_APPROVED',
   };

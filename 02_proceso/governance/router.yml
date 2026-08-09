@@ -125,8 +125,9 @@ routes:
       - 'corregir extensión local'
     reads:
       - '02_proceso/workflows/local-extensions/contracts.ts'
+      - '02_proceso/workflows/skill-systems/contracts.ts'
       - '03_artefactos/skills/frames-local-extension-foundry/SKILL.md'
-    output: 'brief local + recorrido L00-L05; STOP en LX_BRIEF_APPROVED antes de materializar'
+    output: 'brief local + L00-L05 con S00-S07; recomienda PROJECT_LOCAL si falta scope; STOP en LX_BRIEF_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R9
@@ -139,9 +140,10 @@ routes:
       - 'deprecar capacidad'
     reads:
       - '02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts'
+      - '02_proceso/workflows/skill-systems/contracts.ts'
       - '02_proceso/core/contracts/documentation-governance-v1.ts'
       - '03_artefactos/skills/frames-harness-maintainer/SKILL.md'
-    output: 'impact plan + recorrido M00-M06; STOP en HM_CHANGE_APPROVED'
+    output: 'impact plan + M00-M06 con S00-S09; STOP en HM_CHANGE_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
