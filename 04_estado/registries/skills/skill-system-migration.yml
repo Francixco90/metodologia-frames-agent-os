@@ -1,0 +1,38 @@
+schema_version: skill-system-migration-registry-v1
+authority: skill-portfolio-governor
+dispositions:
+  - skill_id: dev-skillify
+    authority_state: SUPERSEDED
+    package_lifecycle: active_compatibility_alias
+    replacements: [skill-system-architect, skill-authoring-engineer]
+    preserves: [aliases, lineage, historical fixtures]
+    migration: Use skill-system-architect for demotion and topology; use skill-authoring-engineer only after approved contracts.
+  - skill_id: dev-writing-skills
+    authority_state: SUPERSEDED
+    package_lifecycle: active_compatibility_alias
+    replacements: [skill-authoring-engineer]
+    preserves: [aliases, lineage, historical fixtures]
+    migration: Route authoring to skill-authoring-engineer; the legacy package remains discoverable during migration.
+  - skill_id: frames-local-extension-foundry
+    authority_state: KEEP_EVOLVE
+    delegates_to: [S00, S01, S02, S03, S04, S05, S06, S07]
+  - skill_id: frames-harness-maintainer
+    authority_state: KEEP_EVOLVE
+    delegates_to: [S00, S01, S02, S03, S04, S05, S06, S07, S08, S09]
+  - skill_id: frames-ecosystem-inventory
+    authority_state: KEEP
+    provides: [portfolio-data]
+  - skill_id: metodologia-find-skills
+    authority_state: KEEP
+    runs_before: [demotion-test]
+  - skill_id: dev-verification-before-completion
+    authority_state: KEEP
+    limitation: Generic closure only; does not replace skill-evaluation-engineer.
+  - skill_id: skill-creator
+    authority_state: OPTIONAL_EXTERNAL_ADAPTER
+    limitation: Replaceable adapter; never authority or required dependency.
+separation_of_functions:
+  verifier: RT-09
+  guardian: RT-11
+  approver: H01
+  typed_as_skills: false

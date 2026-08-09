@@ -1784,7 +1784,127 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/frames-ecosystem-inventory/scripts/check-skill.mjs]
+  - skill_id: skill-system-architect
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 64a31f488fd41edfd1ec744e2989a7ec998d08827b8872b3dd475bd22d168bf3
+    package_manifest_sha256: 70fca2b1ad39855083ca980ab8eae1a7a2ad0c2c52a3d74a2478d71b92bf3cd4
+    lineage_ref: skills/skill-system-architect/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-system-architect/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-system-architect/scripts/check-skill.mjs]
+  - skill_id: skill-authoring-engineer
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 7ce234afc4c15b451c99da75f332608326298b0ad08475ad2d09b1f13843af5d
+    package_manifest_sha256: a34accaa89e9a9bc2624ef81c39b5fe4c5d7415037fe5f57706fde846b76ad61
+    lineage_ref: skills/skill-authoring-engineer/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-authoring-engineer/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-authoring-engineer/scripts/check-skill.mjs]
+  - skill_id: skill-contract-validator
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: b4a6e4523837a73b1d97066c7671d3a4227f31a9ad91f72dbb64e9f26bba5ad3
+    package_manifest_sha256: 17e6a542358f3f467e1c9464e7d5d89b546d599d3bef575f61a44d0dac09bd9e
+    lineage_ref: skills/skill-contract-validator/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-contract-validator/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-contract-validator/scripts/check-skill.mjs]
+  - skill_id: skill-evaluation-engineer
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 7160c9361e9048fc67204547801755987096e6ba5da17a2073fd73e4a0dafa0d
+    package_manifest_sha256: aca6ed25220d7294b6a061bc2a42c6bc5447bb68602d2a811909a59a28939292
+    lineage_ref: skills/skill-evaluation-engineer/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-evaluation-engineer/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-evaluation-engineer/scripts/check-skill.mjs]
+  - skill_id: skill-portfolio-governor
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 0f99a478b9ea4ed66e157e027457c2e0c4a9e3ee6b73e21cf8f3a9eb518a08c3
+    package_manifest_sha256: b40713bae97a6d589e9843323de56999c5d252a9a90074523e27e270950bba71
+    lineage_ref: skills/skill-portfolio-governor/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-portfolio-governor/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-portfolio-governor/scripts/check-skill.mjs]
+  - skill_id: skill-release-governor
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 3c15cb5bf1337ddf202060417fb55b630434f3305e874b35f367b3608408f450
+    package_manifest_sha256: a5ee75a2cfb504b1462f3c39e203ae7b326a68fb6b34a034cdb0fb6193033c8d
+    lineage_ref: skills/skill-release-governor/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-release-governor/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-release-governor/scripts/check-skill.mjs]
+  - skill_id: skill-expert-distiller
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 4bbe43f41121c00ee8a48e73a8bafe31246e9eb6b57b316539de45ffeaac34c6
+    package_manifest_sha256: 5fdd1f24ff1deb561b8600b8bba6ab36135e0c766f77cecd7421ca9a4a8b6f42
+    lineage_ref: skills/skill-expert-distiller/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-expert-distiller/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-expert-distiller/scripts/check-skill.mjs]
+  - skill_id: skill-runtime-adapter
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 34f4b1f15a733ff423926ec9cfc80012561ce4b9ad781309dfffdc76475f99fe
+    package_manifest_sha256: 590747b252a4171c393c54954fe36c503e8d284269afa21e92e0c725cb5dcc9c
+    lineage_ref: skills/skill-runtime-adapter/LINEAGE.yml
+    dependency_receipt_ref: skills/skill-runtime-adapter/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/skill-runtime-adapter/scripts/check-skill.mjs]
 events:
+  - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SSA-H03-003, event_order: 3, skill_id: skill-system-architect, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SSA-H03-004, event_order: 4, skill_id: skill-system-architect, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SAE-H03-001, event_order: 1, skill_id: skill-authoring-engineer, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SAE-H03-002, event_order: 2, skill_id: skill-authoring-engineer, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SAE-H03-003, event_order: 3, skill_id: skill-authoring-engineer, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SAE-H03-004, event_order: 4, skill_id: skill-authoring-engineer, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SCV-H03-001, event_order: 1, skill_id: skill-contract-validator, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SCV-H03-002, event_order: 2, skill_id: skill-contract-validator, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SCV-H03-003, event_order: 3, skill_id: skill-contract-validator, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SCV-H03-004, event_order: 4, skill_id: skill-contract-validator, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SEE-H03-001, event_order: 1, skill_id: skill-evaluation-engineer, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SEE-H03-002, event_order: 2, skill_id: skill-evaluation-engineer, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SEE-H03-003, event_order: 3, skill_id: skill-evaluation-engineer, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SEE-H03-004, event_order: 4, skill_id: skill-evaluation-engineer, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SPG-H03-001, event_order: 1, skill_id: skill-portfolio-governor, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SPG-H03-002, event_order: 2, skill_id: skill-portfolio-governor, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SPG-H03-003, event_order: 3, skill_id: skill-portfolio-governor, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SPG-H03-004, event_order: 4, skill_id: skill-portfolio-governor, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SRG-H03-001, event_order: 1, skill_id: skill-release-governor, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SRG-H03-002, event_order: 2, skill_id: skill-release-governor, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SRG-H03-003, event_order: 3, skill_id: skill-release-governor, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SRG-H03-004, event_order: 4, skill_id: skill-release-governor, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SED-H03-001, event_order: 1, skill_id: skill-expert-distiller, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SED-H03-002, event_order: 2, skill_id: skill-expert-distiller, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SED-H03-003, event_order: 3, skill_id: skill-expert-distiller, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SED-H03-004, event_order: 4, skill_id: skill-expert-distiller, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
+  - {event_id: EVT-SKL-SRA-H03-001, event_order: 1, skill_id: skill-runtime-adapter, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SRA-H03-002, event_order: 2, skill_id: skill-runtime-adapter, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
+  - {event_id: EVT-SKL-SRA-H03-003, event_order: 3, skill_id: skill-runtime-adapter, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
+  - {event_id: EVT-SKL-SRA-H03-004, event_order: 4, skill_id: skill-runtime-adapter, from: evaluated, to: active, actor_id: RT-10-SSS-INTEGRATOR}
   - {event_id: EVT-SKL-FDA-H03-001, event_order: 1, skill_id: frames-docs-as-code, from: null, to: candidate, actor_id: RT-07-DOCS-SKILL-PRODUCER}
   - {event_id: EVT-SKL-FDA-H03-002, event_order: 2, skill_id: frames-docs-as-code, from: candidate, to: quarantined, actor_id: RT-07-DOCS-SKILL-PRODUCER}
   - {event_id: EVT-SKL-FDA-H03-003, event_order: 3, skill_id: frames-docs-as-code, from: quarantined, to: evaluated, actor_id: RT-10-DOCS-SKILL-INTEGRATOR}
