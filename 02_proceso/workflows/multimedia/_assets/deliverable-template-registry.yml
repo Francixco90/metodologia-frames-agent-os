@@ -21,7 +21,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: G13
+    acceptance_gate: G14
     word_budget: {target: 900, max: 1800}
   - template_id: TPL-P01-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
@@ -30,7 +30,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: MW_BRIEF_APPROVED
+    acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P02-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
@@ -48,7 +48,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: G14
+    acceptance_gate: MW_BRIEF_APPROVED
     word_budget: {target: 1200, max: 2500}
   - template_id: TPL-P04-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
@@ -66,7 +66,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: MW_SPEC_APPROVED
+    acceptance_gate: G14
     word_budget: {target: 1200, max: 2500}
   - template_id: TPL-P06-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
@@ -75,7 +75,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: MW_ASSET_REVIEW
+    acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P07-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md
@@ -93,7 +93,7 @@ templates:
     data_schema_ref: 02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts
     parity: semantic
     design_profile: metodologia-html-v7
-    acceptance_gate: MW_EDIT_APPROVED
+    acceptance_gate: G14
     word_budget: {target: 600, max: 1200}
   - template_id: TPL-P09-DELIVERABLE-V1
     markdown_template_ref: 02_proceso/workflows/multimedia/_assets/brief-document-template.md

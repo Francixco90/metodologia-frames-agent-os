@@ -4,27 +4,22 @@
  *
  * CLI: `pnpm verify:multimedia`
  *
- * For each `02_proceso/workflows/multimedia/pNN-{slug}/workflow.yml`:
- *   MW-CAP-01: workflow parses against `multimedia-workflow-v1`.
- *   MW-CAP-02: `brief` present with non-empty outputs + deliverables (BLUF enforce).
- *   MW-CAP-03: `capability_map.skills` each resolve against the creation-v3
- *              skill registry, the v2 skill registry, or a direct skill dir
- *              at `03_artefactos/skills/<id>/SKILL.md` (vendor skills excluded
- *              from registries are reachable via the dir check).
- *   MW-CAP-04: `capability_map.assets` each resolve to a materialized schema file
- *              at `_schema/artifacts/<id>.schema.ts` AND be listed in the artifact
- *              registry (`_assets/artifact-registry.md`). File-existence check
- *              upgrades the binding from forward-contract to real contract.
+ * MW-CAP-01..07 cover schema, brief, skills, assets, templates, step bindings
+ * and final template-gate integrity for every P00–P09 workflow.
  *
  * Fail-closed: any unresolved binding fails the gate. The generator
  * (`render-schematic-html.ts`) depends on the same contract, so a green gate
  * implies regenerable schematics. [CÓDIGO]
  */
-import {readFileSync, readdirSync, existsSync} from 'node:fs';
+import {readFileSync, readdirSync, existsSync, realpathSync} from 'node:fs';
 import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
 
-import {MultimediaWorkflowSchema} from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
+import {
+  MultimediaWorkflowSchema,
+  type MultimediaWorkflow,
+} from '../../02_proceso/workflows/multimedia/_schema/workflow-v1.schema.ts';
 
 const root = process.cwd();
 const MW_DIR = join(root, '02_proceso', 'workflows', 'multimedia');
@@ -42,15 +37,15 @@ const V2_REGISTRY = join(root, '04_estado', 'registries', 'skills', 'skill-regis
 const SKILLS_DIR = join(root, '03_artefactos', 'skills');
 
 type Registry = {entries?: Array<{skill_id?: string}>; entries_inline?: string[]};
-type TemplateRegistry = {
-  templates?: Array<{
-    template_id?: string;
-    markdown_template_ref?: string;
-    html_template_ref?: string;
-    data_schema_ref?: string;
-    design_profile?: string;
-  }>;
+export type TemplateRegistryEntry = {
+  template_id?: string;
+  markdown_template_ref?: string;
+  html_template_ref?: string;
+  data_schema_ref?: string;
+  design_profile?: string;
+  acceptance_gate?: string;
 };
+type TemplateRegistry = {templates?: TemplateRegistryEntry[]};
 
 function collectSkillIds(path: string): Set<string> {
   const ids = new Set<string>();
@@ -99,6 +94,36 @@ function templateExists(id: string): boolean {
   return [entry.markdown_template_ref, entry.html_template_ref, entry.data_schema_ref].every(
     (ref) => typeof ref === 'string' && existsSync(join(root, ref)),
   );
+}
+
+/** Bind template acceptance to the declared final step, not intermediate gates. [METODOLOGIA] */
+export function validateTemplateAcceptanceGates(
+  workflow: MultimediaWorkflow,
+  registry: ReadonlyMap<string, TemplateRegistryEntry>,
+): string[] {
+  const finalStep = workflow.execution_steps[workflow.execution_steps.length - 1];
+  if (!finalStep) return [`MW-CAP-07 ${workflow.workflow_id}: missing final execution step`];
+
+  const issues: string[] = [];
+  if (!workflow.gates.includes(finalStep.gate)) {
+    issues.push(
+      `MW-CAP-07 ${workflow.workflow_id}: final step gate is not declared by workflow: ${finalStep.gate}`,
+    );
+  }
+
+  const templateIds = new Set([
+    ...workflow.outputs.map((output) => output.template_id),
+    ...workflow.execution_steps.map((step) => step.template_id),
+  ]);
+  for (const templateId of templateIds) {
+    const acceptanceGate = registry.get(templateId)?.acceptance_gate;
+    if (acceptanceGate && acceptanceGate !== finalStep.gate) {
+      issues.push(
+        `MW-CAP-07 ${workflow.workflow_id}: template ${templateId} accepts at ${acceptanceGate}, expected final gate ${finalStep.gate}`,
+      );
+    }
+  }
+  return issues;
 }
 
 const errors: string[] = [];
@@ -152,13 +177,19 @@ for (const dir of stageDirs) {
       }
     }
   }
+  errors.push(...validateTemplateAcceptanceGates(wf, templates));
 }
 
-if (errors.length > 0) {
-  console.error(errors.join('\n'));
-  process.exitCode = 1;
-} else {
-  console.info(
-    `PASS MULTIMEDIA CAPABILITIES: ${checked} stages verified (skills + assets + steps + templates resolve).`,
-  );
+if (
+  process.argv[1] &&
+  realpathSync(fileURLToPath(import.meta.url)) === realpathSync(process.argv[1])
+) {
+  if (errors.length > 0) {
+    console.error(errors.join('\n'));
+    process.exitCode = 1;
+  } else {
+    console.info(
+      `PASS MULTIMEDIA CAPABILITIES: ${checked} stages verified (skills + assets + steps + templates + gates resolve).`,
+    );
+  }
 }

@@ -43,7 +43,7 @@ describe('content-os-router ContentIntentV2', () => {
     });
   });
 
-  it('routes a complete campaign through research, planning, assets and the manual distribution gate', () => {
+  it('keeps brief approval as the next campaign gate while distribution remains future work', () => {
     const result = route({
       request: 'Crear campaña de lanzamiento y preparar distribución',
       audience: 'Equipos de innovación',
@@ -66,7 +66,8 @@ describe('content-os-router ContentIntentV2', () => {
       'P08',
       'P09',
     ]);
-    expect(result.next_gate).toBe('MW_DISTRIBUTION_AUTHORIZED');
+    expect(result.next_gate).toBe('MW_BRIEF_APPROVED');
+    expect(result.next_gate).not.toBe('MW_DISTRIBUTION_AUTHORIZED');
     expect(result.route_candidates[0]?.reason_codes).toEqual(
       expect.arrayContaining([
         'NEW_PIECE',
@@ -88,6 +89,7 @@ describe('content-os-router ContentIntentV2', () => {
 
     expect(result.content_class).toBe('intervention');
     expect(result.selected_stage_path).toEqual(['P07', 'P08']);
+    expect(result.next_gate).toBe('MW_EDIT_APPROVED');
     expect(result.route_candidates[0]?.reason_codes).toEqual(['EXISTING_PIECE']);
   });
 
