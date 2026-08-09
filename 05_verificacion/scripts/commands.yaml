@@ -151,6 +151,20 @@ gates:
   # prettier-ignore
   - {gate: HM_PROMOTION_APPROVED, label: approve harness promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: high, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
+  - {gate: SSS_CASE_READY, label: skill case evidence complete, command: 'pnpm skills:inspect -- --check', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
+  # prettier-ignore
+  - {gate: SSS_ARCHITECTURE_READY, label: capability map and architecture decision complete, command: 'pnpm skills:validate -- --check', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
+  # prettier-ignore
+  - {gate: SSS_CANDIDATE_READY, label: skill candidate materialized within work order, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: SSS_STATIC_VALIDATED, label: skill candidate static validation, command: 'pnpm skills:validate -- --check', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  # prettier-ignore
+  - {gate: SSS_EVAL_VALIDATED, label: baseline comparison and deterministic replay, command: 'pnpm skills:evaluate -- --check', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  # prettier-ignore
+  - {gate: SSS_REVIEW_VALIDATED, label: independent skill review, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: SSS_RELEASE_CANDIDATE, label: skill release package and rollback verified, command: 'pnpm skills:package -- --check', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
+  # prettier-ignore
   - {gate: G12_CAROUSEL, label: static-social carousel build, command: 'pnpm carousel:build', allowed_tools: [Bash], write_set_globs: ['renderers/static-social/**', 'receipts/carousel/**'], idempotency: false, danger_level: medium, manual: false, fail_closed: false, owner: static-social}
 
   - gate: G12

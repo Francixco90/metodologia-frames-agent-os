@@ -17,14 +17,14 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 45 gates', () => {
-    expect(manifest.gates).toHaveLength(45);
+  it('declares 52 gates', () => {
+    expect(manifest.gates).toHaveLength(52);
   });
 
   it('every gate id belongs to a governed gate family', () => {
     for (const gate of manifest.gates) {
       expect(gate.gate).toMatch(
-        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+)$/u,
+        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
       );
     }
   });
