@@ -188,6 +188,24 @@ describe('effectiveRules', () => {
       'vendor',
     ]);
   });
+
+  it('lets an explicit generated rule override the legacy path classifier', () => {
+    const value = base();
+    budgets(value).push({
+      surface: 'career-generated',
+      kind: 'generated',
+      match: 'workflows/career/**/templates/*.html',
+      target: {max_lines: 500},
+      hard: {max_lines: 800},
+      rationale: 'Career templates declare their generated kind in policy.',
+    });
+    const rules = read(value).budgets;
+    expect(
+      effectiveRules(rules, 'workflows/career/c06/templates/cv.html', false).map(
+        ({surface}) => surface,
+      ),
+    ).toEqual(['career-generated']);
+  });
 });
 
 describe('globToRe', () => {

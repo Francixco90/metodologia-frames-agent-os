@@ -35,6 +35,18 @@ budgets:
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
     rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the MetodologIA shell.'
+  - surface: generated-career-template-markdown
+    kind: generated
+    match: '02_proceso/workflows/career/c*/templates/*.template.md'
+    target: {max_words: 900, max_lines: 180}
+    hard: {max_words: 1500, max_lines: 300}
+    rationale: 'Career Markdown templates are deterministic DRAFT projections of the career deliverable registry.'
+  - surface: generated-career-template-html
+    kind: generated
+    match: '02_proceso/workflows/career/c*/templates/*.template.html'
+    target: {max_words: 1800, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 800}
+    rationale: 'Career HTML templates are deterministic offline projections of their canonical Markdown twins.'
   - surface: generated-bound-output
     kind: generated
     match: '03_artefactos/brand/generated/**'
@@ -130,10 +142,17 @@ budgets:
       [
         '02_proceso/workflows/multimedia/_assets/schematic-template.html',
         '02_proceso/workflows/multimedia/_assets/brief-document-template.html',
+        '02_proceso/workflows/career/_assets/brief-template.html',
+        '02_proceso/workflows/career/_assets/document-template.html',
       ]
     target: {max_lines: 400}
     hard: {max_lines: 800}
     rationale: 'HTML templates use the approved document-specific ceiling.'
+  - surface: career-deliverable-registry
+    match: '02_proceso/workflows/career/_assets/deliverable-registry.yml'
+    target: {max_words: 2500, max_lines: 500}
+    hard: {max_words: 5000, max_lines: 800}
+    rationale: 'The complete 33-deliverable Career registry stays reviewable as one canonical matrix.'
   - surface: multimedia-deliverable-registry
     match: '02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml'
     target: {max_words: 4000, max_lines: 650}
