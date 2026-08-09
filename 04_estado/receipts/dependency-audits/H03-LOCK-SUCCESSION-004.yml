@@ -1,0 +1,28 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-004
+supersedes_receipt_id: H03-LOCK-SUCCESSION-003
+recorded_at: '2026-08-09T00:00:00Z'
+approval_phrase: APRUEBO HITO H-03
+scope: web_review_command_without_dependency_change
+previous:
+  commit: e1b67e0d42f917353ab87298f3bd61ee7fb18f39
+  package_sha256: 53e584b6929ee1236854425651c33d36f8942dd2fdfb3329f8a711bb40427bb3
+  lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+current:
+  package_sha256: aa3b5743e095cc54f8a8ef0f1659d2ff9e63364d42be257bf430cd5c8edef4f2
+  lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+dependency_change: false
+dependency_set_sha256: 53e6569c138f9c055c84baa2dd0e5b2ac3d9ee60ed347edafbed0c9a523919ba
+audit_receipt:
+  ref: receipts/dependency-audits/RCP-DEP-PRODUCTION-20260809-003.json
+  sha256: 18706de35f0a431b6d4dda43eec5f9dea5a91352f8b9c5df0f7d6274079f90d4
+frozen_install:
+  command: inherited_from_unchanged_lock
+  status: not_repeated_no_dependency_change
+rollback:
+  strategy: remove_web_review_script_alias
+  expected_lock_sha256: ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

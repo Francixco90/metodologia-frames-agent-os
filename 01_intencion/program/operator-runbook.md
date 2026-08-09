@@ -29,14 +29,22 @@ pnpm slice:build
 El comando valida adapters y skills, reconstruye Content/Web, prepara Remotion y emite un receipt
 `PREFLIGHT_VALIDATED`. No abre un gate humano ni ejecuta publicación.
 
+Este paso modifica outputs gobernados. Úsalo únicamente sobre un candidate limpio y detente ante el primer error. Para una comprobación ordinaria usa `pnpm slice:verify-compat`, que valida el slice existente sin reconstruirlo.
+
+La revisión Web completa usa un único comando con parada causal:
+
+```bash
+pnpm web:review
+```
+
 ## 3. Render local
 
 ```bash
 pnpm remotion:prepare
-pnpm remotion:validate
-pnpm render:all
-pnpm remotion:inspect
+pnpm remotion:validate && pnpm render:all && pnpm remotion:inspect
 ```
+
+La primera línea prepara inputs. La segunda usa `&&` deliberadamente: si la validación falla, no se renderiza ni se inspecciona evidencia anterior. Un conflicto `Append-only` significa que la identidad existente pertenece a otros bytes; no borres ni sobrescribas el receipt. Congela un successor con nuevos IDs y vuelve a ejecutar desde ese candidate. `Validated input changed` después de un fallo no es un segundo defecto: indica que el render intentó usar la última validación aceptada y debe detenerse.
 
 El render debe usar Chrome Headless local, concurrencia fijada, assets vendorizados y cero red
 externa. `remotion:inspect` exige video-only, perfil esperado, fotogramas de revisión, dos renders
@@ -51,7 +59,7 @@ pnpm lint
 pnpm test
 pnpm format:check
 pnpm audit --audit-level high
-node scripts/web-visual-smoke.mjs
+pnpm web:review
 ```
 
 La inspección Web usa Playwright fijado en el lockfile y el canal local de Chrome estable. Puede

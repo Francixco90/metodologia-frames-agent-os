@@ -1,11 +1,11 @@
-import {writeFileSync} from 'node:fs';
+import {existsSync, writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
-import {dirname, resolve} from 'node:path';
-import {fileURLToPath, pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
 
 const require = createRequire(import.meta.url);
 const {chromium} = require('playwright');
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = process.cwd();
 const artifact = resolve(root, 'projects/vs-001-source-to-campaign/web/artifact/index.html');
 const reportPath = resolve(
   root,
@@ -18,6 +18,15 @@ const profiles = [
   {id: 'desktop', width: 1440, height: 1000},
   {id: 'mobile', width: 390, height: 844},
 ];
+
+if (!existsSync(resolve(root, 'package.json'))) {
+  throw new Error('WEB-SMOKE-ROOT001: ejecuta este comando desde la raíz del repositorio.');
+}
+if (!existsSync(artifact)) {
+  throw new Error(
+    'WEB-SMOKE-ARTIFACT001: no existe el artefacto Web. Ejecuta primero `pnpm web:build`.',
+  );
+}
 
 const browser = await chromium.launch(browserOptions);
 const results = [];

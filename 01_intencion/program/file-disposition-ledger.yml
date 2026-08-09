@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 82
+    refactored: 84
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 200
+    verified_no_change: 198
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12542
+    current_words_for_baseline_files: 12790
     violations: []
     checks:
       - path: AGENTS.md
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1340
+        current_words: 1462
         maximum_words: 2656
-        ratio: 1.009
+        ratio: 1.1009
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -187,9 +187,9 @@ budgets:
         status: pass
       - path: docs/program/operator-runbook.md
         baseline_words: 542
-        current_words: 542
+        current_words: 668
         maximum_words: 1084
-        ratio: 1
+        ratio: 1.2325
         status: pass
       - path: docs/program/requirements-traceability.md
         baseline_words: 835
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93541
-    v3_rolling_adjustment_words: 5355
+    baseline_words: 93704
+    v3_rolling_adjustment_words: 5518
     original_baseline_words: 88186
-    final_words: 109960
+    final_words: 110123
     maximum_multiplier: 1.5
-    maximum_words: 140311
-    actual_multiplier: 1.1755
+    maximum_words: 140556
+    actual_multiplier: 1.1752
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 93541
-    v3_rolling_adjustment_words: 5355
+    baseline_words: 93704
+    v3_rolling_adjustment_words: 5518
     original_baseline_words: 88186
-    final_words: 109960
-    maximum_words: 187082
-    word_multiplier: 1.1755
-    baseline_loc: 35126
-    v3_rolling_adjustment_loc: 2238
+    final_words: 110123
+    maximum_words: 187408
+    word_multiplier: 1.1752
+    baseline_loc: 35137
+    v3_rolling_adjustment_loc: 2249
     original_baseline_loc: 32888
-    final_loc: 41207
-    maximum_loc: 70252
-    loc_multiplier: 1.1731
+    final_loc: 41224
+    maximum_loc: 70274
+    loc_multiplier: 1.1732
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -1037,9 +1037,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: dd8d982b830a8b081112654c0017da42bb8fec35252ce44617bc15f9cefdae92
-      current_words: 1340
-      current_loc: 129
+      current_sha256: 31b993974d5195ff0af0b0c9441e2d45ec138d478e89635377c64d04955d5d48
+      current_words: 1462
+      current_loc: 135
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md
@@ -2627,17 +2627,17 @@ entries:
     initial_words: 542
     initial_loc: 108
     resolved_owner: lead
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/operator-runbook.md
       current_ref: working-tree:docs/program/operator-runbook.md
       current_state: present
-      current_sha256: 56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274
-      current_words: 542
-      current_loc: 108
-      byte_identical: true
-      material_change: false
+      current_sha256: 9ef2c16f0e305309126160de9560f66121db753a8e33d8e1c9ddcf11a406d4bc
+      current_words: 668
+      current_loc: 116
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
       generator_ref: null
       successor_path: null
@@ -3200,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 53e584b6929ee1236854425651c33d36f8942dd2fdfb3329f8a711bb40427bb3
-      current_words: 648
-      current_loc: 150
+      current_sha256: aa3b5743e095cc54f8a8ef0f1659d2ff9e63364d42be257bf430cd5c8edef4f2
+      current_words: 657
+      current_loc: 152
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -6911,17 +6911,17 @@ entries:
     initial_words: 225
     initial_loc: 73
     resolved_owner: repo
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/web-visual-smoke.mjs
       current_ref: working-tree:scripts/web-visual-smoke.mjs
       current_state: present
-      current_sha256: bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24
-      current_words: 225
-      current_loc: 73
-      byte_identical: true
-      material_change: false
+      current_sha256: c66842011381366987a95abfe85dedaeb9fdf586c2f0b5b82217bfb30d18211d
+      current_words: 257
+      current_loc: 82
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
       generator_ref: null
       successor_path: null

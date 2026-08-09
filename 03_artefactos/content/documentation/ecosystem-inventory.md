@@ -12,7 +12,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 267
-- COMMAND: 87
+- COMMAND: 89
 - COMPONENT: 16
 - DELIVERABLE: 72
 - GATE: 45
@@ -392,6 +392,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | verify:renderers | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:skills | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:build | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | web:review | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | web:smoke | ACTIVE | CANONICAL | `package.json` |
 | COMPONENT | BeatScene | ACTIVE | CANONICAL | `04_estado/registries/components/component-registry.yml` |
 | COMPONENT | Breadcrumb | ACTIVE | CANONICAL | `04_estado/registries/components/component-registry.yml` |
 | COMPONENT | CaptionBand | ACTIVE | CANONICAL | `04_estado/registries/components/component-registry.yml` |
@@ -886,4 +888,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | P08 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p08-editar/workflow.yml` |
 | WORKFLOW | P09 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/workflow.yml` |
 
-Hash de fuentes: `c9c1d11bcd5a118dbdf0ad6e3f7cc8a1233445dbd27dd046babc5e5023d08025`.
+Hash de fuentes: `b8edaae259c95efcae9ec3b43ebf30d3713744ecf392c809a6515e98c1b4ca16`.
