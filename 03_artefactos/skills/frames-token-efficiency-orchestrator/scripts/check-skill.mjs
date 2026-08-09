@@ -6,6 +6,7 @@ const id = 'frames-token-efficiency-orchestrator';
 const base = `skills/${id}`;
 const required = [
   'SKILL.md',
+  'context.md',
   'LINEAGE.yml',
   'receipts/runtime-boundary.yml',
   'references/source-lock.yml',
@@ -50,7 +51,7 @@ for (const trigger of [
 for (const token of [
   `name: ${id}`,
   'description: This skill should be used when',
-  'version: 0.1.0',
+  'version: 0.2.0',
   'LicenseRef-MetodologIA-Internal',
   'fail-closed',
   'coverage_gap',
@@ -58,6 +59,13 @@ for (const token of [
 ]) {
   if (!skill.includes(token)) {
     console.error(`FAIL ${id}: SKILL.md missing ${token}`);
+    process.exit(1);
+  }
+}
+
+for (const heading of ['## 1. Propósito y activación', '## 6. Gates, handoff y contextos hijos']) {
+  if (!docs.get('context.md').includes(heading)) {
+    console.error(`FAIL ${id}: context.md missing ${heading}`);
     process.exit(1);
   }
 }
