@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "transcript-intelligence-v1",
+  "projectId": "synthetic-material-ambiguity",
+  "source": {
+    "id": "SRC-SYNTH-AMB-001",
+    "kind": "meeting",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "rights": "synthetic-first-party",
+    "authority": "fixture",
+    "audioAvailable": false
+  },
+  "asrRef": "ambiguous-asr.json",
+  "authorityRef": "../positive/authority.json",
+  "languageProfile": {"primary": "es", "secondary": ["en"]},
+  "policy": {"captionMode": "minimal-clarity", "privateCoaching": false, "publicPackage": true},
+  "narrative": {"purpose": "mostrar resultado", "audience": "publico", "targetSeconds": 30}
+}

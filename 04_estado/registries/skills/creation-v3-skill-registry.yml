@@ -79,6 +79,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-media/scripts/check-skill.mjs]
+  - skill_id: content-os-transcript-intelligence
+    version: 0.1.0
+    current_state: evaluated
+    execution_scope: local-evaluation
+    content_sha256: 4d882b90eda7a1fcaf895cd3fdca2bf695846a1301c5fb9b7542bfe398d9dd72
+    package_manifest_sha256: d46eafe95272ecdebc4b459ca00aa6087c9b6c4f47049106f3571fb2be9a097a
+    lineage_ref: skills/content-os-transcript-intelligence/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-transcript-intelligence/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only_promotion_blocked
+    publication_authority: false
+    tests: [node skills/content-os-transcript-intelligence/scripts/check-skill.mjs]
   - skill_id: content-os-registry
     version: 0.1.0
     current_state: active
@@ -2641,3 +2652,6 @@ events:
   - {event_id: EVT-SKL-SSAU-H03-002, event_order: 2, skill_id: skill-security-auditor, from: candidate, to: quarantined, actor_id: RT-07-SSS-SECURITY-PRODUCER}
   - {event_id: EVT-SKL-SSAU-H03-003, event_order: 3, skill_id: skill-security-auditor, from: quarantined, to: evaluated, actor_id: RT-09-SSS-SECURITY-VERIFIER}
   - {event_id: EVT-SKL-SSAU-H03-004, event_order: 4, skill_id: skill-security-auditor, from: evaluated, to: active, actor_id: RT-10-SSS-SECURITY-INTEGRATOR}
+  - {event_id: EVT-SKL-CTI-H03-001, event_order: 1, skill_id: content-os-transcript-intelligence, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTI-H03-002, event_order: 2, skill_id: content-os-transcript-intelligence, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTI-H03-003, event_order: 3, skill_id: content-os-transcript-intelligence, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: self_contained_transcript_intelligence_local_evaluation}

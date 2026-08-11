@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "transcript-intelligence-v1",
+  "projectId": "synthetic-text-only",
+  "source": {
+    "id": "SRC-SYNTH-TEXT-001",
+    "kind": "text",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "rights": "synthetic-first-party",
+    "authority": "fixture",
+    "audioAvailable": false
+  },
+  "asrRef": "../positive/asr-candidate.json",
+  "authorityRef": "../positive/authority.json",
+  "languageProfile": {"primary": "es", "secondary": ["en"]},
+  "policy": {"captionMode": "minimal-clarity", "privateCoaching": true, "publicPackage": false},
+  "narrative": {"purpose": "evaluar pronunciacion", "audience": "hablante", "targetSeconds": 60}
+}
