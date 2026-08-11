@@ -120,7 +120,7 @@
   },
   {
     "id": "content-os-general-video",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "scope": "local-evaluation",
     "check": ["skills/content-os-general-video/scripts/check-skill.mjs"]
   },
