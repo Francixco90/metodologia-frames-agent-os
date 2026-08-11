@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Componer un CV recruiter-first, ATS-safe y trazable desde el brief y la evidencia seleccionada."
+      content="Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims."
     />
     <meta name="frames:schema" content="workflow-documentation-v1" />
     <meta name="frames:workflow" content="C06" />
@@ -13,7 +13,7 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"
     />
-    <title>C06 · CV evidence-first</title>
+    <title>C06 · CV spec-first y evidence-bound</title>
     <style>
       :root {
         --navy: #122562;
@@ -145,10 +145,10 @@
   <body>
     <header>
       <p>Frames ContentOS · por MetodologIA</p>
-      <h1>C06 · CV evidence-first</h1>
+      <h1>C06 · CV spec-first y evidence-bound</h1>
       <p>
-        Componer un CV recruiter-first, ATS-safe y trazable desde el brief y la evidencia
-        seleccionada.
+        Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir
+        requisitos en claims.
       </p>
     </header>
     <main>
@@ -156,12 +156,11 @@
       <section>
         <h2>Qué necesitas y qué recibes</h2>
         <p>
-          <strong>Entradas:</strong> application-brief-v1, requirement-evidence-matrix-v1,
-          evidence-bank-v1
+          <strong>Entradas:</strong> candidate-profile-v1, positioning-charter-v1, evidence-bank-v1
         </p>
         <p>
-          <strong>Entregables:</strong> cv-source-v1, cv-html-v1, cv-ats-pdf-v1,
-          cv-variant-manifest-v1
+          <strong>Entregables:</strong> cv-spec-v1, cv-source-v2, cv-ats-html-v1,
+          cv-executive-html-v1, cv-ats-docx-v1, cv-ats-pdf-v2, cv-variant-manifest-v2
         </p>
       </section>
       <section>
@@ -177,14 +176,23 @@
           </thead>
           <tbody>
             <tr>
+              <td>S00</td>
+              <td>
+                Compilar una spec material; intent targeted exige lineage C04 scoring y C05
+                application design, general los rechaza.
+              </td>
+              <td>evidence-first-cv</td>
+              <td>CR_CV_SPEC_APPROVED</td>
+            </tr>
+            <tr>
               <td>S01</td>
-              <td>Seleccionar base y grafts controlados sin alterar hechos.</td>
+              <td>Compilar la fuente canónica desde la spec aprobada y evidencia promocionable.</td>
               <td>evidence-first-cv</td>
               <td>G13</td>
             </tr>
             <tr>
               <td>S02</td>
-              <td>Renderizar HTML determinista y PDF privado cuando el toolchain existe.</td>
+              <td>Proyectar únicamente idiomas, audiencias y formatos declarados por la spec.</td>
               <td>evidence-first-cv</td>
               <td>CR_PACKAGE_APPROVED</td>
             </tr>
@@ -194,17 +202,18 @@
       <section>
         <h2>Secuencia</h2>
         <svg
-          viewBox="0 0 920 554"
+          viewBox="0 0 920 728"
           role="img"
           aria-labelledby="seq-title seq-desc"
           xmlns="http://www.w3.org/2000/svg"
         >
           <title id="seq-title">Secuencia C06</title>
           <desc id="seq-desc">
-            La persona solicita CV evidence-first. S01: evidence-first-cv produce cv-source-v1;
-            RT-09 decide G13. S02: evidence-first-cv produce cv-html-v1, cv-ats-pdf-v1,
-            cv-variant-manifest-v1; RT-09 decide CR_PACKAGE_APPROVED. Frames entrega el resultado y
-            propone C07.
+            La persona solicita CV spec-first y evidence-bound. S00: evidence-first-cv produce
+            cv-spec-v1; RT-09 decide CR_CV_SPEC_APPROVED. S01: evidence-first-cv produce
+            cv-source-v2; RT-09 decide G13. S02: evidence-first-cv produce cv-ats-html-v1,
+            cv-executive-html-v1, cv-ats-docx-v1, cv-ats-pdf-v2, cv-variant-manifest-v2; RT-09
+            decide CR_PACKAGE_APPROVED. Frames entrega el resultado y propone C07.
           </desc>
           <style>
             .actor {
@@ -216,75 +225,101 @@
               fill: #26324d;
             }
           </style>
-          <line x1="34" y1="45" x2="34" y2="524" stroke="#122562" stroke-width="3" />
+          <line x1="34" y1="45" x2="34" y2="698" stroke="#122562" stroke-width="3" />
           <g>
             <circle cx="34" cy="68" r="12" fill="#137DC5" />
             <line x1="46" y1="68" x2="112" y2="68" stroke="#122562" stroke-width="2" />
             <text x="126" y="60" class="actor">Persona → Frames</text>
-            <text x="126" y="82" class="label">Solicita CV evidence-first</text>
+            <text x="126" y="82" class="label">Solicita CV spec-first y evidence-bound</text>
           </g>
           <g>
             <circle cx="34" cy="126" r="12" fill="#137DC5" />
             <line x1="46" y1="126" x2="112" y2="126" stroke="#122562" stroke-width="2" />
             <text x="126" y="118" class="actor">Frames → evidence-first-cv</text>
             <text x="126" y="140" class="label">
-              S01: Seleccionar base y grafts controlados sin alterar hechos.
+              S00: Compilar una spec material; intent targeted exige lineage C04 scoring y C05
+              application design, general los rechaza.
             </text>
           </g>
           <g>
             <circle cx="34" cy="184" r="12" fill="#137DC5" />
             <line x1="46" y1="184" x2="112" y2="184" stroke="#122562" stroke-width="2" />
             <text x="126" y="176" class="actor">evidence-first-cv → RT-09</text>
-            <text x="126" y="198" class="label">Evidencia: cv-source-v1</text>
+            <text x="126" y="198" class="label">Evidencia: cv-spec-v1</text>
           </g>
           <g>
             <circle cx="34" cy="242" r="12" fill="#FFD700" />
             <line x1="46" y1="242" x2="112" y2="242" stroke="#122562" stroke-width="2" />
             <text x="126" y="234" class="actor">RT-09 → Frames</text>
-            <text x="126" y="256" class="label">Gate G13</text>
+            <text x="126" y="256" class="label">Gate CR_CV_SPEC_APPROVED</text>
           </g>
           <g>
             <circle cx="34" cy="300" r="12" fill="#137DC5" />
             <line x1="46" y1="300" x2="112" y2="300" stroke="#122562" stroke-width="2" />
             <text x="126" y="292" class="actor">Frames → evidence-first-cv</text>
             <text x="126" y="314" class="label">
-              S02: Renderizar HTML determinista y PDF privado cuando el toolchain existe.
+              S01: Compilar la fuente canónica desde la spec aprobada y evidencia promocionable.
             </text>
           </g>
           <g>
             <circle cx="34" cy="358" r="12" fill="#137DC5" />
             <line x1="46" y1="358" x2="112" y2="358" stroke="#122562" stroke-width="2" />
             <text x="126" y="350" class="actor">evidence-first-cv → RT-09</text>
-            <text x="126" y="372" class="label">
-              Evidencia: cv-html-v1, cv-ats-pdf-v1, cv-variant-manifest-v1
-            </text>
+            <text x="126" y="372" class="label">Evidencia: cv-source-v2</text>
           </g>
           <g>
             <circle cx="34" cy="416" r="12" fill="#FFD700" />
             <line x1="46" y1="416" x2="112" y2="416" stroke="#122562" stroke-width="2" />
             <text x="126" y="408" class="actor">RT-09 → Frames</text>
-            <text x="126" y="430" class="label">Gate CR_PACKAGE_APPROVED</text>
+            <text x="126" y="430" class="label">Gate G13</text>
           </g>
           <g>
-            <circle cx="34" cy="474" r="12" fill="#FFD700" />
+            <circle cx="34" cy="474" r="12" fill="#137DC5" />
             <line x1="46" y1="474" x2="112" y2="474" stroke="#122562" stroke-width="2" />
-            <text x="126" y="466" class="actor">Frames → Persona</text>
-            <text x="126" y="488" class="label">Entrega o siguiente paso: C07</text>
+            <text x="126" y="466" class="actor">Frames → evidence-first-cv</text>
+            <text x="126" y="488" class="label">
+              S02: Proyectar únicamente idiomas, audiencias y formatos declarados por la spec.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="532" r="12" fill="#137DC5" />
+            <line x1="46" y1="532" x2="112" y2="532" stroke="#122562" stroke-width="2" />
+            <text x="126" y="524" class="actor">evidence-first-cv → RT-09</text>
+            <text x="126" y="546" class="label">
+              Evidencia: cv-ats-html-v1, cv-executive-html-v1, cv-ats-docx-v1, cv-ats-pdf-v2,
+              cv-variant-manifest-v2
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="590" r="12" fill="#FFD700" />
+            <line x1="46" y1="590" x2="112" y2="590" stroke="#122562" stroke-width="2" />
+            <text x="126" y="582" class="actor">RT-09 → Frames</text>
+            <text x="126" y="604" class="label">Gate CR_PACKAGE_APPROVED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="648" r="12" fill="#FFD700" />
+            <line x1="46" y1="648" x2="112" y2="648" stroke="#122562" stroke-width="2" />
+            <text x="126" y="640" class="actor">Frames → Persona</text>
+            <text x="126" y="662" class="label">Entrega o siguiente paso: C07</text>
           </g>
         </svg>
         <ol>
-          <li>La persona solicita CV evidence-first.</li>
-          <li>S01: evidence-first-cv produce cv-source-v1; RT-09 decide G13.</li>
+          <li>La persona solicita CV spec-first y evidence-bound.</li>
+          <li>S00: evidence-first-cv produce cv-spec-v1; RT-09 decide CR_CV_SPEC_APPROVED.</li>
+          <li>S01: evidence-first-cv produce cv-source-v2; RT-09 decide G13.</li>
           <li>
-            S02: evidence-first-cv produce cv-html-v1, cv-ats-pdf-v1, cv-variant-manifest-v1; RT-09
-            decide CR_PACKAGE_APPROVED.
+            S02: evidence-first-cv produce cv-ats-html-v1, cv-executive-html-v1, cv-ats-docx-v1,
+            cv-ats-pdf-v2, cv-variant-manifest-v2; RT-09 decide CR_PACKAGE_APPROVED.
           </li>
           <li>Frames entrega el resultado y propone C07.</li>
         </ol>
       </section>
       <section>
         <h2>Límites</h2>
-        <p>Render produce RENDERED_DRAFT; no concede aprobación ni envío.</p>
+        <p>
+          Spec aprobada no aprueba derivados; render produce RENDERED_DRAFT y cualquier hash stale
+          invalida el paquete.
+        </p>
         <p class="meta">Fuente: 02_proceso/workflows/career/c06-cv/workflow.yml · Próximo: C07</p>
       </section>
     </main>

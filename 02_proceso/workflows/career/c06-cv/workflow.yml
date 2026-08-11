@@ -1,36 +1,67 @@
 schema_version: career-workflow-v1
 workflow_id: C06
 command: /career-cv
-title: CV evidence-first
-purpose: Componer un CV recruiter-first, ATS-safe y trazable desde el brief y la evidencia seleccionada.
-inputs: [application-brief-v1, requirement-evidence-matrix-v1, evidence-bank-v1]
-deliverables: [cv-source-v1, cv-html-v1, cv-ats-pdf-v1, cv-variant-manifest-v1]
+title: CV spec-first y evidence-bound
+purpose: Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
+inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
+deliverables:
+  [
+    cv-spec-v1,
+    cv-source-v2,
+    cv-ats-html-v1,
+    cv-executive-html-v1,
+    cv-ats-docx-v1,
+    cv-ats-pdf-v2,
+    cv-variant-manifest-v2,
+  ]
 capability_map: [evidence-first-cv, media-make-pdf]
 execution_steps:
-  - step_id: S01
-    purpose: Seleccionar base y grafts controlados sin alterar hechos.
-    inputs: [application-brief-v1, evidence-bank-v1]
+  - step_id: S00
+    purpose: Compilar una spec material; intent targeted exige lineage C04 scoring y C05 application design, general los rechaza.
+    inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
+    conditional_inputs:
+      - when: intent == targeted
+        inputs:
+          [
+            fit-scorecard-v1,
+            application-brief-v1,
+            requirement-evidence-matrix-v1,
+            application-decision-record-v1,
+            immutable-job-snapshot-v1,
+          ]
     primary_skill: evidence-first-cv
     optional_skills: []
     verifier: RT-09
-    outputs: [cv-source-v1]
+    outputs: [cv-spec-v1]
+    template_id: TPL-C06-CAREER-CV
+    gate: CR_CV_SPEC_APPROVED
+    stop_rule: Ningún contenido se compila antes de aprobación exacta; targeted sin fit scorecard C04 y decision C05 queda bloqueado.
+    context_budget: {target_files: 8, max_files: 15, target_tokens: 14000, max_tokens: 24000}
+  - step_id: S01
+    purpose: Compilar la fuente canónica desde la spec aprobada y evidencia promocionable.
+    inputs: [cv-spec-v1, evidence-bank-v1]
+    primary_skill: evidence-first-cv
+    optional_skills: []
+    verifier: RT-09
+    outputs: [cv-source-v2]
     template_id: TPL-C06-CAREER-CV
     gate: G13
-    stop_rule: Claim sin evidence_id utilizable se omite o califica.
+    stop_rule: Claim sin evidence_id utilizable se omite o califica; requisito de vacante nunca se promueve.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 14000, max_tokens: 24000}
   - step_id: S02
-    purpose: Renderizar HTML determinista y PDF privado cuando el toolchain existe.
-    inputs: [cv-source-v1]
+    purpose: Proyectar únicamente idiomas, audiencias y formatos declarados por la spec.
+    inputs: [cv-spec-v1, cv-source-v2]
     primary_skill: evidence-first-cv
     optional_skills: [media-make-pdf]
     verifier: RT-09
-    outputs: [cv-html-v1, cv-ats-pdf-v1, cv-variant-manifest-v1]
+    outputs:
+      [cv-ats-html-v1, cv-executive-html-v1, cv-ats-docx-v1, cv-ats-pdf-v2, cv-variant-manifest-v2]
     template_id: TPL-C06-CAREER-CV
     gate: CR_PACKAGE_APPROVED
     stop_rule: Sin Chromium o pdftotext, PDF queda UNKNOWN; HTML no lo simula.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 22000}
-gates: [G13, CR_PACKAGE_APPROVED]
+gates: [CR_CV_SPEC_APPROVED, G13, CR_PACKAGE_APPROVED]
 next_workflow: C07
 template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md
-stop_rule: Render produce RENDERED_DRAFT; no concede aprobación ni envío.
+stop_rule: Spec aprobada no aprueba derivados; render produce RENDERED_DRAFT y cualquier hash stale invalida el paquete.
 metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

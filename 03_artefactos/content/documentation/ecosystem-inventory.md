@@ -14,7 +14,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - ASSET: 270
 - COMMAND: 97
 - COMPONENT: 16
-- DELIVERABLE: 72
+- DELIVERABLE: 80
 - GATE: 52
 - RENDERER: 5
 - ROUTE: 11
@@ -448,10 +448,18 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | contradiction-ledger-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cover-letter-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | creative-spec-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
+| DELIVERABLE | cv-ats-docx-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-ats-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-ats-pdf-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-ats-pdf-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-executive-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-package-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-source-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-source-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-spec-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-variant-manifest-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-variant-manifest-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | definition-of-ready-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | derivatives-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | digest-shortlist-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -931,4 +939,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `13fb47652cb5ca4f8500eeae51de664c959043ad007906a9f255e9d1866d16b5`.
+Hash de fuentes: `3d994bc6883f65f8c65807926876a6c468508723454389370eedb6bce1d05cd7`.

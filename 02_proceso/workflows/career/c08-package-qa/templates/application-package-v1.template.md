@@ -12,17 +12,17 @@ next_gate: CR_PACKAGE_APPROVED
 
 Package ID, candidate, application, job y hash canónico.
 
-## 2. Brief
+## 2. Spec y brief
 
-Referencia y hash del brief aprobado.
+`spec_id`, `spec_sha256`, aprobación exacta y brief dirigido cuando aplique.
 
 ## 3. Job snapshot
 
 URL canónica, hash y vigencia revalidada.
 
-## 4. CV
+## 4. CV y matriz de outputs
 
-Markdown, HTML, PDF privado si existe y hashes materiales.
+Fuente v2, ATS HTML/DOCX/PDF, HTML ejecutivo solicitado y hashes materiales.
 
 ## 5. Carta y mensajes
 
@@ -32,9 +32,9 @@ Variantes incluidas, canal, longitud e idioma.
 
 Cobertura, gaps, blockers y decisiones de tratamiento.
 
-## 7. Paridad
+## 7. Paridad e invalidación
 
-Modelo semántico, proyecciones y diferencias permitidas.
+Modelo semántico, proyecciones, diferencias permitidas y rechazo de cualquier binding stale.
 
 ## 8. ATS y visual
 
@@ -46,7 +46,7 @@ Producer, RT-09 y RT-11 distintos.
 
 ## 10. Riesgos
 
-PII, hash stale, vacante cambiada, claims y herramientas UNKNOWN.
+PII, spec/evidencia/vacante stale, claims, outputs ausentes y herramientas UNKNOWN.
 
 ## 11. Veredicto
 
