@@ -44,6 +44,10 @@
       "type": "boolean",
       "description": "true if SCRIPT.md authored (narrated); false otherwise."
     },
+    "scriptMode": {"enum": ["authored", "transcript_derived", "assembly_map"]},
+    "captionPolicyRef": {"type": "string", "minLength": 1},
+    "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
+    "narrativeMapRef": {"type": "string", "minLength": 1},
     "footage": {
       "type": "boolean",
       "description": "true if remixing existing footage; false if authored from scratch."
@@ -90,5 +94,14 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"vo_mode": {"const": "transcribed"}}},
+      "then": {
+        "required": ["scriptMode", "captionPolicyRef", "transcriptIntelligenceRef", "narrativeMapRef"],
+        "properties": {"scriptMode": {"const": "transcript_derived"}}
+      }
+    }
+  ]
 }
