@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "transcript-intelligence-adversarial-cases-v1",
+  "cases": [
+    {"id": "legacy-derivative-block", "expectedCode": "MIGRATION_REQUIRED", "mutation": "use-legacy-job"},
+    {"id": "audio-ref-is-json", "expectedCode": "INVALID_AUDIO_MEDIA", "mutation": "bind-json-as-literal-audio"},
+    {"id": "audio-source-binding-mismatch", "expectedCode": "AUDIO_BINDING_MISMATCH", "mutation": "bind-valid-synthetic-wav-to-wrong-source"},
+    {"id": "audio-zero-duration", "expectedCode": "AUDIO_DURATION_INVALID", "mutation": "bind-decodable-zero-sample-wav"},
+    {"id": "audio-corrupt-payload", "expectedCode": "AUDIO_DECODE_FAILED", "mutation": "bind-magic-only-corrupt-wav"},
+    {"id": "negative-span", "expectedCode": "INVALID_SPAN", "mutation": "segment-start-negative"},
+    {"id": "reversed-span", "expectedCode": "INVALID_SPAN", "mutation": "segment-end-before-start"},
+    {"id": "span-out-of-bounds", "expectedCode": "SPAN_OUT_OF_BOUNDS", "mutation": "segment-beyond-source-duration"},
+    {"id": "local-clock-before-origin", "expectedCode": "SPAN_OUT_OF_BOUNDS", "mutation": "local-span-would-be-negative"},
+    {"id": "absolute-origin-incoherent", "expectedCode": "CLOCK_ORIGIN_INCOHERENT", "mutation": "local-origin-precedes-absolute-origin"},
+    {"id": "material-authority-unverified", "expectedCode": "material-authority-required", "mutation": "use-material-authority-job"},
+    {"id": "material-authority-null-ref", "expectedCode": "material-authority-required", "mutation": "material-term-without-authority-ref"},
+    {"id": "material-canonical-null-ref", "expectedCode": "material-authority-required", "mutation": "canonical-material-term-without-authority-ref"},
+    {"id": "private-package-disabled", "expectedCode": "PACKAGE_BLOCKED", "mutation": "public-package-false"},
+    {"id": "source-hash-not-real", "expectedCode": "HASH_MISMATCH", "mutation": "source-hash-mismatch"},
+    {"id": "model-hash-not-real", "expectedCode": "HASH_MISMATCH", "mutation": "model-hash-mismatch"},
+    {"id": "config-hash-not-real", "expectedCode": "HASH_MISMATCH", "mutation": "config-hash-mismatch"},
+    {"id": "path-traversal", "expectedCode": "UNSAFE_REF", "mutation": "source-ref-traversal"},
+    {"id": "symlink-escape", "expectedCode": "UNSAFE_REF", "mutation": "source-ref-symlink-escape"}
+  ]
+}

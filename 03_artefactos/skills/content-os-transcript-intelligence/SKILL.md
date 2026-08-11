@@ -44,10 +44,24 @@ Leer `references/language-quality-policy.md` para decisiones lingüísticas,
 
 ## Contrato y CLI
 
-Usar `transcript-intelligence-v1` y rutas relativas al job. Ejecutar:
+Usar `transcript-intelligence-v1` revisión 3 y rutas confinadas al directorio del job. La revisión 3 exige:
+
+- `clocks.absolute` para el reloj de la fuente y `clocks.local` para el corte o pieza;
+- referencias y hashes verificables de fuente, audio derivado cuando exista, ASR,
+  autoridad, modelo y configuración;
+- inputs clasificados como `literal_audio`, `asr_candidate`, `editorial_notes`,
+  `visual_reference` o `inference`; `authority` es un input de control separado;
+- autoridad verificada para nombres, cifras, productos y claims materiales.
+
+El runtime conserva inspección compatible de revisiones anteriores, pero son solo lectura.
+`migrate` copia los inputs a un bundle autocontenido y emite un job revisión 3. Hasta completar
+esa migración, `ingest`, `analyze`, `caption`, `index`, `search`, `narrative`, `verify` y
+`package` fallan con `MIGRATION_REQUIRED`.
+
+Ejecutar:
 
 ```text
-node scripts/transcript-intelligence.mjs ingest|analyze|caption|index|search|narrative|verify|package --job <job.json> --out <dir>
+node scripts/transcript-intelligence.mjs inspect|migrate|ingest|analyze|caption|index|search|narrative|verify|package --job <job.json> --out <dir>
 ```
 
 `search` exige `--query`; `narrative` acepta `--framework duarte|transformation|impact|pas`.
@@ -66,6 +80,17 @@ servicios remotos.
 ## Stop rules
 
 - Fuente sin hash/derechos/autoridad o ruta absoluta: STOP.
+- Hash de fuente, ASR, audio, autoridad, nota, referencia visual, modelo o configuración ausente o
+  distinto en revisión 3: STOP.
+- Referencia con `..`, escape por symlink, audio que no sea media reconocible o audio derivado
+  no ligado al hash de la fuente: STOP.
+- Audio que FFmpeg no pueda decodificar o cuya duración no sea positiva: STOP.
+- Span negativo, invertido, fuera de la duración fuente o reloj local/absoluto inconsistente: STOP.
+- `absolute.originSeconds`, `local.originAbsoluteSeconds` y los spans deben describir el
+  mismo dominio temporal de la fuente.
+- Un término material en forma canónica también requiere autoridad verificable aunque no
+  haya ocurrido una sustitución de alias.
+- `policy.publicPackage: false`: `package` bloqueado.
 - Solicitud de pronunciación sin audio: producir `audio_required`, no inferir.
 - Ambigüedad material sin resolver: FAIL verification.
 - Beat sin `sourceSpan`: excluirlo; si rompe el arco, `reframe` o `discard`.

@@ -1,13 +1,13 @@
 {
-  "schemaVersion": "transcript-intelligence-v1", "contractRevision": 3, "projectId": "synthetic-material-ambiguity",
-  "source": {"id": "SRC-SYNTH-AMB-001", "kind": "text", "ref": "source.txt", "sha256": "cbf0b3e87a21ff5cc8a9f8e70493a00c4cf2acc3ed10e9a6f2b0ea39f8f1363a", "durationSeconds": 60, "rights": "synthetic-first-party", "authority": "fixture", "audioAvailable": false},
+  "schemaVersion": "transcript-intelligence-v1", "contractRevision": 3, "projectId": "synthetic-hash-mismatch",
+  "source": {"id": "SRC-SYNTH-HASH-001", "kind": "text", "ref": "source.txt", "sha256": "cbf0b3e87a21ff5cc8a9f8e70493a00c4cf2acc3ed10e9a6f2b0ea39f8f1363a", "durationSeconds": 60, "rights": "synthetic-first-party", "authority": "fixture", "audioAvailable": false},
   "clocks": {"inputClock": "absolute", "absolute": {"id": "source-media", "unit": "seconds", "originSeconds": 0}, "local": {"id": "selection", "unit": "seconds", "originAbsoluteSeconds": 0}},
   "inputs": [
-    {"class": "asr_candidate", "ref": "ambiguous-asr.json", "sha256": "b07c95a107e7f91f2c797f202febab715eee845fd9fc482d8b5c0ea00ca91fb1", "authorityClass": "candidate"},
+    {"class": "asr_candidate", "ref": "asr-candidate.json", "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "authorityClass": "candidate"},
     {"class": "authority", "ref": "authority.json", "sha256": "1e16bce515a3f622830cefbaacf61ef5be3c10952372b70c3f270c83da87349b", "authorityClass": "first-party-glossary"}
   ],
   "provenance": {"model": {"id": "synthetic-offline-asr", "ref": "model.fixture", "sha256": "9def5995bd0f5ce392d8d6c7e56f644dc0903fa5d10a84db83af3b6cfedc52b6"}, "config": {"id": "fixture-config-v1", "ref": "asr-config.json", "sha256": "0663ba77efb3af10327b828f827d40ec31563b9903c29399bb265554be53a677"}},
   "languageProfile": {"primary": "es", "secondary": ["en"]},
   "policy": {"captionMode": "minimal-clarity", "privateCoaching": false, "publicPackage": true},
-  "narrative": {"purpose": "mostrar resultado", "audience": "publico", "targetSeconds": 30}
+  "narrative": {"purpose": "mostrar impacto", "audience": "publico", "targetSeconds": 30}
 }

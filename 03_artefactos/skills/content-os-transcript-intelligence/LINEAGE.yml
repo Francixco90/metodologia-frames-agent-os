@@ -1,11 +1,11 @@
 skill_id: content-os-transcript-intelligence
-version: 0.1.0
+version: 0.4.0
 lifecycle_state: evaluated
 execution_scope: local-evaluation
 content_origin: locally_authored_from_governed_derived_sources
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: transcript-intelligence-v1
+compatibility_contract: transcript-intelligence-v1-revision-3-with-older-read-only-migration
 authority_refs:
   - skills/content-os-transcript-intelligence/source-manifest.yml
   - skills/content-os-transcript-intelligence/schemas/transcript-intelligence-v1.schema.json
@@ -17,6 +17,10 @@ adaptation_notes: >
   edición pública, coaching privado y assembly maps. Importa conocimiento
   derivado hash-bound, no libros externos ni testimonios privados. Sin audio
   no evalúa pronunciación o dicción. Máximo local-evaluation; no publica.
+  La revisión 3 verifica refs reales, media y límites temporales; revisiones
+  anteriores no derivan artefactos hasta una migración explícita.
+  El successor 0.4 exige decodificación y duración positiva del audio, coherencia
+  de orígenes temporales y autoridad para términos materiales ya canónicos.
 promotion_blockers:
   - independent_guardian_review_pending
   - global_source_authority_registration_pending

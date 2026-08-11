@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "transcript-authority-v1",
+  "terms": [
+    {"canonical": "prompt", "aliases": ["prom"], "language": "en", "material": false, "authorityClass": "first-party-glossary", "verified": true, "authorityRef": "GLOSSARY-PROMPT"},
+    {"canonical": "Excel", "aliases": ["XE"], "language": "en", "material": false, "authorityClass": "first-party-glossary", "verified": true, "authorityRef": "GLOSSARY-EXCEL"},
+    {"canonical": "dashboard", "aliases": [], "language": "en", "material": false, "authorityClass": "first-party-glossary", "verified": true, "authorityRef": "GLOSSARY-DASHBOARD"},
+    {"canonical": "API", "aliases": [], "language": "en", "material": false, "authorityClass": "first-party-glossary", "verified": true, "authorityRef": "GLOSSARY-API"}
+  ],
+  "authorities": [
+    {"id": "GLOSSARY-PROMPT", "authorityClass": "first-party-glossary", "verified": true},
+    {"id": "GLOSSARY-EXCEL", "authorityClass": "first-party-glossary", "verified": true},
+    {"id": "GLOSSARY-DASHBOARD", "authorityClass": "first-party-glossary", "verified": true},
+    {"id": "GLOSSARY-API", "authorityClass": "first-party-glossary", "verified": true}
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "engine": "synthetic-offline-asr",
+  "temperature": 0,
+  "language": "es"
+}
