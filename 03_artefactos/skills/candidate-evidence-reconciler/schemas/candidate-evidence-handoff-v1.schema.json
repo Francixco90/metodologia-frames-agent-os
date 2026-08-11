@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metodologia:frames:candidate-evidence-handoff:v1",
+  "title": "CandidateEvidenceHandoffV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "bank_id", "bank_ref", "bank_sha256", "source_manifest_sha256", "eligible_evidence_ids", "prohibited_evidence_ids", "blocking_contradiction_ids", "gap_ids", "state", "next_gate"],
+  "properties": {
+    "schema_version": {"const": "candidate-evidence-handoff-v1"},
+    "candidate_id": {"type": "string", "pattern": "^CAND-[A-Z0-9-]+$"},
+    "bank_id": {"type": "string", "pattern": "^EBANK-[A-Z0-9-]+$"},
+    "bank_ref": {"type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$"},
+    "bank_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "eligible_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVD-[A-Z0-9-]+$"}},
+    "prohibited_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVD-[A-Z0-9-]+$"}},
+    "blocking_contradiction_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^CON-[A-Z0-9-]+$"}},
+    "gap_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^GAP-[A-Z0-9-]+$"}},
+    "state": {"enum": ["READY_FOR_SPEC", "BLOCKED"]},
+    "next_gate": {"enum": ["CR_CV_SPEC_DRAFT", "CR_EVIDENCE_RESOLUTION"]}
+  }
+}

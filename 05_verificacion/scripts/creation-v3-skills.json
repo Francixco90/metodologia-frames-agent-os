@@ -63,6 +63,7 @@
   },
   {
     "id": "candidate-evidence-reconciler",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/candidate-evidence-reconciler/scripts/check-skill.mjs"]
   },

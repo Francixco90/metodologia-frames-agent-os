@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {"id": "stale_bank_hash", "expected": "BLOCKED"},
+    {"id": "stale_source_manifest_hash", "expected": "BLOCKED"},
+    {"id": "inferred_marked_eligible", "expected": "BLOCKED"},
+    {"id": "missing_marked_eligible", "expected": "BLOCKED"},
+    {"id": "blocking_contradiction_ready", "expected": "BLOCKED"},
+    {"id": "eligible_and_prohibited_overlap", "expected": "BLOCKED"},
+    {"id": "requirement_added_as_evidence", "expected": "BLOCKED"}
+  ]
+}
