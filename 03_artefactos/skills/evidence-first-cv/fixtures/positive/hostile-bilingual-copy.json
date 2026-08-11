@@ -1,0 +1,39 @@
+{
+  "schema_version": "cv-hostile-bilingual-copy-v1",
+  "fixture_id": "CVFIX-HOSTILE-BILINGUAL-001",
+  "synthetic": true,
+  "purpose": "Stress extraction, wrapping and semantic parity without candidate data",
+  "pairs": [
+    {
+      "claim_id": "CLAIM-SYNTH-001",
+      "evidence_id": "EVD-SYNTH-001",
+      "es": "Dirigió un programa interfuncional de transformación y adopción de IA aplicada.",
+      "en": "Led a cross-functional applied AI transformation and adoption program.",
+      "invariants": {"dates": [], "metrics": [], "official_names": []}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-002",
+      "evidence_id": "EVD-SYNTH-002",
+      "es": "Redujo el tiempo de ciclo de 12 a 7 días —un 41,7 % observado— en el caso sintético.",
+      "en": "Reduced cycle time from 12 to 7 days—an observed 41.7%—in the synthetic case.",
+      "invariants": {"dates": [], "metrics": ["12 days", "7 days", "41.7%"], "official_names": []}
+    },
+    {
+      "claim_id": "CLAIM-SYNTH-003",
+      "evidence_id": "EVD-SYNTH-003",
+      "es": "Diseño organizacional, Data & (Gen)AI, co-creación y operación end-to-end.",
+      "en": "Organizational design, Data & (Gen)AI, co-creation, and end-to-end operations.",
+      "invariants": {"dates": [], "metrics": [], "official_names": ["Data & (Gen)AI"]}
+    }
+  ],
+  "layout_stress": {
+    "long_heading_es": "Liderazgo de estrategia, transformación cultural y unidades de negocio habilitadas por inteligencia artificial",
+    "long_heading_en": "Leadership of strategy, cultural transformation, and AI-enabled business units",
+    "tokens": ["áéíóúñü", "–", "—", "&", "(Gen)AI", "end-to-end", "41.7%"]
+  },
+  "forbidden_promotions": [
+    "Treat a job requirement as candidate evidence",
+    "Translate an inference into an achievement",
+    "Change dates, metrics, units, or official names"
+  ]
+}

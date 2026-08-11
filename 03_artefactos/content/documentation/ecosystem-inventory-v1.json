@@ -306,6 +306,20 @@
     },
     {
       "kind": "ASSET",
+      "id": "03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json",
+      "ref": "03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
+      "id": "03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json",
+      "ref": "03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
       "id": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "ref": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "scope": "CANONICAL",
@@ -6395,5 +6409,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "fcf58f3f70200646eef8b74c9d843a616bf9b9426bd2c001dc38dc532796db53"
+  "sourceSha256": "2efeaf4591436add26aae08e08fb2c792ea7e5405970e061119cd6361fa9b661"
 }
