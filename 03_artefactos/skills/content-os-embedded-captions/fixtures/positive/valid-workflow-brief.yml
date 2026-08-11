@@ -1,13 +1,31 @@
-schemaVersion: embedded-captions-v1
+schemaVersion: embedded-captions-v2
+operation: render-draft
 projectId: launch-explainer-captions
 route: content-os-embedded-captions
+specRef: specs/launch-explainer.video-spec.yml
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 mode: standard
 identity: keynote
 vo_mode: transcribed
 scriptMode: transcript_derived
 captionPolicyRef: caption-policy/minimal-clarity-v1
 captionTrackRef: transcript-intelligence/caption-track.json
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
 transcriptIntelligenceRef: transcript-intelligence/verification.json
+verificationState: deterministic-passed
+editorialDecision: use
+sourceSpans:
+  - sourceId: synthetic-footage-001
+    startSeconds: 120
+    endSeconds: 132
+    absolute: {clockId: session-clock, startSeconds: 120, endSeconds: 132}
+    local: {clockId: clip-clock, startSeconds: 0, endSeconds: 12}
+visualSpans:
+  - sourceId: synthetic-footage-001
+    startSeconds: 124
+    endSeconds: 128
+    absolute: {clockId: session-clock, startSeconds: 124, endSeconds: 128}
+    local: {clockId: clip-clock, startSeconds: 4, endSeconds: 8}
 footage: true
 offline: true
 transcript_source: offline

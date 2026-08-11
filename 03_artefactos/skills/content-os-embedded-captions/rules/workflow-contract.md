@@ -33,11 +33,13 @@ flowchart LR
 3. **Rail-first.** Rail carries most text; embed is the scarce, earned peak.
    `embed_all: true` or `rail_mode: none` = `embed-overuse` violation. ≤1 embed
    per beat, never two co-visible, ≥ a beat apart.
-4. **Transcription-derived.** `content-os-media` produce un ASR candidato.
-   `scriptMode: transcript_derived`, `captionPolicyRef`, `captionTrackRef` y
-   `transcriptIntelligenceRef` son obligatorios. Solo `caption-track.json` de
+4. **Spec First + transcription-derived.** `content-os-media` produce un ASR candidato.
+   Para un borrador nuevo, `embedded-captions-v2`, `specRef`, `specSha256`,
+   `scriptMode: transcript_derived`, `captionPolicyRef`, `captionTrackRef`,
+   `correctionLedgerRef`, `transcriptIntelligenceRef` y `sourceSpans` son obligatorios.
+   Solo `caption-track.json` de
    `content-os-transcript-intelligence` alimenta captions; `has_script: false`
-   queda como legado no renderizable. `vo_mode: transcribed` conserva el audio.
+   y v1 quedan como legado de solo lectura. `vo_mode: transcribed` conserva el audio.
 5. **Step-gated.** Each step has a gate. No gate passed → no advance. Steps
    user-gated (0, 6) pause for approval. Step 1 prepare runs matte ∥ transcribe ∥
    audio-envelope (delegate `content-os-media`).

@@ -12,20 +12,16 @@ metadata:
 
 # Frames ContentOS Embedded Captions
 
-Orquestador footage→captioned-video: añade captions a un talking-head existente **sin
-editar el footage** (matte occlusion deja al sujeto cubrir embed tracks). Adaptado de
-`embedded-captions` (vendor, Apache 2.0) a fail-closed + hash-bound + offline-first. No
-`npx hyperframes` CLI. Transcription/matting via `content-os-media` (offline default;
-remote opt-in auth-gated). Composition via `content-os-core` (HTML+GSAP → frames → FFmpeg).
-Lint `content-os-keyframes`. Identity `content-os-creative`
-+ `references/identity-catalog.md`.
+Orquestador footage→captioned-video: añade captions sin editar el footage; matte occlusion
+deja al sujeto cubrir embed tracks. Adaptado de `embedded-captions` (Apache 2.0) a
+fail-closed, hash-bound y offline-first. Sin `npx hyperframes`. Transcription/matting:
+`content-os-media`; composición: `content-os-core`; lint: `content-os-keyframes`; identidad:
+`content-os-creative` + `references/identity-catalog.md`.
 
-Eres el **orchestrator**: step-gated orchestrator
-(setup→prepare→plan→design→build→verify→finalize), trabaja en `videos/<project>/`, pasa
-cada gate. User-gated: 0, 6. Delega a capabilities. Footage untouched; rail-first; hash-bound
-via sha256 (registry + 4 lifecycle events); matte occlusion (content-os-media, offline +
-remote opt-in); seek-safe (window.__timelines, paused: true, tl.seek(frame/fps));
-offline-first render path.
+Eres el **orchestrator** step-gated (setup→prepare→plan→design→build→verify→finalize):
+trabaja en `videos/<project>/` y pasa cada gate. User-gated: 0, 6. Delega capabilities.
+Footage untouched; rail-first; hash-bound via sha256; matte occlusion; seek-safe
+(window.__timelines, paused: true, tl.seek(frame/fps)); offline-first render path.
 
 ## Caption model — rail + embed
 
@@ -102,8 +98,11 @@ one-line why; user elige. Unsure → `anchor` (rail-surface, words read, scene s
    no covering/inpainting.
 3. **Rail-first.** `embed_all: true` / `rail_mode: none` = violación `embed-overuse`. ≤1 embed
    per beat, nunca dos co-visibles, ≥ un beat de aire.
-4. **Transcription-derived.** `has_script: false` (transcript derivado, no autoría).
-   `vo_mode: transcribed` (VO = speech del footage).
+4. **Spec First + transcription-derived.** Nuevos borradores usan
+   `embedded-captions-v2`, `specRef`/`specSha256`, `scriptMode: transcript_derived`,
+   `captionTrackRef`, `correctionLedgerRef` y spans con reloj absoluto/local.
+   `vo_mode: transcribed` conserva el speech del footage. v1 se lee para migración,
+   pero no puede generar un borrador nuevo.
 5. **Step-gated.** Sin gate, no avanzas. User-gated (0, 6) pausan para approval. Step 1
    corre matte ∥ transcribe ∥ audio-envelope.
 6. **Delega on-demand.** Carga solo lo que el step activo necesita.

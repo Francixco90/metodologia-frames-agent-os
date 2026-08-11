@@ -5,7 +5,7 @@ execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: embedded-captions-v1
+compatibility_contract: embedded-captions-v2; v1 read-only
 authority_refs:
   - skills/vendor/hyperframes/embedded-captions/SKILL.md
   - skills/content-os-core/SKILL.md

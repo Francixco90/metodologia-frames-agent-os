@@ -1,0 +1,23 @@
+schemaVersion: embedded-captions-v2
+operation: render-draft
+projectId: synthetic-unexpected
+route: content-os-embedded-captions
+specRef: specs/synthetic.video-spec.yml
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+scriptMode: transcript_derived
+captionPolicyRef: caption-policy/minimal-clarity-v1
+captionTrackRef: transcript-intelligence/caption-track.json
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+verificationState: deterministic-passed
+editorialDecision: use
+sourceSpans:
+  - sourceId: synthetic-001
+    startSeconds: 10
+    endSeconds: 12
+    absolute: {clockId: session, startSeconds: 10, endSeconds: 12}
+    local: {clockId: clip, startSeconds: 0, endSeconds: 2}
+footage: true
+offline: true
+steps: [{step: setup, state: gate-passed}]
+__unexpected: must-be-rejected

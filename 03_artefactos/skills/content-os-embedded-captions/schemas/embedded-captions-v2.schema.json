@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedded-captions-v2",
+  "title": "Frames ContentOS Embedded Captions voice draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "operation", "projectId", "route", "specRef", "specSha256",
+    "scriptMode", "captionPolicyRef", "captionTrackRef", "correctionLedgerRef",
+    "transcriptIntelligenceRef", "verificationState", "sourceSpans", "footage", "offline", "steps"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "embedded-captions-v2"},
+    "operation": {"const": "render-draft"},
+    "projectId": {"type": "string", "minLength": 1},
+    "route": {"const": "content-os-embedded-captions"},
+    "mode": {"enum": ["standard", "cinematic", "theme"]},
+    "identity": {"type": "string", "minLength": 1},
+    "vo_mode": {"const": "transcribed"},
+    "specRef": {"type": "string", "minLength": 1},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "scriptMode": {"const": "transcript_derived"},
+    "captionPolicyRef": {"type": "string", "minLength": 1},
+    "captionTrackRef": {"type": "string", "minLength": 1},
+    "correctionLedgerRef": {"type": "string", "minLength": 1},
+    "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
+    "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
+    "editorialDecision": {"enum": ["use", "extend", "reframe", "discard"]},
+    "sourceSpans": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/sourceSpan"}
+    },
+    "visualSpans": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/sourceSpan"}
+    },
+    "footage": {"const": true},
+    "offline": {"const": true},
+    "transcript_source": {"enum": ["offline", "remote"]},
+    "matte_source": {"enum": ["offline", "remote"]},
+    "rail_mode": {"enum": ["rail", "none"]},
+    "embed_all": {"type": "boolean"},
+    "graded_footage": {"type": "boolean"},
+    "burned_in_captions": {"type": "boolean"},
+    "rendered": {"type": "boolean"},
+    "capability_map": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "shotPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "footage_ref": {"type": "string"},
+        "identity_pick": {"type": "string"},
+        "caption_model": {"type": "string"},
+        "hero_anchor": {"type": "string"},
+        "proof_times": {"type": "array", "items": {"type": "number"}}
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step", "state"],
+        "properties": {
+          "step": {"enum": ["setup", "prepare", "plan", "design", "build", "verify", "finalize"]},
+          "state": {"enum": ["pending", "in-progress", "gate-passed", "user-approved"]}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"operation": {"const": "render-draft"}}, "required": ["operation"]},
+      "then": {"properties": {"editorialDecision": {"const": "use"}}, "required": ["editorialDecision"]}
+    }
+  ],
+  "$defs": {
+    "sourceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "startSeconds", "endSeconds", "absolute", "local"],
+      "properties": {
+        "sourceId": {"type": "string", "minLength": 1},
+        "startSeconds": {"type": "number", "minimum": 0},
+        "endSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "absolute": {
+          "type": "object",
+          "required": ["clockId", "startSeconds", "endSeconds"],
+          "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}
+        },
+        "local": {
+          "type": "object",
+          "required": ["clockId", "startSeconds", "endSeconds"],
+          "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}
+        }
+      }
+    }
+  }
+}

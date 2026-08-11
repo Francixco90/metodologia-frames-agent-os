@@ -7,6 +7,7 @@
 # - embed-overuse: embed_all true + rail_mode none (rail-first violated)
 # - linguistic-gate: missing caption policy, caption track and verification
 schemaVersion: embedded-captions-v1
+operation: render-draft # legacy-v1-new-draft-blocked
 projectId: bad-captions
 route: content-os-embedded-captions
 mode: standard

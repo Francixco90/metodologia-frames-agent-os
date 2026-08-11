@@ -1,0 +1,7 @@
+schemaVersion: embedded-captions-v1
+operation: read
+projectId: archived-caption-job
+route: content-os-embedded-captions
+footage: true
+offline: true
+steps: []
