@@ -1,0 +1,17 @@
+{
+  "schema_version": "candidate-profile-v1",
+  "candidate_id": "CAND-SYNTH-RUNTIME-001",
+  "display_name": "Alex Example",
+  "headline": "Synthetic transformation leader",
+  "role_families": [
+    "Strategy and transformation"
+  ],
+  "languages": [
+    "es",
+    "en"
+  ],
+  "private_profile_ref": "fixtures/runtime/verified/profile-source.json",
+  "source_hashes": [
+    "2542226fe59ff12bb8354fe992542d62c93d0f35d4472b2429272f6735b8c6fe"
+  ]
+}
