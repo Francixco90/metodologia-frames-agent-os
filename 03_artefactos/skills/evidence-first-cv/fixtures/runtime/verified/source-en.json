@@ -3,7 +3,7 @@
   "candidate_id": "CAND-SYNTH-RUNTIME-001",
   "application_id": null,
   "language": "en",
-  "design_profile": "metodologia-career",
+  "design_profile": "candidate-neutral-ats",
   "authorized_brand": null,
   "generated_by": "MetodologIA",
   "name": "Alex Example",
@@ -117,13 +117,13 @@
       "rationale": null
     }
   ],
-  "content_sha256": "b666520d5aa05d7cf3eb16b8407fdee148d7725ded1d8b07e35e9af20cc1a877",
+  "content_sha256": "a13739b8434c25353831c8417adc66b7ec0ecc4531e8b9d79264c31bacb20f25",
   "schema_version": "career-cv-v2",
   "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
-  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+  "spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0",
   "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
   "output_intent": "general",
-  "audience": "recruiter",
+  "audience": "ats",
   "page_budget": 1,
   "section_order": [
     "summary",

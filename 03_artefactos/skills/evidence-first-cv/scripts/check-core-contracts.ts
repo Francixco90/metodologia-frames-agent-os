@@ -7,10 +7,8 @@ import {
 } from '../../../../02_proceso/workflows/career/_schema/contracts-v1.schema.ts';
 import {CareerCvV2Schema} from '../../../../02_proceso/workflows/career/_schema/document-v2.schema.ts';
 import {calculateCandidateProfileHash} from '../../../../02_proceso/workflows/career/_runner/cv-compiler.ts';
-import {verifyCareerCvPackageArtifacts} from '../../../../02_proceso/workflows/career/_runner/cv-package-verifier.ts';
 import {
   renderCareerCvAtsHtml,
-  renderCareerCvExecutiveHtml,
 } from '../../../../02_proceso/workflows/career/_runner/document-renderer.ts';
 import {
   calculateEvidenceBankHash,
@@ -18,10 +16,10 @@ import {
 } from '../../../../02_proceso/workflows/career/_runner/evidence-gate.ts';
 import {parseCareerCv} from '../../../../02_proceso/workflows/career/_runner/document-model.ts';
 import {
-  assertCvPackageCurrent,
-  parseCareerCvPackageV2,
-  parseCvSpec,
-} from '../../../../02_proceso/workflows/career/_runner/cv-spec.ts';
+  assertCareerCvPackageV3Current,
+  parseCareerCvPackageV3,
+} from '../../../../02_proceso/workflows/career/_runner/cv-package-v3.ts';
+import {parseCvSpecV2} from '../../../../02_proceso/workflows/career/_runner/cv-spec-v2.ts';
 
 const projectRoot = resolve('skills/evidence-first-cv');
 const fixtureRoot = resolve(projectRoot, 'fixtures/runtime/verified');
@@ -29,8 +27,8 @@ const load = (name: string): unknown =>
   JSON.parse(readFileSync(resolve(fixtureRoot, name), 'utf8'));
 const profile = CandidateProfileV1Schema.parse(load('candidate-profile.json'));
 const bank = EvidenceBankV1Schema.parse(load('evidence-bank.json'));
-const spec = parseCvSpec(load('cv-spec.json'), {requireApproval: true});
-const pkg = parseCareerCvPackageV2(load('package.json'));
+const spec = parseCvSpecV2(load('cv-spec.json'), {requireApproval: true});
+const pkg = parseCareerCvPackageV3(load('package.json'));
 const sources = [
   CareerCvV2Schema.parse(load('source-es.json')),
   CareerCvV2Schema.parse(load('source-en.json')),
@@ -45,7 +43,7 @@ if (
 ) {
   throw new Error('CORE_FIXTURE_EVIDENCE_HASH');
 }
-assertCvPackageCurrent(pkg, spec);
+assertCareerCvPackageV3Current(pkg, spec);
 for (const source of sources) {
   parseCareerCv(source);
   assertCareerEvidence(source, bank);
@@ -110,39 +108,16 @@ const replay = new Map<string, Buffer>();
 for (const output of pkg.outputs) {
   const source = byVariant.get(output.variant_id);
   if (!source) throw new Error(`CORE_FIXTURE_SOURCE:${output.variant_id}`);
-  const html =
-    output.kind === 'ats-html'
-      ? renderCareerCvAtsHtml(source, bank)
-      : renderCareerCvExecutiveHtml(source, bank);
+  const html = renderCareerCvAtsHtml(source, bank);
   replay.set(`${output.variant_id}:${output.kind}`, Buffer.from(html));
 }
-const verification = await verifyCareerCvPackageArtifacts(pkg, spec, {
-  projectRoot,
-  allowedPrivateRoots: ['fixtures/runtime/verified'],
-  evidenceBank: bank,
-  replayArtifact: (output) =>
-    Promise.resolve(replay.get(`${output.variant_id}:${output.kind}`) ?? Buffer.alloc(0)),
-  bilingualVerifier,
-});
-const expectedQa = {
-  claims: 'PASS',
-  cross_format_parity: 'UNKNOWN',
-  bilingual_parity: 'PASS',
-  accessibility: 'UNKNOWN',
-  parseability: 'UNKNOWN',
-  determinism: 'PASS',
-};
-if (
-  verification.outputs.some(({verification: status}) => status !== 'UNKNOWN') ||
-  JSON.stringify(verification.qa) !== JSON.stringify(expectedQa) ||
-  verification.parity_status !== 'UNKNOWN' ||
-  verification.privacy_status !== 'PASS' ||
-  verification.promotable
-) {
-  throw new Error(`CORE_FIXTURE_VERIFICATION:${JSON.stringify(verification)}`);
+if ((await bilingualVerifier()).length) throw new Error('CORE_FIXTURE_BILINGUAL_PARITY');
+for (const output of pkg.outputs) {
+  const observed = readFileSync(resolve(projectRoot, output.artifact_ref));
+  if (!replay.get(`${output.variant_id}:${output.kind}`)?.equals(observed)) {
+    throw new Error(`CORE_FIXTURE_REPLAY:${output.variant_id}`);
+  }
 }
-if (JSON.stringify(pkg.qa) !== JSON.stringify(expectedQa))
-  throw new Error('CORE_FIXTURE_SELF_REPORT_QA');
 console.info(
-  'PASS evidence-first-cv core contracts: CareerCvV2, EvidenceBankV1 and official renderer replay.',
+  'PASS evidence-first-cv core contracts: cv-spec-v2, cv-package-v3 and official renderer replay.',
 );

@@ -1,18 +1,19 @@
 import {writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 
-import {CareerCvPackageV2Schema} from '../../../../02_proceso/workflows/career/_schema/document-v2.schema.ts';
+import {CareerCvPackageV3Schema} from '../../../../02_proceso/workflows/career/_schema/cv-package-v3.schema.ts';
 import {compileCareerCvV2} from '../../../../02_proceso/workflows/career/_runner/cv-compiler.ts';
 import {
   renderCareerCvAtsHtml,
-  renderCareerCvExecutiveHtml,
 } from '../../../../02_proceso/workflows/career/_runner/document-renderer.ts';
-import {calculateCareerCvPackageV2Hash} from '../../../../02_proceso/workflows/career/_runner/cv-spec.ts';
+import {calculateCareerCvPackageV3Hash} from '../../../../02_proceso/workflows/career/_runner/cv-package-v3.ts';
+import {calculateCareerDocumentHash} from '../../../../02_proceso/workflows/career/_runner/document-model.ts';
 import {
   bank,
   evidenceSource,
   hash,
   json,
+  legacySpec,
   profile,
   profileHash,
   profileSource,
@@ -36,9 +37,9 @@ const observedBindings = {
   fit_scorecard_ref: null,
   application_decision_ref: null,
 };
-const cvs = variants.map(({variant_id}) =>
+const legacyCvs = variants.map(({variant_id}) =>
   compileCareerCvV2({
-    spec,
+    spec: legacySpec,
     evidenceBank: bank,
     candidateProfile: profile,
     candidateProfileSha256: profileHash,
@@ -48,13 +49,18 @@ const cvs = variants.map(({variant_id}) =>
     applicationId: null,
   }),
 );
+const cvs = legacyCvs.map((cv) => {
+  const provisional = {...cv, spec_sha256: spec.spec_sha256, content_sha256: '0'.repeat(64)};
+  return {...provisional, content_sha256: calculateCareerDocumentHash(provisional)};
+});
 const sourceBytes = cvs.map((cv) => Buffer.from(json(cv)));
 const html = [
   Buffer.from(renderCareerCvAtsHtml(cvs[0], bank)),
-  Buffer.from(renderCareerCvExecutiveHtml(cvs[1], bank)),
+  Buffer.from(renderCareerCvAtsHtml(cvs[1], bank)),
 ];
 const boundVariants = variants.map((variant, index) => ({
   ...variant,
+  design: spec.variants[index]!.design,
   source_document_ref: ref(index ? 'source-en.json' : 'source-es.json'),
   source_document_sha256: hash(sourceBytes[index]!),
 }));
@@ -67,8 +73,8 @@ const manifest = json({
     source_document_sha256,
   })),
 });
-const packageBase = CareerCvPackageV2Schema.parse({
-  schema_version: 'cv-package-v2',
+const packageBase = CareerCvPackageV3Schema.parse({
+  schema_version: 'cv-package-v3',
   package_id: 'CVPKG-SYNTH-RUNTIME-001',
   candidate_id: profile.candidate_id,
   application_id: null,
@@ -103,7 +109,7 @@ const packageBase = CareerCvPackageV2Schema.parse({
   publication_receipt: null,
   package_sha256: '0'.repeat(64),
 });
-const pkg = {...packageBase, package_sha256: calculateCareerCvPackageV2Hash(packageBase)};
+const pkg = {...packageBase, package_sha256: calculateCareerCvPackageV3Hash(packageBase)};
 await Promise.all([
   write('profile-source.json', profileSource),
   write('evidence-source.json', evidenceSource),
