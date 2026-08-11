@@ -1,0 +1,22 @@
+skill_id: content-os-transcript-intelligence
+version: 0.1.0
+lifecycle_state: evaluated
+execution_scope: local-evaluation
+content_origin: locally_authored_from_governed_derived_sources
+external_fragments_reused: false
+publication_authority: false
+compatibility_contract: transcript-intelligence-v1
+authority_refs:
+  - skills/content-os-transcript-intelligence/source-manifest.yml
+  - skills/content-os-transcript-intelligence/schemas/transcript-intelligence-v1.schema.json
+  - skills/content-os-media/SKILL.md
+  - skills/content-os-general-video/SKILL.md
+  - skills/content-os-embedded-captions/SKILL.md
+adaptation_notes: >
+  Capa transversal ASR-to-caption-to-semantic-to-narrative. Separa literal,
+  edición pública, coaching privado y assembly maps. Importa conocimiento
+  derivado hash-bound, no libros externos ni testimonios privados. Sin audio
+  no evalúa pronunciación o dicción. Máximo local-evaluation; no publica.
+promotion_blockers:
+  - independent_guardian_review_pending
+  - global_source_authority_registration_pending

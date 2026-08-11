@@ -1,0 +1,76 @@
+schema_version: transcript-intelligence-sources-v1
+manifest_id: COSTI-SOURCES-001
+policy: derived-knowledge-first
+runtime_external_dependencies: []
+sources:
+  - source_id: SRC-K12-MULTIMEDIA
+    title: K12 Audio Voice Music Captions and Transcript Specifications
+    authority_class: first_party_reference
+    source_sha256: f02f101411e125686310a1f1342e9575805199baea9f107afc888a3ac0d2de3f
+    rights: allowed_internal_architecture_and_local_evaluation
+    disposition: ADAPT
+    derived_refs:
+      - ref: references/language-quality-policy.md
+        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+      - ref: references/caption-editing-policy.md
+        sha256: 514d595459c06bbcbee1c3860c2dbf0518fc068d09c23908560a5555a6d57c63
+  - source_id: SRC-STORYTELLING-SEED
+    title: MetodologIA Storytelling Body of Knowledge
+    authority_class: first_party_seed
+    source_sha256: 059633cd079bad6ceb65ba7714ba038810698a7c3a2e63e3bf19b3705461a72a
+    rights: MetodologIA-internal-derived-use
+    disposition: ADAPT
+    derived_refs:
+      - ref: references/narrative-mining.md
+        sha256: fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45
+  - source_id: SRC-COPYWRITING-SEED
+    title: MetodologIA Copywriting Body of Knowledge
+    authority_class: first_party_seed
+    source_sha256: 6a5e0186243c4579e586a23db7b9e08a9f1a3161b609dac6c5f8c6bb29558d97
+    rights: MetodologIA-internal-derived-use
+    disposition: ADAPT
+    derived_refs:
+      - ref: references/narrative-mining.md
+        sha256: fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45
+  - source_id: SRC-INPUT-ANALYSIS
+    title: MetodologIA Input Analysis Patterns
+    authority_class: first_party_seed
+    source_sha256: 723797c8c752af9c5fa857bdbd0446f4ca6027bc15661e125243323457a9caec
+    rights: MetodologIA-internal-derived-use
+    disposition: ADAPT
+    derived_refs:
+      - ref: references/language-quality-policy.md
+        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+      - ref: references/semantic-retrieval.md
+        sha256: efd3e416cd6202cdfcea46bc23a520fc7cfb25ab9c20013281b7f1b0a05404dd
+  - source_id: SRC-DUARTE-BIBLIOGRAPHY
+    title: Resonate and DataStory bibliographic principles
+    authority_class: external_bibliography
+    source_sha256: 059633cd079bad6ceb65ba7714ba038810698a7c3a2e63e3bf19b3705461a72a
+    rights: citation-and-derived-principles-only
+    disposition: REFERENCE
+    derived_refs:
+      - ref: references/narrative-mining.md
+        sha256: fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45
+  - source_id: SRC-CAMPAIGN-LESSONS
+    title: Sanitized transcript campaign lessons
+    authority_class: private-regression-derived
+    source_sha256: 630989a24e2c65d701b6c614d4a428ae5d394134ed2213e9bc6db7bc5a7c9c42
+    rights: private-analysis-no-media-copy
+    disposition: ADAPT
+    derived_refs:
+      - ref: references/language-quality-policy.md
+        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+      - ref: assets/semantic-intents.json
+        sha256: 029886b04a6761b27f5b64e696965e898bb1f83125a2709fd6bd83632714f4a2
+deduplication:
+  strategy: sha256-canonical-plus-alias
+  copied_external_books: false
+  copied_private_transcripts: false
+rejected_rules:
+  - rule_id: REJECT-DIAGNOSE-DYSLEXIA-FROM-TEXT
+    reason: unsupported-diagnostic-inference
+  - rule_id: REJECT-SCORE-GLOBAL-ENGLISH-FROM-CLIP
+    reason: scope-and-bias-risk
+  - rule_id: REJECT-NOTES-AS-LITERAL-TRANSCRIPT
+    reason: authority-class-confusion
