@@ -6,6 +6,10 @@ import {
   approveCvSpec,
   createCvSpec,
 } from '../../../../../02_proceso/workflows/career/_runner/cv-spec.ts';
+import {
+  approveCvSpecV2,
+  migrateCvSpecV1ToV2,
+} from '../../../../../02_proceso/workflows/career/_runner/cv-spec-v2.ts';
 
 export const ref = (name: string): string => `fixtures/runtime/verified/${name}`;
 export const hash = (value: Buffer | string): string =>
@@ -123,13 +127,13 @@ export const variants = [
   {
     variant_id: 'CVVAR-SYNTH-RUNTIME-EN',
     language: 'en' as const,
-    audience: 'recruiter' as const,
-    output_kinds: ['executive-html' as const],
+    audience: 'ats' as const,
+    output_kinds: ['ats-html' as const],
     page_budget: 1,
-    design_profile: 'metodologia-career' as const,
+    design_profile: 'candidate-neutral-ats' as const,
   },
 ];
-export const spec = approveCvSpec(
+export const legacySpec = approveCvSpec(
   createCvSpec({
     schema_version: 'cv-spec-v1',
     spec_id: 'CVSPEC-SYNTH-RUNTIME-001',
@@ -187,3 +191,7 @@ export const spec = approveCvSpec(
   }),
   {approver_ref: 'H01', approved_at: '2026-08-11T12:00:00-05:00'},
 );
+export const spec = approveCvSpecV2(migrateCvSpecV1ToV2(legacySpec), {
+  approver_ref: 'H01',
+  approved_at: '2026-08-11T12:05:00-05:00',
+});

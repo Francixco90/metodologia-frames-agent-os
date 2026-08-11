@@ -1,0 +1,33 @@
+{
+  "schema_version": "cv-package-v3-negative-fixtures-v1",
+  "active_contract": "cv-package-v3",
+  "cases": [
+    {"id": "spec_not_approved", "expected": "BLOCKED"},
+    {"id": "duplicate_variant", "expected": "BLOCKED"},
+    {"id": "duplicate_output", "expected": "BLOCKED"},
+    {"id": "output_matrix_mismatch", "expected": "BLOCKED"},
+    {"id": "artifact_hash_mismatch", "expected": "BLOCKED"},
+    {"id": "self_reported_pass_without_evidence", "expected": "BLOCKED"},
+    {"id": "bilingual_identity_drift", "expected": "BLOCKED"},
+    {"id": "bilingual_role_drift", "expected": "BLOCKED"},
+    {"id": "bilingual_date_drift", "expected": "BLOCKED"},
+    {"id": "bilingual_metric_drift", "expected": "BLOCKED"},
+    {"id": "bilingual_attribution_drift", "expected": "BLOCKED"},
+    {"id": "page_budget_exceeded", "expected": "BLOCKED"},
+    {"id": "hidden_keyword_content", "expected": "BLOCKED"},
+    {"id": "html_javascript", "expected": "BLOCKED"},
+    {"id": "html_module_script", "expected": "BLOCKED"},
+    {"id": "html_json_script_wrong_id", "expected": "BLOCKED"},
+    {"id": "html_json_script_with_src", "expected": "BLOCKED"},
+    {"id": "html_json_script_invalid_payload", "expected": "BLOCKED"},
+    {"id": "html_expected_inert_json", "expected": "BLOCKED"},
+    {"id": "remote_asset", "expected": "BLOCKED"},
+    {"id": "published_without_receipt", "expected": "BLOCKED"},
+    {"id": "receipt_hash_mismatch", "expected": "BLOCKED"},
+    {"id": "pdf_evidence_unavailable", "expected": "BLOCKED"},
+    {"id": "unmeasured_ats_percentage", "expected": "BLOCKED"},
+    {"id": "executive_without_design_decision", "expected": "BLOCKED"},
+    {"id": "ats_with_design_binding", "expected": "BLOCKED"},
+    {"id": "stale_design_system_hash", "expected": "BLOCKED"}
+  ]
+}
