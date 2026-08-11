@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "video-spec-v1", "specId": "synthetic-video", "state": "SPEC_APPROVED",
+  "sourcePackRef": "source-pack.json", "sourcePackSha256": "2bae4b9cf1deec3a9e9c15b4322b1787c98a7a99de2c1112bf97cb1df8a6297b",
+  "objective": {"audience": "local verifier", "outcome": "verify the harness", "primaryMessage": "Evidence precedes rendering.", "cta": "Review"},
+  "deliverable": {"type": "custom", "durationSeconds": 1, "aspectRatios": ["9:16"], "languages": ["es"], "channels": ["synthetic"]},
+  "narrative": {"structure": "evidence to impact", "requiredClaimIds": ["claim-workflow"], "prohibitedClaimIds": []},
+  "visual": {"brandProfileRef": "asset-manifest.json", "motionCeiling": "subtle", "safeZones": "vertical-default"},
+  "audio": {"mode": "sync_sound", "captionsRequired": true},
+  "accessibility": {"contrast": "WCAG_AA", "flashing": "prohibited", "captionPolicy": "minimal-clarity"},
+  "assets": {"rightsRequired": true, "remoteAtRender": false},
+  "runtime": {"preferred": "ffmpeg", "fallback": "editorial"},
+  "acceptance": {"editorial": ["claim verified"], "visual": ["safe zones"], "technical": ["offline"], "humanReview": "required"},
+  "limits": ["local-evaluation only"], "assumptions": [], "coverageGaps": []
+}

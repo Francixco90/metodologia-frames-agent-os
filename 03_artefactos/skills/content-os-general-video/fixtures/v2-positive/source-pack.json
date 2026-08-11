@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "source-pack-v1",
+  "sourcePackId": "synthetic-pack",
+  "state": "FROZEN",
+  "sources": [{
+    "id": "synthetic-source", "ref": "source.txt",
+    "sha256": "c33a6b1ee2df4a4a724f18506437fbaab5c4dfe3e31887c89c6aaba4c4f27da4",
+    "provenance": "locally-authored synthetic fixture", "rights": "owned", "authority": "first-party",
+    "limitations": ["synthetic-only"], "claimIds": ["claim-workflow"]
+  }]
+}

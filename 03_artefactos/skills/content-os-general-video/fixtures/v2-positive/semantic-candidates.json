@@ -1,0 +1,1 @@
+{"embeddingMode":"none","segments":[{"id":"s1","sourceId":"synthetic-source","startMs":0,"endMs":1000,"text":"Un flujo verificable.","entities":["dashboard"],"topics":["workflow"],"actions":["demonstrates"],"relations":["speaker-demonstrates-dashboard"],"visualRefs":["frame-12"]}]}
