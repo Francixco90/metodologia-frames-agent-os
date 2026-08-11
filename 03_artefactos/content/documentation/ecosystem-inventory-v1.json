@@ -2994,6 +2994,20 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "cv-design-brief-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-design-decision-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "cv-executive-html-v1",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
@@ -3015,6 +3029,13 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "cv-package-v3",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "cv-source-v1",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
@@ -3030,6 +3051,13 @@
     {
       "kind": "DELIVERABLE",
       "id": "cv-spec-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-spec-v2",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -6416,5 +6444,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "7945672d063d1a746f4ece8de643e76406fae31031a0086438e1a710f124ee50"
+  "sourceSha256": "9af6fc2c53887412a2d9fe2b0c8d0ed9a227e63a6e73c3b186eea9cae6d8f882"
 }
