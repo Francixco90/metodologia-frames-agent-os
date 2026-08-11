@@ -179,11 +179,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-slideshow/scripts/check-skill.mjs]
   - skill_id: content-os-general-video
-    version: 0.6.0
+    version: 0.7.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: b9ad71e3aef7bca50b8e507d642bc12eb0d642045e8d946da74f1ef8995b9f6c
-    package_manifest_sha256: 40808d6d1922c122585f12980c3cab26d3a4dc5240c91c1c0fc95e7a43fc8f9d
+    content_sha256: e24c7a38ace5b90d2758d27e651a46d933f3b3b37c4cadcd61f7e46d3e8b12a2
+    package_manifest_sha256: 458abbe27bd0a1e801ad1f30ed48392afb121870a88a949d90e152872874b116
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2048,6 +2048,7 @@ events:
   - {event_id: EVT-SKL-CGV-H03-005, event_order: 5, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-06T00:00:00Z', decision: densify_skill_corpus_to_1200w_budget_via_references_module_split}
   - {event_id: EVT-SKL-CGV-H03-006, event_order: 6, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_spec_first_video_contract_and_brand_primitives}
   - {event_id: EVT-SKL-CGV-H03-007, event_order: 7, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: close_guardian_bypasses_and_reuse_body_streams}
+  - {event_id: EVT-SKL-CGV-H03-008, event_order: 8, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: confine_state_and_runtime_trust_anchors}
   - {event_id: EVT-SKL-CRB-H03-001, event_order: 1, skill_id: content-os-remotion-bridge, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
