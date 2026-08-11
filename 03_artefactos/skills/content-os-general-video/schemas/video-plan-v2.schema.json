@@ -1,6 +1,29 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"video-plan-v2","type":"object","additionalProperties":false,
-  "required":["schemaVersion","specId","specSha256","generatedFrom","pieces"],
-  "properties":{"schemaVersion":{"const":"video-plan-v2"},"specId":{"type":"string"},"specSha256":{"$ref":"#/$defs/hash"},"generatedFrom":{"$ref":"#/$defs/generated"},"pieces":{"type":"array","items":{"type":"object","required":["id","pieceDefinitionSha256","cacheKey","layerKeys","cacheStatus","invalidatedBy","output"],"properties":{"id":{"type":"string"},"pieceDefinitionSha256":{"$ref":"#/$defs/hash"},"cacheKey":{"$ref":"#/$defs/hash"},"layerKeys":{"type":"object","additionalProperties":{"$ref":"#/$defs/hash"}},"cacheStatus":{"enum":["hit","miss"]},"invalidatedBy":{"type":"array","items":{"type":"string"}},"output":{"type":"string"},"render":{"type":"object"}}}}},
-  "$defs":{"hash":{"type":"string","pattern":"^[a-f0-9]{64}$"},"generated":{"type":"object","required":["sourcePackSha256","specSha256","scriptSha256","pieceScriptsSha256","assetManifestSha256"],"additionalProperties":{"$ref":"#/$defs/hash"}}}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-plan-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "generatedFrom", "pieces"],
+  "properties": {
+    "schemaVersion": {"const": "video-plan-v2"},
+    "specId": {"type": "string"},
+    "specSha256": {"$ref": "#/$defs/hash"},
+    "generatedFrom": {"$ref": "#/$defs/generated"},
+    "pieces": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "pieceDefinitionSha256", "cacheKey", "layerKeys", "reusedLayers", "cacheStatus", "invalidatedBy", "output"],
+      "properties": {
+        "id": {"type": "string"}, "pieceDefinitionSha256": {"$ref": "#/$defs/hash"}, "cacheKey": {"$ref": "#/$defs/hash"},
+        "layerKeys": {"type": "object", "additionalProperties": {"$ref": "#/$defs/hash"}},
+        "reusedLayers": {"type": "array", "items": {"enum": ["body", "caption", "overlay", "curtain", "audio"]}},
+        "cacheStatus": {"enum": ["hit", "miss"]}, "invalidatedBy": {"type": "array", "items": {"type": "string"}},
+        "output": {"type": "string"}, "outputSha256": {"$ref": "#/$defs/hash"},
+        "render": {"type": "object", "additionalProperties": false, "required": ["engine", "mode", "args"], "properties": {"engine": {"const": "ffmpeg"}, "mode": {"enum": ["encode", "audio-remux"]}, "args": {"type": "array", "items": {"type": "string"}}}}
+      }
+    }}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "generated": {"type": "object", "required": ["sourcePackSha256", "specSha256", "scriptSha256", "pieceScriptsSha256", "assetManifestSha256"], "additionalProperties": {"$ref": "#/$defs/hash"}}
+  }
 }

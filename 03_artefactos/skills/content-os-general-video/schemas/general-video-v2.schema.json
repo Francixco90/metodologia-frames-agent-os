@@ -3,7 +3,7 @@
   "$id": "general-video-v2",
   "title": "Frames ContentOS General Video SPEC-first workflow state",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": ["schemaVersion", "contractRevision", "projectId", "route", "artifactVisibility", "offline", "flow", "storyboard", "sourcePackRef", "sourcePackSha256", "specRef", "specId", "specSha256", "scriptMode", "scriptRef", "scriptSha256", "pieceScriptsRef", "pieceScriptsSha256", "assetManifestRef", "assetManifestSha256", "buildManifestRef", "reviewReceiptRef", "renderPolicy", "workProductState", "steps"],
   "properties": {
     "schemaVersion": {"const": "general-video-v2"},

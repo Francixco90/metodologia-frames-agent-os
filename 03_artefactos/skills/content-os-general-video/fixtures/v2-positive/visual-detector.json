@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "visual-detector-v1",
+  "engine": "tesseract",
+  "versionPrefix": "tesseract 5.",
+  "sampleRatios": [0, 0.5, 0.9583333333],
+  "forbiddenTerms": ["Gemini", "Google Meet", "Zoom", "Microsoft Teams", "Software Útil con IA"],
+  "forbiddenFrameSha256": [],
+  "coverage": ["ocr-text", "exact-frame-signatures"],
+  "failClosed": true
+}
