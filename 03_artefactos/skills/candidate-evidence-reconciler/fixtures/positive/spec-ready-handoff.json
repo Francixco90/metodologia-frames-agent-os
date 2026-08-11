@@ -1,0 +1,14 @@
+{
+  "schema_version": "candidate-evidence-handoff-v1",
+  "candidate_id": "CAND-SYNTH-001",
+  "bank_id": "EBANK-SYNTH-001",
+  "bank_ref": "work/private/career/evidence/evidence-bank.json",
+  "bank_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source_manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "eligible_evidence_ids": ["EVD-SYNTH-001"],
+  "prohibited_evidence_ids": ["EVD-SYNTH-002"],
+  "blocking_contradiction_ids": [],
+  "gap_ids": ["GAP-SYNTH-002"],
+  "state": "READY_FOR_SPEC",
+  "next_gate": "CR_CV_SPEC_DRAFT"
+}

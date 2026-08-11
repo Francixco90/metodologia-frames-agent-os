@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "ece353652d59a517b54811da6de347496c9bb453c29bd3143d53f5d543d23a6e",
+  "repositoryTreeSha256": "a4cdc477df205c4b4f8220a69f45be20e7bfb52645c57b7bdd4d3a53a3836321",
   "totalMarkdown": 1785,
   "auditedAuthored": 548,
   "classPaths": {
@@ -9810,9 +9810,9 @@
       "sourceRef": "03_artefactos/skills/candidate-evidence-reconciler/references/evidence-policy.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "d204a7c66954c84375ac836342560a3350b85419c16ef7d86a9cd3dfdfac7578",
-      "words": 96,
-      "lines": 20,
+      "sha256": "22b69bfab8614d478ed0ad65af9ecb4690d6e7a6d80a0a1c1b19124f82a5cda6",
+      "words": 138,
+      "lines": 27,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",

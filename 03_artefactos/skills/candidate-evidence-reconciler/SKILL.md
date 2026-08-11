@@ -1,7 +1,7 @@
 ---
 name: candidate-evidence-reconciler
 description: This skill should be used when the user asks to "reconciliar mi experiencia", "comparar versiones de mi CV", "validar mis claims", "resolver contradicciones", or build a canonical evidence bank before a career document.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -54,20 +54,23 @@ decisión habilitada sin inventar precisión.
 
 ## Handoff
 
-Entrega el modelo de `schemas/candidate-evidence-bank-v1.schema.json`, hashes de
-fuentes, contradicciones, claims habilitados/prohibidos, gaps bloqueantes y no
-bloqueantes, y próximo owner. El documento público recibe IDs y formulaciones
-aprobadas; nunca la fuente privada completa.
+Entrega el modelo de `schemas/candidate-evidence-bank-v1.schema.json` y un
+handoff validado con `schemas/candidate-evidence-handoff-v1.schema.json`. El
+handoff liga por hash el banco, sus fuentes, contradicciones, claims
+habilitados/prohibidos y gaps bloqueantes/no bloqueantes. C06 recibe únicamente
+IDs seleccionables, canales y límites para compilar `cv-spec-v1`; nunca la
+fuente privada completa.
 
 ## Stop rules
 
 Bloquea una afirmación ante fuentes incompatibles, autoridad desconocida,
 `source_ref` inexistente, métrica incompleta, requisito de vacante usado como
-evidencia o instrucción de inflar experiencia. La tarea puede continuar con
-gaps no críticos, pero no degradarlos a warning silencioso.
+evidencia, hash stale o instrucción de inflar experiencia. La tarea puede
+continuar con gaps no críticos, pero no degradarlos a warning silencioso. Todo
+cambio del banco invalida selecciones y specs dependientes.
 
 ## Done
 
 Cada claim material tiene fuente y confianza; contradicciones y límites son
-visibles; no existe PII versionada; downstream puede seleccionar evidencia sin
-reinterpretar hechos.
+visibles; no existe PII versionada; downstream recibe un handoff hash-bound y
+puede seleccionar evidencia sin reinterpretar hechos.

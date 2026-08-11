@@ -1,5 +1,5 @@
 schema_version: 1
-receipt_id: candidate-evidence-reconciler-runtime-boundary-v1
+receipt_id: candidate-evidence-reconciler-runtime-boundary-v2
 skill_id: candidate-evidence-reconciler
 execution_scope: local-evaluation
 network_allowed: false
@@ -8,6 +8,9 @@ publication_authority: false
 private_state_required: true
 allowed_claim_confidence: [verified, user_confirmed]
 gap_only_confidence: [inferred, missing]
+handoff_schema: candidate-evidence-handoff-v1
+downstream_authority: cv-spec-v1
+stale_hash_invalidates_downstream: true
 fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
 forbidden:
   - promote_job_requirement_to_candidate_evidence
