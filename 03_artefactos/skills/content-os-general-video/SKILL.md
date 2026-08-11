@@ -3,7 +3,7 @@ name: content-os-general-video
 description: This skill should be used when the user asks to "author a custom video", "build a brand reel or sizzle reel", "make a montage", "build a multi-scene video when no specialized workflow fits", "remix existing footage", "build a static title card or loop", or "co-create a freeform video (companion flow)".
 version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Orchestrates content-os-core (HTML composition + seek-safe GSAP), content-os-animation (blueprints/rules), content-os-keyframes (pose/lint), content-os-creative (brand/story-spine/genre lenses), content-os-media (offline + remote-opt-in), content-os-registry (blocks), content-os-router (dispatch). Input = freeform brief. Output = MP4 (RENDERED_DRAFT). Companion or automation flow.
+compatibility: Orchestrates content-os-core (HTML composition + seek-safe GSAP), content-os-animation (blueprints/rules), content-os-keyframes (pose/lint), content-os-creative (brand/story-spine/genre lenses), content-os-media (ASR candidate), content-os-transcript-intelligence (linguistic/semantic/narrative gate), content-os-registry (blocks), content-os-router (dispatch). Input = freeform brief. Output = MP4 (RENDERED_DRAFT). Companion or automation flow.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -76,6 +76,10 @@ tl.seek(frame/fps)); offline-first render path; scope exact.
      `content-os-media`. Named styles via treatments ref. Antes del primer provider
      autenticado, relay auth; si signed out, gate (collaborative waits / autonomous
      offline). Local-only no requiere auth.
+   - **Speech intelligence**: si `vo_mode: transcribed`, ejecutar
+     `content-os-transcript-intelligence` con audio. Consumir exclusivamente
+     `caption-track.json`, `semantic-index.json`, `narrative-map.json` y una
+     verificación `deterministic-passed`.
    - **Figma**: si input es `figma.com` URL, build from exported assets/tokens (no connector
      calls).
 3. Verificar `content-os-core` HTML composition contract.
@@ -102,20 +106,23 @@ scripts privados). Detalle en `references/genre-lenses.md`.
    capabilities.
 2. **Scope exact.** Build lo que el user pidió. Un title card no es title card + scenes +
    music + captions. Offer additions antes de añadir. `scope_expanded: true` = `scope-creep`.
-3. **Render-path offline-first.** Compositions + frames + composite offline. Media:
+3. **Compuerta lingüística.** Voz transcrita requiere `scriptMode: transcript_derived`,
+   `captionPolicyRef`, `transcriptIntelligenceRef` y `narrativeMapRef`. Nombres,
+   cifras, productos o claims materiales ambiguos bloquean captions y render.
+4. **Render-path offline-first.** Compositions + frames + composite offline. Media:
    offline default, remote opt-in auth-gated.
-4. **Deterministic.** Mismo brief + plan + frames → mismo render. Sin
+5. **Deterministic.** Mismo brief + plan + frames → mismo render. Sin
    `Date.now()`/`Math.random()`/`new Date()` en compositions.
-5. **Seek-safe.** GSAP `paused: true`, scrubbed to frame `t` (hereda
+6. **Seek-safe.** GSAP `paused: true`, scrubbed to frame `t` (hereda
    `content-os-animation`). No `repeat: -1`/`+=`/`transition:` animated elements.
-6. **Design before HTML.** Resolve design source: `frame.md` → `design.md` → `DESIGN.md`
+7. **Design before HTML.** Resolve design source: `frame.md` → `design.md` → `DESIGN.md`
    (first found = brand truth). Sin spec, completa 4 items (identity, concept angle, fonts,
    focal/edge/supporting/bg) antes de HTML.
-7. **Render only after approval.** `rendered_before_approval: true` = `unapproved-render`
+8. **Render only after approval.** `rendered_before_approval: true` = `unapproved-render`
    violación. Preview tras checks pass. Render tras approval (Step 6).
-8. **Step-gated.** Cada step tiene gate. Sin gate, no avanzas. User-gated (0, 6) pausan.
-9. **Delegate on-demand.** Carga solo lo que el step activo necesita.
-10. **RENDERED_DRAFT != HUMAN_APPROVED.** `renders/final.mp4` = `RENDERED_DRAFT`. `finalize`
+9. **Step-gated.** Cada step tiene gate. Sin gate, no avanzas. User-gated (0, 6) pausan.
+10. **Delegate on-demand.** Carga solo lo que el step activo necesita.
+11. **RENDERED_DRAFT != HUMAN_APPROVED.** `renders/final.mp4` = `RENDERED_DRAFT`. `finalize`
     sin render = `no-render`. `READY`/publicación requiere gates G13-G17.
 
 ## Steps (router — detail en `references/steps-receta.md`)
@@ -123,7 +130,7 @@ scripts privados). Detalle en `references/genre-lenses.md`.
 | Step | Acción | Gate |
 | --- | --- | --- |
 | 0 Setup | Router brief (freeform). Escribir `workflow-state.yml`. | intent + state file |
-| 1 Plan | Viewer arc/structure/rhythm. Story-spine. Scene blocks en `STORYBOARD.md` (even when `storyboard: no`). Design spec (4 items). Ceiling si `companion`. | plan + spec + blocks |
+| 1 Plan | Para voz, pasar compuerta lingüística y consumir narrative map; luego viewer arc/structure/rhythm, story-spine y scene blocks. | linguistic PASS + plan + spec + blocks |
 | 2 Resolve | Install blocks (`content-os-registry`). Stage assets, adopt media. Audio early si drive duration. | deps + media + blocks |
 | 3 Build | Single-scene: scene at peak, then motion from cited rules. Multi-scene: inline si ≤6, fan out si más (2-3/worker). `window.__timelines`, `paused: true`. | scenes + motion + contract |
 | 4 Assemble | Mount scenes/media/transitions/audio (`content-os-core`). Real voice duration. Merge sidecars. | assembled + audio + transitions |
@@ -137,6 +144,7 @@ scripts privados). Detalle en `references/genre-lenses.md`.
 - Step user-gated sin approval: STOP, pedir approval.
 - Intent no confirmado (router no despachó general-video): STOP, re-route.
 - Sin brief: STOP, rutcea via `content-os-router`.
+- Voz sin audio o sin verificación lingüística `deterministic-passed`: STOP.
 - Brief encaja en especializado: STOP, hand off al correcto.
 
 ## Done

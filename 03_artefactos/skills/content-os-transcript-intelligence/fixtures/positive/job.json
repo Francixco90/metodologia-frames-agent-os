@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "transcript-intelligence-v1",
+  "projectId": "synthetic-closing-cases",
+  "source": {
+    "id": "SRC-SYNTH-CLOSING-001",
+    "kind": "meeting",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "rights": "synthetic-first-party",
+    "authority": "fixture",
+    "audioAvailable": false
+  },
+  "asrRef": "asr-candidate.json",
+  "notesRefs": ["editorial-notes.json"],
+  "authorityRef": "authority.json",
+  "languageProfile": {"primary": "es-CO", "secondary": ["en"]},
+  "policy": {"captionMode": "minimal-clarity", "privateCoaching": true, "publicPackage": true},
+  "narrative": {"purpose": "mostrar impacto verificable", "audience": "profesionales ocupados", "targetSeconds": 75}
+}

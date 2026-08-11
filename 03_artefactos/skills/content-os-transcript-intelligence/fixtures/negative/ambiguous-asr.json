@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "asr-candidate-v1",
+  "model": "synthetic-offline-asr",
+  "language": "es",
+  "segments": [
+    {"id": "a1", "speaker": "Participante", "startSeconds": 0, "endSeconds": 5, "text": "El resultado fue [AMBIGUO:93 o 39] por ciento.", "roles": ["impact"], "uncertainties": [{"token": "93 o 39", "material": true, "kind": "number"}]}
+  ]
+}

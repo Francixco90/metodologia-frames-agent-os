@@ -61,8 +61,8 @@ entries:
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 165a2e6447bee71ed42ef9a48233d4c5c9c9fb54db4aa0bf0d15fdaa84635643
-    package_manifest_sha256: 6f20cf2f720b571ce4a47284ae757482f3f6a4a02649b554b0b4c4f91109788e
+    content_sha256: 69ae2f9f295951aabb9b38437a1f01601fdc323f8ceccf172574b72abb0ca917
+    package_manifest_sha256: 0e24dfe701d773be0a25a95e76fb4e9e83a163a61f59541af39ce946eeedde21
     lineage_ref: skills/content-os-creative/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -72,13 +72,24 @@ entries:
     version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 446ebabf68c8962eeef65f822bfee62cc2bac4f0b8895d140cc6bbb5d9e2522b
-    package_manifest_sha256: 4c298b0b705ed020c61d75e6165e51e6300b1852b12472463426f6b38419c42a
+    content_sha256: 06af1a7172b94c364b2b66f2ae7362ab7818c4f9767527d6bbab3d1b0c053485
+    package_manifest_sha256: 25a635ef12e057b84d87c7e917d173b96a5cd10f0fcb7b6334134d918fe305ee
     lineage_ref: skills/content-os-media/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-media/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-media/scripts/check-skill.mjs]
+  - skill_id: content-os-transcript-intelligence
+    version: 0.1.0
+    current_state: evaluated
+    execution_scope: local-evaluation
+    content_sha256: 4d882b90eda7a1fcaf895cd3fdca2bf695846a1301c5fb9b7542bfe398d9dd72
+    package_manifest_sha256: 660e90dae5c6675fba1b386c141b7621965ead338d76b22dfe3c10e158438270
+    lineage_ref: skills/content-os-transcript-intelligence/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-transcript-intelligence/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only_promotion_blocked
+    publication_authority: false
+    tests: [node skills/content-os-transcript-intelligence/scripts/check-skill.mjs]
   - skill_id: content-os-registry
     version: 0.1.0
     current_state: active
@@ -94,8 +105,8 @@ entries:
     version: 0.7.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f35b2db93111982f8b0fd7dc18d1bb305f3fef762c6a66a952c8754e4aa5ca52
-    package_manifest_sha256: 2af6cb9dabf2c372961e2623fe93f80d088a49d94669ecf45d02c44bbd70beaf
+    content_sha256: 823912e2e9acd8d07654fd96e142880a0783930075db1391a52ef45501fa2514
+    package_manifest_sha256: dfe24f5f1a186a57ef9284f38416d17dc48c6aa5db63d155d19c89bc5fa98754
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -149,8 +160,8 @@ entries:
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 90452afef48dc1401130cb43412107048217a533bd60c7016ee18322a6d746a5
-    package_manifest_sha256: 5e67d3f43f7b19ec33a179dfe987c74c0841b184ea24be55be8cd1dcb6ad27e1
+    content_sha256: bc22199eed7a5142b5f9a39c823e13f95bd85422f1671a51ae016acde33e0e30
+    package_manifest_sha256: 7806b7b75ec3197ca22772ee61688857e064186011a8ebb51e1d858ec3309783
     lineage_ref: skills/content-os-embedded-captions/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-embedded-captions/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -171,8 +182,8 @@ entries:
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e995664a0923b4e3bd9ca9ff2637c98dce769099fae5397f190b87174e7226ab
-    package_manifest_sha256: 63bfc508c9e7cf67ab4825d5b08da914edb562c5dc375a90a31b7b751f5e1590
+    content_sha256: e069c88f4ea7fba377bb03665ac9f5c00251e23d39243eb94ad13398bab63269
+    package_manifest_sha256: 35b8562ebba400d6b2e661178fa8649af7228aae39ebe22512541d4b52ec3206
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -193,8 +204,8 @@ entries:
     version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 8c6d6d9e0cc7baf8d8daed1b761122d5157ab20674fe1f6b12e086826730d186
-    package_manifest_sha256: f6ef94c072ef4f439e70a7b9b6292176a9be04720104196856f0b8b4987862d8
+    content_sha256: ca88b7dd04093ac223b264f7eb271782dd9e9de869620931af7bc4c12ad3ea77
+    package_manifest_sha256: 2e62a9c643b3d0da967a1584096df023a27188556880951e7c8db516f24a1228
     lineage_ref: skills/content-os-talking-head-recut/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-talking-head-recut/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -369,8 +380,8 @@ entries:
     version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 32139929bd574cdeb4c1df4903b66b7f6a9ab315d63c949bd2abadfe24de4793
-    package_manifest_sha256: f433a3180ea85e26e0b32c5d1a6edeff616a31229623a625735114de9a5acaf5
+    content_sha256: 70b103a60594344e88652367aa48b31f1b7d50f98e2a21432198342290e9fdd1
+    package_manifest_sha256: 10167a6b7b7d5fdb7c98ada02bc457e56f79fad2c0a219711228600dc02b1323
     lineage_ref: skills/content-os-remotion-captions/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-remotion-captions/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2641,3 +2652,6 @@ events:
   - {event_id: EVT-SKL-SSAU-H03-002, event_order: 2, skill_id: skill-security-auditor, from: candidate, to: quarantined, actor_id: RT-07-SSS-SECURITY-PRODUCER}
   - {event_id: EVT-SKL-SSAU-H03-003, event_order: 3, skill_id: skill-security-auditor, from: quarantined, to: evaluated, actor_id: RT-09-SSS-SECURITY-VERIFIER}
   - {event_id: EVT-SKL-SSAU-H03-004, event_order: 4, skill_id: skill-security-auditor, from: evaluated, to: active, actor_id: RT-10-SSS-SECURITY-INTEGRATOR}
+  - {event_id: EVT-SKL-CTI-H03-001, event_order: 1, skill_id: content-os-transcript-intelligence, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTI-H03-002, event_order: 2, skill_id: content-os-transcript-intelligence, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
+  - {event_id: EVT-SKL-CTI-H03-003, event_order: 3, skill_id: content-os-transcript-intelligence, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: self_contained_transcript_intelligence_local_evaluation}

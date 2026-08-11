@@ -30,6 +30,7 @@ const VIOLATION_CODES = new Set([
   'network-in-workflow',
   'scope-creep',
   'unapproved-render',
+  'linguistic-gate',
 ]);
 
 const argv = process.argv.slice(2);
@@ -101,6 +102,14 @@ function auditObject(obj) {
   // unapproved-render checks (render only after Step 6 user approval)
   if (obj.rendered_before_approval === true) {
     violations.push({code: 'unapproved-render', detail: 'rendered_before_approval true'});
+  }
+  if (obj.vo_mode === 'transcribed') {
+    if (obj.scriptMode !== 'transcript_derived') {
+      violations.push({code: 'linguistic-gate', detail: 'scriptMode must be transcript_derived'});
+    }
+    for (const ref of ['captionPolicyRef', 'transcriptIntelligenceRef', 'narrativeMapRef']) {
+      if (!obj[ref]) violations.push({code: 'linguistic-gate', detail: `missing ${ref}`});
+    }
   }
   if (Array.isArray(obj.steps)) {
     auditSteps(obj.steps);

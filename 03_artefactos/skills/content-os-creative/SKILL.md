@@ -3,7 +3,7 @@ name: content-os-creative
 description: This skill should be used when the user asks to "apply brand tokens to a Frames ContentOS composition", "plan story beats and narration for a video", "pick a composition pattern (PiP, title card, stats)", "audit a creative brief for lazy defaults", or "resolve MetodologIA brand profile for a composition".
 version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, and the metodologia-brand-router (BrandProfileV2, VoiceProfileV2, ChannelProfileV1). Offline render profile only. No external fonts, no external assets, no network.
+compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, metodologia-brand-router (BrandProfileV2, VoiceProfileV2, ChannelProfileV1), and content-os-transcript-intelligence when story beats derive from speech. Offline render profile only. No external fonts, no external assets, no network.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -39,6 +39,8 @@ encima del contrato tecnico.
    defaults web genericos.
 4. Para multi-scene, planear beats y rhythm antes de escribir HTML. Ver
    `references/narration-and-pacing.md`.
+5. Si la fuente contiene voz, consumir `narrative-map.json`; cada beat conserva
+   `sourceSpan`. No convertir una nota editorial en una frase atribuida.
 
 ## Default: aplica brand router + house-style
 
@@ -71,6 +73,9 @@ si brandRef ausente o font/asset externo detectado.
    composicion de video no es una web page. Ver `references/composition-patterns.md`.
 4. **Story spine antes de HTML.** Hook, value-before-evidence, beats con timestamps.
    Narration = propuesta, no filler. Ver `references/narration-and-pacing.md`.
+   Para voz fuente, elegir un arco trazable: realidad↔posibilidad, transformación,
+   evidencia de impacto o promesa→prueba→CTA. Si falta evidencia: `extend`, `reframe`
+   o `discard`; nunca rellenar con prosa inventada.
 5. **Offline-first fonts/assets.** System fonts o fonts del brand bundle (pinned local,
    licencia resuelta). No Google Fonts CDN, no external assets, no network. Hereda
    `content-os-core` render adapter (hook rechaza no-`file:`/`data:`).

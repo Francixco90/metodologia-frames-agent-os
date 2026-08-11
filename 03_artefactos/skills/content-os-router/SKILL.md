@@ -1,6 +1,6 @@
 ---
 name: content-os-router
-description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
+description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "clean a transcript", "review diction or English pronunciation", "search a transcript semantically", "build a narrative arc from a recording", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
 version: 0.7.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
@@ -78,6 +78,7 @@ motion, marca, media y bloques reutilizables.
 
 | Prioridad | Deliverable                                                | Route (Fase 3)                    |
 | --------- | ---------------------------------------------------------- | --------------------------------- |
+| 0         | Transcribir, limpiar, subtitular, buscar o mapear narrativa | `content-os-transcript-intelligence` |
 | 1         | Explicar un GitHub PR / code change desde una PR reference | `content-os-pr-to-video`          |
 | 2         | Market/showcase un website/product/app desde URL o brief   | `content-os-website-to-video`     |
 | 3         | Explicar un topic/articulo/notes con invented visuals      | `content-os-faceless-explainer`   |
@@ -100,6 +101,7 @@ despachar solo capabilities (draft manual).
 | Seek-safe GSAP, pose contract, keyframe lint        | `content-os-keyframes` |
 | Brand, palette, typography, pacing, narration       | `content-os-creative`  |
 | Media resolve (offline cascade), TTS, transcription | `content-os-media`     |
+| Revisión lingüística, captions, búsqueda y narrativa | `content-os-transcript-intelligence` |
 | Reusable blocks + components                        | `content-os-registry`  |
 
 Capability skills nunca toman ownership del deliverable end-to-end. Carga solo
@@ -139,6 +141,9 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
    `content-os-core`. El workflow orquesta; el router solo enruta.
 8. **RENDERED_DRAFT != HUMAN_APPROVED.** El deliverable produce `RENDERED_DRAFT`.
    `READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
+9. **Voice gate.** Toda ruta basada en voz agrega
+   `content-os-transcript-intelligence` al capability map. Solicitudes de dicción,
+   pronunciación, limpieza, búsqueda o arco narrativo enrutan directamente allí.
 
 Las ambigüedades de medio, duración, URL, storyboard y overlays se resuelven con
 las reglas canónicas y casos borde de `references/routes.md`; este archivo no las

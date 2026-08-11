@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "editorial-notes-v1",
+  "authorityClass": "locator-only",
+  "notes": [
+    {"sourceSpan": "s3", "text": "La persona muestra una aplicación funcionando."},
+    {"sourceSpan": "s4", "text": "Existe un reconocimiento, verificar contra audio."}
+  ]
+}

@@ -4,6 +4,14 @@ projectId: metodologia-demo
 routerProfile: route-once
 offlineFirst: true
 intents:
+  - intentId: transcript-story-001
+    source_type: transcript
+    source_ref: local transcript fixture
+    deliverable: clean captions and build an evidence-bound narrative arc
+    route: content-os-transcript-intelligence
+    capability_map: [content-os-transcript-intelligence]
+    offline: true
+    workflow_status: available
   - intentId: pr-123-explainer
     source_type: github-pr
     source_ref: PR #123 feat/auth

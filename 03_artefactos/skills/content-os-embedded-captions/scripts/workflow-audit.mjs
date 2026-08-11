@@ -30,6 +30,7 @@ const VIOLATION_CODES = new Set([
   'network-in-workflow',
   'graded-footage',
   'embed-overuse',
+  'linguistic-gate',
 ]);
 
 const argv = process.argv.slice(2);
@@ -89,6 +90,14 @@ function auditObject(obj) {
   }
   if (obj.offline !== undefined && obj.offline !== true) {
     violations.push({code: 'network-in-workflow', detail: 'offline not true'});
+  }
+  if (obj.scriptMode !== undefined && obj.scriptMode !== 'transcript_derived') {
+    violations.push({code: 'linguistic-gate', detail: 'scriptMode must be transcript_derived'});
+  }
+  for (const ref of ['captionPolicyRef', 'captionTrackRef', 'transcriptIntelligenceRef']) {
+    if (obj.schemaVersion === 'embedded-captions-v1' && !obj[ref]) {
+      violations.push({code: 'linguistic-gate', detail: `missing ${ref}`});
+    }
   }
   const blob = JSON.stringify(obj);
   if (/https?:\/\//.test(blob)) {

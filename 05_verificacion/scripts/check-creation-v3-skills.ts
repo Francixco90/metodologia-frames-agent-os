@@ -49,6 +49,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.info(
-    `PASS CREATION V3 SKILLS: ${skills.length} local H-03 skills are active and hash-bound.`,
+    `PASS CREATION V3 SKILLS: ${skills.length} local H-03 skills are governed and hash-bound.`,
   );
 }

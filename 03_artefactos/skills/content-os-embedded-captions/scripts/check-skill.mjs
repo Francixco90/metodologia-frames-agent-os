@@ -123,6 +123,7 @@ if (existsSync(negPath)) {
     'network-in-workflow',
     'graded-footage',
     'embed-overuse',
+    'linguistic-gate',
   ];
   for (const code of codes) {
     if (!neg.includes(code)) {

@@ -19,6 +19,8 @@ const validSources = new Set([
   'url',
   'github-pr',
   'text',
+  'transcript',
+  'audio',
   'website',
   'brief',
   'footage',
@@ -34,6 +36,7 @@ const validRoutes = new Set([
   'content-os-embedded-captions',
   'content-os-slideshow',
   'content-os-general-video',
+  'content-os-transcript-intelligence',
 ]);
 const validCapabilities = new Set([
   'content-os-core',
@@ -42,6 +45,7 @@ const validCapabilities = new Set([
   'content-os-creative',
   'content-os-media',
   'content-os-registry',
+  'content-os-transcript-intelligence',
 ]);
 const validStages = new Set(['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']);
 const hasNetwork = (s) => /\bhttps?:\/\//iu.test(s);
