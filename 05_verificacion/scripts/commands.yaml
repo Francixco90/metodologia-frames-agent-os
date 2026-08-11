@@ -138,6 +138,9 @@ gates:
   - {gate: G09_CAREER, label: career contracts and workflows, command: 'node --import tsx scripts/check-career-workflows.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
 
   # prettier-ignore
+  - {gate: G09_CAREER_DESIGN, label: career design system and approved alternatives, command: 'pnpm verify:career-design', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+
+  # prettier-ignore
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
 
   # prettier-ignore
