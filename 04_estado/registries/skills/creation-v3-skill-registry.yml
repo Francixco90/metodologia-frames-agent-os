@@ -106,7 +106,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: f35b2db93111982f8b0fd7dc18d1bb305f3fef762c6a66a952c8754e4aa5ca52
-    package_manifest_sha256: 2af6cb9dabf2c372961e2623fe93f80d088a49d94669ecf45d02c44bbd70beaf
+    package_manifest_sha256: ce6f2dc04879360288cfb84b157c69e7d5ffa621d6cd7f90617f3832b1c61ca1
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: e995664a0923b4e3bd9ca9ff2637c98dce769099fae5397f190b87174e7226ab
-    package_manifest_sha256: 63bfc508c9e7cf67ab4825d5b08da914edb562c5dc375a90a31b7b751f5e1590
+    package_manifest_sha256: a7a7958968ec592c63bc29f5fa1d0757b9fef1ff67b115ab29feab9bc077ba78
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

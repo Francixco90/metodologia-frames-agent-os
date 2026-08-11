@@ -26,6 +26,7 @@ por keyword. Route-once: el router escribe el `intent-brief.jsonl` y sale.
 
 | Prioridad | Deliverable                                                | Route                             | Capability map (típica)                               |
 | --------- | ---------------------------------------------------------- | --------------------------------- | ----------------------------------------------------- |
+| 0         | Transcript/captions/diction/pronunciation/semantic/narrative | `content-os-transcript-intelligence` | transcript-intelligence, media when audio ingest is needed |
 | 1         | Explicar un GitHub PR / code change desde una PR reference | `content-os-pr-to-video`          | core, animation, keyframes, creative, media           |
 | 2         | Market/showcase un website/product/app desde URL o brief   | `content-os-website-to-video`     | core, animation, keyframes, creative, media, registry |
 | 3         | Explicar un topic/articulo/notes con invented visuals      | `content-os-faceless-explainer`   | core, animation, keyframes, creative, media           |
@@ -51,6 +52,7 @@ workflow (Fase 3) es el owner. Carga solo lo que el workflow activo necesita.
 | Seek-safe GSAP, pose contract, keyframe lint        | `content-os-keyframes` |
 | Brand, palette, typography, pacing, narration       | `content-os-creative`  |
 | Media resolve (offline cascade), TTS, transcription | `content-os-media`     |
+| Language review, captions, semantic search, narrative | `content-os-transcript-intelligence` |
 | Reusable blocks + components                        | `content-os-registry`  |
 
 ## Dual paradigm
