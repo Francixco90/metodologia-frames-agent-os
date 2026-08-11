@@ -33,10 +33,11 @@ flowchart LR
 3. **Rail-first.** Rail carries most text; embed is the scarce, earned peak.
    `embed_all: true` or `rail_mode: none` = `embed-overuse` violation. ≤1 embed
    per beat, never two co-visible, ≥ a beat apart.
-4. **Transcription-derived.** Captions derived from footage speech via
-   `content-os-media` (transcription offline default). `has_script: false` (no
-   SCRIPT.md authored — transcript is derived). `vo_mode: transcribed` (VO is
-   footage's own speech).
+4. **Transcription-derived.** `content-os-media` produce un ASR candidato.
+   `scriptMode: transcript_derived`, `captionPolicyRef`, `captionTrackRef` y
+   `transcriptIntelligenceRef` son obligatorios. Solo `caption-track.json` de
+   `content-os-transcript-intelligence` alimenta captions; `has_script: false`
+   queda como legado no renderizable. `vo_mode: transcribed` conserva el audio.
 5. **Step-gated.** Each step has a gate. No gate passed → no advance. Steps
    user-gated (0, 6) pause for approval. Step 1 prepare runs matte ∥ transcribe ∥
    audio-envelope (delegate `content-os-media`).
@@ -83,4 +84,5 @@ flowchart LR
   fabricated captions).
 - Matting unavailable and no fallback viable: STOP, mark `coverage_gap`.
 - Source burned-in captions: STOP, refuse (decision gate).
+- Material ambiguity or missing linguistic gate: STOP, refuse (`linguistic-gate`).
 - No brief (router did not dispatch): STOP, route via `content-os-router`.
