@@ -1,0 +1,112 @@
+{
+  "schema_version": "evidence-bank-v1",
+  "candidate_id": "CAND-SYNTH-RUNTIME-001",
+  "evidence": [
+    {
+      "evidence_id": "EVD-SYNTH-SUMMARY-001",
+      "claim": "Transformation delivery capability.",
+      "context": "Synthetic business context.",
+      "action_method": "Evidence-bound program leadership.",
+      "result": "A concise and attributable professional summary.",
+      "metric": null,
+      "cv_content": [
+        {
+          "language": "es",
+          "section": "summary",
+          "text": "Convierte retos de negocio en capacidades de transformación medibles.",
+          "organization": null,
+          "role": null,
+          "period": null,
+          "location": null
+        },
+        {
+          "language": "en",
+          "section": "summary",
+          "text": "Turns business challenges into measurable transformation capabilities.",
+          "organization": null,
+          "role": null,
+          "period": null,
+          "location": null
+        }
+      ],
+      "source_ref": "fixtures/runtime/verified/evidence-source.json",
+      "source_sha256": "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b",
+      "confidence": "verified",
+      "allowed_channels": [
+        "cv"
+      ],
+      "constraints": []
+    },
+    {
+      "evidence_id": "EVD-SYNTH-RESULT-001",
+      "claim": "Reduced a synthetic delivery cycle.",
+      "context": "Synthetic Business Unit during 2025.",
+      "action_method": "Led a cross-functional program.",
+      "result": "Cycle time moved from 12 to 7 days.",
+      "metric": "12 → 7 days · 41.7%",
+      "cv_content": [
+        {
+          "language": "es",
+          "section": "experience",
+          "text": "Redujo el ciclo de entrega de 12 a 7 días (41,7 %) durante 2025.",
+          "organization": "Synthetic Business Unit",
+          "role": "Líder de Transformación",
+          "period": "2025",
+          "location": null
+        },
+        {
+          "language": "en",
+          "section": "experience",
+          "text": "Reduced the delivery cycle from 12 to 7 days (41.7%) during 2025.",
+          "organization": "Synthetic Business Unit",
+          "role": "Transformation Lead",
+          "period": "2025",
+          "location": null
+        }
+      ],
+      "source_ref": "fixtures/runtime/verified/evidence-source.json",
+      "source_sha256": "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b",
+      "confidence": "verified",
+      "allowed_channels": [
+        "cv"
+      ],
+      "constraints": []
+    },
+    {
+      "evidence_id": "EVD-SYNTH-SKILL-001",
+      "claim": "Program leadership capability.",
+      "context": "Synthetic cross-functional delivery.",
+      "action_method": "Roadmaps and operating cadence.",
+      "result": "Governed delivery capability.",
+      "metric": null,
+      "cv_content": [
+        {
+          "language": "es",
+          "section": "skills",
+          "text": "Liderazgo de programas",
+          "organization": null,
+          "role": null,
+          "period": null,
+          "location": null
+        },
+        {
+          "language": "en",
+          "section": "skills",
+          "text": "Program leadership",
+          "organization": null,
+          "role": null,
+          "period": null,
+          "location": null
+        }
+      ],
+      "source_ref": "fixtures/runtime/verified/evidence-source.json",
+      "source_sha256": "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b",
+      "confidence": "verified",
+      "allowed_channels": [
+        "cv"
+      ],
+      "constraints": []
+    }
+  ],
+  "bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe"
+}

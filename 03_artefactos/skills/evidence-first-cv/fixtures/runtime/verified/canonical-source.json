@@ -1,0 +1,16 @@
+{
+  "schema_version": "cv-source-manifest-v1",
+  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+  "variants": [
+    {
+      "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
+      "source_document_ref": "fixtures/runtime/verified/source-es.json",
+      "source_document_sha256": "f57d1d4b5935e38249b7bc7a00fc78d8c50d8caa15e1b9730fc33e57087edb96"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
+      "source_document_ref": "fixtures/runtime/verified/source-en.json",
+      "source_document_sha256": "c9c6d1f5806f9d3abf11f914938ca11af75f6df19c73525719154a5aa78702b3"
+    }
+  ]
+}
