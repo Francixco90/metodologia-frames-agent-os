@@ -1,12 +1,14 @@
 schema_version: career-workflow-v1
 workflow_id: C06
 command: /career-cv
-title: CV spec-first y evidence-bound
-purpose: Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
+title: CV spec-first, design-system-first y evidence-bound
+purpose: Especificar, decidir el sistema visual cuando aplica, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
 inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
 deliverables:
   [
-    cv-spec-v1,
+    cv-spec-v2,
+    cv-design-brief-v1,
+    cv-design-decision-v1,
     cv-source-v2,
     cv-ats-html-v1,
     cv-executive-html-v1,
@@ -14,10 +16,10 @@ deliverables:
     cv-ats-pdf-v2,
     cv-variant-manifest-v2,
   ]
-capability_map: [evidence-first-cv, media-make-pdf]
+capability_map: [evidence-first-cv, career-design-system, media-make-pdf]
 execution_steps:
   - step_id: S00
-    purpose: Compilar una spec material; intent targeted exige lineage C04 scoring y C05 application design, general los rechaza.
+    purpose: Compilar cv-spec-v2 material; executive empieza pending-design y ATS usa perfil neutral.
     inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
     conditional_inputs:
       - when: intent == targeted
@@ -32,14 +34,42 @@ execution_steps:
     primary_skill: evidence-first-cv
     optional_skills: []
     verifier: RT-09
-    outputs: [cv-spec-v1]
+    outputs: [cv-spec-v2]
     template_id: TPL-C06-CAREER-CV
-    gate: CR_CV_SPEC_APPROVED
-    stop_rule: Ningún contenido se compila antes de aprobación exacta; targeted sin fit scorecard C04 y decision C05 queda bloqueado.
+    gate: CR_BRIEF_APPROVED
+    stop_rule: Targeted sin lineage C04/C05 queda bloqueado; la spec pendiente no autoriza compilar.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 14000, max_tokens: 24000}
   - step_id: S01
+    purpose: Para HTML ejecutivo, producir exactamente dos alternativas y registrar la decisión humana; ATS-only omite este paso.
+    inputs: [cv-spec-v2]
+    conditional_inputs:
+      - when: outputs include executive-html
+        inputs: [metodologia-career-design-system-v1]
+    primary_skill: career-design-system
+    optional_skills: []
+    verifier: RT-09
+    outputs: [cv-design-brief-v1, cv-design-decision-v1]
+    template_id: TPL-C06-CAREER-CV
+    gate: CR_CV_DESIGN_APPROVED
+    stop_rule: Sin decisión HUMAN_APPROVED vigente, HTML ejecutivo permanece bloqueado; ATS-only continúa neutral.
+    context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 22000}
+  - step_id: S02
+    purpose: Ligar la decisión visual cuando aplica y aprobar el hash exacto de cv-spec-v2.
+    inputs: [cv-spec-v2]
+    conditional_inputs:
+      - when: outputs include executive-html
+        inputs: [cv-design-brief-v1, cv-design-decision-v1]
+    primary_skill: evidence-first-cv
+    optional_skills: [career-design-system]
+    verifier: RT-09
+    outputs: [cv-spec-v2]
+    template_id: TPL-C06-CAREER-CV
+    gate: CR_CV_SPEC_APPROVED
+    stop_rule: Una decisión o sistema visual stale invalida la spec y cualquier aprobación previa.
+    context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 22000}
+  - step_id: S03
     purpose: Compilar la fuente canónica desde la spec aprobada y evidencia promocionable.
-    inputs: [cv-spec-v1, evidence-bank-v1]
+    inputs: [cv-spec-v2, evidence-bank-v1]
     primary_skill: evidence-first-cv
     optional_skills: []
     verifier: RT-09
@@ -48,20 +78,20 @@ execution_steps:
     gate: G13
     stop_rule: Claim sin evidence_id utilizable se omite o califica; requisito de vacante nunca se promueve.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 14000, max_tokens: 24000}
-  - step_id: S02
-    purpose: Proyectar únicamente idiomas, audiencias y formatos declarados por la spec.
-    inputs: [cv-spec-v1, cv-source-v2]
+  - step_id: S04
+    purpose: Proyectar solo idiomas, audiencias, formatos y composición declarados por la spec aprobada.
+    inputs: [cv-spec-v2, cv-source-v2]
     primary_skill: evidence-first-cv
-    optional_skills: [media-make-pdf]
+    optional_skills: [career-design-system, media-make-pdf]
     verifier: RT-09
     outputs:
       [cv-ats-html-v1, cv-executive-html-v1, cv-ats-docx-v1, cv-ats-pdf-v2, cv-variant-manifest-v2]
     template_id: TPL-C06-CAREER-CV
     gate: CR_PACKAGE_APPROVED
-    stop_rule: Sin Chromium o pdftotext, PDF queda UNKNOWN; HTML no lo simula.
+    stop_rule: Sin herramientas observables, PDF, reflow o impresión quedan UNKNOWN; HTML no los simula.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 22000}
-gates: [CR_CV_SPEC_APPROVED, G13, CR_PACKAGE_APPROVED]
+gates: [CR_BRIEF_APPROVED, CR_CV_DESIGN_APPROVED, CR_CV_SPEC_APPROVED, G13, CR_PACKAGE_APPROVED]
 next_workflow: C07
 template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md
-stop_rule: Spec aprobada no aprueba derivados; render produce RENDERED_DRAFT y cualquier hash stale invalida el paquete.
+stop_rule: Spec aprobada no aprueba derivados; cualquier hash stale de evidencia, diseño, composición o contenido invalida el paquete, crea successor y deja el render RENDERED_DRAFT.
 metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}
