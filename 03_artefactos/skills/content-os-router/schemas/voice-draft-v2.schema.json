@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "voice-draft-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractRevision", "operation", "voiceDerived", "specRef", "specSha256", "captionTrackRef", "correctionLedgerRef", "transcriptIntelligenceRef", "verificationState", "sourceSpans"],
+  "properties": {
+    "contractRevision": {"const": 2},
+    "operation": {"const": "render-draft"},
+    "voiceDerived": {"const": true},
+    "specRef": {"type": "string", "minLength": 1},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "captionTrackRef": {"type": "string", "minLength": 1},
+    "correctionLedgerRef": {"type": "string", "minLength": 1},
+    "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
+    "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
+    "sourceSpans": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/span"}}
+  },
+  "$defs": {
+    "clockSpan": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}},
+    "span": {"type": "object", "additionalProperties": false, "required": ["sourceId", "startSeconds", "endSeconds", "absolute", "local"], "properties": {"sourceId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}, "absolute": {"$ref": "#/$defs/clockSpan"}, "local": {"$ref": "#/$defs/clockSpan"}}}
+  }
+}

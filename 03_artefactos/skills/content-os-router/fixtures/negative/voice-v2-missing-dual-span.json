@@ -1,0 +1,12 @@
+{
+  "contractRevision": 2,
+  "operation": "render-draft",
+  "voiceDerived": true,
+  "specRef": "specs/synthetic.video-spec.yml",
+  "specSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "captionTrackRef": "transcript-intelligence/caption-track.json",
+  "correctionLedgerRef": "transcript-intelligence/correction-ledger.json",
+  "transcriptIntelligenceRef": "transcript-intelligence/verification.json",
+  "verificationState": "deterministic-passed",
+  "sourceSpans": [{"sourceId": "synthetic-001", "startSeconds": 10, "endSeconds": 12, "absolute": {"clockId": "session", "startSeconds": 10, "endSeconds": 12}}]
+}

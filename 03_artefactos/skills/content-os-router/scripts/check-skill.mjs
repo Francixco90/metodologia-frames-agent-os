@@ -1,7 +1,7 @@
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-
+import Ajv2020 from 'ajv/dist/2020.js';
 const root = process.cwd();
 const required = [
   'skills/content-os-router/SKILL.md',
@@ -9,10 +9,12 @@ const required = [
   'skills/content-os-router/LINEAGE.yml',
   'skills/content-os-router/schemas/router-intent-v1.schema.json',
   'skills/content-os-router/schemas/content-intent-v2.schema.json',
+  'skills/content-os-router/schemas/voice-draft-v2.schema.json',
   'skills/content-os-router/scripts/check-skill.mjs',
   'skills/content-os-router/scripts/content-intent-request.mjs',
   'skills/content-os-router/scripts/route-audit.mjs',
   'skills/content-os-router/scripts/transcript-route.mjs',
+  'skills/content-os-router/scripts/voice-draft-migration-gate.mjs',
   'skills/content-os-router/scripts/route-content.mjs',
   'skills/content-os-router/scripts/route-intent.mjs',
   'skills/content-os-router/references/routes.md',
@@ -22,11 +24,17 @@ const required = [
   'skills/content-os-router/examples/route-decision.jsonl',
   'skills/content-os-router/fixtures/positive/valid-intent-brief.yml',
   'skills/content-os-router/fixtures/positive/transcript-intent.json',
+  'skills/content-os-router/fixtures/positive/transcript-audio-intent.json',
+  'skills/content-os-router/fixtures/positive/voice-v2-draft.json',
+  'skills/content-os-router/fixtures/positive/voice-v1-read.json',
+  'skills/content-os-router/fixtures/negative/voice-v1-draft.json',
+  'skills/content-os-router/fixtures/negative/voice-v2-missing-dual-span.json',
   'skills/content-os-router/fixtures/negative/unrouted-intent.yml',
   'skills/content-os-router/receipts/runtime-boundary.yml',
 ];
 
 const contents = new Map(required.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
+const ajv = new Ajv2020({allErrors: true, strict: false});
 
 const combined = [...contents.values()].join('\n');
 const runtimeCombined = [
@@ -64,6 +72,8 @@ for (const token of [
   'offline-first',
   'seek-safe',
   'RENDERED_DRAFT',
+  'correctionLedgerRef',
+  'legacy-v1-new-draft-blocked',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`COSR-ROUTER_CONTRACT_MISSING: ${token}`);
@@ -120,7 +130,6 @@ for (const pattern of [
   }
 }
 
-// Negative fixture must document every violation it claims to reject.
 const negative = contents.get('skills/content-os-router/fixtures/negative/unrouted-intent.yml');
 for (const token of [
   'missing-route',
@@ -143,6 +152,48 @@ const transcriptRoute = execFileSync(
 if (!transcriptRoute.includes('content-os-transcript-intelligence')) {
   throw new Error('COS_ROUTER_TRANSCRIPT_ROUTE_MISSING');
 }
+const parsedTranscriptRoute = JSON.parse(transcriptRoute);
+if (
+  parsedTranscriptRoute.contractRevision !== 2 ||
+  parsedTranscriptRoute.downstreamContract !== 'general-video-v2'
+) {
+  throw new Error('COS_ROUTER_TRANSCRIPT_V2_HANDOFF_INVALID');
+}
+const audioTranscriptRoute = JSON.parse(execFileSync(
+  process.execPath,
+  [resolve(root, 'skills/content-os-router/scripts/transcript-route.mjs'), resolve(root, 'skills/content-os-router/fixtures/positive/transcript-audio-intent.json')],
+  {cwd: root, encoding: 'utf8'},
+));
+if (!audioTranscriptRoute.capability_map.includes('content-os-media')) {
+  throw new Error('COS_ROUTER_AUDIO_TRANSCRIPT_MEDIA_HANDOFF_MISSING');
+}
+
+for (const [fixture, marker] of [
+  ['voice-v2-draft.json', 'v2-draft'],
+  ['voice-v1-read.json', 'legacy-read'],
+]) {
+  const gate = execFileSync(process.execPath, [resolve(root, 'skills/content-os-router/scripts/voice-draft-migration-gate.mjs'), resolve(root, `skills/content-os-router/fixtures/positive/${fixture}`)], {cwd: root, encoding: 'utf8'});
+  if (!gate.includes(marker)) throw new Error(`COS_ROUTER_VOICE_GATE: ${fixture}`);
+}
+let blocked = false;
+try {
+  execFileSync(process.execPath, [resolve(root, 'skills/content-os-router/scripts/voice-draft-migration-gate.mjs'), resolve(root, 'skills/content-os-router/fixtures/negative/voice-v1-draft.json')], {cwd: root, encoding: 'utf8'});
+} catch (error) {
+  blocked = String(error.stderr ?? '').includes('legacy-v1-new-draft-blocked');
+}
+if (!blocked) throw new Error('COS_ROUTER_LEGACY_VOICE_DRAFT_NOT_BLOCKED');
+const validateVoiceV2 = ajv.compile(JSON.parse(contents.get('skills/content-os-router/schemas/voice-draft-v2.schema.json')));
+const voiceV2 = JSON.parse(contents.get('skills/content-os-router/fixtures/positive/voice-v2-draft.json'));
+if (!validateVoiceV2(voiceV2)) throw new Error(`COS_ROUTER_AJV2020_VOICE_POSITIVE: ${ajv.errorsText(validateVoiceV2.errors)}`);
+const missingDual = JSON.parse(contents.get('skills/content-os-router/fixtures/negative/voice-v2-missing-dual-span.json'));
+if (validateVoiceV2(missingDual)) throw new Error('COS_ROUTER_AJV2020_MISSING_DUAL_SPAN_ACCEPTED');
+let dualBlocked = false;
+try {
+  execFileSync(process.execPath, [resolve(root, 'skills/content-os-router/scripts/voice-draft-migration-gate.mjs'), resolve(root, 'skills/content-os-router/fixtures/negative/voice-v2-missing-dual-span.json')], {cwd: root, encoding: 'utf8'});
+} catch (error) {
+  dualBlocked = String(error.stderr ?? '').includes('sourceSpan-dual-clock');
+}
+if (!dualBlocked) throw new Error('COS_ROUTER_DUAL_SPAN_GATE');
 
 console.info(
   `PASS content-os-router: ${required.length} governed resources, intent router + capability map, route-once, route-by-deliverable.`,

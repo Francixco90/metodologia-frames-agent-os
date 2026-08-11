@@ -1,0 +1,18 @@
+{
+  "contractRevision": 2,
+  "operation": "render-draft",
+  "voiceDerived": true,
+  "specRef": "specs/synthetic.video-spec.yml",
+  "specSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "captionTrackRef": "transcript-intelligence/caption-track.json",
+  "correctionLedgerRef": "transcript-intelligence/correction-ledger.json",
+  "transcriptIntelligenceRef": "transcript-intelligence/verification.json",
+  "verificationState": "deterministic-passed",
+  "sourceSpans": [{
+    "sourceId": "synthetic-001",
+    "startSeconds": 120,
+    "endSeconds": 122,
+    "absolute": {"clockId": "session-clock", "startSeconds": 120, "endSeconds": 122},
+    "local": {"clockId": "clip-clock", "startSeconds": 0, "endSeconds": 2}
+  }]
+}

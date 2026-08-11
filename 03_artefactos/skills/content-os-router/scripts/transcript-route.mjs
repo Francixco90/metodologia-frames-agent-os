@@ -18,6 +18,9 @@ if (intent.offline !== true) {
 }
 console.log(JSON.stringify({
   route: 'content-os-transcript-intelligence',
-  capability_map: ['content-os-transcript-intelligence'],
+  capability_map: ['content-os-transcript-intelligence', ...(['audio', 'footage'].includes(intent.source_type) ? ['content-os-media'] : [])],
+  contractRevision: 2,
+  downstreamContract: 'general-video-v2',
+  requires: ['captionTrackRef', 'correctionLedgerRef', 'sourceSpan', 'verificationState'],
   offline: true,
 }));
