@@ -1,0 +1,14 @@
+schema_version: general-video-successor-verification-v1
+skill_version: 0.6.0
+predecessor_version: 0.5.0
+execution_scope: local-evaluation
+publication_authority: false
+successor_reason: physical layered body cache acceptance
+claims:
+  - body_artifact_hash_bound
+  - body_elementary_video_hash_stable
+  - body_artifact_not_rewritten_on_curtain_change
+  - curtain_and_output_change
+  - stream_copy_profile_fail_closed
+verification_command: node skills/content-os-general-video/scripts/check-skill.mjs
+result: PASS

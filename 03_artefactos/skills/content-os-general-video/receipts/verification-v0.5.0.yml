@@ -1,0 +1,15 @@
+schema_version: general-video-successor-verification-v1
+skill_version: 0.5.0
+predecessor_version: 0.4.0
+execution_scope: local-evaluation
+publication_authority: false
+successor_reason: Guardian remediation
+claims:
+  - realpath_and_no_symlink_containment
+  - only_use_is_renderable
+  - output_hash_bound_cache
+  - executable_fail_closed_schemas
+  - sampled_hash_bound_visual_inspection
+  - granular_layer_cache_plan
+verification_command: node skills/content-os-general-video/scripts/check-skill.mjs
+result: PASS

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "engine", "versionPrefix", "sampleRatios", "forbiddenTerms", "forbiddenFrameSha256", "coverage", "failClosed"],
+  "properties": {
+    "schemaVersion": {"const": "visual-detector-v1"},
+    "engine": {"const": "tesseract"},
+    "versionPrefix": {"type": "string", "minLength": 1},
+    "sampleRatios": {"type": "array", "minItems": 3, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+    "forbiddenTerms": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "forbiddenFrameSha256": {"type": "array", "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+    "coverage": {"type": "array", "contains": {"const": "ocr-text"}, "items": {"enum": ["ocr-text", "exact-frame-signatures"]}},
+    "failClosed": {"const": true}
+  }
+}
