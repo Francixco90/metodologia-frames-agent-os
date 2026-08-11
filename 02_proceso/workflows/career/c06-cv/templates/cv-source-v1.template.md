@@ -3,55 +3,55 @@ schema_version: career-template-v1
 template_id: TPL-C06-CAREER-CV
 workflow_id: C06
 state: DRAFT
-next_gate: CR_PACKAGE_APPROVED
+next_gate: CR_CV_SPEC_APPROVED
 ---
 
-# CV Source
+# CV Spec-First Source
 
-## 1. Encabezado
+## 1. Autoridad de spec
 
-Nombre, headline, ubicación y contactos autorizados; nunca placeholders públicos.
+`cv-spec-v1`, `spec_sha256`, intent, variante y aprobación humana exacta antes de compilar.
 
-## 2. BLUF profesional
+## 2. Encabezado y contacto
 
-Valor principal en las primeras líneas, sustentado por evidencia.
+Nombre, headline y binding privado autorizado; PII no se versiona en la spec pública.
 
-## 3. Experiencia priorizada
+## 3. BLUF profesional
 
-Orden recruiter-first según la vacante, preservando cronología verificable.
+Valor principal en las primeras líneas, sustentado por evidencia seleccionada.
 
-## 4. Logros
+## 4. Experiencia y logros
 
-Claim, contexto, acción, resultado, métrica y Evidence IDs.
+Orden recruiter-first, cronología preservada y cada claim ligado a Evidence IDs y hashes.
 
-## 5. Capacidades
+## 5. Capacidades y keywords
 
 Taxonomía ATS fiel; requisito de vacante no equivale a capacidad.
 
-## 6. Formación
+## 6. Formación y credenciales
 
 Programa, institución, estado y fecha con claim proporcional.
 
-## 7. Proyectos
+## 7. Omisiones y gaps
 
-Solo proyectos autorizados y trazables.
+Registrar exclusiones, tratamiento `qualify|omit|block` y límites de atribución.
 
-## 8. Idiomas y credenciales
+## 8. Matriz de variantes
 
-Nivel y naturaleza exacta: asistencia, certificación o dominio demostrado.
+Idioma, audiencia, formatos, presupuesto de páginas y perfil visual por variante.
 
-## 9. Adaptaciones
+## 9. Compilación
 
-Grafts aplicados sobre base y razones de inclusión/omisión.
+La fuente v2 deriva de spec aprobada y evidence bank vigente; no se edita como autoridad.
 
-## 10. Paridad
+## 10. Proyecciones y paridad
 
-Claims y orden semántico iguales en Markdown, HTML y PDF.
+Claims y orden semántico equivalentes en ATS HTML/DOCX/PDF y HTML ejecutivo solicitados.
 
 ## 11. ATS y accesibilidad
 
 Texto seleccionable, jerarquía lineal, contraste y cero contenido solo gráfico.
 
-## 12. Estado
+## 12. Estado y gates
 
-`RENDERED_DRAFT`; `CR_PACKAGE_APPROVED` pendiente.
+Primero `CR_CV_SPEC_APPROVED`; derivados quedan `RENDERED_DRAFT` hasta `CR_PACKAGE_APPROVED`.

@@ -2952,7 +2952,35 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "cv-ats-docx-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-ats-html-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "cv-ats-pdf-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-ats-pdf-v2",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-executive-html-v1",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -2966,6 +2994,13 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "cv-package-v2",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "cv-source-v1",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
@@ -2973,7 +3008,28 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "cv-source-v2",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-spec-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "cv-variant-manifest-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "cv-variant-manifest-v2",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -6325,5 +6381,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "13fb47652cb5ca4f8500eeae51de664c959043ad007906a9f255e9d1866d16b5"
+  "sourceSha256": "3d994bc6883f65f8c65807926876a6c468508723454389370eedb6bce1d05cd7"
 }

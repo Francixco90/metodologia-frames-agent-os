@@ -188,6 +188,83 @@ definitions:
       required: true,
     }
   - {
+      deliverable_id: cv-spec-v1,
+      display_name: CV Material Specification,
+      workflow_id: C06,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      acceptance_gate: CR_CV_SPEC_APPROVED,
+      required: true,
+    }
+  - {
+      deliverable_id: cv-source-v2,
+      display_name: Spec-bound CV Source,
+      workflow_id: C06,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      acceptance_gate: G13,
+      required: true,
+    }
+  - {
+      deliverable_id: cv-ats-html-v1,
+      display_name: ATS HTML Projection,
+      workflow_id: C06,
+      artifact_kind: binary_projection,
+      canonical_format: json,
+      projections: [html],
+      template_ref: 02_proceso/workflows/career/_assets/ats-document-template.html,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: false,
+    }
+  - {
+      deliverable_id: cv-executive-html-v1,
+      display_name: Executive HTML Projection,
+      workflow_id: C06,
+      artifact_kind: binary_projection,
+      canonical_format: json,
+      projections: [html],
+      template_ref: 02_proceso/workflows/career/_assets/document-template.html,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: false,
+    }
+  - {
+      deliverable_id: cv-ats-docx-v1,
+      display_name: ATS DOCX Projection,
+      workflow_id: C06,
+      artifact_kind: binary_projection,
+      canonical_format: json,
+      projections: [docx],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: false,
+    }
+  - {
+      deliverable_id: cv-ats-pdf-v2,
+      display_name: Spec-bound ATS PDF Projection,
+      workflow_id: C06,
+      artifact_kind: binary_projection,
+      canonical_format: json,
+      projections: [pdf],
+      template_ref: 02_proceso/workflows/career/_assets/ats-document-template.html,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: false,
+    }
+  - {
+      deliverable_id: cv-variant-manifest-v2,
+      display_name: Spec-bound CV Variant Manifest,
+      workflow_id: C06,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: true,
+    }
+  - {
       deliverable_id: cv-source-v1,
       display_name: CV Source,
       workflow_id: C06,
@@ -273,6 +350,17 @@ definitions:
       projections: [],
       template_ref: 02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md,
       acceptance_gate: G13,
+      required: true,
+    }
+  - {
+      deliverable_id: cv-package-v2,
+      display_name: Spec-bound CV Package,
+      workflow_id: C08,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      acceptance_gate: CR_PACKAGE_APPROVED,
       required: true,
     }
   - {

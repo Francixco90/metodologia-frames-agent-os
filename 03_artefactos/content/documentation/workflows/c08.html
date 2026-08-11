@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Congelar y verificar claims, idioma, ATS, legibilidad, paridad y hashes antes de autorizar."
+      content="Congelar y verificar spec, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar."
     />
     <meta name="frames:schema" content="workflow-documentation-v1" />
     <meta name="frames:workflow" content="C08" />
@@ -147,18 +147,17 @@
       <p>Frames ContentOS · por MetodologIA</p>
       <h1>C08 · QA del paquete de candidatura</h1>
       <p>
-        Congelar y verificar claims, idioma, ATS, legibilidad, paridad y hashes antes de autorizar.
+        Congelar y verificar spec, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes
+        antes de autorizar.
       </p>
     </header>
     <main>
       <nav><a href="../index.html">← Volver al catálogo</a></nav>
       <section>
         <h2>Qué necesitas y qué recibes</h2>
+        <p><strong>Entradas:</strong> cv-spec-v1, cv-source-v2, cv-variant-manifest-v2</p>
         <p>
-          <strong>Entradas:</strong> application-brief-v1, cv-source-v1, cv-html-v1, cover-letter-v1
-        </p>
-        <p>
-          <strong>Entregables:</strong> application-package-v1, ats-visual-parity-report-v1,
+          <strong>Entregables:</strong> cv-package-v2, ats-visual-parity-report-v1,
           independent-qa-verdict-v1
         </p>
       </section>
@@ -201,9 +200,8 @@
           <desc id="seq-desc">
             La persona solicita QA del paquete de candidatura. S01: career-application-orchestrator
             produce ats-visual-parity-report-v1; RT-09 decide G14. S02:
-            career-application-orchestrator produce application-package-v1,
-            independent-qa-verdict-v1; RT-11 decide CR_PACKAGE_APPROVED. Frames entrega el resultado
-            y propone C09.
+            career-application-orchestrator produce cv-package-v2, independent-qa-verdict-v1; RT-11
+            decide CR_PACKAGE_APPROVED. Frames entrega el resultado y propone C09.
           </desc>
           <style>
             .actor {
@@ -255,7 +253,7 @@
             <line x1="46" y1="358" x2="112" y2="358" stroke="#122562" stroke-width="2" />
             <text x="126" y="350" class="actor">career-application-orchestrator → RT-11</text>
             <text x="126" y="372" class="label">
-              Evidencia: application-package-v1, independent-qa-verdict-v1
+              Evidencia: cv-package-v2, independent-qa-verdict-v1
             </text>
           </g>
           <g>
@@ -278,15 +276,18 @@
             G14.
           </li>
           <li>
-            S02: career-application-orchestrator produce application-package-v1,
-            independent-qa-verdict-v1; RT-11 decide CR_PACKAGE_APPROVED.
+            S02: career-application-orchestrator produce cv-package-v2, independent-qa-verdict-v1;
+            RT-11 decide CR_PACKAGE_APPROVED.
           </li>
           <li>Frames entrega el resultado y propone C09.</li>
         </ol>
       </section>
       <section>
         <h2>Límites</h2>
-        <p>Cualquier mutación posterior crea successor package y nueva revisión.</p>
+        <p>
+          Cualquier mutación de spec, evidencia, vacante o contenido crea successor package y nueva
+          revisión.
+        </p>
         <p class="meta">
           Fuente: 02_proceso/workflows/career/c08-package-qa/workflow.yml · Próximo: C09
         </p>
