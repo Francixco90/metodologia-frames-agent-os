@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94180
-    v3_rolling_adjustment_words: 5994
+    baseline_words: 94194
+    v3_rolling_adjustment_words: 6008
     original_baseline_words: 88186
-    final_words: 110442
+    final_words: 110456
     maximum_multiplier: 1.5
-    maximum_words: 141270
-    actual_multiplier: 1.1727
+    maximum_words: 141291
+    actual_multiplier: 1.1726
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94180
-    v3_rolling_adjustment_words: 5994
+    baseline_words: 94194
+    v3_rolling_adjustment_words: 6008
     original_baseline_words: 88186
-    final_words: 110442
-    maximum_words: 188360
-    word_multiplier: 1.1727
-    baseline_loc: 35375
-    v3_rolling_adjustment_loc: 2487
+    final_words: 110456
+    maximum_words: 188388
+    word_multiplier: 1.1726
+    baseline_loc: 35376
+    v3_rolling_adjustment_loc: 2488
     original_baseline_loc: 32888
-    final_loc: 41436
-    maximum_loc: 70750
+    final_loc: 41437
+    maximum_loc: 70752
     loc_multiplier: 1.1713
     maximum_multiplier: 2
     status: pass
@@ -3200,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: f690e2c852575d328251e858e448ab961e8208ef15480e1749b47a1ef447ae1a
-      current_words: 720
-      current_loc: 163
+      current_sha256: f6fae161328bf3344c3619b16a14ec94003c105762a296c8de003b0491a884f8
+      current_words: 734
+      current_loc: 164
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json

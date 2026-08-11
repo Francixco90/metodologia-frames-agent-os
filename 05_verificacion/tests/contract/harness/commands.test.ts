@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 54 gates', () => {
-    expect(manifest.gates).toHaveLength(54);
+  it('declares 55 gates', () => {
+    expect(manifest.gates).toHaveLength(55);
   });
 
   it('every gate id belongs to a governed gate family', () => {

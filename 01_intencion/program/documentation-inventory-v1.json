@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "1108748545741f6978fdd49c6b9da6803aa50be6f6fb9c2f7eb9932fad8102c9",
+  "repositoryTreeSha256": "cbf12388f85e90169899cb5da2484c5671e0132af9e27ed8851350eed083231e",
   "totalMarkdown": 1802,
   "auditedAuthored": 563,
   "classPaths": {
@@ -4520,7 +4520,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "6b1e730e5c8138ee68d6a495cf1281ead93a968a2c5fefcb8b52931bbde41cc5",
+      "sha256": "4b801b25f35e9c0e9854d12a306c1b692591ac0066686f67b42f7617d7fc46ad",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9669,9 +9669,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "3eba7027420f3ebea1f5ebc65395c299ffb98f38d6c8ca5dacd4198d050d29d8",
-      "words": 10229,
-      "lines": 952,
+      "sha256": "646e1f5e61da8ba8170bbb41e0cf60e9497f7d57be0d55276eea81e956413b14",
+      "words": 10251,
+      "lines": 954,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
