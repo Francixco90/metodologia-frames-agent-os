@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "metodologia-video-assets-v1",
+  "assetPackageId": "metodologia-spec-first-video-v1",
+  "brand": "MetodologIA",
+  "offlineOnly": true,
+  "publicationAuthority": false,
+  "fontManifest": "brand/fonts/font-manifest.yml",
+  "tokenManifest": "brand/tokens/brand-tokens.yml",
+  "fontRoles": {
+    "captions": {"family": "Poppins", "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba"},
+    "captionsBold": {"family": "Poppins", "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"},
+    "titles": {"family": "Montserrat", "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"}
+  },
+  "orientations": {
+    "vertical": {"width": 1080, "height": 1920, "safeZone": {"top": 0.08, "right": 0.07, "bottom": 0.14, "left": 0.07}},
+    "wide": {"width": 1920, "height": 1080, "safeZone": {"top": 0.07, "right": 0.06, "bottom": 0.10, "left": 0.06}}
+  },
+  "copyTemplates": {
+    "results": "RESULTADOS QUE INSPIRAN",
+    "session": "FRAGMENTO DE LA SESIÓN DE CIERRE",
+    "disclosure": "EDITADO CON IA · METODOLOGIA",
+    "method": "METHOD FIRST. AI NEXT."
+  },
+  "brandRules": [
+    "Solo el sufijo IA de MetodologIA puede aparecer dorado.",
+    "Poppins se usa en subtítulos; Montserrat en títulos, cortinillas y disclosures.",
+    "Las composiciones 9:16 y 16:9 son nativas, no recortes entre orientaciones."
+  ],
+  "referenceAuthority": {
+    "visualManifestSha256": "6a99a8453d25ba85eeae9f4a9829c9f4c47e42b3ed173d841a26fe63a577b6db",
+    "sonicManifestSha256": "4f38da5d21417c5abc10bfa6c83b5b0cfaa76372f41143b9380df66072e9c5e1",
+    "authorityLimit": "reference-only; no binary is embedded without its own provenance and rights receipt"
+  },
+  "audio": {
+    "programIntegratedLufs": -16,
+    "programToleranceLufs": 0.3,
+    "programMaxTruePeakDbtp": -1.5,
+    "stingDurationSeconds": 3,
+    "stingShortTermLufs": -20,
+    "stingMaxTruePeakDbtp": -3,
+    "signature": "original pentatonic-cocolimba: low pad, fundamental and fifth, pulsed pentatonic motif, soft bell and stereo shimmer"
+  },
+  "exclusions": [
+    "Gemini symbols", "third-party meeting logos", "emails", "private paths",
+    "personal data", "corporate data", "financial metrics", "unverified names"
+  ]
+}

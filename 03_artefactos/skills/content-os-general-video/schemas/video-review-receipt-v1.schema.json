@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-review-receipt-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "buildManifestSha256", "checks", "pass", "humanApproved", "state"],
+  "properties": {
+    "schemaVersion": {"const": "video-review-receipt-v1"},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "buildManifestSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "checks": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["id", "pass"], "properties": {"id": {"type": "string"}, "pass": {"type": "boolean"}}}},
+    "pass": {"type": "boolean"},
+    "humanApproved": {"const": false},
+    "state": {"enum": ["EVALUATED", "BLOCKED"]},
+    "errors": {"type": "array", "items": {"type": "string"}}
+  }
+}

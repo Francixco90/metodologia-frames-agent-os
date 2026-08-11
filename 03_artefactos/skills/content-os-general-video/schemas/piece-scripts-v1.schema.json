@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "piece-scripts-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "specId", "specSha256", "pieces"],
+  "properties": {
+    "schemaVersion": {"const": "piece-scripts-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pieces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "output", "scriptMode", "purpose", "audience", "hook", "tension", "impact", "offerBridge", "cta", "exclusions", "duration", "format", "claimRefs", "evidenceRefs", "dependencies", "gateStatus"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
+          "output": {"type": "string", "minLength": 1},
+          "scriptMode": {"enum": ["narration", "transcript", "action", "assembly_map", "data_chart"]},
+          "purpose": {"type": "string", "minLength": 12},
+          "audience": {"type": "string", "minLength": 5},
+          "hook": {"type": "string", "minLength": 5},
+          "tension": {"type": "string", "minLength": 5},
+          "impact": {"type": "string", "minLength": 5},
+          "offerBridge": {"type": "string", "minLength": 5},
+          "cta": {"type": "string", "minLength": 2},
+          "exclusions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "duration": {"type": "object", "required": ["seconds"], "properties": {"seconds": {"type": "number", "exclusiveMinimum": 0}}},
+          "format": {"type": "object", "required": ["width", "height", "fps"], "properties": {"width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}, "fps": {"type": "number", "exclusiveMinimum": 0}}},
+          "claimRefs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "evidenceRefs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "dependencies": {"type": "array", "items": {"type": "string"}},
+          "gateStatus": {"const": "deterministic-passed"}
+        }
+      }
+    }
+  }
+}

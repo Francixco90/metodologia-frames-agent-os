@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "general-video-v2",
+  "title": "Frames ContentOS General Video SPEC-first workflow state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "projectId", "route", "artifactVisibility", "offline", "flow", "storyboard", "sourcePackRef", "sourcePackSha256", "specRef", "specId", "specSha256", "scriptMode", "scriptRef", "pieceScriptsRef", "assetManifestRef", "buildManifestRef", "reviewReceiptRef", "renderPolicy", "workProductState", "steps"],
+  "properties": {
+    "schemaVersion": {"const": "general-video-v2"},
+    "projectId": {"type": "string", "minLength": 1},
+    "route": {"const": "content-os-general-video"},
+    "artifactVisibility": {"enum": ["versioned", "private-local"]},
+    "offline": {"const": true},
+    "flow": {"enum": ["automation", "companion"]},
+    "storyboard": {"enum": ["yes", "no"]},
+    "sourcePackRef": {"type": "string", "minLength": 1},
+    "sourcePackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "specRef": {"type": "string", "minLength": 1},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "scriptMode": {"enum": ["narration", "transcript", "action", "assembly_map", "data_chart"]},
+    "scriptRef": {"type": "string", "minLength": 1},
+    "pieceScriptsRef": {"type": "string", "minLength": 1},
+    "assetManifestRef": {"type": "string", "minLength": 1},
+    "buildManifestRef": {"type": "string", "minLength": 1},
+    "reviewReceiptRef": {"type": "string", "minLength": 1},
+    "renderReceiptRef": {"type": "string", "minLength": 1},
+    "planRef": {"type": "string", "minLength": 1},
+    "scope_expanded": {"type": "boolean"},
+    "workProductState": {"enum": ["ESPECIFICADO", "COMPILADO", "EVALUADO", "RENDERED_DRAFT", "HUMAN_APPROVED", "READY", "PUBLISHED", "BLOCKED"]},
+    "renderPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["draftsAutomatic", "publicationAuthority", "cacheByHash"],
+      "properties": {
+        "draftsAutomatic": {"const": true},
+        "publicationAuthority": {"const": false},
+        "cacheByHash": {"const": true}
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step", "state"],
+        "properties": {
+          "step": {"enum": ["setup", "ingest", "spec", "script", "plan", "resolve", "build", "assemble", "verify", "package", "finalize"]},
+          "state": {"enum": ["pending", "in-progress", "gate-passed", "user-approved", "blocked"]}
+        }
+      }
+    }
+  }
+}

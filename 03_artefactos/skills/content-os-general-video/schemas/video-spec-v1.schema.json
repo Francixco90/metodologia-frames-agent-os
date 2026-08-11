@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-spec-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "state", "sourcePackRef", "sourcePackSha256", "objective", "deliverable", "narrative", "visual", "audio", "accessibility", "assets", "runtime", "acceptance", "limits", "assumptions", "coverageGaps"],
+  "properties": {
+    "schemaVersion": {"const": "video-spec-v1"},
+    "specId": {"type": "string", "minLength": 3},
+    "state": {"const": "SPEC_APPROVED"},
+    "sourcePackRef": {"type": "string", "minLength": 1},
+    "sourcePackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audience", "outcome", "primaryMessage", "cta"],
+      "properties": {
+        "audience": {"type": "string", "minLength": 3},
+        "outcome": {"type": "string", "minLength": 3},
+        "primaryMessage": {"type": "string", "minLength": 3},
+        "cta": {"type": "string", "minLength": 2}
+      }
+    },
+    "deliverable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "durationSeconds", "aspectRatios", "languages", "channels"],
+      "properties": {
+        "type": {"enum": ["explainer", "launch", "motion", "captions", "demo", "montage", "custom"]},
+        "durationSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "aspectRatios": {"type": "array", "minItems": 1, "items": {"enum": ["16:9", "9:16", "1:1", "4:5"]}},
+        "languages": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
+        "channels": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["structure", "requiredClaimIds", "prohibitedClaimIds"],
+      "properties": {
+        "structure": {"type": "string", "minLength": 3},
+        "requiredClaimIds": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "prohibitedClaimIds": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["brandProfileRef", "motionCeiling", "safeZones"],
+      "properties": {
+        "brandProfileRef": {"type": "string", "minLength": 1},
+        "motionCeiling": {"type": "string", "minLength": 1},
+        "safeZones": {"type": "string", "minLength": 1}
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "captionsRequired"],
+      "properties": {
+        "mode": {"enum": ["narration", "sync_sound", "music", "silence", "mixed"]},
+        "captionsRequired": {"type": "boolean"}
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contrast", "flashing", "captionPolicy"],
+      "properties": {
+        "contrast": {"const": "WCAG_AA"},
+        "flashing": {"const": "prohibited"},
+        "captionPolicy": {"type": "string", "minLength": 1}
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rightsRequired", "remoteAtRender"],
+      "properties": {
+        "rightsRequired": {"const": true},
+        "remoteAtRender": {"const": false}
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferred", "fallback"],
+      "properties": {
+        "preferred": {"enum": ["html-gsap", "remotion", "ffmpeg", "editorial"]},
+        "fallback": {"enum": ["html-gsap", "remotion", "ffmpeg", "editorial"]}
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["editorial", "visual", "technical", "humanReview"],
+      "properties": {
+        "editorial": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "visual": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "technical": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "humanReview": {"const": "required"}
+      }
+    },
+    "limits": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "coverageGaps": {"type": "array", "items": {"type": "string"}}
+  }
+}
