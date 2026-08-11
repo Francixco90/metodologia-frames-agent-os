@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 270
+- ASSET: 272
 - COMMAND: 97
 - COMPONENT: 16
 - DELIVERABLE: 80
@@ -70,6 +70,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf` |
 | ASSET | 03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json` |
 | ASSET | 03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json` |
+| ASSET | 03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json` |
+| ASSET | 03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html` |
 | ASSET | 03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json` |
@@ -941,4 +943,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `fcf58f3f70200646eef8b74c9d843a616bf9b9426bd2c001dc38dc532796db53`.
+Hash de fuentes: `2efeaf4591436add26aae08e08fb2c792ea7e5405970e061119cd6361fa9b661`.

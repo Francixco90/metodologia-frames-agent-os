@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metodologia:frames:cv-package:v2",
+  "title": "CvPackageV2",
+  "description": "JSON Schema projection of CareerCvPackageV2Schema; workflow runtime remains authoritative.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "package_id",
+    "candidate_id",
+    "application_id",
+    "spec_id",
+    "spec_sha256",
+    "evidence_bank_sha256",
+    "application_brief_sha256",
+    "job_snapshot_sha256",
+    "source_document_ref",
+    "source_document_sha256",
+    "contact_binding_id",
+    "variants",
+    "outputs",
+    "qa",
+    "parity_status",
+    "privacy_status",
+    "state",
+    "approved_spec_sha256",
+    "publication_receipt",
+    "package_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "cv-package-v2"},
+    "package_id": {"type": "string", "pattern": "^CVPKG-[A-Z0-9-]{3,79}$"},
+    "candidate_id": {"type": "string", "pattern": "^CAND-[A-Z0-9-]{3,79}$"},
+    "application_id": {
+      "anyOf": [{"type": "string", "pattern": "^APP-[A-Z0-9-]{3,79}$"}, {"type": "null"}]
+    },
+    "spec_id": {"type": "string", "pattern": "^CVSPEC-[A-Z0-9-]{3,79}$"},
+    "spec_sha256": {"$ref": "#/$defs/sha256"},
+    "evidence_bank_sha256": {"$ref": "#/$defs/sha256"},
+    "application_brief_sha256": {"$ref": "#/$defs/nullableSha256"},
+    "job_snapshot_sha256": {"$ref": "#/$defs/nullableSha256"},
+    "source_document_ref": {"$ref": "#/$defs/portableRef"},
+    "source_document_sha256": {"$ref": "#/$defs/sha256"},
+    "contact_binding_id": {"type": "string", "pattern": "^CONTACT-[A-Z0-9-]{3,79}$"},
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {"$ref": "#/$defs/variant"}
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 48,
+      "items": {"$ref": "#/$defs/output"}
+    },
+    "qa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claims",
+        "cross_format_parity",
+        "bilingual_parity",
+        "accessibility",
+        "parseability",
+        "determinism"
+      ],
+      "properties": {
+        "claims": {"$ref": "#/$defs/checkStatus"},
+        "cross_format_parity": {"$ref": "#/$defs/checkStatus"},
+        "bilingual_parity": {"$ref": "#/$defs/checkStatusWithNA"},
+        "accessibility": {"$ref": "#/$defs/checkStatus"},
+        "parseability": {"$ref": "#/$defs/checkStatus"},
+        "determinism": {"$ref": "#/$defs/checkStatus"}
+      }
+    },
+    "parity_status": {"$ref": "#/$defs/checkStatus"},
+    "privacy_status": {"$ref": "#/$defs/checkStatus"},
+    "state": {"enum": ["RENDERED_DRAFT", "HUMAN_APPROVED", "READY", "PUBLISHED"]},
+    "approved_spec_sha256": {"$ref": "#/$defs/nullableSha256"},
+    "publication_receipt": {
+      "anyOf": [{"$ref": "#/$defs/publicationReceipt"}, {"type": "null"}]
+    },
+    "package_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "PUBLISHED"}}, "required": ["state"]},
+      "then": {"properties": {"publication_receipt": {"$ref": "#/$defs/publicationReceipt"}}},
+      "else": {"properties": {"publication_receipt": {"type": "null"}}}
+    },
+    {
+      "if": {
+        "properties": {"state": {"enum": ["HUMAN_APPROVED", "READY", "PUBLISHED"]}},
+        "required": ["state"]
+      },
+      "then": {
+        "properties": {
+          "approved_spec_sha256": {"$ref": "#/$defs/sha256"},
+          "parity_status": {"const": "PASS"},
+          "privacy_status": {"const": "PASS"},
+          "outputs": {"items": {"properties": {"verification": {"const": "PASS"}}}},
+          "qa": {
+            "properties": {
+              "claims": {"const": "PASS"},
+              "cross_format_parity": {"const": "PASS"},
+              "bilingual_parity": {"enum": ["PASS", "NOT_APPLICABLE"]},
+              "accessibility": {"const": "PASS"},
+              "parseability": {"const": "PASS"},
+              "determinism": {"const": "PASS"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "nullableSha256": {
+      "anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+    },
+    "portableRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "outputKind": {"enum": ["ats-html", "ats-docx", "ats-pdf", "executive-html"]},
+    "checkStatus": {"enum": ["PASS", "UNKNOWN", "BLOCKED"]},
+    "checkStatusWithNA": {"enum": ["PASS", "NOT_APPLICABLE", "UNKNOWN", "BLOCKED"]},
+    "publicationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_ref",
+        "receipt_sha256",
+        "external_event_id",
+        "observed_at",
+        "ready_package_sha256"
+      ],
+      "properties": {
+        "receipt_ref": {"$ref": "#/$defs/portableRef"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "external_event_id": {"type": "string", "minLength": 1, "maxLength": 240},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "ready_package_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variant_id",
+        "language",
+        "audience",
+        "source_document_ref",
+        "source_document_sha256",
+        "output_kinds",
+        "page_budget",
+        "design_profile"
+      ],
+      "properties": {
+        "variant_id": {"type": "string", "pattern": "^CVVAR-[A-Z0-9-]{3,79}$"},
+        "language": {"enum": ["es", "en", "pt"]},
+        "audience": {"enum": ["recruiter", "hiring_manager", "ats"]},
+        "source_document_ref": {"$ref": "#/$defs/portableRef"},
+        "source_document_sha256": {"$ref": "#/$defs/sha256"},
+        "output_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/outputKind"}
+        },
+        "page_budget": {"type": "integer", "minimum": 1, "maximum": 4},
+        "design_profile": {
+          "enum": ["candidate-neutral-ats", "metodologia-career", "authorized-brand"]
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variant_id", "kind", "artifact_ref", "artifact_sha256", "verification"],
+      "properties": {
+        "variant_id": {"type": "string", "pattern": "^CVVAR-[A-Z0-9-]{3,79}$"},
+        "kind": {"$ref": "#/$defs/outputKind"},
+        "artifact_ref": {"$ref": "#/$defs/portableRef"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256"},
+        "verification": {"$ref": "#/$defs/checkStatus"}
+      }
+    }
+  }
+}

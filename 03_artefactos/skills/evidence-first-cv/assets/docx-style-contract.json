@@ -1,0 +1,39 @@
+{
+  "schema_version": "cv-docx-style-contract-v1",
+  "profile_id": "candidate-neutral-ats-docx",
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "columns": 1,
+    "margin_mm": {"top": 15, "right": 16, "bottom": 15, "left": 16}
+  },
+  "typography": {
+    "font_family": "Arial",
+    "fallback": "sans-serif",
+    "body_pt": 10,
+    "minimum_pt": 9,
+    "heading_scale_pt": {"h1": 18, "h2": 12, "h3": 10},
+    "line_spacing": 1.08
+  },
+  "structure": {
+    "native_paragraphs": true,
+    "native_headings": true,
+    "native_bullets": true,
+    "contact_in_document_body": true,
+    "tables": false,
+    "columns": false,
+    "text_boxes": false,
+    "drawings": false,
+    "headers": false,
+    "footers": false,
+    "embedded_fonts": false
+  },
+  "verification": {
+    "extract_text": true,
+    "compare_reading_order": true,
+    "inspect_document_xml": true,
+    "normalize_zip_timestamps": true,
+    "normalize_relationship_ids": true,
+    "require_byte_identical_replay": true
+  }
+}

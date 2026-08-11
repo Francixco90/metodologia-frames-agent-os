@@ -1,0 +1,80 @@
+{
+  "schema_version": "cv-package-v2",
+  "package_id": "CVPKG-SYNTH-001",
+  "candidate_id": "CAND-SYNTH-001",
+  "application_id": "APP-SYNTH-001",
+  "spec_id": "CVSPEC-SYNTH-001",
+  "spec_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "evidence_bank_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "application_brief_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "job_snapshot_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "source_document_ref": "work/private/career/cv/canonical-source.json",
+  "source_document_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "contact_binding_id": "CONTACT-SYNTH-001",
+  "variants": [
+    {
+      "variant_id": "CVVAR-SYNTH-ES-ATS",
+      "language": "es",
+      "audience": "ats",
+      "source_document_ref": "work/private/career/cv/canonical-source-es.json",
+      "source_document_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "output_kinds": ["ats-html", "ats-docx", "ats-pdf"],
+      "page_budget": 2,
+      "design_profile": "candidate-neutral-ats"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-EN-RECRUITER",
+      "language": "en",
+      "audience": "recruiter",
+      "source_document_ref": "work/private/career/cv/canonical-source-en.json",
+      "source_document_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "output_kinds": ["executive-html"],
+      "page_budget": 2,
+      "design_profile": "metodologia-career"
+    }
+  ],
+  "outputs": [
+    {
+      "variant_id": "CVVAR-SYNTH-ES-ATS",
+      "kind": "ats-html",
+      "artifact_ref": "work/private/career/es/cv-ats.html",
+      "artifact_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "verification": "UNKNOWN"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-ES-ATS",
+      "kind": "ats-docx",
+      "artifact_ref": "work/private/career/es/cv-ats.docx",
+      "artifact_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "verification": "UNKNOWN"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-ES-ATS",
+      "kind": "ats-pdf",
+      "artifact_ref": "work/private/career/es/cv-ats.pdf",
+      "artifact_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "verification": "UNKNOWN"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-EN-RECRUITER",
+      "kind": "executive-html",
+      "artifact_ref": "work/private/career/en/cv-executive.html",
+      "artifact_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "verification": "UNKNOWN"
+    }
+  ],
+  "qa": {
+    "claims": "UNKNOWN",
+    "cross_format_parity": "UNKNOWN",
+    "bilingual_parity": "UNKNOWN",
+    "accessibility": "UNKNOWN",
+    "parseability": "UNKNOWN",
+    "determinism": "UNKNOWN"
+  },
+  "parity_status": "UNKNOWN",
+  "privacy_status": "UNKNOWN",
+  "state": "RENDERED_DRAFT",
+  "approved_spec_sha256": null,
+  "publication_receipt": null,
+  "package_sha256": "15e207e96ab016457185b66581981bec63a370fe0251cf4349cb58a03172dcaf"
+}

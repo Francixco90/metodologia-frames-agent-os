@@ -93,10 +93,9 @@ const normalizeDocx = async (buffer: Buffer): Promise<Buffer> => {
   )) {
     const item = loaded.files[name];
     if (!item) continue;
-    if (item.dir) {
-      normalized.folder(name);
-      continue;
-    }
+    // [CÓDIGO] Las entradas de directorio son opcionales en OPC y JSZip les
+    // asigna metadata temporal. Omitirlas evita volatilidad sin alterar partes.
+    if (item.dir) continue;
     let content: Buffer | string = await item.async('nodebuffer');
     if (name === 'docProps/core.xml') {
       content = content
