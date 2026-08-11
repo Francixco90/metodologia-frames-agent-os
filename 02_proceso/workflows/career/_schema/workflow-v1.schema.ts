@@ -20,6 +20,15 @@ export const CareerWorkflowStepV1Schema = z.strictObject({
   step_id: z.string().regex(/^S[0-9]{2}$/u),
   purpose: z.string().min(1).max(300),
   inputs: z.array(z.string().min(1).max(200)).max(20),
+  conditional_inputs: z
+    .array(
+      z.strictObject({
+        when: z.string().min(1).max(160),
+        inputs: z.array(z.string().min(1).max(200)).min(1).max(12),
+      }),
+    )
+    .max(4)
+    .optional(),
   primary_skill: z.string().min(1).max(80),
   optional_skills: z.array(z.string().min(1).max(80)).max(5),
   verifier: z.string().min(1).max(80).nullable(),

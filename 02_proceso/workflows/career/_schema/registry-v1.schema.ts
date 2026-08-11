@@ -12,7 +12,7 @@ export const CareerDeliverableDefinitionV1Schema = z.strictObject({
   workflow_id: CareerWorkflowIdSchema,
   artifact_kind: z.enum(['human_document', 'structured_data', 'receipt', 'binary_projection']),
   canonical_format: z.enum(['md', 'json', 'yaml']),
-  projections: z.array(z.enum(['html', 'pdf', 'csv'])).max(3),
+  projections: z.array(z.enum(['html', 'docx', 'pdf', 'csv'])).max(4),
   template_ref: PortableRefSchema,
   acceptance_gate: CareerGateIdSchema,
   required: z.boolean(),

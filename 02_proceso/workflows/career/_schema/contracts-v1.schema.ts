@@ -31,6 +31,33 @@ export const EvidenceItemV1Schema = z
     confidence: EvidenceConfidenceSchema,
     allowed_channels: z.array(z.string().min(1).max(80)).max(20),
     constraints: z.array(z.string().min(1).max(300)).max(20),
+    cv_content: z
+      .array(
+        z
+          .strictObject({
+            language: z.enum(['es', 'en', 'pt']),
+            section: z.enum(['summary', 'experience', 'skills', 'education']),
+            text: z.string().min(1).max(1_000),
+            organization: z.string().min(1).max(200).nullable(),
+            role: z.string().min(1).max(200).nullable(),
+            period: z.string().min(1).max(100).nullable(),
+            location: z.string().min(1).max(160).nullable(),
+          })
+          .superRefine((content, cvContext) => {
+            const required = [content.organization, content.role, content.period];
+            if (content.section === 'experience' && required.some((value) => value === null)) {
+              cvContext.addIssue({
+                code: 'custom',
+                message: 'Experience CV content needs provenance',
+              });
+            }
+            if (content.section !== 'experience' && required.some((value) => value !== null)) {
+              cvContext.addIssue({code: 'custom', message: 'Only experience accepts provenance'});
+            }
+          }),
+      )
+      .max(12)
+      .optional(),
   })
   .superRefine((item, context) => {
     if (item.confidence === 'verified' && (!item.source_ref || !item.source_sha256)) {
