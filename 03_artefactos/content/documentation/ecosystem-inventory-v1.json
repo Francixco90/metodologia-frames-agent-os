@@ -285,6 +285,13 @@
     },
     {
       "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json",
+      "ref": "03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
       "id": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "ref": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "scope": "CANONICAL",
@@ -6297,5 +6304,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "514d6ced07a2885d1e5cd0436056d9724ca74424c5c2be4b285804ee443ac084"
+  "sourceSha256": "ba3623ae34ecdf7b46c318805e01b8a09b1d64bd0df3917bdecb2bc76d9cb8e9"
 }
