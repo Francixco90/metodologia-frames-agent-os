@@ -2539,6 +2539,13 @@
     },
     {
       "kind": "COMMAND",
+      "id": "verify:career-design",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
       "id": "verify:career",
       "ref": "package.json",
       "scope": "CANONICAL",
@@ -3485,6 +3492,13 @@
     {
       "kind": "GATE",
       "id": "G08",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "G09_CAREER_DESIGN",
       "ref": "05_verificacion/scripts/commands.yaml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -6444,5 +6458,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "9af6fc2c53887412a2d9fe2b0c8d0ed9a227e63a6e73c3b186eea9cae6d8f882"
+  "sourceSha256": "e733e3cb16d2038ab4ad3a3488d08bcc8dd13effd031f640044c06802d608eb8"
 }
