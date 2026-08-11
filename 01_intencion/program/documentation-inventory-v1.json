@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "105143b9917bc50abd3055ebaab5025d1cdbaf3d493283108850370409662d6d",
-  "totalMarkdown": 1798,
-  "auditedAuthored": 561,
+  "repositoryTreeSha256": "6c99e23471ff10ca2bd5c060ac4298d724a69a1ae7053476c55ff9e2dfbec720",
+  "totalMarkdown": 1800,
+  "auditedAuthored": 563,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -230,6 +230,8 @@
       "03_artefactos/renderers/static-social/README.md",
       "03_artefactos/skills/candidate-evidence-reconciler/references/evidence-policy.md",
       "03_artefactos/skills/career-application-orchestrator/references/orchestration-contract.md",
+      "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "03_artefactos/skills/career-design-system/references/verification.md",
       "03_artefactos/skills/career-opportunity-finder/references/opportunity-policy.md",
       "03_artefactos/skills/content-os-animation/blueprints/blueprints-index.md",
       "03_artefactos/skills/content-os-animation/blueprints/brand-reveal.md",
@@ -10124,6 +10126,58 @@
       }
     },
     {
+      "path": "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-design-system/references/options-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "64c8396013c9cd6e39fe97c603ca574c9340f59b710f80b4094e8b0c50506bb8",
+      "words": 103,
+      "lines": 24,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-design-system/references/verification.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-design-system/references/verification.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-design-system/references/verification.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d70caf7fba0b8256a671a6f4d0fe06eda27792426b3fdad59c68b85e59f2033b",
+      "words": 179,
+      "lines": 30,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/career-opportunity-finder/references/opportunity-policy.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -16892,7 +16946,7 @@
     }
   ],
   "summary": {
-    "keep": 546,
+    "keep": 548,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,

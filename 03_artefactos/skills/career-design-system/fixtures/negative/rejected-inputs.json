@@ -1,0 +1,10 @@
+{
+  "schema_version": "career-design-negative-fixtures-v1",
+  "cases": [
+    { "id": "missing-human-decision", "input": { "state": "DESIGN_OPTIONS_READY", "primary_composition": null }, "expected": "BLOCKED" },
+    { "id": "remote-font", "input": { "dependency": "https://example.invalid/font.woff2" }, "expected": "BLOCKED" },
+    { "id": "copy-in-script", "input": { "javascript_visible_copy": "Resultado garantizado" }, "expected": "BLOCKED" },
+    { "id": "stale-hash", "input": { "declared_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }, "expected": "BLOCKED" },
+    { "id": "ats-visual-dependency", "input": { "profile": "candidate-neutral-ats", "design_system_required": true }, "expected": "BLOCKED" }
+  ]
+}

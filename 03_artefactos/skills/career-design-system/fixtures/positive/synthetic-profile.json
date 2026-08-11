@@ -1,0 +1,14 @@
+{
+  "fixture_id": "synthetic-career-profile-es",
+  "synthetic_only": true,
+  "identity": { "display_name": "Perfil Ejecutivo Sintético", "role": "Liderazgo de transformación" },
+  "hero": "Convierte decisiones complejas en capacidades que generan valor medible.",
+  "proof": [
+    { "value": "3", "unit": "programas", "label": "priorizados con criterios comunes", "evidence_id": "SYN-E01" },
+    { "value": "12", "unit": "semanas", "label": "hasta la primera validación", "evidence_id": "SYN-E02" },
+    { "value": "2", "unit": "mercados", "label": "alineados bajo una operación", "evidence_id": "SYN-E03" }
+  ],
+  "experience": [{ "challenge": "Prioridades dispersas", "decision": "Unificar portafolio y cadencia", "result": "Decisiones comparables", "evidence_id": "SYN-E04" }],
+  "capabilities": ["Estrategia", "Producto", "Transformación digital", "IA aplicada"],
+  "contact_binding": "PRIVATE_BINDING_REQUIRED"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "cv-design-brief-v1",
+  "brief_id": "synthetic-executive-brief",
+  "audience": ["executive-recruiter", "transformation-leader"],
+  "content_density": "high-but-progressive",
+  "hierarchy": ["positioning", "proof", "experience", "capabilities", "contact"],
+  "outputs": ["executive-html"],
+  "required_options": ["blueprint-executive", "neo-swiss-editorial"],
+  "themes": { "default": "navy", "alternate": "light", "print": "light" },
+  "constraints": ["offline", "wcag-2.2-aa", "js-off-content", "synthetic-only"]
+}
