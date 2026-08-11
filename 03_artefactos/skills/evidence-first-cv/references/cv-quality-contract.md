@@ -9,10 +9,15 @@ frágiles ni gráficos. [METODOLOGIA][CONFIG]
 
 ## Spec como autoridad
 
-Compilar solo desde una `cv-spec-v1` en `HUMAN_APPROVED`. Ligar brief,
+Compilar solo desde una `cv-spec-v2` en `HUMAN_APPROVED`. Ligar brief,
 Evidence Bank, vacante cuando aplique y outputs al `spec_sha256`. Un cambio en
 cualquier binding invalida derivados y aprobaciones; no se corrige el output
 como fuente. [METODOLOGIA][CONFIG]
+
+`cv-spec-v1` y `cv-package-v1/v2` son contratos de compatibilidad. Solo pueden
+entrar por los migradores explícitos v1→v2 y v2→v3; la migración invalida la
+aprobación previa y nunca infiere una decisión visual. Ningún checker, fixture
+principal o paquete nuevo puede declararlos como autoridad activa.
 
 ## Paridad
 
@@ -26,6 +31,8 @@ manifest no constituyen evidencia. Cada output debe existir, coincidir con su
 hash y ocupar exactamente una celda de la matriz variante→formato. Cada
 variante conserva `source_document_ref` y `source_document_sha256` propios; la
 paridad se comprueba entre fuentes localizadas, no contra un único hash global.
+El paquete activo es `cv-package-v3`: cada variante ATS declara `ats-neutral` y
+cada HTML ejecutivo liga sistema, decisión humana, composición y tema vigentes.
 
 ATS DOCX conserva una columna, bullets nativos, contacto en body y orden de
 lectura extraíble; no usa tablas, text boxes, dibujos, headers ni footers. ATS

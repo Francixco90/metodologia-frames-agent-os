@@ -1734,7 +1734,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 3a80613c28cbf12f3e2f7afa5f5320aa964e2c8904e985133c8ae337ee6aeef5
-    package_manifest_sha256: 575c420b74f78e618b490a16209d72f615be6ab2af10351186b0ac46fb1a647e
+    package_manifest_sha256: cbd835be3e5bc41c1e0d2cac945ef714898408ba84e54d054a8ae111fa58735b
     lineage_ref: skills/evidence-first-cv/LINEAGE.yml
     dependency_receipt_ref: skills/evidence-first-cv/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
