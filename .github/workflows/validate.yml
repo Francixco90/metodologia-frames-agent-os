@@ -32,9 +32,10 @@ jobs:
       - name: Install audiovisual probe runtime
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ffmpeg
+          sudo apt-get install --yes --no-install-recommends ffmpeg tesseract-ocr
           ffmpeg -version
           ffprobe -version
+          tesseract --version
       - run: pnpm install --frozen-lockfile
       - run: pnpm check:repo
       - run: pnpm check:md-budgets
