@@ -68,6 +68,12 @@
     "check": ["skills/candidate-evidence-reconciler/scripts/check-skill.mjs"]
   },
   {
+    "id": "career-design-system",
+    "version": "1.0.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-design-system/scripts/check-skill.mjs"]
+  },
+  {
     "id": "evidence-first-cv",
     "version": "0.2.0",
     "scope": "local-evaluation",

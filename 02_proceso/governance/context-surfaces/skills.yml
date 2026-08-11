@@ -340,6 +340,39 @@ surfaces:
     privacy: private_after_route_lock
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CAREER-DESIGN-SYSTEM
+    root: 03_artefactos/skills/career-design-system
+    kind: skill
+    owner: skill-foundry
+    applies_when: Un CV ejecutivo requiere brief visual, dos alternativas, selección humana o verificación de drift.
+    authority_refs:
+      [
+        03_artefactos/skills/career-design-system/SKILL.md,
+        03_artefactos/brand/career-design-system/manifest.v1.json,
+      ]
+    load_first: [03_artefactos/skills/career-design-system/SKILL.md]
+    load_on_demand:
+      [
+        03_artefactos/skills/career-design-system/references/options-contract.md,
+        03_artefactos/skills/career-design-system/references/verification.md,
+      ]
+    defer: [CV privado, bindings de contacto, outputs no solicitados]
+    routes: [R7, R4]
+    workflows: [C06, C08]
+    primary_skills: [career-design-system]
+    tools: [career_design_brief, career_design_verify]
+    read_set:
+      [
+        03_artefactos/skills/career-design-system/SKILL.md,
+        03_artefactos/brand/career-design-system/manifest.v1.json,
+      ]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/career-design-system/context.md]}
+    gates: [CR_CV_DESIGN_APPROVED, G09_CAREER_DESIGN]
+    stop_rules: [Exactamente dos alternativas, Selección stale bloquea HTML ejecutivo]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-SKILL-TOKEN-EFFICIENCY
     root: 03_artefactos/skills/frames-token-efficiency-orchestrator
     kind: skill

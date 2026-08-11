@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "6c99e23471ff10ca2bd5c060ac4298d724a69a1ae7053476c55ff9e2dfbec720",
-  "totalMarkdown": 1800,
+  "repositoryTreeSha256": "a98686c77329fdb4523ad70f261c806c0de38204a80dfbd64a234505b01cc270",
+  "totalMarkdown": 1802,
   "auditedAuthored": 563,
   "classPaths": {
     "authored_control": [
@@ -562,6 +562,7 @@
     "skill": [
       "03_artefactos/skills/candidate-evidence-reconciler/SKILL.md",
       "03_artefactos/skills/career-application-orchestrator/SKILL.md",
+      "03_artefactos/skills/career-design-system/SKILL.md",
       "03_artefactos/skills/career-opportunity-finder/SKILL.md",
       "03_artefactos/skills/cinematic-scroll-quality/SKILL.md",
       "03_artefactos/skills/content-os-animation/SKILL.md",
@@ -797,6 +798,7 @@
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
+      "03_artefactos/skills/career-design-system/context.md",
       "03_artefactos/skills/content-os-core/context.md",
       "03_artefactos/skills/content-os-creative/context.md",
       "03_artefactos/skills/content-os-router/context.md",
@@ -9667,9 +9669,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "6cdaa82e9efbd6e2bfc730d7e58ce7f616f040deb9582b0b9957d1bd6612be2a",
-      "words": 10174,
-      "lines": 947,
+      "sha256": "1586a2ab04de98845ec67377d114cb695f231322dda505a6545df3255dd29d8c",
+      "words": 10185,
+      "lines": 948,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -16949,7 +16951,7 @@
     "keep": 548,
     "refactor": 0,
     "split": 1,
-    "regenerate": 81,
+    "regenerate": 82,
     "freeze": 987
   }
 }

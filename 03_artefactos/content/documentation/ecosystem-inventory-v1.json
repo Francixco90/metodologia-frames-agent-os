@@ -3841,6 +3841,13 @@
     },
     {
       "kind": "SKILL",
+      "id": "career-design-system",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
       "id": "career-opportunity-finder",
       "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
       "scope": "CANONICAL",
@@ -6409,5 +6416,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "2efeaf4591436add26aae08e08fb2c792ea7e5405970e061119cd6361fa9b661"
+  "sourceSha256": "7945672d063d1a746f4ece8de643e76406fae31031a0086438e1a710f124ee50"
 }

@@ -7,6 +7,9 @@ profiles:
   - skill_id: career-application-orchestrator
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: career-design-system
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: career-opportunity-finder
     mutation_classes: []
     documentation_impact_required: false
