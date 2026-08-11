@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="{{LANG}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="generator" content="MetodologIA Frames Career OS" />
+    <meta name="document-id" content="{{DOCUMENT_ID}}" />
+    <meta name="document-kind" content="{{KIND}}" />
+    <meta name="content-sha256" content="{{CONTENT_HASH}}" />
+    <meta name="spec-sha256" content="{{SPEC_HASH}}" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; script-src 'none'; img-src data:"
+    />
+    <title>{{TITLE}}</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        background: #fff;
+        color: #111;
+      }
+      body {
+        max-width: 8.27in;
+        margin: 0 auto;
+        padding: 0.55in 0.65in;
+        font:
+          10.5pt/1.35 Arial,
+          Helvetica,
+          sans-serif;
+      }
+      h1 {
+        font-size: 21pt;
+        line-height: 1.1;
+        margin: 0 0 0.08in;
+      }
+      h2 {
+        font-size: 12pt;
+        margin: 0.2in 0 0.06in;
+      }
+      p {
+        margin: 0.04in 0;
+      }
+      article {
+        break-inside: avoid;
+      }
+      article header {
+        display: block;
+      }
+      article h2 {
+        font-size: 11pt;
+        margin: 0.1in 0 0.03in;
+      }
+      ul {
+        margin: 0.04in 0 0.1in;
+        padding-left: 0.22in;
+      }
+      li {
+        margin: 0.025in 0;
+      }
+      .subtitle {
+        margin-bottom: 0.14in;
+      }
+      .tags {
+        columns: auto;
+      }
+      .provenance {
+        font-size: 8pt;
+        margin-top: 0.2in;
+      }
+      @media (max-width: 320px) {
+        body {
+          padding: 1rem;
+        }
+      }
+      @media print {
+        @page {
+          size: A4;
+          margin: 0.55in;
+        }
+        body {
+          max-width: none;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body data-design-profile="{{PROFILE}}">
+    <header>
+      <h1>{{TITLE}}</h1>
+      <p class="subtitle">{{SUBTITLE}}</p>
+    </header>
+    <main>{{BODY}}</main>
+    <footer class="provenance">{{VISIBLE_FOOTER}}</footer>
+    <script id="career-document-data" type="application/json">
+      {{CANONICAL_JSON}}
+    </script>
+  </body>
+</html>

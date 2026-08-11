@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 269
+- ASSET: 270
 - COMMAND: 97
 - COMPONENT: 16
 - DELIVERABLE: 72
@@ -41,6 +41,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | .agents/skills/harness-creator/templates/assets/brand.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/assets/brand.md` |
 | ASSET | .agents/skills/harness-creator/templates/assets/favicon.svg | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/assets/favicon.svg` |
 | ASSET | .agents/skills/harness-creator/templates/assets/styles.css | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/assets/styles.css` |
+| ASSET | 02_proceso/workflows/career/_assets/ats-document-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/ats-document-template.html` |
 | ASSET | 02_proceso/workflows/career/_assets/brief-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/brief-template.html` |
 | ASSET | 02_proceso/workflows/career/_assets/deliverable-registry.yml | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | ASSET | 02_proceso/workflows/career/_assets/document-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/document-template.html` |
@@ -930,4 +931,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `076fc9bffa0abb76def207ff5909f9c4842c1678a0c8e104a51283a6d80dea95`.
+Hash de fuentes: `13fb47652cb5ca4f8500eeae51de664c959043ad007906a9f255e9d1866d16b5`.

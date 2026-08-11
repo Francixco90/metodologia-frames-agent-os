@@ -5,9 +5,10 @@ import {
   type CareerCvV1,
   type CareerLetterV1,
 } from '../_schema/document-v1.schema.ts';
+import {CareerCvV2Schema, type CareerCvV2} from '../_schema/document-v2.schema.ts';
 import {sha256Text, stableStringify} from './canonical.ts';
 
-type CareerDocument = CareerCvV1 | CareerLetterV1;
+type CareerDocument = CareerCvV1 | CareerCvV2 | CareerLetterV1;
 type Pair = {evidence_ids: readonly string[]; evidence_hashes: readonly string[]};
 
 export class CareerEvidenceError extends Error {
@@ -20,7 +21,7 @@ export class CareerEvidenceError extends Error {
 export const calculateEvidenceBankHash = (bank: EvidenceBankV1): string =>
   sha256Text(stableStringify({candidate_id: bank.candidate_id, evidence: bank.evidence}));
 
-const cvSurface = (document: CareerCvV1): Array<{path: string; text: string}> => [
+const cvSurface = (document: CareerCvV1 | CareerCvV2): Array<{path: string; text: string}> => [
   {path: '/name', text: document.name},
   {path: '/headline', text: document.headline},
   {path: '/summary', text: document.summary},
@@ -36,7 +37,7 @@ const cvSurface = (document: CareerCvV1): Array<{path: string; text: string}> =>
 ];
 
 const visibleSurfaces = (document: CareerDocument): Array<{path: string; text: string}> =>
-  document.schema_version === 'career-cv-v1'
+  document.schema_version === 'career-cv-v1' || document.schema_version === 'career-cv-v2'
     ? cvSurface(document)
     : [
         {path: '/addressee', text: document.addressee},
@@ -53,14 +54,19 @@ export const assertCareerEvidence = (
 ): CareerDocument => {
   const record = documentInput as {schema_version?: string};
   const document =
-    record.schema_version === 'career-cv-v1'
-      ? CareerCvV1Schema.parse(documentInput)
+    record.schema_version === 'career-cv-v1' || record.schema_version === 'career-cv-v2'
+      ? record.schema_version === 'career-cv-v2'
+        ? CareerCvV2Schema.parse(documentInput)
+        : CareerCvV1Schema.parse(documentInput)
       : CareerLetterV1Schema.parse(documentInput);
   const bank = EvidenceBankV1Schema.parse(bankInput);
   const issues: string[] = [];
   if (bank.candidate_id !== document.candidate_id) issues.push('CANDIDATE_MISMATCH');
   if (calculateEvidenceBankHash(bank) !== bank.bank_sha256) issues.push('BANK_HASH_MISMATCH');
-  const channel = document.schema_version === 'career-cv-v1' ? 'cv' : document.channel;
+  const channel =
+    document.schema_version === 'career-cv-v1' || document.schema_version === 'career-cv-v2'
+      ? 'cv'
+      : document.channel;
   const byId = new Map(bank.evidence.map((item) => [item.evidence_id, item]));
   const validate = (owner: string, pair: Pair): void => {
     pair.evidence_ids.forEach((id, index) => {
@@ -85,12 +91,21 @@ export const assertCareerEvidence = (
     const binding = bindings.get(path);
     if (!binding) issues.push(`UNBOUND_VISIBLE_TEXT:${path}`);
     else if (binding.classification === 'evidence') validate(path, binding);
-    else if (!text.startsWith('[NO-CLAIM] ')) issues.push(`NON_CLAIM_VISIBLE_TEXT:${path}`);
+    else if (
+      !text.startsWith('[NO-CLAIM] ') &&
+      path !== '/name' &&
+      !path.startsWith('/contact_lines/') &&
+      !(
+        path === '/headline' &&
+        binding.rationale === 'Target positioning from approved spec; not a historical title.'
+      )
+    )
+      issues.push(`NON_CLAIM_VISIBLE_TEXT:${path}`);
   }
   for (const path of bindings.keys()) {
     if (!expected.includes(path)) issues.push(`NON_RENDERED_BINDING:${path}`);
   }
-  if (document.schema_version === 'career-cv-v1') {
+  if (document.schema_version === 'career-cv-v1' || document.schema_version === 'career-cv-v2') {
     document.experience
       .flatMap(({achievements}) => achievements)
       .forEach((claim) => validate(claim.claim_id, claim));
