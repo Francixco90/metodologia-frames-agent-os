@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transcript-intelligence-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "source", "asrRef", "authorityRef", "policy", "narrative"],
+  "properties": {
+    "schemaVersion": {"const": "transcript-intelligence-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "sha256", "rights", "authority", "audioAvailable"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["video", "audio", "meeting", "podcast", "text"]},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "rights": {"type": "string", "minLength": 3},
+        "authority": {"type": "string", "minLength": 3},
+        "audioAvailable": {"type": "boolean"},
+        "audioRef": {"type": "string", "minLength": 1}
+      }
+    },
+    "asrRef": {"type": "string", "minLength": 1},
+    "notesRefs": {"type": "array", "items": {"type": "string"}},
+    "authorityRef": {"type": "string", "minLength": 1},
+    "languageProfile": {
+      "type": "object",
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {"type": "string"},
+        "secondary": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": ["captionMode", "privateCoaching", "publicPackage"],
+      "properties": {
+        "captionMode": {"const": "minimal-clarity"},
+        "privateCoaching": {"type": "boolean"},
+        "publicPackage": {"type": "boolean"}
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "required": ["purpose", "audience", "targetSeconds"],
+      "properties": {
+        "purpose": {"type": "string", "minLength": 5},
+        "audience": {"type": "string", "minLength": 3},
+        "targetSeconds": {"type": "number", "exclusiveMinimum": 0}
+      }
+    }
+  }
+}

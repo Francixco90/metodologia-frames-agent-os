@@ -1,0 +1,28 @@
+schema_version: transcript-intelligence-verification-receipt-v1
+skill_id: content-os-transcript-intelligence
+version: 0.1.0
+state: evaluated
+execution_scope: local-evaluation
+publication_authority: false
+checks:
+  skill_contract: PASS
+  positive_fixture: PASS
+  semantic_alias_search: PASS
+  evidence_bound_narrative: PASS
+  text_only_pronunciation_gate: PASS
+  material_ambiguity_gate: PASS
+  public_private_package_split: PASS
+  content_os_workflow_auditors: PASS
+  creation_v3_registry: PASS
+  package_validation: PASS
+  repository_typecheck: PASS
+coverage_gaps:
+  - code: global_source_authority_registration_pending
+    disposition: blocks_active_promotion
+  - code: independent_guardian_review_pending
+    disposition: blocks_active_promotion
+role_separation:
+  producer: contract_and_runtime_implementation
+  verifier: deterministic_checks_and_fixtures
+  guardian: pending_independent_human_or_agent_review
+  independence_status: not_claimed
