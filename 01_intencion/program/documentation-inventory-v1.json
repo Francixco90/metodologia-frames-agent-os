@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "9a56ac659560d51aa8417f85e5730a2160f0abc0b32802f117a96b80bba3d143",
-  "totalMarkdown": 1791,
-  "auditedAuthored": 554,
+  "repositoryTreeSha256": "45a01d635fe9099f16fba1cdd15fefd60a163be3d87f712a9630a4253ee9cdf4",
+  "totalMarkdown": 1792,
+  "auditedAuthored": 555,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -459,6 +459,7 @@
       "05_verificacion/evals/README.md",
       "05_verificacion/evals/ablation/README.md",
       "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
+      "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
       "05_verificacion/guardian/reviews/GDN-001-revise.md",
       "05_verificacion/guardian/reviews/GDN-002-local-closeout.md",
       "05_verificacion/guardian/reviews/GDN-CREATION-V3-H01-001-REM-01.md",
@@ -16205,6 +16206,32 @@
       }
     },
     {
+      "path": "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
+      "class": "authored_control",
+      "owner": "guardian",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:guardian:guardian/**",
+      "authorityRefs": [
+        "05_verificacion/guardian/career-design-system/design-options-review-r1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "cb978b7f0738090a8b4753dfcb749564befd7c7316b4b43700d4aaa6c9a40846",
+      "words": 702,
+      "lines": 81,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/guardian/reviews/GDN-001-revise.md",
       "class": "authored_control",
       "owner": "guardian",
@@ -16703,7 +16730,7 @@
     }
   ],
   "summary": {
-    "keep": 539,
+    "keep": 540,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,

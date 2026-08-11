@@ -1,0 +1,41 @@
+{
+  "schema_version": "career-design-options-guardian-verdict-v1",
+  "package_id": "metodologia-career-design-options-v1",
+  "actor": "independent-guardian",
+  "acceptance_spec": {
+    "ref": "design-options-acceptance-v1.md",
+    "sha256": "bdd1f83d87d107d048e8a75da58323da5820e688d42de36d1872c2a20e2a00e3"
+  },
+  "candidate_manifest": {
+    "ref": "../../../03_artefactos/brand/career-design-system/options/manifest.json",
+    "sha256": "06f761c090d94e2421373a78c4ad5fe46b345ef0d6a81cfdc55135caacc0fa65"
+  },
+  "producer_receipt_sha256": "b858a2338609d0d24577cec874f06ccc5fa037b7343b653b3fedf524ae9d47ba",
+  "review": {
+    "ref": "design-options-review-r1.md",
+    "sha256": "cb978b7f0738090a8b4753dfcb749564befd7c7316b4b43700d4aaa6c9a40846"
+  },
+  "verdict": "PASS_DESIGN_OPTIONS_READY",
+  "checks": {
+    "exact_two_options": "PASS",
+    "manifest_hashes": "PASS",
+    "determinism": "PASS",
+    "synthetic_privacy": "PASS",
+    "shared_primitives": "PASS",
+    "fonts_rights": "PASS",
+    "local_first": "PASS",
+    "theme_and_contrast": "PASS",
+    "responsive_and_targets": "PASS",
+    "keyboard_and_dialog": "PASS",
+    "javascript_off": "PASS",
+    "print": "PASS",
+    "semantics_and_ax": "PASS",
+    "reduced_motion": "PASS",
+    "impeccable_ui_ux": "PASS"
+  },
+  "selection": null,
+  "human_approved": false,
+  "ready": false,
+  "published": false,
+  "next_gate": "HUMAN_DESIGN_SELECTION"
+}
