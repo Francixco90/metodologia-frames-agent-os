@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 52 gates', () => {
-    expect(manifest.gates).toHaveLength(52);
+  it('declares 54 gates', () => {
+    expect(manifest.gates).toHaveLength(54);
   });
 
   it('every gate id belongs to a governed gate family', () => {
@@ -48,7 +48,12 @@ describe('commands.yaml contract', () => {
   });
 
   it('CR_* career decisions are manual and fail closed', () => {
-    for (const id of ['CR_BRIEF_APPROVED', 'CR_PACKAGE_APPROVED', 'CR_SUBMISSION_AUTHORIZED']) {
+    for (const id of [
+      'CR_BRIEF_APPROVED',
+      'CR_CV_SPEC_APPROVED',
+      'CR_PACKAGE_APPROVED',
+      'CR_SUBMISSION_AUTHORIZED',
+    ]) {
       const gate = manifest.gates.find((candidate) => candidate.gate === id);
       expect(gate).toMatchObject({
         command: null,
