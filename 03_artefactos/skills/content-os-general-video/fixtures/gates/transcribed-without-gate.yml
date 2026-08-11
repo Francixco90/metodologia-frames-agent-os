@@ -1,0 +1,17 @@
+schemaVersion: general-video-v1
+projectId: voice-without-linguistic-authority
+route: content-os-general-video
+vo_mode: transcribed
+has_script: false
+footage: true
+offline: true
+flow: automation
+storyboard: no
+scope_expanded: false
+rendered_before_approval: false
+rendered: false
+capability_map: [content-os-core, content-os-media]
+steps:
+  - {step: setup, state: gate-passed}
+  - {step: plan, state: pending}
+  - {step: finalize, state: pending}

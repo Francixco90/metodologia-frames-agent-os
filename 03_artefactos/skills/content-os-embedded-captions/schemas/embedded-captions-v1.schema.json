@@ -9,7 +9,10 @@
     "route",
     "capability_map",
     "vo_mode",
-    "has_script",
+    "scriptMode",
+    "captionPolicyRef",
+    "captionTrackRef",
+    "transcriptIntelligenceRef",
     "footage",
     "offline",
     "steps"
@@ -47,10 +50,17 @@
       "const": "transcribed",
       "description": "Captions derived from footage speech via transcription. Only 'transcribed' valid. The footage carries its own VO."
     },
-    "has_script": {
-      "type": "boolean",
-      "const": false,
-      "description": "No SCRIPT.md authored — transcript is derived from footage, not authored."
+    "scriptMode": {"type": "string", "const": "transcript_derived"},
+    "captionPolicyRef": {"type": "string", "minLength": 1},
+    "captionTrackRef": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Only accepted public caption source; direct ASR is forbidden."
+    },
+    "transcriptIntelligenceRef": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Verification artifact in deterministic-passed state."
     },
     "footage": {
       "type": "boolean",
