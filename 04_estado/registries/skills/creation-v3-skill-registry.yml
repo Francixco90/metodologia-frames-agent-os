@@ -1894,7 +1894,18 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/skill-security-auditor/scripts/check-skill.mjs]
+  - skill_id: career-design-system
+    version: 1.0.0
+    current_state: candidate
+    execution_scope: local-evaluation
+    content_sha256: 22cdeabf7072ec3d213be1fb46ecf9edb2cc66b8d274c587e697902a27ca9bb8
+    package_manifest_sha256: dc499efd03f58859772c08c0fa3116f05348f81cbe12dcb4849c7abfbb3ac9df
+    lineage_ref: skills/career-design-system/LINEAGE.yml
+    production_runtime_status: candidate_contract_only
+    publication_authority: false
+    tests: []
 events:
+  - {event_id: EVT-SKL-CDS-H03-001, event_order: 1, skill_id: career-design-system, from: null, to: candidate, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-003, event_order: 3, skill_id: skill-system-architect, from: quarantined, to: evaluated, actor_id: RT-09-SSS-VERIFIER}
