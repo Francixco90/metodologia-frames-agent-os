@@ -21,7 +21,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - SKILL: 182
 - SOURCE: 11
 - TEMPLATE: 134
-- WORKFLOW: 43
+- WORKFLOW: 44
 
 ## Capacidades
 
@@ -939,6 +939,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | P07 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p07-revisar/workflow.yml` |
 | WORKFLOW | P08 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p08-editar/workflow.yml` |
 | WORKFLOW | P09 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p09-distribuir/workflow.yml` |
+| WORKFLOW | P90 | ACTIVE | CANONICAL | `02_proceso/workflows/content/html-learning-kit/workflow.yml` |
 | WORKFLOW | S00 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s00-intake/workflow.yml` |
 | WORKFLOW | S01 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s01-discovery/workflow.yml` |
 | WORKFLOW | S02 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s02-architecture/workflow.yml` |
@@ -950,4 +951,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `e733e3cb16d2038ab4ad3a3488d08bcc8dd13effd031f640044c06802d608eb8`.
+Hash de fuentes: `2540cda8b1af3d59543ec5a5659b1ce7547d986ea49e8a5de5a5603fa8b7585b`.

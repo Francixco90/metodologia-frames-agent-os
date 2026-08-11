@@ -21,6 +21,7 @@ Esta referencia se genera desde los workflows canónicos. Empieza por el resulta
 - [P07 · Revisa material multimedia](p07.md): Diagnostica solo lo observable y transforma hallazgos en correcciones priorizadas.
 - [P08 · Edita, compone y reutiliza](p08.md): Monta, compone, localiza y reutiliza con lineage, QC y rollback.
 - [P09 · Empaqueta, publica, conversa o aprende](p09.md): Separa empaque, publicación, comunidad y aprendizaje para operar con control.
+- [P90 · Compila un kit HTML de aprendizaje](p90.md): Compilar y verificar una landing, un workbook y una masterclass trilingües desde una spec hash-bound, sin persistir respuestas ni conceder autoridad de publicación.
 
 ## Carrera profesional
 

@@ -331,6 +331,16 @@
   },
   {
     "schemaVersion": "documentation-coverage-v1",
+    "workflowId": "P90",
+    "source": "02_proceso/workflows/content/html-learning-kit/workflow.yml",
+    "markdown": "01_intencion/reference/workflows/p90.md",
+    "html": "03_artefactos/content/documentation/workflows/p90.html",
+    "hasSequence": true,
+    "referencesResolvable": true,
+    "unresolvedReferences": []
+  },
+  {
+    "schemaVersion": "documentation-coverage-v1",
     "workflowId": "S00",
     "source": "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
     "markdown": "01_intencion/reference/workflows/s00.md",

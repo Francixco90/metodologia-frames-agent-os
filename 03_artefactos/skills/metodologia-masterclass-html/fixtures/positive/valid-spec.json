@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "masterclass-spec-v1",
+  "masterclassId": "synthetic-masterclass",
+  "brand": "MetodologIA",
+  "state": "RENDERED_DRAFT",
+  "specSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "designSystemLock": {"ref": "locks/metodologia.json", "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"},
+  "primaryLocale": "es",
+  "modes": [{"id": "core", "minutes": 90}, {"id": "extended", "minutes": 120}],
+  "locales": [
+    {"locale": "es", "title": "Masterclass sintética", "slides": [
+      {"id": "opening", "title": "Apertura", "intent": "Enmarcar", "facilitatorNote": "Presentar el ejemplo ficticio.", "timing": {"coreMinutes": 20, "extendedMinutes": 25}, "resources": []},
+      {"id": "practice", "title": "Práctica", "intent": "Aplicar", "facilitatorNote": "Abrir el recurso sintético.", "timing": {"coreMinutes": 50, "extendedMinutes": 70}, "resources": [{"kind": "deep-link", "label": "Abrir práctica", "href": "workbook.html#sheet-session", "targetType": "workbook-sheet", "targetId": "session"}]},
+      {"id": "closing", "title": "Cierre", "intent": "Transferir", "facilitatorNote": "Cerrar con evidencia ficticia.", "timing": {"coreMinutes": 20, "extendedMinutes": 25}, "resources": [{"kind": "reference", "label": "Referencia pública", "href": "https://example.org/reference", "authority": "synthetic-fixture"}]}
+    ]},
+    {"locale": "en", "title": "Synthetic masterclass", "slides": [
+      {"id": "opening", "title": "Opening", "intent": "Frame", "facilitatorNote": "Present the fictional example.", "timing": {"coreMinutes": 20, "extendedMinutes": 25}, "resources": []},
+      {"id": "practice", "title": "Practice", "intent": "Apply", "facilitatorNote": "Open the synthetic resource.", "timing": {"coreMinutes": 50, "extendedMinutes": 70}, "resources": [{"kind": "deep-link", "label": "Open practice", "href": "workbook.html#sheet-session", "targetType": "workbook-sheet", "targetId": "session"}]},
+      {"id": "closing", "title": "Closing", "intent": "Transfer", "facilitatorNote": "Close with fictional evidence.", "timing": {"coreMinutes": 20, "extendedMinutes": 25}, "resources": [{"kind": "reference", "label": "Public reference", "href": "https://example.org/reference", "authority": "synthetic-fixture"}]}
+    ]}
+  ],
+  "keyboard": {"next": ["ArrowRight", "PageDown", "Space"], "previous": ["ArrowLeft", "PageUp"], "first": "Home", "last": "End", "ignoreEditableTargets": true, "buttons": true, "outline": true},
+  "deepLinkContract": {"preserveLocale": true, "preserveFragment": true, "missingTarget": "block"},
+  "assets": [{"id": "local-font", "ref": "assets/font.woff2", "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "rights": {"status": "cleared", "authority": "synthetic-fixture"}}],
+  "output": {"htmlRef": "dist/masterclass.html", "state": "RENDERED_DRAFT"}
+}
+

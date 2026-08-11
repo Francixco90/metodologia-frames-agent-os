@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.dev/schemas/masterclass-spec-v1.schema.json",
+  "title": "MetodologIA masterclass specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "masterclassId", "brand", "state", "specSha256", "designSystemLock", "primaryLocale", "modes", "locales", "keyboard", "deepLinkContract", "assets", "output"],
+  "properties": {
+    "schemaVersion": {"const": "masterclass-spec-v1"},
+    "masterclassId": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "brand": {"const": "MetodologIA"},
+    "state": {"const": "RENDERED_DRAFT"},
+    "specSha256": {"$ref": "#/$defs/sha256"},
+    "designSystemLock": {"$ref": "#/$defs/hashRef"},
+    "primaryLocale": {"$ref": "#/$defs/localeCode"},
+    "modes": {
+      "type": "array", "minItems": 2, "maxItems": 2, "prefixItems": [
+        {"type": "object", "additionalProperties": false, "required": ["id", "minutes"], "properties": {"id": {"const": "core"}, "minutes": {"const": 90}}},
+        {"type": "object", "additionalProperties": false, "required": ["id", "minutes"], "properties": {"id": {"const": "extended"}, "minutes": {"const": 120}}}
+      ], "items": false
+    },
+    "locales": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/localizedMasterclass"}},
+    "keyboard": {
+      "type": "object", "additionalProperties": false, "required": ["next", "previous", "first", "last", "ignoreEditableTargets", "buttons", "outline"],
+      "properties": {
+        "next": {"const": ["ArrowRight", "PageDown", "Space"]}, "previous": {"const": ["ArrowLeft", "PageUp"]}, "first": {"const": "Home"}, "last": {"const": "End"},
+        "ignoreEditableTargets": {"const": true}, "buttons": {"const": true}, "outline": {"const": true}
+      }
+    },
+    "deepLinkContract": {
+      "type": "object", "additionalProperties": false, "required": ["preserveLocale", "preserveFragment", "missingTarget"],
+      "properties": {"preserveLocale": {"const": true}, "preserveFragment": {"const": true}, "missingTarget": {"const": "block"}}
+    },
+    "assets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/asset"}},
+    "output": {
+      "type": "object", "additionalProperties": false, "required": ["htmlRef", "state"],
+      "properties": {"htmlRef": {"$ref": "#/$defs/relativeRef"}, "state": {"const": "RENDERED_DRAFT"}}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "localeCode": {"type": "string", "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"},
+    "relativeRef": {"type": "string", "minLength": 1, "pattern": "^(?![a-zA-Z]+:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:private|privado|secret|secrets))(?!.*\\s).+$"},
+    "hashRef": {"type": "object", "additionalProperties": false, "required": ["ref", "sha256"], "properties": {"ref": {"$ref": "#/$defs/relativeRef"}, "sha256": {"$ref": "#/$defs/sha256"}}},
+    "localizedMasterclass": {
+      "type": "object", "additionalProperties": false, "required": ["locale", "title", "slides"],
+      "properties": {"locale": {"$ref": "#/$defs/localeCode"}, "title": {"type": "string", "minLength": 1}, "slides": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/slide"}}}
+    },
+    "slide": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "intent", "facilitatorNote", "timing", "resources"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "title": {"type": "string", "minLength": 1}, "intent": {"type": "string", "minLength": 1}, "facilitatorNote": {"type": "string", "minLength": 1},
+        "timing": {"type": "object", "additionalProperties": false, "required": ["coreMinutes", "extendedMinutes"], "properties": {"coreMinutes": {"type": "integer", "minimum": 0}, "extendedMinutes": {"type": "integer", "minimum": 0}}},
+        "resources": {"type": "array", "items": {"oneOf": [{"$ref": "#/$defs/deepLink"}, {"$ref": "#/$defs/reference"}]}}
+      }
+    },
+    "deepLink": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "label", "href", "targetType", "targetId"],
+      "properties": {"kind": {"const": "deep-link"}, "label": {"type": "string", "minLength": 1}, "href": {"allOf": [{"$ref": "#/$defs/relativeRef"}, {"pattern": "#.+$"}]}, "targetType": {"enum": ["workbook-sheet", "workbook-step", "internal-slide"]}, "targetId": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}}
+    },
+    "reference": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "label", "href", "authority"],
+      "properties": {"kind": {"const": "reference"}, "label": {"type": "string", "minLength": 1}, "href": {"type": "string", "pattern": "^https://(?!.*(?:/edit(?:[/?#]|$))).+$"}, "authority": {"type": "string", "minLength": 1}}
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false, "required": ["id", "ref", "sha256", "rights"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "ref": {"$ref": "#/$defs/relativeRef"}, "sha256": {"$ref": "#/$defs/sha256"},
+        "rights": {"type": "object", "additionalProperties": false, "required": ["status", "authority"], "properties": {"status": {"const": "cleared"}, "authority": {"type": "string", "minLength": 1}}}
+      }
+    }
+  }
+}

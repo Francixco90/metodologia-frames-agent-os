@@ -6389,6 +6389,13 @@
     },
     {
       "kind": "WORKFLOW",
+      "id": "P90",
+      "ref": "02_proceso/workflows/content/html-learning-kit/workflow.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "WORKFLOW",
       "id": "S00",
       "ref": "02_proceso/workflows/skill-systems/s00-intake/workflow.yml",
       "scope": "CANONICAL",
@@ -6458,5 +6465,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "e733e3cb16d2038ab4ad3a3488d08bcc8dd13effd031f640044c06802d608eb8"
+  "sourceSha256": "2540cda8b1af3d59543ec5a5659b1ce7547d986ea49e8a5de5a5603fa8b7585b"
 }

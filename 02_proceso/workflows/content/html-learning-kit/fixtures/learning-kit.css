@@ -1,0 +1,62 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+}
+body {
+  margin: 0;
+  line-height: 1.5;
+}
+header,
+main {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding: 1rem;
+}
+header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+a,
+button {
+  outline-offset: 0.25rem;
+}
+[data-theme='light'] {
+  background: #fff;
+  color: #081126;
+}
+[data-theme='dark'] {
+  background: #081126;
+  color: #fff;
+}
+.skip-link {
+  left: 1rem;
+  position: absolute;
+  top: -5rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+.slide,
+article,
+section {
+  margin-block: 2rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+@media print {
+  [data-interactive],
+  .skip-link,
+  script {
+    display: none;
+  }
+  [hidden] {
+    display: block !important;
+  }
+}

@@ -1,0 +1,16 @@
+schema_version: 1
+receipt_id: RCP-METODOLOGIA-MASTERCLASS-HTML-001
+skill_id: metodologia-masterclass-html
+version: 0.1.0
+runtime_scope: local-candidate-production
+network_allowed: false
+execution_boundary: requires_user_confirmation
+autoplay_allowed: false
+telemetry_allowed: false
+external_references_user_initiated_only: true
+remote_media_fail_mode: closed
+deterministic_rebuild_required: true
+production_runtime_status: local_capability_only
+publication_authority: false
+terminal_state: RENDERED_DRAFT
+

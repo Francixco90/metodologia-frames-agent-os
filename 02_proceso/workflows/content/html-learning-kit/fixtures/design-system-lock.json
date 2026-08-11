@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "synthetic-design-system-lock-v1",
+  "lockId": "SYNTHETIC-DS-001",
+  "brandAuthorityRef": "02_proceso/workflows/content/html-learning-kit/fixtures/brand-authority.json",
+  "tokensRef": "external-authority-required"
+}

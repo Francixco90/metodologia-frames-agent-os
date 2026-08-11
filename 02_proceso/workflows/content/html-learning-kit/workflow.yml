@@ -1,0 +1,79 @@
+schema_version: html-learning-kit-workflow-v1
+workflow_id: P90
+command: /html-learning-kit
+title: Compila un kit HTML de aprendizaje
+purpose: Compilar y verificar una landing, un workbook y una masterclass trilingües desde una spec hash-bound, sin persistir respuestas ni conceder autoridad de publicación.
+discipline: content
+phase: artifact-production
+tags: [html, learning, workbook, masterclass, deterministic]
+inputs:
+  - html-learning-kit-spec-v1
+  - design-system-lock-ref-and-sha256
+  - brand-authority-ref-and-sha256
+  - localized-content-es-en-pt
+  - asset-rights-and-sha256
+deliverables:
+  - landing-html-es-en-pt
+  - workbook-html-es-en-pt
+  - masterclass-html-es-en-pt
+  - html-learning-kit-build-manifest-v1
+  - html-learning-kit-build-receipt-v1
+template_ref: README.md
+gates:
+  - MW_HTML_KIT_SPEC_VALIDATED
+  - MW_HTML_KIT_COMPILED
+  - MW_HTML_KIT_VERIFIED
+  - G15
+next_workflow: null
+stop_rule: Detener antes de escribir ante spec, lock, derechos, hashes, deep links o paths inválidos; detener antes de revisión ante outputs ausentes, modificados, residuales o con persistencia de respuestas.
+execution_steps:
+  - step_id: S01
+    purpose: Validar la spec, el lock, las tres hojas, los modos 90/120, los assets y todos los destinos antes de escribir.
+    inputs: [html-learning-kit-spec-v1, design-system-lock-ref-and-sha256, asset-rights-and-sha256]
+    primary_skill: metodologia-workbook-html
+    optional_skills: [metodologia-masterclass-html]
+    verifier: RT-10
+    outputs: [validated-spec-and-bindings]
+    template_id: TPL-HTML-LEARNING-KIT
+    gate: MW_HTML_KIT_SPEC_VALIDATED
+    stop_rule: Bloquear ante schema reducido, hash obsoleto, asset sin derechos, locator privado, symlink o path escape.
+    context_budget: {target_files: 8, max_files: 12, target_tokens: 8000, max_tokens: 12000}
+  - step_id: S02
+    purpose: Compilar en un staging nuevo y promover el árbol completo solo después de materializar manifest y receipt.
+    inputs: [validated-spec-and-bindings]
+    primary_skill: metodologia-masterclass-html
+    optional_skills: [metodologia-workbook-html]
+    verifier: RT-10
+    outputs: [staged-html-kit, build-manifest, build-receipt]
+    template_id: TPL-HTML-LEARNING-KIT
+    gate: MW_HTML_KIT_COMPILED
+    stop_rule: Conservar intacto el output anterior si falla cualquier escritura o promoción.
+    context_budget: {target_files: 8, max_files: 12, target_tokens: 8000, max_tokens: 12000}
+  - step_id: S03
+    purpose: Verificar hashes y que el árbol físico coincida exactamente con el manifest, sin symlinks, residuos ni respuestas persistidas.
+    inputs: [staged-html-kit, build-manifest, build-receipt]
+    primary_skill: metodologia-workbook-html
+    optional_skills: [metodologia-masterclass-html]
+    verifier: RT-10
+    outputs: [independent-verification-result]
+    template_id: TPL-HTML-LEARNING-KIT
+    gate: MW_HTML_KIT_VERIFIED
+    stop_rule: Bloquear ante cualquier byte, archivo, directorio o interacción no declarada.
+    context_budget: {target_files: 6, max_files: 10, target_tokens: 6000, max_tokens: 10000}
+  - step_id: S04
+    purpose: Entregar el candidate RENDERED_DRAFT a revisión humana sin publicarlo.
+    inputs: [independent-verification-result]
+    primary_skill: Frames
+    optional_skills: []
+    verifier: H01
+    outputs: [review-candidate]
+    template_id: TPL-HTML-LEARNING-KIT
+    gate: G15
+    stop_rule: No promover a HUMAN_APPROVED, READY o PUBLISHED sin decisión humana separada.
+    context_budget: {target_files: 3, max_files: 5, target_tokens: 3000, max_tokens: 5000}
+decisions:
+  - '[METODOLOGIA] La autoridad de marca permanece externa y hash-bound.'
+  - '[PEDAGOGIA] Hojas y diapositivas son modelos tipados, no parches del HTML.'
+  - '[NEUROCIENCIA] El workflow no incorpora claims neurocientíficos.'
+  - '[INFERENCIA] El replay byte-idéntico reduce drift no detectado.'
+  - '[SUPUESTO] H01 conserva el gate de revisión y publicación.'

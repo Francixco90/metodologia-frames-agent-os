@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Compilar y verificar una landing, un workbook y una masterclass trilingües desde una spec hash-bound, sin persistir respuestas ni conceder autoridad de publicación."
+    />
+    <meta name="frames:schema" content="workflow-documentation-v1" />
+    <meta name="frames:workflow" content="P90" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"
+    />
+    <title>P90 · Compila un kit HTML de aprendizaje</title>
+    <style>
+      :root {
+        --navy: #122562;
+        --blue: #137dc5;
+        --gold: #ffd700;
+        --soft: #f3f7fc;
+        --ink: #17213d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Montserrat, Arial, sans-serif;
+        color: var(--ink);
+        background: white;
+        line-height: 1.6;
+      }
+      header {
+        background: var(--navy);
+        color: white;
+        padding: 2rem max(5vw, 1rem);
+      }
+      main {
+        max-width: 1100px;
+        margin: auto;
+        padding: 2rem max(4vw, 1rem);
+      }
+      h1,
+      h2 {
+        font-family: Poppins, Arial, sans-serif;
+        color: var(--navy);
+      }
+      header h1 {
+        color: white;
+      }
+      a {
+        color: #075f9d;
+      }
+      input {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin: 0.5rem 0 1.5rem;
+        padding: 0.65rem;
+        border: 2px solid #9cabc2;
+        border-radius: 10px;
+        font: inherit;
+      }
+      .card,
+      section {
+        border: 1px solid #d8e2f0;
+        border-radius: 16px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+        background: white;
+      }
+      .meta {
+        color: #4a5874;
+      }
+      .pill {
+        display: inline-block;
+        background: var(--soft);
+        border-radius: 999px;
+        padding: 0.25rem 0.65rem;
+        margin: 0.2rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.7rem;
+        border-bottom: 1px solid #d8e2f0;
+      }
+      th {
+        background: var(--soft);
+      }
+      svg {
+        width: 100%;
+        height: auto;
+        background: var(--soft);
+        border-radius: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #091126;
+          color: #eef4ff;
+        }
+        .card,
+        section {
+          background: #111d3b;
+          border-color: #314369;
+        }
+        h1,
+        h2,
+        a {
+          color: #7dc9ff;
+        }
+        .meta {
+          color: #b7c5df;
+        }
+        th {
+          background: #1d2b4f;
+        }
+      }
+      @media print {
+        header {
+          background: white;
+          color: var(--navy);
+          padding: 0;
+        }
+        nav {
+          display: none;
+        }
+        .card,
+        section {
+          break-inside: avoid;
+        }
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p>Frames ContentOS · por MetodologIA</p>
+      <h1>P90 · Compila un kit HTML de aprendizaje</h1>
+      <p>
+        Compilar y verificar una landing, un workbook y una masterclass trilingües desde una spec
+        hash-bound, sin persistir respuestas ni conceder autoridad de publicación.
+      </p>
+    </header>
+    <main>
+      <nav><a href="../index.html">← Volver al catálogo</a></nav>
+      <section>
+        <h2>Qué necesitas y qué recibes</h2>
+        <p>
+          <strong>Entradas:</strong> html-learning-kit-spec-v1, design-system-lock-ref-and-sha256,
+          brand-authority-ref-and-sha256, localized-content-es-en-pt, asset-rights-and-sha256
+        </p>
+        <p>
+          <strong>Entregables:</strong> landing-html-es-en-pt, workbook-html-es-en-pt,
+          masterclass-html-es-en-pt, html-learning-kit-build-manifest-v1,
+          html-learning-kit-build-receipt-v1
+        </p>
+      </section>
+      <section>
+        <h2>Cómo avanza</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Paso</th>
+              <th>Acción</th>
+              <th>Skill</th>
+              <th>Gate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S01</td>
+              <td>
+                Validar la spec, el lock, las tres hojas, los modos 90/120, los assets y todos los
+                destinos antes de escribir.
+              </td>
+              <td>metodologia-workbook-html</td>
+              <td>MW_HTML_KIT_SPEC_VALIDATED</td>
+            </tr>
+            <tr>
+              <td>S02</td>
+              <td>
+                Compilar en un staging nuevo y promover el árbol completo solo después de
+                materializar manifest y receipt.
+              </td>
+              <td>metodologia-masterclass-html</td>
+              <td>MW_HTML_KIT_COMPILED</td>
+            </tr>
+            <tr>
+              <td>S03</td>
+              <td>
+                Verificar hashes y que el árbol físico coincida exactamente con el manifest, sin
+                symlinks, residuos ni respuestas persistidas.
+              </td>
+              <td>metodologia-workbook-html</td>
+              <td>MW_HTML_KIT_VERIFIED</td>
+            </tr>
+            <tr>
+              <td>S04</td>
+              <td>Entregar el candidate RENDERED_DRAFT a revisión humana sin publicarlo.</td>
+              <td>Frames</td>
+              <td>G15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Secuencia</h2>
+        <svg
+          viewBox="0 0 920 902"
+          role="img"
+          aria-labelledby="seq-title seq-desc"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title id="seq-title">Secuencia P90</title>
+          <desc id="seq-desc">
+            La persona solicita Compila un kit HTML de aprendizaje. S01: metodologia-workbook-html
+            produce validated-spec-and-bindings; RT-10 decide MW_HTML_KIT_SPEC_VALIDATED. S02:
+            metodologia-masterclass-html produce staged-html-kit, build-manifest, build-receipt;
+            RT-10 decide MW_HTML_KIT_COMPILED. S03: metodologia-workbook-html produce
+            independent-verification-result; RT-10 decide MW_HTML_KIT_VERIFIED. S04: Frames produce
+            review-candidate; H01 decide G15. Frames entrega el resultado y cierra el recorrido.
+          </desc>
+          <style>
+            .actor {
+              font: 700 14px Arial;
+              fill: #122562;
+            }
+            .label {
+              font: 13px Arial;
+              fill: #26324d;
+            }
+          </style>
+          <line x1="34" y1="45" x2="34" y2="872" stroke="#122562" stroke-width="3" />
+          <g>
+            <circle cx="34" cy="68" r="12" fill="#137DC5" />
+            <line x1="46" y1="68" x2="112" y2="68" stroke="#122562" stroke-width="2" />
+            <text x="126" y="60" class="actor">Persona → Frames</text>
+            <text x="126" y="82" class="label">Solicita Compila un kit HTML de aprendizaje</text>
+          </g>
+          <g>
+            <circle cx="34" cy="126" r="12" fill="#137DC5" />
+            <line x1="46" y1="126" x2="112" y2="126" stroke="#122562" stroke-width="2" />
+            <text x="126" y="118" class="actor">Frames → metodologia-workbook-html</text>
+            <text x="126" y="140" class="label">
+              S01: Validar la spec, el lock, las tres hojas, los modos 90/120, los assets y todos
+              los destinos antes de escribir.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="184" r="12" fill="#137DC5" />
+            <line x1="46" y1="184" x2="112" y2="184" stroke="#122562" stroke-width="2" />
+            <text x="126" y="176" class="actor">metodologia-workbook-html → RT-10</text>
+            <text x="126" y="198" class="label">Evidencia: validated-spec-and-bindings</text>
+          </g>
+          <g>
+            <circle cx="34" cy="242" r="12" fill="#FFD700" />
+            <line x1="46" y1="242" x2="112" y2="242" stroke="#122562" stroke-width="2" />
+            <text x="126" y="234" class="actor">RT-10 → Frames</text>
+            <text x="126" y="256" class="label">Gate MW_HTML_KIT_SPEC_VALIDATED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="300" r="12" fill="#137DC5" />
+            <line x1="46" y1="300" x2="112" y2="300" stroke="#122562" stroke-width="2" />
+            <text x="126" y="292" class="actor">Frames → metodologia-masterclass-html</text>
+            <text x="126" y="314" class="label">
+              S02: Compilar en un staging nuevo y promover el árbol completo solo después de
+              materializar manifest y receipt.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="358" r="12" fill="#137DC5" />
+            <line x1="46" y1="358" x2="112" y2="358" stroke="#122562" stroke-width="2" />
+            <text x="126" y="350" class="actor">metodologia-masterclass-html → RT-10</text>
+            <text x="126" y="372" class="label">
+              Evidencia: staged-html-kit, build-manifest, build-receipt
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="416" r="12" fill="#FFD700" />
+            <line x1="46" y1="416" x2="112" y2="416" stroke="#122562" stroke-width="2" />
+            <text x="126" y="408" class="actor">RT-10 → Frames</text>
+            <text x="126" y="430" class="label">Gate MW_HTML_KIT_COMPILED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="474" r="12" fill="#137DC5" />
+            <line x1="46" y1="474" x2="112" y2="474" stroke="#122562" stroke-width="2" />
+            <text x="126" y="466" class="actor">Frames → metodologia-workbook-html</text>
+            <text x="126" y="488" class="label">
+              S03: Verificar hashes y que el árbol físico coincida exactamente con el manifest, sin
+              symlinks, residuos ni respuestas persistidas.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="532" r="12" fill="#137DC5" />
+            <line x1="46" y1="532" x2="112" y2="532" stroke="#122562" stroke-width="2" />
+            <text x="126" y="524" class="actor">metodologia-workbook-html → RT-10</text>
+            <text x="126" y="546" class="label">Evidencia: independent-verification-result</text>
+          </g>
+          <g>
+            <circle cx="34" cy="590" r="12" fill="#FFD700" />
+            <line x1="46" y1="590" x2="112" y2="590" stroke="#122562" stroke-width="2" />
+            <text x="126" y="582" class="actor">RT-10 → Frames</text>
+            <text x="126" y="604" class="label">Gate MW_HTML_KIT_VERIFIED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="648" r="12" fill="#137DC5" />
+            <line x1="46" y1="648" x2="112" y2="648" stroke="#122562" stroke-width="2" />
+            <text x="126" y="640" class="actor">Frames → Frames</text>
+            <text x="126" y="662" class="label">
+              S04: Entregar el candidate RENDERED_DRAFT a revisión humana sin publicarlo.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="706" r="12" fill="#137DC5" />
+            <line x1="46" y1="706" x2="112" y2="706" stroke="#122562" stroke-width="2" />
+            <text x="126" y="698" class="actor">Frames → H01</text>
+            <text x="126" y="720" class="label">Evidencia: review-candidate</text>
+          </g>
+          <g>
+            <circle cx="34" cy="764" r="12" fill="#FFD700" />
+            <line x1="46" y1="764" x2="112" y2="764" stroke="#122562" stroke-width="2" />
+            <text x="126" y="756" class="actor">H01 → Frames</text>
+            <text x="126" y="778" class="label">Gate G15</text>
+          </g>
+          <g>
+            <circle cx="34" cy="822" r="12" fill="#FFD700" />
+            <line x1="46" y1="822" x2="112" y2="822" stroke="#122562" stroke-width="2" />
+            <text x="126" y="814" class="actor">Frames → Persona</text>
+            <text x="126" y="836" class="label">Entrega o siguiente paso: cierre</text>
+          </g>
+        </svg>
+        <ol>
+          <li>La persona solicita Compila un kit HTML de aprendizaje.</li>
+          <li>
+            S01: metodologia-workbook-html produce validated-spec-and-bindings; RT-10 decide
+            MW_HTML_KIT_SPEC_VALIDATED.
+          </li>
+          <li>
+            S02: metodologia-masterclass-html produce staged-html-kit, build-manifest,
+            build-receipt; RT-10 decide MW_HTML_KIT_COMPILED.
+          </li>
+          <li>
+            S03: metodologia-workbook-html produce independent-verification-result; RT-10 decide
+            MW_HTML_KIT_VERIFIED.
+          </li>
+          <li>S04: Frames produce review-candidate; H01 decide G15.</li>
+          <li>Frames entrega el resultado y cierra el recorrido.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Límites</h2>
+        <p>
+          Detener antes de escribir ante spec, lock, derechos, hashes, deep links o paths inválidos;
+          detener antes de revisión ante outputs ausentes, modificados, residuales o con
+          persistencia de respuestas.
+        </p>
+        <p class="meta">
+          Fuente: 02_proceso/workflows/content/html-learning-kit/workflow.yml · Próximo: cierre
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

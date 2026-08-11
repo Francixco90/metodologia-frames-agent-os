@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "masterclass-spec-v1",
+  "masterclassId": "broken-masterclass",
+  "brand": "OtherBrand",
+  "state": "PUBLISHED",
+  "specSha256": "stale",
+  "designSystemLock": {"ref": "/private/lock.json", "sha256": "missing"},
+  "primaryLocale": "es",
+  "modes": [{"id": "core", "minutes": 60}, {"id": "extended", "minutes": 75}],
+  "locales": [{"locale": "es", "title": "Rota", "slides": []}],
+  "keyboard": {"next": ["Enter"], "previous": ["Escape"], "first": "Start", "last": "Stop", "ignoreEditableTargets": false, "buttons": false, "outline": false},
+  "deepLinkContract": {"preserveLocale": false, "preserveFragment": false, "missingTarget": "ignore"},
+  "assets": [{"id": "remote", "ref": "https://example.invalid/asset.png", "sha256": "unknown", "rights": {"status": "unknown", "authority": ""}}],
+  "output": {"htmlRef": "file:///private/masterclass.html", "state": "READY"}
+}
+
