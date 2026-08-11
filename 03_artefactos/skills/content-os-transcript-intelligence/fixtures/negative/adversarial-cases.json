@@ -19,6 +19,9 @@
     {"id": "model-hash-not-real", "expectedCode": "HASH_MISMATCH", "mutation": "model-hash-mismatch"},
     {"id": "config-hash-not-real", "expectedCode": "HASH_MISMATCH", "mutation": "config-hash-mismatch"},
     {"id": "path-traversal", "expectedCode": "UNSAFE_REF", "mutation": "source-ref-traversal"},
-    {"id": "symlink-escape", "expectedCode": "UNSAFE_REF", "mutation": "source-ref-symlink-escape"}
+    {"id": "symlink-escape", "expectedCode": "UNSAFE_REF", "mutation": "source-ref-symlink-escape"},
+    {"id": "absolute-output", "expectedCode": "UNSAFE_OUTPUT", "mutation": "absolute-out-ref"},
+    {"id": "traversal-output", "expectedCode": "UNSAFE_OUTPUT", "mutation": "parent-traversal-out-ref"},
+    {"id": "symlink-output", "expectedCode": "UNSAFE_OUTPUT", "mutation": "symlink-out-ref"}
   ]
 }

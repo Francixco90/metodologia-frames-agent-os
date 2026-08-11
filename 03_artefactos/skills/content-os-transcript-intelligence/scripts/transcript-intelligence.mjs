@@ -5,6 +5,7 @@ import {basename, dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {argsOf, fail, loadContext, readJson, safeRef, sha256File, writeJson} from './lib/context.mjs';
 import {buildLinguistic} from './lib/linguistic.mjs';
+import {resolveOutput} from './lib/output-path.mjs';
 import {buildSemantic, searchSemantic} from './lib/semantic.mjs';
 
 const SKILL_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -76,7 +77,8 @@ if (!COMMANDS.has(command)) fail('USAGE', 'expected inspect|migrate|ingest|analy
 if (!args.job) fail('USAGE', '--job required');
 const jobPath = resolve(String(args.job));
 if (!existsSync(jobPath)) fail('MISSING_JOB', jobPath);
-const outDir = resolve(String(args.out ?? resolve(dirname(jobPath), 'transcript-intelligence-output')));
+const output = resolveOutput(jobPath, args.out === undefined ? undefined : String(args.out), fail);
+const outDir = output.dir;
 const rawJob = readJson(jobPath);
 const legacy = (rawJob.contractRevision ?? 1) < 3;
 if (command === 'inspect') {
@@ -85,7 +87,7 @@ if (command === 'inspect') {
 }
 if (command === 'migrate') {
   migrateLegacy(jobPath, rawJob, outDir);
-  console.log(`PASS migrate ${basename(jobPath)} -> ${outDir}`);
+  console.log(`PASS migrate ${basename(jobPath)} -> ${output.ref}`);
   process.exit(0);
 }
 if (legacy) fail('MIGRATION_REQUIRED', `revision-${rawJob.contractRevision ?? 1}`);
@@ -128,4 +130,4 @@ if (command === 'package') {
   };
   writeJson(outDir, 'package-manifest.json', manifest);
 }
-console.log(`PASS ${command} ${basename(jobPath)} -> ${outDir}`);
+console.log(`PASS ${command} ${basename(jobPath)} -> ${output.ref}`);

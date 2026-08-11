@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {createHash} from 'node:crypto';
-import {existsSync, mkdtempSync, readFileSync, readdirSync} from 'node:fs';
+import {cpSync, existsSync, mkdtempSync, readFileSync, readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {dirname, extname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -11,10 +11,10 @@ const DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PREFIX = 'COSTI_CHECK_';
 const required = [
   'SKILL.md', 'LINEAGE.yml', 'source-manifest.yml', 'receipts/runtime-boundary.yml',
-  'receipts/verification-v0.1.0.yml', 'receipts/verification-v0.2.0.yml', 'receipts/verification-v0.3.0.yml', 'receipts/verification-v0.4.0.yml',
+  'receipts/verification-v0.1.0.yml', 'receipts/verification-v0.2.0.yml', 'receipts/verification-v0.3.0.yml', 'receipts/verification-v0.4.0.yml', 'receipts/verification-v0.5.0.yml',
   'rules/workflow-contract.md', 'schemas/transcript-intelligence-v1.schema.json',
   'schemas/artifacts-v1.schema.json', 'scripts/transcript-intelligence.mjs',
-  'scripts/lib/context.mjs', 'scripts/lib/media-validation.mjs', 'scripts/lib/adversarial-check.mjs',
+  'scripts/lib/context.mjs', 'scripts/lib/media-validation.mjs', 'scripts/lib/output-path.mjs', 'scripts/lib/adversarial-check.mjs',
   'scripts/lib/linguistic.mjs', 'scripts/lib/semantic.mjs',
   'scripts/check-skill.mjs', 'references/language-quality-policy.md',
   'references/caption-editing-policy.md', 'references/semantic-retrieval.md',
@@ -71,15 +71,18 @@ const scanned = textFiles(DIR).map((path) => readFileSync(path, 'utf8')).join('\
 if (/\/Users\/|\/Downloads\/|\/Documents\/|docs\.google\.com/i.test(scanned)) errors.push(`${PREFIX}PRIVATE_LOCATOR`);
 
 const temp = mkdtempSync(resolve(tmpdir(), 'costi-check-'));
+const fixtureRoot = resolve(temp, 'fixtures');
+cpSync(resolve(DIR, 'fixtures'), fixtureRoot, {recursive: true});
 function run(args) {
   return spawnSync(process.execPath, [resolve(DIR, 'scripts/transcript-intelligence.mjs'), ...args], {cwd: DIR, encoding: 'utf8'});
 }
 function json(path) {
   return JSON.parse(readFileSync(path, 'utf8'));
 }
-const positiveJob = resolve(DIR, 'fixtures/positive/job.json');
-const positiveOut = resolve(temp, 'positive');
-const positive = run(['verify', '--job', positiveJob, '--out', positiveOut]);
+const positiveJob = resolve(fixtureRoot, 'positive/job.json');
+const positiveRef = 'outputs/positive';
+const positiveOut = resolve(dirname(positiveJob), positiveRef);
+const positive = run(['verify', '--job', positiveJob, '--out', positiveRef]);
 if (positive.status !== 0) errors.push(`${PREFIX}POSITIVE ${positive.stderr}`);
 else {
   const verification = json(resolve(positiveOut, 'verification.json'));
@@ -92,34 +95,35 @@ else {
   if (verification.evidencePolicy.editorialNotesCanEstablishAudibility !== false || verification.evidencePolicy.inferenceCanEstablishAudibility !== false) errors.push(`${PREFIX}EVIDENCE_AUTHORITY`);
 }
 
-const legacyJob = resolve(DIR, 'fixtures/positive/legacy-job.json');
+const legacyJob = resolve(fixtureRoot, 'positive/legacy-job.json');
 const inspect = run(['inspect', '--job', legacyJob]);
 if (inspect.status !== 0 || !inspect.stdout.includes('legacy-read-only')) errors.push(`${PREFIX}LEGACY_READ`);
 for (const command of ['ingest', 'analyze', 'caption', 'index', 'search', 'narrative', 'verify', 'package']) {
-  const args = [command, '--job', legacyJob, '--out', resolve(temp, `legacy-${command}`)];
+  const args = [command, '--job', legacyJob, '--out', `outputs/legacy-${command}`];
   if (command === 'search') args.push('--query', 'synthetic');
   const blocked = run(args);
   if (blocked.status === 0 || !blocked.stderr.includes('MIGRATION_REQUIRED')) errors.push(`${PREFIX}LEGACY_DERIVATIVE ${command}`);
 }
-const migrationOut = resolve(temp, 'migration');
-const migration = run(['migrate', '--job', legacyJob, '--out', migrationOut]);
+const migrationRef = 'outputs/migration';
+const migrationOut = resolve(dirname(legacyJob), migrationRef);
+const migration = run(['migrate', '--job', legacyJob, '--out', migrationRef]);
 if (migration.status !== 0) errors.push(`${PREFIX}MIGRATION ${migration.stderr}`);
 else {
-  const migrated = run(['verify', '--job', resolve(migrationOut, 'migrated-job.json'), '--out', resolve(temp, 'migrated-verify')]);
+  const migrated = run(['verify', '--job', resolve(migrationOut, 'migrated-job.json'), '--out', 'verify']);
   if (migrated.status !== 0) errors.push(`${PREFIX}MIGRATED_VERIFY ${migrated.stderr}`);
 }
 
-const search = run(['search', '--job', positiveJob, '--query', 'muestra aplicaciones funcionando', '--out', resolve(temp, 'search')]);
+const search = run(['search', '--job', positiveJob, '--query', 'muestra aplicaciones funcionando', '--out', 'outputs/search']);
 if (search.status !== 0 || !search.stdout.includes('"segmentId": "s3"')) errors.push(`${PREFIX}SEMANTIC_SEARCH`);
-const packageRun = run(['package', '--job', positiveJob, '--out', resolve(temp, 'package')]);
-if (packageRun.status !== 0 || existsSync(resolve(temp, 'package/public/coaching-private.json'))) errors.push(`${PREFIX}PRIVATE_PACKAGE`);
-const textOnly = run(['verify', '--job', resolve(DIR, 'fixtures/negative/text-only-pronunciation.json'), '--out', resolve(temp, 'text-only')]);
+const packageRun = run(['package', '--job', positiveJob, '--out', 'outputs/package']);
+if (packageRun.status !== 0 || existsSync(resolve(dirname(positiveJob), 'outputs/package/public/coaching-private.json'))) errors.push(`${PREFIX}PRIVATE_PACKAGE`);
+const textOnly = run(['verify', '--job', resolve(fixtureRoot, 'negative/text-only-pronunciation.json'), '--out', 'outputs/text-only']);
 if (textOnly.status === 0 || !textOnly.stderr.includes('audio-required-for-pronunciation')) errors.push(`${PREFIX}AUDIO_GATE`);
-const ambiguity = run(['verify', '--job', resolve(DIR, 'fixtures/negative/material-ambiguity.json'), '--out', resolve(temp, 'ambiguity')]);
+const ambiguity = run(['verify', '--job', resolve(fixtureRoot, 'negative/material-ambiguity.json'), '--out', 'outputs/ambiguity']);
 if (ambiguity.status === 0 || !ambiguity.stderr.includes('material-ambiguity')) errors.push(`${PREFIX}MATERIAL_GATE`);
-const materialAuthority = run(['verify', '--job', resolve(DIR, 'fixtures/negative/material-authority-required.json'), '--out', resolve(temp, 'material-authority')]);
+const materialAuthority = run(['verify', '--job', resolve(fixtureRoot, 'negative/material-authority-required.json'), '--out', 'outputs/material-authority']);
 if (materialAuthority.status === 0 || !materialAuthority.stderr.includes('material-authority-required')) errors.push(`${PREFIX}MATERIAL_AUTHORITY_GATE`);
-const mismatch = run(['verify', '--job', resolve(DIR, 'fixtures/negative/hash-mismatch.json'), '--out', resolve(temp, 'hash-mismatch')]);
+const mismatch = run(['verify', '--job', resolve(fixtureRoot, 'negative/hash-mismatch.json'), '--out', 'outputs/hash-mismatch']);
 if (mismatch.status === 0 || !mismatch.stderr.includes('HASH_MISMATCH')) errors.push(`${PREFIX}HASH_GATE`);
 
 runAdversarial({dir: DIR, temp, run, errors, prefix: PREFIX});

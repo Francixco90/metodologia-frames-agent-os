@@ -1,0 +1,27 @@
+schema_version: transcript-intelligence-verification-receipt-v1
+skill_id: content-os-transcript-intelligence
+version: 0.5.0
+state: evaluated
+execution_scope: local-evaluation
+publication_authority: false
+successor_of: receipts/verification-v0.4.0.yml
+checks:
+  current_revision_positive_fixture: PASS
+  explicit_migration_and_reverification: PASS
+  output_absolute_ref_gate: PASS
+  output_traversal_gate: PASS
+  output_symlink_parent_and_target_gate: PASS
+  output_realpath_job_root_confinement: PASS
+  portable_stdout_locator: PASS
+  prior_adversarial_fixture_matrix: PASS
+  focused_check_skill: PASS
+coverage_gaps:
+  - code: real_audio_pronunciation_fixture_intentionally_excluded
+    disposition: human_listening_required
+  - code: independent_guardian_successor_review_pending
+    disposition: blocks_active_promotion
+role_separation:
+  producer: transcript_contracts_subagent
+  verifier: deterministic_adversarial_runner
+  guardian: pending_independent_successor_review
+  independence_status: producer_did_not_grant_guardian_state

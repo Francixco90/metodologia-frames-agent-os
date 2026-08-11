@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {cpSync, readFileSync, symlinkSync, writeFileSync} from 'node:fs';
+import {cpSync, mkdirSync, readFileSync, symlinkSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 const json = (path) => JSON.parse(readFileSync(path, 'utf8'));
@@ -84,10 +84,21 @@ export function runAdversarial({dir, temp, run, errors, prefix}) {
     },
   };
   for (const test of adversarial.cases) {
-    if (['legacy-derivative-block', 'material-authority-unverified'].includes(test.id)) continue;
+    if (['legacy-derivative-block', 'material-authority-unverified', 'absolute-output', 'traversal-output', 'symlink-output'].includes(test.id)) continue;
     const jobPath = writeCase(test.id, mutations[test.id]);
     const command = test.id === 'private-package-disabled' ? 'package' : 'verify';
-    const result = run([command, '--job', jobPath, '--out', resolve(temp, `out-${test.id}`)]);
+    const result = run([command, '--job', jobPath, '--out', `outputs/out-${test.id}`]);
     if (result.status === 0 || !result.stderr.includes(test.expectedCode)) errors.push(`${prefix}ADVERSARIAL ${test.id}:${result.stderr}`);
   }
+  const outputJob = writeCase('output-confinement', () => {});
+  const outputRoot = resolve(outputJob, '..');
+  const outside = resolve(temp, 'outside-output');
+  mkdirSync(outside, {recursive: true});
+  symlinkSync(outside, resolve(outputRoot, 'output-link'));
+  for (const [id, ref] of [['absolute-output', outside], ['traversal-output', '../outside-output'], ['symlink-output', 'output-link']]) {
+    const result = run(['verify', '--job', outputJob, '--out', ref]);
+    if (result.status === 0 || !result.stderr.includes('COSTI_UNSAFE_OUTPUT')) errors.push(`${prefix}ADVERSARIAL ${id}:${result.stderr}`);
+  }
+  const portable = run(['verify', '--job', outputJob, '--out', 'outputs/portable']);
+  if (portable.status !== 0 || portable.stdout.includes(temp) || !portable.stdout.includes('-> outputs/portable')) errors.push(`${prefix}PORTABLE_STDOUT ${portable.stdout}${portable.stderr}`);
 }
