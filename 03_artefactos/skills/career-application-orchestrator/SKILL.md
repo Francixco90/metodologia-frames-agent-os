@@ -1,7 +1,7 @@
 ---
 name: career-application-orchestrator
 description: This skill should be used when the user asks to "crear mi CV", "adaptar mi hoja de vida", "escribir una cover letter", "buscar vacantes", "ayudarme a postular", or continue a governed candidate application.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -32,6 +32,8 @@ skills especialistas; no inventa evidencia, busca en vivo ni envía postulacione
 4. Emite `candidate-foundation-brief`, `job-search-brief`, `application-brief` o
    `application-intervention-brief`; Markdown es canónico y HTML es derivado.
 5. Registra `brief_ref`, `selected_stage_path`, skills y siguiente gate.
+6. Antes de C06, exige Evidence Bank y `cv-spec-v1` hash-bound; una spec nueva
+   requiere aprobación humana y deja obsoletos sus derivados anteriores.
 
 ## Routing determinista
 
@@ -50,7 +52,7 @@ ownership siguen vigentes. Empate o identidad irresoluble produce R0/`BLOCKED`.
 
 - C01: `candidate-evidence-reconciler`.
 - C03–C04: `career-opportunity-finder`.
-- C06: `evidence-first-cv`.
+- C06: `evidence-first-cv`, con preflight `CR_CV_SPEC_APPROVED` antes de compilar.
 - C07: `evidence-based-cover-letter`.
 - C08 requiere verifier distinto del producer.
 - C09 solo prepara preview y autorización en `local-evaluation`.
@@ -78,22 +80,26 @@ carta, respuestas o canal invalida una autorización previa.
 - Sin adapter, allowlist, preview congelado y autorización hash-bound, C09 se
   detiene sin efecto externo.
 - `DRAFTED != SUBMITTED`; merge o QA no autorizan envío.
+- `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`; estas fases de
+  artefacto tampoco equivalen a `SUBMITTED`.
 
 ## Salida mínima
 
-Devuelve intent, brief, ruta, work orders, gaps, estado, artefactos hash-bound y
-siguiente gate. Receipts registran decisiones y evidencia, nunca razonamiento
+Devuelve intent, brief, ruta, work orders, gaps, estado, `spec_id`,
+`spec_sha256`, artefactos hash-bound y siguiente gate. Receipts registran
+decisiones y evidencia, nunca razonamiento
 privado. Los modelos versionados están en
 `schemas/career-application-contract-v1.schema.json`.
 
 ## Stop rules
 
 Detente ante candidato ambiguo, más de una candidatura coincidente, evidencia
-contradictoria no resuelta, vacante no fijada para personalización, output
-inexistente, `UNKNOWN`, PII destinada a Git o efecto externo no autorizado.
+contradictoria no resuelta, vacante no fijada para personalización, spec ausente,
+no aprobada o stale, output inexistente, `UNKNOWN`, PII destinada a Git o efecto
+externo no autorizado.
 
 ## Done
 
-Brief canónico creado; ruta mínima resoluble; primary skill y verifier
-declarados; estado y próximo gate inequívocos; cero envío, publicación o claim
-de `SUBMITTED` sin receipt material.
+Brief canónico creado; ruta mínima resoluble; C06 condicionado por una spec
+aprobada; primary skill y verifier declarados; estado y próximo gate
+inequívocos; cero envío, publicación o claim de `SUBMITTED` sin receipt material.

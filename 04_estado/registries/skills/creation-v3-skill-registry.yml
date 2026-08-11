@@ -1697,11 +1697,11 @@ entries:
     publication_authority: false
     tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
   - skill_id: career-application-orchestrator
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f3674a900bf1f5f2bfffb992c6a870d9564d4bb5d3a556d4a185e52821ee4ec7
-    package_manifest_sha256: ae3d3b1068796b5948ee73ddbf03d91cbf005d57568067d73db2e7ba21e77306
+    content_sha256: 8d81b5316a6adbbab7c2e9bbdbc5d4c0c4bdc7330e3fecad133ac8732ff910ed
+    package_manifest_sha256: ec0676607e4cfce3a24b96d238f7cf06d71772f80aba3549c27be19b29756757
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2635,6 +2635,7 @@ events:
   - {event_id: EVT-SKL-COR-H03-009, event_order: 9, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-INSTRUCTION-SECURITY, decision: bind_local_execution_to_authorized_workspace_boundary}
   - {event_id: EVT-SKL-COR-H03-010, event_order: 10, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-DOCS-EXTENSION-INTEGRATOR, decision: add_r8_local_extension_and_r9_maintenance_dispatch}
   - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
+  - {event_id: EVT-SKL-CAO-H03-006, event_order: 6, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: require_cv_spec_approval_and_stale_derivative_invalidation_v3}
   - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-CSC-H03-005, event_order: 5, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}

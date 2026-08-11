@@ -20,6 +20,13 @@ outputs con hash, estado anterior/posterior, claims usados/omitidos, gaps,
 owner, verifier y siguiente gate. El receptor rechaza referencias inexistentes,
 hashes obsoletos o estados no permitidos.
 
+## Preflight Spec-First de CV
+
+Antes de compilar C06, verificar brief, Evidence Bank y vacante cuando aplique;
+crear `cv-spec-v1`; obtener `CR_CV_SPEC_APPROVED`; congelar `spec_sha256`; y
+entregarlo al productor. Si cambia un binding, volver a draft y solicitar una
+nueva aprobación. Un render nunca sustituye la spec ni autoriza promoción.
+
 ## Efectos
 
 `local-evaluation` admite lectura y artefactos locales reversibles. Búsqueda
