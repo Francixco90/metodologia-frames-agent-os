@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: evidence-first-cv
-version: 0.2.0
+version: 0.3.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored_from_user_supplied_requirements
@@ -10,9 +10,9 @@ network_allowed: false
 authority_refs:
   - skills/career-application-orchestrator/SKILL.md
   - skills/candidate-evidence-reconciler/SKILL.md
+  - skills/career-design-system/SKILL.md
   - skills/evidence-first-cv/references/cv-quality-contract.md
-  - skills/evidence-first-cv/schemas/cv-package-v1.schema.json
-  - skills/evidence-first-cv/schemas/cv-package-v2.schema.json
+  - skills/evidence-first-cv/schemas/cv-package-v3.schema.json
   - skills/evidence-first-cv/assets/docx-style-contract.json
   - skills/evidence-first-cv/assets/contact-binding.example.json
   - skills/evidence-first-cv/fixtures/positive/hostile-bilingual-copy.json
@@ -26,4 +26,15 @@ authority_refs:
 derivation:
   method: clean_room_normalization
   copied_external_prompts: false
-  successor_change: core_contract_fixtures_inert_json_and_material_multiformat_qa
+  successor_change: require_cv_spec_v2_and_approved_design_for_executive_html
+active_contracts:
+  spec: cv-spec-v2
+  package: cv-package-v3
+compatibility_only:
+  - contract: cv-spec-v1
+    route: migrateCvSpecV1ToV2
+  - contract: cv-package-v1
+    route: migrateCareerCvPackageV1ToV2_then_migrateCareerCvPackageV2ToV3
+  - contract: cv-package-v2
+    route: migrateCareerCvPackageV2ToV3
+guardrail: legacy_contracts_never_authorize_new_builds

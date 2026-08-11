@@ -1,5 +1,5 @@
 schema_version: 1
-receipt_id: evidence-first-cv-runtime-boundary-v2
+receipt_id: evidence-first-cv-runtime-boundary-v3
 skill_id: evidence-first-cv
 execution_scope: local-evaluation
 network_allowed: false
@@ -7,7 +7,8 @@ external_effects_allowed: false
 publication_authority: false
 submission_authority: false
 private_state_required: true
-canonical_authority: cv-spec-v1
+canonical_authority: cv-spec-v2
+package_authority: cv-package-v3
 canonical_editorial_format: markdown
 derived_formats: [executive_html, ats_html, ats_docx, ats_pdf]
 public_assets_policy: synthetic_only
@@ -15,5 +16,7 @@ real_contact_resolution: private_state_only
 allowed_claim_confidence: [verified, user_confirmed]
 required_input_state: HUMAN_APPROVED
 required_bindings: [brief_sha256, spec_sha256, evidence_bank_sha256]
+executive_html_required_bindings: [design_system_sha256, design_decision_sha256, composition_id]
+legacy_contract_policy: explicit_migration_only
 required_gate: CR_PACKAGE_QA
 fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
