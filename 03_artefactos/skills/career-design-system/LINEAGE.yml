@@ -1,0 +1,16 @@
+schema_version: skill-lineage-v1
+skill_id: career-design-system
+version: 1.0.0
+owner: MetodologIA
+lifecycle_state: candidate
+execution_scope: local-evaluation
+content_origin: locally_authored_from_user_supplied_requirements
+external_fragments_reused: false
+publication_authority: false
+source_authority:
+  - 03_artefactos/brand/career-design-system/manifest.v1.json
+  - 03_artefactos/brand/career-design-system/decisions/design-selection-v1.json
+privacy: synthetic_public_only
+promotion:
+  requires: [focal_checker_pass, career_verification_pass, independent_guardian, human_promotion_gate]
+  does_not_imply: [READY, PUBLISHED, APPLICATION_SUBMITTED]

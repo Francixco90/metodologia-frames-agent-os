@@ -1,0 +1,9 @@
+{
+  "schema_version": "cv-design-decision-v1",
+  "state": "HUMAN_APPROVED",
+  "approver_ref": "H01",
+  "options_manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "primary_composition": "blueprint-executive",
+  "secondary_composition": "neo-swiss-editorial",
+  "approval_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}
