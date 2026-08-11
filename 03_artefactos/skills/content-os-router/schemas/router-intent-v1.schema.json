@@ -26,7 +26,7 @@
     },
     "source_type": {
       "type": "string",
-      "enum": ["url", "github-pr", "text", "website", "brief", "footage", "music", "figma"],
+      "enum": ["url", "github-pr", "text", "transcript", "audio", "website", "brief", "footage", "music", "figma"],
       "description": "Input source type. Drives capability_map (media resolve for url/footage/music)."
     },
     "source_ref": {
@@ -48,7 +48,8 @@
         "content-os-motion-graphics",
         "content-os-embedded-captions",
         "content-os-slideshow",
-        "content-os-general-video"
+        "content-os-general-video",
+        "content-os-transcript-intelligence"
       ],
       "description": "Fase 3 workflow that owns the deliverable end-to-end."
     },
@@ -62,7 +63,8 @@
           "content-os-keyframes",
           "content-os-creative",
           "content-os-media",
-          "content-os-registry"
+          "content-os-registry",
+          "content-os-transcript-intelligence"
         ]
       },
       "minItems": 1,
