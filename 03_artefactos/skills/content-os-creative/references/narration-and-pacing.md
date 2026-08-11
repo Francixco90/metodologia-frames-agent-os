@@ -16,6 +16,10 @@ storySpine:
   final: {text: '<lockup/CTA>', at: <seconds>}
 ```
 
+Cuando deriva de voz, cada beat incluye `sourceSpan` con reloj absoluto y local,
+`narrativeMapRef` y `correctionLedgerRef`. Si el arco no alcanza, registra
+`extend`, `reframe` o `discard`; no inventes un beat para completar duración.
+
 - **Hook < 3s**: gancho concreto, no introduccion lenta. Un numero, una promesa, una
   tension — no "hoy te voy a contar".
 - **Value-before-evidence**: la promesa antes del demo. El viewer sabe por que sigue

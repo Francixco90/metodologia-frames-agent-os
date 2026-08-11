@@ -16,8 +16,8 @@ runtime_refs:
   - skills/content-os-creative/scripts/check-skill.mjs
   - skills/content-os-creative/scripts/creative-audit.mjs
 dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
-compatibility_contract: html-creative-v1
-request_contract_ref: skills/content-os-creative/schemas/creative-brief-v1.schema.json
+compatibility_contract: content-os-creative-brief-v2; v1 read-only
+request_contract_ref: skills/content-os-creative/schemas/creative-brief-v2.schema.json
 supported_request_types:
   - brand_apply
   - story_spine_plan

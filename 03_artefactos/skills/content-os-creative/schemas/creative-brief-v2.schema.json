@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "content-os-creative-brief-v2",
+  "title": "Spec First creative brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "operation", "specRef", "specSha256", "compositionId", "brandRef", "voiceRef", "channelRef", "voiceSource", "editorialDecision", "storySpine"],
+  "properties": {
+    "schemaVersion": {"const": "content-os-creative-brief-v2"},
+    "operation": {"enum": ["read", "plan", "render-draft"]},
+    "specRef": {"type": "string", "minLength": 1},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "compositionId": {"type": "string", "minLength": 1},
+    "durationSeconds": {"type": "number", "minimum": 0},
+    "brandRef": {"type": "string"},
+    "voiceRef": {"type": "string"},
+    "channelRef": {"type": "string"},
+    "voiceSource": {"type": "boolean"},
+    "scriptMode": {"enum": ["authored", "transcript_derived", "assembly_map"]},
+    "captionTrackRef": {"type": "string"},
+    "correctionLedgerRef": {"type": "string"},
+    "transcriptIntelligenceRef": {"type": "string"},
+    "narrativeMapRef": {"type": "string"},
+    "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
+    "editorialDecision": {"enum": ["use", "extend", "reframe", "discard"]},
+    "compositionPattern": {"enum": ["title-card", "pip", "text-behind-subject", "stats", "slideshow", "lower-third"]},
+    "storySpine": {
+      "type": "object",
+      "required": ["hook", "beats", "final"],
+      "properties": {
+        "hook": {"type": "object", "required": ["text", "at"]},
+        "beats": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/beat"}},
+        "final": {"type": "object", "required": ["text", "at"]}
+      }
+    },
+    "palette": {"type": "object"},
+    "typography": {"type": "object"},
+    "constraints": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"voiceSource": {"const": true}}},
+      "then": {"required": ["scriptMode", "captionTrackRef", "correctionLedgerRef", "transcriptIntelligenceRef", "narrativeMapRef", "verificationState"]}
+    },
+    {
+      "if": {"properties": {"operation": {"const": "render-draft"}}},
+      "then": {"properties": {"editorialDecision": {"const": "use"}}}
+    }
+  ],
+  "$defs": {
+    "beat": {
+      "type": "object",
+      "required": ["label", "at", "purpose", "sourceSpan"],
+      "properties": {
+        "label": {"type": "string"},
+        "at": {"type": "number"},
+        "purpose": {"type": "string"},
+        "valueBeforeEvidence": {"type": "boolean"},
+        "sourceSpan": {
+          "type": "object",
+          "required": ["sourceId", "startSeconds", "endSeconds", "absolute", "local"],
+          "properties": {
+            "sourceId": {"type": "string"},
+            "startSeconds": {"type": "number"},
+            "endSeconds": {"type": "number"},
+            "absolute": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}},
+            "local": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}}
+          }
+        }
+      }
+    }
+  }
+}

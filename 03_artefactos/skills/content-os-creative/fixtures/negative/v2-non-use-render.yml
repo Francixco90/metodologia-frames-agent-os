@@ -1,0 +1,29 @@
+schemaVersion: content-os-creative-brief-v2
+operation: render-draft
+specRef: specs/synthetic.video-spec.yml
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+compositionId: synthetic-reframe
+brandRef: registries/brand/brand-profile-v2.yml
+voiceRef: registries/brand/voice-profile-v2.yml
+channelRef: registries/brand/source-bundle-v1.yml
+voiceSource: true
+scriptMode: assembly_map
+captionTrackRef: transcript-intelligence/caption-track.json
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+narrativeMapRef: transcript-intelligence/narrative-map.json
+verificationState: deterministic-passed
+editorialDecision: reframe
+storySpine:
+  hook: {text: Inicio, at: 0}
+  beats:
+    - label: evidencia
+      at: 1
+      purpose: evidencia synthetic
+      sourceSpan:
+        sourceId: synthetic-001
+        startSeconds: 10
+        endSeconds: 12
+        absolute: {clockId: session, startSeconds: 10, endSeconds: 12}
+        local: {clockId: clip, startSeconds: 0, endSeconds: 2}
+  final: {text: Fin, at: 2}

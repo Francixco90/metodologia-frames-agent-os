@@ -1,16 +1,27 @@
-schemaVersion: content-os-creative-brief-v1
+schemaVersion: content-os-creative-brief-v2
+operation: render-draft
+specRef: specs/synthetic-impact.video-spec.yml
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 compositionId: cos-brand-reveal
 brandRef: registries/brand/brand-profile-v2.yml
 voiceRef: registries/brand/voice-profile-v2.yml
 channelRef: registries/brand/source-bundle-v1.yml
 compositionPattern: title-card
+voiceSource: true
+scriptMode: assembly_map
+captionTrackRef: transcript-intelligence/caption-track.json
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+narrativeMapRef: transcript-intelligence/narrative-map.json
+verificationState: deterministic-passed
+editorialDecision: use
 durationSeconds: 4
 storySpine:
   hook: {text: 'Frames ContentOS', at: 0}
   beats:
-    - {label: 'wordmark', at: 0.2, purpose: 'brand mark entrance', valueBeforeEvidence: true}
-    - {label: 'tagline', at: 1.2, purpose: 'value promise'}
-    - {label: 'settle', at: 2.6, purpose: 'lockup proof'}
+    - {label: 'wordmark', at: 0.2, purpose: 'brand mark entrance', valueBeforeEvidence: true, sourceSpan: {sourceId: synthetic-001, startSeconds: 20, endSeconds: 21, absolute: {clockId: session-clock, startSeconds: 20, endSeconds: 21}, local: {clockId: clip-clock, startSeconds: 0, endSeconds: 1}}}
+    - {label: 'tagline', at: 1.2, purpose: 'value promise', sourceSpan: {sourceId: synthetic-001, startSeconds: 21, endSeconds: 22.4, absolute: {clockId: session-clock, startSeconds: 21, endSeconds: 22.4}, local: {clockId: clip-clock, startSeconds: 1, endSeconds: 2.4}}}
+    - {label: 'settle', at: 2.6, purpose: 'lockup proof', sourceSpan: {sourceId: synthetic-001, startSeconds: 22.4, endSeconds: 24, absolute: {clockId: session-clock, startSeconds: 22.4, endSeconds: 24}, local: {clockId: clip-clock, startSeconds: 2.4, endSeconds: 4}}}
   final: {text: 'MetodologIA', at: 3.6}
 palette:
   bg: 'token://brand/surface/deep'

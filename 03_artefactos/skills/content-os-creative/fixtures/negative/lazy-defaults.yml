@@ -2,6 +2,7 @@
 # rejects: missing-brandRef, external font CDN, external asset, lazy defaults
 # (pure-white, generic-copy), missing story spine. Not in the checker runtimeCombined set.
 schemaVersion: content-os-creative-brief-v1
+operation: render-draft # legacy-v1-new-draft-blocked
 compositionId: cos-lazy-default
 # missing-brandRef: brandRef absent, cannot resolve brand tokens offline
 voiceRef: registries/brand/voice-profile-v2.yml

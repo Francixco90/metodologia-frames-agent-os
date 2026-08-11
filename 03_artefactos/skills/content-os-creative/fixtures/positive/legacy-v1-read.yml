@@ -1,0 +1,7 @@
+schemaVersion: content-os-creative-brief-v1
+operation: read
+compositionId: archived-creative-brief
+brandRef: registries/brand/brand-profile-v2.yml
+voiceRef: registries/brand/voice-profile-v2.yml
+channelRef: registries/brand/source-bundle-v1.yml
+storySpine: {hook: {text: Archivo, at: 0}, beats: [], final: {text: Fin, at: 1}}

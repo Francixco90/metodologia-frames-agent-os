@@ -39,8 +39,10 @@ encima del contrato tecnico.
    defaults web genericos.
 4. Para multi-scene, planear beats y rhythm antes de escribir HTML. Ver
    `references/narration-and-pacing.md`.
-5. Si la fuente contiene voz, consumir `narrative-map.json`; cada beat conserva
-   `sourceSpan`. No convertir una nota editorial en una frase atribuida.
+5. Si la fuente contiene voz, todo borrador nuevo usa `content-os-creative-brief-v2`
+   ligado a `specSha256`; consume caption track, correction ledger y
+   `narrative-map.json`. Cada beat conserva `sourceSpan` absoluto/local. v1 es solo
+   lectura para migración. No convertir una nota editorial en una frase atribuida.
 
 ## Default: aplica brand router + house-style
 
@@ -76,6 +78,7 @@ si brandRef ausente o font/asset externo detectado.
    Para voz fuente, elegir un arco trazable: realidad↔posibilidad, transformación,
    evidencia de impacto o promesa→prueba→CTA. Si falta evidencia: `extend`, `reframe`
    o `discard`; nunca rellenar con prosa inventada.
+   Solo `use` puede avanzar a `render-draft`.
 5. **Offline-first fonts/assets.** System fonts o fonts del brand bundle (pinned local,
    licencia resuelta). No Google Fonts CDN, no external assets, no network. Hereda
    `content-os-core` render adapter (hook rechaza no-`file:`/`data:`).
