@@ -4,7 +4,10 @@ route: content-os-embedded-captions
 mode: standard
 identity: keynote
 vo_mode: transcribed
-has_script: false
+scriptMode: transcript_derived
+captionPolicyRef: caption-policy/minimal-clarity-v1
+captionTrackRef: transcript-intelligence/caption-track.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
 footage: true
 offline: true
 transcript_source: offline
@@ -24,7 +27,7 @@ capability_map:
 shotPlan:
   footage_ref: local clip launch-talk
   identity_pick: keynote (opaque white Inter 800 dead-center stillness, product launch)
-  caption_model: rail verbatim + one embed climax at the peak
+  caption_model: rail minimal-clarity + one evidence-bound embed climax at the peak
   hero_anchor: heroBands.best ~30-55% occluded
   proof_times: [1.2, 4.5, 8.0]
 steps:

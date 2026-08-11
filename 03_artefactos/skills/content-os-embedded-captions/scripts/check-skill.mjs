@@ -13,6 +13,7 @@
  */
 import {readFileSync, existsSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
 
 const ROOT = process.cwd();
 const SKILL_DIR = resolve(ROOT, 'skills/content-os-embedded-captions');
@@ -24,6 +25,7 @@ const required = [
   'schemas/embedded-captions-v1.schema.json',
   'scripts/check-skill.mjs',
   'scripts/workflow-audit.mjs',
+  'scripts/linguistic-gate.mjs',
   'references/identity-catalog.md',
   'references/caption-model.md',
   'references/visual-qa.md',
@@ -123,6 +125,7 @@ if (existsSync(negPath)) {
     'network-in-workflow',
     'graded-footage',
     'embed-overuse',
+    'linguistic-gate',
   ];
   for (const code of codes) {
     if (!neg.includes(code)) {
@@ -131,6 +134,15 @@ if (existsSync(negPath)) {
   }
 } else {
   errors.push(`${PREFIX}MISSING_FILE fixtures/negative/broken-workflow.yml`);
+}
+
+const linguistic = spawnSync(
+  process.execPath,
+  [resolve(SKILL_DIR, 'scripts/linguistic-gate.mjs'), resolve(SKILL_DIR, 'fixtures/negative/broken-workflow.yml')],
+  {encoding: 'utf8'},
+);
+if (linguistic.status === 0 || !linguistic.stderr.includes('linguistic-gate')) {
+  errors.push(`${PREFIX}LINGUISTIC_GATE`);
 }
 
 if (errors.length > 0) {

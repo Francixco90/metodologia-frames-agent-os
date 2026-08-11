@@ -1,10 +1,11 @@
-# Negative fixture: documents all 6 violation codes.
+# Negative fixture: documents all 7 violation codes.
 # - missing-gate: build state done (invalid)
 # - step-out-of-order: plan before prepare
 # - no-render: finalize gate-passed + rendered false
 # - network-in-workflow: offline false + https URL in source_ref
 # - graded-footage: graded_footage true (never grade the footage)
 # - embed-overuse: embed_all true + rail_mode none (rail-first violated)
+# - linguistic-gate: missing caption policy, caption track and verification
 schemaVersion: embedded-captions-v1
 projectId: bad-captions
 route: content-os-embedded-captions
