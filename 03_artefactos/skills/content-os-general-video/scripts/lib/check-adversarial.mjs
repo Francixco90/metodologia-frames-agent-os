@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, cpSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
+import {copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -76,6 +76,19 @@ try {
   updateJson(resolve(linkCase, 'workflow-state.json'), (value) => { value.specRef = 'escape.json'; return value; });
   const linked = spawnSync(process.execPath, [cli, 'ingest', '--project', linkCase], {encoding: 'utf8'});
   if (linked.status === 0 || !linked.stderr.includes('SYMLINK_SPEC')) errors.push(`${PREFIX}SYMLINK_ESCAPE`);
+
+  const outsideState = resolve(temp, 'outside-state.json'); copyFileSync(resolve(temp, 'workflow-state.json'), outsideState);
+  const stateLinkCase = mkdtempSync(resolve(tmpdir(), 'gv-state-link-')); cleanup.push(stateLinkCase); cpSync(temp, stateLinkCase, {recursive: true}); symlinkSync(outsideState, resolve(stateLinkCase, 'state-link.json'));
+  const stateLink = spawnSync(process.execPath, [cli, 'ingest', '--project', stateLinkCase, '--state', 'state-link.json'], {encoding: 'utf8'});
+  if (stateLink.status === 0 || !stateLink.stderr.includes('SYMLINK_STATE_REF')) errors.push(`${PREFIX}STATE_SYMLINK_ESCAPE`);
+  for (const [id, ref] of [['absolute', outsideState], ['traversal', '../outside-state.json']]) {
+    const unsafeState = spawnSync(process.execPath, [cli, 'ingest', '--project', stateLinkCase, '--state', ref], {encoding: 'utf8'});
+    if (unsafeState.status === 0 || !unsafeState.stderr.includes('UNSAFE_STATE_REF')) errors.push(`${PREFIX}STATE_${id.toUpperCase()}`);
+  }
+  const runtimeCase = mkdtempSync(resolve(tmpdir(), 'gv-runtime-link-')); cleanup.push(runtimeCase); cpSync(temp, runtimeCase, {recursive: true}); rmSync(resolve(runtimeCase, '.frames-video'), {recursive: true, force: true});
+  const outsideRuntime = mkdtempSync(resolve(tmpdir(), 'gv-runtime-outside-')); cleanup.push(outsideRuntime); symlinkSync(outsideRuntime, resolve(runtimeCase, '.frames-video'), 'dir');
+  const runtimeLink = spawnSync(process.execPath, [cli, 'ingest', '--project', runtimeCase], {encoding: 'utf8'});
+  if (runtimeLink.status === 0 || !runtimeLink.stderr.includes('SYMLINK_RUNTIME') || readdirSync(outsideRuntime).length !== 0) errors.push(`${PREFIX}RUNTIME_SYMLINK_ESCAPE`);
 
   const tamperCase = mkdtempSync(resolve(tmpdir(), 'gv-tamper-')); cleanup.push(tamperCase); cpSync(temp, tamperCase, {recursive: true});
   const expectedOutput = sha(resolve(tamperCase, 'renders/mini-a.mp4')); copyFileSync(resolve(tamperCase, 'renders/mini-b.mp4'), resolve(tamperCase, 'renders/mini-a.mp4'));

@@ -1,0 +1,13 @@
+schema_version: general-video-successor-verification-v1
+skill_version: 0.7.0
+predecessor_version: 0.6.0
+execution_scope: local-evaluation
+publication_authority: false
+successor_reason: trust anchor confinement
+claims:
+  - state_ref_relative_and_contained
+  - state_symlink_rejected_before_read
+  - runtime_symlink_rejected_before_write
+  - runtime_created_and_revalidated_under_real_project
+verification_command: node skills/content-os-general-video/scripts/check-skill.mjs
+result: PASS

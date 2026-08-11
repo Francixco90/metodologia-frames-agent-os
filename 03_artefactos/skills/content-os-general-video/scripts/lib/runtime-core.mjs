@@ -4,6 +4,7 @@ import {existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, statSync, 
 import {dirname, isAbsolute, relative, resolve, sep} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {validateSchema} from './schema-validation.mjs';
+import {anchoredPath, trustAnchors} from './trust-anchors.mjs';
 
 const COMMANDS = new Set(['ingest', 'index', 'script', 'plan', 'render', 'verify', 'package']);
 const HASH = /^[a-f0-9]{64}$/;
@@ -36,29 +37,10 @@ function run(binary, args, cwd, label) {
 
 const command = process.argv[2];
 if (!COMMANDS.has(command)) fail(`USAGE video-cli.mjs <${[...COMMANDS].join('|')}> --project <dir>`, 2);
-const project = resolve(arg('project', '.'));
-const projectReal = realpathSync(project);
-const statePath = resolve(project, arg('state', 'workflow-state.json'));
-const runtimeDir = resolve(project, '.frames-video');
+const anchors = trustAnchors({projectRef: arg('project', '.'), stateRef: arg('state', 'workflow-state.json'), fail, network: NETWORK, privateRules: PRIVATE});
+const {project, projectReal, statePath, runtimeDir} = anchors;
 
-function projectPath(ref, label = 'REF') {
-  if (!ref || typeof ref !== 'string' || isAbsolute(ref) || ref.includes('\0') || NETWORK.test(ref)) fail(`UNSAFE_${label} ${ref}`);
-  if (PRIVATE.some((pattern) => pattern.test(ref))) fail(`PRIVATE_${label} ${ref}`);
-  const path = resolve(project, ref);
-  const rel = relative(project, path);
-  if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) fail(`OUTSIDE_PROJECT_${label} ${ref}`);
-  let cursor = project;
-  for (const part of rel.split(sep).filter(Boolean)) {
-    cursor = resolve(cursor, part);
-    if (existsSync(cursor) && lstatSync(cursor).isSymbolicLink()) fail(`SYMLINK_${label} ${ref}`);
-  }
-  let anchor = path;
-  while (!existsSync(anchor)) anchor = dirname(anchor);
-  const physical = realpathSync(anchor);
-  const physicalRel = relative(projectReal, physical);
-  if (physicalRel === '..' || physicalRel.startsWith(`..${sep}`) || isAbsolute(physicalRel)) fail(`OUTSIDE_PROJECT_${label} ${ref}`);
-  return path;
-}
+function projectPath(ref, label = 'REF') { return anchoredPath({project, projectReal, ref, label, fail, network: NETWORK, privateRules: PRIVATE}); }
 
 function loadState({allowV1 = true} = {}) {
   const state = load(statePath, 'STATE');

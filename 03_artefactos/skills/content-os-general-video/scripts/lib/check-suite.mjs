@@ -39,6 +39,7 @@ const required = [
   'scripts/lib/runtime-operations.mjs',
   'scripts/lib/runtime-layers.mjs',
   'scripts/lib/runtime-visual.mjs',
+  'scripts/lib/trust-anchors.mjs',
   'scripts/generate-synthetic-media.mjs',
   'scripts/workflow-audit.mjs',
   'scripts/linguistic-gate.mjs',
@@ -56,6 +57,7 @@ const required = [
   'receipts/runtime-boundary.yml',
   'receipts/verification-v0.5.0.yml',
   'receipts/verification-v0.6.0.yml',
+  'receipts/verification-v0.7.0.yml',
 ];
 
 const errors = [];
@@ -73,7 +75,7 @@ if (!skillMd.startsWith('---\nname: content-os-general-video\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.6.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
+if (!skillMd.includes('version: 0.7.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {
   errors.push(`${PREFIX}FRONTMATTER_LICENSE`);
 }
