@@ -3,13 +3,15 @@
   "$id": "https://metodologIA.dev/schemas/content-os/remotion-captions-v1.schema.json",
   "title": "Remotion Captions v1 request",
   "type": "object",
-  "required": ["caption_source", "timing_clock", "determinism_contract"],
+  "required": ["caption_source", "caption_policy_ref", "transcript_intelligence_ref", "timing_clock", "determinism_contract"],
   "properties": {
     "caption_source": {
       "type": "string",
-      "enum": ["caption-json-first-party", "srt-converted-off-render", "vtt-converted-off-render"],
+      "enum": ["transcript-intelligence-caption-track"],
       "description": "Caption JSON transcribed/converted off-render; render path reads JSON only"
     },
+    "caption_policy_ref": {"type": "string", "minLength": 1},
+    "transcript_intelligence_ref": {"type": "string", "minLength": 1},
     "timing_clock": {
       "type": "string",
       "enum": ["useCurrentFrame"],
