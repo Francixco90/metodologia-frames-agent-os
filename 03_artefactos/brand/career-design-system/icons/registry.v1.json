@@ -1,0 +1,17 @@
+{
+  "schema_version": "career-icon-registry-v1",
+  "registry_id": "metodologia-career-icons-v1",
+  "rules": [
+    "Use inline SVG only; no icon fonts or remote sprite.",
+    "Decorative icons are aria-hidden; standalone icon buttons require an accessible label.",
+    "Default icon box is 20px inside a control of at least 44px.",
+    "Icons support meaning; they never replace evidence or labels."
+  ],
+  "icons": [
+    {"id": "icon-theme", "meaning": "change color theme", "standalone_allowed": true},
+    {"id": "icon-close", "meaning": "close dialog", "standalone_allowed": true},
+    {"id": "icon-arrow", "meaning": "open a resource or continue", "standalone_allowed": false},
+    {"id": "icon-evidence", "meaning": "evidence or verification", "standalone_allowed": false},
+    {"id": "icon-method", "meaning": "method or operating system", "standalone_allowed": false}
+  ]
+}

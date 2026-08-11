@@ -1,0 +1,56 @@
+@media print {
+  :root,
+  [data-theme] {
+    color-scheme: light;
+    --career-canvas: var(--brand-surface);
+    --career-canvas-deep: var(--brand-surface-alt);
+    --career-surface: var(--brand-surface);
+    --career-surface-raised: var(--brand-surface);
+    --career-text: var(--brand-ink);
+    --career-text-muted: var(--brand-text-soft);
+    --career-accent: var(--brand-gold-text);
+    --career-line: var(--brand-border);
+  }
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  body {
+    background: var(--career-canvas);
+    font-size: 10.5pt;
+  }
+  .career-header,
+  .career-skip-link,
+  .career-icon-button,
+  dialog,
+  button,
+  [data-interactive-only] {
+    display: none !important;
+  }
+  .career-shell {
+    inline-size: 100%;
+    max-inline-size: none;
+    padding: 0;
+  }
+  .career-section {
+    padding-block: 1.25rem;
+    break-inside: avoid;
+  }
+  .career-hero {
+    min-block-size: 0;
+    padding-block: 1rem 1.5rem;
+  }
+  .career-card,
+  .career-kpi {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+  details > * {
+    display: block !important;
+  }
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    overflow-wrap: anywhere;
+  }
+}

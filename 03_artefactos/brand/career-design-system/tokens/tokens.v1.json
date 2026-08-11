@@ -1,0 +1,86 @@
+{
+  "schema_version": "metodologia-career-tokens-v1",
+  "token_set_id": "metodologia-career-v1",
+  "default_theme": "navy",
+  "print_theme": "light",
+  "color": {
+    "navy": {
+      "canvas": "brand.ink",
+      "canvas_deep": "brand.ink",
+      "surface": "mix(brand.ink,brand.text_soft,82%)",
+      "surface_raised": "mix(brand.ink,brand.text_soft,68%)",
+      "text": "brand.surface_alt",
+      "text_muted": "brand.canvas_deep",
+      "accent": "brand.gold_fill",
+      "accent_text": "brand.ink",
+      "line": "mix(brand.surface_alt,brand.ink,32%)",
+      "focus": "brand.gold_soft"
+    },
+    "light": {
+      "canvas": "brand.canvas",
+      "canvas_deep": "brand.canvas_deep",
+      "surface": "brand.surface",
+      "surface_raised": "brand.surface_alt",
+      "text": "brand.ink",
+      "text_muted": "brand.text_soft",
+      "accent": "brand.gold_text",
+      "accent_text": "brand.surface",
+      "line": "brand.border",
+      "focus": "brand.gold_text"
+    }
+  },
+  "typography": {
+    "display": {"family": "Poppins", "fallback": "system-ui, sans-serif", "weights": [700, 800]},
+    "body": {"family": "Trebuchet MS", "fallback": "Arial, sans-serif", "weights": [400, 700]},
+    "ui": {"family": "Montserrat", "fallback": "system-ui, sans-serif", "weights": [500, 600, 700]},
+    "scale": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lead": "clamp(1.05rem, 1rem + 0.35vw, 1.25rem)",
+      "h3": "clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem)",
+      "h2": "clamp(1.75rem, 1.35rem + 1.7vw, 3rem)",
+      "hero": "clamp(2.25rem, 1.6rem + 3.5vw, 5.25rem)"
+    },
+    "line_height": {"tight": 1.05, "heading": 1.15, "body": 1.6}
+  },
+  "space": {
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "6": "1.5rem",
+    "8": "2rem",
+    "12": "3rem",
+    "16": "4rem",
+    "24": "6rem"
+  },
+  "layout": {
+    "content_max": "80rem",
+    "text_max": "68ch",
+    "gutter": "clamp(1rem, 3vw, 2.5rem)",
+    "grid_min": "17rem",
+    "rail": "18rem"
+  },
+  "border": {
+    "thin": "1px",
+    "strong": "2px",
+    "radius_sm": "0.25rem",
+    "radius": "0.75rem",
+    "radius_round": "999px"
+  },
+  "shadow": {
+    "raised": "0 1rem 3rem rgba(2, 18, 35, 0.18)",
+    "dialog": "0 1.5rem 5rem rgba(2, 18, 35, 0.38)"
+  },
+  "motion": {"fast": "120ms", "standard": "220ms", "easing": "cubic-bezier(.2,.8,.2,1)"},
+  "layer": {"base": 0, "header": 20, "dialog": 100},
+  "interaction": {"target_min": "44px", "focus_width": "3px"},
+  "content_limits": {
+    "hero_words": 18,
+    "card_bluf_words": 20,
+    "card_detail_words": 55,
+    "dialog_words": 180,
+    "nav_items": 6
+  }
+}

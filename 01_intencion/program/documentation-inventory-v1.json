@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "45a01d635fe9099f16fba1cdd15fefd60a163be3d87f712a9630a4253ee9cdf4",
-  "totalMarkdown": 1792,
-  "auditedAuthored": 555,
+  "repositoryTreeSha256": "2542dd74f3ec201af67d95d11587588e886e67a8a3b10bc8e83f61fc1398de94",
+  "totalMarkdown": 1795,
+  "auditedAuthored": 558,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -205,6 +205,9 @@
       "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
+      "03_artefactos/brand/career-design-system/README.md",
+      "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
       "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
       "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md",
       "03_artefactos/content/documentation/ecosystem-inventory.md",
@@ -9464,6 +9467,84 @@
       }
     },
     {
+      "path": "03_artefactos/brand/career-design-system/README.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "687f61e514e6e70892a5565332caf6c985750b5839bcee6e4bb926da21f7cb91",
+      "words": 194,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "64fa0830531ebe41167d8badfc950e3a5529ac967a3bdabc2a7dafbb16c11d2f",
+      "words": 257,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "fddbc82be8ef1c70a7757b9b394c09f15ded4441f114b62e4e3f5de8d385828c",
+      "words": 194,
+      "lines": 38,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
       "class": "authored_control",
       "owner": "brand",
@@ -16730,7 +16811,7 @@
     }
   ],
   "summary": {
-    "keep": 540,
+    "keep": 543,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,
