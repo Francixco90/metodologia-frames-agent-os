@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "asr-candidate-v1",
+  "model": "synthetic-offline-asr",
+  "language": "es",
+  "segments": [
+    {"id": "s1", "speaker": "Participante A", "startSeconds": 1, "endSeconds": 7, "text": "Antes tenía archivos dispersos y reportes estáticos.", "roles": ["hook", "what_is", "friction", "problem"]},
+    {"id": "s2", "speaker": "Participante A", "startSeconds": 8, "endSeconds": 16, "text": "Entonces, eh, construí un prom de alto rendimiento para analizar los datos.", "roles": ["method", "decision", "response"]},
+    {"id": "s3", "speaker": "Participante A", "startSeconds": 17, "endSeconds": 26, "text": "Este dashboard salió de un archivo de XE y ahora muestra la aplicación funcionando.", "roles": ["demonstration", "proof", "what_could_be"]},
+    {"id": "s4", "speaker": "Facilitador", "startSeconds": 27, "endSeconds": 34, "text": "El resultado demuestra una capacidad útil y merece el reconocimiento como embajador.", "roles": ["impact", "recognition", "observable_change", "new_bliss"]},
+    {"id": "s5", "speaker": "Participante B", "startSeconds": 35, "endSeconds": 41, "text": "El API returns un error, pero la supervisión humana sigue activa.", "roles": ["consequence", "cta"]}
+  ]
+}

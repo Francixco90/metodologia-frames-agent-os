@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "transcript-authority-v1",
+  "terms": [
+    {"canonical": "prompt", "aliases": ["prom"], "language": "en", "material": false, "authorityRef": "GLOSSARY-PROMPT"},
+    {"canonical": "Excel", "aliases": ["XE"], "language": "en", "material": false, "authorityRef": "GLOSSARY-EXCEL"},
+    {"canonical": "dashboard", "aliases": [], "language": "en", "material": false, "authorityRef": "GLOSSARY-DASHBOARD"},
+    {"canonical": "API", "aliases": [], "language": "en", "material": false, "authorityRef": "GLOSSARY-API"}
+  ]
+}
