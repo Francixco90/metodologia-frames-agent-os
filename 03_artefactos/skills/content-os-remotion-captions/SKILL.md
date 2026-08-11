@@ -23,7 +23,8 @@ the project (`content-os-remotion-create`) or render (`content-os-remotion-rende
 
 ## Caption data model
 
-All captions must originate in `caption-track.json` from
+All new voice-derived drafts use `remotion-captions-v2` bound to
+`specRef`/`specSha256`. Captions must originate in `caption-track.json` from
 `content-os-transcript-intelligence`, then be adapted off-render to the `Caption` type
 from `@remotion/captions`
 (see `skills/vendor/remotion-publisher/remotion-captions/SKILL.md`, read-only). A caption
@@ -63,9 +64,10 @@ Remote transcription is opt-in auth-gated fail-closed and runs only off-render.
 
 1. Confirm exact toolchain pins (Remotion 4.0.494, React 19).
 2. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
-3. Confirm `caption_policy_ref`, `transcript_intelligence_ref` and the reviewed
-   caption JSON are first-party version-pinned.
-4. Stop on: live transcribe/SRT-parse in render path, network in render path, unpinned
+3. Confirm `captionTrackRef`, `correctionLedgerRef`, `transcriptIntelligenceRef`,
+   `sourceSpans` and the reviewed caption JSON are first-party version-pinned.
+4. Accept v1 only for `operation: read`; block v1 from new voice-derived drafts.
+5. Stop on: live transcribe/SRT-parse in render path, network in render path, unpinned
    assets, production request without human gate approval.
 
 ## Stop rules

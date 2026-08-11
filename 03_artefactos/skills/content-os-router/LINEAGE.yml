@@ -5,7 +5,7 @@ execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1 + content-intent-v2 + frames-route-decision-v1 + assistance-envelope-v1 + R8 + R9
+compatibility_contract: router-intent-v1 + content-intent-v2 + voice-draft-revision-2 + frames-route-decision-v1 + assistance-envelope-v1 + R8 + R9
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md

@@ -1,5 +1,6 @@
 # Negative fixture: a malformed Remotion captions request.
-schema_version: 1
+schemaVersion: remotion-captions-v1
+operation: render-draft # legacy-v1-new-draft-blocked
 skill_id: content-os-remotion-captions
 caption_source: 'live-srt-parse-in-render'
 timing_clock: 'setTimeout'

@@ -1,4 +1,3 @@
-# Positive fixture: a well-formed Remotion captions request.
 schemaVersion: remotion-captions-v2
 operation: render-draft
 specRef: specs/synthetic.video-spec.yml
@@ -7,15 +6,12 @@ captionTrackRef: transcript-intelligence/caption-track.json
 correctionLedgerRef: transcript-intelligence/correction-ledger.json
 transcriptIntelligenceRef: transcript-intelligence/verification.json
 verificationState: deterministic-passed
-editorialDecision: use
+editorialDecision: extend
 sourceSpans:
-  - sourceId: synthetic-footage-001
-    startSeconds: 120
-    endSeconds: 125
-    absolute: {clockId: session-clock, startSeconds: 120, endSeconds: 125}
-    local: {clockId: clip-clock, startSeconds: 0, endSeconds: 5}
+  - sourceId: synthetic-001
+    startSeconds: 10
+    endSeconds: 12
+    absolute: {clockId: session, startSeconds: 10, endSeconds: 12}
+    local: {clockId: clip, startSeconds: 0, endSeconds: 2}
 timingClock: useCurrentFrame
-animateInOut: true
-karaokeHighlight: true
-transcribeScope: off-render
 determinismContract: true

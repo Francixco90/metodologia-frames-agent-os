@@ -14,18 +14,19 @@ metadata:
 
 ## Contexto operativo
 
-Lee [`context.md`](context.md) antes de cargar referencias. Define el contexto mínimo, la ruta, los efectos permitidos, los gates y el handoff de esta skill.
+Lee [`context.md`](context.md) antes de cargar referencias. Define contexto, ruta, efectos,
+gates y handoff.
 
-Puerta de entrada única de Frames para contenido, carrera, extensiones privadas y mantenimiento, compatible
-con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities bajo
-demanda y despacha workflows locales hash-bound. No instala, consulta la red ni
-renderiza; `content-os-core` conserva el adapter HTML→MP4.
+Puerta única de Frames para contenido, carrera, extensiones privadas y mantenimiento,
+compatible con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities
+bajo demanda y despacha workflows locales hash-bound. No instala, usa red ni renderiza;
+`content-os-core` conserva el adapter HTML→MP4.
 
-`scripts/route-intent.mjs` conserva la decisión compatible y añade
-`dispatchIntent()`: R6 ejecuta `routeContentIntent`, R7 `routeCareerIntent`, R8
-`routeLocalExtensionIntent`, R9 `routeMaintenanceIntent`, y R0 no invoca adapter. Un locator sin `adapter_invoked` y
-`domain_intent` es planificación, no ejecución. R8 y R9 se detienen en aprobación antes de mutar. Una señal mixta o ausente nunca
-fusiona dominios.
+`scripts/route-intent.mjs` conserva compatibilidad y añade `dispatchIntent()`: R6 ejecuta
+`routeContentIntent`, R7 `routeCareerIntent`, R8 `routeLocalExtensionIntent`, R9
+`routeMaintenanceIntent`; R0 no invoca adapter. Un locator sin `adapter_invoked` y
+`domain_intent` es planificación. R8/R9 requieren aprobación antes de mutar. Señales
+mixtas o ausentes nunca fusionan dominios.
 
 - **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
 - **Route** — workflow Fase 3 que posee el deliverable end-to-end.
@@ -45,7 +46,7 @@ fusiona dominios.
    producir, salvo autorización end-to-end inequívoca ya registrada. La distribución
    siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`.
 
-Antes de este adapter, `runFirstTurnGatewayV1` emite `AssistanceEnvelopeV1` y diferencia saludo, acción,
+Antes, `runFirstTurnGatewayV1` emite `AssistanceEnvelopeV1` y diferencia saludo, acción,
 ambigüedad y reanudación. Un saludo muestra **Frames ContentOS · por
 MetodologIA** y `Crear · Mejorar · Planear · Explorar` sin prime ni writes. Un
 pedido accionable omite el menú y prepara un preview del brief. Skills del plan
@@ -57,11 +58,10 @@ node --import tsx <SKILL_DIR>/scripts/route-intent.mjs request.json
 node <SKILL_DIR>/scripts/route-audit.mjs work/content/content-intent.json --out work/content/audit --strict
 ```
 
-El brief Markdown es canónico. El HTML es una proyección opcional y verificable del
-mismo modelo; nunca una segunda fuente editorial. [CONFIG]
+El brief Markdown es canónico. El HTML es una proyección verificable, nunca otra fuente
+editorial. [CONFIG]
 
-Esta skill solo enruta; el capability map siguiente resuelve implementación,
-motion, marca, media y bloques reutilizables.
+Esta skill solo enruta; el capability map resuelve implementación, motion, marca y media.
 
 ## Preflight (siempre)
 
@@ -87,9 +87,8 @@ motion, marca, media y bloques reutilizables.
 | 7         | Navigable deck/presentation (no MP4)                       | `content-os-slideshow`            |
 | 8         | Any other custom video/composition                         | `content-os-general-video`        |
 
-Fase 3 workflows pendientes. El router declara la route + capability_map ahora;
-el workflow se materializa en Fase 3. Sin workflow, marcar `coverage_gap` y
-despachar solo capabilities (draft manual).
+Para workflows Fase 3 pendientes, declarar route + capability_map. Sin workflow, marcar
+`coverage_gap` y despachar capabilities (draft manual).
 
 ## Capability map (dispatch on-demand)
 
@@ -102,8 +101,8 @@ despachar solo capabilities (draft manual).
 | Media resolve (offline cascade), TTS, transcription | `content-os-media`     |
 | Reusable blocks + components                        | `content-os-registry`  |
 
-Capability skills nunca toman ownership del deliverable end-to-end. Carga solo
-lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
+Capabilities nunca poseen el deliverable end-to-end. Carga solo las necesarias; el
+workflow Fase 3 es owner.
 
 ## Routing
 
@@ -138,7 +137,12 @@ lo que el workflow activo necesita. El workflow (Fase 3) es el owner.
 7. **No render.** El router no renderiza. El HTML→MP4 adapter vive en
    `content-os-core`. El workflow orquesta; el router solo enruta.
 8. **RENDERED_DRAFT != HUMAN_APPROVED.** El deliverable produce `RENDERED_DRAFT`.
-   `READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
+`READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
+
+Para cualquier borrador nuevo derivado de voz, el handoff exige contrato revision 2,
+binding a la spec, `captionTrackRef`, `correctionLedgerRef`, verificación lingüística y
+`sourceSpan`. Los trabajos v1 pueden abrirse en modo `read`, pero no producir un
+`RENDERED_DRAFT` nuevo hasta migrarse.
 
 Las ambigüedades de medio, duración, URL, storyboard y overlays se resuelven con
 las reglas canónicas y casos borde de `references/routes.md`; este archivo no las

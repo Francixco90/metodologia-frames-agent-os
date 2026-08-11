@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "remotion-captions-v2",
+  "title": "Spec First Remotion captions request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "operation", "specRef", "specSha256", "captionTrackRef",
+    "correctionLedgerRef", "transcriptIntelligenceRef", "verificationState",
+    "sourceSpans", "editorialDecision", "timingClock", "determinismContract"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "remotion-captions-v2"},
+    "operation": {"const": "render-draft"},
+    "specRef": {"type": "string", "minLength": 1},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "captionTrackRef": {"type": "string", "minLength": 1},
+    "correctionLedgerRef": {"type": "string", "minLength": 1},
+    "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
+    "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
+    "sourceSpans": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceSpan"}},
+    "editorialDecision": {"enum": ["use", "extend", "reframe", "discard"]},
+    "timingClock": {"const": "useCurrentFrame"},
+    "animateInOut": {"type": "boolean"},
+    "karaokeHighlight": {"type": "boolean"},
+    "transcribeScope": {"enum": ["off-render", "pre-pass"]},
+    "determinismContract": {"const": true}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"operation": {"const": "render-draft"}}, "required": ["operation"]},
+      "then": {"properties": {"editorialDecision": {"const": "use"}}}
+    }
+  ],
+  "$defs": {
+    "sourceSpan": {
+      "type": "object",
+      "required": ["sourceId", "startSeconds", "endSeconds", "absolute", "local"],
+      "properties": {
+        "sourceId": {"type": "string"},
+        "startSeconds": {"type": "number", "minimum": 0},
+        "endSeconds": {"type": "number", "exclusiveMinimum": 0},
+        "absolute": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}},
+        "local": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string"}, "startSeconds": {"type": "number"}, "endSeconds": {"type": "number"}}}
+      }
+    }
+  }
+}
