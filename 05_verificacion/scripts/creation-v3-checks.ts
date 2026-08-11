@@ -20,6 +20,7 @@ export const validateSkill = (
 ): string[] => {
   const {root, sha256, packageDigest} = ctx;
   const errors: string[] = [];
+  const registryState = skill.registryState ?? 'active';
   const directory = resolve(root, 'skills', skill.id);
   const markdown = readFileSync(resolve(directory, 'SKILL.md'), 'utf8');
   const lineage = parse(readFileSync(resolve(directory, 'LINEAGE.yml'), 'utf8')) as {
@@ -34,14 +35,14 @@ export const validateSkill = (
   const badMeta =
     !markdown.startsWith(`---\nname: ${skill.id}\n`) ||
     !markdown.includes('description: This skill should be used when') ||
-    !markdown.includes(`version: ${skill.version ?? '0.1.0'}`) ||
-    !markdown.includes('lifecycle_state: active') ||
+    (registryState === 'active' && !markdown.includes(`version: ${skill.version ?? '0.1.0'}`)) ||
+    (registryState === 'active' && !markdown.includes('lifecycle_state: active')) ||
     LOCATOR.test(markdown);
   if (badMeta) errors.push(`SKL-H03-002 invalid skill metadata ${skill.id}`);
   const badLineage =
     lineage.skill_id !== skill.id ||
     lineage.version !== (skill.version ?? '0.1.0') ||
-    lineage.lifecycle_state !== 'active' ||
+    lineage.lifecycle_state !== registryState ||
     lineage.execution_scope !== skill.scope ||
     lineage.external_fragments_reused !== false ||
     lineage.publication_authority !== false;
@@ -54,7 +55,7 @@ export const validateSkill = (
   const entry = registry.entries?.find(({skill_id: id}) => id === skill.id);
   const badEntry =
     entry?.version !== (skill.version ?? '0.1.0') ||
-    entry.current_state !== 'active' ||
+    entry.current_state !== registryState ||
     entry.execution_scope !== skill.scope ||
     entry.content_sha256 !== sha256(markdown) ||
     entry.package_manifest_sha256 !== packageDigest(skill.id) ||
@@ -68,9 +69,9 @@ export const validateSkill = (
     [null, 'candidate'],
     ['candidate', 'quarantined'],
     ['quarantined', 'evaluated'],
-    ['evaluated', 'active'],
   ];
-  if (skill.version) transitions.push(['active', 'active']);
+  if (registryState === 'active') transitions.push(['evaluated', 'active']);
+  if (registryState === 'active' && skill.version) transitions.push(['active', 'active']);
   const minimum = transitions.length;
   const badLifecycle =
     events.length < minimum ||
