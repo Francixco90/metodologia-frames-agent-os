@@ -1719,11 +1719,11 @@ entries:
     publication_authority: false
     tests: [node skills/candidate-evidence-reconciler/scripts/check-skill.mjs]
   - skill_id: evidence-first-cv
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: f7feff9d558a73cd01310cc0a4abb81f0bb1c4e8d2cfbd7d67e74c4268294c7d
-    package_manifest_sha256: a385d8de7dcd09f4b696501f55084bde9dd7d40a90b29b8e763d9ea4f571d660
+    content_sha256: 3a80613c28cbf12f3e2f7afa5f5320aa964e2c8904e985133c8ae337ee6aeef5
+    package_manifest_sha256: 575c420b74f78e618b490a16209d72f615be6ab2af10351186b0ac46fb1a647e
     lineage_ref: skills/evidence-first-cv/LINEAGE.yml
     dependency_receipt_ref: skills/evidence-first-cv/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1955,6 +1955,10 @@ events:
   - {event_id: EVT-SKL-ECV-H03-002, event_order: 2, skill_id: evidence-first-cv, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECV-H03-003, event_order: 3, skill_id: evidence-first-cv, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-ECV-H03-004, event_order: 4, skill_id: evidence-first-cv, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-ECV-H03-005, event_order: 5, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: add_cv_package_v2_spec_binding_and_multiformat_qa}
+  - {event_id: EVT-SKL-ECV-H03-006, event_order: 6, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: align_cv_package_v2_wire_and_add_synthetic_public_assets}
+  - {event_id: EVT-SKL-ECV-H03-007, event_order: 7, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: enforce_material_artifact_verification_and_bilingual_parity}
+  - {event_id: EVT-SKL-ECV-H03-008, event_order: 8, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: bind_runtime_fixtures_to_career_core_and_official_renderer}
   - {event_id: EVT-SKL-ECL-H03-001, event_order: 1, skill_id: evidence-based-cover-letter, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECL-H03-002, event_order: 2, skill_id: evidence-based-cover-letter, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECL-H03-003, event_order: 3, skill_id: evidence-based-cover-letter, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}

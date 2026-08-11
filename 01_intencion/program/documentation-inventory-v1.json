@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "fd21d04a57e0cbb881adcd773e9076fd3f1eee57b6304b7b0d8ee6d40bdeac6e",
+  "repositoryTreeSha256": "ece353652d59a517b54811da6de347496c9bb453c29bd3143d53f5d543d23a6e",
   "totalMarkdown": 1785,
   "auditedAuthored": 548,
   "classPaths": {
@@ -12752,16 +12752,16 @@
       "sourceRef": "03_artefactos/skills/evidence-first-cv/references/cv-quality-contract.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "4c269b590e3c8e87a30dd9e7fb8551751157ca80a1606094480e1c6edcfc0935",
-      "words": 120,
-      "lines": 22,
+      "sha256": "3e968cf2fc6e56ec9d86cd6d9b9e63162d10d2495122aa3437528d73b6614685",
+      "words": 384,
+      "lines": 57,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
-        "hasAuthorityLink": false,
+        "hasAuthorityLink": true,
         "hasNextAction": false,
         "duplicateHeadings": 0
       }
