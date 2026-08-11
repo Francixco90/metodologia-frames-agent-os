@@ -1,0 +1,21 @@
+receipt_id: RCP-H03-CONTENT-OS-TRANSCRIPT-INTELLIGENCE-001
+scope: skills/content-os-transcript-intelligence
+production_runtime_status: local_capability_only
+publication_authority: false
+allowed_scoped:
+  - asr_candidate_ingest
+  - minimal_clarity_caption_editing
+  - private_coaching_contract
+  - offline_semantic_search
+  - source_grounded_narrative_maps
+  - public_private_package_split
+out_of_scope:
+  - speech_pathology_diagnosis
+  - accent_or_nationality_inference
+  - global_english_proficiency_score
+  - network_transcription_or_embeddings_by_default
+  - ready_published_or_distribution_state
+coverage_gaps:
+  - optional_local_embedding_adapter_not_bound
+  - pronunciation_coaching_requires_real_audio_and_human_listening
+  - global_source_authority_promotion_waits_on_preexisting_conflict
