@@ -1,19 +1,18 @@
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-
 import {verifyHtmlMutations, verifyPolicyMutations} from './lib/adversarial-probes.mjs';
 import {packageHash} from './lib/canonical.mjs';
 import {verifyDocx} from './lib/docx-verifier.mjs';
 import {verifyPdf} from './lib/pdf-verifier.mjs';
 import {verifyRuntimeFixture} from './lib/runtime-fixture.mjs';
-
 const id = 'evidence-first-cv';
 const base = resolve(`skills/${id}`);
 const required = [
   'SKILL.md',
   'LINEAGE.yml',
   'references/cv-quality-contract.md',
+  'schemas/cv-package-v3.schema.json',
   'schemas/cv-package-v1.schema.json',
   'schemas/cv-package-v2.schema.json',
   'fixtures/positive/targeted-cv-package.json',
@@ -21,6 +20,7 @@ const required = [
   'fixtures/positive/hostile-bilingual-copy.json',
   'fixtures/negative/rejected-cv-packages.json',
   'fixtures/negative/rejected-cv-packages-v2.json',
+  'fixtures/negative/rejected-cv-packages-v3.json',
   'assets/docx-style-contract.json',
   'assets/contact-binding.example.json',
   'receipts/runtime-boundary.yml',
@@ -51,18 +51,22 @@ const required = [
 const docs = new Map(required.map((path) => [path, readFileSync(resolve(base, path), 'utf8')]));
 const all = [...docs.values()].join('\n');
 const json = (path) => JSON.parse(docs.get(path));
-const schemaV2 = json('schemas/cv-package-v2.schema.json');
-const positiveV2 = json('fixtures/positive/spec-bound-bilingual-package.json');
-const negativeV2 = json('fixtures/negative/rejected-cv-packages-v2.json');
+const schemaV3 = json('schemas/cv-package-v3.schema.json');
+const compatibilityV2 = json('fixtures/positive/spec-bound-bilingual-package.json');
+const negativeV3 = json('fixtures/negative/rejected-cv-packages-v3.json');
 const runtimePkg = json('fixtures/runtime/verified/package.json');
 const docxStyle = json('assets/docx-style-contract.json');
 const contact = json('assets/contact-binding.example.json');
-
 for (const token of [
   `name: ${id}`,
   'version: 0.2.0',
-  'cv-spec-v1',
+  'cv-spec-v2',
+  'cv-package-v3',
+  'migrateCvSpecV1ToV2',
+  'migrateCareerCvPackageV2ToV3',
   'HUMAN_APPROVED',
+  'CR_CV_DESIGN_APPROVED',
+  'ats-neutral',
   'spec_sha256',
   'Evidence Bank',
   'CR_PACKAGE_QA',
@@ -70,7 +74,6 @@ for (const token of [
   'submission_authority: false',
 ])
   if (!all.includes(token)) throw new Error(`CAR-CV-MISSING ${token}`);
-
 const packageFields = [
   'schema_version',
   'package_id',
@@ -94,17 +97,14 @@ const packageFields = [
   'publication_receipt',
   'package_sha256',
 ];
-if (
-  schemaV2.title !== 'CvPackageV2' ||
-  schemaV2.properties.schema_version.const !== 'cv-package-v2'
-) {
-  throw new Error('CAR-CV-SCHEMA-V2');
+if (schemaV3.title !== 'CvPackageV3' || schemaV3.properties.schema_version.const !== 'cv-package-v3') {
+  throw new Error('CAR-CV-SCHEMA-V3');
 }
 if (
-  Object.keys(schemaV2.properties).sort().join('|') !== [...packageFields].sort().join('|') ||
-  schemaV2.required.sort().join('|') !== [...packageFields].sort().join('|')
+  Object.keys(schemaV3.properties).sort().join('|') !== [...packageFields].sort().join('|') ||
+  schemaV3.required.sort().join('|') !== [...packageFields].sort().join('|')
 ) {
-  throw new Error('CAR-CV-SCHEMA-V2-RUNTIME-SURFACE');
+  throw new Error('CAR-CV-SCHEMA-V3-RUNTIME-SURFACE');
 }
 const receiptFields = [
   'receipt_ref',
@@ -114,18 +114,19 @@ const receiptFields = [
   'ready_package_sha256',
 ];
 if (
-  schemaV2.$defs.publicationReceipt.required.sort().join('|') !== receiptFields.sort().join('|') ||
-  !schemaV2.allOf?.length
+  schemaV3.$defs.publicationReceipt.required.sort().join('|') !== receiptFields.sort().join('|')
 )
   throw new Error('CAR-CV-PUBLICATION-CONTRACT');
-
 if (
-  positiveV2.publication_receipt !== null ||
-  packageHash(positiveV2) !== positiveV2.package_sha256
+  runtimePkg.schema_version !== 'cv-package-v3' ||
+  runtimePkg.publication_receipt !== null ||
+  packageHash(runtimePkg) !== runtimePkg.package_sha256 ||
+  runtimePkg.variants.some(({design}) => design.mode !== 'ats-neutral')
 ) {
-  throw new Error('CAR-CV-V2-SHAPE-FIXTURE');
+  throw new Error('CAR-CV-V3-SHAPE-FIXTURE');
 }
-const negativeIds = new Set(negativeV2.cases.map(({id: caseId}) => caseId));
+if (compatibilityV2.schema_version !== 'cv-package-v2') throw new Error('CAR-CV-V2-COMPATIBILITY');
+const negativeIds = new Set(negativeV3.cases.map(({id: caseId}) => caseId));
 for (const caseId of [
   'spec_not_approved',
   'duplicate_variant',
@@ -151,9 +152,11 @@ for (const caseId of [
   'receipt_hash_mismatch',
   'pdf_evidence_unavailable',
   'unmeasured_ats_percentage',
+  'executive_without_design_decision',
+  'ats_with_design_binding',
+  'stale_design_system_hash',
 ])
-  if (!negativeIds.has(caseId)) throw new Error(`CAR-CV-NEGATIVE-V2 ${caseId}`);
-
+  if (!negativeIds.has(caseId)) throw new Error(`CAR-CV-NEGATIVE-V3 ${caseId}`);
 const failures = [
   ...verifyRuntimeFixture(base),
   ...verifyPolicyMutations(runtimePkg, base),
@@ -174,7 +177,6 @@ execFileSync(
     stdio: 'inherit',
   },
 );
-
 for (const forbidden of ['tables', 'columns', 'text_boxes', 'drawings', 'headers', 'footers']) {
   if (docxStyle.structure?.[forbidden] !== false) throw new Error(`CAR-CV-DOCX ${forbidden}`);
 }

@@ -1,5 +1,5 @@
 {
-  "schema_version": "cv-spec-v1",
+  "schema_version": "cv-spec-v2",
   "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
   "intent": "general",
   "candidate_id": "CAND-SYNTH-RUNTIME-001",
@@ -90,17 +90,39 @@
         "ats-html"
       ],
       "page_budget": 1,
-      "design_profile": "candidate-neutral-ats"
+      "design_profile": "candidate-neutral-ats",
+      "design": {
+        "mode": "ats-neutral",
+        "design_system_id": null,
+        "design_system_ref": null,
+        "design_system_sha256": null,
+        "decision_id": null,
+        "decision_ref": null,
+        "decision_sha256": null,
+        "composition_id": null,
+        "theme_policy": null
+      }
     },
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
       "language": "en",
-      "audience": "recruiter",
+      "audience": "ats",
       "output_kinds": [
-        "executive-html"
+        "ats-html"
       ],
       "page_budget": 1,
-      "design_profile": "metodologia-career"
+      "design_profile": "candidate-neutral-ats",
+      "design": {
+        "mode": "ats-neutral",
+        "design_system_id": null,
+        "design_system_ref": null,
+        "design_system_sha256": null,
+        "decision_id": null,
+        "decision_ref": null,
+        "decision_sha256": null,
+        "composition_id": null,
+        "theme_policy": null
+      }
     }
   ],
   "acceptance": {
@@ -124,9 +146,9 @@
   "next_gate": "CR_CV_SPEC_APPROVED",
   "approval": {
     "status": "HUMAN_APPROVED",
-    "approved_spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+    "approved_spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0",
     "approver_ref": "H01",
-    "approved_at": "2026-08-11T12:00:00-05:00"
+    "approved_at": "2026-08-11T12:05:00-05:00"
   },
-  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a"
+  "spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0"
 }

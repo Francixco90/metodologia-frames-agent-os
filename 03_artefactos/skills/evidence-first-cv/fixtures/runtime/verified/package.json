@@ -1,40 +1,62 @@
 {
-  "schema_version": "cv-package-v2",
+  "schema_version": "cv-package-v3",
   "package_id": "CVPKG-SYNTH-RUNTIME-001",
   "candidate_id": "CAND-SYNTH-RUNTIME-001",
   "application_id": null,
   "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
-  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+  "spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0",
   "evidence_bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe",
   "application_brief_sha256": null,
   "job_snapshot_sha256": null,
   "source_document_ref": "fixtures/runtime/verified/canonical-source.json",
-  "source_document_sha256": "314cc1540c618e0011d962b6e161d203906c8d566ae51d48105e07c96b6acb35",
+  "source_document_sha256": "47a5841f01e58ebc1febdfc996c10e1208bce5dcac9d7db15266c72937faf335",
   "contact_binding_id": "CONTACT-SYNTH-RUNTIME-001",
   "variants": [
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
       "source_document_ref": "fixtures/runtime/verified/source-es.json",
-      "source_document_sha256": "f57d1d4b5935e38249b7bc7a00fc78d8c50d8caa15e1b9730fc33e57087edb96",
+      "source_document_sha256": "951cf0d513ed97986a3205ee4a2bae7aae64cc3db08c48fba1cbd73d5e866339",
       "language": "es",
       "audience": "ats",
       "output_kinds": [
         "ats-html"
       ],
       "page_budget": 1,
-      "design_profile": "candidate-neutral-ats"
+      "design_profile": "candidate-neutral-ats",
+      "design": {
+        "mode": "ats-neutral",
+        "design_system_id": null,
+        "design_system_ref": null,
+        "design_system_sha256": null,
+        "decision_id": null,
+        "decision_ref": null,
+        "decision_sha256": null,
+        "composition_id": null,
+        "theme_policy": null
+      }
     },
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
       "source_document_ref": "fixtures/runtime/verified/source-en.json",
-      "source_document_sha256": "c9c6d1f5806f9d3abf11f914938ca11af75f6df19c73525719154a5aa78702b3",
+      "source_document_sha256": "321e82db345f68a6a52ae3d88c224239674a2981919a3f23be17910814e916e9",
       "language": "en",
-      "audience": "recruiter",
+      "audience": "ats",
       "output_kinds": [
-        "executive-html"
+        "ats-html"
       ],
       "page_budget": 1,
-      "design_profile": "metodologia-career"
+      "design_profile": "candidate-neutral-ats",
+      "design": {
+        "mode": "ats-neutral",
+        "design_system_id": null,
+        "design_system_ref": null,
+        "design_system_sha256": null,
+        "decision_id": null,
+        "decision_ref": null,
+        "decision_sha256": null,
+        "composition_id": null,
+        "theme_policy": null
+      }
     }
   ],
   "outputs": [
@@ -42,14 +64,14 @@
       "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
       "kind": "ats-html",
       "artifact_ref": "fixtures/runtime/verified/cv-es.html",
-      "artifact_sha256": "38684fcbdddbd3472f3db6e2d9f53f3d54037a19fbb05765a5c8d840ab230426",
+      "artifact_sha256": "af56e6ccf02a86f012247679df377e61ad4939c32e7daa39551a786bce14b323",
       "verification": "UNKNOWN"
     },
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
-      "kind": "executive-html",
+      "kind": "ats-html",
       "artifact_ref": "fixtures/runtime/verified/cv-en.html",
-      "artifact_sha256": "f321747534e5cbed37f79ab49a58f92f0aa930411dcb9397c2cee4c84f437274",
+      "artifact_sha256": "083add8282ef417e797de69be0bc671957f13b8f77261a90994a6f285a033a04",
       "verification": "UNKNOWN"
     }
   ],
@@ -66,5 +88,5 @@
   "state": "RENDERED_DRAFT",
   "approved_spec_sha256": null,
   "publication_receipt": null,
-  "package_sha256": "fad2dcb361e5e56efdd5f141684c6b5fa96dca1bd85993632ddd4f4ba9245f81"
+  "package_sha256": "88593ce60813468e0f641ed6f6504429eb0ecd332d1f51cc0236b07ab369d946"
 }
