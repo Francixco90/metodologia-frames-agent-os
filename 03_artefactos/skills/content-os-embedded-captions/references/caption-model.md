@@ -8,7 +8,7 @@ authoring cualquier embed.
 |         | Qué                                       | Cómo se muestra                                                                                |
 | ------- | ----------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `drop`  | filler — um/uh, tartamudeos, correcciones | no se muestra                                                                                  |
-| `rail`  | default — contenido hablado (verbatim)    | lower-third subtitle, **en frente**, legible. Punch word puede tener `emphasis` inline.        |
+| `rail`  | default — claridad mínima respetuosa      | lower-third subtitle, **en frente**, legible. Punch word puede tener `emphasis` inline.        |
 | `embed` | pico promovido — el headline beat         | una palabra grande compuesta **detrás del sujeto** (matte occlusion), entrada + exit diseñados |
 
 **El rail lleva la mayoría del texto; embed es el pico escaso, ganado.**

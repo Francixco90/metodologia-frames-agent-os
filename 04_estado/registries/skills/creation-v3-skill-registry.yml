@@ -161,7 +161,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 90452afef48dc1401130cb43412107048217a533bd60c7016ee18322a6d746a5
-    package_manifest_sha256: 5e67d3f43f7b19ec33a179dfe987c74c0841b184ea24be55be8cd1dcb6ad27e1
+    package_manifest_sha256: b184df6f3f8c6fe5f9a9cffdde917994257a1121ca59c26080590f6e619d099f
     lineage_ref: skills/content-os-embedded-captions/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-embedded-captions/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -204,8 +204,8 @@ entries:
     version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 8c6d6d9e0cc7baf8d8daed1b761122d5157ab20674fe1f6b12e086826730d186
-    package_manifest_sha256: f6ef94c072ef4f439e70a7b9b6292176a9be04720104196856f0b8b4987862d8
+    content_sha256: ca88b7dd04093ac223b264f7eb271782dd9e9de869620931af7bc4c12ad3ea77
+    package_manifest_sha256: 2e62a9c643b3d0da967a1584096df023a27188556880951e7c8db516f24a1228
     lineage_ref: skills/content-os-talking-head-recut/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-talking-head-recut/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
