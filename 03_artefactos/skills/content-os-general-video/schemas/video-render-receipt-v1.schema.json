@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-render-receipt-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "buildManifestSha256", "reviewReceiptSha256", "outputs", "state", "publicationAuthority"],
+  "properties": {
+    "schemaVersion": {"const": "video-render-receipt-v1"},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "buildManifestSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "reviewReceiptSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "outputs": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}},
+    "state": {"const": "RENDERED_DRAFT"},
+    "publicationAuthority": {"const": false}
+  }
+}

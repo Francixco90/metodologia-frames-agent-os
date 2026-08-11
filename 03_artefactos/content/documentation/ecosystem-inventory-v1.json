@@ -285,6 +285,13 @@
     },
     {
       "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json",
+      "ref": "03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
       "id": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "ref": "03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html",
       "scope": "CANONICAL",
@@ -6297,5 +6304,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "514d6ced07a2885d1e5cd0436056d9724ca74424c5c2be4b285804ee443ac084"
+  "sourceSha256": "27b497e797cd90f9c06d7af73944438540ca07fcfe7df0026c1a5ea5bd78befc"
 }

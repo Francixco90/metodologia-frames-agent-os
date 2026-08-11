@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-asset-manifest-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "offlineOnly", "assets"],
+  "properties": {
+    "schemaVersion": {"const": "video-asset-manifest-v1"},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "offlineOnly": {"const": true},
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "sha256", "provenance", "rights", "role", "alt"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "provenance": {"type": "string", "minLength": 1},
+          "rights": {"enum": ["cleared", "owned", "licensed", "internal-evaluation"]},
+          "role": {"enum": ["video", "audio", "image", "font", "caption", "data", "brand"]},
+          "alt": {"type": "string"}
+        }
+      }
+    }
+  }
+}

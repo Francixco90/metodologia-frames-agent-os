@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "video-build-manifest-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "sourcePackSha256", "assetManifestSha256", "renderer", "outputs", "state"],
+  "properties": {
+    "schemaVersion": {"const": "video-build-manifest-v1"},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sourcePackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "assetManifestSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "offline"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "offline": {"const": true}
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "sha256", "bytes"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "state": {"const": "COMPILED"}
+  }
+}
