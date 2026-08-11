@@ -1,0 +1,18 @@
+schema_version: dependency-license-review-v1
+receipt_id: RCP-CV-SPEC-FIRST-LICENSES-001
+scope: cv_spec_first_docx_runtime
+packages:
+  - name: docx
+    version: 9.7.1
+    license: MIT
+    source: https://docx.js.org
+    decision: approved_for_deterministic_docx_generation
+  - name: jszip
+    version: 3.10.1
+    license: MIT OR GPL-3.0-or-later
+    selected_license: MIT
+    source: https://github.com/Stuk/jszip
+    decision: approved_for_zip_metadata_normalization
+effects: {network: false, publication: false, submission: false}
+evidence: locally_installed_package_metadata
+status: reviewed

@@ -5,6 +5,7 @@ import {parse} from 'yaml';
 
 import {RendererCapabilityRegistryV1Schema} from '../../core/contracts/index.ts';
 import {hashCanonical} from '../../core/evidence/hash.ts';
+import {verifyApprovedH03LockSuccession} from './lib/h03-lock-succession.mjs';
 import {
   readAt,
   semanticProbe,
@@ -131,20 +132,7 @@ if (process.argv.includes('--child')) {
     'REN-021 immutable legacy or n8n surface changed',
   );
 
-  const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-002.yml')) as {
-    previous?: {lock_sha256?: string};
-    current?: {lock_sha256?: string};
-    approval_phrase?: string;
-    publication_authority?: boolean;
-  };
-  expect(
-    succession.previous?.lock_sha256 ===
-      'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82' &&
-      succession.current?.lock_sha256 === sha256(read('pnpm-lock.yaml')) &&
-      succession.approval_phrase === 'APRUEBO HITO H-03' &&
-      succession.publication_authority === false,
-    'REN-022 lock succession receipt is absent or stale',
-  );
+  verifyApprovedH03LockSuccession(root);
 
   if (errors.length > 0) {
     console.error(errors.join('\n'));

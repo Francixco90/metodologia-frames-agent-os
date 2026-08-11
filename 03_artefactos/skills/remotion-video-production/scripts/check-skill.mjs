@@ -1,7 +1,8 @@
 import {createHash} from 'node:crypto';
-import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs';
-import {join, relative, resolve, sep} from 'node:path';
+import {existsSync, readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
 import {parse} from 'yaml';
+import {checkLicenseRegistry} from './lib/check-license-registry.mjs';
 
 const root = process.cwd();
 const skillRoot = resolve(root, 'skills/remotion-video-production');
@@ -91,6 +92,7 @@ for (const required of [
   'licenses/content-license-receipt.yml',
   'licenses/remotion-4.0.494-evaluation-receipt.yml',
   'licenses/remotion-4.0.494-evaluation-receipt-h03.yml',
+  'licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml',
   'licenses/runtime-license-verdict.yml',
   'schemas/render-input.schema.json',
   'schemas/render-output.schema.json',
@@ -170,147 +172,19 @@ if (lineage.runtime?.commercial_or_production_use !== 'coverage_gap') {
 }
 
 const contentLicenseEvidence = lineage.content_license_evidence;
-validateBoundFile(
-  contentLicenseEvidence?.text_ref,
-  contentLicenseEvidence?.text_sha256,
-  'content license text',
-);
-validateBoundFile(
-  contentLicenseEvidence?.receipt_ref,
-  contentLicenseEvidence?.receipt_sha256,
-  'content license receipt',
-);
-const contentLicenseReceipt = readYaml(
-  contentLicenseEvidence?.receipt_ref ?? 'skills/remotion-video-production/LINEAGE.yaml',
-);
-if (
-  contentLicenseReceipt.license_id !== 'LicenseRef-MetodologIA-Internal' ||
-  contentLicenseReceipt.license_text_ref !== contentLicenseEvidence?.text_ref ||
-  contentLicenseReceipt.license_text_sha256 !== contentLicenseEvidence?.text_sha256 ||
-  contentLicenseReceipt.permissions?.external_distribution !==
-    'requires_separate_verifiable_authorization'
-) {
-  errors.push('content license: texto, receipt o límites no están ligados');
-}
-
 const runtimeAuthority = lineage.runtime?.license_authority;
-validateBoundFile(
-  runtimeAuthority?.receipt_ref,
-  runtimeAuthority?.receipt_sha256,
-  'runtime license receipt',
-);
-const runtimeReceipt = readYaml(
-  runtimeAuthority?.receipt_ref ?? 'skills/remotion-video-production/LINEAGE.yaml',
-);
-const runtimeVerdict = readYaml(
-  'skills/remotion-video-production/licenses/runtime-license-verdict.yml',
-);
-if (
-  runtimeAuthority?.kind !== 'exact_version_hash_bound_evaluation_receipt' ||
-  runtimeAuthority?.legal_eligibility_adjudicated !== false ||
-  runtimeReceipt.runtime?.version !== '4.0.494' ||
-  runtimeReceipt.supersedes?.receipt_ref !==
-    'skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt.yml' ||
-  runtimeReceipt.supersedes?.receipt_sha256 !==
-    '24fd97f7ca1dd62e5b3146a990df4c2827e0cabc0248691c286917d48968bb2a' ||
-  runtimeReceipt.evaluation?.commercial_or_production_use !== 'coverage_gap' ||
-  runtimeReceipt.evaluation?.consequence !== 'blocked' ||
-  runtimeVerdict.evaluation_receipt?.ref !== runtimeAuthority?.receipt_ref ||
-  runtimeVerdict.evaluation_receipt?.sha256 !== runtimeAuthority?.receipt_sha256 ||
-  runtimeVerdict.commercial_or_production_use?.consequence !== 'blocked'
-) {
-  errors.push('runtime license: receipt exacto o bloqueo comercial inválido');
-}
-validateBoundFile(
-  runtimeReceipt.version_binding?.lockfile_ref,
-  runtimeReceipt.version_binding?.lockfile_sha256,
-  'runtime lockfile',
-);
-validateBoundFile(
-  runtimeReceipt.installed_evidence?.package_manifest_ref,
-  runtimeReceipt.installed_evidence?.package_manifest_sha256,
-  'installed Remotion package manifest',
-);
-validateBoundFile(
-  runtimeReceipt.installed_evidence?.license_text_ref,
-  runtimeReceipt.installed_evidence?.license_text_sha256,
-  'installed Remotion license',
-);
-const installedRuntimeManifest = JSON.parse(
-  readFileSync(resolve(root, runtimeReceipt.installed_evidence.package_manifest_ref), 'utf8'),
-);
-const lockfileText = readFileSync(
-  resolve(root, runtimeReceipt.version_binding.lockfile_ref),
-  'utf8',
-);
-if (
-  installedRuntimeManifest.version !== '4.0.494' ||
-  !lockfileText.includes(`${runtimeReceipt.version_binding.package_key}:`) ||
-  !lockfileText.includes(runtimeReceipt.version_binding.package_integrity)
-) {
-  errors.push('runtime license: versión o integridad no resuelven al lockfile instalado');
-}
-
-const registry = readYaml('registries/skills/skill-registry.yml');
-const registryEntry = registry.entries?.find(
-  (entry) => entry.skill_id === 'remotion-video-production',
-);
-const legacyRegistryEntry = registry.entries?.find(
-  (entry) => entry.skill_id === 'stitch-remotion-walkthrough',
-);
-const contentSha256 = sha256(skillText);
-const walk = (path) =>
-  readdirSync(path).flatMap((name) => {
-    const child = join(path, name);
-    return statSync(child).isDirectory() ? walk(child) : [child];
-  });
-const packageManifest = `${walk(skillRoot)
-  .sort()
-  .map((path) => `${sha256(readFileSync(path))}  ${relative(skillRoot, path).split(sep).join('/')}`)
-  .join('\n')}\n`;
-const packageManifestSha256 = sha256(packageManifest);
-if (
-  registryEntry?.current_state !== 'active' ||
-  registryEntry?.content_sha256 !== contentSha256 ||
-  registryEntry?.package_manifest_sha256 !== packageManifestSha256 ||
-  registryEntry?.content_license_evidence?.receipt_ref !== contentLicenseEvidence?.receipt_ref ||
-  registryEntry?.content_license_evidence?.receipt_sha256 !==
-    contentLicenseEvidence?.receipt_sha256 ||
-  registryEntry?.runtime_license_evidence?.receipt_ref !== runtimeAuthority?.receipt_ref ||
-  registryEntry?.runtime_license_evidence?.receipt_sha256 !== runtimeAuthority?.receipt_sha256 ||
-  registryEntry?.execution_scope !== 'local-design-and-validation' ||
-  registryEntry?.production_runtime_status !== 'blocked_license_coverage_gap'
-) {
-  errors.push('skill registry: canonical skill state, hashes, scope or runtime gate invalid');
-}
-if (
-  legacyRegistryEntry?.content_license !== 'LicenseRef-MetodologIA-Internal' ||
-  legacyRegistryEntry?.content_license_evidence?.text_ref !== contentLicenseEvidence?.text_ref ||
-  legacyRegistryEntry?.content_license_evidence?.text_sha256 !==
-    contentLicenseEvidence?.text_sha256 ||
-  legacyRegistryEntry?.content_license_evidence?.receipt_ref !==
-    contentLicenseEvidence?.receipt_ref ||
-  legacyRegistryEntry?.content_license_evidence?.receipt_sha256 !==
-    contentLicenseEvidence?.receipt_sha256
-) {
-  errors.push('skill registry: legacy LicenseRef no resuelve a la evidencia interna');
-}
-const registryEvents = (registry.events ?? []).filter(
-  (event) => event.skill_id === 'remotion-video-production',
-);
-let previousState = null;
-for (const [index, event] of registryEvents.entries()) {
-  if (
-    event.event_order !== index + 1 ||
-    event.transition?.from !== previousState ||
-    (index === registryEvents.length - 1 && event.content_sha256 !== contentSha256)
-  ) {
-    errors.push(`skill registry: invalid canonical event ${event.event_id ?? index + 1}`);
-  }
-  previousState = event.transition?.to;
-}
-if (previousState !== 'active')
-  errors.push('skill registry: canonical event chain does not reach active');
+checkLicenseRegistry({
+  contentLicenseEvidence,
+  errors,
+  lineage,
+  readYaml,
+  root,
+  runtimeAuthority,
+  sha256,
+  skillRoot,
+  skillText,
+  validateBoundFile,
+});
 
 if (/\/Users\/|\/home\/|[A-Za-z]:\\Users\\/u.test(skillText)) {
   errors.push('SKILL.md: ruta local absoluta detectada');
