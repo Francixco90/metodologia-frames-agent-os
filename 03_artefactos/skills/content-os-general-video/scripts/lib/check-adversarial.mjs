@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
+import {copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -113,7 +113,10 @@ try {
   if (curtainRender.status !== 0 || nextBody.sha256 !== priorBody.sha256 || nextBody.videoStreamSha256 !== priorBody.stream || statSync(priorBodyPath).mtimeMs !== priorBody.mtimeMs || nextReceipt.layerArtifacts.curtainArtifact.sha256 === priorReceipt.layerArtifacts.curtainArtifact.sha256 || sha(resolve(curtainCase, 'renders/mini-a.mp4')) === priorOutput) errors.push(`${PREFIX}CURTAIN_REAL_BODY_REUSE`);
 
   const visualCase = mkdtempSync(resolve(tmpdir(), 'gv-visual-')); cleanup.push(visualCase); cpSync(temp, visualCase, {recursive: true});
-  const prohibited = sha(resolve(visualCase, '.frames-video/visual/mini-a/frame-0.png'));
+  const visualFrame = resolve(visualCase, '.frames-video/visual/mini-a/frame-0.png');
+  const visualSeed = spawnSync(process.execPath, [cli, 'verify', '--project', visualCase], {encoding: 'utf8'});
+  if (visualSeed.status !== 0 || !existsSync(visualFrame)) errors.push(`${PREFIX}VISUAL_SEED ${(visualSeed.stderr || '').trim()}`);
+  const prohibited = existsSync(visualFrame) ? sha(visualFrame) : '0'.repeat(64);
   updateJson(resolve(visualCase, 'visual-detector.json'), (value) => ({...value, forbiddenFrameSha256: [prohibited]}));
   const detectorHash = sha(resolve(visualCase, 'visual-detector.json'));
   updateJson(resolve(visualCase, 'asset-manifest.json'), (value) => { const asset = value.assets.find((item) => item.id === 'visual-detector'); asset.sha256 = detectorHash; asset.generator.configSha256 = detectorHash; return value; });
