@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "general-video-adversarial-fixtures-v1",
+  "syntheticOnly": true,
+  "cases": [
+    {"id": "hook-after-plan", "mutation": "piece.hook changes after plan", "expected": "STALE_RENDER_PLAN_scriptSha256"},
+    {"id": "network-input", "mutation": "FFmpeg input uses tcp protocol", "expected": "UNSAFE_FFMPEG_ARG"},
+    {"id": "ab-duplicate-missing", "mutation": "variants duplicate one piece and reference a missing piece", "expected": "shape-or-piece-binding"},
+    {"id": "measurement-tamper", "mutation": "receipt duration differs from probed output", "expected": "measurement-drift"},
+    {"id": "caption-drift", "mutation": "caption content changes without hash update", "expected": "HASH_DRIFT_CAPTION"}
+  ]
+}

@@ -1,36 +1,20 @@
 #!/usr/bin/env node
-/**
- * content-os-embedded-captions workflow audit.
- *
- * Validates a workflow-state (JSONL manifest branch) or brief (YAML branch)
- * against the embedded-captions workflow contract:
- *   - step order: setup, prepare, plan, design, build, verify, finalize
- *   - gate states: pending | in-progress | gate-passed | user-approved
- *   - footage untouched: graded_footage must NOT be true (never grade video)
- *   - rail-first: embed_all must NOT be true, rail_mode must NOT be none
- *   - offline: state must be offline (no https URL in state, offline=true)
- *   - finalize: gate-passed with rendered=false = no-render
- *
- * Violation codes:
- *   missing-gate, step-out-of-order, no-render, network-in-workflow,
- *   graded-footage, embed-overuse
- *
- * Exit: 0 if PASS (0 violations on examples/positive), 1 if violations (strict).
- */
 import {readFileSync, existsSync} from 'node:fs';
+import {dirname, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {parse as yamlParse} from 'yaml';
+import Ajv2020 from 'ajv/dist/2020.js';
 
 const STEP_ORDER = ['setup', 'prepare', 'plan', 'design', 'build', 'verify', 'finalize'];
 const VALID_STATES = new Set(['pending', 'in-progress', 'gate-passed', 'user-approved']);
 const SCHEMA_VERSION = 'content-os-embedded-captions-audit-v1';
 const VIOLATION_CODES = new Set([
-  'missing-gate',
-  'step-out-of-order',
-  'no-render',
-  'network-in-workflow',
-  'graded-footage',
-  'embed-overuse',
+  'missing-gate', 'step-out-of-order', 'no-render', 'network-in-workflow',
+  'graded-footage', 'embed-overuse', 'v2-contract', 'editorial-decision',
 ]);
+const SKILL_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const ajv = new Ajv2020({allErrors: true, strict: false});
+const validateV2 = ajv.compile(JSON.parse(readFileSync(resolve(SKILL_DIR, 'schemas/embedded-captions-v2.schema.json'), 'utf8')));
 
 const argv = process.argv.slice(2);
 const target = argv[0];
@@ -84,6 +68,16 @@ function auditSteps(found) {
 function auditObject(obj) {
   if (!obj || typeof obj !== 'object') return;
   if (obj.schemaVersion) schemaVersion = obj.schemaVersion;
+  if (obj.schemaVersion === 'embedded-captions-v2') {
+    if (!validateV2(obj)) {
+      for (const error of validateV2.errors ?? []) {
+        violations.push({code: 'v2-contract', detail: `${error.instancePath || '/'} ${error.message}`});
+      }
+    }
+    if (obj.operation === 'render-draft' && obj.editorialDecision !== 'use') {
+      violations.push({code: 'editorial-decision', detail: `${obj.editorialDecision ?? 'missing'} blocks render-draft`});
+    }
+  }
   if (obj.route && obj.route !== 'content-os-embedded-captions') {
     violations.push({code: 'missing-gate', detail: `route ${obj.route}`});
   }

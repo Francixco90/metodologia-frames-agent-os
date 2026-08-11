@@ -1,11 +1,14 @@
 skill_id: content-os-general-video
-version: 0.2.0
+version: 0.4.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: general-video-v1
+compatibility_contract: general-video-v2-revision-2
+read_compatibility:
+  - general-video-v1
+new_render_minimum: general-video-v2-revision-2
 authority_refs:
   - skills/vendor/hyperframes/general-video/SKILL.md
   - skills/content-os-core/SKILL.md

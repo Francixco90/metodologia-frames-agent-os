@@ -1,0 +1,1 @@
+{"schemaVersion":"ab-test-v1","state":"candidate","specId":"synthetic-video","specSha256":"71d6e1bbb6c0d59ef666a8d14b71af0e77669019c4a68b1f49584c12f81cba4a","groups":[{"id":"synthetic-ab","variantAxis":"visual","pieceIds":["mini-a","mini-b"],"variants":[{"pieceId":"mini-a"},{"pieceId":"mini-b"}]}]}

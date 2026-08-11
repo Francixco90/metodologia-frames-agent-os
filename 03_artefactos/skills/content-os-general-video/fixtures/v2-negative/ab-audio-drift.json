@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "ab-test-v1", "specId": "synthetic-video", "specSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "groups": [{"id": "ab-drift", "variantAxis": "visual", "pieceIds": ["mini-a", "mini-b"], "variants": [
+    {"pieceId": "mini-a", "invariants": {"durationMs": 16000, "frameCount": 384, "copySha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ctaSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "curtainsSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "timingSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "pcmSha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}},
+    {"pieceId": "mini-b", "invariants": {"durationMs": 16000, "frameCount": 384, "copySha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ctaSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "curtainsSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "timingSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "pcmSha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"}}
+  ]}]
+}
