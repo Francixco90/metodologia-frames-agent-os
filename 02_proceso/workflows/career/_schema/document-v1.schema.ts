@@ -61,39 +61,39 @@ const AuthorizedBrandSchema = z.strictObject({
   rights_ref: PortableRefSchema,
 });
 
-export const CareerCvV1Schema = z
-  .strictObject({
-    schema_version: z.literal('career-cv-v1'),
-    document_id: z.string().regex(/^CV-[A-Z0-9-]{3,79}$/u),
-    candidate_id: z.string().regex(/^CAND-[A-Z0-9-]{3,79}$/u),
-    application_id: z
-      .string()
-      .regex(/^APP-[A-Z0-9-]{3,79}$/u)
-      .nullable(),
-    language: z.enum(['es', 'en', 'pt']),
-    design_profile: z.enum(['candidate-neutral-ats', 'metodologia-career', 'authorized-brand']),
-    authorized_brand: AuthorizedBrandSchema.nullable(),
-    generated_by: z.literal('MetodologIA'),
-    name: z.string().min(1).max(160),
-    headline: z.string().min(1).max(240),
-    contact_lines: z.array(z.string().min(1).max(240)).min(1).max(8),
-    summary: z.string().min(1).max(1_200),
-    experience: z.array(ExperienceSchema).min(1).max(20),
-    education: z.array(z.string().min(1).max(500)).max(12),
-    skills: z.array(z.string().min(1).max(120)).min(1).max(40),
-    source_refs: z.array(PortableRefSchema).min(1).max(40),
-    surface_bindings: z.array(CareerSurfaceBindingV1Schema).min(1).max(200),
-    content_sha256: Sha256Schema,
-  })
-  .superRefine((document, context) => {
-    if ((document.design_profile === 'authorized-brand') !== (document.authorized_brand !== null)) {
-      context.addIssue({
-        code: 'custom',
-        path: ['authorized_brand'],
-        message: 'Authorized brand profile and rights are required exactly for authorized-brand',
-      });
-    }
-  });
+export const CareerCvV1BaseSchema = z.strictObject({
+  schema_version: z.literal('career-cv-v1'),
+  document_id: z.string().regex(/^CV-[A-Z0-9-]{3,79}$/u),
+  candidate_id: z.string().regex(/^CAND-[A-Z0-9-]{3,79}$/u),
+  application_id: z
+    .string()
+    .regex(/^APP-[A-Z0-9-]{3,79}$/u)
+    .nullable(),
+  language: z.enum(['es', 'en', 'pt']),
+  design_profile: z.enum(['candidate-neutral-ats', 'metodologia-career', 'authorized-brand']),
+  authorized_brand: AuthorizedBrandSchema.nullable(),
+  generated_by: z.literal('MetodologIA'),
+  name: z.string().min(1).max(160),
+  headline: z.string().min(1).max(240),
+  contact_lines: z.array(z.string().min(1).max(240)).min(1).max(8),
+  summary: z.string().min(1).max(1_200),
+  experience: z.array(ExperienceSchema).min(1).max(20),
+  education: z.array(z.string().min(1).max(500)).max(12),
+  skills: z.array(z.string().min(1).max(120)).min(1).max(40),
+  source_refs: z.array(PortableRefSchema).min(1).max(40),
+  surface_bindings: z.array(CareerSurfaceBindingV1Schema).min(1).max(200),
+  content_sha256: Sha256Schema,
+});
+
+export const CareerCvV1Schema = CareerCvV1BaseSchema.superRefine((document, context) => {
+  if ((document.design_profile === 'authorized-brand') !== (document.authorized_brand !== null)) {
+    context.addIssue({
+      code: 'custom',
+      path: ['authorized_brand'],
+      message: 'Authorized brand profile and rights are required exactly for authorized-brand',
+    });
+  }
+});
 
 export const CareerLetterV1Schema = z
   .strictObject({
