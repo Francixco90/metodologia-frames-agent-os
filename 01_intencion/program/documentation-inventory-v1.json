@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "793ad52dd53ce6752f80bc9931a0724ae1aaac8586f5b33a34f26fa300a19d3c",
-  "totalMarkdown": 1779,
-  "auditedAuthored": 543,
+  "repositoryTreeSha256": "cd7b22db9bd2f3f7323bbd539a31e684b43ccb1c6a198c34cca5ed5b56e6f260",
+  "totalMarkdown": 1785,
+  "auditedAuthored": 548,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -285,6 +285,11 @@
       "03_artefactos/skills/content-os-slideshow/references/porting.md",
       "03_artefactos/skills/content-os-slideshow/references/steps-receta.md",
       "03_artefactos/skills/content-os-slideshow/rules/workflow-contract.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/references/caption-editing-policy.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/references/language-quality-policy.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/references/semantic-retrieval.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
       "03_artefactos/skills/data-visual-composition/references/semantics.md",
       "03_artefactos/skills/design-cast/references/audit-per-stack.md",
       "03_artefactos/skills/design-cast/references/sub-skill-routing.md",
@@ -583,6 +588,7 @@
       "03_artefactos/skills/content-os-seam-craft/SKILL.md",
       "03_artefactos/skills/content-os-slideshow/SKILL.md",
       "03_artefactos/skills/content-os-talking-head-recut/SKILL.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/SKILL.md",
       "03_artefactos/skills/context-agents-dox/SKILL.md",
       "03_artefactos/skills/context-codebase-guardian/SKILL.md",
       "03_artefactos/skills/context-lsp/SKILL.md",
@@ -9386,9 +9392,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "0f96532548f75b167e622cb0b79ea855391df786330b04908fab4d2a3bff5bcd",
-      "words": 10009,
-      "lines": 932,
+      "sha256": "4d8a6bd304a2b28fc2a72456d084a7a9c369923afe26d7d674ce77c4d9c2c5dc",
+      "words": 10020,
+      "lines": 933,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -11523,6 +11529,136 @@
       "sha256": "d222124ab1e7f67ec686578ad2624d3dfddeed6ca9dd83ed632d5d0d062b5988",
       "words": 538,
       "lines": 86,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/references/caption-editing-policy.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/references/caption-editing-policy.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/references/caption-editing-policy.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "514d595459c06bbcbee1c3860c2dbf0518fc068d09c23908560a5555a6d57c63",
+      "words": 180,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/references/language-quality-policy.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/references/language-quality-policy.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/references/language-quality-policy.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed",
+      "words": 358,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45",
+      "words": 184,
+      "lines": 34,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/references/semantic-retrieval.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/references/semantic-retrieval.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/references/semantic-retrieval.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "efd3e416cd6202cdfcea46bc23a520fc7cfb25ab9c20013281b7f1b0a05404dd",
+      "words": 159,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "13a1b1db8badbdb201c5f9f82f45239ccbf5150b8c72321fe7eda7e3e15fc823",
+      "words": 104,
+      "lines": 22,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -16405,7 +16541,7 @@
     }
   ],
   "summary": {
-    "keep": 528,
+    "keep": 533,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,

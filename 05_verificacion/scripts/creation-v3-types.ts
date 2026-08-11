@@ -18,7 +18,13 @@ export type Event = {
   actor_id?: string;
 };
 export type Registry = {mutation_policy?: string; entries?: Entry[]; events?: Event[]};
-export type SkillEntry = {id: string; scope: string; version?: string; check: string[]};
+export type SkillEntry = {
+  id: string;
+  scope: string;
+  version?: string;
+  registryState?: 'evaluated' | 'active';
+  check: string[];
+};
 export type ValidationContext = {
   root: string;
   sha256: (value: Uint8Array | string) => string;
