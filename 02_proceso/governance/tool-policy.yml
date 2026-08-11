@@ -45,7 +45,7 @@ rules:
       allow: [Read, Grep, Glob, Bash, Edit, Write]
       deny: []
       conditional:
-        - 'Write only within ownership-manifest allowlist for lead (README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, docs/**, registries/projects/**, registries/memory/**, projects/_template/**, projects/vs-001-source-to-campaign/project.yml, projects/pilot-carousel-001/{README.md,project.yml})'
+        - 'Write only within ownership-manifest allowlist for lead (README.md, AGENTS.md, CONTRIBUTING.md, SECURITY.md, docs/**, 01_intencion/career/**, registries/projects/**, registries/memory/**, projects/_template/**, projects/vs-001-source-to-campaign/project.yml, projects/pilot-carousel-001/{README.md,project.yml})'
         - 'Bash restricted to git read-only + declared local validators (pnpm check:toolchain, pnpm check:repo)'
         - 'No publish, deploy or live send. [CONFIG] RT-01 contract.forbidden'
       source_ref: 'RT-01 contract.yml tools.allowed/forbidden; ownership-manifest writers.lead'

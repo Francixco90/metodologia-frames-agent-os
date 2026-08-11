@@ -1,4 +1,3 @@
-// Career OS structural and fail-closed conformance gate. [CÓDIGO]
 import {createHash} from 'node:crypto';
 import {existsSync, readFileSync, readdirSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -7,6 +6,8 @@ import {parse} from 'yaml';
 
 import {CareerDeliverableRegistryV1Schema} from '../../02_proceso/workflows/career/_schema/registry-v1.schema.ts';
 import {CareerWorkflowV1Schema} from '../../02_proceso/workflows/career/_schema/workflow-v1.schema.ts';
+import {checkCareerCvSpecFirst} from './lib/check-career-spec-first.ts';
+import {checkCareerTargetedInputs, reportCareerCheck} from './lib/check-career-targeted-inputs.ts';
 
 const ROOT = process.cwd();
 const CAREER = resolve(ROOT, '02_proceso/workflows/career');
@@ -85,6 +86,7 @@ const registry = CareerDeliverableRegistryV1Schema.parse(
 const definitions = new Map(
   registry.definitions.map((definition) => [definition.deliverable_id, definition]),
 );
+checkCareerTargetedInputs(parsedWorkflows, definitions, errors);
 for (const workflow of parsedWorkflows) {
   for (const deliverable of workflow.deliverables) {
     const definition = definitions.get(deliverable);
@@ -114,6 +116,8 @@ if (
 ) {
   errors.push('CAREER-SUBMISSION-001 C09 must prepare and stop without external effect');
 }
+
+checkCareerCvSpecFirst(ROOT, parsedWorkflows, errors);
 
 const requirementRegistry = readYaml(
   '04_estado/registries/sources/career-requirements-registry.yml',
@@ -188,11 +192,4 @@ if (
   errors.push('CAREER-SOURCE-004 lifecycle incomplete or not independently activated');
 }
 
-if (errors.length > 0) {
-  console.error(errors.join('\n'));
-  process.exitCode = 1;
-} else {
-  console.info(
-    `PASS CAREER OS: ${parsedWorkflows.length}/${registry.definitions.length}; C09 STOP.`,
-  );
-}
+reportCareerCheck(errors, parsedWorkflows.length, registry.definitions.length);

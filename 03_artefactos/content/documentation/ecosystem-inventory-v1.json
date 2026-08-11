@@ -3330,6 +3330,20 @@
     },
     {
       "kind": "GATE",
+      "id": "CR_CV_COMPILED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
+      "id": "CR_CV_SPEC_APPROVED",
+      "ref": "05_verificacion/scripts/commands.yaml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "GATE",
       "id": "CR_PACKAGE_APPROVED",
       "ref": "05_verificacion/scripts/commands.yaml",
       "scope": "CANONICAL",
@@ -6381,5 +6395,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "3d994bc6883f65f8c65807926876a6c468508723454389370eedb6bce1d05cd7"
+  "sourceSha256": "fcf58f3f70200646eef8b74c9d843a616bf9b9426bd2c001dc38dc532796db53"
 }
