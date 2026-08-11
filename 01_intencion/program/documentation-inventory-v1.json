@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "8f6cf45206d3bcf80ad5ea26b59afd5cc3404ea5b4e99a4d0a6d93a252306053",
-  "totalMarkdown": 1785,
-  "auditedAuthored": 548,
+  "repositoryTreeSha256": "95d7f197a991a29befb3fa06c3a45a29432516e7ce0251b207590477f170d1eb",
+  "totalMarkdown": 1787,
+  "auditedAuthored": 550,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -44,6 +44,8 @@
       "01_intencion/bento/architecture.md",
       "01_intencion/bento/audit-report.md",
       "01_intencion/bento/verification-report.md",
+      "01_intencion/career/cv-spec-first-contract-v1.md",
+      "01_intencion/career/cv-spec-first-retrospective.md",
       "01_intencion/content-os/architecture.md",
       "01_intencion/content-os/capability-matrix.md",
       "01_intencion/content-os/roadmap.md",
@@ -2954,6 +2956,58 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/career/cv-spec-first-contract-v1.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/career/cv-spec-first-contract-v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/career/cv-spec-first-contract-v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "365edc13b3e4749f3b181d52e95b5546fd055ec338b34db1fc258f8f6f468dd2",
+      "words": 435,
+      "lines": 79,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/career/cv-spec-first-retrospective.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/career/cv-spec-first-retrospective.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/career/cv-spec-first-retrospective.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d6fe8fd630cf2a9167dc901afbd3f1380a4a1f7cf2a0a236f4a36f507f2d7dc3",
+      "words": 474,
+      "lines": 73,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -16541,7 +16595,7 @@
     }
   ],
   "summary": {
-    "keep": 533,
+    "keep": 535,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,
