@@ -86,7 +86,13 @@ if (!existsSync(receiptDirectory)) {
         errors.push('dependency audit heredado no demuestra grafo de dependencias estable');
       }
     }
-    if (receipt.packageJsonSha256 !== sha256(readFileSync(resolve(root, 'package.json')))) {
+    // An inherited receipt binds the dependency graph, not unrelated package
+    // scripts. Its dependencySetSha256 check above remains fail-closed when
+    // dependencies or devDependencies change. [CONFIG]
+    if (
+      receipt.command !== 'inherited:no-dependency-change' &&
+      receipt.packageJsonSha256 !== sha256(readFileSync(resolve(root, 'package.json')))
+    ) {
       errors.push('dependency audit package.json hash stale');
     }
     if (receipt.pnpmLockSha256 !== sha256(readFileSync(resolve(root, 'pnpm-lock.yaml')))) {

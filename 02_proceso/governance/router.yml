@@ -17,7 +17,13 @@ productive_handlers:
   R3-LOOSE: {status: coverage_gap, effect: none}
   R4: {status: active, effect: read_only, requires: hash_bound_lineage}
   R5: {status: coverage_gap, effect: none}
-  R6: {status: active, effect: local_reversible, stop: EXP_BRIEF_APPROVED}
+  R6:
+    {
+      status: active,
+      effect: local_reversible,
+      stop: EXP_BRIEF_APPROVED,
+      unknown_design_authority: block,
+    }
   R7: {status: active, effect: local_reversible, stop: EXP_BRIEF_APPROVED}
   R8: {status: active, effect: local_reversible, stop: LX_BRIEF_APPROVED}
   R9: {status: active, effect: local_reversible, stop: HM_CHANGE_APPROVED}
@@ -91,11 +97,16 @@ routes:
       - 'planear campaña'
       - 'revisar pieza'
       - 'editar contenido'
+      - 'design system first'
+      - 'HTML MetodologIA'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
       - '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts'
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
-    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; STOP en MW_BRIEF_APPROVED'
+      - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
+      - '04_estado/registries/brand/brand-profile-v2.yml'
+      - '03_artefactos/brand/tokens/brand-tokens.yml'
+    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
@@ -152,7 +163,7 @@ gate_commands:
   G04_repo: 'pnpm check:repo'
   G01_G09_estructura: 'pnpm check:repo'
   G02_sources: 'pnpm check:sources'
-  G03_brand: 'pnpm check:brand'
+  G03_BRAND_brand: 'pnpm check:brand'
   G07_skills: 'pnpm verify:skills'
   G08_core_contracts: 'pnpm typecheck && pnpm test'
   G09_WEB_web_build: 'pnpm web:build'

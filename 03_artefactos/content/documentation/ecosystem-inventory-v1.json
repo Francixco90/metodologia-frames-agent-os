@@ -2042,6 +2042,13 @@
     },
     {
       "kind": "COMMAND",
+      "id": "check:brand",
+      "ref": "package.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "COMMAND",
       "id": "check:claims",
       "ref": "package.json",
       "scope": "CANONICAL",
@@ -6311,5 +6318,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "86cf777bb9c92105555c3a48aae59355bc2ce3bed7c360efb3b653d9222f18d8"
+  "sourceSha256": "81a481751dcdfe54aae83a7cb13ac4165011d4072571859863a043b30dbc2432"
 }

@@ -101,7 +101,7 @@ rules:
         - 'Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden'
         - "Writes (verdicts/reports) land in guardian/** via a separate writer delegation, not Guardian's own Edit/Write. [SUPUESTO] pending Guardian write-path clarification"
       source_ref: 'RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14'
-  # --- Source/skill/content writers narrowed for Career OS; remaining stubs stay read-only ---
+  # --- Source/skill/content and local build writers ---
   - role: sources
     phase: '*'
     tools:
@@ -131,10 +131,12 @@ rules:
   - role: web
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of web role'
+        - 'Write only within ownership-manifest web paths: networks/web/**, workflows/web/** and projects/vs-001-source-to-campaign/web/**.'
+        - 'Bash restricted to pnpm check:brand and pnpm web:build; G03_BRAND must PASS before a Design System First build.'
+        - 'Local deterministic build only: no WebFetch, connector, deploy, publish or live send.'
       source_ref: 'ownership-manifest writers.web; dag package A06 gate G09_WEB'
   - role: content
     phase: '*'
@@ -143,24 +145,30 @@ rules:
       deny: []
       conditional:
         - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/** and workflows/experience/** plus declared content artifacts and registries/experience/**.'
+        - 'workflows/multimedia/** is one atomic content-owned route, including _schema, _runner and P00-P09; renderer roles cannot write there.'
+        - 'Design System First work reads approved brand profile/tokens and requires pnpm check:brand before pnpm content:build; unresolved authority blocks.'
         - 'Career C09 is prepare-and-stop: no browser submission, connector, publish or external effect.'
-        - 'Bash restricted to local typecheck, tests and deterministic workflow validators.'
+        - 'Bash restricted to pnpm check:brand, pnpm content:build, local typecheck, tests and deterministic workflow validators.'
       source_ref: 'ownership-manifest writers.content; dag packages A07/A07c gates G09_CONTENT/G09_CAREER'
   - role: remotion
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of remotion role'
+        - 'Write only within ownership-manifest remotion paths: renderers/remotion/**, renderer/component registries, render receipts, declared project remotion implementation/manifests/reviews/approvals/receipts, and tests/unit/remotion/**.'
+        - 'Bash restricted to pnpm check:brand, pnpm remotion:prepare, pnpm remotion:validate and pnpm render:all; G03_BRAND must PASS before a Design System First build.'
+        - 'No writes to workflows/multimedia/**; no network fetch, connector, distribution or publish.'
       source_ref: 'ownership-manifest writers.remotion; dag package A08 gate G12'
   - role: static-social
     phase: '*'
     tools:
-      allow: [Read, Grep, Glob]
+      allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'coverage_gap: full mapping requires agent-by-agent audit of static-social role'
+        - 'Write only within ownership-manifest static-social paths: renderers/static-social/**, projects/pilot-carousel-001/artifacts/** and receipts/carousel/**.'
+        - 'Bash restricted to pnpm check:brand and pnpm carousel:build; G03_BRAND must PASS before a Design System First build.'
+        - 'No writes to workflows/multimedia/**; no network fetch, connector, distribution or publish.'
       source_ref: 'ownership-manifest writers.static-social; dag package A07s gate G12_CAROUSEL'
   - role: n8n
     phase: '*'
@@ -202,6 +210,7 @@ runtime_grants:
     allowed_for: [governance, repo]
     rationale: 'Read-only Tessl auth/manifest status check. [CONFIG] convergence A6'
 gaps:
-  - 'coverage_gap: 5 stub owners (agents-committee, web, remotion, static-social, n8n) remain read-only pending agent-by-agent audit.'
+  - 'coverage_gap: 2 stub owners (agents-committee and n8n) remain read-only pending agent-by-agent audit.'
+  - 'coverage_gap: future Design System First output paths remain unresolved and therefore blocked until a later PR adds explicit one-writer ownership; this PR grants no wildcard outside current allowlists.'
   - 'coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5.'
   - 'coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit.'

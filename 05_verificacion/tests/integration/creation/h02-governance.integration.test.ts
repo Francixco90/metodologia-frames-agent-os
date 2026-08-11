@@ -1,5 +1,14 @@
 import {createHash} from 'node:crypto';
-import {readdirSync, readFileSync, statSync} from 'node:fs';
+import {
+  cpSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
+import {tmpdir} from 'node:os';
 import {relative, resolve} from 'node:path';
 
 import {describe, expect, it} from 'vitest';
@@ -28,6 +37,18 @@ const treeDigest = (ref: string): string => {
 };
 
 describe('H-02 governance and preservation', () => {
+  const temporarySuccessionRoot = (): string => {
+    const destination = mkdtempSync(resolve(tmpdir(), 'frames-h03-succession-'));
+    cpSync(resolve(root, 'package.json'), resolve(destination, 'package.json'));
+    cpSync(resolve(root, 'pnpm-lock.yaml'), resolve(destination, 'pnpm-lock.yaml'));
+    cpSync(
+      resolve(root, 'receipts/dependency-audits'),
+      resolve(destination, 'receipts/dependency-audits'),
+      {recursive: true},
+    );
+    return destination;
+  };
+
   it('persists five positions and all twenty directed non-self reviews', () => {
     const committee = readFileSync(
       resolve(root, 'committees/creation/H-02/content-atom-graph.md'),
@@ -90,5 +111,44 @@ describe('H-02 governance and preservation', () => {
     expect(treeDigest('adapters/n8n')).toBe(
       'bffe910843fbff2a807f923c3aa24a2ec78392e351e9e478675bee1f1dff1f71',
     );
+  });
+
+  it('rejects inherited succession when the dependency set changes', () => {
+    const destination = temporarySuccessionRoot();
+    try {
+      const packageRef = resolve(destination, 'package.json');
+      const packageJson = JSON.parse(readFileSync(packageRef, 'utf8')) as {
+        dependencies?: Record<string, string>;
+      };
+      packageJson.dependencies = {...packageJson.dependencies, 'fixture-dependency': '1.0.0'};
+      writeFileSync(packageRef, `${JSON.stringify(packageJson, null, 2)}\n`);
+      expect(() => verifyApprovedH03LockSuccession(destination)).toThrow(
+        'H03_LOCK_SUCCESSION_INVALID: receipt_or_audit',
+      );
+    } finally {
+      rmSync(destination, {recursive: true, force: true});
+    }
+  });
+
+  it('rejects inherited succession when dependency_change is tampered', () => {
+    const destination = temporarySuccessionRoot();
+    try {
+      const receiptRef = resolve(
+        destination,
+        'receipts/dependency-audits/H03-LOCK-SUCCESSION-006.yml',
+      );
+      writeFileSync(
+        receiptRef,
+        readFileSync(receiptRef, 'utf8').replace(
+          'dependency_change: false',
+          'dependency_change: true',
+        ),
+      );
+      expect(() => verifyApprovedH03LockSuccession(destination)).toThrow(
+        'H03_LOCK_SUCCESSION_INVALID: receipt_or_audit',
+      );
+    } finally {
+      rmSync(destination, {recursive: true, force: true});
+    }
   });
 });

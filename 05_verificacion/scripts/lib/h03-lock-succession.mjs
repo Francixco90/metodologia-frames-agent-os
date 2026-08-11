@@ -9,6 +9,15 @@ export const H03_LOCK_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCC
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const fileSha256 = (root, ref) => sha256(readFileSync(resolve(root, ref)));
+const dependencySetSha256 = (root) => {
+  const packageJson = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
+  return sha256(
+    JSON.stringify({
+      dependencies: packageJson.dependencies,
+      devDependencies: packageJson.devDependencies,
+    }),
+  );
+};
 const portableRef = (root, ref) => {
   if (typeof ref !== 'string' || ref.length === 0) return false;
   const rel = relative(root, resolve(root, ref));
@@ -26,6 +35,7 @@ export const verifyApprovedH03LockSuccession = (
   const auditRef = receipt.audit_receipt?.ref;
   const currentLockSha256 = fileSha256(root, lockfileRef);
   const currentPackageSha256 = fileSha256(root, 'package.json');
+  const currentDependencySetSha256 = dependencySetSha256(root);
   const auditValid =
     portableRef(root, auditRef) &&
     existsSync(resolve(root, auditRef)) &&
@@ -39,7 +49,9 @@ export const verifyApprovedH03LockSuccession = (
     receipt.approval_phrase !== 'APRUEBO HITO H-03' ||
     receipt.previous?.lock_sha256 !== (previousLockSha256 ?? currentLockSha256) ||
     receipt.current?.lock_sha256 !== currentLockSha256 ||
-    receipt.current?.package_sha256 !== currentPackageSha256 ||
+    receipt.current?.package_sha256 !== audit?.packageJsonSha256 ||
+    receipt.dependency_change !== false ||
+    receipt.dependency_set_sha256 !== currentDependencySetSha256 ||
     receipt.production_state !== 'ACTIVE_LOCAL_EVALUATION' ||
     receipt.distribution_state !== 'NOT_DESIGNED' ||
     receipt.publication_authority !== false ||
@@ -47,7 +59,8 @@ export const verifyApprovedH03LockSuccession = (
     !auditValid ||
     audit?.status !== 'passed' ||
     audit?.pnpmLockSha256 !== currentLockSha256 ||
-    audit?.packageJsonSha256 !== currentPackageSha256
+    audit?.dependencyChange !== false ||
+    audit?.dependencySetSha256 !== currentDependencySetSha256
   ) {
     throw new Error('H03_LOCK_SUCCESSION_INVALID: receipt_or_audit');
   }

@@ -65,14 +65,14 @@ gates:
     owner: sources
 
   - gate: G03_BRAND
-    label: brand
+    label: brand Design System First precondition
     command: 'pnpm check:brand'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true
     danger_level: low
     manual: false
-    fail_closed: false
+    fail_closed: true
     owner: brand
 
   - gate: G08

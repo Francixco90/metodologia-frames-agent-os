@@ -4,8 +4,9 @@
 // carve-out ≤300). Validation logic: `check-brand/{validators,channel-validators,
 // font-rights,locator-scan,validate-brand}.ts`. Re-exports preserve the public
 // surface pinned by `tests/contract/brand-v2.test.ts`. [CONFIG]
-import {fileURLToPath} from 'node:url';
+import {realpathSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import {validateBrand} from './check-brand/validate-brand.ts';
 import {validateSourceBundleObject, validateVoiceProfileObject} from './check-brand/validators.ts';
@@ -23,7 +24,8 @@ export {
 };
 
 const isMain =
-  process.argv[1] !== undefined && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+  process.argv[1] !== undefined &&
+  realpathSync(fileURLToPath(import.meta.url)) === realpathSync(resolve(process.argv[1]));
 
 if (isMain) {
   const errors = validateBrand();
