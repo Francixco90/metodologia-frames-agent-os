@@ -1,0 +1,151 @@
+{
+  "document_id": "CV-SYNTH-RUNTIME-ES",
+  "candidate_id": "CAND-SYNTH-RUNTIME-001",
+  "application_id": null,
+  "language": "es",
+  "design_profile": "candidate-neutral-ats",
+  "authorized_brand": null,
+  "generated_by": "MetodologIA",
+  "name": "Alex Example",
+  "headline": "Synthetic transformation leader",
+  "contact_lines": [
+    "alex@example.invalid"
+  ],
+  "summary": "Convierte retos de negocio en capacidades de transformación medibles.",
+  "experience": [
+    {
+      "organization": "Synthetic Business Unit",
+      "role": "Líder de Transformación",
+      "period": "2025",
+      "location": null,
+      "achievements": [
+        {
+          "claim_id": "CLM-SYNTH-RESULT-001",
+          "text": "Redujo el ciclo de entrega de 12 a 7 días (41,7 %) durante 2025.",
+          "evidence_ids": [
+            "EVD-SYNTH-RESULT-001"
+          ],
+          "evidence_hashes": [
+            "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [],
+  "skills": [
+    "Liderazgo de programas"
+  ],
+  "source_refs": [
+    "fixtures/runtime/verified/evidence-source.json"
+  ],
+  "surface_bindings": [
+    {
+      "path": "/name",
+      "classification": "non_claim",
+      "evidence_ids": [],
+      "evidence_hashes": [],
+      "rationale": "Identity from approved candidate profile."
+    },
+    {
+      "path": "/contact_lines/0",
+      "classification": "non_claim",
+      "evidence_ids": [],
+      "evidence_hashes": [],
+      "rationale": "Private contact binding."
+    },
+    {
+      "path": "/headline",
+      "classification": "non_claim",
+      "evidence_ids": [],
+      "evidence_hashes": [],
+      "rationale": "Target positioning from approved spec; not a historical title."
+    },
+    {
+      "path": "/summary",
+      "classification": "evidence",
+      "evidence_ids": [
+        "EVD-SYNTH-SUMMARY-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": null
+    },
+    {
+      "path": "/experience/0/organization",
+      "classification": "evidence",
+      "evidence_ids": [
+        "EVD-SYNTH-RESULT-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": null
+    },
+    {
+      "path": "/experience/0/role",
+      "classification": "evidence",
+      "evidence_ids": [
+        "EVD-SYNTH-RESULT-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": null
+    },
+    {
+      "path": "/experience/0/period",
+      "classification": "evidence",
+      "evidence_ids": [
+        "EVD-SYNTH-RESULT-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": null
+    },
+    {
+      "path": "/skills/0",
+      "classification": "evidence",
+      "evidence_ids": [
+        "EVD-SYNTH-SKILL-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": null
+    }
+  ],
+  "content_sha256": "28e5b032182615663aa4b4d433c572c4e4b2cd17b255c201673f90c28a66bf95",
+  "schema_version": "career-cv-v2",
+  "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
+  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+  "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
+  "output_intent": "general",
+  "audience": "ats",
+  "page_budget": 1,
+  "section_order": [
+    "summary",
+    "experience",
+    "skills",
+    "education"
+  ],
+  "keyword_policy": {
+    "allowed": [
+      "transformation",
+      "delivery"
+    ],
+    "omitted": [
+      "machine learning engineer"
+    ],
+    "rule": "visible-and-evidence-bound"
+  },
+  "deliberate_omissions": [
+    "No unsupported certifications."
+  ],
+  "gaps": [],
+  "attribution_limits": [
+    "Synthetic evidence only."
+  ]
+}

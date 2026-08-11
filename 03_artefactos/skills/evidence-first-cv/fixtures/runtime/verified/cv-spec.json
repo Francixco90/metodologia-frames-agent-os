@@ -1,0 +1,132 @@
+{
+  "schema_version": "cv-spec-v1",
+  "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
+  "intent": "general",
+  "candidate_id": "CAND-SYNTH-RUNTIME-001",
+  "candidate_profile_ref": "fixtures/runtime/verified/candidate-profile.json",
+  "candidate_profile_sha256": "6822ca5f457afe01ccb2ec44b1ca51bf1490cf51a6252f5ef2d3ddce65eed26c",
+  "evidence_bank_ref": "fixtures/runtime/verified/evidence-bank.json",
+  "evidence_bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe",
+  "positioning_ref": "fixtures/runtime/verified/profile-source.json",
+  "positioning_sha256": "2542226fe59ff12bb8354fe992542d62c93d0f35d4472b2429272f6735b8c6fe",
+  "application_brief_ref": null,
+  "application_brief_sha256": null,
+  "requirement_evidence_map_ref": null,
+  "requirement_evidence_map_sha256": null,
+  "job_id": null,
+  "job_snapshot_ref": null,
+  "job_snapshot_sha256": null,
+  "targeted_workflow": null,
+  "target_role": "Synthetic transformation leader",
+  "role_family": "Strategy and transformation",
+  "positioning": "Synthetic evidence-bound positioning used only for local verification.",
+  "section_order": [
+    "summary",
+    "experience",
+    "skills",
+    "education"
+  ],
+  "evidence_selection": [
+    {
+      "section_id": "summary",
+      "evidence_ids": [
+        "EVD-SYNTH-SUMMARY-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": "Verified synthetic evidence."
+    },
+    {
+      "section_id": "experience",
+      "evidence_ids": [
+        "EVD-SYNTH-RESULT-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": "Verified synthetic evidence."
+    },
+    {
+      "section_id": "skills",
+      "evidence_ids": [
+        "EVD-SYNTH-SKILL-001"
+      ],
+      "evidence_hashes": [
+        "2b8caca5806b7a1b2a413b3f24f02ab5123553f94a152b41663fe9f26e55292b"
+      ],
+      "rationale": "Verified synthetic evidence."
+    }
+  ],
+  "keyword_policy": {
+    "allowed": [
+      "transformation",
+      "delivery"
+    ],
+    "omitted": [
+      "machine learning engineer"
+    ],
+    "rule": "visible-and-evidence-bound"
+  },
+  "deliberate_omissions": [
+    "No unsupported certifications."
+  ],
+  "gaps": [],
+  "attribution_limits": [
+    "Synthetic evidence only."
+  ],
+  "contact_binding": {
+    "binding_id": "CONTACT-SYNTH-RUNTIME-001",
+    "required": true,
+    "storage": "private-runtime"
+  },
+  "authorized_brand": null,
+  "variants": [
+    {
+      "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
+      "language": "es",
+      "audience": "ats",
+      "output_kinds": [
+        "ats-html"
+      ],
+      "page_budget": 1,
+      "design_profile": "candidate-neutral-ats"
+    },
+    {
+      "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
+      "language": "en",
+      "audience": "recruiter",
+      "output_kinds": [
+        "executive-html"
+      ],
+      "page_budget": 1,
+      "design_profile": "metodologia-career"
+    }
+  ],
+  "acceptance": {
+    "ats": [
+      "Visible content."
+    ],
+    "recruiter": [
+      "Role first."
+    ],
+    "hiring_manager": [
+      "Attribution."
+    ],
+    "accessibility": [
+      "Semantic HTML."
+    ],
+    "parity": [
+      "Bound fields."
+    ]
+  },
+  "state": "HUMAN_APPROVED",
+  "next_gate": "CR_CV_SPEC_APPROVED",
+  "approval": {
+    "status": "HUMAN_APPROVED",
+    "approved_spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+    "approver_ref": "H01",
+    "approved_at": "2026-08-11T12:00:00-05:00"
+  },
+  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a"
+}
