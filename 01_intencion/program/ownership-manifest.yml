@@ -18,6 +18,7 @@ writers:
     - registries/contributions/**
     - context.md
     - 01_intencion/context.md
+    - 01_intencion/career/**
     - 03_artefactos/context.md
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
@@ -162,6 +163,7 @@ writers:
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
+    - 05_verificacion/tests/unit/career-cv-spec-fixtures.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
     - 05_verificacion/tests/unit/documentation-*.test.ts
     - 05_verificacion/tests/unit/local-extension-*.test.ts
