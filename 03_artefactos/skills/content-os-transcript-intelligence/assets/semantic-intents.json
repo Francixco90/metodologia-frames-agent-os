@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "semantic-intents-v1",
+  "intents": {
+    "muestra aplicaciones funcionando": ["demostracion", "demo", "dashboard", "html", "aplicacion", "herramienta", "operacion"],
+    "lo nombran embajador": ["reconocimiento", "embajador", "certificacion", "validacion", "comunidad"],
+    "impacto logrado": ["impacto", "resultado", "cambio", "mejora", "capacidad"],
+    "antes y despues": ["friccion", "antes", "ahora", "transformacion", "posibilidad"]
+  }
+}
