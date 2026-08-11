@@ -59,3 +59,5 @@
 03_artefactos/brand/career-design-system/options/blueprint-executive/index.html
 03_artefactos/brand/career-design-system/options/neo-swiss-editorial/index.html
 03_artefactos/brand/career-design-system/options/index.html
+# Machine-readable workflow manifest is compacted deterministically by its generator.
+03_artefactos/content/documentation/documentation-manifest-v1.json
