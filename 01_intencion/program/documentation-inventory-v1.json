@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "a4cdc477df205c4b4f8220a69f45be20e7bfb52645c57b7bdd4d3a53a3836321",
+  "repositoryTreeSha256": "8f6cf45206d3bcf80ad5ea26b59afd5cc3404ea5b4e99a4d0a6d93a252306053",
   "totalMarkdown": 1785,
   "auditedAuthored": 548,
   "classPaths": {
@@ -9836,9 +9836,9 @@
       "sourceRef": "03_artefactos/skills/career-application-orchestrator/references/orchestration-contract.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "b6b5474ea4eac18025247336bddb5a80a5a969ac5cc837a875ebdd0ba699adf4",
-      "words": 142,
-      "lines": 28,
+      "sha256": "554c2d83730df1f6755bc11f45543dcaeefc0ad2acfc98b08933e7bc32ca2c1b",
+      "words": 190,
+      "lines": 35,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",

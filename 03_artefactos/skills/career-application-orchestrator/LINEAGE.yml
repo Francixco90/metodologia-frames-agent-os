@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: career-application-orchestrator
-version: 0.2.0
+version: 0.3.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored_from_user_supplied_requirements
@@ -17,3 +17,4 @@ derivation:
   method: clean_room_normalization
   identity: MetodologIA
   copied_external_prompts: false
+  successor_change: cv_spec_first_gate_and_stale_derivative_invalidation
