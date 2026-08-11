@@ -1,0 +1,29 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-008
+supersedes_receipt_id: H03-LOCK-SUCCESSION-007
+recorded_at: '2026-08-11T00:00:00Z'
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: exact_ajv_8_20_0_dev_dependency_for_strict_video_contract_validation
+previous:
+  package_sha256: 2f26eec24c4ddc89cfd97a8612276e0d156f3273a988721c2cb641262373e37f
+  lock_sha256: 71d2f2567885fd8dcd82484bffa9f71169e7f7b8d8c0debcb29923f444536554
+current:
+  package_sha256: f690e2c852575d328251e858e448ab961e8208ef15480e1749b47a1ef447ae1a
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: true
+dependency_set:
+  - {name: ajv, version: 8.20.0, license: MIT}
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260811-002.json
+  sha256: 34bbe6b462a06924b0ced494dceb9d066aaa45bc5bc9d11e565f03aab8c5a11f
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: pnpm install --frozen-lockfile
+  status: passed
+rollback:
+  strategy: remove_exact_ajv_dependency_and_restore_previous_lock
+  expected_lock_sha256: 71d2f2567885fd8dcd82484bffa9f71169e7f7b8d8c0debcb29923f444536554
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

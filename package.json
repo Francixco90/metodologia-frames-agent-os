@@ -151,6 +151,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/three": "0.178.1",
+    "ajv": "8.20.0",
     "eslint": "10.7.0",
     "playwright": "1.61.1",
     "prettier": "3.9.5",

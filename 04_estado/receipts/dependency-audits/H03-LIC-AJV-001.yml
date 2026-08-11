@@ -1,0 +1,11 @@
+schema_version: renderer-license-receipt-v1
+receipt_id: H03-LIC-AJV-001
+family: json-schema-validation
+observed_at: '2026-08-11'
+packages:
+  - {name: ajv, version: 8.20.0, manifest_sha256: 1f9033ee5a6515e7d76938b7072941862d1ed228a6879cc7fe10cdeb75107989, license: MIT, license_sha256: a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3}
+verdict: local_evaluation_only
+production_eligibility: local_evaluation
+fixture_rights: first_party_synthetic_only
+publication_authority: false
+append_only: true

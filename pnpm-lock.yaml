@@ -104,6 +104,9 @@ importers:
       '@types/three':
         specifier: 0.178.1
         version: 0.178.1
+      ajv:
+        specifier: 8.20.0
+        version: 8.20.0
       eslint:
         specifier: 10.7.0
         version: 10.7.0
