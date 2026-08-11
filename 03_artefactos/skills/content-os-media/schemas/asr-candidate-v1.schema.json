@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "asr-candidate-v1",
+  "title": "Frames ContentOS ASR candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "status", "source", "derivedAudio", "engine", "language", "inputClock", "clocks", "segments"],
+  "properties": {
+    "schemaVersion": {"const": "asr-candidate-v1"},
+    "status": {"const": "candidate"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "derivedAudio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha256"],
+      "properties": {
+        "ref": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "model", "modelSha256", "configSha256"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "model": {"type": "string", "minLength": 1},
+        "modelSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "configSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["declared", "detected"],
+      "properties": {
+        "declared": {"type": "string", "minLength": 2},
+        "detected": {"type": "string", "minLength": 2}
+      }
+    },
+    "inputClock": {"enum": ["absolute", "local"]},
+    "clocks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["absolute", "local"],
+      "properties": {
+        "absolute": {
+          "type": "object",
+          "required": ["id", "originSeconds"],
+          "properties": {"id": {"type": "string"}, "originSeconds": {"type": "number", "minimum": 0}}
+        },
+        "local": {
+          "type": "object",
+          "required": ["id", "originAbsoluteSeconds"],
+          "properties": {"id": {"type": "string"}, "originAbsoluteSeconds": {"type": "number", "minimum": 0}}
+        }
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "startSeconds", "endSeconds", "text", "sourceSpan"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "startSeconds": {"type": "number", "minimum": 0},
+          "endSeconds": {"type": "number", "exclusiveMinimum": 0},
+          "text": {"type": "string"},
+          "sourceSpan": {"$ref": "#/$defs/sourceSpan"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "clockSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clockId", "startSeconds", "endSeconds"],
+      "properties": {"clockId": {"type": "string", "minLength": 1}, "startSeconds": {"type": "number", "minimum": 0}, "endSeconds": {"type": "number", "exclusiveMinimum": 0}}
+    },
+    "sourceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "absolute", "local"],
+      "properties": {"sourceId": {"type": "string", "minLength": 1}, "absolute": {"$ref": "#/$defs/clockSpan"}, "local": {"$ref": "#/$defs/clockSpan"}}
+    }
+  }
+}

@@ -5,7 +5,7 @@ execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: html-media-v1
+compatibility_contract: html-media-v1 + asr-candidate-v1-provenance
 authority_refs:
   - skills/vendor/hyperframes/media-use/SKILL.md
   - skills/content-os-core/SKILL.md

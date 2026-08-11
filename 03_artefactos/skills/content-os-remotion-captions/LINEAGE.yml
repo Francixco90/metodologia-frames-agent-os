@@ -20,8 +20,8 @@ authority_refs:
 runtime_refs:
   - skills/content-os-remotion-captions/scripts/check-skill.mjs
 dependency_receipt_ref: skills/content-os-remotion-captions/receipts/runtime-boundary.yml
-compatibility_contract: remotion-captions-v1
-request_contract_ref: skills/content-os-remotion-captions/schemas/remotion-captions-v1.schema.json
+compatibility_contract: remotion-captions-v2; v1 read-only
+request_contract_ref: skills/content-os-remotion-captions/schemas/remotion-captions-v2.schema.json
 supported_request_types:
   - remotion_captions_display
   - remotion_captions_transcribe

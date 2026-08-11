@@ -40,7 +40,8 @@ Reglas:
 - Transcription corre offline sobre el archivo resuelto local.
 - Word timestamps registrados en `media-manifest.jsonl` entry (`duration_s`,
   word boundaries) para sync con captions.
-- Registrar engine, modelo, versión, idioma declarado/detectado y hash. Entregar
+- Registrar engine, modelo, versión, idioma declarado/detectado, `source.sha256`,
+  `derivedAudio.sha256`, `modelSha256`, `configSha256`, reloj absoluto y reloj local. Entregar
   audio + ASR candidato a `content-os-transcript-intelligence`; solo esa compuerta
   puede producir `caption-track.json` y resolver ambigüedades lingüísticas.
 - Sin network en el path default.

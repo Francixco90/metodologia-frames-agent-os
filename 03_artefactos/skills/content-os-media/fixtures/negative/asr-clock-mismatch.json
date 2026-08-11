@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "asr-candidate-v1",
+  "status": "candidate",
+  "source": {"id": "synthetic-interview-001", "sha256": "1111111111111111111111111111111111111111111111111111111111111111"},
+  "derivedAudio": {"ref": "work/audio/synthetic.wav", "sha256": "2222222222222222222222222222222222222222222222222222222222222222"},
+  "engine": {"name": "whisper.cpp", "version": "1", "model": "synthetic", "modelSha256": "3333333333333333333333333333333333333333333333333333333333333333", "configSha256": "4444444444444444444444444444444444444444444444444444444444444444"},
+  "language": {"declared": "es", "detected": "es"},
+  "inputClock": "local",
+  "clocks": {"absolute": {"id": "session-clock", "originSeconds": 0}, "local": {"id": "clip-clock", "originAbsoluteSeconds": 120}},
+  "segments": [{
+    "id": "seg-001", "startSeconds": 0, "endSeconds": 1, "text": "Texto.",
+    "sourceSpan": {
+      "sourceId": "synthetic-interview-001",
+      "absolute": {"clockId": "session-clock", "startSeconds": 20, "endSeconds": 21},
+      "local": {"clockId": "wrong-clock", "startSeconds": 5, "endSeconds": 4}
+    }
+  }]
+}

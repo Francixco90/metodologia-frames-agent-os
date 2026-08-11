@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "asr-candidate-v1",
+  "status": "candidate",
+  "source": {"id": "synthetic-interview-001"},
+  "derivedAudio": {"ref": "work/audio/synthetic.wav"},
+  "engine": {"name": "unknown", "version": "unknown", "model": "unknown"},
+  "language": {"declared": "es", "detected": "es"},
+  "segments": [{"id": "seg-001", "startSeconds": 0, "endSeconds": 1, "text": "Texto."}],
+  "violations": ["missing-source-sha256", "missing-derived-audio-sha256", "missing-model-sha256", "missing-config-sha256", "missing-absolute-local-clock", "cannot-promote-asr-to-caption-or-claim"]
+}

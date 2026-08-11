@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "asr-candidate-v1",
+  "status": "candidate",
+  "source": {"id": "synthetic-interview-001", "sha256": "1111111111111111111111111111111111111111111111111111111111111111"},
+  "derivedAudio": {"ref": "work/audio/synthetic-interview-001.wav", "sha256": "2222222222222222222222222222222222222222222222222222222222222222"},
+  "engine": {
+    "name": "whisper.cpp",
+    "version": "1.7.5",
+    "model": "synthetic-model",
+    "modelSha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "configSha256": "4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "language": {"declared": "es", "detected": "es"},
+  "inputClock": "local",
+  "clocks": {
+    "absolute": {"id": "session-clock", "originSeconds": 0},
+    "local": {"id": "clip-clock", "originAbsoluteSeconds": 120}
+  },
+  "segments": [{
+    "id": "seg-001", "startSeconds": 0, "endSeconds": 1.4, "text": "Abrí el dashboard.",
+    "sourceSpan": {
+      "sourceId": "synthetic-interview-001",
+      "absolute": {"clockId": "session-clock", "startSeconds": 120, "endSeconds": 121.4},
+      "local": {"clockId": "clip-clock", "startSeconds": 0, "endSeconds": 1.4}
+    }
+  }]
+}
