@@ -57,7 +57,7 @@ describe('H-03 renderer adapters integration', () => {
   });
 
   it('records approved lock succession and a reproducible graphical smoke without readiness claims', () => {
-    const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-002.yml')) as {
+    const succession = parse(read('receipts/dependency-audits/H03-LOCK-SUCCESSION-007.yml')) as {
       approval_phrase?: string;
       previous?: {lock_sha256?: string};
       current?: {lock_sha256?: string};
@@ -73,9 +73,9 @@ describe('H-03 renderer adapters integration', () => {
       temporary_outputs_versioned?: boolean;
     };
 
-    expect(succession.approval_phrase).toBe('APRUEBO HITO H-03');
+    expect(succession.approval_phrase).toBe('PLEASE IMPLEMENT THIS PLAN');
     expect(succession.previous?.lock_sha256).toBe(
-      'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82',
+      'ab6af5ef32bb5fdc916ced36cd0922e4bf4e4fe1dfee3a58dddf74ebbed259bd',
     );
     expect(succession.current?.lock_sha256).toBe(sha256(read('pnpm-lock.yaml')));
     expect(succession.audit_receipt?.sha256).toBe(

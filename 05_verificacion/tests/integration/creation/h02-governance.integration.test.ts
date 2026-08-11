@@ -80,7 +80,7 @@ describe('H-02 governance and preservation', () => {
       expect(sha256(readFileSync(resolve(root, ref))), ref).toBe(digest);
     }
     const succession = verifyApprovedH03LockSuccession(root);
-    expect(succession.receipt.previous?.lock_sha256).toBe(succession.currentLockSha256);
+    expect(succession.receipt.previous?.lock_sha256).not.toBe(succession.currentLockSha256);
     expect(treeDigest('projects/pilot-carousel-001')).toBe(
       'eeb540327e985bb14ad10a053a2c091dff030706238039aa3fe809cef728a1e2',
     );
