@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "7a8935ba55175e0a0587002e90ea831b506acd56b0c3b7a12557d639cd07985d",
+  "repositoryTreeSha256": "e4db4a8f9e7b855baaca1375e38f48ec5707d821934fc74894c9320836138bd9",
   "totalMarkdown": 1802,
   "auditedAuthored": 563,
   "classPaths": {
@@ -4520,7 +4520,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "4b801b25f35e9c0e9854d12a306c1b692591ac0066686f67b42f7617d7fc46ad",
+      "sha256": "6d173df4c9451b798890c484ceb69ba2f9e8a9af198f4f7d2d4cc9fb36f07dc4",
       "words": 7788,
       "lines": 450,
       "score": 100,
