@@ -63,7 +63,6 @@ for (const token of [
   'cv-spec-v2',
   'cv-package-v3',
   'migrateCvSpecV1ToV2',
-  'migrateCareerCvPackageV2ToV3',
   'HUMAN_APPROVED',
   'CR_CV_DESIGN_APPROVED',
   'ats-neutral',
