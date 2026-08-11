@@ -14,7 +14,7 @@ entries:
     reference_license_status: unresolved
     runtime_version: 4.0.494
     content_sha256: 97c1363ed54ea9b6b4cf2d2fd5fa1f667365a676a89a2fab357001c8f07d0632
-    package_manifest_sha256: 85644ce516ac312ae68e42775796861b15e83a39e742f35802afb5d02aaaf3c9
+    package_manifest_sha256: 7d35415d1990c7c0770b34beb60a4ffac11a09b4d4acdcb2867aa2f7d066dc1d
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/remotion-video-production/LINEAGE.yaml
     license: LicenseRef-MetodologIA-Internal
@@ -25,8 +25,8 @@ entries:
       receipt_ref: skills/remotion-video-production/licenses/content-license-receipt.yml
       receipt_sha256: edfd2221161d3c58f5d498f71be656c7b811c5b0b3ba2ac8bfa31accbfe06555
     runtime_license_evidence:
-      receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml
-      receipt_sha256: 23dd341e2b1358daa2e501f467e40ad40bea64188e2c891a6aef737af1947e19
+      receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-003.yml
+      receipt_sha256: f45f9663c3b40105e02f8d0434ede4d179203e8acf128a2a83b99387590574e0
       commercial_or_production_use: coverage_gap
       consequence: blocked
     recorded_at: '2026-07-19T20:38:02Z'

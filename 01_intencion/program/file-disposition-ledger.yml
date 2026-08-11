@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94130
-    v3_rolling_adjustment_words: 5944
+    baseline_words: 94137
+    v3_rolling_adjustment_words: 5951
     original_baseline_words: 88186
-    final_words: 110173
+    final_words: 110181
     maximum_multiplier: 1.5
-    maximum_words: 141195
+    maximum_words: 141205
     actual_multiplier: 1.1704
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94130
-    v3_rolling_adjustment_words: 5944
+    baseline_words: 94137
+    v3_rolling_adjustment_words: 5951
     original_baseline_words: 88186
-    final_words: 110173
-    maximum_words: 188260
+    final_words: 110181
+    maximum_words: 188274
     word_multiplier: 1.1704
-    baseline_loc: 35358
-    v3_rolling_adjustment_loc: 2470
+    baseline_loc: 35362
+    v3_rolling_adjustment_loc: 2474
     original_baseline_loc: 32888
-    final_loc: 41328
-    maximum_loc: 70716
-    loc_multiplier: 1.1688
+    final_loc: 41333
+    maximum_loc: 70724
+    loc_multiplier: 1.1689
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -3200,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 2f26eec24c4ddc89cfd97a8612276e0d156f3273a988721c2cb641262373e37f
-      current_words: 718
-      current_loc: 162
+      current_sha256: f690e2c852575d328251e858e448ab961e8208ef15480e1749b47a1ef447ae1a
+      current_words: 720
+      current_loc: 163
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -3221,9 +3221,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:pnpm-lock.yaml
       current_ref: working-tree:pnpm-lock.yaml
       current_state: present
-      current_sha256: 71d2f2567885fd8dcd82484bffa9f71169e7f7b8d8c0debcb29923f444536554
-      current_words: 7225
-      current_loc: 5420
+      current_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+      current_words: 7230
+      current_loc: 5423
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:pnpm-lock.yaml
@@ -5888,7 +5888,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: 547ac5f8625e1b29f38484260e5e80f71e2327c41c47d715ba9e033b77cb17c5
+      current_sha256: 8584489156ec67f9225f1e7ff411ed03bfc7d30f7f8d79dbde9e8072218f7509
       current_words: 1754
       current_loc: 818
       byte_identical: false
@@ -6959,7 +6959,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/LINEAGE.yaml
       current_ref: working-tree:skills/remotion-video-production/LINEAGE.yaml
       current_state: present
-      current_sha256: cfd20b9b87d98b1ed6ad2f1c80a6ba3b5b5c6eacb4f59c2bc6dfe146f3fab86c
+      current_sha256: e0608751377477ed418186dc22f62d9f50b9505574be0bf8aef6e10771317148
       current_words: 163
       current_loc: 84
       byte_identical: false
@@ -7337,7 +7337,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/licenses/runtime-license-verdict.yml
       current_ref: working-tree:skills/remotion-video-production/licenses/runtime-license-verdict.yml
       current_state: present
-      current_sha256: 6b783353a9bf329c2ae477a997e2197f1df14b0b36c8c1110b6d2d12e0b01631
+      current_sha256: d8d587e0876ced765cafcf56dbf7fb7a71d2d6351a0e8061e7367ef7af17eaa7
       current_words: 46
       current_loc: 25
       byte_identical: false
@@ -7799,9 +7799,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:skills/remotion-video-production/scripts/check-skill.mjs
       current_ref: working-tree:skills/remotion-video-production/scripts/check-skill.mjs
       current_state: present
-      current_sha256: 1e9122eec3a730f00d125bf6760793ab330a851a623eaecb09c3283ad600f243
-      current_words: 570
-      current_loc: 200
+      current_sha256: 57575ff5462a84c83df8d9955a4e5f6966106e487409f176a4f46dd60cccfa03
+      current_words: 571
+      current_loc: 201
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:skills/**

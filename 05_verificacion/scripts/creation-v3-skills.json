@@ -39,7 +39,7 @@
   },
   {
     "id": "content-os-transcript-intelligence",
-    "version": "0.1.0",
+    "version": "0.4.0",
     "registryState": "evaluated",
     "scope": "local-evaluation",
     "check": ["skills/content-os-transcript-intelligence/scripts/check-skill.mjs"]
@@ -120,7 +120,7 @@
   },
   {
     "id": "content-os-general-video",
-    "version": "0.2.0",
+    "version": "0.4.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-general-video/scripts/check-skill.mjs"]
   },
