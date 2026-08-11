@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "video-asset-manifest-v2",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "offlineOnly", "publicationAuthority", "assets"],
+  "properties": {
+    "schemaVersion": {"const": "video-asset-manifest-v2"}, "specId": {"type": "string"}, "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "offlineOnly": {"const": true}, "publicationAuthority": {"const": false},
+    "assets": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "ref", "sha256", "provenance", "rights", "generator"],
+      "properties": {"id": {"type": "string"}, "kind": {"enum": ["font", "tokens", "curtain", "sonic-signature", "overlay", "caption-preset", "mask", "synthetic-fixture"]}, "ref": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "provenance": {"type": "string"}, "rights": {"enum": ["owned", "licensed", "internal-evaluation"]}, "generator": {"type": "object", "required": ["id", "version", "configSha256"], "properties": {"id": {"type": "string"}, "version": {"type": "string"}, "configSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}
+    }}
+  }
+}

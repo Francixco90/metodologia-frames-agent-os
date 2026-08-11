@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "general-video-semantic-index-v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "sourcePackSha256", "embeddingMode", "segments"],
+  "properties": {
+    "schemaVersion": {"const": "general-video-semantic-index-v1"},
+    "sourcePackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "embeddingMode": {"enum": ["none", "local"]},
+    "embeddingModel": {"type": "object", "required": ["id", "sha256"], "properties": {"id": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}},
+    "segments": {"type": "array", "items": {"type": "object", "additionalProperties": false,
+      "required": ["id", "sourceId", "startMs", "endMs", "text", "entities", "topics", "actions", "relations", "visualRefs"],
+      "properties": {"id": {"type": "string"}, "sourceId": {"type": "string"}, "startMs": {"type": "integer", "minimum": 0}, "endMs": {"type": "integer", "exclusiveMinimum": 0}, "text": {"type": "string"}, "entities": {"type": "array", "items": {"type": "string"}}, "topics": {"type": "array", "items": {"type": "string"}}, "actions": {"type": "array", "items": {"type": "string"}}, "relations": {"type": "array", "items": {"type": "string"}}, "visualRefs": {"type": "array", "items": {"type": "string"}}}
+    }}
+  },
+  "allOf": [{"if": {"properties": {"embeddingMode": {"const": "local"}}}, "then": {"required": ["embeddingModel"]}}]
+}

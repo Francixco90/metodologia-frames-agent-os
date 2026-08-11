@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "video-plan-v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "specId", "specSha256", "generatedFrom", "pieces"],
+  "properties": {
+    "schemaVersion": {"const": "video-plan-v1"}, "specId": {"type": "string"}, "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "generatedFrom": {"type": "object"},
+    "pieces": {"type": "array", "items": {"type": "object", "required": ["id", "cacheKey", "layerKeys", "cacheStatus", "invalidatedBy", "output"], "properties": {"id": {"type": "string"}, "cacheKey": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "layerKeys": {"type": "object"}, "cacheStatus": {"enum": ["hit", "miss"]}, "invalidatedBy": {"type": "array", "items": {"type": "string"}}, "output": {"type": "string"}, "render": {"type": "object"}}}}
+  }
+}

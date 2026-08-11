@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "piece-scripts-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "specId", "specSha256", "pieces"],
+  "properties": {
+    "schemaVersion": {"const": "piece-scripts-v2"},
+    "projectId": {"type": "string", "minLength": 1},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pieces": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "output", "scriptMode", "decision", "purpose", "audience", "hook", "impact", "offerBridge", "cta", "sourceSpans", "visualSpans", "captionTrackRef", "correctionLedgerRef", "claims", "dependencies", "layers", "format", "gateStatus"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
+          "output": {"type": "string", "minLength": 1},
+          "scriptMode": {"enum": ["authored", "transcript_derived", "assembly_map", "action", "data_chart"]},
+          "decision": {"enum": ["use", "extend", "reframe", "discard"]},
+          "purpose": {"type": "string", "minLength": 12},
+          "audience": {"type": "string", "minLength": 5},
+          "hook": {"type": "string", "minLength": 3},
+          "impact": {"type": "string", "minLength": 3},
+          "offerBridge": {"type": "string", "minLength": 2},
+          "cta": {"type": "string", "minLength": 2},
+          "sourceSpans": {"type": "array", "items": {"$ref": "#/$defs/span"}},
+          "visualSpans": {"type": "array", "items": {"$ref": "#/$defs/visualSpan"}},
+          "captionTrackRef": {"type": ["string", "null"]},
+          "captionTrackSha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+          "correctionLedgerRef": {"type": ["string", "null"]},
+          "correctionLedgerSha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+          "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+          "dependencies": {"type": "array", "items": {"$ref": "#/$defs/dependency"}},
+          "layers": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+          "format": {
+            "type": "object", "additionalProperties": false,
+            "required": ["width", "height", "fps", "durationMs", "frameCount"],
+            "properties": {
+              "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1},
+              "fps": {"type": "number", "exclusiveMinimum": 0}, "durationMs": {"type": "integer", "minimum": 1},
+              "frameCount": {"type": "integer", "minimum": 1}
+            }
+          },
+          "render": {"$ref": "#/$defs/render"},
+          "miniclip": {"$ref": "#/$defs/miniclip"},
+          "gateStatus": {"enum": ["candidate", "deterministic-passed", "blocked"]}
+        },
+        "allOf": [
+          {"if": {"properties": {"decision": {"not": {"const": "discard"}}}}, "then": {"properties": {"sourceSpans": {"minItems": 1}, "dependencies": {"minItems": 1}}}},
+          {"if": {"properties": {"scriptMode": {"const": "transcript_derived"}}}, "then": {"required": ["captionTrackSha256", "correctionLedgerSha256"], "properties": {"captionTrackRef": {"type": "string", "minLength": 1}, "captionTrackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "correctionLedgerRef": {"type": "string", "minLength": 1}, "correctionLedgerSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceId", "startMs", "endMs", "sourceSha256"],
+      "properties": {"sourceId": {"type": "string"}, "startMs": {"type": "integer", "minimum": 0}, "endMs": {"type": "integer", "exclusiveMinimum": 0}, "sourceSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+    },
+    "visualSpan": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceId", "startMs", "endMs", "purpose"],
+      "properties": {"sourceId": {"type": "string"}, "startMs": {"type": "integer", "minimum": 0}, "endMs": {"type": "integer", "exclusiveMinimum": 0}, "purpose": {"type": "string", "minLength": 3}}
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "material", "status", "sourceSpanIndexes"],
+      "properties": {"id": {"type": "string"}, "material": {"type": "boolean"}, "status": {"enum": ["verified", "ambiguous", "excluded"]}, "sourceSpanIndexes": {"type": "array", "items": {"type": "integer", "minimum": 0}}}
+    },
+    "dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "sha256"],
+      "properties": {"id": {"type": "string"}, "kind": {"enum": ["source", "script", "caption", "asset", "audio", "curtain", "overlay"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+    },
+    "render": {
+      "type": "object", "additionalProperties": false,
+      "required": ["engine", "mode", "args"],
+      "properties": {"engine": {"const": "ffmpeg"}, "mode": {"enum": ["encode", "audio-remux"]}, "args": {"type": "array", "minItems": 1, "items": {"type": "string"}}}
+    },
+    "miniclip": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fonts", "copyRef", "copySha256", "timingRef", "timingSha256", "curtainRef", "curtainSha256", "textLayerCount", "safeZonesPass"],
+      "properties": {
+        "fonts": {"type": "object", "additionalProperties": false, "required": ["title", "caption", "disclosure"], "properties": {"title": {"$ref": "#/$defs/font"}, "caption": {"$ref": "#/$defs/font"}, "disclosure": {"$ref": "#/$defs/font"}}},
+        "copyRef": {"type": "string"}, "copySha256": {"$ref": "#/$defs/hash"}, "timingRef": {"type": "string"}, "timingSha256": {"$ref": "#/$defs/hash"}, "curtainRef": {"type": "string"}, "curtainSha256": {"$ref": "#/$defs/hash"},
+        "textLayerCount": {"type": "integer", "maximum": 2}, "safeZonesPass": {"const": true}
+      }
+    }
+  ,"font": {"type": "object", "additionalProperties": false, "required": ["family", "ref", "sha256"], "properties": {"family": {"type": "string"}, "ref": {"type": "string"}, "sha256": {"$ref": "#/$defs/hash"}}},
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
