@@ -313,13 +313,15 @@
       "schemaVersion": "workflow-documentation-v1",
       "id": "C06",
       "family": "career",
-      "title": "CV spec-first y evidence-bound",
-      "purpose": "Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.",
+      "title": "CV spec-first, design-system-first y evidence-bound",
+      "purpose": "Especificar, decidir el sistema visual cuando aplica, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.",
       "command": "/career-cv",
       "source": "02_proceso/workflows/career/c06-cv/workflow.yml",
       "inputs": ["candidate-profile-v1", "positioning-charter-v1", "evidence-bank-v1"],
       "deliverables": [
-        "cv-spec-v1",
+        "cv-spec-v2",
+        "cv-design-brief-v1",
+        "cv-design-decision-v1",
         "cv-source-v2",
         "cv-ats-html-v1",
         "cv-executive-html-v1",
@@ -328,26 +330,56 @@
         "cv-variant-manifest-v2"
       ],
       "templateRefs": ["02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md"],
-      "gates": ["CR_CV_SPEC_APPROVED", "G13", "CR_PACKAGE_APPROVED"],
+      "gates": [
+        "CR_BRIEF_APPROVED",
+        "CR_CV_DESIGN_APPROVED",
+        "CR_CV_SPEC_APPROVED",
+        "G13",
+        "CR_PACKAGE_APPROVED"
+      ],
       "nextWorkflow": "C07",
-      "stopRule": "Spec aprobada no aprueba derivados; render produce RENDERED_DRAFT y cualquier hash stale invalida el paquete.",
+      "stopRule": "Spec aprobada no aprueba derivados; cualquier hash stale de evidencia, diseño, composición o contenido invalida el paquete, crea successor y deja el render RENDERED_DRAFT.",
       "steps": [
         {
           "id": "S00",
-          "purpose": "Compilar una spec material; intent targeted exige lineage C04 scoring y C05 application design, general los rechaza.",
+          "purpose": "Compilar cv-spec-v2 material; executive empieza pending-design y ATS usa perfil neutral.",
           "inputs": ["candidate-profile-v1", "positioning-charter-v1", "evidence-bank-v1"],
           "primarySkill": "evidence-first-cv",
           "optionalSkills": [],
           "verifier": "RT-09",
-          "outputs": ["cv-spec-v1"],
+          "outputs": ["cv-spec-v2"],
           "templateId": "TPL-C06-CAREER-CV",
-          "gate": "CR_CV_SPEC_APPROVED",
-          "stopRule": "Ningún contenido se compila antes de aprobación exacta; targeted sin fit scorecard C04 y decision C05 queda bloqueado."
+          "gate": "CR_BRIEF_APPROVED",
+          "stopRule": "Targeted sin lineage C04/C05 queda bloqueado; la spec pendiente no autoriza compilar."
         },
         {
           "id": "S01",
+          "purpose": "Para HTML ejecutivo, producir exactamente dos alternativas y registrar la decisión humana; ATS-only omite este paso.",
+          "inputs": ["cv-spec-v2"],
+          "primarySkill": "career-design-system",
+          "optionalSkills": [],
+          "verifier": "RT-09",
+          "outputs": ["cv-design-brief-v1", "cv-design-decision-v1"],
+          "templateId": "TPL-C06-CAREER-CV",
+          "gate": "CR_CV_DESIGN_APPROVED",
+          "stopRule": "Sin decisión HUMAN_APPROVED vigente, HTML ejecutivo permanece bloqueado; ATS-only continúa neutral."
+        },
+        {
+          "id": "S02",
+          "purpose": "Ligar la decisión visual cuando aplica y aprobar el hash exacto de cv-spec-v2.",
+          "inputs": ["cv-spec-v2"],
+          "primarySkill": "evidence-first-cv",
+          "optionalSkills": ["career-design-system"],
+          "verifier": "RT-09",
+          "outputs": ["cv-spec-v2"],
+          "templateId": "TPL-C06-CAREER-CV",
+          "gate": "CR_CV_SPEC_APPROVED",
+          "stopRule": "Una decisión o sistema visual stale invalida la spec y cualquier aprobación previa."
+        },
+        {
+          "id": "S03",
           "purpose": "Compilar la fuente canónica desde la spec aprobada y evidencia promocionable.",
-          "inputs": ["cv-spec-v1", "evidence-bank-v1"],
+          "inputs": ["cv-spec-v2", "evidence-bank-v1"],
           "primarySkill": "evidence-first-cv",
           "optionalSkills": [],
           "verifier": "RT-09",
@@ -357,11 +389,11 @@
           "stopRule": "Claim sin evidence_id utilizable se omite o califica; requisito de vacante nunca se promueve."
         },
         {
-          "id": "S02",
-          "purpose": "Proyectar únicamente idiomas, audiencias y formatos declarados por la spec.",
-          "inputs": ["cv-spec-v1", "cv-source-v2"],
+          "id": "S04",
+          "purpose": "Proyectar solo idiomas, audiencias, formatos y composición declarados por la spec aprobada.",
+          "inputs": ["cv-spec-v2", "cv-source-v2"],
           "primarySkill": "evidence-first-cv",
-          "optionalSkills": ["media-make-pdf"],
+          "optionalSkills": ["career-design-system", "media-make-pdf"],
           "verifier": "RT-09",
           "outputs": [
             "cv-ats-html-v1",
@@ -372,7 +404,7 @@
           ],
           "templateId": "TPL-C06-CAREER-CV",
           "gate": "CR_PACKAGE_APPROVED",
-          "stopRule": "Sin Chromium o pdftotext, PDF queda UNKNOWN; HTML no lo simula."
+          "stopRule": "Sin herramientas observables, PDF, reflow o impresión quedan UNKNOWN; HTML no los simula."
         }
       ]
     },
@@ -429,41 +461,45 @@
       "id": "C08",
       "family": "career",
       "title": "QA del paquete de candidatura",
-      "purpose": "Congelar y verificar spec, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.",
+      "purpose": "Congelar y verificar spec, diseño, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.",
       "command": "/career-package-qa",
       "source": "02_proceso/workflows/career/c08-package-qa/workflow.yml",
-      "inputs": ["cv-spec-v1", "cv-source-v2", "cv-variant-manifest-v2"],
-      "deliverables": ["cv-package-v2", "ats-visual-parity-report-v1", "independent-qa-verdict-v1"],
+      "inputs": ["cv-spec-v2", "cv-source-v2", "cv-variant-manifest-v2"],
+      "deliverables": ["cv-package-v3", "ats-visual-parity-report-v1", "independent-qa-verdict-v1"],
       "templateRefs": [
         "02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md"
       ],
       "gates": ["G14", "CR_PACKAGE_APPROVED"],
       "nextWorkflow": "C09",
-      "stopRule": "Cualquier mutación de spec, evidencia, vacante o contenido crea successor package y nueva revisión.",
+      "stopRule": "Cualquier mutación de spec, sistema visual, decisión, evidencia, vacante o contenido crea successor package y nueva revisión por hash stale.",
       "steps": [
         {
           "id": "S01",
-          "purpose": "Verificar claims, vacante, idioma, formatos y paridad.",
-          "inputs": ["cv-spec-v1", "cv-source-v2", "cv-variant-manifest-v2"],
+          "purpose": "Verificar claims, vacante, idioma, formatos, paridad y bindings visuales de cada variante.",
+          "inputs": ["cv-spec-v2", "cv-source-v2", "cv-variant-manifest-v2"],
           "primarySkill": "career-application-orchestrator",
-          "optionalSkills": ["evidence-first-cv", "evidence-based-cover-letter"],
+          "optionalSkills": [
+            "evidence-first-cv",
+            "career-design-system",
+            "evidence-based-cover-letter"
+          ],
           "verifier": "RT-09",
           "outputs": ["ats-visual-parity-report-v1"],
           "templateId": "TPL-C08-PACKAGE-QA",
           "gate": "G14",
-          "stopRule": "UNKNOWN, spec/evidencia/vacante stale, fuga privada o claim no trazable impiden PASS."
+          "stopRule": "UNKNOWN, spec, diseño, evidencia o vacante stale, fuga privada o claim no trazable impiden PASS."
         },
         {
           "id": "S02",
-          "purpose": "Congelar package y emitir veredicto independiente.",
+          "purpose": "Congelar cv-package-v3 y emitir veredicto independiente sobre archivos materiales.",
           "inputs": ["ats-visual-parity-report-v1"],
           "primarySkill": "career-application-orchestrator",
           "optionalSkills": [],
           "verifier": "RT-11",
-          "outputs": ["cv-package-v2", "independent-qa-verdict-v1"],
+          "outputs": ["cv-package-v3", "independent-qa-verdict-v1"],
           "templateId": "TPL-C08-PACKAGE-QA",
           "gate": "CR_PACKAGE_APPROVED",
-          "stopRule": "Verifier y Guardian no editan el candidate congelado."
+          "stopRule": "Verifier y Guardian no editan el candidate congelado; build no implica publicación."
         }
       ]
     },

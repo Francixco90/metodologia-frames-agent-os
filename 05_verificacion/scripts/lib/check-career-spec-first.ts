@@ -18,15 +18,20 @@ export const checkCareerCvSpecFirst = (
   const cvWorkflow = workflows.find(({workflow_id}) => workflow_id === 'C06');
   if (
     !cvWorkflow ||
-    cvWorkflow.execution_steps.map(({step_id}) => step_id).join(',') !== 'S00,S01,S02' ||
-    cvWorkflow.execution_steps[0]?.gate !== 'CR_CV_SPEC_APPROVED' ||
-    !cvWorkflow.deliverables.includes('cv-spec-v1') ||
+    cvWorkflow.execution_steps.map(({step_id}) => step_id).join(',') !== 'S00,S01,S02,S03,S04' ||
+    cvWorkflow.execution_steps[1]?.gate !== 'CR_CV_DESIGN_APPROVED' ||
+    cvWorkflow.execution_steps[2]?.gate !== 'CR_CV_SPEC_APPROVED' ||
+    !cvWorkflow.deliverables.includes('cv-spec-v2') ||
+    !cvWorkflow.deliverables.includes('cv-design-brief-v1') ||
+    !cvWorkflow.deliverables.includes('cv-design-decision-v1') ||
     !cvWorkflow.deliverables.includes('cv-source-v2') ||
     !cvWorkflow.deliverables.includes('cv-ats-docx-v1') ||
     !cvWorkflow.deliverables.includes('cv-executive-html-v1') ||
     !/hash stale|hash.*invalida/iu.test(cvWorkflow.stop_rule)
   ) {
-    errors.push('CAREER-CV-SPEC-001 C06 must implement Spec > Compile > Project fail-closed');
+    errors.push(
+      'CAREER-CV-SPEC-001 C06 must implement Spec > Design > Compile > Project fail-closed',
+    );
   }
   if (
     cvWorkflow?.inputs.includes('application-brief-v1') ||
@@ -38,16 +43,19 @@ export const checkCareerCvSpecFirst = (
   const packageQa = workflows.find(({workflow_id}) => workflow_id === 'C08');
   if (
     !packageQa ||
-    !packageQa.inputs.includes('cv-spec-v1') ||
+    !packageQa.inputs.includes('cv-spec-v2') ||
     !packageQa.inputs.includes('cv-source-v2') ||
-    !packageQa.deliverables.includes('cv-package-v2') ||
+    !packageQa.deliverables.includes('cv-package-v3') ||
     !/spec|hash stale/iu.test(packageQa.stop_rule)
   ) {
-    errors.push('CAREER-CV-SPEC-003 C08 must verify the exact spec-bound v2 package');
+    errors.push('CAREER-CV-SPEC-003 C08 must verify the exact spec-and-design-bound v3 package');
   }
 
   for (const path of [
     '02_proceso/workflows/career/_schema/cv-spec-v1.schema.ts',
+    '02_proceso/workflows/career/_schema/cv-spec-v2.schema.ts',
+    '02_proceso/workflows/career/_schema/cv-package-v3.schema.ts',
+    '02_proceso/workflows/career/_schema/cv-design-decision-v1.schema.ts',
     '02_proceso/workflows/career/_schema/document-v2.schema.ts',
     '02_proceso/workflows/career/_runner/cv-spec.ts',
     '02_proceso/workflows/career/_runner/cv-docx.ts',
