@@ -1,0 +1,33 @@
+schema_version: 1
+project_id: nivel-0-route
+title: 'Nivel 0 · Ruta de Workshops'
+current_state: PARTIAL_CONTROLLED
+governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+technical_validation_state: IN_PROGRESS
+visible_state: NOT_RENDERED
+source_snapshot_id: nivel-0-notes-snapshot-v1
+source_locked: false
+source_bundle: projects/nivel-0-route/source-bundle.yml
+claims_ledger: projects/nivel-0-route/claims-ledger.yml
+work_products:
+  - artifact_id: nivel-0-route-curriculum
+    kind: content
+    technical_state: IN_PROGRESS
+    planned_ref: projects/nivel-0-route/content/curriculum/
+  - artifact_id: nivel-0-route-web
+    kind: web
+    technical_state: IN_PROGRESS
+    planned_ref: projects/nivel-0-route/web/output-manifests/
+approvals: []
+guardian_passed: false
+human_approved: false
+ready: false
+published: false
+coverage_gaps:
+  - source_bundle_and_claims_ledger_pending
+  - h01_design_selection_pending
+  - design_lock_not_materialized
+  - curriculum_spec_and_locales_pending
+  - web_build_and_independent_qa_not_executed
+  - guardian_review_pending
+  - external_distribution_not_authorized

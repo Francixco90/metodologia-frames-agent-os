@@ -23,10 +23,10 @@ de los 377 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       84 |
+| `refactored`         |       85 |
 | `generator_fixed`    |        6 |
 | `superseded`         |        0 |
-| `verified_no_change` |      198 |
+| `verified_no_change` |      197 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             94137 |              110334 |     141205 (1.5×) | 1.1721× | `pass` |
-| Total authored (palabras)     |             94137 |              110334 |       188274 (2×) | 1.1721× | `pass` |
-| Total authored (LOC)          |             35362 |               41395 |        70724 (2×) | 1.1706× | `pass` |
+| Corpus authored elegible      |             93870 |              110035 |     140805 (1.5×) | 1.1722× | `pass` |
+| Total authored (palabras)     |             93870 |              110035 |       187740 (2×) | 1.1722× | `pass` |
+| Total authored (LOC)          |             35304 |               41311 |        70608 (2×) | 1.1702× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -145,7 +145,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `docs/program/execution-ledger.md`                                                                            | `lead`             | `immutable_history`  | 314                | 314               | 41          | 41         | `3d6afb6cfbeb9d4756a621712b062beafb99cc6d59e587a4f627b71bba5b7e1b` | `byte-identical` |
 | `docs/program/formal-scope.md`                                                                                | `lead`             | `verified_no_change` | 592                | 592               | 70          | 70         | `35748c31dca00e9cf769c0f2b85ec9dd83c5434b8a52796d1167a0519b05ba08` | `byte-identical` |
 | `docs/program/operator-runbook.md`                                                                            | `lead`             | `refactored`         | 542                | 668               | 108         | 116        | `56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274` | `changed`        |
-| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 422               | 104         | 197        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
+| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 511               | 104         | 217        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
 | `docs/program/requirements-traceability.md`                                                                   | `lead`             | `verified_no_change` | 835                | 835               | 53          | 53         | `207c511ff8eade696fcbeedf33f1d4c305f63b72e59351cff28d3c1e40e03e33` | `byte-identical` |
 | `docs/program/system-architecture.md`                                                                         | `lead`             | `verified_no_change` | 596                | 596               | 89          | 89         | `c1a8fcc5ece81e28d99d5771435fdc01c441b042c86f1c6247688cbdf8b45692` | `byte-identical` |
 | `docs/program/test-strategy.md`                                                                               | `lead`             | `verified_no_change` | 556                | 556               | 51          | 51         | `49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7` | `byte-identical` |
@@ -296,7 +296,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/notebooks/binding-contract.yml`                                                                   | `sources`          | `verified_no_change` | 33                 | 33                | 20          | 20         | `48ed362f1b67573e110465a94f0a08f469551db3b4f8fd2367ef90f6eaf2c2ea` | `byte-identical` |
 | `registries/notebooks/notebook-registry.yml`                                                                  | `sources`          | `verified_no_change` | 30                 | 30                | 16          | 16         | `e31037151c2a549d4d657804c5d018cc92dc1bf1900ba3d6e9d6cc1c583dfd59` | `byte-identical` |
 | `registries/notebooks/work-unit-binding-contract.yml`                                                         | `sources`          | `verified_no_change` | 113                | 113               | 55          | 55         | `53f6fef560ded6662343f1fc094a7cab6250b7de1d53d6556cdb2ed506efe937` | `byte-identical` |
-| `registries/projects/project-registry.yml`                                                                    | `lead`             | `verified_no_change` | 58                 | 58                | 29          | 29         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `byte-identical` |
+| `registries/projects/project-registry.yml`                                                                    | `lead`             | `refactored`         | 58                 | 113               | 29          | 56         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `changed`        |
 | `registries/skills/README.md`                                                                                 | `skill-foundry`    | `refactored`         | 60                 | 103               | 8           | 16         | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `changed`        |
 | `registries/skills/lifecycle-contract.yml`                                                                    | `skill-foundry`    | `verified_no_change` | 76                 | 76                | 38          | 38         | `e90b0715d47955754a2692d819d76f0e447e7d2452ef594538e92b194de42264` | `byte-identical` |
 | `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1754              | 156         | 818        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
@@ -343,7 +343,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-notebooklm.ts`                                                                                 | `repo`             | `refactored`         | 529                | 529               | 191         | 191        | `a8cb42cb494864e30e3594305a790d98ba2b98b728c6497b6a6822a634f6352a` | `changed`        |
 | `scripts/check-ownership.ts`                                                                                  | `repo`             | `refactored`         | 236                | 668               | 62          | 183        | `14d5453aa565f418920c9669021a35a66b6e3f95593f2087b1405d3326962435` | `changed`        |
 | `scripts/check-privacy.ts`                                                                                    | `repo`             | `refactored`         | 188                | 264               | 72          | 84         | `f3239e066d1f3b997671da2b1140702ceb0ea4360abeb73f3fc787d432e62e1e` | `changed`        |
-| `scripts/check-projects.ts`                                                                                   | `repo`             | `refactored`         | 596                | 918               | 219         | 304        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `changed`        |
+| `scripts/check-projects.ts`                                                                                   | `repo`             | `refactored`         | 596                | 564               | 219         | 193        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `changed`        |
 | `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 209               | 84          | 111        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
 | `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 755               | 226         | 234        | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 394               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |

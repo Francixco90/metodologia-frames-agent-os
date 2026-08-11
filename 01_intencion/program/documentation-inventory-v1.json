@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "9a45529848e3fdc78f7179d4ba76f5693f86a4cde56c2acb580defdd30ee66e0",
-  "totalMarkdown": 1787,
-  "auditedAuthored": 550,
+  "repositoryTreeSha256": "1d14d8739516be0b223f7fb80e03f4b70b32fbfdbd075c3e034c8cb00130a912",
+  "totalMarkdown": 1788,
+  "auditedAuthored": 551,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -207,6 +207,7 @@
       "03_artefactos/content/documentation/ecosystem-inventory.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
       "03_artefactos/content/pilot-carousel-002/content.md",
+      "03_artefactos/projects/nivel-0-route/README.md",
       "03_artefactos/projects/pilot-carousel-001/README.md",
       "03_artefactos/projects/pilot-carousel-001/spec/alt-text.md",
       "03_artefactos/projects/pilot-carousel-001/spec/caption.md",
@@ -4479,7 +4480,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "5420c8fb9362c66ca24c4d3c68e3c37d94a9de26974deaa3ff5f3cafc91537cb",
+      "sha256": "fb328dec41f08639a71303ed629d97fd0cf8879f74d59e87bd9f027471af0f13",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9512,6 +9513,32 @@
         "hasAuthorityLink": true,
         "hasNextAction": true,
         "duplicateHeadings": 1
+      }
+    },
+    {
+      "path": "03_artefactos/projects/nivel-0-route/README.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:projects/nivel-0-route/README.md",
+      "authorityRefs": [
+        "03_artefactos/projects/nivel-0-route/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/nivel-0-route/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "6438e95aef8ec23e886055c7ee169f7bea08a4aaabc74ca68b5c272b3dc3fe50",
+      "words": 295,
+      "lines": 51,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
       }
     },
     {
@@ -16595,7 +16622,7 @@
     }
   ],
   "summary": {
-    "keep": 535,
+    "keep": 536,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,

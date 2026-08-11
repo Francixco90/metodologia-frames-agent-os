@@ -10,164 +10,16 @@ import {
   appendOnlyEvidenceMigrationSchema,
   verifyAppendOnlyEvidenceMigrationFiles,
 } from '../../renderers/remotion/src/append-only-evidence.ts';
+import {
+  projectManifestSchema,
+  registrySchema,
+  RelativeRefSchema,
+  Sha256Schema,
+  validateProductParity,
+} from './lib/project-validation.ts';
+import {validateGovernedSourceLineage} from './lib/source-lineage-validation.ts';
 
 const root = process.cwd();
-const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
-const RelativeRefSchema = z
-  .string()
-  .min(1)
-  .refine(
-    (value) =>
-      !value.startsWith('/') &&
-      !value.includes('..') &&
-      !value.includes('\\') &&
-      !value.startsWith('file:'),
-    'Expected a portable repository-relative path',
-  );
-const TechnicalStateSchema = z.enum(['IN_PROGRESS', 'BUILD_VALIDATED', 'RENDER_VALIDATED']);
-const WorkProductStateSchema = z.strictObject({
-  artifact_id: z.string().regex(/^[a-z0-9-]+$/u),
-  kind: z.enum(['web', 'video']),
-  technical_state: TechnicalStateSchema,
-});
-
-/**
- * Tier A locked project ids. The vs-001 expedient is the canonical Tier A entry
- * and must retain all release booleans at `false` until a manual fail-closed
- * gate (G13-G17) advances it. The task brief referenced `project_id === 'vs-001'`;
- * the actual registry id is `vs-001-source-to-campaign`, which is what we lock
- * here. [CONFIG]
- */
-const TIER_A_LOCKED_PROJECT_IDS = new Set(['vs-001-source-to-campaign']);
-
-/**
- * Release-gate invariant shared by registry entries and project manifests.
- *
- * Tier A entries (see TIER_A_LOCKED_PROJECT_IDS) are pinned to all-false: this
- * script does NOT grant HUMAN_APPROVED / READY / PUBLISHED — those advance only
- * via manual fail-closed gates G13-G17. [CONFIG]
- *
- * For every entry (Tier A included, harmlessly) the cross-field chain enforces
- * the release sequence from dag.yml:
- *   source_locked -> guardian_passed -> human_approved -> ready -> published
- * i.e. a later flag cannot be true unless the preceding one is. This unblocks
- * Tier B (future entries) while keeping Tier A locked. [CÓDIGO]
- */
-const enforceReleaseGates = (
-  entry: {
-    project_id: string;
-    source_locked: boolean;
-    guardian_passed: boolean;
-    human_approved: boolean;
-    ready: boolean;
-    published: boolean;
-  },
-  ctx: z.RefinementCtx,
-): void => {
-  if (TIER_A_LOCKED_PROJECT_IDS.has(entry.project_id)) {
-    const flags: Array<
-      ['source_locked' | 'guardian_passed' | 'human_approved' | 'ready' | 'published', boolean]
-    > = [
-      ['source_locked', entry.source_locked],
-      ['guardian_passed', entry.guardian_passed],
-      ['human_approved', entry.human_approved],
-      ['ready', entry.ready],
-      ['published', entry.published],
-    ];
-    for (const [field, value] of flags) {
-      if (value !== false) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Tier A locked: ${field} must remain false for ${entry.project_id} (advance via manual fail-closed gate)`,
-          path: [field],
-        });
-      }
-    }
-  }
-  if (entry.guardian_passed && !entry.source_locked) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'guardian_passed requires source_locked',
-      path: ['guardian_passed'],
-    });
-  }
-  if (entry.human_approved && !entry.guardian_passed) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'human_approved requires guardian_passed',
-      path: ['human_approved'],
-    });
-  }
-  if (entry.ready && !entry.human_approved) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'ready requires human_approved',
-      path: ['ready'],
-    });
-  }
-  if (entry.published && !entry.ready) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'published requires ready',
-      path: ['published'],
-    });
-  }
-};
-
-const registryEntrySchema = z
-  .strictObject({
-    project_id: z.string().regex(/^[a-z0-9-]+$/u),
-    manifest_ref: RelativeRefSchema,
-    source_bundle_ref: RelativeRefSchema,
-    claims_ledger_ref: RelativeRefSchema,
-    current_state: z.literal('PARTIAL_CONTROLLED'),
-    governed_workflow_state: z.literal('BLOCKED_BEFORE_SOURCE_LOCK'),
-    technical_validation_state: TechnicalStateSchema,
-    work_products: z.array(WorkProductStateSchema).min(2),
-    source_locked: z.boolean(),
-    guardian_passed: z.boolean(),
-    human_approved: z.boolean(),
-    ready: z.boolean(),
-    published: z.boolean(),
-    coverage_gaps: z.array(z.string().min(1)).min(1),
-  })
-  .superRefine(enforceReleaseGates);
-
-const registrySchema = z.strictObject({
-  schema_version: z.literal(1),
-  registry_id: z.literal('project-registry-v1'),
-  mutation_policy: z.literal('append-only-records-and-events'),
-  entries: z.array(registryEntrySchema).min(1),
-});
-
-const projectManifestSchema = z
-  .strictObject({
-    schema_version: z.literal(1),
-    project_id: z.string().regex(/^[a-z0-9-]+$/u),
-    title: z.string().min(1),
-    current_state: z.literal('PARTIAL_CONTROLLED'),
-    governed_workflow_state: z.literal('BLOCKED_BEFORE_SOURCE_LOCK'),
-    technical_validation_state: z.literal('RENDER_VALIDATED'),
-    visible_state: z.literal('RENDERED_DRAFT'),
-    source_snapshot_id: z.string().min(1),
-    source_locked: z.boolean(),
-    claims_ledger: RelativeRefSchema,
-    work_products: z
-      .array(
-        WorkProductStateSchema.extend({
-          artifact_ref: RelativeRefSchema,
-          receipt_ref: RelativeRefSchema,
-        }),
-      )
-      .length(2),
-    approvals: z.array(z.unknown()),
-    guardian_passed: z.boolean(),
-    human_approved: z.boolean(),
-    ready: z.boolean(),
-    published: z.boolean(),
-    coverage_gaps: z.array(z.string().min(1)).min(1),
-  })
-  .superRefine(enforceReleaseGates);
 
 const renderOutputSchema = z.object({
   artifactId: z.literal('REMOTION-VS001'),
@@ -233,29 +85,66 @@ for (const project of registry.entries) {
   ) {
     errors.push(`${project.project_id}: registry y manifest no comparten estados canónicos`);
   }
+  if (
+    manifest.source_bundle !== undefined &&
+    manifest.source_bundle !== project.source_bundle_ref
+  ) {
+    errors.push(`${project.project_id}: source_bundle_ref diverge del manifest`);
+  }
+  if (manifest.claims_ledger !== project.claims_ledger_ref) {
+    errors.push(`${project.project_id}: claims_ledger_ref diverge del manifest`);
+  }
 
-  const registryProducts = new Map(
-    project.work_products.map((product) => [product.artifact_id, product]),
+  errors.push(
+    ...validateProductParity(project.project_id, project.work_products, manifest.work_products),
   );
   for (const product of manifest.work_products) {
-    const registered = registryProducts.get(product.artifact_id);
-    if (
-      registered?.kind !== product.kind ||
-      registered.technical_state !== product.technical_state
-    ) {
-      errors.push(`${project.project_id}: drift en work product ${product.artifact_id}`);
+    if (product.technical_state === 'IN_PROGRESS') {
+      if (!product.planned_ref?.startsWith(`projects/${project.project_id}/`)) {
+        errors.push(
+          `${project.project_id}: planned_ref fuera del expediente ${product.artifact_id}`,
+        );
+      }
+      continue;
     }
     for (const ref of [product.artifact_ref, product.receipt_ref]) {
-      if (!existsSync(resolve(root, ref))) {
+      if (ref === undefined || !existsSync(resolve(root, ref))) {
         errors.push(`${project.project_id}: evidencia inexistente ${ref}`);
       }
     }
+  }
+
+  if (project.project_id !== 'vs-001-source-to-campaign') {
+    errors.push(
+      ...validateGovernedSourceLineage({
+        projectId: project.project_id,
+        snapshotId: manifest.source_snapshot_id,
+        sourceLocked: manifest.source_locked,
+        bundle: readYaml(project.source_bundle_ref),
+        ledger: readYaml(project.claims_ledger_ref),
+      }).map((message) => `${project.project_id}: ${message}`),
+    );
+    if (manifest.work_products.some(({technical_state}) => technical_state !== 'IN_PROGRESS')) {
+      errors.push(
+        `${project.project_id}: validación genérica de receipts pendiente; conservar IN_PROGRESS`,
+      );
+    }
+    continue;
   }
 
   const video = manifest.work_products.find(({kind}) => kind === 'video');
   const web = manifest.work_products.find(({kind}) => kind === 'web');
   if (video === undefined || web === undefined) {
     errors.push(`${project.project_id}: deben existir work products Web y video`);
+    continue;
+  }
+  if (
+    video.artifact_ref === undefined ||
+    video.receipt_ref === undefined ||
+    web.artifact_ref === undefined ||
+    web.receipt_ref === undefined
+  ) {
+    errors.push(`${project.project_id}: productos validados requieren artifact_ref y receipt_ref`);
     continue;
   }
 
@@ -299,6 +188,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.info(
-    `PASS PROJECTS: ${registry.entries.length} expediente reconciliado con receipts Web/Motion; RENDER_VALIDATED técnico y workflow bloqueado antes de SOURCE_LOCKED.`,
+    `PASS PROJECTS: ${registry.entries.length} expedientes reconciliados; productos planificados permanecen IN_PROGRESS y evidencia materializada queda hash-bound.`,
   );
 }

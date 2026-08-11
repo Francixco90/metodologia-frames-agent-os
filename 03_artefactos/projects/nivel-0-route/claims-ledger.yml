@@ -1,0 +1,57 @@
+schema_version: 1
+ledger_id: claims-ledger-nivel-0-v1
+project_id: nivel-0-route
+mutation_policy: append-only-records
+source_snapshot_id: nivel-0-notes-snapshot-v1
+entries:
+  - claim_id: CLM-N0-001
+    claim: 'Nivel 0 progresa de comprender a priorizar, amplificar y orquestar.'
+    source_ids:
+      [
+        SRC-N0-IA-20260714,
+        SRC-N0-PRODUCTIVO-20260805,
+        SRC-N0-AMPLIFICADO-20260806,
+        SRC-N0-AGENTICO-20260606,
+      ]
+    support: pedagogical_synthesis
+    allowed_use_scope: route_structure
+    status: usable_with_inference_label
+  - claim_id: CLM-N0-002
+    claim: 'NotebookLM responde sobre las fuentes seleccionadas y presenta citas para revisar el contexto.'
+    source_ids: [SRC-N0-GOOGLE-NBLM-HELP]
+    support: direct_official_documentation
+    allowed_use_scope: class_01_and_playbook
+    status: usable
+  - claim_id: CLM-N0-003
+    claim: 'La pauta PASA organiza el trabajo en Planificar, Acelerar, Sistematizar y Amplificar.'
+    source_ids: [SRC-N0-PRODUCTIVO-20260805, SRC-N0-AMPLIFICADO-20260806]
+    support: direct_and_synthesized
+    allowed_use_scope: classes_02_and_03
+    status: usable_without_performance_guarantee
+  - claim_id: CLM-N0-004
+    claim: 'Un asistente configurado combina instrucciones, conocimiento y capacidades para un propósito específico.'
+    source_ids: [SRC-N0-OPENAI-GPTS-HELP, SRC-N0-AMPLIFICADO-20260806]
+    support: direct_official_documentation
+    allowed_use_scope: classes_03_and_04
+    status: usable
+  - claim_id: CLM-N0-005
+    claim: 'Todo resultado generado requiere criterio de aceptación y revisión humana antes de utilizarse.'
+    source_ids:
+      [
+        SRC-N0-IA-20260718,
+        SRC-N0-PRODUCTIVO-20260805,
+        SRC-N0-AMPLIFICADO-20260806,
+        SRC-N0-AGENTICO-20260321,
+      ]
+    support: recurring_direct_principle
+    allowed_use_scope: all_public_pages
+    status: usable
+blocked_claim_classes:
+  - guaranteed_productivity_gain
+  - guaranteed_time_saving
+  - comparative_superiority
+  - neuroscience
+  - autonomous_external_action_without_human_gate
+coverage_gaps:
+  - automatic_notes_require_recording_comparison_for_verbatim_or_numeric_claims
+  - commercial_outcomes_not_supported

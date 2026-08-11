@@ -27,3 +27,30 @@ entries:
       - human_editorial_playback_pending
       - canonical_guardian_and_H01_approval_absent
       - external_distribution_not_authorized
+  - project_id: nivel-0-route
+    manifest_ref: projects/nivel-0-route/project.yml
+    source_bundle_ref: projects/nivel-0-route/source-bundle.yml
+    claims_ledger_ref: projects/nivel-0-route/claims-ledger.yml
+    current_state: PARTIAL_CONTROLLED
+    governed_workflow_state: BLOCKED_BEFORE_SOURCE_LOCK
+    technical_validation_state: IN_PROGRESS
+    work_products:
+      - artifact_id: nivel-0-route-curriculum
+        kind: content
+        technical_state: IN_PROGRESS
+      - artifact_id: nivel-0-route-web
+        kind: web
+        technical_state: IN_PROGRESS
+    source_locked: false
+    guardian_passed: false
+    human_approved: false
+    ready: false
+    published: false
+    coverage_gaps:
+      - source_bundle_and_claims_ledger_pending
+      - h01_design_selection_pending
+      - design_lock_not_materialized
+      - curriculum_spec_and_locales_pending
+      - web_build_and_independent_qa_not_executed
+      - guardian_review_pending
+      - external_distribution_not_authorized

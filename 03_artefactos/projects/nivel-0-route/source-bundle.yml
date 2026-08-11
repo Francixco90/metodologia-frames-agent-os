@@ -1,0 +1,79 @@
+schema_version: 2
+bundle_id: nivel-0-source-bundle-v1
+project_id: nivel-0-route
+source_snapshot_id: nivel-0-notes-snapshot-v1
+state: PARTIAL_CONTROLLED
+source_locked: false
+normalization_contract: google-drive-oai-fetch-json-v1
+privacy_contract:
+  public_projection: derived_sanitized_content_only
+  forbidden: [participant_names, participant_emails, private_locators, verbatim_transcripts]
+active_sources:
+  - source_id: SRC-N0-IA-20260714
+    title: 'IA, qué está pasando y cómo sacarle provecho'
+    session_date: '2026-07-14'
+    normalized_sha256: b88f83dfead83aed712e5c190604ba43b4d013f905ebead8acf6b6a6d712c3cf
+    authority: user_directed_primary_meeting_notes
+    quality_grade: A_MINUS
+    use_scope: conceptual_foundations_and_notebooklm
+  - source_id: SRC-N0-IA-20260718
+    title: 'Versión inmersiva de IA, qué está pasando y cómo sacarle provecho'
+    session_date: '2026-07-18'
+    normalized_sha256: 68a81257353cdca12103c6d4be33e704b276d7379775f00e6d36b5a875ff76e5
+    authority: user_directed_supporting_meeting_notes
+    quality_grade: A_MINUS
+    use_scope: prompting_verification_and_supervision
+  - source_id: SRC-N0-PRODUCTIVO-20260805
+    title: 'De Ocupado a Productivo'
+    session_date: '2026-08-05'
+    normalized_sha256: 62f946eb47f0d4e040bd7c69fa963101e9c112b787c6f350b4ab971724239eff
+    authority: user_directed_primary_meeting_notes
+    quality_grade: A_MINUS
+    use_scope: productivity_and_pasa_method
+  - source_id: SRC-N0-AMPLIFICADO-20260806
+    title: 'Intro a Trabajo Amplificado'
+    session_date: '2026-08-06'
+    normalized_sha256: 73f3cefa619042fdf74b9755b9e25fc0ed1b14403c72721aa5c0ade776695de9
+    authority: user_directed_primary_meeting_notes
+    quality_grade: A_MINUS
+    use_scope: assistant_design_and_system_feedback
+  - source_id: SRC-N0-AGENTICO-20260606
+    title: 'Trabajo Agéntico'
+    session_date: '2026-06-06'
+    normalized_sha256: b2de4b7558e35fcb17ff6e892b4eea8bdf005bdbcf48ac184499ac4e41f3e43c
+    authority: user_directed_primary_meeting_notes
+    quality_grade: B_PLUS
+    use_scope: agentic_environment_and_sovereignty
+  - source_id: SRC-N0-AGENTICO-20260321
+    title: 'Trabajo Agéntico'
+    session_date: '2026-03-21'
+    normalized_sha256: ee4fd2c6a0d7089e63f19057e48cedc5ab1ce5130f898087f9c88ed445896dbd
+    authority: user_directed_supporting_meeting_notes
+    quality_grade: A_MINUS
+    use_scope: assistant_agent_workflow_demonstration
+official_references:
+  - source_id: SRC-N0-GOOGLE-NBLM-HELP
+    authority: official_product_documentation
+    public_url: https://support.google.com/notebooklm/answer/16164461
+    use_scope: notebooklm_source_grounding_and_citations
+  - source_id: SRC-N0-OPENAI-GPTS-HELP
+    authority: official_product_documentation
+    public_url: https://help.openai.com/en/articles/8554407-gpts-in-chatgpt
+    use_scope: configured_assistant_capabilities
+excluded_sources:
+  - source_id: SRC-N0-IA-20260804
+    normalized_sha256: fe336d5a74d08ece8dad76014146c87d1242384516be4ceef51d20794f9a1870
+    exclusion_reason: user_explicit_quality_rejection
+  - source_id: SRC-N0-AGENTICO-20260808
+    normalized_sha256: be8691e7ce52f7586f26eeb25dcf8d77732ec6199c2dd638401ba34a38757491
+    exclusion_reason: user_explicit_quality_rejection
+coverage_gaps:
+  - automatic_notes_not_verified_against_recording
+  - publication_authority_for_verbatim_excerpts_not_established
+  - h01_design_selection_pending
+hard_limits:
+  - no_verbatim_participant_quotes
+  - no_private_drive_locators
+  - no_personal_data
+  - no_neuroscience_claims
+  - excluded_sources_must_not_support_public_content

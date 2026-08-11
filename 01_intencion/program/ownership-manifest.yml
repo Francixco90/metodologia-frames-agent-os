@@ -24,6 +24,10 @@ writers:
     - projects/vs-001-source-to-campaign/project.yml
     - projects/pilot-carousel-001/README.md
     - projects/pilot-carousel-001/project.yml
+    # [CONFIG] Nivel 0 bootstrap, project manifest and local governance receipts.
+    - projects/nivel-0-route/README.md
+    - projects/nivel-0-route/project.yml
+    - projects/nivel-0-route/receipts/**
     - work/private/.gitkeep
   repo:
     - package.json
@@ -50,6 +54,9 @@ writers:
     - brand/**
     - registries/brand/**
     - registries/channels/**
+    # [CONFIG] H01 selects one direction before brand may materialize the lock.
+    - projects/nivel-0-route/brand/design-directions/**
+    - projects/nivel-0-route/brand/design-lock.yml
   sources:
     - inbox/**
     - adapters/notebooklm/**
@@ -61,6 +68,9 @@ writers:
     - 00_inbox/context.md
     - projects/vs-001-source-to-campaign/source-bundle.yml
     - projects/vs-001-source-to-campaign/claims-ledger.yml
+    # [CONFIG] Nivel 0 source authority remains isolated from authored content.
+    - projects/nivel-0-route/source-bundle.yml
+    - projects/nivel-0-route/claims-ledger.yml
   core:
     - core/**
     - workflows/core/**
@@ -92,6 +102,9 @@ writers:
     - networks/web/**
     - workflows/web/**
     - projects/vs-001-source-to-campaign/web/**
+    # [CONFIG] Compiler and output manifests only; no deploy/publication path.
+    - projects/nivel-0-route/web/compiler/**
+    - projects/nivel-0-route/web/output-manifests/**
   content:
     - content/**
     - networks/content/**
@@ -117,6 +130,10 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/02-beat-map.yml
     - projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md
     - projects/vs-001-source-to-campaign/remotion/captions.json
+    # [CONFIG] Curriculum authority, canonical spec and locale projections.
+    - projects/nivel-0-route/content/curriculum/**
+    - projects/nivel-0-route/content/spec/**
+    - projects/nivel-0-route/content/locales/**
   remotion:
     # [CONFIG] Remotion owns renderer implementation and render evidence only;
     # workflow orchestration remains under content:workflows/multimedia/**.
@@ -157,6 +174,7 @@ writers:
     - quality/reviews/skill-foundry/**
     - quality/reviews/core-committee/**
     - projects/pilot-carousel-001/quality/**
+    - projects/nivel-0-route/quality/**
     - receipts/dependency-audits/**
     - receipts/check-runs/**
     - evals/**
@@ -189,6 +207,8 @@ writers:
     - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
     - projects/pilot-carousel-001/guardian/**
+    # [CONFIG] Review evidence path; Guardian remains non-remediating.
+    - projects/nivel-0-route/guardian/review/**
   # Versioned host adapters are installed only by an explicit, dry-run-first command.
 non_writers:
   human_approver:
