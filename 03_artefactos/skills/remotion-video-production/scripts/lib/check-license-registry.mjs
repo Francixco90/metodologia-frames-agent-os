@@ -52,9 +52,9 @@ export const checkLicenseRegistry = ({
     runtimeAuthority?.legal_eligibility_adjudicated !== false ||
     runtimeReceipt.runtime?.version !== '4.0.494' ||
     runtimeReceipt.supersedes?.receipt_ref !==
-      'skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03.yml' ||
+      'skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml' ||
     runtimeReceipt.supersedes?.receipt_sha256 !==
-      '5e073ab99011507e0d8d8ee2334f6eb1ce971b3748e0eec81e65a5f81b85f046' ||
+      '23dd341e2b1358daa2e501f467e40ad40bea64188e2c891a6aef737af1947e19' ||
     runtimeReceipt.evaluation?.commercial_or_production_use !== 'coverage_gap' ||
     runtimeReceipt.evaluation?.consequence !== 'blocked' ||
     runtimeVerdict.evaluation_receipt?.ref !== runtimeAuthority?.receipt_ref ||

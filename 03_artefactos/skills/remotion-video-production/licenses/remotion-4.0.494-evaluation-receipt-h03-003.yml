@@ -1,0 +1,38 @@
+schema_version: 1
+receipt_id: RCP-LIC-REMOTION-4.0.494-EVAL-H03-003
+recorded_at: '2026-08-11T00:00:00Z'
+evidence_scope: exact_installed_runtime_local_evaluation_only
+supersedes:
+  receipt_ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml
+  receipt_sha256: 23dd341e2b1358daa2e501f467e40ad40bea64188e2c891a6aef737af1947e19
+  reason: approved_ajv_dependency_lock_succession
+runtime: {name: Remotion, version: 4.0.494}
+version_binding:
+  lockfile_ref: pnpm-lock.yaml
+  lockfile_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+  lock_succession_ref: receipts/dependency-audits/H03-LOCK-SUCCESSION-008.yml
+  package_key: remotion@4.0.494
+  package_integrity: sha512-WiAUJ5rjhoYvBJzwp8ZLybhJZLe6VAwWk7pbs9Jv1yYLbHAV9RraUaNHuegaIKbbmgW2c9UDPgKjdZ9k9XjTyA==
+installed_evidence:
+  package_manifest_ref: node_modules/remotion/package.json
+  package_manifest_sha256: be2653824d869b613d014adc1d13586ff9c2042315e9a3d729eef6bf520ae246
+  license_text_ref: node_modules/remotion/LICENSE.md
+  license_text_sha256: bd65083b940f61904f6ef298aade918a7cad72a3e35bc406e36fab365844b673
+  external_text_copied_into_skill: false
+upstream_locator:
+  url: https://github.com/remotion-dev/remotion/blob/v4.0.494/LICENSE.md
+  version_pinned: true
+  authority_use: supplementary_locator_only
+evaluation:
+  local_technical_evaluation: permitted_by_program_decision
+  legal_eligibility_adjudicated: false
+  commercial_or_production_use: coverage_gap
+  consequence: blocked
+reproduce:
+  - pnpm install --frozen-lockfile
+  - verify lock succession, unchanged Remotion package version and integrity
+  - hash installed package manifest and license text
+coverage_gaps: [entity_size_use_case_and_commercial_eligibility_not_adjudicated]
+state_effect: NONE_ON_READY_RELEASE_OR_PUBLISHED
+publication_authority: false
+append_only: true

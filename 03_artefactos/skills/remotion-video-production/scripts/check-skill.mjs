@@ -93,6 +93,7 @@ for (const required of [
   'licenses/remotion-4.0.494-evaluation-receipt.yml',
   'licenses/remotion-4.0.494-evaluation-receipt-h03.yml',
   'licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml',
+  'licenses/remotion-4.0.494-evaluation-receipt-h03-003.yml',
   'licenses/runtime-license-verdict.yml',
   'schemas/render-input.schema.json',
   'schemas/render-output.schema.json',

@@ -6,8 +6,8 @@ official_license_url: https://github.com/remotion-dev/remotion/blob/v4.0.494/LIC
 official_locator_version_pinned: true
 observed_at: '2026-07-20'
 evaluation_receipt:
-  ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-002.yml
-  sha256: 23dd341e2b1358daa2e501f467e40ad40bea64188e2c891a6aef737af1947e19
+  ref: skills/remotion-video-production/licenses/remotion-4.0.494-evaluation-receipt-h03-003.yml
+  sha256: f45f9663c3b40105e02f8d0434ede4d179203e8acf128a2a83b99387590574e0
 local_evaluation:
   verdict: permitted
   evidence_basis: exact_version_hash_bound_receipt_and_program_decision
