@@ -4,9 +4,10 @@ import {
   type CareerCvV1,
   type CareerLetterV1,
 } from '../_schema/document-v1.schema.ts';
+import {CareerCvV2Schema, type CareerCvV2} from '../_schema/document-v2.schema.ts';
 import {sha256Text, stableStringify} from './canonical.ts';
 
-type CareerDocument = CareerCvV1 | CareerLetterV1;
+type CareerDocument = CareerCvV1 | CareerCvV2 | CareerLetterV1;
 
 const payload = (document: CareerDocument): unknown =>
   Object.fromEntries(Object.entries(document).filter(([key]) => key !== 'content_sha256'));
@@ -14,8 +15,12 @@ const payload = (document: CareerDocument): unknown =>
 export const calculateCareerDocumentHash = (document: CareerDocument): string =>
   sha256Text(stableStringify(payload(document)));
 
-export const parseCareerCv = (input: unknown): CareerCvV1 => {
-  const document = CareerCvV1Schema.parse(input);
+export const parseCareerCv = (input: unknown): CareerCvV1 | CareerCvV2 => {
+  const record = input as {schema_version?: string};
+  const document =
+    record.schema_version === 'career-cv-v2'
+      ? CareerCvV2Schema.parse(input)
+      : CareerCvV1Schema.parse(input);
   if (calculateCareerDocumentHash(document) !== document.content_sha256) {
     throw new Error('Career CV content_sha256 mismatch');
   }

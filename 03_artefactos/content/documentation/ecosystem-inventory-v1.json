@@ -103,6 +103,13 @@
     },
     {
       "kind": "ASSET",
+      "id": "02_proceso/workflows/career/_assets/ats-document-template.html",
+      "ref": "02_proceso/workflows/career/_assets/ats-document-template.html",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
       "id": "02_proceso/workflows/career/_assets/brief-template.html",
       "ref": "02_proceso/workflows/career/_assets/brief-template.html",
       "scope": "CANONICAL",
@@ -6318,5 +6325,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "076fc9bffa0abb76def207ff5909f9c4842c1678a0c8e104a51283a6d80dea95"
+  "sourceSha256": "13fb47652cb5ca4f8500eeae51de664c959043ad007906a9f255e9d1866d16b5"
 }
