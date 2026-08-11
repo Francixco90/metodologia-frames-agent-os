@@ -1,17 +1,33 @@
 {
   "schemaVersion": "transcript-intelligence-v1",
+  "contractRevision": 3,
   "projectId": "synthetic-closing-cases",
   "source": {
     "id": "SRC-SYNTH-CLOSING-001",
-    "kind": "meeting",
-    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "kind": "text",
+    "ref": "source.txt",
+    "sha256": "cbf0b3e87a21ff5cc8a9f8e70493a00c4cf2acc3ed10e9a6f2b0ea39f8f1363a",
+    "durationSeconds": 60,
     "rights": "synthetic-first-party",
     "authority": "fixture",
     "audioAvailable": false
   },
-  "asrRef": "asr-candidate.json",
-  "notesRefs": ["editorial-notes.json"],
-  "authorityRef": "authority.json",
+  "clocks": {
+    "inputClock": "absolute",
+    "absolute": {"id": "source-media", "unit": "seconds", "originSeconds": 0},
+    "local": {"id": "selected-story", "unit": "seconds", "originAbsoluteSeconds": 1}
+  },
+  "inputs": [
+    {"class": "asr_candidate", "ref": "asr-candidate.json", "sha256": "3ec46a6ae29a3c2836438e114031da546715274b2284451293604711ba22c299", "authorityClass": "candidate"},
+    {"class": "authority", "ref": "authority.json", "sha256": "1e16bce515a3f622830cefbaacf61ef5be3c10952372b70c3f270c83da87349b", "authorityClass": "first-party-glossary"},
+    {"class": "editorial_notes", "ref": "editorial-notes.json", "sha256": "791de2d56e7e7d3c7d1333795fd14f39052ab733549ec8e0d35c021fda5c883b", "authorityClass": "locator-only"},
+    {"class": "visual_reference", "ref": "visual-reference.json", "sha256": "ddba018e0ab6fff717b602dace9a4234e2b2a99fbee87bc21fe96d27d8d6c420", "authorityClass": "visual-locator-only"},
+    {"class": "inference", "ref": "inference.json", "sha256": "8e5730062fcd3ba3d6b91399190a96a9010871005626671b32966ae2df78acde", "authorityClass": "non-evidentiary"}
+  ],
+  "provenance": {
+    "model": {"id": "synthetic-offline-asr", "ref": "model.fixture", "sha256": "9def5995bd0f5ce392d8d6c7e56f644dc0903fa5d10a84db83af3b6cfedc52b6"},
+    "config": {"id": "fixture-config-v1", "ref": "asr-config.json", "sha256": "0663ba77efb3af10327b828f827d40ec31563b9903c29399bb265554be53a677"}
+  },
   "languageProfile": {"primary": "es-CO", "secondary": ["en"]},
   "policy": {"captionMode": "minimal-clarity", "privateCoaching": true, "publicPackage": true},
   "narrative": {"purpose": "mostrar impacto verificable", "audience": "profesionales ocupados", "targetSeconds": 75}

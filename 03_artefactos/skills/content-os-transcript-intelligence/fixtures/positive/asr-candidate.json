@@ -1,6 +1,8 @@
 {
-  "schemaVersion": "asr-candidate-v1",
+  "schemaVersion": "asr-candidate-v2",
   "model": "synthetic-offline-asr",
+  "modelSha256": "9def5995bd0f5ce392d8d6c7e56f644dc0903fa5d10a84db83af3b6cfedc52b6",
+  "configSha256": "0663ba77efb3af10327b828f827d40ec31563b9903c29399bb265554be53a677",
   "language": "es",
   "segments": [
     {"id": "s1", "speaker": "Participante A", "startSeconds": 1, "endSeconds": 7, "text": "Antes tenía archivos dispersos y reportes estáticos.", "roles": ["hook", "what_is", "friction", "problem"]},

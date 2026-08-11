@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "inference-v1",
+  "authorityClass": "non-evidentiary",
+  "inferences": [
+    {"segmentId": "s3", "text": "The demonstration may be useful to the audience.", "claimAuthority": false}
+  ]
+}

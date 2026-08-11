@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "transcript-authority-v1",
+  "terms": [
+    {"canonical": "Zeta", "aliases": ["Ceta"], "language": "es", "material": true, "materialKind": "product", "authorityClass": "unverified-note", "verified": false, "authorityRef": "UNVERIFIED-PRODUCT-NOTE"}
+  ]
+}
