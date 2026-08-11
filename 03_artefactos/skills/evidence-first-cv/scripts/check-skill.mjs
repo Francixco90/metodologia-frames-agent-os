@@ -59,11 +59,13 @@ const docxStyle = json('assets/docx-style-contract.json');
 const contact = json('assets/contact-binding.example.json');
 for (const token of [
   `name: ${id}`,
-  'version: 0.2.0',
+  'version: 0.3.0',
   'cv-spec-v2',
   'cv-package-v3',
   'migrateCvSpecV1ToV2',
+  'migrateCareerCvPackageV2ToV3',
   'HUMAN_APPROVED',
+  'CR_CV_DESIGN_APPROVED',
   'ats-neutral',
   'spec_sha256',
   'Evidence Bank',

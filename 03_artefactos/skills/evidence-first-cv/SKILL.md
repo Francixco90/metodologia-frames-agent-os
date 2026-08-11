@@ -1,7 +1,7 @@
 ---
 name: evidence-first-cv
 description: This skill should be used when the user asks to "crear mi CV en HTML", "adaptar mi CV a una vacante", "hacer un résumé ATS", "comparar versiones de mi hoja de vida", or export a traceable bilingual CV package.
-version: 0.2.0
+version: 0.3.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -12,18 +12,22 @@ metadata:
 
 # Evidence-First CV
 
-Compone CV recruiter-first y ATS-safe desde una `cv-spec-v1` aprobada y un
+Compone CV recruiter-first y ATS-safe desde una `cv-spec-v2` aprobada y un
 Evidence Bank canónico. Personalizar significa seleccionar, ordenar y expresar
 evidencia; no añadir coincidencias sin respaldo. [METODOLOGIA][CONFIG]
 
 ## Preflight
 
 Exige `candidate_id`, brief hash-bound, Evidence Bank hash-bound y
-`cv-spec-v1` en `HUMAN_APPROVED`. Para `targeted_cv`, exige además snapshot de
+`cv-spec-v2` en `HUMAN_APPROVED`. Una `cv-spec-v1` solo entra por migración
+explícita y nunca completa decisiones visuales faltantes. Para `targeted_cv`, exige además snapshot de
 vacante y application brief fijados por hash. Rechaza una spec obsoleta o una
 selección de evidencia que no sea subconjunto del banco vigente. Si falta una
 decisión que cambie veracidad, elegibilidad, posicionamiento o outputs, devuelve
 la pregunta al orchestrator. Nunca ingiere PII desde el repositorio versionado.
+HTML ejecutivo exige `CR_CV_DESIGN_APPROVED`, una decisión visual humana vigente
+y bindings exactos de sistema, composición y tema. ATS-only conserva el perfil
+neutral y no depende de esa aprobación.
 
 ## Flujo C06
 
@@ -36,8 +40,10 @@ la pregunta al orchestrator. Nunca ingiere PII desde el repositorio versionado.
 5. Proyecta únicamente la matriz solicitada: HTML ejecutivo, ATS HTML, ATS DOCX
    y ATS PDF. Ningún derivado se convierte en fuente editorial.
 6. Liga cada output material al `spec_sha256`, `evidence_bank_sha256` y hash de
-   contenido canónico en `cv-package-v2`; cada variante liga además su propia
+   contenido canónico en `cv-package-v3`; cada variante liga además su propia
    fuente lingüística por ref y hash, sin asumir que ES y EN son bytes iguales.
+   Las variantes ejecutivas ligan design system, decisión y composición; las ATS
+   declaran explícitamente `ats-neutral`.
 7. Valida claims, enlaces, lectura lineal, texto extraíble, accesibilidad,
    impresión, paridad entre idiomas y formatos, privacidad y límite de páginas.
 
@@ -63,7 +69,7 @@ Formación no se convierte en certificación.
 - Markdown canónico por idioma solicitado.
 - HTML ejecutivo accesible, responsive, imprimible y CSP estricta.
 - ATS HTML de una columna, ATS DOCX estructural y ATS PDF con texto extraíble.
-- `variant-manifest.json` según `schemas/cv-package-v2.schema.json`.
+- `variant-manifest.json` compatible con el contrato runtime `cv-package-v3`.
 - Reporte de claims, paridad, visual/ATS, gaps y siguiente gate `CR_PACKAGE_QA`.
 
 No declares un formato producido si el archivo no existe y su hash no fue leído
