@@ -4,13 +4,24 @@
   "type": "object",
   "required": ["literal-transcript.json", "language-events.json", "correction-ledger.json", "caption-track.json", "pronunciation-glossary.json", "semantic-index.json", "narrative-map.json", "verification.json"],
   "properties": {
-    "literal-transcript.json": {"type": "object"},
+    "literal-transcript.json": {"$ref": "#/$defs/clockedArtifact"},
     "language-events.json": {"type": "object"},
     "correction-ledger.json": {"type": "object"},
     "caption-track.json": {"type": "object"},
     "pronunciation-glossary.json": {"type": "object"},
     "semantic-index.json": {"type": "object"},
     "narrative-map.json": {"type": "object"},
-    "verification.json": {"type": "object"}
+    "verification.json": {"$ref": "#/$defs/clockedArtifact"}
+  },
+  "$defs": {
+    "clockedArtifact": {
+      "type": "object",
+      "required": ["schemaVersion", "clocks", "provenance"],
+      "properties": {
+        "schemaVersion": {"type": "string"},
+        "clocks": {"type": "object"},
+        "provenance": {"type": "object"}
+      }
+    }
   }
 }

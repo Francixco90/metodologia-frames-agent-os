@@ -1,36 +1,82 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "transcript-intelligence-v1",
+  "title": "Transcript Intelligence v1 (revision 3; older revisions read/migrate only)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "projectId", "source", "asrRef", "authorityRef", "policy", "narrative"],
+  "required": ["schemaVersion", "projectId", "source", "policy", "narrative"],
   "properties": {
     "schemaVersion": {"const": "transcript-intelligence-v1"},
+    "contractRevision": {"const": 3},
     "projectId": {"type": "string", "minLength": 1},
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "kind", "sha256", "rights", "authority", "audioAvailable"],
+      "required": ["id", "kind", "ref", "sha256", "durationSeconds", "rights", "authority", "audioAvailable"],
       "properties": {
         "id": {"type": "string", "minLength": 1},
         "kind": {"enum": ["video", "audio", "meeting", "podcast", "text"]},
-        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "ref": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "durationSeconds": {"type": "number", "exclusiveMinimum": 0},
         "rights": {"type": "string", "minLength": 3},
         "authority": {"type": "string", "minLength": 3},
         "audioAvailable": {"type": "boolean"},
-        "audioRef": {"type": "string", "minLength": 1}
+        "derivedAudioSha256": {"$ref": "#/$defs/sha256"}
       }
     },
-    "asrRef": {"type": "string", "minLength": 1},
-    "notesRefs": {"type": "array", "items": {"type": "string"}},
-    "authorityRef": {"type": "string", "minLength": 1},
+    "clocks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputClock", "absolute", "local"],
+      "properties": {
+        "inputClock": {"enum": ["absolute", "local"]},
+        "absolute": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "unit", "originSeconds"],
+          "properties": {"id": {"type": "string", "minLength": 1}, "unit": {"const": "seconds"}, "originSeconds": {"type": "number"}}
+        },
+        "local": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "unit", "originAbsoluteSeconds"],
+          "properties": {"id": {"type": "string", "minLength": 1}, "unit": {"const": "seconds"}, "originAbsoluteSeconds": {"type": "number", "minimum": 0}}
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["class", "ref", "sha256", "authorityClass"],
+        "properties": {
+          "class": {"enum": ["literal_audio", "asr_candidate", "editorial_notes", "visual_reference", "inference", "authority"]},
+          "ref": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "authorityClass": {"type": "string", "minLength": 3},
+          "derivedFromSourceSha256": {"$ref": "#/$defs/sha256"}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "config"],
+      "properties": {
+        "model": {"$ref": "#/$defs/hashBoundIdentity"},
+        "config": {"$ref": "#/$defs/hashBoundIdentity"}
+      }
+    },
+    "asrRef": {"type": "string", "minLength": 1, "deprecated": true},
+    "notesRefs": {"type": "array", "items": {"type": "string"}, "deprecated": true},
+    "authorityRef": {"type": "string", "minLength": 1, "deprecated": true},
     "languageProfile": {
       "type": "object",
       "required": ["primary", "secondary"],
-      "properties": {
-        "primary": {"type": "string"},
-        "secondary": {"type": "array", "items": {"type": "string"}}
-      }
+      "properties": {"primary": {"type": "string"}, "secondary": {"type": "array", "items": {"type": "string"}}}
     },
     "policy": {
       "type": "object",
@@ -49,6 +95,22 @@
         "audience": {"type": "string", "minLength": 3},
         "targetSeconds": {"type": "number", "exclusiveMinimum": 0}
       }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"contractRevision": {"const": 3}}, "required": ["contractRevision"]},
+      "then": {"required": ["clocks", "inputs", "provenance"]},
+      "else": {"required": ["asrRef", "authorityRef"]}
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "hashBoundIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "ref", "sha256"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "ref": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}}
     }
   }
 }

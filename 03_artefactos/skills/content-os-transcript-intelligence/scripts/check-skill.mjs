@@ -1,64 +1,114 @@
 #!/usr/bin/env node
 import {createHash} from 'node:crypto';
-import {existsSync, mkdtempSync, readFileSync} from 'node:fs';
+import {existsSync, mkdtempSync, readFileSync, readdirSync} from 'node:fs';
 import {tmpdir} from 'node:os';
-import {resolve} from 'node:path';
+import {dirname, extname, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
+import {runAdversarial} from './lib/adversarial-check.mjs';
 
-const ROOT = process.cwd();
-const DIR = resolve(ROOT, 'skills/content-os-transcript-intelligence');
+const DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PREFIX = 'COSTI_CHECK_';
 const required = [
   'SKILL.md', 'LINEAGE.yml', 'source-manifest.yml', 'receipts/runtime-boundary.yml',
-  'receipts/verification-v0.1.0.yml',
+  'receipts/verification-v0.1.0.yml', 'receipts/verification-v0.2.0.yml', 'receipts/verification-v0.3.0.yml', 'receipts/verification-v0.4.0.yml',
   'rules/workflow-contract.md', 'schemas/transcript-intelligence-v1.schema.json',
   'schemas/artifacts-v1.schema.json', 'scripts/transcript-intelligence.mjs',
-  'scripts/lib/context.mjs', 'scripts/lib/linguistic.mjs',
-  'scripts/lib/semantic.mjs',
+  'scripts/lib/context.mjs', 'scripts/lib/media-validation.mjs', 'scripts/lib/adversarial-check.mjs',
+  'scripts/lib/linguistic.mjs', 'scripts/lib/semantic.mjs',
   'scripts/check-skill.mjs', 'references/language-quality-policy.md',
   'references/caption-editing-policy.md', 'references/semantic-retrieval.md',
   'references/narrative-mining.md', 'assets/semantic-intents.json',
-  'fixtures/positive/job.json', 'fixtures/positive/asr-candidate.json',
-  'fixtures/positive/authority.json', 'fixtures/positive/editorial-notes.json',
-  'fixtures/negative/text-only-pronunciation.json',
+  'fixtures/positive/job.json', 'fixtures/positive/legacy-job.json',
+  'fixtures/positive/asr-candidate.json', 'fixtures/positive/authority.json',
+  'fixtures/positive/editorial-notes.json', 'fixtures/positive/visual-reference.json',
+  'fixtures/positive/inference.json', 'fixtures/negative/text-only-pronunciation.json',
   'fixtures/negative/material-ambiguity.json', 'fixtures/negative/ambiguous-asr.json',
+  'fixtures/negative/hash-mismatch.json', 'fixtures/negative/material-authority-required.json',
+  'fixtures/negative/unauthorized-material-asr.json', 'fixtures/negative/unauthorized-material-authority.json',
+  'fixtures/negative/adversarial-cases.json',
 ];
 const errors = [];
 for (const rel of required) if (!existsSync(resolve(DIR, rel))) errors.push(`${PREFIX}MISSING ${rel}`);
 
 const skill = readFileSync(resolve(DIR, 'SKILL.md'), 'utf8');
 if (!skill.startsWith('---\nname: content-os-transcript-intelligence\n')) errors.push(`${PREFIX}FRONTMATTER_NAME`);
-for (const token of ['minimal-clarity', 'audio_required', 'coaching-private.json', 'sourceSpan', 'local-evaluation', 'discard', 'extend', 'reframe']) {
+for (const token of ['minimal-clarity', 'audio_required', 'coaching-private.json', 'sourceSpan', 'local-evaluation', 'discard', 'extend', 'reframe', 'literal_audio', 'asr_candidate', 'visual_reference']) {
   if (!skill.includes(token)) errors.push(`${PREFIX}MISSING_TOKEN ${token}`);
+}
+
+const schema = readFileSync(resolve(DIR, 'schemas/transcript-intelligence-v1.schema.json'), 'utf8');
+const parsedSchema = JSON.parse(schema);
+if (parsedSchema.properties?.contractRevision?.const !== 3) errors.push(`${PREFIX}SCHEMA_REVISION`);
+for (const token of ['contractRevision', 'inputClock', 'originAbsoluteSeconds', 'literal_audio', 'editorial_notes', 'visual_reference', 'inference', 'model', 'config', 'durationSeconds', 'derivedFromSourceSha256']) {
+  if (!schema.includes(`"${token}"`)) errors.push(`${PREFIX}SCHEMA_TOKEN ${token}`);
 }
 
 const manifest = readFileSync(resolve(DIR, 'source-manifest.yml'), 'utf8');
 const localHashes = {
-  'references/caption-editing-policy.md': '514d595459c06bbcbee1c3860c2dbf0518fc068d09c23908560a5555a6d57c63',
-  'references/language-quality-policy.md': '2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed',
-  'references/narrative-mining.md': 'fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45',
-  'references/semantic-retrieval.md': 'efd3e416cd6202cdfcea46bc23a520fc7cfb25ab9c20013281b7f1b0a05404dd',
-  'assets/semantic-intents.json': '029886b04a6761b27f5b64e696965e898bb1f83125a2709fd6bd83632714f4a2',
+  'references/caption-editing-policy.md': null,
+  'references/language-quality-policy.md': null,
+  'references/narrative-mining.md': null,
+  'references/semantic-retrieval.md': null,
+  'assets/semantic-intents.json': null,
 };
-for (const [rel, expected] of Object.entries(localHashes)) {
+for (const rel of Object.keys(localHashes)) {
   const actual = createHash('sha256').update(readFileSync(resolve(DIR, rel))).digest('hex');
-  if (actual !== expected || !manifest.includes(`sha256: ${expected}`)) errors.push(`${PREFIX}HASH ${rel}`);
+  if (!manifest.includes(`ref: ${rel}\n        sha256: ${actual}`)) errors.push(`${PREFIX}HASH ${rel}`);
 }
 for (const token of ['rights:', 'authority_class:', 'disposition:', 'runtime_external_dependencies: []', 'copied_external_books: false', 'copied_private_transcripts: false']) {
   if (!manifest.includes(token)) errors.push(`${PREFIX}SOURCE_POLICY ${token}`);
 }
 
-const scanned = ['SKILL.md', 'source-manifest.yml', ...Object.keys(localHashes), 'fixtures/positive/job.json', 'fixtures/negative/material-ambiguity.json']
-  .map((rel) => readFileSync(resolve(DIR, rel), 'utf8')).join('\n');
+function textFiles(dir) {
+  return readdirSync(dir, {withFileTypes: true}).flatMap((entry) => {
+    const path = resolve(dir, entry.name);
+    if (entry.isDirectory()) return textFiles(path);
+    return ['.md', '.json', '.yml', '.mjs'].includes(extname(entry.name)) ? [path] : [];
+  });
+}
+const scanned = textFiles(DIR).map((path) => readFileSync(path, 'utf8')).join('\n');
 if (/\/Users\/|\/Downloads\/|\/Documents\/|docs\.google\.com/i.test(scanned)) errors.push(`${PREFIX}PRIVATE_LOCATOR`);
 
 const temp = mkdtempSync(resolve(tmpdir(), 'costi-check-'));
 function run(args) {
-  return spawnSync(process.execPath, [resolve(DIR, 'scripts/transcript-intelligence.mjs'), ...args], {cwd: ROOT, encoding: 'utf8'});
+  return spawnSync(process.execPath, [resolve(DIR, 'scripts/transcript-intelligence.mjs'), ...args], {cwd: DIR, encoding: 'utf8'});
+}
+function json(path) {
+  return JSON.parse(readFileSync(path, 'utf8'));
 }
 const positiveJob = resolve(DIR, 'fixtures/positive/job.json');
-const positive = run(['verify', '--job', positiveJob, '--out', resolve(temp, 'positive')]);
+const positiveOut = resolve(temp, 'positive');
+const positive = run(['verify', '--job', positiveJob, '--out', positiveOut]);
 if (positive.status !== 0) errors.push(`${PREFIX}POSITIVE ${positive.stderr}`);
+else {
+  const verification = json(resolve(positiveOut, 'verification.json'));
+  const captions = json(resolve(positiveOut, 'caption-track.json'));
+  if (!verification.provenance?.hashesVerified || verification.compatibility?.migratedInMemory || verification.clocks?.local?.originAbsoluteSeconds !== 1) errors.push(`${PREFIX}PROVENANCE_CLOCKS`);
+  if (captions.segments[0]?.startSeconds !== 0 || captions.segments[0]?.sourceSpan?.absolute?.startSeconds !== 1 || captions.segments[0]?.sourceSpan?.local?.startSeconds !== 0) errors.push(`${PREFIX}DUAL_CLOCK_SPAN`);
+  for (const evidenceClass of ['asr_candidate', 'editorial_notes', 'visual_reference', 'inference']) {
+    if (!verification.provenance.evidenceClasses.includes(evidenceClass)) errors.push(`${PREFIX}EVIDENCE_CLASS ${evidenceClass}`);
+  }
+  if (verification.evidencePolicy.editorialNotesCanEstablishAudibility !== false || verification.evidencePolicy.inferenceCanEstablishAudibility !== false) errors.push(`${PREFIX}EVIDENCE_AUTHORITY`);
+}
+
+const legacyJob = resolve(DIR, 'fixtures/positive/legacy-job.json');
+const inspect = run(['inspect', '--job', legacyJob]);
+if (inspect.status !== 0 || !inspect.stdout.includes('legacy-read-only')) errors.push(`${PREFIX}LEGACY_READ`);
+for (const command of ['ingest', 'analyze', 'caption', 'index', 'search', 'narrative', 'verify', 'package']) {
+  const args = [command, '--job', legacyJob, '--out', resolve(temp, `legacy-${command}`)];
+  if (command === 'search') args.push('--query', 'synthetic');
+  const blocked = run(args);
+  if (blocked.status === 0 || !blocked.stderr.includes('MIGRATION_REQUIRED')) errors.push(`${PREFIX}LEGACY_DERIVATIVE ${command}`);
+}
+const migrationOut = resolve(temp, 'migration');
+const migration = run(['migrate', '--job', legacyJob, '--out', migrationOut]);
+if (migration.status !== 0) errors.push(`${PREFIX}MIGRATION ${migration.stderr}`);
+else {
+  const migrated = run(['verify', '--job', resolve(migrationOut, 'migrated-job.json'), '--out', resolve(temp, 'migrated-verify')]);
+  if (migrated.status !== 0) errors.push(`${PREFIX}MIGRATED_VERIFY ${migrated.stderr}`);
+}
+
 const search = run(['search', '--job', positiveJob, '--query', 'muestra aplicaciones funcionando', '--out', resolve(temp, 'search')]);
 if (search.status !== 0 || !search.stdout.includes('"segmentId": "s3"')) errors.push(`${PREFIX}SEMANTIC_SEARCH`);
 const packageRun = run(['package', '--job', positiveJob, '--out', resolve(temp, 'package')]);
@@ -67,10 +117,16 @@ const textOnly = run(['verify', '--job', resolve(DIR, 'fixtures/negative/text-on
 if (textOnly.status === 0 || !textOnly.stderr.includes('audio-required-for-pronunciation')) errors.push(`${PREFIX}AUDIO_GATE`);
 const ambiguity = run(['verify', '--job', resolve(DIR, 'fixtures/negative/material-ambiguity.json'), '--out', resolve(temp, 'ambiguity')]);
 if (ambiguity.status === 0 || !ambiguity.stderr.includes('material-ambiguity')) errors.push(`${PREFIX}MATERIAL_GATE`);
+const materialAuthority = run(['verify', '--job', resolve(DIR, 'fixtures/negative/material-authority-required.json'), '--out', resolve(temp, 'material-authority')]);
+if (materialAuthority.status === 0 || !materialAuthority.stderr.includes('material-authority-required')) errors.push(`${PREFIX}MATERIAL_AUTHORITY_GATE`);
+const mismatch = run(['verify', '--job', resolve(DIR, 'fixtures/negative/hash-mismatch.json'), '--out', resolve(temp, 'hash-mismatch')]);
+if (mismatch.status === 0 || !mismatch.stderr.includes('HASH_MISMATCH')) errors.push(`${PREFIX}HASH_GATE`);
+
+runAdversarial({dir: DIR, temp, run, errors, prefix: PREFIX});
 
 if (errors.length) {
   console.error(`FAIL content-os-transcript-intelligence: ${errors.length} error(s)`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
-console.log(`PASS content-os-transcript-intelligence: ${required.length} files, source hashes, public/private split, semantic and negative gates.`);
+console.log(`PASS content-os-transcript-intelligence: ${required.length} files, explicit migration, media binding, bounded dual clocks, real-ref provenance, authority, packaging and privacy gates.`);

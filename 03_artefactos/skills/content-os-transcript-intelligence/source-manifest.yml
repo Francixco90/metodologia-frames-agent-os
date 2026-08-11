@@ -11,7 +11,7 @@ sources:
     disposition: ADAPT
     derived_refs:
       - ref: references/language-quality-policy.md
-        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+        sha256: 6b8879b23516d8d4756b653e9760b53cc024d9b82d87eb2eb469a0fd7d2a90c7
       - ref: references/caption-editing-policy.md
         sha256: 514d595459c06bbcbee1c3860c2dbf0518fc068d09c23908560a5555a6d57c63
   - source_id: SRC-STORYTELLING-SEED
@@ -40,7 +40,7 @@ sources:
     disposition: ADAPT
     derived_refs:
       - ref: references/language-quality-policy.md
-        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+        sha256: 6b8879b23516d8d4756b653e9760b53cc024d9b82d87eb2eb469a0fd7d2a90c7
       - ref: references/semantic-retrieval.md
         sha256: efd3e416cd6202cdfcea46bc23a520fc7cfb25ab9c20013281b7f1b0a05404dd
   - source_id: SRC-DUARTE-BIBLIOGRAPHY
@@ -60,7 +60,7 @@ sources:
     disposition: ADAPT
     derived_refs:
       - ref: references/language-quality-policy.md
-        sha256: 2d86474e13df2851eed8b16a6335830183ee083bd760c84889f3a9d830eda9ed
+        sha256: 6b8879b23516d8d4756b653e9760b53cc024d9b82d87eb2eb469a0fd7d2a90c7
       - ref: assets/semantic-intents.json
         sha256: 029886b04a6761b27f5b64e696965e898bb1f83125a2709fd6bd83632714f4a2
 deduplication:

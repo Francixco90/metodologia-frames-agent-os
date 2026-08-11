@@ -8,7 +8,7 @@ const FRAMEWORKS = {
 };
 
 export function buildSemantic(ctx, linguistic, framework = 'impact') {
-  const {job, segments} = ctx;
+  const {job, segments, clocks, provenance, compatibility} = ctx;
   const semanticSegments = linguistic.captionSegments.map((segment) => {
     const source = segments.find((candidate) => candidate.id === segment.id);
     const technicalTerms = linguistic.uniqueGlossary
@@ -24,7 +24,7 @@ export function buildSemantic(ctx, linguistic, framework = 'impact') {
   });
   const semantic = {
     schemaVersion: 'semantic-index-v1', retrievalMode: 'lexical-alias-entity-role',
-    coverageGaps: ['optional-local-embeddings-not-configured'], segments: semanticSegments,
+    clocks, provenance, coverageGaps: ['optional-local-embeddings-not-configured'], segments: semanticSegments,
   };
   const selectedFramework = FRAMEWORKS[framework] ? framework : 'impact';
   const requiredRoles = FRAMEWORKS[selectedFramework];
@@ -37,17 +37,30 @@ export function buildSemantic(ctx, linguistic, framework = 'impact') {
   const narrative = {
     schemaVersion: 'narrative-map-v1', framework: selectedFramework,
     purpose: job.narrative.purpose, audience: job.narrative.audience,
-    targetSeconds: job.narrative.targetSeconds, disposition, missingRoles, beats,
+    targetSeconds: job.narrative.targetSeconds, clocks, provenance, disposition, missingRoles, beats,
     sourceGrounded: beats.every((beat) => beat.sourceSpans.length > 0),
   };
   const materialAmbiguities = linguistic.languageEvents.events.filter((event) => event.type === 'unidentified_term' && event.material);
   const blockers = materialAmbiguities.map((event) => ({code: 'material-ambiguity', sourceSpan: event.sourceSpan, token: event.token}));
+  const materialAuthorityMissing = linguistic.languageEvents.events.filter((event) => event.type === 'material_authority_missing');
+  blockers.push(...materialAuthorityMissing.map((event) => ({code: 'material-authority-required', sourceSpan: event.sourceSpan, candidate: event.candidate, materialKind: event.materialKind})));
   if (/pronunci|dicci|articul/i.test(job.narrative.purpose) && !job.source.audioAvailable) blockers.push({code: 'audio-required-for-pronunciation'});
   if (!narrative.sourceGrounded) blockers.push({code: 'ungrounded-narrative-beat'});
   const verification = {
     schemaVersion: 'transcript-intelligence-verification-v1',
     state: blockers.length ? 'candidate' : 'deterministic-passed', verdict: blockers.length ? 'FAIL' : 'PASS', blockers,
-    warnings: linguistic.coaching.status === 'audio_required' ? ['private-coaching-not-produced-without-audio'] : [],
+    clocks, provenance, compatibility,
+    evidencePolicy: {
+      literalAudioCanEstablishAudibility: true,
+      asrCandidateCanEstablishAudibility: false,
+      editorialNotesCanEstablishAudibility: false,
+      visualReferenceCanEstablishAudibility: false,
+      inferenceCanEstablishAudibility: false,
+    },
+    warnings: [
+      ...(linguistic.coaching.status === 'audio_required' ? ['private-coaching-not-produced-without-audio'] : []),
+      ...compatibility.warnings,
+    ],
     publicPackageExcludes: ['coaching-private.json'], publicationAuthority: false,
   };
   return {semantic, narrative, verification};
