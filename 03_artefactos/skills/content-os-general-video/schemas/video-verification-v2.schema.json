@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"general-video-verification-v2","type":"object","additionalProperties":false,
+  "required":["schemaVersion","specId","specSha256","generatedFrom","buildManifestSha256","checks","errors","pass","maximumState"],
+  "properties":{"schemaVersion":{"const":"general-video-verification-v2"},"specId":{"type":"string"},"specSha256":{"$ref":"#/$defs/hash"},"generatedFrom":{"type":"object"},"buildManifestSha256":{"$ref":"#/$defs/hash"},"checks":{"type":"object"},"errors":{"type":"array","items":{"type":"string"}},"pass":{"type":"boolean"},"maximumState":{"const":"RENDERED_DRAFT"}},
+  "$defs":{"hash":{"type":"string","pattern":"^[a-f0-9]{64}$"}}
+}
