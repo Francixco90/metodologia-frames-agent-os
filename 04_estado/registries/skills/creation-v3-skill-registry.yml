@@ -84,7 +84,7 @@ entries:
     current_state: evaluated
     execution_scope: local-evaluation
     content_sha256: 4d882b90eda7a1fcaf895cd3fdca2bf695846a1301c5fb9b7542bfe398d9dd72
-    package_manifest_sha256: 7668745551043521e3df5c99c838790282a1fba2481eb66a5f7b2aa5635d51a3
+    package_manifest_sha256: a4125810ea91f51577cea0f76fe34f159436f5ecf7a8214069845b3567985a79
     lineage_ref: skills/content-os-transcript-intelligence/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-transcript-intelligence/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only_promotion_blocked

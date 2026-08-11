@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 267
+- ASSET: 268
 - COMMAND: 96
 - COMPONENT: 16
 - DELIVERABLE: 72
@@ -67,6 +67,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf` |
+| ASSET | 03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html` |
 | ASSET | 03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json` |
@@ -927,4 +928,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `514d6ced07a2885d1e5cd0436056d9724ca74424c5c2be4b285804ee443ac084`.
+Hash de fuentes: `ba3623ae34ecdf7b46c318805e01b8a09b1d64bd0df3917bdecb2bc76d9cb8e9`.
