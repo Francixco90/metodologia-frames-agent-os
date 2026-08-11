@@ -1,0 +1,34 @@
+{
+  "schema_version": "cv-design-decision-v1",
+  "decision_id": "CVDESIGN-METODOLOGIA-CAREER-V1",
+  "brief_id": "CVDBRIEF-METODOLOGIA-CAREER-V1",
+  "brief_sha256": "765e6aaa3fb6462e6e8ad12b6c96f0ab0421d3c3c5d4cc5fc1c086c7ce0b3618",
+  "design_system_id": "CVDS-METODOLOGIA-CAREER-V1",
+  "design_system_sha256": "fefc0b98876dff9b034b6c5906378d9c3408c03a2b006db1845354c5cf2c2172",
+  "options": [
+    {
+      "composition_id": "blueprint-executive",
+      "rationale_ref": "brand/career-design-system/options/blueprint-executive.md",
+      "rationale_sha256": "b30408dac9ecd657c8362092430f1ece110583f5a0fffa55f1c4f1767a8dd1c2",
+      "preview_ref": "brand/career-design-system/options/blueprint-executive/index.html",
+      "preview_sha256": "e55302ad58268deb338c698a993c6ec5cf093d3d162db4d4cecb73dcf05a3f32"
+    },
+    {
+      "composition_id": "neo-swiss-editorial",
+      "rationale_ref": "brand/career-design-system/options/neo-swiss-editorial.md",
+      "rationale_sha256": "3d1581e0775af360b2affd7dd552959a7dfdfdcba04d6d2bc7c4bb23de223f4b",
+      "preview_ref": "brand/career-design-system/options/neo-swiss-editorial/index.html",
+      "preview_sha256": "5d38394cc2e4ea56a545d22368b54c72b745e877cd74c1eb4137d9a8816110d2"
+    }
+  ],
+  "selected_composition": "blueprint-executive",
+  "state": "HUMAN_APPROVED",
+  "next_gate": "CR_CV_DESIGN_APPROVED",
+  "approval": {
+    "status": "HUMAN_APPROVED",
+    "approved_decision_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db",
+    "approver_ref": "H01",
+    "approved_at": "2026-08-11T16:58:32Z"
+  },
+  "decision_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db"
+}

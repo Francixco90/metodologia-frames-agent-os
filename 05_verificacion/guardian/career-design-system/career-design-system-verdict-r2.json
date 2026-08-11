@@ -1,0 +1,60 @@
+{
+  "schema_version": "career-design-system-guardian-verdict-v2",
+  "package_id": "metodologia-career-design-system-r2",
+  "actor": "independent-guardian",
+  "acceptance_spec_sha256": "bdd1f83d87d107d048e8a75da58323da5820e688d42de36d1872c2a20e2a00e3",
+  "public_bindings": {
+    "design_system_manifest_sha256": "b5090af119c179bf43e03331e1f92ad656b5bf3eaf4e7d547ad9e9a7e6518f66",
+    "design_system_reference_sha256": "16c70ff8ed5bea12a532dc0574e7995e42d3425394747cf1ecce3b305de7ad4c",
+    "selection_document_sha256": "125f6a545ad6b92cfba9b8d7f246eecb50633f2bc5c0ccb7ea9f8d3ae3c62d19",
+    "canonical_selection_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db",
+    "design_options_manifest_sha256": "b6bfee1e2abba03356127b4f0364ba3f58369cf5392d65f480c220165a400bc3",
+    "career_design_skill_sha256": "15cdc2cd9021ba8f2bc69410ac69cd382a3659bf6bceee0dec2b3e1cd68e90a7",
+    "evidence_first_cv_skill_sha256": "759ea85b4b531df6b9891d26ed0c07462311910189724e8b74445d256e1908c7",
+    "cv_quality_contract_sha256": "ab0987f65786816d59a3a7738bad8ab4aa24ab9120112b5ec2739b1e1a887cd6",
+    "cv_package_v3_schema_sha256": "319a1fd031b19264ef72307200ac49715ef5c4e2d8b0261291de563dfcdace49"
+  },
+  "review": {
+    "ref": "career-design-system-review-r2.md",
+    "sha256": "7ecd16acc337589a9c1888cbd35ed80e257e577bc5b2f4a79d896ae0e7dd0577"
+  },
+  "verdict": "PASS_R2_DESIGN_SYSTEM_FIRST",
+  "states": {
+    "design_system": "DESIGN_SYSTEM_COMPILED",
+    "design_selection": "HUMAN_APPROVED",
+    "private_render": "PASS_RENDERED_DRAFT",
+    "ready": false,
+    "published": false
+  },
+  "selection": {
+    "primary": "blueprint-executive",
+    "secondary": "neo-swiss-editorial",
+    "exact": true
+  },
+  "checks": {
+    "public_contracts_v2_v3": "PASS",
+    "legacy_compatibility_only": "PASS",
+    "design_system_assets": "PASS",
+    "central_palette_and_self_contained_previews": "PASS",
+    "career_design_skill_active": "PASS",
+    "evidence_first_cv_0_3_active": "PASS",
+    "c06_c08": "PASS",
+    "career_design_11_tests": "PASS",
+    "career_os_119_tests": "PASS",
+    "typecheck": "PASS",
+    "versioned_privacy": "PASS",
+    "private_boundary_ignored": "PASS",
+    "private_double_build_determinism": "PASS",
+    "private_content_parity": "PASS",
+    "private_visual_matrix": "PASS",
+    "private_theme_dialog_javascript_off_print": "PASS"
+  },
+  "private_evidence": {
+    "observed_locally": true,
+    "hash_or_locator_persisted": false,
+    "reason": "privacy-boundary"
+  },
+  "coverage_gap": ["manual-screen-reader-review", "unrelated-voice-draft-migration-diagnostics"],
+  "publication_authorized": false,
+  "next_gate": "GIT_INTEGRATION_AND_CI"
+}

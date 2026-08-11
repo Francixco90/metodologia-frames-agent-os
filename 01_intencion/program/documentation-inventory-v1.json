@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "2542dd74f3ec201af67d95d11587588e886e67a8a3b10bc8e83f61fc1398de94",
-  "totalMarkdown": 1795,
-  "auditedAuthored": 558,
+  "repositoryTreeSha256": "105143b9917bc50abd3055ebaab5025d1cdbaf3d493283108850370409662d6d",
+  "totalMarkdown": 1798,
+  "auditedAuthored": 561,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -208,6 +208,8 @@
       "03_artefactos/brand/career-design-system/README.md",
       "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
       "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
       "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
       "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md",
       "03_artefactos/content/documentation/ecosystem-inventory.md",
@@ -461,6 +463,7 @@
       "05_verificacion/evals/H-E012/README.md",
       "05_verificacion/evals/README.md",
       "05_verificacion/evals/ablation/README.md",
+      "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
       "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
       "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
       "05_verificacion/guardian/reviews/GDN-001-revise.md",
@@ -9545,6 +9548,58 @@
       }
     },
     {
+      "path": "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "34a6847531aa2e1c15b876035e2282a89e2a837a913d3820f43a9a57b99012a2",
+      "words": 226,
+      "lines": 33,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/guidelines/usage.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4cd98f13878a04eaecfce2342e1f5505b8a3ac790855aa6a72458e371d42cdf7",
+      "words": 457,
+      "lines": 68,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
       "class": "authored_control",
       "owner": "brand",
@@ -16261,6 +16316,32 @@
       }
     },
     {
+      "path": "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
+      "class": "authored_control",
+      "owner": "guardian",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:guardian:guardian/**",
+      "authorityRefs": [
+        "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7ecd16acc337589a9c1888cbd35ed80e257e577bc5b2f4a79d896ae0e7dd0577",
+      "words": 765,
+      "lines": 91,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
       "class": "authored_control",
       "owner": "guardian",
@@ -16811,7 +16892,7 @@
     }
   ],
   "summary": {
-    "keep": 543,
+    "keep": 546,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,
