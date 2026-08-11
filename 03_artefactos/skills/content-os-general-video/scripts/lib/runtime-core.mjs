@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import {createHash} from 'node:crypto';
-import {existsSync, mkdirSync, readFileSync, statSync, writeFileSync} from 'node:fs';
+import {existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, statSync, writeFileSync} from 'node:fs';
 import {dirname, isAbsolute, relative, resolve, sep} from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {validateSchema} from './schema-validation.mjs';
 
 const COMMANDS = new Set(['ingest', 'index', 'script', 'plan', 'render', 'verify', 'package']);
 const HASH = /^[a-f0-9]{64}$/;
@@ -36,6 +37,7 @@ function run(binary, args, cwd, label) {
 const command = process.argv[2];
 if (!COMMANDS.has(command)) fail(`USAGE video-cli.mjs <${[...COMMANDS].join('|')}> --project <dir>`, 2);
 const project = resolve(arg('project', '.'));
+const projectReal = realpathSync(project);
 const statePath = resolve(project, arg('state', 'workflow-state.json'));
 const runtimeDir = resolve(project, '.frames-video');
 
@@ -45,12 +47,23 @@ function projectPath(ref, label = 'REF') {
   const path = resolve(project, ref);
   const rel = relative(project, path);
   if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) fail(`OUTSIDE_PROJECT_${label} ${ref}`);
+  let cursor = project;
+  for (const part of rel.split(sep).filter(Boolean)) {
+    cursor = resolve(cursor, part);
+    if (existsSync(cursor) && lstatSync(cursor).isSymbolicLink()) fail(`SYMLINK_${label} ${ref}`);
+  }
+  let anchor = path;
+  while (!existsSync(anchor)) anchor = dirname(anchor);
+  const physical = realpathSync(anchor);
+  const physicalRel = relative(projectReal, physical);
+  if (physicalRel === '..' || physicalRel.startsWith(`..${sep}`) || isAbsolute(physicalRel)) fail(`OUTSIDE_PROJECT_${label} ${ref}`);
   return path;
 }
 
 function loadState({allowV1 = true} = {}) {
   const state = load(statePath, 'STATE');
   if (!['general-video-v1', 'general-video-v2'].includes(state.schemaVersion)) fail(`STATE_VERSION ${state.schemaVersion}`);
+  if (state.schemaVersion === 'general-video-v2') validateSchema('general-video-v2.schema.json', state, 'STATE', fail);
   if (!allowV1 && (state.schemaVersion !== 'general-video-v2' || state.contractRevision !== 2)) fail('MIGRATION_REQUIRED general-video-v2 revision 2 required');
   if (state.route !== 'content-os-general-video' || state.offline !== true) fail('STATE_ROUTE_OR_OFFLINE');
   const blob = JSON.stringify(state);
@@ -77,12 +90,18 @@ function artifacts(state) {
   const scriptsPath = refWithHash(state.pieceScriptsRef, state.pieceScriptsSha256, 'PIECE_SCRIPTS');
   const assetsPath = refWithHash(state.assetManifestRef, state.assetManifestSha256, 'ASSET_MANIFEST');
   const abPath = state.abTestRef ? refWithHash(state.abTestRef, state.abTestSha256, 'AB_TEST') : null;
-  return {
+  const result = {
     state, sourcePath, specPath, scriptPath, scriptsPath, assetsPath, abPath,
     sourcePack: load(sourcePath, 'SOURCE_PACK'), spec: load(specPath, 'SPEC'),
     scripts: load(scriptsPath, 'PIECE_SCRIPTS'), assets: load(assetsPath, 'ASSET_MANIFEST'),
     ...(abPath ? {ab: load(abPath, 'AB_TEST')} : {}),
   };
+  validateSchema('source-pack-v1.schema.json', result.sourcePack, 'SOURCE_PACK', fail);
+  validateSchema('video-spec-v1.schema.json', result.spec, 'SPEC', fail);
+  validateSchema('piece-scripts-v2.schema.json', result.scripts, 'PIECE_SCRIPTS', fail);
+  validateSchema(`${result.assets.schemaVersion}.schema.json`, result.assets, 'ASSET_MANIFEST', fail);
+  if (result.ab) validateSchema('ab-test-v1.schema.json', result.ab, 'AB_TEST', fail);
+  return result;
 }
 
 function currentHashes(a) {
@@ -158,7 +177,9 @@ function verifyScripts(a, sourceIds) {
       verifyFont(piece.miniclip.fonts?.title, 'Montserrat', piece.id, 'title');
       verifyFont(piece.miniclip.fonts?.caption, 'Poppins', piece.id, 'caption');
       verifyFont(piece.miniclip.fonts?.disclosure, 'Montserrat', piece.id, 'disclosure');
-      for (const [refKey, hashKey, label] of [['copyRef', 'copySha256', 'COPY'], ['timingRef', 'timingSha256', 'TIMING'], ['curtainRef', 'curtainSha256', 'CURTAIN']]) verifyPieceRef(piece.miniclip, refKey, hashKey, `${label}_${piece.id}`);
+      for (const [refKey, hashKey, label] of [['copyRef', 'copySha256', 'COPY'], ['timingRef', 'timingSha256', 'TIMING']]) verifyPieceRef(piece.miniclip, refKey, hashKey, `${label}_${piece.id}`);
+      const curtain = piece.dependencies.find((dep) => dep.kind === 'curtain');
+      if (!curtain || shaFile(projectPath(piece.miniclip.curtainRef, `CURTAIN_${piece.id}`)) !== curtain.sha256) fail(`HASH_DRIFT_CURTAIN_${piece.id}`);
     }
   }
 }

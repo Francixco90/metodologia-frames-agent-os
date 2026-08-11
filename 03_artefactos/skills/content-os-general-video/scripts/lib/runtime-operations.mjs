@@ -5,6 +5,11 @@ import {
   shaBytes, shaFile, statePath, statSync, verifyAssets, verifyBinding, verifyFont,
   verifyPieceRef, verifyScripts, verifySources, write,
 } from './runtime-core.mjs';
+import {measureOutput, streamHash, validateFfmpeg} from './runtime-media.mjs';
+import {assertRenderable, runPlan} from './runtime-planning.mjs';
+import {validateSchema} from './schema-validation.mjs';
+import {inspectVisual} from './runtime-visual.mjs';
+import {renderLayered} from './runtime-layers.mjs';
 
 function runIngest() {
   const state = loadState({allowV1: true});
@@ -36,96 +41,45 @@ function runScript() {
   console.log(`PASS script: ${a.scripts.pieces.length} evidence-bound piece(s)`);
 }
 
-function layerKeys(piece, specSha256) {
-  const grouped = Object.fromEntries(LAYERS.map((layer) => [layer, []]));
-  for (const dep of piece.dependencies || []) {
-    const layer = ['source', 'script'].includes(dep.kind) ? 'body' : dep.kind === 'caption' ? 'caption' : dep.kind === 'curtain' ? 'curtain' : dep.kind === 'audio' ? 'audio' : 'overlay';
-    grouped[layer].push(`${dep.id}:${dep.sha256}`);
-  }
-  const editorial = shaBytes(json({scriptMode: piece.scriptMode, decision: piece.decision, purpose: piece.purpose, audience: piece.audience, hook: piece.hook, impact: piece.impact, offerBridge: piece.offerBridge, cta: piece.cta, sourceSpans: piece.sourceSpans, visualSpans: piece.visualSpans, claims: piece.claims}));
-  return Object.fromEntries(LAYERS.map((layer) => [layer, shaBytes(json({specSha256, layer, editorial: layer === 'body' ? editorial : null, dependencies: grouped[layer].sort(), declared: piece.layers?.[layer] || null}))]));
-}
-
-function runPlan() {
-  const a = artifacts(loadState({allowV1: false})); const hashes = verifyBinding(a); const ids = verifySources(a); verifyAssets(a); verifyScripts(a, ids);
-  const planPath = projectPath(a.state.buildManifestRef, 'BUILD_MANIFEST_REF');
-  const previous = existsSync(planPath) ? load(planPath, 'PREVIOUS_PLAN') : null;
-  const prior = new Map((previous?.pieces || []).map((piece) => [piece.id, piece]));
-  const pieces = a.scripts.pieces.map((piece) => {
-    const keys = layerKeys(piece, a.state.specSha256); const pieceDefinitionSha256 = shaBytes(json(piece));
-    const cacheKey = shaBytes(json({pieceDefinitionSha256, keys})); const old = prior.get(piece.id);
-    const invalidatedBy = old ? [...LAYERS.filter((layer) => old.layerKeys?.[layer] !== keys[layer]), ...(old.pieceDefinitionSha256 !== pieceDefinitionSha256 ? ['piece-definition'] : [])] : ['new-piece'];
-    const cacheStatus = old?.cacheKey === cacheKey && existsSync(projectPath(piece.output, `OUTPUT_${piece.id}`)) ? 'hit' : 'miss';
-    return {id: piece.id, pieceDefinitionSha256, cacheKey, layerKeys: keys, cacheStatus, invalidatedBy: cacheStatus === 'hit' ? [] : [...new Set(invalidatedBy)], output: piece.output, ...(piece.render ? {render: piece.render} : {})};
-  });
-  const plan = {schemaVersion: 'video-plan-v2', specId: a.state.specId, specSha256: a.state.specSha256, generatedFrom: hashes, pieces};
-  write(planPath, plan); write(statePath, {...a.state, buildManifestSha256: shaFile(planPath), workProductState: 'COMPILADO'});
-  console.log(`PASS plan: ${pieces.filter((p) => p.cacheStatus === 'miss').length} miss, ${pieces.filter((p) => p.cacheStatus === 'hit').length} hit`);
-}
-
-function validateFfmpeg(piece) {
-  const render = piece.render;
-  if (!render || render.engine !== 'ffmpeg' || !Array.isArray(render.args)) fail(`RENDER_RECIPE_${piece.id}`);
-  if (render.args.at(-1) !== piece.output) fail(`FFMPEG_OUTPUT_BINDING_${piece.id}`);
-  for (const token of render.args) {
-    if (typeof token !== 'string' || PRIVATE.some((pattern) => pattern.test(token)) || NETWORK.test(token) || isAbsolute(token) || token.includes('..')) fail(`UNSAFE_FFMPEG_ARG_${piece.id}`);
-  }
-  for (let i = 0; i < render.args.length; i += 1) if (render.args[i] === '-i') {
-    const input = render.args[i + 1]; const inputPath = projectPath(input, `FFMPEG_INPUT_${piece.id}`);
-    if (!existsSync(inputPath) || !statSync(inputPath).isFile()) fail(`FFMPEG_INPUT_MISSING_${piece.id}`);
-  }
-  if (render.mode === 'audio-remux') {
-    const at = render.args.indexOf('-c:v'); if (at < 0 || render.args[at + 1] !== 'copy') fail(`REMUX_MUST_COPY_VIDEO_${piece.id}`);
-  }
-}
-
-function fraction(value) { const [a, b = '1'] = String(value).split('/').map(Number); return b ? a / b : 0; }
-function streamHash(ref, selector, copy = false) {
-  const args = ['-v', 'error', '-protocol_whitelist', 'file', '-i', ref, '-map', `0:${selector}:0`, ...(copy ? ['-c', 'copy'] : []), '-f', 'hash', '-hash', 'sha256', '-'];
-  const result = run('ffmpeg', args, project, `STREAM_HASH_${selector}`); const match = result.stdout.match(/SHA256=([a-f0-9]{64})/iu); if (!match) fail(`STREAM_HASH_PARSE_${selector}`); return match[1];
-}
-function measureOutput(ref) {
-  const probe = run('ffprobe', ['-v', 'error', '-protocol_whitelist', 'file', '-count_frames', '-show_entries', 'format=duration:stream=index,codec_type,width,height,avg_frame_rate,nb_read_frames', '-of', 'json', ref], project, 'FFPROBE');
-  const data = JSON.parse(probe.stdout); const video = data.streams.find((s) => s.codec_type === 'video'); const audio = data.streams.find((s) => s.codec_type === 'audio');
-  if (!video) fail('OUTPUT_VIDEO_STREAM');
-  let pcmSha256 = null; let integratedLufs = null; let truePeakDbtp = null;
-  if (audio) {
-    pcmSha256 = streamHash(ref, 'a');
-    const loud = run('ffmpeg', ['-hide_banner', '-nostats', '-protocol_whitelist', 'file', '-i', ref, '-af', 'loudnorm=I=-16:TP=-1.5:LRA=7:print_format=json', '-f', 'null', '-'], project, 'LOUDNESS');
-    const matches = loud.stderr.match(/\{\s*"input_i"[\s\S]*?\}/gu); const measured = matches ? JSON.parse(matches.at(-1)) : null;
-    integratedLufs = measured ? Number(measured.input_i) : null; truePeakDbtp = measured ? Number(measured.input_tp) : null;
-  }
-  return {outputSha256: shaFile(projectPath(ref, 'MEASURE_OUTPUT')), durationMs: Math.round(Number(data.format.duration) * 1000), frameCount: Number(video.nb_read_frames), width: Number(video.width), height: Number(video.height), fps: fraction(video.avg_frame_rate), videoStreamSha256: streamHash(ref, 'v', true), pcmSha256, integratedLufs, truePeakDbtp};
-}
-
 function assertGeneratedFrom(plan, hashes) {
   for (const [key, value] of Object.entries(hashes)) if (plan.generatedFrom?.[key] !== value) fail(`STALE_RENDER_PLAN_${key}`);
 }
 
 function runRender() {
-  const a = artifacts(loadState({allowV1: false})); const hashes = verifyBinding(a); const ids = verifySources(a); verifyAssets(a); verifyScripts(a, ids);
+  const a = artifacts(loadState({allowV1: false})); const hashes = verifyBinding(a); const ids = verifySources(a); verifyAssets(a); verifyScripts(a, ids); assertRenderable(a);
   const planPath = refWithHash(a.state.buildManifestRef, a.state.buildManifestSha256, 'BUILD_MANIFEST'); const plan = load(planPath, 'RENDER_PLAN');
+  validateSchema('video-plan-v2.schema.json', plan, 'PLAN', fail);
   if (plan.specId !== a.state.specId || plan.specSha256 !== a.state.specSha256) fail('STALE_RENDER_PLAN_SPEC'); assertGeneratedFrom(plan, hashes);
   const outputs = [];
   for (const planned of plan.pieces) {
     const piece = a.scripts.pieces.find((candidate) => candidate.id === planned.id);
     if (!piece || planned.pieceDefinitionSha256 !== shaBytes(json(piece))) fail(`STALE_RENDER_PLAN_PIECE_${planned.id}`);
-    if (piece.decision === 'discard') continue;
     if (piece.gateStatus !== 'deterministic-passed') fail(`PIECE_GATE_${piece.id}`);
     let remuxSourceVideoSha256 = null;
-    if (planned.cacheStatus === 'miss') {
+    let layerArtifacts = null;
+    const cachedPath = projectPath(piece.output, `OUTPUT_${piece.id}`);
+    const cacheValid = planned.cacheStatus === 'hit' && planned.outputSha256 && existsSync(cachedPath) && shaFile(cachedPath) === planned.outputSha256;
+    if (!cacheValid) {
       validateFfmpeg(piece);
-      if (piece.render.mode === 'audio-remux') remuxSourceVideoSha256 = streamHash(piece.render.args[piece.render.args.indexOf('-i') + 1], 'v', true);
-      mkdirSync(dirname(projectPath(piece.output, `OUTPUT_${piece.id}`)), {recursive: true});
-      run('ffmpeg', ['-protocol_whitelist', 'file', ...piece.render.args], project, `FFMPEG_${piece.id}`);
+      if (piece.miniclip && piece.render.mode === 'encode') layerArtifacts = renderLayered(piece, planned);
+      else {
+        if (piece.render.mode === 'audio-remux') remuxSourceVideoSha256 = streamHash(piece.render.args[piece.render.args.indexOf('-i') + 1], 'v', true);
+        mkdirSync(dirname(projectPath(piece.output, `OUTPUT_${piece.id}`)), {recursive: true});
+        run('ffmpeg', ['-protocol_whitelist', 'file', ...piece.render.args], project, `FFMPEG_${piece.id}`);
+      }
     }
     const output = projectPath(piece.output, `OUTPUT_${piece.id}`); if (!existsSync(output) || statSync(output).size === 0) fail(`MISSING_RENDER_${piece.id}`);
     const measurements = measureOutput(piece.output);
     if (remuxSourceVideoSha256 && measurements.videoStreamSha256 !== remuxSourceVideoSha256) fail(`REMUX_VIDEO_CHANGED_${piece.id}`);
-    outputs.push({id: piece.id, path: piece.output, bytes: statSync(output).size, cacheKey: planned.cacheKey, measurements, ...(remuxSourceVideoSha256 ? {remuxSourceVideoSha256} : {})});
+    outputs.push({id: piece.id, path: piece.output, bytes: statSync(output).size, cacheKey: planned.cacheKey, measurements, ...(remuxSourceVideoSha256 ? {remuxSourceVideoSha256} : {}), ...(layerArtifacts ? {layerArtifacts} : {})});
   }
+  const outputMap = new Map(outputs.map((output) => [output.id, output.measurements.outputSha256]));
+  const boundPlan = {...plan, pieces: plan.pieces.map((piece) => ({...piece, cacheStatus: 'hit', invalidatedBy: [], outputSha256: outputMap.get(piece.id)}))};
+  validateSchema('video-plan-v2.schema.json', boundPlan, 'BOUND_PLAN', fail);
+  write(planPath, boundPlan); const buildManifestSha256 = shaFile(planPath);
+  write(statePath, {...a.state, buildManifestSha256, workProductState: 'COMPILADO'});
   const receiptPath = resolve(runtimeDir, 'render-receipt.json');
-  write(receiptPath, {schemaVersion: 'video-render-receipt-v3', specId: a.state.specId, specSha256: a.state.specSha256, buildManifestSha256: shaFile(planPath), generatedFrom: hashes, outputs, state: 'RENDERED_DRAFT', publicationAuthority: false});
+  write(receiptPath, {schemaVersion: 'video-render-receipt-v3', specId: a.state.specId, specSha256: a.state.specSha256, buildManifestSha256, generatedFrom: hashes, outputs, state: 'RENDERED_DRAFT', publicationAuthority: false});
   console.log(`PASS render: ${outputs.length} measured draft(s), publicationAuthority=false`);
 }
 
@@ -135,7 +89,8 @@ function miniclipEvidence(piece, measured, errors) {
     title: verifyFont(m.fonts?.title, 'Montserrat', piece.id, 'title'), caption: verifyFont(m.fonts?.caption, 'Poppins', piece.id, 'caption'), disclosure: verifyFont(m.fonts?.disclosure, 'Montserrat', piece.id, 'disclosure'),
   };
   const copyPath = verifyPieceRef(m, 'copyRef', 'copySha256', `COPY_${piece.id}`); const copy = load(copyPath, `COPY_${piece.id}`);
-  const timingPath = verifyPieceRef(m, 'timingRef', 'timingSha256', `TIMING_${piece.id}`); const curtainPath = verifyPieceRef(m, 'curtainRef', 'curtainSha256', `CURTAIN_${piece.id}`);
+  const timingPath = verifyPieceRef(m, 'timingRef', 'timingSha256', `TIMING_${piece.id}`); const curtainPath = projectPath(m.curtainRef, `CURTAIN_${piece.id}`);
+  const curtainHash = piece.dependencies.find((dep) => dep.kind === 'curtain')?.sha256; if (!curtainHash || shaFile(curtainPath) !== curtainHash) errors.push(`${piece.id}:curtain-hash`);
   const visibleCopy = copy.visibleCopy || [];
   if (copy.cta !== piece.cta || visibleCopy.some((text) => COPY_DENY.some((rule) => rule.test(text)))) errors.push(`${piece.id}:forbidden-or-unbound-copy`);
   if (m.textLayerCount > 2 || m.safeZonesPass !== true) errors.push(`${piece.id}:legibility`);
@@ -168,12 +123,15 @@ function runVerify() {
   for (const output of receipt.outputs || []) {
     const piece = a.scripts.pieces.find((candidate) => candidate.id === output.id); if (!piece || output.path !== piece.output) { errors.push(`${output.id}:output-ref`); continue; }
     const measured = measureOutput(output.path); if (json(measured) !== json(output.measurements)) errors.push(`${output.id}:measurement-drift`);
-    const mini = miniclipEvidence(piece, measured, errors); evidence.set(piece.id, mini || measured);
+    const mini = miniclipEvidence(piece, measured, errors);
+    const visual = mini ? inspectVisual(a, piece) : null;
+    if (visual && !visual.pass) errors.push(`${piece.id}:visual-privacy:${visual.violations.join('|')}`);
+    evidence.set(piece.id, mini ? {...mini, visual} : measured);
   }
   const expected = a.scripts.pieces.filter((piece) => piece.decision !== 'discard').map((piece) => piece.id).sort(); const found = [...evidence.keys()].sort();
   if (json(expected) !== json(found)) errors.push('render-piece-coverage');
   const abCount = verifyAb(a, evidence, errors);
-  const verdict = {schemaVersion: 'general-video-verification-v2', specId: a.state.specId, specSha256: a.state.specSha256, generatedFrom: hashes, buildManifestSha256: shaFile(planPath), checks: {sources: true, assets: true, scripts: true, measuredOutputs: found.length, abGroups: abCount}, errors, pass: errors.length === 0, maximumState: 'RENDERED_DRAFT'};
+  const verdict = {schemaVersion: 'general-video-verification-v2', specId: a.state.specId, specSha256: a.state.specSha256, generatedFrom: hashes, buildManifestSha256: shaFile(planPath), checks: {sources: true, assets: true, scripts: true, measuredOutputs: found.length, visualInspections: [...evidence.values()].filter((item) => item.visual).length, abGroups: abCount}, errors, pass: errors.length === 0, maximumState: 'RENDERED_DRAFT'};
   const reviewPath = projectPath(a.state.reviewReceiptRef, 'REVIEW_RECEIPT_REF'); write(reviewPath, verdict); write(statePath, {...a.state, reviewReceiptSha256: shaFile(reviewPath), workProductState: errors.length ? 'BLOCKED' : 'EVALUADO'});
   if (errors.length) fail(`VERIFY ${errors.join(',')}`); console.log(`PASS verify: ${found.length} measured piece(s), ${abCount} A/B group(s)`);
 }

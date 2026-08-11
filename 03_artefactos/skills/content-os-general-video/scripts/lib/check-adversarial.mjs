@@ -1,10 +1,11 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {copyFileSync, cpSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 
 export function runAdversarial({SKILL_DIR, errors}) {
+const PREFIX = 'COSR-GV_';
 const cli = resolve(SKILL_DIR, 'scripts/video-cli.mjs');
 const fixture = resolve(SKILL_DIR, 'fixtures/v2-positive');
 const temp = mkdtempSync(resolve(tmpdir(), 'general-video-v2-'));
@@ -58,6 +59,62 @@ try {
   updateJson(resolve(captionCase, 'captions.json'), (value) => ({...value, tampered: true}));
   const caption = spawnSync(process.execPath, [cli, 'script', '--project', captionCase], {encoding: 'utf8'});
   if (caption.status === 0 || !caption.stderr.includes('HASH_DRIFT_CAPTION')) errors.push(`${PREFIX}CAPTION_HASH`);
+
+  const decisionCase = mkdtempSync(resolve(tmpdir(), 'gv-decision-')); cleanup.push(decisionCase); cpSync(temp, decisionCase, {recursive: true});
+  updateJson(resolve(decisionCase, 'piece-scripts.json'), (value) => { value.pieces[0].decision = 'extend'; return value; });
+  updateJson(resolve(decisionCase, 'workflow-state.json'), (value) => { const hash = sha(resolve(decisionCase, 'piece-scripts.json')); value.scriptSha256 = hash; value.pieceScriptsSha256 = hash; return value; });
+  const decision = spawnSync(process.execPath, [cli, 'plan', '--project', decisionCase], {encoding: 'utf8'});
+  if (decision.status === 0 || !decision.stderr.includes('EDITORIAL_DECISION_BLOCKS_RENDER')) errors.push(`${PREFIX}DECISION_USE_ONLY`);
+
+  const schemaCase = mkdtempSync(resolve(tmpdir(), 'gv-schema-')); cleanup.push(schemaCase); cpSync(temp, schemaCase, {recursive: true});
+  updateJson(resolve(schemaCase, 'workflow-state.json'), (value) => ({...value, __unexpected: true}));
+  const schema = spawnSync(process.execPath, [cli, 'ingest', '--project', schemaCase], {encoding: 'utf8'});
+  if (schema.status === 0 || !schema.stderr.includes('SCHEMA_STATE')) errors.push(`${PREFIX}SCHEMA_FAIL_CLOSED`);
+
+  const linkCase = mkdtempSync(resolve(tmpdir(), 'gv-link-')); cleanup.push(linkCase); cpSync(temp, linkCase, {recursive: true});
+  const outside = resolve(tmpdir(), `gv-outside-${process.pid}.json`); cleanup.push(outside); copyFileSync(resolve(linkCase, 'video-spec.json'), outside); symlinkSync(outside, resolve(linkCase, 'escape.json'));
+  updateJson(resolve(linkCase, 'workflow-state.json'), (value) => { value.specRef = 'escape.json'; return value; });
+  const linked = spawnSync(process.execPath, [cli, 'ingest', '--project', linkCase], {encoding: 'utf8'});
+  if (linked.status === 0 || !linked.stderr.includes('SYMLINK_SPEC')) errors.push(`${PREFIX}SYMLINK_ESCAPE`);
+
+  const tamperCase = mkdtempSync(resolve(tmpdir(), 'gv-tamper-')); cleanup.push(tamperCase); cpSync(temp, tamperCase, {recursive: true});
+  const expectedOutput = sha(resolve(tamperCase, 'renders/mini-a.mp4')); copyFileSync(resolve(tamperCase, 'renders/mini-b.mp4'), resolve(tamperCase, 'renders/mini-a.mp4'));
+  const driftPlan = spawnSync(process.execPath, [cli, 'plan', '--project', tamperCase], {encoding: 'utf8'});
+  const drift = JSON.parse(readFileSync(resolve(tamperCase, '.frames-video/render-plan.json'))).pieces.find((piece) => piece.id === 'mini-a');
+  if (driftPlan.status !== 0 || drift.cacheStatus !== 'miss' || !drift.invalidatedBy.includes('output-drift')) errors.push(`${PREFIX}CACHE_OUTPUT_DRIFT`);
+  const repaired = spawnSync(process.execPath, [cli, 'render', '--project', tamperCase], {encoding: 'utf8'});
+  if (repaired.status !== 0 || sha(resolve(tamperCase, 'renders/mini-a.mp4')) !== expectedOutput) errors.push(`${PREFIX}CACHE_RECOMPUTE`);
+
+  const curtainCase = mkdtempSync(resolve(tmpdir(), 'gv-curtain-')); cleanup.push(curtainCase); cpSync(temp, curtainCase, {recursive: true});
+  const priorPlan = JSON.parse(readFileSync(resolve(curtainCase, '.frames-video/render-plan.json'))); updateJson(resolve(curtainCase, 'curtain.json'), (value) => ({...value, animation: 'changed'}));
+  const priorOutput = sha(resolve(curtainCase, 'renders/mini-a.mp4')); const priorReceipt = JSON.parse(readFileSync(resolve(curtainCase, '.frames-video/render-receipt.json'))).outputs[0];
+  const priorBodyPath = resolve(curtainCase, priorReceipt.layerArtifacts.bodyArtifact.ref); const priorBody = {sha256: sha(priorBodyPath), stream: priorReceipt.layerArtifacts.bodyArtifact.videoStreamSha256, mtimeMs: statSync(priorBodyPath).mtimeMs};
+  const curtainHash = sha(resolve(curtainCase, 'curtain.json'));
+  updateJson(resolve(curtainCase, 'piece-scripts.json'), (value) => { for (const piece of value.pieces) { piece.miniclip.curtainSha256 = curtainHash; piece.dependencies.find((dep) => dep.kind === 'curtain').sha256 = curtainHash; } return value; });
+  updateJson(resolve(curtainCase, 'workflow-state.json'), (value) => { const hash = sha(resolve(curtainCase, 'piece-scripts.json')); value.scriptSha256 = hash; value.pieceScriptsSha256 = hash; return value; });
+  const curtainPlanRun = spawnSync(process.execPath, [cli, 'plan', '--project', curtainCase], {encoding: 'utf8'});
+  const curtainPlan = JSON.parse(readFileSync(resolve(curtainCase, '.frames-video/render-plan.json')));
+  if (curtainPlanRun.status !== 0 || curtainPlan.pieces.some((piece, i) => !piece.reusedLayers.includes('body') || piece.layerKeys.body !== priorPlan.pieces[i].layerKeys.body || !piece.invalidatedBy.includes('curtain'))) errors.push(`${PREFIX}CURTAIN_GRANULAR_CACHE`);
+  const curtainRender = spawnSync(process.execPath, [cli, 'render', '--project', curtainCase], {encoding: 'utf8'}); const nextReceipt = JSON.parse(readFileSync(resolve(curtainCase, '.frames-video/render-receipt.json'))).outputs[0];
+  const nextBody = nextReceipt.layerArtifacts.bodyArtifact;
+  if (curtainRender.status !== 0 || nextBody.sha256 !== priorBody.sha256 || nextBody.videoStreamSha256 !== priorBody.stream || statSync(priorBodyPath).mtimeMs !== priorBody.mtimeMs || nextReceipt.layerArtifacts.curtainArtifact.sha256 === priorReceipt.layerArtifacts.curtainArtifact.sha256 || sha(resolve(curtainCase, 'renders/mini-a.mp4')) === priorOutput) errors.push(`${PREFIX}CURTAIN_REAL_BODY_REUSE`);
+
+  const visualCase = mkdtempSync(resolve(tmpdir(), 'gv-visual-')); cleanup.push(visualCase); cpSync(temp, visualCase, {recursive: true});
+  const prohibited = sha(resolve(visualCase, '.frames-video/visual/mini-a/frame-0.png'));
+  updateJson(resolve(visualCase, 'visual-detector.json'), (value) => ({...value, forbiddenFrameSha256: [prohibited]}));
+  const detectorHash = sha(resolve(visualCase, 'visual-detector.json'));
+  updateJson(resolve(visualCase, 'asset-manifest.json'), (value) => { const asset = value.assets.find((item) => item.id === 'visual-detector'); asset.sha256 = detectorHash; asset.generator.configSha256 = detectorHash; return value; });
+  updateJson(resolve(visualCase, 'workflow-state.json'), (value) => { value.assetManifestSha256 = sha(resolve(visualCase, 'asset-manifest.json')); return value; });
+  spawnSync(process.execPath, [cli, 'plan', '--project', visualCase], {encoding: 'utf8'}); spawnSync(process.execPath, [cli, 'render', '--project', visualCase], {encoding: 'utf8'});
+  const visual = spawnSync(process.execPath, [cli, 'verify', '--project', visualCase], {encoding: 'utf8'});
+  if (visual.status === 0 || !visual.stderr.includes('visual-privacy')) errors.push(`${PREFIX}VISUAL_FRAME_INSPECTION`);
+
+  const timingCase = mkdtempSync(resolve(tmpdir(), 'gv-layer-timing-')); cleanup.push(timingCase); cpSync(temp, timingCase, {recursive: true});
+  updateJson(resolve(timingCase, 'curtain.json'), (value) => ({...value, durationMs: 110})); const timingCurtain = sha(resolve(timingCase, 'curtain.json'));
+  updateJson(resolve(timingCase, 'piece-scripts.json'), (value) => { for (const piece of value.pieces) piece.dependencies.find((dep) => dep.kind === 'curtain').sha256 = timingCurtain; return value; });
+  updateJson(resolve(timingCase, 'workflow-state.json'), (value) => { const hash = sha(resolve(timingCase, 'piece-scripts.json')); value.scriptSha256 = hash; value.pieceScriptsSha256 = hash; return value; });
+  spawnSync(process.execPath, [cli, 'plan', '--project', timingCase], {encoding: 'utf8'}); const timingRender = spawnSync(process.execPath, [cli, 'render', '--project', timingCase], {encoding: 'utf8'});
+  if (timingRender.status === 0 || !timingRender.stderr.includes('CURTAIN_TIMING')) errors.push(`${PREFIX}LAYER_TIMING_FAIL_CLOSED`);
 } finally {
   for (const path of cleanup) rmSync(path, {recursive: true, force: true});
 }
