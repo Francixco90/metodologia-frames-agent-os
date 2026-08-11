@@ -12,6 +12,7 @@ const required = [
   'skills/content-os-router/scripts/check-skill.mjs',
   'skills/content-os-router/scripts/content-intent-request.mjs',
   'skills/content-os-router/scripts/route-audit.mjs',
+  'skills/content-os-router/scripts/transcript-route.mjs',
   'skills/content-os-router/scripts/route-content.mjs',
   'skills/content-os-router/scripts/route-intent.mjs',
   'skills/content-os-router/references/routes.md',
@@ -20,6 +21,7 @@ const required = [
   'skills/content-os-router/examples/intent-brief.jsonl',
   'skills/content-os-router/examples/route-decision.jsonl',
   'skills/content-os-router/fixtures/positive/valid-intent-brief.yml',
+  'skills/content-os-router/fixtures/positive/transcript-intent.json',
   'skills/content-os-router/fixtures/negative/unrouted-intent.yml',
   'skills/content-os-router/receipts/runtime-boundary.yml',
 ];
@@ -131,6 +133,15 @@ for (const token of [
   if (!negative.includes(token)) {
     throw new Error(`COSR-ROUTER_NEGATIVE_FIXTURE_INCOMPLETE: missing ${token}`);
   }
+}
+
+const transcriptRoute = execFileSync(
+  process.execPath,
+  [resolve(root, 'skills/content-os-router/scripts/transcript-route.mjs'), resolve(root, 'skills/content-os-router/fixtures/positive/transcript-intent.json')],
+  {cwd: root, encoding: 'utf8'},
+);
+if (!transcriptRoute.includes('content-os-transcript-intelligence')) {
+  throw new Error('COS_ROUTER_TRANSCRIPT_ROUTE_MISSING');
 }
 
 console.info(
