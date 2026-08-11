@@ -1,0 +1,80 @@
+{
+  "schema_version": "career-component-registry-v1",
+  "registry_id": "metodologia-career-components-v1",
+  "contract": "Components consume semantic career tokens; visible copy comes from the canonical content source, never JavaScript.",
+  "components": [
+    {"id": "skip-link", "class": "career-skip-link", "required": true, "max_instances": 1},
+    {"id": "header", "class": "career-header", "required": true, "max_instances": 1},
+    {"id": "navigation", "class": "career-nav", "required": true, "content_limit": "6 items"},
+    {
+      "id": "theme-toggle",
+      "class": "career-icon-button",
+      "required": true,
+      "target_min": "44px",
+      "progressive_enhancement": true
+    },
+    {"id": "hero", "class": "career-hero", "required": true, "content_limit": "18-word headline"},
+    {
+      "id": "proof-strip",
+      "class": "career-proof-strip",
+      "required": false,
+      "content_limit": "3–6 comparable signals"
+    },
+    {
+      "id": "kpi",
+      "class": "career-kpi",
+      "required": false,
+      "rule": "Never imply percentages unless the evidence unit is percent"
+    },
+    {
+      "id": "experience-card",
+      "class": "career-card",
+      "required": true,
+      "rule": "BLUF then evidence-bound detail"
+    },
+    {
+      "id": "capability-card",
+      "class": "career-card",
+      "required": false,
+      "rule": "Organize by faculty, not tool inventory"
+    },
+    {
+      "id": "inline-disclosure",
+      "element": "details",
+      "class": "career-details",
+      "required": false,
+      "rule": "Use before dialog for non-critical detail"
+    },
+    {
+      "id": "evidence-dialog",
+      "element": "dialog",
+      "class": "career-dialog",
+      "required": false,
+      "rule": "One sticky SVG X; Escape, backdrop, focus return"
+    },
+    {
+      "id": "contact-cta",
+      "class": "career-card",
+      "required": true,
+      "rule": "Contact binding stays private"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "active",
+    "disabled",
+    "loading",
+    "error",
+    "print"
+  ],
+  "forbidden": [
+    "unregistered component",
+    "inline raw color",
+    "remote dependency",
+    "visible copy in JavaScript",
+    "second dialog close control",
+    "hidden ATS keyword"
+  ]
+}

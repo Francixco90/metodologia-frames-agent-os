@@ -1,0 +1,66 @@
+<!-- [DOC] Copy source only. Bind visible text from canonical Markdown/content JSON. -->
+<a class="career-skip-link" href="#contenido">Saltar al contenido</a>
+
+<button
+  class="career-icon-button"
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Activar tema claro"
+  data-label-light="Activar tema claro"
+  data-label-navy="Activar tema azul"
+>
+  <svg class="career-icon" aria-hidden="true"><use href="#icon-theme" /></svg>
+</button>
+
+<details class="career-details">
+  <summary>Qué demuestra</summary>
+  <div class="career-details__body"><p>{{detalle_breve}}</p></div>
+</details>
+
+<button type="button" data-dialog-open="evidencia-01">Ver evidencia</button>
+<dialog class="career-dialog" id="evidencia-01" aria-labelledby="evidencia-01-titulo">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar evidencia"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="evidencia-01-titulo">{{titulo}}</h2>
+    <p>{{evidencia_profunda}}</p>
+  </div>
+</dialog>
+
+<script>
+  (() => {
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    if (toggle) {
+      const apply = (theme) => {
+        root.dataset.theme = theme;
+        toggle.setAttribute('aria-pressed', String(theme === 'light'));
+        toggle.setAttribute(
+          'aria-label',
+          theme === 'light' ? toggle.dataset.labelNavy : toggle.dataset.labelLight,
+        );
+      };
+      apply(localStorage.getItem('metodologia-career-theme') === 'light' ? 'light' : 'navy');
+      toggle.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'navy' : 'light';
+        localStorage.setItem('metodologia-career-theme', next);
+        apply(next);
+      });
+    }
+    document.querySelectorAll('[data-dialog-open]').forEach((button) => {
+      button.addEventListener('click', () =>
+        document.getElementById(button.dataset.dialogOpen)?.showModal(),
+      );
+    });
+    document.querySelectorAll('[data-dialog-close]').forEach((button) => {
+      button.addEventListener('click', () => button.closest('dialog')?.close());
+    });
+  })();
+</script>

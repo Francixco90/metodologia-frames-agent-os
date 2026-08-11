@@ -1,0 +1,54 @@
+:root {
+  color-scheme: dark;
+  --career-canvas: var(--brand-ink);
+  --career-canvas-deep: var(--brand-ink);
+  --career-surface: color-mix(in srgb, var(--brand-ink) 82%, var(--brand-text-soft));
+  --career-surface-raised: color-mix(in srgb, var(--brand-ink) 68%, var(--brand-text-soft));
+  --career-text: var(--brand-surface-alt);
+  --career-text-muted: var(--brand-canvas-deep);
+  --career-accent: var(--brand-gold);
+  --career-accent-text: var(--brand-ink);
+  --career-line: color-mix(in srgb, var(--brand-surface-alt) 32%, var(--brand-ink));
+  --career-focus: var(--brand-gold-soft);
+  --career-display: Poppins, system-ui, sans-serif;
+  --career-body: 'Trebuchet MS', Arial, sans-serif;
+  --career-ui: Montserrat, system-ui, sans-serif;
+  --career-gutter: clamp(1rem, 3vw, 2.5rem);
+  --career-content-max: 80rem;
+  --career-text-max: 68ch;
+  --career-target: 44px;
+  --career-radius: 0.75rem;
+  --career-speed: 220ms;
+  --career-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --career-canvas: var(--brand-canvas);
+  --career-canvas-deep: var(--brand-canvas-deep);
+  --career-surface: var(--brand-surface);
+  --career-surface-raised: var(--brand-surface-alt);
+  --career-text: var(--brand-ink);
+  --career-text-muted: var(--brand-text-soft);
+  --career-accent: var(--brand-gold-text);
+  --career-accent-text: var(--brand-surface);
+  --career-line: var(--brand-border);
+  --career-focus: var(--brand-gold-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}
