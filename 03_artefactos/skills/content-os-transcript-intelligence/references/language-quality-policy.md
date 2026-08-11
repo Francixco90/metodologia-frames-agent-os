@@ -32,8 +32,16 @@
 
 Aceptar la forma canónica cuando exista al menos uno de estos apoyos: glosario o nombre
 first-party y contexto compatible; repetición clara en la misma fuente; OCR verificado y
-ligado al timestamp; o revisión humana registrada. El puntaje ASR por sí solo no autoriza
-una corrección material. Las notas editoriales localizan o proponen, nunca reemplazan audio.
+ligado al timestamp; o revisión humana registrada. Nombres, cifras, productos y claims
+materiales deben declarar además `authorityClass`, `authorityRef` y `verified: true`.
+El puntaje ASR por sí solo no autoriza una corrección material. Las notas editoriales,
+referencias visuales e inferencias localizan o proponen, nunca reemplazan audio.
+
+## Relojes y procedencia
+
+Toda observación lingüística conserva un span absoluto sobre la fuente y uno local sobre la
+pieza. La procedencia liga mediante SHA-256 la fuente, el audio derivado disponible, el ASR,
+la autoridad, el modelo y su configuración. Una discrepancia de hash invalida el análisis.
 
 ## Coaching privado
 

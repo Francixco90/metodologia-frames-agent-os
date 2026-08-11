@@ -1,0 +1,36 @@
+schema_version: transcript-intelligence-verification-receipt-v1
+skill_id: content-os-transcript-intelligence
+version: 0.3.0
+state: superseded
+superseded_by: receipts/verification-v0.4.0.yml
+execution_scope: local-evaluation
+publication_authority: false
+checks:
+  current_revision_positive_fixture: PASS
+  older_revision_inspection: PASS
+  older_revision_derivative_commands_blocked: PASS
+  explicit_migration_and_reverification: PASS
+  source_real_ref_hash: PASS
+  asr_real_ref_hash: PASS
+  model_real_ref_hash: PASS
+  config_real_ref_hash: PASS
+  traversal_and_symlink_confinement: PASS
+  audio_extension_magic_and_source_binding: PASS
+  dual_clock_domain_order_and_bounds: PASS
+  material_authority_ref_resolution: PASS
+  public_package_policy_gate: PASS
+  public_private_package_split: PASS
+  adversarial_fixture_matrix: PASS
+  private_locator_scan: PASS
+  focused_check_skill: PASS
+coverage_gaps:
+  - code: real_audio_pronunciation_fixture_intentionally_excluded
+    disposition: human_listening_required
+  - code: independent_guardian_review_pending
+    disposition: blocks_active_promotion
+role_separation:
+  producer: transcript_contracts_subagent
+  verifier: deterministic_adversarial_runner
+  guardian: pending_independent_agent_review
+  independence_status: producer_did_not_grant_guardian_state
+historical_scope: This receipt describes v0.3.0 only and does not attest the successor runtime.

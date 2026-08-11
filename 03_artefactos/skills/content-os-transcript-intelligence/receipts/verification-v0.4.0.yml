@@ -1,0 +1,32 @@
+schema_version: transcript-intelligence-verification-receipt-v1
+skill_id: content-os-transcript-intelligence
+version: 0.4.0
+state: evaluated
+execution_scope: local-evaluation
+publication_authority: false
+checks:
+  current_revision_positive_fixture: PASS
+  explicit_migration_and_reverification: PASS
+  legacy_derivative_commands_blocked: PASS
+  real_ref_hash_and_path_confinement: PASS
+  audio_extension_and_magic: PASS
+  audio_decode_failure_gate: PASS
+  audio_positive_duration_gate: PASS
+  audio_source_binding_gate: PASS
+  span_domain_order_and_source_bounds: PASS
+  absolute_local_origin_coherence: PASS
+  material_alias_authority_gate: PASS
+  material_canonical_authority_gate: PASS
+  public_package_policy_gate: PASS
+  adversarial_fixture_matrix: PASS
+  focused_check_skill: PASS
+coverage_gaps:
+  - code: real_audio_pronunciation_fixture_intentionally_excluded
+    disposition: human_listening_required
+  - code: independent_guardian_review_pending
+    disposition: blocks_active_promotion
+role_separation:
+  producer: transcript_contracts_subagent
+  verifier: deterministic_adversarial_runner
+  guardian: pending_independent_agent_review
+  independence_status: producer_did_not_grant_guardian_state

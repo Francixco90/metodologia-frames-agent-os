@@ -9,12 +9,24 @@ allowed_scoped:
   - offline_semantic_search
   - source_grounded_narrative_maps
   - public_private_package_split
+  - dual_absolute_local_clocks
+  - hash_bound_source_audio_asr_model_config_provenance
+  - explicit_evidence_classification
+  - legacy_v1_read_migration
+  - explicit_legacy_to_revision_3_migration
+  - real_file_hash_verification
+  - bounded_dual_clock_spans
+  - audio_magic_and_source_binding
+  - audio_decode_and_positive_duration
+  - absolute_local_origin_coherence
+  - canonical_material_authority_gate
 out_of_scope:
   - speech_pathology_diagnosis
   - accent_or_nationality_inference
   - global_english_proficiency_score
   - network_transcription_or_embeddings_by_default
   - ready_published_or_distribution_state
+  - legacy_derivative_generation_without_migration
 coverage_gaps:
   - optional_local_embedding_adapter_not_bound
   - pronunciation_coaching_requires_real_audio_and_human_listening

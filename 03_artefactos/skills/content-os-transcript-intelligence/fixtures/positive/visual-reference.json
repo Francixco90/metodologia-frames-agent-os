@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "visual-reference-v1",
+  "authorityClass": "visual-locator-only",
+  "observations": [
+    {"segmentId": "s3", "description": "A synthetic dashboard is visible.", "claimAuthority": false}
+  ]
+}

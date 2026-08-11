@@ -1,0 +1,31 @@
+schema_version: transcript-intelligence-verification-receipt-v1
+skill_id: content-os-transcript-intelligence
+version: 0.2.0
+state: superseded
+superseded_by: receipts/verification-v0.3.0.yml
+execution_scope: local-evaluation
+publication_authority: false
+checks:
+  dual_clock_projection: PASS
+  source_asr_authority_hash_verification: PASS
+  model_and_config_provenance_binding: PASS
+  evidence_class_separation: PASS
+  legacy_v1_read_migration: PASS_AT_V0_2_ONLY
+  material_authority_gate: PASS
+  hash_mismatch_gate: PASS
+  text_only_pronunciation_gate: PASS
+  semantic_alias_search: PASS
+  public_private_package_split: PASS
+  private_locator_scan: PASS
+  focused_check_skill: PASS
+coverage_gaps:
+  - code: real_audio_pronunciation_fixture_intentionally_excluded
+    disposition: human_listening_required
+  - code: independent_guardian_review_pending
+    disposition: blocks_active_promotion
+role_separation:
+  producer: transcript_contracts_subagent
+  verifier: focused_deterministic_check
+  guardian: pending_independent_agent_review
+  independence_status: producer_did_not_grant_guardian_state
+historical_scope: This receipt describes v0.2.0 only and does not attest the successor runtime.
