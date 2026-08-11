@@ -28,7 +28,7 @@ describe('tool-policy.yml contract', () => {
     expect(policy.roles).toHaveLength(14);
   });
 
-  it('has 9 active owners with concrete allow/deny', () => {
+  it('has 12 active owners with concrete allow/deny', () => {
     const active = [
       'lead',
       'repo',
@@ -36,7 +36,10 @@ describe('tool-policy.yml contract', () => {
       'qa',
       'core',
       'skill-foundry',
+      'web',
       'content',
+      'remotion',
+      'static-social',
       'governance',
       'guardian',
     ];
@@ -57,8 +60,8 @@ describe('tool-policy.yml contract', () => {
     expect(guardian?.tools.deny).toEqual(expect.arrayContaining(['Edit', 'Write']));
   });
 
-  it('flags 5 stub owners with coverage_gap', () => {
-    const stubs = ['agents-committee', 'web', 'remotion', 'static-social', 'n8n'];
+  it('flags only the 2 remaining stub owners with coverage_gap', () => {
+    const stubs = ['agents-committee', 'n8n'];
     for (const role of stubs) {
       const rule = policy.rules.find((r) => r.role === role);
       expect(rule, `stub owner ${role} must have a rule`).toBeDefined();
@@ -67,6 +70,6 @@ describe('tool-policy.yml contract', () => {
     }
     // The manifest gaps section records the same bounded gap. [CONFIG]
     const gaps = (policy.gaps ?? []).join('\n');
-    expect(gaps).toMatch(/5 stub owners/u);
+    expect(gaps).toMatch(/2 stub owners/u);
   });
 });

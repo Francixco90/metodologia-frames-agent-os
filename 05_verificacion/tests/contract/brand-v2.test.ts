@@ -1,4 +1,13 @@
-import {cpSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {
+  cpSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
@@ -122,5 +131,56 @@ describe('BrandProfileV2 and VoiceProfileV2 contracts', () => {
     const original = readFileSync(profilePath, 'utf8');
     writeFileSync(profilePath, `${original}\ninvalid_literal_fixture: '#123456'\n`);
     expect(validateBrand(destination).some((error) => error.startsWith('BR004'))).toBe(true);
+  });
+
+  it.each([
+    '03_artefactos/renderers/probe.tsx',
+    '03_artefactos/renderers/probe.mjs',
+    '02_proceso/workflows/probe/templates/probe.template.html',
+    '03_artefactos/content/probe/generated/probe.html',
+  ])('scans portable locators in renderer, template and generated HTML surface %s', (path) => {
+    const destination = temporaryBrandRoot();
+    const target = resolve(destination, path);
+    mkdirSync(resolve(target, '..'), {recursive: true});
+    const privateLocator = ['', 'Users', 'example', 'private-source'].join('/');
+    writeFileSync(target, `<p data-source="${privateLocator}">probe</p>`);
+    expect(
+      validateBrand(destination).some((error) => error.startsWith('BR009') && error.includes(path)),
+    ).toBe(true);
+  });
+
+  it.each([
+    '03_artefactos/renderers/probe.tsx',
+    '02_proceso/workflows/probe/templates/probe.template.html',
+    '03_artefactos/content/probe/generated/probe.html',
+  ])(
+    'defers raw-color enforcement outside brand authority until profiles are governed: %s',
+    (path) => {
+      const destination = temporaryBrandRoot();
+      const target = resolve(destination, path);
+      mkdirSync(resolve(target, '..'), {recursive: true});
+      writeFileSync(target, '<p style="color: #123456">probe</p>');
+      expect(validateBrand(destination).some((error) => error.startsWith('BR004'))).toBe(false);
+    },
+  );
+
+  it('executes the CLI body through the scripts symlink and exits non-zero on drift', () => {
+    const destination = temporaryBrandRoot();
+    const profilePath = resolve(destination, 'registries/brand/brand-profile-v2.yml');
+    writeFileSync(
+      profilePath,
+      `${readFileSync(profilePath, 'utf8')}\ninvalid_literal_fixture: '#123456'\n`,
+    );
+    const result = spawnSync(
+      process.execPath,
+      [
+        '--import',
+        realpathSync(resolve(root, 'node_modules/tsx/dist/esm/index.mjs')),
+        resolve(root, 'scripts/check-brand.ts'),
+      ],
+      {cwd: destination, encoding: 'utf8'},
+    );
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('BR004');
   });
 });

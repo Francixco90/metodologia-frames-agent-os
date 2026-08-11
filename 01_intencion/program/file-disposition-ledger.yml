@@ -419,10 +419,10 @@ budgets:
     baseline_words: 94137
     v3_rolling_adjustment_words: 5951
     original_baseline_words: 88186
-    final_words: 110181
+    final_words: 110334
     maximum_multiplier: 1.5
     maximum_words: 141205
-    actual_multiplier: 1.1704
+    actual_multiplier: 1.1721
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
@@ -430,15 +430,15 @@ budgets:
     baseline_words: 94137
     v3_rolling_adjustment_words: 5951
     original_baseline_words: 88186
-    final_words: 110181
+    final_words: 110334
     maximum_words: 188274
-    word_multiplier: 1.1704
+    word_multiplier: 1.1721
     baseline_loc: 35362
     v3_rolling_adjustment_loc: 2474
     original_baseline_loc: 32888
-    final_loc: 41333
+    final_loc: 41395
     maximum_loc: 70724
-    loc_multiplier: 1.1689
+    loc_multiplier: 1.1706
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: c46c7d30eb4eb69e136fa801253cbb1647ad86c1706e4909ffb254d5a138cbdf
-      current_words: 375
-      current_loc: 192
+      current_sha256: 0c3c1db2ded9880a5b55f1b8feeabfed7a8aae265c6b147d12f1c19592180f37
+      current_words: 422
+      current_loc: 197
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**

@@ -96,6 +96,8 @@ writers:
     - content/**
     - networks/content/**
     - workflows/content/**
+    # [CONFIG] Multimedia orchestration is one atomic route owned by content.
+    # Do not split _schema/_runner/P00-P09 across renderer writers.
     - workflows/multimedia/**
     - workflows/career/**
     - workflows/experience/**
@@ -116,6 +118,8 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/03-visual-philosophy.md
     - projects/vs-001-source-to-campaign/remotion/captions.json
   remotion:
+    # [CONFIG] Remotion owns renderer implementation and render evidence only;
+    # workflow orchestration remains under content:workflows/multimedia/**.
     - renderers/remotion/**
     - registries/renderers/**
     - registries/components/**
@@ -131,6 +135,7 @@ writers:
     - projects/vs-001-source-to-campaign/remotion/receipts/**
     - tests/unit/remotion/**
   static-social:
+    # [CONFIG] Static-social owns its renderer outputs, pilot artifacts and receipts only.
     - renderers/static-social/**
     - projects/pilot-carousel-001/artifacts/**
     - receipts/carousel/**
