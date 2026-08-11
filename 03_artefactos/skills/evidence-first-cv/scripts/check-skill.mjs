@@ -64,7 +64,6 @@ for (const token of [
   'cv-package-v3',
   'migrateCvSpecV1ToV2',
   'HUMAN_APPROVED',
-  'CR_CV_DESIGN_APPROVED',
   'ats-neutral',
   'spec_sha256',
   'Evidence Bank',
