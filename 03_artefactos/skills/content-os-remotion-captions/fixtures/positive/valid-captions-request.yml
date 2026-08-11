@@ -1,14 +1,16 @@
 # Positive fixture: a well-formed Remotion captions request.
 schema_version: 1
 skill_id: content-os-remotion-captions
-caption_source: caption-json-first-party
+caption_source: transcript-intelligence-caption-track
+caption_policy_ref: caption-policy/minimal-clarity-v1
+transcript_intelligence_ref: transcript-intelligence/verification.json
 timing_clock: useCurrentFrame
 animate_in_out: true
 karaoke_highlight: true
 transcribe_scope: off-render
 determinism_contract: true
 non_negotiables:
-  - caption JSON transcribed/converted off-render (render path reads JSON only)
+  - caption-track.json reviewed off-render (render path reads JSON only)
   - ms converted to frames (ms * fps / 1000); Sequence from/durationInFrames
   - fade/slide via interpolate(frame, range, [0,1]); never CSS transition/animation
   - live transcribe / SRT-VTT parse forbidden in render path

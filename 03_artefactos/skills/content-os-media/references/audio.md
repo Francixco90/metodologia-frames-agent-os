@@ -32,14 +32,17 @@ Reglas:
 | remote  | OpenAI Whisper | no-deterministic | provider cred (opt-in) |
 
 **Default**: whisper.cpp local. FFmpeg 8.1.1 system binary disponible para
-probing/cut. Transcription output es deterministic (mismo audio → mismo
-transcript). Remote es opt-in.
+probing/cut. El resultado reproducible se registra como `asr-candidate-v1`, no
+como transcripción literal ni subtítulo aprobado. Remote es opt-in.
 
 Reglas:
 
 - Transcription corre offline sobre el archivo resuelto local.
 - Word timestamps registrados en `media-manifest.jsonl` entry (`duration_s`,
   word boundaries) para sync con captions.
+- Registrar engine, modelo, versión, idioma declarado/detectado y hash. Entregar
+  audio + ASR candidato a `content-os-transcript-intelligence`; solo esa compuerta
+  puede producir `caption-track.json` y resolver ambigüedades lingüísticas.
 - Sin network en el path default.
 
 ## Background removal

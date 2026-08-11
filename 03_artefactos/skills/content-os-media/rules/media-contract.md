@@ -44,6 +44,10 @@ TTS/transcription/bg-removal local son reproducibles (mismo input → mismo outp
 Remote adapters son no-deterministas por definición → solo opt-in, marcados
 `provider: remote`, nunca en el render path default.
 
+La transcripción es siempre `asr-candidate-v1`: incluye modelo, idioma, timestamps
+y hash, pero no autoridad lingüística. Captions y claims deben pasar por
+`content-os-transcript-intelligence` con audio disponible.
+
 ## 8. RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED
 
 Media resuelto produce `RENDERED_DRAFT`. `READY`/publicación requiere gates
