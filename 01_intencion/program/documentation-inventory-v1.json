@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "92848e34acd836187f96c3a02f67c16f0f06b97c25759eb32cbf366a9efb8d6f",
-  "totalMarkdown": 1782,
-  "auditedAuthored": 545,
+  "repositoryTreeSha256": "4816099e06f46ed324b889dbe64e689ec2ebc8f36fbeac302284d7260e3a92f1",
+  "totalMarkdown": 1784,
+  "auditedAuthored": 547,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -287,6 +287,8 @@
       "03_artefactos/skills/content-os-slideshow/rules/workflow-contract.md",
       "03_artefactos/skills/content-os-transcript-intelligence/references/caption-editing-policy.md",
       "03_artefactos/skills/content-os-transcript-intelligence/references/language-quality-policy.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
       "03_artefactos/skills/data-visual-composition/references/semantics.md",
       "03_artefactos/skills/design-cast/references/audit-per-stack.md",
       "03_artefactos/skills/design-cast/references/sub-skill-routing.md",
@@ -11590,6 +11592,58 @@
       }
     },
     {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/references/narrative-mining.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "fbd62d45c115608752ba5bed54e2048bca0d7fdebf6c28910e4a7d6a1bae1b45",
+      "words": 184,
+      "lines": 34,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/content-os-transcript-intelligence/rules/workflow-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "13a1b1db8badbdb201c5f9f82f45239ccbf5150b8c72321fe7eda7e3e15fc823",
+      "words": 104,
+      "lines": 22,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/data-visual-composition/references/semantics.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -16460,7 +16514,7 @@
     }
   ],
   "summary": {
-    "keep": 530,
+    "keep": 532,
     "refactor": 0,
     "split": 1,
     "regenerate": 81,

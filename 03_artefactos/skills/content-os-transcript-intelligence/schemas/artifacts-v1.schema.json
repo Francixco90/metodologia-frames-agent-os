@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transcript-intelligence-artifacts-v1",
+  "type": "object",
+  "required": ["literal-transcript.json", "language-events.json", "correction-ledger.json", "caption-track.json", "pronunciation-glossary.json", "semantic-index.json", "narrative-map.json", "verification.json"],
+  "properties": {
+    "literal-transcript.json": {"type": "object"},
+    "language-events.json": {"type": "object"},
+    "correction-ledger.json": {"type": "object"},
+    "caption-track.json": {"type": "object"},
+    "pronunciation-glossary.json": {"type": "object"},
+    "semantic-index.json": {"type": "object"},
+    "narrative-map.json": {"type": "object"},
+    "verification.json": {"type": "object"}
+  }
+}
