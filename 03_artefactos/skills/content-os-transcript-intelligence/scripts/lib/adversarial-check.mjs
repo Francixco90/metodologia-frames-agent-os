@@ -5,7 +5,7 @@ import {resolve} from 'node:path';
 const json = (path) => JSON.parse(readFileSync(path, 'utf8'));
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 
-export function runAdversarial({dir, temp, run, errors, prefix}) {
+export function runAdversarial({dir, temp, run, errors, prefix, mediaChecks = true}) {
   const adversarial = json(resolve(dir, 'fixtures/negative/adversarial-cases.json'));
   const positiveDir = resolve(dir, 'fixtures/positive');
   function writeCase(id, mutate) {
@@ -83,8 +83,10 @@ export function runAdversarial({dir, temp, run, errors, prefix}) {
       job.source.ref = 'escape.txt';
     },
   };
+  const mediaCases = new Set(['audio-source-binding-mismatch', 'audio-zero-duration', 'audio-corrupt-payload']);
   for (const test of adversarial.cases) {
     if (['legacy-derivative-block', 'material-authority-unverified', 'absolute-output', 'traversal-output', 'symlink-output'].includes(test.id)) continue;
+    if (!mediaChecks && mediaCases.has(test.id)) continue;
     const jobPath = writeCase(test.id, mutations[test.id]);
     const command = test.id === 'private-package-disabled' ? 'package' : 'verify';
     const result = run([command, '--job', jobPath, '--out', `outputs/out-${test.id}`]);

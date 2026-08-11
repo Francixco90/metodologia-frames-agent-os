@@ -15,6 +15,7 @@ import {runAdversarial} from './check-adversarial.mjs';
 const ROOT = process.cwd();
 const SKILL_DIR = resolve(ROOT, 'skills/content-os-general-video');
 const PREFIX = 'COSR-GV_';
+const validationProfile = process.env.METODOLOGIA_TOOLCHAIN_PROFILE ?? 'local-full';
 
 const required = [
   'SKILL.md',
@@ -61,6 +62,7 @@ const required = [
 ];
 
 const errors = [];
+if (!['local-full', 'ci-code-only'].includes(validationProfile)) errors.push(`${PREFIX}INVALID_PROFILE ${validationProfile}`);
 
 for (const rel of required) {
   if (!existsSync(resolve(SKILL_DIR, rel))) {
@@ -169,14 +171,20 @@ if (linguistic.status === 0 || !linguistic.stderr.includes('linguistic-gate')) {
   errors.push(`${PREFIX}LINGUISTIC_GATE`);
 }
 
-runAdversarial({SKILL_DIR, errors});
+runAdversarial({SKILL_DIR, errors, mediaChecks: validationProfile === 'local-full'});
 
 if (errors.length > 0) {
   console.error(`FAIL content-os-general-video: ${errors.length} error(s)`);
   for (const e of errors) console.error(`  ${e}`);
   process.exitCode = 1;
 } else {
-  console.info(
-    'PASS content-os-general-video: v1 read compatibility, v2 Spec First CLI, A/B/miniclip gates, fixtures and forbidden-scan.',
-  );
+  if (validationProfile === 'ci-code-only') {
+    console.info(
+      'PASS CODE-ONLY content-os-general-video: structure, policy, fixtures, adversarial security gates, linguistic gate and forbidden-scan. MEDIA COVERAGE GAP: render bytes, measurements, A/B output verification and miniclip runtime checks require local-full.',
+    );
+  } else {
+    console.info(
+      'PASS content-os-general-video: v1 read compatibility, v2 Spec First CLI, A/B/miniclip gates, fixtures and forbidden-scan.',
+    );
+  }
 }
