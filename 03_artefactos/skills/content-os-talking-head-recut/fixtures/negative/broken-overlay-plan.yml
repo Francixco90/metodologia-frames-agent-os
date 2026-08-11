@@ -1,6 +1,7 @@
 # Negative fixture: broken talking-head-recut overlay plan (documents violations it rejects)
 # This fixture MUST contain every violation token the check rejects.
 composition_id: thr-broken-001
+operation: render-draft # legacy-v1-new-draft-blocked
 duration: 30
 aspect: '16:9'
 clip:

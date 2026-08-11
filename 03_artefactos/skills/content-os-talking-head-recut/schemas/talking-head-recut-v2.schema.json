@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "talking-head-recut-v2",
+  "title": "Spec First talking-head recut",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "operation", "specId", "specSha256", "compositionId", "durationSeconds",
+    "clip", "scriptMode", "correctionLedgerRef", "transcriptIntelligenceRef",
+    "semanticIndexRef", "narrativeMapRef", "verificationState", "editorialDecision", "cards"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "talking-head-recut-v2"},
+    "operation": {"enum": ["read", "plan", "render-draft"]},
+    "specId": {"type": "string", "minLength": 1},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "compositionId": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "durationSeconds": {"type": "number", "minimum": 1},
+    "clip": {"type": "object", "required": ["ref", "sha256"]},
+    "scriptMode": {"const": "assembly_map"},
+    "captionTrackRef": {"type": "string"},
+    "correctionLedgerRef": {"type": "string", "minLength": 1},
+    "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
+    "semanticIndexRef": {"type": "string", "minLength": 1},
+    "narrativeMapRef": {"type": "string", "minLength": 1},
+    "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
+    "editorialDecision": {"enum": ["use", "extend", "reframe", "discard"]},
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "startSeconds", "endSeconds", "kind", "content", "rationale", "evidenceRef", "sourceSpan"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^card-\\d{2}$"},
+          "startSeconds": {"type": "number", "minimum": 0},
+          "endSeconds": {"type": "number", "exclusiveMinimum": 0},
+          "kind": {"enum": ["title", "lower-third", "data-callout", "quote", "side-panel", "pip"]},
+          "content": {"type": "string"},
+          "rationale": {"type": "string"},
+          "evidenceRef": {"type": "string"},
+          "sourceSpan": {"$ref": "#/$defs/sourceSpan"},
+          "visualSpan": {"$ref": "#/$defs/sourceSpan"}
+        },
+        "allOf": [{"if": {"properties": {"kind": {"const": "pip"}}}, "then": {"required": ["visualSpan"]}}]
+      }
+    }
+  },
+  "allOf": [{"if": {"properties": {"operation": {"const": "render-draft"}}, "required": ["operation"]}, "then": {"properties": {"editorialDecision": {"const": "use"}}}}],
+  "$defs": {
+    "sourceSpan": {
+      "type": "object",
+      "required": ["sourceId", "startSeconds", "endSeconds", "absolute", "local"],
+      "properties": {
+        "sourceId": {"type": "string"},
+        "startSeconds": {"type": "number"},
+        "endSeconds": {"type": "number"},
+        "absolute": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string", "minLength": 1}, "startSeconds": {"type": "number", "minimum": 0}, "endSeconds": {"type": "number", "exclusiveMinimum": 0}}},
+        "local": {"type": "object", "additionalProperties": false, "required": ["clockId", "startSeconds", "endSeconds"], "properties": {"clockId": {"type": "string", "minLength": 1}, "startSeconds": {"type": "number", "minimum": 0}, "endSeconds": {"type": "number", "exclusiveMinimum": 0}}}
+      }
+    }
+  }
+}

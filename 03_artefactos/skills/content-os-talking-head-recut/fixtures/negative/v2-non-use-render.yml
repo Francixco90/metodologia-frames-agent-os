@@ -1,0 +1,28 @@
+schemaVersion: talking-head-recut-v2
+operation: render-draft
+specId: synthetic-reframe
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+compositionId: synthetic-reframe
+durationSeconds: 10
+clip: {ref: media/synthetic.mp4, sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb}
+scriptMode: assembly_map
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+semanticIndexRef: transcript-intelligence/semantic-index.json
+narrativeMapRef: transcript-intelligence/narrative-map.json
+verificationState: deterministic-passed
+editorialDecision: reframe
+cards:
+  - id: card-01
+    startSeconds: 1
+    endSeconds: 3
+    kind: title
+    content: '<div>Reframe</div>'
+    rationale: synthetic
+    evidenceRef: narrative-map.json#beat
+    sourceSpan:
+      sourceId: synthetic-001
+      startSeconds: 11
+      endSeconds: 13
+      absolute: {clockId: session, startSeconds: 11, endSeconds: 13}
+      local: {clockId: clip, startSeconds: 1, endSeconds: 3}

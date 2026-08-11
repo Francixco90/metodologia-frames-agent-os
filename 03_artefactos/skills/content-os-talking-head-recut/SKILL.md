@@ -60,11 +60,16 @@ via `content-os-media`). Escribir `metadata.json`, `audio.mp3` y
 
 ### Step 1 — plan cards from semantic evidence
 
+Para nuevos trabajos usar `talking-head-recut-v2`, ligado a `specSha256`, con
+`scriptMode: assembly_map`, `correctionLedgerRef` y verificación lingüística aprobada.
+v1 permanece legible para migración, pero no genera borradores nuevos.
+
 Consumir `semantic-index.json` y los beats de `narrative-map.json`. Identificar momentos
 respaldados por `sourceSpan`: una entidad resuelta, un número verificado, una
 quote, a topic shift, a side reference. Each card has: `id`, `start`, `end`, `kind`
 (title | lower-third | data-callout | quote | side-panel | pip), `content` (the text/HTML
-payload), `rationale` y `sourceSpan`. Write `storyboard.json`. The card count tracks distinct
+payload), `rationale`, `evidenceRef` y `sourceSpan` con reloj absoluto/local. PiP además
+requiere `visualSpan`. Write `storyboard.json`. The card count tracks distinct
 graphic moments, not transcript length — a dense 2-min clip may need 12 cards, a sparse
 one 4.
 
@@ -112,6 +117,8 @@ The list is descriptive, not prescriptive — new archetypes emerge from the tra
 - GSAP timelines `paused: true`, driven by the Frames ContentOS frame clock.
 - No network in the render path. Remote media adapters fail-closed (`content-os-media`).
 - `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`.
+- `editorialDecision` admite `use`, `extend`, `reframe` y `discard`; solo `use`
+  puede entrar a `render-draft`. Las otras decisiones vuelven a planificación.
 
 ## Dependencies
 

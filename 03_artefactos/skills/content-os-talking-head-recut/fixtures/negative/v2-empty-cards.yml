@@ -1,0 +1,15 @@
+schemaVersion: talking-head-recut-v2
+operation: render-draft
+specId: synthetic-empty
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+compositionId: synthetic-empty
+durationSeconds: 10
+clip: {ref: media/synthetic.mp4, sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb}
+scriptMode: assembly_map
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+semanticIndexRef: transcript-intelligence/semantic-index.json
+narrativeMapRef: transcript-intelligence/narrative-map.json
+verificationState: deterministic-passed
+editorialDecision: use
+cards: []

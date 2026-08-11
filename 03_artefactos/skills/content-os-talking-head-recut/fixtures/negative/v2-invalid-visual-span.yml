@@ -1,0 +1,34 @@
+schemaVersion: talking-head-recut-v2
+operation: render-draft
+specId: synthetic-visual
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+compositionId: synthetic-visual
+durationSeconds: 10
+clip: {ref: media/synthetic.mp4, sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb}
+scriptMode: assembly_map
+correctionLedgerRef: transcript-intelligence/correction-ledger.json
+transcriptIntelligenceRef: transcript-intelligence/verification.json
+semanticIndexRef: transcript-intelligence/semantic-index.json
+narrativeMapRef: transcript-intelligence/narrative-map.json
+verificationState: deterministic-passed
+editorialDecision: use
+cards:
+  - id: card-01
+    startSeconds: 1
+    endSeconds: 3
+    kind: pip
+    content: '<div>Demo</div>'
+    rationale: demo synthetic
+    evidenceRef: narrative-map.json#demo
+    sourceSpan:
+      sourceId: synthetic-001
+      startSeconds: 11
+      endSeconds: 13
+      absolute: {clockId: session, startSeconds: 11, endSeconds: 13}
+      local: {clockId: clip, startSeconds: 1, endSeconds: 3}
+    visualSpan:
+      sourceId: synthetic-001
+      startSeconds: 13
+      endSeconds: 11
+      absolute: {clockId: session, startSeconds: 13, endSeconds: 11}
+      local: {clockId: clip, startSeconds: 3, endSeconds: 1}

@@ -1,0 +1,6 @@
+schemaVersion: talking-head-recut-v1
+operation: read
+composition_id: archived-overlay
+duration: 12
+clip: {path: archive/synthetic.mp4}
+cards: []
