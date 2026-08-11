@@ -54,6 +54,34 @@ accessibility:
   large_text_and_ui_minimum_contrast: 3
   gold_pairing_rule: text_on_gold
   forbidden_pairing: white_on_gold
+career:
+  schema_version: metodologia-career-palette-v1
+  default_theme: navy
+  print_theme: light
+  navy:
+    canvas: '#062f62'
+    surface: '#093d78'
+    surface_raised: '#0d4788'
+    text: '#f4f7fb'
+    text_muted: '#b9c9dc'
+    accent: '#f0c541'
+    accent_text: '#17150c'
+    line: '#52749b'
+    focus: '#ffdb63'
+    shadow: 'rgba(1, 13, 30, .34)'
+    backdrop: 'rgba(2, 11, 24, .74)'
+  light:
+    canvas: '#f3f4f2'
+    surface: '#fafaf7'
+    surface_raised: '#e8e9e6'
+    text: '#171a1e'
+    text_muted: '#505963'
+    accent: '#765400'
+    accent_text: '#fafaf7'
+    line: '#a8adb1'
+    focus: '#765400'
+    shadow: 'rgba(30, 34, 38, .13)'
+    backdrop: 'rgba(23, 26, 30, .58)'
 projection_targets:
   - brand/generated/social-light.tokens.json
   - brand/generated/social-light.css
