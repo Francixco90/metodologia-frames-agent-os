@@ -1,30 +1,195 @@
+import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
+import {verifyHtmlMutations, verifyPolicyMutations} from './lib/adversarial-probes.mjs';
+import {packageHash} from './lib/canonical.mjs';
+import {verifyDocx} from './lib/docx-verifier.mjs';
+import {verifyPdf} from './lib/pdf-verifier.mjs';
+import {verifyRuntimeFixture} from './lib/runtime-fixture.mjs';
+
 const id = 'evidence-first-cv';
-const base = `skills/${id}`;
+const base = resolve(`skills/${id}`);
 const required = [
-  'SKILL.md', 'LINEAGE.yml', 'references/cv-quality-contract.md',
-  'schemas/cv-package-v1.schema.json', 'fixtures/positive/targeted-cv-package.json',
-  'fixtures/negative/rejected-cv-packages.json', 'receipts/runtime-boundary.yml',
+  'SKILL.md',
+  'LINEAGE.yml',
+  'references/cv-quality-contract.md',
+  'schemas/cv-package-v1.schema.json',
+  'schemas/cv-package-v2.schema.json',
+  'fixtures/positive/targeted-cv-package.json',
+  'fixtures/positive/spec-bound-bilingual-package.json',
+  'fixtures/positive/hostile-bilingual-copy.json',
+  'fixtures/negative/rejected-cv-packages.json',
+  'fixtures/negative/rejected-cv-packages-v2.json',
+  'assets/docx-style-contract.json',
+  'assets/contact-binding.example.json',
+  'receipts/runtime-boundary.yml',
+  'fixtures/runtime/verified/cv-spec.json',
+  'fixtures/runtime/verified/candidate-profile.json',
+  'fixtures/runtime/verified/profile-source.json',
+  'fixtures/runtime/verified/evidence-source.json',
+  'fixtures/runtime/verified/evidence-bank.json',
+  'fixtures/runtime/verified/canonical-source.json',
+  'fixtures/runtime/verified/source-es.json',
+  'fixtures/runtime/verified/source-en.json',
+  'fixtures/runtime/verified/cv-es.html',
+  'fixtures/runtime/verified/cv-en.html',
+  'fixtures/runtime/verified/package.json',
+  'fixtures/runtime/unverified.pdf',
+  'scripts/lib/canonical.mjs',
+  'scripts/lib/package-policy.mjs',
+  'scripts/lib/html-verifier.mjs',
+  'scripts/lib/docx-verifier.mjs',
+  'scripts/lib/pdf-verifier.mjs',
+  'scripts/lib/parity-verifier.mjs',
+  'scripts/lib/runtime-fixture.mjs',
+  'scripts/lib/runtime-fixture-inputs.ts',
+  'scripts/lib/adversarial-probes.mjs',
+  'scripts/build-runtime-fixtures.ts',
+  'scripts/check-core-contracts.ts',
 ];
 const docs = new Map(required.map((path) => [path, readFileSync(resolve(base, path), 'utf8')]));
 const all = [...docs.values()].join('\n');
-const schema = JSON.parse(docs.get('schemas/cv-package-v1.schema.json'));
-const positive = JSON.parse(docs.get('fixtures/positive/targeted-cv-package.json'));
-const negative = JSON.parse(docs.get('fixtures/negative/rejected-cv-packages.json'));
+const json = (path) => JSON.parse(docs.get(path));
+const schemaV2 = json('schemas/cv-package-v2.schema.json');
+const positiveV2 = json('fixtures/positive/spec-bound-bilingual-package.json');
+const negativeV2 = json('fixtures/negative/rejected-cv-packages-v2.json');
+const runtimePkg = json('fixtures/runtime/verified/package.json');
+const docxStyle = json('assets/docx-style-contract.json');
+const contact = json('assets/contact-binding.example.json');
 
-for (const token of [`name: ${id}`, 'description: This skill should be used when', 'version: 0.1.0',
-  'lifecycle_state: active', 'candidate-neutral-ats', 'Markdown canónico', 'ATS-safe',
-  'network_allowed: false', 'submission_authority: false', 'CR_PACKAGE_QA']) {
+for (const token of [
+  `name: ${id}`,
+  'version: 0.2.0',
+  'cv-spec-v1',
+  'HUMAN_APPROVED',
+  'spec_sha256',
+  'Evidence Bank',
+  'CR_PACKAGE_QA',
+  'network_allowed: false',
+  'submission_authority: false',
+])
   if (!all.includes(token)) throw new Error(`CAR-CV-MISSING ${token}`);
+
+const packageFields = [
+  'schema_version',
+  'package_id',
+  'candidate_id',
+  'application_id',
+  'spec_id',
+  'spec_sha256',
+  'evidence_bank_sha256',
+  'application_brief_sha256',
+  'job_snapshot_sha256',
+  'source_document_ref',
+  'source_document_sha256',
+  'contact_binding_id',
+  'variants',
+  'outputs',
+  'qa',
+  'parity_status',
+  'privacy_status',
+  'state',
+  'approved_spec_sha256',
+  'publication_receipt',
+  'package_sha256',
+];
+if (
+  schemaV2.title !== 'CvPackageV2' ||
+  schemaV2.properties.schema_version.const !== 'cv-package-v2'
+) {
+  throw new Error('CAR-CV-SCHEMA-V2');
 }
-if (schema.title !== 'CvPackageV1') throw new Error('CAR-CV-SCHEMA');
-if (positive.outputs.length < 2 || positive.outputs.some(({materialized, sha256}) => !materialized || !/^[a-f0-9]{64}$/u.test(sha256))) {
-  throw new Error('CAR-CV-OUTPUTS');
+if (
+  Object.keys(schemaV2.properties).sort().join('|') !== [...packageFields].sort().join('|') ||
+  schemaV2.required.sort().join('|') !== [...packageFields].sort().join('|')
+) {
+  throw new Error('CAR-CV-SCHEMA-V2-RUNTIME-SURFACE');
 }
-for (const caseId of ['unsupported_claim', 'inferred_claim_promoted', 'missing_material_output', 'pdf_not_selectable', 'cross_format_contradiction', 'remote_asset']) {
-  if (!negative.cases.some(({id: value}) => value === caseId)) throw new Error(`CAR-CV-NEGATIVE ${caseId}`);
+const receiptFields = [
+  'receipt_ref',
+  'receipt_sha256',
+  'external_event_id',
+  'observed_at',
+  'ready_package_sha256',
+];
+if (
+  schemaV2.$defs.publicationReceipt.required.sort().join('|') !== receiptFields.sort().join('|') ||
+  !schemaV2.allOf?.length
+)
+  throw new Error('CAR-CV-PUBLICATION-CONTRACT');
+
+if (
+  positiveV2.publication_receipt !== null ||
+  packageHash(positiveV2) !== positiveV2.package_sha256
+) {
+  throw new Error('CAR-CV-V2-SHAPE-FIXTURE');
 }
-if (/\/Users\/|\/home\/|file:\/\/|[A-Za-z]:\\Users\\/u.test(all)) throw new Error('CAR-CV-PRIVATE-LOCATOR');
-console.info(`PASS ${id}: evidence-bound recruiter/ATS package and material output contract.`);
+const negativeIds = new Set(negativeV2.cases.map(({id: caseId}) => caseId));
+for (const caseId of [
+  'spec_not_approved',
+  'duplicate_variant',
+  'duplicate_output',
+  'output_matrix_mismatch',
+  'artifact_hash_mismatch',
+  'self_reported_pass_without_evidence',
+  'bilingual_identity_drift',
+  'bilingual_role_drift',
+  'bilingual_date_drift',
+  'bilingual_metric_drift',
+  'bilingual_attribution_drift',
+  'page_budget_exceeded',
+  'hidden_keyword_content',
+  'html_javascript',
+  'html_module_script',
+  'html_json_script_wrong_id',
+  'html_json_script_with_src',
+  'html_json_script_invalid_payload',
+  'html_expected_inert_json',
+  'remote_asset',
+  'published_without_receipt',
+  'receipt_hash_mismatch',
+  'pdf_evidence_unavailable',
+  'unmeasured_ats_percentage',
+])
+  if (!negativeIds.has(caseId)) throw new Error(`CAR-CV-NEGATIVE-V2 ${caseId}`);
+
+const failures = [
+  ...verifyRuntimeFixture(base),
+  ...verifyPolicyMutations(runtimePkg, base),
+  ...verifyHtmlMutations(),
+];
+if (verifyDocx(resolve(base, 'fixtures/runtime/missing.docx')).status !== 'BLOCKED') {
+  failures.push('DOCX_MISSING_NOT_BLOCKED');
+}
+if (verifyPdf(resolve(base, 'fixtures/runtime/missing.pdf'), 1).status !== 'BLOCKED') {
+  failures.push('PDF_MISSING_NOT_BLOCKED');
+}
+if (failures.length) throw new Error(`CAR-CV-EXECUTABLE-QA ${failures.join(',')}`);
+execFileSync(
+  process.execPath,
+  ['--import', 'tsx', resolve(base, 'scripts/check-core-contracts.ts')],
+  {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  },
+);
+
+for (const forbidden of ['tables', 'columns', 'text_boxes', 'drawings', 'headers', 'footers']) {
+  if (docxStyle.structure?.[forbidden] !== false) throw new Error(`CAR-CV-DOCX ${forbidden}`);
+}
+if (
+  !contact.synthetic ||
+  !contact.repository_safe ||
+  contact.rules?.persist_real_values_in_git !== false ||
+  contact.rules?.persist_hash_derived_from_real_values !== false
+) {
+  throw new Error('CAR-CV-CONTACT-BINDING-SAFETY');
+}
+if (/\b(?:90|9[1-9]|100)%\s+ATS\b/iu.test(all)) throw new Error('CAR-CV-ATS-PERCENTAGE');
+if (/\/Users\/|\/home\/|file:\/\/|[A-Za-z]:\\Users\\/u.test(all)) {
+  throw new Error('CAR-CV-PRIVATE-LOCATOR');
+}
+console.info(
+  'PASS evidence-first-cv: observed hashes, claims, parity and static artifact policy; visual/PDF evidence fails closed.',
+);

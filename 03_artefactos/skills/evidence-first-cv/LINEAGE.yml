@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: evidence-first-cv
-version: 0.1.0
+version: 0.2.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored_from_user_supplied_requirements
@@ -12,6 +12,18 @@ authority_refs:
   - skills/candidate-evidence-reconciler/SKILL.md
   - skills/evidence-first-cv/references/cv-quality-contract.md
   - skills/evidence-first-cv/schemas/cv-package-v1.schema.json
+  - skills/evidence-first-cv/schemas/cv-package-v2.schema.json
+  - skills/evidence-first-cv/assets/docx-style-contract.json
+  - skills/evidence-first-cv/assets/contact-binding.example.json
+  - skills/evidence-first-cv/fixtures/positive/hostile-bilingual-copy.json
+  - skills/evidence-first-cv/fixtures/runtime/verified/package.json
+  - skills/evidence-first-cv/fixtures/runtime/verified/evidence-bank.json
+  - skills/evidence-first-cv/fixtures/runtime/verified/source-es.json
+  - skills/evidence-first-cv/fixtures/runtime/verified/source-en.json
+  - skills/evidence-first-cv/scripts/build-runtime-fixtures.ts
+  - skills/evidence-first-cv/scripts/check-core-contracts.ts
+  - skills/evidence-first-cv/scripts/check-skill.mjs
 derivation:
   method: clean_room_normalization
   copied_external_prompts: false
+  successor_change: core_contract_fixtures_inert_json_and_material_multiformat_qa

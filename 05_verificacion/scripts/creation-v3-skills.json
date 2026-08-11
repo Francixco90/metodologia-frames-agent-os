@@ -68,6 +68,7 @@
   },
   {
     "id": "evidence-first-cv",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/evidence-first-cv/scripts/check-skill.mjs"]
   },
