@@ -3,7 +3,7 @@ name: content-os-talking-head-recut
 description: This skill should be used when the user asks to "add graphic overlays to a video", "dress up my talking-head clip", "package an interview with on-screen graphics", "add lower-thirds and data callouts", "layer designed cards on a playing video", or "recut a podcast clip with kinetic titles". Packages an existing talking-head / interview / podcast clip with timed, designed graphic overlay cards (titles, lower-thirds, data callouts, quotes, side panels, PiP) synced to the transcript on 16:9 / 9:16 / 4:5. The clip plays untouched; overlays are designed HTML rendered via the Frames ContentOS toolchain (Playwright + FFmpeg, GSAP). Not plain subtitles (content-os-embedded-captions). Unclear → content-os-router.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-media (video probe, audio extraction, transcription), content-os-embedded-captions (sibling plain-subtitle track). Input = existing talking-head clip (plays untouched). Overlays = designed HTML cards synced to transcript. Output RENDERED_DRAFT (output.mp4, clip + overlay cards composited).
+compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-media (video probe, audio extraction, ASR candidate), content-os-transcript-intelligence (semantic index + evidence-bound narrative), content-os-embedded-captions (sibling plain-subtitle track). Input = existing talking-head clip (plays untouched). Overlays = designed HTML cards synced to source spans. Output RENDERED_DRAFT (output.mp4, clip + overlay cards composited).
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -44,7 +44,8 @@ Work in `videos/<project>/`. Inspectable intermediate files:
 
 - `metadata.json` — duration / width / height / fps (probe via the media adapter)
 - `audio.mp3` — extracted audio (FFmpeg)
-- `transcript.json` — flat word array `[{ text, start, end }, …]` (Whisper via the media adapter; no `segments`, no `words` wrapper)
+- `asr-candidate.json` — salida del motor con modelo, idioma, timestamps y hash
+- `semantic-index.json` + `narrative-map.json` — selección revisada y trazable
 - `storyboard.json` — lightweight card outline (the agent's plan)
 - `public/cards/card-XX.html` — one HTML fragment per card
 - `public/index.html` — final assembled composition
@@ -54,14 +55,16 @@ Work in `videos/<project>/`. Inspectable intermediate files:
 
 Establish the clip source. Probe the video (`ffprobe` via `content-os-media`) for duration,
 dimensions, fps. Extract audio (`ffmpeg`). Transcribe the audio to a flat word array (Whisper
-via `content-os-media`). Write `metadata.json`, `audio.mp3`, `transcript.json`.
+via `content-os-media`). Escribir `metadata.json`, `audio.mp3` y
+`asr-candidate.json`; ejecutar `content-os-transcript-intelligence` antes de planear.
 
-### Step 1 — plan cards from the transcript
+### Step 1 — plan cards from semantic evidence
 
-Read the transcript. Identify moments worth a graphic card: a named entity, a number, a
+Consumir `semantic-index.json` y los beats de `narrative-map.json`. Identificar momentos
+respaldados por `sourceSpan`: una entidad resuelta, un número verificado, una
 quote, a topic shift, a side reference. Each card has: `id`, `start`, `end`, `kind`
 (title | lower-third | data-callout | quote | side-panel | pip), `content` (the text/HTML
-payload), `rationale` (why here). Write `storyboard.json`. The card count tracks distinct
+payload), `rationale` y `sourceSpan`. Write `storyboard.json`. The card count tracks distinct
 graphic moments, not transcript length — a dense 2-min clip may need 12 cards, a sparse
 one 4.
 
@@ -114,6 +117,7 @@ The list is descriptive, not prescriptive — new archetypes emerge from the tra
 
 - `content-os-core` — HTML composition contract + Playwright render adapter.
 - `content-os-media` — video probe, audio extraction, transcription (Whisper).
+- `content-os-transcript-intelligence` — revisión lingüística, búsqueda semántica y beats trazables.
 - `content-os-embedded-captions` — sibling (plain subtitle track, if also wanted).
 - Toolchain: Playwright 1.61.1, FFmpeg (libx264), GSAP 3.15.0 (all pinned in `package.json`).
 
@@ -124,6 +128,7 @@ The list is descriptive, not prescriptive — new archetypes emerge from the tra
 - Does not build a video from scratch (use the creation workflows).
 - Does not activate connectors or publish; no network in the render path.
 - Does not persist chain-of-thought, secrets, PII, or private locators.
+- No inventa tarjetas desde notas o ASR sin resolver; una ambigüedad material bloquea.
 
 ## Check
 

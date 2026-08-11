@@ -95,7 +95,10 @@ adapters remotos son scripts separados (referenciados en
    reproducibles (mismo input → mismo output). Remote adapters son
    no-deterministas por definición → solo opt-in, marcados `provider: remote`,
    nunca en el render path default.
-8. **RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED.** Media resuelto
+8. **ASR es candidato.** Toda transcripción registra modelo, versión, idioma,
+   timestamps y hash como `asr-candidate-v1`. No se promueve a verdad, caption ni
+   claim: `content-os-transcript-intelligence` debe revisarla contra audio.
+9. **RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED.** Media resuelto
    produce `RENDERED_DRAFT`. `READY`/publicación requiere gates humanos G13-G17.
 
 ## Media types
@@ -120,6 +123,7 @@ TTS, transcription, bg-removal, music, sfx — ver `references/audio.md`.
 - **TTS**: Piper / Coqui local engines (default, offline, deterministic).
   HeyGen TTS via adapter opt-in (auth-gated).
 - **Transcription**: whisper.cpp local (default). OpenAI Whisper API (opt-in).
+  Su salida siempre es candidata y conserva modelo, idioma, timestamps y hash.
 - **Background removal**: ffmpeg local (default). Remote providers (opt-in).
 - **Media playback**: framework-owned, start/stop determinístico por clip
   (hereda `content-os-core`).

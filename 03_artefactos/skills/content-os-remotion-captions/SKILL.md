@@ -3,7 +3,7 @@ name: content-os-remotion-captions
 description: This skill should be used when the user asks to "add captions in Remotion", "Remotion subtitles", "Remotion @remotion/captions", "transcribe + animate captions", "Remotion Caption type", or "Remotion SRT / VTT captions". Transcribe, display and animate captions in Remotion: the `Caption` type from `@remotion/captions`, JSON-driven caption tracks, frame-driven timing/animation, no CSS transition. Sits beside `remotion-video-production` (MetodologIA canonical). Clean-room prose from the Remotion publisher reference (source-available, Remotion AG). Output stays RENDERED_DRAFT; production gates G13-G17 manual. Unclear → content-os-remotion-best-practices.
 version: 0.1.0
 license: LicenseRef-MetodologIA-Internal
-compatibility: Requires exact H-03 toolchain pins (Remotion 4.0.494, React 19). Sits beside `remotion-video-production`. Captions are markup; scaffold via `content-os-remotion-create`, render via `content-os-remotion-render`. No runtime dependency added.
+compatibility: Requires exact H-03 toolchain pins (Remotion 4.0.494, React 19) and a reviewed caption-track from content-os-transcript-intelligence. Sits beside `remotion-video-production`. Captions are markup; scaffold via `content-os-remotion-create`, render via `content-os-remotion-render`. No runtime dependency added.
 metadata:
   owner: MetodologIA
   lifecycle_state: active
@@ -23,10 +23,12 @@ the project (`content-os-remotion-create`) or render (`content-os-remotion-rende
 
 ## Caption data model
 
-All captions must be processed as JSON using the `Caption` type from `@remotion/captions`
+All captions must originate in `caption-track.json` from
+`content-os-transcript-intelligence`, then be adapted off-render to the `Caption` type
+from `@remotion/captions`
 (see `skills/vendor/remotion-publisher/remotion-captions/SKILL.md`, read-only). A caption
-track is a list of `Caption` entries with timing (`startMs`/`endMs`) and text. Transcribe
-the source media off-render into this JSON; the render path reads only the JSON.
+track is a list of entries with timing (`startMs`/`endMs`) and text. Direct ASR, SRT or
+VTT is not authoritative; the render path reads only reviewed JSON.
 
 Never parse SRT/VTT live in the render path. Convert SRT/VTT → `Caption` JSON off-render
 (deterministic), then drive the composition from the JSON.
@@ -61,7 +63,8 @@ Remote transcription is opt-in auth-gated fail-closed and runs only off-render.
 
 1. Confirm exact toolchain pins (Remotion 4.0.494, React 19).
 2. Confirm the Remotion license verdict (`H03-LIC-REMOTION-001.yml`).
-3. Confirm the caption JSON is first-party version-pinned (transcribed off-render).
+3. Confirm `caption_policy_ref`, `transcript_intelligence_ref` and the reviewed
+   caption JSON are first-party version-pinned.
 4. Stop on: live transcribe/SRT-parse in render path, network in render path, unpinned
    assets, production request without human gate approval.
 
