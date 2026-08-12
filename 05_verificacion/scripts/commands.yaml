@@ -358,18 +358,10 @@ gates:
 
   # prettier-ignore
   - {gate: CR_BRIEF_APPROVED, label: career brief approval before document production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
-  - {
-      gate: CR_CV_SPEC_APPROVED,
-      label: career CV specification approval before compilation,
-      command: null,
-      allowed_tools: [],
-      write_set_globs: [],
-      idempotency: true,
-      danger_level: medium,
-      manual: true,
-      fail_closed: true,
-      owner: governance,
-    }
+  # prettier-ignore
+  - {gate: CR_CAREER_EVIDENCE_READY, label: career evidence readiness before positioning, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: CR_CV_SPEC_APPROVED, label: career CV specification approval before compilation, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   - {
       gate: CR_CV_COMPILED,
       label: canonical CV compiled from approved specification and evidence,

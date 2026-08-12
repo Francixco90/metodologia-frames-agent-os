@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "57eba0d037a65f85fb5302ac48c05c9eb98325829bb8f5e973e4851c141bc497",
-  "totalMarkdown": 1806,
+  "repositoryTreeSha256": "08ccb596e01389562d954f85b48a9222ebd8de53435a9870a74dec9cb8efc9e7",
+  "totalMarkdown": 1805,
   "auditedAuthored": 564,
   "classPaths": {
     "authored_control": [
@@ -802,7 +802,6 @@
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
       "03_artefactos/skills/career-design-system/context.md",
-      "03_artefactos/skills/career-evidence-interviewer/context.md",
       "03_artefactos/skills/content-os-core/context.md",
       "03_artefactos/skills/content-os-creative/context.md",
       "03_artefactos/skills/content-os-router/context.md",
@@ -9673,9 +9672,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "268445a8ae4b1cdc40769542b3a3bd94f7d5583b6398294ace865786fe013adf",
-      "words": 10350,
-      "lines": 963,
+      "sha256": "0175fee5d81b44a77ecdd8d9b605e82e37ea444ced9db124989d77b0899f49a3",
+      "words": 10361,
+      "lines": 964,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -16981,7 +16980,7 @@
     "keep": 549,
     "refactor": 0,
     "split": 1,
-    "regenerate": 83,
+    "regenerate": 82,
     "freeze": 987
   }
 }

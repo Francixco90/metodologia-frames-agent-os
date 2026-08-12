@@ -5,6 +5,7 @@
 03_artefactos/projects/pilot-carousel-001/spec/content-type-definition.json
 03_artefactos/content/*/generated/**
 # Ecosystem inventory projections are generator-owned and byte-checked together.
+03_artefactos/content/documentation/ecosystem-inventory-v1.json
 03_artefactos/content/documentation/ecosystem-inventory.md
 03_artefactos/content/documentation/ecosystem-inventory.html
 00_inbox/first-party/SRC-MAO-PUBLIC-SEMANTICS-001.projection.md
