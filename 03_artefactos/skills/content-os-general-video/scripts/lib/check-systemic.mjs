@@ -21,9 +21,9 @@ function bindAnalysis(root) {
 function videoAnalysis(root, {audio = false, movingMark = false} = {}) {
   edit(resolve(root, 'source-analysis.json'), (value) => { const source = value.sources[0]; Object.assign(source, {
     probe: {status: 'passed', mediaType: 'video', width: 108, height: 192, durationMs: 1250, hasAudio: audio, fps: 24, orientation: 'portrait'},
-    audioClassification: audio ? 'speech' : 'silent',
-    asrAttempt: audio ? {status: 'candidate', candidateRef: 'captions.json', candidateSha256: sha(resolve(root, 'captions.json'))} : {status: 'not-applicable', reason: 'no audio stream'},
-    transcriptIntelligence: audio ? {status: 'deterministic-passed', verificationRef: 'correction-ledger.json', verificationSha256: sha(resolve(root, 'correction-ledger.json'))} : {status: 'not-applicable', reason: 'no audio stream'},
+    audioClassification: audio ? 'music-sfx' : 'silent',
+    asrAttempt: audio ? {status: 'no-speech-detected', reason: 'synthetic tone fixture'} : {status: 'not-applicable', reason: 'no audio stream'},
+    transcriptIntelligence: audio ? {status: 'not-applicable', reason: 'no speech detected'} : {status: 'not-applicable', reason: 'no audio stream'},
     sampleTimesMs: [0, 500], watermarkObservations: [{sampleTimeMs: 0, present: false, points: []}, {sampleTimeMs: 500, present: movingMark, points: movingMark ? [{x: 100, y: 170}] : []}],
     cropSafety: {safe: !movingMark, strategy: 'contain', coveredSampleTimesMs: [0, 500], evidence: []}, editorialDecision: 'use', state: 'ready',
   }); return value; });
