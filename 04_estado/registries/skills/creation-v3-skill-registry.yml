@@ -1729,6 +1729,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-design-system/scripts/check-skill.mjs]
+  - skill_id: career-evidence-interviewer
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: dc03a4796c2b5c6780ec53be1694eb1ac3ced618da3285839807da6663c5f23d
+    package_manifest_sha256: 95420f4f7c602e81cb19b940357db3863c89360856262b39f93ffce9568786e7
+    lineage_ref: skills/career-evidence-interviewer/LINEAGE.yml
+    dependency_receipt_ref: skills/career-evidence-interviewer/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-evidence-interviewer/scripts/check-skill.mjs]
   - skill_id: evidence-first-cv
     version: 0.3.0
     current_state: active
@@ -1968,6 +1979,11 @@ events:
   - {event_id: EVT-SKL-CDS-H03-003, event_order: 3, skill_id: career-design-system, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CDS-H03-004, event_order: 4, skill_id: career-design-system, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CDS-H03-005, event_order: 5, skill_id: career-design-system, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: activate_design_system_first_career_flow}
+  - {event_id: EVT-SKL-CEI-H03-001, event_order: 1, skill_id: career-evidence-interviewer, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CEI-H03-002, event_order: 2, skill_id: career-evidence-interviewer, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CEI-H03-003, event_order: 3, skill_id: career-evidence-interviewer, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-SKILL-VERIFIER}
+  - {event_id: EVT-SKL-CEI-H03-004, event_order: 4, skill_id: career-evidence-interviewer, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CEI-H03-005, event_order: 5, skill_id: career-evidence-interviewer, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: activate_adaptive_evidence_interview_before_positioning}
   - {event_id: EVT-SKL-ECV-H03-001, event_order: 1, skill_id: evidence-first-cv, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECV-H03-002, event_order: 2, skill_id: evidence-first-cv, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECV-H03-003, event_order: 3, skill_id: evidence-first-cv, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}

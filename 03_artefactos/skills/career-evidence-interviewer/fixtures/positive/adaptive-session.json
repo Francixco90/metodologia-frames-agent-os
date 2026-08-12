@@ -1,0 +1,41 @@
+{
+  "schema_version": "career-discovery-session-v1",
+  "session_id": "DISCOVERY-SYNTHETIC-001",
+  "candidate_id": "CANDIDATE-SYNTHETIC-001",
+  "source_inventory": [
+    {
+      "source_id": "SOURCE-CV-001",
+      "source_type": "cv",
+      "source_ref": "03_artefactos/work/private/fixtures/synthetic-cv.md",
+      "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "authority": "first_party_material"
+    }
+  ],
+  "role_families": ["program leadership"],
+  "gaps": [
+    {
+      "gap_id": "GAP-ATTRIBUTION-001",
+      "dimension": "attribution",
+      "severity": "blocking",
+      "status": "open",
+      "prompt_hint": "Separate individual contribution from team outcome."
+    }
+  ],
+  "rounds": [
+    {
+      "round_number": 1,
+      "status": "open",
+      "questions": [
+        {
+          "question_id": "QUESTION-ATTRIBUTION-001",
+          "gap_ids": ["GAP-ATTRIBUTION-001"],
+          "kind": "attribution",
+          "prompt": "What decision or intervention was directly yours, and what belonged to the team?",
+          "answer": null
+        }
+      ]
+    }
+  ],
+  "state": "INTERVIEW_REQUIRED",
+  "next_gate": "CR_CAREER_DISCOVERY_CONTINUE"
+}
