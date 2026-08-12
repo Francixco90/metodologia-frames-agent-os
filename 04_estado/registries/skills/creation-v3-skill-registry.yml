@@ -179,11 +179,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-slideshow/scripts/check-skill.mjs]
   - skill_id: content-os-general-video
-    version: 0.7.1
+    version: 0.14.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 2a4bfa70c64a98fd8514ff224fab3c8db8d54790f918b908e3b9aaf3de66ed33
-    package_manifest_sha256: 1419eb3f6aff2f942cdad91162b6dc13080caf3a59cb1b02fe364548ec752245
+    content_sha256: bbddb0e9b34b3a3115b432ca48c625cd3d22f3d22b319e775b8f2107255a6cbf
+    package_manifest_sha256: ea5dcccd356a4d040aebde123e59543b384b16e793ad23bdd764791149f83a32
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2709,3 +2709,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-013, event_order: 13, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_end_to_end_systemic_adversarial_checks}
   - {event_id: EVT-SKL-CGV-H03-014, event_order: 14, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: bind_source_analysis_brand_fit_and_wrapper_contracts}
   - {event_id: EVT-SKL-CGV-H03-015, event_order: 15, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: integrate_analysis_fit_cache_and_preservation_runtime}
+  - {event_id: EVT-SKL-CGV-H03-016, event_order: 16, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_systemic_video_guardrails_v014}

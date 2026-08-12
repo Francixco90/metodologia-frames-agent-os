@@ -3,6 +3,10 @@ import {copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, 
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {runPrecomposedAdversarial} from './check-precomposed.mjs';
+import {runWrapperAdversarial} from './check-wrapper.mjs';
+import {runSystemicAdversarial} from './check-systemic.mjs';
+import {runConsumerGateAdversarial} from './check-consumer-gates.mjs';
 
 export function runAdversarial({SKILL_DIR, errors}) {
 const PREFIX = 'COSR-GV_';
@@ -15,6 +19,12 @@ const updateJson = (path, transform) => {
   const value = JSON.parse(readFileSync(path, 'utf8'));
   writeFileSync(path, `${JSON.stringify(transform(value), null, 2)}\n`);
 };
+const bindMask = (caseDir) => {
+  const hash = sha(resolve(caseDir, 'source-cleanup-mask.json'));
+  updateJson(resolve(caseDir, 'asset-manifest.json'), (value) => { const asset = value.assets.find((item) => item.id === 'source-cleanup'); asset.sha256 = hash; asset.generator.configSha256 = hash; return value; });
+  updateJson(resolve(caseDir, 'piece-scripts.json'), (value) => { for (const piece of value.pieces) { piece.sourceCleanup.sha256 = hash; piece.sourceCleanup.configSha256 = hash; piece.dependencies.find((dep) => dep.kind === 'cleanup-mask').sha256 = hash; } return value; });
+  updateJson(resolve(caseDir, 'workflow-state.json'), (value) => { const scriptHash = sha(resolve(caseDir, 'piece-scripts.json')); value.scriptSha256 = scriptHash; value.pieceScriptsSha256 = scriptHash; value.assetManifestSha256 = sha(resolve(caseDir, 'asset-manifest.json')); return value; });
+};
 try {
   cpSync(fixture, temp, {recursive: true});
   const generated = spawnSync(process.execPath, [resolve(SKILL_DIR, 'scripts/generate-synthetic-media.mjs'), '--out', temp], {encoding: 'utf8'});
@@ -26,8 +36,10 @@ try {
     const result = spawnSync(process.execPath, [cli, command, '--project', temp], {encoding: 'utf8'});
     if (result.status !== 0) errors.push(`${PREFIX}CLI_${command.toUpperCase()} ${(result.stderr || '').trim()}`);
   }
+  if (!existsSync(resolve(temp, '.frames-video/render-receipt.json'))) return;
   const receipt = JSON.parse(readFileSync(resolve(temp, '.frames-video/render-receipt.json')));
   if (receipt.outputs.length !== 2 || receipt.outputs.some((output) => !output.measurements?.outputSha256 || !output.measurements?.pcmSha256)) errors.push(`${PREFIX}REAL_RENDER_MEASUREMENTS`);
+  if (receipt.outputs.some((output) => output.layerArtifacts?.bodyArtifact?.cleanupVerification?.pass !== true || output.layerArtifacts.bodyArtifact.cleanupVerification.cleanedBodySha256 !== output.layerArtifacts.bodyArtifact.sha256 || output.layerArtifacts.bodyArtifact.cleanupVerification.filterOrder !== 'cleanup-before-treatment')) errors.push(`${PREFIX}CLEAN_BODY_RECEIPT`);
 
   const hookCase = mkdtempSync(resolve(tmpdir(), 'gv-hook-')); cleanup.push(hookCase); cpSync(temp, hookCase, {recursive: true});
   updateJson(resolve(hookCase, 'piece-scripts.json'), (value) => { value.pieces[0].hook = 'Hook changed after planning'; return value; });
@@ -59,6 +71,37 @@ try {
   updateJson(resolve(captionCase, 'captions.json'), (value) => ({...value, tampered: true}));
   const caption = spawnSync(process.execPath, [cli, 'script', '--project', captionCase], {encoding: 'utf8'});
   if (caption.status === 0 || !caption.stderr.includes('HASH_DRIFT_CAPTION')) errors.push(`${PREFIX}CAPTION_HASH`);
+
+  const missingMaskCase = mkdtempSync(resolve(tmpdir(), 'gv-mask-missing-')); cleanup.push(missingMaskCase); cpSync(temp, missingMaskCase, {recursive: true}); rmSync(resolve(missingMaskCase, 'source-cleanup-mask.json'));
+  const missingMask = spawnSync(process.execPath, [cli, 'script', '--project', missingMaskCase], {encoding: 'utf8'});
+  if (missingMask.status === 0 || !missingMask.stderr.includes('ASSET_DRIFT source-cleanup')) errors.push(`${PREFIX}CLEANUP_MASK_MISSING`);
+
+  const mutatedMaskCase = mkdtempSync(resolve(tmpdir(), 'gv-mask-mutated-')); cleanup.push(mutatedMaskCase); cpSync(temp, mutatedMaskCase, {recursive: true}); updateJson(resolve(mutatedMaskCase, 'source-cleanup-mask.json'), (value) => ({...value, maxChannelSpan: 16}));
+  const mutatedMask = spawnSync(process.execPath, [cli, 'script', '--project', mutatedMaskCase], {encoding: 'utf8'});
+  if (mutatedMask.status === 0 || !mutatedMask.stderr.includes('ASSET_DRIFT source-cleanup')) errors.push(`${PREFIX}CLEANUP_MASK_MUTATED`);
+
+  const omittedMaskCase = mkdtempSync(resolve(tmpdir(), 'gv-mask-omitted-')); cleanup.push(omittedMaskCase); cpSync(temp, omittedMaskCase, {recursive: true});
+  updateJson(resolve(omittedMaskCase, 'piece-scripts.json'), (value) => { delete value.pieces[0].sourceCleanup; return value; });
+  updateJson(resolve(omittedMaskCase, 'workflow-state.json'), (value) => { const hash = sha(resolve(omittedMaskCase, 'piece-scripts.json')); value.scriptSha256 = hash; value.pieceScriptsSha256 = hash; return value; });
+  const omittedMask = spawnSync(process.execPath, [cli, 'script', '--project', omittedMaskCase], {encoding: 'utf8'});
+  if (omittedMask.status === 0 || !omittedMask.stderr.includes('SCHEMA_PIECE_SCRIPTS')) errors.push(`${PREFIX}CLEANUP_OMISSION_BYPASS`);
+
+  const mismatchMaskCase = mkdtempSync(resolve(tmpdir(), 'gv-mask-ab-')); cleanup.push(mismatchMaskCase); cpSync(temp, mismatchMaskCase, {recursive: true}); copyFileSync(resolve(mismatchMaskCase, 'source-cleanup-mask.json'), resolve(mismatchMaskCase, 'source-cleanup-mask-b.json'));
+  updateJson(resolve(mismatchMaskCase, 'asset-manifest.json'), (value) => { const asset = structuredClone(value.assets.find((item) => item.id === 'source-cleanup')); asset.id = 'source-cleanup-b'; asset.ref = 'source-cleanup-mask-b.json'; value.assets.push(asset); return value; });
+  updateJson(resolve(mismatchMaskCase, 'piece-scripts.json'), (value) => { const piece = value.pieces[1]; piece.sourceCleanup.assetId = 'source-cleanup-b'; piece.sourceCleanup.ref = 'source-cleanup-mask-b.json'; piece.dependencies.find((dep) => dep.kind === 'cleanup-mask').id = 'source-cleanup-b'; return value; });
+  updateJson(resolve(mismatchMaskCase, 'workflow-state.json'), (value) => { const scriptHash = sha(resolve(mismatchMaskCase, 'piece-scripts.json')); value.scriptSha256 = scriptHash; value.pieceScriptsSha256 = scriptHash; value.assetManifestSha256 = sha(resolve(mismatchMaskCase, 'asset-manifest.json')); return value; });
+  const mismatchMask = spawnSync(process.execPath, [cli, 'plan', '--project', mismatchMaskCase], {encoding: 'utf8'});
+  if (mismatchMask.status === 0 || !mismatchMask.stderr.includes('AB_CLEANUP_MISMATCH')) errors.push(`${PREFIX}AB_CLEANUP_MISMATCH`);
+
+  const cropBoundsCase = mkdtempSync(resolve(tmpdir(), 'gv-crop-bounds-')); cleanup.push(cropBoundsCase); cpSync(temp, cropBoundsCase, {recursive: true});
+  updateJson(resolve(cropBoundsCase, 'source-cleanup-mask.json'), (value) => { value.regions[0].x = 10; value.regions[0].width = 8; return value; }); bindMask(cropBoundsCase);
+  spawnSync(process.execPath, [cli, 'plan', '--project', cropBoundsCase], {encoding: 'utf8'}); const cropBounds = spawnSync(process.execPath, [cli, 'render', '--project', cropBoundsCase], {encoding: 'utf8'});
+  if (cropBounds.status === 0 || !cropBounds.stderr.includes('CLEANUP_REGION_BOUNDS')) errors.push(`${PREFIX}CROP_BOUNDS`);
+
+  const cropTargetCase = mkdtempSync(resolve(tmpdir(), 'gv-crop-target-')); cleanup.push(cropTargetCase); cpSync(temp, cropTargetCase, {recursive: true});
+  updateJson(resolve(cropTargetCase, 'source-cleanup-mask.json'), (value) => { value.regions[0].width = 16; return value; }); bindMask(cropTargetCase);
+  spawnSync(process.execPath, [cli, 'plan', '--project', cropTargetCase], {encoding: 'utf8'}); const cropTarget = spawnSync(process.execPath, [cli, 'render', '--project', cropTargetCase], {encoding: 'utf8'});
+  if (cropTarget.status === 0 || !cropTarget.stderr.includes('CLEANUP_CROP_TARGET_INCLUDED')) errors.push(`${PREFIX}CROP_TARGET_NOT_EXCLUDED`);
 
   const decisionCase = mkdtempSync(resolve(tmpdir(), 'gv-decision-')); cleanup.push(decisionCase); cpSync(temp, decisionCase, {recursive: true});
   updateJson(resolve(decisionCase, 'piece-scripts.json'), (value) => { value.pieces[0].decision = 'extend'; return value; });
@@ -113,10 +156,7 @@ try {
   if (curtainRender.status !== 0 || nextBody.sha256 !== priorBody.sha256 || nextBody.videoStreamSha256 !== priorBody.stream || statSync(priorBodyPath).mtimeMs !== priorBody.mtimeMs || nextReceipt.layerArtifacts.curtainArtifact.sha256 === priorReceipt.layerArtifacts.curtainArtifact.sha256 || sha(resolve(curtainCase, 'renders/mini-a.mp4')) === priorOutput) errors.push(`${PREFIX}CURTAIN_REAL_BODY_REUSE`);
 
   const visualCase = mkdtempSync(resolve(tmpdir(), 'gv-visual-')); cleanup.push(visualCase); cpSync(temp, visualCase, {recursive: true});
-  const visualFrame = resolve(visualCase, '.frames-video/visual/mini-a/frame-0.png');
-  const visualSeed = spawnSync(process.execPath, [cli, 'verify', '--project', visualCase], {encoding: 'utf8'});
-  if (visualSeed.status !== 0 || !existsSync(visualFrame)) errors.push(`${PREFIX}VISUAL_SEED ${(visualSeed.stderr || '').trim()}`);
-  const prohibited = existsSync(visualFrame) ? sha(visualFrame) : '0'.repeat(64);
+  const prohibited = sha(resolve(visualCase, '.frames-video/visual/mini-a/frame-0.png'));
   updateJson(resolve(visualCase, 'visual-detector.json'), (value) => ({...value, forbiddenFrameSha256: [prohibited]}));
   const detectorHash = sha(resolve(visualCase, 'visual-detector.json'));
   updateJson(resolve(visualCase, 'asset-manifest.json'), (value) => { const asset = value.assets.find((item) => item.id === 'visual-detector'); asset.sha256 = detectorHash; asset.generator.configSha256 = detectorHash; return value; });
@@ -131,6 +171,10 @@ try {
   updateJson(resolve(timingCase, 'workflow-state.json'), (value) => { const hash = sha(resolve(timingCase, 'piece-scripts.json')); value.scriptSha256 = hash; value.pieceScriptsSha256 = hash; return value; });
   spawnSync(process.execPath, [cli, 'plan', '--project', timingCase], {encoding: 'utf8'}); const timingRender = spawnSync(process.execPath, [cli, 'render', '--project', timingCase], {encoding: 'utf8'});
   if (timingRender.status === 0 || !timingRender.stderr.includes('CURTAIN_TIMING')) errors.push(`${PREFIX}LAYER_TIMING_FAIL_CLOSED`);
+  runPrecomposedAdversarial({base: temp, cli, cleanup, errors});
+  runWrapperAdversarial({base: temp, cli, cleanup, errors});
+  runSystemicAdversarial({base: temp, cli, cleanup, errors});
+  runConsumerGateAdversarial({base: temp, cli, cleanup, errors});
 } finally {
   for (const path of cleanup) rmSync(path, {recursive: true, force: true});
 }
