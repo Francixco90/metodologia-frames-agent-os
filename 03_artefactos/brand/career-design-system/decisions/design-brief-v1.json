@@ -22,11 +22,11 @@
     "tokens_ref": "brand/career-design-system/tokens/tokens.v1.json",
     "tokens_sha256": "d48f808e9bd942439f366d896f0600c69df11acbf1c53c22d80c520b3bd4b638",
     "component_registry_ref": "brand/career-design-system/components/registry.v1.json",
-    "component_registry_sha256": "1e9198b587ca75fc7135583862ff18239442cde8f6fc65a39f542deb88364143",
+    "component_registry_sha256": "e330c2c88d6fbe57a5bc3948b6fb77fe23eebf9e63751c0bb46dbf37dcc52a44",
     "font_manifest_ref": "brand/fonts/font-manifest.yml",
     "font_manifest_sha256": "f86a90762628b14a4b9d5c79c82bc91a8ffdd3a5bf78223800df8ff364c92660",
     "icon_registry_ref": "brand/career-design-system/icons/registry.v1.json",
-    "icon_registry_sha256": "db49b46bea7ec1f1ebc25ae965d45cb8758dee7dfbd7dc57978efe0a72803ac9",
+    "icon_registry_sha256": "7e02406225b260acefa24816ea6022897b45547d85356e8b82edac08393d7973",
     "composition_ids": ["blueprint-executive", "neo-swiss-editorial"],
     "theme_policy": {
       "default_theme": "navy",
@@ -34,10 +34,10 @@
       "print_theme": "light",
       "persistence": "local-storage-progressive-enhancement"
     },
-    "design_system_sha256": "fefc0b98876dff9b034b6c5906378d9c3408c03a2b006db1845354c5cf2c2172"
+    "design_system_sha256": "752ce724494ac7edce32e5a27dd3e6f307ee02984b018bac38a764444a617bb0"
   },
   "requested_compositions": ["blueprint-executive", "neo-swiss-editorial"],
   "state": "DESIGN_OPTIONS_READY",
   "next_gate": "CR_CV_DESIGN_APPROVED",
-  "brief_sha256": "765e6aaa3fb6462e6e8ad12b6c96f0ab0421d3c3c5d4cc5fc1c086c7ce0b3618"
+  "brief_sha256": "0b849ba81952b30b382bab41005d43c35b7332f29eb49b603839b9df6110b9f2"
 }

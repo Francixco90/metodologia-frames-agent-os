@@ -95,16 +95,21 @@ if (!failures.some((entry) => entry.startsWith('token-discipline:'))) pass('toke
 
 const components = json(resolve(dsRoot, 'components/registry.v1.json'));
 const ids = new Set(components.components.map((component) => component.id));
-for (const required of ['header', 'hero', 'theme-toggle', 'inline-disclosure', 'evidence-dialog', 'contact-cta']) {
+for (const required of ['header', 'hero', 'theme-toggle', 'profile-trigger', 'method-dual-diagram', 'access-icons', 'evidence-dialog', 'contact-cta']) {
   if (!ids.has(required)) fail('components', `missing ${required}`);
 }
 const snippets = readFileSync(resolve(dsRoot, 'components/snippets.v1.html'), 'utf8');
-if ((snippets.match(/data-dialog-close/g) ?? []).length !== 2) fail('components', 'one close control in markup plus one JS binding required');
+if ((snippets.match(/data-dialog-close/g) ?? []).length !== 5) fail('components', 'one close per dialog plus one JS binding required');
 if (!snippets.includes('data-label-light') || !snippets.includes('data-label-navy')) fail('components', 'labels must originate in HTML');
+if ((snippets.match(/<noscript>/gu) ?? []).length !== 4) fail('components', 'profile and deep evidence need JS-off fallbacks');
+if ((snippets.match(/class="career-dialog-trigger"/gu) ?? []).length !== 4) fail('components', 'dialog triggers need governed targets');
+if (!snippets.includes('career-capability__title') || !snippets.includes('career-capability__category')) fail('components', 'capability anatomy');
+const capability = components.components.find((component) => component.id === 'capability-card');
+if (!capability?.anatomy?.includes('career-capability__title') || !capability?.anatomy?.includes('career-capability__category')) fail('components', 'capability registry anatomy');
 if (!failures.some((entry) => entry.startsWith('components:'))) pass('components');
 
 const icons = json(resolve(dsRoot, 'icons/registry.v1.json'));
-if (icons.icons.length !== 5 || !icons.icons.every((icon) => /^icon-[a-z-]+$/u.test(icon.id))) fail('icons', 'registry');
+if (icons.icons.length !== 13 || !icons.icons.every((icon) => /^icon-[a-z-]+$/u.test(icon.id))) fail('icons', 'registry');
 if (!failures.some((entry) => entry.startsWith('icons:'))) pass('icons');
 
 const positive = json(resolve(skillRoot, 'fixtures/positive/synthetic-profile.json'));
