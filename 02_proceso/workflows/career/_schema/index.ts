@@ -1,4 +1,6 @@
 export * from './brief-v1.schema.ts';
+export * from './career-discovery-v1.schema.ts';
+export * from './career-evidence-readiness-v1.schema.ts';
 export * from './contracts-v1.schema.ts';
 export * from './cv-design-brief-v1.schema.ts';
 export * from './cv-design-decision-v1.schema.ts';
