@@ -2,6 +2,7 @@ export * from './_schema/index.ts';
 export * from './_runner/brief-model.ts';
 export * from './_runner/brief-renderer.ts';
 export * from './_runner/career-runner.ts';
+export * from './_runner/career-discovery.ts';
 export * from './_runner/canary.ts';
 export * from './_runner/confirmation-evidence.ts';
 export * from './_runner/cv-spec.ts';
