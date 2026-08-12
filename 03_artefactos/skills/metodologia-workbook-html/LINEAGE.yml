@@ -1,0 +1,24 @@
+schema_version: 1
+skill_id: metodologia-workbook-html
+version: 0.1.0
+owner: MetodologIA
+lifecycle_state: candidate
+execution_scope: local-candidate-production
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: original-contract-router
+external_fragments_reused: false
+publication_authority: false
+authority_refs:
+  - core/contracts/creation-v3.ts
+  - brand/design-system/profiles/metodologia-canonical.yml
+runtime_refs:
+  - skills/metodologia-workbook-html/scripts/check-skill.mjs
+capability_boundary_ref: skills/metodologia-workbook-html/references/capability-boundary.yml
+request_contract_ref: skills/metodologia-workbook-html/schemas/workbook-spec-v1.schema.json
+compatibility_contract: workbook-spec-v1
+supported_request_types:
+  - workbook_spec
+  - workbook_compile
+  - workbook_verify
+production_runtime_status: local_capability_only

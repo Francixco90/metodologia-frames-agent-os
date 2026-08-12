@@ -1,0 +1,13 @@
+schema_version: capability-boundary-v1
+contract_id: CBC-METODOLOGIA-WORKBOOK-HTML-001
+skill_id: metodologia-workbook-html
+version: 0.1.0
+scope: local_only
+network_allowed: false
+user_confirmation_required: true
+response_persistence_allowed: false
+preference_persistence_allowed: [theme, locale]
+remote_media_fail_mode: closed
+deterministic_rebuild_required: true
+publication_authority: false
+maximum_output_state: RENDERED_DRAFT
