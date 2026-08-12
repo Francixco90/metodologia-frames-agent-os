@@ -1,0 +1,23 @@
+schemaVersion: talking-head-recut-v2
+operation: render-draft
+specId: synthetic-reel
+specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+compositionId: unsafe-crop
+durationSeconds: 20
+clip: {ref: media/synthetic.mp4, sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb}
+scriptMode: assembly_map
+correctionLedgerRef: analysis/ledger.json
+transcriptIntelligenceRef: analysis/verification.json
+semanticIndexRef: analysis/index.json
+narrativeMapRef: analysis/narrative.json
+sourceAnalysisRef: analysis/source.json
+sourceAnalysisSha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+visualBudgetRef: creative/budget.json
+visualBudgetSha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+brandKitRef: creative/brand.json
+brandKitSha256: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+layoutDecision: {route: crop-safe, cropSafeEvidence: []}
+reelSpec: {purpose: probar impacto, audience: audiencia sintética, hook: fricción, evidence: [analysis/index.json#proof], impact: cambio, cta: explorar, targetDurationSeconds: 20}
+verificationState: deterministic-passed
+editorialDecision: use
+cards: [{id: card-01, startSeconds: 0, endSeconds: 2, kind: title, content: prueba, rationale: evidencia, evidenceRef: analysis/index.json#proof, sourceSpan: {sourceId: synthetic, startSeconds: 1, endSeconds: 3, absolute: {clockId: abs, startSeconds: 1, endSeconds: 3}, local: {clockId: local, startSeconds: 0, endSeconds: 2}}}]

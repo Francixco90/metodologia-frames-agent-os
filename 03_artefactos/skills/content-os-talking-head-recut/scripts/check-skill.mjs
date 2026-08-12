@@ -19,6 +19,7 @@ const required = [
   `${skill}/fixtures/negative/v2-empty-cards.yml`,
   `${skill}/fixtures/negative/v2-invalid-visual-span.yml`,
   `${skill}/fixtures/negative/v2-non-use-render.yml`,
+  `${skill}/fixtures/negative/v2-crop-without-evidence.yml`,
   `${skill}/examples/card-sequence.jsonl`,
   `${skill}/receipts/runtime-boundary.yml`,
 ];
@@ -60,6 +61,11 @@ for (const token of [
   'sourceSpan',
   'visualSpan',
   'legacy-v1-new-draft-blocked',
+  'sourceAnalysisRef',
+  'visualBudgetRef',
+  'brandKitRef',
+  'reelSpec',
+  'crop-safe',
 ]) {
   if (!combined.includes(token)) throw new Error(`COS_THR_CONTRACT_MISSING: ${token}`);
 }
@@ -84,7 +90,7 @@ const emptyCards = parseYaml(contents.get(`${skill}/fixtures/negative/v2-empty-c
 if (validateV2(emptyCards)) throw new Error('COS_THR_AJV2020_EMPTY_CARDS_ACCEPTED');
 const nonUse = parseYaml(contents.get(`${skill}/fixtures/negative/v2-non-use-render.yml`));
 if (validateV2(nonUse)) throw new Error('COS_THR_AJV2020_NON_USE_RENDER_ACCEPTED');
-for (const fixture of ['v2-empty-cards.yml', 'v2-invalid-visual-span.yml', 'v2-non-use-render.yml']) {
+for (const fixture of ['v2-empty-cards.yml', 'v2-invalid-visual-span.yml', 'v2-non-use-render.yml', 'v2-crop-without-evidence.yml']) {
   const gate = spawnSync(process.execPath, [resolve(root, skill, 'scripts/storyboard-gate.mjs'), resolve(root, skill, `fixtures/negative/${fixture}`)], {encoding: 'utf8'});
   if (gate.status === 0) throw new Error(`COS_THR_ADVERSARIAL_GATE: ${fixture}`);
 }

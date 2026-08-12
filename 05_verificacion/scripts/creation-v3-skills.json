@@ -145,6 +145,7 @@
   },
   {
     "id": "content-os-talking-head-recut",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-talking-head-recut/scripts/check-skill.mjs"]
   },
