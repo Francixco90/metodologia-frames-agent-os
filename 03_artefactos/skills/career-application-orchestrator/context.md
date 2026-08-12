@@ -24,8 +24,10 @@ Primero:
 Solo bajo demanda:
 
 - `03_artefactos/skills/career-application-orchestrator/LINEAGE.yml`
+- `03_artefactos/skills/career-evidence-interviewer/SKILL.md`
+- `02_proceso/workflows/career/_schema/career-evidence-readiness-v1.schema.ts`
 - `03_artefactos/skills/candidate-evidence-reconciler/schemas/candidate-evidence-handoff-v1.schema.json`
-- `03_artefactos/skills/evidence-first-cv/schemas/cv-package-v2.schema.json`
+- `03_artefactos/skills/evidence-first-cv/schemas/cv-package-v3.schema.json`
 
 Diferir:
 
@@ -53,7 +55,7 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `CR_BRIEF_APPROVED`, `CR_CV_SPEC_APPROVED`, `CR_PACKAGE_QA`, `CR_SUBMISSION_AUTHORIZED`  
+Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_SPEC_APPROVED`, `CR_PACKAGE_QA`, `CR_SUBMISSION_AUTHORIZED`  
 Stop rules: C06 exige spec aprobada y vigente · C09 prepara y detiene · PII y evidencia UNKNOWN bloquean
 
 Hijos:

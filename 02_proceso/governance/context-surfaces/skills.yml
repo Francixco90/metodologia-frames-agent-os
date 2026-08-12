@@ -320,8 +320,10 @@ surfaces:
     load_on_demand:
       [
         03_artefactos/skills/career-application-orchestrator/LINEAGE.yml,
+        03_artefactos/skills/career-evidence-interviewer/SKILL.md,
+        02_proceso/workflows/career/_schema/career-evidence-readiness-v1.schema.ts,
         03_artefactos/skills/candidate-evidence-reconciler/schemas/candidate-evidence-handoff-v1.schema.json,
-        03_artefactos/skills/evidence-first-cv/schemas/cv-package-v2.schema.json,
+        03_artefactos/skills/evidence-first-cv/schemas/cv-package-v3.schema.json,
       ]
     defer: [PII no autorizada, evidencia no seleccionada y C09 sin autorización]
     routes: [R7, R4]
@@ -334,7 +336,14 @@ surfaces:
         mode: generated_only,
         paths: [03_artefactos/skills/career-application-orchestrator/context.md],
       }
-    gates: [CR_BRIEF_APPROVED, CR_CV_SPEC_APPROVED, CR_PACKAGE_QA, CR_SUBMISSION_AUTHORIZED]
+    gates:
+      [
+        CR_BRIEF_APPROVED,
+        CR_CAREER_EVIDENCE_READY,
+        CR_CV_SPEC_APPROVED,
+        CR_PACKAGE_QA,
+        CR_SUBMISSION_AUTHORIZED,
+      ]
     stop_rules:
       [C06 exige spec aprobada y vigente, C09 prepara y detiene, PII y evidencia UNKNOWN bloquean]
     privacy: private_after_route_lock

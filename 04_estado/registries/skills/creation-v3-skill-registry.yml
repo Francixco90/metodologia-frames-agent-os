@@ -1697,22 +1697,22 @@ entries:
     publication_authority: false
     tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
   - skill_id: career-application-orchestrator
-    version: 0.3.0
+    version: 0.4.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 8d81b5316a6adbbab7c2e9bbdbc5d4c0c4bdc7330e3fecad133ac8732ff910ed
-    package_manifest_sha256: ec0676607e4cfce3a24b96d238f7cf06d71772f80aba3549c27be19b29756757
+    content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3
+    package_manifest_sha256: a5fa97174b7b9845ac6877a390403f17de0a52a939099d311c9f4c02ca748d2c
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-application-orchestrator/scripts/check-skill.mjs]
   - skill_id: candidate-evidence-reconciler
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5eedbbfb6ff36dfc27a613659f68279783c318abbbf242f6eec64caa2d879d45
-    package_manifest_sha256: b22a18dfb9ebe8ef1fa3b713c09e62e9c60fe724adb72927ee77a83f97213369
+    content_sha256: 00290717594e1a12323198ad65dafd330694c6e647e22a3b7d2f2dc0f9748555
+    package_manifest_sha256: 449c3a9b745fb266b41e06259f6c4fce23575a214fa59ddc339bff46b61782e7
     lineage_ref: skills/candidate-evidence-reconciler/LINEAGE.yml
     dependency_receipt_ref: skills/candidate-evidence-reconciler/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2673,6 +2673,8 @@ events:
   - {event_id: EVT-SKL-COR-H03-010, event_order: 10, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-DOCS-EXTENSION-INTEGRATOR, decision: add_r8_local_extension_and_r9_maintenance_dispatch}
   - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-CAO-H03-006, event_order: 6, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: require_cv_spec_approval_and_stale_derivative_invalidation_v3}
+  - {event_id: EVT-SKL-CAO-H03-007, event_order: 7, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: dispatch_adaptive_interview_from_material_readiness}
+  - {event_id: EVT-SKL-CER-H03-006, event_order: 6, skill_id: candidate-evidence-reconciler, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: reconcile_interview_packet_and_readiness_for_cv_spec_v2}
   - {event_id: EVT-SKL-CEI-H03-006, event_order: 6, skill_id: career-evidence-interviewer, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: add_on_demand_context_and_readiness_gate}
   - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
