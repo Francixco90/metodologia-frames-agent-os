@@ -15,7 +15,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - COMMAND: 98
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 55
+- GATE: 56
 - RENDERER: 5
 - ROUTE: 11
 - SKILL: 183
@@ -517,6 +517,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | universal-prompts-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | verdict-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | GATE | CR_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | CR_CAREER_EVIDENCE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_CV_COMPILED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_CV_SPEC_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_PACKAGE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -959,4 +960,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `d53b7c386d42d358e8194a8833f89856c1f1b316ec5111237ade4d74f0d6f592`.
+Hash de fuentes: `468ae9f87e99fc3875e089fcf6b921b27ffe0725f45ab5b19d7e892ba04ffc78`.
