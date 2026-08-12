@@ -40,6 +40,10 @@ export const CvSpecV2Schema = z
   .strictObject({
     ...CvSpecV1Schema.shape,
     schema_version: z.literal('cv-spec-v2'),
+    evidence_candidate_packet_ref: PortableRefSchema.nullable().optional(),
+    evidence_candidate_packet_sha256: Sha256Schema.nullable().optional(),
+    evidence_readiness_ref: PortableRefSchema.nullable().optional(),
+    evidence_readiness_sha256: Sha256Schema.nullable().optional(),
     variants: z.array(CvVariantV2Schema).min(1).max(12),
     state: z.enum(['DRAFT', 'HUMAN_APPROVED', 'BLOCKED']),
     next_gate: z.literal('CR_CV_SPEC_APPROVED'),
@@ -54,6 +58,21 @@ export const CvSpecV2Schema = z
     spec_sha256: Sha256Schema,
   })
   .superRefine((spec, context) => {
+    const evidenceBindings = [
+      spec.evidence_candidate_packet_ref,
+      spec.evidence_candidate_packet_sha256,
+      spec.evidence_readiness_ref,
+      spec.evidence_readiness_sha256,
+    ];
+    if (
+      evidenceBindings.some((value) => value == null) &&
+      evidenceBindings.some((value) => value != null)
+    ) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Evidence readiness bindings must be all-or-none',
+      });
+    }
     const targeted = spec.intent === 'targeted';
     const targetedFields = [
       spec.application_brief_ref,

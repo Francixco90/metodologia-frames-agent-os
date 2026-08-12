@@ -1,0 +1,80 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "EVD-SYNTH-SUMMARY-001",
+      "claim": "Transformation delivery capability.",
+      "context": "Synthetic business context.",
+      "action_method": "Evidence-bound program leadership.",
+      "result": "A concise and attributable professional summary.",
+      "metric": null,
+      "cv_content": [
+        {"language": "es", "section": "summary", "text": "Convierte retos de negocio en capacidades de transformación medibles.", "organization": null, "role": null, "period": null, "location": null},
+        {"language": "en", "section": "summary", "text": "Turns business challenges into measurable transformation capabilities.", "organization": null, "role": null, "period": null, "location": null}
+      ]
+    },
+    {
+      "evidence_id": "EVD-SYNTH-RESULT-001",
+      "claim": "Reduced a synthetic delivery cycle.",
+      "context": "Synthetic Business Unit during 2025.",
+      "action_method": "Led a cross-functional program.",
+      "result": "Cycle time moved from 12 to 7 days.",
+      "metric": "12 → 7 days · 41.7%",
+      "cv_content": [
+        {"language": "es", "section": "experience", "text": "Redujo el ciclo de entrega de 12 a 7 días (41,7 %) durante 2025.", "organization": "Synthetic Business Unit", "role": "Líder de Transformación", "period": "2025", "location": null},
+        {"language": "en", "section": "experience", "text": "Reduced the delivery cycle from 12 to 7 days (41.7%) during 2025.", "organization": "Synthetic Business Unit", "role": "Transformation Lead", "period": "2025", "location": null}
+      ]
+    },
+    {
+      "evidence_id": "EVD-SYNTH-SKILL-001",
+      "claim": "Program leadership capability.",
+      "context": "Synthetic cross-functional delivery.",
+      "action_method": "Roadmaps and operating cadence.",
+      "result": "Governed delivery capability.",
+      "metric": null,
+      "cv_content": [
+        {"language": "es", "section": "skills", "text": "Liderazgo de programas", "organization": null, "role": null, "period": null, "location": null},
+        {"language": "en", "section": "skills", "text": "Program leadership", "organization": null, "role": null, "period": null, "location": null}
+      ]
+    }
+  ],
+  "packet": {
+    "schema_version": "evidence-candidate-packet-v1",
+    "packet_id": "PACKET-SYNTH-RUNTIME-001",
+    "candidate_id": "CAND-SYNTH-RUNTIME-001",
+    "discovery_session_sha256": "c8462315c9a7e5a4901034b3643d119cc92c239f5b6b2ed3fb9bb45878b3f86d",
+    "evidence_bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe",
+    "items": [{
+      "item_id": "ITEM-SYNTH-RUNTIME-001",
+      "kind": "competency",
+      "statement": "Synthetic evidence-bound capability.",
+      "confidence": "verified",
+      "source_ids": ["SOURCE-SYNTH-RUNTIME-001"],
+      "evidence_ids": ["EVD-SYNTH-SUMMARY-001"],
+      "role_families": ["Strategy and transformation"],
+      "attribution_limit": "Fixture only.",
+      "allowed_channels": ["cv"],
+      "forbidden_claims": []
+    }],
+    "packet_sha256": "e4166239acf91929fa930797d83e2ddf67beb107c2fc4a1c3f70441669d355b2"
+  },
+  "readiness": {
+    "schema_version": "career-evidence-readiness-v1",
+    "readiness_id": "READINESS-SYNTH-RUNTIME-001",
+    "candidate_id": "CAND-SYNTH-RUNTIME-001",
+    "evidence_bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe",
+    "candidate_packet_sha256": "e4166239acf91929fa930797d83e2ddf67beb107c2fc4a1c3f70441669d355b2",
+    "checks": {
+      "identity_and_chronology": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "competency_evidence": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "recent_role_interventions": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "contradictions_resolved": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "role_family_selected": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "privacy_boundary": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []},
+      "gaps_accepted": {"passed": true, "evidence_ids": ["EVD-SYNTH-SUMMARY-001"], "accepted_gap_ids": []}
+    },
+    "blocking_gap_ids": [],
+    "status": "READY",
+    "next_gate": "CR_CAREER_EVIDENCE_READY",
+    "readiness_sha256": "0c272667a404564db349b3dcf2a78eba66ccd1e9335654d9fe15d8ac0711c783"
+  }
+}
