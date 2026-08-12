@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94260
-    v3_rolling_adjustment_words: 6074
+    baseline_words: 94261
+    v3_rolling_adjustment_words: 6075
     original_baseline_words: 88186
-    final_words: 110522
+    final_words: 110409
     maximum_multiplier: 1.5
-    maximum_words: 141390
-    actual_multiplier: 1.1725
+    maximum_words: 141391
+    actual_multiplier: 1.1713
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94260
-    v3_rolling_adjustment_words: 6074
+    baseline_words: 94261
+    v3_rolling_adjustment_words: 6075
     original_baseline_words: 88186
-    final_words: 110522
-    maximum_words: 188520
-    word_multiplier: 1.1725
-    baseline_loc: 35408
-    v3_rolling_adjustment_loc: 2520
+    final_words: 110409
+    maximum_words: 188522
+    word_multiplier: 1.1713
+    baseline_loc: 35409
+    v3_rolling_adjustment_loc: 2521
     original_baseline_loc: 32888
-    final_loc: 41469
-    maximum_loc: 70816
-    loc_multiplier: 1.1712
+    final_loc: 41401
+    maximum_loc: 70818
+    loc_multiplier: 1.1692
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -563,11 +563,11 @@ budgets:
       - output_path: brand/generated/social-light.css
         template_path: brand/tokens/brand-tokens.yml
         template_words: 199
-        output_words: 145
-        word_ratio: 0.7286
+        output_words: 201
+        word_ratio: 1.0101
         template_loc: 88
-        output_loc: 63
-        loc_ratio: 0.7159
+        output_loc: 58
+        loc_ratio: 0.6591
         maximum_multiplier: 2
         status: pass
       - output_path: brand/generated/social-light.tokens.ts
@@ -953,9 +953,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:.prettierignore
       current_ref: working-tree:.prettierignore
       current_state: present
-      current_sha256: 34f258afe4b7cba05335b0ea89a3485ab9b06b99535ad967021cc097aca6f9ab
-      current_words: 279
-      current_loc: 64
+      current_sha256: 776a4ad651ab2a98aaa92062e8b316a7f8ad31457a03af2a263a7227a0e4d75c
+      current_words: 280
+      current_loc: 65
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:.prettierignore

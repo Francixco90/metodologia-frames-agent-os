@@ -6,6 +6,8 @@ import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
 import {z} from 'zod';
 
+import {projectTokenCss, projectTokenTypescript} from './lib/brand-projection-renderers.ts';
+
 const projectionInputSchema = z
   .object({
     schema_version: z.literal('brand-tokens-v2'),
@@ -46,10 +48,43 @@ const projectionInputSchema = z
       spring: z.string(),
       out_expo: z.string(),
     }),
+    career: z.strictObject({
+      schema_version: z.literal('metodologia-career-palette-v1'),
+      default_theme: z.literal('navy'),
+      print_theme: z.literal('light'),
+      navy: z.strictObject({
+        canvas: z.string(),
+        surface: z.string(),
+        surface_raised: z.string(),
+        text: z.string(),
+        text_muted: z.string(),
+        accent: z.string(),
+        accent_text: z.string(),
+        line: z.string(),
+        focus: z.string(),
+        shadow: z.string(),
+        backdrop: z.string(),
+      }),
+      light: z.strictObject({
+        canvas: z.string(),
+        surface: z.string(),
+        surface_raised: z.string(),
+        text: z.string(),
+        text_muted: z.string(),
+        accent: z.string(),
+        accent_text: z.string(),
+        line: z.string(),
+        focus: z.string(),
+        shadow: z.string(),
+        backdrop: z.string(),
+      }),
+    }),
   })
   .passthrough();
 
 export type BrandTokenProjectionInput = z.infer<typeof projectionInputSchema>;
+export const parseBrandProjectionInput = (input: unknown): BrandTokenProjectionInput =>
+  projectionInputSchema.parse(input);
 
 export const projectTokenJson = (tokens: BrandTokenProjectionInput): Record<string, unknown> => ({
   schemaVersion: 'brand-token-projection-v1',
@@ -107,131 +142,6 @@ const projectTokenJsonText = (tokens: BrandTokenProjectionInput): string =>
       `[${[first, second, third, fourth].filter((value) => value !== undefined).join(', ')}]`,
   )}\n`;
 
-const normalizeCssNumber = (value: string): string =>
-  value.replace(
-    /(^|[,(]\s*)\.(\d+)/gu,
-    (_match, prefix: string, digits: string) => `${prefix}0.${digits}`,
-  );
-
-export const projectTokenCss = (tokens: BrandTokenProjectionInput): string =>
-  `/* GENERATED from brand/tokens/brand-tokens.yml. Do not edit. */
-@font-face {
-  font-family: 'Poppins';
-  src: url('../fonts/vendor/poppins/Poppins-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('../fonts/vendor/poppins/Poppins-Bold.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('../fonts/vendor/poppins/Poppins-ExtraBold.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-}
-
-:root {
-  --brand-canvas: ${tokens.colors.canvas};
-  --brand-canvas-deep: ${tokens.colors.canvas_deep};
-  --brand-ink: ${tokens.colors.ink};
-  --brand-surface: ${tokens.colors.surface};
-  --brand-surface-alt: ${tokens.colors.surface_alt};
-  --brand-gold: ${tokens.colors.gold_fill};
-  --brand-gold-text: ${tokens.colors.gold_text};
-  --brand-gold-soft: ${tokens.colors.gold_soft};
-  --brand-text: var(--brand-ink);
-  --brand-text-soft: ${tokens.colors.text_soft};
-  --brand-muted: ${tokens.colors.muted};
-  --brand-border: ${normalizeCssNumber(tokens.colors.border)};
-  --brand-border-hover: ${normalizeCssNumber(tokens.colors.border_hover)};
-  --brand-dark: var(--brand-canvas);
-  --brand-darker: var(--brand-canvas-deep);
-  --brand-navy: var(--brand-ink);
-  --brand-white: var(--brand-surface);
-  --brand-white-soft: var(--brand-surface-alt);
-  --brand-white-muted: var(--brand-canvas-deep);
-  --brand-on-gold: var(--brand-ink);
-  --brand-radius: ${tokens.layout.radius};
-  --brand-radius-lg: ${tokens.layout.radius_large};
-  --gutter: ${tokens.layout.gutter};
-  --font-head: '${tokens.typography.heading.family}', ${tokens.typography.heading.fallback};
-  --font-body: '${tokens.typography.body.family}', ${tokens.typography.body.fallback};
-  --ease: ${normalizeCssNumber(tokens.motion.standard)};
-  --ease-spring: ${normalizeCssNumber(tokens.motion.spring)};
-  --ease-out-expo: ${normalizeCssNumber(tokens.motion.out_expo)};
-}
-`;
-
-export const projectTokenTypescript = (tokens: BrandTokenProjectionInput): string =>
-  `export const socialLightTokens = {
-  schemaVersion: 'brand-token-projection-v1',
-  tokenSetId: '${tokens.token_set_id}',
-  sourceRef: 'brand/tokens/brand-tokens.yml',
-  colors: {
-    canvas: '${tokens.colors.canvas}',
-    canvasDeep: '${tokens.colors.canvas_deep}',
-    ink: '${tokens.colors.ink}',
-    surface: '${tokens.colors.surface}',
-    surfaceAlt: '${tokens.colors.surface_alt}',
-    goldFill: '${tokens.colors.gold_fill}',
-    goldText: '${tokens.colors.gold_text}',
-    goldSoft: '${tokens.colors.gold_soft}',
-    textSoft: '${tokens.colors.text_soft}',
-    muted: '${tokens.colors.muted}',
-    border: '${tokens.colors.border}',
-    borderHover: '${tokens.colors.border_hover}',
-  },
-  aliases: {
-    brandNavy: 'ink',
-    brandWhite: 'surface',
-    brandWhiteSoft: 'surfaceAlt',
-    brandWhiteMuted: 'canvasDeep',
-    textPrimary: 'ink',
-    textOnGold: 'ink',
-    accentFill: 'goldFill',
-    accentText: 'goldText',
-  },
-  typography: {
-    heading: {
-      family: '${tokens.typography.heading.family}',
-      fallback: '${tokens.typography.heading.fallback}',
-      allowedWeights: [${tokens.typography.heading.allowed_weights.join(', ')}],
-      vendoredWeights: [400, 700, 800],
-    },
-    body: {
-      family: '${tokens.typography.body.family}',
-      fallback: '${tokens.typography.body.fallback}',
-      allowedWeights: [${tokens.typography.body.allowed_weights.join(', ')}],
-      vendoredWeights: '400 700',
-    },
-  },
-  layout: {
-    radius: '${tokens.layout.radius}',
-    radiusLarge: '${tokens.layout.radius_large}',
-    gutter: '${tokens.layout.gutter}',
-  },
-} as const;
-
-export type SocialLightTokens = typeof socialLightTokens;
-`;
-
 export const renderBrandProjections = (
   tokens: BrandTokenProjectionInput,
 ): Record<string, string> => ({
@@ -241,7 +151,7 @@ export const renderBrandProjections = (
 });
 
 export const loadBrandTokens = (root = process.cwd()): BrandTokenProjectionInput =>
-  projectionInputSchema.parse(
+  parseBrandProjectionInput(
     parse(readFileSync(resolve(root, 'brand/tokens/brand-tokens.yml'), 'utf8')) as unknown,
   );
 
