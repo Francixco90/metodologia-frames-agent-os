@@ -103,6 +103,27 @@ describe('Career C00-C09 workflow family', () => {
     ).toBe(false);
   });
 
+  it('blocks Career consumers on evidence readiness without replacing output gates', () => {
+    const byId = new Map(workflows.map(({workflow}) => [workflow.workflow_id, workflow]));
+    const expectedOutputGates = {
+      C02: ['G13', 'CR_BRIEF_APPROVED'],
+      C06: [
+        'CR_BRIEF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
+        'CR_CV_SPEC_APPROVED',
+        'G13',
+        'CR_PACKAGE_APPROVED',
+      ],
+      C08: ['G14', 'CR_PACKAGE_APPROVED'],
+    } as const;
+    for (const [workflowId, gates] of Object.entries(expectedOutputGates)) {
+      const workflow = byId.get(workflowId as 'C02' | 'C06' | 'C08')!;
+      expect(workflow.preconditions).toEqual(['CR_CAREER_EVIDENCE_READY']);
+      expect(workflow.inputs).toContain('career-evidence-readiness-v1');
+      expect(workflow.execution_steps.flatMap(({gate}) => gate)).toEqual(gates);
+    }
+  });
+
   it('resolves every primary Markdown template and its HTML projection', () => {
     for (const {path, workflow} of workflows) {
       const markdown = resolve(ROOT, workflow.template_ref);

@@ -3,7 +3,8 @@ workflow_id: C06
 command: /career-cv
 title: CV spec-first, design-system-first y evidence-bound
 purpose: Especificar, decidir el sistema visual cuando aplica, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
-inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
+inputs:
+  [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1, career-evidence-readiness-v1]
 deliverables:
   [
     cv-spec-v2,
@@ -17,10 +18,12 @@ deliverables:
     cv-variant-manifest-v2,
   ]
 capability_map: [evidence-first-cv, career-design-system, media-make-pdf]
+preconditions: [CR_CAREER_EVIDENCE_READY]
 execution_steps:
   - step_id: S00
     purpose: Compilar cv-spec-v2 material; executive empieza pending-design y ATS usa perfil neutral.
-    inputs: [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1]
+    inputs:
+      [candidate-profile-v1, positioning-charter-v1, evidence-bank-v1, career-evidence-readiness-v1]
     conditional_inputs:
       - when: intent == targeted
         inputs:
@@ -90,7 +93,15 @@ execution_steps:
     gate: CR_PACKAGE_APPROVED
     stop_rule: Sin herramientas observables, PDF, reflow o impresión quedan UNKNOWN; HTML no los simula.
     context_budget: {target_files: 8, max_files: 15, target_tokens: 12000, max_tokens: 22000}
-gates: [CR_BRIEF_APPROVED, CR_CV_DESIGN_APPROVED, CR_CV_SPEC_APPROVED, G13, CR_PACKAGE_APPROVED]
+gates:
+  [
+    CR_CAREER_EVIDENCE_READY,
+    CR_BRIEF_APPROVED,
+    CR_CV_DESIGN_APPROVED,
+    CR_CV_SPEC_APPROVED,
+    G13,
+    CR_PACKAGE_APPROVED,
+  ]
 next_workflow: C07
 template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md
 stop_rule: Spec aprobada no aprueba derivados; cualquier hash stale de evidencia, diseño, composición o contenido invalida el paquete, crea successor y deja el render RENDERED_DRAFT.
