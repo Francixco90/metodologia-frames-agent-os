@@ -39,28 +39,46 @@ export const CareerWorkflowStepV1Schema = z.strictObject({
   context_budget: ContextBudgetSchema,
 });
 
-export const CareerWorkflowV1Schema = z.strictObject({
-  schema_version: z.literal('career-workflow-v1'),
-  workflow_id: CareerWorkflowIdSchema,
-  command: z.string().regex(/^\/career-[a-z-]+$/u),
-  title: z.string().min(1).max(160),
-  purpose: z.string().min(1).max(600),
-  inputs: z.array(z.string().min(1).max(160)).max(20),
-  deliverables: z
-    .array(z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u))
-    .min(1)
-    .max(12),
-  capability_map: z.array(z.string().min(1).max(80)).min(1).max(10),
-  execution_steps: z.array(CareerWorkflowStepV1Schema).min(1).max(9),
-  gates: z.array(CareerGateIdSchema).min(1).max(5),
-  next_workflow: CareerWorkflowIdSchema.nullable(),
-  template_ref: PortableRefSchema,
-  stop_rule: z.string().min(1).max(600),
-  metadata: z.strictObject({
-    status: z.literal('candidate'),
-    execution_scope: z.literal('local-evaluation'),
-    publication_authority: z.literal(false),
-  }),
-});
+export const CareerWorkflowV1Schema = z
+  .strictObject({
+    schema_version: z.literal('career-workflow-v1'),
+    workflow_id: CareerWorkflowIdSchema,
+    command: z.string().regex(/^\/career-[a-z-]+$/u),
+    title: z.string().min(1).max(160),
+    purpose: z.string().min(1).max(600),
+    inputs: z.array(z.string().min(1).max(160)).max(20),
+    deliverables: z
+      .array(z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u))
+      .min(1)
+      .max(12),
+    capability_map: z.array(z.string().min(1).max(80)).min(1).max(10),
+    preconditions: z.array(CareerGateIdSchema).max(3).optional(),
+    execution_steps: z.array(CareerWorkflowStepV1Schema).min(1).max(9),
+    gates: z.array(CareerGateIdSchema).min(1).max(6),
+    next_workflow: CareerWorkflowIdSchema.nullable(),
+    template_ref: PortableRefSchema,
+    stop_rule: z.string().min(1).max(600),
+    metadata: z.strictObject({
+      status: z.literal('candidate'),
+      execution_scope: z.literal('local-evaluation'),
+      publication_authority: z.literal(false),
+    }),
+  })
+  .superRefine((workflow, context) => {
+    const stepGates = workflow.execution_steps.map(({gate}) => gate);
+    const consumed = new Set([...stepGates, ...(workflow.preconditions ?? [])]);
+    if (workflow.gates.some((gate) => !consumed.has(gate))) {
+      context.addIssue({code: 'custom', message: 'declared gates must be consumed'});
+    }
+    if ((workflow.preconditions ?? []).some((gate) => !workflow.gates.includes(gate))) {
+      context.addIssue({code: 'custom', message: 'preconditions must be declared gates'});
+    }
+    if ((workflow.preconditions ?? []).some((gate) => stepGates.includes(gate))) {
+      context.addIssue({
+        code: 'custom',
+        message: 'preconditions and output gates must be disjoint',
+      });
+    }
+  });
 
 export type CareerWorkflowV1 = z.infer<typeof CareerWorkflowV1Schema>;
