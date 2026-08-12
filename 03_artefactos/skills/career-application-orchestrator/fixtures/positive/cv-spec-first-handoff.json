@@ -3,7 +3,7 @@
   "expected": {
     "intent_class": "targeted_cv",
     "selected_stage_path": ["C00", "C01", "C04", "C05", "C06", "C08"],
-    "required_before_compile": ["brief_sha256", "evidence_bank_sha256", "job_snapshot_sha256", "spec_sha256", "CR_CV_SPEC_APPROVED"],
+    "required_before_compile": ["brief_sha256", "evidence_bank_sha256", "readiness_sha256", "job_snapshot_sha256", "spec_sha256", "CR_CAREER_EVIDENCE_READY", "CR_CV_SPEC_APPROVED"],
     "artifact_state_after_compile": "RENDERED_DRAFT",
     "career_state_after_compile": "DRAFTED",
     "external_effect": false
