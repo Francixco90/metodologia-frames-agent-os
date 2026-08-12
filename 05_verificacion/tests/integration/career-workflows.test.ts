@@ -70,7 +70,37 @@ describe('Career C00-C09 workflow family', () => {
         );
         expect(step.context_budget.max_tokens).toBeLessThanOrEqual(28_000);
       }
+      const consumed = new Set([
+        ...workflow.execution_steps.map(({gate}) => gate),
+        ...(workflow.preconditions ?? []),
+      ]);
+      expect(workflow.gates.every((gate) => consumed.has(gate))).toBe(true);
+      expect((workflow.preconditions ?? []).every((gate) => workflow.gates.includes(gate))).toBe(
+        true,
+      );
     }
+  });
+
+  it('accepts only declared preconditions and rejects orphan gates', () => {
+    const base = structuredClone(workflows[0]!.workflow);
+    const gate = 'CR_PACKAGE_APPROVED' as const;
+    expect(
+      CareerWorkflowV1Schema.safeParse({
+        ...base,
+        gates: [...base.gates, gate],
+        preconditions: [gate],
+      }).success,
+    ).toBe(true);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, preconditions: ['CR_PACKAGE_APPROVED']}).success,
+    ).toBe(false);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, gates: [...base.gates, 'CR_PACKAGE_APPROVED']})
+        .success,
+    ).toBe(false);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, preconditions: [base.gates[0]!]}).success,
+    ).toBe(false);
   });
 
   it('resolves every primary Markdown template and its HTML projection', () => {
