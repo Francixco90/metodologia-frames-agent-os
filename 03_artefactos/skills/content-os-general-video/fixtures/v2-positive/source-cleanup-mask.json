@@ -1,0 +1,1 @@
+{"schemaVersion":"source-cleanup-mask-v1","sourceWidth":16,"sourceHeight":16,"sampleRatios":[0,0.5],"maxChannelSpan":6,"regions":[{"id":"synthetic-safe-crop","x":0,"y":0,"width":14,"height":16,"operation":"crop","forbiddenPoints":[{"id":"watermark-position-a","x":15,"y":3},{"id":"watermark-position-b","x":15,"y":12}]}]}

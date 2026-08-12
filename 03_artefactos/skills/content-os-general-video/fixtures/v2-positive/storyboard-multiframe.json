@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "storyboard-multiframe-v1",
+  "projectId": "synthetic-project",
+  "specId": "synthetic-video",
+  "specSha256": "71d6e1bbb6c0d59ef666a8d14b71af0e77669019c4a68b1f49584c12f81cba4a",
+  "frames": [
+    {"id": "frame-01", "pieceId": "mini-a", "order": 0, "atMs": 0, "purpose": "Hook visual", "visualSourceSpanIndex": 0, "compositionFitPieceId": "mini-a", "status": "outline"},
+    {"id": "frame-02", "pieceId": "mini-a", "order": 1, "atMs": 800, "purpose": "Evidence visual", "visualSourceSpanIndex": 0, "compositionFitPieceId": "mini-a", "status": "outline"}
+  ],
+  "reviewState": "candidate"
+}
