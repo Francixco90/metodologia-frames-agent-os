@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema", "$id":"brand-kit-v1",
+  "type":"object", "additionalProperties":false,
+  "required":["schemaVersion","kind","manifestSha256","rights","provenance","assets"],
+  "properties":{
+    "schemaVersion":{"const":"brand-kit-v1"},
+    "kind":{"enum":["metodologia","user-provided"]},
+    "manifestSha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "rights":{"enum":["owned","licensed","user-authorized"]},
+    "provenance":{"type":"object","additionalProperties":false,"required":["source","authority"],"properties":{"source":{"type":"string","minLength":1},"sourceSha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"authority":{"enum":["brand-owner","user"]}}},
+    "assets":{"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["role","ref","sha256","rights"],"properties":{"role":{"enum":["font-title","font-caption","font-caption-emphasis","logo","palette","icon-set","safe-zones","curtain-generator","sonic-generator"]},"ref":{"type":"string","minLength":1},"sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"rights":{"enum":["owned","licensed","user-authorized"]}}}}
+  },
+  "allOf":[{"if":{"properties":{"kind":{"const":"user-provided"}}},"then":{"properties":{"rights":{"const":"user-authorized"},"provenance":{"properties":{"authority":{"const":"user"}},"required":["sourceSha256"]},"assets":{"items":{"properties":{"ref":{"pattern":"^[A-Za-z0-9._/-]+$"},"rights":{"const":"user-authorized"}}}}},"required":["provenance"]}}]
+}

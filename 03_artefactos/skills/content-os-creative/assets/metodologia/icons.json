@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "metodologia-icon-set-v1",
+  "provenance": "locally-authored vector primitives",
+  "rights": "owned",
+  "style": {
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "strokeWidth": 1.75,
+    "lineCap": "round",
+    "lineJoin": "round"
+  },
+  "icons": [
+    {
+      "id": "method-grid",
+      "meaning": "método o sistema",
+      "decorative": false,
+      "paths": ["M4 4h6v6H4z", "M14 4h6v6h-6z", "M4 14h6v6H4z", "M14 14h6v6h-6z"]
+    },
+    {
+      "id": "evidence-check",
+      "meaning": "evidencia verificada",
+      "decorative": false,
+      "paths": ["M4 12l5 5L20 6"]
+    },
+    {
+      "id": "human-supervision",
+      "meaning": "supervisión humana",
+      "decorative": false,
+      "paths": ["M12 4a3 3 0 1 0 0 6a3 3 0 0 0 0-6", "M5 20c1-4 3-6 7-6s6 2 7 6"]
+    },
+    {
+      "id": "agent-flow",
+      "meaning": "flujo agéntico",
+      "decorative": false,
+      "paths": ["M5 6h6", "M13 6l3-3", "M13 6l3 3", "M19 18h-6", "M11 18l-3-3", "M11 18l-3 3", "M5 6v5c0 4 2 7 7 7"]
+    }
+  ]
+}
