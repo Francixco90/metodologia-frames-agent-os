@@ -3890,6 +3890,13 @@
     },
     {
       "kind": "SKILL",
+      "id": "career-evidence-interviewer",
+      "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "SKILL",
       "id": "career-opportunity-finder",
       "ref": "04_estado/registries/skills/creation-v3-skill-registry.yml",
       "scope": "CANONICAL",
@@ -6458,5 +6465,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "e733e3cb16d2038ab4ad3a3488d08bcc8dd13effd031f640044c06802d608eb8"
+  "sourceSha256": "80b048b0d2cbbde003c23679538cbb296b99d8d8dd918eec70656558434a24a6"
 }
