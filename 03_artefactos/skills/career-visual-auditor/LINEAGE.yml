@@ -1,0 +1,16 @@
+schema_version: skill-lineage-v1
+skill_id: career-visual-auditor
+version: 0.2.0
+owner: MetodologIA
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_from_user_supplied_requirements
+external_fragments_reused: false
+publication_authority: false
+authority_refs:
+  - 03_artefactos/brand/career-design-system/manifest.v1.json
+  - 03_artefactos/brand/career-design-system/components/registry.v1.json
+  - 03_artefactos/brand/career-design-system/icons/registry.v1.json
+derivation:
+  method: clean_room_spec_first
+  successor_change: bind_material_authorities_and_adversarially_verify_visual_contract

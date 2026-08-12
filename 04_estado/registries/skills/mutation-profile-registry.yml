@@ -16,6 +16,9 @@ profiles:
   - skill_id: career-opportunity-finder
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: career-visual-auditor
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: cinematic-scroll-quality
     mutation_classes: []
     documentation_impact_required: false

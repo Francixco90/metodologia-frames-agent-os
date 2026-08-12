@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es" data-theme="navy">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Perfil sintético</title>
+    <meta name="career-spec-sha256" content="f2f12717dd23f7436f074a4d54e1ba936f0b623067112c897015a5d8bcedc8dd" />
+    <meta name="career-design-system-sha256" content="752ce724494ac7edce32e5a27dd3e6f307ee02984b018bac38a764444a617bb0" />
+    <meta name="career-decision-sha256" content="26cf80d5040871a56bf07035980a3512fc24c49c7c9a2d0d30032f73c2899ac1" />
+    <meta name="career-composition-id" content="blueprint-executive" />
+    <link rel="stylesheet" href="../../../brand/generated/social-light.css" />
+    <link rel="stylesheet" href="../../../brand/career-design-system/tokens/tokens.v1.css" />
+    <link rel="stylesheet" href="../../../brand/career-design-system/components/components.v1.css" />
+    <link rel="stylesheet" href="../../../brand/career-design-system/print/print.v1.css" />
+  </head>
+  <body>
+    <header class="career-header">
+      <nav class="career-nav" aria-label="Principal"><a href="#perfil">Perfil</a></nav>
+    </header>
+    <main class="career-shell">
+      <h1 id="perfil">CV</h1>
+      <article class="career-card career-capability">
+        <h2 class="career-capability__title">Rol</h2>
+        <p class="career-capability__category">Cambio</p>
+        <p class="career-card__bluf">Define roles y cambio con límites claros.</p>
+        <p class="career-card__evidence">Prueba sintética trazable.</p>
+      </article>
+      <svg role="img" aria-labelledby="method-title" viewBox="0 0 120 40" width="120" height="40">
+        <title id="method-title">Método sintético sin escala porcentual</title>
+        <path d="M10 20h100" />
+      </svg>
+      <button class="career-dialog-trigger" type="button" data-dialog-open="evidencia">
+        <svg class="career-icon" aria-hidden="true"><circle cx="10" cy="10" r="8" /></svg>
+        Ver evidencia
+      </button>
+      <dialog class="career-dialog" id="evidencia" aria-labelledby="titulo-evidencia">
+        <button class="career-icon-button career-dialog__close" type="button" data-dialog-close aria-label="Cerrar evidencia">
+          <svg class="career-icon" aria-hidden="true"><path d="m4 4 16 16M20 4 4 20" /></svg>
+        </button>
+        <div class="career-dialog__body" data-essential="evidence"><h2 id="titulo-evidencia">Evidencia</h2><p>Ejemplo sintético.</p></div>
+      </dialog>
+    </main>
+    <noscript><div data-fallback-for="evidence"><h2>Evidencia</h2><p>Ejemplo sintético.</p></div></noscript>
+    <script>
+      document.querySelector('[data-dialog-open]').onclick = () => evidencia.showModal();
+      document.querySelector('[data-dialog-close]').onclick = () => evidencia.close();
+      evidencia.addEventListener('keydown', (event) => {
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          document.querySelector('[data-dialog-close]').focus();
+        }
+      });
+    </script>
+  </body>
+</html>
