@@ -3,7 +3,8 @@
   "workbookId": "synthetic-practice-workbook",
   "brand": "MetodologIA",
   "state": "RENDERED_DRAFT",
-  "specSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "specHashAlgorithm": "sha256-canonical-json-v1",
+  "specSha256": "97e4edac56eaadbbde3977312adb6344bdf3038bd996f6780eb71339c362c063",
   "designSystemLock": {"ref": "locks/metodologia.json", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
   "primaryLocale": "es",
   "locales": [
@@ -24,4 +25,3 @@
   "assets": [{"id": "local-font", "ref": "assets/font.woff2", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "rights": {"status": "cleared", "authority": "synthetic-fixture"}}],
   "output": {"htmlRef": "dist/workbook.html", "state": "RENDERED_DRAFT"}
 }
-

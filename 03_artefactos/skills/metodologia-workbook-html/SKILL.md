@@ -22,7 +22,8 @@ template.
 1. **Spec.** Crear `workbook-spec-v1` conforme a
    [schemas/workbook-spec-v1.schema.json](schemas/workbook-spec-v1.schema.json). Exigir un lock
    de diseño hash-bound, al menos tres hojas, contenido localizado con paridad estructural,
-   assets locales con derechos y criterios explícitos de impresión y no-JS.
+   assets locales con derechos y criterios explícitos de impresión y no-JS. Calcular
+   `specSha256` con `sha256-canonical-json-v1`, excluyendo únicamente el propio campo.
 2. **Compile.** Consumir únicamente la spec validada, el design-system lock y los assets
    declarados. Ordenar entradas de forma estable; omitir relojes, aleatoriedad, telemetría y
    red. Emitir HTML, manifest de bytes y receipt ligados al `specSha256`.
@@ -36,6 +37,7 @@ template.
 ## Invariantes
 
 - Mantener tres o más hojas. Permitir que cada hoja funcione como ruta de autoentrenamiento.
+- Exigir IDs únicos de locale, hoja, paso y asset antes de compilar.
 - Conservar la misma secuencia de hojas y pasos en cada locale; traducir contenido, no IDs.
 - Permitir copiar prompts y operar tabs con teclado sin guardar respuestas del participante.
 - Guardar solo preferencias inocuas de idioma o tema cuando la spec lo autorice.
@@ -62,4 +64,3 @@ pnpm verify:skills
 Leer [references/operating-contract.md](references/operating-contract.md) antes de implementar
 un compilador o revisar un paquete. El checker de esta skill valida fixtures y semántica local;
 el registro y sus hashes son responsabilidad del gate transversal del repositorio.
-

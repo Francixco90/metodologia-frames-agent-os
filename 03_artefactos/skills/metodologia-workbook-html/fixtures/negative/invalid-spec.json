@@ -3,6 +3,7 @@
   "workbookId": "broken-workbook",
   "brand": "OtherBrand",
   "state": "READY",
+  "specHashAlgorithm": "unknown",
   "specSha256": "stale",
   "designSystemLock": {"ref": "/private/lock.json", "sha256": "missing"},
   "primaryLocale": "es",
@@ -13,4 +14,3 @@
   "assets": [{"id": "remote", "ref": "https://example.invalid/font.woff2", "sha256": "unknown", "rights": {"status": "unknown", "authority": ""}}],
   "output": {"htmlRef": "file:///private/output.html", "state": "PUBLISHED"}
 }
-
