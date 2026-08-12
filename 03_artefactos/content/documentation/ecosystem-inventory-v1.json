@@ -2931,6 +2931,20 @@
     },
     {
       "kind": "DELIVERABLE",
+      "id": "career-discovery-session-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "career-evidence-readiness-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
       "id": "claim-register-v1",
       "ref": "02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml",
       "scope": "CANONICAL",
@@ -3128,6 +3142,13 @@
     {
       "kind": "DELIVERABLE",
       "id": "evidence-bank-v1",
+      "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "DELIVERABLE",
+      "id": "evidence-candidate-packet-v1",
       "ref": "02_proceso/workflows/career/_assets/deliverable-registry.yml",
       "scope": "CANONICAL",
       "state": "ACTIVE"
@@ -6465,5 +6486,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "80b048b0d2cbbde003c23679538cbb296b99d8d8dd918eec70656558434a24a6"
+  "sourceSha256": "e3a533ff71c0dd2828bec5e690461f3d7f386ad2fa6b6320ef68182949d4e2c5"
 }
