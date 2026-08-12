@@ -1,7 +1,7 @@
 ---
 name: content-os-media
 description: This skill should be used when the user asks to "resolve a media asset for a Frames ContentOS composition", "generate TTS voiceover offline", "transcribe audio locally", "remove background from video offline", "audit a media manifest for remote-without-auth", or "declare remote media opt-in for a project".
-version: 0.1.0
+version: 0.2.1
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract. Offline render profile by default. Remote adapters (HeyGen, OpenAI) are opt-in per project, auth-gated, fail-closed without credentials. No network in the default render path.
 metadata:
@@ -101,6 +101,13 @@ adapters remotos son scripts separados (referenciados en
    claim: `content-os-transcript-intelligence` debe revisarla contra audio.
 9. **RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED.** Media resuelto
    produce `RENDERED_DRAFT`. `READY`/publicación requiere gates humanos G13-G17.
+10. **Source analysis primero.** Todo audiovisual ejecuta `probe → audio class →
+    ASR attempt → Transcript Intelligence gate`. `speech|mixed` exige candidato ASR
+    hash-bound y verificación lingüística; `music-sfx` registra
+    `no-speech-detected` y solo `silent` declara ASR `not-applicable`.
+    El mismo artefacto registra orientación y evidencia de crop safety. Los refs
+    ASR/TI son job-local: existencia, archivo regular y SHA real; rutas absolutas,
+    traversal y symlinks bloquean el análisis.
 
 ## Media types
 

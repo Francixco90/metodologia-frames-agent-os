@@ -1,11 +1,11 @@
 skill_id: content-os-media
-version: 0.1.0
+version: 0.2.1
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: html-media-v1 + asr-candidate-v1-provenance
+compatibility_contract: html-media-v1 + asr-candidate-v1-provenance + source-analysis-v1
 authority_refs:
   - skills/vendor/hyperframes/media-use/SKILL.md
   - skills/content-os-core/SKILL.md
