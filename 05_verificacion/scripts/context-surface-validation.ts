@@ -20,7 +20,12 @@ const validatePaths = (root: string, surface: ContextSurfaceV1): string[] => {
   } catch {
     issues.push(`CTX-PATH003 missing root ${surface.root}`);
   }
-  for (const ref of [...surface.authority_refs, ...surface.load_first, ...surface.read_set]) {
+  for (const ref of [
+    ...surface.authority_refs,
+    ...surface.load_first,
+    ...surface.load_on_demand,
+    ...surface.read_set,
+  ]) {
     try {
       const target = resolve(root, ref);
       if (lstatSync(target).isSymbolicLink()) issues.push(`CTX-REF001 symlink ref ${ref}`);
