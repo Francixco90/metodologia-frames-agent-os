@@ -114,7 +114,7 @@ surfaces:
     applies_when: Falta identidad, voz, canal o sistema visual para una pieza nueva.
     authority_refs: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
     load_first: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
-    load_on_demand: [03_artefactos/brand/brand-profile.yml]
+    load_on_demand: [03_artefactos/brand/tokens/brand-tokens.yml]
     defer: [Producción de activos]
     routes: [R6]
     workflows: [P00]
