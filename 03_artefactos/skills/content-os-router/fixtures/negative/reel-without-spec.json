@@ -1,0 +1,1 @@
+{"deliverable":"reel","sourceAnalysisRef":"analysis/source.json","sourceAnalysisSha256":"5555555555555555555555555555555555555555555555555555555555555555","sourceAnalysis":{"source":{"sha256":"6666666666666666666666666666666666666666666666666666666666666666"},"audioClass":"speech","analysisState":"ready","visual":{"cropSafety":{"safe":true,"evidence":["synthetic evidence"]}}}}

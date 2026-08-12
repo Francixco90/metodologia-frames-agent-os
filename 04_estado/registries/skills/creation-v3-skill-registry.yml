@@ -106,7 +106,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 0403a27e0d547b8bc3d3621f38138439ea5627024b37785948381fec10cf45bb
-    package_manifest_sha256: 4e44b0093d4e98041afa974edf7c3d3125fc9e45b8e49ab932eef42d6ba08f48
+    package_manifest_sha256: c2481e9a6d7f5b172bbffb233cfcf8cf59af8d4ec6c086ba31b7a10c51fcf657
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2710,3 +2710,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-014, event_order: 14, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: bind_source_analysis_brand_fit_and_wrapper_contracts}
   - {event_id: EVT-SKL-CGV-H03-015, event_order: 15, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: integrate_analysis_fit_cache_and_preservation_runtime}
   - {event_id: EVT-SKL-CGV-H03-016, event_order: 16, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_systemic_video_guardrails_v014}
+  - {event_id: EVT-SKL-COR-H03-011, event_order: 11, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_source_analysis_fit_and_reel_routes}
