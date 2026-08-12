@@ -18,7 +18,16 @@ import {
 } from 'workflows/career/_runner/cv-spec-v2.ts';
 import {approveCvSpec, createCvSpec} from 'workflows/career/_runner/cv-spec.ts';
 import {calculateCareerCvPackageV2Hash} from 'workflows/career/_runner/cv-spec.ts';
-import {buildApprovedGeneralSpec, HASH_A, HASH_B, HASH_C} from './career-cv-spec-fixtures.ts';
+import {
+  bindEvidence,
+  buildApprovedGeneralSpec,
+  HASH_A,
+  HASH_B,
+  HASH_C,
+  type makeEvidenceAuthority,
+} from './career-cv-spec-fixtures.ts';
+
+const evidenceAuthorities = new Map<string, ReturnType<typeof makeEvidenceAuthority>>();
 
 const NEUTRAL = {
   mode: 'ats-neutral' as const,
@@ -59,10 +68,18 @@ const buildApprovedSpecV2 = (executive: boolean) => {
       createCvSpec({...base, variants: [legacy.variants[0]!], state: 'DRAFT', approval: null}),
       {approver_ref: 'H01', approved_at: '2026-08-11T10:00:00-05:00'},
     );
-    return approveCvSpecV2(migrateCvSpecV1ToV2(ats), {
-      approver_ref: 'H01',
-      approved_at: '2026-08-11T11:00:00-05:00',
-    });
+    const bound = bindEvidence(migrateCvSpecV1ToV2(ats));
+    const approved = approveCvSpecV2(
+      bound.spec,
+      {
+        approver_ref: 'H01',
+        approved_at: '2026-08-11T11:00:00-05:00',
+      },
+      undefined,
+      bound.authority,
+    );
+    evidenceAuthorities.set(approved.spec_sha256, bound.authority);
+    return approved;
   }
   const {schema_version, spec_sha256, state, approval, next_gate, variants, ...base} = legacy;
   void schema_version;
@@ -70,9 +87,13 @@ const buildApprovedSpecV2 = (executive: boolean) => {
   void state;
   void approval;
   void next_gate;
-  const draft = createCvSpecV2({
+  const pending = createCvSpecV2({
     ...base,
     schema_version: 'cv-spec-v2',
+    evidence_candidate_packet_ref: null,
+    evidence_candidate_packet_sha256: null,
+    evidence_readiness_ref: null,
+    evidence_readiness_sha256: null,
     variants: variants.map((variant) => ({
       ...variant,
       design: variant.output_kinds.includes('executive-html') ? APPROVED_DESIGN : NEUTRAL,
@@ -81,16 +102,19 @@ const buildApprovedSpecV2 = (executive: boolean) => {
     next_gate: 'CR_CV_SPEC_APPROVED',
     approval: null,
   });
-  return CvSpecV2Schema.parse({
-    ...draft,
+  const bound = bindEvidence(pending);
+  const approved = CvSpecV2Schema.parse({
+    ...bound.spec,
     state: 'HUMAN_APPROVED',
     approval: {
       status: 'HUMAN_APPROVED',
-      approved_spec_sha256: draft.spec_sha256,
+      approved_spec_sha256: bound.spec.spec_sha256,
       approver_ref: 'H01',
       approved_at: '2026-08-11T11:00:00-05:00',
     },
   });
+  evidenceAuthorities.set(approved.spec_sha256, bound.authority);
+  return approved;
 };
 
 const buildPackage = (executive: boolean) => {
@@ -158,9 +182,14 @@ describe('CV package v3 design bindings', () => {
 
   it('requires observed HUMAN_APPROVED authority for executive packages', () => {
     const {spec, pkg} = buildPackage(true);
-    expect(() => assertCareerCvPackageV3Current(pkg, spec)).toThrow(
-      'CR_CV_DESIGN_APPROVED_REQUIRED',
-    );
+    expect(() =>
+      assertCareerCvPackageV3Current(
+        pkg,
+        spec,
+        undefined,
+        evidenceAuthorities.get(spec.spec_sha256),
+      ),
+    ).toThrow('CR_CV_DESIGN_APPROVED_REQUIRED');
     expect(
       CareerCvPackageV3Schema.safeParse({
         ...pkg,
@@ -186,7 +215,14 @@ describe('CV package v3 design bindings', () => {
       ...legacyDraft,
       package_sha256: calculateCareerCvPackageV2Hash(legacyDraft),
     });
-    const migrated = migrateCareerCvPackageV2ToV3(legacy, spec);
+    expect(() => migrateCareerCvPackageV2ToV3(legacy, spec)).toThrow(
+      'CR_CAREER_EVIDENCE_READY_REQUIRED',
+    );
+    const migrated = migrateCareerCvPackageV2ToV3(
+      legacy,
+      spec,
+      evidenceAuthorities.get(spec.spec_sha256),
+    );
     for (const variant of migrated.variants) {
       expect(variant.design).toEqual(
         spec.variants.find(({variant_id}) => variant_id === variant.variant_id)?.design,

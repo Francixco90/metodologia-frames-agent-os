@@ -8,6 +8,7 @@ export * from './_runner/confirmation-evidence.ts';
 export * from './_runner/cv-spec.ts';
 export * from './_runner/cv-spec-v2.ts';
 export * from './_runner/cv-spec-bindings.ts';
+export * from './_runner/cv-spec-evidence.ts';
 export * from './_runner/cv-design.ts';
 export * from './_runner/cv-compiler.ts';
 export * from './_runner/cv-docx.ts';

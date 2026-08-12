@@ -5,6 +5,7 @@ import {
 } from '../_schema/index.ts';
 import {sha256Text, stableStringify} from './canonical.ts';
 import {assertCvSpecV2DesignCurrent, parseCvSpecV2} from './cv-spec-v2.ts';
+import {assertCvEvidenceAuthorityCurrent, type CvEvidenceAuthority} from './career-discovery.ts';
 
 const withoutKeys = <T extends Record<string, unknown>>(value: T, keys: readonly string[]) =>
   Object.fromEntries(Object.entries(value).filter(([key]) => !keys.includes(key)));
@@ -23,9 +24,12 @@ export const parseCareerCvPackageV3 = (input: unknown): CareerCvPackageV3 => {
 export const migrateCareerCvPackageV2ToV3 = (
   input: unknown,
   specInput: unknown,
+  evidenceAuthority?: CvEvidenceAuthority,
 ): CareerCvPackageV3 => {
   const pkg = CareerCvPackageV2Schema.parse(input);
   const spec = parseCvSpecV2(specInput, {requireApproval: true});
+  if (!evidenceAuthority) throw new Error('CR_CAREER_EVIDENCE_READY_REQUIRED');
+  assertCvEvidenceAuthorityCurrent(spec, evidenceAuthority);
   if (pkg.spec_id !== spec.spec_id || pkg.spec_sha256 !== spec.spec_sha256) {
     throw new Error('CV_PACKAGE_SPEC_STALE');
   }
@@ -48,9 +52,12 @@ export const assertCareerCvPackageV3Current = (
   packageInput: unknown,
   specInput: unknown,
   designAuthority?: {decision: unknown; system: unknown},
+  evidenceAuthority?: CvEvidenceAuthority,
 ): CareerCvPackageV3 => {
   const pkg = parseCareerCvPackageV3(packageInput);
   const spec = parseCvSpecV2(specInput, {requireApproval: true});
+  if (!evidenceAuthority) throw new Error('CR_CAREER_EVIDENCE_READY_REQUIRED');
+  assertCvEvidenceAuthorityCurrent(spec, evidenceAuthority);
   if (pkg.spec_id !== spec.spec_id || pkg.spec_sha256 !== spec.spec_sha256) {
     throw new Error('CV_PACKAGE_SPEC_STALE');
   }

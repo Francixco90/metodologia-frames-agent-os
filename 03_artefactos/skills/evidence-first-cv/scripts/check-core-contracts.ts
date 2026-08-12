@@ -67,7 +67,15 @@ if (
 ) {
   throw new Error('CORE_FIXTURE_EVIDENCE_AUTHORITY');
 }
-assertCareerCvPackageV3Current(pkg, spec);
+assertCareerCvPackageV3Current(pkg, spec, undefined, {
+  packet: authority.packet,
+  readiness: authority.readiness,
+  packet_ref: spec.evidence_candidate_packet_ref!,
+  readiness_ref: spec.evidence_readiness_ref!,
+  evidence_ids: new Set(bank.evidence.map(({evidence_id}) => evidence_id)),
+  gap_ids: new Set(),
+  accepted_gap_ids: new Set(),
+});
 for (const source of sources) {
   parseCareerCv(source);
   assertCareerEvidence(source, bank);

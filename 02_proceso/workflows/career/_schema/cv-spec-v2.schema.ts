@@ -73,6 +73,12 @@ export const CvSpecV2Schema = z
         message: 'Evidence readiness bindings must be all-or-none',
       });
     }
+    if (spec.state === 'HUMAN_APPROVED' && evidenceBindings.some((value) => value == null)) {
+      context.addIssue({
+        code: 'custom',
+        message: 'HUMAN_APPROVED requires material evidence readiness',
+      });
+    }
     const targeted = spec.intent === 'targeted';
     const targetedFields = [
       spec.application_brief_ref,

@@ -22,6 +22,19 @@ export const parseCareerDiscoverySession = (input: unknown): CareerDiscoverySess
   return parsed;
 };
 
+const MATERIAL_GAP_DIMENSIONS = new Set(
+  'achievement competency metric attribution contradiction evidence'.split(' '),
+);
+
+export const shouldDispatchCareerEvidenceInterview = (sessionInput: unknown): boolean => {
+  const session = parseCareerDiscoverySession(sessionInput);
+  if (session.state === 'PAUSED' || session.state === 'READY_FOR_CONFIRMATION') return false;
+  return session.gaps.some(
+    ({dimension, severity, status}) =>
+      status === 'open' && (severity === 'blocking' || MATERIAL_GAP_DIMENSIONS.has(dimension)),
+  );
+};
+
 export const calculateCandidatePacketHash = (
   input: Omit<EvidenceCandidatePacketV1, 'packet_sha256'>,
 ): string => sha256Text(stableStringify(input));
@@ -98,6 +111,48 @@ export const parseCareerEvidenceReadiness = (input: unknown): CareerEvidenceRead
   const expected = sha256Text(stableStringify(payload));
   if (readiness_sha256 !== expected) throw new Error('career evidence readiness hash mismatch');
   return parsed;
+};
+
+export type CvEvidenceAuthority = {
+  packet: unknown;
+  packet_ref: string;
+  readiness: unknown;
+  readiness_ref: string;
+  evidence_ids: ReadonlySet<string>;
+  gap_ids: ReadonlySet<string>;
+  accepted_gap_ids: ReadonlySet<string>;
+};
+
+export const assertCvEvidenceAuthorityCurrent = (
+  observed: {
+    candidate_id: string;
+    evidence_bank_sha256: string;
+    evidence_candidate_packet_ref?: string | null | undefined;
+    evidence_candidate_packet_sha256?: string | null | undefined;
+    evidence_readiness_ref?: string | null | undefined;
+    evidence_readiness_sha256?: string | null | undefined;
+  },
+  authority: CvEvidenceAuthority,
+) => {
+  const packet = parseEvidenceCandidatePacket(authority.packet);
+  const readiness = parseCareerEvidenceReadiness(authority.readiness);
+  assertCareerEvidenceReadinessBindings(readiness, packet, {
+    candidateId: observed.candidate_id,
+    evidenceBankSha256: observed.evidence_bank_sha256,
+    evidenceIds: authority.evidence_ids,
+    gapIds: authority.gap_ids,
+    acceptedGapIds: authority.accepted_gap_ids,
+  });
+  if (
+    readiness.status !== 'READY' ||
+    observed.evidence_candidate_packet_ref !== authority.packet_ref ||
+    observed.evidence_readiness_ref !== authority.readiness_ref ||
+    observed.evidence_candidate_packet_sha256 !== packet.packet_sha256 ||
+    observed.evidence_readiness_sha256 !== readiness.readiness_sha256
+  ) {
+    throw new Error('CV_SPEC_V2_EVIDENCE_READINESS_STALE');
+  }
+  return {packet, readiness};
 };
 
 export const assertCareerEvidenceReadinessBindings = (
