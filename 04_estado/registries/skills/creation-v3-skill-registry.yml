@@ -1723,7 +1723,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 15cdc2cd9021ba8f2bc69410ac69cd382a3659bf6bceee0dec2b3e1cd68e90a7
-    package_manifest_sha256: e2f5fdf0d80727e9d60b1da9342339a8235c3c8232e97bd37c867c55a58b15ce
+    package_manifest_sha256: 4e44dcad1ec502064af81794b08d48f1dbb7eb002cff7db74b926d0caf11954f
     lineage_ref: skills/career-design-system/LINEAGE.yml
     dependency_receipt_ref: skills/career-design-system/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1979,6 +1979,7 @@ events:
   - {event_id: EVT-SKL-CDS-H03-003, event_order: 3, skill_id: career-design-system, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CDS-H03-004, event_order: 4, skill_id: career-design-system, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CDS-H03-005, event_order: 5, skill_id: career-design-system, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: activate_design_system_first_career_flow}
+  - {event_id: EVT-SKL-CDS-H03-006, event_order: 6, skill_id: career-design-system, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: harden_progressive_disclosure_and_capability_anatomy}
   - {event_id: EVT-SKL-CEI-H03-001, event_order: 1, skill_id: career-evidence-interviewer, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CEI-H03-002, event_order: 2, skill_id: career-evidence-interviewer, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-CEI-H03-003, event_order: 3, skill_id: career-evidence-interviewer, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-SKILL-VERIFIER}

@@ -12,6 +12,14 @@
     {"id": "icon-close", "meaning": "close dialog", "standalone_allowed": true},
     {"id": "icon-arrow", "meaning": "open a resource or continue", "standalone_allowed": false},
     {"id": "icon-evidence", "meaning": "evidence or verification", "standalone_allowed": false},
-    {"id": "icon-method", "meaning": "method or operating system", "standalone_allowed": false}
+    {"id": "icon-method", "meaning": "method or operating system", "standalone_allowed": false},
+    {"id": "icon-profile", "meaning": "professional profile", "standalone_allowed": false},
+    {"id": "icon-pasa", "meaning": "PASA method", "standalone_allowed": false},
+    {"id": "icon-pivote", "meaning": "PIVOTE method", "standalone_allowed": false},
+    {"id": "icon-capability", "meaning": "evidence-bound capability", "standalone_allowed": false},
+    {"id": "icon-linkedin", "meaning": "LinkedIn access", "standalone_allowed": true},
+    {"id": "icon-github", "meaning": "GitHub access", "standalone_allowed": true},
+    {"id": "icon-whatsapp", "meaning": "WhatsApp access", "standalone_allowed": true},
+    {"id": "icon-email", "meaning": "email access", "standalone_allowed": true}
   ]
 }
