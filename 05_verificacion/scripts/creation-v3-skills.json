@@ -7,7 +7,7 @@
   {
     "id": "motion-library-adapters",
     "scope": "local-evaluation-only",
-    "version": "0.3.1",
+    "version": "0.2.0",
     "check": ["skills/motion-library-adapters/scripts/check-skill.mjs"]
   },
   {
@@ -28,7 +28,7 @@
   },
   {
     "id": "content-os-creative",
-    "version": "0.2.0",
+    "version": "0.3.1",
     "scope": "local-evaluation",
     "check": ["skills/content-os-creative/scripts/check-skill.mjs"]
   },
