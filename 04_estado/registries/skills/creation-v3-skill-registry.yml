@@ -3,7 +3,7 @@ registry_id: creation-v3-skills-h03
 mutation_policy: append-only-events-with-versioned-current-view
 entries:
   - skill_id: data-visual-composition
-    version: 0.2.1
+    version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 78ad018103030b593340a4e28fa68fd113842d65b388934fdbbea21494be6dd2
@@ -14,7 +14,7 @@ entries:
     publication_authority: false
     tests: [node --import tsx skills/data-visual-composition/scripts/check.ts]
   - skill_id: motion-library-adapters
-    version: 0.3.1
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation-only
     content_sha256: 542ae5398562901017405124ce4833dadfbc42abc85b2dea3c6d04b3fe804814
@@ -36,7 +36,7 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-core/scripts/check-skill.mjs]
   - skill_id: content-os-animation
-    version: 0.2.0
+    version: 0.1.0
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 8a32e4f94d94339002bbc12cbf09aed28c4fbcb7cf5fcb1ea3f02a2b9c72b6ec
@@ -58,7 +58,7 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-keyframes/scripts/check-skill.mjs]
   - skill_id: content-os-creative
-    version: 0.2.0
+    version: 0.3.1
     current_state: active
     execution_scope: local-evaluation
     content_sha256: f5cb26267cb761b3fcbfc60d326caaa7ddb152b238258ba790ed182d0eff26b8
@@ -69,7 +69,7 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-creative/scripts/check-skill.mjs]
   - skill_id: content-os-media
-    version: 0.1.0
+    version: 0.2.1
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 81917f8b7d7890b4e16b8f5d6f41e61cb90840c8e470185d4c87b161716aba24
@@ -201,7 +201,7 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-remotion-bridge/scripts/check-skill.mjs]
   - skill_id: content-os-talking-head-recut
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 09c71ac0dc179ae21de1ad5cd633072c266130e7d22ed967c2e062a104e9df21
