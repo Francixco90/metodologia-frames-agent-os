@@ -1,7 +1,10 @@
 import {createHash} from 'node:crypto';
 import {readFileSync, writeFileSync} from 'node:fs';
 
+import {CareerEvidenceReadinessV1Schema} from '../_schema/career-evidence-readiness-v1.schema.ts';
 import {CareerIntentV1Schema, type CareerIntentV1} from '../_schema/intent-v1.schema.ts';
+import {Sha256Schema} from '../_schema/primitives-v1.schema.ts';
+import {parseCareerEvidenceReadiness} from './career-discovery.ts';
 import {z} from 'zod';
 
 export const CareerRouteRequestSchema = z.strictObject({
@@ -14,6 +17,8 @@ export const CareerRouteRequestSchema = z.strictObject({
   sourceRefs: z.array(z.string()).optional(),
   constraints: z.array(z.string()).optional(),
   profileReady: z.boolean().optional(),
+  evidenceReadiness: CareerEvidenceReadinessV1Schema.optional(),
+  evidenceBankSha256: Sha256Schema.optional(),
   evidenceReady: z.boolean().optional(),
   jobValidated: z.boolean().optional(),
   packageReady: z.boolean().optional(),
@@ -44,6 +49,18 @@ export const routeCareerIntent = (requestInput: CareerRouteRequest): CareerInten
   if (!request) throw new Error('CAREER-INTENT-001 request is required');
   const input = routeInput;
   const intentClass = classify(request);
+  const readiness = input.evidenceReadiness
+    ? parseCareerEvidenceReadiness(input.evidenceReadiness)
+    : null;
+  if (
+    readiness &&
+    (readiness.status !== 'READY' ||
+      readiness.candidate_id !== input.candidateId ||
+      readiness.evidence_bank_sha256 !== input.evidenceBankSha256)
+  ) {
+    throw new Error('CAREER-EVIDENCE-READINESS-BINDING');
+  }
+  const evidenceReady = readiness?.status === 'READY';
   const questions: string[] = [];
   if (!input.candidateId) questions.push('¿Qué perfil de candidato debemos usar o crear?');
   if (!normalize(input.targetRole)) questions.push('¿Qué rol o familia de roles es el objetivo?');
@@ -53,7 +70,7 @@ export const routeCareerIntent = (requestInput: CareerRouteRequest): CareerInten
 
   const stages: CareerIntentV1['selected_stage_path'] = [];
   if (!input.profileReady) stages.push('C00');
-  if (!input.evidenceReady) stages.push('C01');
+  if (intentClass !== 'follow_up' && !evidenceReady) stages.push('C01');
   if (['general_cv', 'job_search', 'full_application'].includes(intentClass)) stages.push('C02');
   if (['job_search', 'full_application'].includes(intentClass)) stages.push('C03', 'C04');
   if (['targeted_cv', 'cover_letter', 'full_application'].includes(intentClass)) {
@@ -68,7 +85,12 @@ export const routeCareerIntent = (requestInput: CareerRouteRequest): CareerInten
   if (['full_application', 'follow_up'].includes(intentClass)) stages.push('C09');
   if (stages.length === 0) stages.push('C00');
 
-  const requiresBrief = stages.some((stage) => ['C00', 'C02', 'C05'].includes(stage));
+  const requiresBrief = stages.some((stage) => ['C00', 'C05'].includes(stage));
+  const nextGate = requiresBrief
+    ? 'CR_BRIEF_APPROVED'
+    : stages.includes('C01')
+      ? 'CR_CAREER_EVIDENCE_READY'
+      : 'CR_PACKAGE_APPROVED';
   return CareerIntentV1Schema.parse({
     schema_version: 'career-intent-v1',
     request,
@@ -87,11 +109,12 @@ export const routeCareerIntent = (requestInput: CareerRouteRequest): CareerInten
     blocking_questions: questions.slice(0, 3),
     reason_codes: [
       `INTENT_${intentClass.toUpperCase()}`,
+      ...(input.evidenceReady && !readiness ? ['EVIDENCE_READINESS_UNVERIFIED'] : []),
       ...(stages.includes('C09') ? ['SUBMISSION_STOP_REQUIRED'] : []),
     ],
     selected_stage_path: [...new Set(stages)],
     brief_ref: 'work/private/career/brief.md',
-    next_gate: requiresBrief ? 'CR_BRIEF_APPROVED' : 'CR_PACKAGE_APPROVED',
+    next_gate: nextGate,
     decision: questions.length === 0 ? 'ROUTED' : 'NEEDS_INPUT',
   });
 };

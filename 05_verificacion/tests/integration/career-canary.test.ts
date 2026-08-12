@@ -81,6 +81,7 @@ describe('Career OS synthetic local canary', () => {
       });
       expect(result.route.materialized).toBe(true);
       expect(result.route.workflows.map(({workflow_id}) => workflow_id)).toEqual([
+        'C01',
         'C02',
         'C06',
         'C08',
@@ -120,6 +121,7 @@ describe('Career OS synthetic local canary', () => {
       expect(integrated.materialized).toBe(true);
       rmSync(runnerRoot, {recursive: true, force: true});
       expect(intent.selected_stage_path).toEqual([
+        'C01',
         'C02',
         'C03',
         'C04',

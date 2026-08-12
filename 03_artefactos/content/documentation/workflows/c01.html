@@ -155,7 +155,8 @@
         <p><strong>Entradas:</strong> candidate-foundation-brief-v1, candidate-sources</p>
         <p>
           <strong>Entregables:</strong> evidence-bank-v1, contradiction-ledger-v1,
-          evidence-gap-report-v1
+          evidence-gap-report-v1, career-discovery-session-v1, evidence-candidate-packet-v1,
+          career-evidence-readiness-v1
         </p>
       </section>
       <section>
@@ -182,13 +183,22 @@
               <td>candidate-evidence-reconciler</td>
               <td>G14</td>
             </tr>
+            <tr>
+              <td>S03</td>
+              <td>
+                Omitir preguntas si la evidencia basta o indagar solo gaps bloqueantes antes de
+                posicionar.
+              </td>
+              <td>career-evidence-interviewer</td>
+              <td>CR_CAREER_EVIDENCE_READY</td>
+            </tr>
           </tbody>
         </table>
       </section>
       <section>
         <h2>Secuencia</h2>
         <svg
-          viewBox="0 0 920 554"
+          viewBox="0 0 920 728"
           role="img"
           aria-labelledby="seq-title seq-desc"
           xmlns="http://www.w3.org/2000/svg"
@@ -197,8 +207,10 @@
           <desc id="seq-desc">
             La persona solicita Reconciliación de evidencia. S01: candidate-evidence-reconciler
             produce evidence-bank-v1; RT-09 decide G13. S02: candidate-evidence-reconciler produce
-            contradiction-ledger-v1, evidence-gap-report-v1; RT-09 decide G14. Frames entrega el
-            resultado y propone C02.
+            contradiction-ledger-v1, evidence-gap-report-v1; RT-09 decide G14. S03:
+            career-evidence-interviewer produce career-discovery-session-v1,
+            evidence-candidate-packet-v1, career-evidence-readiness-v1; RT-09 decide
+            CR_CAREER_EVIDENCE_READY. Frames entrega el resultado y propone C02.
           </desc>
           <style>
             .actor {
@@ -210,7 +222,7 @@
               fill: #26324d;
             }
           </style>
-          <line x1="34" y1="45" x2="34" y2="524" stroke="#122562" stroke-width="3" />
+          <line x1="34" y1="45" x2="34" y2="698" stroke="#122562" stroke-width="3" />
           <g>
             <circle cx="34" cy="68" r="12" fill="#137DC5" />
             <line x1="46" y1="68" x2="112" y2="68" stroke="#122562" stroke-width="2" />
@@ -260,10 +272,34 @@
             <text x="126" y="430" class="label">Gate G14</text>
           </g>
           <g>
-            <circle cx="34" cy="474" r="12" fill="#FFD700" />
+            <circle cx="34" cy="474" r="12" fill="#137DC5" />
             <line x1="46" y1="474" x2="112" y2="474" stroke="#122562" stroke-width="2" />
-            <text x="126" y="466" class="actor">Frames → Persona</text>
-            <text x="126" y="488" class="label">Entrega o siguiente paso: C02</text>
+            <text x="126" y="466" class="actor">Frames → career-evidence-interviewer</text>
+            <text x="126" y="488" class="label">
+              S03: Omitir preguntas si la evidencia basta o indagar solo gaps bloqueantes antes de
+              posicionar.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="532" r="12" fill="#137DC5" />
+            <line x1="46" y1="532" x2="112" y2="532" stroke="#122562" stroke-width="2" />
+            <text x="126" y="524" class="actor">career-evidence-interviewer → RT-09</text>
+            <text x="126" y="546" class="label">
+              Evidencia: career-discovery-session-v1, evidence-candidate-packet-v1,
+              career-evidence-readiness-v1
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="590" r="12" fill="#FFD700" />
+            <line x1="46" y1="590" x2="112" y2="590" stroke="#122562" stroke-width="2" />
+            <text x="126" y="582" class="actor">RT-09 → Frames</text>
+            <text x="126" y="604" class="label">Gate CR_CAREER_EVIDENCE_READY</text>
+          </g>
+          <g>
+            <circle cx="34" cy="648" r="12" fill="#FFD700" />
+            <line x1="46" y1="648" x2="112" y2="648" stroke="#122562" stroke-width="2" />
+            <text x="126" y="640" class="actor">Frames → Persona</text>
+            <text x="126" y="662" class="label">Entrega o siguiente paso: C02</text>
           </g>
         </svg>
         <ol>
@@ -273,12 +309,19 @@
             S02: candidate-evidence-reconciler produce contradiction-ledger-v1,
             evidence-gap-report-v1; RT-09 decide G14.
           </li>
+          <li>
+            S03: career-evidence-interviewer produce career-discovery-session-v1,
+            evidence-candidate-packet-v1, career-evidence-readiness-v1; RT-09 decide
+            CR_CAREER_EVIDENCE_READY.
+          </li>
           <li>Frames entrega el resultado y propone C02.</li>
         </ol>
       </section>
       <section>
         <h2>Límites</h2>
-        <p>No convertir inferred o missing en capacidad demostrada.</p>
+        <p>
+          No avanzar a C02 sin readiness vigente; inferred o missing nunca son capacidad demostrada.
+        </p>
         <p class="meta">
           Fuente: 02_proceso/workflows/career/c01-evidence/workflow.yml · Próximo: C02
         </p>

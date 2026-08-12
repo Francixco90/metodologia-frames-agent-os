@@ -14,7 +14,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - ASSET: 272
 - COMMAND: 98
 - COMPONENT: 16
-- DELIVERABLE: 84
+- DELIVERABLE: 87
 - GATE: 55
 - RENDERER: 5
 - ROUTE: 11
@@ -445,6 +445,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | candidate-intake-envelope-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | capability-report-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | capture-card-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
+| DELIVERABLE | career-discovery-session-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | career-evidence-readiness-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | claim-register-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | content-grid-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | continuity-bible-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -474,6 +476,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | editorial-calendar-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | edl-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | evidence-bank-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | evidence-candidate-packet-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | evidence-gap-report-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | executive-presentation-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | export-matrix-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -951,4 +954,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `80b048b0d2cbbde003c23679538cbb296b99d8d8dd918eec70656558434a24a6`.
+Hash de fuentes: `e3a533ff71c0dd2828bec5e690461f3d7f386ad2fa6b6320ef68182949d4e2c5`.
