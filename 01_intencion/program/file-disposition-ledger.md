@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             94194 |              110456 |     141291 (1.5×) | 1.1726× | `pass` |
-| Total authored (palabras)     |             94194 |              110456 |       188388 (2×) | 1.1726× | `pass` |
-| Total authored (LOC)          |             35376 |               41437 |        70752 (2×) | 1.1713× | `pass` |
+| Corpus authored elegible      |             94259 |              110521 |     141388 (1.5×) | 1.1725× | `pass` |
+| Total authored (palabras)     |             94259 |              110521 |       188518 (2×) | 1.1725× | `pass` |
+| Total authored (LOC)          |             35407 |               41468 |        70814 (2×) | 1.1712× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -299,7 +299,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/projects/project-registry.yml`                                                                    | `lead`             | `verified_no_change` | 58                 | 58                | 29          | 29         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `byte-identical` |
 | `registries/skills/README.md`                                                                                 | `skill-foundry`    | `refactored`         | 60                 | 103               | 8           | 16         | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `changed`        |
 | `registries/skills/lifecycle-contract.yml`                                                                    | `skill-foundry`    | `verified_no_change` | 76                 | 76                | 38          | 38         | `e90b0715d47955754a2692d819d76f0e447e7d2452ef594538e92b194de42264` | `byte-identical` |
-| `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1754              | 156         | 818        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
+| `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 1819              | 156         | 849        | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
 | `registries/sources/canonical-source-gaps.yml`                                                                | `sources`          | `verified_no_change` | 72                 | 72                | 35          | 35         | `13da2cf746907bcb68bc652aa6f239219fd75718064da910afc01cb25e6bb772` | `byte-identical` |
 | `registries/sources/lifecycle-contract.yml`                                                                   | `sources`          | `verified_no_change` | 235                | 235               | 127         | 127        | `2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613` | `byte-identical` |
 | `registries/sources/source-registry.yml`                                                                      | `sources`          | `refactored`         | 555                | 811               | 278         | 404        | `a3a7f5f166d346800896a22d7488640b8a79dd94faca931b63beb01c0c04aec7` | `changed`        |

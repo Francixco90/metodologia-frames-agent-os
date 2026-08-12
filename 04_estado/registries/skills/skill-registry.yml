@@ -395,6 +395,29 @@ entries:
       - EVT-SKL-FIND-SKILLS-002
       - EVT-SKL-FIND-SKILLS-003
       - EVT-SKL-FIND-SKILLS-004
+  - skill_id: metodologia-workbook-html
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: skill-foundry-v2
+    content_sha256: 6142c5e638d3ab128c9bf8c3b3c5d9fa7976d45cac9a56e84bea1dac55613780
+    package_manifest_sha256: 68702d54b368a08009b2ddc3d738936585ee32a2457cd45ef282bd6b98e0a5b4
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-workbook-html/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-11T00:00:00Z'
+    fragments_reused: false
+    restrictions:
+      - local_candidate_only
+      - synthetic_fixtures_only
+      - no_publication_authority
+    execution_scope: local-candidate-production
+    production_runtime_status: candidate_contract_only
+    tests:
+      - node skills/metodologia-workbook-html/scripts/check-skill.mjs
+    event_ids:
+      - EVT-SKL-WORKBOOK-HTML-001
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -816,3 +839,11 @@ events:
     content_sha256: e6a26310e4cf794aeb2cd134432086a96ed5fefef7ee4df0b5a97581448c33b1
     transition: {from: evaluated, to: active}
     decision: activate_local_skill_discovery
+  - event_id: EVT-SKL-WORKBOOK-HTML-001
+    event_order: 1
+    recorded_at: '2026-08-11T00:00:00Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-workbook-html
+    content_sha256: 6142c5e638d3ab128c9bf8c3b3c5d9fa7976d45cac9a56e84bea1dac55613780
+    transition: {from: null, to: candidate}
+    decision: register_static_candidate_contract

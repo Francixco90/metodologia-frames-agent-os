@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "workbook-spec-v1",
+  "workbookId": "synthetic-practice-workbook",
+  "brand": "MetodologIA",
+  "state": "RENDERED_DRAFT",
+  "specSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "designSystemLock": {"ref": "locks/metodologia.json", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+  "primaryLocale": "es",
+  "locales": [
+    {"locale": "es", "title": "Cuaderno sintético", "intro": "Práctica de contrato.", "sheets": [
+      {"id": "session", "title": "En sesión", "purpose": "Practicar", "outcome": "Producir evidencia", "steps": [{"id": "step-1", "title": "Paso", "instruction": "Usar datos ficticios.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Salida ficticia"}]},
+      {"id": "depth", "title": "Profundización", "purpose": "Explorar", "outcome": "Comparar", "steps": [{"id": "step-2", "title": "Comparar", "instruction": "Comparar dos ejemplos.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Comparación"}]},
+      {"id": "consolidation", "title": "Consolidación", "purpose": "Transferir", "outcome": "Explicar", "steps": [{"id": "step-3", "title": "Explicar", "instruction": "Explicar el ejemplo.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Explicación"}]}
+    ]},
+    {"locale": "en", "title": "Synthetic workbook", "intro": "Contract practice.", "sheets": [
+      {"id": "session", "title": "In session", "purpose": "Practice", "outcome": "Produce evidence", "steps": [{"id": "step-1", "title": "Step", "instruction": "Use fictional data.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Fictional output"}]},
+      {"id": "depth", "title": "Depth", "purpose": "Explore", "outcome": "Compare", "steps": [{"id": "step-2", "title": "Compare", "instruction": "Compare two examples.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Comparison"}]},
+      {"id": "consolidation", "title": "Consolidation", "purpose": "Transfer", "outcome": "Explain", "steps": [{"id": "step-3", "title": "Explain", "instruction": "Explain the example.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Explanation"}]}
+    ]}
+  ],
+  "interactions": {"tabsKeyboard": true, "copyPrompts": true, "responsePersistence": "none", "preferencePersistence": ["theme", "locale"]},
+  "noJs": {"contentReadable": true, "navigationFallback": "fragments"},
+  "print": {"enabled": true, "hideInteractiveControls": true, "preserveAllContent": true},
+  "assets": [{"id": "local-font", "ref": "assets/font.woff2", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "rights": {"status": "cleared", "authority": "synthetic-fixture"}}],
+  "output": {"htmlRef": "dist/workbook.html", "state": "RENDERED_DRAFT"}
+}
+

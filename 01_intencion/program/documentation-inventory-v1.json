@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "e4db4a8f9e7b855baaca1375e38f48ec5707d821934fc74894c9320836138bd9",
-  "totalMarkdown": 1802,
-  "auditedAuthored": 563,
+  "repositoryTreeSha256": "8aaeeaea8ad4d722daf0b07ce5442b565c279df88017cf21a65fb22f893768d1",
+  "totalMarkdown": 1804,
+  "auditedAuthored": 564,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -349,6 +349,7 @@
       "03_artefactos/skills/gstack-openclaw-office-hours/references/design-doc-templates.md",
       "03_artefactos/skills/gstack-openclaw-office-hours/references/forcing-questions.md",
       "03_artefactos/skills/metodologia-certificate-builder/references/certificate-manifest.md",
+      "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
       "03_artefactos/skills/motion-library-adapters/references/media-use-adapter.md",
       "03_artefactos/skills/remotion-video-production/CHANGELOG.md",
       "03_artefactos/skills/remotion-video-production/examples/minimal-deterministic/README.md",
@@ -723,6 +724,7 @@
       "03_artefactos/skills/metodologia-brand-router/SKILL.md",
       "03_artefactos/skills/metodologia-certificate-builder/SKILL.md",
       "03_artefactos/skills/metodologia-find-skills/SKILL.md",
+      "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
       "03_artefactos/skills/remotion-video-production-v2/SKILL.md",
       "03_artefactos/skills/remotion-video-production/SKILL.md",
@@ -13330,6 +13332,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "14e2a3f18a0e616f5e3563f5b69f98ca9eb2046b3f47514df11da7f6e168024a",
+      "words": 307,
+      "lines": 45,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/motion-library-adapters/references/media-use-adapter.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -16948,7 +16976,7 @@
     }
   ],
   "summary": {
-    "keep": 548,
+    "keep": 549,
     "refactor": 0,
     "split": 1,
     "regenerate": 82,
