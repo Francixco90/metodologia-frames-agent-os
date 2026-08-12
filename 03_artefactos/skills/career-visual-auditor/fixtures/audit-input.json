@@ -1,0 +1,9 @@
+{
+  "schema_version": "career-visual-audit-input-v1",
+  "spec_ref": "skills/career-visual-auditor/fixtures/executive-cv-spec.json",
+  "spec_sha256": "f2f12717dd23f7436f074a4d54e1ba936f0b623067112c897015a5d8bcedc8dd",
+  "variant_id": "CVVAR-SYNTH-VISUAL-ES",
+  "design_system_sha256": "752ce724494ac7edce32e5a27dd3e6f307ee02984b018bac38a764444a617bb0",
+  "decision_sha256": "26cf80d5040871a56bf07035980a3512fc24c49c7c9a2d0d30032f73c2899ac1",
+  "composition_id": "blueprint-executive"
+}

@@ -75,6 +75,12 @@
     "check": ["skills/career-evidence-interviewer/scripts/check-skill.mjs"]
   },
   {
+    "id": "career-visual-auditor",
+    "version": "0.2.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-visual-auditor/scripts/check-skill.mjs"]
+  },
+  {
     "id": "candidate-evidence-reconciler",
     "version": "0.3.0",
     "scope": "local-evaluation",

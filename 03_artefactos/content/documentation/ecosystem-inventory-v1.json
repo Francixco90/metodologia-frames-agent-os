@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "468ae9f87e99fc3875e089fcf6b921b27ffe0725f45ab5b19d7e892ba04ffc78",
+  "sourceSha256": "38bdadef9c9b716496e5ceea186cd036a542c8735d5bdf8edda38130e3d2b6c8",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -570,6 +570,7 @@
     {"kind":"SKILL","id":"career-design-system","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"SKILL","id":"career-evidence-interviewer","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"SKILL","id":"career-opportunity-finder","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"SKILL","id":"career-visual-auditor","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"SKILL","id":"cinematic-scroll-quality","ref":"04_estado/registries/skills/skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"SKILL","id":"content-os-animation","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"SKILL","id":"content-os-bento-apple-grid","ref":"04_estado/registries/skills/creation-v3-skill-registry.yml","scope":"CANONICAL","state":"ACTIVE"},

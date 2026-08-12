@@ -18,7 +18,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - GATE: 56
 - RENDERER: 5
 - ROUTE: 11
-- SKILL: 183
+- SKILL: 184
 - SOURCE: 11
 - TEMPLATE: 134
 - WORKFLOW: 43
@@ -593,6 +593,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | career-design-system | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-evidence-interviewer | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-opportunity-finder | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | career-visual-auditor | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | cinematic-scroll-quality | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | content-os-animation | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | content-os-bento-apple-grid | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
@@ -960,4 +961,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `468ae9f87e99fc3875e089fcf6b921b27ffe0725f45ab5b19d7e892ba04ffc78`.
+Hash de fuentes: `38bdadef9c9b716496e5ceea186cd036a542c8735d5bdf8edda38130e3d2b6c8`.
