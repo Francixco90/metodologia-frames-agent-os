@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 272
+- ASSET: 277
 - COMMAND: 98
 - COMPONENT: 16
 - DELIVERABLE: 87
@@ -68,6 +68,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/generators.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/generators.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/icons.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/icons.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json` |
 | ASSET | 03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json` |
 | ASSET | 03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json` |
@@ -954,4 +959,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `e3a533ff71c0dd2828bec5e690461f3d7f386ad2fa6b6320ef68182949d4e2c5`.
+Hash de fuentes: `d53b7c386d42d358e8194a8833f89856c1f1b316ec5111237ade4d74f0d6f592`.

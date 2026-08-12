@@ -292,6 +292,41 @@
     },
     {
       "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json",
+      "ref": "03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-creative/assets/metodologia/generators.json",
+      "ref": "03_artefactos/skills/content-os-creative/assets/metodologia/generators.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-creative/assets/metodologia/icons.json",
+      "ref": "03_artefactos/skills/content-os-creative/assets/metodologia/icons.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json",
+      "ref": "03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
+      "id": "03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json",
+      "ref": "03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json",
+      "scope": "CANONICAL",
+      "state": "ACTIVE"
+    },
+    {
+      "kind": "ASSET",
       "id": "03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json",
       "ref": "03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json",
       "scope": "CANONICAL",
@@ -6486,5 +6521,5 @@
       "state": "ACTIVE"
     }
   ],
-  "sourceSha256": "e3a533ff71c0dd2828bec5e690461f3d7f386ad2fa6b6320ef68182949d4e2c5"
+  "sourceSha256": "d53b7c386d42d358e8194a8833f89856c1f1b316ec5111237ade4d74f0d6f592"
 }
