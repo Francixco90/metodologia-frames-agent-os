@@ -13,12 +13,12 @@
   "secondary_composition": "neo-swiss-editorial",
   "decision": {
     "ref": "decisions/design-selection-v1.json",
-    "decision_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db",
+    "decision_sha256": "ec75cf76f2172632a2ff0c4531d14bdece41ee450001dd31326c6997647bead2",
     "options_manifest_sha256": "b6bfee1e2abba03356127b4f0364ba3f58369cf5392d65f480c220165a400bc3"
   },
   "contract_ref": {
     "ref": "design-system-ref.v1.json",
-    "design_system_sha256": "fefc0b98876dff9b034b6c5906378d9c3408c03a2b006db1845354c5cf2c2172"
+    "design_system_sha256": "248661126e974f4fc5e2994afcc3355cf4365e48dfbaa54d4458a7b53aa5562b"
   },
   "font_authority": {
     "manifest_ref": "../fonts/font-manifest.yml",
@@ -33,27 +33,27 @@
     },
     {
       "ref": "tokens/tokens.v1.css",
-      "sha256": "941f5e65d738536f578f6df9659eb5ed1d19b5e9176b67faebfd01dee57b47d2"
+      "sha256": "87aa4387598bbecbaea4073d08207ef6087cffe4f54599faadd0e686fbe509a1"
     },
     {
       "ref": "components/registry.v1.json",
-      "sha256": "1e9198b587ca75fc7135583862ff18239442cde8f6fc65a39f542deb88364143"
+      "sha256": "cf9d26bf3fa4891032e281546f3f413be6317c0c4032e4eea1482737dd7a2261"
     },
     {
       "ref": "components/components.v1.css",
-      "sha256": "a8fc185b9eddc8cdd3406c8b4342c7313ad4a6d58b69753fbb53b7e112221347"
+      "sha256": "6e37cdca6bbb3751b7aca8dbbc334c868fb7f4e55e1d11157216c5c987885a5e"
     },
     {
       "ref": "components/snippets.v1.html",
-      "sha256": "fdb46408b9ddd52a59be705224240bb5bd39b234d790e0e052ea51934f927886"
+      "sha256": "a6efdad9ac5d8c30b3a765fc7aa19d49ff941fb992d062b830b9bba41f910aaf"
     },
     {
       "ref": "icons/registry.v1.json",
-      "sha256": "db49b46bea7ec1f1ebc25ae965d45cb8758dee7dfbd7dc57978efe0a72803ac9"
+      "sha256": "7e02406225b260acefa24816ea6022897b45547d85356e8b82edac08393d7973"
     },
     {
       "ref": "icons/icons.v1.svg",
-      "sha256": "06503bdbf44c69e316a1f990d45435e4ce964bf67006a932df57ee3b01ac86b4"
+      "sha256": "435438958860b2370ff89a60d6c836e8a13eeb41c02511b763b35ba0048a71a2"
     },
     {
       "ref": "compositions/blueprint-executive.v1.md",
@@ -98,5 +98,5 @@
     "allows": ["EXECUTIVE_HTML_RENDER"],
     "does_not_allow": ["READY", "PUBLISHED", "APPLICATION_SUBMITTED"]
   },
-  "system_binding_sha256": "352e82fdde711e92a72d485164979a19fc4f3f475e09e4232f43634f917e29e1"
+  "system_binding_sha256": "1b027f5b29291b3c2c02585e7248bf0b21eee4852dcbe254298e9b0943af2bcf"
 }

@@ -39,11 +39,22 @@
       "rule": "Organize by faculty, not tool inventory"
     },
     {
-      "id": "inline-disclosure",
-      "element": "details",
-      "class": "career-details",
+      "id": "profile-trigger",
+      "element": "button",
       "required": false,
-      "rule": "Use before dialog for non-critical detail"
+      "rule": "Compact trigger; fallback content stays visible without JavaScript"
+    },
+    {
+      "id": "method-dual-diagram",
+      "class": "career-method-grid",
+      "required": false,
+      "rule": "PASA and PIVOTE receive equal hierarchy; no percentages or ordinal numbering"
+    },
+    {
+      "id": "access-icons",
+      "class": "career-access-list",
+      "required": false,
+      "content_limit": "4 recognizable inline SVG links"
     },
     {
       "id": "evidence-dialog",

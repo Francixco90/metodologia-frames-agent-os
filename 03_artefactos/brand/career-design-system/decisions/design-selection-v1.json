@@ -2,9 +2,9 @@
   "schema_version": "cv-design-decision-v1",
   "decision_id": "CVDESIGN-METODOLOGIA-CAREER-V1",
   "brief_id": "CVDBRIEF-METODOLOGIA-CAREER-V1",
-  "brief_sha256": "765e6aaa3fb6462e6e8ad12b6c96f0ab0421d3c3c5d4cc5fc1c086c7ce0b3618",
+  "brief_sha256": "47927bae81c5a0546e6acf3065bb629e93442b462180f0f4d1c3a33629e0cd3f",
   "design_system_id": "CVDS-METODOLOGIA-CAREER-V1",
-  "design_system_sha256": "fefc0b98876dff9b034b6c5906378d9c3408c03a2b006db1845354c5cf2c2172",
+  "design_system_sha256": "248661126e974f4fc5e2994afcc3355cf4365e48dfbaa54d4458a7b53aa5562b",
   "options": [
     {
       "composition_id": "blueprint-executive",
@@ -26,9 +26,9 @@
   "next_gate": "CR_CV_DESIGN_APPROVED",
   "approval": {
     "status": "HUMAN_APPROVED",
-    "approved_decision_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db",
+    "approved_decision_sha256": "ec75cf76f2172632a2ff0c4531d14bdece41ee450001dd31326c6997647bead2",
     "approver_ref": "H01",
-    "approved_at": "2026-08-11T16:58:32Z"
+    "approved_at": "2026-08-12T02:15:00Z"
   },
-  "decision_sha256": "6ce1af8fc96868cfd3b19b62d493edcb672b6764e219e86a9f232e046cfa65db"
+  "decision_sha256": "ec75cf76f2172632a2ff0c4531d14bdece41ee450001dd31326c6997647bead2"
 }

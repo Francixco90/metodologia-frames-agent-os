@@ -13,10 +13,89 @@
   <svg class="career-icon" aria-hidden="true"><use href="#icon-theme" /></svg>
 </button>
 
-<details class="career-details">
-  <summary>Qué demuestra</summary>
-  <div class="career-details__body"><p>{{detalle_breve}}</p></div>
-</details>
+<button type="button" data-dialog-open="perfil">
+  <svg class="career-icon" aria-hidden="true"><use href="#icon-profile" /></svg> Perfil
+</button>
+<dialog class="career-dialog" id="perfil" aria-labelledby="perfil-titulo">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar perfil"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="perfil-titulo">Perfil</h2>
+    <p>{{perfil_profesional}}</p>
+  </div>
+</dialog>
+
+<section class="career-method-grid" aria-label="Métodos">
+  <article class="career-method-card">
+    <svg role="img" aria-labelledby="pasa-title">
+      <title id="pasa-title">PASA</title>
+      <use href="#icon-pasa" />
+    </svg>
+    <h3>PASA</h3>
+    <p>Practica · Aplica · Sistematiza · Amplifica</p>
+    <button type="button" data-dialog-open="pasa">Ampliar PASA</button>
+  </article>
+  <article class="career-method-card">
+    <svg role="img" aria-labelledby="pivote-title">
+      <title id="pivote-title">PIVOTE</title>
+      <use href="#icon-pivote" />
+    </svg>
+    <h3>PIVOTE</h3>
+    <p>
+      Personas · Interacciones · Valor · Organización · Tiempo/TecnologIA · Efectividad/Evolución
+    </p>
+    <button type="button" data-dialog-open="pivote">Ampliar PIVOTE</button>
+  </article>
+</section>
+<dialog class="career-dialog" id="pasa" aria-labelledby="pasa-dialog-title">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar PASA"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="pasa-dialog-title">PASA</h2>
+    <p>{{pasa_detalle}}</p>
+  </div>
+</dialog>
+<dialog class="career-dialog" id="pivote" aria-labelledby="pivote-dialog-title">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar PIVOTE"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="pivote-dialog-title">PIVOTE</h2>
+    <p>{{pivote_detalle}}</p>
+  </div>
+</dialog>
+
+<nav class="career-access-list" aria-label="Accesos">
+  <a class="career-access" href="{{linkedin}}" aria-label="LinkedIn"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-linkedin" /></svg
+  ></a>
+  <a class="career-access" href="{{github}}" aria-label="GitHub"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-github" /></svg
+  ></a>
+  <a class="career-access" href="{{whatsapp}}" aria-label="WhatsApp"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg
+  ></a>
+  <a class="career-access" href="{{email}}" aria-label="Correo"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-email" /></svg
+  ></a>
+</nav>
 
 <button type="button" data-dialog-open="evidencia-01">Ver evidencia</button>
 <dialog class="career-dialog" id="evidencia-01" aria-labelledby="evidencia-01-titulo">
