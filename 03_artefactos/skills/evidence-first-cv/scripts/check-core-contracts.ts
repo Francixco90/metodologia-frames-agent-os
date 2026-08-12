@@ -6,6 +6,12 @@ import {
   EvidenceBankV1Schema,
 } from '../../../../02_proceso/workflows/career/_schema/contracts-v1.schema.ts';
 import {CareerCvV2Schema} from '../../../../02_proceso/workflows/career/_schema/document-v2.schema.ts';
+import {CvSpecV2Schema} from '../../../../02_proceso/workflows/career/_schema/cv-spec-v2.schema.ts';
+import {
+  assertCareerEvidenceReadinessBindings,
+  parseCareerEvidenceReadiness,
+  parseEvidenceCandidatePacket,
+} from '../../../../02_proceso/workflows/career/_runner/career-discovery.ts';
 import {calculateCandidateProfileHash} from '../../../../02_proceso/workflows/career/_runner/cv-compiler.ts';
 import {
   renderCareerCvAtsHtml,
@@ -28,6 +34,9 @@ const load = (name: string): unknown =>
 const profile = CandidateProfileV1Schema.parse(load('candidate-profile.json'));
 const bank = EvidenceBankV1Schema.parse(load('evidence-bank.json'));
 const spec = parseCvSpecV2(load('cv-spec.json'), {requireApproval: true});
+const authority = load('evidence-authority.json') as {packet: unknown; readiness: unknown};
+const packet = parseEvidenceCandidatePacket(authority.packet);
+const readiness = parseCareerEvidenceReadiness(authority.readiness);
 const pkg = parseCareerCvPackageV3(load('package.json'));
 const sources = [
   CareerCvV2Schema.parse(load('source-es.json')),
@@ -42,6 +51,21 @@ if (
   bank.bank_sha256 !== spec.evidence_bank_sha256
 ) {
   throw new Error('CORE_FIXTURE_EVIDENCE_HASH');
+}
+assertCareerEvidenceReadinessBindings(readiness, packet, {
+  candidateId: spec.candidate_id,
+  evidenceBankSha256: bank.bank_sha256,
+  evidenceIds: new Set(bank.evidence.map(({evidence_id}) => evidence_id)),
+  gapIds: new Set(),
+  acceptedGapIds: new Set(),
+});
+if (
+  spec.evidence_candidate_packet_ref !== spec.evidence_readiness_ref ||
+  spec.evidence_candidate_packet_sha256 !== packet.packet_sha256 ||
+  spec.evidence_readiness_sha256 !== readiness.readiness_sha256 ||
+  CvSpecV2Schema.safeParse({...spec, evidence_readiness_ref: undefined}).success
+) {
+  throw new Error('CORE_FIXTURE_EVIDENCE_AUTHORITY');
 }
 assertCareerCvPackageV3Current(pkg, spec);
 for (const source of sources) {

@@ -4,18 +4,18 @@
   "candidate_id": "CAND-SYNTH-RUNTIME-001",
   "application_id": null,
   "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
-  "spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0",
+  "spec_sha256": "c659397015605ed5e9859c3978a66d6655378e1a1f6dcc4358ae513a2b2d9b7b",
   "evidence_bank_sha256": "f393630f55e83e1c2baa439f774e4d8887651d33c12a2f8b7c8dc052c06443fe",
   "application_brief_sha256": null,
   "job_snapshot_sha256": null,
   "source_document_ref": "fixtures/runtime/verified/canonical-source.json",
-  "source_document_sha256": "47a5841f01e58ebc1febdfc996c10e1208bce5dcac9d7db15266c72937faf335",
+  "source_document_sha256": "39c4a6ada8705f7b797c683d2d29f9f13884b2297f53a3e1bcb840ecefd20e64",
   "contact_binding_id": "CONTACT-SYNTH-RUNTIME-001",
   "variants": [
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
       "source_document_ref": "fixtures/runtime/verified/source-es.json",
-      "source_document_sha256": "951cf0d513ed97986a3205ee4a2bae7aae64cc3db08c48fba1cbd73d5e866339",
+      "source_document_sha256": "7f645af24d6d7d433bdf456bb709fa74cf6a43dd5b9a15a8703fa2eedbb82d12",
       "language": "es",
       "audience": "ats",
       "output_kinds": [
@@ -38,7 +38,7 @@
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
       "source_document_ref": "fixtures/runtime/verified/source-en.json",
-      "source_document_sha256": "321e82db345f68a6a52ae3d88c224239674a2981919a3f23be17910814e916e9",
+      "source_document_sha256": "cafe7ef24422067ab362aa982ab67b647d5dbd9a76f1d9b50e25c42aa69d3a8f",
       "language": "en",
       "audience": "ats",
       "output_kinds": [
@@ -64,14 +64,14 @@
       "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
       "kind": "ats-html",
       "artifact_ref": "fixtures/runtime/verified/cv-es.html",
-      "artifact_sha256": "af56e6ccf02a86f012247679df377e61ad4939c32e7daa39551a786bce14b323",
+      "artifact_sha256": "23e0c2bb00ae6bdffeebf98350ccba393fbf49633ff3d4d92c780c8f180fcfce",
       "verification": "UNKNOWN"
     },
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
       "kind": "ats-html",
       "artifact_ref": "fixtures/runtime/verified/cv-en.html",
-      "artifact_sha256": "083add8282ef417e797de69be0bc671957f13b8f77261a90994a6f285a033a04",
+      "artifact_sha256": "6f59b942c6969afa59b776e7b58818d23b44a6c46e5d7397161c62edd117d494",
       "verification": "UNKNOWN"
     }
   ],
@@ -88,5 +88,5 @@
   "state": "RENDERED_DRAFT",
   "approved_spec_sha256": null,
   "publication_receipt": null,
-  "package_sha256": "88593ce60813468e0f641ed6f6504429eb0ecd332d1f51cc0236b07ab369d946"
+  "package_sha256": "55f8983563f121ba663f2b20aaa4e2321ebf5c435741d99d00544d57c3cffe22"
 }

@@ -1,16 +1,16 @@
 {
   "schema_version": "cv-source-manifest-v1",
-  "spec_sha256": "49cc1964b4aab71ac6379178b6b410be79fdc00f8e68532ed06181138f9124f0",
+  "spec_sha256": "c659397015605ed5e9859c3978a66d6655378e1a1f6dcc4358ae513a2b2d9b7b",
   "variants": [
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
       "source_document_ref": "fixtures/runtime/verified/source-es.json",
-      "source_document_sha256": "951cf0d513ed97986a3205ee4a2bae7aae64cc3db08c48fba1cbd73d5e866339"
+      "source_document_sha256": "7f645af24d6d7d433bdf456bb709fa74cf6a43dd5b9a15a8703fa2eedbb82d12"
     },
     {
       "variant_id": "CVVAR-SYNTH-RUNTIME-EN",
       "source_document_ref": "fixtures/runtime/verified/source-en.json",
-      "source_document_sha256": "321e82db345f68a6a52ae3d88c224239674a2981919a3f23be17910814e916e9"
+      "source_document_sha256": "cafe7ef24422067ab362aa982ab67b647d5dbd9a76f1d9b50e25c42aa69d3a8f"
     }
   ]
 }
