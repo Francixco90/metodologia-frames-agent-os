@@ -1,10 +1,79 @@
-import {CareerCvV1Schema, CvSpecV1Schema} from 'workflows/career/_schema/index.ts';
+import {CareerCvV1Schema, CvSpecV1Schema, type CvSpecV2} from 'workflows/career/_schema/index.ts';
+import {
+  calculateCandidatePacketHash,
+  calculateEvidenceReadinessHash,
+} from 'workflows/career/_runner/career-discovery.ts';
+import {bindCvSpecV2EvidenceReadiness} from 'workflows/career/_runner/cv-spec-evidence.ts';
 import {calculateCareerDocumentHash} from 'workflows/career/_runner/document-model.ts';
 import {calculateCvSpecHash} from 'workflows/career/_runner/cv-spec.ts';
 
 export const HASH_A = 'a'.repeat(64);
 export const HASH_B = 'b'.repeat(64);
 export const HASH_C = 'c'.repeat(64);
+
+export const makeEvidenceAuthority = (spec: CvSpecV2) => {
+  const evidenceId = 'EVD-SYNTHETIC-001';
+  const packetPayload = {
+    schema_version: 'evidence-candidate-packet-v1' as const,
+    packet_id: 'PACKET-SYNTHETIC-001',
+    candidate_id: spec.candidate_id,
+    discovery_session_sha256: HASH_A,
+    evidence_bank_sha256: spec.evidence_bank_sha256,
+    items: [
+      {
+        item_id: 'ITEM-SYNTHETIC-001',
+        kind: 'competency' as const,
+        statement: 'Synthetic competency.',
+        confidence: 'verified' as const,
+        source_ids: ['SOURCE-SYNTHETIC-001'],
+        evidence_ids: [evidenceId],
+        role_families: [spec.role_family],
+        attribution_limit: 'Synthetic only.',
+        allowed_channels: ['cv' as const],
+        forbidden_claims: [],
+      },
+    ],
+  };
+  const packet = {...packetPayload, packet_sha256: calculateCandidatePacketHash(packetPayload)};
+  const check = {passed: true, evidence_ids: [evidenceId], accepted_gap_ids: []};
+  const readinessPayload = {
+    schema_version: 'career-evidence-readiness-v1' as const,
+    readiness_id: 'READINESS-SYNTHETIC-001',
+    candidate_id: spec.candidate_id,
+    evidence_bank_sha256: spec.evidence_bank_sha256,
+    candidate_packet_sha256: packet.packet_sha256,
+    checks: {
+      identity_and_chronology: check,
+      competency_evidence: check,
+      recent_role_interventions: check,
+      contradictions_resolved: check,
+      role_family_selected: check,
+      privacy_boundary: check,
+      gaps_accepted: check,
+    },
+    blocking_gap_ids: [],
+    status: 'READY' as const,
+    next_gate: 'CR_CAREER_EVIDENCE_READY' as const,
+  };
+  const readiness = {
+    ...readinessPayload,
+    readiness_sha256: calculateEvidenceReadinessHash(readinessPayload),
+  };
+  return {
+    packet,
+    readiness,
+    packet_ref: 'work/private/career/packet.json',
+    readiness_ref: 'work/private/career/readiness.json',
+    evidence_ids: new Set([evidenceId]),
+    gap_ids: new Set<string>(),
+    accepted_gap_ids: new Set<string>(),
+  };
+};
+
+export const bindEvidence = (spec: CvSpecV2) => {
+  const authority = makeEvidenceAuthority(spec);
+  return {spec: bindCvSpecV2EvidenceReadiness(spec, authority), authority};
+};
 
 export const buildApprovedGeneralSpec = () => {
   const provisional = CvSpecV1Schema.parse({

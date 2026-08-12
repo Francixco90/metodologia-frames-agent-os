@@ -123,6 +123,15 @@ export const legacySpec = approveCvSpec(
 const pendingSpec = migrateCvSpecV1ToV2(legacySpec);
 const {spec_sha256, ...pendingDraft} = pendingSpec;
 void spec_sha256;
+export const evidenceAuthority = {
+  packet: authority.packet,
+  readiness: authority.readiness,
+  packet_ref: ref('evidence-authority.json'),
+  readiness_ref: ref('evidence-authority.json'),
+  evidence_ids: new Set(evidence.map(({evidence_id}) => evidence_id)),
+  gap_ids: new Set<string>(),
+  accepted_gap_ids: new Set<string>(),
+};
 export const spec = approveCvSpecV2(
   createCvSpecV2({
     ...pendingDraft,
@@ -132,4 +141,6 @@ export const spec = approveCvSpecV2(
     evidence_readiness_sha256: authority.readiness.readiness_sha256,
   }),
   {approver_ref: 'H01', approved_at: '2026-08-11T12:05:00-05:00'},
+  undefined,
+  evidenceAuthority,
 );

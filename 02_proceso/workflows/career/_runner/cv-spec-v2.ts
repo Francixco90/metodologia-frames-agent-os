@@ -2,6 +2,7 @@ import {CvSpecV2Schema, type CvSpecV2} from '../_schema/index.ts';
 import {sha256Text, stableStringify} from './canonical.ts';
 import {parseCareerDesignSystem, parseCvDesignDecision} from './cv-design.ts';
 import {parseCvSpec} from './cv-spec.ts';
+import {assertCvEvidenceAuthorityCurrent, type CvEvidenceAuthority} from './career-discovery.ts';
 
 const withoutKeys = <T extends Record<string, unknown>>(value: T, keys: readonly string[]) =>
   Object.fromEntries(Object.entries(value).filter(([key]) => !keys.includes(key)));
@@ -48,8 +49,11 @@ export const approveCvSpecV2 = (
   input: unknown,
   approval: {approver_ref: string; approved_at: string},
   designAuthority?: {decision: unknown; system: unknown},
+  evidenceAuthority?: CvEvidenceAuthority,
 ): CvSpecV2 => {
   const spec = parseCvSpecV2(input);
+  if (!evidenceAuthority) throw new Error('CR_CAREER_EVIDENCE_READY_REQUIRED');
+  assertCvEvidenceAuthorityCurrent(spec, evidenceAuthority);
   const executive = spec.variants.some(({output_kinds}) => output_kinds.includes('executive-html'));
   if (spec.variants.some(({design}) => design.mode === 'pending-design')) {
     throw new Error('CR_CV_DESIGN_APPROVED_REQUIRED');
@@ -149,6 +153,10 @@ export const migrateCvSpecV1ToV2 = (input: unknown, design?: DesignMigrationInpu
   const pending = createCvSpecV2({
     ...base,
     schema_version: 'cv-spec-v2',
+    evidence_candidate_packet_ref: null,
+    evidence_candidate_packet_sha256: null,
+    evidence_readiness_ref: null,
+    evidence_readiness_sha256: null,
     variants: variants.map((variant) => ({
       ...variant,
       design: variant.output_kinds.includes('executive-html') ? PENDING_DESIGN : NEUTRAL_DESIGN,
