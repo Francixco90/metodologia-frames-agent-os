@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "source-analysis-v1",
+  "projectId": "synthetic-media-project",
+  "sources": [
+    {
+      "sourceId": "synthetic-source-01",
+      "sourceSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "rights": "synthetic",
+      "authority": "primary",
+      "probe": {"status": "passed", "mediaType": "video", "durationMs": 42000, "hasAudio": true, "width": 1920, "height": 1080, "fps": 24, "orientation": "landscape"},
+      "audioClassification": "speech",
+      "asrAttempt": {"status": "candidate", "candidateRef": "analysis/asr-candidate.json", "candidateSha256": "91dd2ae0f5fc892ada9f7b6ad0ca55427604379fca0c91d8d86cdcd847e020f8"},
+      "transcriptIntelligence": {"status": "deterministic-passed", "verificationRef": "analysis/verification.json", "verificationSha256": "435c60dfc5f700f6148efa47000cf02c3ff098b17b0691d45a9185776b912118"},
+      "sampleTimesMs": [0, 21000, 41000],
+      "watermarkObservations": [{"sampleTimeMs": 0, "present": false, "points": []}, {"sampleTimeMs": 21000, "present": true, "points": [{"x": 1860, "y": 1020}]}, {"sampleTimeMs": 41000, "present": true, "points": [{"x": 1840, "y": 1010}]}],
+      "cropSafety": {"safe": false, "strategy": "crop", "crop": {"x": 0, "y": 0, "width": 1800, "height": 1080}, "coveredSampleTimesMs": [0, 21000, 41000], "evidence": ["moving watermark excluded at all samples"]},
+      "editorialDecision": "reframe",
+      "state": "ready"
+    }
+  ]
+}
