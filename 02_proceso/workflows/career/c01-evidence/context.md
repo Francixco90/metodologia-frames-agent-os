@@ -33,11 +33,11 @@ Diferir:
 
 Rutas: `R7`  
 Workflows: `C01`  
-Skills primarias: `candidate-evidence-reconciler`
+Skills primarias: `candidate-evidence-reconciler`, `career-evidence-interviewer`
 
 ## 5. Tools, efectos y write policy
 
-Tools: `evidence_reconcile`  
+Tools: `evidence_reconcile`, `career_evidence_interview`, `resume_lineage`  
 Modo: `generated_only`. Read set mínimo:
 
 - `02_proceso/workflows/career/c01-evidence/workflow.yml`
@@ -50,8 +50,8 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `evidence_confidence`  
-Stop rules: inferred y missing no se convierten en hechos
+Gates: `evidence_confidence`, `CR_CAREER_EVIDENCE_READY`  
+Stop rules: inferred y missing no se convierten en hechos · C02 exige readiness material vigente
 
 Hijos:
 

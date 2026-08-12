@@ -340,6 +340,35 @@ surfaces:
     privacy: private_after_route_lock
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-SKILL-CAREER-EVIDENCE-INTERVIEWER
+    root: 03_artefactos/skills/career-evidence-interviewer
+    kind: skill
+    owner: skill-foundry
+    applies_when: Las fuentes Career no sostienen logros, competencias o atribución suficientes.
+    authority_refs: [03_artefactos/skills/career-evidence-interviewer/SKILL.md]
+    load_first: [03_artefactos/skills/career-evidence-interviewer/SKILL.md]
+    load_on_demand:
+      [
+        03_artefactos/skills/career-evidence-interviewer/LINEAGE.yml,
+        03_artefactos/skills/career-evidence-interviewer/receipts/runtime-boundary.yml,
+      ]
+    defer: [Fuentes ya inventariadas, respuestas no solicitadas y datos personales innecesarios]
+    routes: [R7]
+    workflows: [C01]
+    primary_skills: [career-evidence-interviewer]
+    tools: [career_evidence_interview, resume_lineage]
+    read_set: [03_artefactos/skills/career-evidence-interviewer/SKILL.md]
+    write_policy:
+      {mode: generated_only, paths: [03_artefactos/skills/career-evidence-interviewer/context.md]}
+    gates: [CR_CAREER_EVIDENCE_READY]
+    stop_rules:
+      [
+        Máximo tres preguntas por ronda y cuatro rondas,
+        Inferencias solo entrevista hasta confirmación,
+      ]
+    privacy: private_after_route_lock
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-SKILL-CAREER-DESIGN-SYSTEM
     root: 03_artefactos/skills/career-design-system
     kind: skill
