@@ -2,6 +2,7 @@ import {existsSync, mkdirSync, readFileSync, statSync, writeFileSync} from 'node
 import {dirname, resolve} from 'node:path';
 import {fail, json, project, projectPath, run, runtimeDir, shaFile} from './runtime-core.mjs';
 import {streamHash} from './runtime-media.mjs';
+import {cleanupFilter, verifyCleanBody} from './runtime-cleanup.mjs';
 
 function probe(ref) {
   const value = JSON.parse(run('ffprobe', ['-v', 'error', '-show_entries', 'stream=codec_type,codec_name,width,height,pix_fmt,r_frame_rate,sample_rate,channels', '-of', 'json', ref], project, 'LAYER_PROBE').stdout);
@@ -16,12 +17,15 @@ function compatible(body, curtain) {
 
 function renderBody(piece, planned) {
   const ref = `.frames-video/cache/body/${planned.layerKeys.body}.mp4`; const path = projectPath(ref, `BODY_${piece.id}`);
+  const cleanup = cleanupFilter(piece);
   if (!existsSync(path)) {
     mkdirSync(dirname(path), {recursive: true});
     const args = [...piece.render.args]; args[args.length - 1] = ref;
+    const vf = args.indexOf('-vf'); if (vf < 0 || !args[vf + 1]) fail(`CLEANUP_FILTER_INSERT_${piece.id}`); args[vf + 1] = `${cleanup.filter},${args[vf + 1]}`;
     run('ffmpeg', ['-protocol_whitelist', 'file', ...args], project, `BODY_RENDER_${piece.id}`);
   }
-  return {ref, path, sha256: shaFile(path), videoStreamSha256: streamHash(ref, 'v', true), mtimeMs: statSync(path).mtimeMs};
+  const cleanupVerification = verifyCleanBody(piece, ref, cleanup);
+  return {ref, path, sha256: shaFile(path), videoStreamSha256: streamHash(ref, 'v', true), mtimeMs: statSync(path).mtimeMs, cleanupVerification};
 }
 
 function renderCurtain(piece, planned, bodyProfile) {

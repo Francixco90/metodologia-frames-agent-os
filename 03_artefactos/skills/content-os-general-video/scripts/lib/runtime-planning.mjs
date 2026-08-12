@@ -4,6 +4,7 @@ import {
   verifySources, write,
 } from './runtime-core.mjs';
 import {validateSchema} from './schema-validation.mjs';
+import {verifyAnalysisContracts} from './runtime-analysis.mjs';
 
 export function assertRenderable(artifactsValue) {
   const blocked = artifactsValue.scripts.pieces.filter((piece) => piece.decision !== 'use');
@@ -13,15 +14,15 @@ export function assertRenderable(artifactsValue) {
 function layerKeys(piece, specSha256) {
   const grouped = Object.fromEntries(LAYERS.map((layer) => [layer, []]));
   for (const dep of piece.dependencies || []) {
-    const layer = ['source', 'script'].includes(dep.kind) ? 'body' : dep.kind === 'caption' ? 'caption' : dep.kind === 'curtain' ? 'curtain' : dep.kind === 'audio' ? 'audio' : 'overlay';
+    const layer = ['source', 'script', 'cleanup-mask'].includes(dep.kind) ? 'body' : dep.kind === 'caption' ? 'caption' : dep.kind === 'curtain' ? 'curtain' : dep.kind === 'audio' ? 'audio' : 'overlay';
     grouped[layer].push(`${dep.id}:${dep.sha256}`);
   }
-  const editorial = shaBytes(json({scriptMode: piece.scriptMode, decision: piece.decision, purpose: piece.purpose, audience: piece.audience, hook: piece.hook, impact: piece.impact, offerBridge: piece.offerBridge, cta: piece.cta, sourceSpans: piece.sourceSpans, visualSpans: piece.visualSpans, claims: piece.claims}));
+  const editorial = shaBytes(json({scriptMode: piece.scriptMode, decision: piece.decision, purpose: piece.purpose, audience: piece.audience, hook: piece.hook, impact: piece.impact, offerBridge: piece.offerBridge, cta: piece.cta, sourceSpans: piece.sourceSpans, visualSpans: piece.visualSpans, claims: piece.claims, sourceAnalysis: piece.sourceAnalysis, compositionFit: piece.compositionFit, audioPolicy: piece.audioPolicy}));
   return Object.fromEntries(LAYERS.map((layer) => [layer, shaBytes(json({specSha256, layer, editorial: layer === 'body' ? editorial : null, render: layer === 'body' ? piece.render : null, dependencies: grouped[layer].sort(), declared: piece.layers?.[layer] || null}))]));
 }
 
 export function runPlan() {
-  const a = artifacts(loadState({allowV1: false})); const hashes = verifyBinding(a); const ids = verifySources(a); verifyAssets(a); verifyScripts(a, ids); assertRenderable(a);
+  const a = artifacts(loadState({allowV1: false})); const hashes = verifyBinding(a); const ids = verifySources(a); verifyAssets(a); verifyScripts(a, ids); verifyAnalysisContracts(a); assertRenderable(a);
   const planPath = projectPath(a.state.buildManifestRef, 'BUILD_MANIFEST_REF');
   const previous = existsSync(planPath) ? load(planPath, 'PREVIOUS_PLAN') : null;
   const prior = new Map((previous?.pieces || []).map((piece) => [piece.id, piece]));
