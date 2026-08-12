@@ -1,0 +1,22 @@
+schema_version: general-video-skill-verification-v1
+skill: content-os-general-video
+version: 0.15.0
+state: local-evaluation
+publication_authority: false
+successor_of: 0.7.1
+canonical_consumer_gates:
+  source_analysis: content-os-media/source-analysis-gate-v0.2.2
+  transcript_intelligence: canonical-cli-verify
+  brand_kit: content-os-creative/brand-kit-gate
+  rules_duplicated: false
+producer_verdict: pass
+evidence:
+  focal_checker: PASS
+  wrapper_music_sfx_contract: PASS
+  hash_correct_semantic_invalid_asr: BLOCKED
+  hash_correct_semantic_invalid_ti: BLOCKED
+  source_refs_missing_drift_symlink_traversal_absolute: PASS
+  brand_manifest_and_assets_adversarial: PASS
+  json_node_diff: PASS
+independent_verifier: required
+guardian: required
