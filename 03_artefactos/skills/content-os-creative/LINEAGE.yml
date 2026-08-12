@@ -1,6 +1,6 @@
 schema_version: 1
 skill_id: content-os-creative
-version: 0.2.0
+version: 0.3.1
 owner: MetodologIA
 content_origin: locally_authored
 content_license: LicenseRef-MetodologIA-Internal

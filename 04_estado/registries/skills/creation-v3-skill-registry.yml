@@ -14,7 +14,7 @@ entries:
     publication_authority: false
     tests: [node --import tsx skills/data-visual-composition/scripts/check.ts]
   - skill_id: motion-library-adapters
-    version: 0.2.0
+    version: 0.3.1
     current_state: active
     execution_scope: local-evaluation-only
     content_sha256: 542ae5398562901017405124ce4833dadfbc42abc85b2dea3c6d04b3fe804814
@@ -61,8 +61,8 @@ entries:
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: ca4db36d92752d70ecd1c247b6408cb9eff56f1d77c8265ebbe2ebf72c7ebb29
-    package_manifest_sha256: 896742316fd72c06a6b107372349fdd8c297e7eeb30e47bfdd69c817fd033f1b
+    content_sha256: f5cb26267cb761b3fcbfc60d326caaa7ddb152b238258ba790ed182d0eff26b8
+    package_manifest_sha256: 0aa5bef689bf827845c65969e9cafcb07a8ffb0eb21448168c670af93a31c8b8
     lineage_ref: skills/content-os-creative/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2702,3 +2702,4 @@ events:
   - {event_id: EVT-SKL-CSM-H03-006, event_order: 6, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: enforce_physical_asr_and_transcript_evidence_bindings}
   - {event_id: EVT-SKL-CSC-H03-006, event_order: 6, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_metodologia_brand_assets_and_visual_budget_contracts}
   - {event_id: EVT-SKL-CSC-H03-007, event_order: 7, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_hash_bound_user_brand_fixture_and_gate}
+  - {event_id: EVT-SKL-CSC-H03-008, event_order: 8, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_visual_budget_and_brand_kit_consumers}

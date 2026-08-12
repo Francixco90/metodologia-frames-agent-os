@@ -7,7 +7,7 @@
   {
     "id": "motion-library-adapters",
     "scope": "local-evaluation-only",
-    "version": "0.2.0",
+    "version": "0.3.1",
     "check": ["skills/motion-library-adapters/scripts/check-skill.mjs"]
   },
   {
