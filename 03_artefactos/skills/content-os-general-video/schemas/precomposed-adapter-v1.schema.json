@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "precomposed-adapter-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "execution", "offline", "publicationAuthority"],
+  "properties": {
+    "schemaVersion": {"const": "precomposed-adapter-v1"},
+    "id": {"const": "precomposed-frames-v1"},
+    "execution": {"const": "runtime-ffmpeg-frame-sequence"},
+    "offline": {"const": true},
+    "publicationAuthority": {"const": false}
+  }
+}

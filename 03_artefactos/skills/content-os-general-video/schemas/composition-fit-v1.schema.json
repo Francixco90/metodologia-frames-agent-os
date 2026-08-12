@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "composition-fit-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "sourceAnalysisRef", "sourceAnalysisSha256", "fits"],
+  "properties": {
+    "schemaVersion": {"const": "composition-fit-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "sourceAnalysisRef": {"type": "string", "minLength": 1},
+    "sourceAnalysisSha256": {"$ref": "#/$defs/hash"},
+    "fits": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fit"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rect": {"type": "object", "additionalProperties": false, "required": ["x", "y", "width", "height"], "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}, "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}}},
+    "fit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pieceId", "sourceId", "sourceSha256", "targetWidth", "targetHeight", "strategy", "watermarkPolicy", "fitState"],
+      "properties": {
+        "pieceId": {"type": "string", "minLength": 1},
+        "sourceId": {"type": "string", "minLength": 1},
+        "sourceSha256": {"$ref": "#/$defs/hash"},
+        "targetWidth": {"type": "integer", "minimum": 1},
+        "targetHeight": {"type": "integer", "minimum": 1},
+        "strategy": {"enum": ["crop", "contain", "split", "synthetic"]},
+        "crop": {"$ref": "#/$defs/rect"},
+        "safe": {"type": "boolean"},
+        "evidenceRef": {"type": "string", "minLength": 1},
+        "evidenceSha256": {"$ref": "#/$defs/hash"},
+        "watermarkPolicy": {"enum": ["not-present", "excluded-by-crop", "masked-before-treatment"]},
+        "coveredSampleTimesMs": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "fitState": {"const": "deterministic-passed"}
+      },
+      "allOf": [
+        {"if": {"properties": {"strategy": {"const": "crop"}}}, "then": {"required": ["crop", "safe", "evidenceRef", "evidenceSha256", "coveredSampleTimesMs"], "properties": {"safe": {"const": true}, "coveredSampleTimesMs": {"minItems": 2}}}}
+      ]
+    }
+  }
+}
