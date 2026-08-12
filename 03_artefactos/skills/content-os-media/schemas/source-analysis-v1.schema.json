@@ -40,7 +40,7 @@
         },
         "transcriptIntelligence": {
           "type": "object", "additionalProperties": false, "required": ["status"],
-          "properties": {"status": {"enum": ["deterministic-passed", "blocked", "not-applicable"]}, "verificationRef": {"type": "string", "minLength": 1}, "verificationSha256": {"$ref": "#/$defs/hash"}, "reason": {"type": "string", "minLength": 1}}
+          "properties": {"status": {"enum": ["deterministic-passed", "blocked", "not-applicable"]}, "jobRef": {"type": "string", "minLength": 1}, "jobSha256": {"$ref": "#/$defs/hash"}, "verificationRef": {"type": "string", "minLength": 1}, "verificationSha256": {"$ref": "#/$defs/hash"}, "reason": {"type": "string", "minLength": 1}}
         },
         "sampleTimesMs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
         "watermarkObservations": {
@@ -58,7 +58,7 @@
       },
       "allOf": [
         {"if": {"properties": {"probe": {"properties": {"hasAudio": {"const": true}}}}}, "then": {"properties": {"asrAttempt": {"properties": {"status": {"not": {"const": "not-applicable"}}}}}}},
-        {"if": {"properties": {"audioClassification": {"enum": ["speech", "mixed", "uncertain"]}}}, "then": {"properties": {"asrAttempt": {"properties": {"status": {"const": "candidate"}}, "required": ["candidateRef", "candidateSha256"]}, "transcriptIntelligence": {"properties": {"status": {"const": "deterministic-passed"}}, "required": ["verificationRef", "verificationSha256"]}}}},
+        {"if": {"properties": {"audioClassification": {"enum": ["speech", "mixed", "uncertain"]}}}, "then": {"properties": {"asrAttempt": {"properties": {"status": {"const": "candidate"}}, "required": ["candidateRef", "candidateSha256"]}, "transcriptIntelligence": {"properties": {"status": {"const": "deterministic-passed"}}, "required": ["jobRef", "jobSha256", "verificationRef", "verificationSha256"]}}}},
         {"if": {"properties": {"audioClassification": {"enum": ["speech", "mixed"]}}}, "then": {"properties": {"state": {"const": "ready"}}}},
         {"if": {"properties": {"audioClassification": {"const": "music-sfx"}}}, "then": {"properties": {"probe": {"properties": {"hasAudio": {"const": true}}}, "asrAttempt": {"properties": {"status": {"const": "no-speech-detected"}}}, "transcriptIntelligence": {"properties": {"status": {"const": "not-applicable"}}}, "state": {"const": "ready"}}}},
         {"if": {"properties": {"audioClassification": {"const": "silent"}}}, "then": {"properties": {"probe": {"properties": {"hasAudio": {"const": false}}}, "asrAttempt": {"properties": {"status": {"const": "not-applicable"}}}, "transcriptIntelligence": {"properties": {"status": {"const": "not-applicable"}}}, "state": {"const": "ready"}}}},

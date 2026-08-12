@@ -4,13 +4,13 @@
   "sources": [
     {
       "sourceId": "synthetic-source-01",
-      "sourceSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "sourceSha256": "ba99984d0a10619cd5f0155114356f67f161fa5130fbd497d47c5cf905521bc0",
       "rights": "synthetic",
       "authority": "primary",
       "probe": {"status": "passed", "mediaType": "video", "durationMs": 42000, "hasAudio": true, "width": 1920, "height": 1080, "fps": 24, "orientation": "landscape"},
       "audioClassification": "speech",
-      "asrAttempt": {"status": "candidate", "candidateRef": "analysis/asr-candidate.json", "candidateSha256": "91dd2ae0f5fc892ada9f7b6ad0ca55427604379fca0c91d8d86cdcd847e020f8"},
-      "transcriptIntelligence": {"status": "deterministic-passed", "verificationRef": "analysis/verification.json", "verificationSha256": "435c60dfc5f700f6148efa47000cf02c3ff098b17b0691d45a9185776b912118"},
+      "asrAttempt": {"status": "candidate", "candidateRef": "analysis/asr-candidate.json", "candidateSha256": "a62e303b9ca1d7542cbcc6c1aa225439173f4b29db01da4af0df37131c09f638"},
+      "transcriptIntelligence": {"status": "deterministic-passed", "jobRef": "analysis/job.json", "jobSha256": "011c57e5ff6fb9cccb926d43e2aa170e78f95943852c1c23052db86f8650f84b", "verificationRef": "analysis/verification.json", "verificationSha256": "a6d3eb48555874e543b65f7a7c0164341272808e2341749f2156e24378f92e97"},
       "sampleTimesMs": [0, 21000, 41000],
       "watermarkObservations": [{"sampleTimeMs": 0, "present": false, "points": []}, {"sampleTimeMs": 21000, "present": true, "points": [{"x": 1860, "y": 1020}]}, {"sampleTimeMs": 41000, "present": true, "points": [{"x": 1840, "y": 1010}]}],
       "cropSafety": {"safe": false, "strategy": "crop", "crop": {"x": 0, "y": 0, "width": 1800, "height": 1080}, "coveredSampleTimesMs": [0, 21000, 41000], "evidence": ["moving watermark excluded at all samples"]},

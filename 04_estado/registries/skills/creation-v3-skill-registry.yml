@@ -69,11 +69,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-creative/scripts/check-skill.mjs]
   - skill_id: content-os-media
-    version: 0.2.1
+    version: 0.2.2
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 81917f8b7d7890b4e16b8f5d6f41e61cb90840c8e470185d4c87b161716aba24
-    package_manifest_sha256: ff7d5469026b63fdb75bc21578043decbe51b51120812b62d4ac2fd10a9d54bc
+    content_sha256: 2be55125715a1d0c58013b368ef6f68eb31c264af636f02a691b57ca9eda4f5b
+    package_manifest_sha256: f839ff1d0b1373d2860cc0a0bfabfdf765ef16c9cabac8c905386df968f6384d
     lineage_ref: skills/content-os-media/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-media/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2714,3 +2714,4 @@ events:
   - {event_id: EVT-SKL-COR-H03-012, event_order: 12, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_spec_first_video_routing_v08}
   - {event_id: EVT-SKL-THR-H03-005, event_order: 5, skill_id: content-os-talking-head-recut, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: consume_source_analysis_fit_and_visual_budget}
   - {event_id: EVT-SKL-CSM-H03-007, event_order: 7, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_canonical_transcript_intelligence_fixture_bundle}
+  - {event_id: EVT-SKL-CSM-H03-008, event_order: 8, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: delegate_voice_analysis_to_transcript_intelligence_verifier}

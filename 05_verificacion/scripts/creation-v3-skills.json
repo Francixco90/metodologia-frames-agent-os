@@ -34,7 +34,7 @@
   },
   {
     "id": "content-os-media",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "scope": "local-evaluation",
     "check": ["skills/content-os-media/scripts/check-skill.mjs"]
   },

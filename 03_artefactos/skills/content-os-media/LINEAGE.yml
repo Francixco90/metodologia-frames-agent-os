@@ -1,5 +1,5 @@
 skill_id: content-os-media
-version: 0.2.1
+version: 0.2.2
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored

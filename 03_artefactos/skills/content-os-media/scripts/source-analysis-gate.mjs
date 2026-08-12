@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import {createHash} from 'node:crypto';
-import {existsSync, lstatSync, readFileSync, realpathSync} from 'node:fs';
-import {dirname, isAbsolute, relative, resolve} from 'node:path';
+import {cpSync, existsSync, lstatSync, mkdtempSync, readFileSync, realpathSync, rmSync} from 'node:fs';
+import {dirname, isAbsolute, join, relative, resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {spawnSync} from 'node:child_process';
 import Ajv2020 from 'ajv/dist/2020.js';
 
 const target = process.argv[2];
@@ -23,12 +25,37 @@ const verifyRef = (ref, expected, label) => {
   if (!lstatSync(candidate).isFile()) { errors.push(`${label}:not-file`); return; }
   const actual = createHash('sha256').update(readFileSync(candidate)).digest('hex');
   if (actual !== expected) errors.push(`${label}:sha256-drift`);
+  return candidate;
+};
+const tiCli = resolve(dirname(new URL(import.meta.url).pathname), '../../content-os-transcript-intelligence/scripts/transcript-intelligence.mjs');
+const verifyTranscript = (source) => {
+  const ti = source.transcriptIntelligence;
+  const jobPath = verifyRef(ti.jobRef, ti.jobSha256, `${source.sourceId}:ti-job`);
+  const receiptPath = verifyRef(ti.verificationRef, ti.verificationSha256, `${source.sourceId}:ti-receipt`);
+  if (!jobPath || !receiptPath) return;
+  const job = JSON.parse(readFileSync(jobPath, 'utf8'));
+  const asrPath = verifyRef(source.asrAttempt.candidateRef, source.asrAttempt.candidateSha256, `${source.sourceId}:asr`);
+  if (!asrPath) return;
+  const asr = JSON.parse(readFileSync(asrPath, 'utf8'));
+  const receipt = JSON.parse(readFileSync(receiptPath, 'utf8'));
+  if (job.contractRevision !== 3 || job.source?.id !== source.sourceId || job.source?.sha256 !== source.sourceSha256) errors.push(`${source.sourceId}:ti-source-binding`);
+  const asrInput = job.inputs?.find((input) => input.class === 'asr_candidate');
+  if (asrInput?.ref !== relative(dirname(jobPath), asrPath) || asrInput?.sha256 !== source.asrAttempt.candidateSha256) errors.push(`${source.sourceId}:ti-asr-binding`);
+  if (asr.model !== job.provenance?.model?.id || asr.modelSha256 !== job.provenance?.model?.sha256 || asr.configSha256 !== job.provenance?.config?.sha256) errors.push(`${source.sourceId}:asr-model-config-binding`);
+  const temp = mkdtempSync(join(tmpdir(), 'cosm-ti-'));
+  try {
+    cpSync(dirname(jobPath), join(temp, 'job'), {recursive:true});
+    const run = spawnSync(process.execPath, [tiCli, 'verify', '--job', join(temp, 'job', relative(dirname(jobPath), jobPath)), '--out', 'outputs/media-gate'], {encoding:'utf8'});
+    if (run.status !== 0) { errors.push(`${source.sourceId}:ti-cli:${run.stderr.trim()}`); return; }
+    const generated = JSON.parse(readFileSync(join(temp, 'job/outputs/media-gate/verification.json'), 'utf8'));
+    if (generated.schemaVersion !== 'transcript-intelligence-verification-v1' || generated.state !== 'deterministic-passed' || generated.verdict !== 'PASS' || !generated.provenance?.hashesVerified) errors.push(`${source.sourceId}:ti-receipt-invalid`);
+    if (JSON.stringify(generated) !== JSON.stringify(receipt)) errors.push(`${source.sourceId}:ti-receipt-drift`);
+  } finally { rmSync(temp, {recursive:true, force:true}); }
 };
 
 const inside = (point, crop) => point.x >= crop.x && point.x < crop.x + crop.width && point.y >= crop.y && point.y < crop.y + crop.height;
 for (const source of analysis.sources || []) {
-  if (source.asrAttempt?.status === 'candidate') verifyRef(source.asrAttempt.candidateRef, source.asrAttempt.candidateSha256, `${source.sourceId}:asr`);
-  if (source.transcriptIntelligence?.status === 'deterministic-passed') verifyRef(source.transcriptIntelligence.verificationRef, source.transcriptIntelligence.verificationSha256, `${source.sourceId}:transcript-intelligence`);
+  if (source.transcriptIntelligence?.status === 'deterministic-passed') verifyTranscript(source);
   const samples = [...source.sampleTimesMs].sort((a, b) => a - b);
   const covered = [...source.cropSafety.coveredSampleTimesMs].sort((a, b) => a - b);
   if (JSON.stringify(samples) !== JSON.stringify(covered)) errors.push(`${source.sourceId}:crop-temporal-coverage`);

@@ -16,6 +16,8 @@ const required = [
   'skills/content-os-media/scripts/media-audit.mjs',
   'skills/content-os-media/scripts/source-analysis-gate.mjs',
   'skills/content-os-media/scripts/check-source-analysis.mjs',
+  'skills/content-os-transcript-intelligence/scripts/transcript-intelligence.mjs',
+  'skills/content-os-transcript-intelligence/schemas/transcript-intelligence-v1.schema.json',
   'skills/content-os-media/references/resolve-cascade.md',
   'skills/content-os-media/references/audio.md',
   'skills/content-os-media/rules/media-contract.md',
@@ -29,12 +31,18 @@ const required = [
   'skills/content-os-media/fixtures/negative/source-analysis-skips-asr.json',
   'skills/content-os-media/fixtures/positive/analysis/asr-candidate.json',
   'skills/content-os-media/fixtures/positive/analysis/verification.json',
+  'skills/content-os-media/fixtures/positive/analysis/job.json',
+  'skills/content-os-media/fixtures/positive/analysis/source.txt',
+  'skills/content-os-media/fixtures/positive/analysis/model.fixture',
+  'skills/content-os-media/fixtures/positive/analysis/asr-config.json',
+  'skills/content-os-media/fixtures/positive/analysis/authority.json',
   'skills/content-os-media/fixtures/negative/analysis/asr-candidate.json',
   'skills/content-os-media/fixtures/negative/analysis/verification.json',
   'skills/content-os-media/fixtures/negative/source-analysis-missing-ref.json',
   'skills/content-os-media/fixtures/negative/source-analysis-hash-drift.json',
   'skills/content-os-media/fixtures/negative/source-analysis-absolute-ref.json',
   'skills/content-os-media/receipts/runtime-boundary.yml',
+  'skills/content-os-media/receipts/verification-v0.2.2.yml',
 ];
 
 const contents = new Map(required.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
@@ -76,6 +84,8 @@ for (const token of [
   'configSha256',
   'source-analysis-v1',
   'probe → audio class → ASR attempt → Transcript Intelligence gate',
+  'contractRevision',
+  'transcript-intelligence-verification-v1',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`COSM_CONTRACT_MISSING: ${token}`);
