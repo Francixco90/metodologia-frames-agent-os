@@ -18,7 +18,7 @@ import {afterEach, describe, expect, it} from 'vitest';
 import {canonicalJson, hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
 import {compileTrainer} from '../../../02_proceso/workflows/trainer-os/compiler.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
-import {verifyAdapterReplay} from './trainer-os-adapter-fixture.ts';
+import {verifyAdapterReplay} from './trainer-os-adapter-fixture.test.ts';
 
 const temporary: string[] = [];
 const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');

@@ -1,7 +1,9 @@
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
-import {readFileSync, writeFileSync} from 'node:fs';
+import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
+import {expect, it} from 'vitest';
 
 import {canonicalJson, hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
@@ -150,3 +152,14 @@ export const verifyAdapterReplay = (factory: () => Fixture) => {
     )
       throw new Error(`TRAINER_ADAPTER_REPLAY_DRIFT:${ref}`);
 };
+
+it('fails closed when the base fixture is incomplete', () => {
+  const root = mkdtempSync(resolve(tmpdir(), 'trainer-adapter-helper-'));
+  try {
+    expect(() =>
+      configureAdapterFixture({root, run: {}, runPath: resolve(root, 'run.json')}),
+    ).toThrow();
+  } finally {
+    rmSync(root, {recursive: true, force: true});
+  }
+});
