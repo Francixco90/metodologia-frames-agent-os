@@ -26,12 +26,18 @@ const digest = (id: string) => {
   );
 };
 const nonnegative = z.number().int().nonnegative();
+const effects = {
+  response_persistence: z.boolean(),
+  network: z.boolean(),
+  connectors: z.boolean(),
+  publication: z.boolean(),
+};
 const playbookInput = z.strictObject({
   essential: nonnegative,
   declared_ids: z.array(z.string()).max(8),
   selected_ids: z.array(z.string()).max(9),
   core_without_js: z.boolean(),
-  publish: z.boolean(),
+  ...effects,
 });
 const promptInput = z.strictObject({
   levels: z.array(nonnegative).max(4),
@@ -39,7 +45,7 @@ const promptInput = z.strictObject({
   prompt_steps: z.array(z.string()),
   copy_accessible: z.boolean(),
   no_js_visible: z.boolean(),
-  publish: z.boolean(),
+  ...effects,
 });
 const playbookIssues = (input: z.infer<typeof playbookInput>) => [
   ...(input.essential === 12 ? [] : ['essential_count']),
@@ -50,7 +56,10 @@ const playbookIssues = (input: z.infer<typeof playbookInput>) => [
     ? []
     : ['optional_selection']),
   ...(input.core_without_js ? [] : ['no_js']),
-  ...(input.publish ? ['publication'] : []),
+  ...(input.response_persistence === false ? [] : ['persistence']),
+  ...(input.network === false ? [] : ['network']),
+  ...(input.connectors === false ? [] : ['connectors']),
+  ...(input.publication === false ? [] : ['publication']),
 ];
 const promptIssues = (input: z.infer<typeof promptInput>) => [
   ...(input.levels.join(',') === '1,2,3,4' ? [] : ['levels']),
@@ -61,7 +70,10 @@ const promptIssues = (input: z.infer<typeof promptInput>) => [
     : ['step_bijection']),
   ...(input.copy_accessible ? [] : ['copy_accessibility']),
   ...(input.no_js_visible ? [] : ['no_js']),
-  ...(input.publish ? ['publication'] : []),
+  ...(input.response_persistence === false ? [] : ['persistence']),
+  ...(input.network === false ? [] : ['network']),
+  ...(input.connectors === false ? [] : ['connectors']),
+  ...(input.publication === false ? [] : ['publication']),
 ];
 
 describe('Trainer OS extended candidate skill routers', () => {
@@ -74,6 +86,8 @@ describe('Trainer OS extended candidate skill routers', () => {
     };
     expect([...skill].length).toBeLessThanOrEqual(3000);
     expect(skill).toContain('operating-contract.md)');
+    expect(skill).toContain('stop after routing with');
+    expect(skill).toContain('do not invoke compilation or claim `RENDERED_DRAFT`');
     const contract =
       id === 'metodologia-learning-playbook-html'
         ? `${base}/${id}/references/operating-contract.md`
@@ -97,6 +111,9 @@ describe('Trainer OS extended candidate skill routers', () => {
       'optional_maximum',
       'optional_selection',
       'no_js',
+      'persistence',
+      'network',
+      'connectors',
       'publication',
     ]);
     expect(playbookIssues({...positive, essential: 13})).toContain('essential_count');
@@ -106,6 +123,10 @@ describe('Trainer OS extended candidate skill routers', () => {
     expect(playbookIssues({...positive, declared_ids: ['optional-a', 'optional-a']})).toContain(
       'optional_selection',
     );
+    expect(playbookInput.safeParse({...positive, publication: 0}).success).toBe(false);
+    const withoutNetwork = {...positive} as Partial<typeof positive>;
+    delete withoutNetwork.network;
+    expect(playbookInput.safeParse(withoutNetwork).success).toBe(false);
   });
 
   it('executes prompt positive, negative and mutation oracles', () => {
@@ -121,6 +142,9 @@ describe('Trainer OS extended candidate skill routers', () => {
       'step_bijection',
       'copy_accessibility',
       'no_js',
+      'persistence',
+      'network',
+      'connectors',
       'publication',
     ]);
     expect(promptIssues({...positive, levels: [1, 2, 4, 3]})).toContain('levels');
@@ -128,6 +152,10 @@ describe('Trainer OS extended candidate skill routers', () => {
       'step_bijection',
     );
     expect(promptIssues({...positive, steps: ['step-a', 'step-a']})).toContain('step_bijection');
+    expect(promptInput.safeParse({...positive, publication: 0}).success).toBe(false);
+    const withoutConnectors = {...positive} as Partial<typeof positive>;
+    delete withoutConnectors.connectors;
+    expect(promptInput.safeParse(withoutConnectors).success).toBe(false);
   });
 
   it('binds registry entries and append-only events to exact package bytes', () => {

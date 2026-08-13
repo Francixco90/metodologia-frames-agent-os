@@ -1,7 +1,7 @@
 schema_version: trainer-skill-fixture-v1
 skill_id: metodologia-prompt-library
 request: Compile three levels with duplicate step links and publish hidden prompts.
-input: {levels: [1, 2, 3], steps: [step-a, step-b], prompt_steps: [step-a, step-a], copy_accessible: false, no_js_visible: false, publish: true}
+input: {levels: [1, 2, 3], steps: [step-a, step-b], prompt_steps: [step-a, step-a], copy_accessible: false, no_js_visible: false, response_persistence: true, network: true, connectors: true, publication: true}
 expect:
-  issues: [levels, step_bijection, copy_accessibility, no_js, publication]
+  issues: [levels, step_bijection, copy_accessibility, no_js, persistence, network, connectors, publication]
   publication_authority: false
