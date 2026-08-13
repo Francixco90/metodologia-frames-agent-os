@@ -2,6 +2,8 @@ export * from './runner.ts';
 export * from './compiler-contracts.ts';
 export * from './compiler.ts';
 export * from './adapter-contracts.ts';
+export * from './adapter-extended-contracts.ts';
+export * from './adapter-extended-renderers.ts';
 export * from './adapter-renderers.ts';
 export * from './runtime-guards.ts';
 export * from './runtime-io.ts';
