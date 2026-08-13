@@ -99,14 +99,21 @@ routes:
       - 'editar contenido'
       - 'design system first'
       - 'HTML MetodologIA'
+      - 'crear una ruta formativa'
+      - 'crear un taller completo'
+      - 'run Trainer OS'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
+      - '03_artefactos/skills/metodologia-trainer-os/SKILL.md'
       - '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts'
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
+      - '02_proceso/workflows/trainer-os/trainer-intake-v1.schema.ts'
+      - '02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts'
+      - '02_proceso/workflows/trainer-os/runner.ts'
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED'
+    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
