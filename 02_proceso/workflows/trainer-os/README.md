@@ -9,9 +9,14 @@ Secuencia canónica:
 
 Los cinco schemas y esta unidad runtime materializan `intake` y `spec` de forma reiniciable.
 El runner verifica fuentes, manifest y continuidad, escribe state/resume/handoff atómicos e
-invalida derivados cuando cambia su autoridad. `build` materializa un HTML sintético mínimo
-para probar el núcleo común y lo promueve atómicamente; `verify` revalida bytes y árbol sin
-escribir. `package` falla cerrado. `benchmark` permanece fail-closed en el CLI: PR5 solo aporta
+invalida derivados cuando cambia su autoridad. `build` materializa outputs gobernados y los
+promueve atómicamente; `verify` revalida bytes y árbol sin escribir. `package` exige estado
+`RENDERED_DRAFT`, receipt técnico y aprobación H01 ligados al build, y produce un paquete local
+atómico, determinista y sin autoridad de publicación. La ruta implementada autoriza únicamente la
+fixture sintética y la declara como tal en el manifest; no representa revisión humana externa.
+Cualquier paquete productivo falla cerrado hasta incorporar un resolver de receipts emitidos por
+Verifier, Guardian y H01 fuera del writer del proyecto.
+`benchmark` permanece fail-closed en el CLI: PR5 solo aporta
 el contrato, los tres inputs sintéticos y la proyección local `not_executed`; ingerir receipts
 observados requiere un resolver de evidencia posterior.
 
@@ -19,6 +24,7 @@ observados requiere un resolver de evidencia posterior.
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode spec --run <manifest>
 pnpm trainer --mode intake --run <manifest>
+pnpm trainer --mode package --run <manifest>
 pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts
 ```
 

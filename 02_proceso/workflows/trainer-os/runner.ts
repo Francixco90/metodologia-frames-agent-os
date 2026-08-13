@@ -7,6 +7,7 @@ import {atomicWrite, hashFile, portableResolve, readJson, writeJson} from './run
 import {invalidateFromIntake, invalidateFromSpec} from './state-machine.ts';
 import {TrainerIntakeV1Schema} from './trainer-intake-v1.schema.ts';
 import {TrainerRouteSpecV1Schema} from './trainer-route-spec-v1.schema.ts';
+import {packageTrainer} from './trainer-package.ts';
 import {
   TrainerRunManifestV1Schema,
   type TrainerRunManifestV1,
@@ -109,8 +110,7 @@ export const executeTrainer = (
   selectedRunPath: string,
 ): TrainerRunManifestV1 => {
   const runPath = resolve(selectedRunPath);
-  if (!['intake', 'spec', 'build', 'verify'].includes(mode))
-    throw new Error(`TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED:${mode}`);
+  if (mode === 'benchmark') throw new Error(`TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED:${mode}`);
   const raw = readJson(runPath);
   if (raw === null || typeof raw !== 'object' || Array.isArray(raw))
     throw new Error('TRAINER_MANIFEST_HASH_DRIFT');
@@ -121,6 +121,10 @@ export const executeTrainer = (
   verifyContinuity(runPath, manifest);
   if (mode === 'verify') {
     verifyTrainerBuild(runPath, manifest);
+    return manifest;
+  }
+  if (mode === 'package') {
+    packageTrainer(runPath, manifest);
     return manifest;
   }
   const next =
