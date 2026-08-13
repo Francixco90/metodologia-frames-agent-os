@@ -99,14 +99,23 @@ routes:
       - 'editar contenido'
       - 'design system first'
       - 'HTML MetodologIA'
+      - 'crear video'
+      - 'crear reel'
+      - 'video largo'
+      - 'video para YouTube'
+      - 'editar testimonio'
+      - 'mostrar resultados concretos'
+      - 'Video OS'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
       - '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts'
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
+      - '02_proceso/workflows/video-os/context.md'
+      - '02_proceso/workflows/video-os/index.ts'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED'
+    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; Video OS aplica V00-V04 como perfil spec-first y principal-before-derivatives; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED o VO_DIRECTION_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
@@ -170,6 +179,7 @@ gate_commands:
   G09_CONTENT_content_build: 'pnpm content:build'
   G09_CAREER_career_contracts: 'node --import tsx scripts/check-career-workflows.ts'
   G09_CAREER_DESIGN_design_system: 'pnpm verify:career-design'
+  G09_VIDEO_OS_contracts: 'pnpm verify:video-os'
   G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
@@ -189,6 +199,10 @@ manual_fail_closed_gates:
     CR_SUBMISSION_AUTHORIZED,
     EXP_BRIEF_APPROVED,
     EXP_RELEASE_APPROVED,
+    VO_INTAKE_COMPLETE,
+    VO_DIRECTION_APPROVED,
+    VO_PRINCIPAL_VERIFIED,
+    VO_HANDOFF_APPROVED,
     LX_BRIEF_APPROVED,
     DOCS_TRANSVERSAL_COMPLETE,
     HM_CHANGE_APPROVED,

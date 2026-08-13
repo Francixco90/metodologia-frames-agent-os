@@ -11,11 +11,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 277
-- COMMAND: 98
+- ASSET: 281
+- COMMAND: 100
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 56
+- GATE: 61
 - RENDERER: 5
 - ROUTE: 11
 - SKILL: 184
@@ -62,6 +62,10 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 02_proceso/workflows/multimedia/_assets/no-regression-checklist.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/no-regression-checklist.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/recovery-faq.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/recovery-faq.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/schematic-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/schematic-template.html` |
+| ASSET | 02_proceso/workflows/video-os/_assets/archetypes.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/archetypes.json` |
+| ASSET | 02_proceso/workflows/video-os/_assets/document-sections.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/document-sections.json` |
+| ASSET | 02_proceso/workflows/video-os/_assets/handoff.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/handoff.template.md` |
+| ASSET | 02_proceso/workflows/video-os/_assets/regressions.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/regressions.json` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf` |
@@ -410,6 +414,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | verify | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:renderers | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:skills | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | verify:video-os | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | video-os | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:review | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:smoke | ACTIVE | CANONICAL | `package.json` |
@@ -539,6 +545,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CONTENT | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_EXPERIENCE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | G09_VIDEO_OS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_WEB | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G10 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G11 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -572,6 +579,10 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | SSS_RELEASE_CANDIDATE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_REVIEW_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_STATIC_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_DIRECTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_HANDOFF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_INTAKE_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_PRINCIPAL_VERIFIED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | RENDERER | d3 | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | gsap | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | lottie | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
@@ -961,4 +972,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `38bdadef9c9b716496e5ceea186cd036a542c8735d5bdf8edda38130e3d2b6c8`.
+Hash de fuentes: `b7c2508a3930988d37cd8e07db7b1d56c96c6ff8440219892efb420c66e06a1b`.

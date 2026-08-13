@@ -1,0 +1,23 @@
+{
+  "schema_version": "video-os-archetypes-v1",
+  "default": "case-longform",
+  "archetypes": {
+    "case-longform": {"aspect_ratio": "16:9", "storyboard": true, "source_audio": "preserve"},
+    "reel-evidence": {"aspect_ratio": "9:16", "storyboard": true, "source_audio": "preserve"},
+    "branded-wrapper": {"aspect_ratio": "source", "storyboard": true, "source_audio": "preserve"},
+    "montage": {"aspect_ratio": "16:9", "storyboard": true, "source_audio": "preserve"},
+    "title-loop": {"aspect_ratio": "1:1", "storyboard": false, "source_audio": "none"}
+  },
+  "defaults": {
+    "privacy": {"mode": "light", "mask_strategy": "field-level", "persistent_plate": false},
+    "human_intro": {
+      "motion_required": true,
+      "freeze_frame_allowed": false,
+      "evidence": "scene-aware-multiframe",
+      "minimum_samples": 2
+    },
+    "privacy_tracking": "scene-aware-field-tracking",
+    "brand": "MetodologIA",
+    "automatic_terminal_state": "RENDERED_DRAFT"
+  }
+}

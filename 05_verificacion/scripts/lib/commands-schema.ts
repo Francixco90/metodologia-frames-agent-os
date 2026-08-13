@@ -4,7 +4,7 @@ export const CommandEntrySchema = z.strictObject({
   gate: z
     .string()
     .regex(
-      /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|SSS_[A-Z_]+|DOCS_TRANSVERSAL_COMPLETE)$/u,
+      /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|SSS_[A-Z_]+|DOCS_TRANSVERSAL_COMPLETE)$/u,
       'Expected a governed gate id',
     ),
   label: z.string(),

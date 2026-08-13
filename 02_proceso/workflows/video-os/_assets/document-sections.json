@@ -1,0 +1,104 @@
+{
+  "schema_version": "video-os-documents-v1",
+  "documents": {
+    "source-analysis.json": [
+      "identity",
+      "media_probe",
+      "audio_source",
+      "temporal_samples",
+      "scene_layouts",
+      "sensitive_fields",
+      "source_sha256"
+    ],
+    "video-brief.md": [
+      "Resultado esperado",
+      "Pedido interpretado",
+      "Audiencia y acción",
+      "Fuentes, derechos y supuestos",
+      "Dirección creativa",
+      "Privacidad",
+      "Entregables",
+      "Criterios de aceptación",
+      "Decisión y siguiente gate"
+    ],
+    "video-spec.json": [
+      "identity",
+      "source_bindings",
+      "story_spine",
+      "scenes",
+      "captions",
+      "privacy",
+      "audio",
+      "brand",
+      "exports",
+      "gates"
+    ],
+    "piece-scripts.json": [
+      "script_mode",
+      "decisions",
+      "source_spans",
+      "visual_spans",
+      "claims",
+      "caption_track_ref",
+      "spec_sha256"
+    ],
+    "caption-track.json": [
+      "language",
+      "cues",
+      "speaker_changes",
+      "source_spans",
+      "timing_evidence",
+      "spec_sha256"
+    ],
+    "shot-plan.json": [
+      "source_spans",
+      "visual_spans",
+      "speaker_changes",
+      "motion_evidence",
+      "composition_fits"
+    ],
+    "storyboard-multiframe.json": [
+      "scenes",
+      "ordered_samples",
+      "source_spans",
+      "composition_fits",
+      "motion_evidence",
+      "spec_sha256"
+    ],
+    "privacy-plan.json": [
+      "mode",
+      "field_masks",
+      "scene_tracking",
+      "sensitive_fields",
+      "samples_per_layout",
+      "spec_sha256"
+    ],
+    "render-plan.json": [
+      "principal",
+      "layers",
+      "asset_manifest",
+      "determinism",
+      "secondary_exports",
+      "principal_pass_required",
+      "spec_sha256"
+    ],
+    "review-report.md": [
+      "Veredicto",
+      "Evidencia técnica",
+      "Evidencia editorial",
+      "Privacidad",
+      "Regresiones",
+      "Riesgos y gaps",
+      "Siguiente gate"
+    ],
+    "handoff.md": [
+      "Objetivo",
+      "Estado",
+      "Hashes canónicos",
+      "Decisiones",
+      "Artefactos",
+      "Gaps",
+      "Siguiente comando"
+    ]
+  }
+}
