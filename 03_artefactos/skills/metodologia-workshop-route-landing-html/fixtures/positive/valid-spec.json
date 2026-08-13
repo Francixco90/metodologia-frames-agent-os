@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "workshop-route-landing-spec-v1",
+  "landingId": "synthetic-workshop-route",
+  "brand": "MetodologIA",
+  "state": "RENDERED_DRAFT",
+  "specHashAlgorithm": "sha256-canonical-json-v1",
+  "specSha256": "888e25546cbaf0d546bfcd88920d0615b54e16edb653f5def63dbb5fdcf5e615",
+  "designSystemLock": {"ref": "locks/synthetic-design-system.json", "sha256": "ca22e1a15d4c2a3f4011358cb93352e3d467f6f53c970715a29aa6c9d0786a38"},
+  "primaryLocale": "es",
+  "registrationRef": "register/index.html",
+  "uiPattern": {"ctaVisibleWordsMin": 1, "ctaVisibleWordsMax": 3, "actionIcons": "inline-svg", "sectionCount": 8},
+  "locales": [
+    {
+      "locale": "es", "title": "Ruta de práctica", "description": "Una ruta sintética para aprender haciendo.", "primaryCta": "Explorar ruta",
+      "labels": {"skip": "Saltar al contenido", "navigation": "Capítulos", "languages": "Idiomas", "available": "Disponible", "pending": "Próximamente"},
+      "sections": [
+        {"id": "entry", "eyebrow": "Punto de entrada", "title": "Empieza con una pregunta", "body": "Reconoce el resultado que quieres producir.", "items": ["Propósito claro", "Primer paso"]},
+        {"id": "tension", "eyebrow": "La tensión", "title": "Menos ruido, más criterio", "body": "Distingue actividad de progreso verificable.", "items": ["Contexto", "Prioridad"]},
+        {"id": "route", "eyebrow": "La ruta", "title": "Cuatro cambios de capacidad", "body": "Avanza mediante una secuencia visible.", "items": ["Comprender", "Practicar", "Transferir", "Orquestar"]},
+        {"id": "method", "eyebrow": "El método", "title": "Practica antes de automatizar", "body": "Produce evidencia pequeña y revisable.", "items": ["Intento", "Retroalimentación", "Nuevo caso"]},
+        {"id": "resources", "eyebrow": "Los recursos", "title": "Prueba la experiencia", "body": "Abre solo materiales realmente disponibles.", "items": ["Guía", "Laboratorio"]},
+        {"id": "outcomes", "eyebrow": "Los resultados", "title": "Haz visible lo aprendido", "body": "Conecta cada capacidad con un artefacto.", "items": ["Mapa", "Decisión", "Flujo"]},
+        {"id": "trust", "eyebrow": "La confianza", "title": "Método antes que herramienta", "body": "Declara límites y conserva supervisión humana.", "items": ["Fuentes", "Privacidad", "Revisión"]},
+        {"id": "invitation", "eyebrow": "La invitación", "title": "Continúa acompañado", "body": "Elige el siguiente paso sin urgencia artificial.", "items": ["Biblioteca abierta", "Cohorte guiada"]}
+      ],
+      "resources": [
+        {"id": "guide", "title": "Guía sintética", "summary": "Un recurso local para comenzar.", "ctaLabel": "Abrir guía"},
+        {"id": "lab", "title": "Laboratorio sintético", "summary": "Una práctica futura claramente marcada.", "ctaLabel": "Próximamente"}
+      ]
+    },
+    {
+      "locale": "en", "title": "Practice route", "description": "A synthetic route for learning by doing.", "primaryCta": "Explore route",
+      "labels": {"skip": "Skip to content", "navigation": "Chapters", "languages": "Languages", "available": "Available", "pending": "Coming soon"},
+      "sections": [
+        {"id": "entry", "eyebrow": "Entry point", "title": "Start with a question", "body": "Recognize the outcome you want to produce.", "items": ["Clear purpose", "First step"]},
+        {"id": "tension", "eyebrow": "The tension", "title": "Less noise, more judgment", "body": "Separate activity from verifiable progress.", "items": ["Context", "Priority"]},
+        {"id": "route", "eyebrow": "The route", "title": "Four capability shifts", "body": "Advance through a visible sequence.", "items": ["Understand", "Practice", "Transfer", "Orchestrate"]},
+        {"id": "method", "eyebrow": "The method", "title": "Practice before automating", "body": "Produce small, reviewable evidence.", "items": ["Attempt", "Feedback", "New case"]},
+        {"id": "resources", "eyebrow": "The resources", "title": "Try the experience", "body": "Open only materials that are truly available.", "items": ["Guide", "Lab"]},
+        {"id": "outcomes", "eyebrow": "The outcomes", "title": "Make learning visible", "body": "Connect every capability to an artifact.", "items": ["Map", "Decision", "Flow"]},
+        {"id": "trust", "eyebrow": "Trust", "title": "Method before tool", "body": "State limits and preserve human oversight.", "items": ["Sources", "Privacy", "Review"]},
+        {"id": "invitation", "eyebrow": "The invitation", "title": "Continue with support", "body": "Choose the next step without artificial urgency.", "items": ["Open library", "Guided cohort"]}
+      ],
+      "resources": [
+        {"id": "guide", "title": "Synthetic guide", "summary": "A local resource for getting started.", "ctaLabel": "Open guide"},
+        {"id": "lab", "title": "Synthetic lab", "summary": "A future practice clearly marked.", "ctaLabel": "Coming soon"}
+      ]
+    },
+    {
+      "locale": "pt", "title": "Rota de prática", "description": "Uma rota sintética para aprender fazendo.", "primaryCta": "Explorar rota",
+      "labels": {"skip": "Pular para o conteúdo", "navigation": "Capítulos", "languages": "Idiomas", "available": "Disponível", "pending": "Em breve"},
+      "sections": [
+        {"id": "entry", "eyebrow": "Ponto de entrada", "title": "Comece com uma pergunta", "body": "Reconheça o resultado que deseja produzir.", "items": ["Propósito claro", "Primeiro passo"]},
+        {"id": "tension", "eyebrow": "A tensão", "title": "Menos ruído, mais critério", "body": "Separe atividade de progresso verificável.", "items": ["Contexto", "Prioridade"]},
+        {"id": "route", "eyebrow": "A rota", "title": "Quatro mudanças de capacidade", "body": "Avance por uma sequência visível.", "items": ["Compreender", "Praticar", "Transferir", "Orquestrar"]},
+        {"id": "method", "eyebrow": "O método", "title": "Pratique antes de automatizar", "body": "Produza evidência pequena e revisável.", "items": ["Tentativa", "Feedback", "Novo caso"]},
+        {"id": "resources", "eyebrow": "Os recursos", "title": "Experimente a jornada", "body": "Abra apenas materiais realmente disponíveis.", "items": ["Guia", "Laboratório"]},
+        {"id": "outcomes", "eyebrow": "Os resultados", "title": "Torne o aprendizado visível", "body": "Conecte cada capacidade a um artefato.", "items": ["Mapa", "Decisão", "Fluxo"]},
+        {"id": "trust", "eyebrow": "A confiança", "title": "Método antes da ferramenta", "body": "Declare limites e preserve supervisão humana.", "items": ["Fontes", "Privacidade", "Revisão"]},
+        {"id": "invitation", "eyebrow": "O convite", "title": "Continue com apoio", "body": "Escolha o próximo passo sem urgência artificial.", "items": ["Biblioteca aberta", "Turma guiada"]}
+      ],
+      "resources": [
+        {"id": "guide", "title": "Guia sintético", "summary": "Um recurso local para começar.", "ctaLabel": "Abrir guia"},
+        {"id": "lab", "title": "Laboratório sintético", "summary": "Uma prática futura claramente marcada.", "ctaLabel": "Em breve"}
+      ]
+    }
+  ],
+  "resourceRegistry": [
+    {"id": "guide", "status": "available", "ref": "resources/guide.html"},
+    {"id": "lab", "status": "pending"}
+  ],
+  "runtime": {"javascript": "none", "network": "blocked", "publish": false},
+  "noJs": {"contentReadable": true, "navigationFallback": "fragments"},
+  "print": {"enabled": true, "hideInteractiveControls": true, "preserveAllSections": true},
+  "output": {"rootRef": "dist/synthetic-workshop-route", "state": "RENDERED_DRAFT"}
+}

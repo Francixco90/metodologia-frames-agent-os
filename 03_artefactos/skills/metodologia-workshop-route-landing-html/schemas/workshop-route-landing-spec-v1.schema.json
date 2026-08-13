@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.dev/schemas/workshop-route-landing-spec-v1.schema.json",
+  "title": "MetodologIA workshop route landing specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "landingId", "brand", "state", "specHashAlgorithm", "specSha256", "designSystemLock", "primaryLocale", "registrationRef", "uiPattern", "locales", "resourceRegistry", "runtime", "noJs", "print", "output"],
+  "properties": {
+    "schemaVersion": {"const": "workshop-route-landing-spec-v1"},
+    "landingId": {"$ref": "#/$defs/id"},
+    "brand": {"const": "MetodologIA"},
+    "state": {"const": "RENDERED_DRAFT"},
+    "specHashAlgorithm": {"const": "sha256-canonical-json-v1"},
+    "specSha256": {"$ref": "#/$defs/sha256"},
+    "designSystemLock": {"$ref": "#/$defs/hashRef"},
+    "primaryLocale": {"enum": ["es", "en", "pt"]},
+    "registrationRef": {"$ref": "#/$defs/relativeRef"},
+    "uiPattern": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ctaVisibleWordsMin", "ctaVisibleWordsMax", "actionIcons", "sectionCount"],
+      "properties": {
+        "ctaVisibleWordsMin": {"const": 1}, "ctaVisibleWordsMax": {"const": 3},
+        "actionIcons": {"const": "inline-svg"}, "sectionCount": {"const": 8}
+      }
+    },
+    "locales": {
+      "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/localizedLanding"}
+    },
+    "resourceRegistry": {
+      "type": "array", "minItems": 2,
+      "items": {"$ref": "#/$defs/resourceState"}
+    },
+    "runtime": {
+      "type": "object", "additionalProperties": false, "required": ["javascript", "network", "publish"],
+      "properties": {"javascript": {"const": "none"}, "network": {"const": "blocked"}, "publish": {"const": false}}
+    },
+    "noJs": {
+      "type": "object", "additionalProperties": false, "required": ["contentReadable", "navigationFallback"],
+      "properties": {"contentReadable": {"const": true}, "navigationFallback": {"const": "fragments"}}
+    },
+    "print": {
+      "type": "object", "additionalProperties": false, "required": ["enabled", "hideInteractiveControls", "preserveAllSections"],
+      "properties": {"enabled": {"const": true}, "hideInteractiveControls": {"const": true}, "preserveAllSections": {"const": true}}
+    },
+    "output": {
+      "type": "object", "additionalProperties": false, "required": ["rootRef", "state"],
+      "properties": {"rootRef": {"$ref": "#/$defs/relativeRef"}, "state": {"const": "RENDERED_DRAFT"}}
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "relativeRef": {"type": "string", "minLength": 1, "pattern": "^(?![a-zA-Z]+:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:private|privado|secret|secrets))(?!.*\\s).+$"},
+    "hashRef": {
+      "type": "object", "additionalProperties": false, "required": ["ref", "sha256"],
+      "properties": {"ref": {"$ref": "#/$defs/relativeRef"}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "section": {
+      "type": "object", "additionalProperties": false, "required": ["id", "eyebrow", "title", "body", "items"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "eyebrow": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1}, "body": {"type": "string", "minLength": 1},
+        "items": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "resourceText": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "summary", "ctaLabel"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "title": {"type": "string", "minLength": 1}, "summary": {"type": "string", "minLength": 1}, "ctaLabel": {"type": "string", "pattern": "^\\S+(?:\\s+\\S+){0,2}$"}}
+    },
+    "resourceState": {
+      "type": "object", "additionalProperties": false, "required": ["id", "status"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "status": {"enum": ["available", "pending"]}, "ref": {"$ref": "#/$defs/relativeRef"}},
+      "allOf": [{"if": {"type": "object", "properties": {"status": {"const": "available"}}}, "then": {"type": "object", "properties": {"ref": {}}, "required": ["ref"]}, "else": {"not": {"type": "object", "properties": {"ref": {}}, "required": ["ref"]}}}]
+    },
+    "localizedLanding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["locale", "title", "description", "primaryCta", "labels", "sections", "resources"],
+      "properties": {
+        "locale": {"enum": ["es", "en", "pt"]}, "title": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1}, "primaryCta": {"type": "string", "pattern": "^\\S+(?:\\s+\\S+){0,2}$"},
+        "labels": {
+          "type": "object", "additionalProperties": false, "required": ["skip", "navigation", "languages", "available", "pending"],
+          "properties": {"skip": {"type": "string", "minLength": 1}, "navigation": {"type": "string", "minLength": 1}, "languages": {"type": "string", "minLength": 1}, "available": {"type": "string", "minLength": 1}, "pending": {"type": "string", "minLength": 1}}
+        },
+        "sections": {
+          "type": "array", "minItems": 8, "maxItems": 8,
+          "prefixItems": [
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "entry"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "tension"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "route"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "method"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "resources"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "outcomes"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "trust"}}}]},
+            {"allOf": [{"$ref": "#/$defs/section"}, {"type": "object", "properties": {"id": {"const": "invitation"}}}]}
+          ], "items": false
+        },
+        "resources": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/resourceText"}}
+      }
+    }
+  }
+}
