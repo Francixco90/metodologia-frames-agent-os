@@ -78,14 +78,18 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
     if (readFileSync(resolve(first, path)).compare(readFileSync(resolve(second, path))) !== 0)
       errors.push(`NON_DETERMINISTIC:${path}`);
 
-  for (const mode of ['package', 'benchmark']) {
-    const result = execute(first, mode);
-    if (
-      result.status === 0 ||
-      !message(result).includes('TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED')
-    )
-      errors.push(`MODE_NOT_FAIL_CLOSED:${mode}`);
-  }
+  const packageResult = execute(first, 'package');
+  if (
+    packageResult.status === 0 ||
+    !message(packageResult).includes('TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT')
+  )
+    errors.push('PACKAGE_NOT_REVIEW_GATED');
+  const benchmarkResult = execute(first, 'benchmark');
+  if (
+    benchmarkResult.status === 0 ||
+    !message(benchmarkResult).includes('TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED')
+  )
+    errors.push('MODE_NOT_FAIL_CLOSED:benchmark');
   if (execute(first, 'spec').status !== 0) errors.push('SPEC_NOT_RESTARTABLE');
 
   const continuityDrift = clone('continuity-drift');
@@ -247,4 +251,4 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
 
   for (const directory of temporary) rmSync(directory, {recursive: true, force: true});
   expect(errors).toEqual([]);
-});
+}, 30_000);

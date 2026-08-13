@@ -1,0 +1,140 @@
+import {createHash} from 'node:crypto';
+import {mkdirSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
+import {relative, resolve} from 'node:path';
+
+import {describe, expect, it} from 'vitest';
+
+import {hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
+import {prepareContinuity} from '../../../02_proceso/workflows/trainer-os/runtime-guards.ts';
+import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
+import {
+  TrainerPackageManifestSchema,
+  TrainerVerificationReceiptSchema,
+  TrainerHumanReviewReceiptSchema,
+} from '../../../02_proceso/workflows/trainer-os/trainer-package-contracts.ts';
+import {verifyTrainerPackage} from '../../../02_proceso/workflows/trainer-os/trainer-package.ts';
+import {TrainerRunManifestV1Schema} from '../../../02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts';
+import {fixture} from './trainer-os-compiler-core.test.ts';
+
+const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
+const write = (path: string, value: unknown) =>
+  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
+const snapshot = (root: string): string[] =>
+  readdirSync(root, {withFileTypes: true})
+    .flatMap((entry) => {
+      const path = resolve(root, entry.name);
+      return entry.isDirectory()
+        ? snapshot(path).map((item) => `${entry.name}/${item}`)
+        : [`${relative(root, path)} ${sha(path)}`];
+    })
+    .sort();
+
+const renderedFixture = () => {
+  const item = fixture();
+  const compiled = executeTrainer('build', item.runPath);
+  if (!compiled.buildManifest) throw new Error('synthetic build missing');
+  const build = JSON.parse(
+    readFileSync(resolve(item.root, compiled.buildManifest.ref), 'utf8'),
+  ) as {treeSha256: string};
+  const verification = {
+    schemaVersion: 'trainer-verification-receipt-v1',
+    receiptId: 'synthetic-verification',
+    receiptSha256: '',
+    actorId: 'trainer-verifier',
+    verdict: 'PASS',
+    buildManifest: compiled.buildManifest,
+    treeSha256: build.treeSha256,
+    publicationAuthority: false,
+  };
+  verification.receiptSha256 = hashModel(verification, 'receiptSha256');
+  TrainerVerificationReceiptSchema.parse(verification);
+  write(resolve(item.root, 'verification.json'), verification);
+  const verificationRef = {
+    ref: 'verification.json',
+    sha256: sha(resolve(item.root, 'verification.json')),
+  };
+  const human = {
+    schemaVersion: 'trainer-human-review-receipt-v1',
+    receiptId: 'synthetic-human-review',
+    receiptSha256: '',
+    actorId: 'H01',
+    verdict: 'APPROVED',
+    buildManifest: compiled.buildManifest,
+    verificationReceipt: verificationRef,
+    publicationAuthority: false,
+  };
+  human.receiptSha256 = hashModel(human, 'receiptSha256');
+  TrainerHumanReviewReceiptSchema.parse(human);
+  write(resolve(item.root, 'human-review.json'), human);
+  const humanRef = {ref: 'human-review.json', sha256: sha(resolve(item.root, 'human-review.json'))};
+  const advanced = {
+    ...compiled,
+    state: 'RENDERED_DRAFT' as const,
+    verificationReceipt: verificationRef,
+    humanReviewReceipt: {
+      ...humanRef,
+      actorId: 'H01' as const,
+      verdict: 'APPROVED' as const,
+      buildManifestSha256: compiled.buildManifest.sha256,
+      verificationReceiptSha256: verificationRef.sha256,
+    },
+  };
+  const continuity = prepareContinuity(advanced, 'human-review');
+  for (const [ref, value] of continuity.writes) {
+    mkdirSync(resolve(item.root, ref, '..'), {recursive: true});
+    writeFileSync(resolve(item.root, ref), value);
+  }
+  const run = {...advanced, ...continuity.outputs, manifestSha256: ''};
+  run.manifestSha256 = hashModel(run, 'manifestSha256');
+  TrainerRunManifestV1Schema.parse(run);
+  write(item.runPath, run);
+  return {...item, run};
+};
+
+describe('Trainer OS deterministic local package', () => {
+  it('packages a reviewed build atomically and replays byte-identically', () => {
+    const item = renderedFixture();
+    expect(executeTrainer('package', item.runPath).state).toBe('RENDERED_DRAFT');
+    const first = snapshot(resolve(item.root, 'package'));
+    const manifest = verifyTrainerPackage(item.runPath);
+    expect(TrainerPackageManifestSchema.parse(manifest)).toMatchObject({
+      state: 'RENDERED_DRAFT',
+      artifactCount: 2,
+      effects: {network: false, connectors: false, publication: false},
+      publicationAuthority: false,
+    });
+    executeTrainer('package', item.runPath);
+    expect(snapshot(resolve(item.root, 'package'))).toEqual(first);
+  });
+
+  it('requires the exact reviewed state and bound receipt bytes', () => {
+    const unreviewed = fixture();
+    executeTrainer('build', unreviewed.runPath);
+    expect(() => executeTrainer('package', unreviewed.runPath)).toThrow(
+      'TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT',
+    );
+    const reviewed = renderedFixture();
+    writeFileSync(resolve(reviewed.root, 'verification.json'), '{}\n');
+    expect(() => executeTrainer('package', reviewed.runPath)).toThrow();
+  });
+
+  it('rejects artifact mutation and residual package paths', () => {
+    const mutated = renderedFixture();
+    writeFileSync(resolve(mutated.root, 'dist/landing/es/index.html'), 'changed');
+    expect(() => executeTrainer('package', mutated.runPath)).toThrow(
+      'TRAINER_ADAPTER_OUTPUT_DRIFT',
+    );
+    const residual = renderedFixture();
+    mkdirSync(resolve(residual.root, '.trainer-package-stage'));
+    expect(() => executeTrainer('package', residual.runPath)).toThrow(
+      'TRAINER_PACKAGE_RESIDUAL_PATH',
+    );
+  });
+
+  it('detects package mutation and unmanifested extras', () => {
+    const item = renderedFixture();
+    executeTrainer('package', item.runPath);
+    writeFileSync(resolve(item.root, 'package/artifacts/extra.txt'), 'unexpected');
+    expect(() => verifyTrainerPackage(item.runPath)).toThrow('TRAINER_PACKAGE_TREE_DRIFT');
+  });
+});

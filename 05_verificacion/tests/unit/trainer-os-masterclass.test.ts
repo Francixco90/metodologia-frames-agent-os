@@ -221,9 +221,11 @@ describe('trainer official masterclass PDF', () => {
     },
   );
 
-  it('keeps package and benchmark fail-closed', () => {
+  it('keeps unreviewed package and benchmark fail-closed', () => {
     const item = configureMasterclassFixture(fixture());
-    for (const mode of ['package', 'benchmark'] as const)
-      expect(() => executeTrainer(mode, item.runPath)).toThrow('NOT_IMPLEMENTED_FAIL_CLOSED');
+    expect(() => executeTrainer('package', item.runPath)).toThrow(
+      'TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT',
+    );
+    expect(() => executeTrainer('benchmark', item.runPath)).toThrow('NOT_IMPLEMENTED_FAIL_CLOSED');
   });
 });
