@@ -110,7 +110,8 @@ describe('Trainer OS landing and workbook skill routers', () => {
       const positive = parse(read(`${base}/${id}/fixtures/positive/case.yml`)) as {
         input: Record<string, unknown>;
       };
-      const {publication: _publication, ...missingPublication} = positive.input;
+      const missingPublication = {...positive.input};
+      delete missingPublication.publication;
       expect(
         FixtureSchema.safeParse({...positive, skill_id: id, input: missingPublication}).success,
       ).toBe(false);
