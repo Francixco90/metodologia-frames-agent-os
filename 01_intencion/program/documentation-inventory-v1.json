@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "0b03b11a69e6b5a314ab98869af83f063ef6c19eb0fcd3fc93f44e8ac8aea105",
-  "totalMarkdown": 1810,
-  "auditedAuthored": 566,
+  "repositoryTreeSha256": "1be420eca6008537657cf7dfc47f666f98384e4e13f6794071f3fe3df486187c",
+  "totalMarkdown": 1827,
+  "auditedAuthored": 582,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -88,6 +88,7 @@
       "01_intencion/guides/skill-systems.md",
       "01_intencion/guides/technical-reference.md",
       "01_intencion/guides/troubleshooting-old-commands.md",
+      "01_intencion/guides/video-os.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
       "01_intencion/hyperframes/verification-report.md",
@@ -180,6 +181,8 @@
       "01_intencion/vercel-agent-skills/architecture.md",
       "01_intencion/vercel-agent-skills/audit-report.md",
       "01_intencion/vercel-agent-skills/verification-report.md",
+      "01_intencion/video-os/ARCHITECTURE.md",
+      "01_intencion/video-os/PRODUCT.md",
       "02_proceso/agents/RT-01/README.md",
       "02_proceso/agents/RT-02/README.md",
       "02_proceso/agents/RT-03/README.md",
@@ -506,7 +509,19 @@
       "02_proceso/workflows/multimedia/p06-crear-activos/prompt-spec.md",
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
-      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md"
+      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/video-os/AGENTS.md",
+      "02_proceso/workflows/video-os/CLAUDE.md",
+      "02_proceso/workflows/video-os/CONSTITUTION.md",
+      "02_proceso/workflows/video-os/GEMINI.md",
+      "02_proceso/workflows/video-os/INSTRUCTIONS.md",
+      "02_proceso/workflows/video-os/LIFECYCLE.md",
+      "02_proceso/workflows/video-os/README.md",
+      "02_proceso/workflows/video-os/SCOPE.md",
+      "02_proceso/workflows/video-os/STATE.md",
+      "02_proceso/workflows/video-os/VERIFICATION.md",
+      "02_proceso/workflows/video-os/progress.md",
+      "02_proceso/workflows/video-os/session-handoff.md"
     ],
     "template": [
       "02_proceso/workflows/career/c00-intake/templates/candidate-foundation-brief-v1.template.md",
@@ -560,7 +575,8 @@
       "02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md",
-      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md"
+      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md",
+      "02_proceso/workflows/video-os/_assets/handoff.template.md"
     ],
     "skill": [
       "03_artefactos/skills/candidate-evidence-reconciler/SKILL.md",
@@ -802,6 +818,7 @@
       "02_proceso/workflows/multimedia/p08-editar/context.md",
       "02_proceso/workflows/multimedia/p09-distribuir/context.md",
       "02_proceso/workflows/skill-systems/context.md",
+      "02_proceso/workflows/video-os/context.md",
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
@@ -4127,6 +4144,32 @@
       }
     },
     {
+      "path": "01_intencion/guides/video-os.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/video-os.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/guides/video-os.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "abb50211d7d83d5b2907e56b6b67ff13ef8c1ae94f0236b56a500595fff253ff",
+      "words": 105,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/hyperframes/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4528,7 +4571,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "8a37da32050c4fcdd5159f3db2c8e26a31a02c3f566d5e7a60a342c0688f8fd0",
+      "sha256": "1575e799f3ebf22a20c84a7a7f1597ea833a533b0d4eb661af9d90762f456290",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -6533,6 +6576,58 @@
       "sha256": "17f6ad8c5ed42b83a375d921a107d8465513c77b0e936b08608d6fb0e47532e5",
       "words": 292,
       "lines": 50,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/video-os/ARCHITECTURE.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/video-os/ARCHITECTURE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/video-os/ARCHITECTURE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "bbf760e108070b5606b2c38666aa192da6769b8aa17c14a82066d22041b2ede1",
+      "words": 301,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/video-os/PRODUCT.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/video-os/PRODUCT.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/video-os/PRODUCT.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4e6cc3e6dbea7875ea3402f019ae74a9a930ffa1c43f38423f26eb7a4572e061",
+      "words": 326,
+      "lines": 42,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -9430,6 +9525,344 @@
       }
     },
     {
+      "path": "02_proceso/workflows/video-os/AGENTS.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/AGENTS.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/AGENTS.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "68928536bb84a02ac3534a551662ef6f535f800b5cbb60454f934b3bbc265748",
+      "words": 431,
+      "lines": 82,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/CLAUDE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/CLAUDE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/CLAUDE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2cfc22665420330d0fa55bf97699e4f717c0f797bbc3331b9d3203ac8b743825",
+      "words": 793,
+      "lines": 109,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/CONSTITUTION.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/CONSTITUTION.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/CONSTITUTION.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "932da95f3941e9f08f1c1396d3d4c6a575876c2639687e3f849e2931f9dfc447",
+      "words": 432,
+      "lines": 63,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/GEMINI.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/GEMINI.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/GEMINI.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b56ee4a38568a3467640ced1ef8199630a66d4f622c09be53929afd3575d0484",
+      "words": 775,
+      "lines": 107,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/INSTRUCTIONS.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/INSTRUCTIONS.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/INSTRUCTIONS.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a49a9eea1e44f8f61df225535a6df80a1822d73d4057a93477fbf67ccc81668c",
+      "words": 45,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/LIFECYCLE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/LIFECYCLE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/LIFECYCLE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f6bdb387b29175eeb15e4ea22a8f0a21271b83bfa9866f8e10985cc6bc5af81c",
+      "words": 41,
+      "lines": 7,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "09e9583c8c3a6a6a03ba6270a5e92c80fd96036362e45e41bccb58aee833c42b",
+      "words": 359,
+      "lines": 65,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/SCOPE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/SCOPE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/SCOPE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "961ebe17bb44e3b2cb799a18de784980442dde588f071a7238cc716cfccd2a2a",
+      "words": 35,
+      "lines": 7,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/STATE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/STATE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/STATE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ab3419086426fd342d74554d8db4745cc87b74e93314e8a2da069031bca7f33f",
+      "words": 36,
+      "lines": 7,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/VERIFICATION.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/VERIFICATION.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/VERIFICATION.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e2c36d5363693b539bcfae4d985dda1e9c4ac1559db7b995a471a9d70845f1ae",
+      "words": 44,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/_assets/handoff.template.md",
+      "class": "template",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/_assets/handoff.template.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/_assets/handoff.template.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a466d6f51170d251ac2fd492564b25250d69e20f6ffe76f4226b3494807dfe06",
+      "words": 30,
+      "lines": 25,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/progress.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/progress.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/progress.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "38edec484e3ef56f0e91c9553f03954c993eee10f9e1c02a60fc310e53147731",
+      "words": 48,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/session-handoff.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:02_proceso/workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/session-handoff.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/session-handoff.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3d16b06156ee788e8fa2a4d18b75aee4ac6dd3d7145bd785a38125a175ce7c48",
+      "words": 52,
+      "lines": 22,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/adapters/n8n/README.md",
       "class": "authored_control",
       "owner": "n8n",
@@ -9677,9 +10110,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "0d9ab72df3fb4a02157194ee0388bf30f7ae00f2cdda84e3f1fa6d40ac270ba3",
-      "words": 10372,
-      "lines": 965,
+      "sha256": "212aad9bf956dbfe770fc72c8712bf01a813f31150750349885e13d65a087345",
+      "words": 10504,
+      "lines": 977,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -17034,10 +17467,10 @@
     }
   ],
   "summary": {
-    "keep": 551,
+    "keep": 567,
     "refactor": 0,
     "split": 1,
-    "regenerate": 83,
+    "regenerate": 84,
     "freeze": 987
   }
 }

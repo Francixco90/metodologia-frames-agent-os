@@ -78,9 +78,9 @@ describe('H-03 renderer adapters integration', () => {
       temporary_outputs_versioned?: boolean;
     };
 
-    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-009');
-    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-008');
-    expect(succession.approval_phrase).toBe('PLEASE IMPLEMENT THIS PLAN');
+    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-010');
+    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-009');
+    expect(succession.approval_phrase).toBe('Crear el Video OS, dentro de frames.');
     expect(succession.dependency_change).toBe(false);
     expect(succession.previous?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);
     expect(succession.current?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);

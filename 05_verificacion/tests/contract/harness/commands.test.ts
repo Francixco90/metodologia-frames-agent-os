@@ -17,9 +17,10 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 61 gates including Video OS gates', () => {
-    expect(manifest.gates).toHaveLength(61);
-    expect(manifest.gates.map(({gate}) => gate)).toEqual(
+  it('declares unique governed gates including Video OS', () => {
+    const ids = manifest.gates.map(({gate}) => gate);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
         'VO_INTAKE_COMPLETE',

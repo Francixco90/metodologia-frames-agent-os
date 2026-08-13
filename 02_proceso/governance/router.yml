@@ -113,9 +113,10 @@ routes:
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '02_proceso/workflows/video-os/context.md'
       - '02_proceso/workflows/video-os/index.ts'
+      - '02_proceso/workflows/operator-core/index.ts'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; Video OS aplica V00-V04 como perfil spec-first y principal-before-derivatives; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED o VO_DIRECTION_APPROVED'
+    output: 'content-intent-v2 + brief.md + cadena adaptativa P00-P09; Video OS aplica V00-V04 sobre Operator Core con cápsula compacta, work units y principal-before-derivatives; para Design System First: Design Context → 2 alternativas → decisión H01, con autoridad de marca desconocida bloqueada; STOP en MW_BRIEF_APPROVED o VO_DIRECTION_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
@@ -133,7 +134,8 @@ routes:
       - '03_artefactos/skills/career-application-orchestrator/SKILL.md'
       - '02_proceso/workflows/career/_schema/intent-v1.schema.ts'
       - '02_proceso/workflows/career/_schema/brief-v1.schema.ts'
-    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
+      - '02_proceso/workflows/operator-core/index.ts'
+    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09 sobre Operator Core con cápsula compacta y work units; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R8

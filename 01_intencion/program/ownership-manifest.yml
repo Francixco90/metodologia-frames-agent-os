@@ -104,6 +104,7 @@ writers:
     # Do not split _schema/_runner/P00-P09 across renderer writers.
     - workflows/multimedia/**
     - 02_proceso/workflows/video-os/**
+    - 02_proceso/workflows/operator-core/**
     - workflows/career/**
     - workflows/experience/**
     - workflows/documentation/**
@@ -174,6 +175,7 @@ writers:
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
     - 05_verificacion/tests/unit/video-os-*.test.ts
+    - 05_verificacion/tests/unit/operator-core-*.test.ts
     - 05_verificacion/tests/unit/career-cv-spec-fixtures.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
     - 05_verificacion/tests/unit/documentation-*.test.ts

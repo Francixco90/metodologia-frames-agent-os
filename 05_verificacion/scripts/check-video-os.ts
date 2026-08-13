@@ -8,7 +8,6 @@ import {
   validateVideoOsJob,
 } from '../../02_proceso/workflows/video-os/index.ts';
 import {
-  HASH_A,
   HASH_B,
   createVideoOsCheckIo,
   makeVideoOsCheckState,
