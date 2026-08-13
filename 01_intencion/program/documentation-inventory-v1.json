@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "0b03b11a69e6b5a314ab98869af83f063ef6c19eb0fcd3fc93f44e8ac8aea105",
-  "totalMarkdown": 1810,
-  "auditedAuthored": 566,
+  "repositoryTreeSha256": "fcafdc6f9466dcaef863670b7284bcd6b40a150baf91aaade66d32c6fa17bab4",
+  "totalMarkdown": 1811,
+  "auditedAuthored": 567,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -506,7 +506,8 @@
       "02_proceso/workflows/multimedia/p06-crear-activos/prompt-spec.md",
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
-      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md"
+      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/trainer-os/README.md"
     ],
     "template": [
       "02_proceso/workflows/career/c00-intake/templates/candidate-foundation-brief-v1.template.md",
@@ -4528,7 +4529,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "8a37da32050c4fcdd5159f3db2c8e26a31a02c3f566d5e7a60a342c0688f8fd0",
+      "sha256": "af12c9d3c74fd2142059b8f80f7222366f6d1ada12e065d3d42d8f9a6b2cdabc",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9426,6 +9427,32 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/trainer-os/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/trainer-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/trainer-os/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/trainer-os/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "43621eab208770c5192c3b3312140c928e904b72bb4da87ba8cc80e9a8b9e043",
+      "words": 134,
+      "lines": 20,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17034,7 +17061,7 @@
     }
   ],
   "summary": {
-    "keep": 551,
+    "keep": 552,
     "refactor": 0,
     "split": 1,
     "regenerate": 83,

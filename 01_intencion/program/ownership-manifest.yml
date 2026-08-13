@@ -105,6 +105,8 @@ writers:
     - workflows/local-extensions/**
     - workflows/maintenance/**
     - workflows/skill-systems/**
+    - workflows/trainer-os/**
+    - projects/trainer-os/**
     - 03_artefactos/content/documentation/**
     - workflows/context.md
     - registries/experience/**
