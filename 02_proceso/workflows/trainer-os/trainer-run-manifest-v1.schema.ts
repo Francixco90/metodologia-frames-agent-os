@@ -11,7 +11,12 @@ export const TrainerStateSchema = z.enum([
   'HUMAN_REVIEW',
   'RENDERED_DRAFT',
 ]);
-
+const HumanReviewReceiptRefSchema = HashRefSchema.extend({
+  actorId: z.literal('H01'),
+  verdict: z.literal('APPROVED'),
+  buildManifestSha256: Sha256Schema,
+  verificationReceiptSha256: Sha256Schema,
+});
 export const TrainerRunManifestV1Schema = z
   .strictObject({
     schemaVersion: z.literal('trainer-run-manifest-v1'),
@@ -26,6 +31,7 @@ export const TrainerRunManifestV1Schema = z
     artifactPlan: HashRefSchema.optional(),
     buildManifest: HashRefSchema.optional(),
     verificationReceipt: HashRefSchema.optional(),
+    humanReviewReceipt: HumanReviewReceiptRefSchema.optional(),
     stateOutput: HashRefSchema.optional(),
     resumeOutput: HashRefSchema.optional(),
     handoffOutput: HashRefSchema.optional(),
@@ -33,7 +39,14 @@ export const TrainerRunManifestV1Schema = z
     resumeRef: PortableRefSchema,
     handoffRef: PortableRefSchema,
     invalidated: z.array(
-      z.enum(['routeSpec', 'designLock', 'artifactPlan', 'buildManifest', 'verificationReceipt']),
+      z.enum([
+        'routeSpec',
+        'designLock',
+        'artifactPlan',
+        'buildManifest',
+        'verificationReceipt',
+        'humanReviewReceipt',
+      ]),
     ),
     maximumState: z.literal('RENDERED_DRAFT'),
     effects: z.strictObject({
@@ -48,7 +61,7 @@ export const TrainerRunManifestV1Schema = z
     }),
   })
   .superRefine((value, context) => {
-    const rank = [
+    const states = [
       'INTAKE',
       'CONTEXT_READY',
       'SPEC_READY',
@@ -57,7 +70,25 @@ export const TrainerRunManifestV1Schema = z
       'VERIFIED',
       'HUMAN_REVIEW',
       'RENDERED_DRAFT',
-    ].indexOf(value.state);
+    ] as const;
+    const rank = states.indexOf(value.state);
+    const stagedFields = [
+      ['intake', 1],
+      ['routeSpec', 2],
+      ['designLock', 3],
+      ['artifactPlan', 4],
+      ['buildManifest', 4],
+      ['verificationReceipt', 5],
+      ['humanReviewReceipt', 7],
+    ] as const;
+    for (const [field, minimumRank] of stagedFields) {
+      if (rank < minimumRank && value[field])
+        context.addIssue({
+          code: 'custom',
+          path: [field],
+          message: `${field} is not allowed before ${states[minimumRank]}`,
+        });
+    }
     if (rank >= 1 && !value.intake)
       context.addIssue({code: 'custom', path: ['intake'], message: 'state requires intake'});
     if (rank >= 1 && (!value.stateOutput || !value.resumeOutput || !value.handoffOutput))
@@ -86,12 +117,69 @@ export const TrainerRunManifestV1Schema = z
         path: ['verificationReceipt'],
         message: 'verified state requires receipt',
       });
-    for (const key of value.invalidated)
-      if (value[key])
+    if (rank >= 7 && !value.humanReviewReceipt)
+      context.addIssue({
+        code: 'custom',
+        path: ['humanReviewReceipt'],
+        message: 'rendered draft requires human review receipt',
+      });
+    if (
+      value.humanReviewReceipt &&
+      value.buildManifest &&
+      value.humanReviewReceipt.buildManifestSha256 !== value.buildManifest.sha256
+    )
+      context.addIssue({
+        code: 'custom',
+        path: ['humanReviewReceipt', 'buildManifestSha256'],
+        message: 'human review must bind the current build',
+      });
+    if (
+      value.humanReviewReceipt &&
+      value.verificationReceipt &&
+      value.humanReviewReceipt.verificationReceiptSha256 !== value.verificationReceipt.sha256
+    )
+      context.addIssue({
+        code: 'custom',
+        path: ['humanReviewReceipt', 'verificationReceiptSha256'],
+        message: 'human review must bind the current verification',
+      });
+    const invalidatableFields = [
+      'routeSpec',
+      'designLock',
+      'artifactPlan',
+      'buildManifest',
+      'verificationReceipt',
+      'humanReviewReceipt',
+    ] as const;
+    for (const key of value.invalidated) {
+      const keyIndex = invalidatableFields.indexOf(key);
+      for (const descendant of invalidatableFields.slice(keyIndex)) {
+        if (!value.invalidated.includes(descendant))
+          context.addIssue({
+            code: 'custom',
+            path: ['invalidated'],
+            message: `${key} invalidation must include ${descendant}`,
+          });
+        if (value[descendant])
+          context.addIssue({
+            code: 'custom',
+            path: [descendant],
+            message: 'invalidated descendant must be absent',
+          });
+      }
+    }
+    if (value.intake && value.intake.ref !== value.intakeRef)
+      context.addIssue({code: 'custom', path: ['intakeRef'], message: 'intake ref mismatch'});
+    for (const [output, ref] of [
+      ['stateOutput', 'stateRef'],
+      ['resumeOutput', 'resumeRef'],
+      ['handoffOutput', 'handoffRef'],
+    ] as const)
+      if (value[output] && value[output].ref !== value[ref])
         context.addIssue({
           code: 'custom',
-          path: [key],
-          message: 'invalidated descendant must be absent',
+          path: [ref],
+          message: `${output} ref mismatch`,
         });
     if (new Set(value.invalidated).size !== value.invalidated.length)
       context.addIssue({
