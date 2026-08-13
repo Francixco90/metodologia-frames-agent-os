@@ -16,4 +16,7 @@ guardian_required: true
 ledger_ref: projects/trainer-os/lifecycle-ledger.yml
 coverage_gaps:
   - global_project_registry_supports_only_legacy_web_video_shape
-  - design_build_verify_package_benchmark_pending_later_prs
+  - package_and_observed_benchmark_ingestion_pending
+  - luna_5_6_low_runtime_unavailable
+benchmark_ref: projects/trainer-os/evals/benchmark.pending.json
+benchmark_state: not_executed
