@@ -953,7 +953,7 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-learning-playbook-html
-    content_sha256: e979abc6ce12b6ce5ca5129c26032a28da6710b98f267a3194a54cd48e6b19a0
+    content_sha256: 04f8b78fcd7fa62dd312e8488e2af1deac3cdeebe3806915426aa01ac1c98e0c
     transition: {from: null, to: candidate}
     decision: register_local_playbook_router_candidate_pending_evaluation
   - event_id: EVT-SKL-PROMPT-LIBRARY-001
@@ -961,6 +961,6 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-prompt-library
-    content_sha256: 96689d0e7c354a0231411a755033c393905b0dcbad871d641410f88fdc806935
+    content_sha256: baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1
     transition: {from: null, to: candidate}
     decision: register_local_prompt_router_candidate_pending_evaluation

@@ -9,6 +9,11 @@ import {z} from 'zod';
 const root = process.cwd();
 const base = '03_artefactos/skills';
 const ids = ['metodologia-learning-playbook-html', 'metodologia-prompt-library'] as const;
+const initialEventHashes = {
+  'metodologia-learning-playbook-html':
+    '04f8b78fcd7fa62dd312e8488e2af1deac3cdeebe3806915426aa01ac1c98e0c',
+  'metodologia-prompt-library': 'baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1',
+} as const;
 const read = (ref: string) => readFileSync(resolve(root, ref), 'utf8');
 const sha = (value: string) => createHash('sha256').update(value).digest('hex');
 const walk = (dir: string): string[] =>
@@ -158,7 +163,7 @@ describe('Trainer OS extended candidate skill routers', () => {
     expect(promptInput.safeParse(withoutConnectors).success).toBe(false);
   });
 
-  it('binds registry entries and append-only events to exact package bytes', () => {
+  it('binds current entries to exact bytes without rewriting append-only history', () => {
     const registry = parse(read('04_estado/registries/skills/skill-registry.yml')) as {
       entries: Array<Record<string, unknown>>;
       events: Array<Record<string, unknown>>;
@@ -176,7 +181,7 @@ describe('Trainer OS extended candidate skill routers', () => {
       expect(entry?.package_manifest_sha256).toBe(digest(id));
       expect(event).toMatchObject({
         skill_id: id,
-        content_sha256: entry?.content_sha256,
+        content_sha256: initialEventHashes[id],
         transition: {from: null, to: 'candidate'},
       });
     }
