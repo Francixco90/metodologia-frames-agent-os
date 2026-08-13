@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "4433d74575f33954d3e1ed204e627426f3551ac855b5adb7cb1f24cb6b603792",
-  "totalMarkdown": 1808,
-  "auditedAuthored": 565,
+  "repositoryTreeSha256": "0b03b11a69e6b5a314ab98869af83f063ef6c19eb0fcd3fc93f44e8ac8aea105",
+  "totalMarkdown": 1810,
+  "auditedAuthored": 566,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -351,6 +351,7 @@
       "03_artefactos/skills/gstack-openclaw-office-hours/references/forcing-questions.md",
       "03_artefactos/skills/metodologia-certificate-builder/references/certificate-manifest.md",
       "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
       "03_artefactos/skills/motion-library-adapters/references/media-use-adapter.md",
       "03_artefactos/skills/remotion-video-production/CHANGELOG.md",
       "03_artefactos/skills/remotion-video-production/examples/minimal-deterministic/README.md",
@@ -728,6 +729,7 @@
       "03_artefactos/skills/metodologia-certificate-builder/SKILL.md",
       "03_artefactos/skills/metodologia-find-skills/SKILL.md",
       "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
+      "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
       "03_artefactos/skills/remotion-video-production-v2/SKILL.md",
       "03_artefactos/skills/remotion-video-production/SKILL.md",
@@ -4526,7 +4528,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "43832811e57c3b63a6c3bafa0ab612aafc2dda1a074a9c66f0bfd0d1df539900",
+      "sha256": "8a37da32050c4fcdd5159f3db2c8e26a31a02c3f566d5e7a60a342c0688f8fd0",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -13373,9 +13375,35 @@
       "sourceRef": "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "4343a227c0359c21a8a35fb46c533134d74610ce5ac8b89a7430dfae2597f65f",
-      "words": 359,
-      "lines": 50,
+      "sha256": "0fcef1b6f5237b191814fb187c02d07b6972643cbc02ef341d95a3215a0f3063",
+      "words": 414,
+      "lines": 54,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "5270c98dadb26ae8af2432959c71f628d8476c3c1a2a85dd5705a222928fce96",
+      "words": 297,
+      "lines": 48,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17006,7 +17034,7 @@
     }
   ],
   "summary": {
-    "keep": 550,
+    "keep": 551,
     "refactor": 0,
     "split": 1,
     "regenerate": 83,
