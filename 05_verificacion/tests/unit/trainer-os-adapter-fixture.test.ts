@@ -5,7 +5,13 @@ import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {expect, it} from 'vitest';
 
-import {canonicalJson, hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
+import {renderPlannedArtifact} from '../../../02_proceso/workflows/trainer-os/adapter-renderers.ts';
+import {
+  HashRefSchema,
+  canonicalJson,
+  hashModel,
+} from '../../../02_proceso/workflows/trainer-os/common.ts';
+import {EffectiveTrainerCompilerAuthorityFiles} from '../../../02_proceso/workflows/trainer-os/compiler-authority.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
 
 type Fixture = {root: string; run: unknown; runPath: string};
@@ -19,9 +25,15 @@ const model = (value: Record<string, unknown>, field: string) => ({
 
 export const configureAdapterFixture = (item: Fixture) => {
   const run = item.run as Record<string, unknown> & {
+    intake: {ref: string; sha256: string};
     routeSpec: {ref: string; sha256: string};
     designLock: {ref: string; sha256: string};
   };
+  const intake = JSON.parse(readFileSync(resolve(item.root, run.intake.ref), 'utf8')) as {
+    sourceRefs: Array<{ref: string; sha256: string}>;
+  };
+  const source = intake.sourceRefs[0];
+  if (!source) throw new Error('synthetic intake source missing');
   writeFileSync(
     resolve(item.root, 'tokens.json'),
     readFileSync(resolve('03_artefactos/projects/trainer-os/design/tokens.authority.json')),
@@ -49,11 +61,13 @@ export const configureAdapterFixture = (item: Fixture) => {
       kind: 'landing',
       title: 'Synthetic route',
       lede: 'Synthetic evidence',
-      cta: {label: 'Open route', href: '/resource'},
+      evidenceIds: ['source-one'],
+      cta: {label: 'Open route', href: '#section-1'},
       sections: Array.from({length: 8}, (_, index) => ({
         id: `section-${index + 1}`,
         title: `Synthetic capacity ${index + 1}`,
         body: `Synthetic evidence ${index + 1}`,
+        evidenceIds: ['source-one'],
       })),
     },
     workbook: {
@@ -61,16 +75,39 @@ export const configureAdapterFixture = (item: Fixture) => {
       hero: {
         title: 'Synthetic practice',
         lede: 'Synthetic guided work',
-        cta: {label: 'Start practice', href: '/practice'},
+        evidenceIds: ['source-one'],
+        cta: {label: 'Start practice', href: '#route-1'},
       },
-      preparation: [{id: 'prepare', title: 'Inputs', body: 'Synthetic inputs'}],
+      preparation: [
+        {id: 'prepare', title: 'Inputs', body: 'Synthetic inputs', evidenceIds: ['source-one']},
+      ],
       routes: Array.from({length: 3}, (_, index) => ({
         id: `route-${index + 1}`,
         title: `Route ${index + 1}`,
         purpose: `Transfer ${index + 1}`,
-        steps: [{id: `step-${index + 1}`, prompt: `Produce evidence ${index + 1}`}],
+        evidenceIds: ['source-one'],
+        steps: [
+          {
+            id: `step-${index + 1}`,
+            prompt: `Produce evidence ${index + 1}`,
+            evidenceIds: ['source-one'],
+          },
+        ],
       })),
     },
+  };
+  write(resolve(item.root, 'authority.json'), {
+    schemaVersion: 'trainer-evidence-authority-receipt-v1',
+    evidenceId: 'source-one',
+    source,
+    authority: 'authored',
+    actor: 'source-registry',
+    verdict: 'approved',
+    publicationAuthority: false,
+  });
+  const authorityReceipt = {
+    ref: 'authority.json',
+    sha256: sha(resolve(item.root, 'authority.json')),
   };
   const content = model(
     {
@@ -79,6 +116,7 @@ export const configureAdapterFixture = (item: Fixture) => {
       contentSha256: '',
       routeSpec: run.routeSpec,
       designLock: run.designLock,
+      evidence: [{evidenceId: 'source-one', source, authority: 'authored', authorityReceipt}],
       locales: {es: locale},
       requestedLocales: ['es'],
       brandId: 'metodologia',
@@ -100,14 +138,17 @@ export const configureAdapterFixture = (item: Fixture) => {
   const assets = JSON.parse(readFileSync(resolve(item.root, 'assets.json'), 'utf8')) as {
     assets: unknown[];
   };
-  assets.assets.push({
-    ...contentBinding,
-    rights: 'authored',
-    rightsReceipt: {
-      ref: 'adapter-rights.json',
-      sha256: sha(resolve(item.root, 'adapter-rights.json')),
+  assets.assets = [
+    ...assets.assets.filter((asset) => (asset as {ref?: string}).ref !== 'adapter-content.json'),
+    {
+      ...contentBinding,
+      rights: 'authored',
+      rightsReceipt: {
+        ref: 'adapter-rights.json',
+        sha256: sha(resolve(item.root, 'adapter-rights.json')),
+      },
     },
-  });
+  ];
   write(resolve(item.root, 'assets.json'), assets);
   const plan = JSON.parse(readFileSync(resolve(item.root, 'artifact-plan.json'), 'utf8')) as Record<
     string,
@@ -162,4 +203,44 @@ it('fails closed when the base fixture is incomplete', () => {
   } finally {
     rmSync(root, {recursive: true, force: true});
   }
+});
+
+it.each(['./adapter-content.json', 'x//y.json', 'x/./y.json'])(
+  'rejects noncanonical HashRef alias %s',
+  (ref) => expect(HashRefSchema.safeParse({ref, sha256: 'a'.repeat(64)}).success).toBe(false),
+);
+
+it('binds intake authority and blocks noncanonical extended adapter paths', () => {
+  expect(EffectiveTrainerCompilerAuthorityFiles).toContain('trainer-intake-v1.schema.ts');
+  for (const kind of ['playbook', 'prompt-library'] as const)
+    expect(() =>
+      renderPlannedArtifact(
+        {
+          artifactId: `${kind}-es`,
+          kind,
+          outputRef: `dist/${kind}-es.html`,
+          acceptanceCriteria: ['Synthetic bytes'],
+        },
+        undefined,
+        {} as never,
+        {} as never,
+        {} as never,
+        undefined,
+      ),
+    ).toThrow('CANONICAL_PATH_REQUIRED');
+  expect(() =>
+    renderPlannedArtifact(
+      {
+        artifactId: 'masterclass-es',
+        kind: 'masterclass',
+        outputRef: 'dist/masterclass/es/not-official.pdf',
+        acceptanceCriteria: ['Synthetic bytes'],
+      },
+      undefined,
+      {} as never,
+      {} as never,
+      {} as never,
+      undefined,
+    ),
+  ).toThrow('CANONICAL_PATH_REQUIRED');
 });

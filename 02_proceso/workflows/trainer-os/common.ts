@@ -10,7 +10,10 @@ export const PortableRefSchema = z
   .refine(
     (value) =>
       !value.startsWith('/') &&
+      !value.startsWith('./') &&
       !value.includes('\\') &&
+      !value.includes('//') &&
+      !value.split('/').includes('.') &&
       !value.split('/').includes('..') &&
       !/^[a-z]+:/iu.test(value) &&
       !/(?:private|privado|secret|secrets)/iu.test(value),

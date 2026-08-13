@@ -19,15 +19,18 @@ const model = (value: Record<string, unknown>, field: string) => ({
   [field]: hashModel(value, field),
 });
 const localized = (language: 'es' | 'en' | 'pt') => {
+  const evidenceIds = ['source-one'];
   const chapters = Array.from({length: 12}, (_, index) => ({
     id: `${language}-chapter-${index + 1}`,
     title: `${language} Chapter ${index + 1}`,
     purpose: `${language} Purpose ${index + 1}`,
+    evidenceIds,
     steps: [
       {
         id: `${language}-step-${index + 1}`,
         title: `${language} Step ${index + 1}`,
         instruction: `${language} Produce evidence ${index + 1}`,
+        evidenceIds,
       },
     ],
   }));
@@ -35,11 +38,13 @@ const localized = (language: 'es' | 'en' | 'pt') => {
     id: `${language}-optional-${index + 1}`,
     title: `${language} Optional ${index + 1}`,
     purpose: `${language} Optional purpose ${index + 1}`,
+    evidenceIds,
     steps: [
       {
         id: `${language}-optional-step-${index + 1}`,
         title: `${language} Optional step ${index + 1}`,
         instruction: `${language} Extend evidence ${index + 1}`,
+        evidenceIds,
       },
     ],
   }));
@@ -50,7 +55,11 @@ const localized = (language: 'es' | 'en' | 'pt') => {
       hero: {
         title: `${language} Playbook`,
         lede: `${language} Reusable process`,
-        cta: {label: language === 'es' ? 'Abrir guía' : 'Open guide', href: '/guide'},
+        cta: {
+          label: language === 'es' ? 'Abrir guía' : 'Open guide',
+          href: `#${language}-chapter-1`,
+        },
+        evidenceIds,
       },
       essentialChapters: chapters,
       optionalChapters,
@@ -60,12 +69,17 @@ const localized = (language: 'es' | 'en' | 'pt') => {
       hero: {
         title: `${language} Prompts`,
         lede: `${language} Four levels`,
-        cta: {label: language === 'es' ? 'Usar prompts' : 'Use prompts', href: '/prompts'},
+        cta: {
+          label: language === 'es' ? 'Usar prompts' : 'Use prompts',
+          href: `#${language}-prompt-1`,
+        },
+        evidenceIds,
       },
       prompts: steps.map(({id}, index) => ({
         id: `${language}-prompt-${index + 1}`,
         stepId: id,
         title: `${language} Prompt ${index + 1}`,
+        evidenceIds,
         levels: [1, 2, 3, 4].map((level) => ({
           level,
           body: `${language} Level ${level} for ${id}`,
@@ -79,6 +93,8 @@ export const makeExtendedContent = (
   routeSpec: Binding,
   designLock: Binding,
   locales: Array<'es' | 'en' | 'pt'> = ['es'],
+  source: Binding = {ref: 'source.txt', sha256: 'c'.repeat(64)},
+  authorityReceipt: Binding = {ref: 'authority.json', sha256: 'd'.repeat(64)},
 ) => {
   const draft = {
     schemaVersion: 'trainer-extended-content-v1',
@@ -86,6 +102,7 @@ export const makeExtendedContent = (
     contentSha256: '',
     routeSpec,
     designLock,
+    evidence: [{evidenceId: 'source-one', source, authority: 'authored', authorityReceipt}],
     locales: {
       es: localized('es'),
       ...(locales.includes('en') ? {en: localized('en')} : {}),
@@ -100,10 +117,19 @@ export const makeExtendedContent = (
 
 export const configureExtendedFixture = (base: Fixture) => {
   const item = configureAdapterFixture(base);
-  const run = item.run as {routeSpec: Binding; designLock: Binding};
+  const run = item.run as {intake: Binding; routeSpec: Binding; designLock: Binding};
+  const intake = JSON.parse(readFileSync(resolve(item.root, run.intake.ref), 'utf8')) as {
+    sourceRefs: Binding[];
+  };
+  const source = intake.sourceRefs[0];
+  if (!source) throw new Error('synthetic intake source missing');
+  const authorityReceipt = {
+    ref: 'authority.json',
+    sha256: sha(resolve(item.root, 'authority.json')),
+  };
   write(
     resolve(item.root, 'adapter-content.json'),
-    makeExtendedContent(run.routeSpec, run.designLock),
+    makeExtendedContent(run.routeSpec, run.designLock, ['es'], source, authorityReceipt),
   );
   const contentHash = sha(resolve(item.root, 'adapter-content.json'));
   const rights = JSON.parse(readFileSync(resolve(item.root, 'adapter-rights.json'), 'utf8')) as {
@@ -176,3 +202,19 @@ it('materializes a strict synthetic extended content model', () => {
     TrainerExtendedContentSchema.parse(makeExtendedContent(binding, binding)).requestedLocales,
   ).toEqual(['es']);
 });
+
+it.each(['es-prompt-1-title', 'content', 'copy-status'])(
+  'rejects collision with reserved DOM id %s',
+  (id) => {
+    const binding = {ref: 'synthetic.json', sha256: 'a'.repeat(64)};
+    const value = makeExtendedContent(binding, binding) as unknown as {
+      contentSha256: string;
+      locales: {es: {promptLibrary: {prompts: Array<{id: string}>}}};
+    };
+    const prompts = value.locales.es.promptLibrary.prompts;
+    if (!prompts[0] || !prompts[1]) throw new Error('synthetic prompts missing');
+    prompts[1].id = id;
+    value.contentSha256 = hashModel(value, 'contentSha256');
+    expect(() => TrainerExtendedContentSchema.parse(value)).toThrow('derived DOM ids');
+  },
+);
