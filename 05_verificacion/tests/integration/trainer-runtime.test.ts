@@ -78,7 +78,7 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
     if (readFileSync(resolve(first, path)).compare(readFileSync(resolve(second, path))) !== 0)
       errors.push(`NON_DETERMINISTIC:${path}`);
 
-  for (const mode of ['build', 'verify', 'package', 'benchmark']) {
+  for (const mode of ['package', 'benchmark']) {
     const result = execute(first, mode);
     if (
       result.status === 0 ||

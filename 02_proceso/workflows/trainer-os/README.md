@@ -9,8 +9,9 @@ Secuencia canónica:
 
 Los cinco schemas y esta unidad runtime materializan `intake` y `spec` de forma reiniciable.
 El runner verifica fuentes, manifest y continuidad, escribe state/resume/handoff atómicos e
-invalida derivados cuando cambia su autoridad. `build`, `verify`, `package` y `benchmark`
-fallan cerrados hasta PRs posteriores.
+invalida derivados cuando cambia su autoridad. `build` materializa un HTML sintético mínimo
+para probar el núcleo común y lo promueve atómicamente; `verify` revalida bytes y árbol sin
+escribir. `package` y `benchmark` fallan cerrados hasta PRs posteriores.
 
 ```bash
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>
@@ -32,7 +33,24 @@ Esta unidad no contiene una decisión H01 ni un `trainer-design-lock-v1`, por lo
 `DESIGN_LOCKED`. El lock solo podrá materializarse en una ejecución real con exactamente dos
 direcciones y un receipt humano verificable. [DOC]
 
-`EXP_TRAINER_RUNTIME_VALIDATED` ejecuta la suite focal material. `coverage_gap`: todavía no
-existe binding de versión del runtime/compilador ni receipt de consumo observado. Los conteos
-de las fixtures son datos sintéticos de prueba, no mediciones reales. El registro global legado
-todavía solo modela productos web y video.
+## Núcleo del compilador
+
+[CÓDIGO] `build` exige un run `DESIGN_LOCKED`, route spec, design lock, artifact plan,
+asset manifest, decisión, tokens y assets existentes con hashes vigentes. Bloquea locators
+privados, PII, derechos desconocidos, locale discordante, symlinks y efectos externos. Produce
+un árbol `dist/` exacto y un build manifest con receipt ligado a sus bytes.
+
+[DOC] La promoción de `dist/` es atómica y conserva rollback durante el reemplazo. El build
+manifest, continuidad y run manifest se escriben después; no constituyen una transacción
+multiarchivo. Un corte entre pasos queda detectable por hashes y bloquea `verify`, pero el
+journaling y la recuperación automática completa permanecen como `coverage_gap` posterior.
+
+`verify` es read-only: vuelve a calcular todos los bindings y rechaza bytes mutados, outputs
+faltantes o residuales. El HTML sintético solo demuestra el compilador común; no afirma que
+existan adaptadores completos para landing, masterclass, workbook, playbook o prompts.
+
+`EXP_TRAINER_RUNTIME_VALIDATED` ejecuta juntas las suites de runtime y compilador. El build
+manifest liga la versión y el árbol transitivo de fuentes del compilador; `coverage_gap`:
+todavía no existe un receipt de consumo observado ni registro global del compiler. Los conteos
+de las fixtures son datos sintéticos, no mediciones reales. El registro global legado todavía
+solo modela productos web y video.

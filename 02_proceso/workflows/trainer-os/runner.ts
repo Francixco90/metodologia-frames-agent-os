@@ -1,5 +1,6 @@
 import {resolve} from 'node:path';
 
+import {compileTrainer, verifyTrainerBuild} from './compiler.ts';
 import {hashModel} from './common.ts';
 import {prepareContinuity, verifyContinuity, verifyWriteIsolation} from './runtime-guards.ts';
 import {atomicWrite, hashFile, portableResolve, readJson, writeJson} from './runtime-io.ts';
@@ -108,7 +109,7 @@ export const executeTrainer = (
   selectedRunPath: string,
 ): TrainerRunManifestV1 => {
   const runPath = resolve(selectedRunPath);
-  if (!['intake', 'spec'].includes(mode))
+  if (!['intake', 'spec', 'build', 'verify'].includes(mode))
     throw new Error(`TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED:${mode}`);
   const raw = readJson(runPath);
   if (raw === null || typeof raw !== 'object' || Array.isArray(raw))
@@ -118,7 +119,27 @@ export const executeTrainer = (
     throw new Error('TRAINER_MANIFEST_HASH_DRIFT');
   const manifest = TrainerRunManifestV1Schema.parse(record);
   verifyContinuity(runPath, manifest);
-  const next = mode === 'intake' ? runIntake(runPath, manifest) : runSpec(runPath, manifest);
+  if (mode === 'verify') {
+    verifyTrainerBuild(runPath, manifest);
+    return manifest;
+  }
+  const next =
+    mode === 'intake'
+      ? runIntake(runPath, manifest)
+      : mode === 'spec'
+        ? runSpec(runPath, manifest)
+        : (() => {
+            const compiled = compileTrainer(runPath, manifest);
+            return {
+              ...manifest,
+              state: 'COMPILED' as const,
+              artifactPlan: {ref: 'artifact-plan.json', sha256: compiled.planHash},
+              buildManifest: {ref: compiled.buildRef, sha256: compiled.buildSha256},
+              verificationReceipt: undefined,
+              humanReviewReceipt: undefined,
+              invalidated: [],
+            };
+          })();
   const continuity = prepareContinuity(next, mode);
   const candidate = {...next, ...continuity.outputs, manifestSha256: ''};
   candidate.manifestSha256 = hashModel(candidate, 'manifestSha256');
