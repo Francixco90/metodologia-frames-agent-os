@@ -38,7 +38,7 @@ const tree = (root: string): string[] =>
     })
     .sort();
 
-const fixture = () => {
+export const fixture = () => {
   const root = mkdtempSync(resolve(tmpdir(), 'trainer-compiler-'));
   temporary.push(root);
   mkdirSync(resolve(root, 'continuity'), {recursive: true});
@@ -209,11 +209,145 @@ const fixture = () => {
   write(resolve(root, 'run.json'), run);
   return {root, run, runPath: resolve(root, 'run.json')};
 };
+const adapterFixture = () => {
+  const item = fixture();
+  const run = item.run as Record<string, unknown> & {
+    routeSpec: {ref: string; sha256: string};
+    designLock: {ref: string; sha256: string};
+  };
+  writeFileSync(
+    resolve(item.root, 'tokens.json'),
+    readFileSync(resolve('03_artefactos/projects/trainer-os/design/tokens.authority.json')),
+  );
+  const lock = JSON.parse(readFileSync(resolve(item.root, 'lock.json'), 'utf8')) as Record<
+    string,
+    unknown
+  > & {tokens: {sha256: string}; decisionReceipt: {sha256: string}};
+  lock.tokens.sha256 = sha(resolve(item.root, 'tokens.json'));
+  const projection = structuredClone(lock) as Record<string, unknown>;
+  delete projection.designLockSha256;
+  delete projection.decisionReceipt;
+  const decision = JSON.parse(readFileSync(resolve(item.root, 'decision.json'), 'utf8')) as Record<
+    string,
+    unknown
+  >;
+  decision.lockContextSha256 = createHash('sha256').update(canonicalJson(projection)).digest('hex');
+  write(resolve(item.root, 'decision.json'), decision);
+  lock.decisionReceipt.sha256 = sha(resolve(item.root, 'decision.json'));
+  lock.designLockSha256 = hashModel(lock, 'designLockSha256');
+  write(resolve(item.root, 'lock.json'), lock);
+  run.designLock = {ref: 'lock.json', sha256: sha(resolve(item.root, 'lock.json'))};
+  const section = (index: number) => ({
+    id: `section-${index}`,
+    title: `Synthetic capacity ${index}`,
+    body: `Synthetic evidence ${index}`,
+  });
+  const locale = {
+    landing: {
+      kind: 'landing',
+      title: 'Synthetic route',
+      lede: 'Synthetic evidence',
+      cta: {label: 'Open route', href: '/resource'},
+      sections: Array.from({length: 8}, (_, index) => section(index + 1)),
+    },
+    workbook: {
+      kind: 'workbook',
+      hero: {
+        title: 'Synthetic practice',
+        lede: 'Synthetic guided work',
+        cta: {label: 'Start practice', href: '/practice'},
+      },
+      preparation: [{id: 'prepare', title: 'Inputs', body: 'Synthetic inputs'}],
+      routes: Array.from({length: 3}, (_, index) => ({
+        id: `route-${index + 1}`,
+        title: `Route ${index + 1}`,
+        purpose: `Transfer ${index + 1}`,
+        steps: [{id: `step-${index + 1}`, prompt: `Produce evidence ${index + 1}`}],
+      })),
+    },
+  };
+  const content = model(
+    {
+      schemaVersion: 'trainer-adapter-content-v1',
+      contentId: 'synthetic-content',
+      contentSha256: '',
+      routeSpec: run.routeSpec,
+      designLock: run.designLock,
+      locales: {es: locale},
+      requestedLocales: ['es'],
+      brandId: 'metodologia',
+      publicationAuthority: false,
+    },
+    'contentSha256',
+  );
+  write(resolve(item.root, 'adapter-content.json'), content);
+  const contentBinding = {
+    ref: 'adapter-content.json',
+    sha256: sha(resolve(item.root, 'adapter-content.json')),
+  };
+  write(resolve(item.root, 'adapter-rights.json'), {
+    schemaVersion: 'trainer-asset-rights-receipt-v1',
+    asset: contentBinding,
+    rights: 'authored',
+    publicationAuthority: false,
+  });
+  const assets = JSON.parse(readFileSync(resolve(item.root, 'assets.json'), 'utf8')) as {
+    assets: unknown[];
+  };
+  assets.assets.push({
+    ...contentBinding,
+    rights: 'authored',
+    rightsReceipt: {
+      ref: 'adapter-rights.json',
+      sha256: sha(resolve(item.root, 'adapter-rights.json')),
+    },
+  });
+  write(resolve(item.root, 'assets.json'), assets);
+  const plan = JSON.parse(readFileSync(resolve(item.root, 'artifact-plan.json'), 'utf8')) as Record<
+    string,
+    unknown
+  >;
+  plan.designLock = run.designLock;
+  plan.artifacts = ['landing', 'workbook'].map((kind) => ({
+    artifactId: `${kind}-es`,
+    kind,
+    outputRef: `dist/${kind}/es/index.html`,
+    acceptanceCriteria: ['Synthetic bytes'],
+  }));
+  Object.assign(plan, model(plan, 'planSha256'));
+  write(resolve(item.root, 'artifact-plan.json'), plan);
+  write(item.runPath, model(run, 'manifestSha256'));
+  return item;
+};
 afterEach(() => {
   for (const path of temporary.splice(0)) rmSync(path, {recursive: true, force: true});
 });
 
 describe('trainer compiler core', () => {
+  it('builds and verifies both HTML adapters across isolated roots', () => {
+    const first = adapterFixture();
+    executeTrainer('build', first.runPath);
+    executeTrainer('verify', first.runPath);
+    const second = adapterFixture();
+    const replay = spawnSync(
+      process.execPath,
+      [
+        '--import',
+        'tsx',
+        '02_proceso/workflows/trainer-os/runner.ts',
+        '--mode',
+        'build',
+        '--run',
+        second.runPath,
+      ],
+      {cwd: process.cwd(), encoding: 'utf8'},
+    );
+    expect(replay.status, replay.stderr).toBe(0);
+    for (const ref of ['dist/landing/es/index.html', 'dist/workbook/es/index.html'])
+      expect(readFileSync(resolve(second.root, ref), 'utf8')).toBe(
+        readFileSync(resolve(first.root, ref), 'utf8'),
+      );
+  });
   it('builds deterministically and verifies without writes', () => {
     const item = fixture();
     const first = executeTrainer('build', item.runPath);

@@ -25,7 +25,7 @@ describe('commands.yaml contract', () => {
     expect(manifest.gates.find(({gate}) => gate === 'EXP_TRAINER_RUNTIME_VALIDATED')).toMatchObject(
       {
         command:
-          'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts 05_verificacion/tests/unit/trainer-os-compiler-core.test.ts',
+          'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts 05_verificacion/tests/unit/trainer-os-compiler-core.test.ts 05_verificacion/tests/unit/trainer-os-adapters.test.ts',
         manual: false,
         fail_closed: true,
         owner: 'content',
