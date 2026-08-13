@@ -15,6 +15,11 @@ export const TrainerArtifactPlanV1Schema = z
           kind: z.enum(['landing', 'masterclass', 'workbook', 'playbook', 'prompt-library']),
           outputRef: PortableRefSchema,
           acceptanceCriteria: z.array(z.string().min(1)).min(1),
+          materializedContentIds: z
+            .array(IdSchema)
+            .max(7)
+            .refine((items) => new Set(items).size === items.length)
+            .optional(),
         }),
       )
       .min(1),
@@ -28,6 +33,16 @@ export const TrainerArtifactPlanV1Schema = z
     }),
   })
   .superRefine((value, context) => {
+    if (
+      value.artifacts.some(
+        ({kind, materializedContentIds}) => kind !== 'playbook' && materializedContentIds?.length,
+      )
+    )
+      context.addIssue({
+        code: 'custom',
+        path: ['artifacts'],
+        message: 'only playbooks may materialize optional content ids',
+      });
     if (
       value.tokenBudget.estimated > value.tokenBudget.maximum ||
       value.tokenBudget.measured > value.tokenBudget.maximum

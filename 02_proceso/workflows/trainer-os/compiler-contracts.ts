@@ -4,12 +4,15 @@ import {HashRefSchema, IdSchema, PortableRefSchema, Sha256Schema, hashModel} fro
 
 export const TrainerCompilerAuthorityFiles = [
   'adapter-contracts.ts',
+  'adapter-extended-contracts.ts',
+  'adapter-extended-renderers.ts',
   'adapter-renderers.ts',
   'adapter-shell.ts',
   'common.ts',
   'compiler-authority.ts',
   'compiler.ts',
   'compiler-contracts.ts',
+  'compiler-extended.ts',
   'compiler-io.ts',
   'design-assets.schemas.ts',
   'runtime-io.ts',

@@ -1,7 +1,8 @@
 import {readFileSync} from 'node:fs';
 import {posix} from 'node:path';
 
-import {renderPlannedArtifact, validateAdapterPlan} from './adapter-renderers.ts';
+import {validateAdapterPlan} from './adapter-renderers.ts';
+import {renderCompilerArtifact, validateExtendedCompilerPlan} from './compiler-extended.ts';
 import {TrainerTokenAuthoritySchema} from './design-assets.schemas.ts';
 import {canonicalJson, hashModel, sha256} from './common.ts';
 import {compilerTreeSha256, lockContextSha256, privacyGate} from './compiler-authority.ts';
@@ -75,6 +76,7 @@ const loadInputs = (runPath: string, manifest: TrainerRunManifestV1) => {
   const contentAsset = assets.assets.find(({ref}) => ref === 'adapter-content.json');
   const adapterContent = contentAsset ? readJson(ref(runPath, contentAsset)) : undefined;
   validateAdapterPlan(plan, adapterContent);
+  validateExtendedCompilerPlan(plan, adapterContent);
   const theme = adapterContent
     ? TrainerTokenAuthoritySchema.parse(readJson(ref(runPath, lock.tokens)))
     : undefined;
@@ -102,7 +104,7 @@ export const compileTrainer = (runPath: string, manifest: TrainerRunManifestV1) 
   )
     throw new Error('TRAINER_PLAN_OUTPUT_REF_INVALID');
   const files = plan.artifacts.map((artifact) => {
-    const html = renderPlannedArtifact(
+    const html = renderCompilerArtifact(
       artifact,
       adapterContent,
       route,
@@ -179,15 +181,12 @@ export const verifyTrainerBuild = (runPath: string, manifest: TrainerRunManifest
     const artifact = inputs.plan.artifacts.find(({outputRef}) => outputRef === output.ref);
     const expected =
       artifact &&
-      renderPlannedArtifact(
+      renderCompilerArtifact(
         artifact,
         inputs.adapterContent,
         inputs.route,
         inputs.lock,
-        {
-          routeSpec: manifest.routeSpec,
-          designLock: manifest.designLock,
-        },
+        {routeSpec: manifest.routeSpec, designLock: manifest.designLock},
         inputs.theme,
       );
     if (bytes !== expected) throw new Error('TRAINER_ADAPTER_OUTPUT_DRIFT');
