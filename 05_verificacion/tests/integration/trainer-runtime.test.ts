@@ -1,6 +1,7 @@
 import {spawnSync} from 'node:child_process';
 import {
   cpSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -114,9 +115,14 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
   const victim = resolve(tempSymlink, 'victim.txt');
   writeFileSync(victim, 'preserve\n');
   mkdirSync(resolve(tempSymlink, 'outputs'), {recursive: true});
-  symlinkSync(victim, resolve(tempSymlink, 'outputs/benchmark.pending.json.tmp'));
+  const residualTemp = resolve(tempSymlink, 'outputs/benchmark.pending.json.tmp');
+  symlinkSync(victim, residualTemp);
   const victimBefore = readFileSync(victim);
-  if (execute(tempSymlink, 'benchmark').status === 0 || !readFileSync(victim).equals(victimBefore))
+  if (
+    execute(tempSymlink, 'benchmark').status !== 0 ||
+    !readFileSync(victim).equals(victimBefore) ||
+    !existsSync(residualTemp)
+  )
     errors.push('BENCHMARK_TEMP_SYMLINK_OVERWRITE');
   if (execute(first, 'spec').status !== 0) errors.push('SPEC_NOT_RESTARTABLE');
 
