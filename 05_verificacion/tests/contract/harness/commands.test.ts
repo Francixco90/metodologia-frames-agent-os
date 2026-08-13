@@ -1,7 +1,7 @@
 import {describe, expect, it} from 'vitest';
 
 import {CommandsManifestSchema} from '../../../scripts/lib/commands-schema.ts';
-import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
+import {readRepositoryJson, readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `05_verificacion/scripts/commands.yaml` parses against
@@ -17,8 +17,19 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 56 gates', () => {
-    expect(manifest.gates).toHaveLength(56);
+  it('declares 57 gates', () => {
+    expect(manifest.gates).toHaveLength(57);
+  });
+
+  it('binds the Trainer runtime gate to its material adversarial suite', () => {
+    expect(manifest.gates.find(({gate}) => gate === 'EXP_TRAINER_RUNTIME_VALIDATED')).toMatchObject(
+      {
+        command: 'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts',
+        manual: false,
+        fail_closed: true,
+        owner: 'content',
+      },
+    );
   });
 
   it('every gate id belongs to a governed gate family', () => {
@@ -96,6 +107,12 @@ describe('commands.yaml contract', () => {
       fail_closed: true,
       owner: 'governance',
     });
+    const packageJson = readRepositoryJson('package.json') as {
+      scripts?: Record<string, string>;
+    };
+    expect(packageJson.scripts?.trainer).toBe(
+      'node --import tsx 02_proceso/workflows/trainer-os/runner.ts',
+    );
   });
 
   it('G13-G17 are manual, fail_closed and have command null', () => {

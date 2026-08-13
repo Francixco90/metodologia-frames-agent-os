@@ -144,6 +144,9 @@ gates:
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
 
   # prettier-ignore
+  - {gate: EXP_TRAINER_RUNTIME_VALIDATED, label: Trainer OS runtime and adversarial contracts, command: 'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+
+  # prettier-ignore
   - {gate: LX_BRIEF_APPROVED, label: approve local extension brief, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: DOCS_TRANSVERSAL_COMPLETE, label: documentation closure material verification, command: 'node --import tsx scripts/check-documentation-closure.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
