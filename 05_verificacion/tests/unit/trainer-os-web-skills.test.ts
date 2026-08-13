@@ -4,6 +4,7 @@ import {relative, resolve} from 'node:path';
 
 import {parse} from 'yaml';
 import {describe, expect, it} from 'vitest';
+import {z} from 'zod';
 
 const root = process.cwd();
 const base = '03_artefactos/skills';
@@ -23,35 +24,70 @@ const digest = (id: string) => {
     .join('\n')}\n`;
   return sha(manifest);
 };
-type Fixture = {
-  skill_id: (typeof ids)[number];
-  input: Record<string, boolean | number | string[]>;
-  expect: {verdict: 'PASS' | 'BLOCK'; reasons?: string[]; publication_authority: false};
-};
+const EffectSchema = z.strictObject({
+  network: z.boolean(),
+  connectors: z.boolean(),
+  publication: z.boolean(),
+});
+const FixtureSchema = z.discriminatedUnion('skill_id', [
+  z.strictObject({
+    schema_version: z.literal('trainer-web-skill-fixture-v1'),
+    skill_id: z.literal('metodologia-trainer-landing'),
+    request: z.string().min(1),
+    input: EffectSchema.extend({
+      sections: z.number().int().nonnegative(),
+      cta_words: z.number().int().nonnegative(),
+      target_exists: z.boolean(),
+      canonical_path: z.boolean(),
+    }),
+    expect: z.object({
+      verdict: z.enum(['PASS', 'BLOCK']),
+      reasons: z.array(z.string()).optional(),
+      publication_authority: z.literal(false),
+    }),
+  }),
+  z.strictObject({
+    schema_version: z.literal('trainer-web-skill-fixture-v1'),
+    skill_id: z.literal('metodologia-trainer-workbook'),
+    request: z.string().min(1),
+    input: EffectSchema.extend({
+      routes: z.array(z.string()).length(3),
+      unique_steps: z.boolean(),
+      canonical_path: z.boolean(),
+      response_persistence: z.boolean(),
+    }),
+    expect: z.object({
+      verdict: z.enum(['PASS', 'BLOCK']),
+      reasons: z.array(z.string()).optional(),
+      publication_authority: z.literal(false),
+    }),
+  }),
+]);
+type Input = z.infer<typeof FixtureSchema>['input'];
 const fixture = (id: (typeof ids)[number], kind: 'positive' | 'negative') =>
-  parse(read(`${base}/${id}/fixtures/${kind}/case.yml`)) as Fixture;
-const issues = (id: (typeof ids)[number], input: Record<string, boolean | number | string[]>) =>
-  id === 'metodologia-trainer-landing'
+  FixtureSchema.parse(parse(read(`${base}/${id}/fixtures/${kind}/case.yml`)));
+const issues = (input: Input) =>
+  'sections' in input
     ? [
         ...(input.sections === 8 ? [] : ['sections']),
         ...(Number(input.cta_words) >= 1 && Number(input.cta_words) <= 3 ? [] : ['cta']),
-        ...(input.target_exists ? [] : ['target']),
-        ...(input.canonical_path ? [] : ['path']),
-        ...(input.network ? ['network'] : []),
-        ...(input.connectors ? ['connectors'] : []),
-        ...(input.publication ? ['publication'] : []),
+        ...(input.target_exists === true ? [] : ['target']),
+        ...(input.canonical_path === true ? [] : ['path']),
+        ...(input.network === false ? [] : ['network']),
+        ...(input.connectors === false ? [] : ['connectors']),
+        ...(input.publication === false ? [] : ['publication']),
       ]
     : [
         ...(JSON.stringify(input.routes) ===
         JSON.stringify(['session', 'deepening', 'consolidation'])
           ? []
           : ['routes']),
-        ...(input.unique_steps ? [] : ['ids']),
-        ...(input.canonical_path ? [] : ['path']),
-        ...(input.response_persistence ? ['persistence'] : []),
-        ...(input.network ? ['network'] : []),
-        ...(input.connectors ? ['connectors'] : []),
-        ...(input.publication ? ['publication'] : []),
+        ...(input.unique_steps === true ? [] : ['ids']),
+        ...(input.canonical_path === true ? [] : ['path']),
+        ...(input.response_persistence === false ? [] : ['persistence']),
+        ...(input.network === false ? [] : ['network']),
+        ...(input.connectors === false ? [] : ['connectors']),
+        ...(input.publication === false ? [] : ['publication']),
       ];
 
 describe('Trainer OS landing and workbook skill routers', () => {
@@ -60,13 +96,32 @@ describe('Trainer OS landing and workbook skill routers', () => {
     const negative = fixture(id, 'negative');
     expect(positive.skill_id).toBe(id);
     expect(positive.expect).toMatchObject({verdict: 'PASS', publication_authority: false});
-    expect(issues(id, positive.input)).toEqual([]);
+    expect(issues(positive.input)).toEqual([]);
     expect(negative.expect).toMatchObject({verdict: 'BLOCK', publication_authority: false});
-    expect(issues(id, negative.input)).toEqual(negative.expect.reasons);
-    expect(issues(id, {...positive.input, publication: true})).toContain('publication');
-    expect(issues(id, {...positive.input, connectors: true})).toContain('connectors');
+    expect(issues(negative.input)).toEqual(negative.expect.reasons);
+    expect(issues({...positive.input, publication: true})).toContain('publication');
+    expect(issues({...positive.input, connectors: true})).toContain('connectors');
     if (id === 'metodologia-trainer-workbook')
-      expect(issues(id, {...positive.input, routes: ['foo', 'bar', 'baz']})).toContain('routes');
+      expect(issues({...positive.input, routes: ['foo', 'bar', 'baz']})).toContain('routes');
+  });
+
+  it('blocks missing or mistyped safety effects instead of treating unknown as false', () => {
+    for (const id of ids) {
+      const positive = parse(read(`${base}/${id}/fixtures/positive/case.yml`)) as {
+        input: Record<string, unknown>;
+      };
+      const {publication: _publication, ...missingPublication} = positive.input;
+      expect(
+        FixtureSchema.safeParse({...positive, skill_id: id, input: missingPublication}).success,
+      ).toBe(false);
+      expect(
+        FixtureSchema.safeParse({
+          ...positive,
+          skill_id: id,
+          input: {...positive.input, publication: 0},
+        }).success,
+      ).toBe(false);
+    }
   });
 
   it.each(ids)('%s is concise, compiler-routed and hash-bound in the registry', (id) => {
