@@ -24,7 +24,8 @@ describe('commands.yaml contract', () => {
   it('binds the Trainer runtime gate to its material adversarial suite', () => {
     expect(manifest.gates.find(({gate}) => gate === 'EXP_TRAINER_RUNTIME_VALIDATED')).toMatchObject(
       {
-        command: 'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts',
+        command:
+          'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts 05_verificacion/tests/unit/trainer-os-compiler-core.test.ts',
         manual: false,
         fail_closed: true,
         owner: 'content',
