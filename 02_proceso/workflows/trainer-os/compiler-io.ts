@@ -25,7 +25,10 @@ export const exactTree = (root: string, runPath: string) => {
     .sort((left, right) => left.ref.localeCompare(right.ref));
 };
 
-export const promoteTree = (runPath: string, files: ReadonlyArray<readonly [string, string]>) => {
+export const promoteTree = (
+  runPath: string,
+  files: ReadonlyArray<readonly [string, string | Uint8Array]>,
+) => {
   const finalRoot = portableResolve(runPath, 'dist');
   const stage = portableResolve(runPath, '.trainer-stage');
   const backup = portableResolve(runPath, '.trainer-backup');
