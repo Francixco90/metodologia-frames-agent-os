@@ -221,11 +221,14 @@ describe('trainer official masterclass PDF', () => {
     },
   );
 
-  it('keeps unreviewed package and benchmark fail-closed', () => {
+  it('keeps unreviewed package blocked and benchmark pending', () => {
     const item = configureMasterclassFixture(fixture());
     expect(() => executeTrainer('package', item.runPath)).toThrow(
       'TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT',
     );
-    expect(() => executeTrainer('benchmark', item.runPath)).toThrow('NOT_IMPLEMENTED_FAIL_CLOSED');
+    expect(executeTrainer('benchmark', item.runPath).state).toBe('DESIGN_LOCKED');
+    expect(readFileSync(resolve(item.root, 'outputs/benchmark-report.md'), 'utf8')).toContain(
+      'not_executed',
+    );
   });
 });

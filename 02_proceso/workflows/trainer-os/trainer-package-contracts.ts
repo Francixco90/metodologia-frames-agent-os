@@ -51,18 +51,18 @@ export const syntheticPackageAuthority = SyntheticPackageAuthoritySchema.parse({
   schemaVersion: 'trainer-synthetic-package-authority-v1',
   scope: 'synthetic-fixture-only',
   runId: 'synthetic-run',
-  runManifestSha256: 'a79c50ba3202aea087c639fb5be09a006ab54f7925fa3befc66c5e2fd129a31e',
+  runManifestSha256: 'bfb4057445b3192a0cf74c940178f96828d791b96da846b07738c0ca3910d59f',
   buildManifest: {
     ref: 'outputs/build-manifest.json',
-    sha256: '8912acdd0d91ff8ef01b687e78395a227cb4b9f202d795cde9ef7e41eb24c337',
+    sha256: 'ef3a6437f7c64e9358e895e401b7d45e354d8b9bbb7a788dc990c18df77445fa',
   },
   verificationReceipt: {
     ref: 'verification.json',
-    sha256: 'dcf611fdcbeb5f55064fa49358c2910a4a193d9d8bce50dc635d02cd1c0ac1db',
+    sha256: 'aec1e9ccb3934ab943d5a387b55d93778bb4529ede6be129f957afa78fdef627',
   },
   humanReviewReceipt: {
     ref: 'human-review.json',
-    sha256: '4a3c67f5b944298a2929ba12d7b2fb9e9e1a900ba929907912eaf19b6a6ccad8',
+    sha256: 'f22b1addd9145dd6690856a3217d12b73bc74c67f38dab344d924041ad6598fb',
   },
   projectSnapshot: {
     ref: 'package/authority/project-snapshot.yml',
