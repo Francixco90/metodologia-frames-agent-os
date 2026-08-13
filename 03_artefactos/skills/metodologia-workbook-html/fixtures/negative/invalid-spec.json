@@ -7,6 +7,7 @@
   "specSha256": "stale",
   "designSystemLock": {"ref": "/private/lock.json", "sha256": "missing"},
   "primaryLocale": "es",
+  "uiPattern": {"ctaVisibleWordsMax": 8, "actionIcons": "remote-image", "copyControl": "visible-text", "promptLevelControls": "names", "promptFormatOrder": ["pair", "spec"]},
   "locales": [{"locale": "es", "title": "Roto", "intro": "Fixture negativa", "sheets": []}],
   "interactions": {"tabsKeyboard": false, "copyPrompts": true, "responsePersistence": "localStorage", "preferencePersistence": ["answers"]},
   "noJs": {"contentReadable": false, "navigationFallback": "javascript-only"},
