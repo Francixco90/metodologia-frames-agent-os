@@ -75,8 +75,11 @@ const loadInputs = (runPath: string, manifest: TrainerRunManifestV1) => {
   privacyGate(JSON.stringify({route, lock, plan, assets}));
   const contentAsset = assets.assets.find(({ref}) => ref === 'adapter-content.json');
   const adapterContent = contentAsset ? readJson(ref(runPath, contentAsset)) : undefined;
+  if (adapterContent) privacyGate(JSON.stringify(adapterContent));
   validateAdapterPlan(plan, adapterContent);
-  validateExtendedCompilerPlan(plan, adapterContent);
+  validateExtendedCompilerPlan(plan, adapterContent, assets.assets, (binding) =>
+    readJson(ref(runPath, binding)),
+  );
   const theme = adapterContent
     ? TrainerTokenAuthoritySchema.parse(readJson(ref(runPath, lock.tokens)))
     : undefined;
@@ -94,14 +97,8 @@ export const compileTrainer = (runPath: string, manifest: TrainerRunManifestV1) 
   );
   const planHash = hashFile(planPath);
   const assetsHash = hashFile(assetsPath);
-  if (
-    plan.artifacts.some(
-      ({outputRef}) =>
-        !/^dist\/[a-z0-9][a-z0-9./-]*$/u.test(outputRef) ||
-        posix.normalize(outputRef) !== outputRef ||
-        outputRef.includes('//'),
-    )
-  )
+  // prettier-ignore
+  if (plan.artifacts.some(({outputRef}) => !/^dist\/[a-z0-9][a-z0-9./-]*$/u.test(outputRef) || posix.normalize(outputRef) !== outputRef || outputRef.includes('//')))
     throw new Error('TRAINER_PLAN_OUTPUT_REF_INVALID');
   const files = plan.artifacts.map((artifact) => {
     const html = renderCompilerArtifact(
@@ -115,7 +112,7 @@ export const compileTrainer = (runPath: string, manifest: TrainerRunManifestV1) 
       },
       theme,
     );
-    privacyGate(html);
+    privacyGate(typeof html === 'string' ? html : Buffer.from(html).toString('latin1'));
     return [artifact.outputRef, html] as const;
   });
   promoteTree(runPath, files);
@@ -176,8 +173,8 @@ export const verifyTrainerBuild = (runPath: string, manifest: TrainerRunManifest
   )
     throw new Error('TRAINER_PLANNED_OUTPUT_MISMATCH');
   for (const output of actual) {
-    const bytes = readFileSync(portableResolve(runPath, output.ref), 'utf8');
-    privacyGate(bytes);
+    const bytes = readFileSync(portableResolve(runPath, output.ref));
+    privacyGate(bytes.toString('latin1'));
     const artifact = inputs.plan.artifacts.find(({outputRef}) => outputRef === output.ref);
     const expected =
       artifact &&
@@ -189,7 +186,8 @@ export const verifyTrainerBuild = (runPath: string, manifest: TrainerRunManifest
         {routeSpec: manifest.routeSpec, designLock: manifest.designLock},
         inputs.theme,
       );
-    if (bytes !== expected) throw new Error('TRAINER_ADAPTER_OUTPUT_DRIFT');
+    if (!expected || !bytes.equals(typeof expected === 'string' ? Buffer.from(expected) : expected))
+      throw new Error('TRAINER_ADAPTER_OUTPUT_DRIFT');
   }
   if (canonicalJson(actual) !== canonicalJson(build.outputs))
     throw new Error('TRAINER_OUTPUT_TREE_DRIFT');
