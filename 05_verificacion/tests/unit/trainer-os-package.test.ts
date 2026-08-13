@@ -4,7 +4,7 @@ import {relative, resolve} from 'node:path';
 
 import {describe, expect, it} from 'vitest';
 
-import {hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
+import {hashModel, sha256} from '../../../02_proceso/workflows/trainer-os/common.ts';
 import {prepareContinuity} from '../../../02_proceso/workflows/trainer-os/runtime-guards.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
 import {
@@ -175,5 +175,27 @@ describe('Trainer OS deterministic local package', () => {
     executeTrainer('package', item.runPath);
     writeFileSync(resolve(item.root, 'package/artifacts/extra.txt'), 'unexpected');
     expect(() => verifyTrainerPackage(item.runPath)).toThrow('TRAINER_PACKAGE_TREE_DRIFT');
+  });
+
+  it('rejects a rehashed project snapshot with injected authority claims', () => {
+    const item = renderedFixture();
+    executeTrainer('package', item.runPath);
+    const snapshotPath = resolve(item.root, 'package/authority/project-snapshot.yml');
+    writeFileSync(snapshotPath, 'current_state: INTAKE\nproduction_authority: true\n');
+    const manifestPath = resolve(item.root, 'package/package-manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as {
+      packageManifestSha256: string;
+      projectSnapshot: {ref: string; sha256: string};
+      files: Array<{ref: string; sha256: string}>;
+      treeSha256: string;
+    };
+    manifest.projectSnapshot.sha256 = sha(snapshotPath);
+    const binding = manifest.files.find(({ref}) => ref === manifest.projectSnapshot.ref);
+    if (!binding) throw new Error('synthetic project snapshot binding missing');
+    binding.sha256 = manifest.projectSnapshot.sha256;
+    manifest.treeSha256 = sha256(JSON.stringify(manifest.files));
+    manifest.packageManifestSha256 = hashModel(manifest, 'packageManifestSha256');
+    write(manifestPath, manifest);
+    expect(() => verifyTrainerPackage(item.runPath)).toThrow();
   });
 });

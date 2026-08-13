@@ -22,9 +22,10 @@ import {
   type TrainerRunManifestV1,
 } from './trainer-run-manifest-v1.schema.ts';
 
+type Run = TrainerRunManifestV1;
 const sourceRoot = dirname(fileURLToPath(import.meta.url));
-const projectPath = resolve(sourceRoot, '../../../03_artefactos/projects/trainer-os/project.yml');
 const sourceFiles = [
+  'compiler-authority.ts',
   'trainer-package-contracts.ts',
   'trainer-package-io.ts',
   'trainer-package.ts',
@@ -90,15 +91,16 @@ const packageFiles = (
   ].sort(([left], [right]) => left.localeCompare(right));
 };
 
-export const packageTrainer = (
-  runPath: string,
-  manifest: TrainerRunManifestV1,
-): TrainerPackageManifest => {
+export const packageTrainer = (runPath: string, manifest: Run): TrainerPackageManifest => {
   if (manifest.state !== 'RENDERED_DRAFT')
     throw new Error(`TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT:${manifest.state}`);
   const build = verifyTrainerBuild(runPath, manifest);
   const authority = resolvePackageAuthority(manifest);
-  const projectBytes = readFileSync(projectPath);
+  const projectBytes = readFileSync(
+    resolve(sourceRoot, '../../../03_artefactos/projects/trainer-os/project.yml'),
+  );
+  if (sha256(projectBytes) !== authority.projectSnapshot.sha256)
+    throw new Error('TRAINER_PACKAGE_PROJECT_SNAPSHOT_SOURCE_DRIFT');
   const authorityBytes = Buffer.from(`${JSON.stringify(authority, null, 2)}\n`);
   const files = packageFiles(runPath, manifest, build);
   files.push(['package/authority/project-snapshot.yml', projectBytes]);
@@ -122,10 +124,7 @@ export const packageTrainer = (
       sha256: sha256(authorityBytes),
     },
     authorityScope: authority.scope,
-    projectSnapshot: {
-      ref: 'package/authority/project-snapshot.yml',
-      sha256: sha256(projectBytes),
-    },
+    projectSnapshot: authority.projectSnapshot,
     projectState: parseSyntheticProjectSnapshot(projectBytes).current_state,
     packagerSourceTreeSha256: packageSourceTreeSha256(),
     files: bindings,
@@ -162,7 +161,7 @@ export const verifyTrainerPackage = (runPath: string) => {
     manifest.humanReviewReceipt.sha256 !== run.humanReviewReceipt.sha256
   )
     throw new Error('TRAINER_PACKAGE_RUN_BINDING_DRIFT');
-  resolvePackageAuthority(run);
+  const authority = resolvePackageAuthority(run);
   const packagedAuthority = SyntheticPackageAuthoritySchema.parse(
     readJson(portableResolve(runPath, manifest.authorityReceipt.ref)),
   );
@@ -174,7 +173,8 @@ export const verifyTrainerPackage = (runPath: string) => {
     manifest.authorityReceipt.ref !== 'package/authority/synthetic-package-authority.json' ||
     manifest.authorityReceipt.sha256 !==
       hashFile(portableResolve(runPath, manifest.authorityReceipt.ref)) ||
-    manifest.projectSnapshot.ref !== 'package/authority/project-snapshot.yml' ||
+    manifest.projectSnapshot.ref !== authority.projectSnapshot.ref ||
+    manifest.projectSnapshot.sha256 !== authority.projectSnapshot.sha256 ||
     manifest.projectSnapshot.sha256 !==
       hashFile(portableResolve(runPath, manifest.projectSnapshot.ref)) ||
     manifest.projectState !== project.current_state

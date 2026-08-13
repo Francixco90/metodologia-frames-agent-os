@@ -9,7 +9,29 @@ import {
   hashModel,
   sha256,
 } from './common.ts';
+import {privacyGate} from './compiler-authority.ts';
 import type {TrainerRunManifestV1} from './trainer-run-manifest-v1.schema.ts';
+
+const SyntheticProjectSnapshotSchema = z.strictObject({
+  schema_version: z.literal('trainer-project-v1'),
+  project_id: z.literal('trainer-os'),
+  title: z.literal('Trainer OS'),
+  current_state: z.literal('INTAKE'),
+  maximum_state: z.literal('RENDERED_DRAFT'),
+  workflow_ref: z.literal('workflows/trainer-os/README.md'),
+  schemas: z.array(z.string()).min(6),
+  effects: z.strictObject({
+    network: z.literal(false),
+    connectors: z.literal(false),
+    publication: z.literal(false),
+  }),
+  human_review_required: z.literal(true),
+  guardian_required: z.literal(true),
+  ledger_ref: z.literal('projects/trainer-os/lifecycle-ledger.yml'),
+  coverage_gaps: z.array(z.string()).min(3),
+  benchmark_ref: z.literal('projects/trainer-os/evals/benchmark.pending.json'),
+  benchmark_state: z.literal('not_executed'),
+});
 
 export const SyntheticPackageAuthoritySchema = z.strictObject({
   schemaVersion: z.literal('trainer-synthetic-package-authority-v1'),
@@ -19,6 +41,7 @@ export const SyntheticPackageAuthoritySchema = z.strictObject({
   buildManifest: HashRefSchema,
   verificationReceipt: HashRefSchema,
   humanReviewReceipt: HashRefSchema,
+  projectSnapshot: HashRefSchema,
   externalAuthority: z.literal(false),
   productionAuthority: z.literal(false),
   publicationAuthority: z.literal(false),
@@ -41,13 +64,20 @@ export const syntheticPackageAuthority = SyntheticPackageAuthoritySchema.parse({
     ref: 'human-review.json',
     sha256: '4a3c67f5b944298a2929ba12d7b2fb9e9e1a900ba929907912eaf19b6a6ccad8',
   },
+  projectSnapshot: {
+    ref: 'package/authority/project-snapshot.yml',
+    sha256: '659a501c7146b161ea5485fd4c345522758a8fa134dabdb044b6f177e3a95443',
+  },
   externalAuthority: false,
   productionAuthority: false,
   publicationAuthority: false,
 });
 
-export const parseSyntheticProjectSnapshot = (bytes: Uint8Array) =>
-  z.object({current_state: z.literal('INTAKE')}).parse(parse(Buffer.from(bytes).toString()));
+export const parseSyntheticProjectSnapshot = (bytes: Uint8Array) => {
+  const text = Buffer.from(bytes).toString();
+  privacyGate(text);
+  return SyntheticProjectSnapshotSchema.parse(parse(text));
+};
 
 export const resolvePackageAuthority = (manifest: TrainerRunManifestV1) => {
   if (manifest.runId !== syntheticPackageAuthority.runId)
