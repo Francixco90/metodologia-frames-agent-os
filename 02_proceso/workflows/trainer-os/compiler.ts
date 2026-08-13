@@ -1,12 +1,13 @@
 import {readFileSync} from 'node:fs';
-import {dirname, posix, resolve} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {posix} from 'node:path';
 
+import {renderPlannedArtifact, validateAdapterPlan} from './adapter-renderers.ts';
+import {TrainerTokenAuthoritySchema} from './design-assets.schemas.ts';
 import {canonicalJson, hashModel, sha256} from './common.ts';
+import {compilerTreeSha256, lockContextSha256, privacyGate} from './compiler-authority.ts';
 import {
   TrainerAssetManifestSchema,
   TrainerBuildManifestSchema,
-  TrainerCompilerAuthorityFiles,
   TrainerDesignDecisionReceiptSchema,
   TrainerRightsReceiptSchema,
 } from './compiler-contracts.ts';
@@ -21,36 +22,6 @@ const ref = (runPath: string, binding: {ref: string; sha256: string}) => {
   const path = portableResolve(runPath, binding.ref);
   if (hashFile(path) !== binding.sha256) throw new Error(`TRAINER_INPUT_HASH_DRIFT:${binding.ref}`);
   return path;
-};
-const safeText = (value: string) =>
-  value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;');
-const privacyGate = (value: string) => {
-  if (
-    /file:\/\/|\/Users\/|(?:private|privado|secret)s?(?:\/|\\)|[\w.+-]+@[\w.-]+\.[a-z]{2,}/iu.test(
-      value,
-    )
-  )
-    throw new Error('TRAINER_PRIVATE_LOCATOR_OR_PII');
-};
-const compilerSource = fileURLToPath(import.meta.url);
-const compilerTreeSha256 = () =>
-  sha256(
-    canonicalJson(
-      TrainerCompilerAuthorityFiles.map((name) => ({
-        name,
-        sha256: hashFile(resolve(dirname(compilerSource), name)),
-      })),
-    ),
-  );
-const lockContextSha256 = (lock: Record<string, unknown>) => {
-  const projection = structuredClone(lock);
-  delete projection.designLockSha256;
-  delete projection.decisionReceipt;
-  return sha256(canonicalJson(projection));
 };
 const loadInputs = (runPath: string, manifest: TrainerRunManifestV1) => {
   if (!manifest.routeSpec || !manifest.designLock) throw new Error('TRAINER_BUILD_INPUT_MISSING');
@@ -101,13 +72,24 @@ const loadInputs = (runPath: string, manifest: TrainerRunManifestV1) => {
   if (assets.networkRequired || assets.publicationAuthority || plan.publicationAuthority)
     throw new Error('TRAINER_BUILD_EFFECT_FORBIDDEN');
   privacyGate(JSON.stringify({route, lock, plan, assets}));
-  return {route, lock, plan, assets, planPath, assetsPath};
+  const contentAsset = assets.assets.find(({ref}) => ref === 'adapter-content.json');
+  const adapterContent = contentAsset ? readJson(ref(runPath, contentAsset)) : undefined;
+  validateAdapterPlan(plan, adapterContent);
+  const theme = adapterContent
+    ? TrainerTokenAuthoritySchema.parse(readJson(ref(runPath, lock.tokens)))
+    : undefined;
+  return {route, lock, plan, assets, planPath, assetsPath, adapterContent, theme};
 };
 
 export const compileTrainer = (runPath: string, manifest: TrainerRunManifestV1) => {
   if (manifest.state !== 'DESIGN_LOCKED' || !manifest.routeSpec || !manifest.designLock)
     throw new Error(`TRAINER_BUILD_REQUIRES_DESIGN_LOCKED:${manifest.state}`);
-  const {route, lock, plan, planPath, assetsPath} = loadInputs(runPath, manifest);
+  const routeBinding = manifest.routeSpec;
+  const lockBinding = manifest.designLock;
+  const {route, lock, plan, planPath, assetsPath, adapterContent, theme} = loadInputs(
+    runPath,
+    manifest,
+  );
   const planHash = hashFile(planPath);
   const assetsHash = hashFile(assetsPath);
   if (
@@ -119,10 +101,20 @@ export const compileTrainer = (runPath: string, manifest: TrainerRunManifestV1) 
     )
   )
     throw new Error('TRAINER_PLAN_OUTPUT_REF_INVALID');
-  const files = plan.artifacts.map(({artifactId, outputRef}) => {
-    const html = `<!doctype html>\n<html lang="${route.locale}"><meta charset="utf-8"><title>${safeText(route.purpose)}</title><main data-compiler="trainer-core"><h1>${safeText(route.purpose)}</h1><p>${safeText(lock.selectedDirectionId)}</p><small>${safeText(artifactId)} · MetodologIA</small></main>\n`;
+  const files = plan.artifacts.map((artifact) => {
+    const html = renderPlannedArtifact(
+      artifact,
+      adapterContent,
+      route,
+      lock,
+      {
+        routeSpec: routeBinding,
+        designLock: lockBinding,
+      },
+      theme,
+    );
     privacyGate(html);
-    return [outputRef, html] as const;
+    return [artifact.outputRef, html] as const;
   });
   promoteTree(runPath, files);
   const outputs = exactTree(portableResolve(runPath, 'dist'), runPath);
@@ -181,8 +173,25 @@ export const verifyTrainerBuild = (runPath: string, manifest: TrainerRunManifest
     canonicalJson(inputs.plan.artifacts.map(({outputRef}) => outputRef).sort())
   )
     throw new Error('TRAINER_PLANNED_OUTPUT_MISMATCH');
-  for (const output of actual)
-    privacyGate(readFileSync(portableResolve(runPath, output.ref), 'utf8'));
+  for (const output of actual) {
+    const bytes = readFileSync(portableResolve(runPath, output.ref), 'utf8');
+    privacyGate(bytes);
+    const artifact = inputs.plan.artifacts.find(({outputRef}) => outputRef === output.ref);
+    const expected =
+      artifact &&
+      renderPlannedArtifact(
+        artifact,
+        inputs.adapterContent,
+        inputs.route,
+        inputs.lock,
+        {
+          routeSpec: manifest.routeSpec,
+          designLock: manifest.designLock,
+        },
+        inputs.theme,
+      );
+    if (bytes !== expected) throw new Error('TRAINER_ADAPTER_OUTPUT_DRIFT');
+  }
   if (canonicalJson(actual) !== canonicalJson(build.outputs))
     throw new Error('TRAINER_OUTPUT_TREE_DRIFT');
   if (sha256(canonicalJson(actual)) !== build.treeSha256)

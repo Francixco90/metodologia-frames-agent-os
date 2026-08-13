@@ -3,10 +3,15 @@ import {z} from 'zod';
 import {HashRefSchema, IdSchema, PortableRefSchema, Sha256Schema, hashModel} from './common.ts';
 
 export const TrainerCompilerAuthorityFiles = [
+  'adapter-contracts.ts',
+  'adapter-renderers.ts',
+  'adapter-shell.ts',
   'common.ts',
+  'compiler-authority.ts',
   'compiler.ts',
   'compiler-contracts.ts',
   'compiler-io.ts',
+  'design-assets.schemas.ts',
   'runtime-io.ts',
   'trainer-artifact-plan-v1.schema.ts',
   'trainer-design-lock-v1.schema.ts',

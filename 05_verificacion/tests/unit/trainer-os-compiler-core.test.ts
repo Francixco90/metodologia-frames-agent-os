@@ -18,6 +18,7 @@ import {afterEach, describe, expect, it} from 'vitest';
 import {canonicalJson, hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
 import {compileTrainer} from '../../../02_proceso/workflows/trainer-os/compiler.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
+import {verifyAdapterReplay} from './trainer-os-adapter-fixture.test.ts';
 
 const temporary: string[] = [];
 const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
@@ -38,7 +39,7 @@ const tree = (root: string): string[] =>
     })
     .sort();
 
-const fixture = () => {
+export const fixture = () => {
   const root = mkdtempSync(resolve(tmpdir(), 'trainer-compiler-'));
   temporary.push(root);
   mkdirSync(resolve(root, 'continuity'), {recursive: true});
@@ -214,6 +215,9 @@ afterEach(() => {
 });
 
 describe('trainer compiler core', () => {
+  it('builds and verifies both HTML adapters across isolated roots', () => {
+    expect(() => verifyAdapterReplay(fixture)).not.toThrow();
+  });
   it('builds deterministically and verifies without writes', () => {
     const item = fixture();
     const first = executeTrainer('build', item.runPath);
