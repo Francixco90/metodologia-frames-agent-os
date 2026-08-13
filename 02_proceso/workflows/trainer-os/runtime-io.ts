@@ -1,11 +1,14 @@
 import {createHash} from 'node:crypto';
 import {
+  closeSync,
   existsSync,
   lstatSync,
   mkdirSync,
+  openSync,
   readFileSync,
   realpathSync,
   renameSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import {dirname, relative, resolve, sep} from 'node:path';
@@ -17,8 +20,19 @@ export const readJson = (path: string): unknown => JSON.parse(readFileSync(path,
 export const atomicWrite = (path: string, value: string) => {
   mkdirSync(dirname(path), {recursive: true});
   const temporary = `${path}.tmp`;
-  writeFileSync(temporary, value);
-  renameSync(temporary, path);
+  let descriptor: number | undefined;
+  try {
+    descriptor = openSync(temporary, 'wx', 0o600);
+    writeFileSync(descriptor, value);
+    closeSync(descriptor);
+    descriptor = undefined;
+    if (lstatSync(temporary).nlink !== 1) throw new Error('TRAINER_TEMP_LINK_FORBIDDEN');
+    renameSync(temporary, path);
+  } catch (error) {
+    if (descriptor !== undefined) closeSync(descriptor);
+    if (existsSync(temporary) && !lstatSync(temporary).isSymbolicLink()) unlinkSync(temporary);
+    throw error;
+  }
 };
 export const writeJson = (path: string, value: unknown) =>
   atomicWrite(path, `${JSON.stringify(value, null, 2)}\n`);

@@ -91,6 +91,33 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
     !readFileSync(resolve(first, 'outputs/benchmark-report.md'), 'utf8').includes('not_executed')
   )
     errors.push('BENCHMARK_PENDING_PROJECTION_DRIFT');
+
+  const benchmarkAlias = clone('benchmark-alias');
+  temporary.push(benchmarkAlias);
+  for (const mode of ['intake', 'spec']) execute(benchmarkAlias, mode);
+  const aliasRun = read(resolve(benchmarkAlias, 'run.json')) as Record<string, unknown>;
+  const routeSpec = Reflect.get(aliasRun, 'routeSpec') as {ref: string; sha256: string};
+  const aliasedRoute = resolve(benchmarkAlias, 'outputs/benchmark.pending.json');
+  writeFileSync(aliasedRoute, readFileSync(resolve(benchmarkAlias, routeSpec.ref)));
+  routeSpec.ref = 'outputs/benchmark.pending.json';
+  aliasRun.manifestSha256 = hashModel(aliasRun, 'manifestSha256');
+  write(resolve(benchmarkAlias, 'run.json'), aliasRun);
+  const before = readFileSync(aliasedRoute);
+  if (
+    execute(benchmarkAlias, 'benchmark').status === 0 ||
+    !readFileSync(aliasedRoute).equals(before)
+  )
+    errors.push('BENCHMARK_AUTHORITY_ALIAS_OVERWRITTEN');
+
+  const tempSymlink = clone('benchmark-temp-symlink');
+  temporary.push(tempSymlink);
+  const victim = resolve(tempSymlink, 'victim.txt');
+  writeFileSync(victim, 'preserve\n');
+  mkdirSync(resolve(tempSymlink, 'outputs'), {recursive: true});
+  symlinkSync(victim, resolve(tempSymlink, 'outputs/benchmark.pending.json.tmp'));
+  const victimBefore = readFileSync(victim);
+  if (execute(tempSymlink, 'benchmark').status === 0 || !readFileSync(victim).equals(victimBefore))
+    errors.push('BENCHMARK_TEMP_SYMLINK_OVERWRITE');
   if (execute(first, 'spec').status !== 0) errors.push('SPEC_NOT_RESTARTABLE');
 
   const continuityDrift = clone('continuity-drift');

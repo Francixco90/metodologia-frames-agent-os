@@ -120,12 +120,26 @@ export const executeTrainer = (
   const manifest = TrainerRunManifestV1Schema.parse(record);
   verifyContinuity(runPath, manifest);
   if (mode === 'benchmark') {
-    verifyWriteIsolation(
-      runPath,
-      manifest,
-      [manifest.intakeRef],
-      ['outputs/benchmark.pending.json', 'outputs/benchmark-report.md'],
+    const intake = TrainerIntakeV1Schema.parse(
+      readJson(portableResolve(runPath, manifest.intakeRef)),
     );
+    const protectedRefs = [
+      manifest.intakeRef,
+      ...intake.sourceRefs.map(({ref}) => ref),
+      ...[
+        manifest.intake,
+        manifest.routeSpec,
+        manifest.designLock,
+        manifest.artifactPlan,
+        manifest.buildManifest,
+        manifest.verificationReceipt,
+        manifest.humanReviewReceipt,
+      ].flatMap((binding) => (binding ? [binding.ref] : [])),
+    ];
+    verifyWriteIsolation(runPath, manifest, protectedRefs, [
+      'outputs/benchmark.pending.json',
+      'outputs/benchmark-report.md',
+    ]);
     materializePendingBenchmark(runPath);
     return manifest;
   }
