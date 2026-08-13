@@ -396,12 +396,12 @@ entries:
       - EVT-SKL-FIND-SKILLS-003
       - EVT-SKL-FIND-SKILLS-004
   - skill_id: metodologia-workbook-html
-    version: 0.1.0
-    current_state: candidate
+    version: 0.2.0
+    current_state: quarantined
     owner: MetodologIA
     responsible_actor: skill-foundry-v2
-    content_sha256: 155aa0b5ad62a886fc50a9a4494a74a0bea2581819cf93c182b59181e5bac695
-    package_manifest_sha256: aa26c6cbdea592ba48cd7ddf4f237d164b678eead5f9dc1bda3ca063d36b0189
+    content_sha256: 7b97ec5ad02fca6bfdbd0945db6b15825f80647478afb7c222c170a84ef65f42
+    package_manifest_sha256: d908f78dc7f1c467eadd905627fa69853fc4a8fcec664e4b24e7882426b9ccbf
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-workbook-html/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal
@@ -412,12 +412,13 @@ entries:
       - local_candidate_only
       - synthetic_fixtures_only
       - no_publication_authority
-    execution_scope: local-candidate-production
-    production_runtime_status: candidate_contract_only
+    execution_scope: local-quarantine-validation-only
+    production_runtime_status: blocked_pending_independent_review
     tests:
       - node skills/metodologia-workbook-html/scripts/check-skill.mjs
     event_ids:
       - EVT-SKL-WORKBOOK-HTML-001
+      - EVT-SKL-WORKBOOK-HTML-002
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -847,3 +848,11 @@ events:
     content_sha256: 155aa0b5ad62a886fc50a9a4494a74a0bea2581819cf93c182b59181e5bac695
     transition: {from: null, to: candidate}
     decision: register_static_candidate_contract
+  - event_id: EVT-SKL-WORKBOOK-HTML-002
+    event_order: 2
+    recorded_at: '2026-08-12T00:00:00Z'
+    actor_id: skill-foundry-v2
+    skill_id: metodologia-workbook-html
+    content_sha256: 7b97ec5ad02fca6bfdbd0945db6b15825f80647478afb7c222c170a84ef65f42
+    transition: {from: candidate, to: quarantined}
+    decision: quarantine_for_determinism_and_accessibility_review

@@ -4,16 +4,17 @@
   "brand": "MetodologIA",
   "state": "RENDERED_DRAFT",
   "specHashAlgorithm": "sha256-canonical-json-v1",
-  "specSha256": "97e4edac56eaadbbde3977312adb6344bdf3038bd996f6780eb71339c362c063",
+  "specSha256": "a3053535599c5d020cb286f9baed81e2fd305e450cb6da3f01f3f41587109517",
   "designSystemLock": {"ref": "locks/metodologia.json", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
   "primaryLocale": "es",
+  "uiPattern": {"ctaVisibleWordsMax": 3, "actionIcons": "inline-svg", "copyControl": "icon-only-with-accessible-name", "promptLevelControls": "numerals-only", "promptFormatOrder": ["natural", "parameters", "spec", "pair"]},
   "locales": [
-    {"locale": "es", "title": "Cuaderno sintético", "intro": "Práctica de contrato.", "sheets": [
+    {"locale": "es", "title": "Cuaderno sintético", "intro": "Práctica de contrato.", "primaryCta": "Empezar práctica", "uiLabels": {"level": "Nivel", "levels": "Niveles de prompt", "copyPrompt": "Copiar prompt"}, "sheets": [
       {"id": "session", "title": "En sesión", "purpose": "Practicar", "outcome": "Producir evidencia", "steps": [{"id": "step-1", "title": "Paso", "instruction": "Usar datos ficticios.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Salida ficticia"}]},
       {"id": "depth", "title": "Profundización", "purpose": "Explorar", "outcome": "Comparar", "steps": [{"id": "step-2", "title": "Comparar", "instruction": "Comparar dos ejemplos.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Comparación"}]},
       {"id": "consolidation", "title": "Consolidación", "purpose": "Transferir", "outcome": "Explicar", "steps": [{"id": "step-3", "title": "Explicar", "instruction": "Explicar el ejemplo.", "prompt": "[PROMPT SINTÉTICO]", "evidence": "Explicación"}]}
     ]},
-    {"locale": "en", "title": "Synthetic workbook", "intro": "Contract practice.", "sheets": [
+    {"locale": "en", "title": "Synthetic workbook", "intro": "Contract practice.", "primaryCta": "Start practice", "uiLabels": {"level": "Level", "levels": "Prompt levels", "copyPrompt": "Copy prompt"}, "sheets": [
       {"id": "session", "title": "In session", "purpose": "Practice", "outcome": "Produce evidence", "steps": [{"id": "step-1", "title": "Step", "instruction": "Use fictional data.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Fictional output"}]},
       {"id": "depth", "title": "Depth", "purpose": "Explore", "outcome": "Compare", "steps": [{"id": "step-2", "title": "Compare", "instruction": "Compare two examples.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Comparison"}]},
       {"id": "consolidation", "title": "Consolidation", "purpose": "Transfer", "outcome": "Explain", "steps": [{"id": "step-3", "title": "Explain", "instruction": "Explain the example.", "prompt": "[SYNTHETIC PROMPT]", "evidence": "Explanation"}]}

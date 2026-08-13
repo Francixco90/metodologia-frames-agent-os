@@ -21,6 +21,9 @@ práctica, no como evidencia automática de aprendizaje.
 
 - Ordenar locales, hojas, pasos y assets según la spec; no reordenar por heurística.
 - Escapar contenido y generar DOM semántico con headings, landmarks, tabs y fragmentos.
+- Proyectar `uiPattern` sin heurísticas: CTA visibles de máximo tres palabras, SVG inline
+  decorativo, acción de copia icon-only con `aria-label` localizado y niveles `1–4` en una sola
+  fila. Los nombres internos de formato no se muestran como dificultad ni calidad.
 - Incluir CSS de impresión y fallback no-JS; mantener el contenido completo en el HTML inicial.
 - Permitir `localStorage` solo para tema/idioma cuando esté declarado. Prohibir respuestas,
   notas, checks del participante, analytics y telemetría.
@@ -37,6 +40,7 @@ práctica, no como evidencia automática de aprendizaje.
 - Tabs con flechas Home/End, foco visible y fragmentos utilizables sin JS.
 - Impresión sin navegación, botones ni pérdida de contenido.
 - Cero rutas privadas, `file:`, `/edit`, formularios de envío o red en runtime.
+- Dos renders del fixture positivo deben producir HTML UTF-8 byte-idéntico y el mismo SHA-256.
 
 ## Estados y guardrails
 
