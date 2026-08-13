@@ -1,0 +1,8 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-masterclass-pdf
+request: Compile 17 pages using an unlisted remote font and publish the HTML viewer.
+input: {moments: 17, font_ref: 'https://fonts.invalid/font.woff2', viewer_public: true}
+expect:
+  verdict: BLOCK
+  reasons: [moment_count, font_authority, viewer_publication]
+  publication_authority: false

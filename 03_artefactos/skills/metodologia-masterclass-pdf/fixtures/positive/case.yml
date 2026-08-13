@@ -1,0 +1,13 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-masterclass-pdf
+request: Compile the synthetic ES, EN and PT masterclass package from the approved Trainer OS run.
+input: {moments: 18, font_ref: fonts/helvetica-standard-14, viewer_public: false}
+expect:
+  official_format: pdf
+  pages: 18
+  base_minutes: 90
+  extension_minutes: 30
+  locales: [es, en, pt]
+  deterministic_replay: true
+  maximum_state: RENDERED_DRAFT
+  publication_authority: false
