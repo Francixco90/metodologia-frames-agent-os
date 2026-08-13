@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "d0ea0e010dcbb71e9c6b9897ecaf43a42af5cdcc234173670d51bf3164075416",
-  "totalMarkdown": 1815,
-  "auditedAuthored": 569,
+  "repositoryTreeSha256": "7d40fbfb99b5241f4b488d8d44ab41eaff4335cb8662c65a5bc6d7d6c50a5eea",
+  "totalMarkdown": 1819,
+  "auditedAuthored": 571,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -350,7 +350,9 @@
       "03_artefactos/skills/gstack-openclaw-office-hours/references/design-doc-templates.md",
       "03_artefactos/skills/gstack-openclaw-office-hours/references/forcing-questions.md",
       "03_artefactos/skills/metodologia-certificate-builder/references/certificate-manifest.md",
+      "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
       "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
       "03_artefactos/skills/metodologia-trainer-os/references/operating-contract.md",
       "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
@@ -731,7 +733,9 @@
       "03_artefactos/skills/metodologia-brand-router/SKILL.md",
       "03_artefactos/skills/metodologia-certificate-builder/SKILL.md",
       "03_artefactos/skills/metodologia-find-skills/SKILL.md",
+      "03_artefactos/skills/metodologia-learning-playbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-masterclass-pdf/SKILL.md",
+      "03_artefactos/skills/metodologia-prompt-library/SKILL.md",
       "03_artefactos/skills/metodologia-trainer-os/SKILL.md",
       "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
@@ -4533,7 +4537,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "1a597ed04b0be7614f4ffe13c8b5eb158c79153bef337bfdf7126f21d97855fd",
+      "sha256": "d3ac9a2087c51a4fc5015b50c2db392d7ab524663f3ac1d06ae613010b7a273e",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -13395,6 +13399,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "45857b4ba764c877e67674a0c9d340331559f69a39c87e79461a1703b8da7fb9",
+      "words": 195,
+      "lines": 23,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -13416,6 +13446,32 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "780c91054c9b998ad0309ba751861e786482e672bfcae7d5260d575edaf88502",
+      "words": 138,
+      "lines": 19,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
         "hasNextAction": false,
         "duplicateHeadings": 0
       }
@@ -17117,7 +17173,7 @@
     }
   ],
   "summary": {
-    "keep": 554,
+    "keep": 556,
     "refactor": 0,
     "split": 1,
     "regenerate": 83,

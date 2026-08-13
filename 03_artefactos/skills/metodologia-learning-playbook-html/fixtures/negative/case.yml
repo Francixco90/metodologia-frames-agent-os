@@ -1,0 +1,7 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-learning-playbook-html
+request: Compile 11 essentials and eight undeclared optional chapters, then publish.
+input: {essential: 11, declared_ids: [a, b, c, d, e, f, g, h], selected_ids: [a, missing], core_without_js: false, publish: true}
+expect:
+  issues: [essential_count, optional_maximum, optional_selection, no_js, publication]
+  publication_authority: false
