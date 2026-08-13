@@ -1,0 +1,5 @@
+schema_version: trainer-web-skill-fixture-v1
+skill_id: metodologia-trainer-landing
+request: Publish a noncanonical landing with missing sections and an external CTA.
+input: {sections: 7, cta_words: 5, target_exists: false, canonical_path: false, network: true}
+expect: {verdict: BLOCK, reasons: [sections, cta, target, path, network], publication_authority: false}

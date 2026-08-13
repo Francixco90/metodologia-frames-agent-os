@@ -117,6 +117,28 @@ describe('router.yml contract', () => {
     expect(content?.output).toMatch(/STOP en MW_BRIEF_APPROVED/u);
   });
 
+  it('R6 dispatches Trainer OS as a governed content profile without inventing R10', () => {
+    const content = router.routes.find((route) => route.id === 'R6');
+    expect(router.routes.map(({id}) => id)).not.toContain('R10');
+    expect(content?.signal_patterns).toEqual(
+      expect.arrayContaining([
+        'crear una ruta formativa',
+        'crear un taller completo',
+        'run Trainer OS',
+      ]),
+    );
+    expect(content?.reads).toEqual(
+      expect.arrayContaining([
+        '03_artefactos/skills/metodologia-trainer-os/SKILL.md',
+        '02_proceso/workflows/trainer-os/trainer-intake-v1.schema.ts',
+        '02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts',
+        '02_proceso/workflows/trainer-os/runner.ts',
+      ]),
+    );
+    expect(content?.output).toMatch(/perfil Trainer OS.*RENDERED_DRAFT/u);
+    expect(content?.output).toMatch(/sin publicar/u);
+  });
+
   it('lists G13-G17 and brief approval as manual fail-closed gates', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining(['G13', 'G14', 'G15', 'G16', 'G17', 'MW_BRIEF_APPROVED']),

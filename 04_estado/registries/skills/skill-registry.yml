@@ -495,6 +495,44 @@ entries:
     publication_authority: false
     tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-extended-skills.test.ts]
     event_ids: [EVT-SKL-PROMPT-LIBRARY-001]
+  - skill_id: metodologia-trainer-landing
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: trainer-os-producer
+    content_sha256: 865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1
+    package_manifest_sha256: 4c163b45f7a0fe96f339a9685d49d34cf7afce3e44448f4fc8bbaca7a4e048e0
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-trainer-landing/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-13T00:00:00Z'
+    fragments_reused: false
+    restrictions: [local_candidate_only, synthetic_fixtures_only, no_publication_authority]
+    execution_scope: local-candidate-routing-only
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-web-skills.test.ts]
+    event_ids: [EVT-SKL-TRAINER-LANDING-001]
+  - skill_id: metodologia-trainer-workbook
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: trainer-os-producer
+    content_sha256: 9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830
+    package_manifest_sha256: d8e34c9d23a4be48bdaabf630118b6d52bea5ffe2efffa0bfef166f6a356df9d
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-trainer-workbook/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-13T00:00:00Z'
+    fragments_reused: false
+    restrictions: [local_candidate_only, synthetic_fixtures_only, no_publication_authority]
+    execution_scope: local-candidate-routing-only
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-web-skills.test.ts]
+    event_ids: [EVT-SKL-TRAINER-WORKBOOK-001]
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -964,3 +1002,19 @@ events:
     content_sha256: baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1
     transition: {from: null, to: candidate}
     decision: register_local_prompt_router_candidate_pending_evaluation
+  - event_id: EVT-SKL-TRAINER-LANDING-001
+    event_order: 1
+    recorded_at: '2026-08-13T00:00:00Z'
+    actor_id: trainer-os-producer
+    skill_id: metodologia-trainer-landing
+    content_sha256: 865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1
+    transition: {from: null, to: candidate}
+    decision: register_local_landing_router_candidate_pending_evaluation
+  - event_id: EVT-SKL-TRAINER-WORKBOOK-001
+    event_order: 1
+    recorded_at: '2026-08-13T00:00:00Z'
+    actor_id: trainer-os-producer
+    skill_id: metodologia-trainer-workbook
+    content_sha256: 9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830
+    transition: {from: null, to: candidate}
+    decision: register_local_workbook_router_candidate_pending_evaluation

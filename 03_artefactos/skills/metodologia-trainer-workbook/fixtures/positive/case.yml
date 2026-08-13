@@ -1,0 +1,5 @@
+schema_version: trainer-web-skill-fixture-v1
+skill_id: metodologia-trainer-workbook
+request: Create a synthetic ES workbook from an approved Trainer OS route.
+input: {routes: 3, unique_steps: true, canonical_path: true, response_persistence: false, network: false}
+expect: {verdict: PASS, maximum_state: RENDERED_DRAFT, publication_authority: false}

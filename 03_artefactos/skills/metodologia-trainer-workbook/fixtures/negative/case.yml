@@ -1,0 +1,5 @@
+schema_version: trainer-web-skill-fixture-v1
+skill_id: metodologia-trainer-workbook
+request: Publish a noncanonical workbook that stores participant responses.
+input: {routes: 2, unique_steps: false, canonical_path: false, response_persistence: true, network: true}
+expect: {verdict: BLOCK, reasons: [routes, ids, path, persistence, network], publication_authority: false}
