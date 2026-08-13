@@ -23,7 +23,13 @@ export const atomicWrite = (path: string, value: string) => {
 export const writeJson = (path: string, value: unknown) =>
   atomicWrite(path, `${JSON.stringify(value, null, 2)}\n`);
 export const portableResolve = (runPath: string, ref: string): string => {
-  if (ref.startsWith('/') || ref.includes('\\') || ref.split('/').includes('..'))
+  if (
+    ref.startsWith('/') ||
+    ref.startsWith('./') ||
+    ref.includes('\\') ||
+    ref.includes('//') ||
+    ref.split('/').some((part) => part === '.' || part === '..')
+  )
     throw new Error(`TRAINER_PRIVATE_OR_UNSAFE_REF:${ref}`);
   const root = realpathSync(dirname(runPath));
   const target = resolve(root, ref);

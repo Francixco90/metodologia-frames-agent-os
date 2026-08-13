@@ -14,12 +14,10 @@ import {tmpdir} from 'node:os';
 import {relative, resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {afterEach, describe, expect, it} from 'vitest';
-
 import {canonicalJson, hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
 import {compileTrainer} from '../../../02_proceso/workflows/trainer-os/compiler.ts';
 import {executeTrainer} from '../../../02_proceso/workflows/trainer-os/runner.ts';
-import {verifyAdapterReplay} from './trainer-os-adapter-fixture.test.ts';
-
+import {configureAdapterFixture, verifyAdapterReplay} from './trainer-os-adapter-fixture.test.ts';
 const temporary: string[] = [];
 const sha = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
 const write = (path: string, value: unknown) =>
@@ -38,7 +36,6 @@ const tree = (root: string): string[] =>
         : [`${entry.name} ${sha(path)}`];
     })
     .sort();
-
 export const fixture = () => {
   const root = mkdtempSync(resolve(tmpdir(), 'trainer-compiler-'));
   temporary.push(root);
@@ -52,25 +49,31 @@ export const fixture = () => {
     rights: 'authored',
     publicationAuthority: false,
   });
-  const intake = {
-    schemaVersion: 'trainer-intake-v1',
-    intakeId: 'synthetic-intake',
-    locale: 'es',
-    purpose: 'Probar el compilador',
-    audience: 'Synthetic learners',
-    sourceRefs: [{ref: 'source.txt', sha256: sha(resolve(root, 'source.txt'))}],
-    constraints: ['Offline'],
-    observableOutcomes: ['Artifact exists'],
-    promptRounds: [
-      {round: 1, prompt: 'Purpose?', response: 'Compile'},
-      {round: 2, prompt: 'Audience?', response: 'Synthetic'},
-      {round: 3, prompt: 'Evidence?', response: 'Bytes'},
-    ],
-    blockingQuestions: [],
-    progressiveDisclosure: 'focused',
-    decisions: [{label: '[SUPUESTO]', statement: 'Synthetic fixture only'}],
-    tokenBudget: {maximum: 1000, estimated: 100, measured: 100, measurementStatus: 'synthetic'},
-  };
+  const intake = model(
+    {
+      schemaVersion: 'trainer-intake-v1',
+      intakeId: 'synthetic-intake',
+      intakeSha256: '',
+      locale: 'es',
+      purpose: 'Probar el compilador',
+      audience: 'Synthetic learners',
+      sourceRefs: [assetBinding],
+      constraints: ['Offline'],
+      observableOutcomes: ['Artifact exists'],
+      discovery: {
+        promptRounds: [1, 2, 3].map((round) => ({
+          round,
+          prompt: `Question ${round}?`,
+          blocking: false,
+        })),
+        progressiveDisclosure: 'focused',
+        tokenBudget: {maximum: 1000, estimated: 100, measured: 100},
+      },
+      decisions: [{label: '[SUPUESTO]', statement: 'Synthetic fixture only'}],
+      privacyReviewed: true,
+    },
+    'intakeSha256',
+  );
   write(resolve(root, 'intake.json'), intake);
   const intakeRef = {ref: 'intake.json', sha256: sha(resolve(root, 'intake.json'))};
   const route = model(
@@ -146,7 +149,7 @@ export const fixture = () => {
         {
           artifactId: 'compiler-smoke',
           kind: 'landing',
-          outputRef: 'dist/index.html',
+          outputRef: 'dist/landing/es/index.html',
           acceptanceCriteria: ['Material bytes'],
         },
       ],
@@ -208,12 +211,11 @@ export const fixture = () => {
     'manifestSha256',
   );
   write(resolve(root, 'run.json'), run);
-  return {root, run, runPath: resolve(root, 'run.json')};
+  return configureAdapterFixture({root, run, runPath: resolve(root, 'run.json')});
 };
 afterEach(() => {
   for (const path of temporary.splice(0)) rmSync(path, {recursive: true, force: true});
 });
-
 describe('trainer compiler core', () => {
   it('builds and verifies both HTML adapters across isolated roots', () => {
     expect(() => verifyAdapterReplay(fixture)).not.toThrow();
@@ -221,9 +223,9 @@ describe('trainer compiler core', () => {
   it('builds deterministically and verifies without writes', () => {
     const item = fixture();
     const first = executeTrainer('build', item.runPath);
-    const bytes = readFileSync(resolve(item.root, 'dist/index.html'), 'utf8');
+    const bytes = readFileSync(resolve(item.root, 'dist/landing/es/index.html'), 'utf8');
     compileTrainer(item.runPath, item.run as never);
-    expect(readFileSync(resolve(item.root, 'dist/index.html'), 'utf8')).toBe(bytes);
+    expect(readFileSync(resolve(item.root, 'dist/landing/es/index.html'), 'utf8')).toBe(bytes);
     const before = tree(item.root);
     executeTrainer('verify', item.runPath);
     expect(tree(item.root)).toEqual(before);
@@ -243,12 +245,11 @@ describe('trainer compiler core', () => {
       {cwd: process.cwd(), encoding: 'utf8'},
     );
     expect(replay.status, replay.stderr).toBe(0);
-    expect(readFileSync(resolve(second.root, 'dist/index.html'), 'utf8')).toBe(bytes);
+    expect(readFileSync(resolve(second.root, 'dist/landing/es/index.html'), 'utf8')).toBe(bytes);
     expect(readFileSync(resolve(second.root, 'outputs/build-manifest.json'), 'utf8')).toBe(
       readFileSync(resolve(item.root, 'outputs/build-manifest.json'), 'utf8'),
     );
   });
-
   it.each([
     'missing-lock',
     'stale-lock',
@@ -330,12 +331,11 @@ describe('trainer compiler core', () => {
       write(item.runPath, model(run, 'manifestSha256'));
     expect(() => executeTrainer('build', item.runPath)).toThrow();
   });
-
   it('rejects missing, mutated, residual and symlink outputs', () => {
     for (const mode of ['missing', 'mutated', 'residual', 'symlink'] as const) {
       const item = fixture();
       executeTrainer('build', item.runPath);
-      const output = resolve(item.root, 'dist/index.html');
+      const output = resolve(item.root, 'dist/landing/es/index.html');
       if (mode === 'missing') unlinkSync(output);
       if (mode === 'mutated') writeFileSync(output, 'changed');
       if (mode === 'residual') writeFileSync(resolve(item.root, 'dist/residual.txt'), 'extra');

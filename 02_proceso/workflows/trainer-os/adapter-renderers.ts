@@ -76,7 +76,7 @@ const workbook = (
   return shell(
     locale,
     piece.hero.title,
-    `<div class="hero"><p>${chrome[locale].workbook} · 3</p><h1>${html(piece.hero.title)}</h1><p class="lede">${html(piece.hero.lede)}</p>${cta(piece.hero.cta.label, piece.hero.cta.href)}</div><section aria-labelledby="prepare"><h2 id="prepare">${chrome[locale].prepare}</h2><div class="grid">${preparation}</div></section>${routes}`,
+    `<div class="hero"><p>${chrome[locale].workbook} · 3</p><h1>${html(piece.hero.title)}</h1><p class="lede">${html(piece.hero.lede)}</p>${cta(piece.hero.cta.label, piece.hero.cta.href)}</div><section aria-labelledby="workbook-preparation"><h2 id="workbook-preparation">${chrome[locale].prepare}</h2><div class="grid">${preparation}</div></section>${routes}`,
     chrome[locale].skip,
     lock.selectedDirectionId,
     theme,
@@ -131,6 +131,22 @@ export const validateAdapterPlan = (plan: TrainerArtifactPlanV1, raw: unknown) =
   return source;
 };
 
+export const assertAdapterHtml = (value: string) => {
+  const ids = [...value.matchAll(/\sid="([a-z][a-z0-9_-]*)"/giu)].map((match) => match[1]);
+  const fragments = [...value.matchAll(/href="#([a-z][a-z0-9_-]*)"/giu)].map((match) => match[1]);
+  if (
+    !value.startsWith('<!doctype html>') ||
+    !/<html lang="(?:es|en|pt)">/u.test(value) ||
+    (value.match(/<h1(?:\s|>)/gu) ?? []).length !== 1 ||
+    !value.includes('<main id="content">') ||
+    !value.includes('href="#content"') ||
+    value.includes('<script') ||
+    ids.some((id, index) => ids.indexOf(id) !== index) ||
+    fragments.some((id) => !ids.includes(id))
+  )
+    throw new Error('TRAINER_ADAPTER_ACCESSIBILITY_BASELINE_FAILED');
+};
+
 export const renderPlannedArtifact = (
   artifact: Artifact,
   raw: unknown,
@@ -139,11 +155,22 @@ export const renderPlannedArtifact = (
   bindings: {routeSpec: Binding; designLock: Binding},
   theme: AdapterTheme | undefined,
 ) => {
+  const canonical =
+    ['landing', 'workbook'].includes(artifact.kind) ||
+    ['playbook', 'prompt-library', 'masterclass'].includes(artifact.kind);
+  const canonicalPath =
+    routePattern.test(artifact.outputRef) ||
+    /^dist\/(?:playbook|prompt-library)\/(?:es|en|pt)\/index\.html$/u.test(artifact.outputRef) ||
+    /^dist\/masterclass\/(?:es|en|pt)\/masterclass\.pdf$/u.test(artifact.outputRef);
+  if (canonical && !canonicalPath) throw new Error('TRAINER_ADAPTER_CANONICAL_PATH_REQUIRED');
   const adapted =
     raw === undefined
       ? undefined
       : renderAdapterArtifact(artifact, raw, route, lock, bindings, theme);
-  if (adapted) return adapted;
+  if (adapted) {
+    assertAdapterHtml(adapted);
+    return adapted;
+  }
   if (routePattern.test(artifact.outputRef)) throw new Error('TRAINER_ADAPTER_CONTENT_MISSING');
   return `<!doctype html>\n<html lang="${route.locale}"><meta charset="utf-8"><title>${html(route.purpose)}</title><main data-compiler="trainer-core"><h1>${html(route.purpose)}</h1><p>${html(lock.selectedDirectionId)}</p><small>${html(artifact.artifactId)} · MetodologIA</small></main>\n`;
 };

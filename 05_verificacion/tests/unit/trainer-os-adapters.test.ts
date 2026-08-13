@@ -3,29 +3,39 @@ import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {describe, expect, it} from 'vitest';
 
-import {TrainerAdapterContentSchema} from '../../../02_proceso/workflows/trainer-os/adapter-contracts.ts';
+import {
+  TrainerAdapterContentSchema,
+  TrainerEvidenceAuthorityReceiptSchema,
+} from '../../../02_proceso/workflows/trainer-os/adapter-contracts.ts';
 import {
   renderAdapterArtifact,
+  renderPlannedArtifact,
   validateAdapterPlan,
 } from '../../../02_proceso/workflows/trainer-os/adapter-renderers.ts';
 import {hashModel} from '../../../02_proceso/workflows/trainer-os/common.ts';
-import {TrainerCompilerAuthorityFiles} from '../../../02_proceso/workflows/trainer-os/compiler-contracts.ts';
+import {
+  assertEvidenceAuthorized,
+  privacyGate,
+} from '../../../02_proceso/workflows/trainer-os/compiler-authority.ts';
 import {TrainerTokenAuthoritySchema} from '../../../02_proceso/workflows/trainer-os/design-assets.schemas.ts';
 
 const binding = (ref: string, digit: string) => ({ref, sha256: digit.repeat(64)});
+const evidenceIds = ['source-one'];
 const localized = (language: 'es' | 'en' | 'pt') => ({
   landing: {
     kind: 'landing',
     title: `${language} Synthetic route`,
     lede: `${language} Local evidence`,
+    evidenceIds,
     cta: {
       label: language === 'es' ? 'Abrir ruta' : language === 'pt' ? 'Abrir rota' : 'Open route',
-      href: '/resource',
+      href: `#${language}-section-1`,
     },
     sections: Array.from({length: 8}, (_, index) => ({
       id: `${language}-section-${index + 1}`,
       title: `${language} Capacity ${index + 1}`,
       body: `${language} Observable evidence ${index + 1}`,
+      evidenceIds,
     })),
   },
   workbook: {
@@ -33,6 +43,7 @@ const localized = (language: 'es' | 'en' | 'pt') => ({
     hero: {
       title: `${language} Practice`,
       lede: `${language} Guided work`,
+      evidenceIds,
       cta: {
         label:
           language === 'es'
@@ -40,7 +51,7 @@ const localized = (language: 'es' | 'en' | 'pt') => ({
             : language === 'pt'
               ? 'Iniciar prática'
               : 'Start practice',
-        href: '/practice',
+        href: `#${language}-route-1`,
       },
     },
     preparation: [
@@ -48,14 +59,20 @@ const localized = (language: 'es' | 'en' | 'pt') => ({
         id: `${language}-prepare`,
         title: `${language} Inputs`,
         body: `${language} Synthetic inputs`,
+        evidenceIds,
       },
     ],
     routes: Array.from({length: 3}, (_, index) => ({
       id: `${language}-route-${index + 1}`,
       title: `${language} Route ${index + 1}`,
       purpose: `${language} Transfer ${index + 1}`,
+      evidenceIds,
       steps: [
-        {id: `${language}-step-${index + 1}`, prompt: `${language} Produce evidence ${index + 1}`},
+        {
+          id: `${language}-step-${index + 1}`,
+          prompt: `${language} Produce evidence ${index + 1}`,
+          evidenceIds,
+        },
       ],
     })),
   },
@@ -67,6 +84,14 @@ const content = (locales: Array<'es' | 'en' | 'pt'> = ['es']) => {
     contentSha256: '',
     routeSpec: binding('route.json', 'a'),
     designLock: binding('lock.json', 'b'),
+    evidence: [
+      {
+        evidenceId: 'source-one',
+        source: binding('source.txt', 'c'),
+        authority: 'authored',
+        authorityReceipt: binding('authority.json', 'd'),
+      },
+    ],
     locales: {
       es: localized('es'),
       ...(locales.includes('en') ? {en: localized('en')} : {}),
@@ -123,6 +148,7 @@ describe('trainer HTML adapters', () => {
       expect(output).toContain('@media print');
       expect(output).toContain('<svg aria-hidden="true"');
       expect(output).not.toContain('<script');
+      expect(output).toContain('MetodologIA · COMPILED');
     }
   });
 
@@ -187,7 +213,6 @@ describe('trainer HTML adapters', () => {
   );
 
   it('rejects unsafe theme fields and produces identical bytes cross-process', () => {
-    expect(TrainerCompilerAuthorityFiles).toContain('design-assets.schemas.ts');
     expect(() =>
       TrainerTokenAuthoritySchema.parse({
         ...theme,
@@ -234,7 +259,7 @@ describe('trainer HTML adapters', () => {
     const stale = content();
     stale.locales.es.landing.title = 'Mutated after receipt';
     expect(() =>
-      renderAdapterArtifact(
+      renderPlannedArtifact(
         artifact('landing'),
         stale,
         route as never,
@@ -243,5 +268,79 @@ describe('trainer HTML adapters', () => {
         theme,
       ),
     ).toThrow('content hash drift');
+  });
+
+  it('blocks noncanonical adapter paths, broken fragments and circular evidence', () => {
+    const source = content();
+    expect(() =>
+      renderPlannedArtifact(
+        {...artifact('landing'), outputRef: 'dist/landing-es.html'},
+        source,
+        route as never,
+        lock as never,
+        bindings,
+        theme,
+      ),
+    ).toThrow('CANONICAL_PATH_REQUIRED');
+    const broken = structuredClone(source);
+    broken.locales.es.landing.cta.href = '#missing-target';
+    broken.contentSha256 = hashModel(broken, 'contentSha256');
+    expect(() =>
+      renderPlannedArtifact(
+        artifact('landing'),
+        broken,
+        route as never,
+        lock as never,
+        bindings,
+        theme,
+      ),
+    ).toThrow('ACCESSIBILITY_BASELINE');
+    const item = {
+      evidenceId: 'source-one',
+      source: binding('adapter-content.json', 'c'),
+      authority: 'authored',
+    };
+    expect(() =>
+      assertEvidenceAuthorized(
+        [item],
+        [item.source],
+        [item.source],
+        [item],
+        ['adapter-content.json'],
+      ),
+    ).toThrow('EVIDENCE_NOT_AUTHORIZED');
+  });
+
+  it('binds authority actors and blocks cross-platform locators and compact PII', () => {
+    expect(
+      TrainerEvidenceAuthorityReceiptSchema.safeParse({
+        schemaVersion: 'trainer-evidence-authority-receipt-v1',
+        evidenceId: 'source-one',
+        source: binding('source.txt', 'c'),
+        authority: 'approved-secondary',
+        actor: 'source-registry',
+        verdict: 'approved',
+        publicationAuthority: false,
+      }).success,
+    ).toBe(false);
+    for (const value of [
+      ['/data', 'customer.csv'].join('/'),
+      ['~', 'customer.csv'].join('/'),
+      ['', '', 'server', 'share', 'customer.csv'].join('\\'),
+      ['C:', 'Users', 'person', 'file.txt'].join('\\'),
+      ['person', 'example.com'].join('@'),
+      ['300', '123', '4567'].join(''),
+      '(300) 123-4567',
+      '+57(300)1234567',
+      '300/123/4567',
+      '/secret',
+    ])
+      expect(() => privacyGate(value)).toThrow('TRAINER_PRIVATE_LOCATOR_OR_PII');
+    expect(() => privacyGate('dist/landing/es/index.html')).not.toThrow();
+    expect(() => privacyGate('https://example.com/guide')).not.toThrow();
+    expect(() => privacyGate('http://localhost:3000/guide')).not.toThrow();
+    expect(() => privacyGate('https://example.com/?email=person@example.com')).toThrow();
+    expect(() => privacyGate('https://example.com/call/3001234567')).toThrow();
+    expect(() => privacyGate('https://person@example.com/guide')).toThrow();
   });
 });
