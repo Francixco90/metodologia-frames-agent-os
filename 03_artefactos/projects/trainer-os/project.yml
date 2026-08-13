@@ -10,13 +10,15 @@ schemas:
   - workflows/trainer-os/trainer-design-lock-v1.schema.ts
   - workflows/trainer-os/trainer-artifact-plan-v1.schema.ts
   - workflows/trainer-os/trainer-run-manifest-v1.schema.ts
+  - workflows/trainer-os/trainer-package-contracts.ts
 effects: {network: false, connectors: false, publication: false}
 human_review_required: true
 guardian_required: true
 ledger_ref: projects/trainer-os/lifecycle-ledger.yml
+package_authority_ledger_ref: projects/trainer-os/lifecycle-ledger.yml
 coverage_gaps:
   - global_project_registry_supports_only_legacy_web_video_shape
-  - package_and_observed_benchmark_ingestion_pending
+  - production_package_authority_and_observed_benchmark_ingestion_pending
   - luna_5_6_low_runtime_unavailable
 benchmark_ref: projects/trainer-os/evals/benchmark.pending.json
 benchmark_state: not_executed

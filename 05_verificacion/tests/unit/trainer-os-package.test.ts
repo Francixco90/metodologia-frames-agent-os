@@ -118,6 +118,16 @@ describe('Trainer OS deterministic local package', () => {
     expect(() => executeTrainer('package', reviewed.runPath)).toThrow();
   });
 
+  it('rejects self-declared approvals without an external append-only authority event', () => {
+    const forged = renderedFixture();
+    const run = {...forged.run, runId: 'forged-run', manifestSha256: ''};
+    run.manifestSha256 = hashModel(run, 'manifestSha256');
+    write(forged.runPath, run);
+    expect(() => executeTrainer('package', forged.runPath)).toThrow(
+      'TRAINER_PACKAGE_EXTERNAL_AUTHORITY_MISSING',
+    );
+  });
+
   it('rejects artifact mutation and residual package paths', () => {
     const mutated = renderedFixture();
     writeFileSync(resolve(mutated.root, 'dist/landing/es/index.html'), 'changed');

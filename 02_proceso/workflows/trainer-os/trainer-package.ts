@@ -10,6 +10,8 @@ import {
   TrainerHumanReviewReceiptSchema,
   TrainerPackageManifestSchema,
   TrainerVerificationReceiptSchema,
+  packageAuthorityLedgerPath,
+  resolvePackageAuthority,
   type TrainerPackageManifest,
 } from './trainer-package-contracts.ts';
 import {promotePackage} from './trainer-package-io.ts';
@@ -29,12 +31,12 @@ export const packageSourceTreeSha256 = () =>
     canonicalJson(sourceFiles.map((ref) => ({ref, sha256: hashFile(resolve(sourceRoot, ref))}))),
   );
 
-const authorityFiles = (
+const packageFiles = (
   runPath: string,
   manifest: TrainerRunManifestV1,
   build: ReturnType<typeof verifyTrainerBuild>,
-) => {
-  if (!manifest.verificationReceipt || !manifest.humanReviewReceipt)
+): Array<readonly [string, Uint8Array]> => {
+  if (!manifest.buildManifest || !manifest.verificationReceipt || !manifest.humanReviewReceipt)
     throw new Error('TRAINER_PACKAGE_RECEIPTS_MISSING');
   const verification = TrainerVerificationReceiptSchema.parse(
     readJson(portableResolve(runPath, manifest.verificationReceipt.ref)),
@@ -50,58 +52,25 @@ const authorityFiles = (
   )
     throw new Error('TRAINER_PACKAGE_RECEIPT_BYTES_CHANGED');
   if (
-    verification.buildManifest.ref !== manifest.buildManifest?.ref ||
     verification.buildManifest.sha256 !== manifest.buildManifest.sha256 ||
     verification.treeSha256 !== build.treeSha256 ||
-    human.buildManifest.ref !== manifest.buildManifest.ref ||
     human.buildManifest.sha256 !== manifest.buildManifest.sha256 ||
-    human.verificationReceipt.ref !== manifest.verificationReceipt.ref ||
     human.verificationReceipt.sha256 !== manifest.verificationReceipt.sha256 ||
-    manifest.humanReviewReceipt.actorId !== human.actorId ||
-    manifest.humanReviewReceipt.verdict !== human.verdict ||
     manifest.humanReviewReceipt.buildManifestSha256 !== manifest.buildManifest.sha256 ||
     manifest.humanReviewReceipt.verificationReceiptSha256 !== manifest.verificationReceipt.sha256
   )
     throw new Error('TRAINER_PACKAGE_RECEIPT_BINDING_DRIFT');
-  return [
-    ['package/authority/run-manifest.json', readFileSync(runPath)],
-    [
-      'package/authority/route-spec.json',
-      readFileSync(portableResolve(runPath, build.routeSpec.ref)),
-    ],
-    [
-      'package/authority/design-lock.json',
-      readFileSync(portableResolve(runPath, build.designLock.ref)),
-    ],
-    [
-      'package/authority/artifact-plan.json',
-      readFileSync(portableResolve(runPath, build.artifactPlan.ref)),
-    ],
-    [
-      'package/authority/asset-manifest.json',
-      readFileSync(portableResolve(runPath, build.assetManifest.ref)),
-    ],
-    [
-      'package/authority/build-manifest.json',
-      readFileSync(portableResolve(runPath, manifest.buildManifest.ref)),
-    ],
-    [
-      'package/authority/verification-receipt.json',
-      readFileSync(portableResolve(runPath, manifest.verificationReceipt.ref)),
-    ],
-    [
-      'package/authority/human-review-receipt.json',
-      readFileSync(portableResolve(runPath, manifest.humanReviewReceipt.ref)),
-    ],
+  const authority = [
+    ['run-manifest', runPath],
+    ['route-spec', portableResolve(runPath, build.routeSpec.ref)],
+    ['design-lock', portableResolve(runPath, build.designLock.ref)],
+    ['artifact-plan', portableResolve(runPath, build.artifactPlan.ref)],
+    ['asset-manifest', portableResolve(runPath, build.assetManifest.ref)],
+    ['build-manifest', portableResolve(runPath, manifest.buildManifest.ref)],
+    ['verification-receipt', portableResolve(runPath, manifest.verificationReceipt.ref)],
+    ['human-review-receipt', portableResolve(runPath, manifest.humanReviewReceipt.ref)],
   ] as const;
-};
-
-const packageFiles = (
-  runPath: string,
-  manifest: TrainerRunManifestV1,
-  build: ReturnType<typeof verifyTrainerBuild>,
-) =>
-  [
+  return [
     ...build.outputs.map(
       ({ref}) =>
         [
@@ -109,8 +78,11 @@ const packageFiles = (
           readFileSync(portableResolve(runPath, ref)),
         ] as const,
     ),
-    ...authorityFiles(runPath, manifest, build),
+    ...authority.map(
+      ([name, path]) => [`package/authority/${name}.json`, readFileSync(path)] as const,
+    ),
   ].sort(([left], [right]) => left.localeCompare(right));
+};
 
 export const packageTrainer = (
   runPath: string,
@@ -119,7 +91,10 @@ export const packageTrainer = (
   if (manifest.state !== 'RENDERED_DRAFT')
     throw new Error(`TRAINER_PACKAGE_REQUIRES_RENDERED_DRAFT:${manifest.state}`);
   const build = verifyTrainerBuild(runPath, manifest);
+  const authority = resolvePackageAuthority(manifest);
   const files = packageFiles(runPath, manifest, build);
+  files.push(['package/authority/lifecycle-ledger.yml', readFileSync(packageAuthorityLedgerPath)]);
+  files.sort(([left], [right]) => left.localeCompare(right));
   const bindings = files.map(([ref, bytes]) => ({ref, sha256: sha256(bytes)}));
   const draft = {
     schemaVersion: 'trainer-package-manifest-v1',
@@ -133,6 +108,11 @@ export const packageTrainer = (
       ref: manifest.humanReviewReceipt!.ref,
       sha256: manifest.humanReviewReceipt!.sha256,
     },
+    authorityLedger: {
+      ref: 'lifecycle-ledger.yml',
+      sha256: sha256(readFileSync(packageAuthorityLedgerPath)),
+    },
+    authorizationEventId: authority.event_id.toLowerCase(),
     packagerSourceTreeSha256: packageSourceTreeSha256(),
     files: bindings,
     artifactCount: build.outputs.length,
@@ -168,11 +148,25 @@ export const verifyTrainerPackage = (runPath: string) => {
     manifest.humanReviewReceipt.sha256 !== run.humanReviewReceipt.sha256
   )
     throw new Error('TRAINER_PACKAGE_RUN_BINDING_DRIFT');
+  const authority = resolvePackageAuthority(run);
+  if (
+    manifest.authorityLedger.ref !== 'lifecycle-ledger.yml' ||
+    manifest.authorityLedger.sha256 !== sha256(readFileSync(packageAuthorityLedgerPath)) ||
+    manifest.authorizationEventId !== authority.event_id.toLowerCase()
+  )
+    throw new Error('TRAINER_PACKAGE_AUTHORITY_LEDGER_DRIFT');
   const build = verifyTrainerBuild(runPath, run);
-  const expected = packageFiles(runPath, run, build).map(([fileRef, bytes]) => ({
-    ref: fileRef,
-    sha256: sha256(bytes),
-  }));
+  const expected: Array<{ref: string; sha256: string}> = packageFiles(runPath, run, build).map(
+    ([fileRef, bytes]) => ({
+      ref: fileRef,
+      sha256: sha256(bytes),
+    }),
+  );
+  expected.push({
+    ref: 'package/authority/lifecycle-ledger.yml',
+    sha256: sha256(readFileSync(packageAuthorityLedgerPath)),
+  });
+  expected.sort((left, right) => left.ref.localeCompare(right.ref));
   if (canonicalJson(expected) !== canonicalJson(manifest.files))
     throw new Error('TRAINER_PACKAGE_AUTHORITY_DRIFT');
   const actual = exactTree(portableResolve(runPath, 'package'), runPath).filter(
