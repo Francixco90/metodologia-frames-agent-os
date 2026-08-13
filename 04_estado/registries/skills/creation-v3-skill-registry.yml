@@ -1927,6 +1927,16 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/skill-security-auditor/scripts/check-skill.mjs]
+  - skill_id: metodologia-workshop-route-landing-html
+    version: 0.1.0
+    current_state: candidate
+    execution_scope: local-candidate-evaluation
+    content_sha256: b999ace8d5be84168cb159435936686932af03f26df0a6375ab2425621f947df
+    package_manifest_sha256: fd3c1a837f98b9d940db0bd7565450f7b28896573d479ef10b365a0cd340b984
+    lineage_ref: skills/metodologia-workshop-route-landing-html/LINEAGE.yml
+    production_runtime_status: blocked_pending_independent_review
+    publication_authority: false
+    tests: [node skills/metodologia-workshop-route-landing-html/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
@@ -2738,3 +2748,4 @@ events:
   - {event_id: EVT-SKL-CSM-H03-008, event_order: 8, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: delegate_voice_analysis_to_transcript_intelligence_verifier}
   - {event_id: EVT-SKL-CGV-H03-017, event_order: 17, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_canonical_transcript_gate_regression_receipt}
   - {event_id: EVT-SKL-CGV-H03-018, event_order: 18, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_canonical_transcript_intelligence_consumer_v015}
+  - {event_id: EVT-SKL-MWRL-H03-001, event_order: 1, skill_id: metodologia-workshop-route-landing-html, from: null, to: candidate, actor_id: RT-07-WORKSHOP-ROUTE-LANDING-PRODUCER, recorded_at: '2026-08-12T00:00:00Z', decision: register_spec_compile_verify_candidate_without_promotion}
