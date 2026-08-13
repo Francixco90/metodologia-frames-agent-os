@@ -1,6 +1,7 @@
 import {resolve} from 'node:path';
 
 import {compileTrainer, verifyTrainerBuild} from './compiler.ts';
+import {materializePendingBenchmark} from './benchmark.ts';
 import {hashModel} from './common.ts';
 import {prepareContinuity, verifyContinuity, verifyWriteIsolation} from './runtime-guards.ts';
 import {atomicWrite, hashFile, portableResolve, readJson, writeJson} from './runtime-io.ts';
@@ -110,7 +111,6 @@ export const executeTrainer = (
   selectedRunPath: string,
 ): TrainerRunManifestV1 => {
   const runPath = resolve(selectedRunPath);
-  if (mode === 'benchmark') throw new Error(`TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED:${mode}`);
   const raw = readJson(runPath);
   if (raw === null || typeof raw !== 'object' || Array.isArray(raw))
     throw new Error('TRAINER_MANIFEST_HASH_DRIFT');
@@ -119,6 +119,16 @@ export const executeTrainer = (
     throw new Error('TRAINER_MANIFEST_HASH_DRIFT');
   const manifest = TrainerRunManifestV1Schema.parse(record);
   verifyContinuity(runPath, manifest);
+  if (mode === 'benchmark') {
+    verifyWriteIsolation(
+      runPath,
+      manifest,
+      [manifest.intakeRef],
+      ['outputs/benchmark.pending.json', 'outputs/benchmark-report.md'],
+    );
+    materializePendingBenchmark(runPath);
+    return manifest;
+  }
   if (mode === 'verify') {
     verifyTrainerBuild(runPath, manifest);
     return manifest;
@@ -161,7 +171,9 @@ export const main = (): number => {
       'USAGE: trainer --mode intake|spec|build|verify|package|benchmark --run <manifest>',
     );
   const result = executeTrainer(mode, resolve(run));
-  console.info(`PASS TRAINER ${mode}: ${result.runId} -> ${result.state}`);
+  console.info(
+    `${mode === 'benchmark' ? 'COVERAGE_GAP' : 'PASS'} TRAINER ${mode}: ${result.runId} -> ${result.state}`,
+  );
   return 0;
 };
 

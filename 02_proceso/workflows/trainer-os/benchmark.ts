@@ -1,9 +1,16 @@
 import {readFileSync} from 'node:fs';
 import {dirname, relative, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 import {TrainerBenchmarkSchema} from './benchmark-contracts.ts';
-import {hashModel} from './common.ts';
-import {writeJson} from './runtime-io.ts';
+import {canonicalJson, hashModel, sha256} from './common.ts';
+import {privacyGate} from './compiler-authority.ts';
+import {atomicWrite, portableResolve, writeJson} from './runtime-io.ts';
+
+const evalRoot = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  '../../../03_artefactos/projects/trainer-os/evals',
+);
 
 export const createPendingBenchmark = () => {
   const briefs = [
@@ -67,6 +74,27 @@ export const runSyntheticBenchmark = (inputRef: string, outputRef: string) => {
   if (!offset || offset.startsWith('..') || offset.startsWith('/'))
     throw new Error('TRAINER_BENCHMARK_OUTPUT_ESCAPE');
   writeJson(output, parsed);
+  return parsed;
+};
+
+export const materializePendingBenchmark = (runPath: string) => {
+  const inputPath = resolve(evalRoot, 'benchmark.pending.json');
+  const parsed = TrainerBenchmarkSchema.parse(JSON.parse(readFileSync(inputPath, 'utf8')));
+  if (canonicalJson(parsed) !== canonicalJson(createPendingBenchmark()))
+    throw new Error('TRAINER_BENCHMARK_PENDING_AUTHORITY_DRIFT');
+  const inputs = readFileSync(resolve(evalRoot, 'benchmark-inputs-v1.json'));
+  const rubric = readFileSync(resolve(evalRoot, 'trainer-quality-rubric-v1.json'));
+  if (parsed.scenarios.some(({input}) => input.sha256 !== sha256(inputs)))
+    throw new Error('TRAINER_BENCHMARK_INPUT_AUTHORITY_DRIFT');
+  if (parsed.qualityRubric.sha256 !== sha256(rubric))
+    throw new Error('TRAINER_BENCHMARK_RUBRIC_AUTHORITY_DRIFT');
+  const report = renderBenchmarkReport(parsed);
+  privacyGate(report);
+  atomicWrite(
+    portableResolve(runPath, 'outputs/benchmark.pending.json'),
+    `${JSON.stringify(parsed, null, 2)}\n`,
+  );
+  atomicWrite(portableResolve(runPath, 'outputs/benchmark-report.md'), report);
   return parsed;
 };
 

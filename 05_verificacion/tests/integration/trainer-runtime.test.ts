@@ -86,10 +86,11 @@ test('keeps Trainer intake/spec deterministic, contained and fail-closed', () =>
     errors.push('PACKAGE_NOT_REVIEW_GATED');
   const benchmarkResult = execute(first, 'benchmark');
   if (
-    benchmarkResult.status === 0 ||
-    !message(benchmarkResult).includes('TRAINER_MODE_NOT_IMPLEMENTED_FAIL_CLOSED')
+    benchmarkResult.status !== 0 ||
+    !message(benchmarkResult).includes('COVERAGE_GAP TRAINER benchmark') ||
+    !readFileSync(resolve(first, 'outputs/benchmark-report.md'), 'utf8').includes('not_executed')
   )
-    errors.push('MODE_NOT_FAIL_CLOSED:benchmark');
+    errors.push('BENCHMARK_PENDING_PROJECTION_DRIFT');
   if (execute(first, 'spec').status !== 0) errors.push('SPEC_NOT_RESTARTABLE');
 
   const continuityDrift = clone('continuity-drift');

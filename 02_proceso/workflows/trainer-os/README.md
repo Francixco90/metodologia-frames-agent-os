@@ -16,9 +16,9 @@ atómico, determinista y sin autoridad de publicación. La ruta implementada aut
 fixture sintética y la declara como tal en el manifest; no representa revisión humana externa.
 Cualquier paquete productivo falla cerrado hasta incorporar un resolver de receipts emitidos por
 Verifier, Guardian y H01 fuera del writer del proyecto.
-`benchmark` permanece fail-closed en el CLI: PR5 solo aporta
-el contrato, los tres inputs sintéticos y la proyección local `not_executed`; ingerir receipts
-observados requiere un resolver de evidencia posterior.
+`benchmark` valida la autoridad canónica, materializa dentro del run la proyección y el informe
+`not_executed`, y reporta `COVERAGE_GAP`; no inventa métricas. Ingerir receipts observados sigue
+fail-closed hasta disponer de evidencia externa auténtica de ambos runtimes.
 
 ```bash
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>
