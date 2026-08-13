@@ -45,6 +45,7 @@
     "task:list": "node --import tsx scripts/task-list.ts",
     "mw:scaffold": "node --import tsx scripts/scaffold-multimedia-workflow.ts",
     "mw:run": "node --import tsx 02_proceso/workflows/multimedia/_runner/run.ts",
+    "trainer": "node --import tsx 02_proceso/workflows/trainer-os/runner.ts",
     "mw:render-schematics": "node --import tsx 02_proceso/workflows/multimedia/_runner/render-schematic-html.ts",
     "mw:scaffold-artifacts": "node --import tsx 05_verificacion/scripts/scaffold-artifact-schemas.ts",
     "eval:run": "node --import tsx 05_verificacion/evals/runner.ts",

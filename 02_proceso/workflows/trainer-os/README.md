@@ -15,12 +15,13 @@ fallan cerrados hasta PRs posteriores.
 ```bash
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode spec --run <manifest>
+pnpm trainer --mode intake --run <manifest>
 pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts
 ```
 
 El techo es `RENDERED_DRAFT`. Producer no concede revisión humana, readiness ni publicación.
 
-`coverage_gap`: todavía no existe alias `pnpm trainer`, gate canónico, binding de versión del
-runtime/compilador ni receipt de consumo observado. Los conteos de las fixtures son datos
-sintéticos de prueba, no mediciones reales. El registro global legado todavía solo modela
-productos web y video.
+`EXP_TRAINER_RUNTIME_VALIDATED` ejecuta la suite focal material. `coverage_gap`: todavía no
+existe binding de versión del runtime/compilador ni receipt de consumo observado. Los conteos
+de las fixtures son datos sintéticos de prueba, no mediciones reales. El registro global legado
+todavía solo modela productos web y video.
