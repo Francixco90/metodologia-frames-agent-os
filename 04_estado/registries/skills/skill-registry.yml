@@ -462,8 +462,8 @@ entries:
     current_state: candidate
     owner: MetodologIA
     responsible_actor: trainer-os-producer
-    content_sha256: 04f8b78fcd7fa62dd312e8488e2af1deac3cdeebe3806915426aa01ac1c98e0c
-    package_manifest_sha256: b54bb1697e46bb4775b1294ea6bbd71453b329589090050db44a3c077b0670ce
+    content_sha256: e979abc6ce12b6ce5ca5129c26032a28da6710b98f267a3194a54cd48e6b19a0
+    package_manifest_sha256: dbad55723b71c37839f6adb1cebb469433574c57a6116ddb2d04b3538f222941
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-learning-playbook-html/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal
@@ -481,8 +481,8 @@ entries:
     current_state: candidate
     owner: MetodologIA
     responsible_actor: trainer-os-producer
-    content_sha256: baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1
-    package_manifest_sha256: 21888ab6e3423874d4044498eb1180bceaf6987e7eae67606582a9fa9f077198
+    content_sha256: 96689d0e7c354a0231411a755033c393905b0dcbad871d641410f88fdc806935
+    package_manifest_sha256: 55760c8489026f1ea12d5e761a4ee779aeb52020dd137351f3cc8de7e28985de
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-prompt-library/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal

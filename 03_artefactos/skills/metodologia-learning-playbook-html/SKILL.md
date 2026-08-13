@@ -15,10 +15,11 @@ Route approved Trainer OS content to the shared deterministic playbook adapter.
    the complete declared set; never add filler.
 3. Preserve ordered chapters, globally unique step IDs, supplied locale content, concise CTA, semantic HTML,
    fragments and print. Keep core content and navigation usable without JS; copy is optional.
-4. Invoke the shared adapter; never recreate HTML, CSS or content here.
+4. Route to the shared adapter only after evaluation promotes this candidate; never recreate HTML, CSS or content here.
 5. Replay in clean roots and compare exact bytes, output trees, manifests and receipts.
 6. Reject undeclared optionals, missing steps, structural drift, network, tracking, private
    locators, response persistence, stale hashes and publication.
 
 Load [references/operating-contract.md](references/operating-contract.md) only for detailed
-acceptance rules. Return `RENDERED_DRAFT`; runtime remains blocked pending evaluation.
+acceptance rules. While runtime remains blocked pending evaluation, stop after routing with
+`coverage_gap`; do not invoke compilation or claim `RENDERED_DRAFT`.

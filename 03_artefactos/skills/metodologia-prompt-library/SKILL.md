@@ -15,10 +15,11 @@ Route approved Trainer OS prompts to the shared deterministic library adapter.
    `stepId` and every materialized playbook step.
 3. Preserve localized labels, semantic headings, playbook backlinks and icon-only copy controls
    with accessible names. Keep prompt text and navigation usable without JS; copy is optional.
-4. Invoke the shared adapter; never recreate HTML, copy scripts or prompt content here.
+4. Route to the shared adapter only after evaluation promotes this candidate; never recreate HTML, copy scripts or prompt content here.
 5. Replay in clean roots and compare bytes, trees, manifests and receipts.
 6. Reject duplicate or missing step bindings, level drift, materialization IDs on prompt artifacts,
    response persistence, network, tracking, private locators, stale hashes and publication.
 
 Load [references/operating-contract.md](references/operating-contract.md) only for detailed
-acceptance rules. Return `RENDERED_DRAFT`; runtime remains blocked pending evaluation.
+acceptance rules. While runtime remains blocked pending evaluation, stop after routing with
+`coverage_gap`; do not invoke compilation or claim `RENDERED_DRAFT`.
