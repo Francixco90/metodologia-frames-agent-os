@@ -135,7 +135,8 @@ describe('router.yml contract', () => {
         '02_proceso/workflows/trainer-os/runner.ts',
       ]),
     );
-    expect(content?.output).toMatch(/perfil Trainer OS.*RENDERED_DRAFT/u);
+    expect(content?.output).toMatch(/perfil Trainer OS candidate.*STOP en EXP_BRIEF_APPROVED/u);
+    expect(content?.output).toMatch(/RENDERED_DRAFT siguen coverage_gap/u);
     expect(content?.output).toMatch(/sin publicar/u);
   });
 

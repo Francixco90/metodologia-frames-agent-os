@@ -25,12 +25,12 @@ const digest = (id: string) => {
 };
 type Fixture = {
   skill_id: (typeof ids)[number];
-  input: Record<string, boolean | number>;
+  input: Record<string, boolean | number | string[]>;
   expect: {verdict: 'PASS' | 'BLOCK'; reasons?: string[]; publication_authority: false};
 };
 const fixture = (id: (typeof ids)[number], kind: 'positive' | 'negative') =>
   parse(read(`${base}/${id}/fixtures/${kind}/case.yml`)) as Fixture;
-const issues = (id: (typeof ids)[number], input: Record<string, boolean | number>) =>
+const issues = (id: (typeof ids)[number], input: Record<string, boolean | number | string[]>) =>
   id === 'metodologia-trainer-landing'
     ? [
         ...(input.sections === 8 ? [] : ['sections']),
@@ -38,13 +38,20 @@ const issues = (id: (typeof ids)[number], input: Record<string, boolean | number
         ...(input.target_exists ? [] : ['target']),
         ...(input.canonical_path ? [] : ['path']),
         ...(input.network ? ['network'] : []),
+        ...(input.connectors ? ['connectors'] : []),
+        ...(input.publication ? ['publication'] : []),
       ]
     : [
-        ...(input.routes === 3 ? [] : ['routes']),
+        ...(JSON.stringify(input.routes) ===
+        JSON.stringify(['session', 'deepening', 'consolidation'])
+          ? []
+          : ['routes']),
         ...(input.unique_steps ? [] : ['ids']),
         ...(input.canonical_path ? [] : ['path']),
         ...(input.response_persistence ? ['persistence'] : []),
         ...(input.network ? ['network'] : []),
+        ...(input.connectors ? ['connectors'] : []),
+        ...(input.publication ? ['publication'] : []),
       ];
 
 describe('Trainer OS landing and workbook skill routers', () => {
@@ -56,6 +63,10 @@ describe('Trainer OS landing and workbook skill routers', () => {
     expect(issues(id, positive.input)).toEqual([]);
     expect(negative.expect).toMatchObject({verdict: 'BLOCK', publication_authority: false});
     expect(issues(id, negative.input)).toEqual(negative.expect.reasons);
+    expect(issues(id, {...positive.input, publication: true})).toContain('publication');
+    expect(issues(id, {...positive.input, connectors: true})).toContain('connectors');
+    if (id === 'metodologia-trainer-workbook')
+      expect(issues(id, {...positive.input, routes: ['foo', 'bar', 'baz']})).toContain('routes');
   });
 
   it.each(ids)('%s is concise, compiler-routed and hash-bound in the registry', (id) => {
@@ -110,6 +121,17 @@ describe('Trainer OS landing and workbook skill routers', () => {
         '02_proceso/workflows/trainer-os/runner.ts',
       ]),
     );
-    expect(r6?.output).toMatch(/perfil Trainer OS.*RENDERED_DRAFT/u);
+    expect(r6?.output).toMatch(/perfil Trainer OS candidate.*STOP en EXP_BRIEF_APPROVED/u);
+    expect(r6?.output).toMatch(/RENDERED_DRAFT siguen coverage_gap/u);
+  });
+
+  it('disambiguates Trainer-bound candidates from standalone legacy skills', () => {
+    const landing = read(`${base}/metodologia-trainer-landing/SKILL.md`);
+    const workbook = read(`${base}/metodologia-trainer-workbook/SKILL.md`);
+    expect(landing).toContain('trainer-run-manifest-v1');
+    expect(landing).toContain('legacy skill');
+    expect(workbook).toContain('trainer-run-manifest-v1');
+    expect(workbook).toContain('metodologia-workbook-html');
+    expect(`${landing}\n${workbook}`).toContain('block ambiguous requests');
   });
 });

@@ -500,8 +500,8 @@ entries:
     current_state: candidate
     owner: MetodologIA
     responsible_actor: trainer-os-producer
-    content_sha256: 865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1
-    package_manifest_sha256: 4c163b45f7a0fe96f339a9685d49d34cf7afce3e44448f4fc8bbaca7a4e048e0
+    content_sha256: 37da1c9bfb9cb195c69460f1a71301666df46fc18bdb908158c9d0df68171027
+    package_manifest_sha256: 2c55c0236cd245dd8320ccb37219a935a4419276f8b4ca19d8da7ce44970df6e
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-trainer-landing/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal
@@ -519,8 +519,8 @@ entries:
     current_state: candidate
     owner: MetodologIA
     responsible_actor: trainer-os-producer
-    content_sha256: 9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830
-    package_manifest_sha256: d8e34c9d23a4be48bdaabf630118b6d52bea5ffe2efffa0bfef166f6a356df9d
+    content_sha256: cf25f07281b3ac563e3b8b8e6c97196e49cff563ee6f927c673dfcda329e6f20
+    package_manifest_sha256: 995d0430b4f2a36e3fd4b1fd4b085856ad468ba1885812f6d250c617915f4476
     package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
     lineage: skills/metodologia-trainer-workbook/LINEAGE.yml
     license: LicenseRef-MetodologIA-Internal
@@ -1007,7 +1007,7 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-trainer-landing
-    content_sha256: 865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1
+    content_sha256: 37da1c9bfb9cb195c69460f1a71301666df46fc18bdb908158c9d0df68171027
     transition: {from: null, to: candidate}
     decision: register_local_landing_router_candidate_pending_evaluation
   - event_id: EVT-SKL-TRAINER-WORKBOOK-001
@@ -1015,6 +1015,6 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-trainer-workbook
-    content_sha256: 9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830
+    content_sha256: cf25f07281b3ac563e3b8b8e6c97196e49cff563ee6f927c673dfcda329e6f20
     transition: {from: null, to: candidate}
     decision: register_local_workbook_router_candidate_pending_evaluation

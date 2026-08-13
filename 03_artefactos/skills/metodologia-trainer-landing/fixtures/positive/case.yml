@@ -1,5 +1,5 @@
 schema_version: trainer-web-skill-fixture-v1
 skill_id: metodologia-trainer-landing
 request: Create a synthetic ES training landing from an approved Trainer OS route.
-input: {sections: 8, cta_words: 2, target_exists: true, canonical_path: true, network: false}
+input: {sections: 8, cta_words: 2, target_exists: true, canonical_path: true, network: false, connectors: false, publication: false}
 expect: {verdict: PASS, maximum_state: RENDERED_DRAFT, publication_authority: false}
