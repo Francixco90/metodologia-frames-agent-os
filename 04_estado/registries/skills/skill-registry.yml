@@ -457,6 +457,44 @@ entries:
     publication_authority: false
     tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-router-skills.test.ts]
     event_ids: [EVT-SKL-MASTERCLASS-PDF-001]
+  - skill_id: metodologia-learning-playbook-html
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: trainer-os-producer
+    content_sha256: 04f8b78fcd7fa62dd312e8488e2af1deac3cdeebe3806915426aa01ac1c98e0c
+    package_manifest_sha256: b54bb1697e46bb4775b1294ea6bbd71453b329589090050db44a3c077b0670ce
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-learning-playbook-html/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-13T00:00:00Z'
+    fragments_reused: false
+    restrictions: [local_candidate_only, synthetic_fixtures_only, no_publication_authority]
+    execution_scope: local-candidate-routing-only
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-extended-skills.test.ts]
+    event_ids: [EVT-SKL-LEARNING-PLAYBOOK-001]
+  - skill_id: metodologia-prompt-library
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: trainer-os-producer
+    content_sha256: baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1
+    package_manifest_sha256: 21888ab6e3423874d4044498eb1180bceaf6987e7eae67606582a9fa9f077198
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/metodologia-prompt-library/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-13T00:00:00Z'
+    fragments_reused: false
+    restrictions: [local_candidate_only, synthetic_fixtures_only, no_publication_authority]
+    execution_scope: local-candidate-routing-only
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-extended-skills.test.ts]
+    event_ids: [EVT-SKL-PROMPT-LIBRARY-001]
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
@@ -910,3 +948,19 @@ events:
     content_sha256: a98abbec792602ca7fbe9b36a34bad5c5c9088a355f507e689f11d4d2196ea7f
     transition: {from: null, to: candidate}
     decision: register_local_pdf_router_candidate_pending_evaluation
+  - event_id: EVT-SKL-LEARNING-PLAYBOOK-001
+    event_order: 1
+    recorded_at: '2026-08-13T00:00:00Z'
+    actor_id: trainer-os-producer
+    skill_id: metodologia-learning-playbook-html
+    content_sha256: 04f8b78fcd7fa62dd312e8488e2af1deac3cdeebe3806915426aa01ac1c98e0c
+    transition: {from: null, to: candidate}
+    decision: register_local_playbook_router_candidate_pending_evaluation
+  - event_id: EVT-SKL-PROMPT-LIBRARY-001
+    event_order: 1
+    recorded_at: '2026-08-13T00:00:00Z'
+    actor_id: trainer-os-producer
+    skill_id: metodologia-prompt-library
+    content_sha256: baaa0e2d86487c62c197c1b9891a07c35c0bfdd522f98f0febc1384c8bc450d1
+    transition: {from: null, to: candidate}
+    decision: register_local_prompt_router_candidate_pending_evaluation

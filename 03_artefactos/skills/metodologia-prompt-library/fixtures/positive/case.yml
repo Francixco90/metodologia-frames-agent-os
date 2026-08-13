@@ -1,0 +1,5 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-prompt-library
+request: Compile the synthetic four-level prompt library.
+input: {levels: [1, 2, 3, 4], steps: [step-a, step-b], prompt_steps: [step-a, step-b], copy_accessible: true, no_js_visible: true, publish: false}
+expect: {issues: [], maximum_state: RENDERED_DRAFT, publication_authority: false}
