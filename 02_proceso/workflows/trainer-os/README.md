@@ -11,7 +11,9 @@ Los cinco schemas y esta unidad runtime materializan `intake` y `spec` de forma 
 El runner verifica fuentes, manifest y continuidad, escribe state/resume/handoff atómicos e
 invalida derivados cuando cambia su autoridad. `build` materializa un HTML sintético mínimo
 para probar el núcleo común y lo promueve atómicamente; `verify` revalida bytes y árbol sin
-escribir. `package` y `benchmark` fallan cerrados hasta PRs posteriores.
+escribir. `package` falla cerrado. `benchmark` permanece fail-closed en el CLI: PR5 solo aporta
+el contrato, los tres inputs sintéticos y la proyección local `not_executed`; ingerir receipts
+observados requiere un resolver de evidencia posterior.
 
 ```bash
 node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "7d40fbfb99b5241f4b488d8d44ab41eaff4335cb8662c65a5bc6d7d6c50a5eea",
+  "repositoryTreeSha256": "dbab0ecf18b387271a8e0e211c83474534d9b2f5f11e8c9a7ac4af26b9db1e50",
   "totalMarkdown": 1819,
   "auditedAuthored": 571,
   "classPaths": {
@@ -9450,9 +9450,9 @@
       "sourceRef": "02_proceso/workflows/trainer-os/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "5ce5db15be6846446971d46332396d3099889a0be2ace7aec616ce17fc24bb14",
-      "words": 423,
-      "lines": 57,
+      "sha256": "f4b9b83f239d4fe35601dab666711cd0fa4f14d908f6e10a006f873419d0ce18",
+      "words": 447,
+      "lines": 59,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
