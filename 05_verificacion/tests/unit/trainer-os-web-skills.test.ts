@@ -9,6 +9,11 @@ import {z} from 'zod';
 const root = process.cwd();
 const base = '03_artefactos/skills';
 const ids = ['metodologia-trainer-landing', 'metodologia-trainer-workbook'] as const;
+const initialEventHashes: Record<(typeof ids)[number], string> = {
+  'metodologia-trainer-landing': '865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1',
+  'metodologia-trainer-workbook':
+    '9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830',
+};
 const read = (ref: string) => readFileSync(resolve(root, ref), 'utf8');
 const sha = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
 const walk = (directory: string): string[] =>
@@ -154,7 +159,11 @@ describe('Trainer OS landing and workbook skill routers', () => {
       content_sha256: sha(skill),
       package_manifest_sha256: digest(id),
     });
-    expect(event).toMatchObject({skill_id: id, transition: {from: null, to: 'candidate'}});
+    expect(event).toMatchObject({
+      skill_id: id,
+      content_sha256: initialEventHashes[id],
+      transition: {from: null, to: 'candidate'},
+    });
   });
 
   it('binds Trainer OS to the existing R6 content route without inventing R10', () => {

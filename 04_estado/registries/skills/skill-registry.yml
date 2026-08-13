@@ -1007,7 +1007,7 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-trainer-landing
-    content_sha256: 37da1c9bfb9cb195c69460f1a71301666df46fc18bdb908158c9d0df68171027
+    content_sha256: 865a3aa33e2f4fa233c62efd30a38593d0d8b82ba32b0817208d7a7d6f248af1
     transition: {from: null, to: candidate}
     decision: register_local_landing_router_candidate_pending_evaluation
   - event_id: EVT-SKL-TRAINER-WORKBOOK-001
@@ -1015,6 +1015,6 @@ events:
     recorded_at: '2026-08-13T00:00:00Z'
     actor_id: trainer-os-producer
     skill_id: metodologia-trainer-workbook
-    content_sha256: cf25f07281b3ac563e3b8b8e6c97196e49cff563ee6f927c673dfcda329e6f20
+    content_sha256: 9a8ff8310dc89876e4327a32591ce21bf9117f8041930e69050d2d8064038830
     transition: {from: null, to: candidate}
     decision: register_local_workbook_router_candidate_pending_evaluation
