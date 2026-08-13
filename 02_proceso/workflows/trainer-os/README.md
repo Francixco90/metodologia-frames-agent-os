@@ -7,13 +7,20 @@ Secuencia canónica:
 
 `INTAKE → CONTEXT_READY → SPEC_READY → DESIGN_LOCKED → COMPILED → VERIFIED → HUMAN_REVIEW → RENDERED_DRAFT`
 
-Esta unidad materializa únicamente los cinco schemas, las relaciones de estado e
-invalidación, el proyecto gobernado y su lifecycle. Todavía no existe un runtime ejecutable:
-`intake`, `spec`, `build`, `verify`, `package`, `benchmark`, la CLI, los receipts y las fixtures
-se incorporan en PRs secuenciales posteriores. Declarar el contrato no acredita ejecución.
+Los cinco schemas y esta unidad runtime materializan `intake` y `spec` de forma reiniciable.
+El runner verifica fuentes, manifest y continuidad, escribe state/resume/handoff atómicos e
+invalida derivados cuando cambia su autoridad. `build`, `verify`, `package` y `benchmark`
+fallan cerrados hasta PRs posteriores.
+
+```bash
+node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode intake --run <manifest>
+node --import tsx 02_proceso/workflows/trainer-os/runner.ts --mode spec --run <manifest>
+pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts
+```
 
 El techo es `RENDERED_DRAFT`. Producer no concede revisión humana, readiness ni publicación.
 
-`coverage_gap`: no existe aún un gate ejecutable para Trainer OS; tampoco hay binding de
-versión de runtime/compilador, medición de tokens ni integración con el registro global legado,
-que todavía solo modela productos web y video.
+`coverage_gap`: todavía no existe alias `pnpm trainer`, gate canónico, binding de versión del
+runtime/compilador ni receipt de consumo observado. Los conteos de las fixtures son datos
+sintéticos de prueba, no mediciones reales. El registro global legado todavía solo modela
+productos web y video.

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "trainer-run-manifest-v1",
+  "runId": "invalid-run",
+  "manifestSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "projectId": "trainer-os",
+  "state": "VERIFIED",
+  "intakeRef": "../restricted.json",
+  "stateRef": "state.json",
+  "resumeRef": "resume.md",
+  "handoffRef": "handoff.json",
+  "invalidated": [],
+  "maximumState": "RENDERED_DRAFT",
+  "effects": {"network": false, "connectors": false, "publication": false},
+  "tokenBudget": {
+    "maximum": 6000,
+    "estimated": 800,
+    "measured": 760
+  }
+}
