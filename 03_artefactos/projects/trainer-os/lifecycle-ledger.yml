@@ -10,34 +10,3 @@ events:
     manifest_ref: projects/trainer-os/project.yml
     manifest_sha256: 3297bf4dddd369a8a113e178bf708302aa1708f51d2cf6da188acb4e18d2c63b
     publication_authority: false
-  - event_id: TRAINER-OS-PACKAGE-AUTHORITY-002
-    event_order: 2
-    from: INTAKE
-    to: INTAKE
-    actor_id: TRAINER-OS-GUARDIAN
-    manifest_ref: projects/trainer-os/project.yml
-    manifest_sha256: e7fbd6d64cad50cc3aa77d8a762d716781b9b657f5a987fc11aa6e5d3ef99d46
-    decision: authorize_synthetic_package_fixture_without_advancing_project_state
-    scope: synthetic-fixture-only
-    run_id: synthetic-run
-    run_manifest_sha256: a79c50ba3202aea087c639fb5be09a006ab54f7925fa3befc66c5e2fd129a31e
-    build_manifest:
-      {
-        ref: outputs/build-manifest.json,
-        sha256: 8912acdd0d91ff8ef01b687e78395a227cb4b9f202d795cde9ef7e41eb24c337,
-      }
-    verification_receipt:
-      {
-        ref: verification.json,
-        sha256: dcf611fdcbeb5f55064fa49358c2910a4a193d9d8bce50dc635d02cd1c0ac1db,
-      }
-    human_review_receipt:
-      {
-        ref: human-review.json,
-        sha256: 4a3c67f5b944298a2929ba12d7b2fb9e9e1a900ba929907912eaf19b6a6ccad8,
-      }
-    verifier_actor: trainer-verifier
-    guardian_actor: trainer-guardian
-    human_actor: H01
-    verdict: PASS
-    publication_authority: false

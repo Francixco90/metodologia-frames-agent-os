@@ -12,9 +12,10 @@ El runner verifica fuentes, manifest y continuidad, escribe state/resume/handoff
 invalida derivados cuando cambia su autoridad. `build` materializa outputs gobernados y los
 promueve atómicamente; `verify` revalida bytes y árbol sin escribir. `package` exige estado
 `RENDERED_DRAFT`, receipt técnico y aprobación H01 ligados al build, y produce un paquete local
-atómico, determinista y sin autoridad de publicación. También exige un evento externo append-only
-con Verifier, Guardian y H01 distintos; el registro actual autoriza únicamente la fixture sintética,
-por lo que cualquier paquete productivo sigue fail-closed hasta una transición gobernada.
+atómico, determinista y sin autoridad de publicación. La ruta implementada autoriza únicamente la
+fixture sintética y la declara como tal en el manifest; no representa revisión humana externa.
+Cualquier paquete productivo falla cerrado hasta incorporar un resolver de receipts emitidos por
+Verifier, Guardian y H01 fuera del writer del proyecto.
 `benchmark` permanece fail-closed en el CLI: PR5 solo aporta
 el contrato, los tres inputs sintéticos y la proyección local `not_executed`; ingerir receipts
 observados requiere un resolver de evidencia posterior.

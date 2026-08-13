@@ -15,7 +15,6 @@ effects: {network: false, connectors: false, publication: false}
 human_review_required: true
 guardian_required: true
 ledger_ref: projects/trainer-os/lifecycle-ledger.yml
-package_authority_ledger_ref: projects/trainer-os/lifecycle-ledger.yml
 coverage_gaps:
   - global_project_registry_supports_only_legacy_web_video_shape
   - production_package_authority_and_observed_benchmark_ingestion_pending

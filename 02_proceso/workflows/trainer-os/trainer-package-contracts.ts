@@ -1,9 +1,5 @@
-import {readFileSync} from 'node:fs';
-import {dirname, resolve} from 'node:path';
-import {fileURLToPath} from 'node:url';
-
-import {parse} from 'yaml';
 import {z} from 'zod';
+import {parse} from 'yaml';
 
 import {
   HashRefSchema,
@@ -15,95 +11,58 @@ import {
 } from './common.ts';
 import type {TrainerRunManifestV1} from './trainer-run-manifest-v1.schema.ts';
 
-const AuthorityStateSchema = z.enum(['INTAKE', 'RENDERED_DRAFT']);
-const PackageAuthorityEventSchema = z
-  .strictObject({
-    event_id: z.string().regex(/^TRAINER-OS-PACKAGE-AUTHORITY-[0-9]{3}$/u),
-    event_order: z.number().int().positive(),
-    from: AuthorityStateSchema,
-    to: AuthorityStateSchema,
-    actor_id: z.literal('TRAINER-OS-GUARDIAN'),
-    manifest_ref: z.literal('projects/trainer-os/project.yml'),
-    manifest_sha256: Sha256Schema,
-    decision: z.enum([
-      'authorize_synthetic_package_fixture_without_advancing_project_state',
-      'authorize_production_package_after_independent_review',
-    ]),
-    scope: z.enum(['synthetic-fixture-only', 'production-run']),
-    run_id: IdSchema,
-    run_manifest_sha256: Sha256Schema,
-    build_manifest: HashRefSchema,
-    verification_receipt: HashRefSchema,
-    human_review_receipt: HashRefSchema,
-    verifier_actor: z.literal('trainer-verifier'),
-    guardian_actor: z.literal('trainer-guardian'),
-    human_actor: z.literal('H01'),
-    verdict: z.literal('PASS'),
-    publication_authority: z.literal(false),
-  })
-  .superRefine((value, context) => {
-    const synthetic = value.scope === 'synthetic-fixture-only';
-    const valid = synthetic
-      ? value.from === 'INTAKE' &&
-        value.to === 'INTAKE' &&
-        value.decision === 'authorize_synthetic_package_fixture_without_advancing_project_state'
-      : value.from === 'RENDERED_DRAFT' &&
-        value.to === 'RENDERED_DRAFT' &&
-        value.decision === 'authorize_production_package_after_independent_review';
-    if (!valid) context.addIssue({code: 'custom', message: 'authority scope and transition drift'});
-  });
+export const SyntheticPackageAuthoritySchema = z.strictObject({
+  schemaVersion: z.literal('trainer-synthetic-package-authority-v1'),
+  scope: z.literal('synthetic-fixture-only'),
+  runId: z.literal('synthetic-run'),
+  runManifestSha256: Sha256Schema,
+  buildManifest: HashRefSchema,
+  verificationReceipt: HashRefSchema,
+  humanReviewReceipt: HashRefSchema,
+  externalAuthority: z.literal(false),
+  productionAuthority: z.literal(false),
+  publicationAuthority: z.literal(false),
+});
 
-const sourceRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
-export const packageAuthorityLedgerPath = resolve(
-  sourceRoot,
-  '03_artefactos/projects/trainer-os/lifecycle-ledger.yml',
-);
-const projectPath = resolve(sourceRoot, '03_artefactos/projects/trainer-os/project.yml');
+export const syntheticPackageAuthority = SyntheticPackageAuthoritySchema.parse({
+  schemaVersion: 'trainer-synthetic-package-authority-v1',
+  scope: 'synthetic-fixture-only',
+  runId: 'synthetic-run',
+  runManifestSha256: 'a79c50ba3202aea087c639fb5be09a006ab54f7925fa3befc66c5e2fd129a31e',
+  buildManifest: {
+    ref: 'outputs/build-manifest.json',
+    sha256: '8912acdd0d91ff8ef01b687e78395a227cb4b9f202d795cde9ef7e41eb24c337',
+  },
+  verificationReceipt: {
+    ref: 'verification.json',
+    sha256: 'dcf611fdcbeb5f55064fa49358c2910a4a193d9d8bce50dc635d02cd1c0ac1db',
+  },
+  humanReviewReceipt: {
+    ref: 'human-review.json',
+    sha256: '4a3c67f5b944298a2929ba12d7b2fb9e9e1a900ba929907912eaf19b6a6ccad8',
+  },
+  externalAuthority: false,
+  productionAuthority: false,
+  publicationAuthority: false,
+});
+
+export const parseSyntheticProjectSnapshot = (bytes: Uint8Array) =>
+  z.object({current_state: z.literal('INTAKE')}).parse(parse(Buffer.from(bytes).toString()));
 
 export const resolvePackageAuthority = (manifest: TrainerRunManifestV1) => {
-  const ledger = z
-    .object({
-      mutation_policy: z.literal('append-only-events'),
-      events: z.array(z.record(z.string(), z.unknown())).min(2),
-    })
-    .parse(parse(readFileSync(packageAuthorityLedgerPath, 'utf8')));
-  const events = ledger.events.flatMap((candidate) => {
-    const parsed = PackageAuthorityEventSchema.safeParse(candidate);
-    return parsed.success ? [parsed.data] : [];
-  });
-  const event = events.find(
-    ({run_id: runId, run_manifest_sha256: runHash}) =>
-      runId === manifest.runId && runHash === manifest.manifestSha256,
-  );
-  const project = z
-    .object({
-      current_state: z.string(),
-      package_authority_ledger_ref: z.literal('projects/trainer-os/lifecycle-ledger.yml'),
-    })
-    .parse(parse(readFileSync(projectPath, 'utf8')));
+  if (manifest.runId !== syntheticPackageAuthority.runId)
+    throw new Error('TRAINER_PACKAGE_PRODUCTION_AUTHORITY_UNAVAILABLE');
   if (
-    ledger.events.some(({event_order: order}, index) => order !== index + 1) ||
-    new Set(ledger.events.map(({event_id: eventId}) => eventId)).size !== ledger.events.length ||
-    events.some(
-      ({manifest_sha256: projectHash}) => projectHash !== sha256(readFileSync(projectPath)),
-    )
+    syntheticPackageAuthority.runManifestSha256 !== manifest.manifestSha256 ||
+    syntheticPackageAuthority.buildManifest.ref !== manifest.buildManifest?.ref ||
+    syntheticPackageAuthority.buildManifest.sha256 !== manifest.buildManifest.sha256 ||
+    syntheticPackageAuthority.verificationReceipt.ref !== manifest.verificationReceipt?.ref ||
+    syntheticPackageAuthority.verificationReceipt.sha256 !== manifest.verificationReceipt.sha256 ||
+    syntheticPackageAuthority.humanReviewReceipt.ref !== manifest.humanReviewReceipt?.ref ||
+    syntheticPackageAuthority.humanReviewReceipt.sha256 !== manifest.humanReviewReceipt.sha256
   )
-    throw new Error('TRAINER_PACKAGE_AUTHORITY_LEDGER_DRIFT');
-  if (!event) throw new Error('TRAINER_PACKAGE_EXTERNAL_AUTHORITY_MISSING');
-  if (event.scope === 'synthetic-fixture-only' && !manifest.runId.startsWith('synthetic-'))
-    throw new Error('TRAINER_PACKAGE_SYNTHETIC_AUTHORITY_SCOPE_DRIFT');
-  if (event.scope === 'production-run' && project.current_state !== event.to)
-    throw new Error(`TRAINER_PACKAGE_PROJECT_STATE_BLOCKED:${project.current_state}`);
-  if (
-    event.build_manifest.ref !== manifest.buildManifest?.ref ||
-    event.build_manifest.sha256 !== manifest.buildManifest.sha256 ||
-    event.verification_receipt.ref !== manifest.verificationReceipt?.ref ||
-    event.verification_receipt.sha256 !== manifest.verificationReceipt.sha256 ||
-    event.human_review_receipt.ref !== manifest.humanReviewReceipt?.ref ||
-    event.human_review_receipt.sha256 !== manifest.humanReviewReceipt.sha256
-  )
-    throw new Error('TRAINER_PACKAGE_EXTERNAL_AUTHORITY_BINDING_DRIFT');
-  return event;
+    throw new Error('TRAINER_PACKAGE_SYNTHETIC_AUTHORITY_BINDING_DRIFT');
+  return syntheticPackageAuthority;
 };
 
 export const TrainerVerificationReceiptSchema = z
@@ -153,8 +112,10 @@ export const TrainerPackageManifestSchema = z
     buildManifest: HashRefSchema,
     verificationReceipt: HashRefSchema,
     humanReviewReceipt: HashRefSchema,
-    authorityLedger: HashRefSchema,
-    authorizationEventId: IdSchema,
+    authorityReceipt: HashRefSchema,
+    authorityScope: z.literal('synthetic-fixture-only'),
+    projectSnapshot: HashRefSchema,
+    projectState: z.literal('INTAKE'),
     packagerSourceTreeSha256: Sha256Schema,
     files: z.array(PackageFileSchema).min(9),
     artifactCount: z.number().int().positive(),

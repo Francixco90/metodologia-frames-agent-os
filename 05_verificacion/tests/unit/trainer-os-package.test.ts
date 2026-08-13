@@ -99,6 +99,8 @@ describe('Trainer OS deterministic local package', () => {
     const manifest = verifyTrainerPackage(item.runPath);
     expect(TrainerPackageManifestSchema.parse(manifest)).toMatchObject({
       state: 'RENDERED_DRAFT',
+      authorityScope: 'synthetic-fixture-only',
+      projectState: 'INTAKE',
       artifactCount: 2,
       effects: {network: false, connectors: false, publication: false},
       publicationAuthority: false,
@@ -124,7 +126,34 @@ describe('Trainer OS deterministic local package', () => {
     run.manifestSha256 = hashModel(run, 'manifestSha256');
     write(forged.runPath, run);
     expect(() => executeTrainer('package', forged.runPath)).toThrow(
-      'TRAINER_PACKAGE_EXTERNAL_AUTHORITY_MISSING',
+      'TRAINER_PACKAGE_PRODUCTION_AUTHORITY_UNAVAILABLE',
+    );
+  });
+
+  it('rejects receipt reference aliases even when their internal hashes are recomputed', () => {
+    const forged = renderedFixture();
+    const verificationPath = resolve(forged.root, 'verification.json');
+    const verification = JSON.parse(readFileSync(verificationPath, 'utf8')) as {
+      receiptSha256: string;
+      buildManifest: {ref: string; sha256: string};
+    };
+    verification.buildManifest.ref = 'other-build.json';
+    verification.receiptSha256 = hashModel(verification, 'receiptSha256');
+    write(verificationPath, verification);
+    const verificationSha = sha(verificationPath);
+    const run = {
+      ...forged.run,
+      verificationReceipt: {...forged.run.verificationReceipt, sha256: verificationSha},
+      humanReviewReceipt: {
+        ...forged.run.humanReviewReceipt,
+        verificationReceiptSha256: verificationSha,
+      },
+      manifestSha256: '',
+    };
+    run.manifestSha256 = hashModel(run, 'manifestSha256');
+    write(forged.runPath, run);
+    expect(() => executeTrainer('package', forged.runPath)).toThrow(
+      'TRAINER_PACKAGE_SYNTHETIC_AUTHORITY_BINDING_DRIFT',
     );
   });
 
