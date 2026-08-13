@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "trainer-artifact-profiles-v1",
+  "sharedComponents": [
+    "shell",
+    "header",
+    "hero",
+    "section-heading",
+    "card",
+    "cta",
+    "footer",
+    "language-toggle",
+    "theme-toggle"
+  ],
+  "profiles": [
+    {
+      "id": "landing",
+      "sectionCount": 8,
+      "components": ["route-rail", "resource-library", "faq", "letter"]
+    },
+    {
+      "id": "masterclass",
+      "slideCount": 18,
+      "components": ["slide-stage", "progress", "speaker-notes", "resource-link"]
+    },
+    {
+      "id": "workbook",
+      "sheetCount": 3,
+      "components": ["sheet-tabs", "prompt-card", "checklist", "evidence-field"]
+    },
+    {
+      "id": "playbook",
+      "stepMinimum": 12,
+      "principleMaximum": 7,
+      "components": ["step-rail", "principle-card", "decision-gate"]
+    },
+    {
+      "id": "prompt-library",
+      "levels": ["essential", "guided", "advanced", "expert"],
+      "components": ["prompt-card", "copy-control", "input-contract", "output-contract"]
+    }
+  ],
+  "interactionGuardrails": {
+    "keyboard": true,
+    "focusVisible": true,
+    "reducedMotion": true,
+    "minimumTouchTarget": "44px",
+    "noJsCoreContent": true
+  },
+  "publicationAuthority": false
+}

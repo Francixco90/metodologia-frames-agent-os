@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "trainer-design-assets-v1",
+  "manifestId": "metodologia-trainer-assets-v1",
+  "refBase": "manifest-directory",
+  "brandMark": {
+    "mode": "typographic",
+    "text": "MetodologIA",
+    "rights": "MetodologIA authored identity"
+  },
+  "authorityReceipts": [
+    {
+      "kind": "font-rights",
+      "ref": "../../../brand/fonts/rights-receipt.yml",
+      "sha256": "ff9c7696097fc50f7e189b8dcc6956ca0278bf6f66d6542d64c6caf00f815358"
+    },
+    {
+      "kind": "icon-manifest",
+      "ref": "../../../brand/career-design-system/manifest.v1.json",
+      "sha256": "1d62be0c2f31f799065061b7dd610d4714f09bd4e392fe9bf78e1fbc737884ef"
+    }
+  ],
+  "assets": [
+    {
+      "kind": "font",
+      "family": "Poppins",
+      "weight": "400",
+      "ref": "../../../brand/fonts/vendor/poppins/Poppins-Regular.ttf",
+      "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+      "licenseRef": "../../../brand/fonts/vendor/poppins/OFL.txt",
+      "licenseSha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
+      "spdx": "OFL-1.1"
+    },
+    {
+      "kind": "font",
+      "family": "Poppins",
+      "weight": "700",
+      "ref": "../../../brand/fonts/vendor/poppins/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c",
+      "licenseRef": "../../../brand/fonts/vendor/poppins/OFL.txt",
+      "licenseSha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
+      "spdx": "OFL-1.1"
+    },
+    {
+      "kind": "font",
+      "family": "Montserrat",
+      "weight": "400-700",
+      "ref": "../../../brand/fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7",
+      "licenseRef": "../../../brand/fonts/vendor/montserrat/OFL.txt",
+      "licenseSha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "spdx": "OFL-1.1"
+    },
+    {
+      "kind": "icons",
+      "ref": "../../../brand/career-design-system/icons/icons.v1.svg",
+      "sha256": "435438958860b2370ff89a60d6c836e8a13eeb41c02511b763b35ba0048a71a2",
+      "rights": "MetodologIA authored inline SVG; local reuse"
+    }
+  ],
+  "networkRequired": false,
+  "publicationAuthority": false
+}

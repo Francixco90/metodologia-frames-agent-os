@@ -1,0 +1,23 @@
+// GENERATED from tokens.authority.json. Do not edit.
+export const trainerTokens = {
+  source: 'tokens.authority.json',
+  tokenSetId: 'metodologia-trainer-neo-swiss-v1',
+  color: {
+    navy: '#0a122a',
+    gold: '#e0b400',
+    goldText: '#0a122a',
+    lightCanvas: '#f5f7fa',
+    lightSurface: '#ffffff',
+    lightText: '#0a122a',
+    darkCanvas: '#062f62',
+    darkSurface: '#093d78',
+    darkText: '#f4f7fb',
+    lightFocus: '#765400',
+    darkFocus: '#ffdb63',
+  },
+  font: {heading: 'Poppins', body: 'Montserrat', fallback: 'system-ui, sans-serif'},
+  space: ['4px', '8px', '12px', '16px', '24px', '32px', '48px', '64px'],
+  radius: {small: '8px', medium: '16px', large: '24px'},
+  motion: {duration: '180ms', easing: 'cubic-bezier(.4, 0, .2, 1)'},
+  layout: {contentMax: '1200px', touchTargetMin: '44px'},
+} as const;

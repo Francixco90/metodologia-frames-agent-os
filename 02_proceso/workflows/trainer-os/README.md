@@ -21,6 +21,17 @@ pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts
 
 El techo es `RENDERED_DRAFT`. Producer no concede revisión humana, readiness ni publicación.
 
+## Activos de diseño candidatos
+
+[CONFIG] `design/tokens.authority.json` vincula los tokens canónicos de MetodologIA y
+proyecta JSON, CSS y TypeScript byte-idénticos. El manifiesto de derechos reutiliza fuentes e
+íconos autorizados sin duplicar binarios; los perfiles fijan únicamente formas genéricas de
+landing, masterclass, workbook, playbook y biblioteca de prompts en ES/EN/PT.
+
+Esta unidad no contiene una decisión H01 ni un `trainer-design-lock-v1`, por lo que no concede
+`DESIGN_LOCKED`. El lock solo podrá materializarse en una ejecución real con exactamente dos
+direcciones y un receipt humano verificable. [DOC]
+
 `EXP_TRAINER_RUNTIME_VALIDATED` ejecuta la suite focal material. `coverage_gap`: todavía no
 existe binding de versión del runtime/compilador ni receipt de consumo observado. Los conteos
 de las fixtures son datos sintéticos de prueba, no mediciones reales. El registro global legado

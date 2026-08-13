@@ -1,0 +1,27 @@
+/* GENERATED from tokens.authority.json. Do not edit. */
+:root {
+  --trainer-navy: #0a122a;
+  --trainer-gold: #e0b400;
+  --trainer-gold-text: #0a122a;
+  --trainer-canvas: #f5f7fa;
+  --trainer-surface: #ffffff;
+  --trainer-text: #0a122a;
+  --trainer-focus: #765400;
+  --trainer-heading: 'Poppins', system-ui, sans-serif;
+  --trainer-body: 'Montserrat', system-ui, sans-serif;
+  --trainer-content-max: 1200px;
+  --trainer-touch-min: 44px;
+  --trainer-radius: 16px;
+  --trainer-motion: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme='dark'] {
+  --trainer-canvas: #062f62;
+  --trainer-surface: #093d78;
+  --trainer-text: #f4f7fb;
+  --trainer-focus: #ffdb63;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --trainer-motion: 0ms linear;
+  }
+}
