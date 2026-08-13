@@ -1,0 +1,8 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-trainer-os
+request: Publish a real client workshop and store its operational receipts in Frames.
+input: {directions: 2, questions: 0, prompts: 4, publish: true, private_receipts: true}
+expect:
+  verdict: BLOCK
+  reasons: [publication, private-receipts]
+  publication_authority: false
