@@ -19,7 +19,7 @@ La autoridad normativa para trabajo nuevo es `career-os-operating-contract-v2.md
 
 ## Cómo protege tu evidencia
 
-Frames separa cuatro niveles:
+MetodologIA separa cuatro niveles:
 
 - `verified`: existe una fuente material comprobable.
 - `user_confirmed`: tú confirmaste el dato de forma explícita.
@@ -75,10 +75,10 @@ y comprobante material.
 
 - Perfiles, documentos reales, salarios y postulaciones permanecen en estado privado ignorado.
 - Los fixtures versionados son sintéticos y no contienen PII.
-- Frames no usa cookies, credenciales ni scraping no autorizado.
+- MetodologIA no usa cookies, credenciales ni scraping no autorizado.
 - CAPTCHA, OTP, términos legales, declaraciones sensibles, pruebas e entrevistas grabadas requieren intervención humana.
 - Una vacante cerrada, alterada o no verificable no avanza.
 - Cambiar CV, carta, respuestas, canal o vacante invalida una autorización anterior.
 - No se contactan personas inferidas ni se envían mensajes aleatorios.
 
-Puedes empezar con: “Mejora mi CV para esta vacante usando solo lo que pueda demostrar”. Frames te pedirá las fuentes mínimas y creará primero el application brief.
+Puedes empezar con: “Mejora mi CV para esta vacante usando solo lo que pueda demostrar”. MetodologIA te pedirá las fuentes mínimas y creará primero el application brief.

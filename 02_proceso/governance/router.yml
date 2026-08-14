@@ -143,7 +143,7 @@ routes:
       - '02_proceso/workflows/career/_schema/intent-v1.schema.ts'
       - '02_proceso/workflows/career/_schema/brief-v1.schema.ts'
       - '02_proceso/workflows/operator-core/index.ts'
-    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; autoridad v2 con coverage_gap A1 para migración material; Operator Core solo aporta planificación determinista compartida; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
+    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; autoridad v2 con coverage_gap A1 para migración material; Operator Core solo aporta planificación determinista compartida; C09 hace STOP material en CR_PACKAGE_APPROVED; CR_SUBMISSION_AUTHORIZED pertenece a una fase posterior y exige receipt material one-use'
     binds_to: task
     runtime_status: active_brief_first
   - id: R8

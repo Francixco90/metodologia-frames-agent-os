@@ -22,6 +22,7 @@ describe('Career A0 authority remains receipt-bound', () => {
   };
   const router = parse(read('02_proceso/governance/router.yml')) as {
     manual_fail_closed_gates: string[];
+    routes: Array<{id: string; output: string}>;
   };
   const contextSurfaces = parse(read('02_proceso/governance/context-surfaces/skills.yml')) as {
     surfaces: Array<{context_id: string; gates?: string[]; stop_rules?: string[]}>;
@@ -104,6 +105,8 @@ describe('Career A0 authority remains receipt-bound', () => {
     expect(guide).toContain('### ATS rápida');
     expect(guide).toContain('### Ejecutiva');
     expect(guide).toContain('### Dirigida a una vacante');
+    expect(guide).toContain('MetodologIA');
+    expect(guide).not.toMatch(/\bFrames\b/u);
     expect(read('01_intencion/career/cv-spec-first-contract-v1.md')).toMatch(
       /^# Contrato operativo CV Spec-First v1\n\n> \*\*COMPATIBILITY-ONLY\./u,
     );
@@ -116,6 +119,10 @@ describe('Career A0 authority remains receipt-bound', () => {
     const submission = read('02_proceso/workflows/career/_runner/submission.ts');
     expect(submission).not.toContain('CR_PACKAGE_APPROVED');
     expect(submission).toContain("next_gate: 'CR_SUBMISSION_AUTHORIZED'");
+    const careerRoute = router.routes.find(({id}) => id === 'R7')!;
+    expect(careerRoute.output).toContain('STOP material en CR_PACKAGE_APPROVED');
+    expect(careerRoute.output).toMatch(/fase posterior.*receipt material one-use/u);
+    expect(careerRoute.output).not.toMatch(/STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED/u);
   });
 
   it('pins the append-only skill refresh event to the current hashes', () => {

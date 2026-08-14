@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "e02c0ff74afc260cc5108b05221f90980d1eacd9f3d538379964782ebb9d358d",
+  "repositoryTreeSha256": "97ee1b3de975b7cc6ababf7d6cf60dbd522a3ad55f3becd105c06310f1769d47",
   "totalMarkdown": 1841,
   "auditedAuthored": 590,
   "classPaths": {
@@ -4013,7 +4013,7 @@
       "sourceRef": "01_intencion/guides/career.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "d5f884952fc745a638505b56194cefb58e5f93811bf9a551b45fb59ffaa62a8d",
+      "sha256": "6508d6337fe62e1bbed9fb3444b3bab086623fed27b007cdad0fe058f5ea7d75",
       "words": 623,
       "lines": 85,
       "score": 100,

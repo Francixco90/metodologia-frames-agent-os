@@ -76,7 +76,7 @@ describe('router.yml contract', () => {
     expect(maintenance?.output).toMatch(/HM_CHANGE_APPROVED/u);
   });
 
-  it('R7 resolves career intent and stops at an explicit human gate', () => {
+  it('R7 resolves career intent and keeps C09 at the material package gate', () => {
     const career = router.routes.find((route) => route.id === 'R7');
     expect(career?.binds_to).toBe('task');
     expect(career?.reads).toEqual(
@@ -87,7 +87,9 @@ describe('router.yml contract', () => {
       ]),
     );
     expect(career?.output).toMatch(/C00-C09/u);
-    expect(career?.output).toMatch(/CR_BRIEF_APPROVED/u);
+    expect(career?.output).toMatch(/STOP material en CR_PACKAGE_APPROVED/u);
+    expect(career?.output).toMatch(/fase posterior.*receipt material one-use/u);
+    expect(career?.output).not.toMatch(/STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED/u);
   });
 
   it('R3-LOOSE binds to task with project_id null semantics', () => {
