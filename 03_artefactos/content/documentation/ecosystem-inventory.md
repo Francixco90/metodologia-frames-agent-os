@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 280
+- ASSET: 281
 - COMMAND: 101
 - COMPONENT: 16
 - DELIVERABLE: 87
@@ -64,6 +64,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 02_proceso/workflows/multimedia/_assets/schematic-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/schematic-template.html` |
 | ASSET | 02_proceso/workflows/video-os/_assets/archetypes.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/archetypes.json` |
 | ASSET | 02_proceso/workflows/video-os/_assets/document-sections.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/document-sections.json` |
+| ASSET | 02_proceso/workflows/video-os/_assets/handoff.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/handoff.template.md` |
 | ASSET | 02_proceso/workflows/video-os/_assets/regressions.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/regressions.json` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt` |
@@ -969,4 +970,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `caa0214ad4307909fbb68ec07272c6c9ffedeb9ca48ef42c28f04dff0f6f0771`.
+Hash de fuentes: `064baea930e17cd12140cf333d682c3be18df9a2d8860ba215af2e13339d62c7`.

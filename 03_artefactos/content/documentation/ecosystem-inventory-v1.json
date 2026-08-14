@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "caa0214ad4307909fbb68ec07272c6c9ffedeb9ca48ef42c28f04dff0f6f0771",
+  "sourceSha256": "064baea930e17cd12140cf333d682c3be18df9a2d8860ba215af2e13339d62c7",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -41,6 +41,7 @@
     {"kind":"ASSET","id":"02_proceso/workflows/multimedia/_assets/schematic-template.html","ref":"02_proceso/workflows/multimedia/_assets/schematic-template.html","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ASSET","id":"02_proceso/workflows/video-os/_assets/archetypes.json","ref":"02_proceso/workflows/video-os/_assets/archetypes.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ASSET","id":"02_proceso/workflows/video-os/_assets/document-sections.json","ref":"02_proceso/workflows/video-os/_assets/document-sections.json","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"ASSET","id":"02_proceso/workflows/video-os/_assets/handoff.template.md","ref":"02_proceso/workflows/video-os/_assets/handoff.template.md","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ASSET","id":"02_proceso/workflows/video-os/_assets/regressions.json","ref":"02_proceso/workflows/video-os/_assets/regressions.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ASSET","id":"03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf","ref":"03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ASSET","id":"03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt","ref":"03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt","scope":"CANONICAL","state":"ACTIVE"},
