@@ -11,11 +11,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 279
-- COMMAND: 99
+- ASSET: 280
+- COMMAND: 101
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 57
+- GATE: 58
 - RENDERER: 5
 - ROUTE: 11
 - SKILL: 184
@@ -63,6 +63,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 02_proceso/workflows/multimedia/_assets/recovery-faq.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/recovery-faq.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/schematic-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/schematic-template.html` |
 | ASSET | 02_proceso/workflows/video-os/_assets/archetypes.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/archetypes.json` |
+| ASSET | 02_proceso/workflows/video-os/_assets/document-sections.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/document-sections.json` |
 | ASSET | 02_proceso/workflows/video-os/_assets/regressions.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/regressions.json` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt` |
@@ -413,6 +414,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | verify | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:renderers | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:skills | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | verify:video-os | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | video-os | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:review | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:smoke | ACTIVE | CANONICAL | `package.json` |
@@ -543,6 +546,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CONTENT | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_EXPERIENCE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | G09_VIDEO_OS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_WEB | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G10 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G11 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -965,4 +969,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `7ed96c7663fae284ae747fed766614b3b1123965bdda38fb743e66c2298ab359`.
+Hash de fuentes: `caa0214ad4307909fbb68ec07272c6c9ffedeb9ca48ef42c28f04dff0f6f0771`.

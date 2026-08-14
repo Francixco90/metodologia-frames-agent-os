@@ -17,8 +17,17 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 57 gates', () => {
-    expect(manifest.gates).toHaveLength(57);
+  it('declares 58 gates', () => {
+    expect(manifest.gates).toHaveLength(58);
+  });
+
+  it('binds the Video OS gate to the durable fail-closed suite', () => {
+    expect(manifest.gates.find(({gate}) => gate === 'G09_VIDEO_OS')).toMatchObject({
+      command: 'pnpm verify:video-os',
+      manual: false,
+      fail_closed: true,
+      owner: 'content',
+    });
   });
 
   it('binds the Trainer runtime gate to its material adversarial suite', () => {
