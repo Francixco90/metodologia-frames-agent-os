@@ -1,0 +1,36 @@
+{
+  "features": [
+    {
+      "id": "video-os-001",
+      "name": "Compact product contract",
+      "description": "Route short video requests into V00-V04.",
+      "dependencies": [],
+      "status": "completed",
+      "evidence": "17/17 core unit tests PASS"
+    },
+    {
+      "id": "video-os-002",
+      "name": "Fail-closed job state",
+      "description": "Bind spec, manifests and receipts.",
+      "dependencies": ["video-os-001"],
+      "status": "completed",
+      "evidence": "fail-closed state tests PASS"
+    },
+    {
+      "id": "video-os-003",
+      "name": "Standard documents and visual defaults",
+      "description": "Ship 11 artifacts and scene-aware defaults.",
+      "dependencies": ["video-os-002"],
+      "status": "completed",
+      "evidence": "core document list and regression catalog tests PASS"
+    },
+    {
+      "id": "video-os-004",
+      "name": "Luna low benchmark",
+      "description": "Measure tokens and blind quality.",
+      "dependencies": ["video-os-003"],
+      "status": "not-started",
+      "evidence": "coverage_gap: benchmark not run"
+    }
+  ]
+}
