@@ -416,22 +416,22 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94689
-    v3_rolling_adjustment_words: 6503
+    baseline_words: 94696
+    v3_rolling_adjustment_words: 6510
     original_baseline_words: 88186
-    final_words: 110837
+    final_words: 110844
     maximum_multiplier: 1.5
-    maximum_words: 142033
+    maximum_words: 142044
     actual_multiplier: 1.1705
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94689
-    v3_rolling_adjustment_words: 6503
+    baseline_words: 94696
+    v3_rolling_adjustment_words: 6510
     original_baseline_words: 88186
-    final_words: 110837
-    maximum_words: 189378
+    final_words: 110844
+    maximum_words: 189392
     word_multiplier: 1.1705
     baseline_loc: 35583
     v3_rolling_adjustment_loc: 2695
@@ -3200,8 +3200,8 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: 4b791e5fe89cc831072731187886aec5da3e59a38b4ef07e8e31ec27fb872510
-      current_words: 756
+      current_sha256: 057770d661c2fcdd12dc4f53edd72e460c98d4f11c5f0d71ef0469a2325c862d
+      current_words: 763
       current_loc: 167
       byte_identical: false
       material_change: true

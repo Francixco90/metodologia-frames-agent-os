@@ -1,12 +1,14 @@
 import {z} from 'zod';
 
+export const GateIdSchema = z
+  .string()
+  .regex(
+    /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|SSS_[A-Z_]+|DOCS_TRANSVERSAL_COMPLETE)$/u,
+    'Expected a governed gate id',
+  );
+
 export const CommandEntrySchema = z.strictObject({
-  gate: z
-    .string()
-    .regex(
-      /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|SSS_[A-Z_]+|DOCS_TRANSVERSAL_COMPLETE)$/u,
-      'Expected a governed gate id',
-    ),
+  gate: GateIdSchema,
   label: z.string(),
   command: z.string().nullable(),
   allowed_tools: z.array(z.string()),
@@ -26,3 +28,4 @@ export const CommandsManifestSchema = z.strictObject({
 
 export type CommandsManifest = z.infer<typeof CommandsManifestSchema>;
 export type CommandEntry = z.infer<typeof CommandEntrySchema>;
+export type GateId = z.infer<typeof GateIdSchema>;

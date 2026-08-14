@@ -78,8 +78,8 @@ describe('H-03 renderer adapters integration', () => {
       temporary_outputs_versioned?: boolean;
     };
 
-    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-011');
-    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-010');
+    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-012');
+    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-011');
     expect(succession.approval_phrase).toBe('PLEASE IMPLEMENT THIS PLAN');
     expect(succession.dependency_change).toBe(false);
     expect(succession.previous?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);

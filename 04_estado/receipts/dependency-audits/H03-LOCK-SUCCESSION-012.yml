@@ -1,0 +1,28 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-012
+supersedes_receipt_id: H03-LOCK-SUCCESSION-011
+recorded_at: '2026-08-14T00:00:00Z'
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: harden_run_check_environment_without_dependency_change
+previous:
+  package_sha256: 4b791e5fe89cc831072731187886aec5da3e59a38b4ef07e8e31ec27fb872510
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+current:
+  package_sha256: 057770d661c2fcdd12dc4f53edd72e460c98d4f11c5f0d71ef0469a2325c862d
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: false
+dependency_set: []
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260814-002.json
+  sha256: b00c89f94118a0c1c8c96bdab99ea9e50d7a068126b6a54bd7141fff32c3a4ce
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: inherited:no-dependency-change
+  status: passed
+rollback:
+  strategy: restore_unsanitized_run_check_route_and_previous_package
+  expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true
