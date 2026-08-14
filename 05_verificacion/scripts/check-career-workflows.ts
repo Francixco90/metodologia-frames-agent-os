@@ -8,6 +8,10 @@ import {CareerDeliverableRegistryV1Schema} from '../../02_proceso/workflows/care
 import {CareerWorkflowV1Schema} from '../../02_proceso/workflows/career/_schema/workflow-v1.schema.ts';
 import {checkCareerCvSpecFirst} from './lib/check-career-spec-first.ts';
 import {checkCareerTargetedInputs, reportCareerCheck} from './lib/check-career-targeted-inputs.ts';
+import {
+  checkCareerMigrationAuthorities,
+  checkCareerTemplateAuthorities,
+} from './lib/check-career-template-authority.ts';
 
 const ROOT = process.cwd();
 const CAREER = resolve(ROOT, '02_proceso/workflows/career');
@@ -95,11 +99,8 @@ for (const workflow of parsedWorkflows) {
     }
   }
 }
-for (const definition of registry.definitions) {
-  if (!existsSync(resolve(ROOT, definition.template_ref))) {
-    errors.push(`CAREER-DELIVERABLE-002 ${definition.deliverable_id} template missing`);
-  }
-}
+checkCareerTemplateAuthorities(ROOT, registry.template_authorities, errors);
+checkCareerMigrationAuthorities(ROOT, registry.migration_authorities, errors);
 
 const deterministicFiles = ['route-career.ts', 'scoring.ts', 'state-machine.ts', 'submission.ts'];
 const forbidden = /\b(?:Date\.now|Math\.random|fetch|setTimeout|setInterval)\s*\(/u;
