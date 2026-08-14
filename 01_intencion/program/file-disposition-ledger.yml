@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12967
+    current_words_for_baseline_files: 12978
     violations: []
     checks:
       - path: AGENTS.md
@@ -187,9 +187,9 @@ budgets:
         status: pass
       - path: docs/program/operator-runbook.md
         baseline_words: 542
-        current_words: 734
+        current_words: 745
         maximum_words: 1084
-        ratio: 1.3542
+        ratio: 1.3745
         status: pass
       - path: docs/program/requirements-traceability.md
         baseline_words: 835
@@ -2633,9 +2633,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/operator-runbook.md
       current_ref: working-tree:docs/program/operator-runbook.md
       current_state: present
-      current_sha256: 2752ba7bef44ae149676d0100b183e6df5b620cc6f53ccf25f2e4678bcff7cb2
-      current_words: 734
-      current_loc: 126
+      current_sha256: 423809f143682249db9a1d86cc6d18040118b9eb1ab7acb487637070bc4e35ad
+      current_words: 745
+      current_loc: 127
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**

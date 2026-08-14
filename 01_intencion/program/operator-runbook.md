@@ -58,9 +58,10 @@ Para ejecutar un gate técnico cuando el proceso padre no es confiable, la ruta 
 /bin/sh scripts/run-check-safe.sh GATE_ID
 ```
 
-El wrapper elimina `NODE_OPTIONS`, `BASH_ENV` y `ENV` antes de cargar Node. No puede deshacer código
-que un proceso padre ya ejecutó. `pnpm task:run-check -- GATE_ID` es solo un alias de conveniencia
-cuando el parent pnpm ya es confiable; no constituye una frontera de saneamiento. [CONFIG]
+El wrapper elimina `NODE_OPTIONS`, `BASH_ENV` y `ENV` antes de cargar Node y normaliza un único
+separador `--` inicial que pueda pasar pnpm. No puede deshacer código que un proceso padre ya
+ejecutó. `pnpm task:run-check -- GATE_ID` es solo un alias de conveniencia cuando el parent pnpm ya
+es confiable; no constituye una frontera de saneamiento. [CONFIG]
 
 ```bash
 pnpm check:repo

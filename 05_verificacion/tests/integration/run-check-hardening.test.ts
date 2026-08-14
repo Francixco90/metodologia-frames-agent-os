@@ -46,6 +46,9 @@ const contaminatedEnv = (nodeOptions: string) => ({
   ENV: '/dev/null',
   NODE_OPTIONS: nodeOptions,
 });
+const cleanParentEnv = Object.fromEntries(
+  Object.entries(process.env).filter(([key]) => !['NODE_OPTIONS', 'BASH_ENV', 'ENV'].includes(key)),
+);
 
 const runCanonicalRoute = (root: string, gate: string, hostileModule?: string) =>
   spawnSync('/bin/sh', [...canonicalRoute, gate], {
@@ -93,6 +96,22 @@ describe('task:run-check environment hardening', () => {
     expect(result.status).not.toBe(0);
     expect(existsSync(join(root, '04_estado/receipts/check-runs'))).toBe(false);
     expect(output).not.toMatch(/(?:PASS|RECORDED) run-check/u);
+  });
+
+  it('accepts pnpm literal separator from a clean parent and records PASS', () => {
+    const root = temporaryProject();
+    const result = spawnSync('pnpm', ['task:run-check', '--', 'G00'], {
+      cwd: root,
+      encoding: 'utf8',
+      env: cleanParentEnv,
+    });
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('PASS run-check');
+    const receipt = CheckRunReceiptSchema.parse(
+      parse(readFileSync(join(root, '04_estado/receipts/check-runs/C-001/receipt.yml'), 'utf8')),
+    );
+    expect(receipt).toMatchObject({gate: 'G00', exit_code: 0, append_only: true});
   });
 
   it('preserves success, manual and unknown behavior', () => {
