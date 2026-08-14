@@ -45,6 +45,8 @@ writers:
     - receipts/builds/**
     - 05_verificacion/scripts/creation-v3-skills.json
     - 05_verificacion/scripts/check-career-workflows.ts
+    - 05_verificacion/scripts/check-video-os.ts
+    - 05_verificacion/scripts/lib/video-os-checks.ts
     - .agents/plugins/marketplace.json
     - 05_verificacion/scripts/install-host-adapter.ts
   brand:

@@ -1,0 +1,28 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-011
+supersedes_receipt_id: H03-LOCK-SUCCESSION-010
+recorded_at: '2026-08-14T00:00:00Z'
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: add_video_os_durable_gate_without_dependency_change
+previous:
+  package_sha256: 5ee28d5d64e12d3b0086cc37d6d2b0f4449daf42c8edeceb8e3bf71dabca486a
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+current:
+  package_sha256: 4b791e5fe89cc831072731187886aec5da3e59a38b4ef07e8e31ec27fb872510
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: false
+dependency_set: []
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260814-001.json
+  sha256: c0f829619cd8174e8395b5f61ab14cbb47225be7c7c6c5f40d146d2549f5cfe9
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: inherited:no-dependency-change
+  status: passed
+rollback:
+  strategy: remove_video_os_gate_and_restore_previous_package
+  expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

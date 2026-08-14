@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "b54df83746d2d5870acc226c96cb34fdd7cd41767d52aa2e9d0c24565f648b9b",
-  "totalMarkdown": 1831,
-  "auditedAuthored": 581,
+  "repositoryTreeSha256": "cfeeead387025e7ab05001ede7d5c0bf04024dc5666f73bffe09b08de86e3779",
+  "totalMarkdown": 1833,
+  "auditedAuthored": 582,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -520,6 +520,7 @@
       "02_proceso/workflows/video-os/LIFECYCLE.md",
       "02_proceso/workflows/video-os/README.md",
       "02_proceso/workflows/video-os/SCOPE.md",
+      "02_proceso/workflows/video-os/STATE.md",
       "02_proceso/workflows/video-os/VERIFICATION.md",
       "02_proceso/workflows/video-os/progress.md"
     ],
@@ -823,6 +824,7 @@
       "02_proceso/workflows/multimedia/p08-editar/context.md",
       "02_proceso/workflows/multimedia/p09-distribuir/context.md",
       "02_proceso/workflows/skill-systems/context.md",
+      "02_proceso/workflows/video-os/context.md",
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
@@ -4549,7 +4551,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "17847e62fb418643093c017a5beb979e91d7d189878580064b63bd65cf38beab",
+      "sha256": "224b64711ce13d98f7c17b6118552e929bc99ca0948511db9890d5336c6cb916",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9685,6 +9687,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/video-os/STATE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/STATE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/STATE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ab3419086426fd342d74554d8db4745cc87b74e93314e8a2da069031bca7f33f",
+      "words": 36,
+      "lines": 7,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/video-os/VERIFICATION.md",
       "class": "workflow",
       "owner": "content",
@@ -9984,9 +10012,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "3ede352ff176c45c7ae8ab0fc3b1f71833db4591144c4a1a2027f4f6e84897a8",
-      "words": 10416,
-      "lines": 969,
+      "sha256": "eb11c4efd77c095da1244e42cc59008b5516bbd96db2bbb72db96706ed403027",
+      "words": 10471,
+      "lines": 974,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -17445,10 +17473,10 @@
     }
   ],
   "summary": {
-    "keep": 566,
+    "keep": 567,
     "refactor": 0,
     "split": 1,
-    "regenerate": 83,
+    "regenerate": 84,
     "freeze": 987
   }
 }
