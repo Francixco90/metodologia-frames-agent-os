@@ -11,10 +11,12 @@
  */
 import {z} from 'zod';
 
+import {GateIdSchema} from './commands-schema.js';
+
 export const CheckRunReceiptSchema = z.strictObject({
   schema_version: z.literal('check-run-receipt-v1'),
   receipt_id: z.string().regex(/^C-[0-9]{3}$/u, 'Expected a check-run receipt id of form C-NNN'),
-  gate: z.string().regex(/^G[0-9]{2}([A-Z_]+)?$/u),
+  gate: GateIdSchema,
   command: z.string(),
   exit_code: z.number().int(),
   stdout_sha256: z.string().regex(/^[a-f0-9]{64}$/u, 'Expected a lowercase SHA-256 digest'),

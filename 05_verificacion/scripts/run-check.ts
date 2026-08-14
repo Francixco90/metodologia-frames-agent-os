@@ -1,21 +1,6 @@
-/**
- * run-check.ts — S7 of harness v2.
- *
- * CLI: `pnpm task:run-check -- <GATE_ID>`
- *
- * Loads `05_verificacion/scripts/commands.yaml`, finds the entry for the
- * given gate, refuses manual fail-closed gates (G13-G17) with exit 2,
- * executes the command via `child_process.spawnSync` (shell true), captures
- * stdout/stderr/exit, and emits an append-only receipt at
- * `04_estado/receipts/check-runs/C-NNN/receipt.yml`.
- *
- * Append-only: no dedup. If the same gate+command+exit was already recorded
- * in a prior receipt, the new receipt still appends and notes the prior id in
- * `duplicate_of`.
- *
- * NO-OBJECTIVES: does not auto-advance G13-G17; does not wire itself into
- * pnpm scripts (S12 does that).
- */
+/** Executes one governed non-manual gate and records its result append-only.
+ * Use `/bin/sh scripts/run-check-safe.sh GATE_ID` when the parent is not trusted.
+ * The pnpm task is only a convenience alias for trusted parents. [CÓDIGO] */
 import {createHash} from 'node:crypto';
 import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -31,9 +16,14 @@ const SCRIPTS_DIR = resolve(HERE, '..');
 const RECEIPTS_DIR = resolve(ROOT, '04_estado/receipts/check-runs');
 
 const MANUAL_GATE_EXIT = 2;
+const COMMAND_SHELL = '/bin/sh';
+const SENSITIVE_ENV_KEYS = new Set(['NODE_OPTIONS', 'BASH_ENV', 'ENV']);
 
 const sha256hex = (bytes: Buffer | string): string =>
   createHash('sha256').update(bytes).digest('hex');
+
+const sanitizedEnv = (environment: NodeJS.ProcessEnv): NodeJS.ProcessEnv =>
+  Object.fromEntries(Object.entries(environment).filter(([key]) => !SENSITIVE_ENV_KEYS.has(key)));
 
 /**
  * ISO 8601 with local offset, e.g. `2026-08-05T14:30:00-05:00`.
@@ -128,7 +118,7 @@ const fail = (message: string, exitCode: number): never => {
 const main = (): void => {
   const gateId = process.argv[2];
   if (gateId === undefined || gateId.length === 0) {
-    fail('Usage: pnpm task:run-check -- <GATE_ID>', 2);
+    fail('Usage: /bin/sh scripts/run-check-safe.sh <GATE_ID>', 2);
     return; // unreachable; satisfies TS narrowing
   }
 
@@ -141,7 +131,7 @@ const main = (): void => {
 
   if (entry.manual) {
     fail(
-      `run-check: gate ${entry.gate} es manual fail-closed (G13-G17). ` +
+      `run-check: gate ${entry.gate} es manual fail-closed. ` +
         `No se ejecuta automáticamente; requiere Guardian/human approval.`,
       MANUAL_GATE_EXIT,
     );
@@ -155,9 +145,10 @@ const main = (): void => {
   const command = entry.command;
   const startedAt = Date.now();
   const result = spawnSync(command, {
-    shell: true,
+    shell: COMMAND_SHELL,
     encoding: 'utf8',
     cwd: ROOT,
+    env: sanitizedEnv(process.env),
   });
   const durationMs = Date.now() - startedAt;
 
@@ -194,8 +185,9 @@ const main = (): void => {
   mkdirSync(dir, {recursive: true});
   writeFileSync(resolve(dir, 'receipt.yml'), toYaml(receipt), 'utf8');
 
+  const outcome = exitCode === 0 ? 'PASS' : 'RECORDED';
   console.info(
-    `PASS run-check: ${receiptId} gate=${entry.gate} exit=${exitCode} ` +
+    `${outcome} run-check: ${receiptId} gate=${entry.gate} exit=${exitCode} ` +
       `duration=${durationMs}ms stdout=${stdoutSha.slice(0, 12)}…` +
       (duplicateOf !== undefined ? ` duplicate_of=${duplicateOf}` : ''),
   );

@@ -117,7 +117,7 @@
     "doctor": "node --import tsx scripts/doctor.ts",
     "check": "pnpm check:toolchain && pnpm check:repo && pnpm check:atemporal && pnpm check:md-budgets && pnpm check:ownership && pnpm check:dag && pnpm check:tasks",
     "task:ongoing": "node --import tsx scripts/ongoing-projects.ts",
-    "task:run-check": "node --import tsx scripts/run-check.ts",
+    "task:run-check": "/bin/sh scripts/run-check-safe.sh",
     "report": "node --import tsx scripts/doctor.ts"
   },
   "dependencies": {
