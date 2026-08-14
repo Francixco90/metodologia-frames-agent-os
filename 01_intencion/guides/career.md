@@ -64,7 +64,7 @@ El sistema prepara queries, ingiere snapshots autorizados, elimina duplicados y 
 
 C09 muestra la vista previa, liga la autorización a la huella digital exacta del paquete y se detiene. Un envío solo podría marcarse `SUBMITTED` con confirmación visible y comprobante material.
 
-`CR_PACKAGE_APPROVED` aprueba humanamente el package exacto. `CR_SUBMISSION_AUTHORIZED` autoriza un uso limitado posterior. `CR_PACKAGE_QA` no está activo en A0 y no puede usarse como alias de ninguno de los dos.
+`CR_PACKAGE_APPROVED` aprueba humanamente el package exacto. `CR_SUBMISSION_AUTHORIZED` exige un receipt material posterior; `packageReady` no basta. `CR_PACKAGE_QA` sigue referenciado por skills activas, pero es un boundary legacy/unimplemented sin command/receipt: nunca `PASS` y siempre stop (`coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`).
 
 ## Privacidad y límites
 

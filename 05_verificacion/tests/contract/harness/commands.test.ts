@@ -78,9 +78,10 @@ describe('commands.yaml contract', () => {
     }
   });
 
-  it('keeps Career technical gates executable and human decisions manual fail-closed', () => {
+  it('keeps run decisions manual and CV compilation as a static harness baseline', () => {
     for (const id of [
       'CR_BRIEF_APPROVED',
+      'CR_CAREER_EVIDENCE_READY',
       'CR_CV_DESIGN_APPROVED',
       'CR_CV_SPEC_APPROVED',
       'CR_PACKAGE_APPROVED',
@@ -94,19 +95,12 @@ describe('commands.yaml contract', () => {
         fail_closed: true,
       });
     }
-    expect(manifest.gates.find(({gate}) => gate === 'CR_CAREER_EVIDENCE_READY')).toMatchObject({
-      command: 'node 03_artefactos/skills/career-evidence-interviewer/scripts/check-skill.mjs',
-      allowed_tools: ['Bash'],
-      manual: false,
-      fail_closed: true,
-      owner: 'skill-foundry',
-    });
     expect(manifest.gates.find(({gate}) => gate === 'CR_CV_COMPILED')).toMatchObject({
-      command: 'node 03_artefactos/skills/evidence-first-cv/scripts/check-skill.mjs',
+      command: 'pnpm verify:career',
       allowed_tools: ['Bash'],
       manual: false,
       fail_closed: true,
-      owner: 'skill-foundry',
+      owner: 'content',
     });
     expect(manifest.gates.some(({gate}) => gate === 'CR_PACKAGE_QA')).toBe(false);
   });

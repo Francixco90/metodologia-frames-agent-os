@@ -61,9 +61,9 @@ Solo se materializan combinaciones de idioma y formato declaradas en la spec.
 
 - `CR_CV_SPEC_APPROVED`: spec válida y aprobada sobre su hash.
 - `CR_CV_COMPILED`: fuente canónica ligada a spec y evidencia.
-- `CR_PACKAGE_QA`: nombre reservado sin autoridad activa en A0; no puede emitir PASS.
+- `CR_PACKAGE_QA`: boundary legacy aún referenciado por skills activas, sin command/receipt; produce `coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED` y nunca PASS.
 - `CR_PACKAGE_APPROVED`: aprobación humana del package exacto; nunca alias de QA.
-- `G14`: verificación independiente; no autoriza publicación.
+- `G14`: revisión Guardian manual e independiente; no autoriza publicación.
 
 Ausencia de runtime, archivo, hash, texto extraíble o paridad produce `UNKNOWN`
 o `BLOCKED`, nunca `PASS` por sustitución. [CONFIG]

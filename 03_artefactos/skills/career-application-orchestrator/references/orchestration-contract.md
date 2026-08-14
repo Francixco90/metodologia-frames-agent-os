@@ -37,14 +37,16 @@ ejecutiva; obtener `CR_CV_SPEC_APPROVED`; congelar `spec_sha256`; y entregar la
 spec al productor. Si cambia un binding, volver a draft y solicitar una nueva
 aprobación. A0 no afirma que C07 o los templates ya consuman v2.
 
-`CR_CAREER_EVIDENCE_READY` y `CR_CV_COMPILED` son técnicos y requieren tanto el
-command gobernado como el receipt material del run. `CR_PACKAGE_APPROVED` es
-humano. `CR_PACKAGE_QA` no tiene command/receipt activo en A0 y no puede usarse
-como alias ni marcarse `PASS`. [CONFIG]
+`CR_CAREER_EVIDENCE_READY` es manual porque no existe command run-aware.
+`CR_CV_COMPILED` ejecuta `pnpm verify:career` solo como baseline estático del
+arnés; nunca prueba el run. `CR_PACKAGE_APPROVED` y G14 son manuales, siendo G14
+una revisión Guardian independiente. `CR_PACKAGE_QA` es un boundary legacy aún
+referenciado por skills activas, sin command/receipt: produce
+`coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`, stop y nunca `PASS`. [CONFIG]
 
 ## Efectos
 
 `local-evaluation` admite lectura y artefactos locales reversibles. Búsqueda
 remota, completar formularios y enviar son capacidades no promovidas. C09 crea
-un preview; `packageReady=true` solo permite solicitar
-`CR_SUBMISSION_AUTHORIZED` y nunca acredita envío.
+un preview y se detiene en `CR_PACKAGE_APPROVED`. `packageReady=true` no permite
+solicitar `CR_SUBMISSION_AUTHORIZED`; hace falta un receipt material futuro.

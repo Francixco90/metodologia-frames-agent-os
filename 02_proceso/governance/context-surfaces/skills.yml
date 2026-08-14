@@ -361,7 +361,7 @@ surfaces:
     stop_rules:
       [
         coverage_gap A1 bloquea dependencias materiales v1,
-        CR_PACKAGE_QA no tiene autoridad activa,
+        CR_PACKAGE_QA legacy no ejecutable produce coverage_gap A1_PACKAGE_QA_REFS_REQUIRED y stop,
         C06 exige spec aprobada y vigente,
         C09 prepara y detiene,
         PII y evidencia UNKNOWN bloquean,
