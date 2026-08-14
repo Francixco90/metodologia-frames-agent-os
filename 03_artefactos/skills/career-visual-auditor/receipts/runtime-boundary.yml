@@ -1,0 +1,12 @@
+schema_version: 1
+receipt_id: career-visual-auditor-runtime-boundary-v1
+skill_id: career-visual-auditor
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+private_state_required: false
+required_inputs: [rendered_html, design_system_manifest, design_decision, audit_input]
+required_viewports: [320, 375, 390, 768, 1024, 1440]
+required_modes: [navy, light, print, js_off, reduced_motion, forced_colors]
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

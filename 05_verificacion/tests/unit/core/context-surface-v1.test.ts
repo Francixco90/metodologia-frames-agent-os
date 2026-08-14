@@ -67,6 +67,12 @@ describe('ContextSurfaceV1', () => {
     expect(validateContextGraph(root, missingRef)).toContain(
       'CTX-REF003 missing ref CTX-INBOX:missing-authority.md',
     );
+    const missingOnDemand = surfaces.map((surface, index) =>
+      index === 1 ? {...surface, load_on_demand: ['missing-on-demand.md']} : surface,
+    );
+    expect(validateContextGraph(root, missingOnDemand)).toContain(
+      'CTX-REF003 missing ref CTX-INBOX:missing-on-demand.md',
+    );
 
     const unknownChild = surfaces.map((surface, index) =>
       index === 0 ? {...surface, children: [...surface.children, 'CTX-UNKNOWN']} : surface,

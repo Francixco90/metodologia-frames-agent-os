@@ -16,12 +16,17 @@ if (version === 'talking-head-recut-v1' && operation === 'read') {
 }
 const errors = [];
 if (version !== 'talking-head-recut-v2') errors.push('legacy-v1-new-draft-blocked');
-for (const key of ['specId', 'specSha256', 'correctionLedgerRef', 'transcriptIntelligenceRef', 'semanticIndexRef', 'narrativeMapRef']) {
+for (const key of ['specId', 'specSha256', 'correctionLedgerRef', 'transcriptIntelligenceRef', 'semanticIndexRef', 'narrativeMapRef', 'sourceAnalysisRef', 'sourceAnalysisSha256', 'visualBudgetRef', 'visualBudgetSha256', 'brandKitRef', 'brandKitSha256']) {
   if (!job[key]) errors.push(key);
 }
 if (job.scriptMode !== 'assembly_map') errors.push('scriptMode');
 if (!['use', 'extend', 'reframe', 'discard'].includes(job.editorialDecision)) errors.push('editorialDecision');
 if (operation === 'render-draft' && job.editorialDecision !== 'use') errors.push(`decision-${job.editorialDecision}-blocks-render`);
+if (!['contain', 'crop-safe', 'reject'].includes(job.layoutDecision?.route)) errors.push('layoutDecision');
+if (job.layoutDecision?.route === 'crop-safe' && !(job.layoutDecision.cropSafeEvidence?.length > 0)) errors.push('crop-safe-without-evidence');
+if (operation === 'render-draft' && job.layoutDecision?.route === 'reject') errors.push('layout-reject-blocks-render');
+for (const key of ['purpose', 'audience', 'hook', 'impact', 'cta', 'targetDurationSeconds']) if (!job.reelSpec?.[key]) errors.push(`reelSpec:${key}`);
+if (!(job.reelSpec?.evidence?.length > 0)) errors.push('reelSpec:evidence');
 if (!Array.isArray(job.cards) || job.cards.length === 0) errors.push('cards-empty');
 for (const card of job.cards ?? []) {
   const span = card.sourceSpan;

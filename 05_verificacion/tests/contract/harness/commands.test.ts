@@ -1,7 +1,7 @@
 import {describe, expect, it} from 'vitest';
 
 import {CommandsManifestSchema} from '../../../scripts/lib/commands-schema.ts';
-import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
+import {readRepositoryJson, readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `05_verificacion/scripts/commands.yaml` parses against
@@ -17,8 +17,20 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 54 gates', () => {
-    expect(manifest.gates).toHaveLength(54);
+  it('declares 57 gates', () => {
+    expect(manifest.gates).toHaveLength(57);
+  });
+
+  it('binds the Trainer runtime gate to its material adversarial suite', () => {
+    expect(manifest.gates.find(({gate}) => gate === 'EXP_TRAINER_RUNTIME_VALIDATED')).toMatchObject(
+      {
+        command:
+          'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts 05_verificacion/tests/unit/trainer-os-compiler-core.test.ts 05_verificacion/tests/unit/trainer-os-adapters.test.ts 05_verificacion/tests/unit/trainer-os-extended-adapters.test.ts 05_verificacion/tests/unit/trainer-os-masterclass-fixture.test.ts 05_verificacion/tests/unit/trainer-os-masterclass.test.ts 05_verificacion/tests/unit/trainer-os-package.test.ts 05_verificacion/tests/unit/trainer-os-benchmark.test.ts',
+        manual: false,
+        fail_closed: true,
+        owner: 'content',
+      },
+    );
   });
 
   it('every gate id belongs to a governed gate family', () => {
@@ -50,6 +62,7 @@ describe('commands.yaml contract', () => {
   it('CR_* career decisions are manual and fail closed', () => {
     for (const id of [
       'CR_BRIEF_APPROVED',
+      'CR_CAREER_EVIDENCE_READY',
       'CR_CV_SPEC_APPROVED',
       'CR_PACKAGE_APPROVED',
       'CR_SUBMISSION_AUTHORIZED',
@@ -95,6 +108,12 @@ describe('commands.yaml contract', () => {
       fail_closed: true,
       owner: 'governance',
     });
+    const packageJson = readRepositoryJson('package.json') as {
+      scripts?: Record<string, string>;
+    };
+    expect(packageJson.scripts?.trainer).toBe(
+      'node --import tsx 02_proceso/workflows/trainer-os/runner.ts',
+    );
   });
 
   it('G13-G17 are manual, fail_closed and have command null', () => {

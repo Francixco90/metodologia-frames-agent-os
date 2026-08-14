@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-/**
- * content-os-general-video local skill checker.
- *
- * Validates structure, policy tokens, deterministic runtime boundaries and
- * positive/adversarial renders.
- *
- * Error prefix COSR-GV_.
- */
 import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -31,15 +23,31 @@ const required = [
   'schemas/video-render-receipt-v3.schema.json',
   'schemas/video-verification-v2.schema.json',
   'schemas/visual-detector-v1.schema.json',
+  'schemas/source-cleanup-mask-v1.schema.json',
+  'schemas/precomposed-adapter-v1.schema.json',
+  'schemas/precomposed-frame-manifest-v1.schema.json',
+  'schemas/branded-wrapper-manifest-v1.schema.json',
+  '../content-os-media/schemas/source-analysis-v1.schema.json',
+  'schemas/composition-fit-v1.schema.json',
+  'schemas/composition-fit-evidence-v1.schema.json',
+  'schemas/storyboard-multiframe-v1.schema.json',
   'scripts/check-skill.mjs',
   'scripts/video-cli.mjs',
   'scripts/lib/check-suite.mjs',
   'scripts/lib/check-adversarial.mjs',
+  'scripts/lib/check-precomposed.mjs',
+  'scripts/lib/check-wrapper.mjs',
   'scripts/lib/video-runtime.mjs',
   'scripts/lib/runtime-core.mjs',
   'scripts/lib/runtime-operations.mjs',
   'scripts/lib/runtime-layers.mjs',
   'scripts/lib/runtime-visual.mjs',
+  'scripts/lib/runtime-cleanup.mjs',
+  'scripts/lib/runtime-precomposed.mjs',
+  'scripts/lib/runtime-wrapper.mjs',
+  'scripts/lib/runtime-analysis.mjs',
+  'scripts/lib/check-systemic.mjs',
+  'scripts/lib/check-consumer-gates.mjs',
   'scripts/lib/trust-anchors.mjs',
   'scripts/generate-synthetic-media.mjs',
   'scripts/workflow-audit.mjs',
@@ -54,11 +62,17 @@ const required = [
   'fixtures/positive/valid-workflow-brief.yml',
   'fixtures/negative/broken-workflow.yml',
   'fixtures/v2-negative/cases.json',
+  'fixtures/v2-positive/source-cleanup-mask.json',
+  'fixtures/v2-positive/source-analysis.json',
+  'fixtures/v2-positive/composition-fit.json',
+  'fixtures/v2-positive/storyboard-multiframe.json',
   'fixtures/gates/transcribed-without-gate.yml',
   'receipts/runtime-boundary.yml',
   'receipts/verification-v0.5.0.yml',
   'receipts/verification-v0.6.0.yml',
   'receipts/verification-v0.7.0.yml',
+  'receipts/verification-v0.7.1.yml',
+  'receipts/verification-v0.15.0.yml',
 ];
 
 const errors = [];
@@ -77,7 +91,7 @@ if (!skillMd.startsWith('---\nname: content-os-general-video\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.7.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
+if (!skillMd.includes('version: 0.15.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {
   errors.push(`${PREFIX}FRONTMATTER_LICENSE`);
 }
@@ -104,6 +118,11 @@ const requiredTokens = [
   'Spec → Compile → Verify → Review → Promote',
   'piece-scripts-v2',
   'variantAxis: visual',
+  'precomposed-frames-v1',
+  'branded-wrapper-v1',
+  'source-analysis-v1',
+  'composition-fit-v1',
+  'storyboard-multiframe-v1',
 ];
 for (const token of requiredTokens) {
   if (!skillMd.includes(token)) {

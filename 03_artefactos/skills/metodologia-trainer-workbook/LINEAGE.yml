@@ -1,0 +1,20 @@
+schema_version: 1
+skill_id: metodologia-trainer-workbook
+version: 0.1.0
+owner: MetodologIA
+lifecycle_state: candidate
+execution_scope: local-candidate-routing-only
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+derivation_mode: original-contract-router
+external_fragments_reused: false
+publication_authority: false
+authority_refs:
+  - 02_proceso/workflows/trainer-os/adapter-contracts.ts
+  - 02_proceso/workflows/trainer-os/trainer-artifact-plan-v1.schema.ts
+runtime_refs:
+  - 02_proceso/workflows/trainer-os/adapter-renderers.ts
+  - 02_proceso/workflows/trainer-os/compiler.ts
+  - 05_verificacion/tests/unit/trainer-os-web-skills.test.ts
+compatibility_contract: trainer-adapter-content-v1
+production_runtime_status: blocked_pending_evaluation

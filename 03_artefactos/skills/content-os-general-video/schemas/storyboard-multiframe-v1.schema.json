@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "storyboard-multiframe-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "specId", "specSha256", "frames", "reviewState"],
+  "properties": {
+    "schemaVersion": {"const": "storyboard-multiframe-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "specId": {"type": "string", "minLength": 3},
+    "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "frames": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/frame"}},
+    "reviewState": {"enum": ["candidate", "user-approved"]}
+  },
+  "$defs": {
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "pieceId", "order", "atMs", "purpose", "visualSourceSpanIndex", "compositionFitPieceId", "status"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
+        "pieceId": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 0},
+        "atMs": {"type": "integer", "minimum": 0},
+        "purpose": {"type": "string", "minLength": 3},
+        "visualSourceSpanIndex": {"type": "integer", "minimum": 0},
+        "compositionFitPieceId": {"type": "string", "minLength": 1},
+        "status": {"enum": ["outline", "approved"]}
+      }
+    }
+  }
+}

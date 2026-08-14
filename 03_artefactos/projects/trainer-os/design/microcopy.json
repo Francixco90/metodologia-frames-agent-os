@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "trainer-microcopy-v1",
+  "locales": {
+    "es": {
+      "open": "Abrir",
+      "continue": "Continuar",
+      "available": "Disponible",
+      "pending": "Próximamente",
+      "theme": "Tema",
+      "language": "Idioma"
+    },
+    "en": {
+      "open": "Open",
+      "continue": "Continue",
+      "available": "Available",
+      "pending": "Coming soon",
+      "theme": "Theme",
+      "language": "Language"
+    },
+    "pt": {
+      "open": "Abrir",
+      "continue": "Continuar",
+      "available": "Disponível",
+      "pending": "Em breve",
+      "theme": "Tema",
+      "language": "Idioma"
+    }
+  },
+  "glossary": [
+    {"id": "route", "es": "ruta", "en": "learning route", "pt": "rota de aprendizagem"},
+    {"id": "workbook", "es": "cuaderno de trabajo", "en": "workbook", "pt": "caderno de trabalho"},
+    {"id": "playbook", "es": "guía de repetición", "en": "playbook", "pt": "guia de repetição"},
+    {
+      "id": "prompt-library",
+      "es": "biblioteca de prompts",
+      "en": "prompt library",
+      "pt": "biblioteca de prompts"
+    }
+  ]
+}

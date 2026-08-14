@@ -23,7 +23,7 @@ Primero:
 
 Solo bajo demanda:
 
-- `03_artefactos/brand/brand-profile.yml`
+- `03_artefactos/brand/tokens/brand-tokens.yml`
 
 Diferir:
 

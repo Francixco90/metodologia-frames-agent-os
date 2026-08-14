@@ -1,0 +1,56 @@
+:root {
+  color-scheme: dark;
+  --career-canvas: var(--career-navy-canvas);
+  --career-surface: var(--career-navy-surface);
+  --career-surface-raised: var(--career-navy-surface-raised);
+  --career-text: var(--career-navy-text);
+  --career-text-muted: var(--career-navy-text-muted);
+  --career-accent: var(--career-navy-accent);
+  --career-accent-text: var(--career-navy-accent-text);
+  --career-line: var(--career-navy-line);
+  --career-focus: var(--career-navy-focus);
+  --career-shadow: var(--career-navy-shadow);
+  --career-backdrop: var(--career-navy-backdrop);
+  --career-display: Poppins, system-ui, sans-serif;
+  --career-body: 'Trebuchet MS', Arial, sans-serif;
+  --career-ui: Montserrat, system-ui, sans-serif;
+  --career-gutter: clamp(1rem, 3vw, 2.5rem);
+  --career-content-max: 80rem;
+  --career-text-max: 68ch;
+  --career-target: 44px;
+  --career-radius: 0.75rem;
+  --career-speed: 220ms;
+  --career-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --career-canvas: var(--career-light-canvas);
+  --career-surface: var(--career-light-surface);
+  --career-surface-raised: var(--career-light-surface-raised);
+  --career-text: var(--career-light-text);
+  --career-text-muted: var(--career-light-text-muted);
+  --career-accent: var(--career-light-accent);
+  --career-accent-text: var(--career-light-accent-text);
+  --career-line: var(--career-light-line);
+  --career-focus: var(--career-light-focus);
+  --career-shadow: var(--career-light-shadow);
+  --career-backdrop: var(--career-light-backdrop);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}

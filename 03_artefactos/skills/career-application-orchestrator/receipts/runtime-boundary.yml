@@ -8,7 +8,9 @@ publication_authority: false
 submission_authority: false
 private_state_required: true
 maximum_blocking_questions: 3
-cv_compile_requires: [brief_sha256, evidence_bank_sha256, spec_sha256, CR_CV_SPEC_APPROVED]
+cv_compile_requires:
+  [brief_sha256, evidence_bank_sha256, readiness_sha256, spec_sha256, CR_CAREER_EVIDENCE_READY, CR_CV_SPEC_APPROVED]
+adaptive_interview_policy: only_when_material_gaps_block_readiness
 stale_spec_invalidates_derivatives: true
 fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
 runtime_status:

@@ -15,7 +15,7 @@ if (brief.schemaVersion === 'content-os-creative-brief-v1' && operation === 'rea
 }
 const errors = [];
 if (brief.schemaVersion !== 'content-os-creative-brief-v2') errors.push('legacy-v1-new-draft-blocked');
-for (const key of ['specRef', 'specSha256']) if (!brief[key]) errors.push(key);
+for (const key of ['specRef', 'specSha256', 'brandKitRef', 'brandKitSha256', 'visualBudgetRef', 'visualBudgetSha256', 'sourceAnalysisRef', 'sourceAnalysisSha256']) if (!brief[key]) errors.push(key);
 if (!['use', 'extend', 'reframe', 'discard'].includes(brief.editorialDecision)) errors.push('editorialDecision');
 if (operation === 'render-draft' && brief.editorialDecision !== 'use') errors.push(`decision-${brief.editorialDecision}-blocks-render`);
 if (brief.voiceSource === true) {

@@ -4,8 +4,16 @@ command: /career-evidence
 title: Reconciliación de evidencia
 purpose: Convertir fuentes autorizadas en claims trazables sin pulir gaps o contradicciones.
 inputs: [candidate-foundation-brief-v1, candidate-sources]
-deliverables: [evidence-bank-v1, contradiction-ledger-v1, evidence-gap-report-v1]
-capability_map: [candidate-evidence-reconciler]
+deliverables:
+  [
+    evidence-bank-v1,
+    contradiction-ledger-v1,
+    evidence-gap-report-v1,
+    career-discovery-session-v1,
+    evidence-candidate-packet-v1,
+    career-evidence-readiness-v1,
+  ]
+capability_map: [candidate-evidence-reconciler, career-evidence-interviewer]
 execution_steps:
   - step_id: S01
     purpose: Ingerir y normalizar claims desde fuentes hash-bound.
@@ -29,8 +37,20 @@ execution_steps:
     gate: G14
     stop_rule: Contradicción material no resuelta bloquea el claim afectado.
     context_budget: {target_files: 8, max_files: 16, target_tokens: 12000, max_tokens: 20000}
-gates: [G13, G14]
+  - step_id: S03
+    purpose: Omitir preguntas si la evidencia basta o indagar solo gaps bloqueantes antes de posicionar.
+    inputs: [evidence-bank-v1, contradiction-ledger-v1, evidence-gap-report-v1]
+    primary_skill: career-evidence-interviewer
+    optional_skills: [candidate-evidence-reconciler]
+    verifier: RT-09
+    outputs:
+      [career-discovery-session-v1, evidence-candidate-packet-v1, career-evidence-readiness-v1]
+    template_id: TPL-C01-EVIDENCE
+    gate: CR_CAREER_EVIDENCE_READY
+    stop_rule: Inferencias y aspiraciones permanecen fuera del CV; gaps bloqueantes activan entrevista o pausa.
+    context_budget: {target_files: 8, max_files: 16, target_tokens: 12000, max_tokens: 20000}
+gates: [G13, G14, CR_CAREER_EVIDENCE_READY]
 next_workflow: C02
 template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md
-stop_rule: No convertir inferred o missing en capacidad demostrada.
+stop_rule: No avanzar a C02 sin readiness vigente; inferred o missing nunca son capacidad demostrada.
 metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

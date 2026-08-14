@@ -1,7 +1,7 @@
 ---
 name: content-os-creative
 description: This skill should be used when the user asks to "apply brand tokens to a Frames ContentOS composition", "plan story beats and narration for a video", "pick a composition pattern (PiP, title card, stats)", "audit a creative brief for lazy defaults", or "resolve MetodologIA brand profile for a composition".
-version: 0.2.0
+version: 0.3.1
 license: LicenseRef-MetodologIA-Internal
 compatibility: Requires the content-os-core HTML composition contract, content-os-animation seek-safe rules, metodologia-brand-router (BrandProfileV2, VoiceProfileV2, ChannelProfileV1), and content-os-transcript-intelligence when story beats derive from speech. Offline render profile only. No external fonts, no external assets, no network.
 metadata:
@@ -43,6 +43,12 @@ encima del contrato tecnico.
    ligado a `specSha256`; consume caption track, correction ledger y
    `narrative-map.json`. Cada beat conserva `sourceSpan` absoluto/local. v1 es solo
    lectura para migración. No convertir una nota editorial en una frase atribuida.
+6. Consumir `source-analysis-v1`; ligar `brand-kit-v1` (`metodologia` o
+   `user-provided`) con derechos y hashes. Aplicar `visual-budget-v1`: máximo dos
+   niveles textuales, un icono semántico por beat, Montserrat en títulos, Poppins en
+   captions y safe zones explícitas por orientación.
+   Kits aportados por usuario permanecen job-local y verifican manifiesto,
+   procedencia, derechos, archivos y hashes antes de composición.
 
 ## Default: aplica brand router + house-style
 

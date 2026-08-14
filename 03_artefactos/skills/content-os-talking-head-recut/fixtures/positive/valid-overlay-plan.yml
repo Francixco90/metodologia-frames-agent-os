@@ -11,6 +11,21 @@ correctionLedgerRef: transcript-intelligence/correction-ledger.json
 transcriptIntelligenceRef: transcript-intelligence/verification.json
 semanticIndexRef: transcript-intelligence/semantic-index.json
 narrativeMapRef: transcript-intelligence/narrative-map.json
+sourceAnalysisRef: analysis/source-analysis.json
+sourceAnalysisSha256: 'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
+visualBudgetRef: creative/visual-budget.json
+visualBudgetSha256: 'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'
+brandKitRef: creative/brand-kit.json
+brandKitSha256: 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+layoutDecision: {route: contain, cropSafeEvidence: []}
+reelSpec:
+  purpose: demostrar un cambio observable
+  audience: personas que buscan una introducción práctica
+  hook: una fricción concreta abre el relato
+  evidence: [narrative-map.json#beat-hook, semantic-index.json#demonstration-001]
+  impact: la demostración hace visible el resultado
+  cta: conocer el taller introductorio
+  targetDurationSeconds: 30
 verificationState: deterministic-passed
 editorialDecision: use
 cards:

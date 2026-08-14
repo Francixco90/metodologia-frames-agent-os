@@ -3,13 +3,15 @@ import {
   run, shaFile, statSync,
 } from './runtime-core.mjs';
 
-export function validateFfmpeg(piece) {
+export function validateFfmpeg(piece, virtualInputs = new Set()) {
   const render = piece.render;
   if (!render || render.engine !== 'ffmpeg' || !Array.isArray(render.args)) fail(`RENDER_RECIPE_${piece.id}`);
   if (render.args.at(-1) !== piece.output) fail(`FFMPEG_OUTPUT_BINDING_${piece.id}`);
   for (const token of render.args) if (typeof token !== 'string' || PRIVATE.some((pattern) => pattern.test(token)) || NETWORK.test(token) || isAbsolute(token) || token.includes('..')) fail(`UNSAFE_FFMPEG_ARG_${piece.id}`);
   for (let index = 0; index < render.args.length; index += 1) if (render.args[index] === '-i') {
-    const inputPath = projectPath(render.args[index + 1], `FFMPEG_INPUT_${piece.id}`);
+    const inputRef = render.args[index + 1];
+    if (virtualInputs.has(inputRef)) continue;
+    const inputPath = projectPath(inputRef, `FFMPEG_INPUT_${piece.id}`);
     if (!existsSync(inputPath) || !statSync(inputPath).isFile()) fail(`FFMPEG_INPUT_MISSING_${piece.id}`);
   }
   if (render.mode === 'audio-remux') {

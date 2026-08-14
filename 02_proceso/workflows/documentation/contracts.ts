@@ -24,6 +24,7 @@ export type WorkflowDocumentationV1 = {
   inputs: readonly string[];
   deliverables: readonly string[];
   templateRefs?: readonly string[];
+  preconditions: readonly string[];
   gates: readonly string[];
   nextWorkflow: string | null;
   stopRule: string;

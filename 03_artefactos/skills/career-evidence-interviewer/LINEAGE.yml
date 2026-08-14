@@ -1,0 +1,18 @@
+schema_version: skill-lineage-v1
+skill_id: career-evidence-interviewer
+version: 0.1.0
+owner: MetodologIA
+lifecycle_state: active
+execution_scope: local-evaluation
+content_origin: locally_authored_from_user_supplied_requirements
+external_fragments_reused: false
+publication_authority: false
+network_allowed: false
+authority_refs:
+  - 02_proceso/workflows/career/_schema/career-discovery-v1.schema.ts
+  - 02_proceso/workflows/career/_schema/career-evidence-readiness-v1.schema.ts
+  - 02_proceso/workflows/career/_runner/career-discovery.ts
+derivation:
+  method: clean_room_spec_first
+  copied_external_prompts: false
+  successor_change: add_adaptive_evidence_interview_before_positioning

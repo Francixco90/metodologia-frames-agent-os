@@ -1,0 +1,14 @@
+receipt_id: RCP-CONTENT-OS-MEDIA-0.2.2
+skill_id: content-os-media
+version: 0.2.2
+execution_scope: local-evaluation
+contract_consumed:
+  asr: skills/content-os-transcript-intelligence/scripts/lib/context.mjs#loadContext-asr-candidate-v2
+  job: skills/content-os-transcript-intelligence/schemas/transcript-intelligence-v1.schema.json#contractRevision-3
+  receipt: skills/content-os-transcript-intelligence/scripts/lib/semantic.mjs#transcript-intelligence-verification-v1
+verification:
+  source_analysis_gate: pass
+  transcript_intelligence_cli_verify: pass
+  adversarial_hash_correct_asr_semantic_invalid: blocked
+  adversarial_hash_correct_ti_receipt_invalid: blocked
+publication_authority: false

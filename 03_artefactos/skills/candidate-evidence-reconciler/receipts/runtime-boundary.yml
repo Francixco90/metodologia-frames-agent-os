@@ -9,7 +9,9 @@ private_state_required: true
 allowed_claim_confidence: [verified, user_confirmed]
 gap_only_confidence: [inferred, missing]
 handoff_schema: candidate-evidence-handoff-v1
-downstream_authority: cv-spec-v1
+downstream_authority: cv-spec-v2
+required_outputs: [evidence-candidate-packet-v1, career-evidence-readiness-v1]
+required_gate: CR_CAREER_EVIDENCE_READY
 stale_hash_invalidates_downstream: true
 fail_closed_states: [FAIL, UNKNOWN, BLOCKED]
 forbidden:

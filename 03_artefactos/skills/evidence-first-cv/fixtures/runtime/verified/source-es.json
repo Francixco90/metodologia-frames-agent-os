@@ -117,10 +117,10 @@
       "rationale": null
     }
   ],
-  "content_sha256": "28e5b032182615663aa4b4d433c572c4e4b2cd17b255c201673f90c28a66bf95",
+  "content_sha256": "6bb5486b30dec5099343f8d5a07bca70c267b0a5edd0a0216e7d430c8e0b6e0d",
   "schema_version": "career-cv-v2",
   "spec_id": "CVSPEC-SYNTH-RUNTIME-001",
-  "spec_sha256": "9a02e23b3bfb1292d9c8377d39a36dca1d305e4bf86271fd880c7ba93d5db43a",
+  "spec_sha256": "c659397015605ed5e9859c3978a66d6655378e1a1f6dcc4358ae513a2b2d9b7b",
   "variant_id": "CVVAR-SYNTH-RUNTIME-ES",
   "output_intent": "general",
   "audience": "ats",

@@ -13,7 +13,12 @@ const escapeHtml = (value: string): string =>
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
-const stableJson = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;
+export const renderInventoryJsonV1 = (inventory: EcosystemInventoryV1): string => {
+  const {items, ...header} = inventory;
+  const headerLines = JSON.stringify(header, null, 2).slice(2, -2);
+  const itemLines = items.map((item) => `    ${JSON.stringify(item)}`).join(',\n');
+  return `{\n${headerLines},\n  "items": [\n${itemLines}\n  ]\n}\n`;
+};
 
 const counts = (inventory: EcosystemInventoryV1): Map<string, number> => {
   const result = new Map<string, number>();
@@ -67,7 +72,7 @@ export const buildInventoryOutputsV1 = (
   directory: string,
 ): Map<string, string> =>
   new Map([
-    [path.join(directory, 'ecosystem-inventory-v1.json'), stableJson(inventory)],
+    [path.join(directory, 'ecosystem-inventory-v1.json'), renderInventoryJsonV1(inventory)],
     [path.join(directory, 'ecosystem-inventory.md'), renderInventoryMarkdownV1(inventory)],
     [path.join(directory, 'ecosystem-inventory.html'), renderInventoryHtmlV1(inventory)],
   ]);

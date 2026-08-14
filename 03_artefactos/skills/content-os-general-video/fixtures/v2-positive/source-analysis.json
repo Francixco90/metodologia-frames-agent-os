@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "source-analysis-v1",
+  "projectId": "synthetic-project",
+  "sources": [
+    {
+      "sourceId": "synthetic-source",
+      "sourceSha256": "c33a6b1ee2df4a4a724f18506437fbaab5c4dfe3e31887c89c6aaba4c4f27da4",
+      "rights": "synthetic",
+      "authority": "primary",
+      "probe": {"status": "passed", "mediaType": "text", "durationMs": 1000, "hasAudio": false},
+      "audioClassification": "silent",
+      "asrAttempt": {"status": "not-applicable", "reason": "no audio stream"},
+      "transcriptIntelligence": {"status": "not-applicable", "reason": "no audio stream"},
+      "sampleTimesMs": [0],
+      "watermarkObservations": [],
+      "cropSafety": {"safe": true, "strategy": "not-applicable", "coveredSampleTimesMs": [0], "evidence": []},
+      "editorialDecision": "use",
+      "state": "ready"
+    }
+  ]
+}

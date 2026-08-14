@@ -70,6 +70,57 @@ describe('Career C00-C09 workflow family', () => {
         );
         expect(step.context_budget.max_tokens).toBeLessThanOrEqual(28_000);
       }
+      const consumed = new Set([
+        ...workflow.execution_steps.map(({gate}) => gate),
+        ...(workflow.preconditions ?? []),
+      ]);
+      expect(workflow.gates.every((gate) => consumed.has(gate))).toBe(true);
+      expect((workflow.preconditions ?? []).every((gate) => workflow.gates.includes(gate))).toBe(
+        true,
+      );
+    }
+  });
+
+  it('accepts only declared preconditions and rejects orphan gates', () => {
+    const base = structuredClone(workflows[0]!.workflow);
+    const gate = 'CR_PACKAGE_APPROVED' as const;
+    expect(
+      CareerWorkflowV1Schema.safeParse({
+        ...base,
+        gates: [...base.gates, gate],
+        preconditions: [gate],
+      }).success,
+    ).toBe(true);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, preconditions: ['CR_PACKAGE_APPROVED']}).success,
+    ).toBe(false);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, gates: [...base.gates, 'CR_PACKAGE_APPROVED']})
+        .success,
+    ).toBe(false);
+    expect(
+      CareerWorkflowV1Schema.safeParse({...base, preconditions: [base.gates[0]!]}).success,
+    ).toBe(false);
+  });
+
+  it('blocks Career consumers on evidence readiness without replacing output gates', () => {
+    const byId = new Map(workflows.map(({workflow}) => [workflow.workflow_id, workflow]));
+    const expectedOutputGates = {
+      C02: ['G13', 'CR_BRIEF_APPROVED'],
+      C06: [
+        'CR_BRIEF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
+        'CR_CV_SPEC_APPROVED',
+        'G13',
+        'CR_PACKAGE_APPROVED',
+      ],
+      C08: ['G14', 'CR_PACKAGE_APPROVED'],
+    } as const;
+    for (const [workflowId, gates] of Object.entries(expectedOutputGates)) {
+      const workflow = byId.get(workflowId as 'C02' | 'C06' | 'C08')!;
+      expect(workflow.preconditions).toEqual(['CR_CAREER_EVIDENCE_READY']);
+      expect(workflow.inputs).toContain('career-evidence-readiness-v1');
+      expect(workflow.execution_steps.flatMap(({gate}) => gate)).toEqual(gates);
     }
   });
 

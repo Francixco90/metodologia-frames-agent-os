@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.dev/schemas/workbook-spec-v1.schema.json",
+  "title": "MetodologIA workbook specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "workbookId", "brand", "state", "specHashAlgorithm", "specSha256", "designSystemLock", "primaryLocale", "uiPattern", "locales", "interactions", "noJs", "print", "assets", "output"],
+  "properties": {
+    "schemaVersion": {"const": "workbook-spec-v1"},
+    "workbookId": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "brand": {"const": "MetodologIA"},
+    "state": {"const": "RENDERED_DRAFT"},
+    "specHashAlgorithm": {"const": "sha256-canonical-json-v1"},
+    "specSha256": {"$ref": "#/$defs/sha256"},
+    "designSystemLock": {"$ref": "#/$defs/hashRef"},
+    "primaryLocale": {"$ref": "#/$defs/localeCode"},
+    "uiPattern": {"$ref": "#/$defs/uiPattern"},
+    "locales": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/localizedWorkbook"}
+    },
+    "interactions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tabsKeyboard", "copyPrompts", "responsePersistence", "preferencePersistence"],
+      "properties": {
+        "tabsKeyboard": {"const": true},
+        "copyPrompts": {"const": true},
+        "responsePersistence": {"const": "none"},
+        "preferencePersistence": {"type": "array", "uniqueItems": true, "items": {"enum": ["theme", "locale"]}}
+      }
+    },
+    "noJs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contentReadable", "navigationFallback"],
+      "properties": {"contentReadable": {"const": true}, "navigationFallback": {"const": "fragments"}}
+    },
+    "print": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "hideInteractiveControls", "preserveAllContent"],
+      "properties": {"enabled": {"const": true}, "hideInteractiveControls": {"const": true}, "preserveAllContent": {"const": true}}
+    },
+    "assets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/asset"}},
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["htmlRef", "state"],
+      "properties": {"htmlRef": {"$ref": "#/$defs/relativeRef"}, "state": {"const": "RENDERED_DRAFT"}}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "localeCode": {"type": "string", "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"},
+    "relativeRef": {"type": "string", "minLength": 1, "pattern": "^(?![a-zA-Z]+:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:private|privado|secret|secrets))(?!.*\\s).+$"},
+    "hashRef": {
+      "type": "object", "additionalProperties": false, "required": ["ref", "sha256"],
+      "properties": {"ref": {"$ref": "#/$defs/relativeRef"}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "localizedWorkbook": {
+      "type": "object", "additionalProperties": false, "required": ["locale", "title", "intro", "primaryCta", "uiLabels", "sheets"],
+      "properties": {
+        "locale": {"$ref": "#/$defs/localeCode"}, "title": {"type": "string", "minLength": 1}, "intro": {"type": "string", "minLength": 1},
+        "primaryCta": {"type": "string", "minLength": 1, "pattern": "^\\S+(?:\\s+\\S+){0,2}$"},
+        "uiLabels": {
+          "type": "object", "additionalProperties": false, "required": ["level", "levels", "copyPrompt"],
+          "properties": {"level": {"type": "string", "minLength": 1}, "levels": {"type": "string", "minLength": 1}, "copyPrompt": {"type": "string", "minLength": 1}}
+        },
+        "sheets": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/sheet"}}
+      }
+    },
+    "uiPattern": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ctaVisibleWordsMax", "actionIcons", "copyControl", "promptLevelControls", "promptFormatOrder"],
+      "properties": {
+        "ctaVisibleWordsMax": {"const": 3},
+        "actionIcons": {"const": "inline-svg"},
+        "copyControl": {"const": "icon-only-with-accessible-name"},
+        "promptLevelControls": {"const": "numerals-only"},
+        "promptFormatOrder": {"type": "array", "prefixItems": [{"const": "natural"}, {"const": "parameters"}, {"const": "spec"}, {"const": "pair"}], "items": false, "minItems": 4, "maxItems": 4}
+      }
+    },
+    "sheet": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "purpose", "outcome", "steps"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "title": {"type": "string", "minLength": 1}, "purpose": {"type": "string", "minLength": 1}, "outcome": {"type": "string", "minLength": 1},
+        "steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/step"}}
+      }
+    },
+    "step": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "instruction", "prompt", "evidence"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "title": {"type": "string", "minLength": 1}, "instruction": {"type": "string", "minLength": 1}, "prompt": {"type": "string", "minLength": 1}, "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false, "required": ["id", "ref", "sha256", "rights"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "ref": {"$ref": "#/$defs/relativeRef"}, "sha256": {"$ref": "#/$defs/sha256"},
+        "rights": {"type": "object", "additionalProperties": false, "required": ["status", "authority"], "properties": {"status": {"const": "cleared"}, "authority": {"type": "string", "minLength": 1}}}
+      }
+    }
+  }
+}

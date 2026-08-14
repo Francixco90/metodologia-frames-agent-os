@@ -48,6 +48,8 @@ export const checkContextSurfaces = (root: string): string[] => {
   const expectedSkills = [
     'content-os-router',
     'career-application-orchestrator',
+    'career-design-system',
+    'career-evidence-interviewer',
     'frames-token-efficiency-orchestrator',
     'content-os-core',
     'content-os-creative',

@@ -13,6 +13,7 @@ const workflow = {
   source: '02_proceso/workflows/multimedia/p03-crear-brief/workflow.yml',
   inputs: ['intent-envelope'],
   deliverables: ['brief-v1'],
+  preconditions: [],
   gates: ['MW_BRIEF_APPROVED'],
   nextWorkflow: 'P05',
   stopRule: 'Detener antes de producir.',

@@ -46,7 +46,7 @@ const runtimeCombined = [
   .join('\n');
 
 for (const token of [
-  'version: 0.7.0',
+  'version: 0.8.0',
   '## 1. Activación',
   '## 8. Handoff',
   'intent-router',

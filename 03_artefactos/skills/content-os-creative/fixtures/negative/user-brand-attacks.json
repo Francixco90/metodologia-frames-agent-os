@@ -1,0 +1,1 @@
+{"schemaVersion":"brand-kit-adversarial-fixtures-v1","cases":[{"id":"manifest-drift","expected":"manifest:sha256-drift"},{"id":"missing","expected":"asset-0:missing"},{"id":"hash-drift","expected":"asset-0:sha256-drift"},{"id":"symlink","expected":"asset-0:symlink"},{"id":"absolute","expected":"asset-0:unsafe-ref"},{"id":"traversal","expected":"asset-0:unsafe-ref"}]}

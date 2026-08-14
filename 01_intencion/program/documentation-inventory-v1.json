@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "9a45529848e3fdc78f7179d4ba76f5693f86a4cde56c2acb580defdd30ee66e0",
-  "totalMarkdown": 1787,
-  "auditedAuthored": 550,
+  "repositoryTreeSha256": "dbab0ecf18b387271a8e0e211c83474534d9b2f5f11e8c9a7ac4af26b9db1e50",
+  "totalMarkdown": 1819,
+  "auditedAuthored": 571,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -44,6 +44,7 @@
       "01_intencion/bento/architecture.md",
       "01_intencion/bento/audit-report.md",
       "01_intencion/bento/verification-report.md",
+      "01_intencion/career/cv-design-system-first-contract-v1.md",
       "01_intencion/career/cv-spec-first-contract-v1.md",
       "01_intencion/career/cv-spec-first-retrospective.md",
       "01_intencion/content-os/architecture.md",
@@ -204,6 +205,13 @@
       "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
+      "03_artefactos/brand/career-design-system/README.md",
+      "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
+      "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
+      "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md",
       "03_artefactos/content/documentation/ecosystem-inventory.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
       "03_artefactos/content/pilot-carousel-002/content.md",
@@ -222,7 +230,10 @@
       "03_artefactos/renderers/static-social/README.md",
       "03_artefactos/skills/candidate-evidence-reconciler/references/evidence-policy.md",
       "03_artefactos/skills/career-application-orchestrator/references/orchestration-contract.md",
+      "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "03_artefactos/skills/career-design-system/references/verification.md",
       "03_artefactos/skills/career-opportunity-finder/references/opportunity-policy.md",
+      "03_artefactos/skills/career-visual-auditor/references/audit-contract.md",
       "03_artefactos/skills/content-os-animation/blueprints/blueprints-index.md",
       "03_artefactos/skills/content-os-animation/blueprints/brand-reveal.md",
       "03_artefactos/skills/content-os-animation/rules/fade-slide-rise.md",
@@ -339,6 +350,12 @@
       "03_artefactos/skills/gstack-openclaw-office-hours/references/design-doc-templates.md",
       "03_artefactos/skills/gstack-openclaw-office-hours/references/forcing-questions.md",
       "03_artefactos/skills/metodologia-certificate-builder/references/certificate-manifest.md",
+      "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-trainer-os/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
       "03_artefactos/skills/motion-library-adapters/references/media-use-adapter.md",
       "03_artefactos/skills/remotion-video-production/CHANGELOG.md",
       "03_artefactos/skills/remotion-video-production/examples/minimal-deterministic/README.md",
@@ -455,6 +472,9 @@
       "05_verificacion/evals/H-E012/README.md",
       "05_verificacion/evals/README.md",
       "05_verificacion/evals/ablation/README.md",
+      "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
+      "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
+      "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
       "05_verificacion/guardian/reviews/GDN-001-revise.md",
       "05_verificacion/guardian/reviews/GDN-002-local-closeout.md",
       "05_verificacion/guardian/reviews/GDN-CREATION-V3-H01-001-REM-01.md",
@@ -490,7 +510,8 @@
       "02_proceso/workflows/multimedia/p06-crear-activos/prompt-spec.md",
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
-      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md"
+      "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/trainer-os/README.md"
     ],
     "template": [
       "02_proceso/workflows/career/c00-intake/templates/candidate-foundation-brief-v1.template.md",
@@ -549,7 +570,10 @@
     "skill": [
       "03_artefactos/skills/candidate-evidence-reconciler/SKILL.md",
       "03_artefactos/skills/career-application-orchestrator/SKILL.md",
+      "03_artefactos/skills/career-design-system/SKILL.md",
+      "03_artefactos/skills/career-evidence-interviewer/SKILL.md",
       "03_artefactos/skills/career-opportunity-finder/SKILL.md",
+      "03_artefactos/skills/career-visual-auditor/SKILL.md",
       "03_artefactos/skills/cinematic-scroll-quality/SKILL.md",
       "03_artefactos/skills/content-os-animation/SKILL.md",
       "03_artefactos/skills/content-os-bento-apple-grid/SKILL.md",
@@ -709,6 +733,12 @@
       "03_artefactos/skills/metodologia-brand-router/SKILL.md",
       "03_artefactos/skills/metodologia-certificate-builder/SKILL.md",
       "03_artefactos/skills/metodologia-find-skills/SKILL.md",
+      "03_artefactos/skills/metodologia-learning-playbook-html/SKILL.md",
+      "03_artefactos/skills/metodologia-masterclass-pdf/SKILL.md",
+      "03_artefactos/skills/metodologia-prompt-library/SKILL.md",
+      "03_artefactos/skills/metodologia-trainer-os/SKILL.md",
+      "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
+      "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
       "03_artefactos/skills/remotion-video-production-v2/SKILL.md",
       "03_artefactos/skills/remotion-video-production/SKILL.md",
@@ -784,6 +814,8 @@
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
+      "03_artefactos/skills/career-design-system/context.md",
+      "03_artefactos/skills/career-evidence-interviewer/context.md",
       "03_artefactos/skills/content-os-core/context.md",
       "03_artefactos/skills/content-os-creative/context.md",
       "03_artefactos/skills/content-os-router/context.md",
@@ -2960,6 +2992,32 @@
       }
     },
     {
+      "path": "01_intencion/career/cv-design-system-first-contract-v1.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/career/cv-design-system-first-contract-v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/career/cv-design-system-first-contract-v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "597baa9c4710074f435b213100b34ce68d2a94553567cc4148a2355b626cd55c",
+      "words": 415,
+      "lines": 72,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/career/cv-spec-first-contract-v1.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4479,7 +4537,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "5420c8fb9362c66ca24c4d3c68e3c37d94a9de26974deaa3ff5f3cafc91537cb",
+      "sha256": "d3ac9a2087c51a4fc5015b50c2db392d7ab524663f3ac1d06ae613010b7a273e",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -4765,9 +4823,9 @@
       "sourceRef": "01_intencion/reference/workflows/c01.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "0573d09ba5793505764982181fd47f2a9306f139ac1774e8ee2c1f63beb4d546",
-      "words": 291,
-      "lines": 73,
+      "sha256": "7299a3067a78d77e790ebc8e5adcf518199174e79872c9b0f002f378c6547020",
+      "words": 370,
+      "lines": 82,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -4791,9 +4849,9 @@
       "sourceRef": "01_intencion/reference/workflows/c02.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "75b654093f72916e4fba0b7ba8441fa99c60c2f164b91b9944c501ef72bfabac",
-      "words": 289,
-      "lines": 73,
+      "sha256": "9e840354c25f3fb6363393ebfed88cd419bb7ec1d328a412cfa60c728565e1a8",
+      "words": 297,
+      "lines": 78,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -4895,9 +4953,9 @@
       "sourceRef": "01_intencion/reference/workflows/c06.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "b975e8b7e9edb223e716b9d56a3b39883ed39695ba9188841e535ed646d31fd1",
-      "words": 405,
-      "lines": 83,
+      "sha256": "51984c49544e437133f4123d596702440876e7dadf52a1698b26f0f8456bb69e",
+      "words": 552,
+      "lines": 101,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -4947,9 +5005,9 @@
       "sourceRef": "01_intencion/reference/workflows/c08.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "5869f43d79cc988dd760ebc3c9d3fa9f38e7da27c1c97a4de41418abc78c0a20",
-      "words": 317,
-      "lines": 75,
+      "sha256": "fb063e63bab5656a9fb9eaabf546d1a40e6b4e8b96ff32462646d9c1b22716b4",
+      "words": 348,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -4999,8 +5057,8 @@
       "sourceRef": "01_intencion/reference/workflows/index.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "a0d8c119861326bf094b02022c9f0be60672496570ac2d247abc8260a7629770",
-      "words": 702,
+      "sha256": "07db0941746f1486951f3fe716d89b7357c6e4d776823244fef8b89a18ef6dec",
+      "words": 710,
       "lines": 63,
       "score": 100,
       "threshold": 80,
@@ -9381,6 +9439,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/trainer-os/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/trainer-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/trainer-os/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/trainer-os/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f4b9b83f239d4fe35601dab666711cd0fa4f14d908f6e10a006f873419d0ce18",
+      "words": 447,
+      "lines": 59,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/adapters/n8n/README.md",
       "class": "authored_control",
       "owner": "n8n",
@@ -9433,6 +9517,188 @@
       }
     },
     {
+      "path": "03_artefactos/brand/career-design-system/README.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "687f61e514e6e70892a5565332caf6c985750b5839bcee6e4bb926da21f7cb91",
+      "words": 194,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "64fa0830531ebe41167d8badfc950e3a5529ac967a3bdabc2a7dafbb16c11d2f",
+      "words": 257,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "fddbc82be8ef1c70a7757b9b394c09f15ded4441f114b62e4e3f5de8d385828c",
+      "words": 194,
+      "lines": 38,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/guidelines/accessibility.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "34a6847531aa2e1c15b876035e2282a89e2a837a913d3820f43a9a57b99012a2",
+      "words": 226,
+      "lines": 33,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/guidelines/usage.v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/guidelines/usage.v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4cd98f13878a04eaecfce2342e1f5505b8a3ac790855aa6a72458e371d42cdf7",
+      "words": 457,
+      "lines": 68,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/options/blueprint-executive.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/options/blueprint-executive.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b30408dac9ecd657c8362092430f1ece110583f5a0fffa55f1c4f1767a8dd1c2",
+      "words": 372,
+      "lines": 61,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md",
+      "class": "authored_control",
+      "owner": "brand",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:brand:brand/**",
+      "authorityRefs": [
+        "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/brand/career-design-system/options/neo-swiss-editorial.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3d1581e0775af360b2affd7dd552959a7dfdfdcba04d6d2bc7c4bb23de223f4b",
+      "words": 348,
+      "lines": 60,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/content/documentation/ecosystem-inventory.md",
       "class": "authored_control",
       "owner": "content",
@@ -9446,9 +9712,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "6cdaa82e9efbd6e2bfc730d7e58ce7f616f040deb9582b0b9957d1bd6612be2a",
-      "words": 10174,
-      "lines": 947,
+      "sha256": "186d9490cc1826c34a900d9ca0c495f2af7010e94fbe8de2c2f4109e3292f778",
+      "words": 10394,
+      "lines": 967,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -9905,6 +10171,58 @@
       }
     },
     {
+      "path": "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-design-system/references/options-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-design-system/references/options-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "64c8396013c9cd6e39fe97c603ca574c9340f59b710f80b4094e8b0c50506bb8",
+      "words": 103,
+      "lines": 24,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-design-system/references/verification.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-design-system/references/verification.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-design-system/references/verification.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d70caf7fba0b8256a671a6f4d0fe06eda27792426b3fdad59c68b85e59f2033b",
+      "words": 179,
+      "lines": 30,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/career-opportunity-finder/references/opportunity-policy.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -9919,6 +10237,32 @@
       "sha256": "12744e68104bb077c52549233e16f2f78d14c3ae7428b04be34aa3f456f17991",
       "words": 108,
       "lines": 21,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-visual-auditor/references/audit-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-visual-auditor/references/audit-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-visual-auditor/references/audit-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "95b5778fd410a18ecd2fc39df563fe9f7a1929aecdfb50d6b965a82a879469c6",
+      "words": 116,
+      "lines": 14,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -12806,9 +13150,9 @@
       "sourceRef": "03_artefactos/skills/evidence-first-cv/references/cv-quality-contract.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "3e968cf2fc6e56ec9d86cd6d9b9e63162d10d2495122aa3437528d73b6614685",
-      "words": 384,
-      "lines": 57,
+      "sha256": "ab0987f65786816d59a3a7738bad8ab4aa24ab9120112b5ec2739b1e1a887cd6",
+      "words": 447,
+      "lines": 64,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -13050,6 +13394,162 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "45857b4ba764c877e67674a0c9d340331559f69a39c87e79461a1703b8da7fb9",
+      "words": 195,
+      "lines": 23,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a241e98ac98be83974790a88af1505811f9d19abd0caf7f0c668f83967fff6c6",
+      "words": 236,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "780c91054c9b998ad0309ba751861e786482e672bfcae7d5260d575edaf88502",
+      "words": 138,
+      "lines": 19,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-trainer-os/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-trainer-os/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-trainer-os/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0560dc38d85d9e928433365a4db7e3de900602e4f70efe3217ac13667b2905d0",
+      "words": 205,
+      "lines": 27,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0fcef1b6f5237b191814fb187c02d07b6972643cbc02ef341d95a3215a0f3063",
+      "words": 414,
+      "lines": 54,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "5270c98dadb26ae8af2432959c71f628d8476c3c1a2a85dd5705a222928fce96",
+      "words": 297,
+      "lines": 48,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
         "hasNextAction": false,
         "duplicateHeadings": 0
       }
@@ -16097,6 +16597,84 @@
       }
     },
     {
+      "path": "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
+      "class": "authored_control",
+      "owner": "guardian",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:guardian:guardian/**",
+      "authorityRefs": [
+        "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "05_verificacion/guardian/career-design-system/career-design-system-review-r2.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7ecd16acc337589a9c1888cbd35ed80e257e577bc5b2f4a79d896ae0e7dd0577",
+      "words": 765,
+      "lines": 91,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
+      "class": "authored_control",
+      "owner": "guardian",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:guardian:guardian/**",
+      "authorityRefs": [
+        "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "05_verificacion/guardian/career-design-system/design-options-acceptance-v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "bdd1f83d87d107d048e8a75da58323da5820e688d42de36d1872c2a20e2a00e3",
+      "words": 1313,
+      "lines": 126,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
+      "class": "authored_control",
+      "owner": "guardian",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:guardian:guardian/**",
+      "authorityRefs": [
+        "05_verificacion/guardian/career-design-system/design-options-review-r1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "05_verificacion/guardian/career-design-system/design-options-review-r1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "cb978b7f0738090a8b4753dfcb749564befd7c7316b4b43700d4aaa6c9a40846",
+      "words": 702,
+      "lines": 81,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/guardian/reviews/GDN-001-revise.md",
       "class": "authored_control",
       "owner": "guardian",
@@ -16595,10 +17173,10 @@
     }
   ],
   "summary": {
-    "keep": 535,
+    "keep": 556,
     "refactor": 0,
     "split": 1,
-    "regenerate": 81,
+    "regenerate": 83,
     "freeze": 987
   }
 }

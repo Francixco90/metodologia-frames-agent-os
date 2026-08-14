@@ -1,0 +1,43 @@
+{
+  "schema_version": "cv-design-brief-v1",
+  "brief_id": "CVDBRIEF-METODOLOGIA-CAREER-V1",
+  "candidate_id": "CAND-SYNTHETIC-PUBLIC",
+  "audiences": ["recruiter", "hiring_manager"],
+  "languages": ["es", "en"],
+  "requested_outputs": ["executive-html"],
+  "density": "compact",
+  "hierarchy": ["identity", "positioning", "proof", "experience", "capabilities"],
+  "interaction_depth": "progressive-disclosure",
+  "constraints": [
+    "Offline local-first",
+    "WCAG 2.2 AA",
+    "Synthetic public fixtures only",
+    "Print uses light theme"
+  ],
+  "design_system": {
+    "schema_version": "metodologia-career-design-system-v1",
+    "design_system_id": "CVDS-METODOLOGIA-CAREER-V1",
+    "contract_ref": "brand/career-design-system/README.md",
+    "contract_sha256": "687f61e514e6e70892a5565332caf6c985750b5839bcee6e4bb926da21f7cb91",
+    "tokens_ref": "brand/career-design-system/tokens/tokens.v1.json",
+    "tokens_sha256": "d48f808e9bd942439f366d896f0600c69df11acbf1c53c22d80c520b3bd4b638",
+    "component_registry_ref": "brand/career-design-system/components/registry.v1.json",
+    "component_registry_sha256": "e330c2c88d6fbe57a5bc3948b6fb77fe23eebf9e63751c0bb46dbf37dcc52a44",
+    "font_manifest_ref": "brand/fonts/font-manifest.yml",
+    "font_manifest_sha256": "f86a90762628b14a4b9d5c79c82bc91a8ffdd3a5bf78223800df8ff364c92660",
+    "icon_registry_ref": "brand/career-design-system/icons/registry.v1.json",
+    "icon_registry_sha256": "7e02406225b260acefa24816ea6022897b45547d85356e8b82edac08393d7973",
+    "composition_ids": ["blueprint-executive", "neo-swiss-editorial"],
+    "theme_policy": {
+      "default_theme": "navy",
+      "alternate_theme": "light",
+      "print_theme": "light",
+      "persistence": "local-storage-progressive-enhancement"
+    },
+    "design_system_sha256": "752ce724494ac7edce32e5a27dd3e6f307ee02984b018bac38a764444a617bb0"
+  },
+  "requested_compositions": ["blueprint-executive", "neo-swiss-editorial"],
+  "state": "DESIGN_OPTIONS_READY",
+  "next_gate": "CR_CV_DESIGN_APPROVED",
+  "brief_sha256": "0b849ba81952b30b382bab41005d43c35b7332f29eb49b603839b9df6110b9f2"
+}

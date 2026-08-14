@@ -30,9 +30,9 @@ Esta referencia se genera desde los workflows canónicos. Empieza por el resulta
 - [C03 · Descubrimiento de oportunidades](c03.md): Preparar búsquedas y capturar oportunidades públicas con procedencia, vigencia y deduplicación.
 - [C04 · Validación y scoring de vacantes](c04.md): Verificar vigencia, extraer requisitos y producir un score explicable con hard stops.
 - [C05 · Diseño de candidatura](c05.md): Fijar vacante, evidencia utilizable, gaps, narrativa y entregables antes de redactar.
-- [C06 · CV spec-first y evidence-bound](c06.md): Especificar, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
+- [C06 · CV spec-first, design-system-first y evidence-bound](c06.md): Especificar, decidir el sistema visual cuando aplica, compilar y proyectar un CV recruiter-first, ATS-safe y trazable sin convertir requisitos en claims.
 - [C07 · Carta basada en evidencia](c07.md): Redactar carta, respuesta de formulario o mensaje que complemente el CV sin repetirlo.
-- [C08 · QA del paquete de candidatura](c08.md): Congelar y verificar spec, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.
+- [C08 · QA del paquete de candidatura](c08.md): Congelar y verificar spec, diseño, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.
 - [C09 · Preparación de postulación y aprendizaje](c09.md): Revalidar, mostrar preview, comprobar autorización y preparar seguimiento sin enviar desde local-evaluation.
 
 ## Extensiones locales

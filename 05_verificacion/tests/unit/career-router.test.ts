@@ -6,11 +6,61 @@ import {resolve} from 'node:path';
 import {afterEach, describe, expect, it} from 'vitest';
 import {parse} from 'yaml';
 
+import type {CareerEvidenceReadinessV1} from 'workflows/career/_schema/career-evidence-readiness-v1.schema.ts';
+import {calculateEvidenceReadinessHash} from 'workflows/career/_runner/career-discovery.ts';
 import {routeCareerIntent} from 'workflows/career/_runner/route-career.ts';
 
 const ROOT = process.cwd();
 const DISPATCHER = resolve(ROOT, '03_artefactos/skills/content-os-router/scripts/route-intent.mjs');
 const temporaryDirs: string[] = [];
+const readyEvidence = (candidateId: string, bank = 'a'.repeat(64)) => {
+  const check = {passed: true, evidence_ids: ['EVIDENCE-SYNTHETIC-001'], accepted_gap_ids: []};
+  const payload = {
+    schema_version: 'career-evidence-readiness-v1',
+    readiness_id: 'READINESS-SYNTHETIC-001',
+    candidate_id: candidateId,
+    evidence_bank_sha256: bank,
+    candidate_packet_sha256: 'b'.repeat(64),
+    checks: {
+      identity_and_chronology: check,
+      competency_evidence: check,
+      recent_role_interventions: check,
+      contradictions_resolved: check,
+      role_family_selected: check,
+      privacy_boundary: check,
+      gaps_accepted: check,
+    },
+    blocking_gap_ids: [],
+    status: 'READY',
+    next_gate: 'CR_CAREER_EVIDENCE_READY',
+  } satisfies Omit<CareerEvidenceReadinessV1, 'readiness_sha256'>;
+  return {
+    evidenceReadiness: {...payload, readiness_sha256: calculateEvidenceReadinessHash(payload)},
+    evidenceBankSha256: bank,
+  };
+};
+const blockedEvidence = (candidateId: string, bank = 'a'.repeat(64)) => {
+  const ready = readyEvidence(candidateId, bank).evidenceReadiness;
+  const {readiness_sha256: priorHash, ...readyPayload} = ready;
+  expect(priorHash).toMatch(/^[a-f0-9]{64}$/u);
+  const payload = {
+    ...readyPayload,
+    checks: {
+      ...readyPayload.checks,
+      competency_evidence: {
+        passed: false,
+        evidence_ids: [],
+        accepted_gap_ids: [],
+      },
+    },
+    blocking_gap_ids: ['GAP-BLOCKING-001'],
+    status: 'BLOCKED',
+  } satisfies Omit<CareerEvidenceReadinessV1, 'readiness_sha256'>;
+  return {
+    evidenceReadiness: {...payload, readiness_sha256: calculateEvidenceReadinessHash(payload)},
+    evidenceBankSha256: bank,
+  };
+};
 const dispatch = (request: Record<string, unknown>) => {
   const directory = mkdtempSync(resolve(tmpdir(), 'frames-intent-dispatch-'));
   temporaryDirs.push(directory);
@@ -52,7 +102,7 @@ describe('R7 Career intent router', () => {
       targetRole: 'Product Operations Lead',
       jobRef: 'work/private/jobs/job-001.md',
       profileReady: true,
-      evidenceReady: true,
+      ...readyEvidence('CAND-SYNTHETIC-001'),
       jobValidated: true,
     });
 
@@ -71,7 +121,7 @@ describe('R7 Career intent router', () => {
       candidateId: 'CAND-SYNTHETIC-001',
       targetRole: 'Product Operations Lead',
       profileReady: true,
-      evidenceReady: true,
+      ...readyEvidence('CAND-SYNTHETIC-001'),
     });
 
     expect(result.intent_class).toBe('full_application');
@@ -96,7 +146,7 @@ describe('R7 Career intent router', () => {
       applicationId: 'APP-SYNTHETIC-001',
       targetRole: 'Product Operations Lead',
       profileReady: true,
-      evidenceReady: true,
+      ...readyEvidence('CAND-SYNTHETIC-001'),
       packageReady: true,
     });
 
@@ -117,7 +167,7 @@ describe('R7 Career intent router', () => {
       sourceRefs: ['sources/z.md', 'sources/a.md', 'sources/z.md'],
       constraints: ['ATS', 'dos páginas', 'ATS'],
       profileReady: true,
-      evidenceReady: true,
+      ...readyEvidence('CAND-SYNTHETIC-001'),
     };
     const first = routeCareerIntent(input);
     const second = routeCareerIntent(input);
@@ -142,6 +192,40 @@ describe('R7 Career intent router', () => {
       next_gate: 'CR_BRIEF_APPROVED',
       decision: 'NEEDS_INPUT',
     });
+  });
+
+  it('does not trust a readiness boolean and rejects stale or mismatched receipts', () => {
+    const base = {
+      request: 'Crear un CV general',
+      candidateId: 'CAND-SYNTHETIC-001',
+      targetRole: 'Program Lead',
+      profileReady: true,
+    };
+    const unverified = routeCareerIntent({...base, evidenceReady: true});
+    expect(unverified.selected_stage_path).toContain('C01');
+    expect(unverified.selected_stage_path.indexOf('C01')).toBeLessThan(
+      unverified.selected_stage_path.indexOf('C02'),
+    );
+    expect(unverified.next_gate).toBe('CR_CAREER_EVIDENCE_READY');
+    expect(unverified.reason_codes).toContain('EVIDENCE_READINESS_UNVERIFIED');
+
+    const valid = readyEvidence(base.candidateId);
+    expect(() => routeCareerIntent({...base, ...blockedEvidence(base.candidateId)})).toThrow(
+      'CAREER-EVIDENCE-READINESS-BINDING',
+    );
+    expect(() =>
+      routeCareerIntent({...base, ...valid, evidenceBankSha256: 'c'.repeat(64)}),
+    ).toThrow('CAREER-EVIDENCE-READINESS-BINDING');
+    expect(() => routeCareerIntent({...base, ...readyEvidence('CAND-SYNTHETIC-OTHER')})).toThrow(
+      'CAREER-EVIDENCE-READINESS-BINDING',
+    );
+    expect(() =>
+      routeCareerIntent({
+        ...base,
+        ...valid,
+        evidenceReadiness: {...valid.evidenceReadiness, readiness_sha256: 'd'.repeat(64)},
+      }),
+    ).toThrow('career evidence readiness hash mismatch');
   });
 
   it.each(['Crea una pieza para presentar mi candidatura', 'Necesito ayuda con algo profesional'])(

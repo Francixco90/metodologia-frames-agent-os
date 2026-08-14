@@ -1,0 +1,12 @@
+schema_version: general-video-successor-verification-v1
+skill_version: 0.7.1
+predecessor_version: 0.7.0
+execution_scope: local-evaluation
+publication_authority: false
+successor_reason: portable visual adversarial evidence setup
+claims:
+  - visual_seed_regenerated_before_mutation
+  - missing_visual_seed_fails_with_explicit_code
+  - exact_frame_signature_check_preserved
+verification_command: node skills/content-os-general-video/scripts/check-skill.mjs
+result: PASS

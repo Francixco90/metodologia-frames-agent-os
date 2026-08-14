@@ -1,0 +1,19 @@
+{
+  "schema_version": "career-design-options-producer-receipt-v1",
+  "package_id": "metodologia-career-design-options-v1",
+  "actor": "design-options-producer",
+  "action": "render-two-synthetic-options",
+  "state": "DESIGN_OPTIONS_READY",
+  "manifest_ref": "manifest.json",
+  "manifest_sha256": "b6bfee1e2abba03356127b4f0364ba3f58369cf5392d65f480c220165a400bc3",
+  "checks": {
+    "exact_option_count": "PASS",
+    "embedded_fonts": "PASS",
+    "shared_primitives_hash_equal": "PASS",
+    "remote_dependencies": "PASS",
+    "synthetic_only": "PASS"
+  },
+  "human_approved": false,
+  "publication_authorized": false,
+  "next_gate": "HUMAN_DESIGN_SELECTION"
+}

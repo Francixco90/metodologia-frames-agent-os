@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "workbook-spec-v1",
+  "workbookId": "broken-workbook",
+  "brand": "OtherBrand",
+  "state": "READY",
+  "specHashAlgorithm": "unknown",
+  "specSha256": "stale",
+  "designSystemLock": {"ref": "/private/lock.json", "sha256": "missing"},
+  "primaryLocale": "es",
+  "uiPattern": {"ctaVisibleWordsMax": 8, "actionIcons": "remote-image", "copyControl": "visible-text", "promptLevelControls": "names", "promptFormatOrder": ["pair", "spec"]},
+  "locales": [{"locale": "es", "title": "Roto", "intro": "Fixture negativa", "sheets": []}],
+  "interactions": {"tabsKeyboard": false, "copyPrompts": true, "responsePersistence": "localStorage", "preferencePersistence": ["answers"]},
+  "noJs": {"contentReadable": false, "navigationFallback": "javascript-only"},
+  "print": {"enabled": false, "hideInteractiveControls": false, "preserveAllContent": false},
+  "assets": [{"id": "remote", "ref": "https://example.invalid/font.woff2", "sha256": "unknown", "rights": {"status": "unknown", "authority": ""}}],
+  "output": {"htmlRef": "file:///private/output.html", "state": "PUBLISHED"}
+}

@@ -1,0 +1,22 @@
+schema_version: general-video-skill-verification-v1
+skill: content-os-general-video
+version: 0.14.0
+state: local-evaluation
+publication_authority: false
+successor_of: 0.7.1
+canonical_consumer_gates:
+  source_analysis: content-os-media/source-analysis-gate
+  brand_kit: content-os-creative/brand-kit-gate
+  rules_duplicated: false
+producer_verdict: pass
+evidence:
+  focal_checker: PASS
+  source_refs_missing_drift_symlink_traversal_absolute: PASS
+  brand_manifest_missing_drift_symlink_traversal_absolute: PASS
+  brand_assets_missing_drift_symlink_traversal_absolute: PASS
+  crop_evidence_missing_drift_symlink_frame_drift: PASS
+  json_parse: PASS
+  node_syntax: PASS
+  diff_check: PASS
+independent_verifier: required
+guardian: required

@@ -16,7 +16,7 @@ const generatedPatterns = [
 
 export type DocumentationBuildOptions = {repoRoot?: string; allowUnresolved?: boolean};
 
-const stableJson = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;
+const stableJson = (value: unknown, space = 2): string => `${JSON.stringify(value, null, space)}\n`;
 
 export const buildDocumentationOutputs = async (
   options: DocumentationBuildOptions = {},
@@ -48,7 +48,7 @@ export const buildDocumentationOutputs = async (
   outputs.set('03_artefactos/content/documentation/index.html', renderPortalHtml(workflows));
   outputs.set(
     '03_artefactos/content/documentation/documentation-manifest-v1.json',
-    stableJson(manifest),
+    stableJson(manifest, 0),
   );
   outputs.set(
     '03_artefactos/content/documentation/documentation-coverage-v1.json',
@@ -64,6 +64,9 @@ export const buildDocumentationOutputs = async (
   return new Map(
     await Promise.all(
       [...outputs].map(async ([outputPath, content]) => {
+        if (outputPath.endsWith('documentation-manifest-v1.json')) {
+          return [outputPath, content] as const;
+        }
         const parser = outputPath.endsWith('.md')
           ? 'markdown'
           : outputPath.endsWith('.html')

@@ -91,6 +91,9 @@ function currentHashes(a) {
     sourcePackSha256: shaFile(a.sourcePath), specSha256: shaFile(a.specPath), scriptSha256: shaFile(a.scriptPath),
     pieceScriptsSha256: shaFile(a.scriptsPath), assetManifestSha256: shaFile(a.assetsPath),
     ...(a.abPath ? {abTestSha256: shaFile(a.abPath)} : {}),
+    ...(a.state.sourceAnalysisRef ? {sourceAnalysisSha256: shaFile(projectPath(a.state.sourceAnalysisRef, 'SOURCE_ANALYSIS_HASH'))} : {}),
+    ...(a.state.compositionFitRef ? {compositionFitSha256: shaFile(projectPath(a.state.compositionFitRef, 'COMPOSITION_FIT_HASH'))} : {}),
+    ...(a.state.storyboardRef ? {storyboardSha256: shaFile(projectPath(a.state.storyboardRef, 'STORYBOARD_HASH'))} : {}),
   };
 }
 
@@ -143,6 +146,15 @@ function verifyScripts(a, sourceIds) {
   if (a.scripts.schemaVersion !== 'piece-scripts-v2') fail(`MIGRATION_REQUIRED ${a.scripts.schemaVersion || 'unknown'} cannot compile`);
   const sourceMap = new Map(a.sourcePack.sources.map((source) => [source.id, source]));
   for (const piece of a.scripts.pieces || []) {
+    if (!piece.brandedWrapper) {
+      const cleanup = piece.sourceCleanup; const cleanupAsset = a.assets.assets.find((asset) => asset.id === cleanup?.assetId);
+      if (!cleanup || cleanup.required !== true || !cleanupAsset || cleanupAsset.kind !== 'source-cleanup-mask') fail(`CLEANUP_MASK_REQUIRED_${piece.id}`);
+      const cleanupPath = projectPath(cleanup.ref, `CLEANUP_MASK_${piece.id}`); const cleanupSha = shaFile(cleanupPath);
+      if (cleanupAsset.ref !== cleanup.ref || cleanupAsset.sha256 !== cleanup.sha256 || cleanupAsset.generator.configSha256 !== cleanup.configSha256 || cleanupSha !== cleanup.sha256 || cleanup.configSha256 !== cleanup.sha256) fail(`CLEANUP_MASK_BINDING_${piece.id}`);
+      validateSchema('source-cleanup-mask-v1.schema.json', load(cleanupPath, `CLEANUP_MASK_${piece.id}`), `CLEANUP_MASK_${piece.id}`, fail);
+      const cleanupDep = piece.dependencies?.find((dep) => dep.kind === 'cleanup-mask');
+      if (!cleanupDep || cleanupDep.id !== cleanup.assetId || cleanupDep.sha256 !== cleanup.sha256) fail(`CLEANUP_DEPENDENCY_${piece.id}`);
+    }
     if (!['use', 'extend', 'reframe', 'discard'].includes(piece.decision)) fail(`PIECE_DECISION ${piece.id}`);
     if (piece.decision !== 'discard' && (!piece.sourceSpans?.length || !piece.dependencies?.length)) fail(`PIECE_EVIDENCE ${piece.id}`);
     for (const span of piece.sourceSpans || []) {
@@ -163,6 +175,12 @@ function verifyScripts(a, sourceIds) {
       const curtain = piece.dependencies.find((dep) => dep.kind === 'curtain');
       if (!curtain || shaFile(projectPath(piece.miniclip.curtainRef, `CURTAIN_${piece.id}`)) !== curtain.sha256) fail(`HASH_DRIFT_CURTAIN_${piece.id}`);
     }
+  }
+  for (const group of a.ab?.groups || []) {
+    const bound = group.pieceIds.map((id) => a.scripts.pieces.find((piece) => piece.id === id)?.sourceCleanup);
+    if (bound.length === 2 && bound.every(Boolean) && json(bound[0]) !== json(bound[1])) fail(`AB_CLEANUP_MISMATCH_${group.id}`);
+    const wrappers = group.pieceIds.map((id) => a.scripts.pieces.find((piece) => piece.id === id)?.brandedWrapper).filter(Boolean);
+    if (wrappers.length && (wrappers.length !== 2 || wrappers[0].brandKitRef !== wrappers[1].brandKitRef || wrappers[0].brandKitSha256 !== wrappers[1].brandKitSha256)) fail(`AB_WRAPPER_MISMATCH_${group.id}`);
   }
 }
 

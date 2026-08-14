@@ -1,7 +1,7 @@
 ---
 name: career-application-orchestrator
 description: This skill should be used when the user asks to "crear mi CV", "adaptar mi hoja de vida", "escribir una cover letter", "buscar vacantes", "ayudarme a postular", or continue a governed candidate application.
-version: 0.3.0
+version: 0.4.0
 license: LicenseRef-MetodologIA-Internal
 metadata:
   owner: MetodologIA
@@ -32,8 +32,11 @@ skills especialistas; no inventa evidencia, busca en vivo ni envía postulacione
 4. Emite `candidate-foundation-brief`, `job-search-brief`, `application-brief` o
    `application-intervention-brief`; Markdown es canónico y HTML es derivado.
 5. Registra `brief_ref`, `selected_stage_path`, skills y siguiente gate.
-6. Antes de C06, exige Evidence Bank y `cv-spec-v1` hash-bound; una spec nueva
-   requiere aprobación humana y deja obsoletos sus derivados anteriores.
+6. Antes de posicionar o compilar, resuelve `career-evidence-readiness-v1`.
+   Si falta evidencia material, activa `career-evidence-interviewer`; si las
+   fuentes ya bastan, no pregunta de nuevo.
+7. Antes de C06, exige Evidence Bank, readiness y `cv-spec-v2` hash-bound; una
+   spec nueva requiere aprobación humana e invalida sus derivados anteriores.
 
 ## Routing determinista
 
@@ -50,9 +53,11 @@ ownership siguen vigentes. Empate o identidad irresoluble produce R0/`BLOCKED`.
 
 ## Dispatch
 
-- C01: `candidate-evidence-reconciler`.
+- C01: `candidate-evidence-reconciler`; delega en `career-evidence-interviewer`
+  solo ante gaps materiales. Pausa/reanudación conserva el hash de sesión.
 - C03–C04: `career-opportunity-finder`.
-- C06: `evidence-first-cv`, con preflight `CR_CV_SPEC_APPROVED` antes de compilar.
+- C06: `evidence-first-cv`, con `CR_CAREER_EVIDENCE_READY` y
+  `CR_CV_SPEC_APPROVED` antes de compilar.
 - C07: `evidence-based-cover-letter`.
 - C08 requiere verifier distinto del producer.
 - C09 solo prepara preview y autorización en `local-evaluation`.

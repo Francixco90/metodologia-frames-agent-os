@@ -49,9 +49,14 @@
       "required": ["brandProfileRef", "motionCeiling", "safeZones"],
       "properties": {
         "brandProfileRef": {"type": "string", "minLength": 1},
+        "brandKitRef": {"type": "string", "minLength": 1},
+        "brandKitSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "visualBudgetRef": {"type": "string", "minLength": 1},
+        "visualBudgetSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
         "motionCeiling": {"type": "string", "minLength": 1},
         "safeZones": {"type": "string", "minLength": 1}
-      }
+      },
+      "dependentRequired": {"brandKitRef": ["brandKitSha256"], "brandKitSha256": ["brandKitRef"], "visualBudgetRef": ["visualBudgetSha256"], "visualBudgetSha256": ["visualBudgetRef"]}
     },
     "audio": {
       "type": "object",

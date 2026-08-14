@@ -1,7 +1,7 @@
 ---
 name: content-os-general-video
 description: This skill should be used when the user asks to "author a custom video", "build a brand reel or sizzle reel", "make a montage", "build a multi-scene video when no specialized workflow fits", "remix existing footage", "build a static title card or loop", or "co-create a freeform video (companion flow)".
-version: 0.7.0
+version: 0.15.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + seek-safe GSAP), content-os-animation (blueprints/rules), content-os-keyframes (pose/lint), content-os-creative (brand/story-spine/genre lenses), content-os-media (offline + remote-opt-in), content-os-registry (blocks), content-os-router (dispatch). Input = freeform brief. Output = MP4 (RENDERED_DRAFT). Companion or automation flow.
 metadata:
@@ -17,6 +17,10 @@ brand reels, sizzle reels, montajes, multi-scene pieces, static loops, title car
 remixes, freeform builds. Adaptado de `general-video` (vendor, Apache 2.0) a fail-closed +
 hash-bound + offline-first. No `npx hyperframes` CLI. Capabilities delegadas (ver
 frontmatter `compatibility`).
+
+La revisión 0.15 ejecuta las compuertas canónicas de Media y Creative: no basta declarar
+sus hashes; ASR, Transcript Intelligence, manifests de marca y assets deben resolverse y
+validarse sin escapes, symlinks ni deriva antes de compilar.
 
 ## When to use this vs a specialized workflow
 
@@ -43,15 +47,6 @@ solo ejecuta jobs FFmpeg declarados y validados por `plan`; `audio-remux` exige
 únicamente capas y piezas dependientes. El render permite solo inputs de archivo relativos
 al proyecto y limita FFmpeg al protocolo `file`; protocolos de red quedan bloqueados.
 
-## Flow — companion vs automation
-
-- `automation`: enruta, declara estado, construye, verifica y entrega.
-- `companion`: co-crea como director; propone primero un ceiling treatment con arco,
-  diseño, movimiento por escena, transiciones, identidad sonora, materiales y cierre.
-
-El usuario recorta el tratamiento. Cada capa sirve al mensaje; el craft puede subir, pero
-el contenido no excede el alcance.
-
 ## Storyboard — review surface
 
 Con `storyboard: yes`, plan y sketch forman la review surface; con `no`, se construye sin
@@ -71,38 +66,14 @@ tl.seek(frame/fps)); offline-first render path; scope exact.
 3. Verificar contratos de composición y marca; usar fuentes locales.
 4. Correr `scripts/workflow-audit.mjs`.
 
-## Sub-agent dispatch (scale-dependent)
-
-El dispatch solo compensa a escala: hasta seis escenas cortas se construyen inline; por
-encima, asigna 2–3 escenas por worker. Ver `references/dispatch.md`.
-
-## Genre lenses (companion)
-
-En `companion`, diseña el treatment desde story-spine, house-style, genre lens y
-capability-menu de `content-os-creative`; reutiliza forma y criterio, nunca scripts privados.
-
 ## Workflow Contract (ground truth)
 
-1. **Orchestrator, no rules.** Orquesta steps + gates. Design/motion rules viven en
-   capabilities.
-2. **Scope exact.** Build lo que el user pidió. Un title card no es title card + scenes +
-   music + captions. Offer additions antes de añadir. `scope_expanded: true` = `scope-creep`.
-3. **Render-path offline-first.** Compositions + frames + composite offline. Media:
-   offline default, remote opt-in auth-gated.
-4. **Deterministic.** Mismo brief + plan + frames → mismo render. Sin
-   `Date.now()`/`Math.random()`/`new Date()` en compositions.
-5. **Seek-safe.** GSAP `paused: true`, scrubbed to frame `t` (hereda
-   `content-os-animation`). No `repeat: -1`/`+=`/`transition:` animated elements.
-6. **Design before HTML.** Resolve design source: `frame.md` → `design.md` → `DESIGN.md`
-   (first found = brand truth). Sin spec, completa 4 items (identity, concept angle, fonts,
-   focal/edge/supporting/bg) antes de HTML.
-7. **Draft automático, promoción humana.** Un `RENDERED_DRAFT` puede compilarse tras gates
-   deterministas. `HUMAN_APPROVED`, `READY` y `PUBLISHED` requieren revisión y gates
-   manuales; la skill nunca los concede.
-8. **Step-gated.** Cada step tiene gate. Sin gate, no avanzas. User-gated (0, 6) pausan.
-9. **Delegate on-demand.** Carga solo lo que el step activo necesita.
-10. **RENDERED_DRAFT != HUMAN_APPROVED.** `renders/final.mp4` = `RENDERED_DRAFT`. `finalize`
-    sin render = `no-render`. `READY`/publicación requiere gates G13-G17.
+El orchestrator mantiene scope exacto, dispatch bajo demanda y gates step-gated. El render
+es offline-first, determinista y seek-safe: GSAP `paused: true`, scrub a `t`, sin
+`Date.now()`, `Math.random()`, repeats infinitos ni CSS transitions. La verdad de diseño se
+resuelve `frame.md` → `design.md` → `DESIGN.md`; `window.__timelines` conserva la superficie
+seekable. `RENDERED_DRAFT` puede compilarse tras gates deterministas, pero
+`HUMAN_APPROVED`, `READY` y `PUBLISHED` requieren revisión externa G13-G17.
 
 ## Steps (router — detail en `references/steps-receta.md`)
 
@@ -127,12 +98,8 @@ capability-menu de `content-os-creative`; reutiliza forma y criterio, nunca scri
 
 ## Done
 
-`renders/final.mp4` (RENDERED_DRAFT) + verified + handoff (preview/artifact + duration +
-snapshot sheet). Gates pasados, capabilities delegadas, render-path offline-first +
-deterministic + seek-safe heredados. Para `flow: companion`: treatment delivered — every
-scene's cited rules realized, audio identity (o silence + said), open + close designed.
-`READY`/publicación bloquea gates G13-G17. El lifecycle de esta versión permanece
-`local-evaluation`.
+`renders/final.mp4` (`RENDERED_DRAFT`) verificado, con preview, duración y snapshots.
+`READY` y publicación requieren G13-G17. Esta versión permanece `local-evaluation`.
 
 ## A/B y miniclips
 
@@ -142,3 +109,36 @@ hash-bound. La pista visual debe ser distinta. Si cualquier invariante difiere,
 el par queda bloqueado. El gate de miniclips además exige Poppins en captions, Montserrat en
 títulos/disclosures, máximo dos niveles de texto simultáneos, safe zones, audio a
 −16 LUFS ±0,3 con máximo −1,5 dBTP, y cero logos/copy prohibidos.
+
+La limpieza fuente usa `source-cleanup-mask-v1`: máscara y generador hash-bound, filtro
+anterior a escala/tratamiento, evidencia geométrica sobre el cuerpo limpio y binding A/B.
+
+Los pipelines de frames precompuestos usan exclusivamente `precomposed-frames-v1`.
+Cada pieza liga adaptador, manifiesto, todos los frames, audio, configuración determinista y
+la limpieza aplicada antes del tratamiento. `render` y `verify` recalculan esos hashes y
+emiten `adapterEvidence`; un frame ausente o mutado, una omisión de limpieza o un manifiesto
+sin derivación reproducible bloquean el borrador. No existe un bypass de receipts genérico.
+
+`branded-wrapper-v1` ensambla intro + cuerpo original + outro únicamente cuando los perfiles
+son compatibles para stream-copy. El cuerpo no recibe música, overlays, ganancia ni
+normalización. El receipt prueba preservación de packets de audio y video; las cabeceras del
+primer access unit de video pueden normalizarse por el contenedor, pero nunca recodificarse.
+El brand kit puede ser `metodologia` con generador versionado o `user-provided` con derechos,
+procedencia y hashes explícitos. En A/B, intro y outro son idénticos y cada audio de cuerpo se
+preserva respecto de su fuente.
+
+Antes de componer footage, `source-analysis-v1` registra dimensiones, audio fuente, muestras
+temporales y observaciones móviles; `composition-fit-v1` demuestra que crop, contain o split
+encajan en el canvas sin reintroducir marcas. Una muestra omitida bloquea el render. El audio
+fuente usa `preserve` por defecto: reemplazo, normalización o ganancia requieren otra fuente y
+autoridad, nunca una mutación silenciosa del cuerpo. `storyboard-multiframe-v1` liga dos o más
+momentos ordenados a spans y fits verificables, no trata cada frame como una diapositiva.
+La única autoridad de `source-analysis-v1` vive en `content-os-media`; esta skill la consume
+como schema sibling y no mantiene una copia.
+Un crop `safe` exige evidencia multiframe hash-bound: dos o más tiempos, frames reales y
+cobertura completa; ausencia, drift o symlink bloquean.
+
+Los refs de marca y presupuesto visual usan los contratos canónicos
+`content-os-creative/schemas/brand-kit-v1` y `visual-budget-v1`; General Video solo conserva y
+rehash-bindea sus refs en spec/piezas. El manifiesto `branded-wrapper-v1` describe el ensamblaje
+intro/cuerpo/outro y no redefine el brand kit creativo.

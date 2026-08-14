@@ -1,8 +1,9 @@
-import {readFileSync} from 'node:fs';
+import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import Ajv2020 from 'ajv/dist/2020.js';
 import {parse as parseYaml} from 'yaml';
+import {checkBrandKit} from './check-brand-kit.mjs';
 
 const root = process.cwd();
 const required = [
@@ -11,9 +12,13 @@ const required = [
   'skills/content-os-creative/LINEAGE.yml',
   'skills/content-os-creative/schemas/creative-brief-v1.schema.json',
   'skills/content-os-creative/schemas/creative-brief-v2.schema.json',
+  'skills/content-os-creative/schemas/brand-kit-v1.schema.json',
+  'skills/content-os-creative/schemas/visual-budget-v1.schema.json',
   'skills/content-os-creative/scripts/check-skill.mjs',
   'skills/content-os-creative/scripts/creative-audit.mjs',
   'skills/content-os-creative/scripts/voice-evidence-gate.mjs',
+  'skills/content-os-creative/scripts/brand-kit-gate.mjs',
+  'skills/content-os-creative/scripts/check-brand-kit.mjs',
   'skills/content-os-creative/references/composition-patterns.md',
   'skills/content-os-creative/references/narration-and-pacing.md',
   'skills/content-os-creative/references/house-style.md',
@@ -24,12 +29,26 @@ const required = [
   'skills/content-os-creative/fixtures/negative/lazy-defaults.yml',
   'skills/content-os-creative/fixtures/negative/v2-empty-beats.yml',
   'skills/content-os-creative/fixtures/negative/v2-non-use-render.yml',
+  'skills/content-os-creative/fixtures/positive/visual-budget.json',
+  'skills/content-os-creative/fixtures/negative/brand-kit-unlicensed.json',
+  'skills/content-os-creative/fixtures/negative/visual-budget-overloaded.json',
+  'skills/content-os-creative/assets/metodologia/brand-kit.json',
+  'skills/content-os-creative/assets/metodologia/tokens.json',
+  'skills/content-os-creative/assets/metodologia/icons.json',
+  'skills/content-os-creative/assets/metodologia/safe-zones.json',
+  'skills/content-os-creative/assets/metodologia/generators.json',
+  'skills/content-os-creative/fixtures/positive/user-job/brand-kit.json',
+  'skills/content-os-creative/fixtures/positive/user-job/provenance.json',
+  'skills/content-os-creative/fixtures/positive/user-job/palette.json',
+  'skills/content-os-creative/fixtures/negative/user-brand-attacks.json',
   'skills/content-os-creative/receipts/runtime-boundary.yml',
 ];
 
 const contents = new Map(required.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
 const ajv = new Ajv2020({allErrors: true, strict: false});
-const packageJson = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
+const packagePath = [resolve(root, 'package.json'), resolve(root, '../package.json')].find(existsSync);
+if (!packagePath) throw new Error('COSC_PACKAGE_JSON_MISSING');
+const packageJson = JSON.parse(readFileSync(packagePath, 'utf8'));
 const pkgVersion = (name) =>
   packageJson.dependencies?.[name] ?? packageJson.devDependencies?.[name];
 for (const [name, version] of Object.entries({gsap: '3.15.0'})) {
@@ -44,7 +63,7 @@ const runtimeCombined = ['skills/content-os-creative/examples/branded-reveal.htm
   .join('\n');
 
 for (const token of [
-  'version: 0.2.0',
+  'version: 0.3.1',
   '## 1. Activación',
   '## 8. Handoff',
   'metodologia-brand-router',
@@ -60,6 +79,9 @@ for (const token of [
   'correctionLedgerRef',
   'sourceSpan',
   'legacy-v1-new-draft-blocked',
+  'visual-budget-v1',
+  'brand-kit-v1',
+  'source-analysis-v1',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`COSC_CONTRACT_MISSING: ${token}`);
@@ -86,6 +108,16 @@ const nonUse = parseYaml(contents.get('skills/content-os-creative/fixtures/negat
 if (validateV2(nonUse)) throw new Error('COSC_AJV2020_NON_USE_RENDER_ACCEPTED');
 const nonUseGate = spawnSync(process.execPath, [resolve(root, 'skills/content-os-creative/scripts/voice-evidence-gate.mjs'), resolve(root, 'skills/content-os-creative/fixtures/negative/v2-non-use-render.yml')], {encoding: 'utf8'});
 if (nonUseGate.status === 0 || !nonUseGate.stderr.includes('blocks-render')) throw new Error('COSC_NON_USE_RENDER_GATE');
+
+for (const [schemaPath, goodPath, badPath, code] of [
+  ['skills/content-os-creative/schemas/brand-kit-v1.schema.json', 'skills/content-os-creative/assets/metodologia/brand-kit.json', 'skills/content-os-creative/fixtures/negative/brand-kit-unlicensed.json', 'BRAND_KIT'],
+  ['skills/content-os-creative/schemas/visual-budget-v1.schema.json', 'skills/content-os-creative/fixtures/positive/visual-budget.json', 'skills/content-os-creative/fixtures/negative/visual-budget-overloaded.json', 'VISUAL_BUDGET'],
+]) {
+  const validate = ajv.compile(JSON.parse(contents.get(schemaPath)));
+  if (!validate(JSON.parse(contents.get(goodPath)))) throw new Error(`COSC_${code}_POSITIVE`);
+  if (validate(JSON.parse(contents.get(badPath)))) throw new Error(`COSC_${code}_NEGATIVE_ACCEPTED`);
+}
+checkBrandKit({root, contents, ajv});
 
 for (const pattern of [
   /\bMath\.random\s*\(/u,

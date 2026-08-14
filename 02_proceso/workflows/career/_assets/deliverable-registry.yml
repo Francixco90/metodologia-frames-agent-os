@@ -56,6 +56,39 @@ definitions:
       required: true,
     }
   - {
+      deliverable_id: career-discovery-session-v1,
+      display_name: Career Discovery Session,
+      workflow_id: C01,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md,
+      acceptance_gate: CR_CAREER_EVIDENCE_READY,
+      required: true,
+    }
+  - {
+      deliverable_id: evidence-candidate-packet-v1,
+      display_name: Evidence Candidate Packet,
+      workflow_id: C01,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md,
+      acceptance_gate: CR_CAREER_EVIDENCE_READY,
+      required: true,
+    }
+  - {
+      deliverable_id: career-evidence-readiness-v1,
+      display_name: Career Evidence Readiness,
+      workflow_id: C01,
+      artifact_kind: receipt,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md,
+      acceptance_gate: CR_CAREER_EVIDENCE_READY,
+      required: true,
+    }
+  - {
       deliverable_id: positioning-charter-v1,
       display_name: Positioning Charter,
       workflow_id: C02,
@@ -197,6 +230,39 @@ definitions:
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
       acceptance_gate: CR_CV_SPEC_APPROVED,
       required: true,
+    }
+  - {
+      deliverable_id: cv-spec-v2,
+      display_name: Design-bound CV Material Specification,
+      workflow_id: C06,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      acceptance_gate: CR_CV_SPEC_APPROVED,
+      required: true,
+    }
+  - {
+      deliverable_id: cv-design-brief-v1,
+      display_name: CV Design Brief,
+      workflow_id: C06,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 03_artefactos/skills/career-design-system/templates/design-brief.example.json,
+      acceptance_gate: CR_CV_DESIGN_APPROVED,
+      required: false,
+    }
+  - {
+      deliverable_id: cv-design-decision-v1,
+      display_name: CV Design Decision,
+      workflow_id: C06,
+      artifact_kind: receipt,
+      canonical_format: json,
+      projections: [],
+      template_ref: 03_artefactos/skills/career-design-system/templates/design-decision.example.json,
+      acceptance_gate: CR_CV_DESIGN_APPROVED,
+      required: false,
     }
   - {
       deliverable_id: cv-source-v2,
@@ -355,6 +421,17 @@ definitions:
   - {
       deliverable_id: cv-package-v2,
       display_name: Spec-bound CV Package,
+      workflow_id: C08,
+      artifact_kind: structured_data,
+      canonical_format: json,
+      projections: [],
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      acceptance_gate: CR_PACKAGE_APPROVED,
+      required: true,
+    }
+  - {
+      deliverable_id: cv-package-v3,
+      display_name: Design-bound CV Package,
       workflow_id: C08,
       artifact_kind: structured_data,
       canonical_format: json,

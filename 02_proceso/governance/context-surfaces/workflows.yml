@@ -114,7 +114,7 @@ surfaces:
     applies_when: Falta identidad, voz, canal o sistema visual para una pieza nueva.
     authority_refs: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
     load_first: [02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml]
-    load_on_demand: [03_artefactos/brand/brand-profile.yml]
+    load_on_demand: [03_artefactos/brand/tokens/brand-tokens.yml]
     defer: [Producción de activos]
     routes: [R6]
     workflows: [P00]
@@ -372,13 +372,14 @@ surfaces:
     defer: [Evidencia no seleccionada]
     routes: [R7]
     workflows: [C01]
-    primary_skills: [candidate-evidence-reconciler]
-    tools: [evidence_reconcile]
+    primary_skills: [candidate-evidence-reconciler, career-evidence-interviewer]
+    tools: [evidence_reconcile, career_evidence_interview, resume_lineage]
     read_set: [02_proceso/workflows/career/c01-evidence/workflow.yml]
     write_policy:
       {mode: generated_only, paths: [02_proceso/workflows/career/c01-evidence/context.md]}
-    gates: [evidence_confidence]
-    stop_rules: [inferred y missing no se convierten en hechos]
+    gates: [evidence_confidence, CR_CAREER_EVIDENCE_READY]
+    stop_rules:
+      [inferred y missing no se convierten en hechos, C02 exige readiness material vigente]
     privacy: private_after_route_lock
     children: []
     budget: {target_lines: 80, hard_lines: 120}

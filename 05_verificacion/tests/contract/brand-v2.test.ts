@@ -21,7 +21,11 @@ import {
   validateSourceBundleObject,
   validateVoiceProfileObject,
 } from '../../scripts/check-brand.ts';
-import {loadBrandTokens, renderBrandProjections} from '../../scripts/generate-brand-projections.ts';
+import {
+  loadBrandTokens,
+  parseBrandProjectionInput,
+  renderBrandProjections,
+} from '../../scripts/generate-brand-projections.ts';
 
 const root = process.cwd();
 const temporaryRoots: string[] = [];
@@ -67,6 +71,23 @@ describe('BrandProfileV2 and VoiceProfileV2 contracts', () => {
     for (const [relativePath, expected] of Object.entries(projections)) {
       expect(readFileSync(resolve(root, relativePath), 'utf8')).toBe(expected);
     }
+  });
+
+  it('projects the strict Career navy and monochrome-light palette from one authority', () => {
+    const tokens = loadBrandTokens(root);
+    const projections = renderBrandProjections(tokens);
+    const css = projections['brand/generated/social-light.css']!;
+    for (const theme of ['navy', 'light'] as const) {
+      for (const [name, value] of Object.entries(tokens.career[theme])) {
+        const normalized = value.replace(/(^|[,(]\s*)\.(\d+)/gu, '$10.$2');
+        expect(css).toContain(`--career-${theme}-${name.replaceAll('_', '-')}: ${normalized}`);
+      }
+    }
+    const invalid = structuredClone(tokens) as Record<string, unknown>;
+    const career = invalid.career as {light: Record<string, string>};
+    delete career.light.focus;
+    career.light.rogue = 'invalid';
+    expect(() => parseBrandProjectionInput(invalid)).toThrow();
   });
 
   it('rejects a dirty observational source promoted as brand authority', () => {

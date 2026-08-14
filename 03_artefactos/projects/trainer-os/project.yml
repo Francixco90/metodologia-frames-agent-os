@@ -1,0 +1,23 @@
+schema_version: trainer-project-v1
+project_id: trainer-os
+title: Trainer OS
+current_state: INTAKE
+maximum_state: RENDERED_DRAFT
+workflow_ref: workflows/trainer-os/README.md
+schemas:
+  - workflows/trainer-os/trainer-intake-v1.schema.ts
+  - workflows/trainer-os/trainer-route-spec-v1.schema.ts
+  - workflows/trainer-os/trainer-design-lock-v1.schema.ts
+  - workflows/trainer-os/trainer-artifact-plan-v1.schema.ts
+  - workflows/trainer-os/trainer-run-manifest-v1.schema.ts
+  - workflows/trainer-os/trainer-package-contracts.ts
+effects: {network: false, connectors: false, publication: false}
+human_review_required: true
+guardian_required: true
+ledger_ref: projects/trainer-os/lifecycle-ledger.yml
+coverage_gaps:
+  - global_project_registry_supports_only_legacy_web_video_shape
+  - production_package_authority_and_observed_benchmark_ingestion_pending
+  - luna_5_6_low_runtime_unavailable
+benchmark_ref: projects/trainer-os/evals/benchmark.pending.json
+benchmark_state: not_executed

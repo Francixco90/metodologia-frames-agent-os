@@ -1,0 +1,19 @@
+schema_version: 1
+receipt_id: career-evidence-interviewer-runtime-boundary-v1
+skill_id: career-evidence-interviewer
+execution_scope: local-evaluation
+network_allowed: false
+external_effects_allowed: false
+publication_authority: false
+submission_authority: false
+private_state_required: true
+source_root: 03_artefactos/work/private
+max_questions_per_round: 3
+max_rounds_per_session: 4
+inference_policy: interview_only_until_user_confirmed
+required_outputs:
+  - career-discovery-session-v1
+  - evidence-candidate-packet-v1
+  - career-evidence-readiness-v1
+required_gate: CR_CAREER_EVIDENCE_READY
+fail_closed_states: [FAIL, UNKNOWN, BLOCKED]

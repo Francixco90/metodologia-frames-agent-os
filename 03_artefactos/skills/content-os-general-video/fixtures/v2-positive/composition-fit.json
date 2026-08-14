@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "composition-fit-v1",
+  "projectId": "synthetic-project",
+  "sourceAnalysisRef": "source-analysis.json",
+  "sourceAnalysisSha256": "e21efcda9c67648a096bea7d1b55411339c660ac87df62d9b76af671dcd09446",
+  "fits": [
+    {"pieceId": "mini-a", "sourceId": "synthetic-source", "sourceSha256": "c33a6b1ee2df4a4a724f18506437fbaab5c4dfe3e31887c89c6aaba4c4f27da4", "targetWidth": 108, "targetHeight": 192, "strategy": "synthetic", "watermarkPolicy": "not-present", "fitState": "deterministic-passed"},
+    {"pieceId": "mini-b", "sourceId": "synthetic-source", "sourceSha256": "c33a6b1ee2df4a4a724f18506437fbaab5c4dfe3e31887c89c6aaba4c4f27da4", "targetWidth": 108, "targetHeight": 192, "strategy": "synthetic", "watermarkPolicy": "not-present", "fitState": "deterministic-passed"}
+  ]
+}

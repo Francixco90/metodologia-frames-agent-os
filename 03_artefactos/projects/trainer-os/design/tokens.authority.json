@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "trainer-design-tokens-v1",
+  "tokenSetId": "metodologia-trainer-neo-swiss-v1",
+  "brandId": "metodologia",
+  "canonicalAuthority": {
+    "ref": "../../../brand/tokens/brand-tokens.yml",
+    "sha256": "88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3"
+  },
+  "overrideRationale": "Trainer normalizes the canonical social-light and career themes into one local artifact contract; brand identity values remain unchanged.",
+  "defaultTheme": "light",
+  "colors": {
+    "navy": "#0a122a",
+    "gold": "#e0b400",
+    "goldText": "#0a122a",
+    "lightCanvas": "#f5f7fa",
+    "lightSurface": "#ffffff",
+    "lightText": "#0a122a",
+    "darkCanvas": "#062f62",
+    "darkSurface": "#093d78",
+    "darkText": "#f4f7fb",
+    "lightFocus": "#765400",
+    "darkFocus": "#ffdb63"
+  },
+  "typography": {
+    "heading": "Poppins",
+    "body": "Montserrat",
+    "fallback": "system-ui, sans-serif"
+  },
+  "spacing": ["4px", "8px", "12px", "16px", "24px", "32px", "48px", "64px"],
+  "radius": {"small": "8px", "medium": "16px", "large": "24px"},
+  "motion": {"duration": "180ms", "easing": "cubic-bezier(.4, 0, .2, 1)"},
+  "layout": {"contentMax": "1200px", "touchTargetMin": "44px"},
+  "guardrails": {
+    "contrast": "WCAG-AA",
+    "goldPairing": "navy-on-gold",
+    "forbiddenPairing": "white-on-gold",
+    "reducedMotion": "required",
+    "themes": ["light", "dark"]
+  },
+  "projections": {
+    "jsonSha256": "e9b3b784a1ccc2c36117f860818f23484858570b6979eee9e3e2e06a07c483f8",
+    "cssSha256": "1715a85e1c2146d07b053863805c56d62b07ae32d2f0040fddf17f76784f3b8d",
+    "tsSha256": "66e999a6ff2ec29430ec1eb07625857790aee404f5d02cea432878a2761c331d"
+  }
+}

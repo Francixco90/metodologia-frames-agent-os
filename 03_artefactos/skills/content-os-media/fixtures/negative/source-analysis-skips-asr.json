@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "source-analysis-v1",
+  "projectId": "synthetic-media-project",
+  "sources": [
+    {
+      "sourceId": "synthetic-source-02",
+      "sourceSha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "rights": "synthetic",
+      "authority": "primary",
+      "probe": {"status": "passed", "mediaType": "video", "durationMs": 12000, "hasAudio": true, "width": 1080, "height": 1920, "fps": 24, "orientation": "portrait"},
+      "audioClassification": "speech",
+      "asrAttempt": {"status": "not-applicable"},
+      "transcriptIntelligence": {"status": "not-applicable"},
+      "sampleTimesMs": [0, 6000, 11000],
+      "watermarkObservations": [],
+      "cropSafety": {"safe": true, "strategy": "contain", "coveredSampleTimesMs": [0, 6000, 11000], "evidence": []},
+      "editorialDecision": "use",
+      "state": "ready"
+    }
+  ]
+}

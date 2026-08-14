@@ -1,0 +1,182 @@
+<!-- [DOC] Copy source only. Bind visible text from canonical Markdown/content JSON. -->
+<a class="career-skip-link" href="#contenido">Saltar al contenido</a>
+
+<button
+  class="career-icon-button"
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  aria-label="Activar tema claro"
+  data-label-light="Activar tema claro"
+  data-label-navy="Activar tema azul"
+>
+  <svg class="career-icon" aria-hidden="true"><use href="#icon-theme" /></svg>
+</button>
+
+<button class="career-dialog-trigger" type="button" data-dialog-open="perfil">
+  <svg class="career-icon" aria-hidden="true"><use href="#icon-profile" /></svg> Perfil
+</button>
+<dialog class="career-dialog" id="perfil" aria-labelledby="perfil-titulo">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar perfil"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="perfil-titulo">Perfil</h2>
+    <p>{{perfil_profesional}}</p>
+  </div>
+</dialog>
+<noscript>
+  <section class="career-fallback" aria-labelledby="perfil-fallback-titulo">
+    <h2 id="perfil-fallback-titulo">Perfil</h2>
+    <p>{{perfil_profesional}}</p>
+  </section>
+</noscript>
+
+<article class="career-card career-capability">
+  <h3 class="career-capability__title">{{competencia}}</h3>
+  <p class="career-capability__category">{{categoria}}</p>
+  <p>{{bluf}}</p>
+  <p class="career-card__meta">{{prueba_breve}}</p>
+</article>
+
+<section class="career-method-grid" aria-label="Métodos">
+  <article class="career-method-card">
+    <svg role="img" aria-labelledby="pasa-title">
+      <title id="pasa-title">PASA</title>
+      <use href="#icon-pasa" />
+    </svg>
+    <h3>PASA</h3>
+    <p>Practica · Aplica · Sistematiza · Amplifica</p>
+    <button class="career-dialog-trigger" type="button" data-dialog-open="pasa">
+      Ampliar PASA
+    </button>
+  </article>
+  <article class="career-method-card">
+    <svg role="img" aria-labelledby="pivote-title">
+      <title id="pivote-title">PIVOTE</title>
+      <use href="#icon-pivote" />
+    </svg>
+    <h3>PIVOTE</h3>
+    <p>
+      Personas · Interacciones · Valor · Organización · Tiempo/TecnologIA · Efectividad/Evolución
+    </p>
+    <button class="career-dialog-trigger" type="button" data-dialog-open="pivote">
+      Ampliar PIVOTE
+    </button>
+  </article>
+</section>
+<dialog class="career-dialog" id="pasa" aria-labelledby="pasa-dialog-title">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar PASA"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="pasa-dialog-title">PASA</h2>
+    <p>{{pasa_detalle}}</p>
+  </div>
+</dialog>
+<noscript>
+  <section class="career-fallback" aria-labelledby="pasa-fallback-titulo">
+    <h2 id="pasa-fallback-titulo">PASA</h2>
+    <p>{{pasa_detalle}}</p>
+  </section>
+</noscript>
+<dialog class="career-dialog" id="pivote" aria-labelledby="pivote-dialog-title">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar PIVOTE"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="pivote-dialog-title">PIVOTE</h2>
+    <p>{{pivote_detalle}}</p>
+  </div>
+</dialog>
+<noscript>
+  <section class="career-fallback" aria-labelledby="pivote-fallback-titulo">
+    <h2 id="pivote-fallback-titulo">PIVOTE</h2>
+    <p>{{pivote_detalle}}</p>
+  </section>
+</noscript>
+
+<nav class="career-access-list" aria-label="Accesos">
+  <a class="career-access" href="{{linkedin}}" aria-label="LinkedIn"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-linkedin" /></svg
+  ></a>
+  <a class="career-access" href="{{github}}" aria-label="GitHub"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-github" /></svg
+  ></a>
+  <a class="career-access" href="{{whatsapp}}" aria-label="WhatsApp"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-whatsapp" /></svg
+  ></a>
+  <a class="career-access" href="{{email}}" aria-label="Correo"
+    ><svg class="career-icon" aria-hidden="true"><use href="#icon-email" /></svg
+  ></a>
+</nav>
+
+<button class="career-dialog-trigger" type="button" data-dialog-open="evidencia-01">
+  Ver evidencia
+</button>
+<dialog class="career-dialog" id="evidencia-01" aria-labelledby="evidencia-01-titulo">
+  <button
+    class="career-icon-button career-dialog__close"
+    type="button"
+    data-dialog-close
+    aria-label="Cerrar evidencia"
+  >
+    <svg class="career-icon" aria-hidden="true"><use href="#icon-close" /></svg>
+  </button>
+  <div class="career-dialog__body">
+    <h2 id="evidencia-01-titulo">{{titulo}}</h2>
+    <p>{{evidencia_profunda}}</p>
+  </div>
+</dialog>
+<noscript>
+  <section class="career-fallback" aria-labelledby="evidencia-01-fallback-titulo">
+    <h2 id="evidencia-01-fallback-titulo">{{titulo}}</h2>
+    <p>{{evidencia_profunda}}</p>
+  </section>
+</noscript>
+
+<script>
+  (() => {
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    if (toggle) {
+      const apply = (theme) => {
+        root.dataset.theme = theme;
+        toggle.setAttribute('aria-pressed', String(theme === 'light'));
+        toggle.setAttribute(
+          'aria-label',
+          theme === 'light' ? toggle.dataset.labelNavy : toggle.dataset.labelLight,
+        );
+      };
+      apply(localStorage.getItem('metodologia-career-theme') === 'light' ? 'light' : 'navy');
+      toggle.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'navy' : 'light';
+        localStorage.setItem('metodologia-career-theme', next);
+        apply(next);
+      });
+    }
+    document.querySelectorAll('[data-dialog-open]').forEach((button) => {
+      button.addEventListener('click', () =>
+        document.getElementById(button.dataset.dialogOpen)?.showModal(),
+      );
+    });
+    document.querySelectorAll('[data-dialog-close]').forEach((button) => {
+      button.addEventListener('click', () => button.closest('dialog')?.close());
+    });
+  })();
+</script>

@@ -16,6 +16,12 @@
     "storyboard": {"enum": ["yes", "no"]},
     "sourcePackRef": {"type": "string", "minLength": 1},
     "sourcePackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sourceAnalysisRef": {"type": "string", "minLength": 1},
+    "sourceAnalysisSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "compositionFitRef": {"type": "string", "minLength": 1},
+    "compositionFitSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "storyboardRef": {"type": "string", "minLength": 1},
+    "storyboardSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "specRef": {"type": "string", "minLength": 1},
     "specId": {"type": "string", "minLength": 3},
     "specSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
@@ -59,5 +65,8 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {"if": {"properties": {"storyboard": {"const": "yes"}}}, "then": {"required": ["storyboardRef", "storyboardSha256"]}}
+  ]
 }

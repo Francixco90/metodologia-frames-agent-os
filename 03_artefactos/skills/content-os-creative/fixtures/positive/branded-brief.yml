@@ -4,6 +4,12 @@ specRef: specs/synthetic-impact.video-spec.yml
 specSha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 compositionId: cos-brand-reveal
 brandRef: registries/brand/brand-profile-v2.yml
+brandKitRef: creative/brand-kit.json
+brandKitSha256: '4444444444444444444444444444444444444444444444444444444444444444'
+visualBudgetRef: creative/visual-budget.json
+visualBudgetSha256: '5555555555555555555555555555555555555555555555555555555555555555'
+sourceAnalysisRef: analysis/source-analysis.json
+sourceAnalysisSha256: '6666666666666666666666666666666666666666666666666666666666666666'
 voiceRef: registries/brand/voice-profile-v2.yml
 channelRef: registries/brand/source-bundle-v1.yml
 compositionPattern: title-card

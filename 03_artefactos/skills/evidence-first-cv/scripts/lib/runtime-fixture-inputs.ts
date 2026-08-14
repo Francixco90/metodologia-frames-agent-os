@@ -1,11 +1,15 @@
 import {createHash} from 'node:crypto';
 
-import {calculateCandidateProfileHash} from '../../../../../02_proceso/workflows/career/_runner/cv-compiler.ts';
-import {calculateEvidenceBankHash} from '../../../../../02_proceso/workflows/career/_runner/evidence-gate.ts';
 import {
   approveCvSpec,
+  approveCvSpecV2,
+  calculateCandidateProfileHash,
+  calculateEvidenceBankHash,
   createCvSpec,
-} from '../../../../../02_proceso/workflows/career/_runner/cv-spec.ts';
+  createCvSpecV2,
+  migrateCvSpecV1ToV2,
+} from '../../../../../02_proceso/workflows/career/index.ts';
+import authority from '../../fixtures/runtime/verified/evidence-authority.json' with {type: 'json'};
 
 export const ref = (name: string): string => `fixtures/runtime/verified/${name}`;
 export const hash = (value: Buffer | string): string =>
@@ -24,83 +28,12 @@ export const profile = {
   source_hashes: [hash(profileSource)],
 };
 const sourceHash = hash(evidenceSource);
-const content = (
-  language: 'es' | 'en',
-  section: 'summary' | 'experience' | 'skills',
-  text: string,
-) => ({
-  language,
-  section,
-  text,
-  organization: section === 'experience' ? 'Synthetic Business Unit' : null,
-  role:
-    section === 'experience'
-      ? language === 'es'
-        ? 'Líder de Transformación'
-        : 'Transformation Lead'
-      : null,
-  period: section === 'experience' ? '2025' : null,
-  location: null,
-});
-export const evidence = [
-  {
-    evidence_id: 'EVD-SYNTH-SUMMARY-001',
-    claim: 'Transformation delivery capability.',
-    context: 'Synthetic business context.',
-    action_method: 'Evidence-bound program leadership.',
-    result: 'A concise and attributable professional summary.',
-    metric: null,
-    cv_content: [
-      content(
-        'es',
-        'summary',
-        'Convierte retos de negocio en capacidades de transformación medibles.',
-      ),
-      content(
-        'en',
-        'summary',
-        'Turns business challenges into measurable transformation capabilities.',
-      ),
-    ],
-  },
-  {
-    evidence_id: 'EVD-SYNTH-RESULT-001',
-    claim: 'Reduced a synthetic delivery cycle.',
-    context: 'Synthetic Business Unit during 2025.',
-    action_method: 'Led a cross-functional program.',
-    result: 'Cycle time moved from 12 to 7 days.',
-    metric: '12 → 7 days · 41.7%',
-    cv_content: [
-      content(
-        'es',
-        'experience',
-        'Redujo el ciclo de entrega de 12 a 7 días (41,7 %) durante 2025.',
-      ),
-      content(
-        'en',
-        'experience',
-        'Reduced the delivery cycle from 12 to 7 days (41.7%) during 2025.',
-      ),
-    ],
-  },
-  {
-    evidence_id: 'EVD-SYNTH-SKILL-001',
-    claim: 'Program leadership capability.',
-    context: 'Synthetic cross-functional delivery.',
-    action_method: 'Roadmaps and operating cadence.',
-    result: 'Governed delivery capability.',
-    metric: null,
-    cv_content: [
-      content('es', 'skills', 'Liderazgo de programas'),
-      content('en', 'skills', 'Program leadership'),
-    ],
-  },
-].map((item) => ({
+export const evidence = authority.evidence.map((item) => ({
   ...item,
   source_ref: ref('evidence-source.json'),
   source_sha256: sourceHash,
   confidence: 'verified' as const,
-  allowed_channels: ['cv'],
+  allowed_channels: ['cv'] as const,
   constraints: [],
 }));
 const bankBase = {
@@ -123,13 +56,13 @@ export const variants = [
   {
     variant_id: 'CVVAR-SYNTH-RUNTIME-EN',
     language: 'en' as const,
-    audience: 'recruiter' as const,
-    output_kinds: ['executive-html' as const],
+    audience: 'ats' as const,
+    output_kinds: ['ats-html' as const],
     page_budget: 1,
-    design_profile: 'metodologia-career' as const,
+    design_profile: 'candidate-neutral-ats' as const,
   },
 ];
-export const spec = approveCvSpec(
+export const legacySpec = approveCvSpec(
   createCvSpec({
     schema_version: 'cv-spec-v1',
     spec_id: 'CVSPEC-SYNTH-RUNTIME-001',
@@ -186,4 +119,28 @@ export const spec = approveCvSpec(
     approval: null,
   }),
   {approver_ref: 'H01', approved_at: '2026-08-11T12:00:00-05:00'},
+);
+const pendingSpec = migrateCvSpecV1ToV2(legacySpec);
+const {spec_sha256, ...pendingDraft} = pendingSpec;
+void spec_sha256;
+export const evidenceAuthority = {
+  packet: authority.packet,
+  readiness: authority.readiness,
+  packet_ref: ref('evidence-authority.json'),
+  readiness_ref: ref('evidence-authority.json'),
+  evidence_ids: new Set(evidence.map(({evidence_id}) => evidence_id)),
+  gap_ids: new Set<string>(),
+  accepted_gap_ids: new Set<string>(),
+};
+export const spec = approveCvSpecV2(
+  createCvSpecV2({
+    ...pendingDraft,
+    evidence_candidate_packet_ref: ref('evidence-authority.json'),
+    evidence_candidate_packet_sha256: authority.packet.packet_sha256,
+    evidence_readiness_ref: ref('evidence-authority.json'),
+    evidence_readiness_sha256: authority.readiness.readiness_sha256,
+  }),
+  {approver_ref: 'H01', approved_at: '2026-08-11T12:05:00-05:00'},
+  undefined,
+  evidenceAuthority,
 );

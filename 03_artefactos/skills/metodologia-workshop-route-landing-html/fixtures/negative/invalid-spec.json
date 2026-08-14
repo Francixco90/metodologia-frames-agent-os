@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "workshop-route-landing-spec-v1",
+  "landingId": "invalid-route",
+  "brand": "Other",
+  "state": "PUBLISHED",
+  "specHashAlgorithm": "sha256-canonical-json-v1",
+  "specSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "designSystemLock": {"ref": "/private/lock.json", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+  "primaryLocale": "es",
+  "registrationRef": "https://example.test/register",
+  "uiPattern": {"ctaVisibleWordsMin": 1, "ctaVisibleWordsMax": 3, "actionIcons": "inline-svg", "sectionCount": 7},
+  "locales": [],
+  "resourceRegistry": [{"id": "fake", "status": "pending", "ref": "fake.html"}],
+  "runtime": {"javascript": "required", "network": "allowed", "publish": true},
+  "noJs": {"contentReadable": false, "navigationFallback": "none"},
+  "print": {"enabled": false, "hideInteractiveControls": false, "preserveAllSections": false},
+  "output": {"rootRef": "dist/invalid", "state": "PUBLISHED"}
+}

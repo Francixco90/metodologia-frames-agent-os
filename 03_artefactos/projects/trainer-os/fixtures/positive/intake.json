@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "trainer-intake-v1",
+  "intakeId": "synthetic-trainer",
+  "intakeSha256": "647376776ba3a390696dcf6d67f80669a30e57b14374eb4f5f22f99a3f8ac190",
+  "locale": "es",
+  "audience": "Profesionales ficticios que practican con un caso sintético.",
+  "purpose": "Diseñar una ruta sintética y verificable.",
+  "observableOutcomes": ["Explicar el método", "Producir una evidencia"],
+  "constraints": ["Sin red", "Sin datos personales"],
+  "discovery": {
+    "promptRounds": [
+      {"round": 1, "prompt": "¿Qué resultado buscas?", "blocking": true},
+      {"round": 2, "prompt": "¿Qué evidencia lo demostraría?", "blocking": true},
+      {"round": 3, "prompt": "¿Qué restricción importa?", "blocking": false}
+    ],
+    "progressiveDisclosure": "focused",
+    "tokenBudget": {
+      "maximum": 6000,
+      "estimated": 800,
+      "measured": 760
+    }
+  },
+  "decisions": [
+    {"label": "[SUPUESTO]", "statement": "El caso sintético representa una ruta breve."}
+  ],
+  "sourceRefs": [
+    {
+      "ref": "source.txt",
+      "sha256": "1aea9803257b1f4ba01670a63a180f8f9196376ccaef6c083f5bebbf07ceba12"
+    }
+  ],
+  "privacyReviewed": true
+}

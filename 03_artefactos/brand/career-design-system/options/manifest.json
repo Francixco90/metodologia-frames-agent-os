@@ -1,0 +1,98 @@
+{
+  "schema_version": "career-design-options-manifest-v1",
+  "package_id": "metodologia-career-design-options-v1",
+  "state": "DESIGN_OPTIONS_READY",
+  "candidate_type": "shared-primitives-and-compositions",
+  "selection": null,
+  "human_approved": false,
+  "publication_authorized": false,
+  "synthetic_only": true,
+  "shared_primitives": {
+    "sha256": "fbdfe434927eff87960dc9aa7da03a9d9643414d1733769d50885f13feef98d0",
+    "identical_across_options": true,
+    "authority": "candidate-only"
+  },
+  "typography": {
+    "body": {
+      "family": "Trebuchet MS",
+      "source": "system"
+    },
+    "embedded": [
+      {
+        "ref": "../../fonts/vendor/poppins/Poppins-Bold.ttf",
+        "media_type": "font/ttf",
+        "bytes": 155996,
+        "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+      },
+      {
+        "ref": "../../fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf",
+        "media_type": "font/ttf",
+        "bytes": 744936,
+        "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+      }
+    ],
+    "licenses": [
+      {
+        "ref": "../../fonts/vendor/poppins/OFL.txt",
+        "media_type": "text/plain",
+        "bytes": 4385,
+        "sha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573"
+      },
+      {
+        "ref": "../../fonts/vendor/montserrat/OFL.txt",
+        "media_type": "text/plain",
+        "bytes": 4400,
+        "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e"
+      }
+    ]
+  },
+  "palette_authority": {
+    "ref": "../../tokens/brand-tokens.yml",
+    "media_type": "text/yaml",
+    "bytes": 2316,
+    "sha256": "88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3"
+  },
+  "options": [
+    {
+      "id": "blueprint-executive",
+      "narrative": {
+        "ref": "blueprint-executive.md",
+        "media_type": "text/markdown",
+        "bytes": 2471,
+        "sha256": "b30408dac9ecd657c8362092430f1ece110583f5a0fffa55f1c4f1767a8dd1c2"
+      },
+      "preview": {
+        "ref": "blueprint-executive/index.html",
+        "media_type": "text/html",
+        "bytes": 1216250,
+        "sha256": "e55302ad58268deb338c698a993c6ec5cf093d3d162db4d4cecb73dcf05a3f32"
+      }
+    },
+    {
+      "id": "neo-swiss-editorial",
+      "narrative": {
+        "ref": "neo-swiss-editorial.md",
+        "media_type": "text/markdown",
+        "bytes": 2421,
+        "sha256": "3d1581e0775af360b2affd7dd552959a7dfdfdcba04d6d2bc7c4bb23de223f4b"
+      },
+      "preview": {
+        "ref": "neo-swiss-editorial/index.html",
+        "media_type": "text/html",
+        "bytes": 1216933,
+        "sha256": "5d38394cc2e4ea56a545d22368b54c72b745e877cd74c1eb4137d9a8816110d2"
+      }
+    }
+  ],
+  "comparator": {
+    "ref": "index.html",
+    "media_type": "text/html",
+    "bytes": 1208570,
+    "sha256": "4c19072dea2549c29519fe911a092b8ca34c4a8bbf27594092d4d0f389f6190b"
+  },
+  "runtime": {
+    "engine": "node",
+    "network": "forbidden",
+    "command": "node 03_artefactos/brand/career-design-system/scripts/build-options.mjs"
+  }
+}

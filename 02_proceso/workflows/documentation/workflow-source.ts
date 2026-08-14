@@ -93,6 +93,7 @@ export const loadWorkflowDocumentation = async (
         inputs: asStrings(source.inputs),
         deliverables: normalizeOutputs(source),
         templateRefs: normalizeTemplateRefs(source),
+        preconditions: asStrings(source.preconditions),
         gates: asStrings(source.gates).length
           ? asStrings(source.gates)
           : directGate

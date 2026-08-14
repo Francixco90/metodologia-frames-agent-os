@@ -7,7 +7,7 @@
   "required": [
     "schemaVersion", "operation", "specId", "specSha256", "compositionId", "durationSeconds",
     "clip", "scriptMode", "correctionLedgerRef", "transcriptIntelligenceRef",
-    "semanticIndexRef", "narrativeMapRef", "verificationState", "editorialDecision", "cards"
+    "semanticIndexRef", "narrativeMapRef", "sourceAnalysisRef", "sourceAnalysisSha256", "visualBudgetRef", "visualBudgetSha256", "brandKitRef", "brandKitSha256", "layoutDecision", "reelSpec", "verificationState", "editorialDecision", "cards"
   ],
   "properties": {
     "schemaVersion": {"const": "talking-head-recut-v2"},
@@ -23,6 +23,14 @@
     "transcriptIntelligenceRef": {"type": "string", "minLength": 1},
     "semanticIndexRef": {"type": "string", "minLength": 1},
     "narrativeMapRef": {"type": "string", "minLength": 1},
+    "sourceAnalysisRef": {"type": "string", "minLength": 1},
+    "sourceAnalysisSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "visualBudgetRef": {"type": "string", "minLength": 1},
+    "visualBudgetSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "brandKitRef": {"type": "string", "minLength": 1},
+    "brandKitSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "layoutDecision": {"type": "object", "additionalProperties": false, "required": ["route", "cropSafeEvidence"], "properties": {"route": {"enum": ["contain", "crop-safe", "reject"]}, "cropSafeEvidence": {"type": "array", "items": {"type": "string", "minLength": 1}}}},
+    "reelSpec": {"type": "object", "additionalProperties": false, "required": ["purpose", "audience", "hook", "evidence", "impact", "cta", "targetDurationSeconds"], "properties": {"purpose": {"type": "string", "minLength": 1}, "audience": {"type": "string", "minLength": 1}, "hook": {"type": "string", "minLength": 1}, "evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "impact": {"type": "string", "minLength": 1}, "cta": {"type": "string", "minLength": 1}, "targetDurationSeconds": {"type": "number", "minimum": 10}}},
     "verificationState": {"enum": ["deterministic-passed", "human-reviewed"]},
     "editorialDecision": {"enum": ["use", "extend", "reframe", "discard"]},
     "cards": {
@@ -46,7 +54,19 @@
       }
     }
   },
-  "allOf": [{"if": {"properties": {"operation": {"const": "render-draft"}}, "required": ["operation"]}, "then": {"properties": {"editorialDecision": {"const": "use"}}}}],
+  "allOf": [
+    {
+      "if": {"properties": {"operation": {"const": "render-draft"}}, "required": ["operation"]},
+      "then": {"properties": {
+        "editorialDecision": {"const": "use"},
+        "layoutDecision": {"properties": {"route": {"enum": ["contain", "crop-safe"]}}}
+      }}
+    },
+    {
+      "if": {"properties": {"layoutDecision": {"properties": {"route": {"const": "crop-safe"}}}}},
+      "then": {"properties": {"layoutDecision": {"properties": {"cropSafeEvidence": {"minItems": 1}}}}}
+    }
+  ],
   "$defs": {
     "sourceSpan": {
       "type": "object",

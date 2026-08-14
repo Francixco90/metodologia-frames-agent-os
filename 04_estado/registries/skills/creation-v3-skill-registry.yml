@@ -58,22 +58,22 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-keyframes/scripts/check-skill.mjs]
   - skill_id: content-os-creative
-    version: 0.2.0
+    version: 0.3.1
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: ca4db36d92752d70ecd1c247b6408cb9eff56f1d77c8265ebbe2ebf72c7ebb29
-    package_manifest_sha256: 10ae12100bb5e8e4251f943a47eb5cb16eae85f12991aa0ae7d970fe339aaa39
+    content_sha256: f5cb26267cb761b3fcbfc60d326caaa7ddb152b238258ba790ed182d0eff26b8
+    package_manifest_sha256: 0aa5bef689bf827845c65969e9cafcb07a8ffb0eb21448168c670af93a31c8b8
     lineage_ref: skills/content-os-creative/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-creative/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/content-os-creative/scripts/check-skill.mjs]
   - skill_id: content-os-media
-    version: 0.1.0
+    version: 0.2.2
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: cb07c9d415b4d368bff4d5850f78e59704cd79571f80492915b9ba955efd7edc
-    package_manifest_sha256: 2f3db360a8889143f8d7ef4a6d910b33b1be96c9c322136b4ea10cd01081d0b4
+    content_sha256: 2be55125715a1d0c58013b368ef6f68eb31c264af636f02a691b57ca9eda4f5b
+    package_manifest_sha256: f839ff1d0b1373d2860cc0a0bfabfdf765ef16c9cabac8c905386df968f6384d
     lineage_ref: skills/content-os-media/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-media/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -102,11 +102,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.7.0
+    version: 0.8.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 0403a27e0d547b8bc3d3621f38138439ea5627024b37785948381fec10cf45bb
-    package_manifest_sha256: 4e44b0093d4e98041afa974edf7c3d3125fc9e45b8e49ab932eef42d6ba08f48
+    content_sha256: bbba8153d0439fc2d5adde40c220c4c70f62a42d7443ec104bca31aaa6671fea
+    package_manifest_sha256: ae081fa3b45697b4c9838a0ff81bfade61c9c75cf20c8377fec0b9b2e2829a56
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -179,11 +179,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-slideshow/scripts/check-skill.mjs]
   - skill_id: content-os-general-video
-    version: 0.7.0
+    version: 0.15.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: e24c7a38ace5b90d2758d27e651a46d933f3b3b37c4cadcd61f7e46d3e8b12a2
-    package_manifest_sha256: 5cd22070bd1b3de6d34da213da34d0e5baac650d5308ff3206dd8c31b70dd625
+    content_sha256: 755be430397066aa133aea0c76e201f1d4f52d95e468ad0a3554aebe40aa4bbe
+    package_manifest_sha256: c366fbe8829d19940b1f443206c91b830a41badfcc017d2dbb9af81fde3aad11
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -201,11 +201,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-remotion-bridge/scripts/check-skill.mjs]
   - skill_id: content-os-talking-head-recut
-    version: 0.1.0
+    version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 53322077c0188dfdff4724e3fc8a5ba6c69b4089fa9cee46d4a6827b45517a8f
-    package_manifest_sha256: d38363f41fcff25e64a0e706afe0edaebb4dcd663ccdb2ab44bfcf17a6f3af48
+    content_sha256: 09c71ac0dc179ae21de1ad5cd633072c266130e7d22ed967c2e062a104e9df21
+    package_manifest_sha256: 70dc6bce9343f4578462dea0a7b9fb15d77ef390cdf22cdaa15016589d7ae2d6
     lineage_ref: skills/content-os-talking-head-recut/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-talking-head-recut/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1697,33 +1697,66 @@ entries:
     publication_authority: false
     tests: [node skills/frames-token-efficiency-orchestrator/scripts/check-skill.mjs]
   - skill_id: career-application-orchestrator
-    version: 0.3.0
+    version: 0.4.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 8d81b5316a6adbbab7c2e9bbdbc5d4c0c4bdc7330e3fecad133ac8732ff910ed
-    package_manifest_sha256: ec0676607e4cfce3a24b96d238f7cf06d71772f80aba3549c27be19b29756757
+    content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3
+    package_manifest_sha256: a5fa97174b7b9845ac6877a390403f17de0a52a939099d311c9f4c02ca748d2c
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-application-orchestrator/scripts/check-skill.mjs]
   - skill_id: candidate-evidence-reconciler
-    version: 0.2.0
+    version: 0.3.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 5eedbbfb6ff36dfc27a613659f68279783c318abbbf242f6eec64caa2d879d45
-    package_manifest_sha256: b22a18dfb9ebe8ef1fa3b713c09e62e9c60fe724adb72927ee77a83f97213369
+    content_sha256: 00290717594e1a12323198ad65dafd330694c6e647e22a3b7d2f2dc0f9748555
+    package_manifest_sha256: 449c3a9b745fb266b41e06259f6c4fce23575a214fa59ddc339bff46b61782e7
     lineage_ref: skills/candidate-evidence-reconciler/LINEAGE.yml
     dependency_receipt_ref: skills/candidate-evidence-reconciler/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/candidate-evidence-reconciler/scripts/check-skill.mjs]
-  - skill_id: evidence-first-cv
+  - skill_id: career-design-system
+    version: 1.0.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 15cdc2cd9021ba8f2bc69410ac69cd382a3659bf6bceee0dec2b3e1cd68e90a7
+    package_manifest_sha256: 4e44dcad1ec502064af81794b08d48f1dbb7eb002cff7db74b926d0caf11954f
+    lineage_ref: skills/career-design-system/LINEAGE.yml
+    dependency_receipt_ref: skills/career-design-system/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-design-system/scripts/check-skill.mjs]
+  - skill_id: career-evidence-interviewer
+    version: 0.1.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: dc03a4796c2b5c6780ec53be1694eb1ac3ced618da3285839807da6663c5f23d
+    package_manifest_sha256: 3ed5898a06c7188db19a47d1fbcbfa3fbaff092b8ee538a5f2809b7a8dd7ef7c
+    lineage_ref: skills/career-evidence-interviewer/LINEAGE.yml
+    dependency_receipt_ref: skills/career-evidence-interviewer/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-evidence-interviewer/scripts/check-skill.mjs]
+  - skill_id: career-visual-auditor
     version: 0.2.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 3a80613c28cbf12f3e2f7afa5f5320aa964e2c8904e985133c8ae337ee6aeef5
-    package_manifest_sha256: 575c420b74f78e618b490a16209d72f615be6ab2af10351186b0ac46fb1a647e
+    content_sha256: 66369aa8168eadf1dc69dc4e48a0e82bb0ff1d2b66d3d07ef555f89068593312
+    package_manifest_sha256: b185cc52ce74b83f0f1a9493b29e40a28e40999623ea75cfc69affc1ad04a035
+    lineage_ref: skills/career-visual-auditor/LINEAGE.yml
+    dependency_receipt_ref: skills/career-visual-auditor/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-visual-auditor/scripts/check-skill.mjs]
+  - skill_id: evidence-first-cv
+    version: 0.3.0
+    current_state: active
+    execution_scope: local-evaluation
+    content_sha256: 759ea85b4b531df6b9891d26ed0c07462311910189724e8b74445d256e1908c7
+    package_manifest_sha256: f061443927de25073c1619766f67c1efdc88e686ff07f3af4580d63b4bb93d76
     lineage_ref: skills/evidence-first-cv/LINEAGE.yml
     dependency_receipt_ref: skills/evidence-first-cv/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1894,6 +1927,16 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/skill-security-auditor/scripts/check-skill.mjs]
+  - skill_id: metodologia-workshop-route-landing-html
+    version: 0.1.0
+    current_state: candidate
+    execution_scope: local-candidate-evaluation
+    content_sha256: b999ace8d5be84168cb159435936686932af03f26df0a6375ab2425621f947df
+    package_manifest_sha256: fd3c1a837f98b9d940db0bd7565450f7b28896573d479ef10b365a0cd340b984
+    lineage_ref: skills/metodologia-workshop-route-landing-html/LINEAGE.yml
+    production_runtime_status: blocked_pending_independent_review
+    publication_authority: false
+    tests: [node skills/metodologia-workshop-route-landing-html/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
@@ -1952,6 +1995,23 @@ events:
   - {event_id: EVT-SKL-CER-H03-003, event_order: 3, skill_id: candidate-evidence-reconciler, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CER-H03-004, event_order: 4, skill_id: candidate-evidence-reconciler, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CER-H03-005, event_order: 5, skill_id: candidate-evidence-reconciler, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: add_hash_bound_evidence_handoff_v2}
+  - {event_id: EVT-SKL-CDS-H03-001, event_order: 1, skill_id: career-design-system, from: null, to: candidate, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
+  - {event_id: EVT-SKL-CDS-H03-002, event_order: 2, skill_id: career-design-system, from: candidate, to: quarantined, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
+  - {event_id: EVT-SKL-CDS-H03-003, event_order: 3, skill_id: career-design-system, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CDS-H03-004, event_order: 4, skill_id: career-design-system, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CDS-H03-005, event_order: 5, skill_id: career-design-system, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: activate_design_system_first_career_flow}
+  - {event_id: EVT-SKL-CDS-H03-006, event_order: 6, skill_id: career-design-system, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: harden_progressive_disclosure_and_capability_anatomy}
+  - {event_id: EVT-SKL-CEI-H03-001, event_order: 1, skill_id: career-evidence-interviewer, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CEI-H03-002, event_order: 2, skill_id: career-evidence-interviewer, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
+  - {event_id: EVT-SKL-CEI-H03-003, event_order: 3, skill_id: career-evidence-interviewer, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-SKILL-VERIFIER}
+  - {event_id: EVT-SKL-CEI-H03-004, event_order: 4, skill_id: career-evidence-interviewer, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CEI-H03-005, event_order: 5, skill_id: career-evidence-interviewer, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: activate_adaptive_evidence_interview_before_positioning}
+  - {event_id: EVT-SKL-CVA-H03-001, event_order: 1, skill_id: career-visual-auditor, from: null, to: candidate, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
+  - {event_id: EVT-SKL-CVA-H03-002, event_order: 2, skill_id: career-visual-auditor, from: candidate, to: quarantined, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
+  - {event_id: EVT-SKL-CVA-H03-003, event_order: 3, skill_id: career-visual-auditor, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-VISUAL-VERIFIER}
+  - {event_id: EVT-SKL-CVA-H03-004, event_order: 4, skill_id: career-visual-auditor, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CVA-H03-005, event_order: 5, skill_id: career-visual-auditor, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: activate_independent_career_visual_audit}
+  - {event_id: EVT-SKL-CVA-H03-006, event_order: 6, skill_id: career-visual-auditor, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: bind_material_authorities_and_hostile_visual_checks}
   - {event_id: EVT-SKL-ECV-H03-001, event_order: 1, skill_id: evidence-first-cv, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECV-H03-002, event_order: 2, skill_id: evidence-first-cv, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECV-H03-003, event_order: 3, skill_id: evidence-first-cv, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
@@ -1960,6 +2020,7 @@ events:
   - {event_id: EVT-SKL-ECV-H03-006, event_order: 6, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: align_cv_package_v2_wire_and_add_synthetic_public_assets}
   - {event_id: EVT-SKL-ECV-H03-007, event_order: 7, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: enforce_material_artifact_verification_and_bilingual_parity}
   - {event_id: EVT-SKL-ECV-H03-008, event_order: 8, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: bind_runtime_fixtures_to_career_core_and_official_renderer}
+  - {event_id: EVT-SKL-ECV-H03-009, event_order: 9, skill_id: evidence-first-cv, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: require_design_system_first_for_executive_html}
   - {event_id: EVT-SKL-ECL-H03-001, event_order: 1, skill_id: evidence-based-cover-letter, from: null, to: candidate, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECL-H03-002, event_order: 2, skill_id: evidence-based-cover-letter, from: candidate, to: quarantined, actor_id: RT-07-CAREER-SKILL-PRODUCER}
   - {event_id: EVT-SKL-ECL-H03-003, event_order: 3, skill_id: evidence-based-cover-letter, from: quarantined, to: evaluated, actor_id: RT-10-CAREER-INTEGRATOR}
@@ -2049,6 +2110,7 @@ events:
   - {event_id: EVT-SKL-CGV-H03-006, event_order: 6, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_spec_first_video_contract_and_brand_primitives}
   - {event_id: EVT-SKL-CGV-H03-007, event_order: 7, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: close_guardian_bypasses_and_reuse_body_streams}
   - {event_id: EVT-SKL-CGV-H03-008, event_order: 8, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: confine_state_and_runtime_trust_anchors}
+  - {event_id: EVT-SKL-CGV-H03-009, event_order: 9, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: regenerate_visual_fixture_evidence_before_adversarial_mutation}
   - {event_id: EVT-SKL-CRB-H03-001, event_order: 1, skill_id: content-os-remotion-bridge, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-002, event_order: 2, skill_id: content-os-remotion-bridge, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CRB-H03-003, event_order: 3, skill_id: content-os-remotion-bridge, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION}
@@ -2638,6 +2700,9 @@ events:
   - {event_id: EVT-SKL-COR-H03-010, event_order: 10, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-DOCS-EXTENSION-INTEGRATOR, decision: add_r8_local_extension_and_r9_maintenance_dispatch}
   - {event_id: EVT-SKL-CAO-H03-005, event_order: 5, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-CAO-H03-006, event_order: 6, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-11T00:00:00Z', decision: require_cv_spec_approval_and_stale_derivative_invalidation_v3}
+  - {event_id: EVT-SKL-CAO-H03-007, event_order: 7, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: dispatch_adaptive_interview_from_material_readiness}
+  - {event_id: EVT-SKL-CER-H03-006, event_order: 6, skill_id: candidate-evidence-reconciler, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: reconcile_interview_packet_and_readiness_for_cv_spec_v2}
+  - {event_id: EVT-SKL-CEI-H03-006, event_order: 6, skill_id: career-evidence-interviewer, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: add_on_demand_context_and_readiness_gate}
   - {event_id: EVT-SKL-FTO-H03-005, event_order: 5, skill_id: frames-token-efficiency-orchestrator, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-COS-H03-005, event_order: 5, skill_id: content-os-core, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
   - {event_id: EVT-SKL-CSC-H03-005, event_order: 5, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-CONTEXT-INTEGRATOR, decision: add_frames_skill_context_v1}
@@ -2664,3 +2729,23 @@ events:
   - {event_id: EVT-SKL-CTI-H03-001, event_order: 1, skill_id: content-os-transcript-intelligence, from: null, to: candidate, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTI-H03-002, event_order: 2, skill_id: content-os-transcript-intelligence, from: candidate, to: quarantined, actor_id: RT-07-H03-PRODUCER}
   - {event_id: EVT-SKL-CTI-H03-003, event_order: 3, skill_id: content-os-transcript-intelligence, from: quarantined, to: evaluated, actor_id: RT-10-H03-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: self_contained_transcript_intelligence_local_evaluation}
+  - {event_id: EVT-SKL-CSM-H03-005, event_order: 5, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_synthetic_source_analysis_evidence_fixtures}
+  - {event_id: EVT-SKL-CSM-H03-006, event_order: 6, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: enforce_physical_asr_and_transcript_evidence_bindings}
+  - {event_id: EVT-SKL-CSC-H03-006, event_order: 6, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_metodologia_brand_assets_and_visual_budget_contracts}
+  - {event_id: EVT-SKL-CSC-H03-007, event_order: 7, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_hash_bound_user_brand_fixture_and_gate}
+  - {event_id: EVT-SKL-CSC-H03-008, event_order: 8, skill_id: content-os-creative, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_visual_budget_and_brand_kit_consumers}
+  - {event_id: EVT-SKL-CGV-H03-010, event_order: 10, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_wrapper_fit_cleanup_and_storyboard_contracts}
+  - {event_id: EVT-SKL-CGV-H03-011, event_order: 11, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_synthetic_systemic_video_fixtures_and_receipt}
+  - {event_id: EVT-SKL-CGV-H03-012, event_order: 12, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_modular_analysis_cleanup_precomposed_and_wrapper_runtime}
+  - {event_id: EVT-SKL-CGV-H03-013, event_order: 13, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_end_to_end_systemic_adversarial_checks}
+  - {event_id: EVT-SKL-CGV-H03-014, event_order: 14, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: bind_source_analysis_brand_fit_and_wrapper_contracts}
+  - {event_id: EVT-SKL-CGV-H03-015, event_order: 15, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: integrate_analysis_fit_cache_and_preservation_runtime}
+  - {event_id: EVT-SKL-CGV-H03-016, event_order: 16, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_systemic_video_guardrails_v014}
+  - {event_id: EVT-SKL-COR-H03-011, event_order: 11, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_source_analysis_fit_and_reel_routes}
+  - {event_id: EVT-SKL-COR-H03-012, event_order: 12, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_spec_first_video_routing_v08}
+  - {event_id: EVT-SKL-THR-H03-005, event_order: 5, skill_id: content-os-talking-head-recut, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: consume_source_analysis_fit_and_visual_budget}
+  - {event_id: EVT-SKL-CSM-H03-007, event_order: 7, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_canonical_transcript_intelligence_fixture_bundle}
+  - {event_id: EVT-SKL-CSM-H03-008, event_order: 8, skill_id: content-os-media, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: delegate_voice_analysis_to_transcript_intelligence_verifier}
+  - {event_id: EVT-SKL-CGV-H03-017, event_order: 17, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_canonical_transcript_gate_regression_receipt}
+  - {event_id: EVT-SKL-CGV-H03-018, event_order: 18, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_canonical_transcript_intelligence_consumer_v015}
+  - {event_id: EVT-SKL-MWRL-H03-001, event_order: 1, skill_id: metodologia-workshop-route-landing-html, from: null, to: candidate, actor_id: RT-07-WORKSHOP-ROUTE-LANDING-PRODUCER, recorded_at: '2026-08-12T00:00:00Z', decision: register_spec_compile_verify_candidate_without_promotion}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source-analysis-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "sources"],
+  "properties": {
+    "schemaVersion": {"const": "source-analysis-v1"},
+    "projectId": {"type": "string", "minLength": 1},
+    "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "point": {"type": "object", "additionalProperties": false, "required": ["x", "y"], "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}}},
+    "rect": {"type": "object", "additionalProperties": false, "required": ["x", "y", "width", "height"], "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}, "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}}},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "sourceSha256", "rights", "authority", "probe", "audioClassification", "asrAttempt", "transcriptIntelligence", "sampleTimesMs", "watermarkObservations", "cropSafety", "editorialDecision", "state"],
+      "properties": {
+        "sourceId": {"type": "string", "minLength": 1},
+        "sourceSha256": {"$ref": "#/$defs/hash"},
+        "rights": {"enum": ["owned", "licensed", "synthetic", "user-authorized"]},
+        "authority": {"enum": ["primary", "verified", "first-party"]},
+        "probe": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "mediaType", "durationMs", "hasAudio"],
+          "properties": {
+            "status": {"const": "passed"}, "mediaType": {"enum": ["video", "image", "audio", "text", "synthetic"]},
+            "durationMs": {"type": "integer", "minimum": 0}, "hasAudio": {"type": "boolean"},
+            "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1},
+            "fps": {"type": "number", "exclusiveMinimum": 0}, "orientation": {"enum": ["portrait", "landscape", "square", "not-applicable"]}
+          },
+          "allOf": [{"if": {"properties": {"mediaType": {"enum": ["video", "image"]}}}, "then": {"required": ["width", "height", "orientation"]}}]
+        },
+        "audioClassification": {"enum": ["speech", "music-sfx", "mixed", "silent", "uncertain"]},
+        "asrAttempt": {
+          "type": "object", "additionalProperties": false, "required": ["status"],
+          "properties": {"status": {"enum": ["candidate", "no-speech-detected", "failed", "not-applicable"]}, "candidateRef": {"type": "string", "minLength": 1}, "candidateSha256": {"$ref": "#/$defs/hash"}, "reason": {"type": "string", "minLength": 1}}
+        },
+        "transcriptIntelligence": {
+          "type": "object", "additionalProperties": false, "required": ["status"],
+          "properties": {"status": {"enum": ["deterministic-passed", "blocked", "not-applicable"]}, "jobRef": {"type": "string", "minLength": 1}, "jobSha256": {"$ref": "#/$defs/hash"}, "verificationRef": {"type": "string", "minLength": 1}, "verificationSha256": {"$ref": "#/$defs/hash"}, "reason": {"type": "string", "minLength": 1}}
+        },
+        "sampleTimesMs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "watermarkObservations": {
+          "type": "array",
+          "items": {"type": "object", "additionalProperties": false, "required": ["sampleTimeMs", "present", "points"], "properties": {"sampleTimeMs": {"type": "integer", "minimum": 0}, "present": {"type": "boolean"}, "points": {"type": "array", "items": {"$ref": "#/$defs/point"}}}}
+        },
+        "cropSafety": {
+          "type": "object", "additionalProperties": false,
+          "required": ["safe", "strategy", "coveredSampleTimesMs", "evidence"],
+          "properties": {"safe": {"type": "boolean"}, "strategy": {"enum": ["crop", "mask", "contain", "not-applicable"]}, "crop": {"$ref": "#/$defs/rect"}, "coveredSampleTimesMs": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 0}}, "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}},
+          "allOf": [{"if": {"properties": {"strategy": {"const": "crop"}}}, "then": {"required": ["crop"]}}]
+        },
+        "editorialDecision": {"enum": ["use", "extend", "reframe", "discard", "blocked"]},
+        "state": {"enum": ["ready", "blocked"]}
+      },
+      "allOf": [
+        {"if": {"properties": {"probe": {"properties": {"hasAudio": {"const": true}}}}}, "then": {"properties": {"asrAttempt": {"properties": {"status": {"not": {"const": "not-applicable"}}}}}}},
+        {"if": {"properties": {"audioClassification": {"enum": ["speech", "mixed", "uncertain"]}}}, "then": {"properties": {"asrAttempt": {"properties": {"status": {"const": "candidate"}}, "required": ["candidateRef", "candidateSha256"]}, "transcriptIntelligence": {"properties": {"status": {"const": "deterministic-passed"}}, "required": ["jobRef", "jobSha256", "verificationRef", "verificationSha256"]}}}},
+        {"if": {"properties": {"audioClassification": {"enum": ["speech", "mixed"]}}}, "then": {"properties": {"state": {"const": "ready"}}}},
+        {"if": {"properties": {"audioClassification": {"const": "music-sfx"}}}, "then": {"properties": {"probe": {"properties": {"hasAudio": {"const": true}}}, "asrAttempt": {"properties": {"status": {"const": "no-speech-detected"}}}, "transcriptIntelligence": {"properties": {"status": {"const": "not-applicable"}}}, "state": {"const": "ready"}}}},
+        {"if": {"properties": {"audioClassification": {"const": "silent"}}}, "then": {"properties": {"probe": {"properties": {"hasAudio": {"const": false}}}, "asrAttempt": {"properties": {"status": {"const": "not-applicable"}}}, "transcriptIntelligence": {"properties": {"status": {"const": "not-applicable"}}}, "state": {"const": "ready"}}}},
+        {"if": {"properties": {"audioClassification": {"const": "uncertain"}}}, "then": {"properties": {"editorialDecision": {"const": "blocked"}, "state": {"const": "blocked"}}}}
+      ]
+    }
+  }
+}

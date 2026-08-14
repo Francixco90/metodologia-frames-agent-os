@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "trainer-benchmark-inputs-v1",
+  "scenarios": [
+    {
+      "scenarioId": "ai-literacy",
+      "topic": "AI literacy",
+      "audience": "Non-technical professionals",
+      "purpose": "Use AI with method and oversight",
+      "sources": ["SYNTHETIC: AI concepts primer", "SYNTHETIC: source evaluation guide"],
+      "locales": ["es", "en", "pt"],
+      "artifacts": ["landing", "masterclass", "workbook", "playbook", "prompt-library"],
+      "acceptance": ["Five artifacts", "Three locale parity", "Deterministic replay"],
+      "promptBudget": {"min": 3, "max": 5}
+    },
+    {
+      "scenarioId": "operational-productivity",
+      "topic": "Operational productivity",
+      "audience": "Team leaders",
+      "purpose": "Improve a supervised operational workflow",
+      "sources": ["SYNTHETIC: workflow map", "SYNTHETIC: risk and controls guide"],
+      "locales": ["es", "en", "pt"],
+      "artifacts": ["landing", "masterclass", "workbook", "playbook", "prompt-library"],
+      "acceptance": ["Five artifacts", "Observable practice", "No unsupported outcomes"],
+      "promptBudget": {"min": 3, "max": 5}
+    },
+    {
+      "scenarioId": "technical-training",
+      "topic": "Technical training",
+      "audience": "Early-career practitioners",
+      "purpose": "Practice a bounded technical workflow",
+      "sources": ["SYNTHETIC: technical specification", "SYNTHETIC: prerequisites and risks"],
+      "locales": ["es", "en", "pt"],
+      "artifacts": ["landing", "masterclass", "workbook", "playbook", "prompt-library"],
+      "acceptance": ["Five artifacts", "Explicit prerequisites", "Risk boundaries"],
+      "promptBudget": {"min": 3, "max": 5}
+    }
+  ]
+}

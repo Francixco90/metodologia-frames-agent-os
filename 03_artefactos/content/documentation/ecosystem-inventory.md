@@ -11,14 +11,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 272
-- COMMAND: 97
+- ASSET: 277
+- COMMAND: 99
 - COMPONENT: 16
-- DELIVERABLE: 80
-- GATE: 54
+- DELIVERABLE: 87
+- GATE: 57
 - RENDERER: 5
 - ROUTE: 11
-- SKILL: 181
+- SKILL: 184
 - SOURCE: 11
 - TEMPLATE: 134
 - WORKFLOW: 43
@@ -68,6 +68,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/generators.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/generators.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/icons.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/icons.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/safe-zones.json` |
+| ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json` |
 | ASSET | 03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json` |
 | ASSET | 03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json` |
@@ -385,10 +390,12 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | test:integration | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | test | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | test:unit | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | trainer | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | typecheck | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:ai-runtime | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:atoms | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:brand | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | verify:career-design | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:career | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:carousel | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:content-matrix | ACTIVE | CANONICAL | `package.json` |
@@ -444,6 +451,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | candidate-intake-envelope-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | capability-report-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | capture-card-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
+| DELIVERABLE | career-discovery-session-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | career-evidence-readiness-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | claim-register-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | content-grid-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | continuity-bible-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -454,12 +463,16 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | cv-ats-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-ats-pdf-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-ats-pdf-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-design-brief-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-design-decision-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-executive-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-html-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-package-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-package-v3 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-source-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-source-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-spec-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | cv-spec-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-variant-manifest-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | cv-variant-manifest-v2 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | definition-of-ready-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -469,6 +482,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | editorial-calendar-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | edl-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | evidence-bank-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
+| DELIVERABLE | evidence-candidate-packet-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | evidence-gap-report-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/career/_assets/deliverable-registry.yml` |
 | DELIVERABLE | executive-presentation-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | export-matrix-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
@@ -504,6 +518,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | DELIVERABLE | universal-prompts-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | DELIVERABLE | verdict-v1 | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml` |
 | GATE | CR_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | CR_CAREER_EVIDENCE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_CV_COMPILED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_CV_SPEC_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_PACKAGE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -511,6 +526,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | DOCS_TRANSVERSAL_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_RELEASE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | EXP_TRAINER_RUNTIME_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G00 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G02_PRECLEAR | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G02 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -521,6 +537,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G08_AI_RUNTIME | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08_CONTRACTS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | G09_CAREER_DESIGN | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CONTENT | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_EXPERIENCE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -575,7 +592,10 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ROUTE | R9 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
 | SKILL | candidate-evidence-reconciler | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-application-orchestrator | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | career-design-system | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | career-evidence-interviewer | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-opportunity-finder | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | career-visual-auditor | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | cinematic-scroll-quality | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | content-os-animation | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | content-os-bento-apple-grid | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
@@ -943,4 +963,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `2efeaf4591436add26aae08e08fb2c792ea7e5405970e061119cd6361fa9b661`.
+Hash de fuentes: `8b03e4f4a2c70181b4dcb777cf3da1fbf1e7898ccc8105ee648adbd00ad18f8b`.

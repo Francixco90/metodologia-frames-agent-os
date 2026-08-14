@@ -13,7 +13,7 @@
       "type": "array", "minItems": 1,
       "items": {
         "type": "object", "additionalProperties": false,
-        "required": ["id", "output", "scriptMode", "decision", "purpose", "audience", "hook", "impact", "offerBridge", "cta", "sourceSpans", "visualSpans", "captionTrackRef", "correctionLedgerRef", "claims", "dependencies", "layers", "format", "gateStatus"],
+        "required": ["id", "output", "scriptMode", "decision", "purpose", "audience", "hook", "impact", "offerBridge", "cta", "sourceSpans", "visualSpans", "captionTrackRef", "correctionLedgerRef", "claims", "dependencies", "layers", "format", "audioPolicy", "gateStatus"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
           "output": {"type": "string", "minLength": 1},
@@ -44,11 +44,20 @@
             }
           },
           "render": {"$ref": "#/$defs/render"},
+          "precomposedAdapter": {"$ref": "#/$defs/precomposedAdapter"},
+          "brandedWrapper": {"$ref": "#/$defs/brandedWrapper"},
+          "sourceAnalysis": {"$ref": "#/$defs/artifactBinding"},
+          "compositionFit": {"$ref": "#/$defs/artifactBinding"},
+          "creativeBrandKit": {"$ref": "#/$defs/artifactBinding"},
+          "visualBudget": {"$ref": "#/$defs/artifactBinding"},
+          "audioPolicy": {"$ref": "#/$defs/audioPolicy"},
+          "sourceCleanup": {"type": "object", "additionalProperties": false, "required": ["required", "assetId", "ref", "sha256", "configSha256"], "properties": {"required": {"const": true}, "assetId": {"type": "string", "minLength": 1}, "ref": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/hash"}, "configSha256": {"$ref": "#/$defs/hash"}}},
           "miniclip": {"$ref": "#/$defs/miniclip"},
           "gateStatus": {"enum": ["candidate", "deterministic-passed", "blocked"]}
         },
         "allOf": [
           {"if": {"properties": {"decision": {"not": {"const": "discard"}}}}, "then": {"properties": {"sourceSpans": {"minItems": 1}, "dependencies": {"minItems": 1}}}},
+          {"if": {"not": {"required": ["brandedWrapper"]}}, "then": {"required": ["sourceCleanup"]}},
           {"if": {"properties": {"scriptMode": {"const": "transcript_derived"}}}, "then": {"required": ["captionTrackSha256", "correctionLedgerSha256"], "properties": {"captionTrackRef": {"type": "string", "minLength": 1}, "captionTrackSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "correctionLedgerRef": {"type": "string", "minLength": 1}, "correctionLedgerSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}
         ]
       }
@@ -73,12 +82,44 @@
     "dependency": {
       "type": "object", "additionalProperties": false,
       "required": ["id", "kind", "sha256"],
-      "properties": {"id": {"type": "string"}, "kind": {"enum": ["source", "script", "caption", "asset", "audio", "curtain", "overlay"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+      "properties": {"id": {"type": "string"}, "kind": {"enum": ["source", "script", "caption", "asset", "audio", "curtain", "overlay", "cleanup-mask"]}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
     },
     "render": {
       "type": "object", "additionalProperties": false,
       "required": ["engine", "mode", "args"],
       "properties": {"engine": {"const": "ffmpeg"}, "mode": {"enum": ["encode", "audio-remux"]}, "args": {"type": "array", "minItems": 1, "items": {"type": "string"}}}
+    },
+    "precomposedAdapter": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "ref", "sha256", "manifestRef", "manifestSha256"],
+      "properties": {
+        "id": {"const": "precomposed-frames-v1"},
+        "ref": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/hash"},
+        "manifestRef": {"type": "string", "minLength": 1}, "manifestSha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "brandedWrapper": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "brandKitRef", "brandKitSha256", "bodySourceId", "bodyRef", "bodySha256"],
+      "properties": {"mode": {"const": "branded-wrapper-v1"}, "brandKitRef": {"type": "string", "minLength": 1}, "brandKitSha256": {"$ref": "#/$defs/hash"}, "bodySourceId": {"type": "string", "minLength": 1}, "bodyRef": {"type": "string", "minLength": 1}, "bodySha256": {"$ref": "#/$defs/hash"}}
+    },
+    "artifactBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "sha256"],
+      "properties": {"ref": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/hash"}}
+    },
+    "audioPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "processingAllowed"],
+      "properties": {
+        "mode": {"enum": ["preserve", "generated", "silent"]},
+        "sourceId": {"type": "string", "minLength": 1},
+        "sourceSha256": {"$ref": "#/$defs/hash"},
+        "processingAllowed": {"type": "boolean"}
+      },
+      "allOf": [
+        {"if": {"properties": {"mode": {"const": "preserve"}}}, "then": {"required": ["sourceId", "sourceSha256"], "properties": {"processingAllowed": {"const": false}}}}
+      ]
     },
     "miniclip": {
       "type": "object", "additionalProperties": false,

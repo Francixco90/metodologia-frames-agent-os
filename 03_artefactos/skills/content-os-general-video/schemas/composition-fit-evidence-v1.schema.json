@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "composition-fit-evidence-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "pieceId", "sourceId", "sourceSha256", "crop", "samples", "verdict"],
+  "properties": {
+    "schemaVersion": {"const": "composition-fit-evidence-v1"},
+    "pieceId": {"type": "string", "minLength": 1},
+    "sourceId": {"type": "string", "minLength": 1},
+    "sourceSha256": {"$ref": "#/$defs/hash"},
+    "crop": {"$ref": "#/$defs/rect"},
+    "samples": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/sample"}},
+    "verdict": {"const": "safe"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rect": {"type": "object", "additionalProperties": false, "required": ["x", "y", "width", "height"], "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}, "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}}},
+    "sample": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sampleTimeMs", "frameRef", "frameSha256", "watermarkPointsExcluded", "verdict"],
+      "properties": {"sampleTimeMs": {"type": "integer", "minimum": 0}, "frameRef": {"type": "string", "minLength": 1}, "frameSha256": {"$ref": "#/$defs/hash"}, "watermarkPointsExcluded": {"type": "integer", "minimum": 0}, "verdict": {"const": "safe"}}
+    }
+  }
+}

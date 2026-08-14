@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "branded-wrapper-manifest-v1", "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "id", "profile", "generator", "intro", "outro", "bodyPolicy", "offline", "publicationAuthority"],
+  "properties": {
+    "schemaVersion": {"const": "branded-wrapper-manifest-v1"}, "id": {"type": "string", "minLength": 1}, "profile": {"enum": ["metodologia", "user-provided"]},
+    "generator": {"type": "object", "additionalProperties": false, "required": ["id", "version", "configSha256"], "properties": {"id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}, "configSha256": {"$ref": "#/$defs/hash"}}},
+    "intro": {"$ref": "#/$defs/asset"}, "outro": {"$ref": "#/$defs/asset"},
+    "bodyPolicy": {"type": "object", "additionalProperties": false, "required": ["video", "audio", "musicUnderBody", "overlaysOnBody"], "properties": {"video": {"const": "stream-copy"}, "audio": {"const": "stream-copy"}, "musicUnderBody": {"const": "forbidden"}, "overlaysOnBody": {"const": "forbidden"}}},
+    "offline": {"const": true}, "publicationAuthority": {"const": false}
+  },
+  "allOf": [{"if": {"properties": {"profile": {"const": "metodologia"}}}, "then": {"properties": {"generator": {"properties": {"id": {"const": "metodologia-brand-kit-generator"}}}}}}],
+  "$defs": {"hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "asset": {"type": "object", "additionalProperties": false, "required": ["assetId", "ref", "sha256", "rights", "provenance", "durationMs"], "properties": {"assetId": {"type": "string"}, "ref": {"type": "string"}, "sha256": {"$ref": "#/$defs/hash"}, "rights": {"enum": ["owned", "licensed", "internal-evaluation"]}, "provenance": {"type": "string", "minLength": 3}, "durationMs": {"type": "integer", "minimum": 1}}}}
+}

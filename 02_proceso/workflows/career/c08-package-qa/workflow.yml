@@ -2,35 +2,42 @@ schema_version: career-workflow-v1
 workflow_id: C08
 command: /career-package-qa
 title: QA del paquete de candidatura
-purpose: Congelar y verificar spec, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.
-inputs: [cv-spec-v1, cv-source-v2, cv-variant-manifest-v2]
-deliverables: [cv-package-v2, ats-visual-parity-report-v1, independent-qa-verdict-v1]
-capability_map: [career-application-orchestrator, evidence-first-cv, evidence-based-cover-letter]
+purpose: Congelar y verificar spec, diseño, claims, idioma, ATS, legibilidad, privacidad, paridad y hashes antes de autorizar.
+inputs: [cv-spec-v2, cv-source-v2, cv-variant-manifest-v2, career-evidence-readiness-v1]
+deliverables: [cv-package-v3, ats-visual-parity-report-v1, independent-qa-verdict-v1]
+capability_map:
+  [
+    career-application-orchestrator,
+    evidence-first-cv,
+    career-design-system,
+    evidence-based-cover-letter,
+  ]
+preconditions: [CR_CAREER_EVIDENCE_READY]
 execution_steps:
   - step_id: S01
-    purpose: Verificar claims, vacante, idioma, formatos y paridad.
-    inputs: [cv-spec-v1, cv-source-v2, cv-variant-manifest-v2]
+    purpose: Verificar claims, vacante, idioma, formatos, paridad y bindings visuales de cada variante.
+    inputs: [cv-spec-v2, cv-source-v2, cv-variant-manifest-v2, career-evidence-readiness-v1]
     primary_skill: career-application-orchestrator
-    optional_skills: [evidence-first-cv, evidence-based-cover-letter]
+    optional_skills: [evidence-first-cv, career-design-system, evidence-based-cover-letter]
     verifier: RT-09
     outputs: [ats-visual-parity-report-v1]
     template_id: TPL-C08-PACKAGE-QA
     gate: G14
-    stop_rule: UNKNOWN, spec/evidencia/vacante stale, fuga privada o claim no trazable impiden PASS.
+    stop_rule: UNKNOWN, spec, diseño, evidencia o vacante stale, fuga privada o claim no trazable impiden PASS.
     context_budget: {target_files: 10, max_files: 20, target_tokens: 15000, max_tokens: 24000}
   - step_id: S02
-    purpose: Congelar package y emitir veredicto independiente.
+    purpose: Congelar cv-package-v3 y emitir veredicto independiente sobre archivos materiales.
     inputs: [ats-visual-parity-report-v1]
     primary_skill: career-application-orchestrator
     optional_skills: []
     verifier: RT-11
-    outputs: [cv-package-v2, independent-qa-verdict-v1]
+    outputs: [cv-package-v3, independent-qa-verdict-v1]
     template_id: TPL-C08-PACKAGE-QA
     gate: CR_PACKAGE_APPROVED
-    stop_rule: Verifier y Guardian no editan el candidate congelado.
+    stop_rule: Verifier y Guardian no editan el candidate congelado; build no implica publicación.
     context_budget: {target_files: 10, max_files: 20, target_tokens: 14000, max_tokens: 22000}
-gates: [G14, CR_PACKAGE_APPROVED]
+gates: [CR_CAREER_EVIDENCE_READY, G14, CR_PACKAGE_APPROVED]
 next_workflow: C09
 template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md
-stop_rule: Cualquier mutación de spec, evidencia, vacante o contenido crea successor package y nueva revisión.
+stop_rule: Cualquier mutación de spec, sistema visual, decisión, evidencia, vacante o contenido crea successor package y nueva revisión por hash stale.
 metadata: {status: candidate, execution_scope: local-evaluation, publication_authority: false}

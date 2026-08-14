@@ -1,6 +1,8 @@
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import Ajv2020 from 'ajv/dist/2020.js';
+import Ajv from 'ajv';
+import {checkSourceAnalysis} from './check-source-analysis.mjs';
 
 const root = process.cwd();
 const required = [
@@ -8,9 +10,14 @@ const required = [
   'skills/content-os-media/LINEAGE.yml',
   'skills/content-os-media/schemas/media-manifest-v1.schema.json',
   'skills/content-os-media/schemas/asr-candidate-v1.schema.json',
+  'skills/content-os-media/schemas/source-analysis-v1.schema.json',
   'skills/content-os-media/scripts/check-skill.mjs',
   'skills/content-os-media/scripts/media-resolve.mjs',
   'skills/content-os-media/scripts/media-audit.mjs',
+  'skills/content-os-media/scripts/source-analysis-gate.mjs',
+  'skills/content-os-media/scripts/check-source-analysis.mjs',
+  'skills/content-os-transcript-intelligence/scripts/transcript-intelligence.mjs',
+  'skills/content-os-transcript-intelligence/schemas/transcript-intelligence-v1.schema.json',
   'skills/content-os-media/references/resolve-cascade.md',
   'skills/content-os-media/references/audio.md',
   'skills/content-os-media/rules/media-contract.md',
@@ -20,11 +27,31 @@ const required = [
   'skills/content-os-media/fixtures/positive/asr-candidate.json',
   'skills/content-os-media/fixtures/negative/asr-without-provenance.json',
   'skills/content-os-media/fixtures/negative/asr-clock-mismatch.json',
+  'skills/content-os-media/fixtures/positive/source-analysis-speech.json',
+  'skills/content-os-media/fixtures/negative/source-analysis-skips-asr.json',
+  'skills/content-os-media/fixtures/positive/analysis/asr-candidate.json',
+  'skills/content-os-media/fixtures/positive/analysis/verification.json',
+  'skills/content-os-media/fixtures/positive/analysis/job.json',
+  'skills/content-os-media/fixtures/positive/analysis/source.txt',
+  'skills/content-os-media/fixtures/positive/analysis/model.fixture',
+  'skills/content-os-media/fixtures/positive/analysis/asr-config.json',
+  'skills/content-os-media/fixtures/positive/analysis/authority.json',
+  'skills/content-os-media/fixtures/negative/analysis/asr-candidate.json',
+  'skills/content-os-media/fixtures/negative/analysis/verification.json',
+  'skills/content-os-media/fixtures/negative/source-analysis-missing-ref.json',
+  'skills/content-os-media/fixtures/negative/source-analysis-hash-drift.json',
+  'skills/content-os-media/fixtures/negative/source-analysis-absolute-ref.json',
   'skills/content-os-media/receipts/runtime-boundary.yml',
+  'skills/content-os-media/receipts/verification-v0.2.2.yml',
 ];
 
 const contents = new Map(required.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
 const ajv = new Ajv2020({allErrors: true, strict: false});
+const ajvDraft7 = new Ajv({allErrors: true, strict: false});
+for (const path of required.filter((value) => value.includes('/schemas/'))) {
+  const schema = JSON.parse(contents.get(path));
+  (schema.$schema?.includes('draft-07') ? ajvDraft7 : ajv).compile(schema);
+}
 
 const combined = [...contents.values()].join('\n');
 const runtimeCombined = [
@@ -55,6 +82,10 @@ for (const token of [
   'asr-candidate-v1',
   'modelSha256',
   'configSha256',
+  'source-analysis-v1',
+  'probe → audio class → ASR attempt → Transcript Intelligence gate',
+  'contractRevision',
+  'transcript-intelligence-verification-v1',
 ]) {
   if (!combined.includes(token)) {
     throw new Error(`COSM_CONTRACT_MISSING: ${token}`);
@@ -78,7 +109,7 @@ if (
 ) {
   throw new Error('COSM_ASR_CONTRACT_INVALID');
 }
-const validateAsr = ajv.compile(JSON.parse(contents.get('skills/content-os-media/schemas/asr-candidate-v1.schema.json')));
+const validateAsr = ajv.getSchema('asr-candidate-v1');
 if (!validateAsr(asr)) throw new Error(`COSM_AJV2020_ASR_POSITIVE: ${ajv.errorsText(validateAsr.errors)}`);
 const epsilon = 1e-6;
 for (const segment of asr.segments) {
@@ -118,6 +149,8 @@ for (const token of [
     throw new Error(`COSM_ASR_NEGATIVE_FIXTURE_INCOMPLETE: missing ${token}`);
   }
 }
+
+checkSourceAnalysis({root, contents, ajv});
 
 for (const pattern of [
   /\bMath\.random\s*\(/u,

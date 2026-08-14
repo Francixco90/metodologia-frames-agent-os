@@ -1,7 +1,7 @@
 ---
 name: content-os-talking-head-recut
 description: This skill should be used when the user asks to "add graphic overlays to a video", "dress up my talking-head clip", "package an interview with on-screen graphics", "add lower-thirds and data callouts", "layer designed cards on a playing video", or "recut a podcast clip with kinetic titles". Packages an existing talking-head / interview / podcast clip with timed, designed graphic overlay cards (titles, lower-thirds, data callouts, quotes, side panels, PiP) synced to the transcript on 16:9 / 9:16 / 4:5. The clip plays untouched; overlays are designed HTML rendered via the Frames ContentOS toolchain (Playwright + FFmpeg, GSAP). Not plain subtitles (content-os-embedded-captions). Unclear → content-os-router.
-version: 0.1.0
+version: 0.2.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + Playwright/FFmpeg render adapter), content-os-media (video probe, audio extraction, ASR candidate), content-os-transcript-intelligence (semantic index + evidence-bound narrative), content-os-embedded-captions (sibling plain-subtitle track). Input = existing talking-head clip (plays untouched). Overlays = designed HTML cards synced to source spans. Output RENDERED_DRAFT (output.mp4, clip + overlay cards composited).
 metadata:
@@ -24,6 +24,11 @@ Takes a local video that **plays in full** and layers a sequence of timed, desig
 picture-in-picture — synced to what is being said. The clip plays untouched underneath.
 There is no fixed archetype list and no prescribed card structure; the overlays emerge
 from what the transcript actually says.
+
+Todo reel es Spec First: propósito, audiencia, hook, evidencia, impacto y CTA se
+resuelven antes del storyboard. Consume `source-analysis-v1`, `visual-budget-v1` y
+`brand-kit-v1`. El layout por defecto es `contain`; `crop-safe` exige evidencia
+visual reproducible y `reject` bloquea render.
 
 **Graphic-packaging sibling of `content-os-embedded-captions`.** Captions add the spoken
 words as readable text; this skill adds designed graphics on top of the playing video.

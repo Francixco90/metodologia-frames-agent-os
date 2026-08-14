@@ -1,0 +1,102 @@
+{
+  "schema_version": "metodologia-career-design-system-v1",
+  "system_id": "metodologia-career-v1",
+  "state": "DESIGN_SYSTEM_COMPILED",
+  "brand_id": "metodologia",
+  "local_first": true,
+  "ats_profile": "candidate-neutral-ats",
+  "executive_profile": "metodologia-career",
+  "default_theme": "navy",
+  "alternate_theme": "light",
+  "print_theme": "light",
+  "primary_composition": "blueprint-executive",
+  "secondary_composition": "neo-swiss-editorial",
+  "decision": {
+    "ref": "decisions/design-selection-v1.json",
+    "decision_sha256": "26cf80d5040871a56bf07035980a3512fc24c49c7c9a2d0d30032f73c2899ac1",
+    "options_manifest_sha256": "b6bfee1e2abba03356127b4f0364ba3f58369cf5392d65f480c220165a400bc3"
+  },
+  "contract_ref": {
+    "ref": "design-system-ref.v1.json",
+    "design_system_sha256": "752ce724494ac7edce32e5a27dd3e6f307ee02984b018bac38a764444a617bb0"
+  },
+  "font_authority": {
+    "manifest_ref": "../fonts/font-manifest.yml",
+    "manifest_sha256": "f86a90762628b14a4b9d5c79c82bc91a8ffdd3a5bf78223800df8ff364c92660",
+    "rights_ref": "../fonts/rights-receipt.yml",
+    "rights_sha256": "ff9c7696097fc50f7e189b8dcc6956ca0278bf6f66d6542d64c6caf00f815358"
+  },
+  "assets": [
+    {
+      "ref": "tokens/tokens.v1.json",
+      "sha256": "d48f808e9bd942439f366d896f0600c69df11acbf1c53c22d80c520b3bd4b638"
+    },
+    {
+      "ref": "tokens/tokens.v1.css",
+      "sha256": "87aa4387598bbecbaea4073d08207ef6087cffe4f54599faadd0e686fbe509a1"
+    },
+    {
+      "ref": "components/registry.v1.json",
+      "sha256": "e330c2c88d6fbe57a5bc3948b6fb77fe23eebf9e63751c0bb46dbf37dcc52a44"
+    },
+    {
+      "ref": "components/components.v1.css",
+      "sha256": "fcbcb3daee384aa614104ee261502a2639e8d0a29cc9774cea3530d17f959fe9"
+    },
+    {
+      "ref": "components/snippets.v1.html",
+      "sha256": "77de73776cb145021ca2f0d8931e2413bcd449176547b964c43409257007960f"
+    },
+    {
+      "ref": "icons/registry.v1.json",
+      "sha256": "7e02406225b260acefa24816ea6022897b45547d85356e8b82edac08393d7973"
+    },
+    {
+      "ref": "icons/icons.v1.svg",
+      "sha256": "435438958860b2370ff89a60d6c836e8a13eeb41c02511b763b35ba0048a71a2"
+    },
+    {
+      "ref": "compositions/blueprint-executive.v1.md",
+      "sha256": "64fa0830531ebe41167d8badfc950e3a5529ac967a3bdabc2a7dafbb16c11d2f"
+    },
+    {
+      "ref": "compositions/neo-swiss-editorial.v1.md",
+      "sha256": "fddbc82be8ef1c70a7757b9b394c09f15ded4441f114b62e4e3f5de8d385828c"
+    },
+    {
+      "ref": "guidelines/accessibility.v1.md",
+      "sha256": "34a6847531aa2e1c15b876035e2282a89e2a837a913d3820f43a9a57b99012a2"
+    },
+    {
+      "ref": "guidelines/usage.v1.md",
+      "sha256": "4cd98f13878a04eaecfce2342e1f5505b8a3ac790855aa6a72458e371d42cdf7"
+    },
+    {
+      "ref": "print/print.v1.css",
+      "sha256": "e474b026227951d50df379ee401aa4227642ec9412bb382d14e298b8f928d90a"
+    }
+  ],
+  "invalidation_inputs": [
+    "cv_spec",
+    "design_decision",
+    "tokens",
+    "components",
+    "icons",
+    "fonts",
+    "composition",
+    "canonical_content"
+  ],
+  "prohibited": [
+    "remote_dependency",
+    "raw_color_outside_brand_authority",
+    "copy_in_javascript",
+    "pii_in_git",
+    "hidden_keyword",
+    "automatic_publication"
+  ],
+  "gate_effect": {
+    "allows": ["EXECUTIVE_HTML_RENDER"],
+    "does_not_allow": ["READY", "PUBLISHED", "APPLICATION_SUBMITTED"]
+  },
+  "system_binding_sha256": "e96365ea75bbb6bf9ebb0b57b2968e68ef229bb17e7d03939c5dfdac904b1d00"
+}

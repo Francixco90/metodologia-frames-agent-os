@@ -1,11 +1,22 @@
 skill_id: content-os-general-video
-version: 0.7.0
+version: 0.15.0
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
 compatibility_contract: general-video-v2-revision-2
+successor_notes:
+  - precomposed-frames-v1 is a fail-closed runtime adapter, never a generic receipt bypass.
+  - frame manifests bind every frame, cleanup order, audio and deterministic generator configuration.
+  - branded-wrapper-v1 preserves body packet payloads and forbids body music, overlays and gain processing.
+  - source-analysis-v1 and composition-fit-v1 bind temporal watermark evidence, canvas fit and audio-preserve policy.
+  - storyboard-multiframe-v1 binds ordered review frames to source spans and composition fits.
+  - creative brand-kit-v1 and visual-budget-v1 remain external canonical contracts referenced by hash.
+  - source-analysis-v1 has one canonical authority in content-os-media; the duplicate local schema was removed.
+  - composition-fit crop safety requires hash-bound multi-frame evidence and rejects missing, drifted or symlinked refs.
+  - Media source-analysis and Creative brand-kit gates execute as canonical sibling consumers; General Video does not duplicate their semantic rules.
+  - Media 0.2.2 canonical Transcript Intelligence verification blocks hash-correct semantic-invalid ASR and receipts end to end.
 read_compatibility:
   - general-video-v1
 new_render_minimum: general-video-v2-revision-2

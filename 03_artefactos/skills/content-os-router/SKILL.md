@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.7.0
+version: 0.8.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
@@ -62,6 +62,7 @@ El brief Markdown es canónico. El HTML es una proyección verificable, nunca ot
 editorial. [CONFIG]
 
 Esta skill solo enruta; el capability map resuelve implementación, motion, marca y media.
+Video consume source analysis: `contain` default; `crop-safe` con evidencia; reels Spec First.
 
 ## Preflight (siempre)
 

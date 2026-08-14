@@ -28,12 +28,13 @@
   },
   {
     "id": "content-os-creative",
-    "version": "0.2.0",
+    "version": "0.3.1",
     "scope": "local-evaluation",
     "check": ["skills/content-os-creative/scripts/check-skill.mjs"]
   },
   {
     "id": "content-os-media",
+    "version": "0.2.2",
     "scope": "local-evaluation",
     "check": ["skills/content-os-media/scripts/check-skill.mjs"]
   },
@@ -51,25 +52,43 @@
   },
   {
     "id": "content-os-router",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-router/scripts/check-skill.mjs"]
   },
   {
     "id": "career-application-orchestrator",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "scope": "local-evaluation",
     "check": ["skills/career-application-orchestrator/scripts/check-skill.mjs"]
   },
   {
-    "id": "candidate-evidence-reconciler",
+    "id": "career-design-system",
+    "version": "1.0.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-design-system/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "career-evidence-interviewer",
+    "version": "0.1.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-evidence-interviewer/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "career-visual-auditor",
     "version": "0.2.0",
+    "scope": "local-evaluation",
+    "check": ["skills/career-visual-auditor/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "candidate-evidence-reconciler",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/candidate-evidence-reconciler/scripts/check-skill.mjs"]
   },
   {
     "id": "evidence-first-cv",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scope": "local-evaluation",
     "check": ["skills/evidence-first-cv/scripts/check-skill.mjs"]
   },
@@ -120,7 +139,7 @@
   },
   {
     "id": "content-os-general-video",
-    "version": "0.7.0",
+    "version": "0.15.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-general-video/scripts/check-skill.mjs"]
   },
@@ -132,6 +151,7 @@
   },
   {
     "id": "content-os-talking-head-recut",
+    "version": "0.2.0",
     "scope": "local-evaluation",
     "check": ["skills/content-os-talking-head-recut/scripts/check-skill.mjs"]
   },
