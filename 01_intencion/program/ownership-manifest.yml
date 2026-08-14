@@ -20,6 +20,7 @@ writers:
     - 01_intencion/context.md
     - 01_intencion/career/**
     - 01_intencion/video-os/**
+    - 01_intencion/frames-evolution/**
     - 03_artefactos/context.md
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
@@ -103,6 +104,7 @@ writers:
     # Do not split _schema/_runner/P00-P09 across renderer writers.
     - workflows/multimedia/**
     - workflows/video-os/**
+    - workflows/operator-core/**
     - workflows/career/**
     - workflows/experience/**
     - workflows/documentation/**
@@ -175,6 +177,7 @@ writers:
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
     - 05_verificacion/tests/unit/video-os-*.test.ts
+    - 05_verificacion/tests/unit/operator-core-*.test.ts
     - 05_verificacion/tests/unit/career-cv-spec-fixtures.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
     - 05_verificacion/tests/unit/documentation-*.test.ts
