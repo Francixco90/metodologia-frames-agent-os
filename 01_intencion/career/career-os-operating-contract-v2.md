@@ -34,21 +34,24 @@ producir nuevos hashes v2/v3.
 
 ## Gates con autoridad verificable
 
-| Gate                       | Tipo                       | Autoridad                                   |
-| -------------------------- | -------------------------- | ------------------------------------------- |
-| `CR_BRIEF_APPROVED`        | humano, manual fail-closed | intención, alcance y fuentes                |
-| `CR_CAREER_EVIDENCE_READY` | humano, manual fail-closed | decisión ligada a candidato y Evidence Bank |
-| `CR_CV_DESIGN_APPROVED`    | humano, manual fail-closed | decisión visual exacta                      |
-| `CR_CV_SPEC_APPROVED`      | humano, manual fail-closed | hash exacto de `cv-spec-v2`                 |
-| `CR_CV_COMPILED`           | baseline estático          | `pnpm verify:career`; nunca prueba un run   |
-| `G14`                      | Guardian manual            | revisión independiente; nunca publicación   |
-| `CR_PACKAGE_APPROVED`      | humano, manual fail-closed | hash exacto del package                     |
-| `CR_SUBMISSION_AUTHORIZED` | humano, manual fail-closed | autorización de un uso externo limitado     |
+| Gate                       | Tipo                       | Autoridad                                 |
+| -------------------------- | -------------------------- | ----------------------------------------- |
+| `CR_BRIEF_APPROVED`        | humano, manual fail-closed | intención, alcance y fuentes              |
+| `CR_CAREER_EVIDENCE_READY` | técnico, STOP              | falta receipt run-aware de evidencia      |
+| `CR_CV_DESIGN_APPROVED`    | humano, manual fail-closed | decisión visual exacta                    |
+| `CR_CV_SPEC_APPROVED`      | humano, manual fail-closed | hash exacto de `cv-spec-v2`               |
+| `CR_CV_COMPILED`           | técnico, STOP              | falta receipt run-aware de compilación    |
+| `G14`                      | Guardian manual            | revisión independiente; nunca publicación |
+| `CR_PACKAGE_APPROVED`      | humano, manual fail-closed | hash exacto del package                   |
+| `CR_SUBMISSION_AUTHORIZED` | humano, manual fail-closed | autorización de un uso externo limitado   |
 
-`CR_CAREER_EVIDENCE_READY` no tiene command run-aware y por eso permanece manual.
-El command de `CR_CV_COMPILED` acredita solamente el baseline estático del arnés;
-no materializa ni verifica el receipt de un run. Ausencia, staleness o mismatch
-produce `UNKNOWN` o `BLOCKED`, nunca `PASS`.
+`CR_CAREER_EVIDENCE_READY` y `CR_CV_COMPILED` son gates técnicos, no decisiones
+humanas. Hasta A2/A5 no existe un validador run-aware: sus commands deterministas
+terminan con código distinto de cero y emiten respectivamente
+`COVERAGE_GAP: CAREER_RUN_RECEIPT_REQUIRED` y
+`COVERAGE_GAP: CAREER_COMPILE_RUN_RECEIPT_REQUIRED`. No aceptan argumentos ni
+pueden afirmar `PASS`. `pnpm verify:career` sigue siendo un gate estático del
+repositorio y la documentación; nunca satisface un gate de run. [CONFIG]
 
 `CR_PACKAGE_QA` es un boundary legacy/unimplemented todavía referenciado por
 skills activas, pero no tiene command/receipt en `commands.yaml` ni autoridad de
@@ -61,7 +64,9 @@ ruta que lo encuentre. No es alias de `G14` ni de `CR_PACKAGE_APPROVED`. [CONFIG
 `SPECIFIED → RENDERED_DRAFT → HUMAN_APPROVED → READY`
 
 Cambiar spec, evidencia, vacante, fuente, diseño, variante o output invalida los
-estados posteriores. C09 prepara y se detiene en `CR_PACKAGE_APPROVED` incluso si
-recibe `packageReady=true`; avanzar a `CR_SUBMISSION_AUTHORIZED` requiere un
-receipt material futuro, no un boolean. No activa conectores ni autoriza
-publicación. Datos reales y PII permanecen en rutas privadas ignoradas.
+estados posteriores. Sin receipt material de package approval, el router se
+detiene en `CR_PACKAGE_APPROVED` incluso si recibe `packageReady=true`. Solo tras
+aprobar materialmente el package exacto, C09 puede crear su preview y se detiene
+en `CR_SUBMISSION_AUTHORIZED`, coherente con `submission.ts`. Ningún boolean
+sustituye esos receipts. No activa conectores ni autoriza publicación. Datos reales
+y PII permanecen en rutas privadas ignoradas.

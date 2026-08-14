@@ -1701,7 +1701,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3
-    package_manifest_sha256: a5fa97174b7b9845ac6877a390403f17de0a52a939099d311c9f4c02ca748d2c
+    package_manifest_sha256: c0c92ca4231d45f4f89ad2415c564ae6203416288a0fc964d31e4f13cdddfef6
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

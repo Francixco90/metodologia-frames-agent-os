@@ -62,7 +62,11 @@ El sistema prepara queries, ingiere snapshots autorizados, elimina duplicados y 
 
 ### Preparar una postulación
 
-C09 muestra la vista previa, liga la autorización a la huella digital exacta del paquete y se detiene. Un envío solo podría marcarse `SUBMITTED` con confirmación visible y comprobante material.
+Sin aprobación material del package, el router se detiene en
+`CR_PACKAGE_APPROVED`. Después de aprobar el package exacto, C09 muestra la vista
+previa, liga la autorización a su huella digital y se detiene en
+`CR_SUBMISSION_AUTHORIZED`. Un envío solo podría marcarse `SUBMITTED` con
+confirmación visible y comprobante material.
 
 `CR_PACKAGE_APPROVED` aprueba humanamente el package exacto. `CR_SUBMISSION_AUTHORIZED` exige un receipt material posterior; `packageReady` no basta. `CR_PACKAGE_QA` sigue referenciado por skills activas, pero es un boundary legacy/unimplemented sin command/receipt: nunca `PASS` y siempre stop (`coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`).
 

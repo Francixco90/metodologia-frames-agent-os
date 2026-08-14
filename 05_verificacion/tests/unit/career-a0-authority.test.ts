@@ -1,3 +1,4 @@
+import {spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
@@ -30,21 +31,25 @@ describe('Career A0 authority remains receipt-bound', () => {
     ({context_id}) => context_id === 'CTX-SKILL-CAREER-ORCHESTRATOR',
   );
 
-  it('keeps every run decision manual and static compilation unable to prove a run', () => {
-    expect(byGate.get('CR_CAREER_EVIDENCE_READY')).toMatchObject({
-      command: null,
-      manual: true,
-      fail_closed: true,
-    });
-    expect(byGate.get('CR_CV_COMPILED')).toMatchObject({
-      command: 'pnpm verify:career',
-      manual: false,
-      fail_closed: true,
-    });
-    expect(byGate.get('CR_CV_COMPILED')?.label).toContain('static harness baseline');
-    expect(contract).toContain('no materializa ni verifica el receipt de un run');
+  it('executes both run-dependent gates as deterministic technical stops', () => {
+    for (const id of ['CR_CAREER_EVIDENCE_READY', 'CR_CV_COMPILED']) {
+      const gate = byGate.get(id);
+      expect(gate).toMatchObject({manual: false, fail_closed: true, owner: 'qa'});
+      expect(gate?.command).not.toContain('pnpm verify:career');
+      const result = spawnSync(gate!.command!, {cwd: ROOT, encoding: 'utf8', shell: true});
+      expect(result.status).not.toBe(0);
+      expect(result.stderr).toContain('COVERAGE_GAP:');
+      expect(result.stderr).not.toContain('PASS');
+    }
+    expect(byGate.get('CR_CAREER_EVIDENCE_READY')?.command).toContain(
+      'COVERAGE_GAP: CAREER_RUN_RECEIPT_REQUIRED',
+    );
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
+    expect(contract).toContain('Hasta A2/A5');
+    expect(contract).toMatch(/no decisiones\s+humanas/u);
+    expect(contract).toMatch(/gate estático del\s+repositorio/u);
     expect(contract).toContain('`packageReady=true`');
-    expect(contract).toContain('no un boolean');
+    expect(contract).toContain('Ningún boolean');
   });
 
   it('models package QA as an unimplemented legacy stop, not an executable gate', () => {
@@ -61,7 +66,6 @@ describe('Career A0 authority remains receipt-bound', () => {
     expect(byGate.get('G14')).toMatchObject({manual: true, owner: 'guardian'});
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
-        'CR_CAREER_EVIDENCE_READY',
         'CR_CV_DESIGN_APPROVED',
         'CR_CV_SPEC_APPROVED',
         'CR_PACKAGE_APPROVED',
@@ -75,5 +79,11 @@ describe('Career A0 authority remains receipt-bound', () => {
     expect(read('01_intencion/career/cv-spec-first-contract-v1.md')).toMatch(
       /^# Contrato operativo CV Spec-First v1\n\n> \*\*COMPATIBILITY-ONLY\./u,
     );
+  });
+
+  it('describes the two-stage C09 boundary without changing its runtime', () => {
+    expect(contract).toContain('Sin receipt material de package approval');
+    expect(contract).toContain('C09 puede crear su preview');
+    expect(contract).toMatch(/se detiene\s+en `CR_SUBMISSION_AUTHORIZED`/u);
   });
 });

@@ -78,10 +78,9 @@ describe('commands.yaml contract', () => {
     }
   });
 
-  it('keeps run decisions manual and CV compilation as a static harness baseline', () => {
+  it('keeps human decisions manual and run-dependent gates as technical stops', () => {
     for (const id of [
       'CR_BRIEF_APPROVED',
-      'CR_CAREER_EVIDENCE_READY',
       'CR_CV_DESIGN_APPROVED',
       'CR_CV_SPEC_APPROVED',
       'CR_PACKAGE_APPROVED',
@@ -95,13 +94,15 @@ describe('commands.yaml contract', () => {
         fail_closed: true,
       });
     }
-    expect(manifest.gates.find(({gate}) => gate === 'CR_CV_COMPILED')).toMatchObject({
-      command: 'pnpm verify:career',
-      allowed_tools: ['Bash'],
-      manual: false,
-      fail_closed: true,
-      owner: 'content',
-    });
+    for (const id of ['CR_CAREER_EVIDENCE_READY', 'CR_CV_COMPILED']) {
+      expect(manifest.gates.find(({gate}) => gate === id)).toMatchObject({
+        allowed_tools: ['Bash'],
+        manual: false,
+        fail_closed: true,
+        owner: 'qa',
+      });
+      expect(manifest.gates.find(({gate}) => gate === id)?.command).toContain('COVERAGE_GAP:');
+    }
     expect(manifest.gates.some(({gate}) => gate === 'CR_PACKAGE_QA')).toBe(false);
   });
 

@@ -60,7 +60,7 @@ Solo se materializan combinaciones de idioma y formato declaradas en la spec.
 ## Gates fail-closed
 
 - `CR_CV_SPEC_APPROVED`: spec válida y aprobada sobre su hash.
-- `CR_CV_COMPILED`: fuente canónica ligada a spec y evidencia.
+- `CR_CV_COMPILED`: technical STOP compatibility-only; no existe receipt run-aware en A0.
 - `CR_PACKAGE_QA`: boundary legacy aún referenciado por skills activas, sin command/receipt; produce `coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED` y nunca PASS.
 - `CR_PACKAGE_APPROVED`: aprobación humana del package exacto; nunca alias de QA.
 - `G14`: revisión Guardian manual e independiente; no autoriza publicación.

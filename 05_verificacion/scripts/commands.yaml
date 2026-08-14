@@ -367,13 +367,13 @@ gates:
   # prettier-ignore
   - {gate: CR_BRIEF_APPROVED, label: career brief approval before document production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore
-  - {gate: CR_CAREER_EVIDENCE_READY, label: manually approve Career evidence readiness for an exact candidate, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  - {gate: CR_CAREER_EVIDENCE_READY, label: technical STOP until a run-aware Career evidence receipt exists, command: "node -e \"console.error('COVERAGE_GAP: CAREER_RUN_RECEIPT_REQUIRED'); process.exit(1)\"", allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: CR_CV_DESIGN_APPROVED, label: approve the exact Career CV design decision before executive projection, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: CR_CV_SPEC_APPROVED, label: career CV specification approval before compilation, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore
-  - {gate: CR_CV_COMPILED, label: static harness baseline for Career compilation contracts; never a run receipt, command: 'pnpm verify:career', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
+  - {gate: CR_CV_COMPILED, label: technical STOP until a run-aware Career compile receipt exists, command: "node -e \"console.error('COVERAGE_GAP: CAREER_COMPILE_RUN_RECEIPT_REQUIRED'); process.exit(1)\"", allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: CR_PACKAGE_APPROVED, label: candidate application package approval, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore
