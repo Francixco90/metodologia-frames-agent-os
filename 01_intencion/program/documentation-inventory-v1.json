@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "1e831c4cdd35d04c06d212036d65e15fdecc32890782c8a448aa56173a4170c3",
-  "totalMarkdown": 1840,
-  "auditedAuthored": 589,
+  "repositoryTreeSha256": "e02c0ff74afc260cc5108b05221f90980d1eacd9f3d538379964782ebb9d358d",
+  "totalMarkdown": 1841,
+  "auditedAuthored": 590,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -44,6 +44,7 @@
       "01_intencion/bento/architecture.md",
       "01_intencion/bento/audit-report.md",
       "01_intencion/bento/verification-report.md",
+      "01_intencion/career/career-os-operating-contract-v2.md",
       "01_intencion/career/cv-design-system-first-contract-v1.md",
       "01_intencion/career/cv-spec-first-contract-v1.md",
       "01_intencion/career/cv-spec-first-retrospective.md",
@@ -3013,6 +3014,32 @@
       }
     },
     {
+      "path": "01_intencion/career/career-os-operating-contract-v2.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/career/career-os-operating-contract-v2.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/career/career-os-operating-contract-v2.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "528f707b879d41aaaed9f99ac2ec45a065506d253624efcd76f715de206c56d6",
+      "words": 542,
+      "lines": 75,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/career/cv-design-system-first-contract-v1.md",
       "class": "authored_control",
       "owner": "lead",
@@ -3050,9 +3077,9 @@
       "sourceRef": "01_intencion/career/cv-spec-first-contract-v1.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "365edc13b3e4749f3b181d52e95b5546fd055ec338b34db1fc258f8f6f468dd2",
-      "words": 435,
-      "lines": 79,
+      "sha256": "80ec45af733519cfbeacd6c14504604f3d9305072c318382acd1c41e87d704ed",
+      "words": 510,
+      "lines": 87,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -3060,7 +3087,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -3986,9 +4013,9 @@
       "sourceRef": "01_intencion/guides/career.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "563496b2d453ab0df6646b8c447093054b9b98288fc48a299dd319b080dd4b2f",
-      "words": 466,
-      "lines": 68,
+      "sha256": "d5f884952fc745a638505b56194cefb58e5f93811bf9a551b45fb59ffaa62a8d",
+      "words": 623,
+      "lines": 85,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -3996,7 +4023,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -10201,9 +10228,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "b4d99c6d3c7490d69eb71f35a79bc026496d2dec259d3c370b750eaf1e85298a",
-      "words": 10515,
-      "lines": 978,
+      "sha256": "ff429acffa59f26fbf9da8c2db2bd2821b0b9cddd061c5efe5dc60d15ac5088c",
+      "words": 10526,
+      "lines": 979,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -10645,9 +10672,9 @@
       "sourceRef": "03_artefactos/skills/career-application-orchestrator/references/orchestration-contract.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "554c2d83730df1f6755bc11f45543dcaeefc0ad2acfc98b08933e7bc32ca2c1b",
-      "words": 190,
-      "lines": 35,
+      "sha256": "418786130742713f84817322169ea79e68a113f1060a8ab9048ff3b6aac10311",
+      "words": 356,
+      "lines": 59,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -10655,7 +10682,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17662,7 +17689,7 @@
     }
   ],
   "summary": {
-    "keep": 574,
+    "keep": 575,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
