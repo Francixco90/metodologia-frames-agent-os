@@ -367,21 +367,13 @@ gates:
   # prettier-ignore
   - {gate: CR_BRIEF_APPROVED, label: career brief approval before document production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore
-  - {gate: CR_CAREER_EVIDENCE_READY, label: career evidence readiness before positioning, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  - {gate: CR_CAREER_EVIDENCE_READY, label: 'technical STOP — COVERAGE_GAP: CAREER_RUN_RECEIPT_REQUIRED', command: '/usr/bin/false', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
+  # prettier-ignore
+  - {gate: CR_CV_DESIGN_APPROVED, label: approve the exact Career CV design decision before executive projection, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: CR_CV_SPEC_APPROVED, label: career CV specification approval before compilation, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
-  - {
-      gate: CR_CV_COMPILED,
-      label: canonical CV compiled from approved specification and evidence,
-      command: 'pnpm verify:career',
-      allowed_tools: [Bash],
-      write_set_globs: [],
-      idempotency: true,
-      danger_level: low,
-      manual: false,
-      fail_closed: true,
-      owner: content,
-    }
+  # prettier-ignore
+  - {gate: CR_CV_COMPILED, label: 'technical STOP — COVERAGE_GAP: CAREER_COMPILE_RUN_RECEIPT_REQUIRED', command: '/usr/bin/false', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: CR_PACKAGE_APPROVED, label: candidate application package approval, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore

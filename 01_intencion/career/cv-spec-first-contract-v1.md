@@ -1,8 +1,15 @@
 # Contrato operativo CV Spec-First v1
 
+> **COMPATIBILITY-ONLY.** Este documento no gobierna runs nuevos. La autoridad
+> normativa es `career-os-operating-contract-v2.md`. La migración material de
+> C06/C07, templates y registry es
+> `coverage_gap: A1_MATERIAL_MIGRATION_REQUIRED`; por tanto, encontrar una
+> dependencia activa v1 bloquea el run en vez de simular una cadena v2.
+> [CONFIG]
+
 ## Autoridad
 
-`cv-spec-v1` es la fuente de decisión previa al contenido. El Evidence Bank sigue
+En un payload legacy, `cv-spec-v1` era la fuente de decisión previa al contenido. El Evidence Bank sigue
 siendo la autoridad factual y una vacante capturada sigue siendo la autoridad de
 requisitos. La spec selecciona y organiza; no crea hechos. [CONFIG]
 
@@ -53,9 +60,10 @@ Solo se materializan combinaciones de idioma y formato declaradas en la spec.
 ## Gates fail-closed
 
 - `CR_CV_SPEC_APPROVED`: spec válida y aprobada sobre su hash.
-- `CR_CV_COMPILED`: fuente canónica ligada a spec y evidencia.
-- `CR_PACKAGE_QA`: outputs presentes, hashes correctos y verificaciones cerradas.
-- `G14`: verificación independiente; no autoriza publicación.
+- `CR_CV_COMPILED`: technical STOP compatibility-only; no existe receipt run-aware en A0.
+- `CR_PACKAGE_QA`: boundary legacy aún referenciado por skills activas, sin command/receipt; produce `coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED` y nunca PASS.
+- `CR_PACKAGE_APPROVED`: aprobación humana del package exacto; nunca alias de QA.
+- `G14`: revisión Guardian manual e independiente; no autoriza publicación.
 
 Ausencia de runtime, archivo, hash, texto extraíble o paridad produce `UNKNOWN`
 o `BLOCKED`, nunca `PASS` por sustitución. [CONFIG]

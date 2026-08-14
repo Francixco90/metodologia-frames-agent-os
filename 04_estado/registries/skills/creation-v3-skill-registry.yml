@@ -1701,7 +1701,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3
-    package_manifest_sha256: a5fa97174b7b9845ac6877a390403f17de0a52a939099d311c9f4c02ca748d2c
+    package_manifest_sha256: 29d779a7c4fdf407f8f6eef7101f84d076f02f875d04735274b86954698dea94
     lineage_ref: skills/career-application-orchestrator/LINEAGE.yml
     dependency_receipt_ref: skills/career-application-orchestrator/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2749,3 +2749,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-017, event_order: 17, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: add_canonical_transcript_gate_regression_receipt}
   - {event_id: EVT-SKL-CGV-H03-018, event_order: 18, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_canonical_transcript_intelligence_consumer_v015}
   - {event_id: EVT-SKL-MWRL-H03-001, event_order: 1, skill_id: metodologia-workshop-route-landing-html, from: null, to: candidate, actor_id: RT-07-WORKSHOP-ROUTE-LANDING-PRODUCER, recorded_at: '2026-08-12T00:00:00Z', decision: register_spec_compile_verify_candidate_without_promotion}
+  - {event_id: EVT-SKL-CAO-H03-008, event_order: 8, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-14T00:00:00Z', decision: refresh_a0_fail_closed_authority_hash_binding, content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3, package_manifest_sha256: 29d779a7c4fdf407f8f6eef7101f84d076f02f875d04735274b86954698dea94}

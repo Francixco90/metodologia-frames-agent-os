@@ -13,12 +13,14 @@ Un pedido Career requiere brief, reanudación, paquete o preparación de postula
 
 Owner: `skill-foundry`. Cargar en este orden:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 ## 3. Carga mínima y contexto diferido
 
 Primero:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 Solo bajo demanda:
@@ -45,6 +47,7 @@ Skills primarias: `career-application-orchestrator`
 Tools: `career_route`, `resume_lineage`  
 Modo: `generated_only`. Read set mínimo:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 Write set:
@@ -55,8 +58,8 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_SPEC_APPROVED`, `CR_PACKAGE_QA`, `CR_SUBMISSION_AUTHORIZED`  
-Stop rules: C06 exige spec aprobada y vigente · C09 prepara y detiene · PII y evidencia UNKNOWN bloquean
+Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_DESIGN_APPROVED`, `CR_CV_SPEC_APPROVED`, `CR_CV_COMPILED`, `CR_PACKAGE_APPROVED`, `CR_SUBMISSION_AUTHORIZED`  
+Stop rules: coverage_gap A1 bloquea dependencias materiales v1 · CR_CAREER_EVIDENCE_READY y CR_CV_COMPILED son technical STOP /usr/bin/false hasta A2/A5 y sus labels preservan los COVERAGE_GAP exactos · CR_PACKAGE_QA legacy no ejecutable produce coverage_gap A1_PACKAGE_QA_REFS_REQUIRED y stop · C06 exige spec aprobada y vigente · coverage_gap A1_C09_PACKAGE_APPROVAL_RECEIPT_REQUIRED mantiene el router en CR_PACKAGE_APPROVED y prepareSubmission es solo preview local no autorizado · PII y evidencia UNKNOWN bloquean
 
 Hijos:
 

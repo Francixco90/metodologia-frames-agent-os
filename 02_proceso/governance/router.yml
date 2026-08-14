@@ -138,11 +138,12 @@ routes:
       - 'postular'
       - 'continuar candidatura'
     reads:
+      - '01_intencion/career/career-os-operating-contract-v2.md'
       - '03_artefactos/skills/career-application-orchestrator/SKILL.md'
       - '02_proceso/workflows/career/_schema/intent-v1.schema.ts'
       - '02_proceso/workflows/career/_schema/brief-v1.schema.ts'
       - '02_proceso/workflows/operator-core/index.ts'
-    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; Operator Core solo aporta planificación determinista compartida; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
+    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; autoridad v2 con coverage_gap A1 para migración material; Operator Core solo aporta planificación determinista compartida; C09 hace STOP material en CR_PACKAGE_APPROVED; CR_SUBMISSION_AUTHORIZED pertenece a una fase posterior y exige receipt material one-use'
     binds_to: task
     runtime_status: active_brief_first
   - id: R8
@@ -204,6 +205,8 @@ manual_fail_closed_gates:
     G17,
     MW_BRIEF_APPROVED,
     CR_BRIEF_APPROVED,
+    CR_CV_DESIGN_APPROVED,
+    CR_CV_SPEC_APPROVED,
     CR_PACKAGE_APPROVED,
     CR_SUBMISSION_AUTHORIZED,
     EXP_BRIEF_APPROVED,

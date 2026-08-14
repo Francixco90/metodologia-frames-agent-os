@@ -159,6 +159,19 @@ describe('R7 Career intent router', () => {
     expect(result.reason_codes).toContain('SUBMISSION_STOP_REQUIRED');
   });
 
+  it('does not request submission authorization without an exact ready package', () => {
+    const result = routeCareerIntent({
+      request: 'Continúa el seguimiento de mi postulación',
+      candidateId: 'CAND-SYNTHETIC-001',
+      applicationId: 'APP-SYNTHETIC-001',
+      targetRole: 'Product Operations Lead',
+      profileReady: true,
+    });
+
+    expect(result.selected_stage_path).toEqual(['C09']);
+    expect(result.next_gate).toBe('CR_PACKAGE_APPROVED');
+  });
+
   it('normalizes identical requests and stable-sorts deduplicated context', () => {
     const input = {
       request: '  Créame   un CV  ',

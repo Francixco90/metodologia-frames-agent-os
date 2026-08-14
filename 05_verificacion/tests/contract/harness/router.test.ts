@@ -76,7 +76,7 @@ describe('router.yml contract', () => {
     expect(maintenance?.output).toMatch(/HM_CHANGE_APPROVED/u);
   });
 
-  it('R7 resolves career intent and stops at an explicit human gate', () => {
+  it('R7 resolves career intent and keeps C09 at the material package gate', () => {
     const career = router.routes.find((route) => route.id === 'R7');
     expect(career?.binds_to).toBe('task');
     expect(career?.reads).toEqual(
@@ -87,7 +87,9 @@ describe('router.yml contract', () => {
       ]),
     );
     expect(career?.output).toMatch(/C00-C09/u);
-    expect(career?.output).toMatch(/CR_BRIEF_APPROVED/u);
+    expect(career?.output).toMatch(/STOP material en CR_PACKAGE_APPROVED/u);
+    expect(career?.output).toMatch(/fase posterior.*receipt material one-use/u);
+    expect(career?.output).not.toMatch(/STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED/u);
   });
 
   it('R3-LOOSE binds to task with project_id null semantics', () => {
@@ -164,6 +166,8 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
         'CR_BRIEF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
+        'CR_CV_SPEC_APPROVED',
         'CR_PACKAGE_APPROVED',
         'CR_SUBMISSION_AUTHORIZED',
       ]),
@@ -187,6 +191,9 @@ describe('router.yml contract', () => {
         'HM_PROMOTION_APPROVED',
       ]),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(19);
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
+    expect(router.manual_fail_closed_gates).toHaveLength(21);
   });
 });

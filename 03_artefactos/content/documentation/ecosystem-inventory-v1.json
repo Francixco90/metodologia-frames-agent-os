@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "f01d4f68c950d6e5c38cc16038336bbc66f498405951aaf68b003e8677e26b91",
+  "sourceSha256": "4163da1f88aeb7bbaa9ddeea45b3a1414342c7811d92d00ee728c4d1985205d6",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -503,6 +503,7 @@
     {"kind":"GATE","id":"CR_BRIEF_APPROVED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"CR_CAREER_EVIDENCE_READY","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"CR_CV_COMPILED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"GATE","id":"CR_CV_DESIGN_APPROVED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"CR_CV_SPEC_APPROVED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"CR_PACKAGE_APPROVED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"CR_SUBMISSION_AUTHORIZED","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
