@@ -36,7 +36,7 @@ describe('commands.yaml contract', () => {
   it('every gate id belongs to a governed gate family', () => {
     for (const gate of manifest.gates) {
       expect(gate.gate).toMatch(
-        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
+        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
       );
     }
   });

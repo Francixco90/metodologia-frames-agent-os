@@ -19,8 +19,6 @@ writers:
     - context.md
     - 01_intencion/context.md
     - 01_intencion/career/**
-    - 01_intencion/video-os/**
-    - 01_intencion/guides/video-os.md
     - 03_artefactos/context.md
     - projects/_template/**
     - projects/vs-001-source-to-campaign/project.yml
@@ -46,8 +44,6 @@ writers:
     - receipts/builds/**
     - 05_verificacion/scripts/creation-v3-skills.json
     - 05_verificacion/scripts/check-career-workflows.ts
-    - 05_verificacion/scripts/check-video-os.ts
-    - 05_verificacion/scripts/lib/video-os-checks.ts
     - .agents/plugins/marketplace.json
     - 05_verificacion/scripts/install-host-adapter.ts
   brand:
@@ -103,8 +99,6 @@ writers:
     # [CONFIG] Multimedia orchestration is one atomic route owned by content.
     # Do not split _schema/_runner/P00-P09 across renderer writers.
     - workflows/multimedia/**
-    - 02_proceso/workflows/video-os/**
-    - 02_proceso/workflows/operator-core/**
     - workflows/career/**
     - workflows/experience/**
     - workflows/documentation/**
@@ -176,8 +170,6 @@ writers:
     - 05_verificacion/tests/unit/ledger-decision.test.ts
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
-    - 05_verificacion/tests/unit/video-os-*.test.ts
-    - 05_verificacion/tests/unit/operator-core-*.test.ts
     - 05_verificacion/tests/unit/career-cv-spec-fixtures.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
     - 05_verificacion/tests/unit/documentation-*.test.ts

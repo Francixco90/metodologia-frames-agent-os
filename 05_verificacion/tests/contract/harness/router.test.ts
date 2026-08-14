@@ -162,14 +162,6 @@ describe('router.yml contract', () => {
         'HM_PROMOTION_APPROVED',
       ]),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(19);
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'VO_INTAKE_COMPLETE',
-        'VO_DIRECTION_APPROVED',
-        'VO_PRINCIPAL_VERIFIED',
-        'VO_HANDOFF_APPROVED',
-      ]),
-    );
+    expect(router.manual_fail_closed_gates).toHaveLength(15);
   });
 });

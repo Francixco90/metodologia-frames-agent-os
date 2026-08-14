@@ -88,7 +88,6 @@
       "01_intencion/guides/skill-systems.md",
       "01_intencion/guides/technical-reference.md",
       "01_intencion/guides/troubleshooting-old-commands.md",
-      "01_intencion/guides/video-os.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
       "01_intencion/hyperframes/verification-report.md",
@@ -181,8 +180,6 @@
       "01_intencion/vercel-agent-skills/architecture.md",
       "01_intencion/vercel-agent-skills/audit-report.md",
       "01_intencion/vercel-agent-skills/verification-report.md",
-      "01_intencion/video-os/ARCHITECTURE.md",
-      "01_intencion/video-os/PRODUCT.md",
       "02_proceso/agents/RT-01/README.md",
       "02_proceso/agents/RT-02/README.md",
       "02_proceso/agents/RT-03/README.md",
@@ -568,8 +565,7 @@
       "02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md",
-      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md",
-      "02_proceso/workflows/video-os/_assets/handoff.template.md"
+      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md"
     ],
     "skill": [
       "03_artefactos/skills/candidate-evidence-reconciler/SKILL.md",
@@ -815,7 +811,6 @@
       "02_proceso/workflows/multimedia/p08-editar/context.md",
       "02_proceso/workflows/multimedia/p09-distribuir/context.md",
       "02_proceso/workflows/skill-systems/context.md",
-      "02_proceso/workflows/video-os/context.md",
       "03_artefactos/context.md",
       "03_artefactos/host-adapters/context.md",
       "03_artefactos/skills/career-application-orchestrator/context.md",
@@ -4141,32 +4136,6 @@
       }
     },
     {
-      "path": "01_intencion/guides/video-os.md",
-      "class": "authored_control",
-      "owner": "lead",
-      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
-      "authorityRefs": [
-        "01_intencion/guides/video-os.md"
-      ],
-      "budgetSurface": "authored-explicit-fallback",
-      "sourceRef": "01_intencion/guides/video-os.md",
-      "derivatives": [],
-      "lifecycle": "active",
-      "sha256": "abb50211d7d83d5b2907e56b6b67ff13ef8c1ae94f0236b56a500595fff253ff",
-      "words": 105,
-      "lines": 28,
-      "score": 100,
-      "threshold": 80,
-      "decision": "KEEP",
-      "findings": [],
-      "qualitySignals": {
-        "hasExecutableCommand": true,
-        "hasAuthorityLink": true,
-        "hasNextAction": false,
-        "duplicateHeadings": 0
-      }
-    },
-    {
       "path": "01_intencion/hyperframes/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -6573,58 +6542,6 @@
       "sha256": "17f6ad8c5ed42b83a375d921a107d8465513c77b0e936b08608d6fb0e47532e5",
       "words": 292,
       "lines": 50,
-      "score": 100,
-      "threshold": 80,
-      "decision": "KEEP",
-      "findings": [],
-      "qualitySignals": {
-        "hasExecutableCommand": false,
-        "hasAuthorityLink": false,
-        "hasNextAction": false,
-        "duplicateHeadings": 0
-      }
-    },
-    {
-      "path": "01_intencion/video-os/ARCHITECTURE.md",
-      "class": "authored_control",
-      "owner": "lead",
-      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
-      "authorityRefs": [
-        "01_intencion/video-os/ARCHITECTURE.md"
-      ],
-      "budgetSurface": "authored-explicit-fallback",
-      "sourceRef": "01_intencion/video-os/ARCHITECTURE.md",
-      "derivatives": [],
-      "lifecycle": "active",
-      "sha256": "bbf760e108070b5606b2c38666aa192da6769b8aa17c14a82066d22041b2ede1",
-      "words": 301,
-      "lines": 41,
-      "score": 100,
-      "threshold": 80,
-      "decision": "KEEP",
-      "findings": [],
-      "qualitySignals": {
-        "hasExecutableCommand": false,
-        "hasAuthorityLink": true,
-        "hasNextAction": true,
-        "duplicateHeadings": 0
-      }
-    },
-    {
-      "path": "01_intencion/video-os/PRODUCT.md",
-      "class": "authored_control",
-      "owner": "lead",
-      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
-      "authorityRefs": [
-        "01_intencion/video-os/PRODUCT.md"
-      ],
-      "budgetSurface": "authored-explicit-fallback",
-      "sourceRef": "01_intencion/video-os/PRODUCT.md",
-      "derivatives": [],
-      "lifecycle": "active",
-      "sha256": "4e6cc3e6dbea7875ea3402f019ae74a9a930ffa1c43f38423f26eb7a4572e061",
-      "words": 326,
-      "lines": 42,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17259,7 +17176,7 @@
     "keep": 556,
     "refactor": 0,
     "split": 1,
-    "regenerate": 84,
+    "regenerate": 83,
     "freeze": 987
   }
 }

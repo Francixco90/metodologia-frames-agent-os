@@ -62,10 +62,6 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 02_proceso/workflows/multimedia/_assets/no-regression-checklist.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/no-regression-checklist.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/recovery-faq.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/recovery-faq.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/schematic-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/schematic-template.html` |
-| ASSET | 02_proceso/workflows/video-os/_assets/archetypes.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/archetypes.json` |
-| ASSET | 02_proceso/workflows/video-os/_assets/document-sections.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/document-sections.json` |
-| ASSET | 02_proceso/workflows/video-os/_assets/handoff.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/handoff.template.md` |
-| ASSET | 02_proceso/workflows/video-os/_assets/regressions.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/regressions.json` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf` |
@@ -415,8 +411,6 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | verify | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:renderers | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:skills | ACTIVE | CANONICAL | `package.json` |
-| COMMAND | verify:video-os | ACTIVE | CANONICAL | `package.json` |
-| COMMAND | video-os | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:review | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | web:smoke | ACTIVE | CANONICAL | `package.json` |
@@ -547,7 +541,6 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CONTENT | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_EXPERIENCE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
-| GATE | G09_VIDEO_OS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_WEB | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G10 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G11 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -581,10 +574,6 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | SSS_RELEASE_CANDIDATE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_REVIEW_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_STATIC_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
-| GATE | VO_DIRECTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
-| GATE | VO_HANDOFF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
-| GATE | VO_INTAKE_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
-| GATE | VO_PRINCIPAL_VERIFIED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | RENDERER | d3 | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | gsap | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | lottie | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |

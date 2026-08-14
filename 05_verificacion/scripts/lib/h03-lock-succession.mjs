@@ -39,7 +39,7 @@ export const verifyApprovedH03LockSuccession = (
     receipt.schema_version !== 'dependency-lock-succession-v1' ||
     receipt.receipt_id !== 'H03-LOCK-SUCCESSION-010' ||
     receipt.supersedes_receipt_id !== previousReceipt.receipt_id ||
-    receipt.approval_phrase !== 'Crear el Video OS, dentro de frames.' ||
+    receipt.approval_phrase !== 'PLEASE IMPLEMENT THIS PLAN' ||
     receipt.previous?.lock_sha256 !==
       (previousLockSha256 ?? previousReceipt.current?.lock_sha256) ||
     receipt.previous?.package_sha256 !== previousReceipt.current?.package_sha256 ||

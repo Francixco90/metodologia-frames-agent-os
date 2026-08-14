@@ -111,9 +111,6 @@ routes:
       - '02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts'
       - '02_proceso/workflows/trainer-os/runner.ts'
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
-      - '02_proceso/workflows/video-os/context.md'
-      - '02_proceso/workflows/video-os/index.ts'
-      - '02_proceso/workflows/operator-core/index.ts'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
     output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
@@ -134,8 +131,7 @@ routes:
       - '03_artefactos/skills/career-application-orchestrator/SKILL.md'
       - '02_proceso/workflows/career/_schema/intent-v1.schema.ts'
       - '02_proceso/workflows/career/_schema/brief-v1.schema.ts'
-      - '02_proceso/workflows/operator-core/index.ts'
-    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09 sobre Operator Core con cápsula compacta y work units; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
+    output: 'career-intent-v1 + brief.md + cadena adaptativa C00-C09; STOP en CR_BRIEF_APPROVED o CR_SUBMISSION_AUTHORIZED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R8
@@ -181,7 +177,6 @@ gate_commands:
   G09_CONTENT_content_build: 'pnpm content:build'
   G09_CAREER_career_contracts: 'node --import tsx scripts/check-career-workflows.ts'
   G09_CAREER_DESIGN_design_system: 'pnpm verify:career-design'
-  G09_VIDEO_OS_contracts: 'pnpm verify:video-os'
   G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
@@ -201,10 +196,6 @@ manual_fail_closed_gates:
     CR_SUBMISSION_AUTHORIZED,
     EXP_BRIEF_APPROVED,
     EXP_RELEASE_APPROVED,
-    VO_INTAKE_COMPLETE,
-    VO_DIRECTION_APPROVED,
-    VO_PRINCIPAL_VERIFIED,
-    VO_HANDOFF_APPROVED,
     LX_BRIEF_APPROVED,
     DOCS_TRANSVERSAL_COMPLETE,
     HM_CHANGE_APPROVED,
