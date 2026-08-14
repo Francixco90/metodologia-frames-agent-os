@@ -8,6 +8,7 @@ import {parse} from 'yaml';
 import {describe, expect, it} from 'vitest';
 
 import {CareerWorkflowIdSchema, CareerWorkflowV1Schema} from 'workflows/career/_schema/index.ts';
+import {CareerDeliverableRegistryV1Schema} from 'workflows/career/_schema/registry-v1.schema.ts';
 import {generateCareerWorkflowTemplates} from 'workflows/career/_runner/generate-workflow-templates.ts';
 import {
   parseCareerWorkflowTemplate,
@@ -36,6 +37,9 @@ const workflows = directories.map((directory) => {
     workflow: CareerWorkflowV1Schema.parse(parse(readFileSync(path, 'utf8'))),
   };
 });
+const deliverableRegistry = CareerDeliverableRegistryV1Schema.parse(
+  parse(readFileSync(resolve(CAREER_ROOT, '_assets/deliverable-registry.yml'), 'utf8')),
+);
 
 describe('Career C00-C09 workflow family', () => {
   it('declares exactly one ordered workflow for every canonical Career id', () => {
@@ -164,6 +168,63 @@ describe('Career C00-C09 workflow family', () => {
       expect(html).toMatch(/@media\s*print/u);
       expect(html).toMatch(/prefers-reduced-motion\s*:\s*reduce/u);
     }
+  });
+
+  it('materializes additive v2/v3 templates while the A1 workflow migration remains blocked', () => {
+    const generation = generateCareerWorkflowTemplates({check: true});
+    expect(generation.entries.map(({source}) => source)).toEqual(
+      expect.arrayContaining([
+        'c06-cv/templates/cv-source-v2.template.md',
+        'c08-package-qa/templates/cv-package-v3.template.md',
+      ]),
+    );
+
+    const byId = new Map(workflows.map(({workflow}) => [workflow.workflow_id, workflow]));
+    expect(byId.get('C06')?.template_ref).toMatch(/cv-source-v1\.template\.md$/u);
+    expect(byId.get('C07')?.inputs).toContain('cv-source-v1');
+    expect(byId.get('C08')?.template_ref).toMatch(/application-package-v1\.template\.md$/u);
+    expect(byId.get('C09')?.inputs).toContain('application-package-v1');
+    expect(
+      readFileSync(resolve(ROOT, '01_intencion/career/career-os-operating-contract-v2.md'), 'utf8'),
+    ).toContain('coverage_gap: A1_MATERIAL_MIGRATION_REQUIRED');
+
+    const lifecycle = new Map(
+      deliverableRegistry.versioned_contract_lifecycle.map((entry) => [
+        entry.deliverable_id,
+        entry,
+      ]),
+    );
+    expect(lifecycle.get('cv-source-v2')).toMatchObject({
+      state: 'active',
+      allowed_for_new_runs: true,
+    });
+    expect(lifecycle.get('cv-source-v1')).toMatchObject({
+      state: 'compatibility-only',
+      successor_id: 'cv-source-v2',
+      allowed_for_new_runs: false,
+    });
+
+    const compatibilityIds = new Set(
+      deliverableRegistry.versioned_contract_lifecycle
+        .filter(({state}) => state === 'compatibility-only')
+        .map(({deliverable_id}) => deliverable_id),
+    );
+    const legacyNames = new Set(
+      deliverableRegistry.definitions
+        .filter(({deliverable_id}) => compatibilityIds.has(deliverable_id))
+        .map(({template_ref}) => template_ref.split('/').at(-1)),
+    );
+    for (const definition of deliverableRegistry.definitions) {
+      if (!compatibilityIds.has(definition.deliverable_id)) {
+        expect(legacyNames.has(definition.template_ref.split('/').at(-1))).toBe(false);
+      }
+    }
+
+    const hostile = structuredClone(deliverableRegistry);
+    hostile.definitions.find(
+      ({deliverable_id}) => deliverable_id === 'cv-package-v3',
+    )!.template_ref = 'alias/application-package-v1.template.md';
+    expect(CareerDeliverableRegistryV1Schema.safeParse(hostile).success).toBe(false);
   });
 
   it('exposes a black-box --check CLI that reports current outputs without mutation', () => {

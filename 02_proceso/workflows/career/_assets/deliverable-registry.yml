@@ -1,4 +1,216 @@
 schema_version: career-deliverable-registry-v1
+versioned_contract_lifecycle:
+  - {
+      deliverable_id: cv-spec-v2,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-source-v2,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-package-v3,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-ats-html-v1,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-ats-pdf-v2,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-variant-manifest-v2,
+      state: active,
+      successor_id: null,
+      allowed_for_new_runs: true,
+      migration: {mode: none},
+    }
+  - {
+      deliverable_id: cv-spec-v1,
+      state: compatibility-only,
+      successor_id: cv-spec-v2,
+      allowed_for_new_runs: false,
+      migration: {mode: migrator-only, ref: 02_proceso/workflows/career/_runner/cv-spec-v2.ts},
+    }
+  - {
+      deliverable_id: cv-source-v1,
+      state: compatibility-only,
+      successor_id: cv-source-v2,
+      allowed_for_new_runs: false,
+      migration: {mode: rebuild-only, ref: 02_proceso/workflows/career/c06-cv/workflow.yml},
+    }
+  - {
+      deliverable_id: cv-html-v1,
+      state: compatibility-only,
+      successor_id: cv-ats-html-v1,
+      allowed_for_new_runs: false,
+      migration: {mode: rebuild-only, ref: 02_proceso/workflows/career/c06-cv/workflow.yml},
+    }
+  - {
+      deliverable_id: cv-ats-pdf-v1,
+      state: compatibility-only,
+      successor_id: cv-ats-pdf-v2,
+      allowed_for_new_runs: false,
+      migration: {mode: rebuild-only, ref: 02_proceso/workflows/career/c06-cv/workflow.yml},
+    }
+  - {
+      deliverable_id: cv-variant-manifest-v1,
+      state: compatibility-only,
+      successor_id: cv-variant-manifest-v2,
+      allowed_for_new_runs: false,
+      migration: {mode: rebuild-only, ref: 02_proceso/workflows/career/c06-cv/workflow.yml},
+    }
+  - {
+      deliverable_id: cv-package-v2,
+      state: compatibility-only,
+      successor_id: cv-package-v3,
+      allowed_for_new_runs: false,
+      migration: {mode: migrator-only, ref: 02_proceso/workflows/career/_runner/cv-package-v3.ts},
+    }
+  - {
+      deliverable_id: application-package-v1,
+      state: compatibility-only,
+      successor_id: cv-package-v3,
+      allowed_for_new_runs: false,
+      migration: {mode: rebuild-only, ref: 02_proceso/workflows/career/c08-package-qa/workflow.yml},
+    }
+template_authorities:
+  - {
+      template_ref: 02_proceso/workflows/career/_assets/ats-document-template.html,
+      template_sha256: 5ec25a71f6fcebb474714b26c539c7fea1a98720074a4cfe6cbd77d6150116c6,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/_assets/document-template.html,
+      template_sha256: 5f2efb37702e1ff4f0ce8fa51afeb3efafe30d39b30d7f7e4e60e9068e625134,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c00-intake/templates/candidate-foundation-brief-v1.template.md,
+      template_sha256: a8ac96cd31c7ad3a47bb1911eeaa7608ef0d08595dc91e7ae67609cda6285949,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c01-evidence/templates/evidence-bank-v1.template.md,
+      template_sha256: 3ee8eb5b7c84436dbcddc3493303ff260c5d14bfbd840267493908e972eb4d1f,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c02-positioning/templates/positioning-charter-v1.template.md,
+      template_sha256: e54b2ccb1f84e9930f752a85edabf62928b7c9a839d178aff4d2f08503e7a69f,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c03-discovery/templates/job-search-brief-v1.template.md,
+      template_sha256: 7e2f813e000f5f4b44943caf26f5b42f4af299a066a3752938469ea85a19e3c1,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c04-scoring/templates/fit-scorecard-v1.template.md,
+      template_sha256: acf13635e191800e05e021bbf6b731f838b4c862af4fa5b787d9cdc4e9910ff5,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c05-application-design/templates/application-brief-v1.template.md,
+      template_sha256: ad95ebdfa41ee7bbf1b27b2da09a7c717eddc94f9be031acc676ff0684f8eec0,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.html,
+      template_sha256: 1f0412a8f34f4ebc4ba5df163291c345370bf0d62c78f9a0cc813b1d946ce753,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      template_sha256: a8b200def42b35170148c9758bacdc88705e4e68be69b70d190c4674f0dbcb6e,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html,
+      template_sha256: cae46d65f903be0308d75068f642fe4551f736270fe2e8519ac54b14c7cddd61,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
+      template_sha256: 65f2b7b65b634e465a3aba12659a24df80d012b70f9338ad8247102f79abc26a,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md,
+      template_sha256: 06cd67f6057c4c51358cb54df4c869c37ce8fe4e76c93a41170e034fd495b895,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      template_sha256: 5e5b503cee8a6a8a4a87b8bf29b0c5e281925160afe171311583fba29961a948,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.html,
+      template_sha256: 23885a91f78cf27f72e56a35acd7e04a21085c4975d8596b2f9a6a61acf062e9,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md,
+      template_sha256: 1b64ee6b092847332d48fcd31ca0aae29368266b6434c4f93bfda1aeb7508ceb,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.md,
+      template_sha256: 7da4317f05d43a208e6f3ce69fd135a26a24d846eb549863d0cf89e043b199c0,
+    }
+  - {
+      template_ref: 03_artefactos/skills/career-design-system/templates/design-brief.example.json,
+      template_sha256: 86a7a657351501f7a97309dd4f0c3ed66598e320112ed705ac503625d37b860e,
+    }
+  - {
+      template_ref: 03_artefactos/skills/career-design-system/templates/design-decision.example.json,
+      template_sha256: 695b6d57516fb1cd1d7c30b1473448316156569acf084e9c4f49593508437808,
+    }
+migration_authorities:
+  - {
+      deliverable_id: cv-spec-v1,
+      mode: migrator-only,
+      ref: 02_proceso/workflows/career/_runner/cv-spec-v2.ts,
+      ref_sha256: 6b1ea14ce03470e1c8f67c210b58d2f34d7c3ea6084848b89af9a45045589eb2,
+    }
+  - {
+      deliverable_id: cv-source-v1,
+      mode: rebuild-only,
+      ref: 02_proceso/workflows/career/c06-cv/workflow.yml,
+      ref_sha256: 4d40062e94d702b5f95fbbe9bdeef22369d535fae8edfc214c1ca5099cfcc42a,
+    }
+  - {
+      deliverable_id: cv-html-v1,
+      mode: rebuild-only,
+      ref: 02_proceso/workflows/career/c06-cv/workflow.yml,
+      ref_sha256: 4d40062e94d702b5f95fbbe9bdeef22369d535fae8edfc214c1ca5099cfcc42a,
+    }
+  - {
+      deliverable_id: cv-ats-pdf-v1,
+      mode: rebuild-only,
+      ref: 02_proceso/workflows/career/c06-cv/workflow.yml,
+      ref_sha256: 4d40062e94d702b5f95fbbe9bdeef22369d535fae8edfc214c1ca5099cfcc42a,
+    }
+  - {
+      deliverable_id: cv-variant-manifest-v1,
+      mode: rebuild-only,
+      ref: 02_proceso/workflows/career/c06-cv/workflow.yml,
+      ref_sha256: 4d40062e94d702b5f95fbbe9bdeef22369d535fae8edfc214c1ca5099cfcc42a,
+    }
+  - {
+      deliverable_id: cv-package-v2,
+      mode: migrator-only,
+      ref: 02_proceso/workflows/career/_runner/cv-package-v3.ts,
+      ref_sha256: 4310a8e285e715ccebfa7d1cf6322f06bc15b715def9bf492f4b6f13d2afec9c,
+    }
+  - {
+      deliverable_id: application-package-v1,
+      mode: rebuild-only,
+      ref: 02_proceso/workflows/career/c08-package-qa/workflow.yml,
+      ref_sha256: b1778c748f924be5db8e3054171e67ba633dd27f8361f42b02bb622e86e7cd3c,
+    }
 definitions:
   - {
       deliverable_id: candidate-intake-envelope-v1,
@@ -229,7 +441,7 @@ definitions:
       projections: [],
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
       acceptance_gate: CR_CV_SPEC_APPROVED,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: cv-spec-v2,
@@ -238,7 +450,7 @@ definitions:
       artifact_kind: structured_data,
       canonical_format: json,
       projections: [],
-      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
       acceptance_gate: CR_CV_SPEC_APPROVED,
       required: true,
     }
@@ -268,10 +480,10 @@ definitions:
       deliverable_id: cv-source-v2,
       display_name: Spec-bound CV Source,
       workflow_id: C06,
-      artifact_kind: structured_data,
-      canonical_format: json,
-      projections: [],
-      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      artifact_kind: human_document,
+      canonical_format: md,
+      projections: [html],
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
       acceptance_gate: G13,
       required: true,
     }
@@ -304,7 +516,7 @@ definitions:
       artifact_kind: binary_projection,
       canonical_format: json,
       projections: [docx],
-      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
       required: false,
     }
@@ -326,7 +538,7 @@ definitions:
       artifact_kind: structured_data,
       canonical_format: json,
       projections: [],
-      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
       required: true,
     }
@@ -339,7 +551,7 @@ definitions:
       projections: [html],
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
       acceptance_gate: G13,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: cv-html-v1,
@@ -350,7 +562,7 @@ definitions:
       projections: [html],
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.html,
       acceptance_gate: CR_PACKAGE_APPROVED,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: cv-ats-pdf-v1,
@@ -372,7 +584,7 @@ definitions:
       projections: [],
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: cover-letter-v1,
@@ -427,7 +639,7 @@ definitions:
       projections: [],
       template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: cv-package-v3,
@@ -436,7 +648,7 @@ definitions:
       artifact_kind: structured_data,
       canonical_format: json,
       projections: [],
-      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
       required: true,
     }
@@ -449,7 +661,7 @@ definitions:
       projections: [html],
       template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
-      required: true,
+      required: false,
     }
   - {
       deliverable_id: ats-visual-parity-report-v1,
@@ -458,7 +670,7 @@ definitions:
       artifact_kind: human_document,
       canonical_format: md,
       projections: [html],
-      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md,
       acceptance_gate: G14,
       required: true,
     }
@@ -469,7 +681,7 @@ definitions:
       artifact_kind: receipt,
       canonical_format: json,
       projections: [],
-      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md,
       acceptance_gate: CR_PACKAGE_APPROVED,
       required: true,
     }

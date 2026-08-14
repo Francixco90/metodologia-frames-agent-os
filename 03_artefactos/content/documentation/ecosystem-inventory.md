@@ -20,7 +20,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - ROUTE: 11
 - SKILL: 184
 - SOURCE: 11
-- TEMPLATE: 134
+- TEMPLATE: 138
 - WORKFLOW: 43
 
 ## Capacidades
@@ -824,10 +824,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | TEMPLATE | 02_proceso/workflows/career/c05-application-design/templates/application-brief-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c05-application-design/templates/application-brief-v1.template.md` |
 | TEMPLATE | 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.html` |
 | TEMPLATE | 02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md` |
+| TEMPLATE | 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html` |
+| TEMPLATE | 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md` |
 | TEMPLATE | 02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.html` |
 | TEMPLATE | 02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md` |
 | TEMPLATE | 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.html` |
 | TEMPLATE | 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md` |
+| TEMPLATE | 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.html` |
+| TEMPLATE | 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md` |
 | TEMPLATE | 02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.html` |
 | TEMPLATE | 02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.md | ACTIVE | CANONICAL | `02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.md` |
 | TEMPLATE | 02_proceso/workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.html` |
@@ -975,4 +979,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `4163da1f88aeb7bbaa9ddeea45b3a1414342c7811d92d00ee728c4d1985205d6`.
+Hash de fuentes: `b22592125318cc71bde01b6dff7ba92589b30a694616a94add336d4c6d1698a8`.
