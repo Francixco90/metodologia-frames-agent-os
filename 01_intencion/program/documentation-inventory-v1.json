@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "cfeeead387025e7ab05001ede7d5c0bf04024dc5666f73bffe09b08de86e3779",
-  "totalMarkdown": 1833,
-  "auditedAuthored": 582,
+  "repositoryTreeSha256": "cf39ef80d45e6b7ce53867e27a28ab1d2cab7d7ef0d0ca1dca1aac2319b1e60e",
+  "totalMarkdown": 1834,
+  "auditedAuthored": 583,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -513,6 +513,7 @@
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/operator-core/README.md",
       "02_proceso/workflows/trainer-os/README.md",
       "02_proceso/workflows/video-os/AGENTS.md",
       "02_proceso/workflows/video-os/CONSTITUTION.md",
@@ -9421,6 +9422,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/operator-core/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/operator-core/**",
+      "authorityRefs": [
+        "02_proceso/workflows/operator-core/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/operator-core/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c7cfb82b80ebdb8cde22ae337ae5e8bb2bc2fef0209922670c024c874707071f",
+      "words": 193,
+      "lines": 40,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
       "class": "template",
       "owner": "content",
@@ -10012,9 +10039,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "eb11c4efd77c095da1244e42cc59008b5516bbd96db2bbb72db96706ed403027",
-      "words": 10471,
-      "lines": 974,
+      "sha256": "417a40112246fe35a8d25e08dc9c79ad98caccc795dc8f03d67a3e06d6479599",
+      "words": 10460,
+      "lines": 973,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -17473,7 +17500,7 @@
     }
   ],
   "summary": {
-    "keep": 567,
+    "keep": 568,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

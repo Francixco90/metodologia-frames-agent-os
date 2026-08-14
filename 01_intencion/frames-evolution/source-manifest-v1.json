@@ -1,0 +1,40 @@
+{
+  "schema_version": "frames-evolution-source-manifest-v1",
+  "manifest_id": "FE-SOURCES-20260813-001",
+  "authority": "user-provided-local-input",
+  "brand": "MetodologIA",
+  "sources": [
+    {
+      "source_id": "FE-SPEC-001",
+      "filename": "SPEC — Auditoría y diseño evolutivo de Frames Agent OS.md",
+      "sha256": "9a3c03ed563e9b8834841e6d9e242071834e12ae53a74f12066db3d48651aa3c"
+    },
+    {
+      "source_id": "FE-PROMPT-001",
+      "filename": "Prompt Dupla — Auditoría y evolución de Frames Agent OS.md",
+      "sha256": "74394d6352cf421f91c6bc761ad8183db9eb9853f785dfe20fce4b14e0ee3168"
+    },
+    {
+      "source_id": "FE-CAREER-REVIEW-001",
+      "filename": "Revision_documentacion_Frames_Career_OS_vs_plan_Luna_low.md",
+      "sha256": "fad7c35afbf681dc7f6bacd6aee0eee602a6886b30a2c94bb86964ad0d19df24"
+    },
+    {
+      "source_id": "FE-CAREER-PLAN-001",
+      "filename": "Plan_Career_OS_3-5_prompts_Luna_5.6_low.md",
+      "sha256": "0d4908cd98692bfc9a42340f6fe741bfdb83b6230bec7f8cb3e525ac30556c0a"
+    },
+    {
+      "source_id": "FE-VIDEO-PLAN-001",
+      "filename": "PLAN_MEJORA_VIDEO_OS_FRAMES_LUNA_5_6_LOW.md",
+      "sha256": "497ff7c2ff03be4512781502778bdb4774e8a2052ae27cc1a59211adc785938d"
+    }
+  ],
+  "scope": ["frames-operator-core", "career-os", "video-os"],
+  "excluded_scope": ["trainer-os"],
+  "claims": {
+    "three_to_five_prompts": "design_target",
+    "half_token_cost": "benchmark_required_not_proven",
+    "low_reasoning_quality": "benchmark_required_not_proven"
+  }
+}
