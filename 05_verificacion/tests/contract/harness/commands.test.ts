@@ -17,8 +17,17 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 58 gates', () => {
-    expect(manifest.gates).toHaveLength(58);
+  it('declares 62 gates including Video OS manual boundaries', () => {
+    expect(manifest.gates).toHaveLength(62);
+    expect(manifest.gates.map(({gate}) => gate)).toEqual(
+      expect.arrayContaining([
+        'G09_VIDEO_OS',
+        'VO_INTAKE_COMPLETE',
+        'VO_DIRECTION_APPROVED',
+        'VO_PRINCIPAL_VERIFIED',
+        'VO_HANDOFF_APPROVED',
+      ]),
+    );
   });
 
   it('binds the Video OS gate to the durable fail-closed suite', () => {
@@ -45,7 +54,7 @@ describe('commands.yaml contract', () => {
   it('every gate id belongs to a governed gate family', () => {
     for (const gate of manifest.gates) {
       expect(gate.gate).toMatch(
-        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
+        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
       );
     }
   });

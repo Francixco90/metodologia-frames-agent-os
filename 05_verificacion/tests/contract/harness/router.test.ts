@@ -20,6 +20,7 @@ describe('router.yml contract', () => {
       reads?: string[];
       output?: string;
     }>;
+    gate_commands: Record<string, string>;
     manual_fail_closed_gates: string[];
   };
 
@@ -140,6 +141,22 @@ describe('router.yml contract', () => {
     expect(content?.output).toMatch(/sin publicar/u);
   });
 
+  it('R6 dispatches Video OS as a spec-first profile and R7 reuses Operator Core', () => {
+    const content = router.routes.find((route) => route.id === 'R6');
+    const career = router.routes.find((route) => route.id === 'R7');
+
+    expect(content?.signal_patterns).toEqual(expect.arrayContaining(['crear video', 'Video OS']));
+    expect(content?.reads).toEqual(
+      expect.arrayContaining([
+        '02_proceso/workflows/video-os/index.ts',
+        '02_proceso/workflows/operator-core/index.ts',
+      ]),
+    );
+    expect(content?.output).toMatch(/principal antes de derivados.*VO_DIRECTION_APPROVED/u);
+    expect(career?.reads).toContain('02_proceso/workflows/operator-core/index.ts');
+    expect(router.gate_commands.G09_VIDEO_OS_contracts).toBe('pnpm verify:video-os');
+  });
+
   it('lists G13-G17 and brief approval as manual fail-closed gates', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining(['G13', 'G14', 'G15', 'G16', 'G17', 'MW_BRIEF_APPROVED']),
@@ -156,12 +173,20 @@ describe('router.yml contract', () => {
     );
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
+        'VO_INTAKE_COMPLETE',
+        'VO_DIRECTION_APPROVED',
+        'VO_PRINCIPAL_VERIFIED',
+        'VO_HANDOFF_APPROVED',
+      ]),
+    );
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining([
         'LX_BRIEF_APPROVED',
         'HM_CHANGE_APPROVED',
         'DOCS_TRANSVERSAL_COMPLETE',
         'HM_PROMOTION_APPROVED',
       ]),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(15);
+    expect(router.manual_fail_closed_gates).toHaveLength(19);
   });
 });

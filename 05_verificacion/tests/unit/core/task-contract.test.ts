@@ -95,6 +95,21 @@ describe('TaskContractSchema', () => {
     }
   });
 
+  it('accepts R6 Video OS contracts but blocks delivery at VO human gates', () => {
+    for (const gate of [
+      'VO_INTAKE_COMPLETE',
+      'VO_DIRECTION_APPROVED',
+      'VO_PRINCIPAL_VERIFIED',
+      'VO_HANDOFF_APPROVED',
+    ]) {
+      expect(
+        TaskContractSchema.safeParse(
+          validInput({created_from_route: 'R6', gate_target: gate, state: 'ENTREGADO'}),
+        ).success,
+      ).toBe(false);
+    }
+  });
+
   it('accepts state ENTREGADO with a non-manual gate_target', () => {
     const result = TaskContractSchema.safeParse(
       validInput({state: 'ENTREGADO', gate_target: 'G08'}),
