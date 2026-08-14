@@ -1,0 +1,36 @@
+{
+  "schema_version": "video-os-regressions-v1",
+  "cases": [
+    {"id": "REG-MOTION-001", "condition": "human intro uses a still frame", "expected": "BLOCKED"},
+    {
+      "id": "REG-PRIVACY-001",
+      "condition": "privacy plate obscures the interface for more than 2 seconds",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "REG-PRIVACY-002",
+      "condition": "route, email, identifier, signature or private metric remains legible",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "REG-SPEAKER-001",
+      "condition": "caption crosses a speaker change",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "REG-SOURCE-001",
+      "condition": "caption or shot uses a stale transcript span",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "REG-MANIFEST-001",
+      "condition": "asset or build manifest hash differs from the approved spec binding",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "REG-EXPORT-001",
+      "condition": "secondary export requested before principal verification PASS",
+      "expected": "BLOCKED"
+    }
+  ]
+}
