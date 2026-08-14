@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "dbab0ecf18b387271a8e0e211c83474534d9b2f5f11e8c9a7ac4af26b9db1e50",
-  "totalMarkdown": 1819,
-  "auditedAuthored": 571,
+  "repositoryTreeSha256": "f99ba382db3459e59812cac7aa5f330ab398501411b383889d5d121304ce7f5f",
+  "totalMarkdown": 1823,
+  "auditedAuthored": 573,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -180,6 +180,8 @@
       "01_intencion/vercel-agent-skills/architecture.md",
       "01_intencion/vercel-agent-skills/audit-report.md",
       "01_intencion/vercel-agent-skills/verification-report.md",
+      "01_intencion/video-os/ARCHITECTURE.md",
+      "01_intencion/video-os/PRODUCT.md",
       "02_proceso/agents/RT-01/README.md",
       "02_proceso/agents/RT-02/README.md",
       "02_proceso/agents/RT-03/README.md",
@@ -736,7 +738,9 @@
       "03_artefactos/skills/metodologia-learning-playbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-masterclass-pdf/SKILL.md",
       "03_artefactos/skills/metodologia-prompt-library/SKILL.md",
+      "03_artefactos/skills/metodologia-trainer-landing/SKILL.md",
       "03_artefactos/skills/metodologia-trainer-os/SKILL.md",
+      "03_artefactos/skills/metodologia-trainer-workbook/SKILL.md",
       "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
@@ -4537,7 +4541,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "d3ac9a2087c51a4fc5015b50c2db392d7ab524663f3ac1d06ae613010b7a273e",
+      "sha256": "17847e62fb418643093c017a5beb979e91d7d189878580064b63bd65cf38beab",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -6542,6 +6546,58 @@
       "sha256": "17f6ad8c5ed42b83a375d921a107d8465513c77b0e936b08608d6fb0e47532e5",
       "words": 292,
       "lines": 50,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/video-os/ARCHITECTURE.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/video-os/ARCHITECTURE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/video-os/ARCHITECTURE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "bbf760e108070b5606b2c38666aa192da6769b8aa17c14a82066d22041b2ede1",
+      "words": 301,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/video-os/PRODUCT.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/video-os/PRODUCT.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/video-os/PRODUCT.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4e6cc3e6dbea7875ea3402f019ae74a9a930ffa1c43f38423f26eb7a4572e061",
+      "words": 326,
+      "lines": 42,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -9450,9 +9506,9 @@
       "sourceRef": "02_proceso/workflows/trainer-os/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "f4b9b83f239d4fe35601dab666711cd0fa4f14d908f6e10a006f873419d0ce18",
-      "words": 447,
-      "lines": 59,
+      "sha256": "50d54f4000d773f3b5ab40707363823842deeb0a730e14bfabd003b1aa85ffc5",
+      "words": 516,
+      "lines": 65,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -9712,9 +9768,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "186d9490cc1826c34a900d9ca0c495f2af7010e94fbe8de2c2f4109e3292f778",
-      "words": 10394,
-      "lines": 967,
+      "sha256": "3ede352ff176c45c7ae8ab0fc3b1f71833db4591144c4a1a2027f4f6e84897a8",
+      "words": 10416,
+      "lines": 969,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -17173,7 +17229,7 @@
     }
   ],
   "summary": {
-    "keep": 556,
+    "keep": 558,
     "refactor": 0,
     "split": 1,
     "regenerate": 83,

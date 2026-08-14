@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 277
+- ASSET: 279
 - COMMAND: 99
 - COMPONENT: 16
 - DELIVERABLE: 87
@@ -62,6 +62,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 02_proceso/workflows/multimedia/_assets/no-regression-checklist.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/no-regression-checklist.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/recovery-faq.md | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/recovery-faq.md` |
 | ASSET | 02_proceso/workflows/multimedia/_assets/schematic-template.html | ACTIVE | CANONICAL | `02_proceso/workflows/multimedia/_assets/schematic-template.html` |
+| ASSET | 02_proceso/workflows/video-os/_assets/archetypes.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/archetypes.json` |
+| ASSET | 02_proceso/workflows/video-os/_assets/regressions.json | ACTIVE | CANONICAL | `02_proceso/workflows/video-os/_assets/regressions.json` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/JetBrainsMono-Regular.ttf` |
@@ -963,4 +965,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `8b03e4f4a2c70181b4dcb777cf3da1fbf1e7898ccc8105ee648adbd00ad18f8b`.
+Hash de fuentes: `7ed96c7663fae284ae747fed766614b3b1123965bdda38fb743e66c2298ab359`.
