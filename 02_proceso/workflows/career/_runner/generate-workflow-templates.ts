@@ -12,9 +12,9 @@ const TEMPLATES = [
   'c03-discovery/templates/job-search-brief-v1.template',
   'c04-scoring/templates/fit-scorecard-v1.template',
   'c05-application-design/templates/application-brief-v1.template',
-  'c06-cv/templates/cv-source-v1.template',
+  'c06-cv/templates/cv-source-v2.template',
   'c07-cover-letter/templates/cover-letter-v1.template',
-  'c08-package-qa/templates/application-package-v1.template',
+  'c08-package-qa/templates/cv-package-v3.template',
   'c09-submission/templates/submission-preview-v1.template',
 ] as const;
 

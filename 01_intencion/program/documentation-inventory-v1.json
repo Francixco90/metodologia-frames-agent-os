@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "97ee1b3de975b7cc6ababf7d6cf60dbd522a3ad55f3becd105c06310f1769d47",
-  "totalMarkdown": 1841,
-  "auditedAuthored": 590,
+  "repositoryTreeSha256": "8df26385056507e4fec116ed2e05984d79f959431d1e91beb1591ac864c35b61",
+  "totalMarkdown": 1843,
+  "auditedAuthored": 592,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -539,8 +539,10 @@
       "02_proceso/workflows/career/c04-scoring/templates/fit-scorecard-v1.template.md",
       "02_proceso/workflows/career/c05-application-design/templates/application-brief-v1.template.md",
       "02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md",
+      "02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md",
       "02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md",
       "02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md",
+      "02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md",
       "02_proceso/workflows/career/c09-submission/templates/submission-preview-v1.template.md",
       "02_proceso/workflows/multimedia/p00-definir-sistema/templates/brand-charter-v1.template.md",
       "02_proceso/workflows/multimedia/p00-definir-sistema/templates/brand-os-v1.template.md",
@@ -7535,6 +7537,34 @@
       }
     },
     {
+      "path": "02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md",
+      "class": "template",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/career/**",
+      "authorityRefs": [
+        "02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md"
+      ],
+      "budgetSurface": "generated-career-template-markdown",
+      "sourceRef": "02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md",
+      "derivatives": [
+        "02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "65f2b7b65b634e465a3aba12659a24df80d012b70f9338ad8247102f79abc26a",
+      "words": 205,
+      "lines": 58,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/career/c07-cover-letter/templates/cover-letter-v1.template.md",
       "class": "template",
       "owner": "content",
@@ -7578,6 +7608,34 @@
       "lifecycle": "active",
       "sha256": "5e5b503cee8a6a8a4a87b8bf29b0c5e281925160afe171311583fba29961a948",
       "words": 160,
+      "lines": 58,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md",
+      "class": "template",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/career/**",
+      "authorityRefs": [
+        "02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md"
+      ],
+      "budgetSurface": "generated-career-template-markdown",
+      "sourceRef": "02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md",
+      "derivatives": [
+        "02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "1b64ee6b092847332d48fcd31ca0aae29368266b6434c4f93bfda1aeb7508ceb",
+      "words": 183,
       "lines": 58,
       "score": 100,
       "threshold": 80,
@@ -10228,9 +10286,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "ff429acffa59f26fbf9da8c2db2bd2821b0b9cddd061c5efe5dc60d15ac5088c",
-      "words": 10526,
-      "lines": 979,
+      "sha256": "23fe6b72264ef714ab6a16b410c8f054f055c75ca15c8a203ab4760b6207d4cb",
+      "words": 10570,
+      "lines": 983,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -17689,7 +17747,7 @@
     }
   ],
   "summary": {
-    "keep": 575,
+    "keep": 577,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
