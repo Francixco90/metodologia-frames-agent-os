@@ -154,9 +154,22 @@ describe('R7 Career intent router', () => {
       intent_class: 'follow_up',
       decision: 'ROUTED',
       selected_stage_path: ['C09'],
-      next_gate: 'CR_PACKAGE_APPROVED',
+      next_gate: 'CR_SUBMISSION_AUTHORIZED',
     });
     expect(result.reason_codes).toContain('SUBMISSION_STOP_REQUIRED');
+  });
+
+  it('does not request submission authorization without an exact ready package', () => {
+    const result = routeCareerIntent({
+      request: 'Continúa el seguimiento de mi postulación',
+      candidateId: 'CAND-SYNTHETIC-001',
+      applicationId: 'APP-SYNTHETIC-001',
+      targetRole: 'Product Operations Lead',
+      profileReady: true,
+    });
+
+    expect(result.selected_stage_path).toEqual(['C09']);
+    expect(result.next_gate).toBe('CR_PACKAGE_APPROVED');
   });
 
   it('normalizes identical requests and stable-sorts deduplicated context', () => {
@@ -273,5 +286,71 @@ describe('R7 Career intent router', () => {
     const script = command.match(/(?:^|\s)([^\s]+\.ts)(?:\s|$)/u)?.[1];
     expect(script, 'career command must name a TypeScript verifier').toBeDefined();
     expect(existsSync(resolve(ROOT, script!)), `career verifier ${script}`).toBe(true);
+  });
+
+  it('reads A0 authority fail-closed and rejects invented package QA authority', () => {
+    const contract = readFileSync(
+      resolve(ROOT, '01_intencion/career/career-os-operating-contract-v2.md'),
+      'utf8',
+    );
+    const guide = readFileSync(resolve(ROOT, '01_intencion/guides/career.md'), 'utf8');
+    const legacy = readFileSync(
+      resolve(ROOT, '01_intencion/career/cv-spec-first-contract-v1.md'),
+      'utf8',
+    );
+    const commands = parse(
+      readFileSync(resolve(ROOT, '05_verificacion/scripts/commands.yaml'), 'utf8'),
+    ) as {
+      gates: Array<{gate: string; command: string | null; manual: boolean; fail_closed: boolean}>;
+    };
+    const router = parse(
+      readFileSync(resolve(ROOT, '02_proceso/governance/router.yml'), 'utf8'),
+    ) as {manual_fail_closed_gates: string[]};
+    const contextSurfaces = parse(
+      readFileSync(resolve(ROOT, '02_proceso/governance/context-surfaces/skills.yml'), 'utf8'),
+    ) as {surfaces: Array<{context_id: string; gates?: string[]}>};
+    const byGate = new Map(commands.gates.map((gate) => [gate.gate, gate]));
+    const orchestratorContext = contextSurfaces.surfaces.find(
+      ({context_id}) => context_id === 'CTX-SKILL-CAREER-ORCHESTRATOR',
+    );
+
+    expect(contract).toContain('coverage_gap: A1_MATERIAL_MIGRATION_REQUIRED');
+    expect(contract).toContain('`CR_PACKAGE_QA` no está activo en A0');
+    expect(guide).toContain('### ATS rápida');
+    expect(guide).toContain('### Ejecutiva');
+    expect(guide).toContain('### Dirigida a una vacante');
+    expect(legacy).toMatch(/^# Contrato operativo CV Spec-First v1\n\n> \*\*COMPATIBILITY-ONLY\./u);
+    expect(byGate.has('CR_PACKAGE_QA')).toBe(false);
+    expect(byGate.get('CR_CAREER_EVIDENCE_READY')).toMatchObject({
+      command: 'node 03_artefactos/skills/career-evidence-interviewer/scripts/check-skill.mjs',
+      manual: false,
+      fail_closed: true,
+    });
+    expect(byGate.get('CR_CV_COMPILED')).toMatchObject({
+      command: 'node 03_artefactos/skills/evidence-first-cv/scripts/check-skill.mjs',
+      manual: false,
+      fail_closed: true,
+    });
+    expect(byGate.get('CR_CV_DESIGN_APPROVED')).toMatchObject({
+      command: null,
+      manual: true,
+      fail_closed: true,
+    });
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining([
+        'CR_BRIEF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
+        'CR_CV_SPEC_APPROVED',
+        'CR_PACKAGE_APPROVED',
+        'CR_SUBMISSION_AUTHORIZED',
+      ]),
+    );
+    expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
+    expect(orchestratorContext?.gates).toEqual(
+      expect.arrayContaining(['CR_CV_DESIGN_APPROVED', 'CR_CV_COMPILED', 'CR_PACKAGE_APPROVED']),
+    );
+    expect(orchestratorContext?.gates).not.toContain('CR_PACKAGE_QA');
   });
 });

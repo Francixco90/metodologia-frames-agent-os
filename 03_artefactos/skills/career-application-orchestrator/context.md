@@ -13,12 +13,14 @@ Un pedido Career requiere brief, reanudación, paquete o preparación de postula
 
 Owner: `skill-foundry`. Cargar en este orden:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 ## 3. Carga mínima y contexto diferido
 
 Primero:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 Solo bajo demanda:
@@ -45,6 +47,7 @@ Skills primarias: `career-application-orchestrator`
 Tools: `career_route`, `resume_lineage`  
 Modo: `generated_only`. Read set mínimo:
 
+- `01_intencion/career/career-os-operating-contract-v2.md`
 - `03_artefactos/skills/career-application-orchestrator/SKILL.md`
 
 Write set:
@@ -55,8 +58,8 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_SPEC_APPROVED`, `CR_PACKAGE_QA`, `CR_SUBMISSION_AUTHORIZED`  
-Stop rules: C06 exige spec aprobada y vigente · C09 prepara y detiene · PII y evidencia UNKNOWN bloquean
+Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_DESIGN_APPROVED`, `CR_CV_SPEC_APPROVED`, `CR_CV_COMPILED`, `CR_PACKAGE_APPROVED`, `CR_SUBMISSION_AUTHORIZED`  
+Stop rules: coverage_gap A1 bloquea dependencias materiales v1 · CR_PACKAGE_QA no tiene autoridad activa · C06 exige spec aprobada y vigente · C09 prepara y detiene · PII y evidencia UNKNOWN bloquean
 
 Hijos:
 

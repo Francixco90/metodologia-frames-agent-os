@@ -367,20 +367,22 @@ gates:
   # prettier-ignore
   - {gate: CR_BRIEF_APPROVED, label: career brief approval before document production, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   # prettier-ignore
-  - {gate: CR_CAREER_EVIDENCE_READY, label: career evidence readiness before positioning, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  - {gate: CR_CAREER_EVIDENCE_READY, label: validate Career evidence readiness contract and hash-bound fixtures, command: 'node 03_artefactos/skills/career-evidence-interviewer/scripts/check-skill.mjs', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
+  # prettier-ignore
+  - {gate: CR_CV_DESIGN_APPROVED, label: approve the exact Career CV design decision before executive projection, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: CR_CV_SPEC_APPROVED, label: career CV specification approval before compilation, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
   - {
       gate: CR_CV_COMPILED,
       label: canonical CV compiled from approved specification and evidence,
-      command: 'pnpm verify:career',
+      command: 'node 03_artefactos/skills/evidence-first-cv/scripts/check-skill.mjs',
       allowed_tools: [Bash],
       write_set_globs: [],
       idempotency: true,
       danger_level: low,
       manual: false,
       fail_closed: true,
-      owner: content,
+      owner: skill-foundry,
     }
   # prettier-ignore
   - {gate: CR_PACKAGE_APPROVED, label: candidate application package approval, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}

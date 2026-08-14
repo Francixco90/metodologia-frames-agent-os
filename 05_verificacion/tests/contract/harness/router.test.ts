@@ -164,6 +164,8 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
         'CR_BRIEF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
+        'CR_CV_SPEC_APPROVED',
         'CR_PACKAGE_APPROVED',
         'CR_SUBMISSION_AUTHORIZED',
       ]),
@@ -187,6 +189,9 @@ describe('router.yml contract', () => {
         'HM_PROMOTION_APPROVED',
       ]),
     );
-    expect(router.manual_fail_closed_gates).toHaveLength(19);
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
+    expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
+    expect(router.manual_fail_closed_gates).toHaveLength(21);
   });
 });

@@ -1,5 +1,14 @@
 # Contrato de orquestación profesional
 
+## Autoridad A0
+
+`01_intencion/career/career-os-operating-contract-v2.md` gobierna routing, gates
+e invalidación. La cadena normativa es
+`cv-spec-v2 → cv-source-v2 → cv-package-v3`, pero la migración material de
+C06/C07, templates y registry queda en
+`coverage_gap: A1_MATERIAL_MIGRATION_REQUIRED`. Una dependencia v1 bloquea el
+run nuevo; no se presenta como runtime v2. [CONFIG]
+
 ## Autoridad y privacidad
 
 Las fuentes de requisitos registradas son autoridad de implementación, no
@@ -23,12 +32,19 @@ hashes obsoletos o estados no permitidos.
 ## Preflight Spec-First de CV
 
 Antes de compilar C06, verificar brief, Evidence Bank y vacante cuando aplique;
-crear `cv-spec-v1`; obtener `CR_CV_SPEC_APPROVED`; congelar `spec_sha256`; y
-entregarlo al productor. Si cambia un binding, volver a draft y solicitar una
-nueva aprobación. Un render nunca sustituye la spec ni autoriza promoción.
+crear `cv-spec-v2`; obtener `CR_CV_DESIGN_APPROVED` cuando exista proyección
+ejecutiva; obtener `CR_CV_SPEC_APPROVED`; congelar `spec_sha256`; y entregar la
+spec al productor. Si cambia un binding, volver a draft y solicitar una nueva
+aprobación. A0 no afirma que C07 o los templates ya consuman v2.
+
+`CR_CAREER_EVIDENCE_READY` y `CR_CV_COMPILED` son técnicos y requieren tanto el
+command gobernado como el receipt material del run. `CR_PACKAGE_APPROVED` es
+humano. `CR_PACKAGE_QA` no tiene command/receipt activo en A0 y no puede usarse
+como alias ni marcarse `PASS`. [CONFIG]
 
 ## Efectos
 
 `local-evaluation` admite lectura y artefactos locales reversibles. Búsqueda
 remota, completar formularios y enviar son capacidades no promovidas. C09 crea
-un preview; no convierte intención del usuario en autorización de un uso.
+un preview; `packageReady=true` solo permite solicitar
+`CR_SUBMISSION_AUTHORIZED` y nunca acredita envío.

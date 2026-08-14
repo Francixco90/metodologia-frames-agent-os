@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 62 gates including Video OS manual boundaries', () => {
-    expect(manifest.gates).toHaveLength(62);
+  it('declares 63 gates including Video OS and Career design boundaries', () => {
+    expect(manifest.gates).toHaveLength(63);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
@@ -26,6 +26,7 @@ describe('commands.yaml contract', () => {
         'VO_DIRECTION_APPROVED',
         'VO_PRINCIPAL_VERIFIED',
         'VO_HANDOFF_APPROVED',
+        'CR_CV_DESIGN_APPROVED',
       ]),
     );
   });
@@ -77,10 +78,10 @@ describe('commands.yaml contract', () => {
     }
   });
 
-  it('CR_* career decisions are manual and fail closed', () => {
+  it('keeps Career technical gates executable and human decisions manual fail-closed', () => {
     for (const id of [
       'CR_BRIEF_APPROVED',
-      'CR_CAREER_EVIDENCE_READY',
+      'CR_CV_DESIGN_APPROVED',
       'CR_CV_SPEC_APPROVED',
       'CR_PACKAGE_APPROVED',
       'CR_SUBMISSION_AUTHORIZED',
@@ -93,6 +94,21 @@ describe('commands.yaml contract', () => {
         fail_closed: true,
       });
     }
+    expect(manifest.gates.find(({gate}) => gate === 'CR_CAREER_EVIDENCE_READY')).toMatchObject({
+      command: 'node 03_artefactos/skills/career-evidence-interviewer/scripts/check-skill.mjs',
+      allowed_tools: ['Bash'],
+      manual: false,
+      fail_closed: true,
+      owner: 'skill-foundry',
+    });
+    expect(manifest.gates.find(({gate}) => gate === 'CR_CV_COMPILED')).toMatchObject({
+      command: 'node 03_artefactos/skills/evidence-first-cv/scripts/check-skill.mjs',
+      allowed_tools: ['Bash'],
+      manual: false,
+      fail_closed: true,
+      owner: 'skill-foundry',
+    });
+    expect(manifest.gates.some(({gate}) => gate === 'CR_PACKAGE_QA')).toBe(false);
   });
 
   it('MW_* multimedia gates are manual, fail_closed and have command null', () => {

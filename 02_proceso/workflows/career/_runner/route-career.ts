@@ -90,7 +90,9 @@ export const routeCareerIntent = (requestInput: CareerRouteRequest): CareerInten
     ? 'CR_BRIEF_APPROVED'
     : stages.includes('C01')
       ? 'CR_CAREER_EVIDENCE_READY'
-      : 'CR_PACKAGE_APPROVED';
+      : stages.length === 1 && stages[0] === 'C09' && input.packageReady
+        ? 'CR_SUBMISSION_AUTHORIZED'
+        : 'CR_PACKAGE_APPROVED';
   return CareerIntentV1Schema.parse({
     schema_version: 'career-intent-v1',
     request,

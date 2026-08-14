@@ -1,13 +1,17 @@
-# CV, cartas y búsqueda laboral con Frames
+# Career OS · CV, cartas y búsqueda laboral
 
-Career OS ayuda a presentar tu experiencia con claridad sin convertir deseos, requisitos de una vacante o inferencias en hechos. El candidato es la identidad principal; MetodologIA permanece como generador y autoridad metodológica.
+Career OS · por MetodologIA ayuda a presentar tu experiencia con claridad sin convertir deseos, requisitos de una vacante o inferencias en hechos. El candidato es la identidad principal; MetodologIA permanece como generador y autoridad metodológica.
+
+La autoridad normativa para trabajo nuevo es `career-os-operating-contract-v2.md`, con la cadena objetivo `cv-spec-v2 → cv-source-v2 → cv-package-v3`.
+
+`coverage_gap: A1_MATERIAL_MIGRATION_REQUIRED`. A0 no cambia C06/C07, templates ni Deliverable Registry; por eso la migración material v2 todavía no puede darse por cerrada y una ruta que resuelva v1 debe detenerse.
 
 ## Qué puedes resolver
 
 - Crear un CV general desde fuentes y evidencia profesional.
 - Adaptar un CV a una vacante concreta.
-- Preparar CV Markdown y HTML con diseño ATS-friendly.
-- Generar PDF ATS cuando el toolchain local esté acreditado.
+- Preparar CV Markdown y proyecciones ATS HTML, DOCX y PDF.
+- Crear un HTML ejecutivo accesible cuando se aprueba una dirección visual.
 - Escribir cover letters, mensajes a recruiters y respuestas breves.
 - Definir familias de rol, restricciones y posicionamiento.
 - Buscar, deduplicar, verificar y puntuar oportunidades.
@@ -26,17 +30,23 @@ Cada texto factual visible del CV o la carta debe estar ligado a evidencia o mar
 
 ## Recorridos disponibles
 
-### Crear un CV general
+### ATS rápida
 
 `C00 → C01 → C02 → C06 → C08`
 
-Frames prepara el intake, reconcilia evidencia, define posicionamiento, compone el CV y ejecuta QA independiente.
+Para lectura lineal y postulación ágil: prepara evidencia, posicionamiento y solo los formatos ATS solicitados. El cierre material v2 permanece bloqueado hasta A1.
 
-### Adaptar el CV a una vacante
+### Ejecutiva
+
+`C00 → C01 → C02 → C06 → C08`
+
+Para una narrativa de liderazgo: C06 presenta exactamente dos direcciones y exige `CR_CV_DESIGN_APPROVED` sobre la opción elegida antes de aprobar la spec.
+
+### Dirigida a una vacante
 
 `C04 → C05 → C06 → C08`, reutilizando C00–C02 cuando siguen vigentes.
 
-La matriz requisito–evidencia muestra ajuste, gaps y qué tratamiento está autorizado. No rellena vacíos con frases genéricas.
+La matriz requisito–evidencia muestra ajuste, gaps y qué tratamiento está autorizado. Un requisito sin evidencia queda `qualify`, `omit` o `block`; no se convierte en habilidad.
 
 ### Escribir una carta
 
@@ -53,6 +63,8 @@ El sistema prepara queries, ingiere snapshots autorizados, elimina duplicados y 
 ### Preparar una postulación
 
 C09 muestra la vista previa, liga la autorización a la huella digital exacta del paquete y se detiene. Un envío solo podría marcarse `SUBMITTED` con confirmación visible y comprobante material.
+
+`CR_PACKAGE_APPROVED` aprueba humanamente el package exacto. `CR_SUBMISSION_AUTHORIZED` autoriza un uso limitado posterior. `CR_PACKAGE_QA` no está activo en A0 y no puede usarse como alias de ninguno de los dos.
 
 ## Privacidad y límites
 
