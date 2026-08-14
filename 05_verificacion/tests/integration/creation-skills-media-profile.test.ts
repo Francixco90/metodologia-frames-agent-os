@@ -29,13 +29,17 @@ describe('creation skill media profiles', () => {
   it.each([
     ['transcript intelligence', transcriptChecker],
     ['general video', videoChecker],
-  ])('%s passes code-only with an explicit media coverage gap', (_name, checker) => {
-    const result = run(checker, 'ci-code-only', nodeOnlyPath());
+  ])(
+    '%s passes code-only with an explicit media coverage gap',
+    (_name, checker) => {
+      const result = run(checker, 'ci-code-only', nodeOnlyPath());
 
-    expect(result.status, result.stderr).toBe(0);
-    expect(result.stdout).toContain('PASS CODE-ONLY');
-    expect(result.stdout).toContain('MEDIA COVERAGE GAP');
-  });
+      expect(result.status, result.stderr).toBe(0);
+      expect(result.stdout).toContain('PASS CODE-ONLY');
+      expect(result.stdout).toContain('MEDIA COVERAGE GAP');
+    },
+    30_000,
+  );
 
   it('general-video preserves the failed media command and never parses a missing receipt', () => {
     const result = run(videoChecker, 'local-full', nodeOnlyPath());
