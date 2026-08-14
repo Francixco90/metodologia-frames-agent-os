@@ -1,4 +1,11 @@
-import {mkdtempSync, readFileSync, readdirSync, symlinkSync, writeFileSync} from 'node:fs';
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -13,7 +20,8 @@ const ROOT = process.cwd();
 const packageJson = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8')) as {
   scripts: Record<string, string>;
 };
-const officialRoute = packageJson.scripts['task:run-check']!;
+const pnpmAlias = packageJson.scripts['task:run-check']!;
+const canonicalRoute = ['scripts/run-check-safe.sh'];
 const repositoryReceipts = (): string[] =>
   readdirSync(resolve(ROOT, '04_estado/receipts/check-runs')).sort();
 
@@ -21,7 +29,10 @@ const temporaryProject = (): string => {
   const root = mkdtempSync(join(tmpdir(), 'run-check-hardening-'));
   writeFileSync(
     join(root, 'package.json'),
-    JSON.stringify({private: true, scripts: {'check:toolchain': '/usr/bin/true'}}),
+    JSON.stringify({
+      private: true,
+      scripts: {'check:toolchain': '/usr/bin/true', 'task:run-check': pnpmAlias},
+    }),
     'utf8',
   );
   symlinkSync(resolve(ROOT, 'scripts'), join(root, 'scripts'), 'dir');
@@ -29,24 +40,26 @@ const temporaryProject = (): string => {
   return root;
 };
 
-const runOfficialRoute = (root: string, gate: string, hostileModule?: string) =>
-  spawnSync(`${officialRoute} ${gate}`, {
+const contaminatedEnv = (nodeOptions: string) => ({
+  ...process.env,
+  BASH_ENV: '/dev/null',
+  ENV: '/dev/null',
+  NODE_OPTIONS: nodeOptions,
+});
+
+const runCanonicalRoute = (root: string, gate: string, hostileModule?: string) =>
+  spawnSync('/bin/sh', [...canonicalRoute, gate], {
     cwd: root,
     encoding: 'utf8',
-    env: {
-      ...process.env,
-      BASH_ENV: '/dev/null',
-      ENV: '/dev/null',
-      NODE_OPTIONS: hostileModule ? `--require=${hostileModule}` : '',
-    },
-    shell: '/bin/sh',
+    env: contaminatedEnv(hostileModule ? `--require=${hostileModule}` : ''),
   });
 
 describe('task:run-check environment hardening', () => {
-  it('sanitizes the runner before Node loads', () => {
-    expect(officialRoute).toBe(
-      '/usr/bin/env -u NODE_OPTIONS -u BASH_ENV -u ENV node --import tsx scripts/run-check.ts',
+  it('declares the wrapper as canonical and pnpm as a trusted-parent convenience alias', () => {
+    expect(readFileSync(resolve(ROOT, canonicalRoute[0]!), 'utf8')).toContain(
+      'unset NODE_OPTIONS BASH_ENV ENV',
     );
+    expect(pnpmAlias).toBe('/bin/sh scripts/run-check-safe.sh');
   });
 
   it('records a technical failure under hostile env without writing the repository', () => {
@@ -55,7 +68,7 @@ describe('task:run-check environment hardening', () => {
     const hostileModule = join(root, 'hostile.cjs');
     writeFileSync(hostileModule, 'process.exit(0);\n', 'utf8');
 
-    const result = runOfficialRoute(root, 'G09_VIDEO_OS', hostileModule);
+    const result = runCanonicalRoute(root, 'G09_VIDEO_OS', hostileModule);
     expect(result.status).toBe(1);
     expect(`${result.stdout}${result.stderr}`).not.toContain('PASS run-check');
     expect(result.stdout).toContain('RECORDED run-check');
@@ -67,15 +80,30 @@ describe('task:run-check environment hardening', () => {
     expect(repositoryReceipts()).toEqual(receiptsBefore);
   });
 
+  it('does not claim pnpm is sanitized when its parent preload fails first', () => {
+    const root = temporaryProject();
+    const missingPreload = join(root, 'missing-preload.cjs');
+    const result = spawnSync('pnpm', ['task:run-check', '--', 'G09_VIDEO_OS'], {
+      cwd: root,
+      encoding: 'utf8',
+      env: contaminatedEnv(`--require=${missingPreload}`),
+    });
+    const output = `${result.stdout}${result.stderr}`;
+
+    expect(result.status).not.toBe(0);
+    expect(existsSync(join(root, '04_estado/receipts/check-runs'))).toBe(false);
+    expect(output).not.toMatch(/(?:PASS|RECORDED) run-check/u);
+  });
+
   it('preserves success, manual and unknown behavior', () => {
     const successRoot = temporaryProject();
-    const success = runOfficialRoute(successRoot, 'G00');
+    const success = runCanonicalRoute(successRoot, 'G00');
     expect(success.status).toBe(0);
     expect(success.stdout).toContain('PASS run-check');
 
     for (const gate of ['G13', 'NOT_A_GATE']) {
       const root = temporaryProject();
-      const result = runOfficialRoute(root, gate);
+      const result = runCanonicalRoute(root, gate);
       expect(result.status).toBe(2);
       expect(result.stderr).toContain(gate === 'G13' ? 'manual fail-closed' : 'no encontrado');
     }

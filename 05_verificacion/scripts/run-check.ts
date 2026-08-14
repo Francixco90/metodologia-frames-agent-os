@@ -1,5 +1,6 @@
 /** Executes one governed non-manual gate and records its result append-only.
- * It never promotes gates; command failures remain failures. [CÓDIGO] */
+ * Use `/bin/sh scripts/run-check-safe.sh GATE_ID` when the parent is not trusted.
+ * The pnpm task is only a convenience alias for trusted parents. [CÓDIGO] */
 import {createHash} from 'node:crypto';
 import {existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -117,7 +118,7 @@ const fail = (message: string, exitCode: number): never => {
 const main = (): void => {
   const gateId = process.argv[2];
   if (gateId === undefined || gateId.length === 0) {
-    fail('Usage: pnpm task:run-check -- <GATE_ID>', 2);
+    fail('Usage: /bin/sh scripts/run-check-safe.sh <GATE_ID>', 2);
     return; // unreachable; satisfies TS narrowing
   }
 
