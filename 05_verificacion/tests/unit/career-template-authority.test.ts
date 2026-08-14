@@ -82,6 +82,33 @@ describe('Career template and migration authority', () => {
     expect(CareerDeliverableRegistryV1Schema.safeParse(displayAlias).success).toBe(false);
   });
 
+  it('rejects legacy byte substitution even when the registry is rehashed', () => {
+    const hostile = structuredClone(registry);
+    for (const [canonical, legacy] of [
+      [
+        '02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md',
+        '02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.md',
+      ],
+      [
+        '02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html',
+        '02_proceso/workflows/career/c06-cv/templates/cv-source-v1.template.html',
+      ],
+    ] as const) {
+      hostile.template_authorities.find(
+        ({template_ref}) => template_ref === canonical,
+      )!.template_sha256 = createHash('sha256')
+        .update(readFileSync(resolve(ROOT, legacy)))
+        .digest('hex');
+    }
+    const result = CareerDeliverableRegistryV1Schema.safeParse(hostile);
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.map(({message}) => message)).toContain(
+        'Template hash differs from reviewed code authority',
+      );
+    }
+  });
+
   it('rejects missing, renamed and wrong-identity migrators', () => {
     for (const ref of [
       'missing/not-a-migrator.ts',
@@ -97,6 +124,20 @@ describe('Career template and migration authority', () => {
       if ('ref' in lifecycle.migration) lifecycle.migration.ref = ref;
       authority.ref = ref;
       expect(CareerDeliverableRegistryV1Schema.safeParse(hostile).success).toBe(false);
+    }
+
+    const rehashed = structuredClone(registry);
+    rehashed.migration_authorities.find(
+      ({deliverable_id}) => deliverable_id === 'cv-spec-v1',
+    )!.ref_sha256 = createHash('sha256')
+      .update(readFileSync(resolve(ROOT, '02_proceso/workflows/career/_runner/cv-package-v3.ts')))
+      .digest('hex');
+    const result = CareerDeliverableRegistryV1Schema.safeParse(rehashed);
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.map(({message}) => message)).toContain(
+        'Migration hash differs from reviewed code authority',
+      );
     }
   });
 

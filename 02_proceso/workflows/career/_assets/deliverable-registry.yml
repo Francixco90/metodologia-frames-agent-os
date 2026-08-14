@@ -133,6 +133,10 @@ template_authorities:
       template_sha256: a8b200def42b35170148c9758bacdc88705e4e68be69b70d190c4674f0dbcb6e,
     }
   - {
+      template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.html,
+      template_sha256: cae46d65f903be0308d75068f642fe4551f736270fe2e8519ac54b14c7cddd61,
+    }
+  - {
       template_ref: 02_proceso/workflows/career/c06-cv/templates/cv-source-v2.template.md,
       template_sha256: 65f2b7b65b634e465a3aba12659a24df80d012b70f9338ad8247102f79abc26a,
     }
@@ -143,6 +147,10 @@ template_authorities:
   - {
       template_ref: 02_proceso/workflows/career/c08-package-qa/templates/application-package-v1.template.md,
       template_sha256: 5e5b503cee8a6a8a4a87b8bf29b0c5e281925160afe171311583fba29961a948,
+    }
+  - {
+      template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.html,
+      template_sha256: 23885a91f78cf27f72e56a35acd7e04a21085c4975d8596b2f9a6a61acf062e9,
     }
   - {
       template_ref: 02_proceso/workflows/career/c08-package-qa/templates/cv-package-v3.template.md,

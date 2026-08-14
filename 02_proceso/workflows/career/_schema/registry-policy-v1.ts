@@ -3,6 +3,8 @@ import {
   CANONICAL_CAREER_MIGRATIONS,
   CANONICAL_CAREER_TEMPLATE_REFS,
   COMPATIBILITY_CAREER_CONTRACTS,
+  EXPECTED_CAREER_MIGRATION_SHA256,
+  EXPECTED_CAREER_TEMPLATE_SHA256,
   LEGACY_CAREER_DISPLAY_ALIASES,
 } from './registry-authority-v1.js';
 
@@ -19,8 +21,8 @@ type Lifecycle = {
   successor_id: string | null;
   migration: {mode: string; ref?: string | undefined};
 };
-type Authority = {template_ref: string};
-type MigrationAuthority = {deliverable_id: string; mode: string; ref: string};
+type Authority = {template_ref: string; template_sha256: string};
+type MigrationAuthority = {deliverable_id: string; mode: string; ref: string; ref_sha256: string};
 type RegistryPolicyInput = {
   definitions: readonly Definition[];
   versioned_contract_lifecycle: readonly Lifecycle[];
@@ -107,22 +109,27 @@ export const careerRegistryPolicyIssues = ({
   });
 
   const authorityRefs = new Set<string>();
-  authorities.forEach(({template_ref}, index) => {
+  authorities.forEach(({template_ref, template_sha256}, index) => {
     if (authorityRefs.has(template_ref))
       add(['template_authorities', index], 'Duplicate authority');
     authorityRefs.add(template_ref);
+    if (EXPECTED_CAREER_TEMPLATE_SHA256[template_ref] !== template_sha256) {
+      add(
+        ['template_authorities', index, 'template_sha256'],
+        'Template hash differs from reviewed code authority',
+      );
+    }
   });
   definitions.forEach(({template_ref}, index) => {
     if (!authorityRefs.has(template_ref)) {
       add(['definitions', index, 'template_ref'], 'Template ref lacks hash-bound authority');
     }
   });
-  const definitionRefs = new Set(definitions.map(({template_ref}) => template_ref));
-  authorities.forEach(({template_ref}, index) => {
-    if (!definitionRefs.has(template_ref)) {
-      add(['template_authorities', index, 'template_ref'], 'Unused template authority');
+  for (const templateRef of Object.keys(EXPECTED_CAREER_TEMPLATE_SHA256)) {
+    if (!authorityRefs.has(templateRef)) {
+      add(['template_authorities'], `Missing reviewed template authority: ${templateRef}`);
     }
-  });
+  }
 
   const migrationById = new Map<string, MigrationAuthority>();
   migrationAuthorities.forEach((authority, index) => {
@@ -135,6 +142,12 @@ export const careerRegistryPolicyIssues = ({
       add(
         ['migration_authorities', index],
         'Migration authority path or identity is not canonical',
+      );
+    }
+    if (EXPECTED_CAREER_MIGRATION_SHA256[authority.ref] !== authority.ref_sha256) {
+      add(
+        ['migration_authorities', index, 'ref_sha256'],
+        'Migration hash differs from reviewed code authority',
       );
     }
   });
