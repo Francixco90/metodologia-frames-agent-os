@@ -1,0 +1,12 @@
+schema_version: trainer-project-ledger-v1
+project_id: trainer-os
+mutation_policy: append-only-events
+events:
+  - event_id: TRAINER-OS-PR1-001
+    event_order: 1
+    from: null
+    to: INTAKE
+    actor_id: TRAINER-OS-PRODUCER
+    manifest_ref: projects/trainer-os/project.yml
+    manifest_sha256: 3297bf4dddd369a8a113e178bf708302aa1708f51d2cf6da188acb4e18d2c63b
+    publication_authority: false

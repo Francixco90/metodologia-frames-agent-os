@@ -1,0 +1,11 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-trainer-os
+request: Create a complete training route about synthetic topic Z for non-technical professionals.
+input: {directions: 2, questions: 1, prompts: 4, publish: false, private_receipts: false}
+expect:
+  directions: 2
+  blocking_questions_max: 2
+  prompt_count_min: 3
+  prompt_count_max: 5
+  maximum_state: RENDERED_DRAFT
+  publication_authority: false

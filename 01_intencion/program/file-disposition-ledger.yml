@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94300
-    v3_rolling_adjustment_words: 6114
+    baseline_words: 94672
+    v3_rolling_adjustment_words: 6486
     original_baseline_words: 88186
-    final_words: 110448
+    final_words: 110820
     maximum_multiplier: 1.5
-    maximum_words: 141450
-    actual_multiplier: 1.1712
+    maximum_words: 142008
+    actual_multiplier: 1.1706
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94300
-    v3_rolling_adjustment_words: 6114
+    baseline_words: 94672
+    v3_rolling_adjustment_words: 6486
     original_baseline_words: 88186
-    final_words: 110448
-    maximum_words: 188600
-    word_multiplier: 1.1712
-    baseline_loc: 35420
-    v3_rolling_adjustment_loc: 2532
+    final_words: 110820
+    maximum_words: 189344
+    word_multiplier: 1.1706
+    baseline_loc: 35581
+    v3_rolling_adjustment_loc: 2693
     original_baseline_loc: 32888
-    final_loc: 41412
-    maximum_loc: 70840
-    loc_multiplier: 1.1692
+    final_loc: 41573
+    maximum_loc: 71162
+    loc_multiplier: 1.1684
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 21ce6ef1027f058fd72313d04a59a5e41beb0ac58b8f6d0d80c6d57a0f84a43c
-      current_words: 438
-      current_loc: 205
+      current_sha256: b61dd1827b760c000f45ad65852146da7c4e397babf4f9b33e25f7f9efa1b8d8
+      current_words: 428
+      current_loc: 200
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -3200,9 +3200,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: bd2715a0ddbed6095bf657bf58f06fcc42d6f2086341d2d45d1c12a427fffbfb
-      current_words: 751
-      current_loc: 166
+      current_sha256: 5ee28d5d64e12d3b0086cc37d6d2b0f4449daf42c8edeceb8e3bf71dabca486a
+      current_words: 739
+      current_loc: 165
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:package.json
@@ -5888,9 +5888,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/skills/skill-registry.yml
       current_ref: working-tree:registries/skills/skill-registry.yml
       current_state: present
-      current_sha256: 2daa5379bd7fbc2b0df93b5160063b72ea82faffb3096c37ac531d96561845cf
-      current_words: 1841
-      current_loc: 858
+      current_sha256: 9f058df53ad825208a0c40698adc3f82f29d4fbb337ec0696c20bc0fe3e30790
+      current_words: 2225
+      current_loc: 1020
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:skill-foundry:registries/skills/**

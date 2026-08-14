@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "trainer-quality-rubric-v1",
+  "rubricId": "trainer-quality-rubric-v1",
+  "criteria": [
+    {"id": "structure", "weight": 25},
+    {"id": "pedagogy", "weight": 25},
+    {"id": "brand-editorial", "weight": 20},
+    {"id": "accessibility", "weight": 20},
+    {"id": "privacy", "weight": 10}
+  ],
+  "minimumCombinedPercent": 95,
+  "producerEvaluatorSeparation": true,
+  "syntheticOnly": true,
+  "publicationAuthority": false
+}

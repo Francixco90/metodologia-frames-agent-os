@@ -9,6 +9,7 @@ import {runAdversarial} from './lib/adversarial-check.mjs';
 
 const DIR = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PREFIX = 'COSTI_CHECK_';
+const validationProfile = process.env.METODOLOGIA_TOOLCHAIN_PROFILE ?? 'local-full';
 const required = [
   'SKILL.md', 'LINEAGE.yml', 'source-manifest.yml', 'receipts/runtime-boundary.yml',
   'receipts/verification-v0.1.0.yml', 'receipts/verification-v0.2.0.yml', 'receipts/verification-v0.3.0.yml', 'receipts/verification-v0.4.0.yml', 'receipts/verification-v0.5.0.yml',
@@ -29,6 +30,7 @@ const required = [
   'fixtures/negative/adversarial-cases.json',
 ];
 const errors = [];
+if (!['local-full', 'ci-code-only'].includes(validationProfile)) errors.push(`${PREFIX}INVALID_PROFILE ${validationProfile}`);
 for (const rel of required) if (!existsSync(resolve(DIR, rel))) errors.push(`${PREFIX}MISSING ${rel}`);
 
 const skill = readFileSync(resolve(DIR, 'SKILL.md'), 'utf8');
@@ -126,11 +128,15 @@ if (materialAuthority.status === 0 || !materialAuthority.stderr.includes('materi
 const mismatch = run(['verify', '--job', resolve(fixtureRoot, 'negative/hash-mismatch.json'), '--out', 'outputs/hash-mismatch']);
 if (mismatch.status === 0 || !mismatch.stderr.includes('HASH_MISMATCH')) errors.push(`${PREFIX}HASH_GATE`);
 
-runAdversarial({dir: DIR, temp, run, errors, prefix: PREFIX});
+runAdversarial({dir: DIR, temp, run, errors, prefix: PREFIX, mediaChecks: validationProfile === 'local-full'});
 
 if (errors.length) {
   console.error(`FAIL content-os-transcript-intelligence: ${errors.length} error(s)`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
-console.log(`PASS content-os-transcript-intelligence: ${required.length} files, explicit migration, media binding, bounded dual clocks, real-ref provenance, authority, packaging and privacy gates.`);
+if (validationProfile === 'ci-code-only') {
+  console.log(`PASS CODE-ONLY content-os-transcript-intelligence: ${required.length} files, explicit migration, bounded dual clocks, real-ref provenance, authority, packaging and privacy gates. MEDIA COVERAGE GAP: audio decode and duration checks require local-full.`);
+} else {
+  console.log(`PASS content-os-transcript-intelligence: ${required.length} files, explicit migration, media binding, bounded dual clocks, real-ref provenance, authority, packaging and privacy gates.`);
+}

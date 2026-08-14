@@ -111,6 +111,8 @@ writers:
     - workflows/local-extensions/**
     - workflows/maintenance/**
     - workflows/skill-systems/**
+    - workflows/trainer-os/**
+    - projects/trainer-os/**
     - 03_artefactos/content/documentation/**
     - workflows/context.md
     - registries/experience/**
@@ -181,6 +183,7 @@ writers:
     - 05_verificacion/tests/unit/documentation-*.test.ts
     - 05_verificacion/tests/unit/local-extension-*.test.ts
     - 05_verificacion/tests/unit/skill-systems-*.test.ts
+    - 05_verificacion/tests/unit/trainer-os-*.test.ts
     - 05_verificacion/tests/unit/host-adapter-contract.test.ts
     - 05_verificacion/tests/integration/career-*.test.ts
     - 05_verificacion/context.md

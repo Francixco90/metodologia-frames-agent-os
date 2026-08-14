@@ -1,0 +1,5 @@
+schema_version: trainer-skill-fixture-v1
+skill_id: metodologia-learning-playbook-html
+request: Compile a synthetic multilingual learning playbook.
+input: {essential: 12, declared_ids: [optional-a, optional-b], selected_ids: [optional-b, optional-a], core_without_js: true, response_persistence: false, network: false, connectors: false, publication: false}
+expect: {issues: [], maximum_state: RENDERED_DRAFT, publication_authority: false}

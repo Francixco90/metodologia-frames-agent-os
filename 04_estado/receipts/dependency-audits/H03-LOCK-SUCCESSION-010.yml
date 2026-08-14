@@ -2,25 +2,25 @@ schema_version: dependency-lock-succession-v1
 receipt_id: H03-LOCK-SUCCESSION-010
 supersedes_receipt_id: H03-LOCK-SUCCESSION-009
 recorded_at: '2026-08-13T00:00:00Z'
-approval_phrase: Crear el Video OS, dentro de frames.
-approval_scope: video_os_inside_frames_without_dependency_change
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: add_trainer_runtime_cli_alias_without_dependency_change
 previous:
   package_sha256: f6fae161328bf3344c3619b16a14ec94003c105762a296c8de003b0491a884f8
   lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
 current:
-  package_sha256: bd2715a0ddbed6095bf657bf58f06fcc42d6f2086341d2d45d1c12a427fffbfb
+  package_sha256: 5ee28d5d64e12d3b0086cc37d6d2b0f4449daf42c8edeceb8e3bf71dabca486a
   lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
 dependency_change: false
 dependency_set: []
 audit_receipt:
-  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260812-001.json
-  sha256: ebde65fc59cbbb3ba7a9e842ea31e63de0cac5d1e2baf85e69809cfac93b6836
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260813-001.json
+  sha256: 996085d96103dca9eaebc1a0dc157bea60d8130bc8ee071d8c4118655efbda79
 license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
 frozen_install:
   command: inherited:no-dependency-change
   status: passed
 rollback:
-  strategy: remove_video_os_script_aliases_and_restore_previous_package
+  strategy: remove_trainer_runtime_cli_alias_and_restore_previous_package
   expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
 production_state: ACTIVE_LOCAL_EVALUATION
 distribution_state: NOT_DESIGNED

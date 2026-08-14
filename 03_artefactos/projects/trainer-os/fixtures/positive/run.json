@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "trainer-run-manifest-v1",
+  "runId": "synthetic-run",
+  "manifestSha256": "e44ff8aae5fd0eb10e8c416e473e486bfa3246c69fa07309d680c1b1111248d5",
+  "projectId": "trainer-os",
+  "state": "INTAKE",
+  "intakeRef": "intake.json",
+  "stateRef": "continuity/state.json",
+  "resumeRef": "continuity/resume.md",
+  "handoffRef": "continuity/handoff.json",
+  "invalidated": [],
+  "maximumState": "RENDERED_DRAFT",
+  "effects": {"network": false, "connectors": false, "publication": false},
+  "tokenBudget": {
+    "maximum": 6000,
+    "estimated": 800,
+    "measured": 760
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "trainer-benchmark-v1",
+  "benchmarkId": "trainer-os-low-model-eval",
+  "benchmarkSha256": "0b597ca4d293535ab7e18f1cb0feef7d067cf93306797667ecb632e4e607104f",
+  "scenarios": [
+    {
+      "scenarioId": "ai-literacy",
+      "title": "AI literacy for non-technical professionals",
+      "syntheticBrief": "SYNTHETIC: AI literacy for non-technical professionals",
+      "input": {
+        "ref": "evals/benchmark-inputs-v1.json",
+        "sha256": "20d2b5bb682d61db9ec496c5760ea663794ad89f2fbb7a85a7a162ca2e9ea7d3"
+      },
+      "baseline": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      },
+      "trainer": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      }
+    },
+    {
+      "scenarioId": "operational-productivity",
+      "title": "Operational productivity for leaders",
+      "syntheticBrief": "SYNTHETIC: Operational productivity for leaders",
+      "input": {
+        "ref": "evals/benchmark-inputs-v1.json",
+        "sha256": "20d2b5bb682d61db9ec496c5760ea663794ad89f2fbb7a85a7a162ca2e9ea7d3"
+      },
+      "baseline": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      },
+      "trainer": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      }
+    },
+    {
+      "scenarioId": "technical-training",
+      "title": "Technical training with explicit prerequisites and risks",
+      "syntheticBrief": "SYNTHETIC: Technical training with explicit prerequisites and risks",
+      "input": {
+        "ref": "evals/benchmark-inputs-v1.json",
+        "sha256": "20d2b5bb682d61db9ec496c5760ea663794ad89f2fbb7a85a7a162ca2e9ea7d3"
+      },
+      "baseline": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      },
+      "trainer": {
+        "status": "not_executed",
+        "reason": "runtime_unavailable",
+        "coverageGap": true
+      }
+    }
+  ],
+  "qualityRubric": {
+    "ref": "evals/trainer-quality-rubric-v1.json",
+    "sha256": "8d1261f27cc6c92939d25ef0320b0267b1f72545f020875dc54e2514b4d01c31"
+  },
+  "ablations": [
+    {
+      "id": "without-deterministic-compiler",
+      "status": "pending",
+      "hypothesis": "quality_or_determinism_may_degrade"
+    },
+    {
+      "id": "without-typed-contracts",
+      "status": "pending",
+      "hypothesis": "contract_errors_may_increase"
+    }
+  ],
+  "promotion": {
+    "eligible": false,
+    "reason": "coverage_gap"
+  },
+  "tokenReductionClaim": null,
+  "lifecycleState": "candidate",
+  "maximumState": "RENDERED_DRAFT",
+  "publicationAuthority": false
+}

@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
+import {copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -7,8 +7,9 @@ import {runPrecomposedAdversarial} from './check-precomposed.mjs';
 import {runWrapperAdversarial} from './check-wrapper.mjs';
 import {runSystemicAdversarial} from './check-systemic.mjs';
 import {runConsumerGateAdversarial} from './check-consumer-gates.mjs';
+import {prepareCodeOnlyFixture, validateMediaReceipt} from './check-code-only.mjs';
 
-export function runAdversarial({SKILL_DIR, errors}) {
+export function runAdversarial({SKILL_DIR, errors, mediaChecks = true}) {
 const PREFIX = 'COSR-GV_';
 const cli = resolve(SKILL_DIR, 'scripts/video-cli.mjs');
 const fixture = resolve(SKILL_DIR, 'fixtures/v2-positive');
@@ -27,19 +28,31 @@ const bindMask = (caseDir) => {
 };
 try {
   cpSync(fixture, temp, {recursive: true});
-  const generated = spawnSync(process.execPath, [resolve(SKILL_DIR, 'scripts/generate-synthetic-media.mjs'), '--out', temp], {encoding: 'utf8'});
-  if (generated.status !== 0) errors.push(`${PREFIX}SYNTHETIC_MEDIA`);
   const repoRoot = process.cwd();
+  if (mediaChecks) {
+    const generated = spawnSync(process.execPath, [resolve(SKILL_DIR, 'scripts/generate-synthetic-media.mjs'), '--out', temp], {encoding: 'utf8'});
+    if (generated.status !== 0) {
+      const cause = generated.error ? `${generated.error.code ?? generated.error.message}` : (generated.stderr || generated.stdout || '').trim();
+      errors.push(`${PREFIX}SYNTHETIC_MEDIA ${cause}`.trim());
+      return;
+    }
+  } else {
+    prepareCodeOnlyFixture({temp, sha, updateJson});
+  }
   copyFileSync(resolve(repoRoot, '03_artefactos/brand/fonts/vendor/poppins/Poppins-Regular.ttf'), resolve(temp, 'Poppins-Regular.ttf'));
   copyFileSync(resolve(repoRoot, '03_artefactos/brand/fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf'), resolve(temp, 'Montserrat-VariableFont_wght.ttf'));
-  for (const command of ['ingest', 'index', 'script', 'plan', 'render', 'verify', 'package']) {
+  const baselineCommands = mediaChecks
+    ? ['ingest', 'index', 'script', 'plan', 'render', 'verify', 'package']
+    : ['ingest', 'index', 'script', 'plan'];
+  for (const command of baselineCommands) {
     const result = spawnSync(process.execPath, [cli, command, '--project', temp], {encoding: 'utf8'});
-    if (result.status !== 0) errors.push(`${PREFIX}CLI_${command.toUpperCase()} ${(result.stderr || '').trim()}`);
+    if (result.status !== 0) {
+      const cause = result.error ? `${result.error.code ?? result.error.message}` : (result.stderr || result.stdout || '').trim();
+      errors.push(`${PREFIX}CLI_${command.toUpperCase()} ${cause}`.trim());
+      return;
+    }
   }
-  if (!existsSync(resolve(temp, '.frames-video/render-receipt.json'))) return;
-  const receipt = JSON.parse(readFileSync(resolve(temp, '.frames-video/render-receipt.json')));
-  if (receipt.outputs.length !== 2 || receipt.outputs.some((output) => !output.measurements?.outputSha256 || !output.measurements?.pcmSha256)) errors.push(`${PREFIX}REAL_RENDER_MEASUREMENTS`);
-  if (receipt.outputs.some((output) => output.layerArtifacts?.bodyArtifact?.cleanupVerification?.pass !== true || output.layerArtifacts.bodyArtifact.cleanupVerification.cleanedBodySha256 !== output.layerArtifacts.bodyArtifact.sha256 || output.layerArtifacts.bodyArtifact.cleanupVerification.filterOrder !== 'cleanup-before-treatment')) errors.push(`${PREFIX}CLEAN_BODY_RECEIPT`);
+  if (mediaChecks && !validateMediaReceipt({temp, errors, prefix: PREFIX})) return;
 
   const hookCase = mkdtempSync(resolve(tmpdir(), 'gv-hook-')); cleanup.push(hookCase); cpSync(temp, hookCase, {recursive: true});
   updateJson(resolve(hookCase, 'piece-scripts.json'), (value) => { value.pieces[0].hook = 'Hook changed after planning'; return value; });
@@ -54,18 +67,20 @@ try {
   const network = spawnSync(process.execPath, [cli, 'render', '--project', networkCase], {encoding: 'utf8'});
   if (network.status === 0 || !network.stderr.includes('UNSAFE_FFMPEG_ARG')) errors.push(`${PREFIX}NETWORK_PROTOCOL`);
 
-  const abCase = mkdtempSync(resolve(tmpdir(), 'gv-ab-')); cleanup.push(abCase); cpSync(temp, abCase, {recursive: true});
-  updateJson(resolve(abCase, 'ab-groups.json'), (value) => { value.groups[0].pieceIds = ['mini-a', 'missing']; value.groups[0].variants = [{pieceId: 'mini-a'}, {pieceId: 'mini-a'}]; return value; });
-  updateJson(resolve(abCase, 'workflow-state.json'), (value) => { value.abTestSha256 = sha(resolve(abCase, 'ab-groups.json')); return value; });
-  spawnSync(process.execPath, [cli, 'plan', '--project', abCase], {encoding: 'utf8'});
-  spawnSync(process.execPath, [cli, 'render', '--project', abCase], {encoding: 'utf8'});
-  const abNegative = spawnSync(process.execPath, [cli, 'verify', '--project', abCase], {encoding: 'utf8'});
-  if (abNegative.status === 0 || !/shape|piece-binding/u.test(abNegative.stderr)) errors.push(`${PREFIX}AB_DISTINCT_EXISTING ${(abNegative.stderr || '').trim()}`);
+  if (mediaChecks) {
+    const abCase = mkdtempSync(resolve(tmpdir(), 'gv-ab-')); cleanup.push(abCase); cpSync(temp, abCase, {recursive: true});
+    updateJson(resolve(abCase, 'ab-groups.json'), (value) => { value.groups[0].pieceIds = ['mini-a', 'missing']; value.groups[0].variants = [{pieceId: 'mini-a'}, {pieceId: 'mini-a'}]; return value; });
+    updateJson(resolve(abCase, 'workflow-state.json'), (value) => { value.abTestSha256 = sha(resolve(abCase, 'ab-groups.json')); return value; });
+    spawnSync(process.execPath, [cli, 'plan', '--project', abCase], {encoding: 'utf8'});
+    spawnSync(process.execPath, [cli, 'render', '--project', abCase], {encoding: 'utf8'});
+    const abNegative = spawnSync(process.execPath, [cli, 'verify', '--project', abCase], {encoding: 'utf8'});
+    if (abNegative.status === 0 || !/shape|piece-binding/u.test(abNegative.stderr)) errors.push(`${PREFIX}AB_DISTINCT_EXISTING ${(abNegative.stderr || '').trim()}`);
 
-  const measureCase = mkdtempSync(resolve(tmpdir(), 'gv-measure-')); cleanup.push(measureCase); cpSync(temp, measureCase, {recursive: true});
-  updateJson(resolve(measureCase, '.frames-video/render-receipt.json'), (value) => { value.outputs[0].measurements.durationMs += 500; return value; });
-  const measured = spawnSync(process.execPath, [cli, 'verify', '--project', measureCase], {encoding: 'utf8'});
-  if (measured.status === 0 || !measured.stderr.includes('measurement-drift')) errors.push(`${PREFIX}MEASUREMENT_RECOMPUTE`);
+    const measureCase = mkdtempSync(resolve(tmpdir(), 'gv-measure-')); cleanup.push(measureCase); cpSync(temp, measureCase, {recursive: true});
+    updateJson(resolve(measureCase, '.frames-video/render-receipt.json'), (value) => { value.outputs[0].measurements.durationMs += 500; return value; });
+    const measured = spawnSync(process.execPath, [cli, 'verify', '--project', measureCase], {encoding: 'utf8'});
+    if (measured.status === 0 || !measured.stderr.includes('measurement-drift')) errors.push(`${PREFIX}MEASUREMENT_RECOMPUTE`);
+  }
 
   const captionCase = mkdtempSync(resolve(tmpdir(), 'gv-caption-')); cleanup.push(captionCase); cpSync(temp, captionCase, {recursive: true});
   updateJson(resolve(captionCase, 'captions.json'), (value) => ({...value, tampered: true}));
@@ -132,6 +147,8 @@ try {
   const outsideRuntime = mkdtempSync(resolve(tmpdir(), 'gv-runtime-outside-')); cleanup.push(outsideRuntime); symlinkSync(outsideRuntime, resolve(runtimeCase, '.frames-video'), 'dir');
   const runtimeLink = spawnSync(process.execPath, [cli, 'ingest', '--project', runtimeCase], {encoding: 'utf8'});
   if (runtimeLink.status === 0 || !runtimeLink.stderr.includes('SYMLINK_RUNTIME') || readdirSync(outsideRuntime).length !== 0) errors.push(`${PREFIX}RUNTIME_SYMLINK_ESCAPE`);
+
+  if (!mediaChecks) return;
 
   const tamperCase = mkdtempSync(resolve(tmpdir(), 'gv-tamper-')); cleanup.push(tamperCase); cpSync(temp, tamperCase, {recursive: true});
   const expectedOutput = sha(resolve(tamperCase, 'renders/mini-a.mp4')); copyFileSync(resolve(tamperCase, 'renders/mini-b.mp4'), resolve(tamperCase, 'renders/mini-a.mp4'));

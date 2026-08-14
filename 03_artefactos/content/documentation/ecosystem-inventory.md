@@ -11,11 +11,11 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 281
-- COMMAND: 100
+- ASSET: 277
+- COMMAND: 99
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 61
+- GATE: 57
 - RENDERER: 5
 - ROUTE: 11
 - SKILL: 184
@@ -394,6 +394,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | test:integration | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | test | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | test:unit | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | trainer | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | typecheck | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:ai-runtime | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:atoms | ACTIVE | CANONICAL | `package.json` |
@@ -531,6 +532,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | DOCS_TRANSVERSAL_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_RELEASE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | EXP_TRAINER_RUNTIME_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G00 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G02_PRECLEAR | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G02 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -972,4 +974,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `b7c2508a3930988d37cd8e07db7b1d56c96c6ff8440219892efb420c66e06a1b`.
+Hash de fuentes: `8b03e4f4a2c70181b4dcb777cf3da1fbf1e7898ccc8105ee648adbd00ad18f8b`.

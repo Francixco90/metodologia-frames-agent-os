@@ -21,6 +21,8 @@ export function validateAudio(path, label, fail) {
     '-v', 'error', '-protocol_whitelist', 'file', '-show_entries',
     'format=duration:stream=codec_type,duration', '-of', 'json', path,
   ], {encoding: 'utf8', timeout: 15000});
+  if (probe.error?.code === 'ENOENT') fail('AUDIO_TOOLCHAIN_UNAVAILABLE', `${label}:ffprobe-not-found`);
+  if (probe.error) fail('AUDIO_PROBE_FAILED', `${label}:${probe.error.code ?? 'spawn-error'}`);
   if (probe.status !== 0) fail('AUDIO_DECODE_FAILED', label);
   let decoded;
   try { decoded = JSON.parse(probe.stdout); } catch { fail('AUDIO_DECODE_FAILED', `${label}:probe-json`); }
