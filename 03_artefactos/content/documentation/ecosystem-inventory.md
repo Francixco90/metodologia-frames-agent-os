@@ -15,7 +15,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - COMMAND: 101
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 58
+- GATE: 62
 - RENDERER: 5
 - ROUTE: 11
 - SKILL: 184
@@ -581,6 +581,10 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | SSS_RELEASE_CANDIDATE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_REVIEW_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_STATIC_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_DIRECTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_HANDOFF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_INTAKE_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | VO_PRINCIPAL_VERIFIED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | RENDERER | d3 | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | gsap | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | RENDERER | lottie | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
@@ -970,4 +974,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `064baea930e17cd12140cf333d682c3be18df9a2d8860ba215af2e13339d62c7`.
+Hash de fuentes: `f01d4f68c950d6e5c38cc16038336bbc66f498405951aaf68b003e8677e26b91`.
