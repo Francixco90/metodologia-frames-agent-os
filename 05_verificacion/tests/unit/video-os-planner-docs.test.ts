@@ -115,4 +115,30 @@ describe('Video OS compact planner and document defaults', () => {
       automatic_terminal_state: 'RENDERED_DRAFT',
     });
   });
+
+  it('ships restartable workflow, handoff and adversarial fixture contracts', () => {
+    const workflow = readJson<{
+      additionalProperties?: boolean;
+      properties?: {
+        steps?: {maxItems?: number; items?: {properties?: {operation?: {enum?: string[]}}}};
+      };
+    }>('02_proceso/workflows/video-os/10_proceso/workflows/workflow.schema.json');
+    const regressions = readJson<{syntheticOnly?: boolean; cases?: Array<{valid?: boolean}>}>(
+      '05_verificacion/tests/fixtures/video-os/regressions-v1.json',
+    );
+    const handoff = readFileSync(
+      resolve(process.cwd(), '02_proceso/workflows/video-os/_assets/handoff.template.md'),
+      'utf8',
+    );
+
+    expect(workflow.additionalProperties).toBe(false);
+    expect(workflow.properties?.steps?.maxItems).toBe(8);
+    expect(workflow.properties?.steps?.items?.properties?.operation?.enum).toContain(
+      'human_approval',
+    );
+    expect(regressions.syntheticOnly).toBe(true);
+    expect(regressions.cases?.every(({valid}) => valid === false)).toBe(true);
+    expect(handoff).toContain('## Siguiente comando');
+    expect(handoff).toContain('{{next_command}}');
+  });
 });

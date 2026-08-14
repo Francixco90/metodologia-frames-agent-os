@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "cf39ef80d45e6b7ce53867e27a28ab1d2cab7d7ef0d0ca1dca1aac2319b1e60e",
-  "totalMarkdown": 1834,
-  "auditedAuthored": 583,
+  "repositoryTreeSha256": "8da50adb8f4c197e1242c3b0ada1ffcf59691c16954e436ba9b01e090bc60af0",
+  "totalMarkdown": 1840,
+  "auditedAuthored": 589,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -69,6 +69,7 @@
       "01_intencion/find-skills/architecture.md",
       "01_intencion/find-skills/audit-report.md",
       "01_intencion/find-skills/verification-report.md",
+      "01_intencion/frames-evolution/ADOPTION-V1.md",
       "01_intencion/genjutsu/architecture.md",
       "01_intencion/genjutsu/audit-report.md",
       "01_intencion/genjutsu/verification-report.md",
@@ -88,6 +89,7 @@
       "01_intencion/guides/skill-systems.md",
       "01_intencion/guides/technical-reference.md",
       "01_intencion/guides/troubleshooting-old-commands.md",
+      "01_intencion/guides/video-os.md",
       "01_intencion/hyperframes/architecture.md",
       "01_intencion/hyperframes/audit-report.md",
       "01_intencion/hyperframes/verification-report.md",
@@ -516,14 +518,17 @@
       "02_proceso/workflows/operator-core/README.md",
       "02_proceso/workflows/trainer-os/README.md",
       "02_proceso/workflows/video-os/AGENTS.md",
+      "02_proceso/workflows/video-os/CLAUDE.md",
       "02_proceso/workflows/video-os/CONSTITUTION.md",
+      "02_proceso/workflows/video-os/GEMINI.md",
       "02_proceso/workflows/video-os/INSTRUCTIONS.md",
       "02_proceso/workflows/video-os/LIFECYCLE.md",
       "02_proceso/workflows/video-os/README.md",
       "02_proceso/workflows/video-os/SCOPE.md",
       "02_proceso/workflows/video-os/STATE.md",
       "02_proceso/workflows/video-os/VERIFICATION.md",
-      "02_proceso/workflows/video-os/progress.md"
+      "02_proceso/workflows/video-os/progress.md",
+      "02_proceso/workflows/video-os/session-handoff.md"
     ],
     "template": [
       "02_proceso/workflows/career/c00-intake/templates/candidate-foundation-brief-v1.template.md",
@@ -577,7 +582,8 @@
       "02_proceso/workflows/multimedia/p09-distribuir/templates/results-dashboard-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/dual-oracle-review-v1.template.md",
       "02_proceso/workflows/skill-systems/templates/skill-resource-plan-v1.template.md",
-      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md"
+      "02_proceso/workflows/skill-systems/templates/skill-system-case-v2.template.md",
+      "02_proceso/workflows/video-os/_assets/handoff.template.md"
     ],
     "skill": [
       "03_artefactos/skills/candidate-evidence-reconciler/SKILL.md",
@@ -3657,6 +3663,32 @@
       }
     },
     {
+      "path": "01_intencion/frames-evolution/ADOPTION-V1.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/frames-evolution/ADOPTION-V1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/frames-evolution/ADOPTION-V1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "366847e58b47c2a2ae51073bd247052bbb56baeefbef2ab7c73d430b8ea78bd8",
+      "words": 371,
+      "lines": 54,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/genjutsu/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4151,6 +4183,32 @@
       }
     },
     {
+      "path": "01_intencion/guides/video-os.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/guides/video-os.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/guides/video-os.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "abb50211d7d83d5b2907e56b6b67ff13ef8c1ae94f0236b56a500595fff253ff",
+      "words": 105,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/hyperframes/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4552,7 +4610,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "224b64711ce13d98f7c17b6118552e929bc99ca0948511db9890d5336c6cb916",
+      "sha256": "bf2650e3203f40240d0922dba859473dddfebac2ac90ca5d28a569887a21f00b",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9584,6 +9642,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/video-os/CLAUDE.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/CLAUDE.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/CLAUDE.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8ac02bfbb07cc30d43a9e3d782bcf65c2b15c5255d84c7466bf72e02973488fe",
+      "words": 784,
+      "lines": 107,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/video-os/CONSTITUTION.md",
       "class": "workflow",
       "owner": "content",
@@ -9605,6 +9689,32 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/GEMINI.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/GEMINI.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/GEMINI.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "67c768cdd7e08ffe0b23da510dd4f961e8c6c93e0b381828a1fc9c9d136f877f",
+      "words": 789,
+      "lines": 107,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
         "hasNextAction": true,
         "duplicateHeadings": 0
       }
@@ -9766,6 +9876,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/video-os/_assets/handoff.template.md",
+      "class": "template",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/_assets/handoff.template.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/_assets/handoff.template.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a466d6f51170d251ac2fd492564b25250d69e20f6ffe76f4226b3494807dfe06",
+      "words": 30,
+      "lines": 25,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/video-os/progress.md",
       "class": "workflow",
       "owner": "content",
@@ -9780,6 +9916,32 @@
       "sha256": "c54107845ee4a223cbe095b5cd0fba2835759fc944ba9357f9711934f69c3d16",
       "words": 74,
       "lines": 21,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/workflows/video-os/session-handoff.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/video-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/video-os/session-handoff.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/video-os/session-handoff.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d3275f955e6fe01223104ea31460e12b6bbc559f0cc50ca2c7e6ea649822e2d9",
+      "words": 64,
+      "lines": 22,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17500,7 +17662,7 @@
     }
   ],
   "summary": {
-    "keep": 568,
+    "keep": 574,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
