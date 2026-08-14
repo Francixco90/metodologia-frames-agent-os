@@ -3,6 +3,7 @@ import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {runAdversarial} from './check-adversarial.mjs';
+import {reportCheckResult} from './check-report.mjs';
 
 const ROOT = process.cwd();
 const SKILL_DIR = resolve(ROOT, 'skills/content-os-general-video');
@@ -35,6 +36,8 @@ const required = [
   'scripts/video-cli.mjs',
   'scripts/lib/check-suite.mjs',
   'scripts/lib/check-adversarial.mjs',
+  'scripts/lib/check-code-only.mjs',
+  'scripts/lib/check-report.mjs',
   'scripts/lib/check-precomposed.mjs',
   'scripts/lib/check-wrapper.mjs',
   'scripts/lib/video-runtime.mjs',
@@ -191,19 +194,4 @@ if (linguistic.status === 0 || !linguistic.stderr.includes('linguistic-gate')) {
 }
 
 runAdversarial({SKILL_DIR, errors, mediaChecks: validationProfile === 'local-full'});
-
-if (errors.length > 0) {
-  console.error(`FAIL content-os-general-video: ${errors.length} error(s)`);
-  for (const e of errors) console.error(`  ${e}`);
-  process.exitCode = 1;
-} else {
-  if (validationProfile === 'ci-code-only') {
-    console.info(
-      'PASS CODE-ONLY content-os-general-video: structure, policy, fixtures, adversarial security gates, linguistic gate and forbidden-scan. MEDIA COVERAGE GAP: render bytes, measurements, A/B output verification and miniclip runtime checks require local-full.',
-    );
-  } else {
-    console.info(
-      'PASS content-os-general-video: v1 read compatibility, v2 Spec First CLI, A/B/miniclip gates, fixtures and forbidden-scan.',
-    );
-  }
-}
+reportCheckResult({errors, validationProfile});

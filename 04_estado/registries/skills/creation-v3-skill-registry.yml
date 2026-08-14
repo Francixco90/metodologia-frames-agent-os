@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 755be430397066aa133aea0c76e201f1d4f52d95e468ad0a3554aebe40aa4bbe
-    package_manifest_sha256: c366fbe8829d19940b1f443206c91b830a41badfcc017d2dbb9af81fde3aad11
+    package_manifest_sha256: 210c66f7fd46186a93be3afe218185406b1690d5bd9cf8c846fe14ad6c519827
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only

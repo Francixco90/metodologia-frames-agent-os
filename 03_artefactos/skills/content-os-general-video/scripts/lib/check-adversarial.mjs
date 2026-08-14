@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
+import {copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -7,6 +7,7 @@ import {runPrecomposedAdversarial} from './check-precomposed.mjs';
 import {runWrapperAdversarial} from './check-wrapper.mjs';
 import {runSystemicAdversarial} from './check-systemic.mjs';
 import {runConsumerGateAdversarial} from './check-consumer-gates.mjs';
+import {prepareCodeOnlyFixture, validateMediaReceipt} from './check-code-only.mjs';
 
 export function runAdversarial({SKILL_DIR, errors, mediaChecks = true}) {
 const PREFIX = 'COSR-GV_';
@@ -36,31 +37,7 @@ try {
       return;
     }
   } else {
-    writeFileSync(resolve(temp, 'frame.ppm'), 'P3\n1 1\n255\n0 0 0\n');
-    writeFileSync(resolve(temp, 'tone.wav'), 'RIFF0000WAVEfmt ');
-    const frameHash = sha(resolve(temp, 'frame.ppm'));
-    const toneHash = sha(resolve(temp, 'tone.wav'));
-    updateJson(resolve(temp, 'asset-manifest.json'), (value) => {
-      for (const asset of value.assets) {
-        if (asset.id === 'frame') asset.sha256 = asset.generator.configSha256 = frameHash;
-        if (asset.id === 'tone') asset.sha256 = asset.generator.configSha256 = toneHash;
-      }
-      return value;
-    });
-    updateJson(resolve(temp, 'piece-scripts.json'), (value) => {
-      for (const piece of value.pieces) {
-        piece.dependencies.find((dependency) => dependency.id === 'tone').sha256 = toneHash;
-        piece.layers.audio = toneHash;
-      }
-      return value;
-    });
-    updateJson(resolve(temp, 'workflow-state.json'), (value) => {
-      value.assetManifestSha256 = sha(resolve(temp, 'asset-manifest.json'));
-      const scriptHash = sha(resolve(temp, 'piece-scripts.json'));
-      value.scriptSha256 = scriptHash;
-      value.pieceScriptsSha256 = scriptHash;
-      return value;
-    });
+    prepareCodeOnlyFixture({temp, sha, updateJson});
   }
   copyFileSync(resolve(repoRoot, '03_artefactos/brand/fonts/vendor/poppins/Poppins-Regular.ttf'), resolve(temp, 'Poppins-Regular.ttf'));
   copyFileSync(resolve(repoRoot, '03_artefactos/brand/fonts/vendor/montserrat/Montserrat-VariableFont_wght.ttf'), resolve(temp, 'Montserrat-VariableFont_wght.ttf'));
@@ -75,19 +52,7 @@ try {
       return;
     }
   }
-  if (mediaChecks) {
-    const receiptPath = resolve(temp, '.frames-video/render-receipt.json');
-    if (!existsSync(receiptPath)) {
-      errors.push(`${PREFIX}MISSING_RENDER_RECEIPT_AFTER_RENDER`);
-      return;
-    }
-    const receipt = JSON.parse(readFileSync(receiptPath));
-    if (receipt.outputs.length !== 2 || receipt.outputs.some((output) => !output.measurements?.outputSha256 || !output.measurements?.pcmSha256)) errors.push(`${PREFIX}REAL_RENDER_MEASUREMENTS`);
-  }
-  if (mediaChecks) {
-    const receipt = JSON.parse(readFileSync(resolve(temp, '.frames-video/render-receipt.json')));
-    if (receipt.outputs.some((output) => output.layerArtifacts?.bodyArtifact?.cleanupVerification?.pass !== true || output.layerArtifacts.bodyArtifact.cleanupVerification.cleanedBodySha256 !== output.layerArtifacts.bodyArtifact.sha256 || output.layerArtifacts.bodyArtifact.cleanupVerification.filterOrder !== 'cleanup-before-treatment')) errors.push(`${PREFIX}CLEAN_BODY_RECEIPT`);
-  }
+  if (mediaChecks && !validateMediaReceipt({temp, errors, prefix: PREFIX})) return;
 
   const hookCase = mkdtempSync(resolve(tmpdir(), 'gv-hook-')); cleanup.push(hookCase); cpSync(temp, hookCase, {recursive: true});
   updateJson(resolve(hookCase, 'piece-scripts.json'), (value) => { value.pieces[0].hook = 'Hook changed after planning'; return value; });
