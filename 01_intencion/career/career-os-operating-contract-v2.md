@@ -46,12 +46,13 @@ producir nuevos hashes v2/v3.
 | `CR_SUBMISSION_AUTHORIZED` | humano, manual fail-closed | autorización de un uso externo limitado   |
 
 `CR_CAREER_EVIDENCE_READY` y `CR_CV_COMPILED` son gates técnicos, no decisiones
-humanas. Hasta A2/A5 no existe un validador run-aware: sus commands deterministas
-terminan con código distinto de cero y emiten respectivamente
+humanas. Hasta A2/A5 no existe un validador run-aware: ambos ejecutan
+`/usr/bin/false`, terminan con código distinto de cero y no interpretan
+`NODE_OPTIONS`, `BASH_ENV` ni argumentos. Sus labels preservan respectivamente
 `COVERAGE_GAP: CAREER_RUN_RECEIPT_REQUIRED` y
-`COVERAGE_GAP: CAREER_COMPILE_RUN_RECEIPT_REQUIRED`. No aceptan argumentos ni
-pueden afirmar `PASS`. `pnpm verify:career` sigue siendo un gate estático del
-repositorio y la documentación; nunca satisface un gate de run. [CONFIG]
+`COVERAGE_GAP: CAREER_COMPILE_RUN_RECEIPT_REQUIRED`; nunca pueden afirmar `PASS`.
+`pnpm verify:career` sigue siendo un gate estático del repositorio y la
+documentación; nunca satisface un gate de run. [CONFIG]
 
 `CR_PACKAGE_QA` es un boundary legacy/unimplemented todavía referenciado por
 skills activas, pero no tiene command/receipt en `commands.yaml` ni autoridad de
@@ -64,9 +65,10 @@ ruta que lo encuentre. No es alias de `G14` ni de `CR_PACKAGE_APPROVED`. [CONFIG
 `SPECIFIED → RENDERED_DRAFT → HUMAN_APPROVED → READY`
 
 Cambiar spec, evidencia, vacante, fuente, diseño, variante o output invalida los
-estados posteriores. Sin receipt material de package approval, el router se
-detiene en `CR_PACKAGE_APPROVED` incluso si recibe `packageReady=true`. Solo tras
-aprobar materialmente el package exacto, C09 puede crear su preview y se detiene
-en `CR_SUBMISSION_AUTHORIZED`, coherente con `submission.ts`. Ningún boolean
-sustituye esos receipts. No activa conectores ni autoriza publicación. Datos reales
-y PII permanecen en rutas privadas ignoradas.
+estados posteriores. A0 no tiene receipt material de package approval:
+`coverage_gap: A1_C09_PACKAGE_APPROVAL_RECEIPT_REQUIRED`. El router se detiene en
+`CR_PACKAGE_APPROVED` incluso si recibe `packageReady=true`. El helper existente
+`prepareSubmission` solo construye un preview local y se detiene en
+`CR_SUBMISSION_AUTHORIZED`; no recibe, verifica ni sustituye la aprobación del
+package y no acredita un run C09 autorizado. No activa conectores ni autoriza
+publicación. Datos reales y PII permanecen en rutas privadas ignoradas.

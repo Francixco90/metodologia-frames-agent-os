@@ -38,10 +38,11 @@ spec al productor. Si cambia un binding, volver a draft y solicitar una nueva
 aprobación. A0 no afirma que C07 o los templates ya consuman v2.
 
 `CR_CAREER_EVIDENCE_READY` y `CR_CV_COMPILED` son STOP técnicos non-manual hasta
-A2/A5. Sus commands siempre terminan distintos de cero con `COVERAGE_GAP` porque
-no existe receipt run-aware; no aceptan argumentos ni pueden afirmar `PASS`.
-`pnpm verify:career` permanece como baseline estático del repositorio, nunca como
-gate de run. `CR_PACKAGE_APPROVED` y G14 son manuales, siendo G14 una revisión
+A2/A5. Ambos ejecutan `/usr/bin/false`: siempre terminan distintos de cero y no
+interpretan `NODE_OPTIONS`, `BASH_ENV` ni argumentos. Sus labels preservan los
+`COVERAGE_GAP` exactos y nunca pueden afirmar `PASS`. `pnpm verify:career`
+permanece como baseline estático del repositorio, nunca como gate de run.
+`CR_PACKAGE_APPROVED` y G14 son manuales, siendo G14 una revisión
 Guardian independiente. `CR_PACKAGE_QA` es un boundary legacy aún referenciado
 por skills activas, sin command/receipt: produce
 `coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`, stop y nunca `PASS`. [CONFIG]
@@ -49,7 +50,9 @@ por skills activas, sin command/receipt: produce
 ## Efectos
 
 `local-evaluation` admite lectura y artefactos locales reversibles. Búsqueda
-remota, completar formularios y enviar son capacidades no promovidas. Sin receipt
-material de package approval, el router se detiene en `CR_PACKAGE_APPROVED`, aun
-con `packageReady=true`. Después de esa aprobación exacta, C09 puede preparar el
-preview y se detiene en `CR_SUBMISSION_AUTHORIZED`; nunca envía.
+remota, completar formularios y enviar son capacidades no promovidas. A0 carece
+del receipt de package approval (`coverage_gap:
+A1_C09_PACKAGE_APPROVAL_RECEIPT_REQUIRED`), por lo que el router se detiene en
+`CR_PACKAGE_APPROVED`, aun con `packageReady=true`. `prepareSubmission` es solo un
+helper de preview local que se detiene en `CR_SUBMISSION_AUTHORIZED`; no valida la
+aprobación del package ni acredita un run C09 autorizado.

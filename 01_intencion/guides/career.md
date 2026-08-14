@@ -62,11 +62,12 @@ El sistema prepara queries, ingiere snapshots autorizados, elimina duplicados y 
 
 ### Preparar una postulación
 
-Sin aprobación material del package, el router se detiene en
-`CR_PACKAGE_APPROVED`. Después de aprobar el package exacto, C09 muestra la vista
-previa, liga la autorización a su huella digital y se detiene en
-`CR_SUBMISSION_AUTHORIZED`. Un envío solo podría marcarse `SUBMITTED` con
-confirmación visible y comprobante material.
+A0 no dispone de receipt material de aprobación del package (`coverage_gap:
+A1_C09_PACKAGE_APPROVAL_RECEIPT_REQUIRED`), así que el router se detiene en
+`CR_PACKAGE_APPROVED`. `prepareSubmission` solo prepara un preview local no
+autorizado y se detiene en `CR_SUBMISSION_AUTHORIZED`; no demuestra que el package
+esté aprobado. Un envío solo podría marcarse `SUBMITTED` con confirmación visible
+y comprobante material.
 
 `CR_PACKAGE_APPROVED` aprueba humanamente el package exacto. `CR_SUBMISSION_AUTHORIZED` exige un receipt material posterior; `packageReady` no basta. `CR_PACKAGE_QA` sigue referenciado por skills activas, pero es un boundary legacy/unimplemented sin command/receipt: nunca `PASS` y siempre stop (`coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`).
 

@@ -96,12 +96,13 @@ describe('commands.yaml contract', () => {
     }
     for (const id of ['CR_CAREER_EVIDENCE_READY', 'CR_CV_COMPILED']) {
       expect(manifest.gates.find(({gate}) => gate === id)).toMatchObject({
+        command: '/usr/bin/false',
         allowed_tools: ['Bash'],
         manual: false,
         fail_closed: true,
         owner: 'qa',
       });
-      expect(manifest.gates.find(({gate}) => gate === id)?.command).toContain('COVERAGE_GAP:');
+      expect(manifest.gates.find(({gate}) => gate === id)?.label).toContain('COVERAGE_GAP:');
     }
     expect(manifest.gates.some(({gate}) => gate === 'CR_PACKAGE_QA')).toBe(false);
   });

@@ -59,7 +59,7 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 ## 6. Gates, handoff y contextos hijos
 
 Gates: `CR_BRIEF_APPROVED`, `CR_CAREER_EVIDENCE_READY`, `CR_CV_DESIGN_APPROVED`, `CR_CV_SPEC_APPROVED`, `CR_CV_COMPILED`, `CR_PACKAGE_APPROVED`, `CR_SUBMISSION_AUTHORIZED`  
-Stop rules: coverage_gap A1 bloquea dependencias materiales v1 · CR_CAREER_EVIDENCE_READY y CR_CV_COMPILED son technical STOP hasta A2/A5 y sus commands siempre terminan nonzero con COVERAGE_GAP · CR_PACKAGE_QA legacy no ejecutable produce coverage_gap A1_PACKAGE_QA_REFS_REQUIRED y stop · C06 exige spec aprobada y vigente · C09 sin package approval material detiene en CR_PACKAGE_APPROVED y después del approval solo prepara preview hasta CR_SUBMISSION_AUTHORIZED · PII y evidencia UNKNOWN bloquean
+Stop rules: coverage_gap A1 bloquea dependencias materiales v1 · CR_CAREER_EVIDENCE_READY y CR_CV_COMPILED son technical STOP /usr/bin/false hasta A2/A5 y sus labels preservan los COVERAGE_GAP exactos · CR_PACKAGE_QA legacy no ejecutable produce coverage_gap A1_PACKAGE_QA_REFS_REQUIRED y stop · C06 exige spec aprobada y vigente · coverage_gap A1_C09_PACKAGE_APPROVAL_RECEIPT_REQUIRED mantiene el router en CR_PACKAGE_APPROVED y prepareSubmission es solo preview local no autorizado · PII y evidencia UNKNOWN bloquean
 
 Hijos:
 
