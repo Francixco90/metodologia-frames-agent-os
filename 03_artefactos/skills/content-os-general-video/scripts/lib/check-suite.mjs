@@ -3,10 +3,12 @@ import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {runAdversarial} from './check-adversarial.mjs';
+import {reportCheckResult} from './check-report.mjs';
 
 const ROOT = process.cwd();
 const SKILL_DIR = resolve(ROOT, 'skills/content-os-general-video');
 const PREFIX = 'COSR-GV_';
+const validationProfile = process.env.METODOLOGIA_TOOLCHAIN_PROFILE ?? 'local-full';
 
 const required = [
   'SKILL.md',
@@ -34,6 +36,8 @@ const required = [
   'scripts/video-cli.mjs',
   'scripts/lib/check-suite.mjs',
   'scripts/lib/check-adversarial.mjs',
+  'scripts/lib/check-code-only.mjs',
+  'scripts/lib/check-report.mjs',
   'scripts/lib/check-precomposed.mjs',
   'scripts/lib/check-wrapper.mjs',
   'scripts/lib/video-runtime.mjs',
@@ -75,6 +79,7 @@ const required = [
 ];
 
 const errors = [];
+if (!['local-full', 'ci-code-only'].includes(validationProfile)) errors.push(`${PREFIX}INVALID_PROFILE ${validationProfile}`);
 
 for (const rel of required) {
   if (!existsSync(resolve(SKILL_DIR, rel))) {
@@ -188,13 +193,5 @@ if (linguistic.status === 0 || !linguistic.stderr.includes('linguistic-gate')) {
   errors.push(`${PREFIX}LINGUISTIC_GATE`);
 }
 
-runAdversarial({SKILL_DIR, errors});
-if (errors.length > 0) {
-  console.error(`FAIL content-os-general-video: ${errors.length} error(s)`);
-  for (const e of errors) console.error(`  ${e}`);
-  process.exitCode = 1;
-} else {
-  console.info(
-    'PASS content-os-general-video: v1 read compatibility, v2 Spec First CLI, A/B/miniclip gates, fixtures and forbidden-scan.',
-  );
-}
+runAdversarial({SKILL_DIR, errors, mediaChecks: validationProfile === 'local-full'});
+reportCheckResult({errors, validationProfile});
