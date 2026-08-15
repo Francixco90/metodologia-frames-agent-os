@@ -54,6 +54,14 @@ de una muestra a 48 kHz; cualquier PTS desplazado bloquea mapa y donor. [CONFIG]
 `coverage_gap`: PR1c0b1b debe cerrar claims, preservación de evidencia/texto funcional y review
 externo antes de cualquier autoridad de render. [METODOLOGIA]
 
+PR1c0b1b-claims materializa solo policy V3, claims y gaps. Las declaraciones usan
+`SOURCE_AUDIOVISUAL_ONLY`; Natalia puede presentar `En progreso` como `EDITORIAL_LABEL` separado
+del habla. Danilo permanece `PRE_RENDER_BLOCKED` mientras falte el nombramiento audiovisual; sin
+ese gap el máximo es `BLOCKED_PENDING_PRESERVATION_AND_EXTERNAL_REVIEW_CONTRACTS`. No existe
+`PreservationMap`, review ni autoridad de render. [CONFIG]
+`coverage_gap`: preservación requiere un PR separado con diff RGB crudo fuera de máscaras y ratio
+residual mínimo impuesto por policy; hashes o áreas declaradas no cierran ese gate. [METODOLOGIA]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye
