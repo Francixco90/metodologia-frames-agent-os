@@ -23,6 +23,13 @@ PR1b consume y revalida el preflight material exacto, liga fuentes/plan/preview,
 cobertura framewise y lineage observado; PR1c conserva auditoría, attestations, paquete exacto
 y `RENDERED_DRAFT`. Ningún slice anterior autoriza render. [CONFIG]
 
+PR1b2 reejecuta esa autoridad y acepta solo evidencia observada del preview: framehash real,
+cobertura exacta derivada, cambio local dentro del ROI de scroll/fades y hashes por cada
+`span×mask×frame` sensible. El full queda como perfil planificado sin media; el estado máximo es
+`BLOCKED_PENDING_POSTRENDER_CONTRACTS`. [CÓDIGO]
+`coverage_gap`: start/mid/end prueban cambio local muestreado, no continuidad entre esos puntos;
+PR1c debe verificar la continuidad local framewise. [CONFIG]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye

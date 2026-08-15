@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f
-    package_manifest_sha256: 9c44127b1026a30bf45d15b0308c3ebc99653718da6464ff248104770eb2cd6b
+    package_manifest_sha256: ddb637bd927dee8bf6137990c37bc63818b4ad9bd3541d9da7d33de3d752afdc
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2752,3 +2752,4 @@ events:
   - {event_id: EVT-SKL-CAO-H03-008, event_order: 8, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-14T00:00:00Z', decision: refresh_a0_fail_closed_authority_hash_binding, content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3, package_manifest_sha256: 29d779a7c4fdf407f8f6eef7101f84d076f02f875d04735274b86954698dea94}
   - {event_id: EVT-SKL-CGV-H03-019, event_order: 19, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-14T00:00:00Z', decision: bind_case_longform_mp4_snapshot_and_toctou_preflight, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: a3beeb770aad2f7048a85ad543e7a2c2ba98d233ced9d89258bec8291b15bb3a}
   - {event_id: EVT-SKL-CGV-H03-020, event_order: 20, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-14T00:00:00Z', decision: bind_case_longform_preflight_authority_graph_and_cleanup, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 9c44127b1026a30bf45d15b0308c3ebc99653718da6464ff248104770eb2cd6b}
+  - {event_id: EVT-SKL-CGV-H03-021, event_order: 21, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-14T00:00:00Z', decision: bind_case_longform_observed_preview_coverage_and_planned_full, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: ddb637bd927dee8bf6137990c37bc63818b4ad9bd3541d9da7d33de3d752afdc}

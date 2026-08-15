@@ -95,6 +95,12 @@ export const validateCaseLongformGraphMaterial = (input: Input): void => {
   }));
   if (!same(temporal.boundaries, boundaries)) throw new Error('VIDEO-OS-CASE-BOUNDARY-DERIVATION');
   const masks = new Map(redaction.masks.map((mask) => [mask.id, mask]));
+  if (
+    [...temporal.scrolls, ...temporal.fades].some(
+      ({roi}) => roi.x + roi.width > 1920 || roi.y + roi.height > 1080,
+    )
+  )
+    throw new Error('VIDEO-OS-CASE-TEMPORAL-ROI-BOUNDS');
   if (redaction.masks.some(({roi}) => roi.x + roi.width > 1920 || roi.y + roi.height > 1080))
     throw new Error('VIDEO-OS-CASE-MASK-ROI-BOUNDS');
   if (
