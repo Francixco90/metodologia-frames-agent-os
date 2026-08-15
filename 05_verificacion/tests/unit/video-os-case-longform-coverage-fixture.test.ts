@@ -256,9 +256,7 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     participants: [{participant_id: 'danilo', public_name: 'Danilo Cardona Estrada',
       required_statuses: ['recognized', 'appointed'], forbidden_statuses: ['certified'], certificate_frames_zero: true},
       {participant_id: 'alejandra', public_name: 'Alejandra Calderón', maximum_status: 'recognized'},
-      {participant_id: 'natalia', public_name: 'Natalia Andrade', exact_status: 'in_progress'}],
-    required_coverage_gaps: [{participant_id: 'danilo', status: 'appointed',
-      reason: 'missing_audiovisual_evidence'}]};
+      {participant_id: 'natalia', public_name: 'Natalia Andrade', exact_status: 'in_progress'}]};
   const policy = writeCaseFixture(authorityRoot, 'semantic-policy.json', policyValue);
   const artifacts = {
     preflight,

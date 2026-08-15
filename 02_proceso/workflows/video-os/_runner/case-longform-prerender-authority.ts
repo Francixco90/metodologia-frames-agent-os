@@ -64,13 +64,6 @@ export const CaseLongformSemanticPolicyReceipt = z.strictObject({
       exact_status: z.literal('in_progress'),
     }),
   ]),
-  required_coverage_gaps: z.tuple([
-    z.strictObject({
-      participant_id: z.literal('danilo'),
-      status: z.literal('appointed'),
-      reason: z.literal('missing_audiovisual_evidence'),
-    }),
-  ]),
 });
 export const CaseLongformPrerenderAuthorityRefs = z.strictObject({
   source_segment_map: Ref,

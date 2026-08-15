@@ -156,9 +156,11 @@ describe('case-longform PR1c0a pre-render authority freeze', () => {
       },
     ],
     [
-      'required status gap',
+      'temporary coverage gap injection',
       (policy: Policy) => {
-        policy.required_coverage_gaps = [];
+        (policy as Policy & {required_coverage_gaps: unknown[]}).required_coverage_gaps = [
+          {participant_id: 'danilo', status: 'appointed'},
+        ];
       },
     ],
   ] as const)('rejects policy %s drift', (_name, mutate) => {

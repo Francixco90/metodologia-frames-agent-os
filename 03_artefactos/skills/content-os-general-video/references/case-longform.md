@@ -34,9 +34,10 @@ PR1c debe verificar la continuidad local framewise. [CONFIG]
 PR1c0a congela únicamente segmentos fuente incluidos, la política semántica externa y el orden
 `timeline_cut→audio_identifier_replace→visual_mask_source_space→scale_1920x1080→compose_single_caption_track→encode`.
 Los segmentos `PASSTHROUGH` cubren el output sin solapes; los gaps entre rangos fuente reservan
-cortes, pero todavía no prueban su aplicación. La política mantiene el nombramiento de Danilo
-como gap audiovisual, prohíbe certificado, limita a Alejandra a `recognized` y fija Natalia en
-`in_progress`. Estado: `BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS`. [CONFIG]
+cortes, pero todavía no prueban su aplicación. La política requiere el nombramiento de Danilo,
+prohíbe certificado, limita a Alejandra a `recognized` y fija Natalia en `in_progress`; la
+ausencia audiovisual actual no se convierte en política permanente. Estado:
+`BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS`. [CONFIG]
 `coverage_gap`: PR1c0b debe materializar audio/claims/preservación, derivación de transcript y
 diccionario, y review externo del preview; PR1c0a no afirma completitud ni PASS. [METODOLOGIA]
 
