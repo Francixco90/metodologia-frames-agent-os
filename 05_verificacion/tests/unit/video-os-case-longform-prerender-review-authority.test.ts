@@ -1,11 +1,18 @@
+import {spawnSync} from 'node:child_process';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+
 import {afterEach, describe, expect, it} from 'vitest';
 
 import {
   assertCaseLongformPrerenderReviewAuthority,
   deriveCaseLongformAudioMatches,
   deriveCaseLongformAudioOperations,
+  deriveCaseLongformPcmDonorEvidence,
 } from 'workflows/video-os/index.ts';
+import {compactCaseLongformAudioToken} from 'workflows/video-os/_runner/case-longform-audio-derivation.ts';
 import {
+  caseFixtureRef,
   cleanupCaseFixtures,
   writeCaseFixture,
 } from './video-os-case-longform-coverage-fixture.test.ts';
@@ -37,7 +44,7 @@ describe('case-longform PR1c0b1a audio authority', () => {
       fixture.reviewContract,
       fixture.options,
     );
-    expect(result.status).toBe('BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS');
+    expect(result.status).toBe('BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS');
     expect(result).not.toHaveProperty('render_authority');
     expect(result.artifacts).not.toHaveProperty('external_review_receipt');
   });
@@ -94,6 +101,37 @@ describe('case-longform PR1c0b1a audio authority', () => {
       assertCaseLongformPrerenderReviewAuthority(fixture.reviewContract, fixture.options),
     ).toThrow(/DICTIONARY/u);
   });
+  it('canonicalizes URL scheme and www prefixes', () => {
+    expect(compactCaseLongformAudioToken('https://www.portal-reservado.com')).toBe(
+      compactCaseLongformAudioToken('portal-reservado.com'),
+    );
+  });
+  it.each([
+    [
+      'dictionary',
+      (fixture: Fixture) => {
+        fixture.values.dictionary.entries[0]!.dictionary_id = 'a:b';
+      },
+    ],
+    [
+      'segment',
+      (fixture: Fixture) => {
+        fixture.values.transcript.sources[0].segments[0]!.id = 'a:b';
+      },
+    ],
+  ] as const)('rejects non-portable %s IDs that can forge composite IDs', (_name, mutate) => {
+    const fixture = materialize();
+    mutate(fixture);
+    const key = _name === 'dictionary' ? 'audio_dictionary_receipt' : 'audio_transcript';
+    replace(
+      fixture,
+      key,
+      _name === 'dictionary' ? fixture.values.dictionary : fixture.values.transcript,
+    );
+    expect(() =>
+      assertCaseLongformPrerenderReviewAuthority(fixture.reviewContract, fixture.options),
+    ).toThrow();
+  });
   it.each([
     [
       'incomplete coverage',
@@ -138,6 +176,29 @@ describe('case-longform PR1c0b1a audio authority', () => {
       assertCaseLongformPrerenderReviewAuthority(clone.reviewContract, clone.options),
     ).toThrow();
   });
+  it('rejects duplicate match or operation IDs and stream-index drift', () => {
+    const match = materialize();
+    match.values.audio.matches[1]!.match_id = match.values.audio.matches[0]!.match_id;
+    replace(match, 'audio_redaction_map', match.values.audio);
+    expect(() =>
+      assertCaseLongformPrerenderReviewAuthority(match.reviewContract, match.options),
+    ).toThrow();
+    const duplicate = materialize();
+    duplicate.values.audio.operations[1]!.operation_id =
+      duplicate.values.audio.operations[0]!.operation_id;
+    replace(duplicate, 'audio_redaction_map', duplicate.values.audio);
+    expect(() =>
+      assertCaseLongformPrerenderReviewAuthority(duplicate.reviewContract, duplicate.options),
+    ).toThrow();
+    const stream = materialize();
+    (
+      stream.values.transcript.sources[0] as unknown as {audio_stream_index: number}
+    ).audio_stream_index = 1;
+    replace(stream, 'audio_transcript', stream.values.transcript);
+    expect(() =>
+      assertCaseLongformPrerenderReviewAuthority(stream.reviewContract, stream.options),
+    ).toThrow();
+  });
   it('rejects CUT outside an exact source gap', () => {
     const fixture = materialize();
     const segments = structuredClone(fixture.values.segments);
@@ -173,6 +234,13 @@ describe('case-longform PR1c0b1a audio authority', () => {
       undefined,
     ],
     [
+      'stream index',
+      (donor: Record<string, unknown>) => {
+        donor.audio_stream_index = 1;
+      },
+      undefined,
+    ],
+    [
       'duration +1 frame',
       (donor: Record<string, unknown>) => {
         donor.source_start_frame = 2;
@@ -199,5 +267,72 @@ describe('case-longform PR1c0b1a audio authority', () => {
       assertCaseLongformPrerenderReviewAuthority(fixture.reviewContract, fixture.options);
     if (error) expect(assertion).toThrow(error);
     else expect(assertion).toThrow();
+  });
+  it('resamples 44.1 kHz before trimming and binds audio stream zero', () => {
+    const fixture = materialize();
+    const output = resolve(fixture.root, 'multi-44100.mp4');
+    const built = spawnSync(fixture.options.audioToolAuthority.ffmpeg_path, [
+      '-v',
+      'error',
+      '-f',
+      'lavfi',
+      '-i',
+      'color=s=1920x1080:r=24:d=1',
+      '-f',
+      'lavfi',
+      '-i',
+      'sine=frequency=440:sample_rate=44100:duration=1',
+      '-f',
+      'lavfi',
+      '-i',
+      'sine=frequency=880:sample_rate=48000:duration=1',
+      '-map',
+      '0:v:0',
+      '-map',
+      '1:a:0',
+      '-map',
+      '2:a:0',
+      '-c:v',
+      'mpeg4',
+      '-c:a',
+      'aac',
+      '-shortest',
+      '-y',
+      output,
+    ]);
+    expect(built.status).toBe(0);
+    const media = caseFixtureRef(fixture.root, 'multi-44100.mp4');
+    const evidence = deriveCaseLongformPcmDonorEvidence(
+      readFileSync(output),
+      media,
+      media.sha256,
+      0,
+      1,
+      fixture.options.audioToolAuthority,
+    );
+    expect(evidence).toMatchObject({audio_stream_index: 0, duration_samples: 4000});
+  });
+  it('rejects a PATH-selected fake ffmpeg authority', () => {
+    const fixture = materialize();
+    const fake = resolve(fixture.root, 'ffmpeg');
+    writeFileSync(fake, 'fake');
+    const closure = fixture.reviewContract.artifacts.preview_media;
+    const previousPath = process.env.PATH;
+    process.env.PATH = fixture.root;
+    try {
+      expect(() =>
+        deriveCaseLongformPcmDonorEvidence(
+          readFileSync(resolve(fixture.root, closure.ref)),
+          closure,
+          closure.sha256,
+          0,
+          0,
+          {ffmpeg_path: fake, ffmpeg_sha256: fixture.options.audioToolAuthority.ffmpeg_sha256},
+        ),
+      ).toThrow(/FFMPEG-UNTRUSTED/u);
+    } finally {
+      if (previousPath === undefined) delete process.env.PATH;
+      else process.env.PATH = previousPath;
+    }
   });
 });

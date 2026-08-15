@@ -1,5 +1,6 @@
-import {readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import {existsSync, readFileSync, realpathSync} from 'node:fs';
+import {delimiter, resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
@@ -25,6 +26,15 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
   const {root, job, options, contract} = base;
   const a = contract.artifacts;
   const sourceSet = CaseLongformSourceSet.parse(readCaseFixture(root, a.source_set));
+  const ffmpegCandidate = process.env.PATH?.split(delimiter)
+    .map((part) => resolve(part, 'ffmpeg'))
+    .find(existsSync);
+  if (!ffmpegCandidate) throw new Error('fixture ffmpeg unavailable');
+  const ffmpeg_path = realpathSync(ffmpegCandidate);
+  const audioToolAuthority = {
+    ffmpeg_path,
+    ffmpeg_sha256: createHash('sha256').update(readFileSync(ffmpeg_path)).digest('hex'),
+  };
   const oldPolicy = CaseLongformSemanticPolicyReceipt.parse(
     readCaseFixture(options.trustPolicy.authorityRoot, a.semantic_policy_receipt),
   );
@@ -60,7 +70,7 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
   const transcriptValue = CaseLongformAudioTranscript.parse({schema_version: 'case-longform-audio-transcript-v1',
     kind: 'audio_transcript', job_id: job, source_set_sha256: contract.source_set_sha256, fps: 24,
     sources: sourceSet.sources.map((source) => ({role: source.role, source_sha256: source.media.sha256,
-      media: source.media, frame_count: 24, segments: source.role === 'body' ?
+      media: source.media, audio_stream_index: 0, frame_count: 24, segments: source.role === 'body' ?
         [speech('body-before', 0, 2, 'Caso.'), speech('body-cut', 3, 3, 'empresa-reservada'),
           speech('body-after', 4, 23, 'Proceso.')] : source.role === 'closure' ?
         [speech('closure-room', 0, 1, 'portal\nreservado'), speech('closure-after', 2, 23, 'Final.')] :
@@ -74,6 +84,7 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
     closure.media.sha256,
     2,
     3,
+    audioToolAuthority,
   );
   const operations = deriveCaseLongformAudioOperations(
     matches,
@@ -99,10 +110,11 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
       audio_transcript: transcript,
       audio_redaction_map: audio,
     },
-    status: 'BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS',
+    status: 'BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS',
   });
   return {
     ...base,
+    options: {...options, audioToolAuthority},
     reviewContract,
     values: {
       ...base.values,
@@ -118,7 +130,7 @@ afterEach(cleanupCaseFixtures);
 describe('case-longform PR1c0b1a fixture', () => {
   it('materializes a blocked audio authority', () => {
     expect(materializeCaseLongformPrerenderReviewFixture().reviewContract.status).toBe(
-      'BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS',
+      'BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS',
     );
   });
 });

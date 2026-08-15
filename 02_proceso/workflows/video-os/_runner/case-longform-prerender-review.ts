@@ -6,7 +6,10 @@ import {
   deriveCaseLongformAudioOperations,
   validateCaseLongformAudioTranscript,
 } from './case-longform-audio-derivation.ts';
-import {deriveCaseLongformPcmDonorEvidence} from './case-longform-audio-pcm.ts';
+import {
+  deriveCaseLongformPcmDonorEvidence,
+  type CaseLongformAudioToolAuthority,
+} from './case-longform-audio-pcm.ts';
 import {readCaseLongformMaterial} from './case-longform-media.ts';
 import {CaseLongformSourceSet} from './case-longform-graph-structure.ts';
 import {
@@ -25,6 +28,7 @@ import {
 } from './case-longform-prerender-review-authority.ts';
 
 type Options = Parameters<typeof assertCaseLongformPrerenderGraphAuthority>[1];
+type ReviewOptions = Options & {audioToolAuthority: CaseLongformAudioToolAuthority};
 type Ref = {ref: string; sha256: string; bytes: number};
 type Segments = z.infer<typeof CaseLongformSourceSegmentMap>;
 const same = (left: unknown, right: unknown): boolean =>
@@ -49,7 +53,7 @@ const validateRoomToneDonors = (
   audio: z.infer<typeof CaseLongformAudioRedactionMap>,
   sourceSet: z.infer<typeof CaseLongformSourceSet>,
   segments: Segments,
-  options: Options,
+  options: ReviewOptions,
 ): void => {
   for (const operation of audio.operations) {
     if (operation.treatment !== 'ROOM_TONE_IDENTIFIER') continue;
@@ -81,13 +85,14 @@ const validateRoomToneDonors = (
       source.media.sha256,
       donor.source_start_frame,
       donor.source_end_frame,
+      options.audioToolAuthority,
     );
     if (!same(donor, expected)) throw new Error('VIDEO-OS-CASE-AUDIO-DONOR-MATERIAL-DRIFT');
   }
 };
 export const assertCaseLongformPrerenderReviewAuthority = (
   raw: unknown,
-  options: Options,
+  options: ReviewOptions,
 ): CaseLongformPrerenderReviewAuthority => {
   const contract = CaseLongformPrerenderReviewAuthoritySchema.parse(raw);
   const refs = Object.values(contract.artifacts);
@@ -161,7 +166,11 @@ export const assertCaseLongformPrerenderReviewAuthority = (
     if (operation.treatment !== 'ROOM_TONE_IDENTIFIER') return operation;
     return Object.fromEntries(Object.entries(operation).filter(([key]) => key !== 'donor'));
   });
+  const matchIds = audio.matches.map(({match_id}) => match_id);
+  const operationIds = audio.operations.map(({operation_id}) => operation_id);
   if (
+    new Set(matchIds).size !== matchIds.length ||
+    new Set(operationIds).size !== operationIds.length ||
     new Set(matches.map(({dictionary_id}) => dictionary_id)).size !== dictionary.entries.length ||
     !same(audio.matches, matches) ||
     audio.job_id !== contract.job_id ||

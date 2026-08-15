@@ -45,7 +45,10 @@ PR1c0b1a congela policy V2 sin gaps, diccionario externo, transcript completo po
 censura de audio derivada de cues sensibles dedicados. `CUT_CLAUSE` debe coincidir con un gap
 fuente exacto; `ROOM_TONE_IDENTIFIER` exige donor PCM recalculado de la misma fuente, sin TTS ni
 clonación. RMS/peak son mediciones, no prueba de ausencia de habla: `speech_free_review` permanece
-`PENDING_EXTERNAL_REVIEW`. Estado: `BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS`. [CONFIG]
+`PENDING_EXTERNAL_REVIEW`. El transcript es un mapa declarado hash-bound, no evidencia acreditada
+del audio; URLs convergen sin scheme/`www`, el donor fija `audio_stream_index: 0` y usa FFmpeg
+absoluto/hash-bound para resamplear a 48 kHz antes del corte. Estado:
+`BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS`. [CONFIG]
 `coverage_gap`: PR1c0b1b debe cerrar claims, preservación de evidencia/texto funcional y review
 externo antes de cualquier autoridad de render. [METODOLOGIA]
 

@@ -8,6 +8,7 @@ import {
 } from './case-longform-prerender-authority.ts';
 
 const role = z.enum(CASE_LONGFORM_ROLES);
+const portableId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]*$/u);
 const span = {
   start_frame: z.number().int().nonnegative(),
   end_frame: z.number().int().nonnegative(),
@@ -24,7 +25,7 @@ export const CaseLongformAudioDictionaryReceipt = z.strictObject({
   entries: z
     .array(
       z.strictObject({
-        dictionary_id: z.string().min(1),
+        dictionary_id: portableId,
         variants: z.array(z.string().min(1)).min(1),
         required_treatment: z.enum(['CUT_CLAUSE', 'ROOM_TONE_IDENTIFIER']),
         caption_replacement: z.enum(['la empresa', '[URL oculta]']),
@@ -45,18 +46,19 @@ export const CaseLongformSemanticPolicyReceiptV2 = z.strictObject({
 });
 const transcriptSegment = z.discriminatedUnion('kind', [
   z.strictObject({
-    id: z.string().min(1),
+    id: portableId,
     kind: z.literal('speech'),
     ...span,
     text: z.string().min(1),
   }),
-  z.strictObject({id: z.string().min(1), kind: z.literal('silence'), ...span, text: z.literal('')}),
+  z.strictObject({id: portableId, kind: z.literal('silence'), ...span, text: z.literal('')}),
 ]);
 const transcriptSource = (value: (typeof CASE_LONGFORM_ROLES)[number]) =>
   z.strictObject({
     role: z.literal(value),
     source_sha256: Hash,
     media: Ref,
+    audio_stream_index: z.literal(0),
     frame_count: z.number().int().positive(),
     segments: z.array(transcriptSegment).min(1),
   });
@@ -78,10 +80,10 @@ export const CaseLongformAudioTranscript = z.strictObject({
 });
 export const CaseLongformAudioMatch = z.strictObject({
   match_id: z.string().min(1),
-  dictionary_id: z.string().min(1),
+  dictionary_id: portableId,
   role,
   source_sha256: Hash,
-  transcript_segment_id: z.string().min(1),
+  transcript_segment_id: portableId,
   source_start_frame: z.number().int().nonnegative(),
   source_end_frame: z.number().int().nonnegative(),
   variant: z.string().min(1),
@@ -92,6 +94,7 @@ const donor = z.strictObject({
   media: Ref,
   source_start_frame: z.number().int().nonnegative(),
   source_end_frame: z.number().int().nonnegative(),
+  audio_stream_index: z.literal(0),
   sample_rate: z.literal(48_000),
   channels: z.literal(1),
   sample_format: z.literal('s16le'),
@@ -105,7 +108,7 @@ const donor = z.strictObject({
 const operationBase = {
   operation_id: z.string().min(1),
   match_id: z.string().min(1),
-  dictionary_id: z.string().min(1),
+  dictionary_id: portableId,
   role,
   source_sha256: Hash,
   source_start_frame: z.number().int().nonnegative(),
@@ -149,7 +152,7 @@ export const CaseLongformPrerenderReviewAuthoritySchema =
     artifacts: CaseLongformPrerenderGraphAuthoritySchema.shape.artifacts.merge(
       CaseLongformPrerenderReviewRefs,
     ),
-    status: z.literal('BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS'),
+    status: z.literal('BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS'),
   });
 export type CaseLongformPrerenderReviewAuthority = z.infer<
   typeof CaseLongformPrerenderReviewAuthoritySchema

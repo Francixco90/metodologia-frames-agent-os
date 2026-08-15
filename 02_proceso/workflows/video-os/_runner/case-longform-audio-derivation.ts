@@ -15,7 +15,9 @@ const same = (left: unknown, right: unknown): boolean =>
 const folded = (value: string): string =>
   value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
 export const compactCaseLongformAudioToken = (value: string): string =>
-  folded(value).replace(/[^\p{L}\p{N}]/gu, '');
+  folded(value)
+    .replace(/[^\p{L}\p{N}]/gu, '')
+    .replace(/^(?:https?www|https?|www)/u, '');
 
 export const deriveCaseLongformAudioMatches = (transcript: Transcript, dictionary: Dictionary) =>
   transcript.sources
@@ -63,6 +65,7 @@ export const validateCaseLongformAudioTranscript = (
       !expected ||
       source.source_sha256 !== expected.media.sha256 ||
       !same(source.media, expected.media) ||
+      source.audio_stream_index !== 0 ||
       source.frame_count !== sourceFrameCounts.get(source.role) ||
       !same(source.segments, ordered) ||
       ordered[0]?.start_frame !== 0 ||
