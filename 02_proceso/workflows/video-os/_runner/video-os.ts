@@ -13,6 +13,9 @@ export * from './case-longform-prerender.ts';
 export * from './case-longform-prerender-authority.ts';
 export * from './case-longform-prerender-review.ts';
 export * from './case-longform-prerender-review-authority.ts';
+export * from './case-longform-claims.ts';
+export * from './case-longform-semantic.ts';
+export * from './case-longform-semantic-authority.ts';
 export * from './video-os-state.ts';
 
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');

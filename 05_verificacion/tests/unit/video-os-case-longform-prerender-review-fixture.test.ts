@@ -81,7 +81,7 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
     sources: sourceSet.sources.map((source) => ({role: source.role, source_sha256: source.media.sha256,
       media: source.media, audio_stream_index: 0, frame_count: 24, segments: source.role === 'body' ?
         [speech('body-before', 0, 2, 'Caso.'), speech('body-cut', 3, 3, 'empresa-reservada'),
-          speech('body-after', 4, 23, 'Proceso.')] : source.role === 'closure' ?
+          speech('body-after', 4, 23, 'Reconozco su proceso.')] : source.role === 'closure' ?
         [speech('closure-room', 0, 1, 'portal\nreservado'), speech('closure-after', 2, 23, 'Final.')] :
         [speech(`${source.role}-all`, 0, 23, `${source.role} sin identificadores.`)]}))});
   const transcript = writeCaseFixture(root, 'audio-transcript.json', transcriptValue);

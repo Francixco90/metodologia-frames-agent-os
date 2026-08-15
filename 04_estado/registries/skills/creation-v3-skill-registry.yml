@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f
-    package_manifest_sha256: 5f92e70dbd9ed2865bb3a26f808b7c59a83e0552fb9448d509a64ef269c935c5
+    package_manifest_sha256: 07abdc08948b14083ccd980bc48e89c199751e04abbb00d1e58962ab47ae9524
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2759,3 +2759,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-025, event_order: 25, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: bind_case_longform_audio_dictionary_transcript_redaction_and_pcm_donor, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 380ab43ab6169d03a794ff1e928197d8c909b6d1271bf42aabaf22d6134a3366}
   - {event_id: EVT-SKL-CGV-H03-026, event_order: 26, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: harden_case_longform_audio_ids_resampling_tool_authority_and_transcript_gap, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 0d2829121191572ff70623aacf872979e577e0e0deb625c7495321199df67ba6}
   - {event_id: EVT-SKL-CGV-H03-027, event_order: 27, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: block_case_longform_audio_start_pts_drift_with_ffprobe_authority, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 5f92e70dbd9ed2865bb3a26f808b7c59a83e0552fb9448d509a64ef269c935c5}
+  - {event_id: EVT-SKL-CGV-H03-028, event_order: 28, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: bind_case_longform_claims_while_preservation_remains_blocked, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 07abdc08948b14083ccd980bc48e89c199751e04abbb00d1e58962ab47ae9524}
