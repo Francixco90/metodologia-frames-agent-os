@@ -41,6 +41,14 @@ ausencia audiovisual actual no se convierte en política permanente. Estado:
 `coverage_gap`: PR1c0b debe materializar audio/claims/preservación, derivación de transcript y
 diccionario, y review externo del preview; PR1c0a no afirma completitud ni PASS. [METODOLOGIA]
 
+PR1c0b1a congela policy V2 sin gaps, diccionario externo, transcript completo por fuente y
+censura de audio derivada de cues sensibles dedicados. `CUT_CLAUSE` debe coincidir con un gap
+fuente exacto; `ROOM_TONE_IDENTIFIER` exige donor PCM recalculado de la misma fuente, sin TTS ni
+clonación. RMS/peak son mediciones, no prueba de ausencia de habla: `speech_free_review` permanece
+`PENDING_EXTERNAL_REVIEW`. Estado: `BLOCKED_PENDING_SEMANTIC_AND_PRESERVATION_CONTRACTS`. [CONFIG]
+`coverage_gap`: PR1c0b1b debe cerrar claims, preservación de evidencia/texto funcional y review
+externo antes de cualquier autoridad de render. [METODOLOGIA]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye

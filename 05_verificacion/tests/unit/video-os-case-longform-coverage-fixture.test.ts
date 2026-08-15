@@ -9,6 +9,7 @@ import {describe, expect, it} from 'vitest';
 import {
   caseLongformSourceSetSha256,
   CaseLongformPrerenderGraphAuthoritySchema,
+  CaseLongformSourceSegmentMap,
 } from 'workflows/video-os/index.ts';
 
 export type CaseFixtureRef = {ref: string; sha256: string; bytes: number};
@@ -132,8 +133,8 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
   const ranges = [
     [0, 2],
     [3, 5],
-    [6, 17],
-    [18, 20],
+    [6, 15],
+    [16, 20],
     [21, 23],
   ] as const;
   const nodes = roles.map((role, index) => ({
@@ -160,13 +161,35 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     edges: roles.slice(0, -1).map((from, index) => ({from, to: roles[index + 1]})),
   };
   const graph = writeCaseFixture(root, 'graph.json', graphValue);
+  const segmentValues = nodes.flatMap((node) => {
+    const base = {
+      id: `segment-${node.role}`,
+      node_id: node.id,
+      role: node.role,
+      source_sha256: node.source_sha256,
+      source_start_frame: 0,
+      source_end_frame: node.end_frame - node.start_frame,
+      output_start_frame: node.start_frame,
+      output_end_frame: node.end_frame,
+      transform: 'PASSTHROUGH' as const,
+    };
+    return node.role === 'body'
+      ? [
+          {...base, id: 'segment-body-a', source_end_frame: 2, output_end_frame: 8},
+          {
+            ...base,
+            id: 'segment-body-b',
+            source_start_frame: 4,
+            source_end_frame: 10,
+            output_start_frame: 9,
+          },
+        ]
+      : [base];
+  });
   // prettier-ignore
-  const segmentsValue = {schema_version: 'case-longform-source-segment-map-v1', kind: 'source_segment_map',
+  const segmentsValue = CaseLongformSourceSegmentMap.parse({schema_version: 'case-longform-source-segment-map-v1', kind: 'source_segment_map',
     job_id: job, graph_sha256: graph.sha256, source_set_sha256: sourceSetSha,
-    segments: nodes.map((node) => ({id: `segment-${node.role}`,
-      node_id: node.id, role: node.role, source_sha256: node.source_sha256, source_start_frame: 0,
-      source_end_frame: node.end_frame - node.start_frame, output_start_frame: node.start_frame,
-      output_end_frame: node.end_frame, transform: 'PASSTHROUGH'}))};
+    segments: segmentValues});
   const segments = writeCaseFixture(root, 'source-segments.json', segmentsValue);
   const temporalValue = {
     schema_version: 'case-longform-temporal-map-v1',
