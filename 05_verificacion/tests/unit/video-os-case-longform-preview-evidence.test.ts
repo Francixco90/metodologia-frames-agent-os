@@ -43,6 +43,9 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
     redaction_map_sha256: ga.redaction_map.sha256,
     caption_track_sha256: ga.caption_track.sha256,
     caption_cleanup_sha256: ga.caption_cleanup.sha256,
+    transform_order_sha256: ga.transform_order.sha256,
+    source_segment_map_sha256: ga.source_segment_map.sha256,
+    semantic_policy_receipt_sha256: ga.semantic_policy_receipt.sha256,
     mask_ids: MASKS,
   });
   const profile = writeCaseFixture(fixture.root, 'preview-profile.json', {
@@ -130,7 +133,7 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
       observed_coverage: coverage,
       preview_boundary_observation: boundaryObservation,
     },
-    status: 'BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS',
+    status: 'BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS',
   });
   return {
     fixture,
@@ -185,7 +188,7 @@ describe('case-longform PR1b2 observed preview evidence', () => {
   it('accepts exact observed preview evidence but remains blocked', () => {
     const {fixture, contract} = materialize();
     const result = assertCaseLongformPreviewEvidence(contract, fixture.options);
-    expect(result.status).toBe('BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS');
+    expect(result.status).toBe('BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS');
     expect(result).not.toHaveProperty('render_authority');
   });
   it('rejects GraphAuthority, shared config and profile drift', () => {

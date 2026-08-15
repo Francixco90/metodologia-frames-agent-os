@@ -44,6 +44,9 @@ export const CaseLongformSharedPreviewConfig = z.strictObject({
   redaction_map_sha256: Hash,
   caption_track_sha256: Hash,
   caption_cleanup_sha256: Hash,
+  transform_order_sha256: Hash,
+  source_segment_map_sha256: Hash,
+  semantic_policy_receipt_sha256: Hash,
   mask_ids: z.array(z.string().min(1)).min(1),
 });
 const profileBase = {
@@ -110,6 +113,6 @@ export const CaseLongformPreviewEvidenceSchema = z.strictObject({
     observed_coverage: Ref,
     preview_boundary_observation: Ref,
   }),
-  status: z.literal('BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS'),
+  status: z.literal('BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS'),
 });
 export type CaseLongformPreviewEvidence = z.infer<typeof CaseLongformPreviewEvidenceSchema>;

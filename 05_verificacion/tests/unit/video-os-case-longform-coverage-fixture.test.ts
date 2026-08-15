@@ -8,7 +8,7 @@ import {describe, expect, it} from 'vitest';
 
 import {
   caseLongformSourceSetSha256,
-  CaseLongformGraphAuthoritySchema,
+  CaseLongformPrerenderGraphAuthoritySchema,
 } from 'workflows/video-os/index.ts';
 
 export type CaseFixtureRef = {ref: string; sha256: string; bytes: number};
@@ -160,6 +160,14 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     edges: roles.slice(0, -1).map((from, index) => ({from, to: roles[index + 1]})),
   };
   const graph = writeCaseFixture(root, 'graph.json', graphValue);
+  // prettier-ignore
+  const segmentsValue = {schema_version: 'case-longform-source-segment-map-v1', kind: 'source_segment_map',
+    job_id: job, graph_sha256: graph.sha256, source_set_sha256: sourceSetSha,
+    segments: nodes.map((node) => ({id: `segment-${node.role}`,
+      node_id: node.id, role: node.role, source_sha256: node.source_sha256, source_start_frame: 0,
+      source_end_frame: node.end_frame - node.start_frame, output_start_frame: node.start_frame,
+      output_end_frame: node.end_frame, transform: 'PASSTHROUGH'}))};
+  const segments = writeCaseFixture(root, 'source-segments.json', segmentsValue);
   const temporalValue = {
     schema_version: 'case-longform-temporal-map-v1',
     kind: 'temporal_map',
@@ -236,6 +244,22 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
       {id: 'two', start_frame: 11, end_frame: 23, text: 'Caso'},
     ],
   });
+  // prettier-ignore
+  const orderValue = {schema_version: 'case-longform-transform-order-v1', kind: 'transform_order', job_id: job,
+    graph_sha256: graph.sha256,
+    order: ['timeline_cut', 'audio_identifier_replace', 'visual_mask_source_space',
+      'scale_1920x1080', 'compose_single_caption_track', 'encode']};
+  const order = writeCaseFixture(root, 'transform-order.json', orderValue);
+  // prettier-ignore
+  const policyValue = {schema_version: 'case-longform-semantic-policy-receipt-v1', kind: 'semantic_policy_receipt',
+    job_id: job, plan_sha256: plan.sha256, source_set_sha256: sourceSetSha, actor_id: actors.authority,
+    participants: [{participant_id: 'danilo', public_name: 'Danilo Cardona Estrada',
+      required_statuses: ['recognized', 'appointed'], forbidden_statuses: ['certified'], certificate_frames_zero: true},
+      {participant_id: 'alejandra', public_name: 'Alejandra Calderón', maximum_status: 'recognized'},
+      {participant_id: 'natalia', public_name: 'Natalia Andrade', exact_status: 'in_progress'}],
+    required_coverage_gaps: [{participant_id: 'danilo', status: 'appointed',
+      reason: 'missing_audiovisual_evidence'}]};
+  const policy = writeCaseFixture(authorityRoot, 'semantic-policy.json', policyValue);
   const artifacts = {
     preflight,
     source_set: sourceSet,
@@ -248,13 +272,16 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     redaction_map: redaction,
     caption_track: captions,
     caption_cleanup: cleanup,
+    transform_order: order,
+    source_segment_map: segments,
+    semantic_policy_receipt: policy,
   };
-  const contract = CaseLongformGraphAuthoritySchema.parse({
-    schema_version: 'case-longform-graph-authority-v1',
+  const contract = CaseLongformPrerenderGraphAuthoritySchema.parse({
+    schema_version: 'case-longform-prerender-graph-authority-v2',
     job_id: job,
     source_set_sha256: sourceSetSha,
     artifacts,
-    status: 'BLOCKED_PENDING_COVERAGE_CONTRACTS',
+    status: 'BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS',
   });
   const graphAuthority = writeCaseFixture(root, 'graph-authority.json', contract);
   const options = {
@@ -275,7 +302,14 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     contract,
     graphAuthority,
     preview,
-    values: {graph: graphValue, temporal: temporalValue, redaction: redactionValue},
+    values: {
+      graph: graphValue,
+      temporal: temporalValue,
+      redaction: redactionValue,
+      segments: segmentsValue,
+      order: orderValue,
+      policy: policyValue,
+    },
   };
 };
 
@@ -283,7 +317,7 @@ describe('case-longform coverage fixture authority', () => {
   it('materializes an exact blocked GraphAuthority', () => {
     try {
       expect(materializeCaseLongformGraphFixture().contract.status).toBe(
-        'BLOCKED_PENDING_COVERAGE_CONTRACTS',
+        'BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS',
       );
     } finally {
       cleanupCaseFixtures();
