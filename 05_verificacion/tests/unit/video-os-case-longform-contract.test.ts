@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -11,6 +11,7 @@ import {
   caseLongformSourceSetSha256,
   CaseLongformPreflightSchema,
 } from 'workflows/video-os/index.ts';
+import {readCaseLongformMaterial} from 'workflows/video-os/_runner/case-longform-media.ts';
 
 type Ref = {ref: string; sha256: string; bytes: number};
 const temporary: string[] = [];
@@ -199,6 +200,30 @@ describe('case-longform V00/V01 material preflight', () => {
     writeFileSync(resolve(options.projectRoot, contract.preview.media.ref), fake);
     Object.assign(contract.preview.media, {sha256: hash(fake), bytes: fake.byteLength});
     expect(() => assertCaseLongformPreflight(contract, options)).toThrow(/MEDIA-PROBE-FAILED/u);
+  });
+
+  it('rejects a Matroska container renamed with an mp4 suffix', () => {
+    const {contract, options} = materialize();
+    const disguised = makeMedia(options.projectRoot, 'disguised.mkv', 'purple', 760);
+    const previewPath = resolve(options.projectRoot, contract.preview.media.ref);
+    renameSync(resolve(options.projectRoot, disguised.ref), previewPath);
+    Object.assign(contract.preview.media, refFor(options.projectRoot, contract.preview.media.ref));
+    expect(() => assertCaseLongformPreflight(contract, options)).toThrow(/CONTAINER-NOT-MP4/u);
+  });
+
+  it('rejects a path substitution after opening hash-bound bytes', () => {
+    const root = mkdtempSync(resolve(tmpdir(), 'case-toctou-'));
+    temporary.push(root);
+    writeFileSync(resolve(root, 'material.bin'), Buffer.alloc(1024, 1));
+    const ref = refFor(root, 'material.bin');
+    expect(() =>
+      readCaseLongformMaterial(root, ref, {
+        afterOpen: (path) => {
+          renameSync(path, `${path}.opened`);
+          writeFileSync(path, Buffer.alloc(1024, 2));
+        },
+      }),
+    ).toThrow(/MATERIAL-IDENTITY-DRIFT/u);
   });
 
   it('rejects unknown authority and incomplete source topology', () => {

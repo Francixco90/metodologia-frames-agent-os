@@ -85,7 +85,7 @@ export const assertCaseLongformPreflight = (
     throw new Error('VIDEO-OS-CASE-PREFLIGHT-PLAN-MISMATCH');
   for (const item of contract.sources) {
     const measurements = probeCaseLongformMedia(
-      readCaseLongformMaterial(options.projectRoot, item.media).path,
+      readCaseLongformMaterial(options.projectRoot, item.media).bytes,
     );
     const provenanceRef = readCaseLongformMaterial(
       options.trustPolicy.authorityRoot,
@@ -126,7 +126,7 @@ export const assertCaseLongformPreflight = (
       throw new Error('VIDEO-OS-CASE-PREFLIGHT-FREEZE-MISMATCH');
   }
   const previewMeasurements = probeCaseLongformMedia(
-    readCaseLongformMaterial(options.projectRoot, contract.preview.media).path,
+    readCaseLongformMaterial(options.projectRoot, contract.preview.media).bytes,
   );
   const buildRef = readCaseLongformMaterial(
     options.trustPolicy.previewVerifierRoot,

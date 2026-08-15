@@ -6,10 +6,11 @@ bytes y hash reales, procedencia, autoridad, derechos y consentimiento; los rece
 autoridad y preview se resuelven desde raíces externas no solapadas y actores allowlisted.
 [CONFIG]
 
-Source y preview deben ser MP4 1920×1080, CFR24, con audio, conteo coherente de frames y
-decode completo. El source set, plan y preview quedan hash-bound. Un archivo con solo firma
-`ftyp`, una raíz anidada, un actor no confiable o cualquier campo post-render bloquean.
-[CÓDIGO]
+Source y preview deben ser contenedores MP4 reales 1920×1080, CFR24, con audio, conteo
+coherente de frames y decode de todos los streams (`-map 0`). El probe opera sobre un
+snapshot de bytes hash-bound después de revalidar identidad; sustitución TOCTOU, contenedor
+renombrado, archivo con solo firma `ftyp`, raíz anidada, actor no confiable o cualquier campo
+post-render bloquean. [CÓDIGO]
 
 El estado terminal de este slice es `BLOCKED_PENDING_EVIDENCE_CONTRACTS`: no autoriza full
 render, vertical, upload, conectores ni publicación. El grafo ejecutado, cobertura framewise,
