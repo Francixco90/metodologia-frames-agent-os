@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {VideoOsPlanSchema, VideoOsRequestSchema, type VideoOsPlan} from '../_schema/index.ts';
 import {assertVideoOsState, buildResumeCapsule} from './video-os-state.ts';
 
+export * from './case-longform-preview.ts';
 export * from './video-os-state.ts';
 
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
