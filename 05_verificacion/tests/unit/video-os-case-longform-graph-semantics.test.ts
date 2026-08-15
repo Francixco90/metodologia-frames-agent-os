@@ -156,6 +156,12 @@ describe('case-longform graph temporal semantics', () => {
           x.redaction.masks[0]!.start_frame = 9;
         },
       ],
+      [/ORPHAN-MASK/u, (x) => x.redaction.masks.push({...x.redaction.masks[0]!, id: 'orphan'})],
+      [/SENSITIVE-REF-DUPLICATE/u, (x) => x.redaction.sensitive_spans[0]!.mask_ids.push('mask')],
+      [
+        /SENSITIVE-REF-DUPLICATE/u,
+        (x) => x.redaction.sensitive_spans[0]!.dictionary_ids.push('URL'),
+      ],
       [
         /ROI-BOUNDS/u,
         (x) => {

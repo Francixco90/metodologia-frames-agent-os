@@ -98,6 +98,17 @@ export const validateCaseLongformGraphMaterial = (input: Input): void => {
   if (redaction.masks.some(({roi}) => roi.x + roi.width > 1920 || roi.y + roi.height > 1080))
     throw new Error('VIDEO-OS-CASE-MASK-ROI-BOUNDS');
   if (
+    redaction.sensitive_spans.some(
+      ({mask_ids, dictionary_ids}) =>
+        new Set(mask_ids).size !== mask_ids.length ||
+        new Set(dictionary_ids).size !== dictionary_ids.length,
+    )
+  )
+    throw new Error('VIDEO-OS-CASE-SENSITIVE-REF-DUPLICATE');
+  const referencedMasks = new Set(redaction.sensitive_spans.flatMap(({mask_ids}) => mask_ids));
+  if (redaction.masks.some(({id}) => !referencedMasks.has(id)))
+    throw new Error('VIDEO-OS-CASE-ORPHAN-MASK');
+  if (
     redaction.sensitive_spans.some((span) =>
       span.mask_ids.some((id) => {
         const mask = masks.get(id);
