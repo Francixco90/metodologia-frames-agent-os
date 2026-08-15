@@ -15,6 +15,7 @@ const roles = ['intro', 'host', 'body', 'closure', 'outro'] as const;
 const temporary: string[] = [];
 const sha = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
 const HASH = (value: number): string => sha(Buffer.from(String(value)));
+const ROI = {x: 0, y: 0, width: 320, height: 180};
 const refFor = (root: string, ref: string): Ref => {
   const bytes = readFileSync(resolve(root, ref));
   return {ref, sha256: sha(bytes), bytes: bytes.byteLength};
@@ -181,10 +182,10 @@ const materialize = () => {
     fps: 24,
     frame_count: 24,
     layouts: nodes.map(({role, start_frame, end_frame}) => ({id: role, start_frame, end_frame})),
-    scrolls: [{id: 'scroll', start_frame: 8, end_frame: 14}],
+    scrolls: [{id: 'scroll', start_frame: 8, end_frame: 14, roi: ROI}],
     fades: [
-      {id: 'fade-in', start_frame: 0, end_frame: 2},
-      {id: 'fade-out', start_frame: 21, end_frame: 23},
+      {id: 'fade-in', start_frame: 0, end_frame: 2, roi: ROI},
+      {id: 'fade-out', start_frame: 21, end_frame: 23, roi: ROI},
     ],
     boundaries: nodes
       .slice(1)

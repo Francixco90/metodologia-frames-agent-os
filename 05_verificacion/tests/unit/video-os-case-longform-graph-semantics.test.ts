@@ -80,10 +80,12 @@ const base = (): Input => ({
       start_frame: ranges[index]![0],
       end_frame: ranges[index]![1],
     })),
-    scrolls: [{id: 'scroll', start_frame: 8, end_frame: 14}],
+    scrolls: [
+      {id: 'scroll', start_frame: 8, end_frame: 14, roi: {x: 0, y: 0, width: 320, height: 180}},
+    ],
     fades: [
-      {id: 'in', start_frame: 0, end_frame: 2},
-      {id: 'out', start_frame: 21, end_frame: 23},
+      {id: 'in', start_frame: 0, end_frame: 2, roi: {x: 0, y: 0, width: 320, height: 180}},
+      {id: 'out', start_frame: 21, end_frame: 23, roi: {x: 0, y: 0, width: 320, height: 180}},
     ],
     boundaries: [
       {id: 'intro->host', frame: 3},

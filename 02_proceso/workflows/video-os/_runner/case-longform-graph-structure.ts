@@ -91,7 +91,14 @@ export const CaseLongformOperationGraph = z.strictObject({
   edges: z.tuple([edge(intro, host), edge(host, body), edge(body, closure), edge(closure, outro)]),
 });
 
+const roi = z.strictObject({
+  x: z.number().int().nonnegative(),
+  y: z.number().int().nonnegative(),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+});
 const event = z.strictObject({id: z.string().min(1), ...frameSpan});
+const regionalEvent = z.strictObject({id: z.string().min(1), ...frameSpan, roi});
 export const CaseLongformTemporalMap = z.strictObject({
   schema_version: z.literal('case-longform-temporal-map-v1'),
   kind: z.literal('temporal_map'),
@@ -100,17 +107,11 @@ export const CaseLongformTemporalMap = z.strictObject({
   fps: z.literal(24),
   frame_count: z.number().int().positive(),
   layouts: z.array(event).min(1),
-  scrolls: z.array(event).min(1),
-  fades: z.array(event).min(2),
+  scrolls: z.array(regionalEvent).min(1),
+  fades: z.array(regionalEvent).min(2),
   boundaries: z
     .array(z.strictObject({id: z.string().min(1), frame: z.number().int().nonnegative()}))
     .length(4),
-});
-const roi = z.strictObject({
-  x: z.number().int().nonnegative(),
-  y: z.number().int().nonnegative(),
-  width: z.number().int().positive(),
-  height: z.number().int().positive(),
 });
 export const CaseLongformRedactionMap = z.strictObject({
   schema_version: z.literal('case-longform-redaction-map-v1'),

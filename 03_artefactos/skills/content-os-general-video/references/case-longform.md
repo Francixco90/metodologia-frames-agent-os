@@ -19,9 +19,17 @@ posterior; `UNKNOWN` o ausencia material conservan el bloqueo. [METODOLOGIA]
 
 PR1b consume y revalida el preflight material exacto, liga fuentes/plan/preview, grafo
 `intro→host→body→closure→outro`, ejecutables allowlisted y cleanup material. Su estado es
-`BLOCKED_PENDING_COVERAGE_CONTRACTS`: PR1b2 debe demostrar fingerprints, movimiento,
-cobertura framewise y lineage observado; PR1c conserva auditoría, attestations, paquete exacto
+`BLOCKED_PENDING_COVERAGE_CONTRACTS`: PR1b2 debe demostrar movimiento, cobertura framewise
+y observaciones de frontera; PR1c conserva ejecución, auditoría, attestations, paquete exacto
 y `RENDERED_DRAFT`. Ningún slice anterior autoriza render. [CONFIG]
+
+PR1b2 reejecuta esa autoridad y acepta solo evidencia observada del preview: framehash real,
+cobertura exacta derivada, cambio local dentro del ROI de scroll/fades y hashes por cada
+`span×mask×frame` sensible. El full queda como perfil planificado sin media; el estado máximo es
+`BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS`; observar fronteras no prueba ejecución,
+lineage ni causalidad. [CÓDIGO]
+`coverage_gap`: start/mid/end prueban cambio local muestreado, no continuidad entre esos puntos;
+PR1c debe verificar la continuidad local framewise. [CONFIG]
 
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
