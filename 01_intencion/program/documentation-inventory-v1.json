@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "8df26385056507e4fec116ed2e05984d79f959431d1e91beb1591ac864c35b61",
-  "totalMarkdown": 1843,
-  "auditedAuthored": 592,
+  "repositoryTreeSha256": "4a01877c17085da26b805971a4852ae67ac9098415236401bf98b13246212197",
+  "totalMarkdown": 1844,
+  "auditedAuthored": 593,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -263,6 +263,7 @@
       "03_artefactos/skills/content-os-faceless-explainer/references/story-design.md",
       "03_artefactos/skills/content-os-faceless-explainer/references/visual-design.md",
       "03_artefactos/skills/content-os-faceless-explainer/rules/workflow-contract.md",
+      "03_artefactos/skills/content-os-general-video/references/case-longform.md",
       "03_artefactos/skills/content-os-general-video/references/design-discipline.md",
       "03_artefactos/skills/content-os-general-video/references/dispatch.md",
       "03_artefactos/skills/content-os-general-video/references/genre-lenses.md",
@@ -11473,6 +11474,32 @@
       }
     },
     {
+      "path": "03_artefactos/skills/content-os-general-video/references/case-longform.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/content-os-general-video/references/case-longform.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/content-os-general-video/references/case-longform.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "bd8c4d897029d3d346ad73f22049b148851f628faae79f71f61f2906b9b95d65",
+      "words": 206,
+      "lines": 25,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/content-os-general-video/references/design-discipline.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -17747,7 +17774,7 @@
     }
   ],
   "summary": {
-    "keep": 577,
+    "keep": 578,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

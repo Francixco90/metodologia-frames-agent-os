@@ -56,6 +56,7 @@ const required = [
   'scripts/workflow-audit.mjs',
   'scripts/linguistic-gate.mjs',
   'references/genre-lenses.md',
+  'references/case-longform.md',
   'references/dispatch.md',
   'references/design-discipline.md',
   'references/steps-receta.md',
@@ -125,6 +126,7 @@ const requiredTokens = [
   'branded-wrapper-v1',
   'source-analysis-v1',
   'composition-fit-v1',
+  'case-longform-preflight-v1',
   'storyboard-multiframe-v1',
 ];
 for (const token of requiredTokens) {

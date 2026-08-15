@@ -36,6 +36,8 @@ autoridad: scripts, EDL, captions, overlays, assets, planes y receipts deben dec
 mismo `specId` y `specSha256`. Los trabajos v1 son legibles para migración, pero `render`
 los bloquea. Nunca se corrige un output compilado como si fuera fuente.
 
+[`case-longform-preflight-v1`](references/case-longform.md). [CONFIG]
+
 Cada pieza usa `piece-scripts-v2`: `scriptMode`, `decision`, `sourceSpans`, `visualSpans`,
 `captionTrackRef`, `correctionLedgerRef`, claims y dependencias hash-bound. Las decisiones
 son `use`, `extend`, `reframe` o `discard`; sin evidencia suficiente no se fuerza una pieza.

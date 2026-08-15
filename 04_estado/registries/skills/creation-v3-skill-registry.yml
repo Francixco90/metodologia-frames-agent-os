@@ -182,8 +182,8 @@ entries:
     version: 0.15.0
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 755be430397066aa133aea0c76e201f1d4f52d95e468ad0a3554aebe40aa4bbe
-    package_manifest_sha256: 210c66f7fd46186a93be3afe218185406b1690d5bd9cf8c846fe14ad6c519827
+    content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f
+    package_manifest_sha256: a3beeb770aad2f7048a85ad543e7a2c2ba98d233ced9d89258bec8291b15bb3a
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2750,3 +2750,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-018, event_order: 18, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-11T00:00:00Z', decision: activate_canonical_transcript_intelligence_consumer_v015}
   - {event_id: EVT-SKL-MWRL-H03-001, event_order: 1, skill_id: metodologia-workshop-route-landing-html, from: null, to: candidate, actor_id: RT-07-WORKSHOP-ROUTE-LANDING-PRODUCER, recorded_at: '2026-08-12T00:00:00Z', decision: register_spec_compile_verify_candidate_without_promotion}
   - {event_id: EVT-SKL-CAO-H03-008, event_order: 8, skill_id: career-application-orchestrator, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-14T00:00:00Z', decision: refresh_a0_fail_closed_authority_hash_binding, content_sha256: 3356d2dc65a3e3cc2e61c3380e4bc33ec5f1812b4ac307350b8f99ab5101a4b3, package_manifest_sha256: 29d779a7c4fdf407f8f6eef7101f84d076f02f875d04735274b86954698dea94}
+  - {event_id: EVT-SKL-CGV-H03-019, event_order: 19, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-14T00:00:00Z', decision: bind_case_longform_mp4_snapshot_and_toctou_preflight, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: a3beeb770aad2f7048a85ad543e7a2c2ba98d233ced9d89258bec8291b15bb3a}
