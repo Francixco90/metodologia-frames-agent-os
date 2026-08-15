@@ -41,6 +41,19 @@ ausencia audiovisual actual no se convierte en política permanente. Estado:
 `coverage_gap`: PR1c0b debe materializar audio/claims/preservación, derivación de transcript y
 diccionario, y review externo del preview; PR1c0a no afirma completitud ni PASS. [METODOLOGIA]
 
+PR1c0b1a congela policy V2 sin gaps, diccionario externo, transcript completo por fuente y
+censura de audio derivada de cues sensibles dedicados. `CUT_CLAUSE` debe coincidir con un gap
+fuente exacto; `ROOM_TONE_IDENTIFIER` exige donor PCM recalculado de la misma fuente, sin TTS ni
+clonación. RMS/peak son mediciones, no prueba de ausencia de habla: `speech_free_review` permanece
+`PENDING_EXTERNAL_REVIEW`. El transcript es un mapa declarado hash-bound, no evidencia acreditada
+del audio; URLs convergen sin scheme/`www`, el donor fija `audio_stream_index: 0` y usa FFmpeg
+absoluto/hash-bound para resamplear a 48 kHz antes del corte. Estado:
+`BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS`. [CONFIG]
+FFprobe también es absoluto/hash-bound: video y `a:0` deben iniciar en cero con tolerancia máxima
+de una muestra a 48 kHz; cualquier PTS desplazado bloquea mapa y donor. [CONFIG]
+`coverage_gap`: PR1c0b1b debe cerrar claims, preservación de evidencia/texto funcional y review
+externo antes de cualquier autoridad de render. [METODOLOGIA]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye
