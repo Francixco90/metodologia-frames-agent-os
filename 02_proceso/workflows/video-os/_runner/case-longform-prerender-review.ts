@@ -7,6 +7,7 @@ import {
   validateCaseLongformAudioTranscript,
 } from './case-longform-audio-derivation.ts';
 import {
+  assertCaseLongformAudioStartAlignment,
   deriveCaseLongformPcmDonorEvidence,
   type CaseLongformAudioToolAuthority,
 } from './case-longform-audio-pcm.ts';
@@ -162,6 +163,15 @@ export const assertCaseLongformPrerenderReviewAuthority = (
   );
   validateCaseLongformAudioTranscript(transcript, sourceSet, sourceFrameCounts);
   const matches = deriveCaseLongformAudioMatches(transcript, dictionary);
+  const matchedRoles = new Set(matches.map(({role}) => role));
+  sourceSet.sources
+    .filter(({role}) => matchedRoles.has(role))
+    .forEach(({media}) =>
+      assertCaseLongformAudioStartAlignment(
+        readCaseLongformMaterial(options.projectRoot, media).bytes,
+        options.audioToolAuthority,
+      ),
+    );
   const operationCores = audio.operations.map((operation) => {
     if (operation.treatment !== 'ROOM_TONE_IDENTIFIER') return operation;
     return Object.fromEntries(Object.entries(operation).filter(([key]) => key !== 'donor'));

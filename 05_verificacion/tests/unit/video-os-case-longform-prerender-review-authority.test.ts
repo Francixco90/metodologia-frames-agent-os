@@ -327,9 +327,13 @@ describe('case-longform PR1c0b1a audio authority', () => {
           closure.sha256,
           0,
           0,
-          {ffmpeg_path: fake, ffmpeg_sha256: fixture.options.audioToolAuthority.ffmpeg_sha256},
+          {
+            ...fixture.options.audioToolAuthority,
+            ffmpeg_path: fake,
+            ffmpeg_sha256: fixture.options.audioToolAuthority.ffmpeg_sha256,
+          },
         ),
-      ).toThrow(/FFMPEG-UNTRUSTED/u);
+      ).toThrow(/TOOL-UNTRUSTED/u);
     } finally {
       if (previousPath === undefined) delete process.env.PATH;
       else process.env.PATH = previousPath;

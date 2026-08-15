@@ -49,6 +49,8 @@ clonación. RMS/peak son mediciones, no prueba de ausencia de habla: `speech_fre
 del audio; URLs convergen sin scheme/`www`, el donor fija `audio_stream_index: 0` y usa FFmpeg
 absoluto/hash-bound para resamplear a 48 kHz antes del corte. Estado:
 `BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS`. [CONFIG]
+FFprobe también es absoluto/hash-bound: video y `a:0` deben iniciar en cero con tolerancia máxima
+de una muestra a 48 kHz; cualquier PTS desplazado bloquea mapa y donor. [CONFIG]
 `coverage_gap`: PR1c0b1b debe cerrar claims, preservación de evidencia/texto funcional y review
 externo antes de cualquier autoridad de render. [METODOLOGIA]
 

@@ -1,3 +1,4 @@
+import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {existsSync, readFileSync, realpathSync} from 'node:fs';
 import {delimiter, resolve} from 'node:path';
@@ -15,6 +16,7 @@ import {
 } from 'workflows/video-os/index.ts';
 import {CaseLongformSourceSet} from 'workflows/video-os/_runner/case-longform-graph-structure.ts';
 import {
+  caseFixtureRef,
   cleanupCaseFixtures,
   materializeCaseLongformGraphFixture,
   readCaseFixture,
@@ -26,14 +28,21 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
   const {root, job, options, contract} = base;
   const a = contract.artifacts;
   const sourceSet = CaseLongformSourceSet.parse(readCaseFixture(root, a.source_set));
-  const ffmpegCandidate = process.env.PATH?.split(delimiter)
-    .map((part) => resolve(part, 'ffmpeg'))
-    .find(existsSync);
-  if (!ffmpegCandidate) throw new Error('fixture ffmpeg unavailable');
-  const ffmpeg_path = realpathSync(ffmpegCandidate);
+  const trustedTool = (name: string) => {
+    const candidate = process.env.PATH?.split(delimiter)
+      .map((part) => resolve(part, name))
+      .find(existsSync);
+    if (!candidate) throw new Error(`fixture ${name} unavailable`);
+    const path = realpathSync(candidate);
+    return {path, sha256: createHash('sha256').update(readFileSync(path)).digest('hex')};
+  };
+  const ffmpeg = trustedTool('ffmpeg');
+  const ffprobe = trustedTool('ffprobe');
   const audioToolAuthority = {
-    ffmpeg_path,
-    ffmpeg_sha256: createHash('sha256').update(readFileSync(ffmpeg_path)).digest('hex'),
+    ffmpeg_path: ffmpeg.path,
+    ffmpeg_sha256: ffmpeg.sha256,
+    ffprobe_path: ffprobe.path,
+    ffprobe_sha256: ffprobe.sha256,
   };
   const oldPolicy = CaseLongformSemanticPolicyReceipt.parse(
     readCaseFixture(options.trustPolicy.authorityRoot, a.semantic_policy_receipt),
@@ -132,5 +141,19 @@ describe('case-longform PR1c0b1a fixture', () => {
     expect(materializeCaseLongformPrerenderReviewFixture().reviewContract.status).toBe(
       'BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS',
     );
+  });
+  it('blocks a:0 starting about 0.478 seconds after video', () => {
+    const fixture = materializeCaseLongformPrerenderReviewFixture();
+    const output = resolve(fixture.root, 'delayed-audio.mp4');
+    // prettier-ignore
+    const built = spawnSync(fixture.options.audioToolAuthority.ffmpeg_path, [
+      '-v', 'error', '-f', 'lavfi', '-i', 'color=s=1920x1080:r=24:d=1', '-itsoffset', '0.5',
+      '-f', 'lavfi', '-i', 'sine=frequency=440:sample_rate=48000:duration=1', '-map', '0:v:0',
+      '-map', '1:a:0', '-c:v', 'mpeg4', '-c:a', 'aac', '-shortest', '-y', output]);
+    expect(built.status).toBe(0);
+    const media = caseFixtureRef(fixture.root, 'delayed-audio.mp4');
+    // prettier-ignore
+    expect(() => deriveCaseLongformPcmDonorEvidence(readFileSync(output), media, media.sha256,
+      0, 0, fixture.options.audioToolAuthority)).toThrow(/START-PTS-DRIFT/u);
   });
 });

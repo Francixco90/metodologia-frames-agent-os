@@ -6,15 +6,59 @@ import {isAbsolute, resolve} from 'node:path';
 
 type Ref = {ref: string; sha256: string; bytes: number};
 const sha = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
-export type CaseLongformAudioToolAuthority = {ffmpeg_path: string; ffmpeg_sha256: string};
-const assertTool = (tool: CaseLongformAudioToolAuthority) => {
-  if (!isAbsolute(tool.ffmpeg_path) || realpathSync(tool.ffmpeg_path) !== tool.ffmpeg_path)
-    throw new Error('VIDEO-OS-CASE-AUDIO-FFMPEG-UNTRUSTED');
-  const stat = lstatSync(tool.ffmpeg_path);
-  const digest = sha(readFileSync(tool.ffmpeg_path));
-  if (stat.isSymbolicLink() || !stat.isFile() || digest !== tool.ffmpeg_sha256)
-    throw new Error('VIDEO-OS-CASE-AUDIO-FFMPEG-UNTRUSTED');
+export type CaseLongformAudioToolAuthority = {
+  ffmpeg_path: string;
+  ffmpeg_sha256: string;
+  ffprobe_path: string;
+  ffprobe_sha256: string;
+};
+const assertTool = (path: string, expected: string) => {
+  if (!isAbsolute(path) || realpathSync(path) !== path)
+    throw new Error('VIDEO-OS-CASE-AUDIO-TOOL-UNTRUSTED');
+  const stat = lstatSync(path);
+  const digest = sha(readFileSync(path));
+  if (stat.isSymbolicLink() || !stat.isFile() || digest !== expected)
+    throw new Error('VIDEO-OS-CASE-AUDIO-TOOL-UNTRUSTED');
   return {dev: stat.dev, ino: stat.ino, size: stat.size, mtimeMs: stat.mtimeMs, digest};
+};
+export const assertCaseLongformAudioStartAlignment = (
+  bytes: Buffer,
+  tool: CaseLongformAudioToolAuthority,
+): void => {
+  const before = assertTool(tool.ffprobe_path, tool.ffprobe_sha256);
+  const root = mkdtempSync(resolve(tmpdir(), 'video-os-case-audio-probe-'));
+  const snapshot = resolve(root, 'source.mp4');
+  writeFileSync(snapshot, bytes, {flag: 'wx', mode: 0o600});
+  try {
+    // prettier-ignore
+    const result = spawnSync(tool.ffprobe_path,
+      ['-v', 'error', '-show_entries', 'stream=index,codec_type,start_time', '-of', 'json', snapshot],
+      {encoding: 'utf8', maxBuffer: 4 * 1024 * 1024});
+    const after = assertTool(tool.ffprobe_path, tool.ffprobe_sha256);
+    const parsed = JSON.parse(result.stdout || '{}') as {
+      streams?: Array<{index?: number; codec_type?: string; start_time?: string}>;
+    };
+    const streams = parsed.streams;
+    const video = streams?.filter(({codec_type}) => codec_type === 'video')[0];
+    const audio = streams?.filter(({codec_type}) => codec_type === 'audio')[0];
+    const videoStart = Number(video?.start_time);
+    const audioStart = Number(audio?.start_time);
+    const tolerance = 1 / 48_000;
+    if (
+      result.status !== 0 ||
+      JSON.stringify(before) !== JSON.stringify(after) ||
+      !Number.isInteger(video?.index) ||
+      !Number.isInteger(audio?.index) ||
+      !Number.isFinite(videoStart) ||
+      !Number.isFinite(audioStart) ||
+      Math.abs(videoStart) > tolerance ||
+      Math.abs(audioStart) > tolerance ||
+      Math.abs(videoStart - audioStart) > tolerance
+    )
+      throw new Error('VIDEO-OS-CASE-AUDIO-START-PTS-DRIFT');
+  } finally {
+    rmSync(root, {recursive: true, force: true});
+  }
 };
 
 export const deriveCaseLongformPcmDonorEvidence = (
@@ -25,7 +69,8 @@ export const deriveCaseLongformPcmDonorEvidence = (
   endFrame: number,
   tool: CaseLongformAudioToolAuthority,
 ) => {
-  const beforeTool = assertTool(tool);
+  assertCaseLongformAudioStartAlignment(bytes, tool);
+  const beforeTool = assertTool(tool.ffmpeg_path, tool.ffmpeg_sha256);
   const root = mkdtempSync(resolve(tmpdir(), 'video-os-case-pcm-'));
   const snapshot = resolve(root, 'source.mp4');
   writeFileSync(snapshot, bytes, {flag: 'wx', mode: 0o600});
@@ -53,7 +98,7 @@ export const deriveCaseLongformPcmDonorEvidence = (
       ],
       {maxBuffer: 16 * 1024 * 1024},
     );
-    const afterTool = assertTool(tool);
+    const afterTool = assertTool(tool.ffmpeg_path, tool.ffmpeg_sha256);
     const pcm = result.stdout;
     if (
       JSON.stringify(beforeTool) !== JSON.stringify(afterTool) ||

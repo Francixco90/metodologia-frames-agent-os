@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "d1099605f9cc02bca4a1ac09625ed64527daf0f4929cd64e0ad8a3331c526c54",
+  "repositoryTreeSha256": "52d554569e7bec31a41279c0d77823284ba3b3478e6018ce3796d434c08dd4ec",
   "totalMarkdown": 1844,
   "auditedAuthored": 593,
   "classPaths": {
@@ -11485,9 +11485,9 @@
       "sourceRef": "03_artefactos/skills/content-os-general-video/references/case-longform.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "26c2035355941cd1971c76e31b327d454c480c0cb29f846fd5a2c5b01b4142c8",
-      "words": 520,
-      "lines": 60,
+      "sha256": "a26705edd44f3d5efb0bb84d224d251002db6804c37204d7fd93a409567afc4c",
+      "words": 548,
+      "lines": 62,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
