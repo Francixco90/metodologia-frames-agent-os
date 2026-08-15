@@ -42,8 +42,8 @@ export const materializeCaseLongformPreservationPlanFixture = () => {
     roi: mask.roi,
   }));
   const regions = [
-    region('danilo-dashboard-main', 'dashboards', 'body', 4, 5, roi(0, 0, 500, 100)),
-    region('danilo-dashboard-secondary', 'dashboards', 'body', 6, 7, roi(0, 200, 300, 100)),
+    region('danilo-dashboard-main', 'dashboards', 'body', 4, 5, roi(0, 0, 500, 400)),
+    region('danilo-dashboard-secondary', 'dashboards', 'body', 6, 7, roi(0, 500, 300, 100)),
     region('danilo-interface', 'interfaces', 'body', 4, 5, roi(600, 0, 150, 80)),
     region('danilo-functional', 'functional_text', 'body', 4, 5, roi(800, 0, 150, 80)),
     region('danilo-evidence', 'evidence', 'body', 4, 5, roi(1000, 0, 150, 80)),

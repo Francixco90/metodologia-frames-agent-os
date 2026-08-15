@@ -9,6 +9,7 @@ import type {
   CaseLongformPreservationPlan,
   CaseLongformPreservationPolicyReceipt,
 } from './case-longform-preservation-plan-authority.ts';
+import * as maskGeometry from './case-longform-preservation-plan-mask.ts';
 
 type Policy = z.infer<typeof CaseLongformPreservationPolicyReceipt>;
 type Participant = Policy['participants'][number];
@@ -36,17 +37,9 @@ const canonicalCoverage: Record<Participant['participant_id'], [Category, Role[]
     ['captions', ['body', 'closure']],
     ['motion', ['body', 'closure']],
   ],
-  natalia: [
-    'faces',
-    'drawings',
-    'products',
-    'dashboards',
-    'interfaces',
-    'functional_text',
-    'evidence',
-    'captions',
-    'motion',
-  ].map((value) => [value as Category, ['body']]),
+  natalia: 'faces drawings products dashboards interfaces functional_text evidence captions motion'
+    .split(' ')
+    .map((value) => [value as Category, ['body']]),
 };
 const same = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
 const roiKey = (v: Roi): string => `${v.x}:${v.y}:${v.width}:${v.height}`;
@@ -117,7 +110,13 @@ const assertPolicyParticipant = (
     )
   )
     throw new Error('VIDEO-OS-CASE-PRESERVATION-REGION-DUPLICATE');
-  for (const [category, roles] of canonicalCoverage[participant.participant_id])
+  const coverage = canonicalCoverage[participant.participant_id];
+  for (const region of participant.regions) {
+    const allowed = coverage.find(([category]) => category === region.category);
+    if (!allowed || !allowed[1].includes(region.source_role))
+      throw new Error('VIDEO-OS-CASE-PRESERVATION-CANONICAL-ALLOWLIST');
+  }
+  for (const [category, roles] of coverage)
     if (
       !participant.regions.some(
         (region) => region.category === category && roles.includes(region.source_role),
@@ -184,6 +183,18 @@ export const assertCaseLongformPreservationPlanGeometry = (
     )
       throw new Error('VIDEO-OS-CASE-PRESERVATION-REGION-DRIFT');
     exactIds(region.overlay_ids, expectedOverlays, 'VIDEO-OS-CASE-PRESERVATION-OVERLAY-SET-DRIFT');
+    const area = region.output_roi.width * region.output_roi.height;
+    for (let frame = outputStart; frame <= outputEnd; frame += 1) {
+      const masks = selected.authorized_overlays
+        .filter((overlay) => overlay.start_frame <= frame && overlay.end_frame >= frame)
+        .map((overlay) => maskGeometry.clipCaseLongformRoi(region.output_roi, overlay.roi))
+        .filter((roi): roi is Roi => roi !== null);
+      if (
+        (area - maskGeometry.caseLongformRoiUnionArea(masks)) * 1_000_000 <
+        area * policy.minimum_residual_ratio_ppm
+      )
+        throw new Error('VIDEO-OS-CASE-PRESERVATION-RESIDUAL-RATIO');
+    }
   }
   exactIds([...usedOverlays], overlayIds, 'VIDEO-OS-CASE-PRESERVATION-OVERLAY-ORPHAN');
 };
