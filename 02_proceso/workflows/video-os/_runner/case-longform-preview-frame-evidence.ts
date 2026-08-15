@@ -1,5 +1,4 @@
 import {spawnSync} from 'node:child_process';
-import {createHash} from 'node:crypto';
 import {mkdtempSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -88,18 +87,6 @@ export const deriveCaseLongformPreviewCoverage = (
   });
   return points.sort((left, right) => left.id.localeCompare(right.id));
 };
-
-const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
-export const caseLongformPreviewFingerprints = (
-  sourceSha256: string,
-  startFrameSha256: string,
-  endFrameSha256: string,
-): {input_fingerprint: string; output_fingerprint: string} => ({
-  input_fingerprint: sha(`source:${sourceSha256}\nstart:${startFrameSha256}`),
-  output_fingerprint: sha(
-    `source:${sourceSha256}\nstart:${startFrameSha256}\nend:${endFrameSha256}`,
-  ),
-});
 
 export const caseLongformRoiKey = ({x, y, width, height}: CaseLongformRoi): string =>
   `${x}:${y}:${width}:${height}`;

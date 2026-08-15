@@ -10,7 +10,6 @@ import {
   CaseLongformTemporalMap,
 } from './case-longform-graph-structure.ts';
 import {
-  caseLongformPreviewFingerprints,
   caseLongformRoiKey,
   deriveCaseLongformPreviewCoverage,
   extractCaseLongformPreviewEvidenceHashes,
@@ -19,7 +18,7 @@ import {
   CaseLongformObservedCoverage,
   CaseLongformPlannedFullProfile,
   CaseLongformPreviewEvidenceSchema,
-  CaseLongformPreviewObservedLineage,
+  CaseLongformPreviewBoundaryObservation,
   CaseLongformPreviewProfile,
   CaseLongformSharedPreviewConfig,
   type CaseLongformPreviewEvidence,
@@ -66,10 +65,10 @@ export const assertCaseLongformPreviewEvidence = (
     CaseLongformPlannedFullProfile,
   );
   const coverage = material(options.projectRoot, a.observed_coverage, CaseLongformObservedCoverage);
-  const lineage = material(
+  const boundaryObservation = material(
     options.projectRoot,
-    a.preview_observed_lineage,
-    CaseLongformPreviewObservedLineage,
+    a.preview_boundary_observation,
+    CaseLongformPreviewBoundaryObservation,
   );
   const maskIds = redaction.masks.map(({id}) => id).sort();
   if (
@@ -168,27 +167,23 @@ export const assertCaseLongformPreviewEvidence = (
       if (hashes.some((hash) => !hash) || new Set(hashes).size < 2)
         throw new Error(`VIDEO-OS-CASE-PREVIEW-${kind.toUpperCase()}-STATIC`);
     }
-  const expectedLineage = graph.nodes.map((node) => ({
+  const expectedBoundaryObservation = graph.nodes.map((node) => ({
     role: node.role,
+    source_sha256: node.source_sha256,
     start_frame: node.start_frame,
+    start_frame_sha256: frameHashes.get(node.start_frame)!,
     end_frame: node.end_frame,
-    ...caseLongformPreviewFingerprints(
-      node.source_sha256,
-      frameHashes.get(node.start_frame)!,
-      frameHashes.get(node.end_frame)!,
-    ),
+    end_frame_sha256: frameHashes.get(node.end_frame)!,
   }));
   if (
-    lineage.job_id !== contract.job_id ||
-    lineage.graph_sha256 !== ga.operation_graph.sha256 ||
-    lineage.runner_sha256 !== ga.runner.sha256 ||
-    lineage.compiler_sha256 !== ga.compiler.sha256 ||
-    lineage.preview_sha256 !== ga.preview_media.sha256 ||
-    lineage.preview_profile_sha256 !== a.preview_profile.sha256 ||
-    !same(lineage.nodes, expectedLineage) ||
+    boundaryObservation.job_id !== contract.job_id ||
+    boundaryObservation.graph_sha256 !== ga.operation_graph.sha256 ||
+    boundaryObservation.preview_sha256 !== ga.preview_media.sha256 ||
+    boundaryObservation.preview_profile_sha256 !== a.preview_profile.sha256 ||
+    !same(boundaryObservation.nodes, expectedBoundaryObservation) ||
     runner.command_sha256 !== runner.executable.sha256 ||
     compiler.command_sha256 !== compiler.executable.sha256
   )
-    throw new Error('VIDEO-OS-CASE-PREVIEW-OBSERVED-LINEAGE-DRIFT');
+    throw new Error('VIDEO-OS-CASE-PREVIEW-BOUNDARY-OBSERVATION-DRIFT');
   return contract;
 };

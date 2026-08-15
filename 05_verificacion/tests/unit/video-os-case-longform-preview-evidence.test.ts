@@ -11,12 +11,11 @@ import {
 import {
   CaseLongformObservedCoverage,
   CaseLongformPlannedFullProfile,
-  CaseLongformPreviewObservedLineage,
+  CaseLongformPreviewBoundaryObservation,
   CaseLongformPreviewProfile,
   CaseLongformSharedPreviewConfig,
 } from 'workflows/video-os/_runner/case-longform-preview-evidence-schema.ts';
 import {
-  caseLongformPreviewFingerprints,
   caseLongformRoiKey,
   extractCaseLongformPreviewEvidenceHashes,
 } from 'workflows/video-os/_runner/case-longform-preview-frame-evidence.ts';
@@ -103,26 +102,22 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
     preview_profile_sha256: profile.sha256,
     points,
   });
-  const lineageNodes = fixture.values.graph.nodes.map((node) => ({
+  const boundaryNodes = fixture.values.graph.nodes.map((node) => ({
     role: node.role,
+    source_sha256: node.source_sha256,
     start_frame: node.start_frame,
+    start_frame_sha256: frameHashes.get(node.start_frame),
     end_frame: node.end_frame,
-    ...caseLongformPreviewFingerprints(
-      node.source_sha256,
-      frameHashes.get(node.start_frame)!,
-      frameHashes.get(node.end_frame)!,
-    ),
+    end_frame_sha256: frameHashes.get(node.end_frame),
   }));
-  const lineage = writeCaseFixture(fixture.root, 'preview-lineage.json', {
-    schema_version: 'case-longform-preview-observed-lineage-v1',
-    kind: 'preview_observed_lineage',
+  const boundaryObservation = writeCaseFixture(fixture.root, 'preview-boundaries.json', {
+    schema_version: 'case-longform-preview-boundary-observation-v1',
+    kind: 'preview_boundary_observation',
     job_id: fixture.job,
     graph_sha256: ga.operation_graph.sha256,
-    runner_sha256: ga.runner.sha256,
-    compiler_sha256: ga.compiler.sha256,
     preview_sha256: fixture.preview.sha256,
     preview_profile_sha256: profile.sha256,
-    nodes: lineageNodes,
+    nodes: boundaryNodes,
   });
   const contract = CaseLongformPreviewEvidenceSchema.parse({
     schema_version: 'case-longform-preview-evidence-v1',
@@ -133,9 +128,9 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
       preview_profile: profile,
       planned_full_profile: fullProfile,
       observed_coverage: coverage,
-      preview_observed_lineage: lineage,
+      preview_boundary_observation: boundaryObservation,
     },
-    status: 'BLOCKED_PENDING_POSTRENDER_CONTRACTS',
+    status: 'BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS',
   });
   return {
     fixture,
@@ -145,7 +140,9 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
       profile: CaseLongformPreviewProfile.parse(readCaseFixture(fixture.root, profile)),
       fullProfile: CaseLongformPlannedFullProfile.parse(readCaseFixture(fixture.root, fullProfile)),
       coverage: CaseLongformObservedCoverage.parse(readCaseFixture(fixture.root, coverage)),
-      lineage: CaseLongformPreviewObservedLineage.parse(readCaseFixture(fixture.root, lineage)),
+      boundaryObservation: CaseLongformPreviewBoundaryObservation.parse(
+        readCaseFixture(fixture.root, boundaryObservation),
+      ),
     },
   };
 };
@@ -188,7 +185,7 @@ describe('case-longform PR1b2 observed preview evidence', () => {
   it('accepts exact observed preview evidence but remains blocked', () => {
     const {fixture, contract} = materialize();
     const result = assertCaseLongformPreviewEvidence(contract, fixture.options);
-    expect(result.status).toBe('BLOCKED_PENDING_POSTRENDER_CONTRACTS');
+    expect(result.status).toBe('BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS');
     expect(result).not.toHaveProperty('render_authority');
   });
   it('rejects GraphAuthority, shared config and profile drift', () => {
@@ -250,25 +247,43 @@ describe('case-longform PR1b2 observed preview evidence', () => {
       assertCaseLongformPreviewEvidence(outsideOnly.contract, outsideOnly.fixture.options),
     ).toThrow(/STATIC/u);
   });
-  it('rejects a self-declared lineage fingerprint', () => {
-    const lineage = materialize();
-    lineage.values.lineage.nodes[0].input_fingerprint = BAD;
+  it('rejects a self-declared boundary hash', () => {
+    const item = materialize();
+    item.values.boundaryObservation.nodes[0].start_frame_sha256 = BAD;
     replace(
-      lineage.fixture.root,
-      lineage.contract,
-      'preview_observed_lineage',
-      lineage.values.lineage,
+      item.fixture.root,
+      item.contract,
+      'preview_boundary_observation',
+      item.values.boundaryObservation,
     );
-    expect(() =>
-      assertCaseLongformPreviewEvidence(lineage.contract, lineage.fixture.options),
-    ).toThrow(/LINEAGE/u);
+    expect(() => assertCaseLongformPreviewEvidence(item.contract, item.fixture.options)).toThrow(
+      /BOUNDARY-OBSERVATION/u,
+    );
   });
-  it('rejects a lineage artifact alias', () => {
+  it('rejects boundary source drift', () => {
+    const item = materialize();
+    item.values.boundaryObservation.nodes[0].source_sha256 = BAD;
+    replace(
+      item.fixture.root,
+      item.contract,
+      'preview_boundary_observation',
+      item.values.boundaryObservation,
+    );
+    expect(() => assertCaseLongformPreviewEvidence(item.contract, item.fixture.options)).toThrow(
+      /BOUNDARY-OBSERVATION/u,
+    );
+  });
+  it('rejects observation aliases and execution claims', () => {
     const alias = materialize();
-    alias.contract.artifacts.preview_observed_lineage = alias.contract.artifacts.observed_coverage;
+    alias.contract.artifacts.preview_boundary_observation =
+      alias.contract.artifacts.observed_coverage;
     expect(() => assertCaseLongformPreviewEvidence(alias.contract, alias.fixture.options)).toThrow(
       /REF-ALIAS/u,
     );
+    for (const forbidden of ['execution_trace', 'preview_observed_lineage'])
+      expect(() =>
+        CaseLongformPreviewEvidenceSchema.parse({...alias.contract, [forbidden]: {}}),
+      ).toThrow();
   });
   it('rejects any observed-full claim or full media injection', () => {
     const partial = materialize();

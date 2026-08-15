@@ -73,30 +73,29 @@ export const CaseLongformPlannedFullProfile = z.strictObject({
   ...profileBase,
   preview_profile_sha256: Hash,
 });
-const traceNode = (role: (typeof CASE_LONGFORM_ROLES)[number]) =>
+const boundaryNode = (role: (typeof CASE_LONGFORM_ROLES)[number]) =>
   z.strictObject({
     role: z.literal(role),
+    source_sha256: Hash,
     start_frame: z.number().int().nonnegative(),
+    start_frame_sha256: Hash,
     end_frame: z.number().int().nonnegative(),
-    input_fingerprint: Hash,
-    output_fingerprint: Hash,
+    end_frame_sha256: Hash,
   });
-export const CaseLongformPreviewObservedLineage = z.strictObject({
-  schema_version: z.literal('case-longform-preview-observed-lineage-v1'),
-  kind: z.literal('preview_observed_lineage'),
+export const CaseLongformPreviewBoundaryObservation = z.strictObject({
+  schema_version: z.literal('case-longform-preview-boundary-observation-v1'),
+  kind: z.literal('preview_boundary_observation'),
   job_id: z.string(),
   graph_sha256: Hash,
-  runner_sha256: Hash,
-  compiler_sha256: Hash,
   preview_sha256: Hash,
   preview_profile_sha256: Hash,
   nodes: z.tuple(
-    CASE_LONGFORM_ROLES.map((role) => traceNode(role)) as [
-      ReturnType<typeof traceNode>,
-      ReturnType<typeof traceNode>,
-      ReturnType<typeof traceNode>,
-      ReturnType<typeof traceNode>,
-      ReturnType<typeof traceNode>,
+    CASE_LONGFORM_ROLES.map((role) => boundaryNode(role)) as [
+      ReturnType<typeof boundaryNode>,
+      ReturnType<typeof boundaryNode>,
+      ReturnType<typeof boundaryNode>,
+      ReturnType<typeof boundaryNode>,
+      ReturnType<typeof boundaryNode>,
     ],
   ),
 });
@@ -109,8 +108,8 @@ export const CaseLongformPreviewEvidenceSchema = z.strictObject({
     preview_profile: Ref,
     planned_full_profile: Ref,
     observed_coverage: Ref,
-    preview_observed_lineage: Ref,
+    preview_boundary_observation: Ref,
   }),
-  status: z.literal('BLOCKED_PENDING_POSTRENDER_CONTRACTS'),
+  status: z.literal('BLOCKED_PENDING_EXECUTION_AND_POSTRENDER_CONTRACTS'),
 });
 export type CaseLongformPreviewEvidence = z.infer<typeof CaseLongformPreviewEvidenceSchema>;
