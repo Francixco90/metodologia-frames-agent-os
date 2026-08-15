@@ -17,6 +17,12 @@ render, vertical, upload, conectores ni publicación. El grafo ejecutado, cobert
 evidencia semántica, auditoría multimodal, attestations y paquete exacto pertenecen al gate
 posterior; `UNKNOWN` o ausencia material conservan el bloqueo. [METODOLOGIA]
 
+PR1b consume y revalida el preflight material exacto, liga fuentes/plan/preview, grafo
+`intro→host→body→closure→outro`, ejecutables allowlisted y cleanup material. Su estado es
+`BLOCKED_PENDING_COVERAGE_CONTRACTS`: PR1b2 debe demostrar fingerprints, movimiento,
+cobertura framewise y lineage observado; PR1c conserva auditoría, attestations, paquete exacto
+y `RENDERED_DRAFT`. Ningún slice anterior autoriza render. [CONFIG]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye

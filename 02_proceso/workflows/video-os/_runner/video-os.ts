@@ -7,6 +7,7 @@ import {VideoOsPlanSchema, VideoOsRequestSchema, type VideoOsPlan} from '../_sch
 import {assertVideoOsState, buildResumeCapsule} from './video-os-state.ts';
 
 export * from './case-longform-preview.ts';
+export * from './case-longform-graph.ts';
 export * from './video-os-state.ts';
 
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');

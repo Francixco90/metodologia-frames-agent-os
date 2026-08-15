@@ -52,7 +52,15 @@ export const readCaseLongformMaterial = (
   hooks: ReadHooks = {},
 ): {path: string; bytes: Buffer} => {
   const root = realpathSync(rootRef);
-  if (isAbsolute(ref.ref) || /(?:^|[/\\])\.\.(?:[/\\]|$)|^[a-z]+:/iu.test(ref.ref))
+  if (
+    isAbsolute(ref.ref) ||
+    ref.ref.includes('\\') ||
+    ref.ref.startsWith('./') ||
+    ref.ref.includes('//') ||
+    ref.ref.endsWith('/') ||
+    ref.ref.split('/').some((part) => part === '' || part === '.' || part === '..') ||
+    /^[a-z]+:/iu.test(ref.ref)
+  )
     throw new Error('VIDEO-OS-CASE-UNSAFE-REF');
   const path = resolve(root, ref.ref);
   const rel = relative(root, path);
