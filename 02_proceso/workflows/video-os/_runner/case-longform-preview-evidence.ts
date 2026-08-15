@@ -1,6 +1,6 @@
 import type {z} from 'zod';
 
-import {assertCaseLongformGraphAuthority} from './case-longform-graph.ts';
+import {assertCaseLongformPrerenderGraphAuthority} from './case-longform-prerender.ts';
 import {probeCaseLongformMedia, readCaseLongformMaterial} from './case-longform-media.ts';
 import {
   CaseLongformCompiler,
@@ -26,7 +26,7 @@ import {
 
 export {CaseLongformPreviewEvidenceSchema, deriveCaseLongformPreviewCoverage};
 type Ref = {ref: string; sha256: string; bytes: number};
-type Options = Parameters<typeof assertCaseLongformGraphAuthority>[1];
+type Options = Parameters<typeof assertCaseLongformPrerenderGraphAuthority>[1];
 const same = (left: unknown, right: unknown): boolean =>
   JSON.stringify(left) === JSON.stringify(right);
 const material = <T>(root: string, ref: Ref, schema: z.ZodType<T>): T =>
@@ -44,7 +44,7 @@ export const assertCaseLongformPreviewEvidence = (
   const authorityRaw = JSON.parse(
     readCaseLongformMaterial(options.projectRoot, a.graph_authority).bytes.toString('utf8'),
   ) as unknown;
-  const authority = assertCaseLongformGraphAuthority(authorityRaw, options);
+  const authority = assertCaseLongformPrerenderGraphAuthority(authorityRaw, options);
   if (contract.job_id !== authority.job_id)
     throw new Error('VIDEO-OS-CASE-PREVIEW-GRAPH-AUTHORITY-DRIFT');
   const ga = authority.artifacts;
@@ -81,6 +81,9 @@ export const assertCaseLongformPreviewEvidence = (
     shared.redaction_map_sha256 !== ga.redaction_map.sha256 ||
     shared.caption_track_sha256 !== ga.caption_track.sha256 ||
     shared.caption_cleanup_sha256 !== ga.caption_cleanup.sha256 ||
+    shared.transform_order_sha256 !== ga.transform_order.sha256 ||
+    shared.source_segment_map_sha256 !== ga.source_segment_map.sha256 ||
+    shared.semantic_policy_receipt_sha256 !== ga.semantic_policy_receipt.sha256 ||
     !same([...shared.mask_ids].sort(), maskIds)
   )
     throw new Error('VIDEO-OS-CASE-PREVIEW-SHARED-CONFIG-DRIFT');
