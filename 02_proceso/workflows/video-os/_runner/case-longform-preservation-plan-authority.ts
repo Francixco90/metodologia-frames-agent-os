@@ -38,7 +38,7 @@ const policyRegion = z.strictObject({
 });
 const policyOverlay = z.strictObject({
   overlay_id: id,
-  kind: z.enum(['MASK', 'CAPTION']),
+  kind: z.literal('MASK'),
   source_id: id,
   ...span,
   roi: CaseLongformPreservationRoi,
@@ -54,8 +54,8 @@ export const CaseLongformPreservationPolicyReceipt = z.strictObject({
   fps: z.literal(24),
   width: z.literal(1920),
   height: z.literal(1080),
-  rgb_tolerance_per_channel: z.number().int().min(0).max(255),
-  minimum_residual_ratio_ppm: z.number().int().min(1).max(1_000_000),
+  rgb_tolerance_per_channel: z.number().int().min(0).max(8),
+  minimum_residual_ratio_ppm: z.number().int().min(900_000).max(1_000_000),
   participants: z
     .array(
       z.strictObject({

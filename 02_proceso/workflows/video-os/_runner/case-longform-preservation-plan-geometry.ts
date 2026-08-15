@@ -1,7 +1,6 @@
 import type {z} from 'zod';
 
 import type {
-  CaseLongformCaptionTrack,
   CaseLongformRedactionMap,
   CaseLongformSourceSet,
 } from './case-longform-graph-structure.ts';
@@ -17,8 +16,38 @@ type Plan = z.infer<typeof CaseLongformPreservationPlan>;
 type SourceSet = z.infer<typeof CaseLongformSourceSet>;
 type Segments = z.infer<typeof CaseLongformSourceSegmentMap>;
 type Redaction = z.infer<typeof CaseLongformRedactionMap>;
-type Captions = z.infer<typeof CaseLongformCaptionTrack>;
 type Roi = {x: number; y: number; width: number; height: number};
+type Category = Participant['regions'][number]['category'];
+type Role = Participant['regions'][number]['source_role'];
+const canonicalCoverage: Record<Participant['participant_id'], [Category, Role[]][]> = {
+  danilo: [
+    ['dashboards', ['body']],
+    ['interfaces', ['body']],
+    ['functional_text', ['body']],
+    ['evidence', ['body', 'closure']],
+    ['motion', ['body', 'closure']],
+  ],
+  alejandra: [
+    ['dashboards', ['body']],
+    ['interfaces', ['body']],
+    ['functional_text', ['body']],
+    ['faces', ['body', 'closure']],
+    ['evidence', ['body', 'closure']],
+    ['captions', ['body', 'closure']],
+    ['motion', ['body', 'closure']],
+  ],
+  natalia: [
+    'faces',
+    'drawings',
+    'products',
+    'dashboards',
+    'interfaces',
+    'functional_text',
+    'evidence',
+    'captions',
+    'motion',
+  ].map((value) => [value as Category, ['body']]),
+};
 const same = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
 const roiKey = (v: Roi): string => `${v.x}:${v.y}:${v.width}:${v.height}`;
 const roiOverlap = (a: Roi, b: Roi): boolean =>
@@ -52,7 +81,7 @@ const crossPairs = (participant: Participant): string[] =>
   );
 const assertPolicyParticipant = (
   participant: Participant,
-  context: {redaction: Redaction; captions: Captions},
+  context: {redaction: Redaction},
 ): void => {
   const overlayIds = participant.authorized_overlays.map(({overlay_id}) => overlay_id);
   const overlayGeometry = participant.authorized_overlays.map(
@@ -67,20 +96,14 @@ const assertPolicyParticipant = (
   for (const overlay of participant.authorized_overlays) {
     if (!bounded(overlay.roi) || overlay.start_frame > overlay.end_frame)
       throw new Error('VIDEO-OS-CASE-PRESERVATION-OVERLAY-GEOMETRY');
-    if (overlay.kind === 'MASK') {
-      const mask = context.redaction.masks.find(({id}) => id === overlay.source_id);
-      if (
-        !mask ||
-        mask.start_frame !== overlay.start_frame ||
-        mask.end_frame !== overlay.end_frame ||
-        !same(mask.roi, overlay.roi)
-      )
-        throw new Error('VIDEO-OS-CASE-PRESERVATION-MASK-DRIFT');
-    } else {
-      const cue = context.captions.cues.find(({id}) => id === overlay.source_id);
-      if (!cue || cue.start_frame !== overlay.start_frame || cue.end_frame !== overlay.end_frame)
-        throw new Error('VIDEO-OS-CASE-PRESERVATION-CAPTION-DRIFT');
-    }
+    const mask = context.redaction.masks.find(({id}) => id === overlay.source_id);
+    if (
+      !mask ||
+      mask.start_frame !== overlay.start_frame ||
+      mask.end_frame !== overlay.end_frame ||
+      !same(mask.roi, overlay.roi)
+    )
+      throw new Error('VIDEO-OS-CASE-PRESERVATION-MASK-DRIFT');
   }
   const ids = participant.regions.map(({region_id}) => region_id);
   const geometry = participant.regions.map(
@@ -94,6 +117,13 @@ const assertPolicyParticipant = (
     )
   )
     throw new Error('VIDEO-OS-CASE-PRESERVATION-REGION-DUPLICATE');
+  for (const [category, roles] of canonicalCoverage[participant.participant_id])
+    if (
+      !participant.regions.some(
+        (region) => region.category === category && roles.includes(region.source_role),
+      )
+    )
+      throw new Error('VIDEO-OS-CASE-PRESERVATION-CANONICAL-COVERAGE');
   exactIds(
     participant.allowed_cross_category_overlaps.map(([a, b]) => pairKey(a, b)),
     crossPairs(participant),
@@ -104,7 +134,7 @@ const assertPolicyParticipant = (
 export const assertCaseLongformPreservationPlanGeometry = (
   policy: Policy,
   plan: Plan,
-  context: {sourceSet: SourceSet; segments: Segments; redaction: Redaction; captions: Captions},
+  context: {sourceSet: SourceSet; segments: Segments; redaction: Redaction},
 ): void => {
   policy.participants.forEach((participant) => assertPolicyParticipant(participant, context));
   const selected = policy.participants.find(

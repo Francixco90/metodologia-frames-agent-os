@@ -1,11 +1,7 @@
 import type {z} from 'zod';
 
 import {readCaseLongformMaterial} from './case-longform-media.ts';
-import {
-  CaseLongformCaptionTrack,
-  CaseLongformRedactionMap,
-  CaseLongformSourceSet,
-} from './case-longform-graph-structure.ts';
+import {CaseLongformRedactionMap, CaseLongformSourceSet} from './case-longform-graph-structure.ts';
 import {CaseLongformSourceSegmentMap} from './case-longform-prerender-authority.ts';
 import {
   CaseLongformPreservationPlan,
@@ -76,7 +72,6 @@ export const assertCaseLongformPreservationPlanAuthority = (
     CaseLongformSourceSegmentMap,
   );
   const redaction = material(options.projectRoot, a.redaction_map, CaseLongformRedactionMap);
-  const captions = material(options.projectRoot, a.caption_track, CaseLongformCaptionTrack);
   const identities = policy.participants.map(({participant_id, public_name}) => ({
     participant_id,
     public_name,
@@ -111,7 +106,6 @@ export const assertCaseLongformPreservationPlanAuthority = (
     sourceSet,
     segments,
     redaction,
-    captions,
   });
   return contract;
 };

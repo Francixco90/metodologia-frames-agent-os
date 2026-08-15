@@ -63,11 +63,14 @@ ese gap el máximo es `BLOCKED_PENDING_PRESERVATION_AND_EXTERNAL_REVIEW_CONTRACT
 residual mínimo impuesto por policy; hashes o áreas declaradas no cierran ese gate. [METODOLOGIA]
 
 PR1c1a congela una policy externa de preservación y un `PreservationPlan`: inventario exacto
-multi-región, categorías/roles, mapeo `PASSTHROUGH`, overlays de máscara/caption y herramientas
-absolutas hash-bound ejecutadas desde snapshot. Revalida V4 y permanece
+multi-región, mapeo `PASSTHROUGH`, overlays de máscara y herramientas absolutas hash-bound
+ejecutadas desde snapshot. Una matriz canónica impide omitir las categorías/roles mínimos por
+participante; RGB tolera como máximo 8 por canal y el residual visual exige al menos 900000 ppm.
+Captions no son una exclusión visual en 1a: su layout/single-track se valida por separado. Revalida V4 y permanece
 `BLOCKED_PENDING_RGB_DIFF_LEDGER_CONTRACTS`; no existe ledger, PASS, review ni render. [CONFIG]
 `coverage_gap`: PR1c1b debe comparar RGB24 de todos los frames fuera de la unión temporal/geométrica,
-recalcular ppm y residual mínimo, y probar solapes sin cargar el longform completo en memoria. [METODOLOGIA]
+recalcular ppm y residual mínimo, probar solapes sin cargar el longform completo en memoria y
+cerrar la autoridad de layout/single-caption. [METODOLOGIA]
 
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]

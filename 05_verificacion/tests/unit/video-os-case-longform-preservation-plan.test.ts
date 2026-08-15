@@ -189,7 +189,6 @@ describe('case-longform PR1c1a preservation plan authority', () => {
     fixture.values.preservationPlan.regions[1]!.overlay_ids = [
       ...fixture.values.preservationPlan.regions[0]!.overlay_ids,
     ];
-    fixture.values.preservationPolicy.participants[0]!.authorized_overlays.pop();
     rewritePolicy(fixture);
     expect(() => validate(fixture)).toThrow(/CROSS-CATEGORY/u);
     fixture.values.preservationPolicy.participants[0]!.allowed_cross_category_overlaps = [
@@ -199,29 +198,45 @@ describe('case-longform PR1c1a preservation plan authority', () => {
     expect(validate(fixture).status).toBe('BLOCKED_PENDING_RGB_DIFF_LEDGER_CONTRACTS');
   });
   it.each([
-    [
-      'caption outside cue',
-      (fixture: Fixture) => {
-        fixture.values.preservationPolicy.participants[0]!.authorized_overlays[2]!.end_frame = 11;
-      },
-    ],
+    ['danilo', 'interfaces'],
+    ['alejandra', 'faces'],
+    ['natalia', 'products'],
+  ] as const)('rejects canonical %s %s coverage omission', (participantId, category) => {
+    const fixture = materializeCaseLongformPreservationPlanFixture();
+    const participant = fixture.values.preservationPolicy.participants.find(
+      ({participant_id}) => participant_id === participantId,
+    )!;
+    const removed = participant.regions.find((region) => region.category === category)!;
+    participant.regions = participant.regions.filter(
+      ({region_id}) => region_id !== removed.region_id,
+    );
+    if (participantId === 'danilo')
+      fixture.values.preservationPlan.regions = fixture.values.preservationPlan.regions.filter(
+        ({region_id}) => region_id !== removed.region_id,
+      );
+    rewritePolicy(fixture);
+    expect(() => validate(fixture)).toThrow(/CANONICAL-COVERAGE/u);
+  });
+  it('rejects freeform full-frame caption exclusions and vacuous RGB limits', () => {
+    const caption = materializeCaseLongformPreservationPlanFixture();
+    Object.assign(
+      caption.values.preservationPolicy.participants[0]!
+        .authorized_overlays[0]! as unknown as Record<string, unknown>,
+      {kind: 'CAPTION', source_id: 'one', roi: {x: 0, y: 0, width: 1920, height: 1080}},
+    );
+    rewritePolicy(caption);
+    expect(() => validate(caption)).toThrow();
+    const limits = materializeCaseLongformPreservationPlanFixture();
+    limits.values.preservationPolicy.rgb_tolerance_per_channel = 255;
+    limits.values.preservationPolicy.minimum_residual_ratio_ppm = 1;
+    rewritePolicy(limits);
+    expect(() => validate(limits)).toThrow();
+  });
+  it.each([
     [
       'one-frame mask drift',
       (fixture: Fixture) => {
         fixture.values.preservationPolicy.participants[0]!.authorized_overlays[0]!.start_frame = 10;
-      },
-    ],
-    [
-      'overlay orphan',
-      (fixture: Fixture) => {
-        fixture.values.preservationPolicy.participants[0]!.authorized_overlays.push({
-          overlay_id: 'orphan',
-          kind: 'CAPTION',
-          source_id: 'two',
-          start_frame: 11,
-          end_frame: 23,
-          roi: {x: 1800, y: 900, width: 100, height: 100},
-        });
       },
     ],
     [
