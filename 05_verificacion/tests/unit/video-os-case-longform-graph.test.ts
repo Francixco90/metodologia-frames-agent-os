@@ -234,7 +234,7 @@ const materialize = () => {
     layer_count: 1,
     cleanup,
     cues: [
-      {id: 'one', start_frame: 0, end_frame: 10, text: 'Inicio'},
+      {id: 'one', start_frame: 0, end_frame: 10, text: 'Inicio [URL oculta]'},
       {id: 'two', start_frame: 11, end_frame: 23, text: 'Caso'},
     ],
   });
