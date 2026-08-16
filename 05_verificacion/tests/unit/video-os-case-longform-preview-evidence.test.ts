@@ -1,6 +1,3 @@
-import {readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
-
 import {afterEach, describe, expect, it} from 'vitest';
 
 import {
@@ -17,7 +14,7 @@ import {
 } from 'workflows/video-os/_runner/case-longform-preview-evidence-schema.ts';
 import {
   caseLongformRoiKey,
-  extractCaseLongformPreviewEvidenceHashes,
+  inspectCaseLongformPreviewMaterial,
 } from 'workflows/video-os/_runner/case-longform-preview-frame-evidence.ts';
 import {
   cleanupCaseFixtures,
@@ -28,7 +25,9 @@ import {
 
 const BAD = '0'.repeat(64);
 const MASKS = ['mask-domain', 'mask-url'];
-const materialize = (staticPreview: boolean | 'outside' = false) => {
+export const materializeCaseLongformPreviewEvidenceFixture = (
+  staticPreview: boolean | 'outside' = false,
+) => {
   const fixture = materializeCaseLongformGraphFixture(staticPreview);
   const ga = fixture.contract.artifacts;
   const shared = writeCaseFixture(fixture.root, 'shared-preview.json', {
@@ -83,10 +82,12 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
     fixture.values.temporal,
     fixture.values.redaction,
   );
-  const extracted = extractCaseLongformPreviewEvidenceHashes(
-    readFileSync(resolve(fixture.root, fixture.preview.ref)),
+  const extracted = inspectCaseLongformPreviewMaterial(
+    fixture.root,
+    fixture.preview,
     expected.flatMap(({roi}) => (roi ? [roi] : [])),
-  );
+    fixture.options.mediaToolAuthority,
+  ).hashes;
   const frameHashes = extracted.full;
   const points = expected.map((point) => ({
     ...point,
@@ -149,6 +150,7 @@ const materialize = (staticPreview: boolean | 'outside' = false) => {
     },
   };
 };
+const materialize = materializeCaseLongformPreviewEvidenceFixture;
 const replace = (
   root: string,
   contract: ReturnType<typeof materialize>['contract'],

@@ -1,7 +1,12 @@
 import {spawnSync} from 'node:child_process';
-import {mkdtempSync, rmSync, writeFileSync} from 'node:fs';
-import {tmpdir} from 'node:os';
-import {resolve} from 'node:path';
+
+import {
+  probeCaseLongformMediaPath,
+  withCaseLongformMediaSnapshot,
+  withCaseLongformMediaTools,
+  type CaseLongformMediaSnapshotHooks,
+  type CaseLongformMediaToolAuthority,
+} from './case-longform-media.ts';
 
 export type CaseLongformRoi = {x: number; y: number; width: number; height: number};
 type Span = {id: string; start_frame: number; end_frame: number};
@@ -90,10 +95,10 @@ export const deriveCaseLongformPreviewCoverage = (
 
 export const caseLongformRoiKey = ({x, y, width, height}: CaseLongformRoi): string =>
   `${x}:${y}:${width}:${height}`;
-const decode = (snapshot: string, roi?: CaseLongformRoi): Map<number, string> => {
+const decode = (ffmpeg: string, snapshot: string, roi?: CaseLongformRoi): Map<number, string> => {
   const filters = roi ? ['-vf', `crop=${roi.width}:${roi.height}:${roi.x}:${roi.y}`] : [];
   const result = spawnSync(
-    'ffmpeg',
+    ffmpeg,
     [
       '-v',
       'error',
@@ -128,22 +133,37 @@ const decode = (snapshot: string, roi?: CaseLongformRoi): Map<number, string> =>
   if (hashes.size === 0) throw new Error('VIDEO-OS-CASE-FRAMEHASH-OUTPUT-EMPTY');
   return hashes;
 };
-export const extractCaseLongformPreviewEvidenceHashes = (
-  bytes: Buffer,
+const frameHashesFromSnapshot = (
+  snapshot: string,
   rois: CaseLongformRoi[],
+  ffmpeg: string,
 ): {full: Map<number, string>; regions: Map<string, Map<number, string>>} => {
-  const root = mkdtempSync(resolve(tmpdir(), 'video-os-case-framehash-'));
-  const snapshot = resolve(root, 'preview.mp4');
-  writeFileSync(snapshot, bytes, {flag: 'wx', mode: 0o600});
-  try {
-    const unique = new Map(rois.map((roi) => [caseLongformRoiKey(roi), roi]));
-    return {
-      full: decode(snapshot),
-      regions: new Map([...unique].map(([key, roi]) => [key, decode(snapshot, roi)])),
-    };
-  } finally {
-    rmSync(root, {recursive: true, force: true});
-  }
+  const unique = new Map(rois.map((roi) => [caseLongformRoiKey(roi), roi]));
+  return {
+    full: decode(ffmpeg, snapshot),
+    regions: new Map([...unique].map(([key, roi]) => [key, decode(ffmpeg, snapshot, roi)])),
+  };
 };
-export const extractCaseLongformPreviewFrameHashes = (bytes: Buffer): Map<number, string> =>
-  extractCaseLongformPreviewEvidenceHashes(bytes, []).full;
+
+type Ref = {ref: string; sha256: string; bytes: number};
+export const inspectCaseLongformPreviewMaterial = (
+  root: string,
+  ref: Ref,
+  rois: CaseLongformRoi[],
+  authority: CaseLongformMediaToolAuthority,
+  hooks?: CaseLongformMediaSnapshotHooks,
+) =>
+  withCaseLongformMediaTools(
+    authority,
+    (tools) =>
+      withCaseLongformMediaSnapshot(
+        root,
+        ref,
+        (path) => ({
+          measurements: probeCaseLongformMediaPath(path, tools),
+          hashes: frameHashesFromSnapshot(path, rois, tools.ffmpeg),
+        }),
+        hooks,
+      ),
+    hooks,
+  );

@@ -72,6 +72,9 @@ Captions no son una exclusión visual en 1a: su layout/single-track se valida po
 recalcular ppm y residual mínimo, probar solapes sin cargar el longform completo en memoria y
 cerrar la autoridad de layout/single-caption. [METODOLOGIA]
 
+PR1c1b1a1 migra preview/frame evidence y las herramientas de V5 al snapshot común absoluto,
+hash-bound y acotado; elimina la ruta productiva por `PATH`/`Buffer`, sin crear RGB ledger. [CÓDIGO]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye

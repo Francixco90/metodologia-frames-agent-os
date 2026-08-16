@@ -18,6 +18,8 @@ import {resolve} from 'node:path';
 import {afterEach, describe, expect, it} from 'vitest';
 
 import {
+  assertCaseLongformPreservationPlanAuthority,
+  assertCaseLongformPreviewEvidence,
   assertCaseLongformPrerenderGraphAuthority,
   assertCaseLongformPrerenderReviewAuthority,
 } from 'workflows/video-os/index.ts';
@@ -31,6 +33,8 @@ import {
   materializeCaseLongformGraphFixture,
 } from './video-os-case-longform-coverage-fixture.test.ts';
 import {materializeCaseLongformPrerenderReviewFixture} from './video-os-case-longform-prerender-review-fixture.test.ts';
+import {materializeCaseLongformPreservationPlanFixture} from './video-os-case-longform-preservation-plan-fixture.test.ts';
+import {materializeCaseLongformPreviewEvidenceFixture} from './video-os-case-longform-preview-evidence.test.ts';
 
 const digest = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
 afterEach(cleanupCaseFixtures);
@@ -39,6 +43,8 @@ describe('case-longform A0 immutable tool authority', () => {
   it('ignores PATH spoofing across graph and audio while remaining blocked', () => {
     const graph = materializeCaseLongformGraphFixture();
     const review = materializeCaseLongformPrerenderReviewFixture();
+    const preview = materializeCaseLongformPreviewEvidenceFixture();
+    const preservation = materializeCaseLongformPreservationPlanFixture();
     const previous = process.env.PATH;
     process.env.PATH = graph.root;
     try {
@@ -48,10 +54,39 @@ describe('case-longform A0 immutable tool authority', () => {
       expect(
         assertCaseLongformPrerenderReviewAuthority(review.reviewContract, review.options).status,
       ).toBe('BLOCKED_PENDING_TRANSCRIPT_SEMANTIC_PRESERVATION_REVIEW_CONTRACTS');
+      expect(
+        assertCaseLongformPreviewEvidence(preview.contract, preview.fixture.options).status,
+      ).toBe('BLOCKED_PENDING_PRERENDER_REVIEW_CONTRACTS');
+      expect(
+        assertCaseLongformPreservationPlanAuthority(
+          preservation.preservationContract,
+          preservation.preservationOptions,
+        ).status,
+      ).toBe('BLOCKED_PENDING_RGB_DIFF_LEDGER_CONTRACTS');
     } finally {
       if (previous === undefined) delete process.env.PATH;
       else process.env.PATH = previous;
     }
+  });
+
+  it('rejects preview tool drift and source mutation through the governed chain', () => {
+    const drift = materializeCaseLongformPreviewEvidenceFixture();
+    drift.fixture.options.mediaToolAuthority.ffmpeg_sha256 = '0'.repeat(64);
+    expect(() => assertCaseLongformPreviewEvidence(drift.contract, drift.fixture.options)).toThrow(
+      /^VIDEO-OS-CASE-TOOL-UNTRUSTED$/u,
+    );
+    const mutation = materializeCaseLongformPreviewEvidenceFixture();
+    const options = {
+      ...mutation.fixture.options,
+      mediaSnapshotHooks: {
+        afterChunk(path: string) {
+          if (path.endsWith('.mp4')) writeFileSync(path, 'mutated');
+        },
+      },
+    };
+    expect(() => assertCaseLongformPreviewEvidence(mutation.contract, options)).toThrow(
+      /MEDIA-SNAPSHOT-(?:IDENTITY|MATERIAL)-DRIFT/u,
+    );
   });
 
   it('rejects absent, drifted or arbitrary tool authority', () => {

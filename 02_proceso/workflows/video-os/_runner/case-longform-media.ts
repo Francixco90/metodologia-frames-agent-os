@@ -5,14 +5,10 @@ import {
   constants,
   fstatSync,
   lstatSync,
-  mkdtempSync,
   openSync,
   readFileSync,
   realpathSync,
-  rmSync,
-  writeFileSync,
 } from 'node:fs';
-import {tmpdir} from 'node:os';
 import {isAbsolute, relative, resolve, sep} from 'node:path';
 
 import {z} from 'zod';
@@ -151,16 +147,4 @@ export const probeCaseLongformMediaPath = (
   );
   if (decode.status !== 0) throw new Error('VIDEO-OS-CASE-MEDIA-DECODE-FAILED');
   return measurements;
-};
-
-// [CÓDIGO] Legacy preview adapter; A1 migrates it to material tool authority.
-export const probeCaseLongformMedia = (bytes: Buffer): MediaMeasurements => {
-  const root = mkdtempSync(resolve(tmpdir(), 'video-os-case-media-legacy-'));
-  const snapshot = resolve(root, 'material.mp4');
-  try {
-    writeFileSync(snapshot, bytes, {flag: 'wx', mode: 0o600});
-    return probeCaseLongformMediaPath(snapshot, {ffmpeg: 'ffmpeg', ffprobe: 'ffprobe'});
-  } finally {
-    rmSync(root, {recursive: true, force: true});
-  }
 };
