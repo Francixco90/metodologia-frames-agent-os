@@ -24,7 +24,7 @@ import {materializeCaseLongformPreservationPlanFixture} from './video-os-case-lo
 
 const hash = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
 const BAD = '0'.repeat(64);
-const materialize = () => {
+export const materializeCaseLongformPreservationLedgerFixture = () => {
   const base = materializeCaseLongformPreservationPlanFixture();
   const a = base.preservationContract.artifacts;
   const ledgerValue = deriveCaseLongformFrameDiffLedger({
@@ -50,6 +50,7 @@ const materialize = () => {
   });
   return {base, contract, ledgerValue};
 };
+const materialize = materializeCaseLongformPreservationLedgerFixture;
 type Fixture = ReturnType<typeof materialize>;
 const validate = ({base, contract}: Fixture, options = base.preservationOptions) =>
   assertCaseLongformPreservationLedgerAuthority(contract, options);
