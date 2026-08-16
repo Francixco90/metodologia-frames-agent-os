@@ -31,7 +31,7 @@ import {
   caseFixtureRoots,
   cleanupCaseFixtures,
   materializeCaseLongformGraphFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 import {materializeCaseLongformPrerenderReviewFixture} from './video-os-case-longform-prerender-review-fixture.test.ts';
 import {materializeCaseLongformPreservationPlanFixture} from './video-os-case-longform-preservation-plan-fixture.test.ts';
 import {materializeCaseLongformPreviewEvidenceFixture} from './video-os-case-longform-preview-evidence.test.ts';

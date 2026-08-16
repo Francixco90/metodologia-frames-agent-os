@@ -8,7 +8,7 @@ import {
 import {
   cleanupCaseFixtures,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 import {materializeCaseLongformSemanticFixture} from './video-os-case-longform-semantic-fixture.test.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformSemanticFixture>;

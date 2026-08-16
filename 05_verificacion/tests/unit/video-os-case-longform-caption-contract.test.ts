@@ -14,7 +14,7 @@ import {
   cleanupCaseFixtures,
   readCaseFixture,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 import {materializeCaseLongformCaptionContractFixture} from './video-os-case-longform-caption-contract-fixture.test.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformCaptionContractFixture>;
