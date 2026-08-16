@@ -1,37 +1,39 @@
 import {afterEach, describe, expect, it} from 'vitest';
 
 import {
-  assertCaseLongformCaptionExecutionLedgerProjection,
-  CaseLongformCaptionExecutionAuthoritySchema,
+  assertCaseLongformCaptionExecutionAuthority,
+  deriveCaseLongformCaptionExecutionLedger,
 } from 'workflows/video-os/index.ts';
 import {
   cleanupCaseLongformCaptionExecutionFixtures,
   materializeCaseLongformCaptionExecutionFixture,
+  rewriteCaseLongformCaptionExecutionMaterial,
 } from './video-os-case-longform-caption-execution-fixture.test.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformCaptionExecutionFixture>;
-const validate = (fixture: Fixture) => assertCaseLongformCaptionExecutionLedgerProjection(fixture);
+const validate = (fixture: Fixture) =>
+  assertCaseLongformCaptionExecutionAuthority(fixture.contract, fixture.options);
+const rewriteLedger = (fixture: Fixture): void => {
+  fixture.contract.artifacts.caption_execution_ledger = rewriteCaseLongformCaptionExecutionMaterial(
+    fixture.root,
+    fixture.contract.artifacts.caption_execution_ledger.ref,
+    fixture.ledger,
+  );
+};
 
 afterEach(cleanupCaseLongformCaptionExecutionFixtures);
 describe('case-longform V7b caption execution ledger', () => {
   it('recomputes one chained entry per cue-layout fragment without visual claims', () => {
     const fixture = materializeCaseLongformCaptionExecutionFixture();
-    const result = validate(fixture);
-    expect(fixture.ledger.entries).toHaveLength(fixture.placement.placements.length);
-    expect(fixture.ledger.entries[0]!.previous_entry_sha256).toBeNull();
-    expect(fixture.ledger.entries[1]!.previous_entry_sha256).toBe(
-      fixture.ledger.entries[0]!.entry_sha256,
-    );
-    expect(result.status).toBe('PRE_RENDER_BLOCKED');
-    expect(result).not.toHaveProperty('visual_observation');
-    expect(result).not.toHaveProperty('review');
-    expect(result).not.toHaveProperty('render');
-    expect(result).not.toHaveProperty('effects');
-  });
-
-  it('advances only non-Danilo contracts to the visual-evidence blocker', () => {
-    const fixture = materializeCaseLongformCaptionExecutionFixture('other');
-    expect(validate(fixture).status).toBe('BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS');
+    const ledger = deriveCaseLongformCaptionExecutionLedger(fixture);
+    expect(ledger.entries).toHaveLength(fixture.placement.placements.length);
+    expect(ledger.entries[0]!.previous_entry_sha256).toBeNull();
+    expect(ledger.entries[1]!.previous_entry_sha256).toBe(ledger.entries[0]!.entry_sha256);
+    expect(ledger.execution_scope).toBe('CAPTION_DATA_GRAPH_ONLY');
+    expect(ledger).not.toHaveProperty('visual_observation');
+    expect(ledger).not.toHaveProperty('review');
+    expect(ledger).not.toHaveProperty('render');
+    expect(ledger).not.toHaveProperty('effects');
   });
 
   it.each<[string, (value: Fixture['ledger']['entries'][number]) => void]>([
@@ -49,18 +51,21 @@ describe('case-longform V7b caption execution ledger', () => {
   ])('rejects %s binding drift', (_label, mutate) => {
     const fixture = materializeCaseLongformCaptionExecutionFixture();
     mutate(fixture.ledger.entries[0]!);
+    rewriteLedger(fixture);
     expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
   });
 
   it('rejects an omitted fragment', () => {
     const fixture = materializeCaseLongformCaptionExecutionFixture();
     fixture.ledger.entries.pop();
+    rewriteLedger(fixture);
     expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
   });
 
   it('rejects reordered fragments', () => {
     const fixture = materializeCaseLongformCaptionExecutionFixture();
     fixture.ledger.entries.reverse();
+    rewriteLedger(fixture);
     expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
   });
 
@@ -74,9 +79,11 @@ describe('case-longform V7b caption execution ledger', () => {
   it('rejects entry and final-chain forgeries', () => {
     const entry = materializeCaseLongformCaptionExecutionFixture();
     entry.ledger.entries[0]!.entry_sha256 = '0'.repeat(64);
+    rewriteLedger(entry);
     expect(() => validate(entry)).toThrow(/LEDGER-DRIFT/u);
     const chain = materializeCaseLongformCaptionExecutionFixture();
     chain.ledger.chain_sha256 = '0'.repeat(64);
+    rewriteLedger(chain);
     expect(() => validate(chain)).toThrow(/LEDGER-DRIFT/u);
   });
 
@@ -86,14 +93,33 @@ describe('case-longform V7b caption execution ledger', () => {
     expect(() => validate(fixture)).toThrow(/STATUS-DRIFT/u);
     const strict = materializeCaseLongformCaptionExecutionFixture();
     expect(() =>
-      CaseLongformCaptionExecutionAuthoritySchema.parse({
-        ...strict.contract,
-        visual_observation: {},
-        verdict: 'PASS',
-        review: {},
-        render: {},
-        effects: true,
-      }),
+      assertCaseLongformCaptionExecutionAuthority(
+        {...strict.contract, visual_observation: {}, verdict: 'PASS', review: {}, effects: true},
+        strict.options,
+      ),
     ).toThrow();
+  });
+
+  it('rejects placement geometry that is not bound to the ledger through the public gate', () => {
+    const fixture = materializeCaseLongformCaptionExecutionFixture();
+    fixture.placement.placements[0]!.x += 1;
+    fixture.contract.artifacts.caption_placement_plan = rewriteCaseLongformCaptionExecutionMaterial(
+      fixture.root,
+      fixture.contract.artifacts.caption_placement_plan.ref,
+      fixture.placement,
+    );
+    expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
+  });
+
+  it('rejects compositor hashes that are not bound to the ledger through the public gate', () => {
+    const fixture = materializeCaseLongformCaptionExecutionFixture();
+    fixture.compositor.config.sha256 = '0'.repeat(64);
+    fixture.contract.artifacts.caption_compositor_authority =
+      rewriteCaseLongformCaptionExecutionMaterial(
+        fixture.root,
+        fixture.contract.artifacts.caption_compositor_authority.ref,
+        fixture.compositor,
+      );
+    expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
   });
 });

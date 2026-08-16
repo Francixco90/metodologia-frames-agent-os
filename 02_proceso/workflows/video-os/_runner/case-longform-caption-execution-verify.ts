@@ -35,16 +35,18 @@ const v7aProjection = (contract: CaseLongformCaptionExecutionAuthority) => ({
   v6_status: contract.v6_status,
   status: contract.v7a_status,
 });
+const assertUniqueArtifactRefs = (contract: CaseLongformCaptionExecutionAuthority): void => {
+  const refs = Object.values(contract.artifacts);
+  if (new Set(refs.map(({ref}) => ref)).size !== refs.length)
+    throw new Error('VIDEO-OS-CASE-CAPTION-EXECUTION-REF-ALIAS');
+};
 
-export const assertCaseLongformCaptionExecutionLedgerProjection = (input: {
+const assertCaseLongformCaptionExecutionLedgerProjection = (input: {
   contract: CaseLongformCaptionExecutionAuthority;
   placement: Placement;
   compositor: Compositor;
   ledger: CaseLongformCaptionExecutionLedgerValue;
-}): CaseLongformCaptionExecutionAuthority => {
-  const refs = Object.values(input.contract.artifacts);
-  if (new Set(refs.map(({ref}) => ref)).size !== refs.length)
-    throw new Error('VIDEO-OS-CASE-CAPTION-EXECUTION-REF-ALIAS');
+}): void => {
   const expected = deriveCaseLongformCaptionExecutionLedger(input);
   if (!same(input.ledger, expected))
     throw new Error('VIDEO-OS-CASE-CAPTION-EXECUTION-LEDGER-DRIFT');
@@ -54,7 +56,6 @@ export const assertCaseLongformCaptionExecutionLedgerProjection = (input: {
       : 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
   if (input.contract.status !== expectedStatus)
     throw new Error('VIDEO-OS-CASE-CAPTION-EXECUTION-STATUS-DRIFT');
-  return input.contract;
 };
 
 export const assertCaseLongformCaptionExecutionAuthority = (
@@ -62,9 +63,9 @@ export const assertCaseLongformCaptionExecutionAuthority = (
   options: Options,
 ): CaseLongformCaptionExecutionAuthority => {
   const contract = CaseLongformCaptionExecutionAuthoritySchema.parse(raw);
-  assertCaseLongformCaptionContractAuthority(v7aProjection(contract), options);
+  assertUniqueArtifactRefs(contract);
   const a = contract.artifacts;
-  return assertCaseLongformCaptionExecutionLedgerProjection({
+  assertCaseLongformCaptionExecutionLedgerProjection({
     contract,
     placement: material(
       options.projectRoot,
@@ -82,4 +83,6 @@ export const assertCaseLongformCaptionExecutionAuthority = (
       CaseLongformCaptionExecutionLedger,
     ),
   });
+  assertCaseLongformCaptionContractAuthority(v7aProjection(contract), options);
+  return contract;
 };

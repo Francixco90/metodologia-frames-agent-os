@@ -5,6 +5,7 @@ import {dirname, resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
+import type {assertCaseLongformCaptionExecutionAuthority} from 'workflows/video-os/index.ts';
 import {
   CaseLongformCaptionCompositorAuthority,
   CaseLongformCaptionContractAuthoritySchema,
@@ -21,6 +22,11 @@ const writeMaterial = (root: string, ref: string, value: object | Buffer) => {
   writeFileSync(path, bytes);
   return {ref, sha256: createHash('sha256').update(bytes).digest('hex'), bytes: bytes.length};
 };
+export const rewriteCaseLongformCaptionExecutionMaterial = (
+  root: string,
+  ref: string,
+  value: object,
+) => writeMaterial(root, ref, value);
 export const cleanupCaseLongformCaptionExecutionFixtures = (): void => {
   roots.splice(0).forEach((root) => rmSync(root, {recursive: true, force: true}));
 };
@@ -139,7 +145,11 @@ export const materializeCaseLongformCaptionExecutionFixture = (
     ...contract,
     artifacts: {...contract.artifacts, caption_execution_ledger: ledgerRef},
   });
-  return {root, contract, placement, compositor, ledger};
+  const options = {
+    projectRoot: root,
+    captionTrustPolicy: {compositorAuthorityRoot: root},
+  } as unknown as Parameters<typeof assertCaseLongformCaptionExecutionAuthority>[1];
+  return {root, contract, placement, compositor, ledger, options};
 };
 
 afterEach(cleanupCaseLongformCaptionExecutionFixtures);
