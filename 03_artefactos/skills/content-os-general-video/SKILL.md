@@ -18,7 +18,7 @@ remixes, freeform builds. Adaptado de `general-video` (vendor, Apache 2.0) a fai
 hash-bound + offline-first. No `npx hyperframes` CLI. Capabilities delegadas (ver
 frontmatter `compatibility`).
 
-La revisión `version: 0.15.0` exige gates Media/Creative materiales antes de compilar.
+Las revisiones previas exigen gates Media/Creative materiales antes de compilar.
 
 ## When to use this vs a specialized workflow
 

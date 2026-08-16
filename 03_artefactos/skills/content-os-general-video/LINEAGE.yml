@@ -18,6 +18,7 @@ successor_notes:
   - Media source-analysis and Creative brand-kit gates execute as canonical sibling consumers; General Video does not duplicate their semantic rules.
   - Media 0.2.2 canonical Transcript Intelligence verification blocks hash-correct semantic-invalid ASR and receipts end to end.
   - case-longform consumes only V7c0 refs, hashes and blocked status through a PLAN_VERIFY_ONLY adapter; it grants no render, package, effect, full-chain or benchmark authority.
+  - case-longform canonicalizes every authority identity, strictly validates V7c0 data contracts and pre-gates blocked commands without filesystem drift.
 read_compatibility:
   - general-video-v1
 new_render_minimum: general-video-v2-revision-2
