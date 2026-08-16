@@ -11,6 +11,9 @@ evidence:
   authority_consumed: case-longform-caption-review-plan-contract-v7c0
   authority_validation: strict_key_value_allowlists
   canonical_identity_gate: realpath_and_file_identity
+  input_read_policy: unique_readonly_nofollow_fd_single_buffer
+  contractual_trust_gate: roots_and_review_actor_independence
+  toctou_adversarial_hooks: [path_swap, in_place_mutation]
   commands_allowed: [plan, verify]
   blocked_command_filesystem_drift: zero
   plan_write_policy: confined_exclusive_nofollow

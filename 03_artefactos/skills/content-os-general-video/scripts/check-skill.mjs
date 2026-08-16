@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import {createHash} from 'node:crypto';
 // prettier-ignore
-import {existsSync, linkSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, readlinkSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {existsSync, linkSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, readlinkSync, realpathSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, relative, resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -25,16 +25,8 @@ const write = (root, ref, value) => {
   writeFileSync(resolve(root, ref), body);
   return {ref, sha256: sha(body), bytes: body.length};
 };
-const artifactHash = (key, ledger) => ({
-  caption_cleanup: ledger.caption_cleanup_sha256,
-  caption_compositor_authority: ledger.compositor_authority_sha256,
-  caption_layout_authority: ledger.layout_authority_sha256,
-  caption_placement_plan: ledger.placement_plan_sha256,
-  caption_track: ledger.caption_track_sha256,
-  caption_verifier_authority: '7878787878787878787878787878787878787878787878787878787878787878',
-  operation_graph: ledger.graph_sha256,
-  temporal_map: ledger.temporal_map_sha256,
-})[key] ?? ZERO;
+const ARTIFACT_HASH = {caption_cleanup: 'caption_cleanup_sha256', caption_compositor_authority: 'compositor_authority_sha256', caption_layout_authority: 'layout_authority_sha256', caption_placement_plan: 'placement_plan_sha256', caption_track: 'caption_track_sha256', operation_graph: 'graph_sha256', temporal_map: 'temporal_map_sha256'};
+const artifactHash = (key, ledger) => key === 'caption_verifier_authority' ? '78'.repeat(32) : ledger[ARTIFACT_HASH[key]] ?? ZERO;
 const reviewFor = (base, contract, ledger) => {
   const a = contract.artifacts;
   const review = {...base,
@@ -64,17 +56,24 @@ const reviewFor = (base, contract, ledger) => {
     })));
   return review;
 };
-
 const materialize = (mutation = 'none') => {
   const root = mkdtempSync(resolve(tmpdir(), 'gv-case-longform-'));
   roots.push(root);
   const fixture = structuredClone(positive);
+  mkdirSync(resolve(root, 'review-root')); mkdirSync(resolve(root, 'prior-root'));
+  fixture.contract.planned_review_authority_root = realpathSync(resolve(root, 'review-root'));
+  fixture.contract.prior_authority_roots = [realpathSync(resolve(root, 'prior-root'))];
+  if (mutation === 'actor-reuse') fixture.contract.review_actors.planner = fixture.contract.caption_actors.layout_authority;
+  if (mutation === 'actor-untrusted') fixture.contract.review_actors.planner = 'synthetic-untrusted-planner';
   const unsigned = fixture.ledger.entries[0];
   fixture.ledger.entries = [{...unsigned, entry_sha256: sha(JSON.stringify(unsigned))}];
   fixture.ledger.chain_sha256 = fixture.ledger.entries[0].entry_sha256;
   fixture.contract.artifacts = Object.fromEntries(
     ARTIFACT_KEYS.map((key) => [key, {ref: `authority/${key}.json`, sha256: artifactHash(key, fixture.ledger), bytes: 1}]),
   );
+  for (const [key, value] of Object.entries(fixture.contract.artifacts)) write(root, value.ref, {key});
+  if (mutation === 'artifact-lexical-alias') fixture.contract.artifacts.source_set.ref = `./${fixture.contract.artifacts.source_set.ref}`;
+  if (mutation === 'artifact-identity-alias') { linkSync(resolve(root, fixture.contract.artifacts.source_set.ref), resolve(root, 'authority/identity-alias.json')); fixture.contract.artifacts.transform_order.ref = 'authority/identity-alias.json'; }
   if (mutation === 'ledger-chain') fixture.ledger.chain_sha256 = '7'.repeat(64);
   if (mutation === 'ledger-actions') fixture.ledger.actions = [];
   const ledgerRef = write(root, 'execution-ledger.json', fixture.ledger);
@@ -92,7 +91,13 @@ const materialize = (mutation = 'none') => {
     fixture.contract.artifacts.caption_execution_ledger = {...ledgerRef, ref: 'different-ledger.json'};
   if (mutation === 'contract-unknown') fixture.contract.full_chain_accredited = false;
   if (mutation === 'contract-verdicts') fixture.contract.verdicts = [];
+  if (mutation === 'root-relative') fixture.contract.planned_review_authority_root = 'review-root';
+  if (mutation === 'root-dot') fixture.contract.planned_review_authority_root += '/.';
+  if (mutation === 'root-dotdot') fixture.contract.planned_review_authority_root += '/../review-root';
+  if (mutation === 'root-overlap') { mkdirSync(resolve(root, 'review-root/prior')); fixture.contract.prior_authority_roots = [realpathSync(resolve(root, 'review-root/prior'))]; }
+  if (mutation === 'root-symlink') { symlinkSync(fixture.contract.planned_review_authority_root, resolve(root, 'review-root-link')); fixture.contract.planned_review_authority_root = resolve(root, 'review-root-link'); }
   const contractRef = write(root, 'authority-contract.json', fixture.contract);
+  if (mutation === 'path-swap') write(root, 'authority-contract.json.swap', fixture.contract);
   let effectiveContractRef = contractRef;
   if (mutation === 'contract-symlink') {
     symlinkSync(contractRef.ref, resolve(root, 'authority-contract-link.json'));
@@ -138,12 +143,13 @@ const materialize = (mutation = 'none') => {
   if (mutation === 'state-symlink') symlinkSync('workflow-state.json', resolve(root, 'workflow-state-link.json'));
   if (mutation === 'ledger-bytes')
     writeFileSync(resolve(root, ledgerRef.ref), Buffer.concat([bytes(fixture.ledger), Buffer.from(' ')]));
-  return {root, stateRef: mutation === 'state-symlink' ? 'workflow-state-link.json' : null};
+  const hook = mutation === 'path-swap' ? 'swap:CASE_LONGFORM_CONTRACT' : mutation === 'path-mutation' ? 'mutate:CASE_LONGFORM_CONTRACT' : null;
+  return {root, stateRef: mutation === 'state-symlink' ? 'workflow-state-link.json' : null, hook};
 };
-const run = ({root, stateRef}, command) =>
+const run = ({root, stateRef, hook}, command) =>
   spawnSync(process.execPath, [cli, command, '--project', root, ...(stateRef ? ['--state', stateRef] : [])], {
     encoding: 'utf8',
-    env: {...process.env, METODOLOGIA_TOOLCHAIN_PROFILE: 'ci-code-only'},
+    env: {...process.env, METODOLOGIA_TOOLCHAIN_PROFILE: 'ci-code-only', ...(hook ? {METODOLOGIA_CASE_LONGFORM_TEST_HOOK: hook} : {})},
   });
 const walk = (root, dir = root) => readdirSync(dir).flatMap((name) => {
   const path = join(dir, name);
@@ -154,14 +160,12 @@ const walk = (root, dir = root) => readdirSync(dir).flatMap((name) => {
   return [`F ${rel} ${sha(readFileSync(path))}`];
 }).sort();
 const errors = [];
-
 const skillMd = readFileSync(resolve(skill, 'SKILL.md'), 'utf8');
 const frontmatter = parse(/^---\n([\s\S]*?)\n---\n/u.exec(skillMd)?.[1] ?? '{}');
 const receipt = existsSync(receiptPath) ? parse(readFileSync(receiptPath, 'utf8')) : null;
 if (frontmatter?.version !== '0.16.0' || skillMd.includes('version: 0.15.0'))
   errors.push('frontmatter must declare exact current version 0.16.0 without historical-version aliases');
 if (receipt?.schema_version !== 'general-video-skill-verification-v1' || receipt?.skill !== 'content-os-general-video' || receipt?.version !== '0.16.0') errors.push('missing exact verification-v0.16.0 receipt');
-
 try {
   const fixture = materialize();
   const planned = run(fixture, 'plan');
@@ -173,13 +177,11 @@ try {
       !/^[a-f0-9]{64}$/u.test(state.caseLongformPlanSha256) || plan.maximumState !== 'BLOCKED' ||
       plan.effects !== false || plan.coverageGap !== 'V7C_FULL_CHAIN_FIXTURE_NOT_ACCREDITED')
     errors.push(`positive ${(planned.stderr || planned.stdout || '').trim()} ${(verified.stderr || verified.stdout || '').trim()}`);
-
   const v1 = materialize('v1-case-longform');
   const v1State = {...JSON.parse(readFileSync(resolve(v1.root, 'workflow-state.json'), 'utf8')), archetype: 'general'};
   write(v1.root, 'workflow-state.json', v1State);
   const v1Generic = run(v1, 'ingest');
   if (v1Generic.status !== 0) errors.push(`v1-generic-compatibility ${(v1Generic.stderr || v1Generic.stdout || '').trim()}`);
-
   for (const test of negatives) {
     const fixtureCase = materialize(test.mutation);
     const before = test.zeroDrift ? JSON.stringify(walk(fixtureCase.root)) : null;
@@ -190,7 +192,6 @@ try {
 } finally {
   roots.forEach((root) => rmSync(root, {recursive: true, force: true}));
 }
-
 if (errors.length) {
   console.error(`FAIL case-longform bridge: ${errors.join(' | ')}`);
   process.exitCode = 1;

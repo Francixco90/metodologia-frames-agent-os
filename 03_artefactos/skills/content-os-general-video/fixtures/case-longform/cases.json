@@ -45,6 +45,12 @@
       "executionLedger": {"ref": "execution-ledger.json", "sha256": "0", "bytes": 1},
       "externalReviewPlan": {"ref": "external-review-plan.json", "sha256": "0", "bytes": 1}
     },
+    "reviewTrust": {
+      "priorActorIds": ["synthetic-prior-producer"],
+      "trustedPlannerActorIds": ["synthetic-review-planner"],
+      "trustedCaptionVerifierActorIds": ["synthetic-review-verifier"],
+      "trustedGuardianActorIds": ["synthetic-review-guardian"]
+    },
     "allowedCommands": ["plan", "verify"],
     "blockedCommands": ["ingest", "index", "script", "render", "package"],
     "effects": false,
@@ -136,8 +142,8 @@
   }
   },
   "negative": [
-    {"id": "status-drift", "mutation": "adapter-status", "command": "plan", "error": "STATUS_OR_BINDING_DRIFT"},
-    {"id": "ref-drift", "mutation": "contract-ref", "command": "plan", "error": "REF_HASH_DRIFT"},
+    {"id": "status-drift", "mutation": "adapter-status", "command": "plan", "error": "AUTHORITY_BINDING_DRIFT"},
+    {"id": "ref-drift", "mutation": "contract-ref", "command": "plan", "error": "AUTHORITY_BINDING_DRIFT"},
     {"id": "hash-drift", "mutation": "ledger-bytes", "command": "plan", "error": "HASH_DRIFT_CASE_LONGFORM_LEDGER"},
     {"id": "ref-alias", "mutation": "authority-alias", "command": "plan", "error": "CASE_LONGFORM_REF_ALIAS"},
     {"id": "do-not-use-canonical", "mutation": "do-not-use-hardlink", "command": "plan", "error": "CASE_LONGFORM_DO_NOT_USE"},
@@ -146,6 +152,17 @@
     {"id": "ledger-actions", "mutation": "ledger-actions", "command": "plan", "error": "SCHEMA_CASE_LONGFORM_AUTHORITY"},
     {"id": "review-outcomes", "mutation": "review-outcomes", "command": "plan", "error": "SCHEMA_CASE_LONGFORM_AUTHORITY"},
     {"id": "ledger-chain", "mutation": "ledger-chain", "command": "plan", "error": "LEDGER_CHAIN_HASH_DRIFT"},
+    {"id": "actor-reuse", "mutation": "actor-reuse", "command": "plan", "error": "REVIEW_ACTOR_DRIFT"},
+    {"id": "actor-untrusted", "mutation": "actor-untrusted", "command": "plan", "error": "REVIEW_ACTOR_DRIFT"},
+    {"id": "root-relative", "mutation": "root-relative", "command": "plan", "error": "PLANNED_ROOT_NOT_CANONICAL"},
+    {"id": "root-dot", "mutation": "root-dot", "command": "plan", "error": "PLANNED_ROOT_NOT_CANONICAL"},
+    {"id": "root-dotdot", "mutation": "root-dotdot", "command": "plan", "error": "PLANNED_ROOT_NOT_CANONICAL"},
+    {"id": "root-overlap", "mutation": "root-overlap", "command": "plan", "error": "ROOT_OVERLAP"},
+    {"id": "root-symlink", "mutation": "root-symlink", "command": "plan", "error": "PLANNED_ROOT_NOT_CANONICAL"},
+    {"id": "artifact-lexical-alias", "mutation": "artifact-lexical-alias", "command": "plan", "error": "UNSAFE_ARTIFACT_source_set_REF"},
+    {"id": "artifact-identity-alias", "mutation": "artifact-identity-alias", "command": "plan", "error": "ARTIFACT_REF_ALIAS"},
+    {"id": "path-swap", "mutation": "path-swap", "command": "plan", "error": "TOCTOU_CASE_LONGFORM_CONTRACT"},
+    {"id": "path-mutation", "mutation": "path-mutation", "command": "plan", "error": "TOCTOU_CASE_LONGFORM_CONTRACT"},
     {"id": "v1-case-longform", "mutation": "v1-case-longform", "command": "plan", "error": "CASE_LONGFORM_MIGRATION_REQUIRED"},
     {"id": "plan-outside-runtime", "mutation": "plan-outside", "command": "plan", "error": "PLAN_OUTSIDE_RUNTIME"},
     {"id": "plan-overwrite", "mutation": "plan-overwrite", "command": "plan", "error": "PLAN_OVERWRITE"},
