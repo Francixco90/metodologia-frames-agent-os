@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: 12cc6d48322b8af432be83eea0cb92b2d8a44afd52519ab8bd3c481d7ef28e1d
-    package_manifest_sha256: f32d2e08be496b40009819e46c1d8d09fff5c908d13ed976f4fee445667e26bf
+    package_manifest_sha256: 5c9b4853861d16cfa049ec28b920b6abb8cddf6754e6436f029a085621bb0a93
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2783,4 +2783,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-033, event_order: 33, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: bind_case_longform_caption_contract_authorities_without_material_claims, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: d0c540594efbcd977e5287a58b051bc97b03a6600bad50cc7f7d29efae78ca82}
   - {event_id: EVT-SKL-CGV-H03-034, event_order: 34, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_caption_data_graph_execution_ledger, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 6ca18adc47019adfef7c3f81a6f4650a464797b6f63dc60961874eca122eb04d}
   - {event_id: EVT-SKL-CGV-H03-035, event_order: 35, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_v7c0_review_plan_projection_contracts, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 1b30c5d6419522d757a8081a2c23f88befacb3bea8b00a3db8ae08510e9c308e}
-  - {event_id: EVT-SKL-CGV-H03-036, event_order: 36, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_general_video_plan_verify_bridge_without_render_authority, content_sha256: 12cc6d48322b8af432be83eea0cb92b2d8a44afd52519ab8bd3c481d7ef28e1d, package_manifest_sha256: f32d2e08be496b40009819e46c1d8d09fff5c908d13ed976f4fee445667e26bf}
+  - {event_id: EVT-SKL-CGV-H03-036, event_order: 36, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_general_video_plan_verify_bridge_without_render_authority, content_sha256: 12cc6d48322b8af432be83eea0cb92b2d8a44afd52519ab8bd3c481d7ef28e1d, package_manifest_sha256: 5c9b4853861d16cfa049ec28b920b6abb8cddf6754e6436f029a085621bb0a93}

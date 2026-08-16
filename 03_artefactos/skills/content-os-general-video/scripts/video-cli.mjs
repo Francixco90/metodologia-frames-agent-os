@@ -10,11 +10,16 @@ const BLOCKED = ['ingest', 'index', 'script', 'render', 'package'];
 const CHECKS = ['TEXT_FIDELITY', 'FRAME_TIMING', 'LAYOUT_GEOMETRY', 'SINGLE_LAYER', 'BOUNDARY_CONTINUITY'];
 const BINDINGS = {placement_plan_sha256: 'caption_placement_plan', graph_sha256: 'operation_graph', temporal_map_sha256: 'temporal_map', caption_track_sha256: 'caption_track', caption_cleanup_sha256: 'caption_cleanup', layout_authority_sha256: 'caption_layout_authority', compositor_authority_sha256: 'caption_compositor_authority'};
 const TOOL_BINDINGS = {compositor_executable_sha256: 'executable', compositor_command_sha256: 'command', compositor_config_sha256: 'config'};
+const LEDGER_KEYS = ['schema_version', 'kind', 'execution_scope', 'job_id', 'source_set_sha256', 'placement_plan_sha256', 'graph_sha256', 'temporal_map_sha256', 'caption_track_sha256', 'caption_cleanup_sha256', 'layout_authority_sha256', 'compositor_authority_sha256', 'compositor_executable_sha256', 'compositor_command_sha256', 'compositor_config_sha256', 'entries', 'chain_sha256'];
+const ENTRY_KEYS = ['sequence', 'cue_id', 'layout_id', 'start_frame', 'end_frame', 'text_sha256', 'font_sha256', 'geometry', 'graph_sha256', 'temporal_map_sha256', 'caption_track_sha256', 'caption_cleanup_sha256', 'layout_authority_sha256', 'compositor_authority_sha256', 'compositor_executable_sha256', 'compositor_command_sha256', 'compositor_config_sha256', 'previous_entry_sha256', 'entry_sha256'];
 const arg = (name, fallback) => { const at = process.argv.indexOf(`--${name}`); return at < 0 ? fallback : process.argv[at + 1]; };
 const fail = (message, code = 1) => { console.error(`COSR-GV_${message}`); process.exit(code); };
 const canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])])) : value;
 const json = (value) => `${JSON.stringify(canonical(value), null, 2)}\n`;
 const sha = (value) => createHash('sha256').update(value).digest('hex');
+const compact = (value) => Buffer.from(JSON.stringify(value));
+const ordered = (value, keys) => Object.fromEntries(keys.map((key) => [key, value[key]]));
+const canonicalLedger = (ledger) => ordered({...ledger, entries: ledger.entries.map((entry) => ordered({...entry, geometry: ordered(entry.geometry, ['x', 'y', 'width', 'height'])}, ENTRY_KEYS))}, LEDGER_KEYS);
 const schema = (value, label) => validateSchema('case-longform-adapter-v1.schema.json', value, label, fail);
 const command = process.argv[2];
 const project = realpathSync(resolve(arg('project', '.')));
@@ -65,9 +70,10 @@ function validatePure(contract, ledger, adapter, compositor) {
   const planned = authorityRoot(contract.planned_review_authority_root, 'PLANNED');
   const priors = [...contract.prior_authority_roots, ...adapter.reviewTrust.priorRoots].map((root, index) => authorityRoot(root, `PRIOR_${index}`));
   if (priors.some((root) => overlaps(planned, root) || overlaps(root, planned))) fail('CASE_LONGFORM_ROOT_OVERLAP');
-  const reviewers = Object.values(contract.review_actors); const trust = adapter.reviewTrust;
-  const priorActors = [...Object.values(contract.caption_actors), ...trust.priorActorIds];
-  if (new Set(reviewers).size !== reviewers.length || reviewers.some((actor) => priorActors.includes(actor)) || !trust.trustedPlannerActorIds.includes(reviewers[0]) || !trust.trustedCaptionVerifierActorIds.includes(reviewers[1]) || !trust.trustedGuardianActorIds.includes(reviewers[2])) fail('CASE_LONGFORM_REVIEW_ACTOR_DRIFT');
+  const {planner, caption_verifier: captionVerifier, guardian} = contract.review_actors; const trust = adapter.reviewTrust;
+  const reviewers = [planner, captionVerifier, guardian];
+  const priorActors = [contract.caption_actors.layout_authority, contract.caption_actors.compositor_authority, contract.caption_actors.caption_verifier, ...trust.priorActorIds];
+  if (!trust.trustedPlannerActorIds.includes(planner) || !trust.trustedCaptionVerifierActorIds.includes(captionVerifier) || !trust.trustedGuardianActorIds.includes(guardian) || new Set(reviewers).size !== reviewers.length || reviewers.some((actor) => priorActors.includes(actor))) fail('CASE_LONGFORM_REVIEW_ACTOR_DRIFT');
   const pre = contract.v4_status === 'PRE_RENDER_BLOCKED';
   if (contract.v7a_status !== (pre ? 'PRE_RENDER_BLOCKED' : 'BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS') || contract.v7b_status !== (pre ? 'PRE_RENDER_BLOCKED' : 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS') || contract.status !== (pre ? 'PRE_RENDER_BLOCKED' : 'BLOCKED_PENDING_V7C_FULL_CHAIN_FIXTURE_AND_CAPTION_VISUAL_EVIDENCE_CONTRACTS')) fail('CASE_LONGFORM_STATUS_PROJECTION_DRIFT');
   const a = contract.artifacts;
@@ -128,11 +134,13 @@ else {
     if (record.ref !== ref.ref || sha(record.buffer) !== ref.sha256 || record.buffer.length !== ref.bytes) fail(`CASE_LONGFORM_ARTIFACT_BINDING_DRIFT_${key}`); artifacts.set(key, record);
   }
   if (new Set([...artifacts.values()].map(({identity}) => identity)).size !== artifacts.size) fail('CASE_LONGFORM_ARTIFACT_REF_ALIAS');
+  if (!ledgerRecord.buffer.equals(compact(canonicalLedger(ledger)))) fail('CASE_LONGFORM_LEDGER_NOT_CANONICAL');
   let compositor; try { compositor = JSON.parse(artifacts.get('caption_compositor_authority').buffer.toString('utf8')); } catch { fail('CASE_LONGFORM_COMPOSITOR_AUTHORITY_INVALID'); }
   const tools = Object.entries(TOOL_BINDINGS).map(([field, name]) => ({field, record: openOnce(compositor[name]?.ref, `COMPOSITOR_${name}`, compositor[name], false)}));
   validatePure(contract, ledger, adapter, compositor);
   if (new Set([...inputs, ...denied, ...artifacts.values(), ...tools.map(({record}) => record)].map(({identity}) => identity)).size !== inputs.length + denied.length + artifacts.size + tools.length - 2) fail('CASE_LONGFORM_MATERIAL_REF_ALIAS');
-  if (json(review) !== json(expectedReview(contract, ledger))) fail('CASE_LONGFORM_REVIEW_PLAN_DRIFT');
+  const expectedReviewPlan = expectedReview(contract, ledger);
+  if (json(review) !== json(expectedReviewPlan) || !reviewRecord.buffer.equals(compact(expectedReviewPlan))) fail('CASE_LONGFORM_REVIEW_PLAN_DRIFT');
   const records = [...inputs, ...denied, ...artifacts.values(), ...tools.map(({record}) => record)]; const output = planPath(state.planRef, records, command === 'verify');
   const expected = {schemaVersion: 'general-video-case-longform-plan-v1', kind: 'case_longform_plan_verify_bridge', archetype: 'case-longform', mode: 'PLAN_VERIFY_ONLY', authority: {adapterSha256: sha(adapterRecord.buffer), contractSha256: a.contract.sha256, executionLedgerSha256: a.executionLedger.sha256, externalReviewPlanSha256: a.externalReviewPlan.sha256, jobId: a.jobId, sourceSetSha256: a.sourceSetSha256, status: a.status}, allowedCommands: ['plan', 'verify'], blockedCommands: BLOCKED, maximumState: 'BLOCKED', effects: false, coverageGap: adapter.coverageGap, planRef: state.planRef};
   if (command === 'plan') { const runtime = resolve(project, '.frames-video'); if (!existsSync(runtime)) mkdirSync(runtime, {mode: 0o700}); if (lstatSync(runtime).isSymbolicLink() || realpathSync(runtime) !== runtime) fail('CASE_LONGFORM_RUNTIME_NOT_CANONICAL'); secureWrite(output, expected); atomicState(stateRecord.path, stateRecord, {...state, caseLongformPlanSha256: sha(Buffer.from(json(expected))), workProductState: 'BLOCKED'}); console.log(`PASS case-longform plan: ${a.status}; effects=false`); }

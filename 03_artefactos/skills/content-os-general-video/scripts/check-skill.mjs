@@ -22,6 +22,12 @@ const TOOL_BINDINGS = {compositor_executable_sha256: 'executable', compositor_co
 const sha = (value) => createHash('sha256').update(value).digest('hex');
 const bytes = (value) => Buffer.isBuffer(value) ? value : Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
 const write = (root, ref, value) => { const body = bytes(value); mkdirSync(resolve(root, ref, '..'), {recursive: true}); writeFileSync(resolve(root, ref), body); return {ref, sha256: sha(body), bytes: body.length}; };
+const serialized = (value, mutation, kind) => {
+  if (mutation === `${kind}-pretty`) return bytes(value);
+  if (mutation === `${kind}-whitespace`) return Buffer.from(`${JSON.stringify(value)} `);
+  if (mutation === `${kind}-reordered`) return Buffer.from(JSON.stringify(Object.fromEntries(Object.entries(value).reverse())));
+  return Buffer.from(JSON.stringify(value));
+};
 const reviewFor = (contract, ledger) => {
   const a = contract.artifacts;
   return {schema_version: 'case-longform-caption-external-review-plan-v1', kind: 'caption_external_review_plan', plan_scope: 'PLANNING_ONLY_NO_OUTCOME', actor_id: contract.review_actors.planner,
@@ -41,6 +47,11 @@ const materialize = (mutation = 'none') => {
   fixture.adapter.reviewTrust.priorRoots = [realpathSync(resolve(root, 'external-prior-root'))];
   if (mutation === 'actor-reuse') fixture.contract.review_actors.planner = fixture.contract.caption_actors.layout_authority;
   if (mutation === 'actor-untrusted') fixture.contract.review_actors.planner = 'synthetic-untrusted-planner';
+  if (mutation === 'role-key-order-allowlist-cross') {
+    const {planner, caption_verifier: captionVerifier, guardian} = fixture.contract.review_actors;
+    fixture.contract.review_actors = {guardian, planner, caption_verifier: captionVerifier};
+    fixture.adapter.reviewTrust.trustedPlannerActorIds = [guardian]; fixture.adapter.reviewTrust.trustedCaptionVerifierActorIds = [planner]; fixture.adapter.reviewTrust.trustedGuardianActorIds = [captionVerifier];
+  }
   if (mutation === 'external-prior-actor-reuse') fixture.adapter.reviewTrust.priorActorIds = [fixture.contract.review_actors.planner];
   if (mutation === 'external-prior-root-reuse') fixture.adapter.reviewTrust.priorRoots = [fixture.contract.planned_review_authority_root];
   if (mutation === 'trust-prior-actors-omitted') delete fixture.adapter.reviewTrust.priorActorIds;
@@ -62,12 +73,12 @@ const materialize = (mutation = 'none') => {
   if (mutation === 'ledger-graph-binding') ledger.graph_sha256 = '7'.repeat(64);
   if (mutation === 'ledger-tool-binding') ledger.compositor_executable_sha256 = '7'.repeat(64);
   if (mutation === 'entry-hash-alias') ledger.entries[0].render_sha256 = '7'.repeat(64);
-  const ledgerRef = write(root, artifacts.caption_execution_ledger.ref, ledger); artifacts.caption_execution_ledger = ledgerRef;
+  const ledgerRef = write(root, artifacts.caption_execution_ledger.ref, serialized(ledger, mutation, 'ledger')); artifacts.caption_execution_ledger = ledgerRef;
   let review = reviewFor(fixture.contract, ledger);
   if (mutation === 'review-outcomes') review.outcomes = [];
   if (mutation === 'review-binding') review.graph_sha256 = '7'.repeat(64);
   if (mutation === 'task-binding') review.tasks[0].caption_entry_sha256 = '7'.repeat(64);
-  const reviewRef = write(root, artifacts.caption_external_review_plan.ref, review); artifacts.caption_external_review_plan = reviewRef; fixture.reviewPlan = review;
+  const reviewRef = write(root, artifacts.caption_external_review_plan.ref, serialized(review, mutation, 'review')); artifacts.caption_external_review_plan = reviewRef; fixture.reviewPlan = review;
   if (mutation === 'contract-ref') artifacts.caption_execution_ledger = {...ledgerRef, ref: 'different-ledger.json'};
   if (mutation === 'contract-unknown') fixture.contract.full_chain_accredited = false;
   if (mutation === 'contract-verdicts') fixture.contract.verdicts = [];
