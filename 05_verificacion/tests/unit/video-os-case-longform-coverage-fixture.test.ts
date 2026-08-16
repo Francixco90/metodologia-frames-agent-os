@@ -1,5 +1,4 @@
 import {spawnSync} from 'node:child_process';
-import {createHash} from 'node:crypto';
 import {copyFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -11,11 +10,14 @@ import {
   CaseLongformPrerenderGraphAuthoritySchema,
   CaseLongformSourceSegmentMap,
 } from 'workflows/video-os/index.ts';
+import {
+  caseFixtureMediaToolAuthority,
+  caseFixtureRoles as roles,
+  caseFixtureSha as sha,
+} from './video-os-case-longform-tool-fixture.test.ts';
 
 export type CaseFixtureRef = {ref: string; sha256: string; bytes: number};
 export const caseFixtureRoots: string[] = [];
-const roles = ['intro', 'host', 'body', 'closure', 'outro'] as const;
-const sha = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
 export const caseFixtureRef = (root: string, ref: string): CaseFixtureRef => {
   const bytes = readFileSync(resolve(root, ref));
   return {ref, sha256: sha(bytes), bytes: bytes.byteLength};
@@ -307,6 +309,7 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
   const graphAuthority = writeCaseFixture(root, 'graph-authority.json', contract);
   const options = {
     projectRoot: root,
+    mediaToolAuthority: caseFixtureMediaToolAuthority(),
     trustPolicy: {
       authorityRoot,
       previewVerifierRoot,

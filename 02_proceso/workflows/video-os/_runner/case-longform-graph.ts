@@ -1,7 +1,12 @@
 import type {z} from 'zod';
 
-import {readCaseLongformMaterial, probeCaseLongformMedia} from './case-longform-media.ts';
+import {
+  readCaseLongformMaterial,
+  type CaseLongformMediaSnapshotHooks,
+  type CaseLongformMediaToolAuthority,
+} from './case-longform-media.ts';
 import {assertCaseLongformPreflight, caseLongformSourceSetSha256} from './case-longform-preview.ts';
+import {CaseLongformPreviewBuild} from './case-longform-preflight-schema.ts';
 import {
   CaseLongformGraphAuthoritySchema,
   type CaseLongformGraphAuthority,
@@ -39,6 +44,8 @@ export const assertCaseLongformGraphAuthority = (
       trustedRunnerSha256: string;
       trustedCompilerSha256: string;
     };
+    mediaToolAuthority: CaseLongformMediaToolAuthority;
+    mediaSnapshotHooks?: CaseLongformMediaSnapshotHooks;
   },
 ): CaseLongformGraphAuthority => {
   const contract = CaseLongformGraphAuthoritySchema.parse(raw);
@@ -88,8 +95,12 @@ export const assertCaseLongformGraphAuthority = (
     !same(captions.cleanup, a.caption_cleanup)
   )
     throw new Error('VIDEO-OS-CASE-GRAPH-AUTHORITY-DRIFT');
-  const preview = readCaseLongformMaterial(options.projectRoot, a.preview_media);
-  if (probeCaseLongformMedia(preview.bytes).frame_count !== graph.frame_count)
+  const previewBuild = material(
+    options.trustPolicy.previewVerifierRoot,
+    preflight.preview.build_receipt,
+    CaseLongformPreviewBuild,
+  );
+  if (previewBuild.measurements.frame_count !== graph.frame_count)
     throw new Error('VIDEO-OS-CASE-PREVIEW-GRAPH-FRAME-DRIFT');
   validateCaseLongformGraphMaterial({
     jobId: contract.job_id,
