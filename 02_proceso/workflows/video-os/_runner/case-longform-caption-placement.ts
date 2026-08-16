@@ -14,6 +14,16 @@ import {
 
 type Ref = {ref: string; sha256: string; bytes: number};
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
+const lineCount = (text: string, maxChars: number): number => {
+  const forbidden = [...text].some((character) => {
+    const codepoint = character.codePointAt(0)!;
+    return (codepoint < 32 && codepoint !== 10) || codepoint === 127;
+  });
+  if (forbidden) throw new Error('VIDEO-OS-CASE-CAPTION-TEXT-CONTROL');
+  return text
+    .split('\n')
+    .reduce((total, segment) => total + Math.max(1, Math.ceil([...segment].length / maxChars)), 0);
+};
 
 export const caseLongformCaptionFontSetSha256 = (fonts: Ref[]): string =>
   sha(JSON.stringify(fonts.map(({sha256, bytes}) => ({sha256, bytes}))));
@@ -42,7 +52,7 @@ export const deriveCaseLongformCaptionPlacements = (input: {
       throw new Error('VIDEO-OS-CASE-CAPTION-LAYOUT-COVERAGE');
     return layouts.map((active) => {
       const rule = layout.rules.find(({layout_id}) => layout_id === active.id)!;
-      const lines = Math.ceil([...cue.text].length / rule.max_chars_per_line);
+      const lines = lineCount(cue.text, rule.max_chars_per_line);
       if (lines > rule.max_lines) throw new Error('VIDEO-OS-CASE-CAPTION-TEXT-OVERFLOW');
       const height = lines * rule.line_height;
       return {

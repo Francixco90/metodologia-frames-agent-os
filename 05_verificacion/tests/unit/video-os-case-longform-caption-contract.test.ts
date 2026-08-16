@@ -3,7 +3,13 @@ import {afterEach, describe, expect, it} from 'vitest';
 import {
   assertCaseLongformCaptionContractAuthority,
   CaseLongformCaptionPlacementPlan,
+  deriveCaseLongformCaptionPlacements,
 } from 'workflows/video-os/index.ts';
+import {
+  CaseLongformCaptionTrack,
+  CaseLongformOperationGraph,
+  CaseLongformTemporalMap,
+} from 'workflows/video-os/_runner/case-longform-graph-structure.ts';
 import {
   cleanupCaseFixtures,
   readCaseFixture,
@@ -28,6 +34,19 @@ const rewriteCompositor = (fixture: Fixture): void => {
     fixture.compositor.authorityValue,
   );
   fixture.contract.artifacts.caption_compositor_authority = fixture.compositor.ref;
+};
+const deriveText = (fixture: Fixture, text: string) => {
+  const root = fixture.ledger.base.root;
+  const a = fixture.contract.artifacts;
+  const track = CaseLongformCaptionTrack.parse(readCaseFixture(root, a.caption_track));
+  track.cues = [{...track.cues[0]!, text}];
+  return deriveCaseLongformCaptionPlacements({
+    contract: fixture.contract,
+    graph: CaseLongformOperationGraph.parse(readCaseFixture(root, a.operation_graph)),
+    temporal: CaseLongformTemporalMap.parse(readCaseFixture(root, a.temporal_map)),
+    track,
+    layout: fixture.layoutValue,
+  });
 };
 
 afterEach(cleanupCaseFixtures);
@@ -139,5 +158,32 @@ describe('case-longform V7a caption authority contracts', () => {
         strict.options,
       ),
     ).toThrow();
+  });
+
+  it('accepts exact LF line capacity', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    const plan = deriveText(fixture, `${'a'.repeat(56)}\n${'b'.repeat(56)}`);
+    expect(plan.placements.every(({height}) => height === 96)).toBe(true);
+  });
+
+  it('rejects LF line overflow', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'a\nb\nc\nd')).toThrow(/TEXT-OVERFLOW/u);
+  });
+
+  it('counts mixed LF and wrapping exactly', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    const plan = deriveText(fixture, `${'a'.repeat(57)}\n`);
+    expect(plan.placements.every(({height}) => height === 144)).toBe(true);
+  });
+
+  it('rejects carriage returns', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\r\notra')).toThrow(/TEXT-CONTROL/u);
+  });
+
+  it('rejects non-LF control characters', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\u0007otra')).toThrow(/TEXT-CONTROL/u);
   });
 });
