@@ -75,6 +75,12 @@
     "check": ["skills/career-evidence-interviewer/scripts/check-skill.mjs"]
   },
   {
+    "id": "career-notebook-briefing",
+    "version": "0.1.0",
+    "scope": "private-career-notebook",
+    "check": ["skills/career-notebook-briefing/scripts/check-skill.mjs"]
+  },
+  {
     "id": "career-visual-auditor",
     "version": "0.2.0",
     "scope": "local-evaluation",

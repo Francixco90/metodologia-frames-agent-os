@@ -1740,6 +1740,17 @@ entries:
     production_runtime_status: local_capability_only
     publication_authority: false
     tests: [node skills/career-evidence-interviewer/scripts/check-skill.mjs]
+  - skill_id: career-notebook-briefing
+    version: 0.1.0
+    current_state: active
+    execution_scope: private-career-notebook
+    content_sha256: a0171e1241864b5918b6b31ea757cc89ba3cf470cadef76d76f57d265ba50bbd
+    package_manifest_sha256: 0b4fe567eb4ae45cf7e116c5ae8ee803c81090538f7de81a65afb8782ada6979
+    lineage_ref: skills/career-notebook-briefing/LINEAGE.yml
+    dependency_receipt_ref: skills/career-notebook-briefing/receipts/runtime-boundary.yml
+    production_runtime_status: local_capability_only
+    publication_authority: false
+    tests: [node skills/career-notebook-briefing/scripts/check-skill.mjs]
   - skill_id: career-visual-auditor
     version: 0.2.0
     current_state: active
@@ -2006,6 +2017,11 @@ events:
   - {event_id: EVT-SKL-CEI-H03-003, event_order: 3, skill_id: career-evidence-interviewer, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-SKILL-VERIFIER}
   - {event_id: EVT-SKL-CEI-H03-004, event_order: 4, skill_id: career-evidence-interviewer, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
   - {event_id: EVT-SKL-CEI-H03-005, event_order: 5, skill_id: career-evidence-interviewer, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-12T00:00:00Z', decision: activate_adaptive_evidence_interview_before_positioning}
+  - {event_id: EVT-SKL-CNB-H03-001, event_order: 1, skill_id: career-notebook-briefing, from: null, to: candidate, actor_id: RT-07-CAREER-BRIEFING-PRODUCER}
+  - {event_id: EVT-SKL-CNB-H03-002, event_order: 2, skill_id: career-notebook-briefing, from: candidate, to: quarantined, actor_id: RT-07-CAREER-BRIEFING-PRODUCER}
+  - {event_id: EVT-SKL-CNB-H03-003, event_order: 3, skill_id: career-notebook-briefing, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-BRIEFING-VERIFIER}
+  - {event_id: EVT-SKL-CNB-H03-004, event_order: 4, skill_id: career-notebook-briefing, from: evaluated, to: active, actor_id: RT-10-CAREER-INTEGRATOR}
+  - {event_id: EVT-SKL-CNB-H03-005, event_order: 5, skill_id: career-notebook-briefing, from: active, to: active, actor_id: RT-10-CAREER-INTEGRATOR, recorded_at: '2026-08-16T00:00:00Z', decision: activate_private_capability_aware_studio_briefings}
   - {event_id: EVT-SKL-CVA-H03-001, event_order: 1, skill_id: career-visual-auditor, from: null, to: candidate, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
   - {event_id: EVT-SKL-CVA-H03-002, event_order: 2, skill_id: career-visual-auditor, from: candidate, to: quarantined, actor_id: RT-07-CAREER-DESIGN-PRODUCER}
   - {event_id: EVT-SKL-CVA-H03-003, event_order: 3, skill_id: career-visual-auditor, from: quarantined, to: evaluated, actor_id: RT-09-CAREER-VISUAL-VERIFIER}

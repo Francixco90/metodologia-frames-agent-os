@@ -1,0 +1,16 @@
+schema_version: skill-lineage-v1
+skill_id: career-notebook-briefing
+version: 0.1.0
+owner: MetodologIA
+lifecycle_state: active
+execution_scope: private-career-notebook
+content_origin: locally_authored_from_user_supplied_requirements
+external_fragments_reused: false
+publication_authority: false
+authority_refs:
+  - 03_artefactos/brand/career-design-system/design-system-ref.v1.json
+  - 03_artefactos/brand/career-design-system/compositions/neo-swiss-editorial.v1.md
+  - 03_artefactos/skills/career-design-system/SKILL.md
+derivation:
+  method: spec_first_private_projection
+  successor_change: add_capability_aware_idempotent_career_studio_briefings

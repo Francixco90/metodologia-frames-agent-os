@@ -1,0 +1,23 @@
+schema_version: 1
+receipt_id: career-notebook-briefing-runtime-boundary-v1
+skill_id: career-notebook-briefing
+execution_scope: private-career-notebook
+network_allowed: true
+external_effects_allowed: true
+publication_authority: false
+private_state_required: true
+requires_explicit_user_authorization: true
+allowed_effects:
+  - read_bound_notebook
+  - sync_bound_sources
+  - create_private_studio_artifacts
+  - poll_artifact_status
+  - download_private_evidence
+forbidden_effects: [share, publish, invite, delete_notebook, delete_source, send]
+required_capabilities:
+  - notebook_get
+  - source_sync_or_replace
+  - studio_create
+  - studio_status
+  - download_artifact
+fail_closed_states: [UNAVAILABLE, BLOCKED_AUTH, PARTIAL, UNKNOWN]
