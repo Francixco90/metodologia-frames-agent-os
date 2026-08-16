@@ -144,20 +144,18 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
     expect(fixture.contract).not.toHaveProperty('effects');
   });
 
-  it('rejects ledger forgery, reorder, truncation, aliases and lifecycle claims', () => {
+  it.each<[string, (value: Fixture['ledgerValue']) => void]>([
+    ['forgery', (value) => void (value.regions[0]!.frame_chain_sha256 = BAD)],
+    ['reorder', (value) => void value.regions.reverse()],
+    ['truncation', (value) => void value.regions.pop()],
+  ])('rejects ledger %s', (_label, mutate) => {
     const fixture = materialize();
-    const original = structuredClone(fixture.ledgerValue);
-    fixture.ledgerValue.regions[0]!.frame_chain_sha256 = BAD;
+    mutate(fixture.ledgerValue);
     rewriteLedger(fixture);
     expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
-    fixture.ledgerValue = structuredClone(original);
-    fixture.ledgerValue.regions.reverse();
-    rewriteLedger(fixture);
-    expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
-    fixture.ledgerValue = structuredClone(original);
-    fixture.ledgerValue.regions.pop();
-    rewriteLedger(fixture);
-    expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
+  });
+
+  it('rejects ledger aliases and lifecycle claims', () => {
     const strict = materialize();
     expect(() =>
       assertCaseLongformPreservationLedgerAuthority(
@@ -258,7 +256,7 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
     expect(() => assertCaseLongformRgbRegionPreserved(observed)).toThrow(/OUTSIDE-MASK-CHANGED/u);
   });
 
-  it('ignores fake PATH and rejects tool, timing and media drift', () => {
+  it('ignores fake PATH', () => {
     const fixture = materialize();
     const previous = process.env.PATH;
     process.env.PATH = fixture.base.root;
@@ -270,12 +268,19 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
       if (previous === undefined) delete process.env.PATH;
       else process.env.PATH = previous;
     }
+  });
+
+  it('rejects tool drift', () => {
     const toolDrift = materialize();
     toolDrift.base.preservationOptions.preservationToolAuthority.ffmpeg_sha256 = BAD;
     expect(() => validate(toolDrift)).toThrow(/TOOL-UNTRUSTED/u);
-    const ffmpeg = fixture.base.preservationOptions.preservationToolAuthority.ffmpeg_path;
-    const ffprobe = fixture.base.preservationOptions.preservationToolAuthority.ffprobe_path;
-    const invalid = resolve(fixture.base.root, 'timing.mp4');
+  });
+
+  it('rejects timing drift', () => {
+    const fixture = materializeCaseLongformPreservationPlanFixture();
+    const ffmpeg = fixture.preservationOptions.preservationToolAuthority.ffmpeg_path;
+    const ffprobe = fixture.preservationOptions.preservationToolAuthority.ffprobe_path;
+    const invalid = resolve(fixture.root, 'timing.mp4');
     const made = spawnSync(
       ffmpeg,
       [
@@ -293,6 +298,9 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
     );
     expect(made.status).toBe(0);
     expect(() => probeCaseLongformRgbMedia(ffprobe, invalid)).toThrow(/MEDIA-DRIFT/u);
+  });
+
+  it('rejects media drift during the snapshot', () => {
     const mediaDrift = materialize();
     const options = {
       ...mediaDrift.base.preservationOptions,
