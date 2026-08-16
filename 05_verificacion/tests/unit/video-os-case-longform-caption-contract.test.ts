@@ -15,7 +15,7 @@ import {
   readCaseFixture,
   writeCaseFixture,
 } from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
-import {materializeCaseLongformCaptionContractFixture} from './video-os-case-longform-caption-contract-fixture.test.ts';
+import {materializeCaseLongformCaptionContractFixture} from '../../../tests/fixtures/video-os-case-longform-caption-contract.fixture.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformCaptionContractFixture>;
 const validate = (fixture: Fixture) =>
