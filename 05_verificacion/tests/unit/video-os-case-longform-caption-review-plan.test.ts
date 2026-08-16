@@ -6,6 +6,7 @@ import {
   caseLongformCaptionReviewPlanStatus,
 } from 'workflows/video-os/index.ts';
 import {
+  caseLongformCaptionReviewLedgerRef,
   caseLongformCaptionReviewPlanRef,
   cleanupCaseLongformCaptionReviewPlanFixtures,
   materializeCaseLongformCaptionReviewPlanFixture,
@@ -16,6 +17,11 @@ const validate = (fixture: Fixture) => assertCaseLongformCaptionReviewPlanContra
 const rewritePlan = (fixture: Fixture): void => {
   fixture.contract.artifacts.caption_external_review_plan = caseLongformCaptionReviewPlanRef(
     fixture.plan,
+  );
+};
+const rewriteLedger = (fixture: Fixture): void => {
+  fixture.contract.artifacts.caption_execution_ledger = caseLongformCaptionReviewLedgerRef(
+    fixture.ledger,
   );
 };
 const withFixture = (test: (fixture: Fixture) => void): void => {
@@ -48,6 +54,62 @@ describe('case-longform V7c0 external caption review plan contract', () => {
       );
       expect(fixture.plan).not.toHaveProperty('verdict');
       expect(fixture.plan).not.toHaveProperty('receipt');
+    }));
+
+  it('accepts only the exact positive ledger order 0..n-1', () =>
+    withFixture((fixture) => {
+      expect(fixture.ledger.entries.map(({sequence}) => sequence)).toEqual([0, 1]);
+      expect(validate(fixture).status).toBe('PRE_RENDER_BLOCKED');
+    }));
+
+  it('rejects ledger sequence=999 even when the ledger ref is recomputed', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[0]!.sequence = 999;
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-SEQUENCE-DRIFT/u);
+    }));
+
+  it('rejects duplicated ledger sequences [0,0]', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[1]!.sequence = 0;
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-SEQUENCE-DRIFT/u);
+    }));
+
+  it('rejects reordered ledger sequences [1,0]', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[0]!.sequence = 1;
+      fixture.ledger.entries[1]!.sequence = 0;
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-SEQUENCE-DRIFT/u);
+    }));
+
+  it('rejects ledger job_id drift before plan derivation', () =>
+    withFixture((fixture) => {
+      fixture.ledger.job_id = 'forged-job';
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-BINDING-DRIFT/u);
+    }));
+
+  it('rejects ledger graph_sha256 drift before plan derivation', () =>
+    withFixture((fixture) => {
+      fixture.ledger.graph_sha256 = '0'.repeat(64);
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-BINDING-DRIFT/u);
+    }));
+
+  it('rejects loss of the Danilo PRE_RENDER_BLOCKED state between V4 and V7b', () =>
+    withFixture((fixture) => {
+      fixture.contract.v7b_status = 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
+      expect(() => validate(fixture)).toThrow(/V7B-STATUS-DRIFT/u);
+    }));
+
+  it('rejects an injected PRE_RENDER_BLOCKED V7b state for a non-blocked V4 participant', () =>
+    withFixture((fixture) => {
+      fixture.contract.v4_status = 'BLOCKED_PENDING_PRESERVATION_AND_EXTERNAL_REVIEW_CONTRACTS';
+      fixture.contract.status =
+        'BLOCKED_PENDING_V7C_FULL_CHAIN_FIXTURE_AND_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
+      expect(() => validate(fixture)).toThrow(/V7B-STATUS-DRIFT/u);
     }));
 
   it('maps non-Danilo V4 status only to the explicit full-chain blocked state', () => {

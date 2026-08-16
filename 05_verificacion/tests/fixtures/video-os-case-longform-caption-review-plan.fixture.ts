@@ -15,6 +15,8 @@ const refFor = (ref: string, value: unknown) => {
 };
 export const caseLongformCaptionReviewPlanRef = (value: unknown) =>
   refFor('caption-external-review-plan.json', value);
+export const caseLongformCaptionReviewLedgerRef = (value: unknown) =>
+  refFor('caption-execution-ledger.json', value);
 export const cleanupCaseLongformCaptionReviewPlanFixtures =
   cleanupCaseLongformCaptionExecutionFixtures;
 

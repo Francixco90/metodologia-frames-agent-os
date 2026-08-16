@@ -3,6 +3,7 @@ import {isAbsolute, normalize, relative} from 'node:path';
 
 import {
   CaseLongformCaptionExecutionAuthoritySchema,
+  CaseLongformCaptionExecutionLedger,
   type CaseLongformCaptionExecutionLedgerValue,
 } from './case-longform-caption-execution-authority.ts';
 import {
@@ -38,6 +39,12 @@ const refMatches = (ref: {sha256: string; bytes: number}, value: unknown): boole
     ref.bytes === bytes.length && ref.sha256 === createHash('sha256').update(bytes).digest('hex')
   );
 };
+const expectedV7bStatus = (
+  v4Status: CaseLongformCaptionReviewPlanContract['v4_status'],
+): CaseLongformCaptionReviewPlanContract['v7b_status'] =>
+  v4Status === 'PRE_RENDER_BLOCKED'
+    ? 'PRE_RENDER_BLOCKED'
+    : 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
 const v7bProjection = (contract: CaseLongformCaptionReviewPlanContract) => ({
   schema_version: 'case-longform-caption-execution-authority-v7b' as const,
   job_id: contract.job_id,
@@ -58,6 +65,7 @@ export const assertCaseLongformCaptionReviewPlanContract = (
   input: Input,
 ): CaseLongformCaptionReviewPlanContract => {
   const contract = CaseLongformCaptionReviewPlanContractSchema.parse(input.contract);
+  const ledger = CaseLongformCaptionExecutionLedger.parse(input.ledger);
   const plan = CaseLongformCaptionExternalReviewPlan.parse(input.plan);
   const refs = Object.values(contract.artifacts);
   if (new Set(refs.map(({ref}) => ref)).size !== refs.length)
@@ -85,11 +93,37 @@ export const assertCaseLongformCaptionReviewPlanContract = (
     !input.trust.trustedGuardianActorIds.includes(contract.review_actors.guardian)
   )
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-ACTOR-DRIFT');
+  if (contract.v7b_status !== expectedV7bStatus(contract.v4_status))
+    throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-V7B-STATUS-DRIFT');
   CaseLongformCaptionExecutionAuthoritySchema.parse(v7bProjection(contract));
+  if (ledger.entries.some(({sequence}, index) => sequence !== index))
+    throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-SEQUENCE-DRIFT');
+  const a = contract.artifacts;
   if (
-    !refMatches(contract.artifacts.caption_execution_ledger, input.ledger) ||
+    ledger.job_id !== contract.job_id ||
+    ledger.source_set_sha256 !== contract.source_set_sha256 ||
+    ledger.placement_plan_sha256 !== a.caption_placement_plan.sha256 ||
+    ledger.graph_sha256 !== a.operation_graph.sha256 ||
+    ledger.temporal_map_sha256 !== a.temporal_map.sha256 ||
+    ledger.caption_track_sha256 !== a.caption_track.sha256 ||
+    ledger.caption_cleanup_sha256 !== a.caption_cleanup.sha256 ||
+    ledger.layout_authority_sha256 !== a.caption_layout_authority.sha256 ||
+    ledger.compositor_authority_sha256 !== a.caption_compositor_authority.sha256 ||
+    ledger.entries.some(
+      (entry) =>
+        entry.graph_sha256 !== ledger.graph_sha256 ||
+        entry.temporal_map_sha256 !== ledger.temporal_map_sha256 ||
+        entry.caption_track_sha256 !== ledger.caption_track_sha256 ||
+        entry.caption_cleanup_sha256 !== ledger.caption_cleanup_sha256 ||
+        entry.layout_authority_sha256 !== ledger.layout_authority_sha256 ||
+        entry.compositor_authority_sha256 !== ledger.compositor_authority_sha256,
+    )
+  )
+    throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-BINDING-DRIFT');
+  if (
+    !refMatches(contract.artifacts.caption_execution_ledger, ledger) ||
     !refMatches(contract.artifacts.caption_external_review_plan, plan) ||
-    !same(plan, deriveCaseLongformCaptionExternalReviewPlan({contract, ledger: input.ledger}))
+    !same(plan, deriveCaseLongformCaptionExternalReviewPlan({contract, ledger}))
   )
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-PLAN-DRIFT');
   if (contract.status !== caseLongformCaptionReviewPlanStatus(contract.v4_status))
