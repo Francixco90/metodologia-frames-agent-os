@@ -75,35 +75,44 @@ describe('case-longform V7a caption authority contracts', () => {
     expect(() => validate(fixture)).toThrow(/ACTORS-NOT-INDEPENDENT/u);
   });
 
-  it('rejects untrusted external actors and executable hashes', () => {
+  it('rejects untrusted external actors', () => {
     const fixture = materializeCaseLongformCaptionContractFixture();
     fixture.options.captionTrustPolicy.trustedLayoutActorIds = [];
     expect(() => validate(fixture)).toThrow(/LAYOUT-AUTHORITY-DRIFT/u);
-    const executable = materializeCaseLongformCaptionContractFixture();
-    executable.options.captionTrustPolicy.trustedCompositorExecutableSha256 = '0'.repeat(64);
-    expect(() => validate(executable)).toThrow(/TOOL-UNTRUSTED/u);
   });
 
-  it('rejects font aliases and a forged font-set hash', () => {
-    const alias = materializeCaseLongformCaptionContractFixture();
-    alias.layoutValue.fonts.push(alias.layoutValue.fonts[0]!);
-    rewriteLayout(alias);
-    expect(() => validate(alias)).toThrow(/FONT-ALIAS/u);
-    const forged = materializeCaseLongformCaptionContractFixture();
-    forged.layoutValue.font_set_sha256 = '0'.repeat(64);
-    rewriteLayout(forged);
-    expect(() => validate(forged)).toThrow(/FONT-SET-DRIFT/u);
+  it('rejects untrusted compositor executable hashes', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.options.captionTrustPolicy.trustedCompositorExecutableSha256 = '0'.repeat(64);
+    expect(() => validate(fixture)).toThrow(/TOOL-UNTRUSTED/u);
   });
 
-  it('rejects missing or duplicate temporal layout rules without a default', () => {
-    const missing = materializeCaseLongformCaptionContractFixture();
-    missing.layoutValue.rules.pop();
-    rewriteLayout(missing);
-    expect(() => validate(missing)).toThrow(/LAYOUT-RULE-DRIFT/u);
-    const duplicate = materializeCaseLongformCaptionContractFixture();
-    duplicate.layoutValue.rules.push(duplicate.layoutValue.rules[0]!);
-    rewriteLayout(duplicate);
-    expect(() => validate(duplicate)).toThrow(/LAYOUT-RULE-DRIFT/u);
+  it('rejects font aliases', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.layoutValue.fonts.push(fixture.layoutValue.fonts[0]!);
+    rewriteLayout(fixture);
+    expect(() => validate(fixture)).toThrow(/FONT-ALIAS/u);
+  });
+
+  it('rejects a forged font-set hash', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.layoutValue.font_set_sha256 = '0'.repeat(64);
+    rewriteLayout(fixture);
+    expect(() => validate(fixture)).toThrow(/FONT-SET-DRIFT/u);
+  });
+
+  it('rejects a missing temporal layout rule without a default', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.layoutValue.rules.pop();
+    rewriteLayout(fixture);
+    expect(() => validate(fixture)).toThrow(/LAYOUT-RULE-DRIFT/u);
+  });
+
+  it('rejects duplicate temporal layout rules', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.layoutValue.rules.push(fixture.layoutValue.rules[0]!);
+    rewriteLayout(fixture);
+    expect(() => validate(fixture)).toThrow(/LAYOUT-RULE-DRIFT/u);
   });
 
   it('rejects a non-allowlisted compositor argv structure', () => {
@@ -118,18 +127,21 @@ describe('case-longform V7a caption authority contracts', () => {
     expect(() => validate(fixture)).toThrow(/TOOL-CONTRACT-DRIFT/u);
   });
 
-  it('rejects nested tool aliases and verifier PASS material', () => {
-    const alias = materializeCaseLongformCaptionContractFixture();
-    alias.compositor.authorityValue.command = alias.compositor.authorityValue.config;
-    rewriteCompositor(alias);
-    expect(() => validate(alias)).toThrow(/TOOL-REF-ALIAS/u);
-    const pass = materializeCaseLongformCaptionContractFixture();
-    pass.verifier.ref = writeCaseFixture(pass.verifier.root, pass.verifier.ref.ref, {
-      ...pass.verifier.authorityValue,
+  it('rejects nested tool aliases', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.compositor.authorityValue.command = fixture.compositor.authorityValue.config;
+    rewriteCompositor(fixture);
+    expect(() => validate(fixture)).toThrow(/TOOL-REF-ALIAS/u);
+  });
+
+  it('rejects verifier PASS material', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    fixture.verifier.ref = writeCaseFixture(fixture.verifier.root, fixture.verifier.ref.ref, {
+      ...fixture.verifier.authorityValue,
       verdict: 'PASS',
     });
-    pass.contract.artifacts.caption_verifier_authority = pass.verifier.ref;
-    expect(() => validate(pass)).toThrow();
+    fixture.contract.artifacts.caption_verifier_authority = fixture.verifier.ref;
+    expect(() => validate(fixture)).toThrow();
   });
 
   it('rejects producer-authored placement geometry', () => {
