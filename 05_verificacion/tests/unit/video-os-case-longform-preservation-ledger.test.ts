@@ -9,9 +9,7 @@ import {afterEach, describe, expect, it} from 'vitest';
 import {
   assertCaseLongformPreservationLedgerAuthority,
   assertCaseLongformRgbRegionPreserved,
-  CaseLongformPreservationLedgerAuthoritySchema,
   compareCaseLongformRgbRegion,
-  deriveCaseLongformFrameDiffLedger,
   probeCaseLongformRgbMedia,
 } from 'workflows/video-os/index.ts';
 import {withCaseLongformMediaSnapshot} from 'workflows/video-os/_runner/case-longform-media.ts';
@@ -19,37 +17,14 @@ import {
   caseFixtureRoots,
   cleanupCaseFixtures,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
-import {materializeCaseLongformPreservationPlanFixture} from './video-os-case-longform-preservation-plan-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
+import {materializeCaseLongformPreservationLedgerFixture} from '../../../tests/fixtures/video-os-case-longform-preservation-ledger.fixture.ts';
+import {materializeCaseLongformPreservationPlanFixture} from '../../../tests/fixtures/video-os-case-longform-preservation-plan.fixture.ts';
+
+export {materializeCaseLongformPreservationLedgerFixture};
 
 const hash = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
 const BAD = '0'.repeat(64);
-export const materializeCaseLongformPreservationLedgerFixture = () => {
-  const base = materializeCaseLongformPreservationPlanFixture();
-  const a = base.preservationContract.artifacts;
-  const ledgerValue = deriveCaseLongformFrameDiffLedger({
-    projectRoot: base.root,
-    job_id: base.preservationContract.job_id,
-    plan_ref: a.preservation_plan,
-    policy_ref: a.preservation_policy_receipt,
-    source_set_sha256: base.preservationContract.source_set_sha256,
-    preview_ref: a.preview_media,
-    redaction_ref: a.redaction_map,
-    plan: base.values.preservationPlan,
-    policy: base.values.preservationPolicy,
-    source_set: base.values.sourceSet,
-    tool_authority: base.preservationOptions.preservationToolAuthority,
-  });
-  const ledger = writeCaseFixture(base.root, 'frame-diff-ledger.json', ledgerValue);
-  const contract = CaseLongformPreservationLedgerAuthoritySchema.parse({
-    ...base.preservationContract,
-    schema_version: 'case-longform-preservation-ledger-authority-v6',
-    artifacts: {...a, frame_diff_ledger: ledger},
-    v5a_status: base.preservationContract.status,
-    status: 'BLOCKED_PENDING_CAPTION_AND_EXTERNAL_REVIEW_CONTRACTS',
-  });
-  return {base, contract, ledgerValue};
-};
 const materialize = materializeCaseLongformPreservationLedgerFixture;
 type Fixture = ReturnType<typeof materialize>;
 const validate = ({base, contract}: Fixture, options = base.preservationOptions) =>
