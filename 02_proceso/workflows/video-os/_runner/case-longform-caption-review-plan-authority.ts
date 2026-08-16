@@ -66,6 +66,7 @@ export const CaseLongformCaptionReviewPlanContractSchema =
       caption_external_review_plan: Ref,
     }),
     planned_review_authority_root: z.string().min(1),
+    prior_authority_roots: z.array(z.string().min(1)).min(1),
     review_actors: z.strictObject({planner: id, caption_verifier: id, guardian: id}),
     v7b_status: CaseLongformCaptionExecutionAuthoritySchema.shape.status,
     coverage_gap: z.literal('V7C_FULL_CHAIN_FIXTURE_NOT_ACCREDITED'),

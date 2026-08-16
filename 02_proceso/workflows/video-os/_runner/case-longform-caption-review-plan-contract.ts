@@ -39,10 +39,18 @@ const refMatches = (ref: {sha256: string; bytes: number}, value: unknown): boole
     ref.bytes === bytes.length && ref.sha256 === createHash('sha256').update(bytes).digest('hex')
   );
 };
-const expectedV7bStatus = (
+const sha = (value: unknown): string =>
+  createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const expectedV7aStatus = (
   v4Status: CaseLongformCaptionReviewPlanContract['v4_status'],
-): CaseLongformCaptionReviewPlanContract['v7b_status'] =>
+): CaseLongformCaptionReviewPlanContract['v7a_status'] =>
   v4Status === 'PRE_RENDER_BLOCKED'
+    ? 'PRE_RENDER_BLOCKED'
+    : 'BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS';
+const expectedV7bStatus = (
+  v7aStatus: CaseLongformCaptionReviewPlanContract['v7a_status'],
+): CaseLongformCaptionReviewPlanContract['v7b_status'] =>
+  v7aStatus === 'PRE_RENDER_BLOCKED'
     ? 'PRE_RENDER_BLOCKED'
     : 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
 const v7bProjection = (contract: CaseLongformCaptionReviewPlanContract) => ({
@@ -74,8 +82,9 @@ export const assertCaseLongformCaptionReviewPlanContract = (
   if (!isAbsolute(root)) throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-ROOT-NOT-ABSOLUTE');
   if (normalize(root) !== root)
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-ROOT-NOT-CANONICAL');
+  const priorRoots = [...contract.prior_authority_roots, ...input.trust.priorRoots];
   if (
-    input.trust.priorRoots.some(
+    priorRoots.some(
       (prior) =>
         !isAbsolute(prior) ||
         normalize(prior) !== prior ||
@@ -85,20 +94,32 @@ export const assertCaseLongformCaptionReviewPlanContract = (
   )
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-ROOT-OVERLAP');
   const reviewers = Object.values(contract.review_actors);
+  const priorActorIds = [...Object.values(contract.caption_actors), ...input.trust.priorActorIds];
   if (
     new Set(reviewers).size !== reviewers.length ||
-    reviewers.some((actor) => input.trust.priorActorIds.includes(actor)) ||
+    reviewers.some((actor) => priorActorIds.includes(actor)) ||
     !input.trust.trustedPlannerActorIds.includes(contract.review_actors.planner) ||
     !input.trust.trustedCaptionVerifierActorIds.includes(contract.review_actors.caption_verifier) ||
     !input.trust.trustedGuardianActorIds.includes(contract.review_actors.guardian)
   )
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-ACTOR-DRIFT');
-  if (contract.v7b_status !== expectedV7bStatus(contract.v4_status))
+  if (contract.v7a_status !== expectedV7aStatus(contract.v4_status))
+    throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-V7A-STATUS-DRIFT');
+  if (contract.v7b_status !== expectedV7bStatus(contract.v7a_status))
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-V7B-STATUS-DRIFT');
   CaseLongformCaptionExecutionAuthoritySchema.parse(v7bProjection(contract));
   if (ledger.entries.some(({sequence}, index) => sequence !== index))
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-SEQUENCE-DRIFT');
   const a = contract.artifacts;
+  let previous: string | null = null;
+  for (const entry of ledger.entries) {
+    const {entry_sha256: entrySha256, ...unsigned} = entry;
+    if (entry.previous_entry_sha256 !== previous || entrySha256 !== sha(unsigned))
+      throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-ENTRY-HASH-DRIFT');
+    previous = entrySha256;
+  }
+  if (ledger.chain_sha256 !== previous)
+    throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-CHAIN-HASH-DRIFT');
   if (
     ledger.job_id !== contract.job_id ||
     ledger.source_set_sha256 !== contract.source_set_sha256 ||
@@ -116,7 +137,10 @@ export const assertCaseLongformCaptionReviewPlanContract = (
         entry.caption_track_sha256 !== ledger.caption_track_sha256 ||
         entry.caption_cleanup_sha256 !== ledger.caption_cleanup_sha256 ||
         entry.layout_authority_sha256 !== ledger.layout_authority_sha256 ||
-        entry.compositor_authority_sha256 !== ledger.compositor_authority_sha256,
+        entry.compositor_authority_sha256 !== ledger.compositor_authority_sha256 ||
+        entry.compositor_executable_sha256 !== ledger.compositor_executable_sha256 ||
+        entry.compositor_command_sha256 !== ledger.compositor_command_sha256 ||
+        entry.compositor_config_sha256 !== ledger.compositor_config_sha256,
     )
   )
     throw new Error('VIDEO-OS-CASE-CAPTION-REVIEW-CONTRACT-LEDGER-BINDING-DRIFT');

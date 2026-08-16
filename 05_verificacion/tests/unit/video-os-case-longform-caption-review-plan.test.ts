@@ -1,3 +1,5 @@
+import {createHash} from 'node:crypto';
+
 import {describe, expect, it} from 'vitest';
 
 import {
@@ -23,6 +25,19 @@ const rewriteLedger = (fixture: Fixture): void => {
   fixture.contract.artifacts.caption_execution_ledger = caseLongformCaptionReviewLedgerRef(
     fixture.ledger,
   );
+};
+const rehashLedger = (fixture: Fixture): void => {
+  let previous: string | null = null;
+  fixture.ledger.entries.forEach((entry) => {
+    entry.previous_entry_sha256 = previous;
+    const unsigned = Object.fromEntries(
+      Object.entries(entry).filter(([key]) => key !== 'entry_sha256'),
+    );
+    entry.entry_sha256 = createHash('sha256').update(JSON.stringify(unsigned)).digest('hex');
+    previous = entry.entry_sha256;
+  });
+  fixture.ledger.chain_sha256 = previous!;
+  rewriteLedger(fixture);
 };
 const withFixture = (test: (fixture: Fixture) => void): void => {
   const fixture = materializeCaseLongformCaptionReviewPlanFixture();
@@ -98,15 +113,63 @@ describe('case-longform V7c0 external caption review plan contract', () => {
       expect(() => validate(fixture)).toThrow(/LEDGER-BINDING-DRIFT/u);
     }));
 
+  it('rejects chain hash drift even when the ledger ref is recomputed', () =>
+    withFixture((fixture) => {
+      fixture.ledger.chain_sha256 = '0'.repeat(64);
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-CHAIN-HASH-DRIFT/u);
+    }));
+
+  it('rejects previous entry hash drift even when the ledger ref is recomputed', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[1]!.previous_entry_sha256 = '0'.repeat(64);
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-ENTRY-HASH-DRIFT/u);
+    }));
+
+  it('rejects entry hash drift even when the ledger ref is recomputed', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[0]!.entry_sha256 = '0'.repeat(64);
+      rewriteLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-ENTRY-HASH-DRIFT/u);
+    }));
+
+  it('rejects compositor tool field drift after a valid chain rehash', () =>
+    withFixture((fixture) => {
+      fixture.ledger.entries[0]!.compositor_command_sha256 = '0'.repeat(64);
+      rehashLedger(fixture);
+      expect(() => validate(fixture)).toThrow(/LEDGER-BINDING-DRIFT/u);
+    }));
+
   it('rejects loss of the Danilo PRE_RENDER_BLOCKED state between V4 and V7b', () =>
     withFixture((fixture) => {
       fixture.contract.v7b_status = 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
       expect(() => validate(fixture)).toThrow(/V7B-STATUS-DRIFT/u);
     }));
 
+  it('rejects Danilo V7a status drift even when V7b follows the forged V7a state', () =>
+    withFixture((fixture) => {
+      fixture.contract.v7a_status = 'BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS';
+      fixture.contract.v7b_status = 'BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
+      expect(() => validate(fixture)).toThrow(/V7A-STATUS-DRIFT/u);
+    }));
+
+  it('rejects non-Danilo V7a status drift even when V7b follows the forged V7a state', () => {
+    const fixture = materializeCaseLongformCaptionReviewPlanFixture('other');
+    try {
+      fixture.contract.v7a_status = 'PRE_RENDER_BLOCKED';
+      fixture.contract.v7b_status = 'PRE_RENDER_BLOCKED';
+      fixture.contract.status = 'PRE_RENDER_BLOCKED';
+      expect(() => validate(fixture)).toThrow(/V7A-STATUS-DRIFT/u);
+    } finally {
+      cleanupCaseLongformCaptionReviewPlanFixtures();
+    }
+  });
+
   it('rejects an injected PRE_RENDER_BLOCKED V7b state for a non-blocked V4 participant', () =>
     withFixture((fixture) => {
       fixture.contract.v4_status = 'BLOCKED_PENDING_PRESERVATION_AND_EXTERNAL_REVIEW_CONTRACTS';
+      fixture.contract.v7a_status = 'BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS';
       fixture.contract.status =
         'BLOCKED_PENDING_V7C_FULL_CHAIN_FIXTURE_AND_CAPTION_VISUAL_EVIDENCE_CONTRACTS';
       expect(() => validate(fixture)).toThrow(/V7B-STATUS-DRIFT/u);
@@ -133,7 +196,8 @@ describe('case-longform V7c0 external caption review plan contract', () => {
     [
       'overlap',
       (fixture: Fixture): void =>
-        void (fixture.contract.planned_review_authority_root = fixture.trust.priorRoots[0]!),
+        void (fixture.contract.planned_review_authority_root =
+          fixture.contract.prior_authority_roots[0]!),
     ],
   ] as const)('rejects %s review roots', (_label, mutate) =>
     withFixture((fixture) => {
@@ -162,6 +226,22 @@ describe('case-longform V7c0 external caption review plan contract', () => {
       fixture.contract.review_actors.planner = fixture.contract.review_actors.guardian;
       fixture.trust.trustedPlannerActorIds = [fixture.contract.review_actors.planner];
       expect(() => validate(fixture)).toThrow(/ACTOR-DRIFT/u);
+    }));
+
+  it('derives prior actors when caller omits them and rejects reuse', () =>
+    withFixture((fixture) => {
+      fixture.trust.priorActorIds = [];
+      fixture.contract.review_actors.planner =
+        fixture.base.contract.caption_actors.layout_authority;
+      fixture.trust.trustedPlannerActorIds = [fixture.contract.review_actors.planner];
+      expect(() => validate(fixture)).toThrow(/ACTOR-DRIFT/u);
+    }));
+
+  it('derives prior roots when caller omits them and rejects reuse', () =>
+    withFixture((fixture) => {
+      fixture.trust.priorRoots = [];
+      fixture.contract.planned_review_authority_root = fixture.contract.prior_authority_roots[0]!;
+      expect(() => validate(fixture)).toThrow(/ROOT-OVERLAP/u);
     }));
 
   it.each([
