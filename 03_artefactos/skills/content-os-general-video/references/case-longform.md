@@ -89,6 +89,13 @@ libre. Danilo conserva `PRE_RENDER_BLOCKED`; los demás no superan
 `BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS`. [CONFIG] `coverage_gap`: faltan ledger material
 de captions y review externo; este slice no compone, observa, renderiza, publica ni emite `PASS`.
 
+PR1c1b2b1 añade un `CaptionExecutionLedger` de alcance `CAPTION_DATA_GRAPH_ONLY`: una entrada
+encadenada por cada fragmento cue×layout liga texto, fuente, geometría, frames, grafo, mapa temporal,
+track, cleanup y autoridades del compositor. El ledger se recalcula desde V7a y no acredita píxeles
+ni observación visual. Danilo conserva `PRE_RENDER_BLOCKED`; los demás quedan
+`BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS`. [CONFIG] `coverage_gap`: evidencia visual y
+review externo siguen separados; no existen `PASS`, composición, render, efectos ni publicación.
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye
