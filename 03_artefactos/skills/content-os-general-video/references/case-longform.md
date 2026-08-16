@@ -82,6 +82,13 @@ permanece `BLOCKED_PENDING_CAPTION_AND_EXTERNAL_REVIEW_CONTRACTS`. [CÓDIGO]
 `coverage_gap`: falta autoridad material de layout/compositor, cue/ROI/timing, single-caption y
 review externo antes de cualquier render. [METODOLOGIA]
 
+PR1c1b2a1 congela únicamente contratos: layout, compositor y verificador viven en raíces externas
+disjuntas con actores distintos; fonts, ejecutables, configuración y comandos canónicos quedan
+hash-bound. Cada placement se deriva del grafo, mapa temporal, captions y policy de layout, sin ROI
+libre. Danilo conserva `PRE_RENDER_BLOCKED`; los demás no superan
+`BLOCKED_PENDING_CAPTION_MATERIAL_LEDGER_CONTRACTS`. [CONFIG] `coverage_gap`: faltan ledger material
+de captions y review externo; este slice no compone, observa, renderiza, publica ni emite `PASS`.
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye
