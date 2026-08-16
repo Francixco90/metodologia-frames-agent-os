@@ -1,7 +1,14 @@
 import {realpathSync} from 'node:fs';
 import {isAbsolute, relative} from 'node:path';
 
-import {probeCaseLongformMedia, readCaseLongformMaterial} from './case-longform-media.ts';
+import {
+  probeCaseLongformMediaPath,
+  readCaseLongformMaterial,
+  withCaseLongformMediaSnapshot,
+  withCaseLongformMediaTools,
+  type CaseLongformMediaSnapshotHooks,
+  type CaseLongformMediaToolAuthority,
+} from './case-longform-media.ts';
 import {
   CaseLongformAuthority as Authority,
   CaseLongformFreeze as Freeze,
@@ -32,6 +39,8 @@ export const assertCaseLongformPreflight = (
       trustedAuthorityActorIds: readonly string[];
       trustedPreviewVerifierActorIds: readonly string[];
     };
+    mediaToolAuthority: CaseLongformMediaToolAuthority;
+    mediaSnapshotHooks?: CaseLongformMediaSnapshotHooks;
   },
 ): CaseLongformPreflight => {
   const contract = CaseLongformPreflightSchema.parse(raw);
@@ -83,10 +92,32 @@ export const assertCaseLongformPreflight = (
     plan.actor_id !== contract.actors.producer
   )
     throw new Error('VIDEO-OS-CASE-PREFLIGHT-PLAN-MISMATCH');
+  const observed = withCaseLongformMediaTools(
+    options.mediaToolAuthority,
+    (tools) => {
+      const measurements = new Map<string, ReturnType<typeof probeCaseLongformMediaPath>>();
+      const inspect = (media: (typeof contract.sources)[number]['media']) =>
+        withCaseLongformMediaSnapshot(
+          options.projectRoot,
+          media,
+          (path) => {
+            const prior = measurements.get(media.sha256);
+            if (prior) return prior;
+            const measured = probeCaseLongformMediaPath(path, tools);
+            measurements.set(media.sha256, measured);
+            return measured;
+          },
+          options.mediaSnapshotHooks,
+        );
+      return {
+        sources: new Map(contract.sources.map((item) => [item.role, inspect(item.media)])),
+        preview: inspect(contract.preview.media),
+      };
+    },
+    options.mediaSnapshotHooks,
+  );
   for (const item of contract.sources) {
-    const measurements = probeCaseLongformMedia(
-      readCaseLongformMaterial(options.projectRoot, item.media).bytes,
-    );
+    const measurements = observed.sources.get(item.role)!;
     const provenanceRef = readCaseLongformMaterial(
       options.trustPolicy.authorityRoot,
       item.provenance_receipt,
@@ -125,9 +156,7 @@ export const assertCaseLongformPreflight = (
     )
       throw new Error('VIDEO-OS-CASE-PREFLIGHT-FREEZE-MISMATCH');
   }
-  const previewMeasurements = probeCaseLongformMedia(
-    readCaseLongformMaterial(options.projectRoot, contract.preview.media).bytes,
-  );
+  const previewMeasurements = observed.preview;
   const buildRef = readCaseLongformMaterial(
     options.trustPolicy.previewVerifierRoot,
     contract.preview.build_receipt,

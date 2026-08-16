@@ -10,6 +10,7 @@ import {
   CaseLongformGraphAuthoritySchema,
 } from 'workflows/video-os/index.ts';
 import {readCaseLongformMaterial} from 'workflows/video-os/_runner/case-longform-media.ts';
+import {caseFixtureMediaToolAuthority} from './video-os-case-longform-coverage-fixture.test.ts';
 type Ref = {ref: string; sha256: string; bytes: number};
 const roles = ['intro', 'host', 'body', 'closure', 'outro'] as const;
 const temporary: string[] = [];
@@ -261,6 +262,7 @@ const materialize = () => {
   });
   const options = {
     projectRoot: root,
+    mediaToolAuthority: caseFixtureMediaToolAuthority(),
     trustPolicy: {
       authorityRoot,
       previewVerifierRoot,

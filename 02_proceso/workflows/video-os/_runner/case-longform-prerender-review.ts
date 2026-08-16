@@ -7,9 +7,9 @@ import {
   validateCaseLongformAudioTranscript,
 } from './case-longform-audio-derivation.ts';
 import {
-  assertCaseLongformAudioStartAlignment,
+  assertCaseLongformAudioMaterialStartAlignment,
+  deriveCaseLongformPcmDonorEvidenceFromMaterial,
   deriveCaseLongformPcmDonorEvidence,
-  type CaseLongformAudioToolAuthority,
 } from './case-longform-audio-pcm.ts';
 import {readCaseLongformMaterial} from './case-longform-media.ts';
 import {CaseLongformSourceSet} from './case-longform-graph-structure.ts';
@@ -29,7 +29,7 @@ import {
 } from './case-longform-prerender-review-authority.ts';
 
 type Options = Parameters<typeof assertCaseLongformPrerenderGraphAuthority>[1];
-type ReviewOptions = Options & {audioToolAuthority: CaseLongformAudioToolAuthority};
+type ReviewOptions = Options;
 type Ref = {ref: string; sha256: string; bytes: number};
 type Segments = z.infer<typeof CaseLongformSourceSegmentMap>;
 const same = (left: unknown, right: unknown): boolean =>
@@ -79,14 +79,13 @@ const validateRoomToneDonors = (
         donor.source_end_frame >= operation.source_start_frame)
     )
       throw new Error('VIDEO-OS-CASE-AUDIO-DONOR-AUTHORITY-DRIFT');
-    const bytes = readCaseLongformMaterial(options.projectRoot, source.media).bytes;
-    const expected = deriveCaseLongformPcmDonorEvidence(
-      bytes,
+    const expected = deriveCaseLongformPcmDonorEvidenceFromMaterial(
+      options.projectRoot,
       source.media,
-      source.media.sha256,
       donor.source_start_frame,
       donor.source_end_frame,
-      options.audioToolAuthority,
+      options.mediaToolAuthority,
+      options.mediaSnapshotHooks,
     );
     if (!same(donor, expected)) throw new Error('VIDEO-OS-CASE-AUDIO-DONOR-MATERIAL-DRIFT');
   }
@@ -167,9 +166,11 @@ export const assertCaseLongformPrerenderReviewAuthority = (
   sourceSet.sources
     .filter(({role}) => matchedRoles.has(role))
     .forEach(({media}) =>
-      assertCaseLongformAudioStartAlignment(
-        readCaseLongformMaterial(options.projectRoot, media).bytes,
-        options.audioToolAuthority,
+      assertCaseLongformAudioMaterialStartAlignment(
+        options.projectRoot,
+        media,
+        options.mediaToolAuthority,
+        options.mediaSnapshotHooks,
       ),
     );
   const operationCores = audio.operations.map((operation) => {
