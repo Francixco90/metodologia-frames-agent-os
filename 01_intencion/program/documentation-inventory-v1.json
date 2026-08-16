@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "37b80f0ed365560a6c5cc58ac9028c9130c07dd384fcaffe0c3e92556a2835d4",
-  "totalMarkdown": 1844,
-  "auditedAuthored": 593,
+  "repositoryTreeSha256": "a7da9fcc49b43852e0050750d0db7ac0ce5c26ec703ba9b9b6b67ce66c98c9eb",
+  "totalMarkdown": 1848,
+  "auditedAuthored": 596,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -237,6 +237,9 @@
       "03_artefactos/skills/career-application-orchestrator/references/orchestration-contract.md",
       "03_artefactos/skills/career-design-system/references/options-contract.md",
       "03_artefactos/skills/career-design-system/references/verification.md",
+      "03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md",
+      "03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md",
+      "03_artefactos/skills/career-notebook-briefing/references/briefing-contract.md",
       "03_artefactos/skills/career-opportunity-finder/references/opportunity-policy.md",
       "03_artefactos/skills/career-visual-auditor/references/audit-contract.md",
       "03_artefactos/skills/content-os-animation/blueprints/blueprints-index.md",
@@ -594,6 +597,7 @@
       "03_artefactos/skills/career-application-orchestrator/SKILL.md",
       "03_artefactos/skills/career-design-system/SKILL.md",
       "03_artefactos/skills/career-evidence-interviewer/SKILL.md",
+      "03_artefactos/skills/career-notebook-briefing/SKILL.md",
       "03_artefactos/skills/career-opportunity-finder/SKILL.md",
       "03_artefactos/skills/career-visual-auditor/SKILL.md",
       "03_artefactos/skills/cinematic-scroll-quality/SKILL.md",
@@ -10287,9 +10291,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "23fe6b72264ef714ab6a16b410c8f054f055c75ca15c8a203ab4760b6207d4cb",
-      "words": 10570,
-      "lines": 983,
+      "sha256": "e939f8f123f36714c917a857352a5efcdad845638e2abc4d81db7c57ffe0a8e3",
+      "words": 10603,
+      "lines": 986,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -10794,6 +10798,84 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "dd74bb4b44adf00e616aa5cd19bedf320dc5853e20d8a48c9a4d2e5d87b69ca9",
+      "words": 139,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a46a3ade867e2a61cc9f33846e4de9b6f276639055ed96d1d4a9cae799866a81",
+      "words": 171,
+      "lines": 22,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/career-notebook-briefing/references/briefing-contract.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/career-notebook-briefing/references/briefing-contract.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/career-notebook-briefing/references/briefing-contract.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "402effbff156f98a270adf0f82c4d538b397b1e556094d08f6f551303224bbdc",
+      "words": 254,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -11485,9 +11567,9 @@
       "sourceRef": "03_artefactos/skills/content-os-general-video/references/case-longform.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "df14b9cb930d16651cea6b19d01ac3b988dbed37cd205b314eb00414bd8b32d6",
-      "words": 824,
-      "lines": 90,
+      "sha256": "262cc1e898049979fd371133501432c91de9b139087f818a916405acfb8b7d88",
+      "words": 957,
+      "lines": 104,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17774,7 +17856,7 @@
     }
   ],
   "summary": {
-    "keep": 578,
+    "keep": 581,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

@@ -1,0 +1,8 @@
+[
+  {"case": "double-count-inbox", "path": "metrics.unique_messages", "value": 52, "expected": "INBOX-UNIQUE"},
+  {"case": "fit-total-drift", "path": "metrics.partial_fit", "value": 21, "expected": "FIT-TOTAL"},
+  {"case": "unknown-capability", "path": "capability_status", "value": "PASS", "expected": "CAPABILITY"},
+  {"case": "wrong-daily-package", "path": "artifact_plan.daily", "value": ["slide_deck"], "expected": "DAILY-PLAN"},
+  {"case": "public-locator", "path": "owner.display_name", "value": "file:///Users/example/private", "expected": "PUBLIC-LOCATOR"},
+  {"case": "invalid-source-hash", "path": "authority.source_hashes", "value": ["abc"], "expected": "SOURCE-HASH"}
+]

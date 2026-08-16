@@ -11,14 +11,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 281
+- ASSET: 283
 - COMMAND: 101
 - COMPONENT: 16
 - DELIVERABLE: 87
 - GATE: 63
 - RENDERER: 5
 - ROUTE: 11
-- SKILL: 184
+- SKILL: 185
 - SOURCE: 11
 - TEMPLATE: 138
 - WORKFLOW: 43
@@ -72,6 +72,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Bold.ttf` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-OFL.txt` |
 | ASSET | 03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf | ACTIVE | CANONICAL | `03_artefactos/renderers/remotion/src/assets/fonts/WorkSans-Regular.ttf` |
+| ASSET | 03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md | ACTIVE | CANONICAL | `03_artefactos/skills/career-notebook-briefing/assets/briefing-outlines.md` |
+| ASSET | 03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md | ACTIVE | CANONICAL | `03_artefactos/skills/career-notebook-briefing/assets/visual-style-prompt.md` |
 | ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/brand-kit.json` |
 | ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/generators.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/generators.json` |
 | ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/icons.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/icons.json` |
@@ -606,6 +608,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | career-application-orchestrator | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-design-system | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-evidence-interviewer | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | career-notebook-briefing | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-opportunity-finder | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | career-visual-auditor | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | cinematic-scroll-quality | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
@@ -979,4 +982,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `b22592125318cc71bde01b6dff7ba92589b30a694616a94add336d4c6d1698a8`.
+Hash de fuentes: `3377f3575726c161020be4a0673cdb88d2b24abe4eef0b18f104c386fce95213`.
