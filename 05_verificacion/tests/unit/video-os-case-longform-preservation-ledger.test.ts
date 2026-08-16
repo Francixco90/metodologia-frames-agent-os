@@ -155,7 +155,7 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
     expect(() => validate(fixture)).toThrow(/LEDGER-DRIFT/u);
   });
 
-  it('rejects ledger aliases and lifecycle claims', () => {
+  it('rejects lifecycle claims', () => {
     const strict = materialize();
     expect(() =>
       assertCaseLongformPreservationLedgerAuthority(
@@ -163,6 +163,10 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
         strict.base.preservationOptions,
       ),
     ).toThrow();
+  });
+
+  it('rejects ledger ref aliases', () => {
+    const strict = materialize();
     strict.contract.artifacts.frame_diff_ledger = strict.contract.artifacts.preservation_plan;
     expect(() => validate(strict)).toThrow(/REF-ALIAS/u);
   });
