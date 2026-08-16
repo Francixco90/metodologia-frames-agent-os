@@ -14,11 +14,11 @@ import {
 
 type Ref = {ref: string; sha256: string; bytes: number};
 const sha = (value: string): string => createHash('sha256').update(value).digest('hex');
+const unsupportedCaptionCharacter = /[\p{Cc}\p{Zl}\p{Zp}]/u;
 const lineCount = (text: string, maxChars: number): number => {
-  const forbidden = [...text].some((character) => {
-    const codepoint = character.codePointAt(0)!;
-    return (codepoint < 32 && codepoint !== 10) || codepoint === 127;
-  });
+  const forbidden = [...text].some(
+    (character) => character !== '\n' && unsupportedCaptionCharacter.test(character),
+  );
   if (forbidden) throw new Error('VIDEO-OS-CASE-CAPTION-TEXT-CONTROL');
   return text
     .split('\n')

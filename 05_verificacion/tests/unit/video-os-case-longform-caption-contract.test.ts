@@ -186,4 +186,30 @@ describe('case-longform V7a caption authority contracts', () => {
     const fixture = materializeCaseLongformCaptionContractFixture();
     expect(() => deriveText(fixture, 'linea\u0007otra')).toThrow(/TEXT-CONTROL/u);
   });
+
+  it('rejects Unicode NEXT LINE U+0085', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\u0085otra')).toThrow(/TEXT-CONTROL/u);
+  });
+
+  it('rejects Unicode control U+009F', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\u009Fotro')).toThrow(/TEXT-CONTROL/u);
+  });
+
+  it('rejects Unicode LINE SEPARATOR U+2028', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\u2028otra')).toThrow(/TEXT-CONTROL/u);
+  });
+
+  it('rejects Unicode PARAGRAPH SEPARATOR U+2029', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    expect(() => deriveText(fixture, 'linea\u2029otra')).toThrow(/TEXT-CONTROL/u);
+  });
+
+  it('counts emoji as one Unicode codepoint', () => {
+    const fixture = materializeCaseLongformCaptionContractFixture();
+    const plan = deriveText(fixture, '😀'.repeat(56));
+    expect(plan.placements.every(({height}) => height === 48)).toBe(true);
+  });
 });
