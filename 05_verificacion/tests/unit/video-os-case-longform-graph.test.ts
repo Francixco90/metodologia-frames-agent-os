@@ -9,7 +9,7 @@ import {
   CaseLongformGraphAuthoritySchema,
 } from 'workflows/video-os/index.ts';
 import {readCaseLongformMaterial} from 'workflows/video-os/_runner/case-longform-media.ts';
-import {caseFixture} from './video-os-case-longform-tool-fixture.test.ts';
+import {caseFixture} from '../../../tests/fixtures/video-os-case-longform-tool.fixture.ts';
 type Ref = {ref: string; sha256: string; bytes: number};
 const roles = caseFixture.roles;
 const temporary: string[] = [];
