@@ -17,9 +17,38 @@ export type CaseLongformMediaToolAuthority = {
   ffprobe_bytes: number;
 };
 const toolRef = (path: string, sha256: string, bytes: number): {root: string; ref: Ref} => {
-  if (!isAbsolute(path) || realpathSync(path) !== path)
-    throw new Error('VIDEO-OS-CASE-MEDIA-TOOL-UNTRUSTED');
-  return {root: dirname(path), ref: {ref: basename(path), sha256, bytes}};
+  try {
+    if (!isAbsolute(path) || realpathSync(path) !== path) throw new Error('untrusted');
+    return {root: dirname(path), ref: {ref: basename(path), sha256, bytes}};
+  } catch (error) {
+    throw new Error('VIDEO-OS-CASE-TOOL-UNTRUSTED', {cause: error});
+  }
+};
+const withToolSnapshot = <T>(
+  tool: {root: string; ref: Ref},
+  operation: (path: string) => T,
+  hooks: CaseLongformMediaSnapshotHooks,
+): T => {
+  let callbackError: unknown;
+  try {
+    return withCaseLongformSnapshot(
+      tool.root,
+      tool.ref,
+      (path) => {
+        try {
+          return operation(path);
+        } catch (error) {
+          callbackError = error;
+          throw error;
+        }
+      },
+      hooks,
+      0o700,
+    );
+  } catch (error) {
+    if (error === callbackError) throw error;
+    throw new Error('VIDEO-OS-CASE-TOOL-UNTRUSTED', {cause: error});
+  }
 };
 export const withCaseLongformMediaTools = <T>(
   authority: CaseLongformMediaToolAuthority,
@@ -32,13 +61,11 @@ export const withCaseLongformMediaTools = <T>(
     authority.ffprobe_sha256,
     authority.ffprobe_bytes,
   );
-  return withCaseLongformSnapshot(
-    ffmpeg.root,
-    ffmpeg.ref,
+  return withToolSnapshot(
+    ffmpeg,
     (ffmpegPath) =>
-      withCaseLongformSnapshot(
-        ffprobe.root,
-        ffprobe.ref,
+      withToolSnapshot(
+        ffprobe,
         (ffprobePath) => {
           for (const [kind, path] of [
             ['ffmpeg', ffmpegPath],
@@ -49,14 +76,12 @@ export const withCaseLongformMediaTools = <T>(
               maxBuffer: 1024 * 1024,
             });
             if (result.status !== 0 || !result.stdout.startsWith(`${kind} version `))
-              throw new Error('VIDEO-OS-CASE-MEDIA-TOOL-KIND-DRIFT');
+              throw new Error('VIDEO-OS-CASE-TOOL-UNTRUSTED');
           }
           return operation({ffmpeg: ffmpegPath, ffprobe: ffprobePath});
         },
         hooks,
-        0o700,
       ),
     hooks,
-    0o700,
   );
 };

@@ -67,7 +67,7 @@ describe('case-longform A0 immutable tool authority', () => {
         ...fixture.options,
         mediaToolAuthority: {...fixture.options.mediaToolAuthority, ffmpeg_sha256: '0'.repeat(64)},
       }),
-    ).toThrow(/MATERIAL-DRIFT/u);
+    ).toThrow(/^VIDEO-OS-CASE-TOOL-UNTRUSTED$/u);
     const fakeAlias = resolve(fixture.root, 'fake-ffmpeg');
     writeFileSync(fakeAlias, '#!/bin/sh\necho forged\n');
     chmodSync(fakeAlias, 0o700);
@@ -83,7 +83,12 @@ describe('case-longform A0 immutable tool authority', () => {
         },
         () => undefined,
       ),
-    ).toThrow(/TOOL-KIND-DRIFT/u);
+    ).toThrow(/^VIDEO-OS-CASE-TOOL-UNTRUSTED$/u);
+    expect(() =>
+      withCaseLongformMediaTools(fixture.options.mediaToolAuthority, () => {
+        throw new Error('VIDEO-OS-CASE-MEDIA-SNAPSHOT-MATERIAL-DRIFT');
+      }),
+    ).toThrow(/^VIDEO-OS-CASE-MEDIA-SNAPSHOT-MATERIAL-DRIFT$/u);
   });
 
   it('rejects tool swap-restore and intermediate symlink aliases', () => {
@@ -112,7 +117,7 @@ describe('case-longform A0 immutable tool authority', () => {
           },
         },
       ),
-    ).toThrow(/IDENTITY-DRIFT/u);
+    ).toThrow(/^VIDEO-OS-CASE-TOOL-UNTRUSTED$/u);
 
     const root = mkdtempSync(resolve(tmpdir(), 'case-media-alias-'));
     caseFixtureRoots.push(root);
