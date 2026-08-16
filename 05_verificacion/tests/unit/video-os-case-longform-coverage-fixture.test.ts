@@ -45,7 +45,7 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
       ? 'color=c=blue:s=1920x1080:r=24:d=1'
       : staticPreview === 'outside'
         ? "color=c=blue:s=1920x1080:r=24:d=1,drawbox=x='1000+200*t':y=700:w=100:h=100:c=red:t=fill"
-        : 'testsrc2=s=1920x1080:r=24:d=1';
+        : "color=c=blue:s=1920x1080:r=24:d=1[bg];color=c=red:s=20x20:r=24:d=1[box];[bg][box]overlay=x='30+160*t':y=30:eval=frame:shortest=1";
   // prettier-ignore
   const result = spawnSync('ffmpeg', [
     '-v', 'error', '-f', 'lavfi', '-i', visual,
@@ -223,7 +223,7 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
     masks: [
       {
         id: 'mask-url',
-        roi: {x: 20, y: 20, width: 200, height: 40},
+        roi: {x: 16, y: 16, width: 208, height: 48},
         start_frame: 8,
         end_frame: 10,
         reason: 'URL',

@@ -96,7 +96,7 @@ export const deriveCaseLongformPreviewCoverage = (
 export const caseLongformRoiKey = ({x, y, width, height}: CaseLongformRoi): string =>
   `${x}:${y}:${width}:${height}`;
 const decode = (ffmpeg: string, snapshot: string, roi?: CaseLongformRoi): Map<number, string> => {
-  const filters = roi ? ['-vf', `crop=${roi.width}:${roi.height}:${roi.x}:${roi.y}`] : [];
+  const filters = roi ? ['-vf', `crop=${roi.width}:${roi.height}:${roi.x}:${roi.y}:exact=1`] : [];
   const result = spawnSync(
     ffmpeg,
     [
