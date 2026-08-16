@@ -1,0 +1,19 @@
+schema_version: general-video-skill-verification-v1
+skill: content-os-general-video
+version: 0.16.0
+state: local-evaluation
+publication_authority: false
+successor_of: 0.15.0
+scope: case-longform-plan-verify-bridge
+producer_verdict: candidate_pending_independent_review
+evidence:
+  adapter_schema: general-video-case-longform-adapter-v1
+  authority_consumed: case-longform-caption-review-plan-contract-v7c0
+  commands_allowed: [plan, verify]
+  maximum_state: BLOCKED
+  full_chain_accredited: false
+  benchmark_carlos_accredited: false
+  media_fixture: false
+  render_executed: false
+independent_verifier: required
+guardian: required

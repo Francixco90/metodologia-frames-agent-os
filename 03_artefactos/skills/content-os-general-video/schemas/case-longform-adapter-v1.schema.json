@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "general-video-case-longform-adapter-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "archetype", "mode", "disposition", "authority", "allowedCommands", "blockedCommands", "effects", "coverageGap"],
+  "properties": {
+    "schemaVersion": {"const": "general-video-case-longform-adapter-v1"},
+    "kind": {"const": "case_longform_authority_adapter"},
+    "archetype": {"const": "case-longform"},
+    "mode": {"const": "PLAN_VERIFY_ONLY"},
+    "disposition": {"const": "USE"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jobId", "sourceSetSha256", "status", "contract", "executionLedger", "externalReviewPlan"],
+      "properties": {
+        "jobId": {"type": "string", "minLength": 1},
+        "sourceSetSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "status": {"enum": ["PRE_RENDER_BLOCKED", "BLOCKED_PENDING_V7C_FULL_CHAIN_FIXTURE_AND_CAPTION_VISUAL_EVIDENCE_CONTRACTS"]},
+        "contract": {"$ref": "#/$defs/ref"},
+        "executionLedger": {"$ref": "#/$defs/ref"},
+        "externalReviewPlan": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "allowedCommands": {"const": ["plan", "verify"]},
+    "blockedCommands": {"const": ["ingest", "index", "script", "render", "package"]},
+    "effects": {"const": false},
+    "coverageGap": {"const": "V7C_FULL_CHAIN_FIXTURE_NOT_ACCREDITED"},
+    "doNotUseRefs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true, "default": []}
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha256", "bytes"],
+      "properties": {
+        "ref": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

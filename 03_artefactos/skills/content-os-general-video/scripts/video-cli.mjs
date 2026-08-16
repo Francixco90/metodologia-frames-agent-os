@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-import './lib/video-runtime.mjs';
+import {runCaseLongformBridge} from './lib/runtime-case-longform.mjs';
+
+if (!runCaseLongformBridge()) await import('./lib/video-runtime.mjs');
