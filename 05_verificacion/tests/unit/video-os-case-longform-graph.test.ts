@@ -1,5 +1,4 @@
 import {spawnSync} from 'node:child_process';
-import {createHash} from 'node:crypto';
 import {copyFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -10,16 +9,14 @@ import {
   CaseLongformGraphAuthoritySchema,
 } from 'workflows/video-os/index.ts';
 import {readCaseLongformMaterial} from 'workflows/video-os/_runner/case-longform-media.ts';
-import {caseFixtureMediaToolAuthority} from './video-os-case-longform-coverage-fixture.test.ts';
+import {caseFixture} from './video-os-case-longform-tool-fixture.test.ts';
 type Ref = {ref: string; sha256: string; bytes: number};
-const roles = ['intro', 'host', 'body', 'closure', 'outro'] as const;
+const roles = caseFixture.roles;
 const temporary: string[] = [];
-const sha = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
-const HASH = (value: number): string => sha(Buffer.from(String(value)));
 const ROI = {x: 0, y: 0, width: 320, height: 180};
 const refFor = (root: string, ref: string): Ref => {
   const bytes = readFileSync(resolve(root, ref));
-  return {ref, sha256: sha(bytes), bytes: bytes.byteLength};
+  return {ref, sha256: caseFixture.sha(bytes), bytes: bytes.byteLength};
 };
 const write = (root: string, ref: string, value: unknown): Ref => {
   writeFileSync(resolve(root, ref), `${JSON.stringify(value)}\n`);
@@ -262,7 +259,7 @@ const materialize = () => {
   });
   const options = {
     projectRoot: root,
-    mediaToolAuthority: caseFixtureMediaToolAuthority(),
+    mediaToolAuthority: caseFixture.mediaToolAuthority(),
     trustPolicy: {
       authorityRoot,
       previewVerifierRoot,
@@ -316,7 +313,7 @@ describe('case-longform PR1b preflight-bound graph authority', () => {
   });
   it('rejects untrusted runner or compiler executables', () => {
     const fixture = materialize();
-    fixture.options.trustPolicy.trustedRunnerSha256 = HASH(99);
+    fixture.options.trustPolicy.trustedRunnerSha256 = caseFixture.hashValue(99);
     expect(() => assertCaseLongformGraphAuthority(fixture.contract, fixture.options)).toThrow(
       /UNTRUSTED-EXECUTABLE/u,
     );
@@ -326,7 +323,7 @@ describe('case-longform PR1b preflight-bound graph authority', () => {
     const captions = JSON.parse(
       readFileSync(resolve(cleanup.root, cleanup.values.captions.ref), 'utf8'),
     ) as {cleanup: Ref};
-    captions.cleanup.sha256 = HASH(7);
+    captions.cleanup.sha256 = caseFixture.hashValue(7);
     replace(cleanup.root, cleanup.contract, 'caption_track', captions);
     expect(() => assertCaseLongformGraphAuthority(cleanup.contract, cleanup.options)).toThrow(
       /AUTHORITY-DRIFT/u,

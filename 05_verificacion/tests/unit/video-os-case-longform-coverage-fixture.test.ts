@@ -1,14 +1,5 @@
 import {spawnSync} from 'node:child_process';
-import {createHash} from 'node:crypto';
-import {
-  copyFileSync,
-  lstatSync,
-  mkdtempSync,
-  readFileSync,
-  realpathSync,
-  rmSync,
-  writeFileSync,
-} from 'node:fs';
+import {copyFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
@@ -19,29 +10,14 @@ import {
   CaseLongformPrerenderGraphAuthoritySchema,
   CaseLongformSourceSegmentMap,
 } from 'workflows/video-os/index.ts';
+import {
+  caseFixtureMediaToolAuthority,
+  caseFixtureRoles as roles,
+  caseFixtureSha as sha,
+} from './video-os-case-longform-tool-fixture.test.ts';
 
 export type CaseFixtureRef = {ref: string; sha256: string; bytes: number};
 export const caseFixtureRoots: string[] = [];
-const roles = ['intro', 'host', 'body', 'closure', 'outro'] as const;
-const sha = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
-const trustedTool = (name: 'ffmpeg' | 'ffprobe') => {
-  const found = spawnSync('which', [name], {encoding: 'utf8'});
-  if (found.status !== 0) throw new Error(`missing ${name}`);
-  const path = realpathSync(found.stdout.trim());
-  return {path, sha256: sha(readFileSync(path)), bytes: lstatSync(path).size};
-};
-export const caseFixtureMediaToolAuthority = () => {
-  const ffmpeg = trustedTool('ffmpeg');
-  const ffprobe = trustedTool('ffprobe');
-  return {
-    ffmpeg_path: ffmpeg.path,
-    ffmpeg_sha256: ffmpeg.sha256,
-    ffmpeg_bytes: ffmpeg.bytes,
-    ffprobe_path: ffprobe.path,
-    ffprobe_sha256: ffprobe.sha256,
-    ffprobe_bytes: ffprobe.bytes,
-  };
-};
 export const caseFixtureRef = (root: string, ref: string): CaseFixtureRef => {
   const bytes = readFileSync(resolve(root, ref));
   return {ref, sha256: sha(bytes), bytes: bytes.byteLength};

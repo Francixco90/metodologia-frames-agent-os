@@ -6,10 +6,12 @@ import {resolve} from 'node:path';
 
 import {
   withCaseLongformMediaSnapshot,
-  withCaseLongformMediaTools,
   type CaseLongformMediaSnapshotHooks,
-  type CaseLongformMediaToolAuthority,
 } from './case-longform-media-snapshot.ts';
+import {
+  withCaseLongformMediaTools,
+  type CaseLongformMediaToolAuthority,
+} from './case-longform-tool-snapshot.ts';
 
 type Ref = {ref: string; sha256: string; bytes: number};
 const sha = (value: Buffer): string => createHash('sha256').update(value).digest('hex');

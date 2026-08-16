@@ -20,9 +20,11 @@ import {z} from 'zod';
 export {
   withCaseLongformMediaSnapshot,
   type CaseLongformMediaSnapshotHooks,
+} from './case-longform-media-snapshot.ts';
+export {
   withCaseLongformMediaTools,
   type CaseLongformMediaToolAuthority,
-} from './case-longform-media-snapshot.ts';
+} from './case-longform-tool-snapshot.ts';
 
 export const CaseLongformHash = z.string().regex(/^[a-f0-9]{64}$/u);
 export const CaseLongformMaterialRef = z.strictObject({
