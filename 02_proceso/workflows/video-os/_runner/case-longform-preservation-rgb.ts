@@ -55,7 +55,7 @@ export const extractCaseLongformRgbRange = (
 ): {path: string; frame_bytes: number; frame_count: number} => {
   const frameCount = endFrame - startFrame + 1;
   if (startFrame < 0 || frameCount < 1) throw new Error('VIDEO-OS-CASE-RGB-RANGE');
-  const filter = `trim=start_frame=${startFrame}:end_frame=${endFrame + 1},crop=${roi.width}:${roi.height}:${roi.x}:${roi.y}`;
+  const filter = `trim=start_frame=${startFrame}:end_frame=${endFrame + 1},crop=${roi.width}:${roi.height}:${roi.x}:${roi.y}:exact=1`;
   const result = spawnSync(
     ffmpeg,
     [

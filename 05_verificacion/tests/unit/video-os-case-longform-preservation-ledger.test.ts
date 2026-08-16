@@ -60,7 +60,14 @@ const rewriteLedger = (fixture: Fixture): void => {
     fixture.ledgerValue,
   );
 };
-const media = (root: string, name: string, filter: string, ffmpeg: string, frames = 3): string => {
+const media = (
+  root: string,
+  name: string,
+  filter: string,
+  ffmpeg: string,
+  frames = 3,
+  pixelFormat = 'rgb24',
+): string => {
   const path = resolve(root, `${name}.mkv`);
   const result = spawnSync(
     ffmpeg,
@@ -76,7 +83,7 @@ const media = (root: string, name: string, filter: string, ffmpeg: string, frame
       '-c:v',
       'ffv1',
       '-pix_fmt',
-      'rgb24',
+      pixelFormat,
       '-y',
       path,
     ],
@@ -97,6 +104,7 @@ const directEvidence = (
     end_frame: number;
     roi: {x: number; y: number; width: number; height: number};
   }> = [],
+  roi = {x: 0, y: 0, width: 100, height: 100},
 ) =>
   compareCaseLongformRgbRegion({
     ffmpeg,
@@ -111,7 +119,7 @@ const directEvidence = (
       source_end_frame: endFrame,
       output_start_frame: 0,
       output_end_frame: endFrame,
-      output_roi: {x: 0, y: 0, width: 100, height: 100},
+      output_roi: roi,
       overlay_ids: overlays.map(({overlay_id}) => overlay_id),
     },
     overlays,
@@ -220,6 +228,34 @@ describe('case-longform PR1c1b1 material RGB ledger', () => {
         },
       ]),
     ).toThrow(/RESIDUAL-RATIO/u);
+  });
+
+  it('preserves odd yuv420p ROI coordinates and detects its declared border', () => {
+    const fixture = materializeCaseLongformPreservationPlanFixture();
+    const ffmpeg = fixture.preservationOptions.preservationToolAuthority.ffmpeg_path;
+    const root = mkdtempSync(resolve(tmpdir(), 'case-rgb-yuv-odd-roi-'));
+    caseFixtureRoots.push(root);
+    const source = media(
+      root,
+      'yuv-source',
+      'color=black:s=100x100:r=24:d=0.125',
+      ffmpeg,
+      3,
+      'yuv420p',
+    );
+    const changed = media(
+      root,
+      'yuv-border-change',
+      'color=black:s=100x100:r=24:d=0.125,drawbox=x=4:y=4:w=1:h=1:c=white:t=fill',
+      ffmpeg,
+      3,
+      'yuv420p',
+    );
+    const oddRoi = {x: 1, y: 1, width: 4, height: 4};
+    expect(directEvidence(ffmpeg, source, source, root, 2, [], oddRoi).changed_pixels).toBe(0);
+    const observed = directEvidence(ffmpeg, source, changed, root, 2, [], oddRoi);
+    expect(observed.changed_pixels).toBeGreaterThan(0);
+    expect(() => assertCaseLongformRgbRegionPreserved(observed)).toThrow(/OUTSIDE-MASK-CHANGED/u);
   });
 
   it('ignores fake PATH and rejects tool, timing and media drift', () => {
