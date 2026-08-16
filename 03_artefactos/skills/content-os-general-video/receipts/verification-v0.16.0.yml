@@ -1,0 +1,27 @@
+schema_version: general-video-skill-verification-v1
+skill: content-os-general-video
+version: 0.16.0
+state: local-evaluation
+publication_authority: false
+successor_of: 0.15.0
+scope: case-longform-plan-verify-bridge
+producer_verdict: candidate_pending_independent_review
+evidence:
+  adapter_schema: general-video-case-longform-adapter-v1
+  authority_consumed: case-longform-caption-review-plan-contract-v7c0
+  authority_validation: strict_key_value_allowlists
+  canonical_identity_gate: realpath_and_file_identity
+  input_read_policy: unique_readonly_nofollow_fd_single_buffer
+  contractual_trust_gate: roots_and_review_actor_independence
+  adapter_trust_scope: hash_bound_input_not_full_chain_authority
+  toctou_adversarial_hooks: [path_swap, directory_swap, in_place_mutation]
+  commands_allowed: [plan, verify]
+  blocked_command_filesystem_drift: zero
+  plan_write_policy: confined_exclusive_nofollow
+  maximum_state: BLOCKED
+  full_chain_accredited: false
+  benchmark_carlos_accredited: false
+  media_fixture: false
+  render_executed: false
+independent_verifier: required
+guardian: required

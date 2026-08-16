@@ -4,12 +4,10 @@ import {resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {runAdversarial} from './check-adversarial.mjs';
 import {reportCheckResult} from './check-report.mjs';
-
 const ROOT = process.cwd();
 const SKILL_DIR = resolve(ROOT, 'skills/content-os-general-video');
 const PREFIX = 'COSR-GV_';
 const validationProfile = process.env.METODOLOGIA_TOOLCHAIN_PROFILE ?? 'local-full';
-
 const required = [
   'SKILL.md',
   'LINEAGE.yml',
@@ -77,6 +75,7 @@ const required = [
   'receipts/verification-v0.7.0.yml',
   'receipts/verification-v0.7.1.yml',
   'receipts/verification-v0.15.0.yml',
+  'receipts/verification-v0.16.0.yml',
 ];
 
 const errors = [];
@@ -95,7 +94,8 @@ if (!skillMd.startsWith('---\nname: content-os-general-video\n')) {
 if (!skillMd.includes('description: This skill should be used when')) {
   errors.push(`${PREFIX}FRONTMATTER_DESC`);
 }
-if (!skillMd.includes('version: 0.15.0')) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
+const frontmatter = /^---\n([\s\S]*?)\n---\n/u.exec(skillMd)?.[1] ?? '';
+if (!/^version: 0\.16\.0$/mu.test(frontmatter) || /version: 0\.15\.0/u.test(skillMd)) errors.push(`${PREFIX}FRONTMATTER_VERSION`);
 if (!skillMd.includes('license: LicenseRef-MetodologIA-Internal')) {
   errors.push(`${PREFIX}FRONTMATTER_LICENSE`);
 }
