@@ -28,6 +28,9 @@ export * from './case-longform-caption-contract.ts';
 export * from './case-longform-caption-contract-authority.ts';
 export * from './case-longform-caption-placement.ts';
 export * from './case-longform-caption-tool-authority.ts';
+export * from './case-longform-caption-execution.ts';
+export * from './case-longform-caption-execution-authority.ts';
+export * from './case-longform-caption-execution-verify.ts';
 export * from './video-os-state.ts';
 
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
