@@ -75,6 +75,13 @@ cerrar la autoridad de layout/single-caption. [METODOLOGIA]
 PR1c1b1a1 migra preview/frame evidence y las herramientas de V5 al snapshot común absoluto,
 hash-bound y acotado; elimina la ruta productiva por `PATH`/`Buffer`, sin crear RGB ledger. [CÓDIGO]
 
+PR1c1b1 recalcula un ledger RGB24 framewise desde snapshots comunes hash-bound: procesa cada
+región por chunks, resta la unión temporal exacta de máscaras, aplica tolerancia de policy y
+encadena todos los frames con residual, changed pixels y worst frame. Captions no son excluibles;
+permanece `BLOCKED_PENDING_CAPTION_AND_EXTERNAL_REVIEW_CONTRACTS`. [CÓDIGO]
+`coverage_gap`: falta autoridad material de layout/compositor, cue/ROI/timing, single-caption y
+review externo antes de cualquier render. [METODOLOGIA]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye

@@ -183,7 +183,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f
-    package_manifest_sha256: ae7afd94cc3ebdc154da7b731782f988024f3ad3f3ee0afe2261b90ff56730ff
+    package_manifest_sha256: f58fba4968a48deec6aed17b6d871be0377f464d34568a3812a6dbb9060d8f3b
     lineage_ref: skills/content-os-general-video/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-general-video/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2763,3 +2763,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-029, event_order: 29, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: freeze_case_longform_preservation_policy_plan_overlays_and_tool_authority, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 82a0323cb87b8269e12a38380524cb00551821da3f08801f6cab99f5905d2a11}
   - {event_id: EVT-SKL-CGV-H03-030, event_order: 30, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: enforce_canonical_preservation_coverage_safe_rgb_bounds_and_mask_only_exclusions, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: bce44fd2daf62abf3bd5d4438c2d5f5177d9dc6c728e76fe6638e1cc4f611407}
   - {event_id: EVT-SKL-CGV-H03-031, event_order: 31, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: migrate_case_longform_preview_and_v5_to_bounded_tool_snapshots, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: ae7afd94cc3ebdc154da7b731782f988024f3ad3f3ee0afe2261b90ff56730ff}
+  - {event_id: EVT-SKL-CGV-H03-032, event_order: 32, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-15T00:00:00Z', decision: add_material_framewise_rgb_ledger_while_caption_review_remains_blocked, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: f58fba4968a48deec6aed17b6d871be0377f464d34568a3812a6dbb9060d8f3b}
