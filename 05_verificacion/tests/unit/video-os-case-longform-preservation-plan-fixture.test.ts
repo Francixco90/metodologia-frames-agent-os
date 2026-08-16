@@ -182,7 +182,7 @@ export const materializeCaseLongformPreservationPlanFixture = () => {
   return {
     ...base,
     preservationContract,
-    preservationOptions: {...options, preservationToolAuthority: {...options.audioToolAuthority}},
+    preservationOptions: {...options, preservationToolAuthority: {...options.mediaToolAuthority}},
     values: {...base.values, preservationPolicy: policyValue, preservationPlan: planValue},
   };
 };

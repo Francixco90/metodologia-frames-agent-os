@@ -1,7 +1,7 @@
 import type {z} from 'zod';
 
 import {assertCaseLongformPrerenderGraphAuthority} from './case-longform-prerender.ts';
-import {probeCaseLongformMedia, readCaseLongformMaterial} from './case-longform-media.ts';
+import {readCaseLongformMaterial} from './case-longform-media.ts';
 import {
   CaseLongformCompiler,
   CaseLongformOperationGraph,
@@ -12,7 +12,7 @@ import {
 import {
   caseLongformRoiKey,
   deriveCaseLongformPreviewCoverage,
-  extractCaseLongformPreviewEvidenceHashes,
+  inspectCaseLongformPreviewMaterial,
 } from './case-longform-preview-frame-evidence.ts';
 import {
   CaseLongformObservedCoverage,
@@ -87,8 +87,15 @@ export const assertCaseLongformPreviewEvidence = (
     !same([...shared.mask_ids].sort(), maskIds)
   )
     throw new Error('VIDEO-OS-CASE-PREVIEW-SHARED-CONFIG-DRIFT');
-  const preview = readCaseLongformMaterial(options.projectRoot, ga.preview_media);
-  const previewMeasurements = probeCaseLongformMedia(preview.bytes);
+  const expectedPoints = deriveCaseLongformPreviewCoverage(graph.frame_count, temporal, redaction);
+  const preview = inspectCaseLongformPreviewMaterial(
+    options.projectRoot,
+    ga.preview_media,
+    expectedPoints.flatMap(({roi}) => (roi ? [roi] : [])),
+    options.mediaToolAuthority,
+    options.mediaSnapshotHooks,
+  );
+  const previewMeasurements = preview.measurements;
   for (const profile of [previewProfile, fullProfile])
     if (
       profile.job_id !== contract.job_id ||
@@ -110,7 +117,6 @@ export const assertCaseLongformPreviewEvidence = (
     throw new Error('VIDEO-OS-CASE-PLANNED-FULL-PREVIEW-BINDING');
   if (fullProfile.width !== 1920 || fullProfile.height !== 1080)
     throw new Error('VIDEO-OS-CASE-PLANNED-FULL-DIMENSIONS');
-  const expectedPoints = deriveCaseLongformPreviewCoverage(graph.frame_count, temporal, redaction);
   const shape = (point: {
     id: string;
     kind: string;
@@ -133,10 +139,7 @@ export const assertCaseLongformPreviewEvidence = (
     !same(coverage.points.map(shape), expectedPoints.map(shape))
   )
     throw new Error('VIDEO-OS-CASE-PREVIEW-COVERAGE-DRIFT');
-  const extracted = extractCaseLongformPreviewEvidenceHashes(
-    preview.bytes,
-    expectedPoints.flatMap(({roi}) => (roi ? [roi] : [])),
-  );
+  const extracted = preview.hashes;
   const frameHashes = extracted.full;
   if (frameHashes.size !== graph.frame_count)
     throw new Error('VIDEO-OS-CASE-PREVIEW-FRAMEHASH-COUNT');

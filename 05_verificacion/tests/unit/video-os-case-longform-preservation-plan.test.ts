@@ -267,19 +267,19 @@ describe('case-longform PR1c1a preservation plan authority', () => {
   it('rejects fake, hash-drifted, symlinked and mutated tools', () => {
     const hashDrift = materializeCaseLongformPreservationPlanFixture();
     hashDrift.preservationOptions.preservationToolAuthority.ffmpeg_sha256 = '0'.repeat(64);
-    expect(() => validate(hashDrift)).toThrow(/TOOL/u);
+    expect(() => validate(hashDrift)).toThrow(/VIDEO-OS-CASE-TOOL-UNTRUSTED/u);
     const fake = materializeCaseLongformPreservationPlanFixture();
     const truePath = realpathSync('/usr/bin/true');
     fake.preservationOptions.preservationToolAuthority.ffmpeg_path = truePath;
     fake.preservationOptions.preservationToolAuthority.ffmpeg_sha256 = createHash('sha256')
       .update(readFileSync(truePath))
       .digest('hex');
-    expect(() => validate(fake)).toThrow(/TOOL-KIND/u);
+    expect(() => validate(fake)).toThrow(/VIDEO-OS-CASE-TOOL-UNTRUSTED/u);
     const linked = materializeCaseLongformPreservationPlanFixture();
     const link = resolve(linked.root, 'ffmpeg-link');
     symlinkSync(linked.preservationOptions.preservationToolAuthority.ffmpeg_path, link);
     linked.preservationOptions.preservationToolAuthority.ffmpeg_path = link;
-    expect(() => validate(linked)).toThrow(/TOOL/u);
+    expect(() => validate(linked)).toThrow(/VIDEO-OS-CASE-TOOL-UNTRUSTED/u);
     const mutated = materializeCaseLongformPreservationPlanFixture();
     const copy = resolve(mutated.root, 'ffmpeg-copy');
     copyFileSync(mutated.preservationOptions.preservationToolAuthority.ffmpeg_path, copy);
@@ -298,6 +298,6 @@ describe('case-longform PR1c1a preservation plan authority', () => {
         if (kind === 'ffmpeg') writeFileSync(path, 'mutated');
       },
     };
-    expect(() => validate(mutated)).toThrow(/TOOL-IDENTITY/u);
+    expect(() => validate(mutated)).toThrow(/VIDEO-OS-CASE-TOOL-UNTRUSTED/u);
   });
 });
