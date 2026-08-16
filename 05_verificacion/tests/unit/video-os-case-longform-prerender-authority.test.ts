@@ -5,7 +5,7 @@ import {
   cleanupCaseFixtures,
   materializeCaseLongformGraphFixture,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 
 const BAD = '0'.repeat(64);
 type Segment = {

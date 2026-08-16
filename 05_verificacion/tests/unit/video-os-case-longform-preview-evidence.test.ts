@@ -21,7 +21,7 @@ import {
   materializeCaseLongformGraphFixture,
   readCaseFixture,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 
 const BAD = '0'.repeat(64);
 const MASKS = ['mask-domain', 'mask-url'];

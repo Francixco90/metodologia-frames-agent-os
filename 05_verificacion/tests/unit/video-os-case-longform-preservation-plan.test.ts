@@ -15,7 +15,7 @@ import {assertCaseLongformPreservationPlanAuthority} from 'workflows/video-os/in
 import {
   cleanupCaseFixtures,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 import {materializeCaseLongformPreservationPlanFixture} from './video-os-case-longform-preservation-plan-fixture.test.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformPreservationPlanFixture>;

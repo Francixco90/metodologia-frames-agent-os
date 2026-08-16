@@ -15,7 +15,7 @@ import {
   caseFixtureRef,
   cleanupCaseFixtures,
   writeCaseFixture,
-} from './video-os-case-longform-coverage-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-coverage.fixture.ts';
 import {materializeCaseLongformPrerenderReviewFixture} from './video-os-case-longform-prerender-review-fixture.test.ts';
 
 const BAD = '0'.repeat(64);
