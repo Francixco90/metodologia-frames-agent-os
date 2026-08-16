@@ -8,6 +8,8 @@ import {spawnSync} from 'node:child_process';
 import {parse} from 'yaml';
 import './lib/check-suite.mjs';
 
+if (process.env.METODOLOGIA_TOOLCHAIN_PROFILE === 'local-full' && process.exitCode) process.exit(process.exitCode);
+
 const skill = resolve(process.cwd(), 'skills/content-os-general-video');
 const cli = resolve(skill, 'scripts/video-cli.mjs');
 const receiptPath = resolve(skill, 'receipts/verification-v0.16.0.yml');
