@@ -17,12 +17,14 @@ runtime_boundary:
     - signal_detection
     - privacy_policy_change
     - generative_inpainting
+    - peripheral_reframe_without_full_transform_scope
     - network_fetch
     - upload
     - publish
 runtime_rules:
   - verified_plan_only
   - no_overwrite
+  - multichannel_audio_identity_outside_span
   - separate_source_and_output_roots
   - value_zone_overlap_fail_closed
   - five_percent_review_target

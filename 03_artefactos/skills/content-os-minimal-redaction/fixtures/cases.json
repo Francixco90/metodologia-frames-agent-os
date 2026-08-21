@@ -3,7 +3,7 @@
   "cases": [
     {"id": "localized-static-logo", "expect": "LOCAL_BLUR_WITH_FEATHER"},
     {"id": "tracked-moving-logo", "expect": "SEQUENTIAL_LOCAL_BLUR"},
-    {"id": "peripheral-tool-chrome", "expect": "TEMPORAL_REFRAME"},
+    {"id": "peripheral-tool-chrome", "expect": "BLOCK_PENDING_FULL_TRANSFORM_SCOPE"},
     {"id": "spoken-brand", "expect": "IN_SPAN_FADED_SILENCE_AND_CAPTION_ELLIPSIS"},
     {"id": "full-frame-mask", "expect": "BLOCK"},
     {"id": "value-zone-occlusion", "expect": "BLOCK"},

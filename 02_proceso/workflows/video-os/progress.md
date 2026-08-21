@@ -2,16 +2,18 @@
 
 ## Current State
 
-Last Updated: 2026-08-21. Current Objective: independently review the minimal privacy
-redaction candidate; the Luna low benchmark remains pending and separate.
+Last Updated: 2026-08-21. Current Objective: freeze and independently re-review the remediated
+minimal privacy redaction candidate; the Luna low benchmark remains pending and separate.
 
 ## What's Done
 
 Foundation, contracts and unit verification are implemented. The durable `verify:video-os`
 command is material. `content-os-minimal-redaction` now applies hash-bound
 `redaction-plan-v2` operations to a source snapshot using lossless localized blur,
-peripheral reframe, in-span audio fades and exact caption substitution. Its synthetic media
-checker passes, but the skill remains `candidate`. [CONFIG]
+per-channel in-span audio fades and exact caption substitution. Its synthetic media checker
+passes. Peripheral reframe is fail-closed until a full-frame transform scope preserves focal
+zones. The skill remains `candidate`; the superseded candidate failed independent review and
+this remediation still requires a new frozen review. [CONFIG]
 
 ## What's Next
 

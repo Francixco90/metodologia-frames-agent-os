@@ -11,12 +11,12 @@
     "actor_id": {"const": "RT-07-H03-MINIMAL-REDACTION-PRODUCER"}, "source": {"$ref": "#/$defs/ref"},
     "bindings": {"type": "object", "additionalProperties": false, "required": ["privacy_policy_sha256", "value_preservation_plan_sha256", "redaction_plan_sha256", "verification_receipt_sha256"], "properties": {"privacy_policy_sha256": {"$ref": "#/$defs/sha"}, "value_preservation_plan_sha256": {"$ref": "#/$defs/sha"}, "redaction_plan_sha256": {"$ref": "#/$defs/sha"}, "verification_receipt_sha256": {"$ref": "#/$defs/sha"}}},
     "toolchain": {"type": "object", "additionalProperties": false, "required": ["ffmpeg_sha256", "ffprobe_sha256", "filtergraph_sha256"], "properties": {"ffmpeg_sha256": {"$ref": "#/$defs/sha"}, "ffprobe_sha256": {"$ref": "#/$defs/sha"}, "filtergraph_sha256": {"$ref": "#/$defs/sha"}}},
-    "operations": {"type": "array", "minItems": 1, "maxItems": 512, "items": {"type": "object", "additionalProperties": false, "required": ["sequence", "operation_id", "signal_id", "type"], "properties": {"sequence": {"type": "integer", "minimum": 0}, "operation_id": {"$ref": "#/$defs/id"}, "signal_id": {"$ref": "#/$defs/id"}, "type": {"enum": ["REFRAME_PERIPHERAL", "LOCAL_BLUR", "AUDIO_SILENCE"]}}}},
+    "operations": {"type": "array", "minItems": 1, "maxItems": 512, "items": {"type": "object", "additionalProperties": false, "required": ["sequence", "operation_id", "signal_id", "type"], "properties": {"sequence": {"type": "integer", "minimum": 0}, "operation_id": {"$ref": "#/$defs/id"}, "signal_id": {"$ref": "#/$defs/id"}, "type": {"enum": ["LOCAL_BLUR", "AUDIO_SILENCE"]}}}},
     "output": {"$ref": "#/$defs/ref"}, "captions": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref"}]},
     "maximum_state": {"const": "RENDERED_DRAFT"}, "status": {"const": "BLOCKED_PENDING_PUBLICATION_PRIVACY_VERIFIER"}, "canonical_sha256": {"$ref": "#/$defs/sha"}
   },
   "$defs": {
     "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}, "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-    "ref": {"type": "object", "additionalProperties": false, "required": ["ref", "sha256", "bytes"], "properties": {"ref": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"}, "sha256": {"$ref": "#/$defs/sha"}, "bytes": {"type": "integer", "minimum": 1}}
+    "ref": {"type": "object", "additionalProperties": false, "required": ["ref", "sha256", "bytes"], "properties": {"ref": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"}, "sha256": {"$ref": "#/$defs/sha"}, "bytes": {"type": "integer", "minimum": 1}}}
   }
 }

@@ -37,8 +37,8 @@
       "name": "Minimal privacy redaction candidate",
       "description": "Apply verified redaction-plan-v2 operations with lossless localized visual, audio, and caption treatment.",
       "dependencies": ["video-os-003"],
-      "status": "completed",
-      "evidence": "material synthetic checker PASS; independent review and CI remain release gates"
+      "status": "in-progress",
+      "evidence": "candidate remediation after independent review; CI remains a release gate"
     }
   ]
 }
