@@ -17,7 +17,7 @@ const exact = (value, keys, label) => {
   if (JSON.stringify(Object.keys(value).sort()) !== JSON.stringify([...keys].sort())) throw new Error(`${label}-KEYS`);
 };
 const isId = (value) => typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u.test(value);
-const REF_PATTERN = /^(?!.*\/\/)(?!.*(?:^|\/)\.{1,2}(?:\/|$))(?!.*(?:^|\/)\.[^/])(?!.*\\)[a-z0-9][a-z0-9._/-]*$/u;
+const REF_PATTERN = /^(?!.*\/\/)(?!.*(?:^|\/)\.{1,2}(?:\/|$))(?!.*(?:^|\/)\.[^/])(?!.*\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$/u;
 const physical = (value, label) => {
   exact(value, ['ref', 'sha256', 'bytes', 'content_base64'], label);
   if (!REF_PATTERN.test(value.ref) || !/^[a-f0-9]{64}$/u.test(value.sha256) || !Number.isInteger(value.bytes) || value.bytes < 1) throw new Error(`${label}-BINDING`);
@@ -60,7 +60,7 @@ const aliasMatches = (text, aliases) => {
 const confidence = (score) => ({score, status: score >= 0.9 ? 'CONFIRMED' : score >= 0.5 ? 'REVIEW_REQUIRED' : 'UNKNOWN'});
 const signalFingerprint = ({signal_id: _id, sequence: _sequence, ...signal}) => digest(signal);
 
-export const assertSensitiveSignalInventory = (inventory) => {
+const assertInventoryShape = (inventory) => {
   if (!validateInventory(inventory)) throw new Error(`DETECTOR-INVENTORY-SCHEMA ${new Ajv2020().errorsText(validateInventory.errors)}`);
   if (inventory.signals.some((signal, index) => signal.sequence !== index)) throw new Error('DETECTOR-INVENTORY-SEQUENCE');
   if (new Set(inventory.signals.map(({signal_id}) => signal_id)).size !== inventory.signals.length) throw new Error('DETECTOR-INVENTORY-SIGNAL-ID');
@@ -70,17 +70,23 @@ export const assertSensitiveSignalInventory = (inventory) => {
   return inventory;
 };
 
-export const detectSensitiveSignals = (request) => {
+const deriveSensitiveSignals = (request) => {
   exact(request, ['schema_version', 'case_id', 'source', 'actor_id', 'aliases', 'aliases_sha256', 'templates', 'templates_sha256', 'coverage', 'coverage_receipt', 'observations'], 'DETECTOR-REQUEST');
-  if (request.schema_version !== 'sensitive-signal-detector-request-v1' || !isId(request.case_id) || !isId(request.actor_id)) throw new Error('DETECTOR-REQUEST-IDENTITY');
+  if (request.schema_version !== 'sensitive-signal-detector-request-v1' || !isId(request.case_id) || request.actor_id !== 'RT-07-H03-PRIVACY-DETECTOR-PRODUCER') throw new Error('DETECTOR-REQUEST-IDENTITY');
+  const materialRefs = new Set();
+  const claimRef = (value) => { if (materialRefs.has(value)) throw new Error('DETECTOR-MATERIAL-REF-DUPLICATE'); materialRefs.add(value); };
   exact(request.source, ['ref', 'sha256', 'bytes', 'content_base64', 'frame_width', 'frame_height', 'frame_count', 'duration_ms', 'has_audio'], 'DETECTOR-SOURCE');
   physical({ref: request.source.ref, sha256: request.source.sha256, bytes: request.source.bytes, content_base64: request.source.content_base64}, 'DETECTOR-SOURCE');
+  claimRef(request.source.ref);
   if (![request.source.frame_width, request.source.frame_height, request.source.frame_count, request.source.duration_ms].every((value) => Number.isInteger(value) && value > 0) || typeof request.source.has_audio !== 'boolean') throw new Error('DETECTOR-SOURCE-METADATA');
   exact(request.coverage, ['visual_text', 'visual_templates', 'faces', 'audio_transcript'], 'DETECTOR-COVERAGE');
   const coverageStates = Object.values(request.coverage);
   if (!coverageStates.every((item) => ['COMPLETE', 'NOT_PRESENT', 'UNKNOWN'].includes(item))) throw new Error('DETECTOR-COVERAGE-STATE');
-  const coverageReceipt = receipt(request.coverage_receipt, ['schema_version', 'actor_id', 'source_sha256', 'coverage'], 'DETECTOR-COVERAGE');
-  if (coverageReceipt.schema_version !== 'sensitive-signal-coverage-receipt-v1' || coverageReceipt.actor_id !== 'RT-09-PRIVACY-COVERAGE-VERIFIER' || coverageReceipt.source_sha256 !== request.source.sha256 || digest(coverageReceipt.coverage) !== digest(request.coverage)) throw new Error('DETECTOR-COVERAGE-DRIFT');
+  const coverageReceipt = receipt(request.coverage_receipt, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'coverage'], 'DETECTOR-COVERAGE');
+  claimRef(request.coverage_receipt.ref);
+  if (coverageReceipt.schema_version !== 'sensitive-signal-coverage-receipt-v1' || coverageReceipt.actor_id !== 'RT-09-PRIVACY-COVERAGE-VERIFIER' || coverageReceipt.case_id !== request.case_id || coverageReceipt.source_sha256 !== request.source.sha256 || digest(coverageReceipt.coverage) !== digest(request.coverage)) throw new Error('DETECTOR-COVERAGE-DRIFT');
+  if (request.coverage.audio_transcript === 'NOT_PRESENT' && request.source.has_audio) throw new Error('DETECTOR-COVERAGE-AUDIO-CONTRADICTION');
+  if (['visual_text', 'visual_templates', 'faces'].some((key) => request.coverage[key] === 'NOT_PRESENT')) throw new Error('DETECTOR-COVERAGE-NOT-PRESENT-UNACCREDITED');
   const aliasIds = new Set(); const aliasVariants = new Map();
   for (const entry of request.aliases) {
     exact(entry, ['alias_id', 'kind', 'canonical', 'variants'], 'DETECTOR-ALIAS');
@@ -93,7 +99,7 @@ export const detectSensitiveSignals = (request) => {
   for (const item of request.templates) {
     exact(item, ['template_id', 'kind', 'identity', 'content_base64', 'sha256', 'bytes'], 'DETECTOR-TEMPLATE');
     if (!isId(item.template_id) || templates.has(item.template_id) || !['LOGO', 'AVATAR', 'TOOL_CHROME'].includes(item.kind) || !item.identity) throw new Error('DETECTOR-TEMPLATE-INVALID');
-    physical({ref: `templates/${item.template_id.toLowerCase()}.bin`, sha256: item.sha256, bytes: item.bytes, content_base64: item.content_base64}, 'DETECTOR-TEMPLATE'); templates.set(item.template_id, item);
+    const templateRef = `templates/${item.template_id.toLowerCase()}.bin`; physical({ref: templateRef, sha256: item.sha256, bytes: item.bytes, content_base64: item.content_base64}, 'DETECTOR-TEMPLATE'); claimRef(templateRef); templates.set(item.template_id, item);
   }
   if (digest(request.templates) !== request.templates_sha256) throw new Error('DETECTOR-TEMPLATES-DRIFT');
   const evidenceActors = {OCR_TSV: 'RT-09-PRIVACY-OCR-VERIFIER', TEMPLATE: 'RT-09-PRIVACY-TEMPLATE-VERIFIER', FACE_MANUAL: 'RT-11-PRIVACY-GUARDIAN', AUDIO_TRANSCRIPT: 'RT-09-PRIVACY-AUDIO-VERIFIER'};
@@ -107,13 +113,15 @@ export const detectSensitiveSignals = (request) => {
     if (!isId(observation.observation_id) || observationIds.has(observation.observation_id) || !Object.hasOwn(evidenceActors, observation.modality)) throw new Error('DETECTOR-OBSERVATION-INVALID');
     const {observation_id: _observationId, evidence: _evidence, ...semanticObservation} = observation; const fingerprint = digest(semanticObservation);
     if (observationFingerprints.has(fingerprint)) throw new Error('DETECTOR-OBSERVATION-DUPLICATE'); observationFingerprints.add(fingerprint); observationIds.add(observation.observation_id); modalityCounts[observation.modality] += 1;
-    const evidenceReceipt = receipt(observation.evidence, ['schema_version', 'actor_id', 'observation_id', 'modality', 'observation_sha256'], 'DETECTOR-EVIDENCE');
-    if (evidenceReceipt.schema_version !== 'sensitive-signal-observation-evidence-v1' || evidenceReceipt.actor_id !== evidenceActors[observation.modality] || evidenceReceipt.observation_id !== observation.observation_id || evidenceReceipt.modality !== observation.modality || evidenceReceipt.observation_sha256 !== digest(semanticObservation)) throw new Error('DETECTOR-EVIDENCE-DRIFT');
+    const evidenceReceipt = receipt(observation.evidence, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'observation_id', 'modality', 'observation_sha256'], 'DETECTOR-EVIDENCE');
+    claimRef(observation.evidence.ref);
+    if (evidenceReceipt.schema_version !== 'sensitive-signal-observation-evidence-v1' || evidenceReceipt.actor_id !== evidenceActors[observation.modality] || evidenceReceipt.case_id !== request.case_id || evidenceReceipt.source_sha256 !== request.source.sha256 || evidenceReceipt.observation_id !== observation.observation_id || evidenceReceipt.modality !== observation.modality || evidenceReceipt.observation_sha256 !== digest(semanticObservation)) throw new Error('DETECTOR-EVIDENCE-DRIFT');
     span(observation.frame_span, 'DETECTOR-FRAME-SPAN'); span(observation.time_span_ms, 'DETECTOR-TIME-SPAN');
     if (observation.geometry !== null) { exact(observation.geometry, ['x', 'y', 'width', 'height'], 'DETECTOR-GEOMETRY'); const {x, y, width, height} = observation.geometry; if (![x, y].every((value) => Number.isInteger(value) && value >= 0) || ![width, height].every((value) => Number.isInteger(value) && value > 0) || x + width > request.source.frame_width || y + height > request.source.frame_height) throw new Error('DETECTOR-GEOMETRY-RANGE'); }
     if (typeof observation.confidence !== 'number' || observation.confidence < 0 || observation.confidence > 1) throw new Error('DETECTOR-CONFIDENCE');
     const audio = observation.modality === 'AUDIO_TRANSCRIPT';
     if (audio ? !request.source.has_audio || observation.frame_span !== null || observation.geometry !== null || observation.time_span_ms === null || observation.time_span_ms.end > request.source.duration_ms : observation.frame_span === null || observation.frame_span.end >= request.source.frame_count || observation.geometry === null || observation.time_span_ms !== null) throw new Error('DETECTOR-MODALITY-SPAN');
+    if (observation.modality === 'TEMPLATE' ? observation.text !== null || observation.identity !== null || !isId(observation.template_id) : observation.modality === 'FACE_MANUAL' ? observation.text !== null || observation.template_id !== null || !observation.identity : observation.template_id !== null || observation.identity !== null) throw new Error('DETECTOR-MODALITY-FIELDS');
     if (observation.modality === 'TEMPLATE') { const template = templates.get(observation.template_id); if (!template) throw new Error('DETECTOR-TEMPLATE-UNKNOWN'); push(observation, template.kind, template.identity, null, Math.min(observation.confidence, 0.89)); }
     else if (observation.modality === 'FACE_MANUAL') { if (!observation.identity) throw new Error('DETECTOR-FACE-AUTHORITY'); push(observation, 'FACE', observation.identity, null, Math.min(observation.confidence, 0.89)); }
     else {
@@ -130,8 +138,17 @@ export const detectSensitiveSignals = (request) => {
   for (const [coverageKey, modality] of [['visual_text', 'OCR_TSV'], ['visual_templates', 'TEMPLATE'], ['faces', 'FACE_MANUAL'], ['audio_transcript', 'AUDIO_TRANSCRIPT']]) { const state = request.coverage[coverageKey]; if ((state === 'COMPLETE' && modalityCounts[modality] === 0) || (state === 'NOT_PRESENT' && modalityCounts[modality] !== 0)) throw new Error('DETECTOR-COVERAGE-INCOMPLETE'); }
   const blocked = coverageStates.includes('UNKNOWN') || request.observations.some(({confidence: score}) => confidence(score).status === 'UNKNOWN');
   const output = {schema_version: 'sensitive-signal-inventory-v1', inventory_id: `INV-${digest([request.case_id, request.source.sha256, signals]).slice(0, 16)}`, case_id: request.case_id, source: {ref: request.source.ref, sha256: request.source.sha256, bytes: request.source.bytes}, detector_actor_id: request.actor_id, aliases_sha256: request.aliases_sha256, templates_sha256: request.templates_sha256, coverage: request.coverage, signals, status: blocked ? 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN' : 'BLOCKED_PENDING_PRIVACY_POLICY'};
-  output.canonical_sha256 = digest(output); return assertSensitiveSignalInventory(output);
+  output.canonical_sha256 = digest(output); return output;
 };
+
+export const assertSensitiveSignalInventory = (inventory, request) => {
+  assertInventoryShape(inventory);
+  const expected = deriveSensitiveSignals(request); assertInventoryShape(expected);
+  if (JSON.stringify(stable(inventory)) !== JSON.stringify(stable(expected))) throw new Error('DETECTOR-INVENTORY-AUTHORITY-DRIFT');
+  return inventory;
+};
+
+export const detectSensitiveSignals = (request) => assertSensitiveSignalInventory(deriveSensitiveSignals(request), request);
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const request = JSON.parse(readFileSync(resolve(process.argv[2] ?? ''), 'utf8'));

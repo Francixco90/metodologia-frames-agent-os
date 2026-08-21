@@ -35,7 +35,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["ref", "sha256", "bytes"],
       "properties": {
-        "ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9][a-z0-9._/-]*$"},
+        "ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$"},
         "sha256": {"$ref": "#/$defs/sha"},
         "bytes": {"type": "integer", "minimum": 1}
       }

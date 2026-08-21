@@ -19,7 +19,8 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 1. Verificar bytes físicos de fuente, caso, actor y registros hash-bound de aliases y
    plantillas.
 2. Exigir cobertura declarada para texto visual, plantillas, rostros y audio. `UNKNOWN`
-   bloquea; `NOT_PRESENT` solo es válido cuando la modalidad no existe en la fuente.
+   bloquea. En este candidato data-only, `NOT_PRESENT` visual no se acredita; audio solo
+   lo admite cuando la fuente declara materialmente que no contiene audio.
 3. Combinar OCR con cajas, aliases ortográficos, plantillas visuales y transcript. Cada
    hallazgo conserva región, frames o tiempo, modalidad, confianza y evidencia.
 4. Emitir nombres, rostros, logos, texto de marca, URLs, emails, rutas, avatares, chrome
@@ -43,8 +44,9 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 
 ## Contrato y uso
 
-El inventario es estricto, secuenciado, verificable públicamente y hash-bound mediante JSON
-canónico. El request es data-only y todas sus estructuras rechazan claves no declaradas.
+El inventario es estricto, secuenciado y hash-bound mediante JSON canónico. Su verificador
+público exige también el request físico y rederiva el resultado; un hash autocontenido no
+acredita autoridad. Todas las estructuras rechazan claves no declaradas.
 
 ```bash
 node skills/content-os-sensitive-signal-detector/scripts/detect-sensitive-signals.mjs request.json

@@ -25,6 +25,8 @@ runtime_boundary:
     - publish
 runtime_rules:
   - unknown_confidence_blocks
+  - public_assertion_rederives_from_physical_request
+  - visual_not_present_unaccredited
   - no_inferred_permissions
   - no_private_reasoning
   - no_media_mutation
