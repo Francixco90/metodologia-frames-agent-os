@@ -11,6 +11,7 @@ import {
   type ExperienceWorkflowDefinitionV1,
   type GatewayRouteHandlerV1,
 } from 'workflows/core/index.ts';
+import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 const digest = 'a'.repeat(64);
 const r6Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
@@ -85,6 +86,27 @@ const definition: ExperienceWorkflowDefinitionV1 = {
       stopRule: 'Detener en RENDERED_DRAFT.',
     },
   ],
+};
+
+const selectedContentExperience = () => {
+  const prompt = 'Ayúdame a generar una pieza';
+  const requestHash = runFirstTurnGatewayV1({prompt}, {R6: r6Handler, R7: r7Handler}).requestHash;
+  const decision = materializeDecisionFunnelFixture(requestHash);
+  const envelope = runFirstTurnGatewayV1(
+    {prompt, decisionFunnel: decision.funnel, decisionSelection: decision.selection},
+    {R6: r6Handler, R7: r7Handler},
+  );
+  return {
+    envelope,
+    decision,
+    decisionRefs: {
+      funnel: {ref: 'evidence/decision-funnel.json', sha256: decision.funnel.canonicalSha256},
+      selection: {
+        ref: 'evidence/decision-selection.json',
+        sha256: decision.selection.canonicalSha256,
+      },
+    },
+  };
 };
 
 describe('Frames causal orchestration', () => {
@@ -164,11 +186,8 @@ describe('Frames causal orchestration', () => {
   );
 
   it('compiles exact steps and primes only the active context', () => {
-    const envelope = runFirstTurnGatewayV1(
-      {prompt: 'Ayúdame a generar una pieza'},
-      {R6: r6Handler, R7: r7Handler},
-    );
-    const plan = compileExperienceWorkflowPlanV1(envelope, [definition]);
+    const {envelope, decision} = selectedContentExperience();
+    const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
     const prime = autoPrimeExperienceV1(plan);
     expect(plan.steps.map(({stepId}) => stepId)).toEqual(envelope.workflowPlan);
     expect(prime.loadedRefs).toEqual([
@@ -184,16 +203,47 @@ describe('Frames causal orchestration', () => {
     });
   });
 
+  it('rejects a selection or decision reference that is not bound to the envelope', () => {
+    const {envelope, decision, decisionRefs} = selectedContentExperience();
+    expect(() =>
+      compileExperienceWorkflowPlanV1(envelope, [definition], {
+        ...decision,
+        selection: {...decision.selection, canonicalSha256: '0'.repeat(64)},
+      }),
+    ).toThrow();
+    const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
+    expect(() =>
+      createFramesWorkOrderV1(plan, envelope, {
+        workOrderId: 'WO.EXP.DRIFT',
+        actorId: 'RT-04',
+        inputRefs: [],
+        decision,
+        decisionRefs: {
+          ...decisionRefs,
+          selection: {...decisionRefs.selection, sha256: '0'.repeat(64)},
+        },
+      }),
+    ).toThrow(/EXPERIENCE-DECISION-REF-DRIFT/u);
+    expect(() =>
+      createFramesWorkOrderV1(plan, envelope, {
+        workOrderId: 'WO.EXP.ALIAS',
+        actorId: 'RT-04',
+        inputRefs: [{...decisionRefs.funnel}],
+        decision,
+        decisionRefs,
+      }),
+    ).toThrow(/EXPERIENCE-DECISION-REF-ALIAS/u);
+  });
+
   it('requires a material invocation receipt before planned becomes executed', async () => {
-    const envelope = runFirstTurnGatewayV1(
-      {prompt: 'Ayúdame a generar una pieza'},
-      {R6: r6Handler, R7: r7Handler},
-    );
-    const plan = compileExperienceWorkflowPlanV1(envelope, [definition]);
+    const {envelope, decision, decisionRefs} = selectedContentExperience();
+    const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
     const workOrder = createFramesWorkOrderV1(plan, envelope, {
       workOrderId: 'WO.EXP.001',
       actorId: 'RT-04',
       inputRefs: [{ref: 'evidence/request.json', sha256: digest}],
+      decisionRefs,
+      decision,
     });
     const emptyPass = new FakeSkillAdapterV1({
       'content-os-router': () => ({

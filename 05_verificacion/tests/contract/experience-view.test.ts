@@ -3,6 +3,7 @@ import {describe, expect, it} from 'vitest';
 import {hashExperienceValue} from 'core/contracts/index.ts';
 import {runFirstTurnGatewayV1, type GatewayRouteHandlerV1} from 'workflows/core/index.ts';
 import {renderExperienceTextFallback, renderExperienceView} from 'workflows/experience/index.ts';
+import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 const unused: GatewayRouteHandlerV1 = () => {
   throw new Error('handler must not run');
@@ -45,19 +46,28 @@ describe('AssistanceEnvelope to governed ExperienceView', () => {
   });
 
   it('keeps actionable route, plan, brief, recommendation and CTAs equivalent', () => {
-    const envelope = runFirstTurnGatewayV1(
+    const requestHash = runFirstTurnGatewayV1(
       {prompt: 'Ayúdame a generar una pieza'},
       {R6: content, R7: unused},
+    ).requestHash;
+    const {funnel} = materializeDecisionFunnelFixture(requestHash);
+    const envelope = runFirstTurnGatewayV1(
+      {prompt: 'Ayúdame a generar una pieza', decisionFunnel: funnel},
+      {R6: content, R7: unused},
     );
-    const view = renderExperienceView(envelope);
+    const view = renderExperienceView(envelope, funnel);
     expect(view.components.map(({kind}) => kind)).toEqual([
       'IntentSummary',
       'BriefPreview',
       'ProgressStepper',
       'DecisionGate',
     ]);
-    expect(view.primaryAction?.intent).toBe(envelope.recommendedNextAction);
-    expect(view.secondaryActions.map(({intent}) => intent)).toEqual(envelope.ghostOptions);
+    expect(envelope.state).toBe('ROUTED');
+    expect(view.primaryAction).toBeNull();
+    expect(view.secondaryActions.map(({intent}) => intent)).toEqual([
+      'Demostración visible',
+      'Microtutorial',
+    ]);
     for (const value of [
       envelope.understoodOutcome,
       envelope.state,
@@ -73,7 +83,9 @@ describe('AssistanceEnvelope to governed ExperienceView', () => {
     expect(
       Object.keys(brief?.data ?? {}).every((key) => !key.toLowerCase().includes('ghost')),
     ).toBe(true);
-    expect(view.textFallback).toBe(renderExperienceTextFallback(envelope));
+    expect(view.components.find(({kind}) => kind === 'DecisionGate')?.data.options).toHaveLength(2);
+    expect(view.textFallback).toContain('Aporte verificable rescatado');
+    expect(view.textFallback).toBe(renderExperienceTextFallback(envelope, funnel));
   });
 
   it('renders ambiguity as an evidence gap plus recovery, without hidden execution', () => {

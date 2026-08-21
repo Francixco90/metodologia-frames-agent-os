@@ -1,8 +1,13 @@
 import {
+  AssistanceEnvelopeV1Schema,
   FramesWorkOrderV1Schema,
+  assertDecisionSelectionV1,
   hashExperienceValue,
   type AssistanceEnvelopeV1,
+  type DecisionFunnelV1,
+  type DecisionSelectionV1,
   type FramesWorkOrderV1,
+  type MaterialReferenceV1,
 } from '../../core/contracts/index.ts';
 
 export interface ExperienceStepDefinitionV1 {
@@ -28,7 +33,36 @@ export interface ExperienceWorkflowPlanV1 {
   workflowId: string;
   activeStep: string;
   steps: ExperienceStepDefinitionV1[];
+  decisionFunnelSha256: string;
+  decisionSelectionSha256: string;
+  selectedOptionId: string;
 }
+
+export interface ExperienceDecisionContextV1 {
+  funnel: DecisionFunnelV1;
+  selection: DecisionSelectionV1;
+}
+
+export interface ExperienceDecisionReferencesV1 {
+  funnel: MaterialReferenceV1;
+  selection: MaterialReferenceV1;
+}
+
+const verifyDecisionBinding = (
+  envelopeInput: AssistanceEnvelopeV1,
+  decision: ExperienceDecisionContextV1,
+) => {
+  const envelope = AssistanceEnvelopeV1Schema.parse(envelopeInput);
+  const verified = assertDecisionSelectionV1(decision.funnel, decision.selection);
+  if (
+    verified.funnel.requestHash !== envelope.requestHash ||
+    verified.funnel.canonicalSha256 !== envelope.decisionFunnelSha256 ||
+    verified.selection.canonicalSha256 !== envelope.decisionSelectionSha256
+  ) {
+    throw new Error('EXPERIENCE-DECISION-BINDING-DRIFT');
+  }
+  return verified;
+};
 
 export interface AutoPrimeResultV1 {
   routeId: 'R6' | 'R7';
@@ -44,6 +78,7 @@ export interface AutoPrimeResultV1 {
 export function compileExperienceWorkflowPlanV1(
   envelope: AssistanceEnvelopeV1,
   definitions: readonly ExperienceWorkflowDefinitionV1[],
+  decision: ExperienceDecisionContextV1,
 ): ExperienceWorkflowPlanV1 {
   if (envelope.selectedRoute === null || envelope.state !== 'READY_FOR_BRIEF') {
     throw new Error('A route-locked READY_FOR_BRIEF envelope is required.');
@@ -52,6 +87,7 @@ export function compileExperienceWorkflowPlanV1(
   if (definition === undefined || definition.steps.length === 0) {
     throw new Error(`No executable workflow resolves route ${envelope.selectedRoute}.`);
   }
+  const verified = verifyDecisionBinding(envelope, decision);
   const selectedIds = new Set(envelope.workflowPlan);
   const steps = definition.steps.filter(({stepId}) => selectedIds.has(stepId));
   if (steps.length !== selectedIds.size || steps[0]?.stepId !== envelope.activeStep) {
@@ -62,6 +98,9 @@ export function compileExperienceWorkflowPlanV1(
     workflowId: definition.workflowId,
     activeStep: steps[0].stepId,
     steps,
+    decisionFunnelSha256: verified.funnel.canonicalSha256,
+    decisionSelectionSha256: verified.selection.canonicalSha256,
+    selectedOptionId: verified.selection.selectedOptionId,
   };
 }
 
@@ -93,6 +132,8 @@ export function createFramesWorkOrderV1(
     workOrderId: string;
     actorId: string;
     inputRefs: Array<{ref: string; sha256: string}>;
+    decisionRefs: ExperienceDecisionReferencesV1;
+    decision: ExperienceDecisionContextV1;
     writeSet?: string[];
     effectClass?: 'READ_ONLY' | 'LOCAL_REVERSIBLE';
   },
@@ -100,6 +141,20 @@ export function createFramesWorkOrderV1(
   const step = plan.steps[0];
   if (step === undefined || envelope.selectedRoute !== plan.routeId) {
     throw new Error('Work order requires an active step bound to the selected route.');
+  }
+  const verified = verifyDecisionBinding(envelope, input.decision);
+  if (verified.selection.selectedOptionId !== plan.selectedOptionId) {
+    throw new Error('EXPERIENCE-DECISION-PLAN-DRIFT');
+  }
+  if (
+    input.decisionRefs.funnel.sha256 !== plan.decisionFunnelSha256 ||
+    input.decisionRefs.selection.sha256 !== plan.decisionSelectionSha256
+  ) {
+    throw new Error('EXPERIENCE-DECISION-REF-DRIFT');
+  }
+  const inputRefs = [input.decisionRefs.funnel, input.decisionRefs.selection, ...input.inputRefs];
+  if (new Set(inputRefs.map(({ref}) => ref)).size !== inputRefs.length) {
+    throw new Error('EXPERIENCE-DECISION-REF-ALIAS');
   }
   const draft = {
     schemaVersion: 'frames-work-order-v1' as const,
@@ -112,7 +167,7 @@ export function createFramesWorkOrderV1(
     actorId: input.actorId,
     readSet: [...new Set([step.templateRef, ...step.sourceRefs])],
     writeSet: input.writeSet ?? [],
-    inputs: input.inputRefs,
+    inputs: inputRefs,
     expectedOutputs: step.expectedOutputs,
     tools: [],
     effectClass: input.effectClass ?? ('READ_ONLY' as const),

@@ -17,6 +17,8 @@ import {
   compileExperienceWorkflowPlanV1,
   createFramesWorkOrderV1,
   type AutoPrimeResultV1,
+  type ExperienceDecisionContextV1,
+  type ExperienceDecisionReferencesV1,
 } from './experience-planner-v1.ts';
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
@@ -41,6 +43,8 @@ interface LocalExecutionBaseV1 {
   actorId: string;
   startedAt: string;
   completedAt: string;
+  decision?: ExperienceDecisionContextV1;
+  decisionRefs?: ExperienceDecisionReferencesV1;
 }
 
 export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
@@ -75,6 +79,23 @@ const atomicWrite = (path: string, value: string): void => {
 const digestFile = (path: string): string =>
   createHash('sha256').update(readFileSync(path)).digest('hex');
 
+const noExecution = (
+  input: LocalExperienceExecutionInputV1,
+  status: 'NEEDS_INPUT' | 'BLOCKED',
+  coverageGap?: string,
+): LocalExperienceExecutionResultV1 => ({
+  status,
+  routeId: input.routeId,
+  materialized: false,
+  nextGate: 'EXP_BRIEF_APPROVED',
+  autoPrime: null,
+  workOrderSha256: null,
+  receiptRef: null,
+  receiptSha256: null,
+  brief: null,
+  ...(coverageGap === undefined ? {} : {coverageGap}),
+});
+
 export async function orchestrateLocalExperienceV1(
   input: LocalExperienceExecutionInputV1,
 ): Promise<LocalExperienceExecutionResultV1> {
@@ -83,39 +104,12 @@ export async function orchestrateLocalExperienceV1(
     input.envelope.state !== 'READY_FOR_BRIEF' ||
     input.envelope.blockingGaps.length > 0
   ) {
-    return {
-      status: 'NEEDS_INPUT',
-      routeId: input.routeId,
-      materialized: false,
-      nextGate: 'EXP_BRIEF_APPROVED',
-      autoPrime: null,
-      workOrderSha256: null,
-      receiptRef: null,
-      receiptSha256: null,
-      brief: null,
-    };
+    return noExecution(input, 'NEEDS_INPUT');
   }
   const outputDirectoryRef = RelativePathSchema.parse(
     input.outputDirectoryRef ??
       `work/private/experience/${input.envelope.requestHash.slice(0, 16)}`,
   );
-  let outputDirectory: string;
-  try {
-    outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
-  } catch (error) {
-    return {
-      status: 'BLOCKED',
-      routeId: input.routeId,
-      materialized: false,
-      nextGate: 'EXP_BRIEF_APPROVED',
-      autoPrime: null,
-      workOrderSha256: null,
-      receiptRef: null,
-      receiptSha256: null,
-      brief: null,
-      coverageGap: error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
-    };
-  }
   const markdownRef = `${outputDirectoryRef}/brief.md`;
   const htmlRef = `${outputDirectoryRef}/brief.html`;
   const definitions = createProductiveExperienceWorkflowDefinitionsV1({
@@ -123,12 +117,36 @@ export async function orchestrateLocalExperienceV1(
     briefHtmlRef: htmlRef,
     sourceRefs: input.sourceMaterials.map(({ref}) => ref),
   });
-  const plan = compileExperienceWorkflowPlanV1(input.envelope, definitions);
+  if (input.decision === undefined || input.decisionRefs === undefined) {
+    return noExecution(input, 'NEEDS_INPUT', 'DECISION-FUNNEL-AND-HUMAN-SELECTION-REQUIRED');
+  }
+  let plan: ReturnType<typeof compileExperienceWorkflowPlanV1>;
+  try {
+    plan = compileExperienceWorkflowPlanV1(input.envelope, definitions, input.decision);
+  } catch (error) {
+    return noExecution(
+      input,
+      'NEEDS_INPUT',
+      error instanceof Error ? error.message : 'EXPERIENCE-DECISION-UNVERIFIED',
+    );
+  }
+  let outputDirectory: string;
+  try {
+    outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
+  } catch (error) {
+    return noExecution(
+      input,
+      'BLOCKED',
+      error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
+    );
+  }
   const autoPrime = autoPrimeExperienceV1(plan);
   const workOrder = createFramesWorkOrderV1(plan, input.envelope, {
     workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
     actorId: input.actorId,
     inputRefs: input.sourceMaterials,
+    decisionRefs: input.decisionRefs,
+    decision: input.decision,
     writeSet: [`${outputDirectoryRef}/**`],
     effectClass: 'LOCAL_REVERSIBLE',
   });
