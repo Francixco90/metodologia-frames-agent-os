@@ -26,7 +26,10 @@ runtime_rules:
   - five_percent_review_target
   - ten_percent_hard_limit
   - no_inpainting_crop_or_fill
+  - malformed_detector_url_quarantine_only
   - no_media_mutation
 notes: >
   Candidate planner. Receipts are canonical and hash-bound but external actor
   authenticity and material media correspondence remain pending later integration.
+  Malformed detector URLs are accepted only for terminal human review with no
+  redaction operation; detector URL hardening remains a coverage gap.

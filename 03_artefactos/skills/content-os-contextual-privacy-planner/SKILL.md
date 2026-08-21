@@ -51,7 +51,13 @@ node skills/content-os-contextual-privacy-planner/scripts/check-skill.mjs
 ## Stop rules
 
 - Inventario, receipt, directiva, actor, binding, geometría o hash inválido: FAIL.
+- Excepción temporal detector→planner: una señal `URL` acreditada por el detector pero
+  sintácticamente inválida solo se admite con `BLOCK_FOR_REVIEW` y
+  `UNRESOLVED_AUTHORIZATION`. Debe terminar en revisión humana y generar cero operaciones.
 - Decisión faltante, autorización ambigua o zona invadida: bloquear revisión humana.
 - Máscara estimada sobre 10%: FAIL; sobre 5%: revisión obligatoria.
 - Solicitud de ejecución, render, upload, publish, `READY` o outcome: fuera de alcance.
 - Plan válido: máximo `candidate`; requiere auditoría e integración material posteriores.
+
+`coverage_gap`: el detector debe endurecer la validación de URL antes de retirar esta
+compatibilidad de cuarentena. La excepción no acredita la URL ni autoriza censura.
