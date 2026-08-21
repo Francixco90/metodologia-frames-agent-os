@@ -87,11 +87,7 @@ const expectBlockedWithoutWrites = async (
   expect(snapshot(repository)).toEqual(before);
 };
 
-const expectWorkspaceBlockedWithoutWrites = async (
-  repository: string,
-  workspaceRoot: string,
-  code: string,
-) => {
+const expectWorkspaceBlockedWithoutWrites = async (repository: string, workspaceRoot: string) => {
   const before = snapshot(repository);
   const output = await runFramesAssist({
     argv: ['--apply'],
@@ -99,11 +95,10 @@ const expectWorkspaceBlockedWithoutWrites = async (
     cwd: repository,
   });
   const result = JSON.parse(output.stdout) as {
-    local_execution: {status: string; materialized: boolean; coverage_gap: string};
+    local_execution: {status: string; materialized: boolean};
   };
-  expect(result.local_execution.status).toBe('BLOCKED');
+  expect(result.local_execution.status).toBe('NEEDS_INPUT');
   expect(result.local_execution.materialized).toBe(false);
-  expect(result.local_execution.coverage_gap).toMatch(new RegExp(`^${code}(?:$| )`, 'u'));
   expect(snapshot(repository)).toEqual(before);
 };
 
@@ -140,7 +135,7 @@ describe('frames:assist path containment', () => {
     }
   });
 
-  it('rejects arbitrary, traversal and symlinked workspace roots without writes', async () => {
+  it('preempts workspace processing until a selected decision is transported', async () => {
     const {repository, outside} = sandbox();
     const linkedWorkspace = join(repository, 'workspace-link');
     const linkedAncestor = join(repository, 'external');
@@ -148,22 +143,14 @@ describe('frames:assist path containment', () => {
     symlinkSync(outside, linkedAncestor);
 
     for (const workspaceRoot of [outside, '../outside']) {
-      await expectWorkspaceBlockedWithoutWrites(
-        repository,
-        workspaceRoot,
-        'FRAMES-WORKSPACE-PATH001',
-      );
+      await expectWorkspaceBlockedWithoutWrites(repository, workspaceRoot);
     }
     for (const workspaceRoot of [linkedWorkspace, join(linkedAncestor, 'nested')]) {
-      await expectWorkspaceBlockedWithoutWrites(
-        repository,
-        workspaceRoot,
-        'FRAMES-WORKSPACE-PATH002',
-      );
+      await expectWorkspaceBlockedWithoutWrites(repository, workspaceRoot);
     }
   });
 
-  it('blocks a symlink ancestor in the output path without touching either side', async () => {
+  it('does not inspect or touch output paths before a selected decision', async () => {
     const {repository, outside} = sandbox();
     symlinkSync(outside, join(repository, 'escape'));
     const repositoryBefore = snapshot(repository);
@@ -181,21 +168,17 @@ describe('frames:assist path containment', () => {
       local_execution: {
         status: string;
         materialized: boolean;
-        coverageGap: string;
-        receiptRef: string | null;
       };
     };
     expect(result.local_execution).toMatchObject({
-      status: 'BLOCKED',
+      status: 'NEEDS_INPUT',
       materialized: false,
-      receiptRef: null,
     });
-    expect(result.local_execution.coverageGap).toBe('FRAMES-OUTPUT-PATH002');
     expect(snapshot(repository)).toEqual(repositoryBefore);
     expect(snapshot(outside)).toEqual(outsideBefore);
   });
 
-  it('accepts JSON from stdin with an authorized root and nested non-symlink output', async () => {
+  it('keeps an authorized root at zero writes until decision transport exists', async () => {
     const {repository} = sandbox();
     const output = await runFramesAssist({
       argv: ['--apply'],
@@ -203,15 +186,13 @@ describe('frames:assist path containment', () => {
       cwd: repository,
     });
     const result = JSON.parse(output.stdout) as {
-      local_execution: {status: string; materialized: boolean; receiptRef: string};
+      local_execution: {status: string; materialized: boolean};
     };
     expect(output.exitCode).toBe(0);
     expect(result.local_execution).toMatchObject({
-      status: 'AWAITING_APPROVAL',
-      materialized: true,
+      status: 'NEEDS_INPUT',
+      materialized: false,
     });
-    expect(readFileSync(join(repository, result.local_execution.receiptRef), 'utf8')).toContain(
-      '"status": "PASS"',
-    );
+    expect(snapshot(repository)).toEqual([]);
   });
 });

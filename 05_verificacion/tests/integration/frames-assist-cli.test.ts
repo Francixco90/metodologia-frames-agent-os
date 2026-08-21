@@ -1,4 +1,4 @@
-import {mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync} from 'node:fs';
+import {mkdtempSync, readdirSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -39,14 +39,12 @@ describe('frames:assist', () => {
       const output = await runFramesAssist({argv: [], stdin: request, cwd: root});
       const result = JSON.parse(output.stdout) as {experience_envelope: {effects: string[]}};
       expect(output.exitCode).toBe(0);
-      expect(result.experience_envelope.effects).toEqual(
-        request.startsWith('/ruta') ? ['READ_ONLY'] : [],
-      );
+      expect(result.experience_envelope.effects).toEqual([]);
       expect(readdirSync(root)).toEqual([]);
     },
   );
 
-  it('accepts a JSON file and materializes only with explicit --apply', async () => {
+  it('keeps --apply at zero writes until the router transports the selected decision', async () => {
     const root = workspace();
     const inputPath = resolve(root, 'request.json');
     writeFileSync(
@@ -69,17 +67,13 @@ describe('frames:assist', () => {
       cwd: root,
     });
     const result = JSON.parse(output.stdout) as {
-      local_execution: {status: string; materialized: boolean; receiptRef: string};
+      local_execution: {status: string; materialized: boolean};
     };
     expect(result.local_execution).toMatchObject({
-      status: 'AWAITING_APPROVAL',
-      materialized: true,
+      status: 'NEEDS_INPUT',
+      materialized: false,
     });
-    expect(
-      JSON.parse(readFileSync(resolve(root, result.local_execution.receiptRef), 'utf8')),
-    ).toMatchObject({
-      status: 'PASS',
-    });
+    expect(readdirSync(root)).toEqual(['request.json']);
   });
 
   it('rejects unsupported options instead of passing them to a shell', async () => {

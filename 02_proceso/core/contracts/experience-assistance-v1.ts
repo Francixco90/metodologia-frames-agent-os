@@ -6,7 +6,6 @@ import {
   RelativePathSchema,
   Sha256Schema,
 } from './primitives.ts';
-
 export const InteractionClassV1Schema = z.enum([
   'ASSIST_ONLY',
   'ACTIONABLE',
@@ -68,6 +67,8 @@ export const AssistanceEnvelopeV1Schema = z
     activeStep: PortableIdSchema.nullable(),
     skillBindings: z.array(SkillBindingV1Schema).max(10),
     briefPreview: BriefPreviewV1Schema.nullable(),
+    decisionFunnelSha256: Sha256Schema.nullable().optional(),
+    decisionSelectionSha256: Sha256Schema.nullable().optional(),
     recommendedNextAction: ShortTextSchema,
     ghostOptions: z.array(ShortTextSchema).max(4),
     writePolicy: z.enum(['NONE', 'PREVIEW_ONLY', 'LOCAL_REVERSIBLE']),
@@ -75,29 +76,46 @@ export const AssistanceEnvelopeV1Schema = z
     state: ExperienceStateV1Schema,
   })
   .superRefine((value, context) => {
+    const issue = (message: string): void => context.addIssue({code: 'custom', message});
     if (value.interactionClass === 'ACTIONABLE' && value.selectedRoute === null) {
-      context.addIssue({code: 'custom', message: 'ACTIONABLE requires a selected route.'});
+      issue('ACTIONABLE requires a selected route.');
     }
     if (value.interactionClass !== 'ASSIST_ONLY' && value.ghostOptions.length > 2) {
-      context.addIssue({
-        code: 'custom',
-        message: 'Contextual ghost menus allow at most two alternatives.',
-      });
+      issue('Contextual ghost menus allow at most two alternatives.');
     }
     if (value.interactionClass !== 'ACTIONABLE' && value.effects.length > 0) {
-      context.addIssue({
-        code: 'custom',
-        message: 'Only ACTIONABLE interactions may declare effects.',
-      });
+      issue('Only ACTIONABLE interactions may declare effects.');
     }
     if (value.writePolicy === 'NONE' && value.effects.includes('LOCAL_REVERSIBLE')) {
-      context.addIssue({code: 'custom', message: 'NONE write policy forbids local effects.'});
+      issue('NONE write policy forbids local effects.');
+    }
+    if (value.decisionSelectionSha256 != null && value.decisionFunnelSha256 == null) {
+      issue('Selection requires its decision funnel.');
+    }
+    if (
+      value.interactionClass !== 'ACTIONABLE' &&
+      (value.decisionFunnelSha256 != null || value.decisionSelectionSha256 != null)
+    ) {
+      issue('Only ACTIONABLE interactions bind decisions.');
+    }
+    if (value.state === 'ROUTED') {
+      if (
+        value.interactionClass !== 'ACTIONABLE' ||
+        value.decisionFunnelSha256 == null ||
+        value.decisionSelectionSha256 != null ||
+        value.ghostOptions.length !== 2 ||
+        value.blockingGaps.length !== 0 ||
+        value.writePolicy !== 'NONE' ||
+        value.effects.length !== 0
+      ) {
+        issue('ROUTED is an options-only decision state with zero effects.');
+      }
     }
     if (
       value.selectedRoute !== null &&
       !value.routeCandidates.some(({routeId}) => routeId === value.selectedRoute)
     ) {
-      context.addIssue({code: 'custom', message: 'Selected route must resolve from candidates.'});
+      issue('Selected route must resolve from candidates.');
     }
     if (value.state === 'READY_FOR_BRIEF') {
       const activeBinding = value.skillBindings.find(({stepId}) => stepId === value.activeStep);
@@ -106,17 +124,22 @@ export const AssistanceEnvelopeV1Schema = z
         value.activeStep === null ||
         !value.workflowPlan.includes(value.activeStep) ||
         activeBinding === undefined ||
-        value.briefPreview === null
+        value.briefPreview === null ||
+        value.decisionFunnelSha256 == null ||
+        value.decisionSelectionSha256 == null ||
+        value.writePolicy !== 'PREVIEW_ONLY' ||
+        value.effects.length !== 1 ||
+        value.effects[0] !== 'READ_ONLY' ||
+        value.blockingGaps.length !== 0
       ) {
-        context.addIssue({
-          code: 'custom',
-          message: 'READY_FOR_BRIEF requires an executable plan, active skill and brief preview.',
-        });
+        issue('READY_FOR_BRIEF requires selected decision, executable plan and read-only preview.');
       }
+    }
+    if (value.state === 'BLOCKED' && (value.writePolicy !== 'NONE' || value.effects.length !== 0)) {
+      issue('BLOCKED forbids write policy and effects.');
     }
   });
 export type AssistanceEnvelopeV1 = z.infer<typeof AssistanceEnvelopeV1Schema>;
-
 const ExperienceActionV1Schema = z.strictObject({
   actionId: PortableIdSchema,
   label: z.string().trim().min(1).max(48),
