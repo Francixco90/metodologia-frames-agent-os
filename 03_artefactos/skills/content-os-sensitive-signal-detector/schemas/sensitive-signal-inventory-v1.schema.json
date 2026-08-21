@@ -35,7 +35,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["ref", "sha256", "bytes"],
       "properties": {
-        "ref": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+$"},
+        "ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9][a-z0-9._/-]*$"},
         "sha256": {"$ref": "#/$defs/sha"},
         "bytes": {"type": "integer", "minimum": 1}
       }
@@ -56,8 +56,9 @@
     },
     "signal": {
       "type": "object", "additionalProperties": false,
-      "required": ["signal_id", "kind", "identity", "modality", "frame_span", "time_span_ms", "geometry", "confidence", "evidence"],
+      "required": ["sequence", "signal_id", "kind", "identity", "modality", "frame_span", "time_span_ms", "geometry", "confidence", "evidence"],
       "properties": {
+        "sequence": {"type": "integer", "minimum": 0},
         "signal_id": {"$ref": "#/$defs/id"},
         "kind": {"enum": ["NAME", "FACE", "LOGO", "BRAND_TEXT", "URL", "EMAIL", "FILE_PATH", "AVATAR", "TOOL_CHROME", "SPOKEN_BRAND"]},
         "identity": {
@@ -83,4 +84,3 @@
     }
   }
 }
-

@@ -4,7 +4,7 @@
     {"alias_id": "AL-GNP", "kind": "BRAND_TEXT", "canonical": "GNP", "variants": ["GNP"]},
     {"alias_id": "AL-KC", "kind": "BRAND_TEXT", "canonical": "Kimberly-Clark", "variants": ["Kimberly Clark", "Kimberly-Clark"]},
     {"alias_id": "AL-ARVEX", "kind": "BRAND_TEXT", "canonical": "Arvex", "variants": ["Arvex"]},
-    {"alias_id": "AL-NATALIA", "kind": "NAME", "canonical": "Natalia", "variants": ["Natalia"]}
+    {"alias_id": "AL-NATALIA", "kind": "NAME", "canonical": "Natalia", "variants": ["Nati"]}
   ],
   "templates": [
     {"template_id": "TPL-SOFKA", "kind": "LOGO", "identity": "Sofka", "content": "synthetic-sofka-logo"},
@@ -12,7 +12,7 @@
     {"template_id": "TPL-CHROME", "kind": "TOOL_CHROME", "identity": "Browser chrome", "content": "synthetic-browser-chrome"}
   ],
   "observations": [
-    {"observation_id": "OBS-OCR-1", "modality": "OCR_TSV", "text": "Sofk Natalia Kimberly Clark Arvex https://example.test/demo ana@example.com workspace/class/private/file.csv", "template_id": null, "identity": null, "frame_span": {"start": 0, "end": 24}, "time_span_ms": null, "geometry": {"x": 12, "y": 18, "width": 420, "height": 52}, "confidence": 0.93, "evidence": "ocr-frame-0-24"},
+    {"observation_id": "OBS-OCR-1", "modality": "OCR_TSV", "text": "Sofk Natalia Kimberly Clark Arvex https://example.test/demo). ana@example.com workspace/class/private/file.csv", "template_id": null, "identity": null, "frame_span": {"start": 0, "end": 24}, "time_span_ms": null, "geometry": {"x": 12, "y": 18, "width": 420, "height": 52}, "confidence": 0.93, "evidence": "ocr-frame-0-24"},
     {"observation_id": "OBS-LOGO-1", "modality": "TEMPLATE", "text": null, "template_id": "TPL-SOFKA", "identity": null, "frame_span": {"start": 0, "end": 24}, "time_span_ms": null, "geometry": {"x": 20, "y": 980, "width": 120, "height": 40}, "confidence": 0.98, "evidence": "logo-static"},
     {"observation_id": "OBS-LOGO-2", "modality": "TEMPLATE", "text": null, "template_id": "TPL-SOFKA", "identity": null, "frame_span": {"start": 48, "end": 60}, "time_span_ms": null, "geometry": {"x": 42, "y": 970, "width": 120, "height": 40}, "confidence": 0.96, "evidence": "logo-reappears"},
     {"observation_id": "OBS-AVATAR", "modality": "TEMPLATE", "text": null, "template_id": "TPL-AVATAR", "identity": null, "frame_span": {"start": 10, "end": 30}, "time_span_ms": null, "geometry": {"x": 1700, "y": 40, "width": 96, "height": 96}, "confidence": 0.95, "evidence": "avatar"},

@@ -16,7 +16,8 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 
 ## Secuencia
 
-1. Verificar caso, fuente, actor y registros hash-bound de aliases y plantillas.
+1. Verificar bytes físicos de fuente, caso, actor y registros hash-bound de aliases y
+   plantillas.
 2. Exigir cobertura declarada para texto visual, plantillas, rostros y audio. `UNKNOWN`
    bloquea; `NOT_PRESENT` solo es válido cuando la modalidad no existe en la fuente.
 3. Combinar OCR con cajas, aliases ortográficos, plantillas visuales y transcript. Cada
@@ -28,10 +29,13 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 ## Reglas
 
 - Alias parcial de cuatro o más caracteres produce hallazgo trazable, no certeza inventada.
-- Plantillas deben incluir bytes y SHA-256; drift físico, ID desconocido o ref no canónica
-  bloquea.
+- Plantillas, fuente y evidencia deben incluir bytes y SHA-256; drift físico, base64 no
+  canónico, ID desconocido o ref no canónica bloquea.
 - Un rostro requiere observación manual hash-bound en esta versión. `FACE_AUTO` y cualquier
   modelo no registrado son `coverage_gap`, no una capacidad implícita.
+- Cobertura y observaciones requieren recibos JSON canónicos ligados a la fuente, modalidad
+  y actor previsto. Plantillas y rostros manuales no superan `REVIEW_REQUIRED` en modo
+  data-only.
 - `CONFIRMED`, `REVIEW_REQUIRED` y `UNKNOWN` describen evidencia, no sensibilidad. Toda
   confianza `UNKNOWN` mantiene `BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN`.
 - Dos reapariciones de una señal conservan spans distintos. No se rellena el intervalo.
@@ -39,8 +43,8 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 
 ## Contrato y uso
 
-El inventario es estricto, ordenado por observación y hash-bound mediante JSON canónico.
-El request es data-only y todas sus estructuras rechazan claves no declaradas.
+El inventario es estricto, secuenciado, verificable públicamente y hash-bound mediante JSON
+canónico. El request es data-only y todas sus estructuras rechazan claves no declaradas.
 
 ```bash
 node skills/content-os-sensitive-signal-detector/scripts/detect-sensitive-signals.mjs request.json

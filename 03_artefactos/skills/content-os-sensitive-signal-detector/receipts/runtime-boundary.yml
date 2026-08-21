@@ -11,6 +11,7 @@ scope:
 runtime_boundary:
   allowed_scoped:
     - local_json_parse
+    - physical_source_and_receipt_binding
     - canonical_hash_verification
     - deterministic_inventory_derivation
     - strict_schema_validation
@@ -28,6 +29,6 @@ runtime_rules:
   - no_private_reasoning
   - no_media_mutation
 notes: >
-  Candidate data-only detector. It validates observations supplied by governed OCR,
-  template, manual-face and transcript authorities; it does not yet run those tools.
-
+  Candidate data-only detector. It validates canonical receipts supplied by governed
+  OCR, template, manual-face, transcript and coverage authorities; it does not yet run
+  those tools or treat their data-only declarations as material media evidence.
