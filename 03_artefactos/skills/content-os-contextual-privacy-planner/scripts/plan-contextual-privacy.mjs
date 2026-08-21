@@ -62,7 +62,7 @@ const assertInventory = (inventory) => {
     const kindsByModality = {VISUAL_TEXT: ['NAME', 'BRAND_TEXT', 'URL', 'EMAIL', 'FILE_PATH'], VISUAL_TEMPLATE: ['LOGO', 'AVATAR', 'TOOL_CHROME'], VISUAL_MANUAL: ['FACE'], AUDIO_TRANSCRIPT: ['SPOKEN_BRAND']};
     expect(kindsByModality[signal.modality].includes(signal.kind), 'PLANNER-SIGNAL-KIND-MODALITY');
     expect(['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(signal.kind) ? visible(signal.identity.matched_alias) : signal.identity.matched_alias === null, 'PLANNER-SIGNAL-MATCHED-ALIAS');
-    expect(structuredIdentity(signal.kind, signal.identity.canonical), 'PLANNER-SIGNAL-STRUCTURED-IDENTITY');
+    expect(signal.kind === 'URL' || structuredIdentity(signal.kind, signal.identity.canonical), 'PLANNER-SIGNAL-STRUCTURED-IDENTITY');
     keys(signal.confidence, ['score', 'status'], 'PLANNER-SIGNAL-CONFIDENCE');
     const expectedConfidence = signal.confidence.score >= 0.9 ? 'CONFIRMED' : signal.confidence.score >= 0.5 ? 'REVIEW_REQUIRED' : 'UNKNOWN';
     expect(typeof signal.confidence.score === 'number' && signal.confidence.score >= 0 && signal.confidence.score <= 1 && signal.confidence.status === expectedConfidence && (!['VISUAL_TEMPLATE', 'VISUAL_MANUAL'].includes(signal.modality) || signal.confidence.status !== 'CONFIRMED'), 'PLANNER-SIGNAL-CONFIDENCE');
@@ -138,6 +138,7 @@ export function planContextualPrivacy(request) {
   const rules = directive.decisions.map((decision, sequence) => {
     keys(decision, ['signal_id', 'rule', 'reason_code'], 'PLANNER-DECISION-KEYS'); const signal = signals.get(decision.signal_id);
     expect(signal && ['KEEP', 'PROTECT', 'AUDIO_SILENCE', 'BLOCK_FOR_REVIEW'].includes(decision.rule) && ['AUTHORIZED_PARTICIPANT', 'PUBLIC_CONTEXT', 'SENSITIVE_IDENTITY', 'CLIENT_BRAND', 'PRIVATE_LOCATOR', 'UNRESOLVED_AUTHORIZATION'].includes(decision.reason_code), 'PLANNER-DECISION-INVALID');
+    expect(structuredIdentity(signal.kind, signal.identity.canonical) || (signal.kind === 'URL' && decision.rule === 'BLOCK_FOR_REVIEW' && decision.reason_code === 'UNRESOLVED_AUTHORIZATION'), 'PLANNER-SIGNAL-STRUCTURED-IDENTITY');
     const allowedReasons = decision.rule === 'KEEP' ? ['AUTHORIZED_PARTICIPANT', 'PUBLIC_CONTEXT'] : decision.rule === 'BLOCK_FOR_REVIEW' ? ['UNRESOLVED_AUTHORIZATION'] : ['SENSITIVE_IDENTITY', 'CLIENT_BRAND', 'PRIVATE_LOCATOR'];
     expect(allowedReasons.includes(decision.reason_code), 'PLANNER-DECISION-REASON');
     expect(signal.confidence.status !== 'UNKNOWN' || decision.rule === 'BLOCK_FOR_REVIEW', 'PLANNER-UNKNOWN-MUST-BLOCK');
