@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/sensitive-signal-inventory-v1.schema.json",
+  "title": "SensitiveSignalInventoryV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "inventory_id", "case_id", "source", "detector_actor_id", "aliases_sha256", "templates_sha256", "coverage", "signals", "status", "canonical_sha256"],
+  "properties": {
+    "schema_version": {"const": "sensitive-signal-inventory-v1"},
+    "inventory_id": {"$ref": "#/$defs/id"},
+    "case_id": {"$ref": "#/$defs/id"},
+    "source": {"$ref": "#/$defs/ref"},
+    "detector_actor_id": {"$ref": "#/$defs/id"},
+    "aliases_sha256": {"$ref": "#/$defs/sha"},
+    "templates_sha256": {"$ref": "#/$defs/sha"},
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visual_text", "visual_templates", "faces", "audio_transcript"],
+      "properties": {
+        "visual_text": {"$ref": "#/$defs/coverageState"},
+        "visual_templates": {"$ref": "#/$defs/coverageState"},
+        "faces": {"$ref": "#/$defs/coverageState"},
+        "audio_transcript": {"$ref": "#/$defs/coverageState"}
+      }
+    },
+    "signals": {"type": "array", "items": {"$ref": "#/$defs/signal"}, "maxItems": 512},
+    "status": {"enum": ["BLOCKED_PENDING_PRIVACY_POLICY", "BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN"]},
+    "canonical_sha256": {"$ref": "#/$defs/sha"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "sha256", "bytes"],
+      "properties": {
+        "ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$"},
+        "sha256": {"$ref": "#/$defs/sha"},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "coverageState": {"enum": ["COMPLETE", "NOT_PRESENT", "UNKNOWN"]},
+    "span": {
+      "type": ["object", "null"], "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}}
+    },
+    "geometry": {
+      "type": ["object", "null"], "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0},
+        "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}
+      }
+    },
+    "signal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sequence", "signal_id", "kind", "identity", "modality", "frame_span", "time_span_ms", "geometry", "confidence", "evidence"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0},
+        "signal_id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["NAME", "FACE", "LOGO", "BRAND_TEXT", "URL", "EMAIL", "FILE_PATH", "AVATAR", "TOOL_CHROME", "SPOKEN_BRAND"]},
+        "identity": {
+          "type": "object", "additionalProperties": false,
+          "required": ["canonical", "matched_alias"],
+          "properties": {"canonical": {"type": "string", "minLength": 1, "maxLength": 320, "pattern": "^(?![\\s\\S]*\\p{C})[^\\p{Z}](?:[\\s\\S]*[^\\p{Z}])?$"}, "matched_alias": {"type": ["string", "null"], "maxLength": 320, "pattern": "^(?![\\s\\S]*\\p{C})[^\\p{Z}](?:[\\s\\S]*[^\\p{Z}])?$"}}
+        },
+        "modality": {"enum": ["VISUAL_TEXT", "VISUAL_TEMPLATE", "VISUAL_MANUAL", "AUDIO_TRANSCRIPT"]},
+        "frame_span": {"$ref": "#/$defs/span"},
+        "time_span_ms": {"$ref": "#/$defs/span"},
+        "geometry": {"$ref": "#/$defs/geometry"},
+        "confidence": {
+          "type": "object", "additionalProperties": false,
+          "required": ["score", "status"],
+          "properties": {"score": {"type": "number", "minimum": 0, "maximum": 1}, "status": {"enum": ["CONFIRMED", "REVIEW_REQUIRED", "UNKNOWN"]}}
+        },
+        "evidence": {
+          "type": "object", "additionalProperties": false,
+          "required": ["observation_id", "material"],
+          "properties": {"observation_id": {"$ref": "#/$defs/id"}, "material": {"$ref": "#/$defs/ref"}}
+        }
+      }
+    }
+  }
+}

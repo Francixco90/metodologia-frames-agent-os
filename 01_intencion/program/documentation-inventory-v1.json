@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "5b291c0af54a67371493f9b29f7624cadf7fae0d9849eedd5a6f54de5bb33d5f",
-  "totalMarkdown": 1848,
+  "repositoryTreeSha256": "a3f200ddbca44cb9c99926ec99984818bdeb80224f4c4712feacac9b603fa5db",
+  "totalMarkdown": 1849,
   "auditedAuthored": 596,
   "classPaths": {
     "authored_control": [
@@ -638,6 +638,7 @@
       "03_artefactos/skills/content-os-remotion-upgrade/SKILL.md",
       "03_artefactos/skills/content-os-router/SKILL.md",
       "03_artefactos/skills/content-os-seam-craft/SKILL.md",
+      "03_artefactos/skills/content-os-sensitive-signal-detector/SKILL.md",
       "03_artefactos/skills/content-os-slideshow/SKILL.md",
       "03_artefactos/skills/content-os-talking-head-recut/SKILL.md",
       "03_artefactos/skills/content-os-transcript-intelligence/SKILL.md",
