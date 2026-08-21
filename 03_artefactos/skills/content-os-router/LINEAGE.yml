@@ -1,11 +1,11 @@
 skill_id: content-os-router
-version: 0.8.1
+version: 0.8.2
 lifecycle_state: active
 execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1 + content-intent-v2 + voice-draft-revision-2 + frames-route-decision-v1 + assistance-envelope-v1 honest-state-projection + R8 + R9
+compatibility_contract: router-intent-v1 + content-intent-v2 + voice-draft-revision-2 + frames-route-decision-v1 + assistance-envelope-v1 + experience-view-v1 decision-transport + R8 + R9
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md
@@ -33,3 +33,4 @@ supported_request_types:
   - causal_adapter_dispatch
   - local_extension_dispatch
   - harness_maintenance_dispatch
+  - decision_funnel_transport

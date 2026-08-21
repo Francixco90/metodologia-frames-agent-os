@@ -102,11 +102,11 @@ entries:
     publication_authority: false
     tests: [node skills/content-os-registry/scripts/check-skill.mjs]
   - skill_id: content-os-router
-    version: 0.8.1
+    version: 0.8.2
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 9389a510663f83ed0a20e26f3f31779d119c4fa331d50b264225dd9788e8d887
-    package_manifest_sha256: 308b1aab692aa17643ccb3b6adcf95df48b87beaca8777fe251157f48f4e336b
+    content_sha256: 24fb6aa2a67bc0173b213bb806d750ac91204757aec9aac5169282b7162614c9
+    package_manifest_sha256: cca1ba5c51d6e583fe9a75b654bd4aaa2a864f699fb01c5712ddcc66d62d3c23
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2785,3 +2785,4 @@ events:
   - {event_id: EVT-SKL-CGV-H03-035, event_order: 35, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_v7c0_review_plan_projection_contracts, content_sha256: c351d383e33b98f0552a44bd9d27dd49c8166c25f57ce0a276ba678318c5b87f, package_manifest_sha256: 1b30c5d6419522d757a8081a2c23f88befacb3bea8b00a3db8ae08510e9c308e}
   - {event_id: EVT-SKL-CGV-H03-036, event_order: 36, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-16T00:00:00Z', decision: add_case_longform_general_video_plan_verify_bridge_without_render_authority, content_sha256: 12cc6d48322b8af432be83eea0cb92b2d8a44afd52519ab8bd3c481d7ef28e1d, package_manifest_sha256: bd68fff323dd90ce2984ac530539286684228e26065414c43fa547dcba270281}
   - {event_id: EVT-SKL-COR-H03-013, event_order: 13, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, recorded_at: '2026-08-21T00:00:00Z', decision: derive_external_decision_gate_and_gap_from_experience_envelope, content_sha256: 9389a510663f83ed0a20e26f3f31779d119c4fa331d50b264225dd9788e8d887, package_manifest_sha256: 308b1aab692aa17643ccb3b6adcf95df48b87beaca8777fe251157f48f4e336b}
+  - {event_id: EVT-SKL-COR-H03-014, event_order: 14, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, recorded_at: '2026-08-21T00:00:00Z', decision: transport_verified_decision_funnel_selection_and_refs_through_public_router, content_sha256: 24fb6aa2a67bc0173b213bb806d750ac91204757aec9aac5169282b7162614c9, package_manifest_sha256: cca1ba5c51d6e583fe9a75b654bd4aaa2a864f699fb01c5712ddcc66d62d3c23}

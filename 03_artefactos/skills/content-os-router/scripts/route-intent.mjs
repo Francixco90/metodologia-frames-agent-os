@@ -6,41 +6,21 @@ import {
   orchestrateLocalExperienceV1,
   renderExperienceMenuV1,
   renderExperienceRouteV1,
-  resolveResumeCandidateV1,
   runFirstTurnGatewayV1,
 } from '../../../../02_proceso/workflows/core/index.ts';
 import {assertContainedWorkspaceV1} from '../../../../02_proceso/workflows/core/safe-local-path-v1.ts';
 import {routeLocalExtensionIntent} from '../../../../02_proceso/workflows/local-extensions/index.ts';
 import {routeMaintenanceIntent} from '../../../../02_proceso/workflows/maintenance/index.ts';
 import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
+import {
+  domainInputFor,
+  gatewayDecisionInput,
+  localDecisionInput,
+  resolveResumeInput,
+  renderTransportedExperience,
+} from './decision-transport.mjs';
 import {routeContentIntent} from './route-content.mjs';
 const normalize = (value) => String(value ?? '').normalize('NFKC').trim().replace(/\s+/gu, ' ');
-const CONTROL_FIELDS = new Set([
-  'actor_id', 'activeProjectId', 'completed_at', 'completedAt', 'intent_domain', 'knownInputs',
-  'output_directory_ref', 'resumeCandidate', 'resume_candidate', 'resumeCandidateId',
-  'resume_candidate_id', 'sensitivity', 'source_materials', 'started_at', 'startedAt',
-  'stateRoot', 'state_root', 'workspaceRoot', 'workspace_root',
-]);
-const domainInputFor = (input) => Object.fromEntries(
-  Object.entries(input).filter(([key]) => !CONTROL_FIELDS.has(key)),
-);
-const resolveResume = (input) => {
-  const stateRoot = input.state_root ?? input.stateRoot;
-  const candidateId = input.resume_candidate_id ?? input.resumeCandidateId;
-  if (!stateRoot || !candidateId) return undefined;
-  const resolved = resolveResumeCandidateV1({stateRoot, candidateId});
-  return {
-    routeId: resolved.originRouteId,
-    activeStep: resolved.activeStep,
-    summary: resolved.summary,
-    briefPreview: {
-      briefKind: resolved.briefKind,
-      summary: resolved.summary,
-      materialized: true,
-      canonicalRef: resolved.latestArtifact.ref,
-    },
-  };
-};
 const planFromDomain = (routeId, domain) => {
   const workflowPlan = domain.selected_stage_path ?? domain.stage_path ?? [];
   const activeStep = workflowPlan[0];
@@ -81,7 +61,7 @@ export const dispatchIntent = (input) => {
   let resume;
   let resumeError = null;
   try {
-    resume = resolveResume(input);
+    resume = resolveResumeInput(input);
   } catch {
     resumeError = 'RESUME_LINEAGE_UNVERIFIED';
   }
@@ -90,6 +70,7 @@ export const dispatchIntent = (input) => {
     sensitivity: input.sensitivity ?? 'UNKNOWN',
     knownInputs: Array.isArray(input.knownInputs) ? input.knownInputs : [],
     activeProjectId: input.activeProjectId,
+    ...gatewayDecisionInput(input),
     explicitRoute:
       normalize(input.intent_domain).toLowerCase() === 'content'
         ? 'R6'
@@ -138,7 +119,9 @@ export const dispatchIntent = (input) => {
     schema_version: 'frames-route-decision-v1', request_hash: envelope.requestHash,
     route_id: routeId, adapter, next_gate: nextGate, decision, coverage_gap: coverageGap,
     adapter_invoked: adapterInvoked, domain_intent: domainIntent,
-    experience_envelope: envelope, command_view: commandView, resume_error: resumeError,
+    experience_envelope: envelope,
+    experience_view: renderTransportedExperience(envelope, input),
+    command_view: commandView, resume_error: resumeError,
     launch_probe: {
       schema_version: 'frames-launch-probe-v1', gateway_invoked: true,
       adapter_invoked: adapterInvoked, local_only: true, external_effects: false,
@@ -187,6 +170,7 @@ export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
     root: safeRoot, routeId: decision.route_id, envelope: decision.experience_envelope,
     domainIntent: decision.route_id === 'R6' ? decision.domain_intent : domainInputFor(input),
     sourceMaterials: Array.isArray(input.source_materials) ? input.source_materials : [],
+    ...localDecisionInput(input),
     ...(input.output_directory_ref ? {outputDirectoryRef: input.output_directory_ref} : {}),
     actorId: input.actor_id ?? 'RT-04-EXPERIENCE', startedAt, completedAt,
   });
