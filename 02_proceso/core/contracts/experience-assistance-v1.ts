@@ -6,7 +6,6 @@ import {
   RelativePathSchema,
   Sha256Schema,
 } from './primitives.ts';
-
 export const InteractionClassV1Schema = z.enum([
   'ASSIST_ONLY',
   'ACTIONABLE',
@@ -105,6 +104,7 @@ export const AssistanceEnvelopeV1Schema = z
         value.decisionFunnelSha256 == null ||
         value.decisionSelectionSha256 != null ||
         value.ghostOptions.length !== 2 ||
+        value.blockingGaps.length !== 0 ||
         value.writePolicy !== 'NONE' ||
         value.effects.length !== 0
       ) {
@@ -129,14 +129,17 @@ export const AssistanceEnvelopeV1Schema = z
         value.decisionSelectionSha256 == null ||
         value.writePolicy !== 'PREVIEW_ONLY' ||
         value.effects.length !== 1 ||
-        value.effects[0] !== 'READ_ONLY'
+        value.effects[0] !== 'READ_ONLY' ||
+        value.blockingGaps.length !== 0
       ) {
         issue('READY_FOR_BRIEF requires selected decision, executable plan and read-only preview.');
       }
     }
+    if (value.state === 'BLOCKED' && (value.writePolicy !== 'NONE' || value.effects.length !== 0)) {
+      issue('BLOCKED forbids write policy and effects.');
+    }
   });
 export type AssistanceEnvelopeV1 = z.infer<typeof AssistanceEnvelopeV1Schema>;
-
 const ExperienceActionV1Schema = z.strictObject({
   actionId: PortableIdSchema,
   label: z.string().trim().min(1).max(48),

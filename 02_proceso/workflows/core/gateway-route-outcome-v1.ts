@@ -93,9 +93,11 @@ export function buildGatewayRouteOutcomeV1(
     briefPreview: plan.briefPreview,
     decisionFunnelSha256: funnelSha256,
     decisionSelectionSha256: selectionSha256,
-    recommendedNextAction: awaitingSelection
-      ? 'Elige una de las dos direcciones antes de preparar el brief.'
-      : plan.recommendedNextAction,
+    recommendedNextAction: missingDecision
+      ? 'Completar las interacciones y evaluar cinco candidatos antes de elegir.'
+      : awaitingSelection
+        ? 'Elige una de las dos direcciones antes de preparar el brief.'
+        : plan.recommendedNextAction,
     ghostOptions: optionLabels,
     writePolicy: selectionSha256 === null ? 'NONE' : 'PREVIEW_ONLY',
     effects: selectionSha256 === null ? [] : ['READ_ONLY'],

@@ -1,7 +1,6 @@
 import {createHash} from 'node:crypto';
 import {mkdirSync, readFileSync, renameSync, writeFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
-
 import {
   RelativePathSchema,
   type AssistanceEnvelopeV1,
@@ -23,7 +22,6 @@ import {
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
 import {prepareContainedDirectoryV1} from './safe-local-path-v1.ts';
-
 interface ContentIntentForBriefV1 {
   request: string;
   request_hash: string;
@@ -34,7 +32,6 @@ interface ContentIntentForBriefV1 {
   channels: string[];
   restrictions: string[];
 }
-
 interface LocalExecutionBaseV1 {
   root: string;
   envelope: AssistanceEnvelopeV1;
@@ -46,7 +43,6 @@ interface LocalExecutionBaseV1 {
   decision?: ExperienceDecisionContextV1;
   decisionRefs?: ExperienceDecisionReferencesV1;
 }
-
 export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
   (
     | {routeId: 'R6'; domainIntent: ContentIntentForBriefV1}
@@ -55,7 +51,6 @@ export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
         domainIntent: CareerRunnerInput['route'];
       }
   );
-
 export interface LocalExperienceExecutionResultV1 {
   status: 'NEEDS_INPUT' | 'AWAITING_APPROVAL' | 'BLOCKED';
   routeId: 'R6' | 'R7';
@@ -68,17 +63,14 @@ export interface LocalExperienceExecutionResultV1 {
   brief: {markdownRef: string; htmlRef: string} | null;
   coverageGap?: string;
 }
-
 const atomicWrite = (path: string, value: string): void => {
   mkdirSync(dirname(path), {recursive: true});
   const temporary = `${path}.${process.pid}.tmp`;
   writeFileSync(temporary, value, 'utf8');
   renameSync(temporary, path);
 };
-
 const digestFile = (path: string): string =>
   createHash('sha256').update(readFileSync(path)).digest('hex');
-
 const noExecution = (
   input: LocalExperienceExecutionInputV1,
   status: 'NEEDS_INPUT' | 'BLOCKED',
@@ -95,7 +87,6 @@ const noExecution = (
   brief: null,
   ...(coverageGap === undefined ? {} : {coverageGap}),
 });
-
 export async function orchestrateLocalExperienceV1(
   input: LocalExperienceExecutionInputV1,
 ): Promise<LocalExperienceExecutionResultV1> {
@@ -130,6 +121,26 @@ export async function orchestrateLocalExperienceV1(
       error instanceof Error ? error.message : 'EXPERIENCE-DECISION-UNVERIFIED',
     );
   }
+  const autoPrime = autoPrimeExperienceV1(plan);
+  let workOrder: ReturnType<typeof createFramesWorkOrderV1>;
+  try {
+    workOrder = createFramesWorkOrderV1(plan, input.envelope, {
+      workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
+      actorId: input.actorId,
+      inputRefs: input.sourceMaterials,
+      decisionRefs: input.decisionRefs,
+      decision: input.decision,
+      definitions,
+      writeSet: [`${outputDirectoryRef}/**`],
+      effectClass: 'LOCAL_REVERSIBLE',
+    });
+  } catch (error) {
+    return noExecution(
+      input,
+      'BLOCKED',
+      error instanceof Error ? error.message : 'EXPERIENCE-WORK-ORDER-UNVERIFIED',
+    );
+  }
   let outputDirectory: string;
   try {
     outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
@@ -140,16 +151,6 @@ export async function orchestrateLocalExperienceV1(
       error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
     );
   }
-  const autoPrime = autoPrimeExperienceV1(plan);
-  const workOrder = createFramesWorkOrderV1(plan, input.envelope, {
-    workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
-    actorId: input.actorId,
-    inputRefs: input.sourceMaterials,
-    decisionRefs: input.decisionRefs,
-    decision: input.decision,
-    writeSet: [`${outputDirectoryRef}/**`],
-    effectClass: 'LOCAL_REVERSIBLE',
-  });
   const handler =
     input.routeId === 'R6'
       ? createContentBriefMaterialHandlerV1({

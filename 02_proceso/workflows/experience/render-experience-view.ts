@@ -6,11 +6,12 @@ import {
 } from '../../core/contracts/experience-assistance-v1.ts';
 import {
   assertDecisionFunnelV1,
+  assertDecisionSelectionV1,
   type DecisionFunnelV1,
+  type DecisionSelectionV1,
 } from '../../core/contracts/experience-decision-v1.ts';
 import type {JsonValue} from '../../core/contracts/primitives.ts';
 import {hashCanonical} from '../../core/evidence/hash.ts';
-
 const MENU = ['Crear', 'Mejorar', 'Planear', 'Explorar'];
 export const EXPERIENCE_COMPONENTS_BY_STATE: Record<
   AssistanceEnvelopeV1['state'],
@@ -18,45 +19,50 @@ export const EXPERIENCE_COMPONENTS_BY_STATE: Record<
 > = {
   ASSISTING: ['WelcomeCard', 'ConciseMenu'],
   ROUTED: ['IntentSummary', 'BriefPreview', 'ProgressStepper', 'EvidenceGapCard', 'DecisionGate'],
-  READY_FOR_BRIEF: [
-    'IntentSummary',
-    'BriefPreview',
-    'ProgressStepper',
-    'EvidenceGapCard',
-    'DecisionGate',
-  ],
+  READY_FOR_BRIEF: ['IntentSummary', 'BriefPreview', 'ProgressStepper', 'DecisionGate'],
   RESUMABLE: ['IntentSummary', 'BriefPreview', 'ProgressStepper', 'ResumeCard'],
   BLOCKED: ['IntentSummary', 'BriefPreview', 'ProgressStepper', 'EvidenceGapCard', 'RecoveryCard'],
 };
 const short = (value: string): string =>
   value.length <= 48 ? value : `${value.slice(0, 47).trimEnd()}…`;
-
 const decisionForEnvelope = (
   envelope: AssistanceEnvelopeV1,
-  input: unknown,
-): DecisionFunnelV1 | null => {
-  if (input === undefined) {
-    if (envelope.state === 'ROUTED' || envelope.state === 'READY_FOR_BRIEF') {
+  funnelInput: unknown,
+  selectionInput: unknown,
+): {funnel: DecisionFunnelV1; selection: DecisionSelectionV1 | null} | null => {
+  if (funnelInput === undefined) {
+    if (envelope.state === 'ROUTED' || envelope.state === 'READY_FOR_BRIEF')
       throw new Error('EXP-VIEW-DECISION-FUNNEL-REQUIRED');
-    }
     return null;
   }
-  const funnel = assertDecisionFunnelV1(input);
+  const funnel = assertDecisionFunnelV1(funnelInput);
   if (
     funnel.requestHash !== envelope.requestHash ||
     funnel.canonicalSha256 !== envelope.decisionFunnelSha256
   ) {
     throw new Error('EXP-VIEW-DECISION-FUNNEL-DRIFT');
   }
-  return funnel;
+  if (selectionInput === undefined) {
+    if (envelope.state === 'READY_FOR_BRIEF')
+      throw new Error('EXP-VIEW-DECISION-SELECTION-REQUIRED');
+    return {funnel, selection: null};
+  }
+  const {selection} = assertDecisionSelectionV1(funnel, selectionInput);
+  if (
+    envelope.state !== 'READY_FOR_BRIEF' ||
+    selection.canonicalSha256 !== envelope.decisionSelectionSha256
+  ) {
+    throw new Error('EXP-VIEW-DECISION-SELECTION-DRIFT');
+  }
+  return {funnel, selection};
 };
-
 export const renderExperienceTextFallback = (
   input: AssistanceEnvelopeV1,
   decisionFunnelInput?: unknown,
+  decisionSelectionInput?: unknown,
 ): string => {
   const envelope = AssistanceEnvelopeV1Schema.parse(input);
-  const funnel = decisionForEnvelope(envelope, decisionFunnelInput);
+  const decision = decisionForEnvelope(envelope, decisionFunnelInput, decisionSelectionInput);
   const lines = [
     'Frames ContentOS · por MetodologIA',
     `Entendí: ${envelope.understoodOutcome}`,
@@ -68,10 +74,10 @@ export const renderExperienceTextFallback = (
   if (envelope.blockingGaps.length > 0) lines.push(`Falta: ${envelope.blockingGaps.join(' · ')}`);
   lines.push(`Recomendación: ${envelope.recommendedNextAction}`);
   const options =
-    funnel?.options.map(({label}) => label) ??
+    decision?.funnel.options.map(({label}) => label) ??
     (envelope.interactionClass === 'ASSIST_ONLY' ? MENU : envelope.ghostOptions);
   if (options.length > 0) lines.push(`Opciones: ${options.join(' · ')}`);
-  for (const option of funnel?.options ?? []) {
+  for (const option of decision?.funnel.options ?? []) {
     lines.push(
       `${option.label}: ${option.summary} Rescata: ${option.rescuedContributions
         .map(({contribution}) => contribution)
@@ -80,13 +86,13 @@ export const renderExperienceTextFallback = (
   }
   return lines.join('\n');
 };
-
 export const renderExperienceView = (
   input: AssistanceEnvelopeV1,
   decisionFunnelInput?: unknown,
+  decisionSelectionInput?: unknown,
 ): ExperienceViewV1 => {
   const envelope = AssistanceEnvelopeV1Schema.parse(input);
-  const funnel = decisionForEnvelope(envelope, decisionFunnelInput);
+  const decision = decisionForEnvelope(envelope, decisionFunnelInput, decisionSelectionInput);
   const components: ExperienceViewV1['components'] = [];
   const add = (
     kind: ExperienceViewV1['components'][number]['kind'],
@@ -145,7 +151,7 @@ export const renderExperienceView = (
       decision: envelope.recommendedNextAction,
       consequence: 'Avanzar únicamente dentro del write policy declarado.',
       options:
-        funnel?.options.map(({optionId, label, summary, rescuedContributions}) => ({
+        decision?.funnel.options.map(({optionId, label, summary, rescuedContributions}) => ({
           optionId,
           label,
           summary,
@@ -153,7 +159,7 @@ export const renderExperienceView = (
         })) ?? [],
     });
   }
-  const visibleOptions = funnel?.options.map(({label}) => label) ?? envelope.ghostOptions;
+  const visibleOptions = decision?.funnel.options.map(({label}) => label) ?? envelope.ghostOptions;
   const secondary = visibleOptions.slice(0, 2).map((option, index) => ({
     actionId: `action-secondary-${index + 1}`,
     label: short(option),
@@ -172,7 +178,11 @@ export const renderExperienceView = (
             intent: envelope.recommendedNextAction,
           },
     secondaryActions: secondary,
-    textFallback: renderExperienceTextFallback(envelope, decisionFunnelInput),
+    textFallback: renderExperienceTextFallback(
+      envelope,
+      decisionFunnelInput,
+      decisionSelectionInput,
+    ),
   });
   const brief = view.components.find(({kind}) => kind === 'BriefPreview');
   if (brief && Object.keys(brief.data).some((key) => key.toLowerCase().includes('ghost'))) {

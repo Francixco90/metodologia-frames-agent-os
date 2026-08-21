@@ -213,11 +213,33 @@ describe('Frames causal orchestration', () => {
     ).toThrow();
     const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
     expect(() =>
+      createFramesWorkOrderV1(
+        {
+          ...plan,
+          decisionFunnelSha256: '0'.repeat(64),
+          decisionSelectionSha256: '1'.repeat(64),
+        },
+        envelope,
+        {
+          workOrderId: 'WO.EXP.PLAN-FORGE',
+          actorId: 'RT-04',
+          inputRefs: [],
+          decision,
+          definitions: [definition],
+          decisionRefs: {
+            funnel: {ref: 'evidence/forged-funnel.json', sha256: '0'.repeat(64)},
+            selection: {ref: 'evidence/forged-selection.json', sha256: '1'.repeat(64)},
+          },
+        },
+      ),
+    ).toThrow(/EXPERIENCE-DECISION-PLAN-DRIFT/u);
+    expect(() =>
       createFramesWorkOrderV1(plan, envelope, {
         workOrderId: 'WO.EXP.DRIFT',
         actorId: 'RT-04',
         inputRefs: [],
         decision,
+        definitions: [definition],
         decisionRefs: {
           ...decisionRefs,
           selection: {...decisionRefs.selection, sha256: '0'.repeat(64)},
@@ -230,9 +252,22 @@ describe('Frames causal orchestration', () => {
         actorId: 'RT-04',
         inputRefs: [{...decisionRefs.funnel}],
         decision,
+        definitions: [definition],
         decisionRefs,
       }),
     ).toThrow(/EXPERIENCE-DECISION-REF-ALIAS/u);
+    expect(() =>
+      createFramesWorkOrderV1(plan, envelope, {
+        workOrderId: 'WO.EXP.WRITE-DRIFT',
+        actorId: 'RT-04',
+        inputRefs: [],
+        decision,
+        definitions: [definition],
+        decisionRefs,
+        effectClass: 'LOCAL_REVERSIBLE',
+        writeSet: ['work/arbitrary/**'],
+      }),
+    ).toThrow(/EXPERIENCE-WRITE-SET-DRIFT/u);
   });
 
   it('requires a material invocation receipt before planned becomes executed', async () => {
@@ -244,6 +279,7 @@ describe('Frames causal orchestration', () => {
       inputRefs: [{ref: 'evidence/request.json', sha256: digest}],
       decisionRefs,
       decision,
+      definitions: [definition],
     });
     const emptyPass = new FakeSkillAdapterV1({
       'content-os-router': () => ({

@@ -1,3 +1,5 @@
+import {posix} from 'node:path';
+
 import {
   AssistanceEnvelopeV1Schema,
   FramesWorkOrderV1Schema,
@@ -134,6 +136,7 @@ export function createFramesWorkOrderV1(
     inputRefs: Array<{ref: string; sha256: string}>;
     decisionRefs: ExperienceDecisionReferencesV1;
     decision: ExperienceDecisionContextV1;
+    definitions: readonly ExperienceWorkflowDefinitionV1[];
     writeSet?: string[];
     effectClass?: 'READ_ONLY' | 'LOCAL_REVERSIBLE';
   },
@@ -143,7 +146,13 @@ export function createFramesWorkOrderV1(
     throw new Error('Work order requires an active step bound to the selected route.');
   }
   const verified = verifyDecisionBinding(envelope, input.decision);
-  if (verified.selection.selectedOptionId !== plan.selectedOptionId) {
+  const recompiled = compileExperienceWorkflowPlanV1(envelope, input.definitions, input.decision);
+  if (
+    hashExperienceValue(recompiled) !== hashExperienceValue(plan) ||
+    verified.funnel.canonicalSha256 !== plan.decisionFunnelSha256 ||
+    verified.selection.canonicalSha256 !== plan.decisionSelectionSha256 ||
+    verified.selection.selectedOptionId !== plan.selectedOptionId
+  ) {
     throw new Error('EXPERIENCE-DECISION-PLAN-DRIFT');
   }
   if (
@@ -156,6 +165,14 @@ export function createFramesWorkOrderV1(
   if (new Set(inputRefs.map(({ref}) => ref)).size !== inputRefs.length) {
     throw new Error('EXPERIENCE-DECISION-REF-ALIAS');
   }
+  const effectClass = input.effectClass ?? ('READ_ONLY' as const);
+  const expectedWriteSet =
+    effectClass === 'READ_ONLY'
+      ? []
+      : [...new Set(step.expectedOutputs.map((ref) => `${posix.dirname(ref)}/**`))];
+  if (hashExperienceValue(input.writeSet ?? []) !== hashExperienceValue(expectedWriteSet)) {
+    throw new Error('EXPERIENCE-WRITE-SET-DRIFT');
+  }
   const draft = {
     schemaVersion: 'frames-work-order-v1' as const,
     workOrderId: input.workOrderId,
@@ -166,11 +183,11 @@ export function createFramesWorkOrderV1(
     skillId: step.primarySkillId,
     actorId: input.actorId,
     readSet: [...new Set([step.templateRef, ...step.sourceRefs])],
-    writeSet: input.writeSet ?? [],
+    writeSet: expectedWriteSet,
     inputs: inputRefs,
     expectedOutputs: step.expectedOutputs,
     tools: [],
-    effectClass: input.effectClass ?? ('READ_ONLY' as const),
+    effectClass,
     budget: {targetFiles: 8, maxFiles: 14, targetTokens: 8_000, maxTokens: 14_000},
     acceptanceCriteria: step.acceptanceCriteria,
     stopRule: step.stopRule,

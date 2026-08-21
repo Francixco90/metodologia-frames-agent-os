@@ -1,9 +1,12 @@
-import {mkdtempSync, readdirSync, rmSync} from 'node:fs';
+import {mkdtempSync, readdirSync, rmSync, symlinkSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 import {afterEach, beforeAll, describe, expect, it} from 'vitest';
+import {orchestrateLocalExperienceV1, runFirstTurnGatewayV1} from 'workflows/core/index.ts';
+
+import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 type LocalDecision = {
   route_id: string;
@@ -75,7 +78,95 @@ const completeInputs = (route: 'R6' | 'R7', root: string): Record<string, unknow
         ...timestamps,
       };
 
+const selectedLocalInput = (
+  root: string,
+  aliasRefs = false,
+  outputDirectoryRef = 'work/private/experience/content',
+) => {
+  const prompt = 'Ayúdame a generar una pieza';
+  const handler = () => ({
+    routeId: 'R6' as const,
+    workflowPlan: ['P03'],
+    activeStep: 'P03',
+    skillBindings: [{stepId: 'P03', primarySkillId: 'content-os-creative'}],
+    briefPreview: {briefKind: 'content-brief', summary: 'Brief sintético.', materialized: false},
+    recommendedNextAction: 'Revisar y aprobar el brief.',
+  });
+  const requestHash = runFirstTurnGatewayV1({prompt}, {R6: handler, R7: handler}).requestHash;
+  const decision = materializeDecisionFunnelFixture(requestHash);
+  const envelope = runFirstTurnGatewayV1(
+    {prompt, decisionFunnel: decision.funnel, decisionSelection: decision.selection},
+    {R6: handler, R7: handler},
+  );
+  const funnelRef = 'evidence/decision-funnel.json';
+  return {
+    root,
+    routeId: 'R6' as const,
+    envelope,
+    decision,
+    decisionRefs: {
+      funnel: {ref: funnelRef, sha256: decision.funnel.canonicalSha256},
+      selection: {
+        ref: aliasRefs ? funnelRef : 'evidence/decision-selection.json',
+        sha256: decision.selection.canonicalSha256,
+      },
+    },
+    sourceMaterials: [],
+    outputDirectoryRef,
+    actorId: 'RT-04-EXPERIENCE',
+    startedAt: timestamps.started_at,
+    completedAt: timestamps.completed_at,
+    domainIntent: {
+      request: prompt,
+      request_hash: requestHash,
+      content_class: 'educational',
+      audience: 'Líderes de producto',
+      outcome: 'Comprender una decisión responsable',
+      selected_stage_path: ['P03'],
+      channels: ['web'],
+      restrictions: [],
+    },
+  };
+};
+
 describe('Frames local brief-first execution', () => {
+  it('materializes only after a fully bound human selection', async () => {
+    const root = workspace();
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root));
+    expect(result).toMatchObject({status: 'AWAITING_APPROVAL', materialized: true});
+    expect(readdirSync(resolve(root, 'work/private/experience/content'))).toEqual([
+      'brief.html',
+      'brief.md',
+      'invocation-receipt.json',
+    ]);
+  });
+
+  it('rejects aliased decision refs before creating an output directory', async () => {
+    const root = workspace();
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root, true));
+    expect(result).toMatchObject({
+      status: 'BLOCKED',
+      materialized: false,
+      coverageGap: 'EXPERIENCE-DECISION-REF-ALIAS',
+    });
+    expect(readdirSync(root)).toEqual([]);
+  });
+
+  it('checks output containment after selection and before any material write', async () => {
+    const root = workspace();
+    const outside = workspace();
+    symlinkSync(outside, resolve(root, 'escape'));
+    const result = await orchestrateLocalExperienceV1(
+      selectedLocalInput(root, false, 'escape/generated'),
+    );
+    expect(result).toMatchObject({
+      status: 'BLOCKED',
+      materialized: false,
+      coverageGap: 'FRAMES-OUTPUT-PATH002',
+    });
+    expect(readdirSync(outside)).toEqual([]);
+  });
+
   it.each(['R6', 'R7'] as const)(
     'keeps %s at zero writes until the router carries a verified human selection',
     async (route) => {

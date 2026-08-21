@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
 
-import {hashExperienceValue} from 'core/contracts/index.ts';
+import {AssistanceEnvelopeV1Schema, hashExperienceValue} from 'core/contracts/index.ts';
 import {runFirstTurnGatewayV1, type GatewayRouteHandlerV1} from 'workflows/core/index.ts';
 import {renderExperienceTextFallback, renderExperienceView} from 'workflows/experience/index.ts';
 import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
@@ -50,7 +50,7 @@ describe('AssistanceEnvelope to governed ExperienceView', () => {
       {prompt: 'Ayúdame a generar una pieza'},
       {R6: content, R7: unused},
     ).requestHash;
-    const {funnel} = materializeDecisionFunnelFixture(requestHash);
+    const {funnel, selection} = materializeDecisionFunnelFixture(requestHash);
     const envelope = runFirstTurnGatewayV1(
       {prompt: 'Ayúdame a generar una pieza', decisionFunnel: funnel},
       {R6: content, R7: unused},
@@ -86,6 +86,29 @@ describe('AssistanceEnvelope to governed ExperienceView', () => {
     expect(view.components.find(({kind}) => kind === 'DecisionGate')?.data.options).toHaveLength(2);
     expect(view.textFallback).toContain('Aporte verificable rescatado');
     expect(view.textFallback).toBe(renderExperienceTextFallback(envelope, funnel));
+
+    const selectedEnvelope = runFirstTurnGatewayV1(
+      {prompt: 'Ayúdame a generar una pieza', decisionFunnel: funnel, decisionSelection: selection},
+      {R6: content, R7: unused},
+    );
+    expect(renderExperienceView(selectedEnvelope, funnel, selection).primaryAction).not.toBeNull();
+    expect(() =>
+      renderExperienceView(selectedEnvelope, funnel, {
+        ...selection,
+        canonicalSha256: '0'.repeat(64),
+      }),
+    ).toThrow();
+    expect(() =>
+      AssistanceEnvelopeV1Schema.parse({...selectedEnvelope, blockingGaps: ['gap']}),
+    ).toThrow();
+    expect(() =>
+      AssistanceEnvelopeV1Schema.parse({
+        ...selectedEnvelope,
+        state: 'BLOCKED',
+        writePolicy: 'LOCAL_REVERSIBLE',
+        effects: ['LOCAL_REVERSIBLE'],
+      }),
+    ).toThrow(/BLOCKED forbids/u);
   });
 
   it('renders ambiguity as an evidence gap plus recovery, without hidden execution', () => {
