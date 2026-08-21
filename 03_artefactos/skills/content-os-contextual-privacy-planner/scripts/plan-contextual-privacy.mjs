@@ -12,7 +12,8 @@ const expect = (condition, code) => { if (!condition) throw new Error(code); };
 const keys = (value, expected, code) => expect(value && typeof value === 'object' && !Array.isArray(value) && same(Object.keys(value).sort(), [...expected].sort()), code);
 const unique = (values, code) => expect(new Set(values).size === values.length, code);
 const visible = (value) => typeof value === 'string' && value.length > 0 && value.length <= 320 && value.trim() === value && !/^\p{Z}|\p{Z}$/u.test(value) && !/\p{C}/u.test(value) && /[^\p{Z}\p{C}]/u.test(value);
-const normalizedIdentity = (value) => value.normalize('NFKC').toLocaleLowerCase('en-US').replace(/[^\p{L}\p{N}]+/gu, '');
+const normalizedIdentity = (value) => value.normalize('NFKC').toLocaleLowerCase('en-US');
+const tokenIdentity = (value) => /^[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*$/u.test(value);
 const trimUrl = (raw) => {
   let value = raw; let previous;
   do { previous = value; value = value.replace(/[.,;]+$/gu, ''); for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) if (value.endsWith(close) && [...value].filter((item) => item === close).length > [...value].filter((item) => item === open).length) value = value.slice(0, -1); } while (value !== previous);
@@ -89,7 +90,12 @@ const assertRequest = (request) => {
     const canonical = normalizedIdentity(entry.canonical); expect(canonical.length > 0 && !aliasesByCanonical.has(canonical), 'PLANNER-ALIAS-DUPLICATE'); aliasesByCanonical.set(canonical, entry);
     for (const variant of [entry.canonical, ...entry.variants]) { const key = normalizedIdentity(variant); const owner = variantOwners.get(key); expect(!owner || owner === canonical, 'PLANNER-ALIAS-AMBIGUOUS'); variantOwners.set(key, canonical); }
   }
-  for (const signal of inventory.signals.filter(({kind}) => ['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(kind))) { const entry = aliasesByCanonical.get(normalizedIdentity(signal.identity.canonical)); const expectedKind = signal.kind === 'SPOKEN_BRAND' ? 'BRAND_TEXT' : signal.kind; expect(entry?.canonical === signal.identity.canonical && entry.kind === expectedKind && [entry.canonical, ...entry.variants].some((value) => normalizedIdentity(value) === normalizedIdentity(signal.identity.matched_alias)), 'PLANNER-SIGNAL-ALIAS-BINDING'); }
+  for (const signal of inventory.signals.filter(({kind}) => ['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(kind))) {
+    const entry = aliasesByCanonical.get(normalizedIdentity(signal.identity.canonical)); const expectedKind = signal.kind === 'SPOKEN_BRAND' ? 'BRAND_TEXT' : signal.kind; const observed = normalizedIdentity(signal.identity.matched_alias);
+    const matchingOwners = aliases.filter((candidate) => [candidate.canonical, ...candidate.variants].some((value) => { const declared = normalizedIdentity(value); return declared === observed || (tokenIdentity(signal.identity.matched_alias) && observed.length >= 4 && declared.length >= 4 && (declared.startsWith(observed) || observed.startsWith(declared))); })).map(({canonical}) => canonical);
+    const exactBound = entry && [entry.canonical, ...entry.variants].some((value) => normalizedIdentity(value) === observed);
+    expect(entry?.canonical === signal.identity.canonical && entry.kind === expectedKind && new Set(matchingOwners).size === 1 && matchingOwners[0] === entry.canonical && (exactBound || signal.confidence.status === 'REVIEW_REQUIRED'), 'PLANNER-SIGNAL-ALIAS-BINDING');
+  }
   const receipt = physical(request.inventory_verification_receipt, 'PLANNER-INVENTORY-RECEIPT');
   keys(receipt, ['schema_version', 'actor_id', 'case_id', 'inventory_sha256', 'inventory_canonical_sha256', 'source'], 'PLANNER-INVENTORY-RECEIPT-CONTENT');
   expect(receipt.schema_version === 'sensitive-signal-inventory-verification-v1' && receipt.actor_id === 'RT-09-H03-PRIVACY-INVENTORY-VERIFIER' && receipt.case_id === request.case_id && receipt.inventory_sha256 === request.inventory_material.sha256 && receipt.inventory_canonical_sha256 === inventory.canonical_sha256 && same(receipt.source, inventory.source), 'PLANNER-INVENTORY-RECEIPT-DRIFT');
