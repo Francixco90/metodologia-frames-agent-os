@@ -142,6 +142,10 @@ describe('Frames causal orchestration', () => {
       experience_envelope: {state: 'BLOCKED'},
     });
     expect(result.coverage_gap).not.toHaveLength(0);
+    expect(dispatchIntent({request: '/ruta Ayúdame a generar una pieza'})).toMatchObject({
+      next_gate: null,
+      command_view: {nextGate: 'NEEDS_INPUT', readOnly: true, effects: []},
+    });
   });
 
   it.each([

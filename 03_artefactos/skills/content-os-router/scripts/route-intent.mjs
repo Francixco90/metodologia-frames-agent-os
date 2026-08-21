@@ -133,7 +133,7 @@ export const dispatchIntent = (input) => {
     : null;
   const commandView = menuCommand
     ? renderExperienceMenuV1()
-    : routeCommand ? renderExperienceRouteV1(envelope, domainIntent?.next_gate ?? routeId) : null;
+    : routeCommand ? renderExperienceRouteV1(envelope, nextGate ?? decision) : null;
   return {
     schema_version: 'frames-route-decision-v1', request_hash: envelope.requestHash,
     route_id: routeId, adapter, next_gate: nextGate, decision, coverage_gap: coverageGap,
@@ -190,7 +190,7 @@ export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
     ...(input.output_directory_ref ? {outputDirectoryRef: input.output_directory_ref} : {}),
     actorId: input.actor_id ?? 'RT-04-EXPERIENCE', startedAt, completedAt,
   });
-  return {...decision, next_gate: localExecution.nextGate, local_execution: localExecution};
+  return {...decision, local_execution: localExecution};
 };
 if (process.argv[1]?.endsWith('route-intent.mjs')) {
   const inputPath = process.argv[2];
