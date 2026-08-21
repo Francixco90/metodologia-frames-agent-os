@@ -10,7 +10,7 @@ const transcriptChecker = resolve(
   root,
   'skills/content-os-transcript-intelligence/scripts/check-skill.mjs',
 );
-const videoChecker = resolve(root, 'skills/content-os-general-video/scripts/check-skill.mjs');
+const videoChecker = resolve(root, 'skills/content-os-general-video/scripts/lib/check-suite.mjs');
 
 const run = (checker: string, profile: 'ci-code-only' | 'local-full', path = process.env.PATH) =>
   spawnSync(process.execPath, [checker], {

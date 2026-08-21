@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.8.0
+version: 0.8.1
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
@@ -17,21 +17,17 @@ metadata:
 Lee [`context.md`](context.md) antes de cargar referencias. Define contexto, ruta, efectos,
 gates y handoff.
 
-Puerta única de Frames para contenido, carrera, extensiones privadas y mantenimiento,
-compatible con `source-to-video` v1. Enruta una vez por deliverable, carga capabilities
-bajo demanda y despacha workflows locales hash-bound. No instala, usa red ni renderiza;
-`content-os-core` conserva el adapter HTML→MP4.
+Puerta para contenido, carrera, extensiones y mantenimiento. Enruta una vez,
+carga capabilities y no instala,
+usa red ni renderiza; `content-os-core` conserva el adapter HTML→MP4.
 
-`scripts/route-intent.mjs` conserva compatibilidad y añade `dispatchIntent()`: R6 ejecuta
-`routeContentIntent`, R7 `routeCareerIntent`, R8 `routeLocalExtensionIntent`, R9
-`routeMaintenanceIntent`; R0 no invoca adapter. Un locator sin `adapter_invoked` y
-`domain_intent` es planificación. R8/R9 requieren aprobación antes de mutar. Señales
-mixtas o ausentes nunca fusionan dominios.
+`dispatchIntent()` conserva compatibilidad: R6/R7/R8/R9 invocan sus adapters; R0 no.
+Sin `adapter_invoked` y `domain_intent` solo hay planificación. R8/R9 requieren
+aprobación y las señales mixtas nunca fusionan dominios.
 
-- **Intent** — source (URL, PR, texto, website, brief) + deliverable (video type).
-- **Route** — workflow Fase 3 que posee el deliverable end-to-end.
-- **Capability map** — skills Fase 2 que el workflow carga on-demand (core,
-  animation, keyframes, creative, media, registry).
+- **Intent** — source + deliverable.
+- **Route** — workflow Fase 3 owner.
+- **Capability map** — skills Fase 2 cargados bajo demanda.
 
 ## Default v2: brief antes de producir
 
@@ -52,6 +48,10 @@ MetodologIA** y `Crear · Mejorar · Planear · Explorar` sin prime ni writes. U
 pedido accionable omite el menú y prepara un preview del brief. Skills del plan
 permanecen `planned` hasta que un `SkillInvocationReceiptV1` las liga a actor,
 WorkOrder y outputs materiales. [CONFIG]
+
+La metadata exterior deriva siempre del `AssistanceEnvelopeV1`: `BLOCKED` publica
+`NEEDS_INPUT`, `next_gate: null` y el `coverage_gap` material; `ROUTED` espera una
+selección y no anuncia anticipadamente un gate de aprobación. [CONFIG]
 
 ```bash
 node --import tsx <SKILL_DIR>/scripts/route-intent.mjs request.json
@@ -139,6 +139,8 @@ workflow Fase 3 es owner.
    `content-os-core`. El workflow orquesta; el router solo enruta.
 8. **RENDERED_DRAFT != HUMAN_APPROVED.** El deliverable produce `RENDERED_DRAFT`.
 `READY`/publicación requiere gates humanos G13-G17 (manuales por diseño).
+9. **Honest state projection.** `decision`, `next_gate` y `coverage_gap` se derivan
+   del envelope; un estado bloqueado nunca se presenta como ruteado o aprobable.
 
 Para cualquier borrador nuevo derivado de voz, el handoff exige contrato revision 2,
 binding a la spec, `captionTrackRef`, `correctionLedgerRef`, verificación lingüística y

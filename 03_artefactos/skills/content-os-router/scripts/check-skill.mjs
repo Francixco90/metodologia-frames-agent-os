@@ -32,10 +32,8 @@ const required = [
   'skills/content-os-router/fixtures/negative/unrouted-intent.yml',
   'skills/content-os-router/receipts/runtime-boundary.yml',
 ];
-
 const contents = new Map(required.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
 const ajv = new Ajv2020({allErrors: true, strict: false});
-
 const combined = [...contents.values()].join('\n');
 const runtimeCombined = [
   'skills/content-os-router/examples/intent-brief.jsonl',
@@ -44,9 +42,8 @@ const runtimeCombined = [
 ]
   .map((path) => contents.get(path))
   .join('\n');
-
 for (const token of [
-  'version: 0.8.0',
+  'version: 0.8.1',
   '## 1. Activación',
   '## 8. Handoff',
   'intent-router',
@@ -59,6 +56,7 @@ for (const token of [
   'AssistanceEnvelopeV1',
   'SkillInvocationReceiptV1',
   'adapter_invoked',
+  'Honest state projection',
   'MW_BRIEF_APPROVED',
   'selected_stage_path',
   'P03',
@@ -79,7 +77,6 @@ for (const token of [
     throw new Error(`COSR-ROUTER_CONTRACT_MISSING: ${token}`);
   }
 }
-
 const dispatchProbe = JSON.parse(
   execFileSync(
     process.execPath,
@@ -91,8 +88,9 @@ const dispatchProbe = JSON.parse(
       `import {dispatchIntent} from './skills/content-os-router/scripts/route-intent.mjs';
        const content = dispatchIntent({request:'crear contenido', audience:'equipos', outcome:'informar', source:{type:'text',authority:'verified'}});
        const career = dispatchIntent({request:'crear CV', candidateId:'CAND-FIXTURE', targetRole:'arquitectura', profileReady:true, evidenceReady:true});
+       const blocked = dispatchIntent({request:'crear contenido'});
        const unknown = dispatchIntent({request:'necesito ayuda'});
-       process.stdout.write(JSON.stringify({content, career, unknown}));`,
+       process.stdout.write(JSON.stringify({content, career, blocked, unknown}));`,
     ],
     {cwd: root, encoding: 'utf8'},
   ),
@@ -104,12 +102,16 @@ if (
   dispatchProbe.career?.route_id !== 'R7' ||
   dispatchProbe.career?.adapter_invoked !== true ||
   dispatchProbe.career?.domain_intent?.schema_version !== 'career-intent-v1' ||
+  dispatchProbe.blocked?.experience_envelope?.state !== 'BLOCKED' ||
+  dispatchProbe.blocked?.decision !== 'NEEDS_INPUT' ||
+  dispatchProbe.blocked?.next_gate !== null ||
+  typeof dispatchProbe.blocked?.coverage_gap !== 'string' ||
+  dispatchProbe.blocked.coverage_gap.length === 0 ||
   dispatchProbe.unknown?.route_id !== 'R0' ||
   dispatchProbe.unknown?.adapter_invoked !== false
 ) {
   throw new Error('COSR-CAUSAL_DISPATCH_FAILED');
 }
-
 for (const pattern of [
   /\bMath\.random\s*\(/u,
   /\bDate\.now\s*\(/u,
@@ -129,7 +131,6 @@ for (const pattern of [
     throw new Error(`COSR-ROUTER_FORBIDDEN_API: ${String(pattern)}`);
   }
 }
-
 const negative = contents.get('skills/content-os-router/fixtures/negative/unrouted-intent.yml');
 for (const token of [
   'missing-route',
@@ -143,7 +144,6 @@ for (const token of [
     throw new Error(`COSR-ROUTER_NEGATIVE_FIXTURE_INCOMPLETE: missing ${token}`);
   }
 }
-
 const transcriptRoute = execFileSync(
   process.execPath,
   [resolve(root, 'skills/content-os-router/scripts/transcript-route.mjs'), resolve(root, 'skills/content-os-router/fixtures/positive/transcript-intent.json')],
