@@ -48,7 +48,7 @@ const aliasMatches = (text, aliases) => {
     for (const variant of [entry.canonical, ...entry.variants]) {
       const needle = normalized(variant); if (seen.has(needle)) continue; seen.add(needle);
       const exactMatch = new RegExp(`(?<![\\p{L}\\p{N}])${escape(needle)}(?![\\p{L}\\p{N}])`, 'iu').exec(haystack);
-      if (exactMatch) { found.push({entry, partial: false, matched: raw.slice(exactMatch.index, exactMatch.index + exactMatch[0].length)}); continue; }
+      if (exactMatch) { found.push({entry, partial: false, matched: raw.slice(exactMatch.index, exactMatch.index + exactMatch[0].length).trim()}); continue; }
       if (needle.length < 4) continue;
       for (const token of tokens) { const observed = normalized(token[0]); if (observed.length >= 4 && (needle.startsWith(observed) || observed.startsWith(needle))) found.push({entry, partial: true, matched: token[0]}); }
     }
@@ -71,7 +71,7 @@ const assertInventoryShape = (inventory) => {
 };
 
 const deriveSensitiveSignals = (request) => {
-  exact(request, ['schema_version', 'case_id', 'source', 'actor_id', 'aliases', 'aliases_sha256', 'templates', 'templates_sha256', 'coverage', 'coverage_receipt', 'observations'], 'DETECTOR-REQUEST');
+  exact(request, ['schema_version', 'case_id', 'source', 'source_probe_receipt', 'actor_id', 'aliases', 'aliases_sha256', 'templates', 'templates_sha256', 'coverage', 'coverage_receipt', 'observations'], 'DETECTOR-REQUEST');
   if (request.schema_version !== 'sensitive-signal-detector-request-v1' || !isId(request.case_id) || request.actor_id !== 'RT-07-H03-PRIVACY-DETECTOR-PRODUCER') throw new Error('DETECTOR-REQUEST-IDENTITY');
   const materialRefs = new Set();
   const claimRef = (value) => { if (materialRefs.has(value)) throw new Error('DETECTOR-MATERIAL-REF-DUPLICATE'); materialRefs.add(value); };
@@ -79,19 +79,25 @@ const deriveSensitiveSignals = (request) => {
   physical({ref: request.source.ref, sha256: request.source.sha256, bytes: request.source.bytes, content_base64: request.source.content_base64}, 'DETECTOR-SOURCE');
   claimRef(request.source.ref);
   if (![request.source.frame_width, request.source.frame_height, request.source.frame_count, request.source.duration_ms].every((value) => Number.isInteger(value) && value > 0) || typeof request.source.has_audio !== 'boolean') throw new Error('DETECTOR-SOURCE-METADATA');
+  const sourceMetadata = {frame_width: request.source.frame_width, frame_height: request.source.frame_height, frame_count: request.source.frame_count, duration_ms: request.source.duration_ms, has_audio: request.source.has_audio};
+  const sourceMetadataSha256 = digest(sourceMetadata);
+  const sourceProbe = receipt(request.source_probe_receipt, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'source_bytes', 'source_metadata_sha256', 'source_metadata'], 'DETECTOR-SOURCE-PROBE');
+  claimRef(request.source_probe_receipt.ref);
+  if (sourceProbe.schema_version !== 'sensitive-signal-source-probe-v1' || sourceProbe.actor_id !== 'RT-09-PRIVACY-SOURCE-PROBE-VERIFIER' || sourceProbe.case_id !== request.case_id || sourceProbe.source_sha256 !== request.source.sha256 || sourceProbe.source_bytes !== request.source.bytes || sourceProbe.source_metadata_sha256 !== sourceMetadataSha256 || digest(sourceProbe.source_metadata) !== sourceMetadataSha256) throw new Error('DETECTOR-SOURCE-PROBE-DRIFT');
   exact(request.coverage, ['visual_text', 'visual_templates', 'faces', 'audio_transcript'], 'DETECTOR-COVERAGE');
   const coverageStates = Object.values(request.coverage);
   if (!coverageStates.every((item) => ['COMPLETE', 'NOT_PRESENT', 'UNKNOWN'].includes(item))) throw new Error('DETECTOR-COVERAGE-STATE');
-  const coverageReceipt = receipt(request.coverage_receipt, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'coverage'], 'DETECTOR-COVERAGE');
+  const coverageReceipt = receipt(request.coverage_receipt, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'source_metadata_sha256', 'coverage'], 'DETECTOR-COVERAGE');
   claimRef(request.coverage_receipt.ref);
-  if (coverageReceipt.schema_version !== 'sensitive-signal-coverage-receipt-v1' || coverageReceipt.actor_id !== 'RT-09-PRIVACY-COVERAGE-VERIFIER' || coverageReceipt.case_id !== request.case_id || coverageReceipt.source_sha256 !== request.source.sha256 || digest(coverageReceipt.coverage) !== digest(request.coverage)) throw new Error('DETECTOR-COVERAGE-DRIFT');
+  if (coverageReceipt.schema_version !== 'sensitive-signal-coverage-receipt-v1' || coverageReceipt.actor_id !== 'RT-09-PRIVACY-COVERAGE-VERIFIER' || coverageReceipt.case_id !== request.case_id || coverageReceipt.source_sha256 !== request.source.sha256 || coverageReceipt.source_metadata_sha256 !== sourceMetadataSha256 || digest(coverageReceipt.coverage) !== digest(request.coverage)) throw new Error('DETECTOR-COVERAGE-DRIFT');
   if (request.coverage.audio_transcript === 'NOT_PRESENT' && request.source.has_audio) throw new Error('DETECTOR-COVERAGE-AUDIO-CONTRADICTION');
   if (['visual_text', 'visual_templates', 'faces'].some((key) => request.coverage[key] === 'NOT_PRESENT')) throw new Error('DETECTOR-COVERAGE-NOT-PRESENT-UNACCREDITED');
-  const aliasIds = new Set(); const aliasVariants = new Map();
+  const aliasIds = new Set(); const aliasVariants = new Map(); const aliasCanonicals = new Set();
   for (const entry of request.aliases) {
     exact(entry, ['alias_id', 'kind', 'canonical', 'variants'], 'DETECTOR-ALIAS');
-    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || !entry.canonical || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every((variant) => typeof variant === 'string' && variant.trim())) throw new Error('DETECTOR-ALIAS-INVALID');
-    aliasIds.add(entry.alias_id);
+    const canonicalKey = typeof entry.canonical === 'string' ? normalized(entry.canonical.trim()) : '';
+    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || typeof entry.canonical !== 'string' || !entry.canonical.trim() || aliasCanonicals.has(canonicalKey) || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every((variant) => typeof variant === 'string' && variant.trim())) throw new Error('DETECTOR-ALIAS-INVALID');
+    aliasIds.add(entry.alias_id); aliasCanonicals.add(canonicalKey);
     for (const variant of [entry.canonical, ...entry.variants]) { const key = normalized(variant); const owner = aliasVariants.get(key); if (owner && owner !== entry.canonical) throw new Error('DETECTOR-ALIAS-AMBIGUOUS'); aliasVariants.set(key, entry.canonical); }
   }
   if (digest(request.aliases) !== request.aliases_sha256) throw new Error('DETECTOR-ALIASES-DRIFT');
@@ -113,9 +119,9 @@ const deriveSensitiveSignals = (request) => {
     if (!isId(observation.observation_id) || observationIds.has(observation.observation_id) || !Object.hasOwn(evidenceActors, observation.modality)) throw new Error('DETECTOR-OBSERVATION-INVALID');
     const {observation_id: _observationId, evidence: _evidence, ...semanticObservation} = observation; const fingerprint = digest(semanticObservation);
     if (observationFingerprints.has(fingerprint)) throw new Error('DETECTOR-OBSERVATION-DUPLICATE'); observationFingerprints.add(fingerprint); observationIds.add(observation.observation_id); modalityCounts[observation.modality] += 1;
-    const evidenceReceipt = receipt(observation.evidence, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'observation_id', 'modality', 'observation_sha256'], 'DETECTOR-EVIDENCE');
+    const evidenceReceipt = receipt(observation.evidence, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'source_metadata_sha256', 'observation_id', 'modality', 'observation_sha256'], 'DETECTOR-EVIDENCE');
     claimRef(observation.evidence.ref);
-    if (evidenceReceipt.schema_version !== 'sensitive-signal-observation-evidence-v1' || evidenceReceipt.actor_id !== evidenceActors[observation.modality] || evidenceReceipt.case_id !== request.case_id || evidenceReceipt.source_sha256 !== request.source.sha256 || evidenceReceipt.observation_id !== observation.observation_id || evidenceReceipt.modality !== observation.modality || evidenceReceipt.observation_sha256 !== digest(semanticObservation)) throw new Error('DETECTOR-EVIDENCE-DRIFT');
+    if (evidenceReceipt.schema_version !== 'sensitive-signal-observation-evidence-v1' || evidenceReceipt.actor_id !== evidenceActors[observation.modality] || evidenceReceipt.case_id !== request.case_id || evidenceReceipt.source_sha256 !== request.source.sha256 || evidenceReceipt.source_metadata_sha256 !== sourceMetadataSha256 || evidenceReceipt.observation_id !== observation.observation_id || evidenceReceipt.modality !== observation.modality || evidenceReceipt.observation_sha256 !== digest(semanticObservation)) throw new Error('DETECTOR-EVIDENCE-DRIFT');
     span(observation.frame_span, 'DETECTOR-FRAME-SPAN'); span(observation.time_span_ms, 'DETECTOR-TIME-SPAN');
     if (observation.geometry !== null) { exact(observation.geometry, ['x', 'y', 'width', 'height'], 'DETECTOR-GEOMETRY'); const {x, y, width, height} = observation.geometry; if (![x, y].every((value) => Number.isInteger(value) && value >= 0) || ![width, height].every((value) => Number.isInteger(value) && value > 0) || x + width > request.source.frame_width || y + height > request.source.frame_height) throw new Error('DETECTOR-GEOMETRY-RANGE'); }
     if (typeof observation.confidence !== 'number' || observation.confidence < 0 || observation.confidence > 1) throw new Error('DETECTOR-CONFIDENCE');
@@ -129,9 +135,9 @@ const deriveSensitiveSignals = (request) => {
       for (const match of aliasMatches(observation.text, request.aliases)) if (observation.modality !== 'AUDIO_TRANSCRIPT' || match.entry.kind === 'BRAND_TEXT') push(observation, observation.modality === 'AUDIO_TRANSCRIPT' ? 'SPOKEN_BRAND' : match.entry.kind, match.entry.canonical, match.matched, match.partial ? Math.min(observation.confidence, 0.89) : observation.confidence);
       if (observation.modality === 'OCR_TSV') {
         const urlPattern = /https?:\/\/[^\s]+/giu; const emailPattern = /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/gu;
-        for (const raw of observation.text.match(urlPattern) ?? []) { const value = raw.replace(/[),.;]+$/gu, ''); if (value) push(observation, 'URL', value); }
+        for (const raw of observation.text.match(urlPattern) ?? []) { let value = raw.replace(/[.,;]+$/gu, ''); for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) while (value.endsWith(close) && [...value].filter((item) => item === close).length > [...value].filter((item) => item === open).length) value = value.slice(0, -1); if (value) push(observation, 'URL', value); }
         const withoutUrls = observation.text.replace(urlPattern, ' '); for (const value of withoutUrls.match(emailPattern) ?? []) push(observation, 'EMAIL', value);
-        const withoutStructured = withoutUrls.replace(emailPattern, ' '); for (const value of withoutStructured.match(/(?:[A-Za-z0-9._-]+\/){2,}[A-Za-z0-9._-]+/gu) ?? []) push(observation, 'FILE_PATH', value);
+        const withoutStructured = withoutUrls.replace(emailPattern, ' '); const paths = [...withoutStructured.match(/\/?(?:[A-Za-z0-9._-]+\/){2,}[A-Za-z0-9._-]+\.[A-Za-z0-9_-]{1,12}/gu) ?? [], ...withoutStructured.match(/[A-Za-z]:\\(?:[A-Za-z0-9._ -]+\\)+[A-Za-z0-9._ -]+\.[A-Za-z0-9_-]{1,12}/gu) ?? []]; for (const value of paths) push(observation, 'FILE_PATH', value);
       }
     }
   }

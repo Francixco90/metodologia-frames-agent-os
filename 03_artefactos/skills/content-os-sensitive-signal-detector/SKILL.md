@@ -16,8 +16,8 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 
 ## Secuencia
 
-1. Verificar bytes físicos de fuente, caso, actor y registros hash-bound de aliases y
-   plantillas.
+1. Verificar bytes físicos de fuente, probe de dimensiones/duración, caso, actor y
+   registros hash-bound de aliases y plantillas.
 2. Exigir cobertura declarada para texto visual, plantillas, rostros y audio. `UNKNOWN`
    bloquea. En este candidato data-only, `NOT_PRESENT` visual no se acredita; audio solo
    lo admite cuando la fuente declara materialmente que no contiene audio.
@@ -30,8 +30,8 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 ## Reglas
 
 - Alias parcial de cuatro o más caracteres produce hallazgo trazable, no certeza inventada.
-- Plantillas, fuente y evidencia deben incluir bytes y SHA-256; drift físico, base64 no
-  canónico, ID desconocido o ref no canónica bloquea.
+- Plantillas, fuente, probe y evidencia deben incluir bytes y SHA-256; drift físico,
+  metadatos sueltos, base64 no canónico, ID desconocido o ref no canónica bloquea.
 - Un rostro requiere observación manual hash-bound en esta versión. `FACE_AUTO` y cualquier
   modelo no registrado son `coverage_gap`, no una capacidad implícita.
 - Cobertura y observaciones requieren recibos JSON canónicos ligados a la fuente, modalidad
@@ -40,6 +40,7 @@ detecta señales; no decide `KEEP`/`PROTECT`, no modifica media y no autoriza pu
 - `CONFIRMED`, `REVIEW_REQUIRED` y `UNKNOWN` describen evidencia, no sensibilidad. Toda
   confianza `UNKNOWN` mantiene `BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN`.
 - Dos reapariciones de una señal conservan spans distintos. No se rellena el intervalo.
+- Rutas requieren forma de archivo; fechas con barras no se convierten en detecciones.
 - No guardar razonamiento privado, locators absolutos, campos extra, red, reloj o azar.
 
 ## Contrato y uso

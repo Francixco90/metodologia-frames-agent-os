@@ -12,6 +12,7 @@ runtime_boundary:
   allowed_scoped:
     - local_json_parse
     - physical_source_and_receipt_binding
+    - canonical_source_probe_binding
     - canonical_hash_verification
     - deterministic_inventory_derivation
     - strict_schema_validation
