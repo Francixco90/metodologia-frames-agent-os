@@ -94,7 +94,7 @@ const assertRequest = (request) => {
     const entry = aliasesByCanonical.get(normalizedIdentity(signal.identity.canonical)); const expectedKind = signal.kind === 'SPOKEN_BRAND' ? 'BRAND_TEXT' : signal.kind; const observed = normalizedIdentity(signal.identity.matched_alias);
     const matchingOwners = aliases.filter((candidate) => [candidate.canonical, ...candidate.variants].some((value) => { const declared = normalizedIdentity(value); return declared === observed || (tokenIdentity(signal.identity.matched_alias) && observed.length >= 4 && declared.length >= 4 && (declared.startsWith(observed) || observed.startsWith(declared))); })).map(({canonical}) => canonical);
     const exactBound = entry && [entry.canonical, ...entry.variants].some((value) => normalizedIdentity(value) === observed);
-    expect(entry?.canonical === signal.identity.canonical && entry.kind === expectedKind && new Set(matchingOwners).size === 1 && matchingOwners[0] === entry.canonical && (exactBound || signal.confidence.status === 'REVIEW_REQUIRED'), 'PLANNER-SIGNAL-ALIAS-BINDING');
+    expect(entry?.canonical === signal.identity.canonical && entry.kind === expectedKind && new Set(matchingOwners).size === 1 && matchingOwners[0] === entry.canonical && (exactBound || signal.confidence.status !== 'CONFIRMED'), 'PLANNER-SIGNAL-ALIAS-BINDING');
   }
   const receipt = physical(request.inventory_verification_receipt, 'PLANNER-INVENTORY-RECEIPT');
   keys(receipt, ['schema_version', 'actor_id', 'case_id', 'inventory_sha256', 'inventory_canonical_sha256', 'source'], 'PLANNER-INVENTORY-RECEIPT-CONTENT');
