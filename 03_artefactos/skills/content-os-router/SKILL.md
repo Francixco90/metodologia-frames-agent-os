@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
-version: 0.8.1
+version: 0.8.2
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
@@ -17,17 +17,12 @@ metadata:
 Lee [`context.md`](context.md) antes de cargar referencias. Define contexto, ruta, efectos,
 gates y handoff.
 
-Puerta para contenido, carrera, extensiones y mantenimiento. Enruta una vez,
-carga capabilities y no instala,
-usa red ni renderiza; `content-os-core` conserva el adapter HTML→MP4.
+Puerta para contenido, carrera, extensiones y mantenimiento. Enruta una vez, carga
+capabilities y no instala, usa red ni renderiza; `content-os-core` conserva HTML→MP4.
 
 `dispatchIntent()` conserva compatibilidad: R6/R7/R8/R9 invocan sus adapters; R0 no.
 Sin `adapter_invoked` y `domain_intent` solo hay planificación. R8/R9 requieren
 aprobación y las señales mixtas nunca fusionan dominios.
-
-- **Intent** — source + deliverable.
-- **Route** — workflow Fase 3 owner.
-- **Capability map** — skills Fase 2 cargados bajo demanda.
 
 ## Default v2: brief antes de producir
 
@@ -42,16 +37,20 @@ aprobación y las señales mixtas nunca fusionan dominios.
    producir, salvo autorización end-to-end inequívoca ya registrada. La distribución
    siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`.
 
-Antes, `runFirstTurnGatewayV1` emite `AssistanceEnvelopeV1` y diferencia saludo, acción,
-ambigüedad y reanudación. Un saludo muestra **Frames ContentOS · por
-MetodologIA** y `Crear · Mejorar · Planear · Explorar` sin prime ni writes. Un
-pedido accionable omite el menú y prepara un preview del brief. Skills del plan
-permanecen `planned` hasta que un `SkillInvocationReceiptV1` las liga a actor,
-WorkOrder y outputs materiales. [CONFIG]
+`runFirstTurnGatewayV1` diferencia saludo, acción, ambigüedad y reanudación mediante
+`AssistanceEnvelopeV1`. El saludo muestra **Frames ContentOS · por MetodologIA** y
+`Crear · Mejorar · Planear · Explorar` sin writes. Skills siguen `planned` hasta que
+`SkillInvocationReceiptV1` las liga a actor, WorkOrder y outputs. [CONFIG]
 
 La metadata exterior deriva siempre del `AssistanceEnvelopeV1`: `BLOCKED` publica
 `NEEDS_INPUT`, `next_gate: null` y el `coverage_gap` material; `ROUTED` espera una
 selección y no anuncia anticipadamente un gate de aprobación. [CONFIG]
+
+El transporte público acepta únicamente `decision_funnel`, `decision_selection` y
+`decision_refs`. Funnel sin selección muestra exactamente dos opciones y no escribe;
+la selección ligada habilita el brief local, pero referencias ausentes, cruzadas o no
+canónicas bloquean antes de materializar. `experience_view` conserva los aportes
+rescatados de candidatos descartados sin registrar razonamiento privado. [CONFIG]
 
 ```bash
 node --import tsx <SKILL_DIR>/scripts/route-intent.mjs request.json
@@ -153,13 +152,9 @@ duplica.
 
 ## Critical Constraints
 
-- No `Date.now()`/`Math.random()`/`new Date()`/`performance.now()` en el router
-  (hereda `content-os-core`).
-- No `fetch`/`setTimeout`/`setInterval` en el route path (hereda core).
-- No external assets / network / Google Fonts CDN (offline-first).
-- No route-by-keyword. Matchea deliverable, no palabra suelta.
-- No render en el router. El adapter vive en `content-os-core`.
-- Sin `route` o sin `capability_map[]` en el brief: STOP, no despaches.
+- Mantén el route path determinista, offline y sin render.
+- Matchea el deliverable, nunca una palabra suelta.
+- Sin `route` o `capability_map[]`: STOP, no despaches.
 
 ## Stop rules
 
