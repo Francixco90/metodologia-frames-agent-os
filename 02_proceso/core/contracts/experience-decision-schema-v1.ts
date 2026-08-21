@@ -65,9 +65,7 @@ export const DecisionFunnelV1Schema = z
       context.addIssue({code: 'custom', message: 'Elevated risk requires three interactions.'});
     }
     const interactionIds = value.interactions.map(({interactionId}) => interactionId);
-    const evidence = value.interactions.map(({source, evidenceSha256}) =>
-      [source, evidenceSha256].join(':'),
-    );
+    const evidence = value.interactions.map(({evidenceSha256}) => evidenceSha256);
     if (
       new Set(interactionIds).size !== value.interactions.length ||
       new Set(evidence).size !== value.interactions.length

@@ -52,12 +52,19 @@ const buildFunnel = () =>
 describe('decision-funnel-v1 adversarial contract', () => {
   it('requires unique interactions and three contexts for elevated risk', () => {
     const valid = buildFunnel();
-    expect(() =>
-      buildDecisionFunnelV1({
-        ...valid,
-        interactions: [valid.interactions[0]!, valid.interactions[0]!],
-      }),
-    ).toThrow(/unique/u);
+    for (const interactions of [
+      [valid.interactions[0]!, valid.interactions[0]!],
+      [
+        valid.interactions[0]!,
+        {
+          ...valid.interactions[1]!,
+          source: 'VERIFIED_RESUME' as const,
+          evidenceSha256: valid.interactions[0]!.evidenceSha256,
+        },
+      ],
+    ]) {
+      expect(() => buildDecisionFunnelV1({...valid, interactions})).toThrow(/unique/u);
+    }
     expect(() => buildDecisionFunnelV1({...valid, riskClass: 'PRIVACY'})).toThrow(
       /three interactions/u,
     );
