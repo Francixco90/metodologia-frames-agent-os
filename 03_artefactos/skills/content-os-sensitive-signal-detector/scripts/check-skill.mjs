@@ -82,6 +82,8 @@ expectBlocked('alias-drift', (value) => { value.aliases_sha256 = '0'.repeat(64);
 expectBlocked('alias-registry-ambiguity', (value) => { value.aliases.push({alias_id: 'AL-OTHER', kind: 'BRAND_TEXT', canonical: 'Other', variants: ['Sofka']}); value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-AMBIGUOUS');
 expectBlocked('alias-canonical-duplicate-kind', (value) => { value.aliases.push({alias_id: 'AL-SOFKA-NAME', kind: 'NAME', canonical: 'Sofka', variants: ['Sofka person']}); value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
 expectBlocked('alias-canonical-blank', (value) => { value.aliases[0].canonical = ' '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
+expectBlocked('alias-canonical-padding', (value) => { value.aliases[0].canonical = ' Sofka '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
+expectBlocked('alias-variant-padding', (value) => { value.aliases[0].variants[0] = ' Sofka '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
 expectBlocked('alias-match-ambiguity', (value) => { value.aliases.push({alias_id: 'AL-SOFK-TARGET', kind: 'BRAND_TEXT', canonical: 'SofkTarget', variants: ['SofkTarget']}); value.aliases_sha256 = digest(value.aliases); value.observations[0].text = 'Sofk'; rebind(value, 0); }, 'DETECTOR-ALIAS-MATCH-AMBIGUOUS');
 expectBlocked('template-drift', (value) => { value.templates[0].content_base64 = Buffer.from('drift').toString('base64'); }, 'DETECTOR-TEMPLATE-PHYSICAL-DRIFT');
 expectBlocked('duplicate-observation-id', (value) => { value.observations.push(structuredClone(value.observations[0])); }, 'DETECTOR-OBSERVATION-INVALID');
@@ -99,12 +101,13 @@ expectBlocked('audio-overflow', (value) => { value.observations[6].time_span_ms.
 expectBlocked('incomplete-coverage', (value) => { value.observations = value.observations.filter(({modality}) => modality !== 'AUDIO_TRANSCRIPT'); }, 'DETECTOR-COVERAGE-INCOMPLETE');
 const boundary = structuredClone(request); boundary.observations[0].text = 'signposted'; rebind(boundary, 0);
 if (detectSensitiveSignals(boundary).signals.some((signal) => signal.identity.canonical === 'GNP' && signal.modality === 'VISUAL_TEXT')) throw new Error('SSD-SUBSTRING-FALSE-POSITIVE');
-const structured = structuredClone(request); structured.observations[0].text = 'https://example.test/Foo_(bar) https://example.test/demo]. /workspace/class/private/absolute.csv C:\\workspace\\class\\windows.csv 2026/08/21'; rebind(structured, 0);
+const structured = structuredClone(request); structured.observations[0].text = 'https://example.test/Foo_(bar) https://example.test/demo]. https://example.test/nested).] /workspace/class/private/absolute.csv C:\\workspace\\class\\windows.csv 2026/08/21'; rebind(structured, 0);
 const structuredSignals = detectSensitiveSignals(structured).signals;
-for (const expected of ['https://example.test/Foo_(bar)', 'https://example.test/demo', '/workspace/class/private/absolute.csv', 'C:\\workspace\\class\\windows.csv']) if (!structuredSignals.some((signal) => signal.identity.canonical === expected)) throw new Error(`SSD-STRUCTURED-PATTERN ${expected}`);
+for (const expected of ['https://example.test/Foo_(bar)', 'https://example.test/demo', 'https://example.test/nested', '/workspace/class/private/absolute.csv', 'C:\\workspace\\class\\windows.csv']) if (!structuredSignals.some((signal) => signal.identity.canonical === expected)) throw new Error(`SSD-STRUCTURED-PATTERN ${expected}`);
 if (structuredSignals.some((signal) => signal.kind === 'FILE_PATH' && signal.identity.canonical.includes('2026/08/21'))) throw new Error('SSD-DATE-PATH-FALSE-POSITIVE');
-const unicode = structuredClone(request); unicode.aliases.push({alias_id: 'AL-FFI', kind: 'BRAND_TEXT', canonical: 'ffi', variants: ['ﬃ']}); unicode.aliases_sha256 = digest(unicode.aliases); unicode.observations[0].text = 'ﬃ '; rebind(unicode, 0);
-if (detectSensitiveSignals(unicode).signals.find((signal) => signal.identity.canonical === 'ffi')?.identity.matched_alias !== 'ﬃ') throw new Error('SSD-UNICODE-MATCHED-ALIAS');
+const unicode = structuredClone(request); unicode.aliases.push({alias_id: 'AL-FFI', kind: 'BRAND_TEXT', canonical: 'ffi', variants: ['ﬃ']}); unicode.aliases_sha256 = digest(unicode.aliases); unicode.observations[0].text = 'ﬃ Sofka'; rebind(unicode, 0);
+const unicodeSignals = detectSensitiveSignals(unicode).signals;
+if (unicodeSignals.find((signal) => signal.identity.canonical === 'ffi')?.identity.matched_alias !== 'ﬃ' || unicodeSignals.find((signal) => signal.identity.canonical === 'Sofka')?.identity.matched_alias !== 'Sofka') throw new Error('SSD-UNICODE-MATCHED-ALIAS');
 const unknownConfidence = structuredClone(request); unknownConfidence.observations[0].text = 'benign'; unknownConfidence.observations[0].confidence = 0.2; rebind(unknownConfidence, 0);
 if (detectSensitiveSignals(unknownConfidence).status !== 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN') throw new Error('SSD-UNKNOWN-CONFIDENCE');
 const rehash = (value) => { value.canonical_sha256 = digest(Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'canonical_sha256'))); };
@@ -122,4 +125,4 @@ for (const mutate of [
   try { assertSensitiveSignalInventory(candidate, request); } catch { continue; }
   throw new Error('SSD-INVENTORY-FORGERY-ACCEPTED');
 }
-console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 39 adversarial gates.`);
+console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 41 adversarial gates.`);

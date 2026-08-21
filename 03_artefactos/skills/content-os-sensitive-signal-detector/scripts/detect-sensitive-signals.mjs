@@ -45,20 +45,29 @@ const aliasMatches = (text, aliases) => {
   const raw = String(text); const haystack = normalized(raw); const tokens = [...raw.matchAll(/[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu)]; const found = [];
   for (const entry of aliases) {
     const seen = new Set();
-    for (const variant of [entry.canonical, ...entry.variants]) {
+    for (const variant of [...entry.variants, entry.canonical]) {
       const needle = normalized(variant); if (seen.has(needle)) continue; seen.add(needle);
       const exactMatch = new RegExp(`(?<![\\p{L}\\p{N}])${escape(needle)}(?![\\p{L}\\p{N}])`, 'iu').exec(haystack);
-      if (exactMatch) { found.push({entry, partial: false, matched: raw.slice(exactMatch.index, exactMatch.index + exactMatch[0].length).trim()}); continue; }
+      if (exactMatch) { found.push({entry, partial: false, matched: variant.trim()}); continue; }
       if (needle.length < 4) continue;
       for (const token of tokens) { const observed = normalized(token[0]); if (observed.length >= 4 && (needle.startsWith(observed) || observed.startsWith(needle))) found.push({entry, partial: true, matched: token[0]}); }
     }
   }
+  found.sort((left, right) => Number(left.partial) - Number(right.partial));
   const owners = new Map();
   for (const item of found) { const key = normalized(item.matched); const owner = owners.get(key); if (owner && owner !== item.entry.canonical) throw new Error('DETECTOR-ALIAS-MATCH-AMBIGUOUS'); owners.set(key, item.entry.canonical); }
   return found.filter((item, index) => found.findIndex((candidate) => candidate.entry.canonical === item.entry.canonical && normalized(candidate.matched) === normalized(item.matched)) === index);
 };
 const confidence = (score) => ({score, status: score >= 0.9 ? 'CONFIRMED' : score >= 0.5 ? 'REVIEW_REQUIRED' : 'UNKNOWN'});
 const signalFingerprint = ({signal_id: _id, sequence: _sequence, ...signal}) => digest(signal);
+const trimUrl = (raw) => {
+  let value = raw; let previous;
+  do {
+    previous = value; value = value.replace(/[.,;]+$/gu, '');
+    for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) if (value.endsWith(close) && [...value].filter((item) => item === close).length > [...value].filter((item) => item === open).length) value = value.slice(0, -1);
+  } while (value !== previous);
+  return value;
+};
 
 const assertInventoryShape = (inventory) => {
   if (!validateInventory(inventory)) throw new Error(`DETECTOR-INVENTORY-SCHEMA ${new Ajv2020().errorsText(validateInventory.errors)}`);
@@ -96,7 +105,7 @@ const deriveSensitiveSignals = (request) => {
   for (const entry of request.aliases) {
     exact(entry, ['alias_id', 'kind', 'canonical', 'variants'], 'DETECTOR-ALIAS');
     const canonicalKey = typeof entry.canonical === 'string' ? normalized(entry.canonical.trim()) : '';
-    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || typeof entry.canonical !== 'string' || !entry.canonical.trim() || aliasCanonicals.has(canonicalKey) || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every((variant) => typeof variant === 'string' && variant.trim())) throw new Error('DETECTOR-ALIAS-INVALID');
+    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || typeof entry.canonical !== 'string' || !entry.canonical.trim() || entry.canonical !== entry.canonical.trim() || aliasCanonicals.has(canonicalKey) || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every((variant) => typeof variant === 'string' && variant.length > 0 && variant === variant.trim())) throw new Error('DETECTOR-ALIAS-INVALID');
     aliasIds.add(entry.alias_id); aliasCanonicals.add(canonicalKey);
     for (const variant of [entry.canonical, ...entry.variants]) { const key = normalized(variant); const owner = aliasVariants.get(key); if (owner && owner !== entry.canonical) throw new Error('DETECTOR-ALIAS-AMBIGUOUS'); aliasVariants.set(key, entry.canonical); }
   }
@@ -135,7 +144,7 @@ const deriveSensitiveSignals = (request) => {
       for (const match of aliasMatches(observation.text, request.aliases)) if (observation.modality !== 'AUDIO_TRANSCRIPT' || match.entry.kind === 'BRAND_TEXT') push(observation, observation.modality === 'AUDIO_TRANSCRIPT' ? 'SPOKEN_BRAND' : match.entry.kind, match.entry.canonical, match.matched, match.partial ? Math.min(observation.confidence, 0.89) : observation.confidence);
       if (observation.modality === 'OCR_TSV') {
         const urlPattern = /https?:\/\/[^\s]+/giu; const emailPattern = /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/gu;
-        for (const raw of observation.text.match(urlPattern) ?? []) { let value = raw.replace(/[.,;]+$/gu, ''); for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) while (value.endsWith(close) && [...value].filter((item) => item === close).length > [...value].filter((item) => item === open).length) value = value.slice(0, -1); if (value) push(observation, 'URL', value); }
+        for (const raw of observation.text.match(urlPattern) ?? []) { const value = trimUrl(raw); if (value) push(observation, 'URL', value); }
         const withoutUrls = observation.text.replace(urlPattern, ' '); for (const value of withoutUrls.match(emailPattern) ?? []) push(observation, 'EMAIL', value);
         const withoutStructured = withoutUrls.replace(emailPattern, ' '); const paths = [...withoutStructured.match(/\/?(?:[A-Za-z0-9._-]+\/){2,}[A-Za-z0-9._-]+\.[A-Za-z0-9_-]{1,12}/gu) ?? [], ...withoutStructured.match(/[A-Za-z]:\\(?:[A-Za-z0-9._ -]+\\)+[A-Za-z0-9._ -]+\.[A-Za-z0-9_-]{1,12}/gu) ?? []]; for (const value of paths) push(observation, 'FILE_PATH', value);
       }
