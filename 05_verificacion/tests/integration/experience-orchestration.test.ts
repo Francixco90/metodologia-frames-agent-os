@@ -95,7 +95,9 @@ describe('Frames causal orchestration', () => {
       dispatchIntent: (input: Record<string, unknown>) => {
         route_id: string;
         adapter_invoked: boolean;
-        next_gate: string;
+        next_gate: string | null;
+        decision: string;
+        coverage_gap: string | null;
         domain_intent: null | {schema_version: string; next_gate: string};
       };
     };
@@ -106,21 +108,40 @@ describe('Frames causal orchestration', () => {
     expect(content).toMatchObject({
       route_id: 'R6',
       adapter_invoked: true,
-      next_gate: 'MW_BRIEF_APPROVED',
+      decision: 'NEEDS_INPUT',
+      next_gate: null,
       domain_intent: {schema_version: 'content-intent-v2', next_gate: 'MW_BRIEF_APPROVED'},
     });
     expect(career).toMatchObject({
       route_id: 'R7',
       adapter_invoked: true,
-      next_gate: 'CR_BRIEF_APPROVED',
+      decision: 'NEEDS_INPUT',
+      next_gate: null,
       domain_intent: {schema_version: 'career-intent-v1', next_gate: 'CR_BRIEF_APPROVED'},
     });
     expect(ambiguous).toMatchObject({
       route_id: 'R0',
       adapter_invoked: false,
+      decision: 'NEEDS_INPUT',
       domain_intent: null,
-      next_gate: 'R0',
+      next_gate: null,
     });
+  });
+
+  it('derives blocked metadata from the envelope instead of advertising a future gate', async () => {
+    const {dispatchIntent} = (await import(
+      pathToFileURL(resolve('03_artefactos/skills/content-os-router/scripts/route-intent.mjs')).href
+    )) as {dispatchIntent: (input: Record<string, unknown>) => Record<string, unknown>};
+    const result = dispatchIntent({request: 'Ayúdame a generar una pieza'}) as {
+      coverage_gap: string;
+    };
+    expect(result).toMatchObject({
+      route_id: 'R6',
+      decision: 'NEEDS_INPUT',
+      next_gate: null,
+      experience_envelope: {state: 'BLOCKED'},
+    });
+    expect(result.coverage_gap).not.toHaveLength(0);
   });
 
   it.each([

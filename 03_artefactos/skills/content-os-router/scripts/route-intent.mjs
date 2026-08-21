@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-
 import {hashExperienceValue} from '../../../../02_proceso/core/contracts/index.ts';
 import {
   orchestrateLocalExperienceV1,
@@ -71,7 +70,6 @@ const planFromDomain = (routeId, domain) => {
     ghostOptions: ['Ver ruta', 'Ajustar brief'],
   };
 };
-
 export const dispatchIntent = (input) => {
   const rawRequest = normalize(input.request);
   if (!rawRequest) throw new Error('INTENT-DISPATCH-001 request is required');
@@ -124,17 +122,21 @@ export const dispatchIntent = (input) => {
     : routeId === 'R6' ? 'content-os-router/scripts/route-content.mjs'
       : routeId === 'R8' ? 'workflows/local-extensions/intent-router.ts'
         : routeId === 'R9' ? 'workflows/maintenance/route-maintenance-v1.ts' : null;
-  const nextGate = domainIntent?.next_gate ?? routeId;
-  const decision = domainIntent?.decision ?? (
-    envelope.interactionClass === 'ASSIST_ONLY' ? 'ASSIST_ONLY'
-      : envelope.state === 'RESUMABLE' ? 'ROUTED' : 'NEEDS_INPUT'
-  );
+  const decision = {
+    ASSISTING: 'ASSIST_ONLY', ROUTED: 'AWAITING_SELECTION',
+    READY_FOR_BRIEF: 'READY_FOR_BRIEF', RESUMABLE: 'ROUTED', BLOCKED: 'NEEDS_INPUT',
+  }[envelope.state];
+  const nextGate = ['ROUTED', 'BLOCKED'].includes(envelope.state)
+    ? null : domainIntent?.next_gate ?? routeId;
+  const coverageGap = envelope.state === 'BLOCKED'
+    ? envelope.blockingGaps.join(' | ') || 'EXPERIENCE-ENVELOPE-BLOCKED'
+    : null;
   const commandView = menuCommand
     ? renderExperienceMenuV1()
     : routeCommand ? renderExperienceRouteV1(envelope, domainIntent?.next_gate ?? routeId) : null;
   return {
     schema_version: 'frames-route-decision-v1', request_hash: envelope.requestHash,
-    route_id: routeId, adapter, next_gate: nextGate, decision,
+    route_id: routeId, adapter, next_gate: nextGate, decision, coverage_gap: coverageGap,
     adapter_invoked: adapterInvoked, domain_intent: domainIntent,
     experience_envelope: envelope, command_view: commandView, resume_error: resumeError,
     launch_probe: {
@@ -144,14 +146,13 @@ export const dispatchIntent = (input) => {
     },
   };
 };
-
 export const routeIntent = (input) => dispatchIntent(input);
-
 export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
   const decision = dispatchIntent(input);
   if (decision.command_view || !decision.domain_intent || decision.experience_envelope.state !== 'READY_FOR_BRIEF') {
     return {...decision, local_execution: {
-      status: 'NEEDS_INPUT', materialized: false, next_gate: 'EXP_BRIEF_APPROVED',
+      status: 'NEEDS_INPUT', materialized: false, next_gate: decision.next_gate,
+      coverage_gap: decision.coverage_gap,
     }};
   }
   if (decision.route_id === 'R8' || decision.route_id === 'R9') {
@@ -191,7 +192,6 @@ export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
   });
   return {...decision, next_gate: localExecution.nextGate, local_execution: localExecution};
 };
-
 if (process.argv[1]?.endsWith('route-intent.mjs')) {
   const inputPath = process.argv[2];
   if (!inputPath) throw new Error('Usage: route-intent.mjs <request.json>');
