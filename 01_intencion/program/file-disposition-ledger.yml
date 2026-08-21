@@ -416,28 +416,28 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94687
-    v3_rolling_adjustment_words: 6501
+    baseline_words: 94691
+    v3_rolling_adjustment_words: 6505
     original_baseline_words: 88186
-    final_words: 110835
+    final_words: 110839
     maximum_multiplier: 1.5
-    maximum_words: 142030
+    maximum_words: 142036
     actual_multiplier: 1.1705
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94687
-    v3_rolling_adjustment_words: 6501
+    baseline_words: 94691
+    v3_rolling_adjustment_words: 6505
     original_baseline_words: 88186
-    final_words: 110835
-    maximum_words: 189374
+    final_words: 110839
+    maximum_words: 189382
     word_multiplier: 1.1705
-    baseline_loc: 35583
-    v3_rolling_adjustment_loc: 2695
+    baseline_loc: 35584
+    v3_rolling_adjustment_loc: 2696
     original_baseline_loc: 32888
-    final_loc: 41575
-    maximum_loc: 71166
+    final_loc: 41576
+    maximum_loc: 71168
     loc_multiplier: 1.1684
     maximum_multiplier: 2
     status: pass
@@ -2192,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: fddfed33ce3ccc0209b23776df656aa6d5f5bc36d911809113d28d8a01d745eb
-      current_words: 87
-      current_loc: 21
+      current_sha256: 2563dcc59a11b1d53d5e5064178aeafa47c1382b7e02c39cb011d470a203b7c9
+      current_words: 91
+      current_loc: 22
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**

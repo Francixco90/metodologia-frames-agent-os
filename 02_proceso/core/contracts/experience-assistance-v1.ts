@@ -6,6 +6,7 @@ import {
   RelativePathSchema,
   Sha256Schema,
 } from './primitives.ts';
+import {DecisionFunnelV1Schema, DecisionSelectionV1Schema} from './experience-decision-v1.ts';
 
 export const InteractionClassV1Schema = z.enum([
   'ASSIST_ONLY',
@@ -70,6 +71,8 @@ export const AssistanceEnvelopeV1Schema = z
     briefPreview: BriefPreviewV1Schema.nullable(),
     recommendedNextAction: ShortTextSchema,
     ghostOptions: z.array(ShortTextSchema).max(4),
+    decisionFunnel: DecisionFunnelV1Schema.nullable().optional(),
+    decisionSelection: DecisionSelectionV1Schema.nullable().optional(),
     writePolicy: z.enum(['NONE', 'PREVIEW_ONLY', 'LOCAL_REVERSIBLE']),
     effects: z.array(z.enum(['READ_ONLY', 'LOCAL_REVERSIBLE'])).max(2),
     state: ExperienceStateV1Schema,
@@ -113,6 +116,9 @@ export const AssistanceEnvelopeV1Schema = z
           message: 'READY_FOR_BRIEF requires an executable plan, active skill and brief preview.',
         });
       }
+    }
+    if (value.decisionSelection != null && value.decisionFunnel == null) {
+      context.addIssue({code: 'custom', message: 'Decision selection requires its funnel.'});
     }
   });
 export type AssistanceEnvelopeV1 = z.infer<typeof AssistanceEnvelopeV1Schema>;

@@ -11,9 +11,75 @@ import {
   type ExperienceWorkflowDefinitionV1,
   type GatewayRouteHandlerV1,
 } from 'workflows/core/index.ts';
+import {
+  DecisionFunnelV1Schema,
+  assertDecisionSelectionV1,
+  buildDecisionFunnelV1,
+  createDecisionSelectionV1,
+  type DecisionFunnelV1,
+} from 'core/contracts/experience-decision-v1.ts';
+import {renderExperienceView} from 'workflows/experience/index.ts';
 
 const digest = 'a'.repeat(64);
-const r6Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
+const decisionFor = (
+  requestHash: string,
+): {
+  decisionFunnel: DecisionFunnelV1;
+  decisionSelection: ReturnType<typeof createDecisionSelectionV1>;
+} => {
+  const decisionFunnel = buildDecisionFunnelV1({
+    requestHash,
+    riskClass: 'STANDARD',
+    interactions: [1, 2].map((index) => ({
+      interactionId: `interaction-${index}`,
+      source: 'CURRENT' as const,
+      summary: `Contexto verificado ${index}.`,
+      evidenceSha256: String.fromCharCode(96 + index).repeat(64),
+      verified: true as const,
+    })),
+    candidates: Array.from({length: 5}, (_, index) => ({
+      candidateId: `candidate-${index + 1}`,
+      rank: index + 1,
+      title: `Candidato ${index + 1}`,
+      summary: `Dirección ${index + 1}.`,
+      evidenceRefs: [digest],
+      scores: {
+        evidence: 20,
+        publishability: 18,
+        audienceValue: 17,
+        visualImpact: 12,
+        reuse: 8,
+        effort: 7,
+      },
+      total: 82,
+    })),
+    options: [
+      {
+        optionId: 'option-a',
+        label: 'Dirección A',
+        summary: 'Síntesis A.',
+        primaryCandidateId: 'candidate-1',
+        absorbedCandidateIds: ['candidate-1', 'candidate-3', 'candidate-4', 'candidate-5'],
+      },
+      {
+        optionId: 'option-b',
+        label: 'Dirección B',
+        summary: 'Síntesis B.',
+        primaryCandidateId: 'candidate-2',
+        absorbedCandidateIds: ['candidate-2', 'candidate-3', 'candidate-4', 'candidate-5'],
+      },
+    ],
+  });
+  return {
+    decisionFunnel,
+    decisionSelection: createDecisionSelectionV1(decisionFunnel, {
+      selectedOptionId: 'option-a',
+      actorId: 'human-javier',
+      selectedAt: '2026-08-21T12:00:00.000Z',
+    }),
+  };
+};
+const r6Handler = vi.fn<GatewayRouteHandlerV1>(({routeId, requestHash}) => ({
   routeId,
   workflowPlan: ['P03.interpret', 'P05.design', 'P07.review', 'P08.edit'],
   activeStep: 'P03.interpret',
@@ -28,8 +94,9 @@ const r6Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
   },
   recommendedNextAction: 'Revisar y aprobar el brief.',
   ghostOptions: ['Ajustar el brief', 'Ver ruta'],
+  ...decisionFor(requestHash),
 }));
-const r7Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
+const r7Handler = vi.fn<GatewayRouteHandlerV1>(({routeId, requestHash}) => ({
   routeId,
   workflowPlan: ['C00.intake', 'C01.evidence', 'C02.position', 'C06.cv', 'C08.qa'],
   activeStep: 'C00.intake',
@@ -40,6 +107,7 @@ const r7Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
     materialized: false,
   },
   recommendedNextAction: 'Revisar y aprobar el brief profesional.',
+  ...decisionFor(requestHash),
 }));
 
 const definition: ExperienceWorkflowDefinitionV1 = {
@@ -137,6 +205,46 @@ describe('Frames causal orchestration', () => {
       expect(other).not.toHaveBeenCalled();
     },
   );
+
+  it('renders exactly two synthesized options and no write effect before selection', () => {
+    const optionsOnly: GatewayRouteHandlerV1 = (input) => {
+      const plan = structuredClone(r6Handler(input));
+      delete plan.decisionSelection;
+      return plan;
+    };
+    const envelope = runFirstTurnGatewayV1(
+      {prompt: 'Ayúdame a generar una pieza'},
+      {R6: optionsOnly, R7: r7Handler},
+    );
+    const view = renderExperienceView(envelope);
+    expect(envelope).toMatchObject({state: 'ROUTED', writePolicy: 'NONE', effects: []});
+    expect(envelope.briefPreview).toBeNull();
+    expect(envelope.ghostOptions).toEqual(['Dirección A: Síntesis A.', 'Dirección B: Síntesis B.']);
+    expect(view.components.some(({kind}) => kind === 'DecisionGate')).toBe(true);
+  });
+
+  it('rejects forged selections, duplicate candidates and shallow privacy context', () => {
+    const valid = decisionFor(digest);
+    expect(DecisionFunnelV1Schema.parse(valid.decisionFunnel).candidates).toHaveLength(5);
+    expect(valid.decisionFunnel.options).toHaveLength(2);
+    expect(() =>
+      assertDecisionSelectionV1(
+        {...valid.decisionFunnel, canonicalSha256: 'f'.repeat(64)},
+        valid.decisionSelection,
+      ),
+    ).toThrow(/HASH-DRIFT/u);
+    expect(() =>
+      DecisionFunnelV1Schema.parse({
+        ...valid.decisionFunnel,
+        candidates: valid.decisionFunnel.candidates.map((candidate, index) =>
+          index === 1 ? {...candidate, candidateId: 'candidate-1'} : candidate,
+        ),
+      }),
+    ).toThrow(/unique/u);
+    expect(() => buildDecisionFunnelV1({...valid.decisionFunnel, riskClass: 'PRIVACY'})).toThrow(
+      /three interactions/u,
+    );
+  });
 
   it('compiles exact steps and primes only the active context', () => {
     const envelope = runFirstTurnGatewayV1(
