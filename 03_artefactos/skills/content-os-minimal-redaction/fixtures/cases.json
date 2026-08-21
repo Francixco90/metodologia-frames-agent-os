@@ -1,0 +1,13 @@
+{
+  "schema_version": "minimal-redaction-fixture-catalog-v1",
+  "cases": [
+    {"id": "localized-static-logo", "expect": "LOCAL_BLUR_WITH_FEATHER"},
+    {"id": "tracked-moving-logo", "expect": "SEQUENTIAL_LOCAL_BLUR"},
+    {"id": "peripheral-tool-chrome", "expect": "TEMPORAL_REFRAME"},
+    {"id": "spoken-brand", "expect": "IN_SPAN_FADED_SILENCE_AND_CAPTION_ELLIPSIS"},
+    {"id": "full-frame-mask", "expect": "BLOCK"},
+    {"id": "value-zone-occlusion", "expect": "BLOCK"},
+    {"id": "stale-plan-receipt", "expect": "BLOCK"},
+    {"id": "source-output-root-reuse", "expect": "BLOCK"}
+  ]
+}

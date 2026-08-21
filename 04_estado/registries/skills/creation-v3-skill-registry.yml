@@ -1970,6 +1970,17 @@ entries:
     production_runtime_status: blocked_pending_independent_review
     publication_authority: false
     tests: [node skills/content-os-contextual-privacy-planner/scripts/check-skill.mjs]
+  - skill_id: content-os-minimal-redaction
+    version: 0.1.0
+    current_state: candidate
+    execution_scope: local-candidate-material-execution
+    content_sha256: 0c2ff26fe4df9b61429435ba766ae770b755796d9a75bd68c6903e9af98068fb
+    package_manifest_sha256: 68160ed3d7b22354c564c5a1159d1605c180b5311208c61a445f3231d28a3639
+    lineage_ref: skills/content-os-minimal-redaction/LINEAGE.yml
+    dependency_receipt_ref: skills/content-os-minimal-redaction/receipts/runtime-boundary.yml
+    production_runtime_status: blocked_pending_independent_review
+    publication_authority: false
+    tests: [node --import tsx skills/content-os-minimal-redaction/scripts/check-skill.mjs]
 events:
   - {event_id: EVT-SKL-SSA-H03-001, event_order: 1, skill_id: skill-system-architect, from: null, to: candidate, actor_id: RT-07-SSS-PRODUCER}
   - {event_id: EVT-SKL-SSA-H03-002, event_order: 2, skill_id: skill-system-architect, from: candidate, to: quarantined, actor_id: RT-07-SSS-PRODUCER}
@@ -2816,3 +2827,4 @@ events:
   - {event_id: EVT-SKL-CPP-H03-005, event_order: 5, skill_id: content-os-contextual-privacy-planner, from: candidate, to: candidate, actor_id: RT-07-H03-PRIVACY-PLANNER-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: preserve_detector_partial_unknown_as_fail_closed_human_review, content_sha256: 87b273d9cf27ccf95c0731e21cf67c63a28eec54df7d92336ce7a30892cf05c0, package_manifest_sha256: 9e86ec9dfbf67e475c1dca1cfb5e10937be83b521cfa1676149c3ebaae5dfea6}
   - {event_id: EVT-SKL-CPP-H03-006, event_order: 6, skill_id: content-os-contextual-privacy-planner, from: candidate, to: candidate, actor_id: RT-07-H03-PRIVACY-PLANNER-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: quarantine_detector_malformed_urls_for_human_review_without_redaction, content_sha256: 87b273d9cf27ccf95c0731e21cf67c63a28eec54df7d92336ce7a30892cf05c0, package_manifest_sha256: dff1e47b3d3c79e9fd523f72530391f7e85bc11cd4d44535e87d7c49ed700a2a}
   - {event_id: EVT-SKL-CPP-H03-007, event_order: 7, skill_id: content-os-contextual-privacy-planner, from: candidate, to: candidate, actor_id: RT-07-H03-PRIVACY-PLANNER-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: document_malformed_url_quarantine_and_detector_hardening_gap, content_sha256: 35892af31fbc2cba3316f57aee4f8e958bfd2e9844467e5c2950c3e834902d57, package_manifest_sha256: de136a502d30642e2a2d98011bde8bd496375acd41d4d1311b00cbd290fe5d99}
+  - {event_id: EVT-SKL-CMR-H03-001, event_order: 1, skill_id: content-os-minimal-redaction, from: null, to: candidate, actor_id: RT-07-H03-MINIMAL-REDACTION-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: register_hash_bound_lossless_minimal_redaction_executor_candidate, content_sha256: 0c2ff26fe4df9b61429435ba766ae770b755796d9a75bd68c6903e9af98068fb, package_manifest_sha256: 68160ed3d7b22354c564c5a1159d1605c180b5311208c61a445f3231d28a3639}

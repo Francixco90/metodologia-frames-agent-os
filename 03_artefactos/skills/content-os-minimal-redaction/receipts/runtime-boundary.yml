@@ -1,0 +1,33 @@
+receipt_id: RCP-H03-MINIMAL-REDACTION-001
+schema_version: runtime-boundary-v1
+skill_id: content-os-minimal-redaction
+issued: 2026-08-21
+actor: RT-07-H03-MINIMAL-REDACTION-PRODUCER
+scope:
+  - hash-bound local media execution
+  - minimal visual and audio treatment
+  - exact caption substitution
+runtime_boundary:
+  allowed_scoped:
+    - local_media_snapshot
+    - ffmpeg_ffprobe_snapshot
+    - lossless_local_render
+    - canonical_receipt_materialization
+  out_of_scope:
+    - signal_detection
+    - privacy_policy_change
+    - generative_inpainting
+    - network_fetch
+    - upload
+    - publish
+runtime_rules:
+  - verified_plan_only
+  - no_overwrite
+  - separate_source_and_output_roots
+  - value_zone_overlap_fail_closed
+  - five_percent_review_target
+  - ten_percent_hard_limit
+  - rendered_draft_maximum
+notes: >
+  Candidate material executor. The receipt proves bound local execution, not absence of
+  residual signals. Independent publication verification and human playback remain mandatory.
