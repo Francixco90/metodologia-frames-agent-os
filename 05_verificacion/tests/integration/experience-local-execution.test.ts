@@ -162,7 +162,7 @@ describe('Frames local brief-first execution', () => {
     expect(result).toMatchObject({
       status: 'BLOCKED',
       materialized: false,
-      coverageGap: 'FRAMES-OUTPUT-PATH002',
+      coverageGap: 'EXPERIENCE-OUTPUT-NAMESPACE-DRIFT',
     });
     expect(readdirSync(outside)).toEqual([]);
   });

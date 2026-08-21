@@ -126,12 +126,10 @@ export async function orchestrateLocalExperienceV1(
   try {
     workOrder = createFramesWorkOrderV1(plan, input.envelope, {
       workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
-      actorId: input.actorId,
       inputRefs: input.sourceMaterials,
       decisionRefs: input.decisionRefs,
       decision: input.decision,
-      definitions,
-      writeSet: [`${outputDirectoryRef}/**`],
+      outputDirectoryRef,
       effectClass: 'LOCAL_REVERSIBLE',
     });
   } catch (error) {

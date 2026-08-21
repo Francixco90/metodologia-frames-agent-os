@@ -6,6 +6,7 @@ import {
   FakeSkillAdapterV1,
   autoPrimeExperienceV1,
   compileExperienceWorkflowPlanV1,
+  createProductiveExperienceWorkflowDefinitionsV1,
   createFramesWorkOrderV1,
   runFirstTurnGatewayV1,
   type ExperienceWorkflowDefinitionV1,
@@ -14,13 +15,14 @@ import {
 import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 const digest = 'a'.repeat(64);
+const outputDirectoryRef = 'work/private/experience/test-case';
 const r6Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
   routeId,
-  workflowPlan: ['P03.interpret', 'P05.design', 'P07.review', 'P08.edit'],
-  activeStep: 'P03.interpret',
+  workflowPlan: ['P03', 'P05', 'P07', 'P08'],
+  activeStep: 'P03',
   skillBindings: [
-    {stepId: 'P03.interpret', primarySkillId: 'content-os-router'},
-    {stepId: 'P07.review', primarySkillId: 'content-os-creative', verifierSkillId: 'RT-09'},
+    {stepId: 'P03', primarySkillId: 'content-os-creative'},
+    {stepId: 'P07', primarySkillId: 'content-os-core', verifierSkillId: 'RT-09'},
   ],
   briefPreview: {
     briefKind: 'content-brief',
@@ -43,50 +45,11 @@ const r7Handler = vi.fn<GatewayRouteHandlerV1>(({routeId}) => ({
   recommendedNextAction: 'Revisar y aprobar el brief profesional.',
 }));
 
-const definition: ExperienceWorkflowDefinitionV1 = {
-  routeId: 'R6',
-  workflowId: 'CONTENT.MINIMAL',
-  actorId: 'RT-04',
-  steps: [
-    {
-      stepId: 'P03.interpret',
-      primarySkillId: 'content-os-router',
-      templateRef: '02_proceso/workflows/multimedia/_assets/brief-document-template.md',
-      sourceRefs: ['02_proceso/governance/router.yml'],
-      expectedOutputs: ['work/preview/brief.md'],
-      acceptanceCriteria: ['El brief representa el pedido.'],
-      stopRule: 'Detener antes de producir.',
-    },
-    {
-      stepId: 'P05.design',
-      primarySkillId: 'content-os-creative',
-      templateRef: '02_proceso/workflows/multimedia/p05-disenar-pieza/task-template.yaml',
-      sourceRefs: [],
-      expectedOutputs: ['work/preview/spec.md'],
-      acceptanceCriteria: ['La especificación es verificable.'],
-      stopRule: 'Detener ante UNKNOWN.',
-    },
-    {
-      stepId: 'P07.review',
-      primarySkillId: 'content-os-creative',
-      verifierSkillId: 'RT-09',
-      templateRef: '02_proceso/workflows/multimedia/p07-revisar/task-template.yaml',
-      sourceRefs: [],
-      expectedOutputs: ['work/preview/verdict.md'],
-      acceptanceCriteria: ['El candidate fue revisado.'],
-      stopRule: 'Detener ante REVISE.',
-    },
-    {
-      stepId: 'P08.edit',
-      primarySkillId: 'content-os-creative',
-      templateRef: '02_proceso/workflows/multimedia/p08-editar/task-template.yaml',
-      sourceRefs: [],
-      expectedOutputs: ['work/preview/successor.md'],
-      acceptanceCriteria: ['El successor preserva lineage.'],
-      stopRule: 'Detener en RENDERED_DRAFT.',
-    },
-  ],
-};
+const definition: ExperienceWorkflowDefinitionV1 = createProductiveExperienceWorkflowDefinitionsV1({
+  briefMarkdownRef: 'work/preview/brief.md',
+  briefHtmlRef: 'work/preview/brief.html',
+  sourceRefs: ['02_proceso/governance/router.yml'],
+})[0]!;
 
 const selectedContentExperience = () => {
   const prompt = 'Ayúdame a generar una pieza';
@@ -108,6 +71,20 @@ const selectedContentExperience = () => {
     },
   };
 };
+
+const productivePlan = (
+  context: ReturnType<typeof selectedContentExperience>,
+  inputRefs: Array<{ref: string; sha256: string}> = [],
+) =>
+  compileExperienceWorkflowPlanV1(
+    context.envelope,
+    createProductiveExperienceWorkflowDefinitionsV1({
+      briefMarkdownRef: `${outputDirectoryRef}/brief.md`,
+      briefHtmlRef: `${outputDirectoryRef}/brief.html`,
+      sourceRefs: inputRefs.map(({ref}) => ref),
+    }),
+    context.decision,
+  );
 
 describe('Frames causal orchestration', () => {
   it('records real R6/R7 adapter invocation and leaves R0 uninvoked', async () => {
@@ -190,11 +167,8 @@ describe('Frames causal orchestration', () => {
     const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
     const prime = autoPrimeExperienceV1(plan);
     expect(plan.steps.map(({stepId}) => stepId)).toEqual(envelope.workflowPlan);
-    expect(prime.loadedRefs).toEqual([
-      definition.steps[0]!.templateRef,
-      definition.steps[0]!.sourceRefs[0],
-    ]);
-    expect(prime.deferredStepIds).toEqual(['P05.design', 'P07.review', 'P08.edit']);
+    expect(prime.loadedRefs).toEqual([plan.steps[0]!.templateRef, plan.steps[0]!.sourceRefs[0]]);
+    expect(prime.deferredStepIds).toEqual(['P05', 'P07', 'P08']);
     expect(prime.contextBudget).toEqual({
       targetFiles: 8,
       maxFiles: 14,
@@ -211,7 +185,7 @@ describe('Frames causal orchestration', () => {
         selection: {...decision.selection, canonicalSha256: '0'.repeat(64)},
       }),
     ).toThrow();
-    const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
+    const plan = productivePlan({envelope, decision, decisionRefs});
     expect(() =>
       createFramesWorkOrderV1(
         {
@@ -222,24 +196,19 @@ describe('Frames causal orchestration', () => {
         envelope,
         {
           workOrderId: 'WO.EXP.PLAN-FORGE',
-          actorId: 'RT-04',
           inputRefs: [],
           decision,
-          definitions: [definition],
-          decisionRefs: {
-            funnel: {ref: 'evidence/forged-funnel.json', sha256: '0'.repeat(64)},
-            selection: {ref: 'evidence/forged-selection.json', sha256: '1'.repeat(64)},
-          },
+          outputDirectoryRef,
+          decisionRefs,
         },
       ),
     ).toThrow(/EXPERIENCE-DECISION-PLAN-DRIFT/u);
     expect(() =>
       createFramesWorkOrderV1(plan, envelope, {
         workOrderId: 'WO.EXP.DRIFT',
-        actorId: 'RT-04',
         inputRefs: [],
         decision,
-        definitions: [definition],
+        outputDirectoryRef,
         decisionRefs: {
           ...decisionRefs,
           selection: {...decisionRefs.selection, sha256: '0'.repeat(64)},
@@ -249,40 +218,56 @@ describe('Frames causal orchestration', () => {
     expect(() =>
       createFramesWorkOrderV1(plan, envelope, {
         workOrderId: 'WO.EXP.ALIAS',
-        actorId: 'RT-04',
         inputRefs: [{...decisionRefs.funnel}],
         decision,
-        definitions: [definition],
+        outputDirectoryRef,
         decisionRefs,
       }),
     ).toThrow(/EXPERIENCE-DECISION-REF-ALIAS/u);
+    const forgedInput: Parameters<typeof createFramesWorkOrderV1>[2] & Record<string, unknown> = {
+      workOrderId: 'WO.EXP.WRITE-DRIFT',
+      inputRefs: [],
+      decision,
+      outputDirectoryRef,
+      decisionRefs,
+      effectClass: 'LOCAL_REVERSIBLE',
+      definitions: [definition],
+      actorId: 'ATTACKER',
+      writeSet: ['work/forged/**'],
+    };
+    expect(() => createFramesWorkOrderV1(plan, envelope, forgedInput)).toThrow(
+      /EXPERIENCE-WORK-ORDER-INPUT-EXTRA/u,
+    );
     expect(() =>
       createFramesWorkOrderV1(plan, envelope, {
-        workOrderId: 'WO.EXP.WRITE-DRIFT',
-        actorId: 'RT-04',
+        workOrderId: 'WO.EXP.OUTPUT-FORGE',
         inputRefs: [],
         decision,
-        definitions: [definition],
+        outputDirectoryRef: 'work/forged',
         decisionRefs,
-        effectClass: 'LOCAL_REVERSIBLE',
-        writeSet: ['work/arbitrary/**'],
       }),
-    ).toThrow(/EXPERIENCE-WRITE-SET-DRIFT/u);
+    ).toThrow(/EXPERIENCE-OUTPUT-NAMESPACE-DRIFT/u);
   });
 
   it('requires a material invocation receipt before planned becomes executed', async () => {
     const {envelope, decision, decisionRefs} = selectedContentExperience();
-    const plan = compileExperienceWorkflowPlanV1(envelope, [definition], decision);
+    const sourceRefs = [{ref: 'evidence/request.json', sha256: digest}];
+    const plan = productivePlan({envelope, decision, decisionRefs}, sourceRefs);
     const workOrder = createFramesWorkOrderV1(plan, envelope, {
       workOrderId: 'WO.EXP.001',
-      actorId: 'RT-04',
-      inputRefs: [{ref: 'evidence/request.json', sha256: digest}],
+      inputRefs: sourceRefs,
       decisionRefs,
       decision,
-      definitions: [definition],
+      outputDirectoryRef,
+    });
+    expect(workOrder).toMatchObject({
+      actorId: 'RT-04',
+      workflowId: 'FRAMES.CONTENT.BRIEF',
+      skillId: 'content-os-creative',
+      writeSet: [],
     });
     const emptyPass = new FakeSkillAdapterV1({
-      'content-os-router': () => ({
+      [workOrder.skillId]: () => ({
         status: 'PASS',
         outputs: [],
         evidence: [],
@@ -298,7 +283,7 @@ describe('Frames causal orchestration', () => {
     ).toBe('UNKNOWN');
 
     const material = new FakeSkillAdapterV1({
-      'content-os-router': () => ({
+      [workOrder.skillId]: () => ({
         status: 'PASS',
         outputs: [{ref: 'work/preview/brief.md', sha256: digest}],
         evidence: [{ref: 'evidence/brief-check.json', sha256: digest}],
@@ -312,7 +297,7 @@ describe('Frames causal orchestration', () => {
     });
     expect(receipt).toMatchObject({
       status: 'UNKNOWN',
-      skillId: 'content-os-router',
+      skillId: workOrder.skillId,
       metrics: {materialExecutionAccredited: false, simulationOnly: true},
     });
     expect(receipt.outputs).toHaveLength(1);
