@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/privacy-policy-v1.schema.json",
+  "title": "PrivacyPolicyV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_id", "case_id", "participant_id", "inventory", "planner_actor_id", "authorization_actor_id", "rules", "status", "canonical_sha256"],
+  "properties": {
+    "schema_version": {"const": "privacy-policy-v1"},
+    "policy_id": {"$ref": "#/$defs/id"},
+    "case_id": {"$ref": "#/$defs/id"},
+    "participant_id": {"$ref": "#/$defs/id"},
+    "inventory": {"$ref": "#/$defs/ref"},
+    "planner_actor_id": {"const": "RT-07-H03-PRIVACY-PLANNER-PRODUCER"},
+    "authorization_actor_id": {"const": "RT-04-PRIVACY-AUTHORIZATION-RECORDER"},
+    "rules": {"type": "array", "minItems": 1, "maxItems": 512, "items": {"$ref": "#/$defs/rule"}},
+    "status": {"enum": ["BLOCKED_PENDING_VALUE_PRESERVATION_AND_REDACTION_PLAN", "BLOCKED_PENDING_HUMAN_PRIVACY_REVIEW"]},
+    "canonical_sha256": {"$ref": "#/$defs/sha"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {"type": "object", "additionalProperties": false, "required": ["ref", "sha256", "bytes"], "properties": {"ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$"}, "sha256": {"$ref": "#/$defs/sha"}, "bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991}}},
+    "rule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sequence", "signal_id", "kind", "identity", "rule", "reason_code", "evidence_sha256"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0}, "signal_id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["NAME", "FACE", "LOGO", "BRAND_TEXT", "URL", "EMAIL", "FILE_PATH", "AVATAR", "TOOL_CHROME", "SPOKEN_BRAND"]},
+        "identity": {"type": "string", "minLength": 1, "maxLength": 320, "pattern": "^(?![\\s\\S]*\\p{C})[^\\p{Z}](?:[\\s\\S]*[^\\p{Z}])?$"},
+        "rule": {"enum": ["KEEP", "PROTECT", "AUDIO_SILENCE", "BLOCK_FOR_REVIEW"]},
+        "reason_code": {"enum": ["AUTHORIZED_PARTICIPANT", "PUBLIC_CONTEXT", "SENSITIVE_IDENTITY", "CLIENT_BRAND", "PRIVATE_LOCATOR", "UNRESOLVED_AUTHORIZATION"]},
+        "evidence_sha256": {"$ref": "#/$defs/sha"}
+      }
+    }
+  }
+}

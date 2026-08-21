@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+
+import Ajv2020 from 'ajv/dist/2020.js';
+import {assertContextualPrivacyPlans, planContextualPrivacy} from './plan-contextual-privacy.mjs';
+
+const root = process.cwd();
+const skill = 'skills/content-os-contextual-privacy-planner';
+const files = ['SKILL.md', 'LINEAGE.yml', 'schemas/privacy-policy-v1.schema.json', 'schemas/value-preservation-plan-v1.schema.json', 'schemas/redaction-plan-v2.schema.json', 'scripts/plan-contextual-privacy.mjs', 'scripts/check-skill.mjs', 'fixtures/cases.json', 'receipts/runtime-boundary.yml'];
+const contents = new Map(files.map((path) => [path, readFileSync(resolve(root, skill, path), 'utf8')]));
+for (const token of ['privacy-policy-v1', 'value-preservation-plan-v1', 'redaction-plan-v2', 'BLOCK_FOR_REVIEW', 'five_percent_review_target', 'publication_authority: false']) if (![...contents.values()].join('\n').includes(token)) throw new Error(`CPP-CONTRACT-MISSING ${token}`);
+const sha = (value) => createHash('sha256').update(value).digest('hex');
+const stable = (value) => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])])) : value;
+const digest = (value) => sha(JSON.stringify(stable(value)));
+const material = (ref, value) => { const bytes = Buffer.from(JSON.stringify(stable(value))); return {ref, sha256: sha(bytes), bytes: bytes.length, content_base64: bytes.toString('base64')}; };
+const parse = (value) => JSON.parse(Buffer.from(value.content_base64, 'base64').toString('utf8'));
+const seal = (value) => ({...value, canonical_sha256: digest(value)});
+const cases = JSON.parse(contents.get('fixtures/cases.json'));
+const coverage = {visual_text: 'COMPLETE', visual_templates: 'COMPLETE', faces: 'COMPLETE', audio_transcript: 'COMPLETE'};
+const buildInventory = (signals = cases.signals, candidateCoverage = coverage) => seal({schema_version: 'sensitive-signal-inventory-v1', inventory_id: 'INV-PRIVACY-PLANNER', case_id: cases.case_id, source: cases.source, detector_actor_id: 'RT-07-H03-PRIVACY-DETECTOR-PRODUCER', aliases_sha256: '1'.repeat(64), templates_sha256: '2'.repeat(64), coverage: candidateCoverage, signals, status: 'BLOCKED_PENDING_PRIVACY_POLICY'});
+const buildDirective = (inventoryMaterial, decisions = cases.decisions, zones = cases.value_zones, metadata = cases.source_metadata) => ({schema_version: 'contextual-privacy-directive-v1', case_id: cases.case_id, participant_id: cases.participant_id, inventory_sha256: inventoryMaterial.sha256, source: cases.source, source_metadata: metadata, authorization_actor_id: 'RT-04-PRIVACY-AUTHORIZATION-RECORDER', value_guardian_actor_id: 'RT-11-PRIVACY-VALUE-GUARDIAN', decisions, value_zones: zones, invasive_operations_approved: false});
+const buildRequest = ({inventory = buildInventory(), decisions, zones, metadata = cases.source_metadata} = {}) => {
+  const inventoryMaterial = material('evidence/sensitive-inventory.json', inventory);
+  const receipt = {schema_version: 'sensitive-signal-inventory-verification-v1', actor_id: 'RT-09-H03-PRIVACY-INVENTORY-VERIFIER', case_id: cases.case_id, inventory_sha256: inventoryMaterial.sha256, inventory_canonical_sha256: inventory.canonical_sha256, source: inventory.source};
+  const probe = {schema_version: 'contextual-privacy-source-probe-v1', actor_id: 'RT-09-PRIVACY-SOURCE-PROBE-VERIFIER', case_id: cases.case_id, source: inventory.source, source_metadata_sha256: digest(metadata), source_metadata: metadata};
+  return {schema_version: 'contextual-privacy-planner-request-v1', case_id: cases.case_id, participant_id: cases.participant_id, actor_id: 'RT-07-H03-PRIVACY-PLANNER-PRODUCER', inventory_material: inventoryMaterial, inventory_verification_receipt: material('evidence/inventory-verification.json', receipt), source_probe_receipt: material('evidence/source-probe.json', probe), directive_material: material('evidence/privacy-directive.json', buildDirective(inventoryMaterial, decisions, zones, metadata))};
+};
+const request = buildRequest();
+const bundle = planContextualPrivacy(request);
+assertContextualPrivacyPlans(bundle, request);
+if (bundle.privacy_policy.rules.length !== 4 || bundle.value_preservation_plan.zones.length !== 1 || bundle.redaction_plan.operations.length !== 3) throw new Error('CPP-POSITIVE-COUNTS');
+if (bundle.redaction_plan.status !== 'BLOCKED_PENDING_MINIMAL_REDACTION_EXECUTOR' || bundle.redaction_plan.mask_budget.requires_review) throw new Error('CPP-POSITIVE-STATUS');
+const natalia = bundle.privacy_policy.rules.find(({signal_id}) => signal_id === 'SIG-NATALIA');
+const sofka = bundle.redaction_plan.operations.find(({signal_id}) => signal_id === 'SIG-SOFKA');
+const audio = bundle.redaction_plan.operations.find(({signal_id}) => signal_id === 'SIG-GNP-AUDIO');
+if (natalia?.rule !== 'KEEP' || sofka?.type !== 'LOCAL_BLUR' || sofka.padding_px !== 4 || sofka.feather_px !== 6 || audio?.type !== 'AUDIO_SILENCE' || audio.fade_ms !== 45 || audio.subtitle_replacement !== '[…]') throw new Error('CPP-POSITIVE-OPERATIONS');
+const silentSignals = cases.signals.filter(({modality}) => modality !== 'AUDIO_TRANSCRIPT').map((signal, sequence) => ({...signal, sequence}));
+const silentRequest = buildRequest({inventory: buildInventory(silentSignals, {...coverage, audio_transcript: 'NOT_PRESENT'}), decisions: cases.decisions.filter(({signal_id}) => signal_id !== 'SIG-GNP-AUDIO'), metadata: {...cases.source_metadata, has_audio: false}});
+if (planContextualPrivacy(silentRequest).redaction_plan.operations.some(({type}) => type === 'AUDIO_SILENCE')) throw new Error('CPP-NO-AUDIO-POSITIVE');
+const ajv = new Ajv2020({allErrors: true, strict: false});
+for (const [name, output] of [['privacy-policy-v1', bundle.privacy_policy], ['value-preservation-plan-v1', bundle.value_preservation_plan], ['redaction-plan-v2', bundle.redaction_plan]]) {
+  const validate = ajv.compile(JSON.parse(contents.get(`schemas/${name}.schema.json`)));
+  if (!validate(output) || validate({...output, render: true})) throw new Error(`CPP-SCHEMA-STRICTNESS ${name}`);
+}
+const expectBlocked = (label, candidate, pattern) => {
+  try { planContextualPrivacy(candidate); } catch (error) { if (String(error).includes(pattern)) return; }
+  throw new Error(`CPP-NEGATIVE-NOT-BLOCKED ${label}`);
+};
+const rewrite = (value, field, mutate) => { const parsed = parse(value[field]); mutate(parsed); value[field] = material(value[field].ref, parsed); };
+const reissueInventory = (candidate, mutate, {directive = true, probe = true} = {}) => {
+  const inventory = parse(candidate.inventory_material); mutate(inventory); inventory.canonical_sha256 = digest(Object.fromEntries(Object.entries(inventory).filter(([key]) => key !== 'canonical_sha256')));
+  candidate.inventory_material = material(candidate.inventory_material.ref, inventory);
+  const receipt = parse(candidate.inventory_verification_receipt); receipt.inventory_sha256 = candidate.inventory_material.sha256; receipt.inventory_canonical_sha256 = inventory.canonical_sha256; receipt.source = inventory.source; candidate.inventory_verification_receipt = material(candidate.inventory_verification_receipt.ref, receipt);
+  if (probe) { const sourceProbe = parse(candidate.source_probe_receipt); sourceProbe.source = inventory.source; candidate.source_probe_receipt = material(candidate.source_probe_receipt.ref, sourceProbe); }
+  if (directive) { const input = parse(candidate.directive_material); input.inventory_sha256 = candidate.inventory_material.sha256; input.source = inventory.source; candidate.directive_material = material(candidate.directive_material.ref, input); }
+};
+const recase = (candidate, caseId) => {
+  candidate.case_id = caseId; reissueInventory(candidate, (inventory) => { inventory.case_id = caseId; });
+  rewrite(candidate, 'inventory_verification_receipt', (value) => { value.case_id = caseId; }); rewrite(candidate, 'source_probe_receipt', (value) => { value.case_id = caseId; }); rewrite(candidate, 'directive_material', (value) => { value.case_id = caseId; });
+};
+const clone = () => structuredClone(request);
+let candidate = clone(); candidate.render = true; expectBlocked('request-extra', candidate, 'PLANNER-REQUEST-KEYS');
+candidate = clone(); candidate.actor_id = 'ATTACKER'; expectBlocked('request-actor', candidate, 'PLANNER-REQUEST-IDENTITY');
+candidate = clone(); candidate.inventory_material.content_base64 += '='; expectBlocked('inventory-base64', candidate, 'PLANNER-INVENTORY-MATERIAL');
+candidate = clone(); candidate.inventory_material.ref = 'Evidence/inventory.json'; expectBlocked('inventory-ref-case', candidate, 'PLANNER-INVENTORY-MATERIAL');
+candidate = clone(); candidate.directive_material.ref = 'evidence/.privacy-directive.json'; expectBlocked('directive-ref-dot', candidate, 'PLANNER-DIRECTIVE-MATERIAL');
+candidate = clone(); for (const field of ['inventory_material', 'inventory_verification_receipt', 'source_probe_receipt', 'directive_material']) candidate[field].ref = 'evidence/shared.json'; expectBlocked('material-ref-reuse', candidate, 'PLANNER-MATERIAL-REF-ALIAS');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.detector_actor_id = 'ATTACKER'; }); expectBlocked('inventory-actor', candidate, 'PLANNER-INVENTORY-STATE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.case_id = 'CASE-OTHER'; }); expectBlocked('inventory-case', candidate, 'PLANNER-DIRECTIVE-DRIFT');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.source.bytes = 2 ** 53; }); expectBlocked('inventory-source-unsafe-bytes', candidate, 'PLANNER-INVENTORY-SOURCE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].evidence.material.bytes = 2 ** 53; }); expectBlocked('inventory-evidence-unsafe-bytes', candidate, 'PLANNER-SIGNAL-EVIDENCE-REF');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].modality = 'AUDIO_TRANSCRIPT'; }); expectBlocked('inventory-modality', candidate, 'PLANNER-SIGNAL-KIND-MODALITY');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.inventory_id = ''; }); expectBlocked('inventory-id-blank', candidate, 'PLANNER-INVENTORY-STATE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.aliases_sha256 = 'invalid'; }); expectBlocked('inventory-alias-hash', candidate, 'PLANNER-INVENTORY-STATE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.coverage.extra = 'COMPLETE'; }); expectBlocked('inventory-coverage-extra', candidate, 'PLANNER-INVENTORY-COVERAGE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.coverage.visual_text = 'NOT_PRESENT'; }); expectBlocked('inventory-coverage-contradiction', candidate, 'PLANNER-INVENTORY-COVERAGE-CONTRADICTION');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.coverage.faces = 'UNKNOWN'; }); expectBlocked('inventory-status-drift', candidate, 'PLANNER-INVENTORY-STATUS-DRIFT');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.status = 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN'; }); expectBlocked('inventory-status-without-unknown', candidate, 'PLANNER-INVENTORY-STATUS-DRIFT');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].confidence = {score: 0.1, status: 'CONFIRMED'}; }); expectBlocked('inventory-confidence-drift', candidate, 'PLANNER-SIGNAL-CONFIDENCE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[1].kind = 'EMAIL'; }); expectBlocked('inventory-kind-modality', candidate, 'PLANNER-SIGNAL-KIND-MODALITY');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[3].identity.matched_alias = 'student@example.test'; }); expectBlocked('structured-matched-alias', candidate, 'PLANNER-SIGNAL-MATCHED-ALIAS');
+candidate = clone(); reissueInventory(candidate, (inventory) => { const duplicate = structuredClone(inventory.signals[0]); duplicate.signal_id = 'SIG-NATALIA-DUP'; duplicate.sequence = inventory.signals.length; inventory.signals.push(duplicate); }); expectBlocked('inventory-semantic-duplicate', candidate, 'PLANNER-INVENTORY-SIGNAL-DUPLICATE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { const duplicate = structuredClone(inventory.signals[0]); duplicate.signal_id = 'SIG-NATALIA-DUP'; duplicate.sequence = inventory.signals.length; duplicate.evidence = {observation_id: 'OBS-NATALIA-DUP', material: {ref: 'evidence/natalia-duplicate.json', sha256: '9'.repeat(64), bytes: 21}}; inventory.signals.push(duplicate); }); rewrite(candidate, 'directive_material', (value) => { value.decisions.push({signal_id: 'SIG-NATALIA-DUP', rule: 'PROTECT', reason_code: 'SENSITIVE_IDENTITY'}); }); expectBlocked('inventory-semantic-duplicate-receipt-alias', candidate, 'PLANNER-INVENTORY-SIGNAL-DUPLICATE');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].identity.matched_alias = 'Sofka'; }); expectBlocked('inventory-cross-alias', candidate, 'PLANNER-SIGNAL-MATCHED-ALIAS');
+for (const [kind, identity] of [['EMAIL', 'not-an-email'], ['URL', 'not a url'], ['FILE_PATH', 'plain text']]) { candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[3].kind = kind; inventory.signals[3].identity.canonical = identity; }); expectBlocked('inventory-structured-identity', candidate, 'PLANNER-SIGNAL-STRUCTURED-IDENTITY'); }
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals = inventory.signals.filter(({modality}) => modality !== 'VISUAL_TEXT').map((signal, sequence) => ({...signal, sequence})); inventory.coverage.visual_text = 'NOT_PRESENT'; }); expectBlocked('visual-not-present-unaccredited', candidate, 'PLANNER-INVENTORY-COVERAGE-UNACCREDITED');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals = inventory.signals.filter(({modality}) => modality !== 'AUDIO_TRANSCRIPT').map((signal, sequence) => ({...signal, sequence})); inventory.coverage.audio_transcript = 'NOT_PRESENT'; }); expectBlocked('audio-not-present-contradiction', candidate, 'PLANNER-INVENTORY-AUDIO-COVERAGE');
+for (const matched of ['', '\u200b', {alias: 'Natalia'}]) { candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].identity.matched_alias = matched; }); expectBlocked('inventory-matched-alias', candidate, 'PLANNER-SIGNAL-IDENTITY'); }
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[1].evidence.material = {...inventory.signals[0].evidence.material, ref: 'evidence/other-name.json'}; }); expectBlocked('material-identity-alias', candidate, 'PLANNER-MATERIAL-IDENTITY-ALIAS');
+candidate = clone(); rewrite(candidate, 'inventory_verification_receipt', (value) => { value.actor_id = 'ATTACKER'; }); expectBlocked('inventory-verifier', candidate, 'PLANNER-INVENTORY-RECEIPT-DRIFT');
+candidate = clone(); rewrite(candidate, 'source_probe_receipt', (value) => { value.source_metadata.frame_width = 9999; value.source_metadata_sha256 = digest(value.source_metadata); }); expectBlocked('probe-directive-drift', candidate, 'PLANNER-DIRECTIVE-DRIFT');
+for (const [field, unsafe] of [['frame_width', 2 ** 53], ['frame_height', 1e200]]) { candidate = clone(); rewrite(candidate, 'source_probe_receipt', (value) => { value.source_metadata[field] = unsafe; value.source_metadata_sha256 = digest(value.source_metadata); }); rewrite(candidate, 'directive_material', (value) => { value.source_metadata[field] = unsafe; }); expectBlocked('metadata-unsafe-dimension', candidate, 'PLANNER-SOURCE-METADATA'); }
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].geometry.x = 2 ** 53; }); expectBlocked('geometry-unsafe-integer', candidate, 'PLANNER-SIGNAL-GEOMETRY');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].frame_span.end = 2 ** 53; }); expectBlocked('span-unsafe-integer', candidate, 'PLANNER-SIGNAL-FRAME-SPAN');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.review = true; }); expectBlocked('directive-extra', candidate, 'PLANNER-DIRECTIVE-KEYS');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.authorization_actor_id = 'ATTACKER'; }); expectBlocked('authorization-actor', candidate, 'PLANNER-DIRECTIVE-DRIFT');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.invasive_operations_approved = true; }); expectBlocked('invasive-approval', candidate, 'PLANNER-DIRECTIVE-DRIFT');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions[0].reason_code = 'CLIENT_BRAND'; }); expectBlocked('keep-reason', candidate, 'PLANNER-DECISION-REASON');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions.pop(); }); expectBlocked('decision-missing', candidate, 'PLANNER-DECISION-COVERAGE');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions.push(structuredClone(value.decisions[0])); }); expectBlocked('decision-duplicate', candidate, 'PLANNER-DECISION-DUPLICATE');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions.reverse(); }); expectBlocked('decision-reorder', candidate, 'PLANNER-DECISION-COVERAGE');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions[2].rule = 'PROTECT'; }); expectBlocked('protect-without-geometry', candidate, 'PLANNER-PROTECT-MODALITY');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions[2].rule = 'KEEP'; value.decisions[2].reason_code = 'PUBLIC_CONTEXT'; }); reissueInventory(candidate, (inventory) => { inventory.signals[2].confidence = {score: 0.1, status: 'UNKNOWN'}; inventory.status = 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN'; }); expectBlocked('unknown-keep', candidate, 'PLANNER-UNKNOWN-MUST-BLOCK');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions[1].rule = 'KEEP'; value.decisions[1].reason_code = 'PUBLIC_CONTEXT'; }); expectBlocked('review-keep', candidate, 'PLANNER-REVIEW-CANNOT-KEEP');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.decisions[0].rule = 'AUDIO_SILENCE'; value.decisions[0].reason_code = 'SENSITIVE_IDENTITY'; }); expectBlocked('audio-wrong-modality', candidate, 'PLANNER-AUDIO-MODALITY');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[2].time_span_ms.end = inventory.signals[2].time_span_ms.start + 40; }); expectBlocked('audio-fade-too-short', candidate, 'PLANNER-AUDIO-MODALITY');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones = []; }); expectBlocked('zones-empty', candidate, 'PLANNER-DIRECTIVE-COLLECTIONS');
+for (const zoneId of ['', '\u200b']) { candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].zone_id = zoneId; }); expectBlocked('zone-id-invalid', candidate, 'PLANNER-VALUE-ZONE-KIND'); }
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones = Array.from({length: 129}, (_, index) => ({...structuredClone(value.value_zones[0]), zone_id: `VALUE-${index}`})); }); expectBlocked('zone-limit', candidate, 'PLANNER-VALUE-ZONE-LIMIT');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids = []; }); expectBlocked('value-occlusion', candidate, 'PLANNER-VALUE-ZONE-OCCLUSION');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids.push('SIG-NATALIA'); }); expectBlocked('value-auth-keep', candidate, 'PLANNER-VALUE-ZONE-AUTH-INVALID');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].geometry.width = 1900; }); expectBlocked('zone-overflow', candidate, 'PLANNER-VALUE-ZONE-GEOMETRY');
+candidate = clone(); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].frame_span.end = 90; }); expectBlocked('zone-frame-overflow', candidate, 'PLANNER-VALUE-ZONE-SPAN');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[3].geometry = {x: 0, y: 0, width: 900, height: 300}; }); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids = []; value.value_zones[0].geometry = {x: 1000, y: 500, width: 800, height: 500}; }); expectBlocked('mask-hard-limit', candidate, 'PLANNER-MASK-HARD-LIMIT');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[3].geometry = {x: 0, y: 0, width: 700, height: 160}; }); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids = []; value.value_zones[0].geometry = {x: 900, y: 300, width: 900, height: 600}; }); const reviewBundle = planContextualPrivacy(candidate);
+if (!reviewBundle.redaction_plan.mask_budget.requires_review || reviewBundle.redaction_plan.status !== 'BLOCKED_PENDING_HUMAN_PRIVACY_REVIEW') throw new Error('CPP-FIVE-PERCENT-REVIEW');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[3].geometry = {x: 0, y: 20, width: 220, height: 38}; }); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids = []; value.value_zones[0].geometry = {x: 400, y: 300, width: 1200, height: 600}; }); const edgeBlur = planContextualPrivacy(candidate).redaction_plan.operations.find(({signal_id}) => signal_id === 'SIG-EMAIL');
+if (edgeBlur.authorized_effect_roi.x !== 0 || edgeBlur.authorized_effect_roi.width !== 230) throw new Error('CPP-EDGE-PADDING-CLIP');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[1].kind = 'TOOL_CHROME'; inventory.signals[1].geometry = {x: 200, y: 0, width: 500, height: 20}; }); const safeReframe = planContextualPrivacy(candidate).redaction_plan.operations.find(({signal_id}) => signal_id === 'SIG-SOFKA');
+if (safeReframe.type !== 'REFRAME_PERIPHERAL' || safeReframe.reframe_edge !== 'TOP' || safeReframe.authorized_effect_roi.width !== 1920 || safeReframe.authorized_effect_roi.height !== 30 || safeReframe.feather_px !== 0) throw new Error('CPP-REFRAME-EXACT');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[1].kind = 'TOOL_CHROME'; inventory.signals[1].geometry = {x: 200, y: 0, width: 100, height: 150}; }); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].authorized_redaction_signal_ids.push('SIG-SOFKA'); }); expectBlocked('reframe-value-occlusion', candidate, 'PLANNER-VALUE-ZONE-OCCLUSION');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[1].kind = 'TOOL_CHROME'; inventory.signals[1].geometry = {x: 200, y: 0, width: 100, height: 150}; }); rewrite(candidate, 'directive_material', (value) => { value.value_zones[0].geometry = {x: 220, y: 300, width: 1450, height: 600}; }); expectBlocked('reframe-hard-limit', candidate, 'PLANNER-MASK-HARD-LIMIT');
+candidate = clone(); recase(candidate, 'C'.repeat(128)); const longCaseBundle = planContextualPrivacy(candidate);
+if ([longCaseBundle.privacy_policy.policy_id, longCaseBundle.value_preservation_plan.plan_id, longCaseBundle.redaction_plan.plan_id, ...longCaseBundle.redaction_plan.operations.map(({operation_id}) => operation_id)].some((id) => id.length > 128)) throw new Error('CPP-DERIVED-ID-LENGTH');
+candidate = clone(); reissueInventory(candidate, (inventory) => { inventory.signals[0].confidence = {score: 0.1, status: 'UNKNOWN'}; inventory.status = 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN'; }); rewrite(candidate, 'directive_material', (value) => { value.decisions[0].rule = 'BLOCK_FOR_REVIEW'; value.decisions[0].reason_code = 'UNRESOLVED_AUTHORIZATION'; }); const blockedBundle = planContextualPrivacy(candidate);
+if (blockedBundle.privacy_policy.status !== 'BLOCKED_PENDING_HUMAN_PRIVACY_REVIEW' || blockedBundle.redaction_plan.status !== 'BLOCKED_PENDING_HUMAN_PRIVACY_REVIEW') throw new Error('CPP-BLOCK-STATUS');
+for (const mutate of [
+  (value) => { value.privacy_policy.canonical_sha256 = '0'.repeat(64); },
+  (value) => { value.privacy_policy.rules.reverse(); value.privacy_policy.canonical_sha256 = digest(Object.fromEntries(Object.entries(value.privacy_policy).filter(([key]) => key !== 'canonical_sha256'))); },
+  (value) => { value.value_preservation_plan.zones[0].authorized_redaction_signal_ids = []; value.value_preservation_plan.canonical_sha256 = digest(Object.fromEntries(Object.entries(value.value_preservation_plan).filter(([key]) => key !== 'canonical_sha256'))); },
+  (value) => { value.redaction_plan.operations[0].type = 'REFRAME_PERIPHERAL'; value.redaction_plan.canonical_sha256 = digest(Object.fromEntries(Object.entries(value.redaction_plan).filter(([key]) => key !== 'canonical_sha256'))); },
+  (value) => { value.redaction_plan.status = 'READY'; value.redaction_plan.canonical_sha256 = digest(Object.fromEntries(Object.entries(value.redaction_plan).filter(([key]) => key !== 'canonical_sha256'))); },
+  (value) => { value.redaction_plan.render = true; },
+]) {
+  const output = structuredClone(bundle); mutate(output);
+  try { assertContextualPrivacyPlans(output, request); } catch { continue; }
+  throw new Error('CPP-OUTPUT-FORGERY-ACCEPTED');
+}
+console.info(`PASS contextual-privacy-planner: ${bundle.privacy_policy.rules.length} rules, ${bundle.value_preservation_plan.zones.length} value zone and 63 adversarial gates.`);

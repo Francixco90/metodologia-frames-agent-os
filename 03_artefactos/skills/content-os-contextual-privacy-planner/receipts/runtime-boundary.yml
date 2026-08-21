@@ -1,0 +1,32 @@
+receipt_id: RCP-H03-CONTEXTUAL-PRIVACY-PLANNER-001
+schema_version: runtime-boundary-v1
+skill_id: content-os-contextual-privacy-planner
+issued: 2026-08-21
+actor: RT-07-H03-PRIVACY-PLANNER-PRODUCER
+scope:
+  - strict data-only policy derivation
+  - explicit value-preservation zoning
+  - minimal redaction operation planning
+runtime_boundary:
+  allowed_scoped:
+    - local_json_parse
+    - canonical_material_verification
+    - deterministic_contract_derivation
+    - strict_schema_validation
+  out_of_scope:
+    - media_decode
+    - visual_or_audio_mutation
+    - render
+    - network_fetch
+    - upload
+    - publish
+runtime_rules:
+  - human_directive_required
+  - value_zone_overlap_fail_closed
+  - five_percent_review_target
+  - ten_percent_hard_limit
+  - no_inpainting_crop_or_fill
+  - no_media_mutation
+notes: >
+  Candidate planner. Receipts are canonical and hash-bound but external actor
+  authenticity and material media correspondence remain pending later integration.

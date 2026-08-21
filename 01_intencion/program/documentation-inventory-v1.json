@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "a3f200ddbca44cb9c99926ec99984818bdeb80224f4c4712feacac9b603fa5db",
-  "totalMarkdown": 1849,
+  "repositoryTreeSha256": "09f08c1af067962ca7e41374a0c5967ffa073a0b62474472d948133f3b5527e6",
+  "totalMarkdown": 1850,
   "auditedAuthored": 596,
   "classPaths": {
     "authored_control": [
@@ -607,6 +607,7 @@
       "03_artefactos/skills/content-os-bento-slides/SKILL.md",
       "03_artefactos/skills/content-os-captions-overlay/SKILL.md",
       "03_artefactos/skills/content-os-changelog-video/SKILL.md",
+      "03_artefactos/skills/content-os-contextual-privacy-planner/SKILL.md",
       "03_artefactos/skills/content-os-core/SKILL.md",
       "03_artefactos/skills/content-os-creative/SKILL.md",
       "03_artefactos/skills/content-os-cut-the-curve/SKILL.md",
