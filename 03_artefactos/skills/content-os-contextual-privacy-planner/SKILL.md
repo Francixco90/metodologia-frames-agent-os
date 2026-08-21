@@ -17,8 +17,8 @@ no observa el resultado y no autoriza publicación.
 
 ## Secuencia
 
-1. Verificar bytes canónicos del inventario, su receipt independiente y la directiva
-   humana ligada a caso, participante, fuente y dimensiones.
+1. Verificar bytes canónicos del inventario, el registro de aliases, su receipt
+   independiente y la directiva humana ligada a caso, participante, fuente y dimensiones.
 2. Exigir una decisión única por cada señal: `KEEP`, `PROTECT`, `AUDIO_SILENCE` o
    `BLOCK_FOR_REVIEW`. No inferir autorización por contexto ni por conversación.
 3. Registrar zonas de valor: entregable, operación, rostro autorizado, dibujo, interfaz

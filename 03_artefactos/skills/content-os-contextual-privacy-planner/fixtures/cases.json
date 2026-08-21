@@ -1,6 +1,7 @@
 {
   "case_id": "CASE-PRIVACY-PLANNER-SYNTHETIC",
   "participant_id": "PARTICIPANT-NATALIA",
+  "aliases": [{"alias_id": "ALIAS-NATALIA", "kind": "NAME", "canonical": "Natalia", "variants": ["Natalia"]}, {"alias_id": "ALIAS-GNP", "kind": "BRAND_TEXT", "canonical": "GNP", "variants": ["GNP"]}],
   "source": {"ref": "sources/class-memory.bin", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 4096},
   "source_metadata": {"frame_width": 1920, "frame_height": 1080, "frame_count": 90, "duration_ms": 3000, "has_audio": true},
   "signals": [

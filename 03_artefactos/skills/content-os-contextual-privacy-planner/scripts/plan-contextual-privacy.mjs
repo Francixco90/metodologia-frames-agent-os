@@ -13,12 +13,16 @@ const keys = (value, expected, code) => expect(value && typeof value === 'object
 const unique = (values, code) => expect(new Set(values).size === values.length, code);
 const visible = (value) => typeof value === 'string' && value.length > 0 && value.length <= 320 && value.trim() === value && !/^\p{Z}|\p{Z}$/u.test(value) && !/\p{C}/u.test(value) && /[^\p{Z}\p{C}]/u.test(value);
 const normalizedIdentity = (value) => value.normalize('NFKC').toLocaleLowerCase('en-US').replace(/[^\p{L}\p{N}]+/gu, '');
-const aliasBound = (canonical, alias) => { const left = normalizedIdentity(canonical); const right = normalizedIdentity(alias); return left.length >= 2 && right.length >= 2 && (left.includes(right) || right.includes(left)); };
+const trimUrl = (raw) => {
+  let value = raw; let previous;
+  do { previous = value; value = value.replace(/[.,;]+$/gu, ''); for (const [open, close] of [['(', ')'], ['[', ']'], ['{', '}']]) if (value.endsWith(close) && [...value].filter((item) => item === close).length > [...value].filter((item) => item === open).length) value = value.slice(0, -1); } while (value !== previous);
+  return value;
+};
 const structuredIdentity = (kind, value) => {
-  if (kind === 'EMAIL') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(value);
-  if (kind === 'FILE_PATH') return /^(?:\/|[A-Za-z]:\\|(?:[A-Za-z0-9._-]+[\\/])+)[^\s]+$/u.test(value);
+  if (kind === 'EMAIL') return /^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$/u.test(value);
+  if (kind === 'FILE_PATH') return /^(?:\/?(?:[A-Za-z0-9._-]+\/){2,}[A-Za-z0-9._-]+\.[A-Za-z0-9_-]{1,12}|[A-Za-z]:\\(?:[A-Za-z0-9._ -]+\\)+[A-Za-z0-9._ -]+\.[A-Za-z0-9_-]{1,12})$/u.test(value);
   if (kind !== 'URL') return true;
-  try { const parsed = new URL(value); return ['http:', 'https:'].includes(parsed.protocol) && parsed.hostname.length > 0 && !/\s/u.test(value); } catch { return false; }
+  try { const parsed = new URL(value); return ['http:', 'https:'].includes(parsed.protocol) && parsed.hostname.length > 0 && !/\s/u.test(value) && trimUrl(value) === value; } catch { return false; }
 };
 const ref = (value, code) => {
   keys(value, ['ref', 'sha256', 'bytes'], code);
@@ -56,13 +60,13 @@ const assertInventory = (inventory) => {
     keys(signal.identity, ['canonical', 'matched_alias'], 'PLANNER-SIGNAL-IDENTITY'); expect(visible(signal.identity.canonical) && (signal.identity.matched_alias === null || visible(signal.identity.matched_alias)), 'PLANNER-SIGNAL-IDENTITY');
     const kindsByModality = {VISUAL_TEXT: ['NAME', 'BRAND_TEXT', 'URL', 'EMAIL', 'FILE_PATH'], VISUAL_TEMPLATE: ['LOGO', 'AVATAR', 'TOOL_CHROME'], VISUAL_MANUAL: ['FACE'], AUDIO_TRANSCRIPT: ['SPOKEN_BRAND']};
     expect(kindsByModality[signal.modality].includes(signal.kind), 'PLANNER-SIGNAL-KIND-MODALITY');
-    expect(['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(signal.kind) ? visible(signal.identity.matched_alias) && aliasBound(signal.identity.canonical, signal.identity.matched_alias) : signal.identity.matched_alias === null, 'PLANNER-SIGNAL-MATCHED-ALIAS');
+    expect(['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(signal.kind) ? visible(signal.identity.matched_alias) : signal.identity.matched_alias === null, 'PLANNER-SIGNAL-MATCHED-ALIAS');
     expect(structuredIdentity(signal.kind, signal.identity.canonical), 'PLANNER-SIGNAL-STRUCTURED-IDENTITY');
     keys(signal.confidence, ['score', 'status'], 'PLANNER-SIGNAL-CONFIDENCE');
     const expectedConfidence = signal.confidence.score >= 0.9 ? 'CONFIRMED' : signal.confidence.score >= 0.5 ? 'REVIEW_REQUIRED' : 'UNKNOWN';
     expect(typeof signal.confidence.score === 'number' && signal.confidence.score >= 0 && signal.confidence.score <= 1 && signal.confidence.status === expectedConfidence && (!['VISUAL_TEMPLATE', 'VISUAL_MANUAL'].includes(signal.modality) || signal.confidence.status !== 'CONFIRMED'), 'PLANNER-SIGNAL-CONFIDENCE');
     keys(signal.evidence, ['observation_id', 'material'], 'PLANNER-SIGNAL-EVIDENCE'); expect(idPattern.test(signal.evidence.observation_id), 'PLANNER-SIGNAL-EVIDENCE'); ref(signal.evidence.material, 'PLANNER-SIGNAL-EVIDENCE-REF');
-    fingerprints.push(digest({kind: signal.kind, identity: signal.identity, modality: signal.modality, frame_span: signal.frame_span, time_span_ms: signal.time_span_ms, geometry: signal.geometry}));
+    fingerprints.push(digest({identity: signal.identity.canonical, modality: signal.modality, frame_span: signal.frame_span, time_span_ms: signal.time_span_ms, geometry: signal.geometry}));
   }
   unique(fingerprints, 'PLANNER-INVENTORY-SIGNAL-DUPLICATE');
   const coverageByModality = {VISUAL_TEXT: 'visual_text', VISUAL_TEMPLATE: 'visual_templates', VISUAL_MANUAL: 'faces', AUDIO_TRANSCRIPT: 'audio_transcript'};
@@ -75,9 +79,17 @@ const claimMaterials = (materials) => {
   for (const item of materials) { const identity = `${item.sha256}:${item.bytes}`; expect(!byRef.has(item.ref) || byRef.get(item.ref) === identity, 'PLANNER-MATERIAL-REF-ALIAS'); expect(!byIdentity.has(identity) || byIdentity.get(identity) === item.ref, 'PLANNER-MATERIAL-IDENTITY-ALIAS'); byRef.set(item.ref, identity); byIdentity.set(identity, item.ref); }
 };
 const assertRequest = (request) => {
-  keys(request, ['schema_version', 'case_id', 'participant_id', 'actor_id', 'inventory_material', 'inventory_verification_receipt', 'source_probe_receipt', 'directive_material'], 'PLANNER-REQUEST-KEYS');
+  keys(request, ['schema_version', 'case_id', 'participant_id', 'actor_id', 'aliases_material', 'inventory_material', 'inventory_verification_receipt', 'source_probe_receipt', 'directive_material'], 'PLANNER-REQUEST-KEYS');
   expect(request.schema_version === 'contextual-privacy-planner-request-v1' && request.actor_id === 'RT-07-H03-PRIVACY-PLANNER-PRODUCER' && idPattern.test(request.case_id) && idPattern.test(request.participant_id), 'PLANNER-REQUEST-IDENTITY');
   const inventory = physical(request.inventory_material, 'PLANNER-INVENTORY-MATERIAL'); assertInventory(inventory);
+  const aliases = physical(request.aliases_material, 'PLANNER-ALIASES-MATERIAL'); expect(Array.isArray(aliases) && aliases.length <= 512 && digest(aliases) === inventory.aliases_sha256, 'PLANNER-ALIASES-DRIFT');
+  const aliasIds = new Set(); const aliasesByCanonical = new Map(); const variantOwners = new Map();
+  for (const entry of aliases) {
+    keys(entry, ['alias_id', 'kind', 'canonical', 'variants'], 'PLANNER-ALIAS-KEYS'); expect(idPattern.test(entry.alias_id) && !aliasIds.has(entry.alias_id) && ['NAME', 'BRAND_TEXT'].includes(entry.kind) && visible(entry.canonical) && Array.isArray(entry.variants) && entry.variants.length > 0 && entry.variants.length <= 128 && entry.variants.every(visible), 'PLANNER-ALIAS-INVALID'); aliasIds.add(entry.alias_id);
+    const canonical = normalizedIdentity(entry.canonical); expect(canonical.length > 0 && !aliasesByCanonical.has(canonical), 'PLANNER-ALIAS-DUPLICATE'); aliasesByCanonical.set(canonical, entry);
+    for (const variant of [entry.canonical, ...entry.variants]) { const key = normalizedIdentity(variant); const owner = variantOwners.get(key); expect(!owner || owner === canonical, 'PLANNER-ALIAS-AMBIGUOUS'); variantOwners.set(key, canonical); }
+  }
+  for (const signal of inventory.signals.filter(({kind}) => ['NAME', 'BRAND_TEXT', 'SPOKEN_BRAND'].includes(kind))) { const entry = aliasesByCanonical.get(normalizedIdentity(signal.identity.canonical)); const expectedKind = signal.kind === 'SPOKEN_BRAND' ? 'BRAND_TEXT' : signal.kind; expect(entry?.canonical === signal.identity.canonical && entry.kind === expectedKind && [entry.canonical, ...entry.variants].some((value) => normalizedIdentity(value) === normalizedIdentity(signal.identity.matched_alias)), 'PLANNER-SIGNAL-ALIAS-BINDING'); }
   const receipt = physical(request.inventory_verification_receipt, 'PLANNER-INVENTORY-RECEIPT');
   keys(receipt, ['schema_version', 'actor_id', 'case_id', 'inventory_sha256', 'inventory_canonical_sha256', 'source'], 'PLANNER-INVENTORY-RECEIPT-CONTENT');
   expect(receipt.schema_version === 'sensitive-signal-inventory-verification-v1' && receipt.actor_id === 'RT-09-H03-PRIVACY-INVENTORY-VERIFIER' && receipt.case_id === request.case_id && receipt.inventory_sha256 === request.inventory_material.sha256 && receipt.inventory_canonical_sha256 === inventory.canonical_sha256 && same(receipt.source, inventory.source), 'PLANNER-INVENTORY-RECEIPT-DRIFT');
@@ -94,8 +106,8 @@ const assertRequest = (request) => {
     else { expect(signal.time_span_ms === null && signal.frame_span && signal.geometry, 'PLANNER-SIGNAL-MODALITY'); span(signal.frame_span, directive.source_metadata.frame_count, 'PLANNER-SIGNAL-FRAME-SPAN'); geometry(signal.geometry, directive.source_metadata, 'PLANNER-SIGNAL-GEOMETRY'); }
   }
   expect(['visual_text', 'visual_templates', 'faces'].every((key) => inventory.coverage[key] !== 'NOT_PRESENT'), 'PLANNER-INVENTORY-COVERAGE-UNACCREDITED');
-  expect(directive.source_metadata.has_audio ? inventory.coverage.audio_transcript !== 'NOT_PRESENT' : inventory.coverage.audio_transcript === 'NOT_PRESENT', 'PLANNER-INVENTORY-AUDIO-COVERAGE');
-  claimMaterials([request.inventory_material, request.inventory_verification_receipt, request.source_probe_receipt, request.directive_material, inventory.source, receipt.source, probe.source, directive.source, ...inventory.signals.map(({evidence}) => evidence.material)]);
+  expect(directive.source_metadata.has_audio ? inventory.coverage.audio_transcript !== 'NOT_PRESENT' : ['NOT_PRESENT', 'UNKNOWN'].includes(inventory.coverage.audio_transcript), 'PLANNER-INVENTORY-AUDIO-COVERAGE');
+  claimMaterials([request.aliases_material, request.inventory_material, request.inventory_verification_receipt, request.source_probe_receipt, request.directive_material, inventory.source, receipt.source, probe.source, directive.source, ...inventory.signals.map(({evidence}) => evidence.material)]);
   return {inventory, directive};
 };
 const expand = (roi, metadata) => { const amount = 10; const x = Math.max(0, roi.x - amount); const y = Math.max(0, roi.y - amount); const right = Math.min(metadata.frame_width, roi.x + roi.width + amount); const bottom = Math.min(metadata.frame_height, roi.y + roi.height + amount); return {x, y, width: right - x, height: bottom - y}; };
