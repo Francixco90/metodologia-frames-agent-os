@@ -1,4 +1,4 @@
-import {mkdtempSync, readdirSync, rmSync, symlinkSync} from 'node:fs';
+import {mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -107,7 +107,7 @@ const selectedLocalInput = (
     decisionRefs: {
       funnel: {ref: funnelRef, sha256: decision.funnel.canonicalSha256},
       selection: {
-        ref: aliasRefs ? funnelRef : 'evidence/decision-selection.json',
+        ref: aliasRefs ? 'evidence/./decision-funnel.json' : 'evidence/decision-selection.json',
         sha256: decision.selection.canonicalSha256,
       },
     },
@@ -155,14 +155,13 @@ describe('Frames local brief-first execution', () => {
   it('checks output containment after selection and before any material write', async () => {
     const root = workspace();
     const outside = workspace();
-    symlinkSync(outside, resolve(root, 'escape'));
-    const result = await orchestrateLocalExperienceV1(
-      selectedLocalInput(root, false, 'escape/generated'),
-    );
+    mkdirSync(resolve(root, 'work/private/experience'), {recursive: true});
+    symlinkSync(outside, resolve(root, 'work/private/experience/content'));
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root));
     expect(result).toMatchObject({
       status: 'BLOCKED',
       materialized: false,
-      coverageGap: 'EXPERIENCE-OUTPUT-NAMESPACE-DRIFT',
+      coverageGap: 'FRAMES-OUTPUT-PATH002',
     });
     expect(readdirSync(outside)).toEqual([]);
   });

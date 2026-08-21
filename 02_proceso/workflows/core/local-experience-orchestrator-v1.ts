@@ -15,9 +15,7 @@ import {
   autoPrimeExperienceV1,
   compileExperienceWorkflowPlanV1,
   createFramesWorkOrderV1,
-  type AutoPrimeResultV1,
   type ExperienceDecisionContextV1,
-  type ExperienceDecisionReferencesV1,
 } from './experience-planner-v1.ts';
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
@@ -41,7 +39,7 @@ interface LocalExecutionBaseV1 {
   startedAt: string;
   completedAt: string;
   decision?: ExperienceDecisionContextV1;
-  decisionRefs?: ExperienceDecisionReferencesV1;
+  decisionRefs?: Record<'funnel' | 'selection', MaterialReferenceV1>;
 }
 export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
   (
@@ -56,7 +54,7 @@ export interface LocalExperienceExecutionResultV1 {
   routeId: 'R6' | 'R7';
   materialized: boolean;
   nextGate: 'EXP_BRIEF_APPROVED';
-  autoPrime: AutoPrimeResultV1 | null;
+  autoPrime: ReturnType<typeof autoPrimeExperienceV1> | null;
   workOrderSha256: string | null;
   receiptRef: string | null;
   receiptSha256: string | null;

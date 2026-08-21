@@ -1,16 +1,18 @@
 import {
   AssistanceEnvelopeV1Schema,
   FramesWorkOrderV1Schema,
+  MaterialReferenceV1Schema,
   RelativePathSchema,
   assertDecisionSelectionV1,
   hashExperienceValue,
   type AssistanceEnvelopeV1,
   type DecisionFunnelV1,
   type DecisionSelectionV1,
-  type FramesWorkOrderV1,
-  type MaterialReferenceV1,
 } from '../../core/contracts/index.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
+
+const OUTPUT_DIRECTORY_PATTERN =
+  /^work\/private\/experience\/[A-Za-z0-9_-][A-Za-z0-9._-]*(?:\/[A-Za-z0-9_-][A-Za-z0-9._-]*)*$/u;
 
 export interface ExperienceStepDefinitionV1 {
   stepId: string;
@@ -40,12 +42,8 @@ export interface ExperienceWorkflowPlanV1 {
   selectedOptionId: string;
 }
 
-export interface ExperienceDecisionContextV1 {
-  funnel: DecisionFunnelV1;
-  selection: DecisionSelectionV1;
-}
-
-export type ExperienceDecisionReferencesV1 = Record<'funnel' | 'selection', MaterialReferenceV1>;
+export type ExperienceDecisionContextV1 = Record<'funnel', DecisionFunnelV1> &
+  Record<'selection', DecisionSelectionV1>;
 
 const verifyDecisionBinding = (
   envelopeInput: AssistanceEnvelopeV1,
@@ -112,46 +110,50 @@ export function autoPrimeExperienceV1(plan: ExperienceWorkflowPlanV1) {
     contextBudget: {targetFiles: 8, maxFiles: 14, targetTokens: 8_000, maxTokens: 14_000},
   };
 }
-export type AutoPrimeResultV1 = ReturnType<typeof autoPrimeExperienceV1>;
-
 export function createFramesWorkOrderV1(
   plan: ExperienceWorkflowPlanV1,
   envelope: AssistanceEnvelopeV1,
   input: {
     workOrderId: string;
     inputRefs: Array<{ref: string; sha256: string}>;
-    decisionRefs: ExperienceDecisionReferencesV1;
+    decisionRefs: Record<'funnel' | 'selection', {ref: string; sha256: string}>;
     decision: ExperienceDecisionContextV1;
     outputDirectoryRef: string;
     effectClass?: 'READ_ONLY' | 'LOCAL_REVERSIBLE';
   },
-): FramesWorkOrderV1 {
-  const allowedKeys = new Set([
-    'workOrderId',
-    'inputRefs',
-    'decisionRefs',
-    'decision',
-    'outputDirectoryRef',
-    'effectClass',
-  ]);
+) {
+  const allowedKeys = new Set(
+    'workOrderId inputRefs decisionRefs decision outputDirectoryRef effectClass'.split(' '),
+  );
   if (Object.keys(input).some((key) => !allowedKeys.has(key))) {
     throw new Error('EXPERIENCE-WORK-ORDER-INPUT-EXTRA');
   }
   const outputDirectoryRef = RelativePathSchema.parse(input.outputDirectoryRef);
-  if (
-    !/^work\/private\/experience\/[A-Za-z0-9._-]+(?:\/[A-Za-z0-9._-]+)*$/u.test(outputDirectoryRef)
-  ) {
+  if (!OUTPUT_DIRECTORY_PATTERN.test(outputDirectoryRef)) {
     throw new Error('EXPERIENCE-OUTPUT-NAMESPACE-DRIFT');
   }
   const verified = verifyDecisionBinding(envelope, input.decision);
+  if (Object.keys(input.decisionRefs).sort().join(',') !== 'funnel,selection') {
+    throw new Error('EXPERIENCE-DECISION-REF-EXTRA');
+  }
   if (
     input.decisionRefs.funnel.sha256 !== verified.funnel.canonicalSha256 ||
     input.decisionRefs.selection.sha256 !== verified.selection.canonicalSha256
   ) {
     throw new Error('EXPERIENCE-DECISION-REF-DRIFT');
   }
-  const inputRefs = [input.decisionRefs.funnel, input.decisionRefs.selection, ...input.inputRefs];
-  if (new Set(inputRefs.map(({ref}) => ref)).size !== inputRefs.length) {
+  const inputRefs = [
+    input.decisionRefs.funnel,
+    input.decisionRefs.selection,
+    ...input.inputRefs,
+  ].map((reference) => MaterialReferenceV1Schema.parse(reference));
+  const refKeys = inputRefs.map(({ref}) => {
+    if (ref.includes('\\') || ref.split('/').includes('.') || ref !== ref.normalize('NFC')) {
+      throw new Error('EXPERIENCE-DECISION-REF-ALIAS');
+    }
+    return ref.toLowerCase();
+  });
+  if (new Set(refKeys).size !== refKeys.length) {
     throw new Error('EXPERIENCE-DECISION-REF-ALIAS');
   }
   const definitions = createProductiveExperienceWorkflowDefinitionsV1({
@@ -174,7 +176,6 @@ export function createFramesWorkOrderV1(
     throw new Error('EXPERIENCE-DECISION-PLAN-DRIFT');
   }
   const effectClass = input.effectClass ?? ('READ_ONLY' as const);
-  const expectedWriteSet = effectClass === 'READ_ONLY' ? [] : [`${outputDirectoryRef}/**`];
   const draft = {
     schemaVersion: 'frames-work-order-v1' as const,
     workOrderId: input.workOrderId,
@@ -185,7 +186,7 @@ export function createFramesWorkOrderV1(
     skillId: step.primarySkillId,
     actorId: definition.actorId,
     readSet: [...new Set([step.templateRef, ...step.sourceRefs])],
-    writeSet: expectedWriteSet,
+    writeSet: effectClass === 'READ_ONLY' ? [] : [`${outputDirectoryRef}/**`],
     inputs: inputRefs,
     expectedOutputs: step.expectedOutputs,
     tools: [],

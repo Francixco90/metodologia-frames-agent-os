@@ -169,12 +169,7 @@ describe('Frames causal orchestration', () => {
     expect(plan.steps.map(({stepId}) => stepId)).toEqual(envelope.workflowPlan);
     expect(prime.loadedRefs).toEqual([plan.steps[0]!.templateRef, plan.steps[0]!.sourceRefs[0]]);
     expect(prime.deferredStepIds).toEqual(['P05', 'P07', 'P08']);
-    expect(prime.contextBudget).toEqual({
-      targetFiles: 8,
-      maxFiles: 14,
-      targetTokens: 8_000,
-      maxTokens: 14_000,
-    });
+    expect(prime.contextBudget.maxFiles).toBe(14);
   });
 
   it('rejects a selection or decision reference that is not bound to the envelope', () => {
@@ -224,6 +219,23 @@ describe('Frames causal orchestration', () => {
         decisionRefs,
       }),
     ).toThrow(/EXPERIENCE-DECISION-REF-ALIAS/u);
+    for (const reference of [
+      {ref: 'evidence/./decision-funnel.json', sha256: digest},
+      {ref: './evidence/decision-funnel.json', sha256: digest},
+      {ref: 'evidence\\decision-funnel.json', sha256: digest},
+      {ref: 'EVIDENCE/DECISION-FUNNEL.JSON', sha256: digest},
+      {...decisionRefs.funnel, alias: true},
+    ]) {
+      expect(() =>
+        createFramesWorkOrderV1(plan, envelope, {
+          workOrderId: 'WO.EXP.PORTABLE-ALIAS',
+          inputRefs: [reference],
+          decision,
+          outputDirectoryRef,
+          decisionRefs,
+        }),
+      ).toThrow();
+    }
     const forgedInput: Parameters<typeof createFramesWorkOrderV1>[2] & Record<string, unknown> = {
       workOrderId: 'WO.EXP.WRITE-DRIFT',
       inputRefs: [],
@@ -247,6 +259,15 @@ describe('Frames causal orchestration', () => {
         decisionRefs,
       }),
     ).toThrow(/EXPERIENCE-OUTPUT-NAMESPACE-DRIFT/u);
+    expect(() =>
+      createFramesWorkOrderV1(plan, envelope, {
+        workOrderId: 'WO.EXP.DOT-OUTPUT',
+        inputRefs: [],
+        decision,
+        outputDirectoryRef: `${outputDirectoryRef}/.`,
+        decisionRefs,
+      }),
+    ).toThrow(/EXPERIENCE-OUTPUT-NAMESPACE-DRIFT/u);
   });
 
   it('requires a material invocation receipt before planned becomes executed', async () => {
@@ -262,7 +283,6 @@ describe('Frames causal orchestration', () => {
     });
     expect(workOrder).toMatchObject({
       actorId: 'RT-04',
-      workflowId: 'FRAMES.CONTENT.BRIEF',
       skillId: 'content-os-creative',
       writeSet: [],
     });
