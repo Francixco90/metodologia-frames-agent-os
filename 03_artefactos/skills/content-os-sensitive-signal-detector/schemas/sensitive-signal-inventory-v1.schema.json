@@ -64,7 +64,7 @@
         "identity": {
           "type": "object", "additionalProperties": false,
           "required": ["canonical", "matched_alias"],
-          "properties": {"canonical": {"type": "string", "minLength": 1, "maxLength": 320, "pattern": ".*\\S.*"}, "matched_alias": {"type": ["string", "null"], "maxLength": 320, "pattern": ".*\\S.*"}}
+          "properties": {"canonical": {"type": "string", "minLength": 1, "maxLength": 320, "pattern": "^(?![\\s\\S]*\\p{C})[^\\p{Z}](?:[\\s\\S]*[^\\p{Z}])?$"}, "matched_alias": {"type": ["string", "null"], "maxLength": 320, "pattern": "^(?![\\s\\S]*\\p{C})[^\\p{Z}](?:[\\s\\S]*[^\\p{Z}])?$"}}
         },
         "modality": {"enum": ["VISUAL_TEXT", "VISUAL_TEMPLATE", "VISUAL_MANUAL", "AUDIO_TRANSCRIPT"]},
         "frame_span": {"$ref": "#/$defs/span"},

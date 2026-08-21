@@ -63,6 +63,8 @@ if (logos.length !== 2 || logos[0].frame_span.end !== 24 || logos[1].frame_span.
 const schema = JSON.parse(contents.get('schemas/sensitive-signal-inventory-v1.schema.json'));
 const validate = new Ajv2020({allErrors: true, strict: false}).compile(schema);
 if (!validate(inventory) || validate({...inventory, render: true})) throw new Error('SSD-SCHEMA-STRICTNESS');
+const invisibleInventory = structuredClone(inventory); invisibleInventory.signals[0].identity.canonical = '\u200b';
+if (validate(invisibleInventory)) throw new Error('SSD-SCHEMA-INVISIBLE-IDENTITY');
 const expectBlocked = (label, mutate, pattern) => {
   const candidate = structuredClone(request); mutate(candidate);
   try { detectSensitiveSignals(candidate); } catch (error) { if (String(error).includes(pattern)) return; }
@@ -84,10 +86,13 @@ expectBlocked('alias-canonical-duplicate-kind', (value) => { value.aliases.push(
 expectBlocked('alias-canonical-blank', (value) => { value.aliases[0].canonical = ' '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
 expectBlocked('alias-canonical-padding', (value) => { value.aliases[0].canonical = ' Sofka '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
 expectBlocked('alias-variant-padding', (value) => { value.aliases[0].variants[0] = ' Sofka '; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
+expectBlocked('alias-canonical-invisible', (value) => { value.aliases[0].canonical = '\u200b'; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
+expectBlocked('alias-canonical-format-control', (value) => { value.aliases[0].canonical = 'Sof\u202Eka'; value.aliases_sha256 = digest(value.aliases); }, 'DETECTOR-ALIAS-INVALID');
 expectBlocked('alias-match-ambiguity', (value) => { value.aliases.push({alias_id: 'AL-SOFK-TARGET', kind: 'BRAND_TEXT', canonical: 'SofkTarget', variants: ['SofkTarget']}); value.aliases_sha256 = digest(value.aliases); value.observations[0].text = 'Sofk'; rebind(value, 0); }, 'DETECTOR-ALIAS-MATCH-AMBIGUOUS');
 expectBlocked('template-drift', (value) => { value.templates[0].content_base64 = Buffer.from('drift').toString('base64'); }, 'DETECTOR-TEMPLATE-PHYSICAL-DRIFT');
 expectBlocked('template-identity-blank', (value) => { value.templates[0].identity = ' '; value.templates_sha256 = digest(value.templates); }, 'DETECTOR-TEMPLATE-INVALID');
 expectBlocked('template-identity-padding', (value) => { value.templates[0].identity = ' Sofka '; value.templates_sha256 = digest(value.templates); }, 'DETECTOR-TEMPLATE-INVALID');
+expectBlocked('template-identity-invisible', (value) => { value.templates[0].identity = '\u200b'; value.templates_sha256 = digest(value.templates); }, 'DETECTOR-TEMPLATE-INVALID');
 expectBlocked('duplicate-observation-id', (value) => { value.observations.push(structuredClone(value.observations[0])); }, 'DETECTOR-OBSERVATION-INVALID');
 expectBlocked('duplicate-observation-semantic', (value) => { const clone = structuredClone(value.observations[0]); clone.observation_id = 'OBS-OCR-DUP'; value.observations.push(bindObservation(clone)); }, 'DETECTOR-OBSERVATION-DUPLICATE');
 expectBlocked('duplicate-observation-camouflage', (value) => { const clone = structuredClone(value.observations[0]); clone.observation_id = 'OBS-OCR-CAMOUFLAGE'; clone.template_id = 'TPL-SOFKA'; value.observations.push(bindObservation(clone)); }, 'DETECTOR-MODALITY-FIELDS');
@@ -98,7 +103,9 @@ expectBlocked('evidence-base64', (value) => { value.observations[0].evidence.con
 expectBlocked('evidence-role', (value) => { const parsed = JSON.parse(Buffer.from(value.observations[0].evidence.content_base64, 'base64')); parsed.actor_id = 'RT-11-PRIVACY-GUARDIAN'; value.observations[0].evidence = canonicalMaterial('evidence/obs-ocr-1.json', parsed); }, 'DETECTOR-EVIDENCE-DRIFT');
 expectBlocked('auto-face', (value) => { value.observations[5].modality = 'FACE_AUTO'; }, 'DETECTOR-OBSERVATION-INVALID');
 expectBlocked('face-identity-blank', (value) => { value.observations[5].identity = ' '; rebind(value, 5); }, 'DETECTOR-MODALITY-FIELDS');
+expectBlocked('face-identity-invisible', (value) => { value.observations[5].identity = '\u200b'; rebind(value, 5); }, 'DETECTOR-MODALITY-FIELDS');
 expectBlocked('text-blank', (value) => { value.observations[0].text = ' '; rebind(value, 0); }, 'DETECTOR-TEXT-MISSING');
+expectBlocked('text-invisible', (value) => { value.observations[0].text = '\u200b'; rebind(value, 0); }, 'DETECTOR-TEXT-MISSING');
 expectBlocked('geometry-overflow', (value) => { value.observations[0].geometry.x = 1910; rebind(value, 0); }, 'DETECTOR-GEOMETRY-RANGE');
 expectBlocked('frame-overflow', (value) => { value.observations[0].frame_span.end = 61; rebind(value, 0); }, 'DETECTOR-MODALITY-SPAN');
 expectBlocked('audio-overflow', (value) => { value.observations[6].time_span_ms.end = 3001; rebind(value, 6); }, 'DETECTOR-MODALITY-SPAN');
@@ -129,4 +136,4 @@ for (const mutate of [
   try { assertSensitiveSignalInventory(candidate, request); } catch { continue; }
   throw new Error('SSD-INVENTORY-FORGERY-ACCEPTED');
 }
-console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 45 adversarial gates.`);
+console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 51 adversarial gates.`);

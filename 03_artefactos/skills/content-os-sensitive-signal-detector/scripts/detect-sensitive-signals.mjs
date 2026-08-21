@@ -40,6 +40,8 @@ const span = (value, label) => {
   if (!Number.isInteger(value.start) || !Number.isInteger(value.end) || value.start < 0 || value.end < value.start) throw new Error(`${label}-RANGE`);
 };
 const normalized = (value) => String(value ?? '').normalize('NFKC').toLocaleLowerCase('en-US');
+const hasVisible = (value) => typeof value === 'string' && /[^\p{Z}\p{C}]/u.test(value);
+const canonicalIdentity = (value) => hasVisible(value) && !/\p{C}/u.test(value) && value === value.replace(/^\p{Z}+|\p{Z}+$/gu, '');
 const escape = (value) => value.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
 const aliasMatches = (text, aliases) => {
   const raw = String(text); const haystack = normalized(raw); const tokens = [...raw.matchAll(/[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu)]; const found = [];
@@ -104,8 +106,8 @@ const deriveSensitiveSignals = (request) => {
   const aliasIds = new Set(); const aliasVariants = new Map(); const aliasCanonicals = new Set();
   for (const entry of request.aliases) {
     exact(entry, ['alias_id', 'kind', 'canonical', 'variants'], 'DETECTOR-ALIAS');
-    const canonicalKey = typeof entry.canonical === 'string' ? normalized(entry.canonical.trim()) : '';
-    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || typeof entry.canonical !== 'string' || !entry.canonical.trim() || entry.canonical !== entry.canonical.trim() || aliasCanonicals.has(canonicalKey) || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every((variant) => typeof variant === 'string' && variant.length > 0 && variant === variant.trim())) throw new Error('DETECTOR-ALIAS-INVALID');
+    const canonicalKey = canonicalIdentity(entry.canonical) ? normalized(entry.canonical) : '';
+    if (!isId(entry.alias_id) || aliasIds.has(entry.alias_id) || !['NAME', 'BRAND_TEXT'].includes(entry.kind) || !canonicalIdentity(entry.canonical) || aliasCanonicals.has(canonicalKey) || !Array.isArray(entry.variants) || entry.variants.length < 1 || !entry.variants.every(canonicalIdentity)) throw new Error('DETECTOR-ALIAS-INVALID');
     aliasIds.add(entry.alias_id); aliasCanonicals.add(canonicalKey);
     for (const variant of [entry.canonical, ...entry.variants]) { const key = normalized(variant); const owner = aliasVariants.get(key); if (owner && owner !== entry.canonical) throw new Error('DETECTOR-ALIAS-AMBIGUOUS'); aliasVariants.set(key, entry.canonical); }
   }
@@ -113,7 +115,7 @@ const deriveSensitiveSignals = (request) => {
   const templates = new Map();
   for (const item of request.templates) {
     exact(item, ['template_id', 'kind', 'identity', 'content_base64', 'sha256', 'bytes'], 'DETECTOR-TEMPLATE');
-    if (!isId(item.template_id) || templates.has(item.template_id) || !['LOGO', 'AVATAR', 'TOOL_CHROME'].includes(item.kind) || typeof item.identity !== 'string' || !item.identity.trim() || item.identity !== item.identity.trim()) throw new Error('DETECTOR-TEMPLATE-INVALID');
+    if (!isId(item.template_id) || templates.has(item.template_id) || !['LOGO', 'AVATAR', 'TOOL_CHROME'].includes(item.kind) || !canonicalIdentity(item.identity)) throw new Error('DETECTOR-TEMPLATE-INVALID');
     const templateRef = `templates/${item.template_id.toLowerCase()}.bin`; physical({ref: templateRef, sha256: item.sha256, bytes: item.bytes, content_base64: item.content_base64}, 'DETECTOR-TEMPLATE'); claimRef(templateRef); templates.set(item.template_id, item);
   }
   if (digest(request.templates) !== request.templates_sha256) throw new Error('DETECTOR-TEMPLATES-DRIFT');
@@ -136,11 +138,11 @@ const deriveSensitiveSignals = (request) => {
     if (typeof observation.confidence !== 'number' || observation.confidence < 0 || observation.confidence > 1) throw new Error('DETECTOR-CONFIDENCE');
     const audio = observation.modality === 'AUDIO_TRANSCRIPT';
     if (audio ? !request.source.has_audio || observation.frame_span !== null || observation.geometry !== null || observation.time_span_ms === null || observation.time_span_ms.end > request.source.duration_ms : observation.frame_span === null || observation.frame_span.end >= request.source.frame_count || observation.geometry === null || observation.time_span_ms !== null) throw new Error('DETECTOR-MODALITY-SPAN');
-    if (observation.modality === 'TEMPLATE' ? observation.text !== null || observation.identity !== null || !isId(observation.template_id) : observation.modality === 'FACE_MANUAL' ? observation.text !== null || observation.template_id !== null || typeof observation.identity !== 'string' || !observation.identity.trim() || observation.identity !== observation.identity.trim() : observation.template_id !== null || observation.identity !== null) throw new Error('DETECTOR-MODALITY-FIELDS');
+    if (observation.modality === 'TEMPLATE' ? observation.text !== null || observation.identity !== null || !isId(observation.template_id) : observation.modality === 'FACE_MANUAL' ? observation.text !== null || observation.template_id !== null || !canonicalIdentity(observation.identity) : observation.template_id !== null || observation.identity !== null) throw new Error('DETECTOR-MODALITY-FIELDS');
     if (observation.modality === 'TEMPLATE') { const template = templates.get(observation.template_id); if (!template) throw new Error('DETECTOR-TEMPLATE-UNKNOWN'); push(observation, template.kind, template.identity, null, Math.min(observation.confidence, 0.89)); }
     else if (observation.modality === 'FACE_MANUAL') { if (!observation.identity) throw new Error('DETECTOR-FACE-AUTHORITY'); push(observation, 'FACE', observation.identity, null, Math.min(observation.confidence, 0.89)); }
     else {
-      if (typeof observation.text !== 'string' || !observation.text.trim()) throw new Error('DETECTOR-TEXT-MISSING');
+      if (!hasVisible(observation.text)) throw new Error('DETECTOR-TEXT-MISSING');
       for (const match of aliasMatches(observation.text, request.aliases)) if (observation.modality !== 'AUDIO_TRANSCRIPT' || match.entry.kind === 'BRAND_TEXT') push(observation, observation.modality === 'AUDIO_TRANSCRIPT' ? 'SPOKEN_BRAND' : match.entry.kind, match.entry.canonical, match.matched, match.partial ? Math.min(observation.confidence, 0.89) : observation.confidence);
       if (observation.modality === 'OCR_TSV') {
         const urlPattern = /https?:\/\/[^\s]+/giu; const emailPattern = /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/gu;
