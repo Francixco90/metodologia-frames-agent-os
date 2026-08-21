@@ -120,9 +120,10 @@ const deriveSensitiveSignals = (request) => {
   }
   if (digest(request.templates) !== request.templates_sha256) throw new Error('DETECTOR-TEMPLATES-DRIFT');
   const evidenceActors = {OCR_TSV: 'RT-09-PRIVACY-OCR-VERIFIER', TEMPLATE: 'RT-09-PRIVACY-TEMPLATE-VERIFIER', FACE_MANUAL: 'RT-11-PRIVACY-GUARDIAN', AUDIO_TRANSCRIPT: 'RT-09-PRIVACY-AUDIO-VERIFIER'};
-  const observationIds = new Set(); const observationFingerprints = new Set(); const modalityCounts = {OCR_TSV: 0, TEMPLATE: 0, FACE_MANUAL: 0, AUDIO_TRANSCRIPT: 0}; const signals = [];
+  const observationIds = new Set(); const observationFingerprints = new Set(); const emittedKeys = new Set(); const modalityCounts = {OCR_TSV: 0, TEMPLATE: 0, FACE_MANUAL: 0, AUDIO_TRANSCRIPT: 0}; const signals = [];
   const push = (observation, kind, identity, matchedAlias = null, score = observation.confidence) => {
     const projection = {observation_id: observation.observation_id, kind, identity, matchedAlias};
+    const emittedKey = digest(projection); if (emittedKeys.has(emittedKey)) return; emittedKeys.add(emittedKey);
     signals.push({sequence: signals.length, signal_id: `SIG-${sha(JSON.stringify(projection)).slice(0, 16)}`, kind, identity: {canonical: identity, matched_alias: matchedAlias}, modality: {OCR_TSV: 'VISUAL_TEXT', TEMPLATE: 'VISUAL_TEMPLATE', FACE_MANUAL: 'VISUAL_MANUAL', AUDIO_TRANSCRIPT: 'AUDIO_TRANSCRIPT'}[observation.modality], frame_span: observation.frame_span, time_span_ms: observation.time_span_ms, geometry: observation.geometry, confidence: confidence(score), evidence: {observation_id: observation.observation_id, material: {ref: observation.evidence.ref, sha256: observation.evidence.sha256, bytes: observation.evidence.bytes}}});
   };
   for (const observation of request.observations) {

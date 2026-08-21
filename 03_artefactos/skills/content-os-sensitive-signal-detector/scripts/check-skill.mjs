@@ -115,6 +115,9 @@ if (detectSensitiveSignals(boundary).signals.some((signal) => signal.identity.ca
 const overlap = structuredClone(request); const gnpAlias = overlap.aliases.find(({alias_id}) => alias_id === 'AL-GNP'); gnpAlias.canonical = 'GNP Seguros'; gnpAlias.variants = ['GNP']; overlap.aliases_sha256 = digest(overlap.aliases); overlap.observations[0].text = 'GNP Seguros'; rebind(overlap, 0);
 const overlapSignals = detectSensitiveSignals(overlap).signals.filter((signal) => signal.identity.canonical === 'GNP Seguros' && signal.modality === 'VISUAL_TEXT');
 if (overlapSignals.length !== 1 || overlapSignals[0].identity.matched_alias !== 'GNP Seguros') throw new Error('SSD-ALIAS-OVERLAP');
+const repeated = structuredClone(request); repeated.observations[0].text = 'https://example.test/demo https://example.test/demo ana@example.com ana@example.com workspace/class/private/file.csv workspace/class/private/file.csv'; rebind(repeated, 0);
+const repeatedSignals = detectSensitiveSignals(repeated).signals;
+for (const [kind, identity] of [['URL', 'https://example.test/demo'], ['EMAIL', 'ana@example.com'], ['FILE_PATH', 'workspace/class/private/file.csv']]) if (repeatedSignals.filter((signal) => signal.kind === kind && signal.identity.canonical === identity).length !== 1) throw new Error(`SSD-STRUCTURED-REPEAT ${kind}`);
 const structured = structuredClone(request); structured.observations[0].text = 'https://example.test/Foo_(bar) https://example.test/demo]. https://example.test/nested).] /workspace/class/private/absolute.csv C:\\workspace\\class\\windows.csv 2026/08/21'; rebind(structured, 0);
 const structuredSignals = detectSensitiveSignals(structured).signals;
 for (const expected of ['https://example.test/Foo_(bar)', 'https://example.test/demo', 'https://example.test/nested', '/workspace/class/private/absolute.csv', 'C:\\workspace\\class\\windows.csv']) if (!structuredSignals.some((signal) => signal.identity.canonical === expected)) throw new Error(`SSD-STRUCTURED-PATTERN ${expected}`);
@@ -140,4 +143,4 @@ for (const mutate of [
   try { assertSensitiveSignalInventory(candidate, request); } catch { continue; }
   throw new Error('SSD-INVENTORY-FORGERY-ACCEPTED');
 }
-console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 55 adversarial gates.`);
+console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 58 adversarial gates.`);
