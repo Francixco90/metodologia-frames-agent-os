@@ -55,10 +55,10 @@ const aliasMatches = (text, aliases) => {
       for (const token of tokens) { const observed = normalized(token[0]); if (observed.length >= 4 && (needle.startsWith(observed) || observed.startsWith(needle))) found.push({entry, partial: true, matched: token[0]}); }
     }
   }
-  found.sort((left, right) => Number(left.partial) - Number(right.partial));
+  found.sort((left, right) => Number(left.partial) - Number(right.partial) || normalized(right.matched).length - normalized(left.matched).length);
   const owners = new Map();
   for (const item of found) { const key = normalized(item.matched); const owner = owners.get(key); if (owner && owner !== item.entry.canonical) throw new Error('DETECTOR-ALIAS-MATCH-AMBIGUOUS'); owners.set(key, item.entry.canonical); }
-  return found.filter((item, index) => found.findIndex((candidate) => candidate.entry.canonical === item.entry.canonical && normalized(candidate.matched) === normalized(item.matched)) === index);
+  return found.filter((item, index) => found.findIndex((candidate) => candidate.entry.canonical === item.entry.canonical) === index);
 };
 const confidence = (score) => ({score, status: score >= 0.9 ? 'CONFIRMED' : score >= 0.5 ? 'REVIEW_REQUIRED' : 'UNKNOWN'});
 const signalFingerprint = ({signal_id: _id, sequence: _sequence, ...signal}) => digest(signal);
@@ -143,6 +143,7 @@ const deriveSensitiveSignals = (request) => {
     else if (observation.modality === 'FACE_MANUAL') { if (!observation.identity) throw new Error('DETECTOR-FACE-AUTHORITY'); push(observation, 'FACE', observation.identity, null, Math.min(observation.confidence, 0.89)); }
     else {
       if (!hasVisible(observation.text)) throw new Error('DETECTOR-TEXT-MISSING');
+      if (/\p{C}/u.test(observation.text)) throw new Error('DETECTOR-TEXT-CONTROL');
       for (const match of aliasMatches(observation.text, request.aliases)) if (observation.modality !== 'AUDIO_TRANSCRIPT' || match.entry.kind === 'BRAND_TEXT') push(observation, observation.modality === 'AUDIO_TRANSCRIPT' ? 'SPOKEN_BRAND' : match.entry.kind, match.entry.canonical, match.matched, match.partial ? Math.min(observation.confidence, 0.89) : observation.confidence);
       if (observation.modality === 'OCR_TSV') {
         const urlPattern = /https?:\/\/[^\s]+/giu; const emailPattern = /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/gu;

@@ -112,6 +112,9 @@ expectBlocked('audio-overflow', (value) => { value.observations[6].time_span_ms.
 expectBlocked('incomplete-coverage', (value) => { value.observations = value.observations.filter(({modality}) => modality !== 'AUDIO_TRANSCRIPT'); }, 'DETECTOR-COVERAGE-INCOMPLETE');
 const boundary = structuredClone(request); boundary.observations[0].text = 'signposted'; rebind(boundary, 0);
 if (detectSensitiveSignals(boundary).signals.some((signal) => signal.identity.canonical === 'GNP' && signal.modality === 'VISUAL_TEXT')) throw new Error('SSD-SUBSTRING-FALSE-POSITIVE');
+const overlap = structuredClone(request); const gnpAlias = overlap.aliases.find(({alias_id}) => alias_id === 'AL-GNP'); gnpAlias.canonical = 'GNP Seguros'; gnpAlias.variants = ['GNP']; overlap.aliases_sha256 = digest(overlap.aliases); overlap.observations[0].text = 'GNP Seguros'; rebind(overlap, 0);
+const overlapSignals = detectSensitiveSignals(overlap).signals.filter((signal) => signal.identity.canonical === 'GNP Seguros' && signal.modality === 'VISUAL_TEXT');
+if (overlapSignals.length !== 1 || overlapSignals[0].identity.matched_alias !== 'GNP Seguros') throw new Error('SSD-ALIAS-OVERLAP');
 const structured = structuredClone(request); structured.observations[0].text = 'https://example.test/Foo_(bar) https://example.test/demo]. https://example.test/nested).] /workspace/class/private/absolute.csv C:\\workspace\\class\\windows.csv 2026/08/21'; rebind(structured, 0);
 const structuredSignals = detectSensitiveSignals(structured).signals;
 for (const expected of ['https://example.test/Foo_(bar)', 'https://example.test/demo', 'https://example.test/nested', '/workspace/class/private/absolute.csv', 'C:\\workspace\\class\\windows.csv']) if (!structuredSignals.some((signal) => signal.identity.canonical === expected)) throw new Error(`SSD-STRUCTURED-PATTERN ${expected}`);
@@ -121,6 +124,7 @@ const unicodeSignals = detectSensitiveSignals(unicode).signals;
 if (unicodeSignals.find((signal) => signal.identity.canonical === 'ffi')?.identity.matched_alias !== 'ﬃ' || unicodeSignals.find((signal) => signal.identity.canonical === 'Sofka')?.identity.matched_alias !== 'Sofka') throw new Error('SSD-UNICODE-MATCHED-ALIAS');
 const unknownConfidence = structuredClone(request); unknownConfidence.observations[0].text = 'benign'; unknownConfidence.observations[0].confidence = 0.2; rebind(unknownConfidence, 0);
 if (detectSensitiveSignals(unknownConfidence).status !== 'BLOCKED_SIGNAL_CONFIDENCE_UNKNOWN') throw new Error('SSD-UNKNOWN-CONFIDENCE');
+for (const control of ['\u200b', '\u202e', '\u2060']) expectBlocked(`text-control-${control.codePointAt(0).toString(16)}`, (value) => { value.observations[0].text = `Sof${control}ka`; rebind(value, 0); }, 'DETECTOR-TEXT-CONTROL');
 const rehash = (value) => { value.canonical_sha256 = digest(Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'canonical_sha256'))); };
 for (const mutate of [
   (value) => { value.canonical_sha256 = '0'.repeat(64); },
@@ -136,4 +140,4 @@ for (const mutate of [
   try { assertSensitiveSignalInventory(candidate, request); } catch { continue; }
   throw new Error('SSD-INVENTORY-FORGERY-ACCEPTED');
 }
-console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 51 adversarial gates.`);
+console.info(`PASS sensitive-signal-detector: ${inventory.signals.length} signals and 55 adversarial gates.`);
