@@ -1,0 +1,44 @@
+schema_version: runtime-boundary-v1
+skill_id: content-os-publication-privacy-verifier
+issued: 2026-08-21
+actor: RT-09-H03-PUBLICATION-PRIVACY-VERIFIER
+scope:
+  - hash-bound local privacy verification
+  - independent residual and preservation audit
+  - material disclosure export and curtain audit
+runtime_boundary:
+  allowed_scoped:
+    - read_only_source_output_and_disclosure_snapshots
+    - isolated_ephemeral_scratch_rerender
+    - detector_inventory_rederivation
+    - deterministic_execution_assertion
+    - rgb_and_pcm_comparison
+    - canonical_report_derivation
+  out_of_scope:
+    - durable_write_to_evidence_roots
+    - media_correction
+    - privacy_policy_change
+    - authorization_issuance
+    - network_fetch
+    - upload
+    - publish
+runtime_rules:
+  - verifier_actor_distinct_from_executor
+  - separate_source_and_output_roots
+  - separate_disclosure_root
+  - full_detection_coverage_required
+  - zero_unexplained_rgb_frames_for_pass
+  - zero_audio_changes_outside_spans_for_pass
+  - zero_value_occlusion_for_pass
+  - disclosure_on_every_curtain
+  - autonomous_clip_retains_disclosure
+  - material_export_set_complete
+  - expected_export_set_preapproved
+  - export_fps_duration_and_pcm_exact
+  - class_memory_authorization_current_when_redacted
+  - authorization_and_rescan_same_day_as_report
+  - rendered_draft_maximum
+notes: >
+  Candidate nondurable auditor. Evidence roots remain immutable; scratch rerenders are deleted.
+  A passing report authorizes human playback only and cannot grant READY, publication authority,
+  consent, or distribution.
