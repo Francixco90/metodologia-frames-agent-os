@@ -1,6 +1,7 @@
 import {z} from 'zod';
 
 import {DecisionFunnelV1Schema} from './experience-decision-v1.ts';
+import {OpportunitySourceBindingV1Schema} from './opportunity-source-receipt-v1.ts';
 import {ActorIdSchema, PortableIdSchema, Sha256Schema, TimestampSchema} from './primitives.ts';
 
 const SourceSpanV2Schema = z
@@ -13,16 +14,6 @@ const SourceSpanV2Schema = z
   .refine((span) => span.endMs > span.startMs && span.endFrameExclusive > span.startFrame, {
     message: 'Opportunity spans must have positive duration.',
   });
-
-const SourceBindingV2Schema = z.strictObject({
-  materialSha256: Sha256Schema,
-  inventorySha256: Sha256Schema,
-  durationMs: z.number().int().positive(),
-  frameCount: z.number().int().positive(),
-  fpsNumerator: z.number().int().positive(),
-  fpsDenominator: z.number().int().positive(),
-  evidenceRefs: z.array(Sha256Schema).min(5).max(64),
-});
 
 const OpportunityCandidateDetailV2Schema = z.strictObject({
   candidateId: PortableIdSchema,
@@ -48,14 +39,15 @@ export const OpportunityMapV2Schema = z
   .strictObject({
     schemaVersion: z.literal('opportunity-map-v2'),
     requestHash: Sha256Schema,
-    source: SourceBindingV2Schema,
+    issuedAt: TimestampSchema,
+    expiresAt: TimestampSchema,
+    source: OpportunitySourceBindingV1Schema,
     decisionFunnel: DecisionFunnelV1Schema,
     candidateDetails: z.array(OpportunityCandidateDetailV2Schema).length(5),
     visibleOptionIds: z.array(PortableIdSchema).length(2),
-    workflowProjection: z.strictObject({
+    compatibilityProjection: z.strictObject({
       deliverableId: z.literal('opportunity-map-v1'),
-      authority: z.literal('opportunity-map-v2'),
-      role: z.literal('COMPATIBILITY_PROJECTION_ONLY'),
+      sha256: Sha256Schema,
     }),
     allowedNextAction: z.literal('REQUEST_HUMAN_SELECTION'),
     productionAuthority: z.literal(false),
@@ -64,8 +56,18 @@ export const OpportunityMapV2Schema = z
   })
   .superRefine((map, context) => {
     const sourceEvidence = new Set(map.source.evidenceRefs);
-    if (sourceEvidence.size !== map.source.evidenceRefs.length) {
-      context.addIssue({code: 'custom', message: 'Source evidence must be unique.'});
+    const issuedMs = Date.parse(map.issuedAt);
+    const expiresMs = Date.parse(map.expiresAt);
+    if (
+      expiresMs <= issuedMs ||
+      expiresMs - issuedMs > 7 * 24 * 60 * 60 * 1000 ||
+      issuedMs < Date.parse(map.source.receiptIssuedAt) ||
+      expiresMs > Date.parse(map.source.receiptExpiresAt)
+    ) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Map validity must fit its fresh source receipt.',
+      });
     }
     const funnelIds = map.decisionFunnel.candidates.map(({candidateId}) => candidateId);
     const detailIds = map.candidateDetails.map(({candidateId}) => candidateId);
@@ -94,12 +96,20 @@ export const OpportunityMapV2Schema = z
         context.addIssue({code: 'custom', message: 'Candidate evidence must remain source-bound.'});
       }
       if (
-        detail.sourceSpans.some(
-          (span) =>
-            span.endMs > map.source.durationMs || span.endFrameExclusive > map.source.frameCount,
-        )
+        detail.sourceSpans.some((span) => {
+          const frameMs = (1000 * map.source.fpsDenominator) / map.source.fpsNumerator;
+          return (
+            span.endMs > map.source.durationMs ||
+            span.endFrameExclusive > map.source.frameCount ||
+            Math.abs(span.startMs - span.startFrame * frameMs) > frameMs ||
+            Math.abs(span.endMs - span.endFrameExclusive * frameMs) > frameMs
+          );
+        })
       ) {
-        context.addIssue({code: 'custom', message: 'Candidate span exceeds the bound source.'});
+        context.addIssue({
+          code: 'custom',
+          message: 'Candidate span disagrees with the bound source.',
+        });
       }
       if (detail.privacyAssessment.state === 'BLOCKED') {
         context.addIssue({code: 'custom', message: 'A blocked candidate cannot be synthesized.'});
@@ -107,7 +117,8 @@ export const OpportunityMapV2Schema = z
     }
     const scoreOrder = [...map.decisionFunnel.candidates].sort(
       (left, right) =>
-        right.total - left.total || left.candidateId.localeCompare(right.candidateId),
+        right.total - left.total ||
+        (left.candidateId < right.candidateId ? -1 : left.candidateId > right.candidateId ? 1 : 0),
     );
     if (scoreOrder.some((candidate, index) => candidate.rank !== index + 1)) {
       context.addIssue({code: 'custom', message: 'Candidate ranks must follow total scores.'});

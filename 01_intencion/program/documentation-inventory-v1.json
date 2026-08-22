@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "44583d1478cbf9f039912f31d15a7d306ed9f270e02249e3a73a0d5d8c9f07fd",
+  "repositoryTreeSha256": "9eec00899afe4cda0c6ded18300947ec027c6635a206f88c0e354c8dd3b79910",
   "totalMarkdown": 1852,
   "auditedAuthored": 596,
   "classPaths": {
@@ -8161,9 +8161,9 @@
       "sourceRef": "02_proceso/workflows/multimedia/p01-curar-material/prompt-spec.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "ddf3c4fa770bb82124a4f2fad2a0d021c3a94f09153d33247ba03ad85ac64e13",
-      "words": 1796,
-      "lines": 281,
+      "sha256": "bf5dbdc4258d8b5b69ebbc8a3be08f86091edec3eb3822be921a675fd9cde484",
+      "words": 1536,
+      "lines": 272,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -8289,16 +8289,16 @@
       "sourceRef": "02_proceso/workflows/multimedia/p02-investigar/prompt-spec.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "b617f38fc647d54d46300dd98ee44595ac60bf49e1cc7c6929d2fe208e560965",
-      "words": 1857,
-      "lines": 290,
+      "sha256": "46e21cd7c2e8867c681b16d88b7276ff1964b1727d97a1248afbd0dc36643a36",
+      "words": 1422,
+      "lines": 272,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": false,
-        "hasAuthorityLink": true,
+        "hasAuthorityLink": false,
         "hasNextAction": true,
         "duplicateHeadings": 0
       }
