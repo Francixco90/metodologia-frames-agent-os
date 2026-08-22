@@ -1,6 +1,14 @@
 import {z} from 'zod';
 
 export const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
+export const LocalRefSchema = z
+  .string()
+  .min(1)
+  .max(500)
+  .refine((value) => value === value.normalize('NFC'), 'REF_MUST_BE_NFC')
+  .refine((value) => !value.startsWith('/') && !/^[A-Za-z]:[\\/]/u.test(value), 'REF_ABSOLUTE')
+  .refine((value) => !/^(?:[a-z][a-z0-9+.-]*:|~|\\)/iu.test(value), 'REF_NON_LOCAL')
+  .refine((value) => !value.split(/[\\/]/u).includes('..'), 'REF_TRAVERSAL');
 export const VideoOsStageSchema = z.enum(['V00', 'V01', 'V02', 'V03', 'V04']);
 export const VideoOsStatusSchema = z.enum([
   'INTAKE',
@@ -15,6 +23,7 @@ export const VideoOsStatusSchema = z.enum([
 ]);
 export const VideoArchetypeSchema = z.enum([
   'case-longform',
+  'method-explainer',
   'reel-evidence',
   'branded-wrapper',
   'montage',
@@ -23,7 +32,7 @@ export const VideoArchetypeSchema = z.enum([
 
 export const VideoOsRequestSchema = z.strictObject({
   request: z.string().min(1).max(4_000),
-  sourceRefs: z.array(z.string().min(1).max(500)).max(40).default([]),
+  sourceRefs: z.array(LocalRefSchema).max(40).default([]),
   sourceAuthority: z.enum(['verified', 'partial', 'unknown']).default('unknown'),
   rights: z.enum(['cleared', 'restricted', 'unknown']).default('unknown'),
   archetype: VideoArchetypeSchema.optional(),
