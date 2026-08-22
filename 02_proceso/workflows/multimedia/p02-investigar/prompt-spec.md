@@ -94,12 +94,14 @@ EJECUCIÓN
 6. Expón la mejor objeción y las condiciones en que la idea no aplica.
 7. Si analizas referencias, extrae principios, mecanismos y trade-offs; no replique expresiones, narrativa ni identidad.
 8. Si buscas preguntas de audiencia, agrúpalas por situación y prioridad, no por volumen aparente.
-9. Cierra con:
+9. En Mapa de oportunidad audiovisual, evalúa exactamente cinco candidatos con `decision-funnel-v1`: evidencia 25, publicabilidad 20, valor para audiencia 20, impacto visual 15, reutilización 10 y esfuerzo 10. No presupongas formato; registra tipo de momento, span, evidencia, viabilidad de privacidad y zonas de valor.
+10. Presenta exactamente dos direcciones visibles, correspondientes a los dos mejores rangos. Cada una rescata aportes verificables de los tres candidatos descartados.
+11. Cierra con:
    - conclusión ejecutiva;
    - mapa o Claim Register;
    - evidencia faltante;
    - riesgos;
-   - máximo tres oportunidades de contenido;
+   - exactamente dos direcciones cuando aplique `opportunity-map-v2`; máximo tres oportunidades en las demás modalidades;
    - recomendación de producir, investigar más, matizar o abandonar.
 
 LÍMITES Y CASOS BORDE
@@ -109,6 +111,8 @@ LÍMITES Y CASOS BORDE
 - Una fuente popular no prueba consenso.
 - No conviertas experiencia personal en recomendación universal.
 - No investigues más de lo necesario para decidir.
+- No amplíes alcance, escribas el brief ni produzcas una dirección antes de una selección humana hash-bound.
+- Privacidad desconocida, evidencia incompleta o una opción primaria bloqueada impiden materializar `opportunity-map-v2`.
 
 CRITERIO
 PASS cuando:
@@ -118,6 +122,7 @@ PASS cuando:
 - la perspectiva propia se distingue de las fuentes;
 - la investigación cambia una decisión concreta;
 - no hay citas, tendencias o cifras inventadas.
+- el mapa audiovisual contiene cinco candidatos, dos opciones visibles y ninguna autoridad de producción.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de preguntas o análisis de referencias, con fuentes/fecha, limitaciones y decisión editorial.
@@ -156,12 +161,14 @@ EXECUTION
 6. Present the strongest objection and the conditions under which the idea does not apply.
 7. When analyzing references, extract principles, mechanisms, and trade-offs; do not reproduce expressions, narrative, or identity.
 8. When researching audience questions, group them by situation and priority, not by apparent volume.
-9. Close with:
+9. For an audiovisual Opportunity Map, evaluate exactly five candidates with `decision-funnel-v1`: evidence 25, publishability 20, audience value 20, visual impact 15, reuse 10, and effort 10. Do not assume a format; record moment type, span, evidence, privacy feasibility, and value zones.
+10. Present exactly two visible directions matching the two highest ranks. Each rescues verifiable contributions from the three discarded candidates.
+11. Close with:
    - executive conclusion;
    - map or Claim Register;
    - missing evidence;
    - risks;
-   - no more than three content opportunities;
+   - exactly two directions for `opportunity-map-v2`; no more than three opportunities in other modes;
    - recommendation to produce, research further, qualify, or abandon.
 
 LIMITS AND EDGE CASES
@@ -171,6 +178,8 @@ LIMITS AND EDGE CASES
 - A popular source does not prove consensus.
 - Do not turn personal experience into a universal recommendation.
 - Do not research beyond what is needed to decide.
+- Do not expand scope, write the brief, or produce a direction before a hash-bound human selection.
+- Unknown privacy, incomplete evidence, or a blocked primary option prevents `opportunity-map-v2` materialization.
 
 CRITERIA
 PASS when:
@@ -180,6 +189,7 @@ PASS when:
 - the creator’s perspective is distinct from the sources;
 - research changes a concrete decision;
 - no quotations, trends, or figures were invented.
+- the audiovisual map contains five candidates, two visible options, and no production authority.
 
 DEFINITION OF DONE
 Map, Claim Register, question bank, or reference analysis, with sources/date, limitations, and editorial decision.
@@ -218,12 +228,14 @@ EXECUÇÃO
 6. Exponha a melhor objeção e as condições em que a ideia não se aplica.
 7. Ao analisar referências, extraia princípios, mecanismos e trade-offs; não replique expressões, narrativa nem identidade.
 8. Ao buscar perguntas da audiência, agrupe-as por situação e prioridade, não por volume aparente.
-9. Encerre com:
+9. No Mapa de oportunidade audiovisual, avalie exatamente cinco candidatos com `decision-funnel-v1`: evidência 25, publicabilidade 20, valor para a audiência 20, impacto visual 15, reutilização 10 e esforço 10. Não pressuponha formato; registre tipo de momento, span, evidência, viabilidade de privacidade e zonas de valor.
+10. Apresente exatamente duas direções visíveis correspondentes aos dois melhores rankings. Cada uma resgata contribuições verificáveis dos três candidatos descartados.
+11. Encerre com:
    - conclusão executiva;
    - mapa ou Claim Register;
    - evidência faltante;
    - riscos;
-   - no máximo três oportunidades de conteúdo;
+   - exatamente duas direções para `opportunity-map-v2`; no máximo três oportunidades nas demais modalidades;
    - recomendação de produzir, pesquisar mais, matizar ou abandonar.
 
 LIMITES E CASOS LIMITE
@@ -233,6 +245,8 @@ LIMITES E CASOS LIMITE
 - Uma fonte popular não comprova consenso.
 - Não transforme experiência pessoal em recomendação universal.
 - Não pesquise além do necessário para decidir.
+- Não amplie o escopo, escreva o brief nem produza uma direção antes de uma seleção humana hash-bound.
+- Privacidade desconhecida, evidência incompleta ou opção primária bloqueada impedem materializar `opportunity-map-v2`.
 
 CRITÉRIO
 PASS quando:
@@ -242,6 +256,7 @@ PASS quando:
 - a perspectiva própria se distingue das fontes;
 - a pesquisa muda uma decisão concreta;
 - não há citações, tendências ou números inventados.
+- o mapa audiovisual contém cinco candidatos, duas opções visíveis e nenhuma autoridade de produção.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de perguntas ou análise de referências, com fontes/data, limitações e decisão editorial.

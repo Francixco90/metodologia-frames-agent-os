@@ -97,6 +97,7 @@ EJECUCIÓN
    - Triage: clasifica producir, acumular, investigar, proteger o descartar.
    - Digest: agrupa temas, elimina duplicados, detecta series y selecciona máximo tres prioridades.
    - Recuperación: devuelve una shortlist con versión, procedencia, derechos y uso permitido.
+   - Si el objetivo es reutilización audiovisual, conserva exactamente cinco momentos candidatos respaldados por fuente. Clasifícalos como demostración, antes/después, testimonio, microtutorial, prueba de capacidad, proceso o portafolio, sin decidir todavía formato ni producción.
 5. Evalúa especificidad, punto de vista, valor, evidencia, esfuerzo, exposición y coherencia con el Brand OS cuando exista.
 6. Separa Observado, Inferido, Supuesto y Dato requerido.
 7. Recomienda qué registrar después: máximo tres momentos, tres imágenes/planos, un sonido, una frase, una evidencia y un permiso.
@@ -109,6 +110,7 @@ LÍMITES Y CASOS BORDE
 - Si hay varias historias, sepáralas antes del brief.
 - Si la entrada no tiene valor público, puede conservar valor privado.
 - Si el volumen es bajo, no simules un digest: entrega la mejor tarjeta disponible.
+- Si no existen cinco momentos audiovisuales acreditables, declara el gap y no completes el conjunto por inferencia.
 
 CRITERIO
 PASS cuando:
@@ -118,6 +120,7 @@ PASS cuando:
 - los elementos sensibles están marcados;
 - no se fabricó una historia;
 - existe una captura o siguiente acción concreta.
+- la reutilización audiovisual conserva cinco momentos candidatos o queda bloqueada con evidencia faltante explícita.
 
 DEFINITION OF DONE
 Capture Card, Triage Record o Digest/Shortlist, con base de evidencia, sensibilidad, estado y siguiente acción.
@@ -159,6 +162,7 @@ EXECUTION
    - Triage: classify as produce, accumulate, research, protect, or discard.
    - Digest: group topics, remove duplicates, detect series, and select no more than three priorities.
    - Retrieval: return a shortlist with version, provenance, rights, and permitted use.
+   - For audiovisual reuse, preserve exactly five source-backed candidate moments. Classify them as demonstration, before/after, testimonial, microtutorial, capability proof, process, or portfolio without choosing a format or production path yet.
 5. Evaluate specificity, point of view, value, evidence, effort, exposure, and coherence with the Brand OS when available.
 6. Separate Observed, Inferred, Assumed, and Required data.
 7. Recommend what to document next: no more than three moments, three images/shots, one sound, one phrase, one item of evidence, and one permission.
@@ -171,6 +175,7 @@ LIMITS AND EDGE CASES
 - If several stories exist, separate them before the brief.
 - If the entry has no public value, it may retain private value.
 - If volume is low, do not simulate a digest: deliver the best available card.
+- If five audiovisual moments cannot be evidenced, declare the gap and do not complete the set by inference.
 
 CRITERIA
 PASS when:
@@ -180,6 +185,7 @@ PASS when:
 - sensitive elements are marked;
 - no story was fabricated;
 - a concrete capture or next action exists.
+- audiovisual reuse preserves five candidate moments or remains blocked with explicit missing evidence.
 
 DEFINITION OF DONE
 Capture Card, Triage Record, or Digest/Shortlist, with evidence basis, sensitivity, state, and next action.
@@ -221,6 +227,7 @@ EXECUÇÃO
    - Triagem: classifique como produzir, acumular, pesquisar, proteger ou descartar.
    - Digest: agrupe temas, remova duplicados, detecte séries e selecione no máximo três prioridades.
    - Recuperação: devolva uma shortlist com versão, procedência, direitos e uso permitido.
+   - Para reutilização audiovisual, preserve exatamente cinco momentos candidatos sustentados pela fonte. Classifique-os como demonstração, antes/depois, depoimento, microtutorial, prova de capacidade, processo ou portfólio, sem escolher ainda formato nem produção.
 5. Avalie especificidade, ponto de vista, valor, evidência, esforço, exposição e coerência com o Brand OS quando houver.
 6. Separe Observado, Inferido, Suposição e Dado requerido.
 7. Recomende o que registrar depois: no máximo três momentos, três imagens/planos, um som, uma frase, uma evidência e uma permissão.
@@ -233,6 +240,7 @@ LIMITES E CASOS LIMITE
 - Se houver várias histórias, separe-as antes do brief.
 - Se a entrada não tiver valor público, ainda pode ter valor privado.
 - Se o volume for baixo, não simule um digest: entregue o melhor cartão disponível.
+- Se não houver cinco momentos audiovisuais comprováveis, declare o gap e não complete o conjunto por inferência.
 
 CRITÉRIO
 PASS quando:
@@ -242,6 +250,7 @@ PASS quando:
 - os elementos sensíveis estão marcados;
 - nenhuma história foi fabricada;
 - existe uma captura ou próxima ação concreta.
+- a reutilização audiovisual preserva cinco momentos candidatos ou permanece bloqueada com evidência faltante explícita.
 
 DEFINITION OF DONE
 Capture Card, Triage Record ou Digest/Shortlist, com base de evidência, sensibilidade, estado e próxima ação.
