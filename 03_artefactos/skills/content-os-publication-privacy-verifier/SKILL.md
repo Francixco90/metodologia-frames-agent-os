@@ -23,10 +23,10 @@ de cortinillas. Emite `publication-privacy-report-v1`; no transforma, corrige ni
 3. Reejecutar el assertion determinista de `minimal-redaction-execution-v1` en scratch
    efímero aislado; las raíces físicas de evidencia permanecen inmutables.
 4. Buscar residuales por identidad y clase protegidas en el inventario posterior.
-5. Comparar cada cuadro en RGB después de cubrir únicamente los ROI autorizados; cualquier
-   cuadro divergente acredita alteración fuera de máscara.
-6. Recalcular presupuesto y oclusión de zonas de valor. Comparar PCM por canal fuera de los
-   spans y silencio interior excluyendo fades.
+5. Rederivar cada reframe exacto como baseline y mapear el blur al cuadro transformado;
+   la máscara auditada siempre resta las zonas de valor no autorizadas.
+6. Comparar RGB y bloquear divergencias fuera de máscara o bleed dentro de zonas de valor.
+   Recalcular presupuesto y oclusión; comparar PCM fuera de spans y silencio sin fades.
 7. Re-renderizar cada cortinilla con fuente y herramienta pinned, contrastarla contra cuadros
    exportados y exigir intro antes del cuerpo, cierre posterior y una en cada recorte.
 8. Verificar RGB, PCM, FPS y duración contra un set de exports aprobado previamente; la nota

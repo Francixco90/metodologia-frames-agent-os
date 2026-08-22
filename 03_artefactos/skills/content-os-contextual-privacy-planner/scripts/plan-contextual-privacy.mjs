@@ -164,7 +164,8 @@ export function planContextualPrivacy(request) {
     if (rule.rule === 'AUDIO_SILENCE') operations.push({sequence: operations.length, operation_id: operationId, signal_id: signal.signal_id, type: 'AUDIO_SILENCE', frame_span: null, time_span_ms: signal.time_span_ms, signal_roi: null, authorized_effect_roi: null, tracking: null, reframe_edge: null, padding_px: null, feather_px: null, fade_ms: 45, subtitle_replacement: '[…]', source_evidence_sha256: rule.evidence_sha256});
     else {
       geometry(signal.geometry, metadata, 'PLANNER-SIGNAL-GEOMETRY'); span(signal.frame_span, metadata.frame_count, 'PLANNER-SIGNAL-FRAME-SPAN');
-      const crop = signal.kind === 'TOOL_CHROME' ? reframe(signal.geometry, metadata) : null;
+      const candidateCrop = signal.kind === 'TOOL_CHROME' ? reframe(signal.geometry, metadata) : null;
+      const crop = candidateCrop && !operations.some((operation) => operation.type === 'REFRAME_PERIPHERAL' && overlaps(operation.frame_span, signal.frame_span)) ? candidateCrop : null;
       const effect = crop?.roi ?? expand(signal.geometry, metadata);
       for (const zone of zones) if (overlaps(signal.frame_span, zone.frame_span) && intersects(effect, zone.geometry)) expect(!crop && zone.authorized_redaction_signal_ids.includes(signal.signal_id), 'PLANNER-VALUE-ZONE-OCCLUSION');
       operations.push({sequence: operations.length, operation_id: operationId, signal_id: signal.signal_id, type: crop ? 'REFRAME_PERIPHERAL' : 'LOCAL_BLUR', frame_span: signal.frame_span, time_span_ms: null, signal_roi: signal.geometry, authorized_effect_roi: effect, tracking: 'EXACT_DETECTION_SPAN', reframe_edge: crop?.edge ?? null, padding_px: crop ? 10 : 4, feather_px: crop ? 0 : 6, fade_ms: null, subtitle_replacement: null, source_evidence_sha256: rule.evidence_sha256});
