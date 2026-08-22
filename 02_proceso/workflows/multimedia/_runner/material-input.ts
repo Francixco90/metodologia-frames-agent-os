@@ -1,44 +1,25 @@
 import {readFileSync, realpathSync} from 'node:fs';
 import {dirname, isAbsolute, relative, resolve, sep} from 'node:path';
 import {parse} from 'yaml';
-import {z} from 'zod';
 
 import {ContentIntentV2Schema} from '../_schema/content-intent-v2.schema.ts';
 import type {MultimediaWorkflow} from '../_schema/workflow-v1.schema.ts';
 import {hashContentRequestV1} from '../../../../03_artefactos/skills/content-os-router/scripts/content-intent-request.mjs';
-import {sha256Text, stableStringify} from './brief-model.ts';
+import {sha256Text} from './brief-model.ts';
 import {loadDeliverableDefinitions} from './deliverable-material.ts';
 import {parseFramesDeliverableMarkdown} from './deliverable-model.ts';
+import {
+  calculateMaterialManifestHash,
+  MaterialInputManifestV1Schema,
+} from './material-input-schema.ts';
+import {enforceOpportunityMaterialAuthority} from './opportunity-material-authority.ts';
 import {calculateMultimediaWorkOrderHash, MultimediaWorkOrderV1Schema} from './output-selection.ts';
 import {sha256} from './workflow-loader.ts';
 
-const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
-const LocalPathSchema = z
-  .string()
-  .min(1)
-  .max(300)
-  .refine((value) => !isAbsolute(value) && !value.split(/[\\/]/u).includes('..'), 'local path');
-
-export const MaterialInputManifestV1Schema = z.strictObject({
-  schema_version: z.literal('multimedia-material-input-v1'),
-  workflow_id: z.enum(['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09']),
-  intent_sha256: Sha256Schema,
-  work_order_sha256: Sha256Schema,
-  producer_actor_id: z.string().regex(/^[a-z][a-z0-9-]{2,79}$/u),
-  outputs: z
-    .array(
-      z.strictObject({
-        deliverable_id: z.string().regex(/^[a-z][a-z0-9-]+-v[0-9]+$/u),
-        markdown_path: LocalPathSchema,
-        sha256: Sha256Schema,
-      }),
-    )
-    .min(1)
-    .max(20),
-  canonical_sha256: Sha256Schema,
-});
-
-type Manifest = z.infer<typeof MaterialInputManifestV1Schema>;
+export {
+  calculateMaterialManifestHash,
+  MaterialInputManifestV1Schema,
+} from './material-input-schema.ts';
 export type ProducedMaterial = {
   deliverableId: string;
   markdown: string;
@@ -50,9 +31,6 @@ export type ResolvedMaterialInput = {
   materials: ReadonlyMap<string, ProducedMaterial>;
   inputs: Array<{artifact: string; ref: string; sha256: string}>;
 };
-
-export const calculateMaterialManifestHash = (value: Omit<Manifest, 'canonical_sha256'>): string =>
-  sha256Text(stableStringify(value));
 
 export const assertProducerAuthority = (authorized: string, declared: string): void => {
   if (authorized !== declared) {
@@ -74,7 +52,7 @@ export const resolveMaterialInput = (
   manifestPath: string | undefined,
   workflow: MultimediaWorkflow,
   effectiveOutputIds: readonly string[],
-  authority: {intentPath?: string; workOrderPath?: string},
+  authority: {intentPath?: string; workOrderPath?: string; now?: Date},
 ): ResolvedMaterialInput | undefined => {
   if (!manifestPath) return undefined;
   if (!authority.intentPath || !authority.workOrderPath) {
@@ -184,5 +162,14 @@ export const resolveMaterialInput = (
       sha256: item.sha256,
     });
   }
+  inputs.push(
+    ...enforceOpportunityMaterialAuthority({
+      workflowId: workflow.workflow_id,
+      authority: manifest.opportunity_authority,
+      materials,
+      readLocal: (path) => readFileSync(assertLocalFile(manifestPath, path)),
+      verifiedAt: (authority.now ?? new Date()).toISOString(),
+    }),
+  );
   return {actorId: manifest.producer_actor_id, materials, inputs};
 };

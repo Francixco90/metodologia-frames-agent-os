@@ -59,6 +59,7 @@ export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}
       {
         ...(args.intent === undefined ? {} : {intentPath: args.intent}),
         ...(args.workOrder === undefined ? {} : {workOrderPath: args.workOrder}),
+        ...(options.now === undefined ? {} : {now: options.now}),
       },
     );
   } catch (error) {
