@@ -51,7 +51,7 @@ metadata:
 ## Deliverables
 
 - `claim-register-v1`
-- `opportunity-map-v1`
+- `opportunity-map-v1` — proyección de compatibilidad ligada por hash a `opportunity-map-v2`
 - `question-bank-v1`
 
 ## Schematic
@@ -94,12 +94,15 @@ EJECUCIÓN
 6. Expón la mejor objeción y las condiciones en que la idea no aplica.
 7. Si analizas referencias, extrae principios, mecanismos y trade-offs; no replique expresiones, narrativa ni identidad.
 8. Si buscas preguntas de audiencia, agrúpalas por situación y prioridad, no por volumen aparente.
-9. Cierra con:
+9. En Mapa de oportunidad audiovisual, materializa `opportunity-map-v2` con exactamente cinco candidatos: evidencia 25, publicabilidad 20, valor para audiencia 20, impacto visual 15, reutilización 10 y esfuerzo 10. Liga spans, evidencias y zonas de valor al receipt de fuente.
+10. Presenta exactamente dos direcciones correspondientes a los dos mejores puntajes. Cada una rescata aportes verificables de los tres candidatos descartados.
+11. Deriva `opportunity-map-v1` solo como proyección; sus bytes deben coincidir con `compatibilityProjection.sha256` al ejecutar `assertOpportunityMapV2`.
+12. Cierra con:
    - conclusión ejecutiva;
    - mapa o Claim Register;
    - evidencia faltante;
    - riesgos;
-   - máximo tres oportunidades de contenido;
+   - exactamente dos direcciones cuando aplique `opportunity-map-v2`; máximo tres oportunidades en las demás modalidades;
    - recomendación de producir, investigar más, matizar o abandonar.
 
 LÍMITES Y CASOS BORDE
@@ -109,6 +112,8 @@ LÍMITES Y CASOS BORDE
 - Una fuente popular no prueba consenso.
 - No conviertas experiencia personal en recomendación universal.
 - No investigues más de lo necesario para decidir.
+- No amplíes alcance, escribas el brief ni produzcas una dirección antes de una selección humana V2 hash-bound emitida por `H01`.
+- Privacidad desconocida, evidencia incompleta, receipt vencido, proyección divergente o cualquier candidato bloqueado impiden materializar el mapa.
 
 CRITERIO
 PASS cuando:
@@ -118,6 +123,7 @@ PASS cuando:
 - la perspectiva propia se distingue de las fuentes;
 - la investigación cambia una decisión concreta;
 - no hay citas, tendencias o cifras inventadas.
+- el mapa audiovisual contiene cinco candidatos, dos opciones, selección V2 de `H01`, proyección V1 verificada, receipt máximo `RENDERED_DRAFT` y `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de preguntas o análisis de referencias, con fuentes/fecha, limitaciones y decisión editorial.
@@ -156,12 +162,15 @@ EXECUTION
 6. Present the strongest objection and the conditions under which the idea does not apply.
 7. When analyzing references, extract principles, mechanisms, and trade-offs; do not reproduce expressions, narrative, or identity.
 8. When researching audience questions, group them by situation and priority, not by apparent volume.
-9. Close with:
+9. For an audiovisual Opportunity Map, materialize `opportunity-map-v2` with exactly five candidates: evidence 25, publishability 20, audience value 20, visual impact 15, reuse 10, and effort 10. Bind spans, evidence, and value zones to the source receipt.
+10. Present exactly two directions matching the two highest scores. Each rescues verifiable contributions from the three discarded candidates.
+11. Derive `opportunity-map-v1` only as a projection; its bytes must match `compatibilityProjection.sha256` when running `assertOpportunityMapV2`.
+12. Close with:
    - executive conclusion;
    - map or Claim Register;
    - missing evidence;
    - risks;
-   - no more than three content opportunities;
+   - exactly two directions for `opportunity-map-v2`; no more than three opportunities in other modes;
    - recommendation to produce, research further, qualify, or abandon.
 
 LIMITS AND EDGE CASES
@@ -171,6 +180,8 @@ LIMITS AND EDGE CASES
 - A popular source does not prove consensus.
 - Do not turn personal experience into a universal recommendation.
 - Do not research beyond what is needed to decide.
+- Do not expand scope, write the brief, or produce a direction before a hash-bound V2 human selection issued by `H01`.
+- Unknown privacy, incomplete evidence, a stale receipt, a divergent projection, or any blocked candidate prevents map materialization.
 
 CRITERIA
 PASS when:
@@ -180,6 +191,7 @@ PASS when:
 - the creator’s perspective is distinct from the sources;
 - research changes a concrete decision;
 - no quotations, trends, or figures were invented.
+- the audiovisual map contains five candidates, two options, an `H01` V2 selection, a verified V1 projection, a maximum `RENDERED_DRAFT` receipt, and `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Map, Claim Register, question bank, or reference analysis, with sources/date, limitations, and editorial decision.
@@ -218,12 +230,15 @@ EXECUÇÃO
 6. Exponha a melhor objeção e as condições em que a ideia não se aplica.
 7. Ao analisar referências, extraia princípios, mecanismos e trade-offs; não replique expressões, narrativa nem identidade.
 8. Ao buscar perguntas da audiência, agrupe-as por situação e prioridade, não por volume aparente.
-9. Encerre com:
+9. No Mapa de oportunidade audiovisual, materialize `opportunity-map-v2` com exatamente cinco candidatos: evidência 25, publicabilidade 20, valor para a audiência 20, impacto visual 15, reutilização 10 e esforço 10. Vincule spans, evidências e zonas de valor ao receipt da fonte.
+10. Apresente exatamente duas direções correspondentes às duas maiores pontuações. Cada uma resgata contribuições verificáveis dos três candidatos descartados.
+11. Derive `opportunity-map-v1` apenas como projeção; seus bytes devem coincidir com `compatibilityProjection.sha256` ao executar `assertOpportunityMapV2`.
+12. Encerre com:
    - conclusão executiva;
    - mapa ou Claim Register;
    - evidência faltante;
    - riscos;
-   - no máximo três oportunidades de conteúdo;
+   - exatamente duas direções para `opportunity-map-v2`; no máximo três oportunidades nas demais modalidades;
    - recomendação de produzir, pesquisar mais, matizar ou abandonar.
 
 LIMITES E CASOS LIMITE
@@ -233,6 +248,8 @@ LIMITES E CASOS LIMITE
 - Uma fonte popular não comprova consenso.
 - Não transforme experiência pessoal em recomendação universal.
 - Não pesquise além do necessário para decidir.
+- Não amplie o escopo, escreva o brief nem produza uma direção antes de uma seleção humana V2 hash-bound emitida por `H01`.
+- Privacidade desconhecida, evidência incompleta, receipt vencido, projeção divergente ou qualquer candidato bloqueado impedem materializar o mapa.
 
 CRITÉRIO
 PASS quando:
@@ -242,6 +259,7 @@ PASS quando:
 - a perspectiva própria se distingue das fontes;
 - a pesquisa muda uma decisão concreta;
 - não há citações, tendências ou números inventados.
+- o mapa audiovisual contém cinco candidatos, duas opções, seleção V2 de `H01`, projeção V1 verificada, receipt máximo `RENDERED_DRAFT` e `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de perguntas ou análise de referências, com fontes/data, limitações e decisão editorial.

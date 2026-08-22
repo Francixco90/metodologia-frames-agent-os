@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "9eec00899afe4cda0c6ded18300947ec027c6635a206f88c0e354c8dd3b79910",
+  "repositoryTreeSha256": "2dd6256baeae1611152563697aa531edb01e4dbc25e7c98d24c75b91791d7f48",
   "totalMarkdown": 1852,
   "auditedAuthored": 596,
   "classPaths": {
@@ -5584,8 +5584,8 @@
       "sourceRef": "01_intencion/reference/workflows/p02.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "9cddb1f625d900bf05c70ec0c0176f0894ff23015f8f1ba19d42acf5420ecf24",
-      "words": 349,
+      "sha256": "5d0f3e0c1c5d7bc4babd46d59fd8c398aa95c37f1b07cd4d3ee6df09bb257ebf",
+      "words": 378,
       "lines": 78,
       "score": 100,
       "threshold": 80,
@@ -5594,7 +5594,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -8289,9 +8289,9 @@
       "sourceRef": "02_proceso/workflows/multimedia/p02-investigar/prompt-spec.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "46e21cd7c2e8867c681b16d88b7276ff1964b1727d97a1248afbd0dc36643a36",
-      "words": 1422,
-      "lines": 272,
+      "sha256": "97e345ef4a99f4a86ddd25d5fe4e0d979ef622071bcec941220667e6f8ef6b06",
+      "words": 1856,
+      "lines": 290,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -8317,7 +8317,7 @@
         "02_proceso/workflows/multimedia/p02-investigar/templates/claim-register-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "35f0a407efaa769810b84a18acdd08d5c728a0d49e64d041a854c3fadb12b708",
+      "sha256": "adc28ff88f4ed6dd6985d574a6ef6c69571b56f743667bff99f773c081d90013",
       "words": 502,
       "lines": 161,
       "score": 85,
@@ -8351,8 +8351,8 @@
         "02_proceso/workflows/multimedia/p02-investigar/templates/opportunity-map-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "ce3aa42d0217450726d48b3f5d75e521a53844e566d76483173c973b31afc3b0",
-      "words": 523,
+      "sha256": "fbaaa8b25263495239d7ce26bdeacb461cf82274b2eb8eecc7be48ebf442b05a",
+      "words": 564,
       "lines": 172,
       "score": 85,
       "threshold": 80,
@@ -8385,7 +8385,7 @@
         "02_proceso/workflows/multimedia/p02-investigar/templates/question-bank-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "8fe0e73659c3a3419a29614043e50969014451ea3d9892b0e6ace9828e7d31bf",
+      "sha256": "6e40f5e3d9ede29befa3acdf890a91f4c7202323d979d22fa0c337597b6e7705",
       "words": 498,
       "lines": 160,
       "score": 85,
