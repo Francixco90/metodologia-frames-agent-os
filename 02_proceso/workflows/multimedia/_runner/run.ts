@@ -18,7 +18,6 @@ import {
 } from './workflow-loader.ts';
 
 const relativeToRoot = (path: string): string => path.replace(`${ROOT}/`, '');
-
 export type RunWorkflowOptions = {artifactRoot?: string; receiptsRoot?: string; now?: Date};
 
 export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}): void => {
@@ -59,10 +58,16 @@ export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}
       {
         ...(args.intent === undefined ? {} : {intentPath: args.intent}),
         ...(args.workOrder === undefined ? {} : {workOrderPath: args.workOrder}),
+        ...(options.now === undefined ? {} : {now: options.now}),
       },
     );
   } catch (error) {
     console.error(`[FAIL] ${id}: ${String(error)}`);
+    process.exitCode = 1;
+    return;
+  }
+  if (!materialInput && (!args.dryRun || id === 'P02')) {
+    console.error(`[FAIL] ${id}: MW-MATERIAL-AUTHORITY001 --material-manifest is required`);
     process.exitCode = 1;
     return;
   }
@@ -73,11 +78,7 @@ export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}
     console.info('  STOP before materialization, receipt, state or gate mutation.');
     return;
   }
-  if (!materialInput) {
-    console.error(`[FAIL] ${id}: MW-MATERIAL-AUTHORITY001 --material-manifest is required`);
-    process.exitCode = 1;
-    return;
-  }
+  if (!materialInput) throw new Error('unreachable material input state');
 
   const gate = workflow.gates[0] ?? 'G14';
   const ranAt = isoWithOffset(options.now ?? new Date());
