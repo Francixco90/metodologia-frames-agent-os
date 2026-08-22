@@ -1,0 +1,21 @@
+{
+  "schema_version": "skill-component-contract-v1",
+  "component_id": "TOOL_EXPLAINER_DIAGRAM_VALIDATE",
+  "kind": "TOOL",
+  "inputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts",
+  "outputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts",
+  "effect_class": "E1",
+  "read_set": [
+    "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts"
+  ],
+  "write_set": [],
+  "fallback": "BLOCKED_DIAGRAM_CONTRACT_INVALID: devolver únicamente códigos sanitizados y no reparar, truncar o reinterpretar el contrato recibido.",
+  "acceptance": [
+    "Valida estructura usando DiagramContractV2Schema como autoridad única.",
+    "Rechaza IDs duplicados, endpoints ausentes, safe-zone inválida, frames fuera de duración y poses desordenadas.",
+    "Rechaza conectores anteriores al último settle global más seis frames.",
+    "Opera sin red, reloj, aleatoriedad, render o escrituras y produce errores estables."
+  ],
+  "owner": "content",
+  "content_sha256": "1aa09156193719be05e5d958a4ff99549604f79e76298a01ed5fc2c60dc6651e"
+}

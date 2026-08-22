@@ -1,0 +1,131 @@
+{
+  "schema_version": "skill-eval-plan-v1",
+  "plan_id": "EVAL_PLAN_EXPLAINER_DIAGRAM_V1",
+  "candidate_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN",
+  "baseline": "NO_SKILL",
+  "coverage_policy": {
+    "minimum_eligible_cases": 2,
+    "maximum_infrastructure_failure_ratio": 0.25
+  },
+  "cases": [
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_TRIGGER_METHOD_POSITIVE",
+      "family": "TRIGGER",
+      "corpus": "DEVELOPMENT",
+      "prompt": "Diseña el diagrama narrativo para explicar PIVOTE como seis lentes interdependientes y prepara diagram-contract-v2.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "La skill se considera aplicable por existir intención de diseñar un método narrativo.",
+        "La activación no concede permiso de render, escritura o publicación."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_TRIGGER_DATA_NEGATIVE",
+      "family": "TRIGGER",
+      "corpus": "ADVERSARIAL",
+      "prompt": "Crea una gráfica SVG de ventas mensuales y resalta el trimestre con mayor crecimiento.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "La skill no se activa porque el pedido corresponde a visualización cuantitativa.",
+        "No se produce diagram-contract-v2 como sustituto de una gráfica de datos."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_TRIGGER_RENDER_NEGATIVE",
+      "family": "TRIGGER",
+      "corpus": "HELD_OUT",
+      "prompt": "Renderiza el MP4 vertical a 1080 por 1920 usando el contrato existente.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "La skill no se activa para una solicitud exclusiva de render.",
+        "No afirma autoridad de renderer ni estado RENDERED_DRAFT."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_DECISION_PASA_FLOW",
+      "family": "DECISION",
+      "corpus": "DEVELOPMENT",
+      "prompt": "PASA describe Planifica, Acelera, Sistematiza y Amplifica como un flujo causal. Decide la gramática visual y ordena su aparición.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "Selecciona flow porque las relaciones autorizadas son causales y secuenciales.",
+        "Los nodos se asientan antes de que comiencen los conectores."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_DECISION_PIVOTE_RADIAL",
+      "family": "DECISION",
+      "corpus": "HELD_OUT",
+      "prompt": "PIVOTE reúne Personas, Interacciones, Valor, Orden, Tecnología y Evolución como lentes interdependientes, no como pasos.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "Selecciona radial-lenses y evita convertir las seis lentes en una secuencia rígida.",
+        "El centro común se activa después de asentar nodos y dibujar conexiones."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_DECISION_AMBIGUOUS",
+      "family": "DECISION",
+      "corpus": "ADVERSARIAL",
+      "prompt": "Representa este método con la mejor gramática, pero las fuentes no declaran relaciones entre conceptos.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "Bloquea o solicita la relación faltante en vez de elegir una gramática por preferencia estética.",
+        "No inventa conexiones, causalidad o interdependencia."
+      ],
+      "owner_component": "SKILL_EXPLAINER_DIAGRAM_DESIGN"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_OUTCOME_DETERMINISTIC",
+      "family": "OUTCOME",
+      "corpus": "REGRESSION",
+      "prompt": "Valida y compila dos veces el mismo contrato PASA con los mismos hashes y total de frames.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "Ambas compilaciones producen JSON canónico byte-idéntico.",
+        "El contrato resultante conserva spec_sha256 y beat_budget_sha256 sin drift."
+      ],
+      "owner_component": "TOOL_EXPLAINER_DIAGRAM_COMPILE"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_OUTCOME_PREMATURE_EDGE",
+      "family": "OUTCOME",
+      "corpus": "ADVERSARIAL",
+      "prompt": "Valida un contrato cuyo primer conector comienza cinco frames después del último settle global.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "La validación falla porque la pausa mínima requerida es de seis frames.",
+        "El tool devuelve un código estable y no modifica el contrato."
+      ],
+      "owner_component": "TOOL_EXPLAINER_DIAGRAM_VALIDATE"
+    },
+    {
+      "schema_version": "skill-eval-case-v1",
+      "eval_case_id": "EVAL_OUTCOME_SAFE_ZONE",
+      "family": "OUTCOME",
+      "corpus": "ADVERSARIAL",
+      "prompt": "Valida un contrato con un nodo que excede el límite derecho de la safe zone declarada.",
+      "baseline": "NO_SKILL",
+      "assertions": [
+        "La validación bloquea el nodo fuera de safe zone.",
+        "No aplica recorte, elipsis o reducción tipográfica silenciosa."
+      ],
+      "owner_component": "TOOL_EXPLAINER_DIAGRAM_VALIDATE"
+    }
+  ],
+  "results": null,
+  "results_status": "NOT_RUN"
+}
