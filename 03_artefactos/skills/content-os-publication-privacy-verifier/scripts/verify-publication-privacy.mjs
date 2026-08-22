@@ -22,6 +22,7 @@ const hashPattern = /^[a-f0-9]{64}$/u;
 const idPattern = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
 const refPattern = /^(?!.*\/\/)(?!.*(?:^|\/)\.{1,2}(?:\/|$))(?!.*(?:^|\/)\.[^/])(?!.*\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$/u;
 const nested = (parent, candidate) => { const delta = relative(parent, candidate); return delta !== '' && delta !== '..' && !delta.startsWith(`..${sep}`) && !isAbsolute(delta); };
+const containedFile = (root, ref, code) => { const candidate = resolve(root, ref); expect(lstatSync(candidate).isFile() && !lstatSync(candidate).isSymbolicLink(), `${code}-TYPE`); const path = realpathSync(candidate); expect(nested(root, path), `${code}-CONTAINMENT`); return path; };
 const overlaps = (a, b) => a.start <= b.end && b.start <= a.end;
 const intersects = (a, b) => a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
 const normalize = (value) => String(value).normalize('NFKC').toLocaleLowerCase('en-US').trim();
@@ -102,7 +103,7 @@ const verifyDetectionBundle = (bundle, code) => {
 
 const verifyExecutionInScratch = (executionReceipt, executionRequest, roots) => {
   const scratch = mkdtempSync(resolve(tmpdir(), 'publication-execution-')); const source = resolve(scratch, 'source'); const output = resolve(scratch, 'output'); mkdirSync(source); mkdirSync(output);
-  const copy = (fromRoot, ref, toRoot) => { const from = resolve(fromRoot, ref); expect(lstatSync(from).isFile(), 'PUBLICATION-MEDIA-TYPE'); const to = resolve(toRoot, ref); mkdirSync(dirname(to), {recursive: true}); copyFileSync(from, to); };
+  const copy = (fromRoot, ref, toRoot) => { const from = containedFile(fromRoot, ref, 'PUBLICATION-EVIDENCE'); const to = resolve(toRoot, ref); mkdirSync(dirname(to), {recursive: true}); copyFileSync(from, to); };
   try { copy(roots.source_root, executionRequest.source.ref, source); copy(roots.output_root, executionRequest.output_ref, output); copy(roots.output_root, executionRequest.receipt_ref, output); if (executionReceipt.captions) copy(roots.output_root, executionRequest.caption_output_ref, output); else expect(!existsSync(resolve(roots.output_root, executionRequest.caption_output_ref)), 'PUBLICATION-CAPTION-UNDECLARED'); assertMinimalRedactionExecution(executionReceipt, executionRequest, {source_root: source, output_root: output}); } finally { rmSync(scratch, {recursive: true, force: true}); }
 };
 
@@ -122,8 +123,7 @@ const deriveReport = (request, options) => {
   const pre = verifyDetectionBundle(request.pre_detection, 'PUBLICATION-PRE-DETECTION'); const post = verifyDetectionBundle(request.post_detection, 'PUBLICATION-POST-DETECTION');
   const inventoryRef = {ref: request.pre_detection.inventory_material.ref, sha256: request.pre_detection.inventory_material.sha256, bytes: request.pre_detection.inventory_material.bytes};
   expect(pre.detectorRequest.case_id === request.case_id && post.detectorRequest.case_id === request.case_id && same(policy.inventory, inventoryRef) && same(pre.inventory.source, executionRequest.source) && pre.detectorRequest.source.sha256 === executionRequest.source.sha256 && pre.detectorRequest.source.bytes === executionRequest.source.bytes && pre.detectorRequest.aliases_sha256 === post.detectorRequest.aliases_sha256 && pre.detectorRequest.templates_sha256 === post.detectorRequest.templates_sha256 && same(pre.detectorRequest.aliases, post.detectorRequest.aliases) && same(pre.detectorRequest.templates, post.detectorRequest.templates), 'PUBLICATION-DETECTOR-CONFIG-DRIFT');
-  const outputPath = resolve(outputRoot, executionReceipt.output.ref); const sourcePath = resolve(sourceRoot, executionRequest.source.ref);
-  expect(lstatSync(sourcePath).isFile() && lstatSync(outputPath).isFile(), 'PUBLICATION-MEDIA-TYPE');
+  const outputPath = containedFile(outputRoot, executionReceipt.output.ref, 'PUBLICATION-OUTPUT'); const sourcePath = containedFile(sourceRoot, executionRequest.source.ref, 'PUBLICATION-SOURCE');
   const outputBytes = readFileSync(outputPath);
   expect(post.detectorRequest.source.ref === executionReceipt.output.ref && post.detectorRequest.source.sha256 === executionReceipt.output.sha256 && post.detectorRequest.source.bytes === executionReceipt.output.bytes && post.detectorRequest.source.content_base64 === outputBytes.toString('base64') && same(post.inventory.source, executionReceipt.output), 'PUBLICATION-POST-BINDING');
   const ffmpeg = realpathSync(executionRequest.media_tool_authority.ffmpeg_path); const ffprobe = realpathSync(executionRequest.media_tool_authority.ffprobe_path);
