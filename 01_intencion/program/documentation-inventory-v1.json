@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "69644e35dcc8240d0e5c1997dad4680143e6ee1dcb6547f97a14c4a1fd29a9de",
-  "totalMarkdown": 1852,
-  "auditedAuthored": 596,
+  "repositoryTreeSha256": "17d6356503cf99547b1c0fabdddaa2bbccc4e5facf85eb69c770b10b17c94c79",
+  "totalMarkdown": 1857,
+  "auditedAuthored": 601,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -466,6 +466,11 @@
       "04_estado/tasks/TASK-loose-030/continuity/resume.md",
       "04_estado/tasks/TASK-loose-031/PROGRESS.md",
       "04_estado/tasks/TASK-loose-031/continuity/resume.md",
+      "04_estado/tasks/TASK-loose-032/PROGRESS.md",
+      "04_estado/tasks/TASK-loose-032/continuity/resume.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
       "05_verificacion/evals/H-E001/README.md",
       "05_verificacion/evals/H-E002/README.md",
       "05_verificacion/evals/H-E003/README.md",
@@ -16894,6 +16899,136 @@
       }
     },
     {
+      "path": "04_estado/tasks/TASK-loose-032/PROGRESS.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/PROGRESS.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/PROGRESS.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e6772ad28ac159f5d0064f700c02a96a3450872e9e4153c4439a4e651a503350",
+      "words": 175,
+      "lines": 39,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "04_estado/tasks/TASK-loose-032/continuity/resume.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/continuity/resume.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/continuity/resume.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "33731e5d9bc89e2411b99306f5d17f4597e7f99aca42b2e22219a32d51db018d",
+      "words": 142,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9865bbeba598956c4d8e886281b78607816d49849ca30bf919fed37a48553024",
+      "words": 264,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3c035e1ec4baf42dd21afbdabc7cbe3bb2c6d453ffa819d698b539ecb91682bf",
+      "words": 374,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b1531966035fdf54bf77bc14c01ca8044fceba6a76bebecd5f59f0ccb285b78a",
+      "words": 388,
+      "lines": 45,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/evals/H-E001/README.md",
       "class": "authored_control",
       "owner": "qa",
@@ -17860,7 +17995,7 @@
     }
   ],
   "summary": {
-    "keep": 581,
+    "keep": 586,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
