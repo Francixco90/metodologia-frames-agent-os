@@ -117,6 +117,20 @@ títulos/disclosures, máximo dos niveles de texto simultáneos, safe zones, aud
 La limpieza fuente usa `source-cleanup-mask-v1`: máscara y generador hash-bound, filtro
 anterior a escala/tratamiento, evidencia geométrica sobre el cuerpo limpio y binding A/B.
 
+## Cortinillas y divulgación de privacidad V2
+
+Intro, capítulos y cierre materializan `disclosure-curtain-v2`. Cada cortinilla muestra
+`EDITADO CON IA` en zona segura inferior. Cuando `publication-privacy-report-v1` registra
+una o más operaciones de censura, añade exactamente `MEMORIA DE CLASE AUTORIZADA`; sin
+censura, esa segunda línea está prohibida. Contraste mínimo 4.5:1, altura textual mínima
+2.2% del cuadro y duración mínima 1.8 s.
+
+La divulgación solo vive en la cortinilla: nunca persiste como watermark sobre el entregable.
+Cada recorte exportado como pieza autónoma conserva al menos una cortinilla ligada al mismo
+`report_id`. Creative hereda este contrato mediante su delegación al generador de General
+Video. `content-os-publication-privacy-verifier` recalcula texto, legibilidad, vínculo y
+cobertura antes de reproducción humana; no corrige la composición.
+
 Los pipelines de frames precompuestos usan exclusivamente `precomposed-frames-v1`.
 Cada pieza liga adaptador, manifiesto, todos los frames, audio, configuración determinista y
 la limpieza aplicada antes del tratamiento. `render` y `verify` recalculan esos hashes y

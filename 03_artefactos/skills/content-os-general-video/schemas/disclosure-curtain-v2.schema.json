@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/disclosure-curtain-v2.schema.json",
+  "title": "Disclosure Curtain V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "curtain_id",
+    "case_id",
+    "privacy_report_id",
+    "kind",
+    "orientation",
+    "text_lines",
+    "foreground_rgb",
+    "background_rgb",
+    "contrast_ratio",
+    "placement",
+    "text_height_ratio",
+    "duration_ms",
+    "persistent_watermark",
+    "autonomous_clip_ids",
+    "canonical_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "disclosure-curtain-v2"},
+    "curtain_id": {"$ref": "#/$defs/id"},
+    "case_id": {"$ref": "#/$defs/id"},
+    "privacy_report_id": {"$ref": "#/$defs/id"},
+    "kind": {"enum": ["INTRO", "CHAPTER", "OUTRO"]},
+    "orientation": {"enum": ["VERTICAL", "WIDE"]},
+    "text_lines": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {"enum": ["EDITADO CON IA", "MEMORIA DE CLASE AUTORIZADA"]}
+    },
+    "foreground_rgb": {"$ref": "#/$defs/rgb"},
+    "background_rgb": {"$ref": "#/$defs/rgb"},
+    "contrast_ratio": {"type": "number", "minimum": 4.5, "maximum": 21},
+    "placement": {"const": "LOWER_SAFE_ZONE_CURTAIN_ONLY"},
+    "text_height_ratio": {"type": "number", "minimum": 0.022, "maximum": 0.2},
+    "duration_ms": {"type": "integer", "minimum": 1800, "maximum": 30000},
+    "persistent_watermark": {"const": false},
+    "autonomous_clip_ids": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/id"}
+    },
+    "canonical_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rgb": {"type": "string", "pattern": "^#[A-F0-9]{6}$"}
+  }
+}

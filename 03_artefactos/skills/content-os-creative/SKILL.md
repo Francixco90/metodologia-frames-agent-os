@@ -94,6 +94,10 @@ si brandRef ausente o font/asset externo detectado.
    VoiceProfile).
 8. **Motion guardrails** heredados de `content-os-animation` (seek-safe, finite repeats,
    stagger cap). Esta skill es no-animacion; no duplica reglas de motion.
+9. **Divulgación en cortinillas.** Toda composición con intro, capítulo o cierre delega en
+   `content-os-general-video/schemas/disclosure-curtain-v2.schema.json`: `EDITADO CON IA`
+   siempre y `MEMORIA DE CLASE AUTORIZADA` solo cuando el reporte registra censura. La nota
+   usa la zona segura inferior, nunca una marca de agua persistente sobre el entregable.
 
 ## Composition Patterns (offline-first)
 
