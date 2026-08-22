@@ -1,5 +1,3 @@
-import {isAbsolute} from 'node:path';
-
 import {z} from 'zod';
 
 import {sha256Text, stableStringify} from './brief-model.ts';
@@ -9,7 +7,11 @@ const LocalPathSchema = z
   .string()
   .min(1)
   .max(300)
-  .refine((value) => !isAbsolute(value) && !value.split(/[\\/]/u).includes('..'), 'local path');
+  .refine((value) => {
+    if (value.includes('\\') || value.startsWith('/') || /^[A-Za-z]:/u.test(value)) return false;
+    const segments = value.split('/');
+    return segments.every((segment) => segment !== '' && segment !== '.' && segment !== '..');
+  }, 'canonical local path');
 
 export const OpportunityMaterialAuthorityV1Schema = z
   .strictObject({

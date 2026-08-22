@@ -73,7 +73,7 @@ const fixture = () => {
   });
   const selection = createOpportunitySelectionV2(map, evidence, {
     selectedOptionId: map.visibleOptionIds[0]!,
-    actorId: 'H01-JAVIER',
+    actorId: 'H01',
     selectedAt,
   });
   const authority = OpportunityMaterialAuthorityV1Schema.parse({
@@ -98,12 +98,13 @@ const fixture = () => {
   ) =>
     enforceOpportunityMaterialAuthority({
       workflowId: overrides.workflowId ?? 'P02',
+      requestHash: funnel.requestHash,
       authority: overrides.authority ?? authority,
       materials: new Map([['opportunity-map-v1', {markdown: overrides.projection ?? projection}]]),
-      readLocal: (path) => files.get(path) ?? Buffer.alloc(0),
+      readLocal: (path) => ({bytes: files.get(path) ?? Buffer.alloc(0), canonicalPath: path}),
       verifiedAt: overrides.verifiedAt ?? verifiedAt,
     });
-  return {authority, files, run};
+  return {authority, evidence, files, map, projection, run};
 };
 
 describe('P02 opportunity material authority', () => {
@@ -123,9 +124,10 @@ describe('P02 opportunity material authority', () => {
     expect(() =>
       enforceOpportunityMaterialAuthority({
         workflowId: 'P02',
+        requestHash: 'a'.repeat(64),
         authority: undefined,
         materials: new Map(),
-        readLocal: () => Buffer.alloc(0),
+        readLocal: (path) => ({bytes: Buffer.alloc(0), canonicalPath: path}),
         verifiedAt,
       }),
     ).toThrow(/AUTHORITY002/u);
@@ -148,5 +150,62 @@ describe('P02 opportunity material authority', () => {
         source_material_path: authority.source_receipt_path,
       }),
     ).toThrow(/paths must be unique/u);
+    for (const alias of [
+      'authority/./source.yml',
+      'authority//source.yml',
+      'authority\\source.yml',
+      'C:\\outside.bin',
+      '.',
+    ]) {
+      expect(() =>
+        OpportunityMaterialAuthorityV1Schema.parse({...authority, source_material_path: alias}),
+      ).toThrow(/canonical local path/u);
+    }
+  });
+
+  it('binds the map to the active request and the canonical human selector', () => {
+    const original = fixture();
+    expect(() =>
+      enforceOpportunityMaterialAuthority({
+        workflowId: 'P02',
+        requestHash: 'f'.repeat(64),
+        authority: original.authority,
+        materials: new Map([['opportunity-map-v1', {markdown: original.projection}]]),
+        readLocal: (path) => ({
+          bytes: original.files.get(path) ?? Buffer.alloc(0),
+          canonicalPath: path,
+        }),
+        verifiedAt,
+      }),
+    ).toThrow(/AUTHORITY004/u);
+    const nonCanonicalSelection = createOpportunitySelectionV2(original.map, original.evidence, {
+      selectedOptionId: original.map.visibleOptionIds[0]!,
+      actorId: 'H01-JAVIER',
+      selectedAt,
+    });
+    original.files.set(
+      original.authority.opportunity_selection_path,
+      Buffer.from(stringify(nonCanonicalSelection), 'utf8'),
+    );
+    expect(() => original.run()).toThrow(/AUTHORITY004/u);
+  });
+
+  it('rejects different declared paths that resolve to one canonical file', () => {
+    const {authority, files} = fixture();
+    expect(() =>
+      enforceOpportunityMaterialAuthority({
+        workflowId: 'P02',
+        requestHash: materializeDecisionFunnelFixture(sha('runtime')).funnel.requestHash,
+        authority,
+        materials: new Map([
+          ['opportunity-map-v1', {markdown: '# opportunity-map-v1\n\nProyección exacta.\n'}],
+        ]),
+        readLocal: (path) => ({
+          bytes: files.get(path) ?? Buffer.alloc(0),
+          canonicalPath: 'one-real-file',
+        }),
+        verifiedAt,
+      }),
+    ).toThrow(/AUTHORITY005/u);
   });
 });
