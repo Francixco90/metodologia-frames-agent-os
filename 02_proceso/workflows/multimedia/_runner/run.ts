@@ -67,6 +67,11 @@ export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}
     process.exitCode = 1;
     return;
   }
+  if (!materialInput && (!args.dryRun || id === 'P02')) {
+    console.error(`[FAIL] ${id}: MW-MATERIAL-AUTHORITY001 --material-manifest is required`);
+    process.exitCode = 1;
+    return;
+  }
   if (args.dryRun) {
     console.info(
       `[DRY] ${id} ${workflow.command} validated; planned_outputs=${plannedOutputs.length}; writes=0`,
@@ -74,11 +79,7 @@ export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}
     console.info('  STOP before materialization, receipt, state or gate mutation.');
     return;
   }
-  if (!materialInput) {
-    console.error(`[FAIL] ${id}: MW-MATERIAL-AUTHORITY001 --material-manifest is required`);
-    process.exitCode = 1;
-    return;
-  }
+  if (!materialInput) throw new Error('unreachable material input state');
 
   const gate = workflow.gates[0] ?? 'G14';
   const ranAt = isoWithOffset(options.now ?? new Date());

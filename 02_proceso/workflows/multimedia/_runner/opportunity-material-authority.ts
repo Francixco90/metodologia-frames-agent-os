@@ -3,17 +3,20 @@ import {createHash} from 'node:crypto';
 import {parse} from 'yaml';
 
 import {assertOpportunitySelectionV2} from '../../../core/contracts/opportunity-map-v2.ts';
+import {CANONICAL_HUMAN_APPROVER_ACTOR_ID} from '../../../core/contracts/schemas.ts';
 import type {OpportunityMaterialAuthorityV1} from './material-input-schema.ts';
 
 type ProjectionMaterial = {markdown: string};
 type AuthorityInput = {artifact: string; ref: string; sha256: string};
+type LocalAuthorityFile = {bytes: Buffer; canonicalPath: string};
 const digest = (value: Uint8Array): string => createHash('sha256').update(value).digest('hex');
 
 export function enforceOpportunityMaterialAuthority(input: {
   workflowId: string;
+  requestHash: string;
   authority: OpportunityMaterialAuthorityV1 | undefined;
   materials: ReadonlyMap<string, ProjectionMaterial>;
-  readLocal: (path: string) => Buffer;
+  readLocal: (path: string) => LocalAuthorityFile;
   verifiedAt: string;
 }): AuthorityInput[] {
   if (input.workflowId !== 'P02') {
@@ -24,29 +27,39 @@ export function enforceOpportunityMaterialAuthority(input: {
   const projection = input.materials.get('opportunity-map-v1');
   if (!projection) throw new Error('MW-OPPORTUNITY-AUTHORITY003 V1 projection is required');
 
-  const receiptBytes = input.readLocal(input.authority.source_receipt_path);
-  const materialBytes = input.readLocal(input.authority.source_material_path);
-  const mapBytes = input.readLocal(input.authority.opportunity_map_path);
-  const selectionBytes = input.readLocal(input.authority.opportunity_selection_path);
+  const receipt = input.readLocal(input.authority.source_receipt_path);
+  const material = input.readLocal(input.authority.source_material_path);
+  const map = input.readLocal(input.authority.opportunity_map_path);
+  const selection = input.readLocal(input.authority.opportunity_selection_path);
+  const authorityFiles = [receipt, material, map, selection];
+  if (new Set(authorityFiles.map(({canonicalPath}) => canonicalPath)).size !== 4) {
+    throw new Error('MW-OPPORTUNITY-AUTHORITY005 canonical authority paths must be unique');
+  }
   try {
-    assertOpportunitySelectionV2(
-      parse(mapBytes.toString('utf8')) as unknown,
-      parse(selectionBytes.toString('utf8')) as unknown,
+    const verified = assertOpportunitySelectionV2(
+      parse(map.bytes.toString('utf8')) as unknown,
+      parse(selection.bytes.toString('utf8')) as unknown,
       {
-        sourceReceipt: parse(receiptBytes.toString('utf8')) as never,
-        materialBytes,
+        sourceReceipt: parse(receipt.bytes.toString('utf8')) as never,
+        materialBytes: material.bytes,
         compatibilityProjectionBytes: Buffer.from(projection.markdown, 'utf8'),
       },
       input.verifiedAt,
     );
+    if (
+      verified.map.requestHash !== input.requestHash ||
+      verified.selection.actorId !== CANONICAL_HUMAN_APPROVER_ACTOR_ID
+    ) {
+      throw new Error('active request or canonical human selector mismatch');
+    }
   } catch (error) {
     throw new Error(`MW-OPPORTUNITY-AUTHORITY004 ${String(error)}`, {cause: error});
   }
   return [
-    ['opportunity-source-receipt-v1', input.authority.source_receipt_path, receiptBytes],
-    ['opportunity-source-material-v1', input.authority.source_material_path, materialBytes],
-    ['opportunity-map-v2', input.authority.opportunity_map_path, mapBytes],
-    ['opportunity-selection-v2', input.authority.opportunity_selection_path, selectionBytes],
+    ['opportunity-source-receipt-v1', input.authority.source_receipt_path, receipt.bytes],
+    ['opportunity-source-material-v1', input.authority.source_material_path, material.bytes],
+    ['opportunity-map-v2', input.authority.opportunity_map_path, map.bytes],
+    ['opportunity-selection-v2', input.authority.opportunity_selection_path, selection.bytes],
   ].map(([artifact, , bytes]) => ({
     artifact: String(artifact),
     ref: `runtime://opportunity/${String(artifact)}/${digest(bytes as Buffer)}`,

@@ -165,9 +165,13 @@ export const resolveMaterialInput = (
   inputs.push(
     ...enforceOpportunityMaterialAuthority({
       workflowId: workflow.workflow_id,
+      requestHash: intent.request_hash,
       authority: manifest.opportunity_authority,
       materials,
-      readLocal: (path) => readFileSync(assertLocalFile(manifestPath, path)),
+      readLocal: (path) => {
+        const canonicalPath = assertLocalFile(manifestPath, path);
+        return {bytes: readFileSync(canonicalPath), canonicalPath};
+      },
       verifiedAt: (authority.now ?? new Date()).toISOString(),
     }),
   );
