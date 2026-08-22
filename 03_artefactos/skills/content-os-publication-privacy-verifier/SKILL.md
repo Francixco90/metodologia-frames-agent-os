@@ -6,7 +6,7 @@ metadata:
   owner: MetodologIA
   version: 0.1.0
   lifecycle_state: candidate
-  execution_scope: local-candidate-read-only-verification
+  execution_scope: local-candidate-nondurable-verification
 ---
 
 # ContentOS Publication Privacy Verifier
@@ -20,15 +20,18 @@ de cortinillas. Emite `publication-privacy-report-v1`; no transforma, corrige ni
 
 1. Abrir solicitud, receipt, inventarios y requests de detección como materiales canónicos.
 2. Recalcular ambos `sensitive-signal-inventory-v1` y exigir cobertura completa.
-3. Reejecutar el assertion determinista de `minimal-redaction-execution-v1` contra raíces
-   físicas separadas y herramientas hash-bound.
+3. Reejecutar el assertion determinista de `minimal-redaction-execution-v1` en scratch
+   efímero aislado; las raíces físicas de evidencia permanecen inmutables.
 4. Buscar residuales por identidad y clase protegidas en el inventario posterior.
 5. Comparar cada cuadro en RGB después de cubrir únicamente los ROI autorizados; cualquier
    cuadro divergente acredita alteración fuera de máscara.
 6. Recalcular presupuesto y oclusión de zonas de valor. Comparar PCM por canal fuera de los
    spans y silencio interior excluyendo fades.
-7. Validar todas las cortinillas y que cada recorte autónomo conserve al menos una.
-8. Emitir reporte bloqueado o listo únicamente para reproducción humana.
+7. Re-renderizar cada cortinilla con fuente y herramienta hash-bound, contrastarla contra
+   cuadros exportados y exigir intro/cierre en la pieza principal y una en cada recorte.
+8. Verificar que el cuerpo exportado conserve RGB y PCM, que el set de exports sea completo
+   y que una autorización material vigente respalde la nota de memoria de clase.
+9. Emitir reporte bloqueado o listo únicamente para reproducción humana.
 
 ## Divulgación
 
@@ -51,9 +54,10 @@ de cortinillas. Emite `publication-privacy-report-v1`; no transforma, corrige ni
 ## Uso
 
 ```bash
-node --import tsx skills/content-os-publication-privacy-verifier/scripts/verify-publication-privacy.mjs request.json source-root output-root
+node --import tsx skills/content-os-publication-privacy-verifier/scripts/verify-publication-privacy.mjs request.json source-root output-root disclosure-root
 node --import tsx skills/content-os-publication-privacy-verifier/scripts/check-skill.mjs
 ```
 
 `coverage_gap`: la autenticidad externa de actores y autorizaciones depende del harness de
-receipts; esta skill acredita consistencia material local, no consentimiento ni publicación.
+receipts. La skill no escribe en las tres raíces auditadas; solo usa scratch efímero y acredita
+consistencia material local, no consentimiento ni publicación.

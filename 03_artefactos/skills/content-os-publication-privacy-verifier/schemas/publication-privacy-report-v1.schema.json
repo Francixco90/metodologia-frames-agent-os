@@ -41,7 +41,8 @@
         "pre_detection_request_material_sha256",
         "pre_inventory_material_sha256",
         "post_detection_request_material_sha256",
-        "post_inventory_material_sha256"
+        "post_inventory_material_sha256",
+        "post_rescan_receipt_sha256"
       ],
       "properties": {
         "execution_request_material_sha256": {"$ref": "#/$defs/sha256"},
@@ -49,7 +50,8 @@
         "pre_detection_request_material_sha256": {"$ref": "#/$defs/sha256"},
         "pre_inventory_material_sha256": {"$ref": "#/$defs/sha256"},
         "post_detection_request_material_sha256": {"$ref": "#/$defs/sha256"},
-        "post_inventory_material_sha256": {"$ref": "#/$defs/sha256"}
+        "post_inventory_material_sha256": {"$ref": "#/$defs/sha256"},
+        "post_rescan_receipt_sha256": {"$ref": "#/$defs/sha256"}
       }
     },
     "detection": {
@@ -146,7 +148,7 @@
     "disclosure": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["state", "required_lines", "curtains", "curtain_findings", "autonomous_clip_ids", "autonomous_clips_sha256", "clips_without_curtain", "report_linked"],
+      "required": ["state", "required_lines", "authorization_material_sha256", "authorization_valid", "curtains", "export_manifest_material_sha256", "export_set_receipt_sha256", "export_ids", "exports_without_curtain", "curtain_render_mismatches", "body_rgb_mismatches", "body_audio_changed_samples", "curtain_audio_nonzero_bytes", "report_linked"],
       "properties": {
         "state": {"enum": ["AI_EDITED", "AI_EDITED_AND_CLASS_MEMORY_AUTHORIZED"]},
         "required_lines": {
@@ -155,6 +157,8 @@
           "maxItems": 2,
           "items": {"enum": ["EDITADO CON IA", "MEMORIA DE CLASE AUTORIZADA"]}
         },
+        "authorization_material_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "authorization_valid": {"type": "boolean"},
         "curtains": {
           "type": "array",
           "minItems": 1,
@@ -166,31 +170,56 @@
             "properties": {"curtain_id": {"$ref": "#/$defs/id"}, "canonical_sha256": {"$ref": "#/$defs/sha256"}}
           }
         },
-        "curtain_findings": {
+        "export_manifest_material_sha256": {"$ref": "#/$defs/sha256"},
+        "export_set_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "export_ids": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "exports_without_curtain": {"type": "array", "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "curtain_render_mismatches": {
           "type": "array",
           "maxItems": 1024,
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["sequence", "curtain_id", "code"],
+            "required": ["sequence", "export_id", "curtain_id"],
             "properties": {
               "sequence": {"type": "integer", "minimum": 0, "maximum": 1023},
-              "curtain_id": {"$ref": "#/$defs/id"},
-              "code": {"enum": ["TEXT", "CONTRAST", "PLACEMENT", "TEXT_SIZE", "READ_TIME", "WATERMARK", "REPORT_LINK"]}
+              "export_id": {"$ref": "#/$defs/id"},
+              "curtain_id": {"$ref": "#/$defs/id"}
             }
           }
         },
-        "autonomous_clip_ids": {"type": "array", "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
-        "autonomous_clips_sha256": {"$ref": "#/$defs/sha256"},
-        "clips_without_curtain": {"type": "array", "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "body_rgb_mismatches": {
+          "type": "array",
+          "maxItems": 1000000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sequence", "export_id", "export_frame"],
+            "properties": {"sequence": {"type": "integer", "minimum": 0}, "export_id": {"$ref": "#/$defs/id"}, "export_frame": {"type": "integer", "minimum": 0}}
+          }
+        },
+        "body_audio_changed_samples": {"type": "integer", "minimum": 0},
+        "curtain_audio_nonzero_bytes": {"type": "integer", "minimum": 0},
         "report_linked": {"type": "boolean"}
-      }
+      },
+      "allOf": [{"if": {"type": "object", "properties": {"state": {"const": "AI_EDITED_AND_CLASS_MEMORY_AUTHORIZED"}}}, "then": {"type": "object", "properties": {"required_lines": {"type": "array", "prefixItems": [{"const": "EDITADO CON IA"}, {"const": "MEMORIA DE CLASE AUTORIZADA"}], "minItems": 2, "maxItems": 2}, "authorization_material_sha256": {"$ref": "#/$defs/sha256"}, "authorization_valid": {"const": true}}}, "else": {"type": "object", "properties": {"required_lines": {"type": "array", "prefixItems": [{"const": "EDITADO CON IA"}], "minItems": 1, "maxItems": 1}, "authorization_material_sha256": {"type": "null"}, "authorization_valid": {"const": false}}}}]
     },
     "maximum_state": {"const": "RENDERED_DRAFT"},
     "publication_authority": {"const": false},
     "status": {"enum": ["BLOCKED_PRIVACY_FINDINGS", "VERIFIED_FOR_HUMAN_PLAYBACK"]},
     "canonical_sha256": {"$ref": "#/$defs/sha256"}
   },
+  "allOf": [{
+    "if": {"type": "object", "properties": {"status": {"const": "VERIFIED_FOR_HUMAN_PLAYBACK"}}},
+    "then": {"type": "object", "properties": {
+      "detection": {"type": "object", "properties": {"coverage_complete": {"const": true}}},
+      "residuals": {"type": "array", "maxItems": 0},
+      "visual_integrity": {"type": "object", "properties": {"outside_mask_rgb_mismatch_frames": {"type": "array", "maxItems": 0}, "zero_unexplained_pixels": {"const": true}, "maximum_mask_ratio": {"type": "number", "maximum": 0.05}}},
+      "value_preservation": {"type": "object", "properties": {"occlusions": {"type": "array", "maxItems": 0}}},
+      "audio_integrity": {"type": "object", "properties": {"outside_span_changed_samples": {"const": 0}, "silences": {"type": "array", "items": {"type": "object", "properties": {"center_silent": {"const": true}, "outside_unchanged": {"const": true}}}}}},
+      "disclosure": {"type": "object", "properties": {"exports_without_curtain": {"type": "array", "maxItems": 0}, "curtain_render_mismatches": {"type": "array", "maxItems": 0}, "body_rgb_mismatches": {"type": "array", "maxItems": 0}, "body_audio_changed_samples": {"const": 0}, "curtain_audio_nonzero_bytes": {"const": 0}, "report_linked": {"const": true}}}
+    }}
+  }],
   "$defs": {
     "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},

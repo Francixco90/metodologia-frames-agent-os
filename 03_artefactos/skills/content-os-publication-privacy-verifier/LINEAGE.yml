@@ -3,7 +3,7 @@ skill_id: content-os-publication-privacy-verifier
 version: 0.1.0
 owner: MetodologIA
 lifecycle_state: candidate
-execution_scope: local-candidate-read-only-verification
+execution_scope: local-candidate-nondurable-verification
 content_origin: locally_authored
 content_license: LicenseRef-MetodologIA-Internal
 external_fragments_reused: false
@@ -22,6 +22,7 @@ authority_refs:
   - skills/content-os-general-video/schemas/disclosure-curtain-v2.schema.json
 runtime_refs:
   - skills/content-os-publication-privacy-verifier/scripts/verify-publication-privacy.mjs
+  - skills/content-os-publication-privacy-verifier/scripts/verify-disclosure-media.mjs
   - skills/content-os-publication-privacy-verifier/scripts/check-skill.mjs
 dependencies:
   - content-os-sensitive-signal-detector:sensitive-signal-inventory-v1

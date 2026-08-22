@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {lstatSync, readFileSync, realpathSync} from 'node:fs';
-import {isAbsolute, relative, resolve, sep} from 'node:path';
+import {copyFileSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {dirname, isAbsolute, relative, resolve, sep} from 'node:path';
 
 import {assertSensitiveSignalInventory} from '../../content-os-sensitive-signal-detector/scripts/detect-sensitive-signals.mjs';
 import {assertMinimalRedactionExecution, assertMinimalRedactionRequest} from '../../content-os-minimal-redaction/scripts/execute-minimal-redaction.mjs';
+import {assertDisclosureCurtain, disclosureLinesFor, verifyDisclosureMedia} from './verify-disclosure-media.mjs';
+
+export {assertDisclosureCurtain, disclosureLinesFor};
 
 const sha = (value) => createHash('sha256').update(value).digest('hex');
 const stable = (value) => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])])) : value;
@@ -73,35 +77,6 @@ const mergeSpans = (operations, sampleRate) => {
   return merged;
 };
 
-const contrast = (foreground, background) => {
-  const luminance = (hex) => { const channels = [1, 3, 5].map((offset) => Number.parseInt(hex.slice(offset, offset + 2), 16) / 255).map((value) => value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4); return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]; };
-  const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a); return Number(((values[0] + 0.05) / (values[1] + 0.05)).toFixed(4));
-};
-
-export const assertDisclosureCurtain = (curtain) => {
-  keys(curtain, ['schema_version', 'curtain_id', 'case_id', 'privacy_report_id', 'kind', 'orientation', 'text_lines', 'foreground_rgb', 'background_rgb', 'contrast_ratio', 'placement', 'text_height_ratio', 'duration_ms', 'persistent_watermark', 'autonomous_clip_ids', 'canonical_sha256'], 'DISCLOSURE-CURTAIN-KEYS');
-  expect(curtain.schema_version === 'disclosure-curtain-v2' && idPattern.test(curtain.curtain_id) && idPattern.test(curtain.case_id) && idPattern.test(curtain.privacy_report_id) && ['INTRO', 'CHAPTER', 'OUTRO'].includes(curtain.kind) && ['VERTICAL', 'WIDE'].includes(curtain.orientation), 'DISCLOSURE-CURTAIN-IDENTITY');
-  expect(Array.isArray(curtain.text_lines) && curtain.text_lines.length >= 1 && curtain.text_lines.length <= 2 && curtain.text_lines.every((item) => typeof item === 'string' && item.length > 0), 'DISCLOSURE-CURTAIN-TEXT');
-  expect(/^#[A-F0-9]{6}$/u.test(curtain.foreground_rgb) && /^#[A-F0-9]{6}$/u.test(curtain.background_rgb) && typeof curtain.contrast_ratio === 'number' && Number.isFinite(curtain.contrast_ratio) && typeof curtain.placement === 'string' && typeof curtain.text_height_ratio === 'number' && Number.isFinite(curtain.text_height_ratio) && Number.isSafeInteger(curtain.duration_ms) && curtain.duration_ms > 0 && typeof curtain.persistent_watermark === 'boolean' && Array.isArray(curtain.autonomous_clip_ids) && curtain.autonomous_clip_ids.every((id) => idPattern.test(id)), 'DISCLOSURE-CURTAIN-VALUES');
-  unique(curtain.autonomous_clip_ids, 'DISCLOSURE-CURTAIN-CLIP-DUPLICATE');
-  expect(hashPattern.test(curtain.canonical_sha256) && digest(Object.fromEntries(Object.entries(curtain).filter(([key]) => key !== 'canonical_sha256'))) === curtain.canonical_sha256, 'DISCLOSURE-CURTAIN-HASH');
-  return curtain;
-};
-
-const curtainFindings = (curtain, expected) => {
-  const codes = [];
-  if (!same(curtain.text_lines, expected.lines)) codes.push('TEXT');
-  const derivedContrast = contrast(curtain.foreground_rgb, curtain.background_rgb); if (curtain.contrast_ratio !== derivedContrast || derivedContrast < 4.5 || derivedContrast > 21) codes.push('CONTRAST');
-  if (curtain.placement !== 'LOWER_SAFE_ZONE_CURTAIN_ONLY') codes.push('PLACEMENT');
-  if (curtain.text_height_ratio < 0.022 || curtain.text_height_ratio > 0.2) codes.push('TEXT_SIZE');
-  if (curtain.duration_ms < 1800 || curtain.duration_ms > 30000) codes.push('READ_TIME');
-  if (curtain.persistent_watermark !== false) codes.push('WATERMARK');
-  if (curtain.case_id !== expected.case_id || curtain.privacy_report_id !== expected.report_id) codes.push('REPORT_LINK');
-  return codes;
-};
-
-export const disclosureLinesFor = (hasRedaction) => hasRedaction ? ['EDITADO CON IA', 'MEMORIA DE CLASE AUTORIZADA'] : ['EDITADO CON IA'];
-
 const protectedResiduals = (rules, postInventory) => {
   const protectedRules = rules.filter(({rule}) => ['PROTECT', 'AUDIO_SILENCE'].includes(rule));
   const residuals = [];
@@ -123,26 +98,33 @@ const verifyDetectionBundle = (bundle, code) => {
   return {detectorRequest, inventory};
 };
 
+const verifyExecutionInScratch = (executionReceipt, executionRequest, roots) => {
+  const scratch = mkdtempSync(resolve(tmpdir(), 'publication-execution-')); const source = resolve(scratch, 'source'); const output = resolve(scratch, 'output'); mkdirSync(source); mkdirSync(output);
+  const copy = (fromRoot, ref, toRoot) => { const from = resolve(fromRoot, ref); expect(lstatSync(from).isFile(), 'PUBLICATION-MEDIA-TYPE'); const to = resolve(toRoot, ref); mkdirSync(dirname(to), {recursive: true}); copyFileSync(from, to); };
+  try { copy(roots.source_root, executionRequest.source.ref, source); copy(roots.output_root, executionRequest.output_ref, output); copy(roots.output_root, executionRequest.receipt_ref, output); if (executionReceipt.captions) copy(roots.output_root, executionRequest.caption_output_ref, output); else expect(!existsSync(resolve(roots.output_root, executionRequest.caption_output_ref)), 'PUBLICATION-CAPTION-UNDECLARED'); assertMinimalRedactionExecution(executionReceipt, executionRequest, {source_root: source, output_root: output}); } finally { rmSync(scratch, {recursive: true, force: true}); }
+};
+
 const deriveReport = (request, options) => {
-  keys(request, ['schema_version', 'case_id', 'participant_id', 'actor_id', 'execution_request_material', 'execution_receipt_material', 'pre_detection', 'post_detection', 'disclosure_curtains', 'autonomous_clips'], 'PUBLICATION-REQUEST-KEYS');
+  keys(request, ['schema_version', 'case_id', 'participant_id', 'actor_id', 'execution_request_material', 'execution_receipt_material', 'pre_detection', 'post_detection', 'post_rescan_receipt', 'class_memory_authorization_material', 'authorization_freshness_receipt', 'disclosure_curtains', 'disclosure_export_manifest_material', 'export_set_verification_receipt'], 'PUBLICATION-REQUEST-KEYS');
   expect(request.schema_version === 'publication-privacy-verification-request-v1' && idPattern.test(request.case_id) && idPattern.test(request.participant_id) && request.actor_id === 'RT-09-H03-PUBLICATION-PRIVACY-VERIFIER', 'PUBLICATION-REQUEST-IDENTITY');
-  keys(options, ['source_root', 'output_root'], 'PUBLICATION-OPTIONS-KEYS');
-  const sourceRoot = realpathSync(options.source_root); const outputRoot = realpathSync(options.output_root);
-  expect(lstatSync(sourceRoot).isDirectory() && lstatSync(outputRoot).isDirectory() && sourceRoot !== outputRoot && !nested(sourceRoot, outputRoot) && !nested(outputRoot, sourceRoot), 'PUBLICATION-ROOT-REUSE');
-  const materials = [request.execution_request_material, request.execution_receipt_material, request.pre_detection.request_material, request.pre_detection.inventory_material, request.post_detection.request_material, request.post_detection.inventory_material];
+  keys(options, ['source_root', 'output_root', 'disclosure_root'], 'PUBLICATION-OPTIONS-KEYS');
+  const sourceRoot = realpathSync(options.source_root); const outputRoot = realpathSync(options.output_root); const disclosureRoot = realpathSync(options.disclosure_root); const roots = [sourceRoot, outputRoot, disclosureRoot];
+  expect(roots.every((root) => lstatSync(root).isDirectory()) && new Set(roots).size === 3 && roots.every((root, index) => roots.every((other, otherIndex) => index === otherIndex || !nested(root, other))), 'PUBLICATION-ROOT-REUSE');
+  const materials = [request.execution_request_material, request.execution_receipt_material, request.pre_detection.request_material, request.pre_detection.inventory_material, request.post_detection.request_material, request.post_detection.inventory_material, request.post_rescan_receipt, request.class_memory_authorization_material, request.authorization_freshness_receipt, request.disclosure_export_manifest_material, request.export_set_verification_receipt];
   unique(materials.map(({ref}) => ref), 'PUBLICATION-MATERIAL-REF-DUPLICATE');
   const executionRequest = physical(request.execution_request_material, 'PUBLICATION-EXECUTION-REQUEST');
   const executionReceipt = physical(request.execution_receipt_material, 'PUBLICATION-EXECUTION-RECEIPT');
   const {policy, valuePlan, plan, metadata} = assertMinimalRedactionRequest(executionRequest);
   expect(executionRequest.case_id === request.case_id && executionRequest.participant_id === request.participant_id && executionRequest.actor_id !== request.actor_id, 'PUBLICATION-EXECUTOR-SEPARATION');
-  assertMinimalRedactionExecution(executionReceipt, executionRequest, {source_root: sourceRoot, output_root: outputRoot});
+  verifyExecutionInScratch(executionReceipt, executionRequest, {source_root: sourceRoot, output_root: outputRoot});
   const pre = verifyDetectionBundle(request.pre_detection, 'PUBLICATION-PRE-DETECTION'); const post = verifyDetectionBundle(request.post_detection, 'PUBLICATION-POST-DETECTION');
   const inventoryRef = {ref: request.pre_detection.inventory_material.ref, sha256: request.pre_detection.inventory_material.sha256, bytes: request.pre_detection.inventory_material.bytes};
-  expect(same(policy.inventory, inventoryRef) && same(pre.inventory.source, executionRequest.source) && pre.detectorRequest.source.sha256 === executionRequest.source.sha256 && pre.detectorRequest.source.bytes === executionRequest.source.bytes, 'PUBLICATION-PRE-BINDING');
+  expect(pre.detectorRequest.case_id === request.case_id && post.detectorRequest.case_id === request.case_id && same(policy.inventory, inventoryRef) && same(pre.inventory.source, executionRequest.source) && pre.detectorRequest.source.sha256 === executionRequest.source.sha256 && pre.detectorRequest.source.bytes === executionRequest.source.bytes && pre.detectorRequest.aliases_sha256 === post.detectorRequest.aliases_sha256 && pre.detectorRequest.templates_sha256 === post.detectorRequest.templates_sha256 && same(pre.detectorRequest.aliases, post.detectorRequest.aliases) && same(pre.detectorRequest.templates, post.detectorRequest.templates), 'PUBLICATION-DETECTOR-CONFIG-DRIFT');
   const outputPath = resolve(outputRoot, executionReceipt.output.ref); const sourcePath = resolve(sourceRoot, executionRequest.source.ref);
   expect(lstatSync(sourcePath).isFile() && lstatSync(outputPath).isFile(), 'PUBLICATION-MEDIA-TYPE');
   const outputBytes = readFileSync(outputPath);
   expect(post.detectorRequest.source.ref === executionReceipt.output.ref && post.detectorRequest.source.sha256 === executionReceipt.output.sha256 && post.detectorRequest.source.bytes === executionReceipt.output.bytes && post.detectorRequest.source.content_base64 === outputBytes.toString('base64') && same(post.inventory.source, executionReceipt.output), 'PUBLICATION-POST-BINDING');
+  const rescan = physical(request.post_rescan_receipt, 'PUBLICATION-POST-RESCAN'); keys(rescan, ['schema_version', 'actor_id', 'case_id', 'source_sha256', 'aliases_sha256', 'templates_sha256', 'detector_request_material_sha256', 'inventory_material_sha256', 'coverage_sha256', 'status'], 'PUBLICATION-POST-RESCAN-KEYS'); expect(rescan.schema_version === 'publication-sensitive-rescan-verification-v1' && rescan.actor_id === 'RT-09-H03-PUBLICATION-RESCAN-VERIFIER' && rescan.case_id === request.case_id && rescan.source_sha256 === executionReceipt.output.sha256 && rescan.aliases_sha256 === pre.detectorRequest.aliases_sha256 && rescan.templates_sha256 === pre.detectorRequest.templates_sha256 && rescan.detector_request_material_sha256 === request.post_detection.request_material.sha256 && rescan.inventory_material_sha256 === request.post_detection.inventory_material.sha256 && rescan.coverage_sha256 === digest(post.detectorRequest.coverage) && rescan.status === 'VERIFIED_COMPLETE_PUBLICATION_RESCAN', 'PUBLICATION-POST-RESCAN-DRIFT');
   const ffmpeg = realpathSync(executionRequest.media_tool_authority.ffmpeg_path); const ffprobe = realpathSync(executionRequest.media_tool_authority.ffprobe_path);
   expect(sha(readFileSync(ffmpeg)) === executionRequest.media_tool_authority.ffmpeg_sha256 && sha(readFileSync(ffprobe)) === executionRequest.media_tool_authority.ffprobe_sha256, 'PUBLICATION-TOOL-DRIFT');
 
@@ -154,7 +136,7 @@ const deriveReport = (request, options) => {
   for (const operation of plan.operations.filter(({type}) => type === 'LOCAL_BLUR')) { const ratio = operation.authorized_effect_roi.width * operation.authorized_effect_roi.height / (metadata.frame_width * metadata.frame_height); events.set(operation.frame_span.start, (events.get(operation.frame_span.start) ?? 0) + ratio); events.set(operation.frame_span.end + 1, (events.get(operation.frame_span.end + 1) ?? 0) - ratio); }
   let active = 0; let maximumMask = 0; for (const frame of [...events.keys()].sort((a, b) => a - b)) { active += events.get(frame); maximumMask = Math.max(maximumMask, active); } maximumMask = Number(maximumMask.toFixed(8));
   const occlusions = [];
-  for (const operation of plan.operations.filter(({type}) => type === 'LOCAL_BLUR')) for (const zone of valuePlan.zones) if (overlaps(operation.frame_span, zone.frame_span) && intersects(operation.authorized_effect_roi, zone.geometry)) occlusions.push({sequence: occlusions.length, zone_id: zone.zone_id, signal_id: operation.signal_id, operation_id: operation.operation_id});
+  for (const operation of plan.operations.filter(({type}) => type === 'LOCAL_BLUR')) for (const zone of valuePlan.zones) if (overlaps(operation.frame_span, zone.frame_span) && intersects(operation.authorized_effect_roi, zone.geometry) && !zone.authorized_redaction_signal_ids.includes(operation.signal_id)) occlusions.push({sequence: occlusions.length, zone_id: zone.zone_id, signal_id: operation.signal_id, operation_id: operation.operation_id});
 
   const shape = audioShape(sourcePath, ffprobe); const outputShape = audioShape(outputPath, ffprobe); expect(same(shape, outputShape) && Boolean(shape) === metadata.has_audio, 'PUBLICATION-AUDIO-SHAPE');
   let changedOutside = 0; const silences = [];
@@ -166,25 +148,16 @@ const deriveReport = (request, options) => {
     for (const operation of audioOps) { const start = Math.round((operation.time_span_ms.start + operation.fade_ms) * shape.sample_rate / 1000); const end = Math.round((operation.time_span_ms.end - operation.fade_ms) * shape.sample_rate / 1000); const center = pcm(outputPath, ffmpeg, shape, start, end); silences.push({sequence: silences.length, signal_id: operation.signal_id, start_ms: operation.time_span_ms.start, end_ms: operation.time_span_ms.end, fade_ms: operation.fade_ms, center_silent: center.every((byte) => byte === 0), outside_unchanged: changedOutside === 0}); }
   }
 
-  expect(Array.isArray(request.disclosure_curtains) && request.disclosure_curtains.length > 0 && request.disclosure_curtains.length <= 256, 'PUBLICATION-CURTAINS');
   const reportId = `REPORT:${digest({case_id: request.case_id, execution_id: executionReceipt.execution_id}).slice(0, 24)}`;
-  const requiredLines = disclosureLinesFor(plan.operations.length > 0);
-  const curtains = request.disclosure_curtains.map(assertDisclosureCurtain); unique(curtains.map(({curtain_id}) => curtain_id), 'PUBLICATION-CURTAIN-ID-DUPLICATE'); unique(curtains.map(({canonical_sha256}) => canonical_sha256), 'PUBLICATION-CURTAIN-HASH-DUPLICATE');
-  const findings = []; for (const curtain of curtains) for (const code of curtainFindings(curtain, {case_id: request.case_id, report_id: reportId, lines: requiredLines})) findings.push({sequence: findings.length, curtain_id: curtain.curtain_id, code});
-  expect(Array.isArray(request.autonomous_clips) && request.autonomous_clips.length <= 256, 'PUBLICATION-CLIPS');
-  const clips = request.autonomous_clips.map((clip, sequence) => { keys(clip, ['sequence', 'clip_id', 'curtain_ids'], 'PUBLICATION-CLIP-KEYS'); expect(clip.sequence === sequence && idPattern.test(clip.clip_id) && Array.isArray(clip.curtain_ids) && clip.curtain_ids.every((id) => idPattern.test(id)), 'PUBLICATION-CLIP'); unique(clip.curtain_ids, 'PUBLICATION-CLIP-CURTAIN-DUPLICATE'); return clip; }); unique(clips.map(({clip_id}) => clip_id), 'PUBLICATION-CLIP-ID-DUPLICATE');
-  const curtainMap = new Map(curtains.map((curtain) => [curtain.curtain_id, curtain]));
-  const clipsWithoutCurtain = clips.filter((clip) => clip.curtain_ids.length === 0 || !clip.curtain_ids.some((id) => curtainMap.get(id)?.autonomous_clip_ids.includes(clip.clip_id))).map(({clip_id}) => clip_id);
-  for (const curtain of curtains) for (const clipId of curtain.autonomous_clip_ids) expect(clips.some(({clip_id}) => clip_id === clipId), 'PUBLICATION-CURTAIN-UNKNOWN-CLIP');
-  const reportLinked = curtains.every((curtain) => curtain.privacy_report_id === reportId && curtain.case_id === request.case_id);
-  const blocked = residuals.length > 0 || rgbMismatches.length > 0 || maximumMask > 0.05 || occlusions.length > 0 || changedOutside > 0 || silences.some(({center_silent}) => !center_silent) || findings.length > 0 || clipsWithoutCurtain.length > 0 || !reportLinked;
+  const disclosure = verifyDisclosureMedia(request, {case_id: request.case_id, participant_id: request.participant_id, report_id: reportId, has_redaction: plan.operations.length > 0, source: executionReceipt.source, privacy_policy_sha256: policy.canonical_sha256, execution_id: executionReceipt.execution_id, execution_receipt_material_sha256: request.execution_receipt_material.sha256, execution_output: executionReceipt.output, execution_output_path: outputPath, execution_frame_count: metadata.frame_count, audio_shape: shape, ffmpeg, ffprobe, disclosure_root: disclosureRoot});
+  const blocked = residuals.length > 0 || rgbMismatches.length > 0 || maximumMask > 0.05 || occlusions.length > 0 || changedOutside > 0 || silences.some(({center_silent}) => !center_silent) || disclosure.exports_without_curtain.length > 0 || disclosure.curtain_render_mismatches.length > 0 || disclosure.body_rgb_mismatches.length > 0 || disclosure.body_audio_changed_samples > 0 || disclosure.curtain_audio_nonzero_bytes > 0 || !disclosure.report_linked;
   const base = {
     schema_version: 'publication-privacy-report-v1', report_id: reportId, case_id: request.case_id, participant_id: request.participant_id, actor_id: request.actor_id, source: executionReceipt.source, output: executionReceipt.output,
-    bindings: {execution_request_material_sha256: request.execution_request_material.sha256, execution_receipt_material_sha256: request.execution_receipt_material.sha256, pre_detection_request_material_sha256: request.pre_detection.request_material.sha256, pre_inventory_material_sha256: request.pre_detection.inventory_material.sha256, post_detection_request_material_sha256: request.post_detection.request_material.sha256, post_inventory_material_sha256: request.post_detection.inventory_material.sha256},
+    bindings: {execution_request_material_sha256: request.execution_request_material.sha256, execution_receipt_material_sha256: request.execution_receipt_material.sha256, pre_detection_request_material_sha256: request.pre_detection.request_material.sha256, pre_inventory_material_sha256: request.pre_detection.inventory_material.sha256, post_detection_request_material_sha256: request.post_detection.request_material.sha256, post_inventory_material_sha256: request.post_detection.inventory_material.sha256, post_rescan_receipt_sha256: request.post_rescan_receipt.sha256},
     detection: {pre_inventory_id: pre.inventory.inventory_id, post_inventory_id: post.inventory.inventory_id, coverage_complete: true, protected_signal_count: protectedRules.length}, residuals,
     visual_integrity: {compared_frames: metadata.frame_count, outside_mask_rgb_mismatch_frames: rgbMismatches, zero_unexplained_pixels: rgbMismatches.length === 0, maximum_mask_ratio: maximumMask, review_target_ratio: 0.05, hard_limit_ratio: 0.1},
     value_preservation: {zone_count: valuePlan.zones.length, occlusions}, audio_integrity: {has_audio: metadata.has_audio, outside_span_changed_samples: changedOutside, silences},
-    disclosure: {state: plan.operations.length ? 'AI_EDITED_AND_CLASS_MEMORY_AUTHORIZED' : 'AI_EDITED', required_lines: requiredLines, curtains: curtains.map(({curtain_id, canonical_sha256}) => ({curtain_id, canonical_sha256})), curtain_findings: findings, autonomous_clip_ids: clips.map(({clip_id}) => clip_id), autonomous_clips_sha256: digest(clips), clips_without_curtain: clipsWithoutCurtain, report_linked: reportLinked},
+    disclosure,
     maximum_state: 'RENDERED_DRAFT', publication_authority: false, status: blocked ? 'BLOCKED_PRIVACY_FINDINGS' : 'VERIFIED_FOR_HUMAN_PLAYBACK',
   };
   return {...base, canonical_sha256: digest(base)};
@@ -200,7 +173,7 @@ export const assertPublicationPrivacyReport = (report, request, options) => {
   return report;
 };
 
-if (process.argv[1]?.endsWith('verify-publication-privacy.mjs') && process.argv.length >= 5) {
+if (process.argv[1]?.endsWith('verify-publication-privacy.mjs') && process.argv.length >= 6) {
   const request = JSON.parse(readFileSync(process.argv[2], 'utf8'));
-  process.stdout.write(`${JSON.stringify(stable(verifyPublicationPrivacy(request, {source_root: process.argv[3], output_root: process.argv[4]})), null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify(stable(verifyPublicationPrivacy(request, {source_root: process.argv[3], output_root: process.argv[4], disclosure_root: process.argv[5]})), null, 2)}\n`);
 }

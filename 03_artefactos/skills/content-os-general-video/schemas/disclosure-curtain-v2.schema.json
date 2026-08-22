@@ -19,7 +19,6 @@
     "text_height_ratio",
     "duration_ms",
     "persistent_watermark",
-    "autonomous_clip_ids",
     "canonical_sha256"
   ],
   "properties": {
@@ -42,12 +41,6 @@
     "text_height_ratio": {"type": "number", "minimum": 0.022, "maximum": 0.2},
     "duration_ms": {"type": "integer", "minimum": 1800, "maximum": 30000},
     "persistent_watermark": {"const": false},
-    "autonomous_clip_ids": {
-      "type": "array",
-      "maxItems": 256,
-      "uniqueItems": true,
-      "items": {"$ref": "#/$defs/id"}
-    },
     "canonical_sha256": {"$ref": "#/$defs/sha256"}
   },
   "$defs": {

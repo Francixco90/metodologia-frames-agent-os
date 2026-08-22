@@ -5,15 +5,17 @@ actor: RT-09-H03-PUBLICATION-PRIVACY-VERIFIER
 scope:
   - hash-bound local privacy verification
   - independent residual and preservation audit
-  - disclosure curtain audit
+  - material disclosure export and curtain audit
 runtime_boundary:
   allowed_scoped:
-    - read_only_source_and_output_snapshots
+    - read_only_source_output_and_disclosure_snapshots
+    - isolated_ephemeral_scratch_rerender
     - detector_inventory_rederivation
     - deterministic_execution_assertion
     - rgb_and_pcm_comparison
     - canonical_report_derivation
   out_of_scope:
+    - durable_write_to_evidence_roots
     - media_correction
     - privacy_policy_change
     - authorization_issuance
@@ -23,13 +25,17 @@ runtime_boundary:
 runtime_rules:
   - verifier_actor_distinct_from_executor
   - separate_source_and_output_roots
+  - separate_disclosure_root
   - full_detection_coverage_required
   - zero_unexplained_rgb_frames_for_pass
   - zero_audio_changes_outside_spans_for_pass
   - zero_value_occlusion_for_pass
   - disclosure_on_every_curtain
   - autonomous_clip_retains_disclosure
+  - material_export_set_complete
+  - class_memory_authorization_current_when_redacted
   - rendered_draft_maximum
 notes: >
-  Candidate read-only auditor. A passing report authorizes human playback only and cannot
-  grant READY, publication authority, consent, or distribution.
+  Candidate nondurable auditor. Evidence roots remain immutable; scratch rerenders are deleted.
+  A passing report authorizes human playback only and cannot grant READY, publication authority,
+  consent, or distribution.

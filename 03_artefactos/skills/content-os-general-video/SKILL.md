@@ -119,17 +119,12 @@ anterior a escala/tratamiento, evidencia geométrica sobre el cuerpo limpio y bi
 
 ## Cortinillas y divulgación de privacidad V2
 
-Intro, capítulos y cierre materializan `disclosure-curtain-v2`. Cada cortinilla muestra
-`EDITADO CON IA` en zona segura inferior. Cuando `publication-privacy-report-v1` registra
-una o más operaciones de censura, añade exactamente `MEMORIA DE CLASE AUTORIZADA`; sin
-censura, esa segunda línea está prohibida. Contraste mínimo 4.5:1, altura textual mínima
-2.2% del cuadro y duración mínima 1.8 s.
-
-La divulgación solo vive en la cortinilla: nunca persiste como watermark sobre el entregable.
-Cada recorte exportado como pieza autónoma conserva al menos una cortinilla ligada al mismo
-`report_id`. Creative hereda este contrato mediante su delegación al generador de General
-Video. `content-os-publication-privacy-verifier` recalcula texto, legibilidad, vínculo y
-cobertura antes de reproducción humana; no corrige la composición.
+Intro, capítulos y cierre materializan `disclosure-curtain-v2`: `EDITADO CON IA` siempre y,
+con censura más autorización vigente, `MEMORIA DE CLASE AUTORIZADA`. Exigen contraste 4.5:1,
+texto ≥2.2% de altura, 1.8 s y zona segura inferior. Nunca son watermark persistente.
+El manifiesto exhaustivo liga bytes y spans de cada export; todo clip autónomo conserva una
+cortinilla. Creative ya delega sus cortinillas al generador General Video. El verificador
+re-renderiza y compara cada span antes de reproducción humana, sin corregirlo.
 
 Los pipelines de frames precompuestos usan exclusivamente `precomposed-frames-v1`.
 Cada pieza liga adaptador, manifiesto, todos los frames, audio, configuración determinista y
