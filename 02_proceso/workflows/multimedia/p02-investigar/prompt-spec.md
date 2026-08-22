@@ -112,7 +112,7 @@ LÍMITES Y CASOS BORDE
 - Una fuente popular no prueba consenso.
 - No conviertas experiencia personal en recomendación universal.
 - No investigues más de lo necesario para decidir.
-- No amplíes alcance, escribas el brief ni produzcas una dirección antes de una selección humana V2 hash-bound.
+- No amplíes alcance, escribas el brief ni produzcas una dirección antes de una selección humana V2 hash-bound emitida por `H01`.
 - Privacidad desconocida, evidencia incompleta, receipt vencido, proyección divergente o cualquier candidato bloqueado impiden materializar el mapa.
 
 CRITERIO
@@ -123,7 +123,7 @@ PASS cuando:
 - la perspectiva propia se distingue de las fuentes;
 - la investigación cambia una decisión concreta;
 - no hay citas, tendencias o cifras inventadas.
-- el mapa audiovisual contiene cinco candidatos, dos opciones, proyección V1 verificada y ninguna autoridad de producción.
+- el mapa audiovisual contiene cinco candidatos, dos opciones, selección V2 de `H01`, proyección V1 verificada, receipt máximo `RENDERED_DRAFT` y `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de preguntas o análisis de referencias, con fuentes/fecha, limitaciones y decisión editorial.
@@ -180,7 +180,7 @@ LIMITS AND EDGE CASES
 - A popular source does not prove consensus.
 - Do not turn personal experience into a universal recommendation.
 - Do not research beyond what is needed to decide.
-- Do not expand scope, write the brief, or produce a direction before a hash-bound V2 human selection.
+- Do not expand scope, write the brief, or produce a direction before a hash-bound V2 human selection issued by `H01`.
 - Unknown privacy, incomplete evidence, a stale receipt, a divergent projection, or any blocked candidate prevents map materialization.
 
 CRITERIA
@@ -191,7 +191,7 @@ PASS when:
 - the creator’s perspective is distinct from the sources;
 - research changes a concrete decision;
 - no quotations, trends, or figures were invented.
-- the audiovisual map contains five candidates, two options, a verified V1 projection, and no production authority.
+- the audiovisual map contains five candidates, two options, an `H01` V2 selection, a verified V1 projection, a maximum `RENDERED_DRAFT` receipt, and `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Map, Claim Register, question bank, or reference analysis, with sources/date, limitations, and editorial decision.
@@ -248,7 +248,7 @@ LIMITES E CASOS LIMITE
 - Uma fonte popular não comprova consenso.
 - Não transforme experiência pessoal em recomendação universal.
 - Não pesquise além do necessário para decidir.
-- Não amplie o escopo, escreva o brief nem produza uma direção antes de uma seleção humana V2 hash-bound.
+- Não amplie o escopo, escreva o brief nem produza uma direção antes de uma seleção humana V2 hash-bound emitida por `H01`.
 - Privacidade desconhecida, evidência incompleta, receipt vencido, projeção divergente ou qualquer candidato bloqueado impedem materializar o mapa.
 
 CRITÉRIO
@@ -259,7 +259,7 @@ PASS quando:
 - a perspectiva própria se distingue das fontes;
 - a pesquisa muda uma decisão concreta;
 - não há citações, tendências ou números inventados.
-- o mapa audiovisual contém cinco candidatos, duas opções, projeção V1 verificada e nenhuma autoridade de produção.
+- o mapa audiovisual contém cinco candidatos, duas opções, seleção V2 de `H01`, projeção V1 verificada, receipt máximo `RENDERED_DRAFT` e `publication_policy: forbidden`.
 
 DEFINITION OF DONE
 Mapa, Claim Register, banco de perguntas ou análise de referências, com fontes/data, limitações e decisão editorial.
