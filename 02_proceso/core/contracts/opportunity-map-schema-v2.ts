@@ -48,6 +48,7 @@ export const OpportunityMapV2Schema = z
     compatibilityProjection: z.strictObject({
       deliverableId: z.literal('opportunity-map-v1'),
       sha256: Sha256Schema,
+      byteLength: z.number().int().positive(),
     }),
     allowedNextAction: z.literal('REQUEST_HUMAN_SELECTION'),
     productionAuthority: z.literal(false),

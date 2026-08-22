@@ -205,6 +205,21 @@ describe('opportunity-map-v2', () => {
         selectedAt,
       ),
     ).toThrow(/HASH-DRIFT/u);
+    for (const compatibilityProjectionBytes of [
+      new Uint8Array(),
+      'not-bytes' as unknown as Uint8Array,
+    ]) {
+      expect(() =>
+        buildOpportunityMapV2({
+          issuedAt,
+          expiresAt,
+          ...evidence,
+          compatibilityProjectionBytes,
+          decisionFunnel: map.decisionFunnel,
+          candidateDetails: map.candidateDetails,
+        }),
+      ).toThrow(/MUST-BE-NONEMPTY-BYTES/u);
+    }
     expect(() =>
       assertOpportunityMapV2({...map, renderRef: 'no.mp4'}, evidence, selectedAt),
     ).toThrow();
