@@ -24,6 +24,12 @@ const withoutHash = <T extends {canonicalSha256: string}>(value: T): Omit<T, 'ca
 const digest = (value: unknown): string =>
   createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const digestBytes = (value: Uint8Array): string => createHash('sha256').update(value).digest('hex');
+const materialBytes = (value: unknown, label: string): Uint8Array => {
+  if (!(value instanceof Uint8Array) || value.byteLength === 0) {
+    throw new Error(`${label}-MUST-BE-NONEMPTY-BYTES`);
+  }
+  return value;
+};
 
 export type OpportunityMapEvidenceV2 = {
   sourceReceipt: OpportunitySourceReceiptV1;
@@ -46,6 +52,10 @@ export function buildOpportunityMapV2(input: {
     input.materialBytes,
     input.issuedAt,
   );
+  const projectionBytes = materialBytes(
+    input.compatibilityProjectionBytes,
+    'OPPORTUNITY-PROJECTION',
+  );
   const payload = withoutHash(
     OpportunityMapV2Schema.parse({
       schemaVersion: 'opportunity-map-v2',
@@ -58,7 +68,8 @@ export function buildOpportunityMapV2(input: {
       visibleOptionIds: funnel.options.map(({optionId}) => optionId),
       compatibilityProjection: {
         deliverableId: 'opportunity-map-v1',
-        sha256: digestBytes(input.compatibilityProjectionBytes),
+        sha256: digestBytes(projectionBytes),
+        byteLength: projectionBytes.byteLength,
       },
       allowedNextAction: 'REQUEST_HUMAN_SELECTION',
       productionAuthority: false,
@@ -90,10 +101,15 @@ export function assertOpportunityMapV2(
     evidence.materialBytes,
     verifiedAt,
   );
+  const projectionBytes = materialBytes(
+    evidence.compatibilityProjectionBytes,
+    'OPPORTUNITY-PROJECTION',
+  );
   if (
     map.requestHash !== map.decisionFunnel.requestHash ||
     JSON.stringify(map.source) !== JSON.stringify(bindOpportunitySourceReceiptV1(receipt)) ||
-    digestBytes(evidence.compatibilityProjectionBytes) !== map.compatibilityProjection.sha256 ||
+    digestBytes(projectionBytes) !== map.compatibilityProjection.sha256 ||
+    projectionBytes.byteLength !== map.compatibilityProjection.byteLength ||
     Date.parse(verifiedAt) < Date.parse(map.issuedAt) ||
     Date.parse(verifiedAt) > Date.parse(map.expiresAt) ||
     digest(withoutHash(map)) !== map.canonicalSha256
