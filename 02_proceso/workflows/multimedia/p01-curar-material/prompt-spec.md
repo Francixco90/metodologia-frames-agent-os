@@ -97,7 +97,7 @@ EJECUCIÓN
    - Triage: clasifica producir, acumular, investigar, proteger o descartar.
    - Digest: agrupa temas, elimina duplicados, detecta series y selecciona máximo tres prioridades.
    - Recuperación: devuelve una shortlist con versión, procedencia, derechos y uso permitido.
-   - Si el objetivo es reutilización audiovisual, conserva exactamente cinco momentos candidatos respaldados por fuente. Clasifícalos como demostración, antes/después, testimonio, microtutorial, prueba de capacidad, proceso o portafolio, sin decidir todavía formato ni producción.
+   - Si el objetivo es reutilización audiovisual, conserva exactamente cinco momentos candidatos respaldados por fuente. Liga el conjunto al hash del material y del inventario, duración, cuadros, fps y evidencias permitidas; cada span debe quedar dentro de esos límites. Clasifícalos como demostración, antes/después, testimonio, microtutorial, prueba de capacidad, proceso o portafolio, sin decidir todavía formato ni producción.
 5. Evalúa especificidad, punto de vista, valor, evidencia, esfuerzo, exposición y coherencia con el Brand OS cuando exista.
 6. Separa Observado, Inferido, Supuesto y Dato requerido.
 7. Recomienda qué registrar después: máximo tres momentos, tres imágenes/planos, un sonido, una frase, una evidencia y un permiso.
@@ -162,7 +162,7 @@ EXECUTION
    - Triage: classify as produce, accumulate, research, protect, or discard.
    - Digest: group topics, remove duplicates, detect series, and select no more than three priorities.
    - Retrieval: return a shortlist with version, provenance, rights, and permitted use.
-   - For audiovisual reuse, preserve exactly five source-backed candidate moments. Classify them as demonstration, before/after, testimonial, microtutorial, capability proof, process, or portfolio without choosing a format or production path yet.
+   - For audiovisual reuse, preserve exactly five source-backed candidate moments. Bind the set to the material and inventory hashes, duration, frames, fps, and allowed evidence; every span must stay within those bounds. Classify them as demonstration, before/after, testimonial, microtutorial, capability proof, process, or portfolio without choosing a format or production path yet.
 5. Evaluate specificity, point of view, value, evidence, effort, exposure, and coherence with the Brand OS when available.
 6. Separate Observed, Inferred, Assumed, and Required data.
 7. Recommend what to document next: no more than three moments, three images/shots, one sound, one phrase, one item of evidence, and one permission.
@@ -227,7 +227,7 @@ EXECUÇÃO
    - Triagem: classifique como produzir, acumular, pesquisar, proteger ou descartar.
    - Digest: agrupe temas, remova duplicados, detecte séries e selecione no máximo três prioridades.
    - Recuperação: devolva uma shortlist com versão, procedência, direitos e uso permitido.
-   - Para reutilização audiovisual, preserve exatamente cinco momentos candidatos sustentados pela fonte. Classifique-os como demonstração, antes/depois, depoimento, microtutorial, prova de capacidade, processo ou portfólio, sem escolher ainda formato nem produção.
+   - Para reutilização audiovisual, preserve exatamente cinco momentos candidatos sustentados pela fonte. Vincule o conjunto aos hashes do material e do inventário, duração, quadros, fps e evidências permitidas; cada span deve permanecer nesses limites. Classifique-os como demonstração, antes/depois, depoimento, microtutorial, prova de capacidade, processo ou portfólio, sem escolher ainda formato nem produção.
 5. Avalie especificidade, ponto de vista, valor, evidência, esforço, exposição e coerência com o Brand OS quando houver.
 6. Separe Observado, Inferido, Suposição e Dado requerido.
 7. Recomende o que registrar depois: no máximo três momentos, três imagens/planos, um som, uma frase, uma evidência e uma permissão.

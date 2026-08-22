@@ -112,7 +112,8 @@ LÍMITES Y CASOS BORDE
 - No conviertas experiencia personal en recomendación universal.
 - No investigues más de lo necesario para decidir.
 - No amplíes alcance, escribas el brief ni produzcas una dirección antes de una selección humana hash-bound.
-- Privacidad desconocida, evidencia incompleta o una opción primaria bloqueada impiden materializar `opportunity-map-v2`.
+- Privacidad desconocida, evidencia incompleta o cualquier candidato bloqueado impiden materializar `opportunity-map-v2`, porque las dos síntesis rescatan aportes de los cinco.
+- `opportunity-map-v2` es la autoridad. El entregable histórico `opportunity-map-v1` es solo su proyección de compatibilidad y no puede divergir ni habilitar producción.
 
 CRITERIO
 PASS cuando:
@@ -179,7 +180,8 @@ LIMITS AND EDGE CASES
 - Do not turn personal experience into a universal recommendation.
 - Do not research beyond what is needed to decide.
 - Do not expand scope, write the brief, or produce a direction before a hash-bound human selection.
-- Unknown privacy, incomplete evidence, or a blocked primary option prevents `opportunity-map-v2` materialization.
+- Unknown privacy, incomplete evidence, or any blocked candidate prevents `opportunity-map-v2` materialization because the two syntheses rescue contributions from all five.
+- `opportunity-map-v2` is authoritative. The historical `opportunity-map-v1` deliverable is only its compatibility projection and cannot diverge or authorize production.
 
 CRITERIA
 PASS when:
@@ -246,7 +248,8 @@ LIMITES E CASOS LIMITE
 - Não transforme experiência pessoal em recomendação universal.
 - Não pesquise além do necessário para decidir.
 - Não amplie o escopo, escreva o brief nem produza uma direção antes de uma seleção humana hash-bound.
-- Privacidade desconhecida, evidência incompleta ou opção primária bloqueada impedem materializar `opportunity-map-v2`.
+- Privacidade desconhecida, evidência incompleta ou qualquer candidato bloqueado impedem materializar `opportunity-map-v2`, pois as duas sínteses resgatam contribuições dos cinco.
+- `opportunity-map-v2` é a autoridade. O entregável histórico `opportunity-map-v1` é apenas sua projeção de compatibilidade e não pode divergir nem autorizar produção.
 
 CRITÉRIO
 PASS quando:
