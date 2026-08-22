@@ -25,6 +25,8 @@ runtime_rules:
   - verified_plan_only
   - no_overwrite
   - multichannel_audio_identity_outside_span
+  - deterministic_output_and_caption_rederivation
+  - independent_caption_verification_receipt
   - separate_source_and_output_roots
   - value_zone_overlap_fail_closed
   - five_percent_review_target

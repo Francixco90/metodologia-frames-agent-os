@@ -24,7 +24,8 @@ privacidad de publicación.
 4. Aplicar blur gaussiano localizado con máscara suavizada y silencio dentro del span con
    fades internos exactos de 45 ms, preservando cada canal de audio.
 5. Sustituir únicamente el rango textual acreditado por `[…]`; no reescribir el testimonio.
-6. Materializar output y sidecar de subtítulos sin sobrescribir, hashearlos y emitir receipt.
+6. Exigir que el track fuente esté ligado a duración y a un receipt de verificación independiente.
+7. Materializar output y sidecar sin sobrescribir; rederivarlos para acreditar bytes y emitir receipt.
 
 ## Reglas
 
@@ -36,6 +37,7 @@ privacidad de publicación.
   una franja autorizada no permite modificar implícitamente el resto del cuadro.
 - `AUDIO_SILENCE` atenúa dentro del span: fade-out, silencio, fade-in. Fuera queda a ganancia 1.
 - Video se codifica H.264 lossless; audio transformado usa ALAC para permitir comparación PCM.
+- El assertion con evidencia vuelve a renderizar desde fuente y plan; metadatos compatibles no bastan.
 - No inpainting, crop libre, fill, borrado de rostros autorizados ni operaciones improvisadas.
 - Fuente y output usan raíces físicas distintas; refs, campos, IDs y hashes son estrictos.
 - Un output existente, receipt stale, actor incorrecto o tool mutable bloquea sin sobrescribir.
@@ -53,6 +55,7 @@ node --import tsx skills/content-os-minimal-redaction/scripts/check-skill.mjs
 - Reframe sin contrato de transform full-frame y preservación focal: FAIL.
 - Máscara completa, >10%, >5% no revisada o zona de valor no autorizada: FAIL.
 - Audio sin cue/rango exacto o identidad textual divergente: FAIL.
+- Caption fuera de duración, sin verificador independiente o sidecar no rederivable: FAIL.
 - La salida máxima es `RENDERED_DRAFT`, siempre
   `BLOCKED_PENDING_PUBLICATION_PRIVACY_VERIFIER`.
 - Esta skill no observa residuales, no se autoaprueba y no concede `READY` ni `PUBLISHED`.
