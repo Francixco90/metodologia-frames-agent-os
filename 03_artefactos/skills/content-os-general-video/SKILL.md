@@ -1,6 +1,6 @@
 ---
 name: content-os-general-video
-description: This skill should be used when the user asks to "author a custom video", "build a brand reel or sizzle reel", "make a montage", "build a multi-scene video when no specialized workflow fits", "remix existing footage", "build a static title card or loop", or "co-create a freeform video (companion flow)".
+description: This skill should be used when no specialized workflow fits a custom reel, montage, multi-scene video, remix, title card or loop.
 version: 0.16.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + seek-safe GSAP), content-os-animation (blueprints/rules), content-os-keyframes (pose/lint), content-os-creative (brand/story-spine/genre lenses), content-os-media (offline + remote-opt-in), content-os-registry (blocks), content-os-router (dispatch). Input = freeform brief. Output = MP4 (RENDERED_DRAFT). Companion or automation flow.
@@ -12,13 +12,9 @@ metadata:
 
 # Frames ContentOS General Video
 
-Orquestador freeform: autor un video custom cuando ningún workflow especializado encaja —
-brand reels, sizzle reels, montajes, multi-scene pieces, static loops, title cards, footage
-remixes, freeform builds. Adaptado de `general-video` (vendor, Apache 2.0) a fail-closed +
-hash-bound + offline-first. No `npx hyperframes` CLI. Capabilities delegadas (ver
-frontmatter `compatibility`).
-
-Las revisiones previas exigen gates Media/Creative materiales antes de compilar.
+Orquestador freeform companion/automation para reels, montajes, title cards y remixes sin workflow especializado.
+Adaptado de `general-video` (Apache 2.0) a fail-closed, hash-bound y offline-first. Delega las
+capabilities del frontmatter; no usa `npx hyperframes`. Media/Creative requieren gates materiales.
 
 ## When to use this vs a specialized workflow
 
@@ -101,10 +97,6 @@ seekable. `RENDERED_DRAFT` puede compilarse tras gates deterministas, pero
 - Sin brief: STOP, rutcea via `content-os-router`.
 - Brief encaja en especializado: STOP, hand off al correcto.
 
-## Done
-
-Borrador verificado; `READY` y publicación requieren G13-G17. Estado `local-evaluation`.
-
 ## A/B y miniclips
 
 Un grupo A/B usa `ab-test-v1` con `variantAxis: visual`. Duración, frame count, copy, CTA,
@@ -119,12 +111,10 @@ anterior a escala/tratamiento, evidencia geométrica sobre el cuerpo limpio y bi
 
 ## Cortinillas y divulgación de privacidad V2
 
-Intro, capítulos y cierre materializan `disclosure-curtain-v2`: `EDITADO CON IA` siempre y,
-con censura más autorización vigente, `MEMORIA DE CLASE AUTORIZADA`. Exigen contraste 4.5:1,
-texto ≥2.2% de altura, 1.8 s y zona segura inferior. Nunca son watermark persistente.
-El manifiesto exhaustivo liga bytes y spans de cada export; todo clip autónomo conserva una
-cortinilla. Creative ya delega sus cortinillas al generador General Video. El verificador
-re-renderiza y compara cada span antes de reproducción humana, sin corregirlo.
+Intro, capítulos y cierre usan `disclosure-curtain-v2`: `EDITADO CON IA`; con censura y
+autorización vigente, también `MEMORIA DE CLASE AUTORIZADA`. Contraste 4.5:1, texto ≥2.2%,
+1.8 s, safe zone inferior y nunca watermark. Un manifiesto liga bytes/spans; cada clip retiene
+una cortinilla. Creative delega aquí; el verificador re-renderiza sin corregir.
 
 Los pipelines de frames precompuestos usan exclusivamente `precomposed-frames-v1`.
 Cada pieza liga adaptador, manifiesto, todos los frames, audio, configuración determinista y

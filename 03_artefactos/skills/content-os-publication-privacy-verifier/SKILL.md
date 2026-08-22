@@ -27,10 +27,10 @@ de cortinillas. Emite `publication-privacy-report-v1`; no transforma, corrige ni
    cuadro divergente acredita alteración fuera de máscara.
 6. Recalcular presupuesto y oclusión de zonas de valor. Comparar PCM por canal fuera de los
    spans y silencio interior excluyendo fades.
-7. Re-renderizar cada cortinilla con fuente y herramienta hash-bound, contrastarla contra
-   cuadros exportados y exigir intro/cierre en la pieza principal y una en cada recorte.
-8. Verificar que el cuerpo exportado conserve RGB y PCM, que el set de exports sea completo
-   y que una autorización material vigente respalde la nota de memoria de clase.
+7. Re-renderizar cada cortinilla con fuente y herramienta pinned, contrastarla contra cuadros
+   exportados y exigir intro antes del cuerpo, cierre posterior y una en cada recorte.
+8. Verificar RGB, PCM, FPS y duración contra un set de exports aprobado previamente; la nota
+   de memoria exige autorización y rescan vigentes en el `verification_as_of` del reporte.
 9. Emitir reporte bloqueado o listo únicamente para reproducción humana.
 
 ## Divulgación

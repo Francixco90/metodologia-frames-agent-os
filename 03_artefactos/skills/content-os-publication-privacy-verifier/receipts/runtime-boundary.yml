@@ -33,7 +33,10 @@ runtime_rules:
   - disclosure_on_every_curtain
   - autonomous_clip_retains_disclosure
   - material_export_set_complete
+  - expected_export_set_preapproved
+  - export_fps_duration_and_pcm_exact
   - class_memory_authorization_current_when_redacted
+  - authorization_and_rescan_same_day_as_report
   - rendered_draft_maximum
 notes: >
   Candidate nondurable auditor. Evidence roots remain immutable; scratch rerenders are deleted.
