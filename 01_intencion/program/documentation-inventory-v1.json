@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "80a948a57a91aa65fbd7a8e8d981daee1610f070b720405db7ce62c8acf3dfcf",
-  "totalMarkdown": 1850,
+  "repositoryTreeSha256": "63a24f90c2988c61a1923df9a950fcadfdc58e34dfc4bb2a066e16f7b3a27f22",
+  "totalMarkdown": 1851,
   "auditedAuthored": 596,
   "classPaths": {
     "authored_control": [
@@ -618,6 +618,7 @@
       "03_artefactos/skills/content-os-hyperframes-cli/SKILL.md",
       "03_artefactos/skills/content-os-keyframes/SKILL.md",
       "03_artefactos/skills/content-os-media/SKILL.md",
+      "03_artefactos/skills/content-os-minimal-redaction/SKILL.md",
       "03_artefactos/skills/content-os-motion-doctrine/SKILL.md",
       "03_artefactos/skills/content-os-motion-graphics/SKILL.md",
       "03_artefactos/skills/content-os-music-to-video/SKILL.md",
@@ -10005,9 +10006,9 @@
       "sourceRef": "02_proceso/workflows/video-os/progress.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c54107845ee4a223cbe095b5cd0fba2835759fc944ba9357f9711934f69c3d16",
-      "words": 74,
-      "lines": 21,
+      "sha256": "1c5bd689effae8fedc7dd2e6470260c8a3da491a53af42000cc72bd824dd5d88",
+      "words": 159,
+      "lines": 28,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
