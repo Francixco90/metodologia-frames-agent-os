@@ -18,7 +18,6 @@ import {
 } from './workflow-loader.ts';
 
 const relativeToRoot = (path: string): string => path.replace(`${ROOT}/`, '');
-
 export type RunWorkflowOptions = {artifactRoot?: string; receiptsRoot?: string; now?: Date};
 
 export const runWorkflow = (workflowId: string, options: RunWorkflowOptions = {}): void => {
