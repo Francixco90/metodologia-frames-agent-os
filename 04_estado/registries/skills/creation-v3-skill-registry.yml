@@ -1975,7 +1975,7 @@ entries:
     current_state: candidate
     execution_scope: local-candidate-material-execution
     content_sha256: 471635d6eab74077aca5eafd7cb211f464418584539d13102da5d264fc1aea3b
-    package_manifest_sha256: 41119e6ba492fe02d4d332e3e4bc6f258ad37912fdc5bb8158d412ffb5703cd1
+    package_manifest_sha256: ba17e9f8a5ecae194854d92637af81bb4dfcc794c01cec197603c2844f36554b
     lineage_ref: skills/content-os-minimal-redaction/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-minimal-redaction/receipts/runtime-boundary.yml
     production_runtime_status: blocked_pending_independent_review
@@ -2832,3 +2832,4 @@ events:
   - {event_id: EVT-SKL-CMR-H03-003, event_order: 3, skill_id: content-os-minimal-redaction, from: candidate, to: candidate, actor_id: RT-07-H03-MINIMAL-REDACTION-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: align_source_schema_derive_execution_identity_and_reject_symlink_or_unmaterialized_receipts, content_sha256: 16329f4bb16b4f05a6906164f8eeebdf6e3c4636d15bee79026a74205e8f4d7b, package_manifest_sha256: 8b000b50c7e446bc6832f9d4428d46388b40714f3ba8c7a14a0d52c19cff9170}
   - {event_id: EVT-SKL-CMR-H03-004, event_order: 4, skill_id: content-os-minimal-redaction, from: candidate, to: candidate, actor_id: RT-07-H03-MINIMAL-REDACTION-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: deterministically_rederive_media_and_verified_duration_bound_caption_outputs, content_sha256: 471635d6eab74077aca5eafd7cb211f464418584539d13102da5d264fc1aea3b, package_manifest_sha256: c93c011479c197a57800a1737f71065ed29b4bc24b8ccf1e5881c6431764ee18}
   - {event_id: EVT-SKL-CMR-H03-005, event_order: 5, skill_id: content-os-minimal-redaction, from: candidate, to: candidate, actor_id: RT-07-H03-MINIMAL-REDACTION-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: enforce_caption_binding_pair_parity_between_schema_and_runtime, content_sha256: 471635d6eab74077aca5eafd7cb211f464418584539d13102da5d264fc1aea3b, package_manifest_sha256: 41119e6ba492fe02d4d332e3e4bc6f258ad37912fdc5bb8158d412ffb5703cd1}
+  - {event_id: EVT-SKL-CMR-H03-006, event_order: 6, skill_id: content-os-minimal-redaction, from: candidate, to: candidate, actor_id: RT-07-H03-MINIMAL-REDACTION-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: align_material_byte_bounds_with_javascript_safe_integer_runtime, content_sha256: 471635d6eab74077aca5eafd7cb211f464418584539d13102da5d264fc1aea3b, package_manifest_sha256: ba17e9f8a5ecae194854d92637af81bb4dfcc794c01cec197603c2844f36554b}
