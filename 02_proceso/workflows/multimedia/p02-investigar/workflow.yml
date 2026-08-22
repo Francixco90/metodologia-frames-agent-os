@@ -58,7 +58,7 @@ fallback: 'Sin fuentes suficientes, reformula como experiencia, pregunta o hipó
 brief:
   outputs:
     - 'Claims verificados contra fuentes rastreables'
-    - 'Oportunidades y matices mapeados'
+    - 'Contrato Opportunity Map V2 y proyección V1 hash-bound'
     - 'Banco de preguntas editorial priorizado'
   deliverables:
     - claim-register-v1
@@ -98,15 +98,15 @@ execution_steps:
     stop_rule: 'Marcar UNKNOWN y bloquear si la evidencia es insuficiente.'
     context_budget: {target_files: 10, max_files: 20, target_tokens: 10000, max_tokens: 16000}
   - step_id: S03
-    purpose: 'Sintetizar oportunidades, matices y límites.'
-    inputs: [claim-register-v1, question-bank-v1]
+    purpose: 'Materializar Opportunity Map V2 y derivar su proyección V1 exacta.'
+    inputs: [claim-register-v1, question-bank-v1, opportunity-source-receipt-v1]
     primary_skill: content-os-core
     optional_skills: [content-os-registry]
     verifier: RT-09
     outputs: [opportunity-map-v1]
     template_id: TPL-P02-DELIVERABLE-V1
     gate: G14
-    stop_rule: 'Bloquear cualquier oportunidad basada en claims no verificados.'
+    stop_rule: 'Bloquear si assertOpportunityMapV2 no valida receipt, bytes de fuente y hash exacto de opportunity-map-v1.'
     context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0

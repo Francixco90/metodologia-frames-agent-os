@@ -39,7 +39,7 @@ sources:
     rights: cleared
   - source_id: generator-workflow-p02
     ref: 02_proceso/workflows/multimedia/p02-investigar/workflow.yml
-    sha256: dca75bb4402874afcd66cc0eb222fb84e491a488881a77218579c9187ad92cd9
+    sha256: 4faa7d30f89660ccff552c657c16adce68b709dc736f3645a7369a9aea34cc91
     authority: verified
     rights: cleared
 formats:
@@ -101,7 +101,7 @@ fields:
     source_refs: []
 state: DRAFT
 next_gate: G14
-content_sha256: 3f866b0ff55c6dab5404385d581f6ef5e97099b9ca1ed28c87603b382e56cdd7
+content_sha256: 7f25bb67ac38f64d9ccd57ba608956cbcda7a219d82644d92b314a65e719b56e
 ---
 
 ## Resultado y decisión
@@ -120,7 +120,7 @@ Estratega y sponsor. Consumidores: P03, human. Foco: preguntas, claims, evidenci
 
 Distinguir inputs declarados, evidencia material, supuestos y gaps bloqueantes.
 
-Inputs: claim-register-v1, question-bank-v1. Separar evidencia observada, inferencia y preguntas todavía abiertas.
+Inputs: claim-register-v1, question-bank-v1, opportunity-source-receipt-v1. Separar evidencia observada, inferencia y preguntas todavía abiertas.
 
 ## Contenido estructurado
 
@@ -144,7 +144,7 @@ Formatos: md, html. Familias: image, miniclip, graphic, carousel, story, present
 
 Vincular los pasos productores, sus dependencias y sus condiciones de parada.
 
-- S03: Sintetizar oportunidades, matices y límites. Stop: Bloquear cualquier oportunidad basada en claims no verificados.
+- S03: Materializar Opportunity Map V2 y derivar su proyección V1 exacta. Stop: Bloquear si assertOpportunityMapV2 no valida receipt, bytes de fuente y hash exacto de opportunity-map-v1.
 
 ## Skills, ownership y handoffs
 

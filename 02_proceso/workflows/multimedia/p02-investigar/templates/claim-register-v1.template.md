@@ -39,7 +39,7 @@ sources:
     rights: cleared
   - source_id: generator-workflow-p02
     ref: 02_proceso/workflows/multimedia/p02-investigar/workflow.yml
-    sha256: dca75bb4402874afcd66cc0eb222fb84e491a488881a77218579c9187ad92cd9
+    sha256: 4faa7d30f89660ccff552c657c16adce68b709dc736f3645a7369a9aea34cc91
     authority: verified
     rights: cleared
 formats:
@@ -91,7 +91,7 @@ fields:
     source_refs: []
 state: DRAFT
 next_gate: G14
-content_sha256: 29fbb08a8c0eebf832b4dfca7a7b291ff08b48f65061c45ac6ebedd8d48c79e2
+content_sha256: b8d10696af800566494b085a938c2ad5e95ae97a92fe03b2b5385fcf396bdb7b
 ---
 
 ## Resultado y decisión
