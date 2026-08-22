@@ -5,9 +5,9 @@ import {fileURLToPath} from 'node:url';
 
 import {z} from 'zod';
 
-import {DiagramContractV2Schema} from '../../../../02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts';
-import {canonicalSha256} from '../../../../02_proceso/workflows/video-os/_schema/method-explainer-planning-v1.schema.ts';
-import {Sha256Schema} from '../../../../02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts';
+import {DiagramContractV2Schema} from '../../../../../../../../02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts';
+import {canonicalSha256} from '../../../../../../../../02_proceso/workflows/video-os/_schema/method-explainer-planning-v1.schema.ts';
+import {Sha256Schema} from '../../../../../../../../02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts';
 
 const MAX_INPUT_BYTES = 8 * 1024 * 1024;
 const InputSchema = z.strictObject({
