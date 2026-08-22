@@ -12,7 +12,7 @@ command is material. `content-os-minimal-redaction` now applies hash-bound
 `redaction-plan-v2` operations to a source snapshot using lossless localized blur,
 per-channel in-span audio fades and exact caption substitution. Its synthetic media checker
 passes. Peripheral reframe is fail-closed until a full-frame transform scope preserves focal
-zones. The skill remains `candidate`; three superseded candidates failed independent review and
+zones. The skill remains `candidate`; four superseded candidates failed independent review and
 the current remediation still requires a new frozen review. [CONFIG]
 
 ## What's Next
