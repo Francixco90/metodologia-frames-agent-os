@@ -1,0 +1,186 @@
+{
+  "schema_version": "diagram-contract-validation-input-v1",
+  "total_frames": 2250,
+  "expected_spec_sha256": "e39b64623409280513131f08f227a24f62d4d4b9b09a87569b68278534d31f9b",
+  "expected_beat_budget_sha256": "70e395548132006248f81c1c0367a1d6ad4787491f9f828283d1b7bc62391777",
+  "synthetic_materials": {
+    "spec": {
+      "schema_version": "synthetic-explainer-spec-v1",
+      "method_id": "PIVOTE",
+      "total_frames": 2250,
+      "format": "9:16"
+    },
+    "beat_budget": {
+      "schema_version": "synthetic-beat-budget-v1",
+      "total_frames": 2250,
+      "fps": 30,
+      "beat_ids": ["PERSONAS", "INTERACCIONES", "VALOR", "ORDEN", "TECNOLOGIA", "EVOLUCION"]
+    },
+    "method_relations": [
+      {
+        "source": "NODE-PERSONAS",
+        "target": "NODE-INTERACCIONES",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      },
+      {
+        "source": "NODE-INTERACCIONES",
+        "target": "NODE-VALOR",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      },
+      {
+        "source": "NODE-VALOR",
+        "target": "NODE-ORDEN",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      },
+      {
+        "source": "NODE-ORDEN",
+        "target": "NODE-TECNOLOGIA",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      },
+      {
+        "source": "NODE-TECNOLOGIA",
+        "target": "NODE-EVOLUCION",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      },
+      {
+        "source": "NODE-EVOLUCION",
+        "target": "NODE-PERSONAS",
+        "kind": "reinforces",
+        "direction": "bidirectional"
+      }
+    ]
+  },
+  "selection_evidence": {
+    "relations_sha256": "e2bba26cfc75af8a3982e58a418f325eee405bcac9a78ff3bb960220069ebb40",
+    "selected_grammar": "radial-lenses",
+    "reason_code": "INTERDEPENDENT_REINFORCING_RELATIONS"
+  },
+  "diagram": {
+    "schema_version": "diagram-contract-v2",
+    "spec_sha256": "e39b64623409280513131f08f227a24f62d4d4b9b09a87569b68278534d31f9b",
+    "beat_budget_sha256": "70e395548132006248f81c1c0367a1d6ad4787491f9f828283d1b7bc62391777",
+    "grammar": "radial-lenses",
+    "stage": {
+      "width": 1080,
+      "height": 1920,
+      "safe_zone": {"x": 0.08, "y": 0.08, "width": 0.84, "height": 0.76}
+    },
+    "nodes": [
+      {
+        "id": "NODE-PERSONAS",
+        "bounds": {"x": 0.12, "y": 0.18, "width": 0.25, "height": 0.08},
+        "text": "Personas",
+        "max_lines": 1,
+        "font_px": 44,
+        "enter_frame": 90,
+        "settle_frame": 120
+      },
+      {
+        "id": "NODE-INTERACCIONES",
+        "bounds": {"x": 0.63, "y": 0.18, "width": 0.25, "height": 0.08},
+        "text": "Interacciones",
+        "max_lines": 1,
+        "font_px": 40,
+        "enter_frame": 120,
+        "settle_frame": 150
+      },
+      {
+        "id": "NODE-VALOR",
+        "bounds": {"x": 0.1, "y": 0.38, "width": 0.25, "height": 0.08},
+        "text": "Valor",
+        "max_lines": 1,
+        "font_px": 44,
+        "enter_frame": 150,
+        "settle_frame": 180
+      },
+      {
+        "id": "NODE-ORDEN",
+        "bounds": {"x": 0.65, "y": 0.38, "width": 0.25, "height": 0.08},
+        "text": "Orden",
+        "max_lines": 1,
+        "font_px": 44,
+        "enter_frame": 180,
+        "settle_frame": 210
+      },
+      {
+        "id": "NODE-TECNOLOGIA",
+        "bounds": {"x": 0.12, "y": 0.58, "width": 0.25, "height": 0.08},
+        "text": "Tecnología",
+        "max_lines": 1,
+        "font_px": 42,
+        "enter_frame": 210,
+        "settle_frame": 240
+      },
+      {
+        "id": "NODE-EVOLUCION",
+        "bounds": {"x": 0.63, "y": 0.58, "width": 0.25, "height": 0.08},
+        "text": "Evolución",
+        "max_lines": 1,
+        "font_px": 42,
+        "enter_frame": 270,
+        "settle_frame": 300
+      }
+    ],
+    "edges": [
+      {
+        "id": "EDGE-PI",
+        "source": "NODE-PERSONAS",
+        "target": "NODE-INTERACCIONES",
+        "start_frame": 306,
+        "end_frame": 322,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "EDGE-IV",
+        "source": "NODE-INTERACCIONES",
+        "target": "NODE-VALOR",
+        "start_frame": 324,
+        "end_frame": 340,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "EDGE-VO",
+        "source": "NODE-VALOR",
+        "target": "NODE-ORDEN",
+        "start_frame": 342,
+        "end_frame": 358,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "EDGE-OT",
+        "source": "NODE-ORDEN",
+        "target": "NODE-TECNOLOGIA",
+        "start_frame": 360,
+        "end_frame": 376,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "EDGE-TE",
+        "source": "NODE-TECNOLOGIA",
+        "target": "NODE-EVOLUCION",
+        "start_frame": 378,
+        "end_frame": 394,
+        "direction": "bidirectional"
+      },
+      {
+        "id": "EDGE-EP",
+        "source": "NODE-EVOLUCION",
+        "target": "NODE-PERSONAS",
+        "start_frame": 396,
+        "end_frame": 412,
+        "direction": "bidirectional"
+      }
+    ],
+    "required_poses": {
+      "container_frame": 60,
+      "components_settled_frame": 300,
+      "connectors_complete_frame": 412,
+      "closing_frame": 2100
+    }
+  }
+}
