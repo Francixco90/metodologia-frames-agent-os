@@ -1,0 +1,22 @@
+{
+  "case_id": "CASE-PRIVACY-PLANNER-SYNTHETIC",
+  "participant_id": "PARTICIPANT-NATALIA",
+  "aliases": [{"alias_id": "ALIAS-NATALIA", "kind": "NAME", "canonical": "Natalia", "variants": ["Natalia"]}, {"alias_id": "ALIAS-GNP", "kind": "BRAND_TEXT", "canonical": "GNP", "variants": ["GNP"]}],
+  "source": {"ref": "sources/class-memory.bin", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bytes": 4096},
+  "source_metadata": {"frame_width": 1920, "frame_height": 1080, "frame_count": 90, "duration_ms": 3000, "has_audio": true},
+  "signals": [
+    {"sequence": 0, "signal_id": "SIG-NATALIA", "kind": "NAME", "identity": {"canonical": "Natalia", "matched_alias": "Natalia"}, "modality": "VISUAL_TEXT", "frame_span": {"start": 0, "end": 89}, "time_span_ms": null, "geometry": {"x": 120, "y": 80, "width": 180, "height": 40}, "confidence": {"score": 0.99, "status": "CONFIRMED"}, "evidence": {"observation_id": "OBS-NAME", "material": {"ref": "evidence/name.json", "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "bytes": 20}}},
+    {"sequence": 1, "signal_id": "SIG-SOFKA", "kind": "LOGO", "identity": {"canonical": "Sofka", "matched_alias": null}, "modality": "VISUAL_TEMPLATE", "frame_span": {"start": 0, "end": 40}, "time_span_ms": null, "geometry": {"x": 18, "y": 1008, "width": 118, "height": 34}, "confidence": {"score": 0.89, "status": "REVIEW_REQUIRED"}, "evidence": {"observation_id": "OBS-SOFKA", "material": {"ref": "evidence/sofka.json", "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "bytes": 20}}},
+    {"sequence": 2, "signal_id": "SIG-GNP-AUDIO", "kind": "SPOKEN_BRAND", "identity": {"canonical": "GNP", "matched_alias": "GNP"}, "modality": "AUDIO_TRANSCRIPT", "frame_span": null, "time_span_ms": {"start": 1200, "end": 1580}, "geometry": null, "confidence": {"score": 0.96, "status": "CONFIRMED"}, "evidence": {"observation_id": "OBS-GNP-AUDIO", "material": {"ref": "evidence/gnp-audio.json", "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "bytes": 20}}},
+    {"sequence": 3, "signal_id": "SIG-EMAIL", "kind": "EMAIL", "identity": {"canonical": "student@example.test", "matched_alias": null}, "modality": "VISUAL_TEXT", "frame_span": {"start": 20, "end": 60}, "time_span_ms": null, "geometry": {"x": 1510, "y": 150, "width": 290, "height": 38}, "confidence": {"score": 0.98, "status": "CONFIRMED"}, "evidence": {"observation_id": "OBS-EMAIL", "material": {"ref": "evidence/email.json", "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "bytes": 20}}}
+  ],
+  "decisions": [
+    {"signal_id": "SIG-NATALIA", "rule": "KEEP", "reason_code": "AUTHORIZED_PARTICIPANT"},
+    {"signal_id": "SIG-SOFKA", "rule": "PROTECT", "reason_code": "CLIENT_BRAND"},
+    {"signal_id": "SIG-GNP-AUDIO", "rule": "AUDIO_SILENCE", "reason_code": "CLIENT_BRAND"},
+    {"signal_id": "SIG-EMAIL", "rule": "PROTECT", "reason_code": "PRIVATE_LOCATOR"}
+  ],
+  "value_zones": [
+    {"zone_id": "VALUE-DELIVERABLE", "kind": "STUDENT_DELIVERABLE", "frame_span": {"start": 0, "end": 89}, "geometry": {"x": 220, "y": 130, "width": 1450, "height": 790}, "authorized_redaction_signal_ids": ["SIG-EMAIL"]}
+  ]
+}

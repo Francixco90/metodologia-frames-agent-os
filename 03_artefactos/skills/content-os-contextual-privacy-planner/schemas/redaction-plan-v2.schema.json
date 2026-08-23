@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/redaction-plan-v2.schema.json",
+  "title": "RedactionPlanV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_id", "case_id", "participant_id", "inventory_sha256", "privacy_policy_sha256", "value_preservation_plan_sha256", "operations", "mask_budget", "status", "canonical_sha256"],
+  "properties": {
+    "schema_version": {"const": "redaction-plan-v2"}, "plan_id": {"$ref": "#/$defs/id"}, "case_id": {"$ref": "#/$defs/id"}, "participant_id": {"$ref": "#/$defs/id"},
+    "inventory_sha256": {"$ref": "#/$defs/sha"}, "privacy_policy_sha256": {"$ref": "#/$defs/sha"}, "value_preservation_plan_sha256": {"$ref": "#/$defs/sha"},
+    "operations": {"type": "array", "maxItems": 512, "items": {"$ref": "#/$defs/operation"}},
+    "mask_budget": {"type": "object", "additionalProperties": false, "required": ["review_target_ratio", "hard_limit_ratio", "max_planned_ratio", "requires_review"], "properties": {"review_target_ratio": {"const": 0.05}, "hard_limit_ratio": {"const": 0.1}, "max_planned_ratio": {"type": "number", "minimum": 0, "maximum": 0.1}, "requires_review": {"type": "boolean"}}},
+    "status": {"enum": ["BLOCKED_PENDING_MINIMAL_REDACTION_EXECUTOR", "BLOCKED_PENDING_HUMAN_PRIVACY_REVIEW"]},
+    "canonical_sha256": {"$ref": "#/$defs/sha"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"}, "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "spanOrNull": {"type": ["object", "null"], "additionalProperties": false, "required": ["start", "end"], "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}}},
+    "geometryOrNull": {"type": ["object", "null"], "additionalProperties": false, "required": ["x", "y", "width", "height"], "properties": {"x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}, "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}}},
+    "operation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sequence", "operation_id", "signal_id", "type", "frame_span", "time_span_ms", "signal_roi", "authorized_effect_roi", "tracking", "reframe_edge", "padding_px", "feather_px", "fade_ms", "subtitle_replacement", "source_evidence_sha256"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0}, "operation_id": {"$ref": "#/$defs/id"}, "signal_id": {"$ref": "#/$defs/id"},
+        "type": {"enum": ["REFRAME_PERIPHERAL", "LOCAL_BLUR", "AUDIO_SILENCE"]},
+        "frame_span": {"$ref": "#/$defs/spanOrNull"}, "time_span_ms": {"$ref": "#/$defs/spanOrNull"},
+        "signal_roi": {"$ref": "#/$defs/geometryOrNull"}, "authorized_effect_roi": {"$ref": "#/$defs/geometryOrNull"},
+        "tracking": {"type": ["string", "null"], "enum": ["EXACT_DETECTION_SPAN", null]},
+        "reframe_edge": {"type": ["string", "null"], "enum": ["TOP", "BOTTOM", "LEFT", "RIGHT", null]},
+        "padding_px": {"type": ["integer", "null"], "minimum": 0}, "feather_px": {"type": ["integer", "null"], "minimum": 0},
+        "fade_ms": {"type": ["integer", "null"], "minimum": 30, "maximum": 60},
+        "subtitle_replacement": {"type": ["string", "null"], "enum": ["[…]", null]}, "source_evidence_sha256": {"$ref": "#/$defs/sha"}
+      }
+    }
+  }
+}
