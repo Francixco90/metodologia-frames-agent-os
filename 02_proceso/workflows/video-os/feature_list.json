@@ -31,6 +31,14 @@
       "dependencies": ["video-os-003"],
       "status": "not-started",
       "evidence": "coverage_gap: benchmark not run"
+    },
+    {
+      "id": "video-os-005",
+      "name": "Minimal privacy redaction candidate",
+      "description": "Apply verified redaction-plan-v2 operations with lossless localized visual, audio, and caption treatment.",
+      "dependencies": ["video-os-003"],
+      "status": "in-progress",
+      "evidence": "candidate remediation after independent review; CI remains a release gate"
     }
   ]
 }
