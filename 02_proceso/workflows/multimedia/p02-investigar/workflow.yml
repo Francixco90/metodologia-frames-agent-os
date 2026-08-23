@@ -54,18 +54,18 @@ no_regression:
   - 'Checklist de no regresión'
 dod:
   - 'Definition of Done'
-fallback: 'Sin fuentes suficientes, reformula como experiencia, pregunta o hipótesis y entrega la lista mínima de verificación; ante alto riesgo, HOLD. interpreta, planifica, ejecuta.'
+fallback: 'Sin cinco candidatos verificables, exactamente dos opciones visibles y una selección opportunity-selection-v2 emitida por H01, P02 queda BLOCKED y no propone P03. Ante alto riesgo, HOLD.'
 brief:
   outputs:
     - 'Claims verificados contra fuentes rastreables'
-    - 'Oportunidades y matices mapeados'
+    - 'Contrato Opportunity Map V2 y proyección V1 hash-bound'
     - 'Banco de preguntas editorial priorizado'
   deliverables:
     - claim-register-v1
     - opportunity-map-v1
     - question-bank-v1
   context: 'Verifica claims, encuentra matices y convierte fuentes en decisiones editoriales.'
-  cta: 'Avanzar a P03 crear-brief con claims verificados.'
+  cta: 'Avanzar a P03 solo tras claims verificados, cinco candidatos, dos opciones y selectionKind HUMAN de H01.'
 capability_map:
   skills:
     - content-os-core
@@ -98,15 +98,22 @@ execution_steps:
     stop_rule: 'Marcar UNKNOWN y bloquear si la evidencia es insuficiente.'
     context_budget: {target_files: 10, max_files: 20, target_tokens: 10000, max_tokens: 16000}
   - step_id: S03
-    purpose: 'Sintetizar oportunidades, matices y límites.'
-    inputs: [claim-register-v1, question-bank-v1]
+    purpose: 'Validar cinco candidatos V2, mostrar exactamente dos opciones, consumir la selección H01 y derivar la proyección V1 exacta.'
+    inputs:
+      [
+        claim-register-v1,
+        question-bank-v1,
+        opportunity-source-receipt-v1,
+        opportunity-map-v2,
+        opportunity-selection-v2,
+      ]
     primary_skill: content-os-core
     optional_skills: [content-os-registry]
     verifier: RT-09
     outputs: [opportunity-map-v1]
     template_id: TPL-P02-DELIVERABLE-V1
     gate: G14
-    stop_rule: 'Bloquear cualquier oportunidad basada en claims no verificados.'
+    stop_rule: 'Bloquear si assertOpportunityMapV2 no valida receipt, bytes y proyección, si selectionKind no es HUMAN, si actorId no es H01 o si faltan 5 candidatos/2 opciones. El receipt máximo es RENDERED_DRAFT con publication_policy forbidden.'
     context_budget: {target_files: 8, max_files: 14, target_tokens: 8000, max_tokens: 14000}
 metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
