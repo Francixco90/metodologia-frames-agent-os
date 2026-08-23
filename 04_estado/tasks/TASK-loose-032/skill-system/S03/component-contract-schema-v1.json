@@ -1,0 +1,20 @@
+{
+  "schema_version": "skill-component-contract-v1",
+  "component_id": "SCHEMA_DIAGRAM_CONTRACT_V2",
+  "kind": "SCHEMA",
+  "inputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts#DiagramContractV2Schema",
+  "outputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts#DiagramContractV2Schema",
+  "effect_class": "E0",
+  "read_set": [
+    "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts"
+  ],
+  "write_set": [],
+  "fallback": "BLOCKED_DIAGRAM_SCHEMA_UNAVAILABLE: no aceptar contratos ni sustituir la autoridad canónica cuando DiagramContractV2Schema no pueda cargarse o verificarse.",
+  "acceptance": [
+    "DiagramContractV2Schema es la autoridad única de estructura para skill, validador, compilador y consumidores Video OS.",
+    "El schema mantiene gramáticas, límites, nodos, conectores y poses en un contrato estricto y determinista.",
+    "No concede render, escritura, promoción, distribución ni publicación."
+  ],
+  "owner": "video-os",
+  "content_sha256": "5521766962dd263d63ce0882c4d50efe1770d4c047341d057378e6c622a8275b"
+}
