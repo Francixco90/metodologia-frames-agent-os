@@ -5,6 +5,7 @@ export * from './content-v2.ts';
 export * from './documentation-governance-v1.ts';
 export * from './ecosystem-inventory-v1.ts';
 export * from './experience-assistance-v1.ts';
+export * from './experience-decision-v1.ts';
 export * from './experience-command-v1.ts';
 export * from './experience-execution-v1.ts';
 export * from './experience-normalization.ts';
