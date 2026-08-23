@@ -1,0 +1,37 @@
+schema_version: 1
+skill_id: content-os-publication-privacy-verifier
+version: 0.1.0
+owner: MetodologIA
+lifecycle_state: candidate
+execution_scope: local-candidate-nondurable-verification
+content_origin: locally_authored
+content_license: LicenseRef-MetodologIA-Internal
+external_fragments_reused: false
+publication_authority: false
+compatibility_contracts:
+  - sensitive-signal-inventory-v1
+  - privacy-policy-v1
+  - value-preservation-plan-v1
+  - redaction-plan-v2
+  - minimal-redaction-execution-v1
+  - disclosure-curtain-v2
+  - publication-privacy-report-v1
+authority_refs:
+  - skills/content-os-publication-privacy-verifier/SKILL.md
+  - skills/content-os-publication-privacy-verifier/schemas/publication-privacy-report-v1.schema.json
+  - skills/content-os-general-video/schemas/disclosure-curtain-v2.schema.json
+runtime_refs:
+  - skills/content-os-publication-privacy-verifier/scripts/verify-publication-privacy.mjs
+  - skills/content-os-publication-privacy-verifier/scripts/verify-disclosure-media.mjs
+  - skills/content-os-publication-privacy-verifier/scripts/check-skill.mjs
+dependencies:
+  - content-os-sensitive-signal-detector:sensitive-signal-inventory-v1
+  - content-os-minimal-redaction:minimal-redaction-execution-v1
+  - content-os-general-video:disclosure-curtain-v2
+production_runtime_status: blocked_pending_independent_review
+promotion_blockers:
+  - independent_verifier_pending
+  - guardian_review_pending
+  - material_pilot_pending
+  - human_playback_pending
+receipt_id: RCP-H03-PUBLICATION-PRIVACY-001

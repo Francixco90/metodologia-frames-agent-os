@@ -18,7 +18,8 @@
   "copyTemplates": {
     "results": "RESULTADOS QUE INSPIRAN",
     "session": "FRAGMENTO DE LA SESIÓN DE CIERRE",
-    "disclosure": "EDITADO CON IA · METODOLOGIA",
+    "disclosure": "EDITADO CON IA",
+    "disclosureClassMemory": "MEMORIA DE CLASE AUTORIZADA",
     "method": "METHOD FIRST. AI NEXT."
   },
   "brandRules": [

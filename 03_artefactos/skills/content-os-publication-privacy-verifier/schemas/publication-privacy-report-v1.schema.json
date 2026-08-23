@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/publication-privacy-report-v1.schema.json",
+  "title": "Publication Privacy Report V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "case_id",
+    "participant_id",
+    "actor_id",
+    "source",
+    "output",
+    "bindings",
+    "detection",
+    "residuals",
+    "visual_integrity",
+    "value_preservation",
+    "audio_integrity",
+    "disclosure",
+    "maximum_state",
+    "publication_authority",
+    "status",
+    "canonical_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "publication-privacy-report-v1"},
+    "report_id": {"$ref": "#/$defs/id"},
+    "case_id": {"$ref": "#/$defs/id"},
+    "participant_id": {"$ref": "#/$defs/id"},
+    "actor_id": {"const": "RT-09-H03-PUBLICATION-PRIVACY-VERIFIER"},
+    "source": {"$ref": "#/$defs/material"},
+    "output": {"$ref": "#/$defs/material"},
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution_request_material_sha256",
+        "execution_receipt_material_sha256",
+        "pre_detection_request_material_sha256",
+        "pre_inventory_material_sha256",
+        "post_detection_request_material_sha256",
+        "post_inventory_material_sha256",
+        "post_rescan_receipt_sha256"
+      ],
+      "properties": {
+        "execution_request_material_sha256": {"$ref": "#/$defs/sha256"},
+        "execution_receipt_material_sha256": {"$ref": "#/$defs/sha256"},
+        "pre_detection_request_material_sha256": {"$ref": "#/$defs/sha256"},
+        "pre_inventory_material_sha256": {"$ref": "#/$defs/sha256"},
+        "post_detection_request_material_sha256": {"$ref": "#/$defs/sha256"},
+        "post_inventory_material_sha256": {"$ref": "#/$defs/sha256"},
+        "post_rescan_receipt_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "detection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pre_inventory_id", "post_inventory_id", "coverage_complete", "protected_signal_count"],
+      "properties": {
+        "pre_inventory_id": {"$ref": "#/$defs/id"},
+        "post_inventory_id": {"$ref": "#/$defs/id"},
+        "coverage_complete": {"type": "boolean"},
+        "protected_signal_count": {"type": "integer", "minimum": 0, "maximum": 512}
+      }
+    },
+    "residuals": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sequence", "signal_id", "kind", "identity", "modality", "confidence_status"],
+        "properties": {
+          "sequence": {"type": "integer", "minimum": 0, "maximum": 4095},
+          "signal_id": {"$ref": "#/$defs/id"},
+          "kind": {"enum": ["NAME", "FACE", "LOGO", "BRAND_TEXT", "URL", "EMAIL", "FILE_PATH", "AVATAR", "TOOL_CHROME", "SPOKEN_BRAND"]},
+          "identity": {"type": "string", "minLength": 1, "maxLength": 320},
+          "modality": {"enum": ["VISUAL_TEXT", "VISUAL_TEMPLATE", "VISUAL_MANUAL", "AUDIO_TRANSCRIPT"]},
+          "confidence_status": {"enum": ["CONFIRMED", "REVIEW_REQUIRED", "UNKNOWN"]}
+        }
+      }
+    },
+    "visual_integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compared_frames", "outside_mask_rgb_mismatch_frames", "zero_unexplained_pixels", "maximum_mask_ratio", "review_target_ratio", "hard_limit_ratio"],
+      "properties": {
+        "compared_frames": {"type": "integer", "minimum": 1},
+        "outside_mask_rgb_mismatch_frames": {"type": "array", "maxItems": 1000000, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+        "zero_unexplained_pixels": {"type": "boolean"},
+        "maximum_mask_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "review_target_ratio": {"const": 0.05},
+        "hard_limit_ratio": {"const": 0.1}
+      }
+    },
+    "value_preservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zone_count", "occlusions"],
+      "properties": {
+        "zone_count": {"type": "integer", "minimum": 1, "maximum": 128},
+        "occlusions": {
+          "type": "array",
+          "maxItems": 512,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sequence", "zone_id", "signal_id", "operation_id"],
+            "properties": {
+              "sequence": {"type": "integer", "minimum": 0, "maximum": 511},
+              "zone_id": {"$ref": "#/$defs/id"},
+              "signal_id": {"$ref": "#/$defs/id"},
+              "operation_id": {"$ref": "#/$defs/id"}
+            }
+          }
+        }
+      }
+    },
+    "audio_integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["has_audio", "outside_span_changed_samples", "silences"],
+      "properties": {
+        "has_audio": {"type": "boolean"},
+        "outside_span_changed_samples": {"type": "integer", "minimum": 0},
+        "silences": {
+          "type": "array",
+          "maxItems": 512,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sequence", "signal_id", "start_ms", "end_ms", "fade_ms", "center_silent", "outside_unchanged"],
+            "properties": {
+              "sequence": {"type": "integer", "minimum": 0, "maximum": 511},
+              "signal_id": {"$ref": "#/$defs/id"},
+              "start_ms": {"type": "integer", "minimum": 0},
+              "end_ms": {"type": "integer", "minimum": 1},
+              "fade_ms": {"type": "integer", "minimum": 30, "maximum": 60},
+              "center_silent": {"type": "boolean"},
+              "outside_unchanged": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "required_lines", "authorization_material_sha256", "authorization_valid", "verified_as_of", "curtains", "expected_export_set_material_sha256", "export_manifest_material_sha256", "export_set_receipt_sha256", "export_ids", "exports_without_curtain", "curtain_render_mismatches", "body_rgb_mismatches", "body_audio_changed_samples", "curtain_audio_nonzero_bytes", "report_linked"],
+      "properties": {
+        "state": {"enum": ["AI_EDITED", "AI_EDITED_AND_CLASS_MEMORY_AUTHORIZED"]},
+        "required_lines": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {"enum": ["EDITADO CON IA", "MEMORIA DE CLASE AUTORIZADA"]}
+        },
+        "authorization_material_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "authorization_valid": {"type": "boolean"},
+        "verified_as_of": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+        "curtains": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["curtain_id", "canonical_sha256"],
+            "properties": {"curtain_id": {"$ref": "#/$defs/id"}, "canonical_sha256": {"$ref": "#/$defs/sha256"}}
+          }
+        },
+        "expected_export_set_material_sha256": {"$ref": "#/$defs/sha256"},
+        "export_manifest_material_sha256": {"$ref": "#/$defs/sha256"},
+        "export_set_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "export_ids": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "exports_without_curtain": {"type": "array", "maxItems": 256, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "curtain_render_mismatches": {
+          "type": "array",
+          "maxItems": 1024,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sequence", "export_id", "curtain_id"],
+            "properties": {
+              "sequence": {"type": "integer", "minimum": 0, "maximum": 1023},
+              "export_id": {"$ref": "#/$defs/id"},
+              "curtain_id": {"$ref": "#/$defs/id"}
+            }
+          }
+        },
+        "body_rgb_mismatches": {
+          "type": "array",
+          "maxItems": 1000000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sequence", "export_id", "export_frame"],
+            "properties": {"sequence": {"type": "integer", "minimum": 0}, "export_id": {"$ref": "#/$defs/id"}, "export_frame": {"type": "integer", "minimum": 0}}
+          }
+        },
+        "body_audio_changed_samples": {"type": "integer", "minimum": 0},
+        "curtain_audio_nonzero_bytes": {"type": "integer", "minimum": 0},
+        "report_linked": {"type": "boolean"}
+      },
+      "allOf": [{"if": {"type": "object", "properties": {"state": {"const": "AI_EDITED_AND_CLASS_MEMORY_AUTHORIZED"}}}, "then": {"type": "object", "properties": {"required_lines": {"type": "array", "prefixItems": [{"const": "EDITADO CON IA"}, {"const": "MEMORIA DE CLASE AUTORIZADA"}], "minItems": 2, "maxItems": 2}, "authorization_material_sha256": {"$ref": "#/$defs/sha256"}, "authorization_valid": {"const": true}}}, "else": {"type": "object", "properties": {"required_lines": {"type": "array", "prefixItems": [{"const": "EDITADO CON IA"}], "minItems": 1, "maxItems": 1}, "authorization_material_sha256": {"type": "null"}, "authorization_valid": {"const": false}}}}]
+    },
+    "maximum_state": {"const": "RENDERED_DRAFT"},
+    "publication_authority": {"const": false},
+    "status": {"enum": ["BLOCKED_PRIVACY_FINDINGS", "VERIFIED_FOR_HUMAN_PLAYBACK"]},
+    "canonical_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "allOf": [{
+    "if": {"type": "object", "properties": {"status": {"const": "VERIFIED_FOR_HUMAN_PLAYBACK"}}},
+    "then": {"type": "object", "properties": {
+      "detection": {"type": "object", "properties": {"coverage_complete": {"const": true}}},
+      "residuals": {"type": "array", "maxItems": 0},
+      "visual_integrity": {"type": "object", "properties": {"outside_mask_rgb_mismatch_frames": {"type": "array", "maxItems": 0}, "zero_unexplained_pixels": {"const": true}, "maximum_mask_ratio": {"type": "number", "maximum": 0.05}}},
+      "value_preservation": {"type": "object", "properties": {"occlusions": {"type": "array", "maxItems": 0}}},
+      "audio_integrity": {"type": "object", "properties": {"outside_span_changed_samples": {"const": 0}, "silences": {"type": "array", "items": {"type": "object", "properties": {"center_silent": {"const": true}, "outside_unchanged": {"const": true}}}}}},
+      "disclosure": {"type": "object", "properties": {"exports_without_curtain": {"type": "array", "maxItems": 0}, "curtain_render_mismatches": {"type": "array", "maxItems": 0}, "body_rgb_mismatches": {"type": "array", "maxItems": 0}, "body_audio_changed_samples": {"const": 0}, "curtain_audio_nonzero_bytes": {"const": 0}, "report_linked": {"const": true}}}
+    }}
+  }],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha256", "bytes"],
+      "properties": {
+        "ref": {"type": "string", "pattern": "^(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*(?:^|/)\\.[^/])(?!.*\\\\)[a-z0-9](?:[a-z0-9._/-]*[a-z0-9])?$"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 9007199254740991}
+      }
+    }
+  }
+}

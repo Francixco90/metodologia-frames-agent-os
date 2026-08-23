@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "63a24f90c2988c61a1923df9a950fcadfdc58e34dfc4bb2a066e16f7b3a27f22",
-  "totalMarkdown": 1851,
+  "repositoryTreeSha256": "2ad63894e1f7b7eab5d277baf99864566274ca7f74c0d9646846a1f31a19c4ea",
+  "totalMarkdown": 1852,
   "auditedAuthored": 596,
   "classPaths": {
     "authored_control": [
@@ -625,6 +625,7 @@
       "03_artefactos/skills/content-os-oversized-cursor/SKILL.md",
       "03_artefactos/skills/content-os-pr-to-video/SKILL.md",
       "03_artefactos/skills/content-os-product-launch-video/SKILL.md",
+      "03_artefactos/skills/content-os-publication-privacy-verifier/SKILL.md",
       "03_artefactos/skills/content-os-registry/SKILL.md",
       "03_artefactos/skills/content-os-remotion-best-practices/SKILL.md",
       "03_artefactos/skills/content-os-remotion-bridge/SKILL.md",
