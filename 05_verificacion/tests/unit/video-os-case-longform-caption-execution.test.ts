@@ -8,7 +8,7 @@ import {
   cleanupCaseLongformCaptionExecutionFixtures,
   materializeCaseLongformCaptionExecutionFixture,
   rewriteCaseLongformCaptionExecutionMaterial,
-} from './video-os-case-longform-caption-execution-fixture.test.ts';
+} from '../../../tests/fixtures/video-os-case-longform-caption-execution.fixture.ts';
 
 type Fixture = ReturnType<typeof materializeCaseLongformCaptionExecutionFixture>;
 const validate = (fixture: Fixture) =>
