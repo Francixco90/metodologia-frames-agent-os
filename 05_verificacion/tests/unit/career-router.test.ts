@@ -196,13 +196,13 @@ describe('R7 Career intent router', () => {
     expect(dispatch({request: 'Ayúdame a crear una pieza para una campaña'})).toMatchObject({
       route_id: 'R6',
       adapter: 'content-os-router/scripts/route-content.mjs',
-      next_gate: 'MW_BRIEF_APPROVED',
+      next_gate: null,
       decision: 'NEEDS_INPUT',
     });
     expect(dispatch({request: 'Créame un CV ATS en HTML'})).toMatchObject({
       route_id: 'R7',
       adapter: 'career-application-orchestrator/scripts/route-career.mjs',
-      next_gate: 'CR_BRIEF_APPROVED',
+      next_gate: null,
       decision: 'NEEDS_INPUT',
     });
   });
@@ -247,7 +247,7 @@ describe('R7 Career intent router', () => {
       expect(dispatch({request})).toMatchObject({
         route_id: 'R0',
         adapter: null,
-        next_gate: 'R0',
+        next_gate: null,
         decision: 'NEEDS_INPUT',
       });
     },

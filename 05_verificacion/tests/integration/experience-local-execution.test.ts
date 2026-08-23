@@ -85,7 +85,7 @@ describe('Frames local brief-first execution', () => {
       const result = await dispatchIntentLocal(completeInputs(route, root), {authorizedRoot: root});
       expect(result).toMatchObject({
         route_id: route,
-        next_gate: 'EXP_BRIEF_APPROVED',
+        next_gate: route === 'R6' ? 'MW_BRIEF_APPROVED' : 'CR_CAREER_EVIDENCE_READY',
         adapter_invoked: true,
         command_view: null,
         launch_probe: {local_only: true, external_effects: false},
