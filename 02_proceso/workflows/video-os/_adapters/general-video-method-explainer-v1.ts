@@ -1,87 +1,21 @@
-import {z} from 'zod';
-
-import {assertMethodExplainerMaterialBundle, planVideoOs} from '../_runner/video-os.ts';
+import {assertMethodExplainerMaterialBundle} from '../_runner/method-explainer-material.ts';
+import {planVideoOs} from '../_runner/video-os.ts';
+import {canonicalSha256} from '../_schema/method-explainer-planning-v1.schema.ts';
 import {
-  canonicalSha256,
-  MethodExplainerContractBundleV1Schema,
-  Sha256Schema,
-  VideoOsRequestSchema,
-} from '../_schema/index.ts';
+  GeneralVideoMethodExplainerAdapterOperationSchema,
+  GeneralVideoMethodExplainerAdapterRequestV1Schema,
+  GeneralVideoMethodExplainerAdapterResultV1Schema,
+  type GeneralVideoMethodExplainerAdapterResultV1,
+  type GeneralVideoMethodExplainerContractBundle,
+  type GeneralVideoMethodExplainerVerificationEvidence,
+} from '../_schema/general-video-method-explainer-adapter-v1.schema.ts';
 
-const AdapterModeSchema = z.literal('PLAN_VERIFY_ONLY');
-const AdapterOperationSchema = z.enum(['PLAN', 'VERIFY_EXISTING']);
-const SelectedVideoOsRequestSchema = VideoOsRequestSchema.extend({
-  archetype: z.literal('method-explainer'),
-});
-
-export const GeneralVideoMethodExplainerAdapterRequestV1Schema = z.discriminatedUnion('operation', [
-  z.strictObject({
-    schema_version: z.literal('general-video-method-explainer-adapter-request-v1'),
-    archetype: z.literal('method-explainer'),
-    mode: AdapterModeSchema,
-    operation: z.literal('PLAN'),
-    video_os_request: SelectedVideoOsRequestSchema,
-  }),
-  z.strictObject({
-    schema_version: z.literal('general-video-method-explainer-adapter-request-v1'),
-    archetype: z.literal('method-explainer'),
-    mode: AdapterModeSchema,
-    operation: z.literal('VERIFY_EXISTING'),
-    bundle: MethodExplainerContractBundleV1Schema,
-    expected: z.strictObject({
-      bundle_sha256: Sha256Schema,
-      spec_sha256: Sha256Schema,
-      contract_set_sha256: Sha256Schema,
-      build_manifest_sha256: Sha256Schema,
-      unattended_run_sha256: Sha256Schema,
-    }),
-  }),
-]);
-
-const PlanEvidenceSchema = z.strictObject({
-  kind: z.literal('PLAN'),
-  request_sha256: Sha256Schema,
-  decision: z.enum(['ROUTED', 'NEEDS_INPUT', 'BLOCKED']),
-  primary_format: z.literal('9:16'),
-  secondary_exports: z.array(z.enum(['16:9', '9:16', '1:1'])).max(3),
-  blocking_questions: z.array(z.string()).max(3),
-  standard_artifacts: z.array(z.string()).min(1),
-});
-const VerificationEvidenceSchema = z.strictObject({
-  kind: z.literal('VERIFY_EXISTING'),
-  bundle_sha256: Sha256Schema,
-  spec_sha256: Sha256Schema,
-  contract_set_sha256: Sha256Schema,
-  build_manifest_sha256: Sha256Schema,
-  unattended_run_sha256: Sha256Schema,
-});
-
-export const GeneralVideoMethodExplainerAdapterResultV1Schema = z.strictObject({
-  schema_version: z.literal('general-video-method-explainer-adapter-result-v1'),
-  archetype: z.literal('method-explainer'),
-  mode: AdapterModeSchema,
-  operation: AdapterOperationSchema.nullable(),
-  verdict: z.enum(['VALIDATED_CANDIDATE', 'BLOCKED']),
-  effects: z.literal(false),
-  render_authority: z.literal(false),
-  publication_authority: z.literal(false),
-  maximum_state: z.literal('BLOCKED'),
-  stop_gate: z.literal('VO_DIRECTION_APPROVED'),
-  next_gate: z.enum(['VO_INTAKE_COMPLETE', 'VO_DIRECTION_APPROVED']),
-  coverage_gap: z.literal('GENERAL_VIDEO_METHOD_EXPLAINER_NOT_PROMOTED'),
-  reason_code: z
-    .string()
-    .regex(/^[A-Z][A-Z0-9-]{2,119}$/u)
-    .nullable(),
-  evidence: z.union([PlanEvidenceSchema, VerificationEvidenceSchema]).nullable(),
-});
-
-export type GeneralVideoMethodExplainerAdapterRequestV1 = z.infer<
-  typeof GeneralVideoMethodExplainerAdapterRequestV1Schema
->;
-export type GeneralVideoMethodExplainerAdapterResultV1 = z.infer<
-  typeof GeneralVideoMethodExplainerAdapterResultV1Schema
->;
+export {
+  GeneralVideoMethodExplainerAdapterRequestV1Schema,
+  GeneralVideoMethodExplainerAdapterResultV1Schema,
+  type GeneralVideoMethodExplainerAdapterRequestV1,
+  type GeneralVideoMethodExplainerAdapterResultV1,
+} from '../_schema/general-video-method-explainer-adapter-v1.schema.ts';
 
 const result = (
   value: Pick<
@@ -104,7 +38,7 @@ const result = (
 
 const operationFrom = (raw: unknown): GeneralVideoMethodExplainerAdapterResultV1['operation'] => {
   if (!raw || typeof raw !== 'object' || !('operation' in raw)) return null;
-  const parsed = AdapterOperationSchema.safeParse(raw.operation);
+  const parsed = GeneralVideoMethodExplainerAdapterOperationSchema.safeParse(raw.operation);
   return parsed.success ? parsed.data : null;
 };
 
@@ -115,8 +49,8 @@ const sanitizedReason = (error: unknown): string => {
 };
 
 const verificationEvidence = (
-  bundle: z.infer<typeof MethodExplainerContractBundleV1Schema>,
-): z.infer<typeof VerificationEvidenceSchema> => ({
+  bundle: GeneralVideoMethodExplainerContractBundle,
+): GeneralVideoMethodExplainerVerificationEvidence => ({
   kind: 'VERIFY_EXISTING',
   bundle_sha256: canonicalSha256(bundle),
   spec_sha256: canonicalSha256(bundle.video_spec),
