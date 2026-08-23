@@ -96,6 +96,14 @@ ni observación visual. Danilo conserva `PRE_RENDER_BLOCKED`; los demás quedan
 `BLOCKED_PENDING_CAPTION_VISUAL_EVIDENCE_CONTRACTS`. [CONFIG] `coverage_gap`: evidencia visual y
 review externo siguen separados; no existen `PASS`, composición, render, efectos ni publicación.
 
+V7c0 añade solo el contrato y la derivación pura del plan externo: actores independientes y
+allowlisted, raíz léxicamente absoluta/canónica/disjunta y producto exacto de cada entrada del
+CaptionExecutionLedger por cinco checks. Danilo conserva `PRE_RENDER_BLOCKED`; los demás permanecen
+`BLOCKED_PENDING_V7C_FULL_CHAIN_FIXTURE_AND_CAPTION_VISUAL_EVIDENCE_CONTRACTS`. [CONFIG]
+`coverage_gap`: el public gate full-chain V7b/V7c no está acreditado hasta un slice futuro
+expresamente autorizado con fixture media sintética. V7c0 no contiene observation, evidence,
+verdict, `PASS`, receipt, media, render, efectos ni publicación. [METODOLOGIA]
+
 [PEDAGOGIA] El estado editorial debe distinguir avance, reconocimiento, nombramiento y
 certificación sin comparaciones ni credenciales superiores a la evidencia. [NEUROCIENCIA]
 No se introducen afirmaciones cognitivas o científicas. [INFERENCIA] Ningún texto sustituye
