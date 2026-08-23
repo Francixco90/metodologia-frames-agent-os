@@ -10,6 +10,7 @@
     "contractRevision": {"const": 2},
     "projectId": {"type": "string", "minLength": 1},
     "route": {"const": "content-os-general-video"},
+    "archetype": {"enum": ["general", "case-longform"]},
     "artifactVisibility": {"enum": ["versioned", "private-local"]},
     "offline": {"const": true},
     "flow": {"enum": ["automation", "companion"]},
@@ -40,6 +41,9 @@
     "reviewReceiptSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "renderReceiptRef": {"type": "string", "minLength": 1},
     "planRef": {"type": "string", "minLength": 1},
+    "caseLongformAdapterRef": {"type": "string", "minLength": 1},
+    "caseLongformAdapterSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "caseLongformPlanSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "scope_expanded": {"type": "boolean"},
     "workProductState": {"enum": ["ESPECIFICADO", "COMPILADO", "EVALUADO", "RENDERED_DRAFT", "HUMAN_APPROVED", "READY", "PUBLISHED", "BLOCKED"]},
     "renderPolicy": {
@@ -47,7 +51,7 @@
       "additionalProperties": false,
       "required": ["draftsAutomatic", "publicationAuthority", "cacheByHash"],
       "properties": {
-        "draftsAutomatic": {"const": true},
+        "draftsAutomatic": {"type": "boolean"},
         "publicationAuthority": {"const": false},
         "cacheByHash": {"const": true}
       }
@@ -67,6 +71,17 @@
     }
   },
   "allOf": [
-    {"if": {"properties": {"storyboard": {"const": "yes"}}}, "then": {"required": ["storyboardRef", "storyboardSha256"]}}
+    {"if": {"properties": {"storyboard": {"const": "yes"}}}, "then": {"required": ["storyboardRef", "storyboardSha256"]}},
+    {
+      "if": {"required": ["archetype"], "properties": {"archetype": {"const": "case-longform"}}},
+      "then": {
+        "required": ["caseLongformAdapterRef", "caseLongformAdapterSha256", "planRef"],
+        "properties": {
+          "workProductState": {"const": "BLOCKED"},
+          "renderPolicy": {"properties": {"draftsAutomatic": {"const": false}}}
+        }
+      },
+      "else": {"properties": {"renderPolicy": {"properties": {"draftsAutomatic": {"const": true}}}}}
+    }
   ]
 }

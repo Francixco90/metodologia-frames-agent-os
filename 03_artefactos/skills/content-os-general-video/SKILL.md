@@ -1,7 +1,7 @@
 ---
 name: content-os-general-video
 description: This skill should be used when the user asks to "author a custom video", "build a brand reel or sizzle reel", "make a montage", "build a multi-scene video when no specialized workflow fits", "remix existing footage", "build a static title card or loop", or "co-create a freeform video (companion flow)".
-version: 0.15.0
+version: 0.16.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Orchestrates content-os-core (HTML composition + seek-safe GSAP), content-os-animation (blueprints/rules), content-os-keyframes (pose/lint), content-os-creative (brand/story-spine/genre lenses), content-os-media (offline + remote-opt-in), content-os-registry (blocks), content-os-router (dispatch). Input = freeform brief. Output = MP4 (RENDERED_DRAFT). Companion or automation flow.
 metadata:
@@ -18,9 +18,7 @@ remixes, freeform builds. Adaptado de `general-video` (vendor, Apache 2.0) a fai
 hash-bound + offline-first. No `npx hyperframes` CLI. Capabilities delegadas (ver
 frontmatter `compatibility`).
 
-La revisión 0.15 ejecuta las compuertas canónicas de Media y Creative: no basta declarar
-sus hashes; ASR, Transcript Intelligence, manifests de marca y assets deben resolverse y
-validarse sin escapes, symlinks ni deriva antes de compilar.
+Las revisiones previas exigen gates Media/Creative materiales antes de compilar.
 
 ## When to use this vs a specialized workflow
 
@@ -37,6 +35,11 @@ mismo `specId` y `specSha256`. Los trabajos v1 son legibles para migración, per
 los bloquea. Nunca se corrige un output compilado como si fuera fuente.
 
 [`case-longform-preflight-v1`](references/case-longform.md). [CONFIG]
+
+Para `case-longform`, `general-video-case-longform-adapter-v1` opera `PLAN_VERIFY_ONLY`
+sobre refs/hash/status V7c0. Estados `PRE_RENDER_BLOCKED` o `BLOCKED_PENDING_*`, drift,
+alias o `DO_NOT_USE` fijan `BLOCKED`; sin render, package, efectos, full-chain, benchmark
+Carlos, media, conectores o publicación. [CONFIG]
 
 Cada pieza usa `piece-scripts-v2`: `scriptMode`, `decision`, `sourceSpans`, `visualSpans`,
 `captionTrackRef`, `correctionLedgerRef`, claims y dependencias hash-bound. Las decisiones
@@ -100,8 +103,7 @@ seekable. `RENDERED_DRAFT` puede compilarse tras gates deterministas, pero
 
 ## Done
 
-`renders/final.mp4` (`RENDERED_DRAFT`) verificado, con preview, duración y snapshots.
-`READY` y publicación requieren G13-G17. Esta versión permanece `local-evaluation`.
+Borrador verificado; `READY` y publicación requieren G13-G17. Estado `local-evaluation`.
 
 ## A/B y miniclips
 
