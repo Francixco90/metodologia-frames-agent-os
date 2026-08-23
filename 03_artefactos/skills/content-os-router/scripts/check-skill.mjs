@@ -12,6 +12,7 @@ const required = [
   'skills/content-os-router/schemas/voice-draft-v2.schema.json',
   'skills/content-os-router/scripts/check-skill.mjs',
   'skills/content-os-router/scripts/content-intent-request.mjs',
+  'skills/content-os-router/scripts/decision-transport.mjs',
   'skills/content-os-router/scripts/route-audit.mjs',
   'skills/content-os-router/scripts/transcript-route.mjs',
   'skills/content-os-router/scripts/voice-draft-migration-gate.mjs',
@@ -43,7 +44,7 @@ const runtimeCombined = [
   .map((path) => contents.get(path))
   .join('\n');
 for (const token of [
-  'version: 0.8.1',
+  'version: 0.8.2',
   '## 1. Activación',
   '## 8. Handoff',
   'intent-router',
@@ -53,10 +54,13 @@ for (const token of [
   'content-intent-v2',
   'career-application',
   'frames-route-decision-v1',
+  'experience-view-v1',
   'AssistanceEnvelopeV1',
   'SkillInvocationReceiptV1',
   'adapter_invoked',
   'Honest state projection',
+  'decision_funnel',
+  'decision_refs',
   'MW_BRIEF_APPROVED',
   'selected_stage_path',
   'P03',
@@ -132,14 +136,7 @@ for (const pattern of [
   }
 }
 const negative = contents.get('skills/content-os-router/fixtures/negative/unrouted-intent.yml');
-for (const token of [
-  'missing-route',
-  'missing-capability-map',
-  'unknown-source-type',
-  'route-by-keyword',
-  'no-deliverable',
-  'https://',
-]) {
+for (const token of 'missing-route missing-capability-map unknown-source-type route-by-keyword no-deliverable https://'.split(' ')) {
   if (!negative.includes(token)) {
     throw new Error(`COSR-ROUTER_NEGATIVE_FIXTURE_INCOMPLETE: missing ${token}`);
   }
@@ -195,6 +192,4 @@ try {
 }
 if (!dualBlocked) throw new Error('COS_ROUTER_DUAL_SPAN_GATE');
 
-console.info(
-  `PASS content-os-router: ${required.length} governed resources, intent router + capability map, route-once, route-by-deliverable.`,
-);
+console.info(`PASS content-os-router: ${required.length} governed resources and deterministic dispatch.`);

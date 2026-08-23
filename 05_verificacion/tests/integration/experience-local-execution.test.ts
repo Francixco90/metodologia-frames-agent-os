@@ -9,10 +9,14 @@ import {orchestrateLocalExperienceV1, runFirstTurnGatewayV1} from 'workflows/cor
 import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 type LocalDecision = {
+  decision: string;
+  request_hash: string;
   route_id: string;
   next_gate: string;
   adapter_invoked: boolean;
+  domain_intent: null | Record<string, unknown>;
   experience_envelope: {state: string; effects: string[]};
+  experience_view: {components: Array<{kind: string; data: Record<string, unknown>}>};
   command_view: null | {command: string; readOnly: boolean; effects: []};
   launch_probe: {local_only: boolean; external_effects: boolean};
   local_execution: {
@@ -30,6 +34,7 @@ let dispatchIntentLocal: (
   input: Record<string, unknown>,
   options: {authorizedRoot: string},
 ) => Promise<LocalDecision>;
+let dispatchIntent: (input: Record<string, unknown>) => LocalDecision;
 const roots: string[] = [];
 const timestamps = {
   started_at: '2026-08-09T12:00:00.000Z',
@@ -39,7 +44,11 @@ const timestamps = {
 beforeAll(async () => {
   const module = (await import(
     pathToFileURL(resolve('03_artefactos/skills/content-os-router/scripts/route-intent.mjs')).href
-  )) as {dispatchIntentLocal: typeof dispatchIntentLocal};
+  )) as {
+    dispatchIntent: typeof dispatchIntent;
+    dispatchIntentLocal: typeof dispatchIntentLocal;
+  };
+  dispatchIntent = module.dispatchIntent;
   dispatchIntentLocal = module.dispatchIntentLocal;
 });
 
@@ -129,6 +138,23 @@ const selectedLocalInput = (
   };
 };
 
+const selectedRouterInputs = (route: 'R6' | 'R7', root: string, selected = true) => {
+  const base = completeInputs(route, root);
+  const decision = materializeDecisionFunnelFixture(dispatchIntent(base).request_hash);
+  return {
+    ...base,
+    decision_funnel: decision.funnel,
+    ...(selected ? {decision_selection: decision.selection} : {}),
+    decision_refs: {
+      funnel: {ref: 'evidence/decision-funnel.json', sha256: decision.funnel.canonicalSha256},
+      selection: {
+        ref: 'evidence/decision-selection.json',
+        sha256: decision.selection.canonicalSha256,
+      },
+    },
+  };
+};
+
 describe('Frames local brief-first execution', () => {
   it('materializes only after a fully bound human selection', async () => {
     const root = workspace();
@@ -167,23 +193,98 @@ describe('Frames local brief-first execution', () => {
   });
 
   it.each(['R6', 'R7'] as const)(
-    'keeps %s at zero writes until the router carries a verified human selection',
+    'keeps %s routed and zero-write until a human selection arrives',
     async (route) => {
       const root = workspace();
-      const result = await dispatchIntentLocal(completeInputs(route, root), {authorizedRoot: root});
+      const result = await dispatchIntentLocal(selectedRouterInputs(route, root, false), {
+        authorizedRoot: root,
+      });
       expect(result).toMatchObject({
         route_id: route,
+        decision: 'AWAITING_SELECTION',
         adapter_invoked: true,
         command_view: null,
+        experience_envelope: {state: 'ROUTED', effects: []},
         launch_probe: {local_only: true, external_effects: false},
         local_execution: {
           status: 'NEEDS_INPUT',
           materialized: false,
         },
       });
+      const options = result.experience_view.components.find(({kind}) => kind === 'DecisionGate')
+        ?.data.options;
+      expect(options).toHaveLength(2);
+      expect(
+        (options as Array<{rescuedContributions: unknown}>).every(({rescuedContributions}) =>
+          Array.isArray(rescuedContributions),
+        ),
+      ).toBe(true);
+      expect(result.domain_intent).not.toHaveProperty('decision_funnel');
+      expect(result.domain_intent).not.toHaveProperty('decision_selection');
+      expect(result.domain_intent).not.toHaveProperty('decision_refs');
       expect(readdirSync(root)).toEqual([]);
     },
   );
+
+  it.each([
+    ['R6', 'AWAITING_APPROVAL', true],
+    ['R7', 'BLOCKED', false],
+  ] as const)(
+    'advances %s only after the router verifies the selected direction',
+    async (route, status, materialized) => {
+      const root = workspace();
+      const result = await dispatchIntentLocal(selectedRouterInputs(route, root), {
+        authorizedRoot: root,
+      });
+      expect(result).toMatchObject({
+        route_id: route,
+        decision: 'READY_FOR_BRIEF',
+        experience_envelope: {state: 'READY_FOR_BRIEF', effects: ['READ_ONLY']},
+        local_execution: {status, materialized},
+      });
+    },
+  );
+
+  it('rejects a forged selection before any public-router write', async () => {
+    const root = workspace();
+    const input = selectedRouterInputs('R6', root);
+    input.decision_selection = {...input.decision_selection!, selectedOptionId: 'OPT-FORGED'};
+    await expect(dispatchIntentLocal(input, {authorizedRoot: root})).resolves.toMatchObject({
+      decision: 'NEEDS_INPUT',
+      experience_envelope: {state: 'BLOCKED'},
+      local_execution: {status: 'NEEDS_INPUT', materialized: false},
+    });
+    expect(readdirSync(root)).toEqual([]);
+  });
+
+  it.each([
+    [
+      'missing refs',
+      'NEEDS_INPUT',
+      (input: Record<string, unknown>): boolean => delete input.decision_refs,
+    ],
+    [
+      'aliased refs',
+      'BLOCKED',
+      (input: Record<string, unknown>): boolean => {
+        input.decision_refs = {
+          ...(input.decision_refs as Record<string, unknown>),
+          selection: {
+            ref: 'evidence/./decision-selection.json',
+            sha256: (input.decision_selection as {canonicalSha256: string}).canonicalSha256,
+          },
+        };
+        return true;
+      },
+    ],
+  ] as const)('rejects %s before any public-router write', async (_label, status, mutate) => {
+    const root = workspace();
+    const input = selectedRouterInputs('R6', root);
+    mutate(input);
+    const result = await dispatchIntentLocal(input, {authorizedRoot: root});
+    expect(result.local_execution).toMatchObject({status, materialized: false});
+    expect(readdirSync(root)).toEqual([]);
+  });
 
   it('keeps an incomplete request at zero writes', async () => {
     const root = workspace();
@@ -208,7 +309,7 @@ describe('Frames local brief-first execution', () => {
     async (request, command) => {
       const root = workspace();
       const result = await dispatchIntentLocal(
-        {...completeInputs('R6', root), request},
+        {...selectedRouterInputs('R6', root), request},
         {authorizedRoot: root},
       );
       expect(result.command_view).toMatchObject({command, readOnly: true, effects: []});
