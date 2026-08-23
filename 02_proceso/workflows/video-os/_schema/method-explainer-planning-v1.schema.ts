@@ -1,7 +1,6 @@
-import {createHash} from 'node:crypto';
-
 import {z} from 'zod';
 
+import {canonicalJsonSha256, sha256Utf8} from '../../../core/canonical-json-sha256.ts';
 import {LocalRefSchema, Sha256Schema} from './video-os-v1.schema.ts';
 
 const RelativeRefSchema = LocalRefSchema.refine(
@@ -125,8 +124,7 @@ export type BeatBudgetV1 = z.infer<typeof BeatBudgetV1Schema>;
 export const methodExplainerFail = (code: string): never => {
   throw new Error(`METHOD-EXPLAINER-${code}`);
 };
-export const canonicalSha256 = (value: unknown): string =>
-  createHash('sha256').update(JSON.stringify(value), 'utf8').digest('hex');
+export const canonicalSha256 = canonicalJsonSha256;
 export const assertMethodExplainerPlanningBindings = (input: {
   intent: IntentEnvelopeV1;
   assumptions: AssumptionsLedgerV1;
@@ -140,7 +138,7 @@ export const assertMethodExplainerPlanningBindings = (input: {
   if (intent.rights === 'unknown' || ['NEEDS_INPUT', 'BLOCKED'].includes(intent.decision) || ['NEEDS_INPUT', 'BLOCKED'].includes(assumptions.decision)) methodExplainerFail('NON-EXECUTABLE-DECISION');
   // prettier-ignore
   if ((intent.confidence < 0.6 && !['NEEDS_INPUT', 'BLOCKED'].includes(intent.decision)) || (intent.confidence < 0.85 && intent.decision === 'AUTO_CONTINUE') || (intent.unknown.length > 0 && intent.decision === 'AUTO_CONTINUE')) methodExplainerFail('CONFIDENCE-DECISION-MISMATCH');
-  if (intent.request_sha256 !== createHash('sha256').update(request, 'utf8').digest('hex'))
+  if (intent.request_sha256 !== sha256Utf8(request))
     throw new Error('METHOD-EXPLAINER-REQUEST-HASH-MISMATCH');
   if (assumptions.intent_sha256 !== hashes.intent || method.intent_sha256 !== hashes.intent)
     throw new Error('METHOD-EXPLAINER-INTENT-BINDING-MISMATCH');
