@@ -1,12 +1,9 @@
-import {useLayoutEffect, useRef} from 'react';
-import {useCurrentFrame, useDelayRender, useVideoConfig} from 'remotion';
+import {useRef} from 'react';
+import {useCurrentFrame, useVideoConfig} from 'remotion';
 import {DiagramContractV2Schema} from 'workflows/video-os/_schema/method-explainer-execution-v1.schema.ts';
-import {
-  layoutGuardDelayOptions,
-  resolveLayoutActivation,
-  toCompositionCoordinates,
-} from '../layout-geometry.ts';
+import {toCompositionCoordinates} from '../layout-geometry.ts';
 import * as geometry from './diagram-geometry.ts';
+import {classifyDiagramRoot, useDiagramLayoutLifecycle} from './DiagramLayoutLifecycle.tsx';
 
 type DiagramContractV2 = ReturnType<typeof DiagramContractV2Schema.parse>;
 type DiagramElement = HTMLElement & {dataset: DOMStringMap};
@@ -180,21 +177,17 @@ export const DiagramLayoutGuard = (props: GuardProps) => {
   const frame = useCurrentFrame();
   const {durationInFrames: duration, height, width} = useVideoConfig();
   const sentinel = useRef<HTMLSpanElement>(null);
-  const {cancelRender, continueRender, delayRender} = useDelayRender();
-  useLayoutEffect(() => {
-    const handle = delayRender(`DiagramLayoutGuard frame=${frame}`, layoutGuardDelayOptions);
-    try {
-      const binding = geometry.canonicalDiagramBinding(diagram, sha);
-      const root = requireDiagramRoot(sentinel.current?.parentElement, binding);
+  const binding = geometry.canonicalDiagramBinding(diagram, sha);
+  useDiagramLayoutLifecycle(
+    `DiagramLayoutGuard frame=${frame}`,
+    () => requireDiagramRoot(sentinel.current?.parentElement, binding),
+    (element) => {
+      const root = element as HTMLElement;
       const rootRect = root.getBoundingClientRect();
-      const attachedToCanvas = !!root.closest('#remotion-canvas');
-      if (resolveLayoutActivation({attachedToCanvas, frame, rootRect}) !== 'ACTIVE')
-        fail('DIAGRAM_CANVAS_ABSENT');
+      if (classifyDiagramRoot(root, rootRect) === 'WAIT') return 'WAIT';
       inspectDiagramDom({diagram, duration, frame, height, root, rootRect, width});
-      continueRender(handle);
-    } catch (error) {
-      cancelRender(error instanceof Error ? error : new Error(String(error)));
-    }
-  }, [cancelRender, continueRender, delayRender, diagram, duration, frame, height, sha, width]);
+      return 'ACTIVE';
+    },
+  );
   return <span aria-hidden="true" ref={sentinel} style={{display: 'none'}} />;
 };
