@@ -1,0 +1,27 @@
+{
+  "schema_version": "skill-system-case-v1",
+  "case_id": "CASE_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "parent_id": null,
+  "request": "Diseñar una capacidad mínima para elegir la gramática visual de videos method-explainer y producir diagram-contract-v2 verificable, sin delegar decisiones semánticas al renderer ni ampliar autoridad.",
+  "scope": "PROJECT_LOCAL",
+  "desired_outcome": "Una skill estrecha decide la gramática narrativa; herramientas de solo lectura validan y canonicalizan el contrato para que workflow y renderer lo consuman sin reinterpretarlo.",
+  "source_refs": [
+    "04_estado/tasks/TASK-loose-032/task.yaml",
+    "02_proceso/workflows/skill-systems/contracts.ts",
+    "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts",
+    "03_artefactos/skills/data-visual-composition/SKILL.md",
+    "03_artefactos/skills/remotion-video-production/SKILL.md"
+  ],
+  "authority_status": "VERIFIED",
+  "effect_ceiling": "E1",
+  "acceptance": [
+    "Selecciona una gramática sustentada por las relaciones del método y bloquea la ambigüedad material.",
+    "Produce diagram-contract-v2 con nodos asentados antes de conectores y pausa mínima de seis frames.",
+    "Valida IDs, endpoints, safe zone, poses, hashes y límites temporales con errores estables.",
+    "Entradas equivalentes producen JSON canónico idéntico sin red, render ni escrituras propias.",
+    "No se activa para gráficos cuantitativos, SVG genérico o solicitudes exclusivas de render."
+  ],
+  "blocking_gaps": [],
+  "owner": "skill-system-architect",
+  "content_sha256": "9a538c37643813e4cefbb913c2c7c522f0bf2b6e336799460a65633a6f1ff928"
+}

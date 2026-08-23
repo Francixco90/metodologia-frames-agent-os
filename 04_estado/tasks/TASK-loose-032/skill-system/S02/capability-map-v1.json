@@ -1,0 +1,49 @@
+{
+  "schema_version": "capability-map-v1",
+  "map_id": "MAP_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "case_id": "CASE_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "existing_capabilities": [
+    "DiagramContractV2Schema fija la forma canónica y las gramáticas permitidas.",
+    "data-visual-composition cubre gráficos derivados de datos, no métodos narrativos.",
+    "remotion-video-production compone, renderiza y revisa contratos ya decididos.",
+    "LayoutGuard detecta overflow y safe-zone sobre frames renderizados."
+  ],
+  "components": [
+    {
+      "component_id": "SKILL_EXPLAINER_DIAGRAM_DESIGN",
+      "kind": "SKILL",
+      "responsibility": "Interpretar relaciones autorizadas del método, elegir una gramática canónica y producir un diagram-contract-v2 candidato sin renderizar.",
+      "owner": "content",
+      "effect_class": "E1"
+    },
+    {
+      "component_id": "TOOL_EXPLAINER_DIAGRAM_VALIDATE",
+      "kind": "TOOL",
+      "responsibility": "Validar el contrato contra el schema canónico y comprobar IDs, endpoints, safe zone, poses y orden nodo-conector sin escribir archivos.",
+      "owner": "content",
+      "effect_class": "E1"
+    },
+    {
+      "component_id": "TOOL_EXPLAINER_DIAGRAM_COMPILE",
+      "kind": "TOOL",
+      "responsibility": "Canonicalizar un contrato validado y emitir JSON determinista por stdout sin materializarlo ni conceder autoridad de render.",
+      "owner": "content",
+      "effect_class": "E1"
+    },
+    {
+      "component_id": "SCHEMA_DIAGRAM_CONTRACT_V2",
+      "kind": "SCHEMA",
+      "responsibility": "Conservar la autoridad única de estructura, gramáticas, nodos, conectores y poses para consumidores Video OS.",
+      "owner": "video-os",
+      "effect_class": "E0"
+    }
+  ],
+  "demotion_results": [
+    "INSTRUCTION rechazado: no asegura fixtures, validación ni determinismo.",
+    "REFERENCE rechazada: informa la decisión pero no produce un contrato comprobable.",
+    "TOOL único rechazado: la selección de gramática requiere juicio semántico especializado.",
+    "SKILL seleccionada con dos tools internos; renderer y workflow permanecen consumidores externos."
+  ],
+  "split_reasons": [],
+  "content_sha256": "70081c63b75165156409e8910b74b7ca1cf4be8b7facfd09e1b94f0ec3d02570"
+}

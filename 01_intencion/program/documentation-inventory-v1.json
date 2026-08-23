@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "50dded4d314b7aba9303b20a133f99485fac9b6779afb02de3a83d47a32964ad",
-  "totalMarkdown": 1854,
-  "auditedAuthored": 598,
+  "repositoryTreeSha256": "63f7aace92608c2438efa330ca7b7081e6a9df186f5d7c4ae9ef94d2e8bf33b1",
+  "totalMarkdown": 1855,
+  "auditedAuthored": 599,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -468,6 +468,7 @@
       "04_estado/tasks/TASK-loose-031/continuity/resume.md",
       "04_estado/tasks/TASK-loose-032/PROGRESS.md",
       "04_estado/tasks/TASK-loose-032/continuity/resume.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
       "05_verificacion/evals/H-E001/README.md",
       "05_verificacion/evals/H-E002/README.md",
       "05_verificacion/evals/H-E003/README.md",
@@ -4650,7 +4651,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "572df908a083124e2dfc8579e8bc9c45025e33cca64f04ae0eedf46b7f7c5421",
+      "sha256": "bba1361352d3f8d824ea137478781767e85cc7d8c2c5672e5fe29ca1a447a470",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -16948,6 +16949,32 @@
       }
     },
     {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9865bbeba598956c4d8e886281b78607816d49849ca30bf919fed37a48553024",
+      "words": 264,
+      "lines": 31,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/evals/H-E001/README.md",
       "class": "authored_control",
       "owner": "qa",
@@ -17914,7 +17941,7 @@
     }
   ],
   "summary": {
-    "keep": 583,
+    "keep": 584,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
