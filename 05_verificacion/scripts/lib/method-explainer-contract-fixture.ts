@@ -106,7 +106,7 @@ export const makeMethodExplainerFixture = () => {
         text: 'PASA',
         max_lines: 1,
         font_px: 48,
-        enter_frame: 0,
+        enter_frame: 1,
         settle_frame: 30,
       },
     ],
