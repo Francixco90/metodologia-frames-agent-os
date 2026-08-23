@@ -21,8 +21,8 @@ privacidad de publicación.
 1. Verificar bytes canónicos de política, zonas de valor, plan y receipt independiente.
 2. Abrir fuente, FFmpeg y FFprobe mediante snapshots hash-bound; nunca confiar en `PATH`.
 3. Reprobar dimensiones, frames, duración y audio contra el plan de preservación.
-4. Aplicar blur gaussiano localizado con máscara suavizada y silencio dentro del span con
-   fades internos exactos de 45 ms, preservando cada canal de audio.
+4. Aplicar blur localizado, reencuadre periférico exacto o silencio dentro del span con
+   fades internos de 45 ms, preservando zonas de valor y cada canal de audio.
 5. Sustituir únicamente el rango textual acreditado por `[…]`; no reescribir el testimonio.
 6. Exigir que el track fuente esté ligado a duración y a un receipt de verificación independiente.
 7. Materializar output y sidecar sin sobrescribir; rederivarlos para acreditar bytes y emitir receipt.
@@ -33,8 +33,10 @@ privacidad de publicación.
 - Recalcula secuencias, relaciones de señal, geometría, presupuesto y zonas de valor.
 - La máscara simultánea no puede superar 10%; más de 5% debe haber sido bloqueado antes.
 - `LOCAL_BLUR` usa el ROI autorizado, padding y feather; no existe pantalla completa.
-- `REFRAME_PERIPHERAL` bloquea hasta que el plan declare el alcance del transform completo;
-  una franja autorizada no permite modificar implícitamente el resto del cuadro.
+- `REFRAME_PERIPHERAL` solo acepta una franja de borde rederivada desde señal + 10 px,
+  a máximo 48 px del borde; elimina esa franja y escala el área retenida con crop exacto.
+- La banda no puede tocar una zona de valor ni coexistir con otro reframe en el mismo span;
+  no autoriza crop libre, coordenadas implícitas ni cambios fuera del transform derivado.
 - `AUDIO_SILENCE` atenúa dentro del span: fade-out, silencio, fade-in. Fuera queda a ganancia 1.
 - Video se codifica H.264 lossless; audio transformado usa ALAC para permitir comparación PCM.
 - El assertion con evidencia vuelve a renderizar desde fuente y plan; metadatos compatibles no bastan.
