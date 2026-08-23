@@ -1,5 +1,6 @@
 export * from './_schema/index.ts';
 export * from './_runner/video-os.ts';
+export * from './_adapters/general-video-method-explainer-v1.ts';
 
 export const VIDEO_OS_CHAIN = ['V00', 'V01', 'V02', 'V03', 'V04'] as const;
 export const VIDEO_OS_USER_PROMPT_CHAIN = [
