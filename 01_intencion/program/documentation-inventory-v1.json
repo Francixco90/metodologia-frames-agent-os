@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "63f7aace92608c2438efa330ca7b7081e6a9df186f5d7c4ae9ef94d2e8bf33b1",
-  "totalMarkdown": 1855,
-  "auditedAuthored": 599,
+  "repositoryTreeSha256": "5d7d79feb4d9e04df4fb764347f52dc46989b9e44b01d2caf49009869a1ea0c6",
+  "totalMarkdown": 1857,
+  "auditedAuthored": 601,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -469,6 +469,8 @@
       "04_estado/tasks/TASK-loose-032/PROGRESS.md",
       "04_estado/tasks/TASK-loose-032/continuity/resume.md",
       "04_estado/tasks/TASK-loose-032/skill-system/S01/discovery-report.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
       "05_verificacion/evals/H-E001/README.md",
       "05_verificacion/evals/H-E002/README.md",
       "05_verificacion/evals/H-E003/README.md",
@@ -4651,7 +4653,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "bba1361352d3f8d824ea137478781767e85cc7d8c2c5672e5fe29ca1a447a470",
+      "sha256": "d338ec31344b507091edc74cad7d5b694fc15dd383de9bf430eedf9ceb3ccd0e",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -16975,6 +16977,58 @@
       }
     },
     {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/SKILL.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3c035e1ec4baf42dd21afbdabc7cbe3bb2c6d453ffa819d698b539ecb91682bf",
+      "words": 374,
+      "lines": 66,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": true,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:tasks/**",
+      "authorityRefs": [
+        "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "04_estado/tasks/TASK-loose-032/skill-system/S04/candidate-package/metodologia-explainer-diagram-design/references/grammar-selection.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b1531966035fdf54bf77bc14c01ca8044fceba6a76bebecd5f59f0ccb285b78a",
+      "words": 388,
+      "lines": 45,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "05_verificacion/evals/H-E001/README.md",
       "class": "authored_control",
       "owner": "qa",
@@ -17941,7 +17995,7 @@
     }
   ],
   "summary": {
-    "keep": 584,
+    "keep": 586,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
