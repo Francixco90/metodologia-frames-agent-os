@@ -3,7 +3,7 @@
   "component_id": "SKILL_EXPLAINER_DIAGRAM_DESIGN",
   "kind": "SKILL",
   "inputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-planning-v1.schema.ts",
-  "outputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts",
+  "outputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts#DiagramContractV2Schema",
   "effect_class": "E1",
   "read_set": [
     "02_proceso/workflows/video-os/_schema/method-explainer-planning-v1.schema.ts",
@@ -15,10 +15,10 @@
   "acceptance": [
     "Consume method-content-model-v1, beat-budget-v1 y explainer-video-spec-v1 con hashes coherentes.",
     "Selecciona una gramática permitida desde relaciones autorizadas, no solo desde el nombre del método.",
-    "Emite un diagram-contract-v2 candidato sin escribir archivos, renderizar ni conceder promoción.",
+    "Emite un diagram-contract-v2 candidato enlazado explícitamente a DiagramContractV2Schema sin escribir archivos, renderizar ni conceder promoción.",
     "Ubica componentes antes de conectores y conserva una pausa mínima de seis frames.",
     "No se activa para gráficos cuantitativos, SVG genérico o solicitudes exclusivas de render."
   ],
   "owner": "content",
-  "content_sha256": "52d63cf1021d8618907a02e7b5560587de4ee592c19ba57df0fa4071acf1a42a"
+  "content_sha256": "a7e5bd2e3326bb4766512097889a4275ab962756589c8061f1b49b0fd8b9561e"
 }
