@@ -1,7 +1,6 @@
 import {createHash} from 'node:crypto';
 import {mkdirSync, readFileSync, renameSync, writeFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
-
 import {
   RelativePathSchema,
   type AssistanceEnvelopeV1,
@@ -16,12 +15,11 @@ import {
   autoPrimeExperienceV1,
   compileExperienceWorkflowPlanV1,
   createFramesWorkOrderV1,
-  type AutoPrimeResultV1,
+  type ExperienceDecisionContextV1,
 } from './experience-planner-v1.ts';
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
 import {prepareContainedDirectoryV1} from './safe-local-path-v1.ts';
-
 interface ContentIntentForBriefV1 {
   request: string;
   request_hash: string;
@@ -32,7 +30,6 @@ interface ContentIntentForBriefV1 {
   channels: string[];
   restrictions: string[];
 }
-
 interface LocalExecutionBaseV1 {
   root: string;
   envelope: AssistanceEnvelopeV1;
@@ -41,8 +38,9 @@ interface LocalExecutionBaseV1 {
   actorId: string;
   startedAt: string;
   completedAt: string;
+  decision?: ExperienceDecisionContextV1;
+  decisionRefs?: Record<'funnel' | 'selection', MaterialReferenceV1>;
 }
-
 export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
   (
     | {routeId: 'R6'; domainIntent: ContentIntentForBriefV1}
@@ -51,30 +49,42 @@ export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
         domainIntent: CareerRunnerInput['route'];
       }
   );
-
 export interface LocalExperienceExecutionResultV1 {
   status: 'NEEDS_INPUT' | 'AWAITING_APPROVAL' | 'BLOCKED';
   routeId: 'R6' | 'R7';
   materialized: boolean;
   nextGate: 'EXP_BRIEF_APPROVED';
-  autoPrime: AutoPrimeResultV1 | null;
+  autoPrime: ReturnType<typeof autoPrimeExperienceV1> | null;
   workOrderSha256: string | null;
   receiptRef: string | null;
   receiptSha256: string | null;
   brief: {markdownRef: string; htmlRef: string} | null;
   coverageGap?: string;
 }
-
 const atomicWrite = (path: string, value: string): void => {
   mkdirSync(dirname(path), {recursive: true});
   const temporary = `${path}.${process.pid}.tmp`;
   writeFileSync(temporary, value, 'utf8');
   renameSync(temporary, path);
 };
-
 const digestFile = (path: string): string =>
   createHash('sha256').update(readFileSync(path)).digest('hex');
-
+const noExecution = (
+  input: LocalExperienceExecutionInputV1,
+  status: 'NEEDS_INPUT' | 'BLOCKED',
+  coverageGap?: string,
+): LocalExperienceExecutionResultV1 => ({
+  status,
+  routeId: input.routeId,
+  materialized: false,
+  nextGate: 'EXP_BRIEF_APPROVED',
+  autoPrime: null,
+  workOrderSha256: null,
+  receiptRef: null,
+  receiptSha256: null,
+  brief: null,
+  ...(coverageGap === undefined ? {} : {coverageGap}),
+});
 export async function orchestrateLocalExperienceV1(
   input: LocalExperienceExecutionInputV1,
 ): Promise<LocalExperienceExecutionResultV1> {
@@ -83,39 +93,12 @@ export async function orchestrateLocalExperienceV1(
     input.envelope.state !== 'READY_FOR_BRIEF' ||
     input.envelope.blockingGaps.length > 0
   ) {
-    return {
-      status: 'NEEDS_INPUT',
-      routeId: input.routeId,
-      materialized: false,
-      nextGate: 'EXP_BRIEF_APPROVED',
-      autoPrime: null,
-      workOrderSha256: null,
-      receiptRef: null,
-      receiptSha256: null,
-      brief: null,
-    };
+    return noExecution(input, 'NEEDS_INPUT');
   }
   const outputDirectoryRef = RelativePathSchema.parse(
     input.outputDirectoryRef ??
       `work/private/experience/${input.envelope.requestHash.slice(0, 16)}`,
   );
-  let outputDirectory: string;
-  try {
-    outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
-  } catch (error) {
-    return {
-      status: 'BLOCKED',
-      routeId: input.routeId,
-      materialized: false,
-      nextGate: 'EXP_BRIEF_APPROVED',
-      autoPrime: null,
-      workOrderSha256: null,
-      receiptRef: null,
-      receiptSha256: null,
-      brief: null,
-      coverageGap: error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
-    };
-  }
   const markdownRef = `${outputDirectoryRef}/brief.md`;
   const htmlRef = `${outputDirectoryRef}/brief.html`;
   const definitions = createProductiveExperienceWorkflowDefinitionsV1({
@@ -123,15 +106,47 @@ export async function orchestrateLocalExperienceV1(
     briefHtmlRef: htmlRef,
     sourceRefs: input.sourceMaterials.map(({ref}) => ref),
   });
-  const plan = compileExperienceWorkflowPlanV1(input.envelope, definitions);
+  if (input.decision === undefined || input.decisionRefs === undefined) {
+    return noExecution(input, 'NEEDS_INPUT', 'DECISION-FUNNEL-AND-HUMAN-SELECTION-REQUIRED');
+  }
+  let plan: ReturnType<typeof compileExperienceWorkflowPlanV1>;
+  try {
+    plan = compileExperienceWorkflowPlanV1(input.envelope, definitions, input.decision);
+  } catch (error) {
+    return noExecution(
+      input,
+      'NEEDS_INPUT',
+      error instanceof Error ? error.message : 'EXPERIENCE-DECISION-UNVERIFIED',
+    );
+  }
   const autoPrime = autoPrimeExperienceV1(plan);
-  const workOrder = createFramesWorkOrderV1(plan, input.envelope, {
-    workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
-    actorId: input.actorId,
-    inputRefs: input.sourceMaterials,
-    writeSet: [`${outputDirectoryRef}/**`],
-    effectClass: 'LOCAL_REVERSIBLE',
-  });
+  let workOrder: ReturnType<typeof createFramesWorkOrderV1>;
+  try {
+    workOrder = createFramesWorkOrderV1(plan, input.envelope, {
+      workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
+      inputRefs: input.sourceMaterials,
+      decisionRefs: input.decisionRefs,
+      decision: input.decision,
+      outputDirectoryRef,
+      effectClass: 'LOCAL_REVERSIBLE',
+    });
+  } catch (error) {
+    return noExecution(
+      input,
+      'BLOCKED',
+      error instanceof Error ? error.message : 'EXPERIENCE-WORK-ORDER-UNVERIFIED',
+    );
+  }
+  let outputDirectory: string;
+  try {
+    outputDirectory = prepareContainedDirectoryV1(input.root, outputDirectoryRef);
+  } catch (error) {
+    return noExecution(
+      input,
+      'BLOCKED',
+      error instanceof Error ? error.message : 'FRAMES-OUTPUT-PATH001',
+    );
+  }
   const handler =
     input.routeId === 'R6'
       ? createContentBriefMaterialHandlerV1({

@@ -61,6 +61,8 @@ export function runFirstTurnGatewayV1(
       activeStep: null,
       skillBindings: [],
       briefPreview: null,
+      decisionFunnelSha256: null,
+      decisionSelectionSha256: null,
       recommendedNextAction:
         'Elige Crear, Mejorar, Planear o Explorar; también puedes escribir lo que necesitas.',
       ghostOptions: ['Crear', 'Mejorar', 'Planear', 'Explorar'],
@@ -84,6 +86,8 @@ export function runFirstTurnGatewayV1(
       activeStep: resume.activeStep,
       skillBindings: [],
       briefPreview: resume.briefPreview,
+      decisionFunnelSha256: null,
+      decisionSelectionSha256: null,
       recommendedNextAction: `Continuar desde ${resume.activeStep}.`,
       ghostOptions: ['Ver ruta', 'Cambiar dirección'],
       writePolicy: 'NONE',
@@ -132,6 +136,8 @@ export function runFirstTurnGatewayV1(
         activeStep: null,
         skillBindings: [],
         briefPreview: null,
+        decisionFunnelSha256: null,
+        decisionSelectionSha256: null,
         recommendedNextAction: 'Elige el resultado que necesitas.',
         ghostOptions: ['Crear extensión local', 'Mantener Frames'],
         writePolicy: 'NONE',
@@ -144,7 +150,7 @@ export function runFirstTurnGatewayV1(
     const handler = handlers[routeId];
     if (handler === undefined) return buildGatewayRouteFailureV1(context);
     try {
-      return buildGatewayRouteOutcomeV1(handler({...input, requestHash, routeId}), context);
+      return buildGatewayRouteOutcomeV1(handler({...input, requestHash, routeId}), context, input);
     } catch {
       return buildGatewayRouteFailureV1(context);
     }
@@ -171,6 +177,8 @@ export function runFirstTurnGatewayV1(
       activeStep: null,
       skillBindings: [],
       briefPreview: null,
+      decisionFunnelSha256: null,
+      decisionSelectionSha256: null,
       recommendedNextAction: 'Describe el resultado que quieres obtener.',
       ghostOptions: ['Crear contenido', 'Carrera y empleo'],
       writePolicy: 'NONE',
@@ -183,7 +191,7 @@ export function runFirstTurnGatewayV1(
   const context = {...common, understoodOutcome, routeId, reasonCode};
   try {
     const result = handlers[routeId]({...input, requestHash, routeId});
-    return buildGatewayRouteOutcomeV1(result, context);
+    return buildGatewayRouteOutcomeV1(result, context, input);
   } catch {
     return buildGatewayRouteFailureV1(context);
   }

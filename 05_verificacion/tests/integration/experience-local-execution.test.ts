@@ -1,10 +1,12 @@
-import {createHash} from 'node:crypto';
-import {existsSync, mkdtempSync, readFileSync, readdirSync, rmSync} from 'node:fs';
+import {mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 
 import {afterEach, beforeAll, describe, expect, it} from 'vitest';
+import {orchestrateLocalExperienceV1, runFirstTurnGatewayV1} from 'workflows/core/index.ts';
+
+import {materializeDecisionFunnelFixture} from '../fixtures/experience/decision-funnel-fixture.ts';
 
 type LocalDecision = {
   route_id: string;
@@ -29,7 +31,6 @@ let dispatchIntentLocal: (
   options: {authorizedRoot: string},
 ) => Promise<LocalDecision>;
 const roots: string[] = [];
-const digest = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
 const timestamps = {
   started_at: '2026-08-09T12:00:00.000Z',
   completed_at: '2026-08-09T12:00:01.000Z',
@@ -77,47 +78,110 @@ const completeInputs = (route: 'R6' | 'R7', root: string): Record<string, unknow
         ...timestamps,
       };
 
+const selectedLocalInput = (
+  root: string,
+  aliasRefs = false,
+  outputDirectoryRef = 'work/private/experience/content',
+) => {
+  const prompt = 'Ayúdame a generar una pieza';
+  const handler = () => ({
+    routeId: 'R6' as const,
+    workflowPlan: ['P03'],
+    activeStep: 'P03',
+    skillBindings: [{stepId: 'P03', primarySkillId: 'content-os-creative'}],
+    briefPreview: {briefKind: 'content-brief', summary: 'Brief sintético.', materialized: false},
+    recommendedNextAction: 'Revisar y aprobar el brief.',
+  });
+  const requestHash = runFirstTurnGatewayV1({prompt}, {R6: handler, R7: handler}).requestHash;
+  const decision = materializeDecisionFunnelFixture(requestHash);
+  const envelope = runFirstTurnGatewayV1(
+    {prompt, decisionFunnel: decision.funnel, decisionSelection: decision.selection},
+    {R6: handler, R7: handler},
+  );
+  const funnelRef = 'evidence/decision-funnel.json';
+  return {
+    root,
+    routeId: 'R6' as const,
+    envelope,
+    decision,
+    decisionRefs: {
+      funnel: {ref: funnelRef, sha256: decision.funnel.canonicalSha256},
+      selection: {
+        ref: aliasRefs ? 'evidence/./decision-funnel.json' : 'evidence/decision-selection.json',
+        sha256: decision.selection.canonicalSha256,
+      },
+    },
+    sourceMaterials: [],
+    outputDirectoryRef,
+    actorId: 'RT-04-EXPERIENCE',
+    startedAt: timestamps.started_at,
+    completedAt: timestamps.completed_at,
+    domainIntent: {
+      request: prompt,
+      request_hash: requestHash,
+      content_class: 'educational',
+      audience: 'Líderes de producto',
+      outcome: 'Comprender una decisión responsable',
+      selected_stage_path: ['P03'],
+      channels: ['web'],
+      restrictions: [],
+    },
+  };
+};
+
 describe('Frames local brief-first execution', () => {
+  it('materializes only after a fully bound human selection', async () => {
+    const root = workspace();
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root));
+    expect(result).toMatchObject({status: 'AWAITING_APPROVAL', materialized: true});
+    expect(readdirSync(resolve(root, 'work/private/experience/content'))).toEqual([
+      'brief.html',
+      'brief.md',
+      'invocation-receipt.json',
+    ]);
+  });
+
+  it('rejects aliased decision refs before creating an output directory', async () => {
+    const root = workspace();
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root, true));
+    expect(result).toMatchObject({
+      status: 'BLOCKED',
+      materialized: false,
+      coverageGap: 'EXPERIENCE-DECISION-REF-ALIAS',
+    });
+    expect(readdirSync(root)).toEqual([]);
+  });
+
+  it('checks output containment after selection and before any material write', async () => {
+    const root = workspace();
+    const outside = workspace();
+    mkdirSync(resolve(root, 'work/private/experience'), {recursive: true});
+    symlinkSync(outside, resolve(root, 'work/private/experience/content'));
+    const result = await orchestrateLocalExperienceV1(selectedLocalInput(root));
+    expect(result).toMatchObject({
+      status: 'BLOCKED',
+      materialized: false,
+      coverageGap: 'FRAMES-OUTPUT-PATH002',
+    });
+    expect(readdirSync(outside)).toEqual([]);
+  });
+
   it.each(['R6', 'R7'] as const)(
-    'materializes the complete %s brief pair and receipt, then stops for approval',
+    'keeps %s at zero writes until the router carries a verified human selection',
     async (route) => {
       const root = workspace();
       const result = await dispatchIntentLocal(completeInputs(route, root), {authorizedRoot: root});
       expect(result).toMatchObject({
         route_id: route,
-        next_gate: route === 'R6' ? 'MW_BRIEF_APPROVED' : 'CR_CAREER_EVIDENCE_READY',
         adapter_invoked: true,
         command_view: null,
         launch_probe: {local_only: true, external_effects: false},
         local_execution: {
-          status: 'AWAITING_APPROVAL',
-          materialized: true,
-          nextGate: 'EXP_BRIEF_APPROVED',
+          status: 'NEEDS_INPUT',
+          materialized: false,
         },
       });
-      const execution = result.local_execution;
-      const brief = execution.brief!;
-      const markdownPath = resolve(root, brief.markdownRef);
-      const htmlPath = resolve(root, brief.htmlRef);
-      const receiptPath = resolve(root, execution.receiptRef!);
-      expect([markdownPath, htmlPath, receiptPath].every(existsSync)).toBe(true);
-      const receipt = JSON.parse(readFileSync(receiptPath, 'utf8')) as {
-        status: string;
-        outputs: Array<{ref: string; sha256: string}>;
-        evidence: Array<{ref: string; sha256: string}>;
-      };
-      expect(receipt.status).toBe('PASS');
-      expect(receipt.outputs).toEqual([
-        {ref: brief.markdownRef, sha256: digest(readFileSync(markdownPath))},
-        {ref: brief.htmlRef, sha256: digest(readFileSync(htmlPath))},
-      ]);
-      expect(receipt.evidence).toEqual([receipt.outputs[0]]);
-      expect(execution.receiptSha256).toBe(digest(readFileSync(receiptPath)));
-      expect(
-        readdirSync(
-          resolve(root, `work/private/experience/${route === 'R6' ? 'content' : 'career'}`),
-        ),
-      ).toEqual(['brief.html', 'brief.md', 'invocation-receipt.json']);
+      expect(readdirSync(root)).toEqual([]);
     },
   );
 
