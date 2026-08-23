@@ -1,0 +1,37 @@
+schema_version: task-contract-v1
+task_id: TASK-loose-032
+project_id: null
+objetivo: Integrar framework-explainer-video-v2 como especializacion gobernada de Video OS
+repo: metodologia-frames-agent-os
+responsable: lead
+inputs:
+  - 02_proceso/governance/router.yml
+  - 02_proceso/workflows/video-os/AGENTS.md
+  - 03_artefactos/skills/content-os-general-video/SKILL.md
+write_set:
+  - 02_proceso/workflows/video-os
+  - 03_artefactos/skills/metodologia-explainer-diagram-design
+  - 03_artefactos/skills/content-os-general-video
+  - 04_estado/tasks/TASK-loose-032
+  - 04_estado/registries/tasks/task-counter.yml
+  - 05_verificacion/tests
+no_objetivos:
+  - Publicar o versionar MP4, WAV, PNG, modelos, runtimes o assets privados
+  - Promover automaticamente por encima de RENDERED_DRAFT
+  - Fusionar ramas o escribir directamente sobre main
+done: Contratos, routing, skill candidata, fixtures sinteticos y verificaciones materializados en PRs revisables
+validacion: pnpm verify:video-os, pnpm verify:skills, pnpm typecheck, pnpm check:repo y pruebas adversariales focales
+gaps:
+  - HM_PROMOTION_APPROVED permanece manual y no autorizado
+  - Derechos de Pristino y aprobacion audiovisual humana permanecen fuera de alcance
+state: ESPECIFICADO
+created_from_route: R9
+gate_target: HM_CANDIDATE_VERIFIED
+spawned_subtasks: []
+parent_task_id: null
+evidence_tags:
+  authority: DOC
+  media_policy: CONFIG
+  promotion_limit: CONFIG
+created_at: 2026-08-22T12:57:32-05:00
+updated_at: 2026-08-22T12:57:32-05:00
