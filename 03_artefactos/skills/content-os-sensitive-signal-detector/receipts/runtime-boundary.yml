@@ -1,0 +1,37 @@
+receipt_id: RCP-H03-SENSITIVE-SIGNAL-DETECTOR-001
+schema_version: runtime-boundary-v1
+skill_id: content-os-sensitive-signal-detector
+issued: 2026-08-21
+actor: RT-07-H03-PRIVACY-DETECTOR-PRODUCER
+scope:
+  - strict data-only sensitive signal inventory
+  - OCR alias and structured-pattern matching
+  - hash-bound visual template observations
+  - manual face evidence and transcript brand observations
+runtime_boundary:
+  allowed_scoped:
+    - local_json_parse
+    - physical_source_and_receipt_binding
+    - canonical_source_probe_binding
+    - canonical_hash_verification
+    - deterministic_inventory_derivation
+    - strict_schema_validation
+  out_of_scope:
+    - media_decode
+    - automatic_face_model
+    - network_fetch
+    - redaction
+    - render
+    - upload
+    - publish
+runtime_rules:
+  - unknown_confidence_blocks
+  - public_assertion_rederives_from_physical_request
+  - visual_not_present_unaccredited
+  - no_inferred_permissions
+  - no_private_reasoning
+  - no_media_mutation
+notes: >
+  Candidate data-only detector. It validates canonical receipts supplied by governed
+  OCR, template, manual-face, transcript and coverage authorities; it does not yet run
+  those tools or treat their data-only declarations as material media evidence.
