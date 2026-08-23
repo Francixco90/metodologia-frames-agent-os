@@ -1,17 +1,17 @@
 import {createHash} from 'node:crypto';
-import {createReadStream} from 'node:fs';
-import {realpath, stat} from 'node:fs/promises';
-import {dirname, isAbsolute, relative, resolve} from 'node:path';
+import {dirname, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {
-  assertMethodExplainerContractBundle,
   METHOD_EXPLAINER_OUTPUT_REFS,
-  MAX_TOTAL_MATERIAL_BYTES,
   VideoOsPlanSchema,
   VideoOsRequestSchema,
   type VideoOsPlan,
 } from '../_schema/index.ts';
+import {
+  assertMethodExplainerMaterialBundle,
+  readMethodExplainerBundle,
+} from './method-explainer-material.ts';
 import {assertVideoOsState, buildResumeCapsule} from './video-os-state.ts';
 
 export * from './case-longform-preview.ts';
@@ -42,11 +42,11 @@ export * from './case-longform-caption-execution-verify.ts';
 export * from './case-longform-caption-review-plan.ts';
 export * from './case-longform-caption-review-plan-authority.ts';
 export * from './case-longform-caption-review-plan-contract.ts';
+export * from './method-explainer-material.ts';
 export * from './video-os-state.ts';
 
 const hash = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
 const normalize = (value: string): string => value.normalize('NFC').trim().replace(/\s+/gu, ' ');
-const MAX_BUNDLE_BYTES = 8 * 1024 * 1024;
 const METHOD_ARTIFACTS = Object.values(METHOD_EXPLAINER_OUTPUT_REFS);
 // prettier-ignore
 const STANDARD_ARTIFACTS = ['source-analysis.json', 'video-brief.md', 'video-spec.json', 'piece-scripts.json', 'caption-track.json', 'shot-plan.json', 'storyboard-multiframe.json', 'privacy-plan.json', 'render-plan.json', 'review-report.md', 'handoff.md'];
@@ -140,125 +140,6 @@ export const planVideoOs = (raw: unknown): VideoOsPlan => {
   });
 };
 
-const streamedHash = async (path: string, expected?: Buffer) => {
-  const digest = createHash('sha256');
-  let offset = 0;
-  let exact = true;
-  for await (const value of createReadStream(path)) {
-    const chunk = Buffer.isBuffer(value) ? value : Buffer.from(value);
-    digest.update(chunk);
-    if (expected) {
-      exact &&= chunk.equals(expected.subarray(offset, offset + chunk.length));
-      offset += chunk.length;
-    }
-  }
-  return {
-    sha256: digest.digest('hex'),
-    exact: expected ? exact && offset === expected.length : true,
-  };
-};
-
-export const assertMethodExplainerMaterialBundle = async (raw: unknown, baseDir: string) => {
-  const bundle = assertMethodExplainerContractBundle(raw);
-  let root: string;
-  try {
-    root = await realpath(baseDir);
-  } catch {
-    throw new Error('METHOD-EXPLAINER-MATERIAL-ROOT-ERROR');
-  }
-  const bindings = [
-    ...bundle.method_content.authority_refs,
-    bundle.build_manifest.script,
-    bundle.build_manifest.audio,
-    ...bundle.build_manifest.assets,
-    ...bundle.build_manifest.components,
-    ...Object.values(bundle.build_manifest.required_outputs),
-    bundle.unattended_run_material,
-    ...bundle.unattended_run.stages.flatMap((stage) =>
-      stage.checkpoint ? [stage.checkpoint] : [],
-    ),
-  ];
-  const unique = new Map<string, (typeof bindings)[number]>();
-  for (const binding of bindings) {
-    const previous = unique.get(binding.ref);
-    if (
-      previous &&
-      (previous.sha256 !== binding.sha256 || previous.size_bytes !== binding.size_bytes)
-    )
-      throw new Error('METHOD-EXPLAINER-MATERIAL-BINDING-CONFLICT');
-    unique.set(binding.ref, binding);
-  }
-  const resolved: Array<{binding: (typeof bindings)[number]; path: string}> = [];
-  let totalBytes = 0;
-  for (const binding of unique.values()) {
-    let path: string;
-    let info;
-    try {
-      path = await realpath(resolve(root, binding.ref));
-      info = await stat(path);
-    } catch {
-      throw new Error('METHOD-EXPLAINER-MATERIAL-FS-ERROR');
-    }
-    const fromRoot = relative(root, path);
-    if (fromRoot.startsWith('..') || isAbsolute(fromRoot))
-      throw new Error('METHOD-EXPLAINER-MATERIAL-ESCAPES-ROOT');
-    if (!info.isFile()) throw new Error('METHOD-EXPLAINER-MATERIAL-NOT-FILE');
-    if (info.size !== binding.size_bytes)
-      throw new Error('METHOD-EXPLAINER-MATERIAL-SIZE-MISMATCH');
-    totalBytes += info.size;
-    if (totalBytes > MAX_TOTAL_MATERIAL_BYTES)
-      throw new Error('METHOD-EXPLAINER-MATERIAL-TOTAL-SIZE');
-    resolved.push({binding, path});
-  }
-  const canonicalSpec = Buffer.from(JSON.stringify(bundle.video_spec), 'utf8');
-  const canonicalRun = Buffer.from(JSON.stringify(bundle.unattended_run), 'utf8');
-  for (const material of resolved) {
-    let check;
-    try {
-      check = await streamedHash(
-        material.path,
-        material.binding.ref === METHOD_EXPLAINER_OUTPUT_REFS.video_spec
-          ? canonicalSpec
-          : material.binding.ref === METHOD_EXPLAINER_OUTPUT_REFS.unattended_run_state
-            ? canonicalRun
-            : undefined,
-      );
-    } catch {
-      throw new Error('METHOD-EXPLAINER-MATERIAL-FS-ERROR');
-    }
-    if (check.sha256 !== material.binding.sha256)
-      throw new Error('METHOD-EXPLAINER-MATERIAL-HASH-MISMATCH');
-    if (!check.exact) throw new Error('METHOD-EXPLAINER-VIDEO-SPEC-BYTES-MISMATCH');
-  }
-  return bundle;
-};
-
-const readBundle = async (inputPath: string): Promise<string> => {
-  const stream =
-    inputPath === '-'
-      ? createReadStream('', {fd: 0, autoClose: false, encoding: 'utf8'})
-      : createReadStream(inputPath, {encoding: 'utf8'});
-  const chunks: Buffer[] = [];
-  let bytes = 0;
-  let tooLarge = false;
-  try {
-    for await (const value of stream) {
-      if (typeof value !== 'string') throw new Error('UNEXPECTED_BUNDLE_CHUNK');
-      const chunk = Buffer.from(value, 'utf8');
-      bytes += chunk.length;
-      if (bytes > MAX_BUNDLE_BYTES) {
-        tooLarge = true;
-        break;
-      }
-      chunks.push(chunk);
-    }
-  } catch {
-    throw new Error('METHOD-EXPLAINER-BUNDLE_READ');
-  }
-  if (tooLarge) throw new Error('METHOD-EXPLAINER-BUNDLE_TOO_LARGE');
-  return Buffer.concat(chunks, bytes).toString('utf8');
-};
-
 const invoked = process.argv[1] ? resolve(process.argv[1]) : null;
 if (invoked === fileURLToPath(import.meta.url)) {
   const [command, inputPath] = process.argv.slice(2);
@@ -266,7 +147,7 @@ if (invoked === fileURLToPath(import.meta.url)) {
     throw new Error(
       'Usage: video-os.ts <plan|check|capsule|check-method-explainer> <input.json|->',
     );
-  const serialized = await readBundle(inputPath);
+  const serialized = await readMethodExplainerBundle(inputPath);
   let input: unknown;
   try {
     input = JSON.parse(serialized);
