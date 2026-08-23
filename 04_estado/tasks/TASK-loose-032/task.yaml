@@ -9,6 +9,7 @@ inputs:
   - 02_proceso/workflows/video-os/AGENTS.md
   - 03_artefactos/skills/content-os-general-video/SKILL.md
 write_set:
+  - 01_intencion/program/documentation-inventory-v1.json
   - 02_proceso/workflows/video-os
   - 03_artefactos/skills/metodologia-explainer-diagram-design
   - 03_artefactos/skills/content-os-general-video
