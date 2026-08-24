@@ -17,6 +17,9 @@ type Probe = Readonly<{
 }>;
 type Loudness = Readonly<{integrated_lufs: number; true_peak_dbtp: number}>;
 class ObservationParseError extends Error {}
+export const AUDIO_OBSERVATION_COVERAGE_GAPS = [
+  'REFLECT_OWN_KEYS_ENUMERATION_REQUIRES_HOST_BYTE_BOUND',
+] as const;
 const fail = (code: string): never => {
   throw new ObservationParseError(code);
 };
@@ -120,6 +123,7 @@ const blocked = (reasons: readonly string[] = ['INPUT_INVALID']) => ({
   policy_status: 'OUT_OF_POLICY' as const,
   material_status: 'NOT_MATERIAL' as const,
   promotion_authorized: false,
+  coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
   reasons: [...reasons].sort(),
   hashes: null,
   measurements: null,
@@ -180,6 +184,7 @@ const inspectObservation = (raw: unknown) => {
     policy_status: reasons.size ? ('OUT_OF_POLICY' as const) : ('WITHIN_POLICY' as const),
     material_status: 'NOT_MATERIAL' as const,
     promotion_authorized: false,
+    coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
     reasons: [...reasons].sort(),
     hashes,
     measurements: {...probe, ...loudness},

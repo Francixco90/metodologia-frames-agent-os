@@ -154,3 +154,21 @@ export const makeAudioObservationLimitFixtures = () =>
       value: Array.from({length: PLAIN_OBSERVATION_LIMITS.maxArrayLength + 1}, () => null),
     },
   ].map(({name, value}) => ({name, input: {...makeAudioObservationFixture(), untrusted: value}}));
+
+export const makeOversizedAudioObservationProxyFixture = () => {
+  let indexedDescriptorReads = 0;
+  const oversized = Array.from({length: PLAIN_OBSERVATION_LIMITS.maxArrayLength + 1}, () => null);
+  const guarded = new Proxy(oversized, {
+    getOwnPropertyDescriptor(target, property) {
+      if (typeof property === 'string' && /^(?:0|[1-9]\d*)$/u.test(property)) {
+        indexedDescriptorReads += 1;
+        throw new Error('OVERSIZED_ARRAY_INDEX_DESCRIPTOR_READ');
+      }
+      return Reflect.getOwnPropertyDescriptor(target, property);
+    },
+  });
+  return {
+    input: {...makeAudioObservationFixture(), untrusted: guarded},
+    indexedDescriptorReads: () => indexedDescriptorReads,
+  };
+};
