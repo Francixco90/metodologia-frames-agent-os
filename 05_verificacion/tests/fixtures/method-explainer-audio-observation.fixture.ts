@@ -1,4 +1,5 @@
 import {canonicalSha256} from 'workflows/video-os/_schema/method-explainer-planning-v1.schema.ts';
+import {PLAIN_OBSERVATION_LIMITS} from 'workflows/video-os/_schema/method-explainer-audio-observation-v1.schema.ts';
 
 const invocationContract = () => ({
   ffprobe: {
@@ -120,3 +121,36 @@ export const rebindAudioObservationFixture = (fixture: AudioObservationFixture) 
   fixture.expected_hashes.observation_sha256 = canonicalSha256(fixture.observation);
   return fixture;
 };
+
+const nestedObject = () => {
+  let value: Record<string, unknown> = {};
+  for (let depth = 0; depth <= PLAIN_OBSERVATION_LIMITS.maxDepth; depth += 1)
+    value = {child: value};
+  return value;
+};
+
+const fanoutObject = () =>
+  Array.from({length: PLAIN_OBSERVATION_LIMITS.maxArrayLength}, (_, group) =>
+    Object.fromEntries(
+      Array.from({length: 16}, (_entry, index) => [`value_${group}_${index}`, index]),
+    ),
+  );
+
+export const makeAudioObservationLimitFixtures = () =>
+  [
+    {
+      name: 'wide',
+      value: Object.fromEntries(
+        Array.from({length: PLAIN_OBSERVATION_LIMITS.maxOwnProperties + 1}, (_, index) => [
+          `key_${index}`,
+          index,
+        ]),
+      ),
+    },
+    {name: 'deep', value: nestedObject()},
+    {name: 'fanout', value: fanoutObject()},
+    {
+      name: 'oversized-array',
+      value: Array.from({length: PLAIN_OBSERVATION_LIMITS.maxArrayLength + 1}, () => null),
+    },
+  ].map(({name, value}) => ({name, input: {...makeAudioObservationFixture(), untrusted: value}}));
