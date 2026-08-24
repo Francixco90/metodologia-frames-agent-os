@@ -1,4 +1,5 @@
 import {canonicalSha256} from 'workflows/video-os/_schema/method-explainer-planning-v1.schema.ts';
+import {MAX_METHOD_EXPLAINER_ASR_CAPTION_BEATS} from 'workflows/video-os/_schema/method-explainer-asr-caption-v1.schema.ts';
 import {makeVoiceContractFixture, rebindVoiceFixture} from './method-explainer-voice.fixture.ts';
 
 export const makeAsrCaptionFixture = () => {
@@ -96,4 +97,26 @@ export const rebindAsrFixture = (fixture: AsrCaptionFixture) => {
   bindings.beat_budget_sha256 = fixture.voice_bundle.beat_budget_sha256;
   Object.assign(fixture.expected_hashes, bindings);
   return rebindAsrDeclaration(fixture);
+};
+
+export const makeOversizedAsrCaptionPreflightFixture = () => {
+  let indexedReads = 0;
+  const rawBeats = Array.from({length: MAX_METHOD_EXPLAINER_ASR_CAPTION_BEATS + 1}, () => null);
+  const beats = new Proxy(rawBeats, {
+    get(target, property, receiver): unknown {
+      if (typeof property === 'string' && /^\d+$/u.test(property)) {
+        indexedReads += 1;
+        throw new Error('OVERSIZED_BEAT_INDEX_READ');
+      }
+      return Reflect.get(target, property, receiver) as unknown;
+    },
+  });
+  return {
+    input: {
+      voice_bundle: {voice_contract: {beats}},
+      declaration: {},
+      expected_hashes: {},
+    },
+    indexedReads: () => indexedReads,
+  };
 };
