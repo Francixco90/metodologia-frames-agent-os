@@ -3,6 +3,11 @@ import {z} from 'zod';
 import {ArtifactBindingSchema} from './method-explainer-planning-v1.schema.ts';
 import {Sha256Schema} from './video-os-v1.schema.ts';
 
+export {
+  isPlainObservationData,
+  PLAIN_OBSERVATION_LIMITS,
+} from './method-explainer-audio-observation-data.ts';
+
 const EnvSchema = z.strictObject({LC_ALL: z.literal('C'), LANG: z.literal('C')});
 const FfprobeInvocationSchema = z.strictObject({
   argv: z.tuple([
@@ -42,35 +47,6 @@ const InvocationContractSchema = z.strictObject({
   ffprobe: FfprobeInvocationSchema,
   ffmpeg: FfmpegInvocationSchema,
 });
-
-export const isPlainObservationData = (input: unknown): boolean => {
-  const seen = new Set<object>();
-  const visit = (value: unknown): boolean => {
-    if (value === null || ['string', 'boolean'].includes(typeof value)) return true;
-    if (typeof value === 'number') return Number.isFinite(value) && !Object.is(value, -0);
-    if (typeof value !== 'object' || seen.has(value)) return false;
-    seen.add(value);
-    try {
-      const array = Array.isArray(value);
-      if (Object.getPrototypeOf(value) !== (array ? Array.prototype : Object.prototype))
-        return false;
-      if (Object.getOwnPropertySymbols(value).length) return false;
-      const descriptors = Object.getOwnPropertyDescriptors(value);
-      if (array) {
-        for (let index = 0; index < value.length; index += 1)
-          if (!Object.hasOwn(descriptors, String(index))) return false;
-      }
-      return Object.entries(descriptors).every(([key, descriptor]) => {
-        if (array && key === 'length') return true;
-        if (array && !/^(?:0|[1-9]\d*)$/u.test(key)) return false;
-        return 'value' in descriptor && descriptor.enumerable === true && visit(descriptor.value);
-      });
-    } catch {
-      return false;
-    }
-  };
-  return visit(input);
-};
 
 export const parseJsonWithUniqueKeys = (source: string): unknown => {
   let cursor = 0;

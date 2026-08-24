@@ -1,17 +1,23 @@
 import {describe, expect, it} from 'vitest';
 
 import {
+  AUDIO_OBSERVATION_COVERAGE_GAPS,
   inspectMethodExplainerAudioObservation,
   parseMethodExplainerFfprobeOutput,
   parseMethodExplainerLoudnormSummary,
 } from 'workflows/video-os/_runner/method-explainer-audio-observation-policy.ts';
-import {MethodExplainerAudioObservationPolicyV1Schema} from 'workflows/video-os/_schema/method-explainer-audio-observation-v1.schema.ts';
+import {
+  isPlainObservationData,
+  MethodExplainerAudioObservationPolicyV1Schema,
+} from 'workflows/video-os/_schema/method-explainer-audio-observation-v1.schema.ts';
 import {
   type AudioObservationFixture,
   FFMPEG_8_1_1_LOUDNORM_SUMMARY,
   ffprobeOutput,
   loudnormSummary,
   makeAudioObservationFixture,
+  makeAudioObservationLimitFixtures,
+  makeOversizedAudioObservationProxyFixture,
   rebindAudioObservationFixture,
 } from '../fixtures/method-explainer-audio-observation.fixture.ts';
 
@@ -32,6 +38,7 @@ const expectOut = (result: ReturnType<typeof inspect>, reason: string) => {
 describe('method-explainer audio observation policy', () => {
   it('evaluates a hash-bound declaration without claiming material evidence', () => {
     const fixture = makeAudioObservationFixture();
+    expect(isPlainObservationData(fixture)).toBe(true);
     const before = JSON.stringify(fixture);
     const first = inspect(fixture);
     const second = inspect(fixture);
@@ -42,6 +49,7 @@ describe('method-explainer audio observation policy', () => {
       policy_status: 'WITHIN_POLICY',
       material_status: 'NOT_MATERIAL',
       promotion_authorized: false,
+      coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
       reasons: [],
       measurements: {
         codec_name: 'aac',
@@ -262,6 +270,39 @@ describe('method-explainer audio observation policy', () => {
       },
     ];
     attacks.forEach((attack) => expectOut(inspect(attack()), 'INPUT_INVALID'));
+  });
+
+  it.each(makeAudioObservationLimitFixtures())(
+    'fails closed with a stable reason for an over-budget $name graph',
+    ({input}) => {
+      expect(isPlainObservationData(input)).toBe(false);
+      expect(inspect(input)).toEqual({
+        scope: 'MEASUREMENT_POLICY',
+        policy_status: 'OUT_OF_POLICY',
+        material_status: 'NOT_MATERIAL',
+        promotion_authorized: false,
+        coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
+        reasons: ['INPUT_INVALID'],
+        hashes: null,
+        measurements: null,
+      });
+    },
+  );
+
+  it('blocks an oversized proxy array before reading indexed descriptors', () => {
+    const fixture = makeOversizedAudioObservationProxyFixture();
+    expect(isPlainObservationData(fixture.input)).toBe(false);
+    expect(fixture.indexedDescriptorReads()).toBe(0);
+    expect(inspect(fixture.input)).toMatchObject({
+      policy_status: 'OUT_OF_POLICY',
+      material_status: 'NOT_MATERIAL',
+      promotion_authorized: false,
+      coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
+      reasons: ['INPUT_INVALID'],
+      hashes: null,
+      measurements: null,
+    });
+    expect(fixture.indexedDescriptorReads()).toBe(0);
   });
 
   it.each(['state', 'receipt', 'material_status', 'path'])(
