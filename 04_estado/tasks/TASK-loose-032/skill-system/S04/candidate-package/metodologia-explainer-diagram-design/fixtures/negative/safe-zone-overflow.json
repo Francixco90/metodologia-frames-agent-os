@@ -1,0 +1,18 @@
+{
+  "schema_version": "diagram-contract-validation-input-v1",
+  "total_frames": 450,
+  "expected_spec_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+  "expected_beat_budget_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+  "diagram": {
+    "schema_version": "diagram-contract-v2",
+    "spec_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+    "beat_budget_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+    "grammar": "convergence",
+    "stage": {"width": 1080, "height": 1920, "safe_zone": {"x": 0.1, "y": 0.1, "width": 0.8, "height": 0.8}},
+    "nodes": [
+      {"id": "NODE-AA", "bounds": {"x": 0.8, "y": 0.2, "width": 0.15, "height": 0.1}, "text": "Fuera", "max_lines": 1, "font_px": 48, "enter_frame": 10, "settle_frame": 20}
+    ],
+    "edges": [],
+    "required_poses": {"container_frame": 0, "components_settled_frame": 20, "connectors_complete_frame": 20, "closing_frame": 40}
+  }
+}

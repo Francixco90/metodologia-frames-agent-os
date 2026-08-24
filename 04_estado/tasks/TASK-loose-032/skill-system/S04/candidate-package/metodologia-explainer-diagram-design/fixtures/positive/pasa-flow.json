@@ -1,0 +1,126 @@
+{
+  "schema_version": "diagram-contract-validation-input-v1",
+  "total_frames": 2250,
+  "expected_spec_sha256": "6f28ac19934bac75b68ef11168500ba47f6dcec38a365b7f36411b7e2c33517a",
+  "expected_beat_budget_sha256": "1aa3d5d79120d135e84bd40d5dafbe0787f73c944df169f83c5b7b6ee5a8a808",
+  "synthetic_materials": {
+    "spec": {
+      "schema_version": "synthetic-explainer-spec-v1",
+      "method_id": "PASA",
+      "total_frames": 2250,
+      "format": "9:16"
+    },
+    "beat_budget": {
+      "schema_version": "synthetic-beat-budget-v1",
+      "total_frames": 2250,
+      "fps": 30,
+      "beat_ids": ["PLANIFICA", "ACELERA", "SISTEMATIZA", "AMPLIFICA"]
+    },
+    "method_relations": [
+      {
+        "source": "NODE-PLANIFICA",
+        "target": "NODE-ACELERA",
+        "kind": "sequence",
+        "direction": "forward"
+      },
+      {
+        "source": "NODE-ACELERA",
+        "target": "NODE-SISTEMATIZA",
+        "kind": "sequence",
+        "direction": "forward"
+      },
+      {
+        "source": "NODE-SISTEMATIZA",
+        "target": "NODE-AMPLIFICA",
+        "kind": "sequence",
+        "direction": "forward"
+      }
+    ]
+  },
+  "selection_evidence": {
+    "relations_sha256": "7c2d9b711e5d04575d60e692d2626de72c8d4fa24d402f0010cdf182313c673a",
+    "selected_grammar": "flow",
+    "reason_code": "SEQUENTIAL_CAUSAL_RELATIONS"
+  },
+  "diagram": {
+    "schema_version": "diagram-contract-v2",
+    "spec_sha256": "6f28ac19934bac75b68ef11168500ba47f6dcec38a365b7f36411b7e2c33517a",
+    "beat_budget_sha256": "1aa3d5d79120d135e84bd40d5dafbe0787f73c944df169f83c5b7b6ee5a8a808",
+    "grammar": "flow",
+    "stage": {
+      "width": 1080,
+      "height": 1920,
+      "safe_zone": {"x": 0.08, "y": 0.08, "width": 0.84, "height": 0.76}
+    },
+    "nodes": [
+      {
+        "id": "NODE-PLANIFICA",
+        "bounds": {"x": 0.15, "y": 0.15, "width": 0.7, "height": 0.1},
+        "text": "Planifica",
+        "max_lines": 1,
+        "font_px": 54,
+        "enter_frame": 90,
+        "settle_frame": 120
+      },
+      {
+        "id": "NODE-ACELERA",
+        "bounds": {"x": 0.15, "y": 0.31, "width": 0.7, "height": 0.1},
+        "text": "Acelera",
+        "max_lines": 1,
+        "font_px": 54,
+        "enter_frame": 150,
+        "settle_frame": 180
+      },
+      {
+        "id": "NODE-SISTEMATIZA",
+        "bounds": {"x": 0.15, "y": 0.47, "width": 0.7, "height": 0.1},
+        "text": "Sistematiza",
+        "max_lines": 1,
+        "font_px": 54,
+        "enter_frame": 210,
+        "settle_frame": 240
+      },
+      {
+        "id": "NODE-AMPLIFICA",
+        "bounds": {"x": 0.15, "y": 0.63, "width": 0.7, "height": 0.1},
+        "text": "Amplifica",
+        "max_lines": 1,
+        "font_px": 54,
+        "enter_frame": 270,
+        "settle_frame": 300
+      }
+    ],
+    "edges": [
+      {
+        "id": "EDGE-PLANIFICA-ACELERA",
+        "source": "NODE-PLANIFICA",
+        "target": "NODE-ACELERA",
+        "start_frame": 306,
+        "end_frame": 324,
+        "direction": "forward"
+      },
+      {
+        "id": "EDGE-ACELERA-SISTEMATIZA",
+        "source": "NODE-ACELERA",
+        "target": "NODE-SISTEMATIZA",
+        "start_frame": 330,
+        "end_frame": 348,
+        "direction": "forward"
+      },
+      {
+        "id": "EDGE-SISTEMATIZA-AMPLIFICA",
+        "source": "NODE-SISTEMATIZA",
+        "target": "NODE-AMPLIFICA",
+        "start_frame": 354,
+        "end_frame": 372,
+        "direction": "forward"
+      }
+    ],
+    "required_poses": {
+      "container_frame": 60,
+      "components_settled_frame": 300,
+      "connectors_complete_frame": 372,
+      "closing_frame": 2100
+    }
+  }
+}
