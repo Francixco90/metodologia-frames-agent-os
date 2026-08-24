@@ -5,13 +5,17 @@ import {
   parseMethodExplainerFfprobeOutput,
   parseMethodExplainerLoudnormSummary,
 } from 'workflows/video-os/_runner/method-explainer-audio-observation-policy.ts';
-import {MethodExplainerAudioObservationPolicyV1Schema} from 'workflows/video-os/_schema/method-explainer-audio-observation-v1.schema.ts';
+import {
+  isPlainObservationData,
+  MethodExplainerAudioObservationPolicyV1Schema,
+} from 'workflows/video-os/_schema/method-explainer-audio-observation-v1.schema.ts';
 import {
   type AudioObservationFixture,
   FFMPEG_8_1_1_LOUDNORM_SUMMARY,
   ffprobeOutput,
   loudnormSummary,
   makeAudioObservationFixture,
+  makeAudioObservationLimitFixtures,
   rebindAudioObservationFixture,
 } from '../fixtures/method-explainer-audio-observation.fixture.ts';
 
@@ -32,6 +36,7 @@ const expectOut = (result: ReturnType<typeof inspect>, reason: string) => {
 describe('method-explainer audio observation policy', () => {
   it('evaluates a hash-bound declaration without claiming material evidence', () => {
     const fixture = makeAudioObservationFixture();
+    expect(isPlainObservationData(fixture)).toBe(true);
     const before = JSON.stringify(fixture);
     const first = inspect(fixture);
     const second = inspect(fixture);
@@ -263,6 +268,22 @@ describe('method-explainer audio observation policy', () => {
     ];
     attacks.forEach((attack) => expectOut(inspect(attack()), 'INPUT_INVALID'));
   });
+
+  it.each(makeAudioObservationLimitFixtures())(
+    'fails closed with a stable reason for an over-budget $name graph',
+    ({input}) => {
+      expect(isPlainObservationData(input)).toBe(false);
+      expect(inspect(input)).toEqual({
+        scope: 'MEASUREMENT_POLICY',
+        policy_status: 'OUT_OF_POLICY',
+        material_status: 'NOT_MATERIAL',
+        promotion_authorized: false,
+        reasons: ['INPUT_INVALID'],
+        hashes: null,
+        measurements: null,
+      });
+    },
+  );
 
   it.each(['state', 'receipt', 'material_status', 'path'])(
     'rejects forbidden field %s',
