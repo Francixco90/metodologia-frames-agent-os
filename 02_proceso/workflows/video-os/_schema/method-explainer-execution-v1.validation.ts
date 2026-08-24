@@ -83,7 +83,7 @@ export const assertMethodExplainerContractBundle = (raw: unknown) => {
   const lastEdge = Math.max(0, ...diagram.edges.map((edge) => edge.end_frame));
   const poses = diagram.required_poses;
   // prettier-ignore
-  if (poses.container_frame > firstEnter || firstEnter > lastSettle || poses.components_settled_frame < lastSettle || poses.connectors_complete_frame < poses.components_settled_frame || poses.connectors_complete_frame < lastEdge || poses.closing_frame < poses.connectors_complete_frame || Object.values(poses).some((frame) => frame >= budget.total_frames)) fail('POSE-ORDER');
+  if (poses.container_frame >= firstEnter || firstEnter > lastSettle || poses.components_settled_frame < lastSettle || poses.connectors_complete_frame < poses.components_settled_frame || poses.connectors_complete_frame < lastEdge || poses.closing_frame <= poses.connectors_complete_frame || Object.values(poses).some((frame) => frame >= budget.total_frames)) fail('POSE-ORDER');
   const expectedStages = UnattendedStageSchema.options;
   if (
     run.stages.some(

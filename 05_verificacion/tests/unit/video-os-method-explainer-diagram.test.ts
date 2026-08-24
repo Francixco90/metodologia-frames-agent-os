@@ -1,7 +1,63 @@
-import {describe, it} from 'vitest';
+import {describe, expect, it} from 'vitest';
 
-import {expectRejected, type Mutation} from './video-os-method-explainer-fixture.ts';
+import {assertMethodExplainerContractBundle, canonicalSha256} from 'workflows/video-os/index.ts';
+import {
+  artifact,
+  expectRejected,
+  makeBundle,
+  refreshRunMaterial,
+  type Bundle,
+  type Mutation,
+} from './video-os-method-explainer-fixture.ts';
+
+const expectPoseRejected = (mutate: Mutation): void => {
+  const bundle = makeBundle();
+  mutate(bundle);
+  const diagramHash = canonicalSha256(bundle.diagram);
+  bundle.hashes.diagram = diagramHash;
+  bundle.build_manifest.contract_hashes.diagram = diagramHash;
+  bundle.build_manifest.contract_set_sha256 = canonicalSha256(
+    bundle.build_manifest.contract_hashes,
+  );
+  const diagramOutput = bundle.build_manifest.required_outputs.diagram_contract;
+  const refreshedDiagramOutput = artifact(diagramOutput.ref, JSON.stringify(bundle.diagram));
+  diagramOutput.sha256 = refreshedDiagramOutput.sha256;
+  diagramOutput.size_bytes = refreshedDiagramOutput.size_bytes;
+  const buildHash = canonicalSha256(bundle.build_manifest);
+  bundle.hashes.build_manifest = buildHash;
+  bundle.unattended_run.build_manifest_sha256 = buildHash;
+  refreshRunMaterial(bundle);
+  expect(() => assertMethodExplainerContractBundle(bundle)).toThrow('POSE-ORDER');
+};
+
 describe('diagram bounds, choreography and proof-pose gates', () => {
+  it('accepts a container before the first node and a closing pose after connectors', () => {
+    expect(() => assertMethodExplainerContractBundle(makeBundle())).not.toThrow();
+  });
+
+  it.each([
+    [
+      'a container pose equal to the first node entry',
+      (bundle: Bundle) => {
+        bundle.diagram.required_poses.container_frame = Math.min(
+          ...bundle.diagram.nodes.map(({enter_frame}) => enter_frame),
+        );
+      },
+    ],
+    [
+      'a closing pose equal to connectors complete',
+      (bundle: Bundle) => {
+        bundle.diagram.required_poses.closing_frame =
+          bundle.diagram.required_poses.connectors_complete_frame;
+      },
+    ],
+  ] satisfies ReadonlyArray<readonly [string, Mutation]>)(
+    'rejects %s at POSE-ORDER',
+    (_, mutate) => {
+      expectPoseRejected(mutate);
+    },
+  );
+
   it.each([
     [
       'a safe zone extending outside the canvas',
