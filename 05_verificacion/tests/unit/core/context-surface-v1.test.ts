@@ -19,11 +19,11 @@ import {
 const root = process.cwd();
 
 describe('ContextSurfaceV1', () => {
-  it('loads exactly 54 governed non-skill surfaces with a valid DAG', () => {
+  it('loads exactly 55 governed non-skill surfaces with a valid DAG', () => {
     const surfaces = loadContextSurfaces(root);
-    expect(surfaces).toHaveLength(54);
-    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(54);
-    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(54);
+    expect(surfaces).toHaveLength(55);
+    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(55);
+    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(55);
     expect(validateContextGraph(root, surfaces)).toEqual([]);
   });
 
@@ -81,7 +81,7 @@ describe('ContextSurfaceV1', () => {
       'CTX-GRAPH003 unknown child CTX-ROOT:CTX-UNKNOWN',
     );
     expect(validateContextGraph(root, surfaces.slice(1))).toContain(
-      'CTX-COVERAGE001 expected 54, found 53',
+      'CTX-COVERAGE001 expected 55, found 54',
     );
   });
 
@@ -92,13 +92,13 @@ describe('ContextSurfaceV1', () => {
       source_of_truth: true,
       projection_name: 'context.md',
       private_cabin: 'work/private/CONTEXT.md',
-      expected_non_skill_projections: 54,
+      expected_non_skill_projections: 55,
       expected_skill_projections: 25,
       shards: ['public.yml'],
       skill_shards: ['skills.yml'],
     });
     expect(registry.skill_shards).toEqual(['skills.yml']);
-    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(79);
+    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(80);
     expect(readFileSync(resolve(root, '.gitignore'), 'utf8')).toContain('work/private/CONTEXT.md');
     const router = readFileSync(resolve(root, '02_proceso/governance/router.yml'), 'utf8');
     expect(router).toContain("reads: ['context.md']");
