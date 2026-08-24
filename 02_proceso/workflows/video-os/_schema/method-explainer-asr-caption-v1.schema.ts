@@ -16,6 +16,7 @@ const BoundedTextSchema = (max: number) =>
     .max(max)
     .refine((value) => value.trim().length > 0, 'TEXT_BLANK');
 const BeatIdSchema = z.string().regex(/^BEAT-[A-Z0-9-]{2,60}$/u);
+export const MAX_METHOD_EXPLAINER_ASR_CAPTION_BEATS = 30;
 
 export const MethodExplainerAsrCaptionV1Schema = z.strictObject({
   schema_version: z.literal('method-explainer-asr-caption-v1'),
@@ -48,7 +49,7 @@ export const MethodExplainerAsrCaptionV1Schema = z.strictObject({
       }),
     )
     .min(1)
-    .max(30),
+    .max(MAX_METHOD_EXPLAINER_ASR_CAPTION_BEATS),
 });
 
 export const MethodExplainerAsrCaptionExpectedHashesSchema = z.strictObject({
@@ -74,6 +75,7 @@ export const inspectExpectedVoiceFrames = (raw: unknown) => {
   if (!voice || typeof voice !== 'object') return [];
   const beats = (voice as {beats?: unknown}).beats;
   if (!Array.isArray(beats)) return [];
+  if (beats.length > MAX_METHOD_EXPLAINER_ASR_CAPTION_BEATS) return ['EXPECTED_BEAT_COUNT_INVALID'];
   const reasons: string[] = [];
   beats.forEach((rawBeat, index) => {
     if (!rawBeat || typeof rawBeat !== 'object') return;

@@ -4,6 +4,7 @@ import {inspectAsrCaptionDeclaration} from 'workflows/video-os/_runner/method-ex
 import {
   type AsrCaptionFixture,
   makeAsrCaptionFixture,
+  makeOversizedAsrCaptionPreflightFixture,
   rebindAsrDeclaration,
   rebindAsrFixture,
 } from '../fixtures/method-explainer-asr-caption.fixture.ts';
@@ -227,6 +228,20 @@ describe('method-explainer declarative ASR and captions', () => {
       rebindAsrFixture(fixture);
       expectBlocked(inspect(fixture), 'EXPECTED_BEAT_0_FRAME_INVALID');
     }
+  });
+
+  it('blocks an oversized raw beat set before reading untrusted beat elements', () => {
+    const fixture = makeOversizedAsrCaptionPreflightFixture();
+    const result = inspect(fixture.input);
+    expect(result).toEqual({
+      scope: 'DECLARATIVE_ONLY',
+      declarative_status: 'BLOCK',
+      material_status: 'NOT_MATERIAL',
+      promotion_authorized: false,
+      reasons: ['EXPECTED_BEAT_COUNT_INVALID'],
+      beats: [],
+    });
+    expect(fixture.indexedReads()).toBe(0);
   });
 
   it('never reflects an unparsed control or bidi beat id in a frame reason', () => {
