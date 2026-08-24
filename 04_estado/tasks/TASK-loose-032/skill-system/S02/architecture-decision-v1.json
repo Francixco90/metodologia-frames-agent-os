@@ -1,0 +1,27 @@
+{
+  "schema_version": "skill-architecture-decision-v1",
+  "decision_id": "ADR_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "case_id": "CASE_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "capability_map_id": "MAP_EXPLAINER_DIAGRAM_DESIGN_V1",
+  "decision": "CREATE",
+  "selected_topology": [
+    "SKILL_EXPLAINER_DIAGRAM_DESIGN",
+    "TOOL_EXPLAINER_DIAGRAM_VALIDATE",
+    "TOOL_EXPLAINER_DIAGRAM_COMPILE",
+    "SCHEMA_DIAGRAM_CONTRACT_V2"
+  ],
+  "rejected_alternatives": [
+    "Ampliar data-visual-composition mezclaría diagramas narrativos con visualización cuantitativa.",
+    "Delegar la gramática al renderer mezclaría decisión semántica y ejecución visual.",
+    "Separar planning, PASA y PIVOTE en skills distintas aumentaría routing, tokens y drift sin responsabilidades independientes."
+  ],
+  "tradeoffs": [
+    "Una única skill reduce routing y contexto, pero debe mantener una descripción discriminante para evitar activación en gráficos o render.",
+    "La compilación por stdout conserva E1 y determinismo; la materialización queda en el workflow con autorización separada.",
+    "El fit tipográfico real continúa en LayoutGuard, por lo que la validación estática no equivale a aprobación visual."
+  ],
+  "migration_required": false,
+  "fallback": "Emitir storyboard textual y bloquear el diagrama cuando la gramática, la autoridad o el fit visual no puedan verificarse.",
+  "owner": "skill-system-architect",
+  "content_sha256": "88c0606b53f3e4b4b4fbae42aa12804fc1c275a7600d44f84c206513d2c1e784"
+}
