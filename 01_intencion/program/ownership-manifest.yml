@@ -177,6 +177,7 @@ writers:
     - 05_verificacion/tests/unit/ledger-path-utils.test.ts
     - 05_verificacion/tests/unit/career-*.test.ts
     - 05_verificacion/tests/unit/video-os-*.test.ts
+    - 05_verificacion/tests/unit/video-os-method-explainer-fixture.ts
     - 05_verificacion/tests/unit/operator-core-*.test.ts
     - 05_verificacion/tests/unit/career-cv-spec-fixtures.ts
     - 05_verificacion/tests/unit/experience-*.test.ts
