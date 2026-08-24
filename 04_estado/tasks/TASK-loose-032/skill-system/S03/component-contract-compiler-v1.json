@@ -1,0 +1,21 @@
+{
+  "schema_version": "skill-component-contract-v1",
+  "component_id": "TOOL_EXPLAINER_DIAGRAM_COMPILE",
+  "kind": "TOOL",
+  "inputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts#DiagramContractV2Schema",
+  "outputs_schema_ref": "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts#DiagramContractV2Schema",
+  "effect_class": "E1",
+  "read_set": [
+    "02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts"
+  ],
+  "write_set": [],
+  "fallback": "BLOCKED_DIAGRAM_COMPILE: no emitir bytes parciales cuando la validación o los bindings esperados fallen; la materialización permanece responsabilidad del workflow.",
+  "acceptance": [
+    "Acepta únicamente un diagram-contract-v2 validado por DiagramContractV2Schema y bindings esperados de spec, beat budget y total de frames.",
+    "Emite JSON canónico por stdout sin ruta de salida ni efectos de filesystem.",
+    "Entradas equivalentes producen bytes idénticos y un hash SHA-256 reproducible.",
+    "No corrige silenciosamente copy, geometría, tiempos, gramática o hashes."
+  ],
+  "owner": "content",
+  "content_sha256": "a0150d089e15561f3968c7f6e3ac8719003237b7b0672b70a9280dcc2b67ff56"
+}
