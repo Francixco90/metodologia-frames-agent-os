@@ -3,6 +3,12 @@
   "default": "case-longform",
   "archetypes": {
     "case-longform": {"aspect_ratio": "16:9", "storyboard": true, "source_audio": "preserve"},
+    "method-explainer": {
+      "aspect_ratio": "9:16",
+      "storyboard": true,
+      "source_audio": "none",
+      "automatic_terminal_state": "RENDERED_DRAFT"
+    },
     "reel-evidence": {"aspect_ratio": "9:16", "storyboard": true, "source_audio": "preserve"},
     "branded-wrapper": {"aspect_ratio": "source", "storyboard": true, "source_audio": "preserve"},
     "montage": {"aspect_ratio": "16:9", "storyboard": true, "source_audio": "preserve"},

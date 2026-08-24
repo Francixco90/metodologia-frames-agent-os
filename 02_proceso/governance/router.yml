@@ -109,6 +109,10 @@ routes:
       - 'editar testimonio'
       - 'mostrar resultados concretos'
       - 'Video OS'
+      - 'explicar un método'
+      - 'method explainer'
+      - 'PASA'
+      - 'PIVOTE'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
       - '03_artefactos/skills/metodologia-trainer-os/SKILL.md'
@@ -119,11 +123,13 @@ routes:
       - '02_proceso/workflows/trainer-os/runner.ts'
       - '02_proceso/workflows/video-os/context.md'
       - '02_proceso/workflows/video-os/index.ts'
+      - '02_proceso/workflows/video-os/_schema/method-explainer-planning-v1.schema.ts'
+      - '02_proceso/workflows/video-os/_schema/method-explainer-execution-v1.schema.ts'
       - '02_proceso/workflows/operator-core/index.ts'
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
+    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
