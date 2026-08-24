@@ -1,6 +1,7 @@
 import {describe, expect, it} from 'vitest';
 
 import {
+  AUDIO_OBSERVATION_COVERAGE_GAPS,
   inspectMethodExplainerAudioObservation,
   parseMethodExplainerFfprobeOutput,
   parseMethodExplainerLoudnormSummary,
@@ -16,6 +17,7 @@ import {
   loudnormSummary,
   makeAudioObservationFixture,
   makeAudioObservationLimitFixtures,
+  makeOversizedAudioObservationProxyFixture,
   rebindAudioObservationFixture,
 } from '../fixtures/method-explainer-audio-observation.fixture.ts';
 
@@ -47,6 +49,7 @@ describe('method-explainer audio observation policy', () => {
       policy_status: 'WITHIN_POLICY',
       material_status: 'NOT_MATERIAL',
       promotion_authorized: false,
+      coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
       reasons: [],
       measurements: {
         codec_name: 'aac',
@@ -278,12 +281,29 @@ describe('method-explainer audio observation policy', () => {
         policy_status: 'OUT_OF_POLICY',
         material_status: 'NOT_MATERIAL',
         promotion_authorized: false,
+        coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
         reasons: ['INPUT_INVALID'],
         hashes: null,
         measurements: null,
       });
     },
   );
+
+  it('blocks an oversized proxy array before reading indexed descriptors', () => {
+    const fixture = makeOversizedAudioObservationProxyFixture();
+    expect(isPlainObservationData(fixture.input)).toBe(false);
+    expect(fixture.indexedDescriptorReads()).toBe(0);
+    expect(inspect(fixture.input)).toMatchObject({
+      policy_status: 'OUT_OF_POLICY',
+      material_status: 'NOT_MATERIAL',
+      promotion_authorized: false,
+      coverage_gaps: [...AUDIO_OBSERVATION_COVERAGE_GAPS],
+      reasons: ['INPUT_INVALID'],
+      hashes: null,
+      measurements: null,
+    });
+    expect(fixture.indexedDescriptorReads()).toBe(0);
+  });
 
   it.each(['state', 'receipt', 'material_status', 'path'])(
     'rejects forbidden field %s',
