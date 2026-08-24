@@ -1,0 +1,6 @@
+interface:
+  display_name: "MetodologIA Explainer Diagram Design"
+  short_description: "Contratos narrativos para diagramas de métodos"
+  default_prompt: "Usa $metodologia-explainer-diagram-design para diseñar un diagrama narrativo determinista para este método."
+policy:
+  allow_implicit_invocation: true
