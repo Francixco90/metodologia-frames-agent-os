@@ -27,6 +27,21 @@ Frames puede convertir una fuente compleja en un acuerdo de presentación, una h
 - Buscar y puntuar oportunidades desde snapshots autorizados.
 - Preparar una postulación y detenerse antes del envío.
 
+### Videos para explicar un método
+
+Frames puede convertir etapas, lentes o relaciones autorizadas en una especificación narrativa
+y un diagrama HTML/SVG determinista. La capacidad tiene tres niveles distintos:
+
+| Nivel en `method-explainer` | Qué significa hoy                                                                                                           |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Disponible                  | routing, contratos hash-bound, validación, `DiagramStage` y fixtures sintéticos para comprobar contenido, geometría y orden |
+| Asistido                    | render local cuando existen una composición, audio y materiales autorizados; el adapter no crea ni autoriza esos insumos    |
+| No habilitado               | producción automática end-to-end, TTS o ASR material acreditado, activación de la skill candidata y publicación             |
+
+El render asistido, cuando existe y tiene evidencia material, no supera `RENDERED_DRAFT` por sí
+solo. `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`: cada transición conserva su propio
+gate y una verificación automática no sustituye la aprobación humana.
+
 ## Niveles de capacidad
 
 | Nivel         | Significa                                                                          | Ejemplo                                                    |
