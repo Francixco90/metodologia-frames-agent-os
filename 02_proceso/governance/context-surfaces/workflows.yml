@@ -574,3 +574,42 @@ surfaces:
     privacy: public_only
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-VIDEO-OS
+    root: 02_proceso/workflows/video-os
+    kind: workflow
+    owner: content
+    applies_when: R6 seleccionó un video o derivado audiovisual gobernado por Video OS.
+    authority_refs: [02_proceso/workflows/video-os/index.ts]
+    load_first:
+      [
+        02_proceso/workflows/video-os/index.ts,
+        02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts,
+      ]
+    load_on_demand: [02_proceso/workflows/video-os/_schema/index.ts]
+    defer: [Runners, assets y schemas no seleccionados por la ruta]
+    routes: [R6]
+    workflows: [V00, V01, V02, V03, V04]
+    primary_skills: [content-os-router]
+    tools: [workflow_plan]
+    read_set:
+      [
+        02_proceso/workflows/video-os/index.ts,
+        02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts,
+      ]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/video-os/context.md]}
+    gates:
+      [
+        G09_VIDEO_OS,
+        VO_INTAKE_COMPLETE,
+        VO_DIRECTION_APPROVED,
+        VO_PRINCIPAL_VERIFIED,
+        VO_HANDOFF_APPROVED,
+      ]
+    stop_rules:
+      [
+        STOP en VO_DIRECTION_APPROVED hasta aprobación H01,
+        RENDERED_DRAFT no equivale a HUMAN_APPROVED ni READY ni PUBLISHED,
+      ]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}

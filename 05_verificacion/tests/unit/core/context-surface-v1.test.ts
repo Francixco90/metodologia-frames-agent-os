@@ -19,11 +19,11 @@ import {
 const root = process.cwd();
 
 describe('ContextSurfaceV1', () => {
-  it('loads exactly 54 governed non-skill surfaces with a valid DAG', () => {
+  it('loads exactly 55 governed non-skill surfaces with a valid DAG', () => {
     const surfaces = loadContextSurfaces(root);
-    expect(surfaces).toHaveLength(54);
-    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(54);
-    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(54);
+    expect(surfaces).toHaveLength(55);
+    expect(new Set(surfaces.map(({context_id}) => context_id)).size).toBe(55);
+    expect(new Set(surfaces.map(contextProjectionPath)).size).toBe(55);
     expect(validateContextGraph(root, surfaces)).toEqual([]);
   });
 
@@ -81,7 +81,7 @@ describe('ContextSurfaceV1', () => {
       'CTX-GRAPH003 unknown child CTX-ROOT:CTX-UNKNOWN',
     );
     expect(validateContextGraph(root, surfaces.slice(1))).toContain(
-      'CTX-COVERAGE001 expected 54, found 53',
+      'CTX-COVERAGE001 expected 55, found 54',
     );
   });
 
@@ -92,16 +92,35 @@ describe('ContextSurfaceV1', () => {
       source_of_truth: true,
       projection_name: 'context.md',
       private_cabin: 'work/private/CONTEXT.md',
-      expected_non_skill_projections: 54,
+      expected_non_skill_projections: 55,
       expected_skill_projections: 25,
       shards: ['public.yml'],
       skill_shards: ['skills.yml'],
     });
     expect(registry.skill_shards).toEqual(['skills.yml']);
-    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(79);
+    expect(registry.expected_non_skill_projections + registry.expected_skill_projections).toBe(80);
     expect(readFileSync(resolve(root, '.gitignore'), 'utf8')).toContain('work/private/CONTEXT.md');
     const router = readFileSync(resolve(root, '02_proceso/governance/router.yml'), 'utf8');
     expect(router).toContain("reads: ['context.md']");
     expect(router).not.toContain('CONTEXT.md');
+  });
+
+  it('keeps Video OS authority narrow and exposes every governed stop', () => {
+    const videoOs = loadContextSurfaces(root).find(({context_id}) => context_id === 'CTX-VIDEO-OS');
+    expect(videoOs).toBeDefined();
+    expect(videoOs?.authority_refs).toEqual(['02_proceso/workflows/video-os/index.ts']);
+    expect(videoOs?.load_on_demand).toContain('02_proceso/workflows/video-os/_schema/index.ts');
+    expect(videoOs?.read_set).not.toContain('02_proceso/workflows/video-os/_schema/index.ts');
+    expect(videoOs?.gates).toEqual([
+      'G09_VIDEO_OS',
+      'VO_INTAKE_COMPLETE',
+      'VO_DIRECTION_APPROVED',
+      'VO_PRINCIPAL_VERIFIED',
+      'VO_HANDOFF_APPROVED',
+    ]);
+    expect(videoOs?.stop_rules).toEqual([
+      'STOP en VO_DIRECTION_APPROVED hasta aprobación H01',
+      'RENDERED_DRAFT no equivale a HUMAN_APPROVED ni READY ni PUBLISHED',
+    ]);
   });
 });
