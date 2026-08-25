@@ -5,7 +5,7 @@ Baseline: `4c8c16820aa3abe9f4089a1f88c093e2ea58140f`. Coverage: **387/387**. [C�
 Este documento es la proyección legible de
 `docs/program/file-disposition-ledger.yml`. El YAML canónico se regenera desde el árbol y los blobs
 de Git, compara el working tree y resuelve owner, decisión, justificación y evidencia para cada uno
-de los 377 archivos. [CONFIG]
+de los 387 archivos. [CONFIG]
 
 ## Clases
 

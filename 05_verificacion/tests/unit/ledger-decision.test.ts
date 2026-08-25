@@ -1,4 +1,9 @@
+import {readFileSync} from 'node:fs';
+
 import {describe, expect, it} from 'vitest';
+import {parse} from 'yaml';
+
+import type {Ledger} from '../../scripts/generate-file-disposition-ledger.ts';
 
 import {
   currentBytesFor,
@@ -6,6 +11,7 @@ import {
   isAuthoredEligible,
   isGeneratedProjection,
 } from '../../scripts/ledger/decision.ts';
+import {markdownFor} from '../../scripts/ledger/markdown.ts';
 
 const root = process.cwd();
 
@@ -79,5 +85,34 @@ describe('currentBytesFor', () => {
 
   it('returns null for a directory rather than reading it as a file', () => {
     expect(currentBytesFor(root, 'scripts')).toBeNull();
+  });
+});
+
+describe('markdownFor', () => {
+  it('renders baseline, coverage and entries from the ledger value', () => {
+    const ledger = parse(
+      readFileSync('docs/program/file-disposition-ledger.yml', 'utf8'),
+    ) as Ledger;
+    const [first, second, omitted] = ledger.entries;
+    if (!first || !second || !omitted) throw new Error('ledger fixture requires three entries');
+
+    const baseline = 'f'.repeat(40);
+    const fixture: Ledger = {
+      ...ledger,
+      baseline_commit: baseline,
+      baseline_file_count: 2,
+      coverage: '2/2',
+      entries: [first, second],
+    };
+    const markdown = markdownFor(fixture);
+
+    expect(markdown).toContain(`Baseline: \`${baseline}\`. Coverage: **2/2**.`);
+    expect(markdown).toContain('de los 2 archivos.');
+    expect(markdown).toContain('## Cobertura 2/2');
+    expect(markdown).toContain(`\`${first.path}\``);
+    expect(markdown).toContain(`\`${second.path}\``);
+    expect(markdown).not.toContain(`\`${omitted.path}\``);
+    expect(markdown).not.toContain('de los 377 archivos.');
+    expect(markdown).not.toContain('## Cobertura 387/387');
   });
 });
