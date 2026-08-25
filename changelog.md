@@ -6,6 +6,14 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
 
 ## 2026-08 — Method explainer contract and diagram candidate
 
+- **Aclaración de procedencia** — En la entrada inmediata siguiente, los
+  identificadores **#142–#149, #170, #173 y #197–#210** corresponden a PRs de
+  `JaviMetodologIA/metodologia-frames-agent-os` y acreditan únicamente la
+  procedencia allí registrada. No son números de PR del fork público ni prueban
+  su integración. Cada replay público se acredita por sus propios PRs, commits y
+  gates en el repositorio donde se fusiona; este changelog no asigna números a
+  esos replays. [CONFIG]
+
 - **PRs #142–#149, #170, #173 y #197–#210** — Video OS incorpora de forma
   incremental contratos hash-bound para intención, supuestos, modelo del método,
   beats, voz, diagramas, manifiesto de build y checkpoints; un adapter de General

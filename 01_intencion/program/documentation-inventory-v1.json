@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "7ca7e9ca14487fb351d9cef65a07b7f133058c7fb17f3e18cefeaa5524fed10c",
+  "repositoryTreeSha256": "314a94e86971d5aa1e698353a27fe7221764641639b75fdc0df6a2f1b2f86bf4",
   "totalMarkdown": 1857,
   "auditedAuthored": 601,
   "classPaths": {
@@ -17979,9 +17979,9 @@
       "sourceRef": "changelog.md",
       "derivatives": [],
       "lifecycle": "frozen",
-      "sha256": "fdde2b30d5b857f1e4f1189495ae8533cd52d62f78b1ceefe67009ffff0c60a3",
-      "words": 2169,
-      "lines": 283,
+      "sha256": "6810bf7ba39eecdda53c3d84bed8c88bf518b05ab1061667b1ca6446c8e5d380",
+      "words": 2237,
+      "lines": 291,
       "score": 100,
       "threshold": 80,
       "decision": "FREEZE",
