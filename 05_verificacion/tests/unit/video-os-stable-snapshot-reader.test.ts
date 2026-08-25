@@ -16,10 +16,13 @@ import {dirname, resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
+import {StableSnapshotError} from 'workflows/video-os/_runner/stable-snapshot-filesystem-boundary.ts';
 import {withStableSnapshotSet} from 'workflows/video-os/_runner/stable-snapshot-reader.ts';
 import {withStableSnapshotRootCapability} from 'workflows/video-os/_runner/stable-snapshot-root-capability.ts';
+import {STABLE_SNAPSHOT_COVERAGE_GAPS} from 'workflows/video-os/_schema/stable-snapshot-reader-v1.schema.ts';
 import {
   type StableSnapshotFixture,
+  makeOversizedMaterialsProxyFixture,
   makeStableSnapshotFixture,
   withFixtureCapability,
 } from '../fixtures/stable-snapshot-reader.fixture.ts';
@@ -39,14 +42,29 @@ const run = (
   withFixtureCapability(value, (capability) =>
     withStableSnapshotSet(capability, value.request, operation, hooks),
   );
+const stableFailure = (operation: () => unknown) => {
+  let captured: unknown;
+  try {
+    operation();
+  } catch (error) {
+    captured = error;
+  }
+  expect(captured).toBeInstanceOf(StableSnapshotError);
+  const stable = captured as StableSnapshotError;
+  expect(stable.message).toMatch(/^STABLE-SNAPSHOT-[A-Z0-9-]+$/u);
+  expect(stable.coverage_gaps).toEqual(STABLE_SNAPSHOT_COVERAGE_GAPS);
+  return stable;
+};
 
 describe('stable snapshot reader', () => {
   it('streams opaque bytes, retains bounded JSON and removes private snapshots', () => {
     const value = fixture();
     const paths: string[] = [];
+    let temporaryFd = -1;
     const result = run(
       value,
       {
+        beforeTemporaryChmod: (_path, fd) => (temporaryFd = fd),
         write: (fd, buffer, offset, length) =>
           writeSync(fd, buffer, offset, Math.min(7, length), null),
       },
@@ -65,12 +83,14 @@ describe('stable snapshot reader', () => {
       scope: 'MATERIAL_OBSERVATION',
       observation_status: 'OBSERVED',
       promotion_authorized: false,
+      coverage_gaps: STABLE_SNAPSHOT_COVERAGE_GAPS,
       json_retained_bytes: value.json.length,
     });
     expect(JSON.stringify(result.observation)).not.toMatch(
       /path|receipt|RENDERED|READY|PUBLISHED/u,
     );
     expect(paths.every((path) => !existsSync(path))).toBe(true);
+    expect(() => fstatSync(temporaryFd)).toThrow();
   });
   it('requires an identity-bound opaque root capability', () => {
     const value = fixture();
@@ -188,9 +208,9 @@ describe('stable snapshot reader', () => {
     expect(() =>
       run(failed, {}, ({items}) => {
         snapshot = items[0]!.path;
-        throw new Error('consumer failed');
+        throw new StableSnapshotError(failed.root);
       }),
-    ).toThrow(/consumer failed/u);
+    ).toThrow(/UNSAFE-REASON/u);
     expect(existsSync(snapshot)).toBe(false);
     expect(() =>
       run(fixture(), {}, ({items}) => {
@@ -215,19 +235,27 @@ describe('stable snapshot reader', () => {
     let input = -1;
     expect(() =>
       run(value, {beforeDestinationOpen: (fd) => ((input = fd), failFixture('output open'))}),
-    ).toThrow(/output open/u);
+    ).toThrow(/HOOK-BEFORE-DESTINATION-OPEN/u);
     expect(() => fstatSync(input)).toThrow();
     expect(() =>
       withStableSnapshotRootCapability(value.authority, () => null, {
         rootStat: (fd) => ((input = fd), failFixture('root stat')),
       }),
-    ).toThrow(/root stat/u);
+    ).toThrow(/ROOT-STAT-HOOK/u);
     expect(() => fstatSync(input)).toThrow();
-    let temporary = '';
+    let temporary = '',
+      temporaryFd = -1;
     expect(() =>
-      run(value, {beforeTemporaryChmod: (path) => ((temporary = path), failFixture('chmod'))}),
-    ).toThrow(/chmod/u);
+      run(value, {
+        beforeTemporaryChmod: (path, fd) => (
+          (temporary = path),
+          (temporaryFd = fd),
+          failFixture('chmod')
+        ),
+      }),
+    ).toThrow(/TEMP-HOOK/u);
     expect(existsSync(temporary)).toBe(false);
+    expect(() => fstatSync(temporaryFd)).toThrow();
     const hostile = new Proxy(value.request, {get: () => failFixture('request getter')});
     expect(() =>
       withFixtureCapability(value, (capability) =>
@@ -247,6 +275,73 @@ describe('stable snapshot reader', () => {
         },
       }),
     ).toThrow(/DRIFT/u);
+  });
+  it('bounds oversized materials before indexed reads or Zod traversal', () => {
+    const hostile = makeOversizedMaterialsProxyFixture();
+    const failure = stableFailure(() =>
+      withStableSnapshotSet({} as never, hostile.request, () => null),
+    );
+    expect(failure.reason).toBe('REQUEST');
+    expect(hostile.reads()).toEqual({indexedDescriptorReads: 0, indexedValueReads: 0});
+  });
+  it('does not chmod or remove a substituted temporary root', () => {
+    const value = fixture();
+    let temporary = '';
+    stableFailure(() =>
+      run(value, {
+        beforeTemporaryOpen: (path) => {
+          temporary = path;
+          const moved = `${temporary}.moved`;
+          renameSync(temporary, moved);
+          mkdirSync(temporary, {mode: 0o755});
+          roots.push(moved, temporary);
+        },
+      }),
+    );
+    expect(statSync(temporary).mode & 0o777).toBe(0o755);
+  });
+  it('fails closed when a hook changes temporary-root mode during copy', () => {
+    const value = fixture();
+    let temporary = '',
+      temporaryFd = -1;
+    const failure = stableFailure(() =>
+      run(value, {
+        beforeTemporaryChmod: (path, fd) => {
+          temporary = path;
+          temporaryFd = fd;
+          roots.push(path);
+        },
+        afterChunk: (_ref, chunk) => {
+          if (chunk === 1) chmodSync(temporary, 0o755);
+        },
+      }),
+    );
+    expect(failure.reason).toBe('TEMP-IDENTITY-DRIFT');
+    expect(existsSync(temporary)).toBe(false);
+    expect(() => fstatSync(temporaryFd)).toThrow();
+  });
+  it('sanitizes filesystem failures without exposing source or temporary paths', () => {
+    const source = fixture();
+    const sourceError = stableFailure(() =>
+      run(source, {
+        afterSetPreflight: () => rmSync(resolve(source.root, 'sources/spec.json')),
+      }),
+    );
+    expect(sourceError.reason).toBe('SOURCE-OPEN');
+
+    const destination = fixture();
+    let temporary = '';
+    const destinationError = stableFailure(() =>
+      run(destination, {
+        beforeTemporaryChmod: (path) => (temporary = path),
+        beforeDestinationOpen: () => mkdirSync(resolve(temporary, '0.snapshot')),
+      }),
+    );
+    expect(destinationError.reason).toBe('DESTINATION-OPEN');
+
+    const verify = fixture();
+    const verifyError = stableFailure(() => run(verify, {}, ({items}) => rmSync(items[0]!.path)));
+    expect(verifyError.reason).toBe('VERIFY-LSTAT');
   });
 });
 const failFixture = (message: string): never => {
