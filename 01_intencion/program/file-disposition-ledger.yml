@@ -62,7 +62,7 @@ budgets:
     baseline_files: 58
     checked_files: 58
     baseline_words: 12516
-    current_words_for_baseline_files: 12978
+    current_words_for_baseline_files: 13078
     violations: []
     checks:
       - path: AGENTS.md
@@ -79,9 +79,9 @@ budgets:
         status: pass
       - path: README.md
         baseline_words: 1328
-        current_words: 1573
+        current_words: 1673
         maximum_words: 2656
-        ratio: 1.1845
+        ratio: 1.2598
         status: pass
       - path: SECURITY.md
         baseline_words: 73
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94695
-    v3_rolling_adjustment_words: 6509
+    baseline_words: 94795
+    v3_rolling_adjustment_words: 6609
     original_baseline_words: 88186
-    final_words: 110843
+    final_words: 110943
     maximum_multiplier: 1.5
-    maximum_words: 142042
-    actual_multiplier: 1.1705
+    maximum_words: 142192
+    actual_multiplier: 1.1703
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 94695
-    v3_rolling_adjustment_words: 6509
+    baseline_words: 94795
+    v3_rolling_adjustment_words: 6609
     original_baseline_words: 88186
-    final_words: 110843
-    maximum_words: 189390
-    word_multiplier: 1.1705
+    final_words: 110943
+    maximum_words: 189590
+    word_multiplier: 1.1703
     baseline_loc: 35585
     v3_rolling_adjustment_loc: 2697
     original_baseline_loc: 32888
-    final_loc: 41577
+    final_loc: 41584
     maximum_loc: 71170
-    loc_multiplier: 1.1684
+    loc_multiplier: 1.1686
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -1037,9 +1037,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:README.md
       current_ref: working-tree:README.md
       current_state: present
-      current_sha256: 4c47e9c676a5f9458976becbd13446be76cdfd2e56cb2ff6d5557341a2f7d96f
-      current_words: 1573
-      current_loc: 139
+      current_sha256: 27a35f04faaf004123327d9a491c506efb8842db26fc4e4ea0aa1393a7f23707
+      current_words: 1673
+      current_loc: 146
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:README.md

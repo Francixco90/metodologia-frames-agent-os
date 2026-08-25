@@ -60,6 +60,26 @@ El sistema de selección activa solo las etapas necesarias. P03, P05, P07 y P08 
 - Duración, encuadre, ritmo, continuidad y safe areas.
 - Procedencia, derechos, hashes y limitaciones.
 
+### Video para explicar un método
+
+La ruta `method-explainer` disponible prepara y valida:
+
+- intención, audiencia, supuestos y afirmaciones permitidas;
+- etapas o lentes, relaciones y presupuesto de tiempo por beat;
+- funciones complementarias para voz, texto en pantalla y captions;
+- contrato de diagrama con nodos, conectores, orden de entrada y poses de prueba;
+- manifiesto de build y hashes para detectar cambios en los materiales.
+
+`DiagramStage` permite comprobar el diagrama con fixtures sintéticos y guards de geometría. Esto
+no equivale a un video terminado. El render local es asistido y solo puede continuar cuando una
+composición, el audio y todos los materiales autorizados están disponibles; el adapter actual no
+los genera ni concede autoridad de render.
+
+La producción automática end-to-end, la generación o reconocimiento material de voz, la skill
+candidata de diseño de diagramas y la publicación no están habilitados. Si otro proceso autorizado
+materializa un MP4 local, permanece en `RENDERED_DRAFT` hasta completar revisión humana, derechos y
+los gates independientes de preparación y publicación.
+
 ## Diseños “wow” con propósito
 
 Frames usa el Design System de MetodologIA por defecto para HTML. “Wow” no significa añadir efectos a todo: significa jerarquía clara, narrativa memorable, evidencia visible, accesibilidad y una presentación adecuada al contexto. El HTML es offline, responsive, imprimible y coherente con el Markdown canónico.
@@ -69,6 +89,7 @@ Frames usa el Design System de MetodologIA por defecto para HTML. “Wow” no s
 - El brief debe aprobarse antes de producción, salvo autorización end-to-end inequívoca ya registrada.
 - Un prompt no cuenta como imagen o video producido.
 - Un render técnico no concede `READY` ni `PUBLISHED`.
+- `RENDERED_DRAFT`, `HUMAN_APPROVED`, `READY` y `PUBLISHED` son estados distintos; ninguno implica el siguiente.
 - Derechos desconocidos, claims sin fuente o marca no autorizada bloquean promoción.
 - P09 prepara distribución, pero no publica.
 - La disponibilidad de PPTX, video, audio o PDF depende de un generador material y verificado.

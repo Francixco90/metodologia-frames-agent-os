@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             94695 |              110843 |     142042 (1.5×) | 1.1705× | `pass` |
-| Total authored (palabras)     |             94695 |              110843 |       189390 (2×) | 1.1705× | `pass` |
-| Total authored (LOC)          |             35585 |               41577 |        71170 (2×) | 1.1684× | `pass` |
+| Corpus authored elegible      |             94795 |              110943 |     142192 (1.5×) | 1.1703× | `pass` |
+| Total authored (palabras)     |             94795 |              110943 |       189590 (2×) | 1.1703× | `pass` |
+| Total authored (LOC)          |             35585 |               41584 |        71170 (2×) | 1.1686× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -68,7 +68,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `.prettierrc.json`                                                                                            | `repo`             | `verified_no_change` | 12                 | 12                | 7           | 7          | `7beeef56c2f4a90d4ab623d4f4ee0ec1bf27f768b5b72751e2c2be618761c18c` | `byte-identical` |
 | `AGENTS.md`                                                                                                   | `lead`             | `refactored`         | 222                | 254               | 23          | 36         | `dc598930bfdb0f7da1f9dd46ae8dd5c353375c16802eb8bddd6c5c0c721cd8a7` | `changed`        |
 | `CONTRIBUTING.md`                                                                                             | `lead`             | `refactored`         | 62                 | 111               | 12          | 21         | `ef5b969ba871298e457009ce6620cd802dc5246ca0b3a78dbace8284f353a112` | `changed`        |
-| `README.md`                                                                                                   | `lead`             | `refactored`         | 1328               | 1573              | 243         | 139        | `a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2` | `changed`        |
+| `README.md`                                                                                                   | `lead`             | `refactored`         | 1328               | 1673              | 243         | 146        | `a75d58ab3417498ab2722e16fe64d450ad1ef16013cfc5f18a47d00f2185c3d2` | `changed`        |
 | `SECURITY.md`                                                                                                 | `lead`             | `verified_no_change` | 73                 | 73                | 8           | 8          | `4ef6d9dfca8c3ed939d3bf402362e340efb7ee52684c181a31d77e996235459e` | `byte-identical` |
 | `adapters/n8n/README.md`                                                                                      | `n8n`              | `verified_no_change` | 184                | 184               | 23          | 23         | `99de7683e9276c5c711c76a6519a25335ced04ec8ee41b24851738a2fb4c9e10` | `byte-identical` |
 | `adapters/n8n/callback-policy.json`                                                                           | `n8n`              | `verified_no_change` | 21                 | 21                | 16          | 16         | `be738429c5f1147bfb0e7b533f89465ded788851743dac46bd835dbbbca22474` | `byte-identical` |
