@@ -36,9 +36,10 @@ tiene autoridad para componer, renderizar ni publicar. Su estado máximo es `BLO
 | Voz y captions  | Contratos y políticas que comparan declaraciones y mediciones aportadas.                                                        | ASR/captions son `DECLARATIVE_ONLY`; no hay TTS, normalización ni escucha acreditada. |
 | Skill de diseño | Candidate S04 con fixtures y validadores locales.                                                                               | `UNREGISTERED_DRAFT · CANDIDATE_PENDING_GATE`; no está activa ni ejecutada.           |
 
-La spec gobierna y cada derivado conserva sus hashes. El lector estable de materiales rechaza
-symlinks, sustituciones y drift entre inspección y consumo; este control acredita integridad del
-bundle, no calidad creativa ni promoción. [CONFIG]
+La spec gobierna y cada derivado conserva sus hashes. En cada checkpoint, el lector estable
+observa y bloquea symlinks, sustituciones o drift detectados entre sus validaciones. Conserva los
+gaps `HOST_OBJECT_TRAPS_REQUIRE_OUTER_TIME_BOUND` y `NODE_FS_OPENAT_UNAVAILABLE`: no acredita
+exclusión concurrente absoluta, calidad creativa ni promoción. [CONFIG]
 
 ## Cómo arrancar
 
