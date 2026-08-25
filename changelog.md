@@ -4,6 +4,29 @@ Append-only record of merged PRs and programa milestones (ADR 0027: the
 repo's only versioned temporal trace besides `04_estado/receipts/**` and
 `04_estado/tasks/**`). Newest entry first. Never rewrite past entries. [CONFIG]
 
+## 2026-08 — Method explainer contract and diagram candidate
+
+- **Aclaración de procedencia** — En la entrada inmediata siguiente, los
+  identificadores **#142–#149, #170, #173 y #197–#210** corresponden a PRs de
+  `JaviMetodologIA/metodologia-frames-agent-os` y acreditan únicamente la
+  procedencia allí registrada. No son números de PR del fork público ni prueban
+  su integración. Cada replay público se acredita por sus propios PRs, commits y
+  gates en el repositorio donde se fusiona; este changelog no asigna números a
+  esos replays. [CONFIG]
+
+- **PRs #142–#149, #170, #173 y #197–#210** — Video OS incorpora de forma
+  incremental contratos hash-bound para intención, supuestos, modelo del método,
+  beats, voz, diagramas, manifiesto de build y checkpoints; un adapter de General
+  Video limitado a `PLAN_VERIFY_ONLY`; `DiagramStage` con geometría y guards
+  deterministas; políticas declarativas de captions/ASR y observación de audio; y
+  lectura estable de materiales frente a symlinks y drift. El adapter conserva
+  `render_authority:false`, `publication_authority:false`, estado máximo
+  `BLOCKED` y el gap `GENERAL_VIDEO_METHOD_EXPLAINER_NOT_PROMOTED`. La skill
+  `metodologia-explainer-diagram-design` permanece
+  `UNREGISTERED_DRAFT · CANDIDATE_PENDING_GATE`; ASR/captions son
+  `DECLARATIVE_ONLY`; no se acreditan TTS, normalización, escucha, composición
+  end-to-end, MP4 ni publicación. [CONFIG]
+
 ## 2026-08 — Frames Content Workflow deployment closure
 
 - **PRs #2–#39** — 41 commits integrados secuencialmente en `origin/main`
