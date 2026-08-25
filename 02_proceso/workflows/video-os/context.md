@@ -14,7 +14,6 @@ R6 seleccionó un video o derivado audiovisual gobernado por Video OS.
 Owner: `content`. Cargar en este orden:
 
 - `02_proceso/workflows/video-os/index.ts`
-- `02_proceso/workflows/video-os/_schema/index.ts`
 
 ## 3. Carga mínima y contexto diferido
 
@@ -44,7 +43,6 @@ Tools: `workflow_plan`
 Modo: `generated_only`. Read set mínimo:
 
 - `02_proceso/workflows/video-os/index.ts`
-- `02_proceso/workflows/video-os/_schema/index.ts`
 - `02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts`
 
 Write set:
@@ -55,8 +53,8 @@ Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `G09_VIDEO_OS`  
-Stop rules: VO_DIRECTION_APPROVED requerido · RENDERED_DRAFT no autoriza publicación
+Gates: `G09_VIDEO_OS`, `VO_INTAKE_COMPLETE`, `VO_DIRECTION_APPROVED`, `VO_PRINCIPAL_VERIFIED`, `VO_HANDOFF_APPROVED`  
+Stop rules: STOP en VO_DIRECTION_APPROVED hasta aprobación H01 · RENDERED_DRAFT no equivale a HUMAN_APPROVED ni READY ni PUBLISHED
 
 Hijos:
 
