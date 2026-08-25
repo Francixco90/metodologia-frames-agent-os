@@ -39,55 +39,70 @@ export const withStableSnapshotSet = <T>(
   if (hooks.afterSetPreflight)
     stableSnapshotBoundary('HOOK-AFTER-SET-PREFLIGHT', hooks.afterSetPreflight);
   getStableSnapshotRoot(capability);
-  return withStableSnapshotTemporaryRoot((temporary) => {
-    const snapshots = prepared.map((item, index) =>
-      copyStableSnapshotMaterial(temporary, item, index, hooks),
-    );
-    assertStableSnapshotTemporaryRoot(temporary);
-    if (hooks.beforeSourceSetRevalidation)
-      stableSnapshotBoundary(
-        'HOOK-BEFORE-SOURCE-SET-REVALIDATION',
-        hooks.beforeSourceSetRevalidation,
+  return withStableSnapshotTemporaryRoot(
+    (temporary) => {
+      const snapshots = prepared.map((item, index) =>
+        copyStableSnapshotMaterial(temporary, item, index, hooks),
       );
-    assertStableSnapshotTemporaryRoot(temporary);
-    prepared.forEach((item) => assertStableSnapshotSource(item, 'source-set', hooks));
-    getStableSnapshotRoot(capability);
-    const value = stableSnapshotBoundary('CONSUMER', () =>
-      operation({
-        items: snapshots.map(({ref, path, json_bytes}) => ({
-          ref,
-          path,
-          ...(json_bytes ? {json_bytes} : {}),
-        })),
-      }),
-    );
-    if (value && typeof value === 'object' && 'then' in value) stableSnapshotFail('ASYNC-SCOPE');
-    snapshots.forEach((snapshot) => {
-      if (
-        snapshot.json_bytes &&
-        (snapshot.json_bytes.length !== snapshot.identity.size ||
-          createHash('sha256').update(snapshot.json_bytes).digest('hex') !== snapshot.sha256)
-      )
-        stableSnapshotFail('JSON-BUFFER-DRIFT');
-    });
-    assertStableSnapshotTemporaryRoot(temporary);
-    if (hooks.beforeSnapshotRevalidation)
-      stableSnapshotBoundary('HOOK-BEFORE-SNAPSHOT-REVALIDATION', hooks.beforeSnapshotRevalidation);
-    assertStableSnapshotTemporaryRoot(temporary);
-    getStableSnapshotRoot(capability);
-    snapshots.forEach((snapshot) => {
       assertStableSnapshotTemporaryRoot(temporary);
-      verifyStableSnapshot(snapshot.path, snapshot.identity, snapshot.sha256, hooks, snapshot.ref);
+      if (hooks.beforeSourceSetRevalidation)
+        stableSnapshotBoundary(
+          'HOOK-BEFORE-SOURCE-SET-REVALIDATION',
+          hooks.beforeSourceSetRevalidation,
+        );
       assertStableSnapshotTemporaryRoot(temporary);
-    });
-    prepared.forEach((item) => assertStableSnapshotSource(item, 'source-set', hooks));
-    return {
-      value,
-      observation: makeStableSnapshotObservation(
-        createHash('sha256').update(`${root.dev}:${root.ino}`).digest('hex'),
-        request.materials,
-        snapshots.reduce((sum, item) => sum + (item.json_bytes?.length ?? 0), 0),
-      ),
-    };
-  }, hooks.beforeTemporaryChmod);
+      prepared.forEach((item) => assertStableSnapshotSource(item, 'source-set', hooks));
+      getStableSnapshotRoot(capability);
+      const value = stableSnapshotBoundary('CONSUMER', () =>
+        operation({
+          items: snapshots.map(({ref, path, json_bytes}) => ({
+            ref,
+            path,
+            ...(json_bytes ? {json_bytes} : {}),
+          })),
+        }),
+      );
+      if (value && typeof value === 'object' && 'then' in value) stableSnapshotFail('ASYNC-SCOPE');
+      snapshots.forEach((snapshot) => {
+        if (
+          snapshot.json_bytes &&
+          (snapshot.json_bytes.length !== snapshot.identity.size ||
+            createHash('sha256').update(snapshot.json_bytes).digest('hex') !== snapshot.sha256)
+        )
+          stableSnapshotFail('JSON-BUFFER-DRIFT');
+      });
+      assertStableSnapshotTemporaryRoot(temporary);
+      if (hooks.beforeSnapshotRevalidation)
+        stableSnapshotBoundary(
+          'HOOK-BEFORE-SNAPSHOT-REVALIDATION',
+          hooks.beforeSnapshotRevalidation,
+        );
+      assertStableSnapshotTemporaryRoot(temporary);
+      getStableSnapshotRoot(capability);
+      snapshots.forEach((snapshot) => {
+        assertStableSnapshotTemporaryRoot(temporary);
+        verifyStableSnapshot(
+          snapshot.path,
+          snapshot.identity,
+          snapshot.sha256,
+          hooks,
+          snapshot.ref,
+        );
+        assertStableSnapshotTemporaryRoot(temporary);
+      });
+      prepared.forEach((item) => assertStableSnapshotSource(item, 'source-set', hooks));
+      return {
+        value,
+        observation: makeStableSnapshotObservation(
+          createHash('sha256').update(`${root.dev}:${root.ino}`).digest('hex'),
+          request.materials,
+          snapshots.reduce((sum, item) => sum + (item.json_bytes?.length ?? 0), 0),
+        ),
+      };
+    },
+    {
+      ...(hooks.beforeTemporaryOpen ? {beforeOpen: hooks.beforeTemporaryOpen} : {}),
+      ...(hooks.beforeTemporaryChmod ? {beforeFchmod: hooks.beforeTemporaryChmod} : {}),
+    },
+  );
 };

@@ -26,6 +26,7 @@ export type StableSnapshotReaderTestHooks = StableSnapshotIdentityHooks & {
   beforeSourceSetRevalidation?: () => void;
   beforeSnapshotRevalidation?: () => void;
   beforeDestinationOpen?: (inputFd: number) => void;
+  beforeTemporaryOpen?: (path: string) => void;
   beforeTemporaryChmod?: (path: string, fd: number) => void;
   forceNoFollowUnavailable?: true;
   read?: (...args: [number, NodeJS.ArrayBufferView, number, number, null]) => number;

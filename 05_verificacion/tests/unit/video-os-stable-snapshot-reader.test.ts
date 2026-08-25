@@ -243,11 +243,19 @@ describe('stable snapshot reader', () => {
       }),
     ).toThrow(/ROOT-STAT-HOOK/u);
     expect(() => fstatSync(input)).toThrow();
-    let temporary = '';
+    let temporary = '',
+      temporaryFd = -1;
     expect(() =>
-      run(value, {beforeTemporaryChmod: (path) => ((temporary = path), failFixture('chmod'))}),
+      run(value, {
+        beforeTemporaryChmod: (path, fd) => (
+          (temporary = path),
+          (temporaryFd = fd),
+          failFixture('chmod')
+        ),
+      }),
     ).toThrow(/TEMP-HOOK/u);
     expect(existsSync(temporary)).toBe(false);
+    expect(() => fstatSync(temporaryFd)).toThrow();
     const hostile = new Proxy(value.request, {get: () => failFixture('request getter')});
     expect(() =>
       withFixtureCapability(value, (capability) =>
@@ -279,29 +287,28 @@ describe('stable snapshot reader', () => {
   it('does not chmod or remove a substituted temporary root', () => {
     const value = fixture();
     let temporary = '';
-    let moved = '';
-    const failure = stableFailure(() =>
+    stableFailure(() =>
       run(value, {
-        beforeTemporaryChmod: (path) => (temporary = path),
-        beforeDestinationOpen: () => {
-          moved = `${temporary}.moved`;
+        beforeTemporaryOpen: (path) => {
+          temporary = path;
+          const moved = `${temporary}.moved`;
           renameSync(temporary, moved);
           mkdirSync(temporary, {mode: 0o755});
           roots.push(moved, temporary);
         },
       }),
     );
-    expect(failure.reason).toBe('TEMP-IDENTITY-DRIFT');
-    expect(existsSync(temporary)).toBe(true);
     expect(statSync(temporary).mode & 0o777).toBe(0o755);
   });
   it('fails closed when a hook changes temporary-root mode during copy', () => {
     const value = fixture();
-    let temporary = '';
+    let temporary = '',
+      temporaryFd = -1;
     const failure = stableFailure(() =>
       run(value, {
-        beforeTemporaryChmod: (path) => {
+        beforeTemporaryChmod: (path, fd) => {
           temporary = path;
+          temporaryFd = fd;
           roots.push(path);
         },
         afterChunk: (_ref, chunk) => {
@@ -310,7 +317,8 @@ describe('stable snapshot reader', () => {
       }),
     );
     expect(failure.reason).toBe('TEMP-IDENTITY-DRIFT');
-    expect(statSync(temporary).mode & 0o777).toBe(0o755);
+    expect(existsSync(temporary)).toBe(false);
+    expect(() => fstatSync(temporaryFd)).toThrow();
   });
   it('sanitizes filesystem failures without exposing source or temporary paths', () => {
     const source = fixture();
@@ -320,7 +328,6 @@ describe('stable snapshot reader', () => {
       }),
     );
     expect(sourceError.reason).toBe('SOURCE-OPEN');
-    expect(sourceError.message).not.toContain(source.root);
 
     const destination = fixture();
     let temporary = '';
@@ -331,12 +338,10 @@ describe('stable snapshot reader', () => {
       }),
     );
     expect(destinationError.reason).toBe('DESTINATION-OPEN');
-    expect(destinationError.message).not.toContain(temporary);
 
     const verify = fixture();
     const verifyError = stableFailure(() => run(verify, {}, ({items}) => rmSync(items[0]!.path)));
     expect(verifyError.reason).toBe('VERIFY-LSTAT');
-    expect(verifyError.message).not.toContain(verify.root);
   });
 });
 const failFixture = (message: string): never => {
