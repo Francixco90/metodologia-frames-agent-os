@@ -16,7 +16,7 @@ Baseline: \`${ledger.baseline_commit}\`. Coverage: **${ledger.coverage}**. [CÓD
 Este documento es la proyección legible de
 \`docs/program/file-disposition-ledger.yml\`. El YAML canónico se regenera desde el árbol y los blobs
 de Git, compara el working tree y resuelve owner, decisión, justificación y evidencia para cada uno
-de los 377 archivos. [CONFIG]
+de los ${ledger.baseline_file_count} archivos. [CONFIG]
 
 ## Clases
 
@@ -43,7 +43,7 @@ justificación. La evidencia runtime de orquestación excluida suma **${runtimeE
 archivos append-only. Las métricas usan tokens separados por whitespace y líneas físicas; un
 terminador final no crea una LOC vacía. [CONFIG]
 
-## Cobertura 387/387
+## Cobertura ${ledger.coverage}
 
 Cada fila resume métricas y evidencia; la justificación, el hash actual, la regla de ownership y el
 posible sucesor permanecen en el YAML canónico. [CONFIG]
