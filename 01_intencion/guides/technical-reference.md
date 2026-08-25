@@ -43,6 +43,31 @@ Solo `PASS` promueve. `UNKNOWN` y `BLOCKED` conservan el trabajo válido y detie
 | Verificar ejecución      | receipts con hashes                       | diferencia planificación de trabajo material |
 | Separar decisiones       | producer, RT-09, RT-11 y H01              | evita autoaprobación                         |
 
+## Estado técnico de `method-explainer`
+
+Video OS reconoce `method-explainer` como arquetipo y dispone de contratos hash-bound para
+intención, supuestos, modelo de método, beats, voz, diagramas, build y checkpoints. Esa presencia
+no equivale a una capacidad de video completa. El adapter de General Video está fijado a
+`PLAN_VERIFY_ONLY`, no produce efectos, declara `render_authority:false` y
+`publication_authority:false`, y nunca supera `BLOCKED`. Su gap canónico es
+`GENERAL_VIDEO_METHOD_EXPLAINER_NOT_PROMOTED`. [CONFIG]
+
+La superficie visual material es `DiagramStage`, acompañada por primitivas, geometría y guards
+de layout probados con fixtures sintéticos en un browser offline. No está conectada a una
+composición end-to-end autorizada para emitir MP4. La candidate
+`metodologia-explainer-diagram-design` permanece en S04 como
+`UNREGISTERED_DRAFT · CANDIDATE_PENDING_GATE`; su carpeta no acredita registro, lifecycle,
+ejecución ni aprobación. [CONFIG]
+
+En audio, la política puede inspeccionar evidencia declarada de codec, duración, sample rate,
+LUFS y true peak. No genera voz, no normaliza archivos y no acredita una escucha humana. La
+superficie ASR/captions es `DECLARATIVE_ONLY`: compara texto y cues declarados con el contrato de
+voz, pero no ejecuta reconocimiento sobre bytes de audio. [CONFIG]
+
+Por tanto, una verificación exitosa solo significa que el plan o bundle candidato satisface sus
+contratos. Promover la composición, registrar la skill, materializar audio, renderizar, revisar y
+publicar requieren gates y evidencia separados. [CONFIG]
+
 ## Comandos de verificación
 
 ```bash
@@ -67,6 +92,8 @@ El CI suministra `BUDGET_BASE_REF` con la base real del PR. Cada PR authored con
 - Render offline: sin fetch, telemetría ni assets remotos.
 - Publicación, conectores, uploads, mensajes y postulaciones permanecen desactivados sin autorización exacta.
 - Datos reales y PII viven en `work/private/` u otro state root autorizado, nunca en Git.
+- `method-explainer` solo planifica o verifica materiales ya existentes; no concede render,
+  subida, distribución ni publicación.
 
 ## Fuentes de verdad
 
