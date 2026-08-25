@@ -15,6 +15,7 @@ Puedes usarlo para crear o mejorar contenido, organizar una campaña, diseñar l
 | Diseñar una presentación ejecutiva             | convertir información dispersa en una historia para decidir, priorizar o vender una idea  | documento rector, estructura, mensajes clave, guion visual y especificación; el formato final depende del generador disponible |
 | Planear una campaña                            | conectar objetivo, audiencia, canales, hitos, contenidos y medición                       | charter, cronograma, parrilla, dependencias, entregables y riesgos                                                             |
 | Crear imágenes o miniclips                     | traducir la intención en prompts, variantes, restricciones y criterios de calidad         | prompt pack, asset map, continuity notes y candidatos cuando exista herramienta autorizada                                     |
+| Explicar un método con diagramas               | ordenar conceptos, relaciones, voz y pantalla en contratos verificables                   | plan, especificación y diagrama candidato; el video local requiere composición, audio y materiales autorizados                 |
 | Mejorar un CV                                  | ordenar experiencia real, elegir evidencia relevante y adaptar el documento a una vacante | CV Markdown y HTML; PDF ATS cuando el generador local acreditado esté disponible                                               |
 | Escribir una cover letter                      | complementar el CV sin repetirlo ni inventar logros                                       | carta Markdown/HTML, mensaje breve o respuesta de formulario                                                                   |
 | Buscar oportunidades laborales                 | definir búsquedas, comparar vacantes y priorizar por ajuste demostrado                    | query pack, inventario, scorecards y shortlist; nunca postula sin autorización específica                                      |
@@ -100,6 +101,12 @@ Los controles usan estados exactos que aquí se traducen a lenguaje cotidiano:
 - `PUBLISHED`: ocurrió una publicación real y existe evidencia material; preparar un paquete no basta.
 
 Los recorridos multimedia P00–P09 y Career C00–C09 están definidos y verificados. Algunas salidas dependen de generadores, fuentes, derechos o herramientas que pueden no estar acreditados en tu entorno. Cuando falta una capacidad material, Frames muestra una brecha (`coverage_gap`) o un bloqueo (`BLOCKED`); nunca simula que produjo un archivo.
+
+Para videos que explican un método, Frames ya puede organizar la intención, los supuestos, los
+conceptos, los tiempos, la relación entre voz y pantalla y un diagrama HTML/SVG verificable. Un
+render local es un paso asistido: necesita una composición, audio y materiales autorizados que el
+adapter actual no produce. Aunque exista ese render, su estado es como máximo `RENDERED_DRAFT`;
+`HUMAN_APPROVED`, `READY` y `PUBLISHED` requieren decisiones y evidencia separadas.
 
 ## Límites honestos
 
