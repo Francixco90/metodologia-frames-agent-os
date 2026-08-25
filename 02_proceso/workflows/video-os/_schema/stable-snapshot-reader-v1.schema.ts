@@ -5,6 +5,11 @@ import {Sha256Schema} from './video-os-v1.schema.ts';
 export const SNAPSHOT_JSON_MAX_BYTES = 1024 * 1024;
 export const SNAPSHOT_OPAQUE_MAX_BYTES = 512 * 1024 * 1024;
 export const SNAPSHOT_TOTAL_MAX_BYTES = 2 * 1024 * 1024 * 1024;
+export const SNAPSHOT_MAX_MATERIALS = 64;
+export const STABLE_SNAPSHOT_COVERAGE_GAPS = [
+  'HOST_OBJECT_TRAPS_REQUIRE_OUTER_TIME_BOUND',
+  'NODE_FS_OPENAT_UNAVAILABLE',
+] as const;
 
 const SafeIntegerSchema = z
   .number()
@@ -57,7 +62,7 @@ const MaterialSchema = z
 export const StableSnapshotRequestV1Schema = z
   .strictObject({
     schema_version: z.literal('stable-snapshot-request-v1'),
-    materials: z.array(MaterialSchema).min(1).max(64),
+    materials: z.array(MaterialSchema).min(1).max(SNAPSHOT_MAX_MATERIALS),
   })
   .superRefine((value, context) => {
     const refs = value.materials.map(({ref}) => ref);
@@ -73,14 +78,36 @@ export const StableSnapshotObservationV1Schema = z.strictObject({
   scope: z.literal('MATERIAL_OBSERVATION'),
   observation_status: z.literal('OBSERVED'),
   promotion_authorized: z.literal(false),
+  coverage_gaps: z.tuple([
+    z.literal(STABLE_SNAPSHOT_COVERAGE_GAPS[0]),
+    z.literal(STABLE_SNAPSHOT_COVERAGE_GAPS[1]),
+  ]),
   root_identity_sha256: Sha256Schema,
   total_bytes: SafeIntegerSchema,
   json_retained_bytes: SafeIntegerSchema.max(SNAPSHOT_JSON_MAX_BYTES * 64),
-  materials: z.array(MaterialSchema).min(1).max(64),
+  materials: z.array(MaterialSchema).min(1).max(SNAPSHOT_MAX_MATERIALS),
 });
 
 export type StableSnapshotRequestV1 = z.infer<typeof StableSnapshotRequestV1Schema>;
+const hasBoundedMaterials = (raw: unknown): boolean => {
+  try {
+    if (!raw || typeof raw !== 'object') return false;
+    const materials = Object.getOwnPropertyDescriptor(raw, 'materials');
+    if (!materials || !('value' in materials) || !Array.isArray(materials.value)) return false;
+    const length = Object.getOwnPropertyDescriptor(materials.value, 'length');
+    return Boolean(
+      length &&
+      'value' in length &&
+      Number.isSafeInteger(length.value) &&
+      length.value >= 1 &&
+      length.value <= SNAPSHOT_MAX_MATERIALS,
+    );
+  } catch {
+    return false;
+  }
+};
 export const parseStableSnapshotRequest = (raw: unknown): StableSnapshotRequestV1 | undefined => {
+  if (!hasBoundedMaterials(raw)) return undefined;
   try {
     return StableSnapshotRequestV1Schema.parse(raw);
   } catch {
@@ -97,6 +124,7 @@ export const makeStableSnapshotObservation = (
     scope: 'MATERIAL_OBSERVATION',
     observation_status: 'OBSERVED',
     promotion_authorized: false,
+    coverage_gaps: STABLE_SNAPSHOT_COVERAGE_GAPS,
     root_identity_sha256: rootIdentitySha256,
     total_bytes: materials.reduce((sum, item) => sum + item.size_bytes, 0),
     json_retained_bytes: jsonRetainedBytes,
