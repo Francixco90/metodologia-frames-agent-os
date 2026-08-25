@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "5c34fe2808ade83ef9d8c23e287fb010f6ff8be87ec9bc7e28671d8d00021567",
+  "repositoryTreeSha256": "7ca7e9ca14487fb351d9cef65a07b7f133058c7fb17f3e18cefeaa5524fed10c",
   "totalMarkdown": 1857,
   "auditedAuthored": 601,
   "classPaths": {
@@ -9882,9 +9882,9 @@
       "sourceRef": "02_proceso/workflows/video-os/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "4813f905428a44dfd0e86674c9376d2543bed8afeb74d12e6109eae9d7e4cdd0",
-      "words": 629,
-      "lines": 89,
+      "sha256": "10aba9a34d5bc4e00a863169d889c35797a1d70a869e58ecbe66933b737726f5",
+      "words": 636,
+      "lines": 90,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
