@@ -579,8 +579,7 @@ surfaces:
     kind: workflow
     owner: content
     applies_when: R6 seleccionó un video o derivado audiovisual gobernado por Video OS.
-    authority_refs:
-      [02_proceso/workflows/video-os/index.ts, 02_proceso/workflows/video-os/_schema/index.ts]
+    authority_refs: [02_proceso/workflows/video-os/index.ts]
     load_first:
       [
         02_proceso/workflows/video-os/index.ts,
@@ -595,12 +594,22 @@ surfaces:
     read_set:
       [
         02_proceso/workflows/video-os/index.ts,
-        02_proceso/workflows/video-os/_schema/index.ts,
         02_proceso/workflows/video-os/_schema/video-os-v1.schema.ts,
       ]
     write_policy: {mode: generated_only, paths: [02_proceso/workflows/video-os/context.md]}
-    gates: [G09_VIDEO_OS]
-    stop_rules: [VO_DIRECTION_APPROVED requerido, RENDERED_DRAFT no autoriza publicación]
+    gates:
+      [
+        G09_VIDEO_OS,
+        VO_INTAKE_COMPLETE,
+        VO_DIRECTION_APPROVED,
+        VO_PRINCIPAL_VERIFIED,
+        VO_HANDOFF_APPROVED,
+      ]
+    stop_rules:
+      [
+        STOP en VO_DIRECTION_APPROVED hasta aprobación H01,
+        RENDERED_DRAFT no equivale a HUMAN_APPROVED ni READY ni PUBLISHED,
+      ]
     privacy: public_only
     children: []
     budget: {target_lines: 80, hard_lines: 120}

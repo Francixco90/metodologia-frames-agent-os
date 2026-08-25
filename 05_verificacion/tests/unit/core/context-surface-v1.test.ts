@@ -104,4 +104,23 @@ describe('ContextSurfaceV1', () => {
     expect(router).toContain("reads: ['context.md']");
     expect(router).not.toContain('CONTEXT.md');
   });
+
+  it('keeps Video OS authority narrow and exposes every governed stop', () => {
+    const videoOs = loadContextSurfaces(root).find(({context_id}) => context_id === 'CTX-VIDEO-OS');
+    expect(videoOs).toBeDefined();
+    expect(videoOs?.authority_refs).toEqual(['02_proceso/workflows/video-os/index.ts']);
+    expect(videoOs?.load_on_demand).toContain('02_proceso/workflows/video-os/_schema/index.ts');
+    expect(videoOs?.read_set).not.toContain('02_proceso/workflows/video-os/_schema/index.ts');
+    expect(videoOs?.gates).toEqual([
+      'G09_VIDEO_OS',
+      'VO_INTAKE_COMPLETE',
+      'VO_DIRECTION_APPROVED',
+      'VO_PRINCIPAL_VERIFIED',
+      'VO_HANDOFF_APPROVED',
+    ]);
+    expect(videoOs?.stop_rules).toEqual([
+      'STOP en VO_DIRECTION_APPROVED hasta aprobación H01',
+      'RENDERED_DRAFT no equivale a HUMAN_APPROVED ni READY ni PUBLISHED',
+    ]);
+  });
 });
