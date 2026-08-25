@@ -20,11 +20,17 @@ no_objetivos:
   - Publicar o versionar MP4, WAV, PNG, modelos, runtimes o assets privados
   - Promover automaticamente por encima de RENDERED_DRAFT
   - Fusionar ramas o escribir directamente sobre main
-done: Contratos, routing, skill candidata, fixtures sinteticos y verificaciones materializados en PRs revisables
+done: Contratos, routing, adaptador de plan/verificacion, skill candidata, fixtures sinteticos, DiagramStage y politicas declarativas materializados; promocion y render permanecen fuera de alcance
 validacion: pnpm verify:video-os, pnpm verify:skills, pnpm typecheck, pnpm check:repo y pruebas adversariales focales
 gaps:
+  - Faltan receipts materiales hash-bound que acrediten work-built y checks-green para el conjunto integrado; por esta razon el task permanece ESPECIFICADO
+  - "write_set_history es un coverage_gap: la implementacion historica alcanzo rutas finales fuera del write_set original y esta reconciliacion no concede autoridad retroactiva"
+  - El adaptador General Video permanece PLAN_VERIFY_ONLY, sin autoridad de render o publicacion, con GENERAL_VIDEO_METHOD_EXPLAINER_NOT_PROMOTED
+  - metodologia-explainer-diagram-design permanece UNREGISTERED_DRAFT y CANDIDATE_PENDING_GATE; evaluacion S03 NOT_RUN y S05-S09 no materializados
+  - ASR y captions permanecen DECLARATIVE_ONLY; audio solo observa evidencia aportada y no genera, normaliza ni escucha voz
+  - DiagramStage y sus guards no constituyen una cadena completa de build, render o QA audiovisual
   - HM_PROMOTION_APPROVED permanece manual y no autorizado
-  - Derechos de Pristino y aprobacion audiovisual humana permanecen fuera de alcance
+  - Derechos de Pristino, Guardian, aprobacion audiovisual humana y publicacion permanecen fuera de alcance
 state: ESPECIFICADO
 created_from_route: R9
 gate_target: HM_CANDIDATE_VERIFIED
@@ -35,4 +41,4 @@ evidence_tags:
   media_policy: CONFIG
   promotion_limit: CONFIG
 created_at: 2026-08-22T12:57:32-05:00
-updated_at: 2026-08-22T12:57:32-05:00
+updated_at: 2026-08-24T13:57:17-05:00
