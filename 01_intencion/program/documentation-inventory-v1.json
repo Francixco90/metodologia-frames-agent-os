@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "6d8a4a2ac1af47700f9732323c36ff3000b5d2e562236d8c37c1cddcccfbe937",
-  "totalMarkdown": 1857,
-  "auditedAuthored": 601,
+  "repositoryTreeSha256": "b492e48f26eaf7cb647b522253d225e347a80072dbe4ad6ded5a3af31d643ca1",
+  "totalMarkdown": 1859,
+  "auditedAuthored": 603,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -209,6 +209,7 @@
       "02_proceso/governance/scripting-and-tool-use.md",
       "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
+      "03_artefactos/adapters/notebooklm-managed/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
       "03_artefactos/brand/career-design-system/README.md",
       "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
@@ -525,6 +526,7 @@
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/notebooklm-os/README.md",
       "02_proceso/workflows/operator-core/README.md",
       "02_proceso/workflows/trainer-os/README.md",
       "02_proceso/workflows/video-os/AGENTS.md",
@@ -4653,7 +4655,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "8d692deb11323ee166b4bb9360bb5b648c7647d1ea1cbc3af264a64fa27dd655",
+      "sha256": "b8c5a4dfa99ec8039098a7d6e995f52975bcd0d750db38a6c2d8599018fb560a",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9579,6 +9581,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/notebooklm-os/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/notebooklm-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/notebooklm-os/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/notebooklm-os/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "323a9a97942984ad9a7c2db3c764fd3f8e7d372dd00d3cef757a31ca228753d0",
+      "words": 367,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/operator-core/README.md",
       "class": "workflow",
       "owner": "content",
@@ -10075,6 +10103,32 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/adapters/notebooklm-managed/README.md",
+      "class": "authored_control",
+      "owner": "sources",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:sources:adapters/notebooklm-managed/**",
+      "authorityRefs": [
+        "03_artefactos/adapters/notebooklm-managed/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/adapters/notebooklm-managed/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0f7421dd678563fb8458b1d0d28d20a80efd5cc3167cf2d67c6f31f9a74a4ca5",
+      "words": 41,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -17995,7 +18049,7 @@
     }
   ],
   "summary": {
-    "keep": 586,
+    "keep": 588,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
