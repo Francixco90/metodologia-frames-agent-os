@@ -41,6 +41,13 @@ export const HARNESS_MAINTENANCE_SIGNALS_V1 = [
   'sincronizar documentacion',
   'mantenimiento del repositorio',
 ] as const;
+export const NOTEBOOKLM_OS_SIGNALS_V1 = [
+  'notebooklm',
+  'gemini notebook',
+  'notebook os',
+  'studio notebook',
+  '/notebooklm:',
+] as const;
 
 export const normalizeFirstTurnPromptV1 = (prompt: string): string =>
   prompt

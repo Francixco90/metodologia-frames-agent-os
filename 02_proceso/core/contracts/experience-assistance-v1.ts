@@ -19,19 +19,8 @@ export const ExperienceStateV1Schema = z.enum([
   'RESUMABLE',
   'BLOCKED',
 ]);
-export const ExperienceRouteIdV1Schema = z.enum([
-  'R0',
-  'R1',
-  'R2',
-  'R3',
-  'R3-LOOSE',
-  'R4',
-  'R5',
-  'R6',
-  'R7',
-  'R8',
-  'R9',
-]);
+// prettier-ignore
+export const ExperienceRouteIdV1Schema = z.enum(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10']);
 export type ExperienceRouteIdV1 = z.infer<typeof ExperienceRouteIdV1Schema>;
 
 const ShortTextSchema = z.string().trim().min(1).max(280);
@@ -120,7 +109,7 @@ export const AssistanceEnvelopeV1Schema = z
     if (value.state === 'READY_FOR_BRIEF') {
       const activeBinding = value.skillBindings.find(({stepId}) => stepId === value.activeStep);
       if (
-        !['R6', 'R7', 'R8', 'R9'].includes(value.selectedRoute ?? '') ||
+        !['R6', 'R7', 'R8', 'R9', 'R10'].includes(value.selectedRoute ?? '') ||
         value.activeStep === null ||
         !value.workflowPlan.includes(value.activeStep) ||
         activeBinding === undefined ||

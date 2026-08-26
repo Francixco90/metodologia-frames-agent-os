@@ -17,7 +17,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - DELIVERABLE: 87
 - GATE: 69
 - RENDERER: 5
-- ROUTE: 11
+- ROUTE: 12
 - SKILL: 185
 - SOURCE: 11
 - TEMPLATE: 138
@@ -601,6 +601,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | RENDERER | three | ACTIVE | CANONICAL | `04_estado/registries/renderers/renderer-capability-registry-v1.yml` |
 | ROUTE | R0 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
 | ROUTE | R1 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
+| ROUTE | R10 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
 | ROUTE | R2 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
 | ROUTE | R3-LOOSE | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
 | ROUTE | R3 | ACTIVE | CANONICAL | `02_proceso/governance/router.yml` |
@@ -988,4 +989,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `1ab9f0a6f7b01d72beb4c3d259939189e201e4ad98659705b47e884652f6fdb0`.
+Hash de fuentes: `bb8ab3916b9c9b7e50ab94abe335a042c2961eac2da2587a1632351e4fdb2969`.
