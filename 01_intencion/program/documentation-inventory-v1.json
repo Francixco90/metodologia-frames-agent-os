@@ -1,7 +1,7 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "b492e48f26eaf7cb647b522253d225e347a80072dbe4ad6ded5a3af31d643ca1",
-  "totalMarkdown": 1859,
+  "repositoryTreeSha256": "d843a6c9f837634f83defb241c9678e56df215041592b088d9d85bc34f31e5fc",
+  "totalMarkdown": 1867,
   "auditedAuthored": 603,
   "classPaths": {
     "authored_control": [
@@ -779,6 +779,14 @@
       "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
+      "03_artefactos/skills/notebooklm-artifact-verifier/SKILL.md",
+      "03_artefactos/skills/notebooklm-naming-taxonomy/SKILL.md",
+      "03_artefactos/skills/notebooklm-os-router/SKILL.md",
+      "03_artefactos/skills/notebooklm-profile-compiler/SKILL.md",
+      "03_artefactos/skills/notebooklm-sharing-guardian/SKILL.md",
+      "03_artefactos/skills/notebooklm-source-curator/SKILL.md",
+      "03_artefactos/skills/notebooklm-studio-director/SKILL.md",
+      "03_artefactos/skills/notebooklm-system-prompt/SKILL.md",
       "03_artefactos/skills/remotion-video-production-v2/SKILL.md",
       "03_artefactos/skills/remotion-video-production/SKILL.md",
       "03_artefactos/skills/scroll-experience-foundations/SKILL.md",
