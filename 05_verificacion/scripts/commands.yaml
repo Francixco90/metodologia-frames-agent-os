@@ -150,7 +150,7 @@ gates:
   # prettier-ignore
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
   # prettier-ignore
-  - {gate: G09_NOTEBOOKLM_OS, label: NotebookLM OS contracts profiles adapters and adversarial tests, command: 'pnpm verify:notebooklm-os', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
+  - {gate: G09_NOTEBOOKLM_OS, label: NotebookLM OS contracts profiles adapters and adversarial tests, command: 'node --import tsx 05_verificacion/scripts/check-notebooklm-os.ts && pnpm exec vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
   # prettier-ignore
   - {gate: NLM_PLAN_APPROVED, label: approve notebook creation configuration labels or source import plan, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore

@@ -215,7 +215,7 @@ gate_commands:
   G09_CAREER_DESIGN_design_system: 'pnpm verify:career-design'
   G09_VIDEO_OS_contracts: 'pnpm verify:video-os'
   G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
-  G09_NOTEBOOKLM_OS_contracts: 'pnpm verify:notebooklm-os'
+  G09_NOTEBOOKLM_OS_contracts: 'node --import tsx 05_verificacion/scripts/check-notebooklm-os.ts && pnpm exec vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
   preflight_VS_001: 'pnpm slice:build'
