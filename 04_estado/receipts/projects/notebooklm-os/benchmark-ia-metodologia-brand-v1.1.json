@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "benchmark-deck-release-receipt-v1",
+  "receiptId": "benchmark-ia-metodologia-brand-v1-1",
+  "releaseId": "benchmark-ia-metodologia-brand-v1.1",
+  "recordedAt": "2026-08-26T00:00:00-05:00",
+  "state": "VERIFIED_DRAFT",
+  "humanApproval": "PENDING",
+  "artifacts": [
+    {
+      "role": "editableDeck",
+      "name": "benchmark-ia-metodologia-brand-v1.1.pptx",
+      "bytes": 871222,
+      "sha256": "13460490adc12b62d7a70ffc5bcc8410f31d3ccd211165c4e3aada17599810c1",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "renderedDeck",
+      "name": "benchmark-ia-metodologia-brand-v1.1.pdf",
+      "bytes": 506609,
+      "sha256": "d60a640af7d79f1b835a6df46dd7bf953d5cb5e5f5ff49f3fa2036ec5d523573",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "sourceMap",
+      "name": "benchmark-ia-metodologia-brand-v1.1.source-map.md",
+      "bytes": 7556,
+      "sha256": "f9aad7673c410bd0c150a7969e3f9654896090d340af8a09de7c9a9df0f44bc1",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "contactSheet",
+      "name": "benchmark-ia-metodologia-brand-v1.1.contact-sheet.jpg",
+      "bytes": 324697,
+      "sha256": "8d56f4633cdeedeebd2e2b579d9d1d88ed290e50cd7ed1ad4f7441910adddaf6",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "localReleaseReceipt",
+      "name": "deck-release-receipt-v1.1.json",
+      "bytes": 4362,
+      "sha256": "38019d4b5f04560a54038218722eaf4d72af4e13e23980f8178498d52ec01eb8",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "freshnessReport",
+      "name": "freshness-claims-report-v4.2.md",
+      "bytes": 7101,
+      "sha256": "e0f92292befdeb3bb80b188cadb3ff2fe602c17fd13a666c9429f8452bccbc5e",
+      "state": "VERIFIED"
+    },
+    {
+      "role": "evidenceOverlay",
+      "name": "deck-evidence-map-v4.2.md",
+      "bytes": 3339,
+      "sha256": "f801bc9648aa651710221805492e8d1eff644c61c6cbfdfeb2664b03401a19a4",
+      "state": "VERIFIED"
+    }
+  ],
+  "externalEffects": {
+    "notebooklm": 0,
+    "studio": 0,
+    "sharing": 0,
+    "publication": 0,
+    "deletion": 0
+  },
+  "privacy": {
+    "localPathsPersisted": false,
+    "notebookLocatorsPersisted": false,
+    "privateUrlsPersisted": false
+  },
+  "sharing": "BLOCKED",
+  "publication": "BLOCKED",
+  "nextGate": "HUMAN_APPROVED"
+}
