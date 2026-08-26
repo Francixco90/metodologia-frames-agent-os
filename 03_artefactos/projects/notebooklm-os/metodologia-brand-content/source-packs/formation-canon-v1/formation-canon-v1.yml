@@ -1,0 +1,57 @@
+schema_version: notebook-formation-canon-v1
+pack_id: metodologia-formation-canon-v1
+display_name: 'MetodologIA · Formación · Canon versionado v1'
+profile_id: metodologia-brand-content-canon-v1
+state: CURRENT_DRIVE_EDITIONS_IMPORTED_PRIVATE
+external_import_executed: true
+authority_order:
+  - ORIGINAL_APPROVED_MASTER
+  - DRIVE_CANONICAL_EDITION
+  - HISTORICAL_CANONICAL_EDITION
+  - STUDIO_CANDIDATE
+preservation:
+  historical_pack: ../masterclass-playbooks-v1.yml
+  historical_records: 21
+  replacement_policy: NEVER_DELETE_OR_OVERWRITE
+  same_title_policy: VERSION_BY_CONTENT_SHA256
+  same_hash_policy: ONE_LOGICAL_SOURCE_MULTIPLE_PROVENANCE_RECEIPTS
+locator_policy:
+  private_locators_persisted: false
+  portable_identity: sha256_digest_only
+rights_policy:
+  default_scope: INTERNAL_FORMATION_AND_REFERENCE
+  public_republication: REQUIRES_HUMAN_APPROVAL
+summary:
+  historical_pdfs_preserved: 21
+  historical_pages: 493
+  drive_pdfs_downloaded: 22
+  drive_pages: 305
+  drive_bytes: 276916505
+  studio_pdfs_downloaded: 24
+  studio_pages: 308
+  studio_bytes: 281166643
+  new_unique_content_hashes: 44
+  exact_cross_origin_matches: 2
+  total_version_records: 67
+  total_unique_content_hashes: 65
+inventories:
+  drive_editions: drive-editions.csv
+  studio_candidates: studio-candidates.csv
+gates:
+  local_pdf_integrity: PASSED
+  content_and_editorial_review: PENDING
+  canonical_promotion: HUMAN_APPROVAL_REQUIRED
+  notebook_import: NLM_PLAN_APPROVED
+  sharing_or_publication: NLM_SHARE_AUTHORIZED
+notebook_projection:
+  materialized_target: 'MetodologIA · Brand Content Studio · Canon v1'
+  brand_notebook_role: INTEGRATED_GALLERY_AND_GOLDEN_REFERENCE
+  active_source_budget: SELECTED_SUBSET_ONLY
+  import_all_versions: false
+  imported_drive_editions: 22
+  excluded_studio_candidates: 24
+notes:
+  - 'La semana 2 no contiene PDF directo; conserva un playbook nativo de Google Docs fuera de este pack PDF.'
+  - 'Automatización de Procesos con IA y Agentes de IA tienen bytes idénticos entre Drive y Studio.'
+  - 'Las dos ediciones de Soberanía Digital se conservan porque tienen hashes distintos.'
+  - 'Los PDFs de Studio son candidatos hasta completar revisión de contenido, trazabilidad y derechos.'

@@ -1,0 +1,12 @@
+schema_version: notebooklm-os-stage-fixtures-v1
+stages:
+  N00: {positive: complete_intent, negative: missing_audience}
+  N01: {positive: readonly_inventory, negative: unresolved_private_locator}
+  N02: {positive: valid_profile, negative: missing_source_hierarchy}
+  N03: {positive: bounded_manifest, negative: source_out_of_scope}
+  N04: {positive: approved_private_create, negative: missing_NLM_PLAN_APPROVED}
+  N05: {positive: approved_source_import, negative: asset_rights_review}
+  N06: {positive: cited_canonical_queries, negative: coverage_gap_or_timeout}
+  N07: {positive: type_specific_explicit_sources, negative: generic_prompt_or_missing_gate}
+  N08: {positive: downloaded_matching_type_readback, negative: zero_bytes_or_type_mismatch}
+  N09: {positive: receipted_version_or_archive, negative: share_or_delete_without_one_use_gate}

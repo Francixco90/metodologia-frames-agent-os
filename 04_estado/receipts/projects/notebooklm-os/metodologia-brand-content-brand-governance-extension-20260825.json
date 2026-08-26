@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "notebook-lifecycle-receipt-v1",
+  "receiptId": "metodologia-brand-content-brand-governance-extension-20260825",
+  "planSha256": "10f8d71222fef4cf78e6f71749e2ffdfb8f91dec53ec8ac5a15a7527e86df459",
+  "actor": "Frames ContentOS · NotebookLM OS · por MetodologIA",
+  "approval": "NLM_PLAN_APPROVED",
+  "approvalEvidence": "explicit_user_instruction_2026-08-25_add_markdown_compare_origins_and_return_url",
+  "approvalUse": "CONSUMED_ONCE",
+  "notebook": {
+    "privateLocatorDigest": "055d45dcf4eb9453aa7df745179a695c630bc4c1c11569b0ff698ac5b5cf5356",
+    "title": "MetodologIA · Brand Content Studio · Canon v1",
+    "ownership": "owned",
+    "isShared": false
+  },
+  "externalChanges": [
+    "Imported nine Markdown sources: five initial governance sources, three reader-test successors, and one retrieval-optimized prompt compiler v1.2.",
+    "Preserved superseded versions as traceable sources because deletion requires NLM_DESTRUCTIVE_AUTHORIZED.",
+    "Did not generate Studio artifacts, invite collaborators, publish, sync Drive sources, or delete any source."
+  ],
+  "successorSourceDigests": {
+    "NLS-KB-17-VISUAL-V1.1": "6b75a91e3485e0328249f35c09934e37763eedc68fa245d1f0a42d592f485d55",
+    "NLS-KB-18-PROMPTS-V1.1": "343e8546e34671b72a55a3594434e973f2e135779b14f2fb59b77f9fb8dfc9d9",
+    "NLS-KB-61-MIGRATION-V1.1": "033af26c048e6d6c674556cfd24570c006f8c8152f06bbe2da7d1106de00e8e3",
+    "NLS-KB-18-PROMPTS-V1.2": "2d7418f22f9340edf99ae481f05808f2ef2ca850d344dc75617a5dcdae1612b8"
+  },
+  "outputHashes": [
+    "b3b41de285bec722c9f0f29431621321339c36be7d840c2c1b03b276441e74e1",
+    "20875d4757d9c43ca9520d3b750381a5fb728397b8b1356c4c3f1ed3d99d5f8c",
+    "87b7d1e19bd058726b3f335bb5b8795c53de9f598f78b08739d50d64e175d99b",
+    "dae50eccc1fb7bbddbd8b755e3e021ba47a8dbd73e659d8675b5756f66dda572",
+    "a4b732d4d4784ce069432590adde556a010a0149a42c7ff4bf1dbf1ed7521e18"
+  ],
+  "readback": {
+    "sourceCountBefore": 63,
+    "sourceCountAfter": 72,
+    "ownership": "owned",
+    "isShared": false,
+    "readbackSha256": "c719e00f3535e2b517096837539858bc82b011f09eea5b1ac0268a283592a4df"
+  },
+  "validations": [
+    "Independent reader test completed; ambiguity findings were corrected through version successors.",
+    "NotebookLM source descriptions succeeded for the three v1.1 successors and v1.2 compiler.",
+    "Explicit-source grounding query recovered palette, white substrate role, typography and negative prompt from v1.2 with citations.",
+    "Explicit-source grounding query recovered VERIFIED_PARTIAL and the three unresolved origin assets with citations.",
+    "NotebookLM OS local verification passed 10 of 10 tests.",
+    "Import plan declares 21 Markdown, 21 historical PDFs, 22 current PDFs and 8 art references: 72 total."
+  ],
+  "gaps": [
+    "Live exhaustive inventories of the 291- and 300-source origin notebooks timed out.",
+    "Golden Reference Add-on, Bundle and Single Service remain COVERAGE_GAP until master files, hashes and rights are resolved.",
+    "Older v1.0 and v1.1 prompt sources remain present as superseded traceability; v1.2 is active."
+  ],
+  "state": "VERIFIED_DRAFT",
+  "humanApproval": "PENDING_JAVIER_VOICE_AND_VISUAL_REVIEW",
+  "sharing": "BLOCKED",
+  "publication": "BLOCKED",
+  "nextGate": "NLM_STUDIO_GENERATION_APPROVED"
+}

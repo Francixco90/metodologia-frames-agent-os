@@ -2,6 +2,19 @@ schema_version: 1
 registry_id: notebook-registry-v1
 mutation_policy: append-only-records
 entries:
+  - binding_id: NB-PROFILE-METODOLOGIA-BRAND-CONTENT-V1
+    adapter_id: notebooklm-managed-v1
+    recorded_at: '2026-08-25T00:00:00Z'
+    binding:
+      mode: none
+      reason_code: private_notebook_not_materialized_nlm_plan_approval_required
+      locator_material_present: false
+    state: coverage_gap
+    profile_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/profile.yml
+    consequences:
+      - external_creation_blocked
+      - studio_generation_blocked
+      - sharing_and_publication_blocked
   - binding_id: NB-BINDING-INSTAGRAM-CONTENT-001
     adapter_id: notebooklm-grounding-readonly-v1
     recorded_at: '2026-07-19T20:38:02Z'

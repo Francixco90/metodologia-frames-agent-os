@@ -1,0 +1,200 @@
+schema_version: notebook-asset-review-v2
+profile_id: metodologia-brand-content-canon-v1
+audit:
+  scope: local_documents_read_only
+  completed_on: '2026-08-25'
+  private_locators_persisted: false
+  identity_rule: content_sha256_not_filename
+  policy: no_asset_may_enter_notebook_studio_or_postproduction_until_rights_and_use_are_confirmed
+  findings:
+    - 'same content appears in multiple local folders; duplicates are represented once'
+    - 'the strongest MetodologIA family is vector-first and includes symbol, positive and reverse lockups'
+    - 'files previously named as logos include an illustration and a Pristino mascot candidate'
+
+assets:
+  - asset_id: AST-METODOLOGIA-SYMBOL-SVG
+    brand: MetodologIA
+    category: logo-symbol
+    format: svg
+    dimensions: scalable
+    content_sha256: c5f61d882485b3b718654529b7ae62d923ea32142025389c23985471372e7aa6
+    private_locator_digest: 492a18501f0e84f560dbab4c9ec25dcb3bc59d5b4fe65122a879bbb5ea3e2303
+    lifecycle: MASTER_CANDIDATE
+    rights: FIRST_PARTY_CANDIDATE
+    status: READY_FOR_HUMAN_APPROVAL
+    allowed_uses: []
+    evidence_digests:
+      - e80b05d604e487af5d0fa26f2f9aa48b0584e06f283884bd7067c7541a8a8280
+      - acd7ae2d25c34d17c6837ae8c777cbda44806a8178bf8d31f0d6da02e0a9f8c6
+    blockers: [global_brand_owner_approval_missing]
+  - asset_id: AST-METODOLOGIA-LOCKUP-POSITIVE-SVG
+    brand: MetodologIA
+    category: logo-lockup-positive
+    format: svg
+    dimensions: scalable
+    content_sha256: c0958b6a18e791651e5c237328c4350af8bf3c8d1225aa9f96926389250ec927
+    private_locator_digest: 24332a35f12ff645aaa99ff3066781535fe1e4e8719b91271a370e985ae40b4d
+    lifecycle: MASTER_CANDIDATE
+    rights: FIRST_PARTY_CANDIDATE
+    status: READY_FOR_HUMAN_APPROVAL
+    allowed_uses: []
+    evidence_digests:
+      - e80b05d604e487af5d0fa26f2f9aa48b0584e06f283884bd7067c7541a8a8280
+      - acd7ae2d25c34d17c6837ae8c777cbda44806a8178bf8d31f0d6da02e0a9f8c6
+    blockers: [global_brand_owner_approval_missing]
+  - asset_id: AST-METODOLOGIA-LOCKUP-REVERSE-SVG
+    brand: MetodologIA
+    category: logo-lockup-reverse
+    format: svg
+    dimensions: scalable
+    content_sha256: 40dc02db27ad128b1b84026163a0116efe7ed278821b84e881f035c9aa4cd529
+    private_locator_digest: d8a5f1bc1e4db3fe2339d76d7e76cbdef6da2211935db8aa4b491fe33d5c5005
+    lifecycle: MASTER_CANDIDATE
+    rights: FIRST_PARTY_CANDIDATE
+    status: READY_FOR_HUMAN_APPROVAL
+    allowed_uses: []
+    evidence_digests:
+      - e80b05d604e487af5d0fa26f2f9aa48b0584e06f283884bd7067c7541a8a8280
+      - acd7ae2d25c34d17c6837ae8c777cbda44806a8178bf8d31f0d6da02e0a9f8c6
+    blockers: [global_brand_owner_approval_missing]
+  - asset_id: AST-METODOLOGIA-LOCKUP-POSITIVE-PNG
+    brand: MetodologIA
+    category: logo-lockup-positive
+    format: png
+    dimensions: 1000x234
+    content_sha256: 46c8c13686c8f9fd4c48c9ce75bf3bb65689a1085fdec9cd0e2c26384f78ed3b
+    private_locator_digest: 637a2cdf0d619bf4b2d29fceb5cdd1edf87a115c2aecd596484943185d04a95b
+    lifecycle: DERIVED_CANDIDATE
+    rights: FIRST_PARTY_CANDIDATE
+    status: READY_FOR_HUMAN_APPROVAL
+    derived_from: AST-METODOLOGIA-LOCKUP-POSITIVE-SVG
+    allowed_uses: []
+    blockers: [global_brand_owner_approval_missing]
+  - asset_id: AST-METODOLOGIA-SYMBOL-PNG
+    brand: MetodologIA
+    category: logo-symbol
+    format: png
+    dimensions: 512x512
+    content_sha256: cb93a22d5552755a4b05858f8693db060a3be14dd19bd58991a0bc6863165b3f
+    private_locator_digest: d7e2c88354889df4137eef99265336203c6074c1baaea6c3c13f58a658cebbe7
+    lifecycle: DERIVED_CANDIDATE
+    rights: FIRST_PARTY_CANDIDATE
+    status: READY_FOR_HUMAN_APPROVAL
+    derived_from: AST-METODOLOGIA-SYMBOL-SVG
+    allowed_uses: []
+    blockers: [global_brand_owner_approval_missing]
+  - asset_id: AST-METODOLOGIA-LEGACY-SQUARE-PNG
+    brand: MetodologIA
+    category: legacy-logo-reference
+    format: png
+    dimensions: 513x517
+    content_sha256: 938b6e675c04d0c4a52895eb8e092d8c72e835ef9c52a6dd4e28d7c476ab726a
+    private_locator_digest: fc883a6472851b507d6b24a7726b7867e561c1f70a247233fc4585f2060be38d
+    lifecycle: LEGACY_REFERENCE
+    rights: REVIEW
+    status: DO_NOT_USE_FINAL
+    allowed_uses: [historical_comparison]
+    blockers: [raster_only, white_background_and_shadow, superseded_by_vector_candidate]
+  - asset_id: AST-METODOLOGIA-COMPANION-ILLUSTRATION
+    brand: MetodologIA
+    category: editorial-illustration
+    format: png
+    dimensions: 1024x1024
+    content_sha256: fc0a47696d88d68ade25da7e70cdbd551c041194953a7449b108415cfddb3e87
+    private_locator_digest: 33875f7fc0562733f2a379655e81376010fd7f4a5799a55ea2f59eb3973e20b2
+    lifecycle: REFERENCE
+    rights: REVIEW
+    status: REVIEW
+    allowed_uses: []
+    blockers: [rights_receipt_missing, previously_misclassified_as_logo]
+  - asset_id: AST-PRISTINO-MASCOT-CANDIDATE
+    brand: Pristino
+    category: mascot-character
+    format: png
+    dimensions: 645x613
+    content_sha256: 5530750d714aeeead6689361eb6f7ea413581696432e4c7d0c4cd124ce751342
+    private_locator_digest: 5828fd15decd4475a65ad2d55222275b4f71021836c8a6ea0bc4d6939218a8fd
+    lifecycle: MASCOT_CANDIDATE
+    rights: REVIEW
+    status: REVIEW
+    allowed_uses: []
+    blockers: [brand_role_unconfirmed, rights_receipt_missing, not_a_corporate_lockup]
+  - asset_id: AST-PORTRAIT-JAVIER-MONTANO
+    brand: MetodologIA
+    category: portrait
+    subject: Javier Montano
+    format: webp
+    dimensions: 1080x1080
+    content_sha256: 4cac6ea8b4e303c1e0a27573736114f46ffb1b8783745d1ac1335b4f02da756d
+    private_locator_digest: 2fd28ea18ac0bc25860f7859a41f448d880028da845bd5e7421b77537e4bf781
+    lifecycle: CANONICAL_PUBLIC_ASSET
+    rights: APPROVED
+    rights_evidence_digest: 3adde6aaf02e26051a2ebce125387f042a3dc9ffed1c42164c4ccfe70e839d4d
+    status: APPROVED
+    allowed_uses: [team_profile, founder_bio, speaker_card, editorial_content]
+    blockers: []
+  - asset_id: AST-PORTRAIT-KATHERINE-OQUENDO
+    brand: MetodologIA
+    category: portrait
+    subject: Katherine Oquendo Lopera
+    format: png
+    dimensions: 2048x2048
+    content_sha256: 493e6da2ffaa9ca65d7379f9ca64b0acc96ab384048a464b7fe7de22a0d237a3
+    private_locator_digest: 209dc1e50d7164012d80ec8edb4acb9320bb9fcc89d96527428ba7a9a6dd50e7
+    lifecycle: PORTRAIT_CANDIDATE
+    rights: REVIEW
+    status: REVIEW
+    allowed_uses: []
+    blockers: [consent_receipt_missing, usage_scope_missing]
+  - asset_id: AST-PORTRAIT-DANIEL-ZULUAGA
+    brand: MetodologIA
+    category: portrait
+    subject: Daniel Felipe Zuluaga Marulanda
+    format: jpg
+    dimensions: 1080x1080
+    content_sha256: 6f3ecf26f043e554bea735e03706be1e1ca5f41cd9d9ed07f1353b060df2d1f7
+    private_locator_digest: a40d0959f8e98333d713363687fcc6539b7017a4a6831bdb8d52a84fd8de939c
+    lifecycle: PORTRAIT_CANDIDATE
+    rights: REVIEW
+    status: REVIEW
+    allowed_uses: []
+    blockers: [consent_receipt_missing, usage_scope_missing]
+  - asset_id: AST-PORTRAIT-GERMAN-SEPULVEDA
+    brand: MetodologIA
+    category: portrait
+    subject: German Sepulveda Barbosa
+    format: png
+    dimensions: 2048x2048
+    content_sha256: 35547326e603349f6f22bc4a5d460d41c82915568b1917a20d72dafa66dc6ba1
+    private_locator_digest: 2851935796db65a4a97c9b6f3baadfd2542250c2dc78f890428b3c7258189487
+    lifecycle: PORTRAIT_CANDIDATE
+    rights: REVIEW
+    status: REVIEW
+    allowed_uses: []
+    blockers: [consent_receipt_missing, usage_scope_missing]
+
+duplicate_groups:
+  - group_id: DUP-TEAM-PORTRAITS
+    resolution: keep_one_manifest_record_per_content_hash
+    asset_ids:
+      - AST-PORTRAIT-JAVIER-MONTANO
+      - AST-PORTRAIT-KATHERINE-OQUENDO
+      - AST-PORTRAIT-DANIEL-ZULUAGA
+      - AST-PORTRAIT-GERMAN-SEPULVEDA
+    observation: exact_hash_copies_exist_in_more_than_one_local_collection
+
+decisions:
+  notebook_grounding_assets:
+    - asset_usage_guide_only_until_human_approval
+  postproduction_candidates:
+    - AST-METODOLOGIA-SYMBOL-SVG
+    - AST-METODOLOGIA-LOCKUP-POSITIVE-SVG
+    - AST-METODOLOGIA-LOCKUP-REVERSE-SVG
+    - AST-PORTRAIT-JAVIER-MONTANO
+  excluded_until_resolved:
+    - AST-METODOLOGIA-LEGACY-SQUARE-PNG
+    - AST-METODOLOGIA-COMPANION-ILLUSTRATION
+    - AST-PRISTINO-MASCOT-CANDIDATE
+    - AST-PORTRAIT-KATHERINE-OQUENDO
+    - AST-PORTRAIT-DANIEL-ZULUAGA
+    - AST-PORTRAIT-GERMAN-SEPULVEDA

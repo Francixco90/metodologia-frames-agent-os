@@ -4,7 +4,7 @@ import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 
 /**
  * Contract test: `02_proceso/governance/router.yml` (router-v1).
- * Asserts the 11 routes, R3-LOOSE project_id null, productive routes,
+ * Asserts the 12 routes, R3-LOOSE project_id null, productive routes,
  * manual fail-closed gates and source_of_truth true. [CONFIG]
  */
 describe('router.yml contract', () => {
@@ -33,9 +33,9 @@ describe('router.yml contract', () => {
     expect(router.source_of_truth).toBe(true);
   });
 
-  it('declares R0-R9 plus R3-LOOSE', () => {
+  it('declares R0-R10 plus R3-LOOSE', () => {
     const ids = router.routes.map((r) => r.id);
-    expect(ids).toHaveLength(11);
+    expect(ids).toHaveLength(12);
     expect(ids).toEqual(
       expect.arrayContaining([
         'R0',
@@ -49,6 +49,7 @@ describe('router.yml contract', () => {
         'R7',
         'R8',
         'R9',
+        'R10',
       ]),
     );
   });
@@ -120,9 +121,9 @@ describe('router.yml contract', () => {
     expect(content?.output).toMatch(/STOP en MW_BRIEF_APPROVED/u);
   });
 
-  it('R6 dispatches Trainer OS as a governed content profile without inventing R10', () => {
+  it('R6 dispatches Trainer OS while R10 remains a separate NotebookLM authority', () => {
     const content = router.routes.find((route) => route.id === 'R6');
-    expect(router.routes.map(({id}) => id)).not.toContain('R10');
+    expect(router.routes.map(({id}) => id)).toContain('R10');
     expect(content?.signal_patterns).toEqual(
       expect.arrayContaining([
         'crear una ruta formativa',
@@ -165,6 +166,15 @@ describe('router.yml contract', () => {
     );
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
+        'NLM_PLAN_APPROVED',
+        'NLM_SYNC_APPROVED',
+        'NLM_STUDIO_GENERATION_APPROVED',
+        'NLM_SHARE_AUTHORIZED',
+        'NLM_DESTRUCTIVE_AUTHORIZED',
+      ]),
+    );
+    expect(router.manual_fail_closed_gates).toEqual(
+      expect.arrayContaining([
         'CR_BRIEF_APPROVED',
         'CR_CV_DESIGN_APPROVED',
         'CR_CV_SPEC_APPROVED',
@@ -194,6 +204,6 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
     expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
     expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
-    expect(router.manual_fail_closed_gates).toHaveLength(21);
+    expect(router.manual_fail_closed_gates).toHaveLength(26);
   });
 });

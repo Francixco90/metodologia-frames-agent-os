@@ -150,6 +150,18 @@ gates:
   # prettier-ignore
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
   # prettier-ignore
+  - {gate: G09_NOTEBOOKLM_OS, label: NotebookLM OS contracts profiles adapters and adversarial tests, command: 'pnpm verify:notebooklm-os', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: NLM_PLAN_APPROVED, label: approve notebook creation configuration labels or source import plan, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: NLM_SYNC_APPROVED, label: approve Drive source synchronization, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: NLM_STUDIO_GENERATION_APPROVED, label: approve one Studio generation plan, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: NLM_SHARE_AUTHORIZED, label: one-use authorization to invite or make public, command: null, allowed_tools: [], write_set_globs: [], idempotency: false, danger_level: high, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: NLM_DESTRUCTIVE_AUTHORIZED, label: one-use authorization for resolved destructive targets, command: null, allowed_tools: [], write_set_globs: [], idempotency: false, danger_level: high, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
   - {gate: EXP_TRAINER_RUNTIME_VALIDATED, label: Trainer OS runtime compiler package and benchmark adversarial contracts, command: 'pnpm vitest run 05_verificacion/tests/integration/trainer-runtime.test.ts 05_verificacion/tests/unit/trainer-os-compiler-core.test.ts 05_verificacion/tests/unit/trainer-os-adapters.test.ts 05_verificacion/tests/unit/trainer-os-extended-adapters.test.ts 05_verificacion/tests/unit/trainer-os-masterclass-fixture.test.ts 05_verificacion/tests/unit/trainer-os-masterclass.test.ts 05_verificacion/tests/unit/trainer-os-package.test.ts 05_verificacion/tests/unit/trainer-os-benchmark.test.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
   # prettier-ignore
   - {gate: LX_BRIEF_APPROVED, label: approve local extension brief, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}

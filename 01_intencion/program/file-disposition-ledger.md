@@ -23,10 +23,10 @@ de los 387 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       84 |
+| `refactored`         |       85 |
 | `generator_fixed`    |        6 |
 | `superseded`         |        0 |
-| `verified_no_change` |      198 |
+| `verified_no_change` |      197 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             94795 |              110943 |     142192 (1.5×) | 1.1703× | `pass` |
-| Total authored (palabras)     |             94795 |              110943 |       189590 (2×) | 1.1703× | `pass` |
-| Total authored (LOC)          |             35585 |               41584 |        71170 (2×) | 1.1686× | `pass` |
+| Corpus authored elegible      |             94828 |              110981 |     142242 (1.5×) | 1.1703× | `pass` |
+| Total authored (palabras)     |             94828 |              110981 |       189656 (2×) | 1.1703× | `pass` |
+| Total authored (LOC)          |             35600 |               41599 |        71200 (2×) | 1.1685× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -123,7 +123,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `committees/src/protocol.ts`                                                                                  | `agents-committee` | `verified_no_change` | 309                | 309               | 123         | 123        | `ae54750da757f94c7ac8a16a8430418837fe4d15fadd77af1b27c9daa1a66bcd` | `byte-identical` |
 | `core/approvals/approval-engine.ts`                                                                           | `core`             | `verified_no_change` | 219                | 219               | 72          | 72         | `2c0384e65d26fa7ec4d5ea270f1afea59bff834acd12d46bedab157b90e3a97a` | `byte-identical` |
 | `core/approvals/index.ts`                                                                                     | `core`             | `verified_no_change` | 4                  | 4                 | 1           | 1          | `f60879b334e3351cba5bc8e6d6f8bc85fb0f27d972de2754a602b2ac9dc4e410` | `byte-identical` |
-| `core/contracts/index.ts`                                                                                     | `core`             | `refactored`         | 20                 | 95                | 5           | 23         | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `changed`        |
+| `core/contracts/index.ts`                                                                                     | `core`             | `refactored`         | 20                 | 103               | 5           | 25         | `06b2dfd31f61bc789a06d9d6b68419f1bb21c5b7b65632b8bebf2a9f327ac0dd` | `changed`        |
 | `core/contracts/json.ts`                                                                                      | `core`             | `verified_no_change` | 43                 | 43                | 17          | 17         | `4cf9d62ee9221661dbbb939457191f2e959ddc1eebee6fdf36aabdd3bb007820` | `byte-identical` |
 | `core/contracts/notebooklm-work-unit.ts`                                                                      | `core`             | `verified_no_change` | 383                | 383               | 144         | 144        | `557c97e60c76a8527a5a92499286615b8001c24cdfc2e2866b7551c17e847fa9` | `byte-identical` |
 | `core/contracts/primitives.ts`                                                                                | `core`             | `verified_no_change` | 177                | 177               | 75          | 75         | `bed8743cc3545f5db7d2e66971f92153db3ffe874b7a37e6dc25be86e435bdb9` | `byte-identical` |
@@ -145,7 +145,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `docs/program/execution-ledger.md`                                                                            | `lead`             | `immutable_history`  | 314                | 314               | 41          | 41         | `3d6afb6cfbeb9d4756a621712b062beafb99cc6d59e587a4f627b71bba5b7e1b` | `byte-identical` |
 | `docs/program/formal-scope.md`                                                                                | `lead`             | `verified_no_change` | 592                | 592               | 70          | 70         | `35748c31dca00e9cf769c0f2b85ec9dd83c5434b8a52796d1167a0519b05ba08` | `byte-identical` |
 | `docs/program/operator-runbook.md`                                                                            | `lead`             | `refactored`         | 542                | 745               | 108         | 127        | `56b20987f3c6e9ae05ee3ad965e38f052e84517cd21001960fcaa6f2ff11f274` | `changed`        |
-| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 450               | 104         | 211        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
+| `docs/program/ownership-manifest.yml`                                                                         | `lead`             | `refactored`         | 191                | 464               | 104         | 218        | `5a3cc6c42f81cb348e75bf9e63e8d34e2b003c044d5a370e77719844b2aa90d7` | `changed`        |
 | `docs/program/requirements-traceability.md`                                                                   | `lead`             | `verified_no_change` | 835                | 835               | 53          | 53         | `207c511ff8eade696fcbeedf33f1d4c305f63b72e59351cff28d3c1e40e03e33` | `byte-identical` |
 | `docs/program/system-architecture.md`                                                                         | `lead`             | `verified_no_change` | 596                | 596               | 89          | 89         | `c1a8fcc5ece81e28d99d5771435fdc01c441b042c86f1c6247688cbdf8b45692` | `byte-identical` |
 | `docs/program/test-strategy.md`                                                                               | `lead`             | `verified_no_change` | 556                | 556               | 51          | 51         | `49c212901b139dbf8b8f20e0c40f539da5303f45faebc6152a1f35a594229ea7` | `byte-identical` |
@@ -294,7 +294,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/components/component-registry.yml`                                                                | `remotion`         | `generator_fixed`    | 1901               | 1901              | 657         | 657        | `6eb67842adb5ba38dbf82f27031b7ce43ad298a21c0a11c6d98b0014de68e0c2` | `changed`        |
 | `registries/memory/memory-policy.yml`                                                                         | `lead`             | `verified_no_change` | 58                 | 58                | 32          | 32         | `c6eee2421e87be380baa388e6937b50d3f265e97b26418b6c991962258ce2f2c` | `byte-identical` |
 | `registries/notebooks/binding-contract.yml`                                                                   | `sources`          | `verified_no_change` | 33                 | 33                | 20          | 20         | `48ed362f1b67573e110465a94f0a08f469551db3b4f8fd2367ef90f6eaf2c2ea` | `byte-identical` |
-| `registries/notebooks/notebook-registry.yml`                                                                  | `sources`          | `verified_no_change` | 30                 | 30                | 16          | 16         | `e31037151c2a549d4d657804c5d018cc92dc1bf1900ba3d6e9d6cc1c583dfd59` | `byte-identical` |
+| `registries/notebooks/notebook-registry.yml`                                                                  | `sources`          | `refactored`         | 30                 | 55                | 16          | 29         | `e31037151c2a549d4d657804c5d018cc92dc1bf1900ba3d6e9d6cc1c583dfd59` | `changed`        |
 | `registries/notebooks/work-unit-binding-contract.yml`                                                         | `sources`          | `verified_no_change` | 113                | 113               | 55          | 55         | `53f6fef560ded6662343f1fc094a7cab6250b7de1d53d6556cdb2ed506efe937` | `byte-identical` |
 | `registries/projects/project-registry.yml`                                                                    | `lead`             | `verified_no_change` | 58                 | 58                | 29          | 29         | `e5d6937c44870043b0b8d912909c4608c807bef6ab3206f5518f99cf1561f81b` | `byte-identical` |
 | `registries/skills/README.md`                                                                                 | `skill-foundry`    | `refactored`         | 60                 | 103               | 8           | 16         | `c89d39fff53e474e03ff01aee8feb53ac81e38851eaf027af349afa04d7f7030` | `changed`        |
