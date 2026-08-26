@@ -533,6 +533,158 @@ entries:
     publication_authority: false
     tests: [pnpm vitest run 05_verificacion/tests/unit/trainer-os-web-skills.test.ts]
     event_ids: [EVT-SKL-TRAINER-WORKBOOK-001]
+  - skill_id: notebooklm-artifact-verifier
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: bfd0f978bd995790f18a75496e4596a4d2e1ee285f5a97e18b5247c627b67050
+    package_manifest_sha256: 0ae9e096046bc1ef092c3a2d061e49ba1d5bf36e24b94927a181d03a2051b0a5
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-artifact-verifier/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: independent-verification
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-ARTIFACT-001]
+  - skill_id: notebooklm-naming-taxonomy
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 9eee0b4bb83b36e7b57f686eea3bc22441ae34beffbd7004f261747362120122
+    package_manifest_sha256: 61831d23cda0d7a57267b8f85bc5eae51823d39d0ec0eb16f278aa3a3714f847
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-naming-taxonomy/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: local-classification
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-NAMING-001]
+  - skill_id: notebooklm-os-router
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 926be40f85f65886ff3b3a60223dbac01c5986e901cce5eb6732559ca45168ff
+    package_manifest_sha256: 3c72621ef32d02cd1f1046d6aac6e81071186730b4c062dfdc806e3db322a952
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-os-router/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: local-planning
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-ROUTER-001]
+  - skill_id: notebooklm-profile-compiler
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 9bf706e0d42befe5fcf4cea67c74d2582d6a7cc25ba41f76942f408b7aaa0345
+    package_manifest_sha256: 75018523af2869f2d39daa284859f7096a0cbbcce35f80178380ada69b025085
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-profile-compiler/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: local-compilation
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-PROFILE-001]
+  - skill_id: notebooklm-sharing-guardian
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 872222e26bab2392d0394d63ee4308099fc2d2f968dbed60698e40f419ecbf0d
+    package_manifest_sha256: 48f7876a0086f350ed7975f05de9b19aef215f998b9008e1bd67c7f22d644f8c
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-sharing-guardian/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: independent-governance
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-SHARING-001]
+  - skill_id: notebooklm-source-curator
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 773265dd170d035952a519be8284c87ccc8b3d1634495988f70db65b97c59f2f
+    package_manifest_sha256: a6e115bc7b8db726db08b0451d18a174540ef484bee3923eb8c3e7b22edc5edc
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-source-curator/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: governed-source-planning
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-CURATOR-001]
+  - skill_id: notebooklm-studio-director
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: 6d105eb33f0071acf0beb7fde9d2d47db2d50bb8016f5b212387f2d013f8ca85
+    package_manifest_sha256: 526f6988e43775a047f8f0d891d04e75df61cf78c2a25b364c5bf27ae4c0ac8f
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-studio-director/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: local-briefing
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-STUDIO-001]
+  - skill_id: notebooklm-system-prompt
+    version: 0.1.0
+    current_state: candidate
+    owner: MetodologIA
+    responsible_actor: notebooklm-os
+    content_sha256: a046a07b6e1d1784c2a2ddafef88c58fb982fc5b119ced7b36371869ca603d00
+    package_manifest_sha256: aa4ce7e2f922800656f30eb5f76517b266715177e0fad85351c49a267d0be6a2
+    package_manifest_algorithm: sha256_of_sorted_sha256_double_space_relative_path_lines
+    lineage: skills/notebooklm-system-prompt/LINEAGE.yml
+    license: LicenseRef-MetodologIA-Internal
+    content_license: LicenseRef-MetodologIA-Internal
+    recorded_at: '2026-08-26T01:35:00Z'
+    fragments_reused: false
+    restrictions: [candidate_only, no_publication_authority]
+    execution_scope: local-compilation
+    production_runtime_status: blocked_pending_evaluation
+    publication_authority: false
+    tests: [pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts]
+    event_ids: [EVT-SKL-NLM-SYSTEM-PROMPT-001]
 events:
   - event_id: EVT-SKL-REMOTION-001
     event_order: 1
