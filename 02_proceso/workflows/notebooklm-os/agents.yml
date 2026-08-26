@@ -1,0 +1,30 @@
+schema_version: 1
+manifest_id: notebooklm-os-agents-v1
+agents:
+  - {
+      id: notebook-conductor,
+      role: 'Notebook Conductor',
+      owns: [N00, N01, N04, N09],
+      may_mutate_external: gated,
+    }
+  - {id: profile-architect, role: 'Profile Architect', owns: [N02], may_mutate_external: false}
+  - {id: source-curator, role: 'Source Curator', owns: [N03, N05], may_mutate_external: gated}
+  - {id: asset-steward, role: 'Asset Steward', owns: [N05], may_mutate_external: gated}
+  - {id: studio-director, role: 'Studio Director', owns: [N07], may_mutate_external: gated}
+  - {
+      id: grounding-verifier,
+      role: 'Grounding Verifier',
+      owns: [N06, N08],
+      may_mutate_external: false,
+    }
+  - {
+      id: notebook-guardian,
+      role: 'Notebook Guardian',
+      owns: [N09],
+      may_mutate_external: false,
+      independent: true,
+    }
+separation_rules:
+  - producer_and_guardian_are_distinct
+  - source_curator_and_grounding_verifier_are_distinct
+  - no_agent_can_approve_its_own_external_effect
