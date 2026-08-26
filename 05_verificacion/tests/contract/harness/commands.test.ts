@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 63 gates including Video OS and Career design boundaries', () => {
-    expect(manifest.gates).toHaveLength(63);
+  it('declares 69 gates including NotebookLM OS, Video OS and Career design boundaries', () => {
+    expect(manifest.gates).toHaveLength(69);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
@@ -27,6 +27,9 @@ describe('commands.yaml contract', () => {
         'VO_PRINCIPAL_VERIFIED',
         'VO_HANDOFF_APPROVED',
         'CR_CV_DESIGN_APPROVED',
+        'G09_NOTEBOOKLM_OS',
+        'NLM_PLAN_APPROVED',
+        'NLM_SHARE_AUTHORIZED',
       ]),
     );
   });
@@ -55,7 +58,7 @@ describe('commands.yaml contract', () => {
   it('every gate id belongs to a governed gate family', () => {
     for (const gate of manifest.gates) {
       expect(gate.gate).toMatch(
-        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+)$/u,
+        /^(G[0-9]{2}([A-Z_]+)?|MW_[A-Z_]+|CR_[A-Z_]+|VO_[A-Z_]+|EXP_[A-Z_]+|LX_[A-Z_]+|HM_[A-Z_]+|DOCS_[A-Z_]+|SSS_[A-Z_]+|NLM_[A-Z_]+)$/u,
       );
     }
   });
