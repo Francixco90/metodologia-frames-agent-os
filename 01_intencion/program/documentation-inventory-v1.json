@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "6d8a4a2ac1af47700f9732323c36ff3000b5d2e562236d8c37c1cddcccfbe937",
-  "totalMarkdown": 1857,
-  "auditedAuthored": 601,
+  "repositoryTreeSha256": "5580139e4eabbebf2291ea91ccb464239b6a9161e5e30ae9ab15b6fa2295e1c0",
+  "totalMarkdown": 1916,
+  "auditedAuthored": 652,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -209,6 +209,7 @@
       "02_proceso/governance/scripting-and-tool-use.md",
       "02_proceso/governance/ux-writing-policy.md",
       "03_artefactos/adapters/n8n/README.md",
+      "03_artefactos/adapters/notebooklm-managed/README.md",
       "03_artefactos/adapters/notebooklm/README.md",
       "03_artefactos/brand/career-design-system/README.md",
       "03_artefactos/brand/career-design-system/compositions/blueprint-executive.v1.md",
@@ -220,6 +221,55 @@
       "03_artefactos/content/documentation/ecosystem-inventory.md",
       "03_artefactos/content/experience/frames-experience-blueprint.md",
       "03_artefactos/content/pilot-carousel-002/content.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/asset-usage-guide.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/brand-content-knowledge-base.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/01-control--authority-routing-and-gates--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/02-control--routing-and-source-selection--v2.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/10-canon--metodologia-operating-method--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/11-canon--formation-curriculum-map--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/12-canon--content-studio--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/13-canon--agentic-sovereignty--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/14-canon--brand-voice-and-editorial-rhetoric--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/15-reference--written-tone-and-style--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/16-canon--hooks-punchlines-and-ctas--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.2.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/20-evidence--claims-and-gaps--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-canon--aprender-aprehender-y-revolucionar--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-reference--aprender-aprehender-y-revolucionar--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-canon--programa-empoderamiento-onboarding--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-reference--programa-empoderamiento-onboarding--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/30-templates--briefs-and-checklists--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/40-reference--pdf-gallery-guide--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/41-reference--presentaciones-como-activos-de-autoridad--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/42-reference--skills-agentes-y-chief-of-staff--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/43-reference--variantes-editoriales-de-formacion--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/50-assets--manifest-and-usage--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/60-operations--sources-receipts-and-readback--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/62-operations--naming-tags-and-source-roles--v2.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--assessment-transfer-matrix--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s01-de-ocupado-a-productivo--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s02-recibimiento-y-aprender-a-aprender--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s03-automatismo-y-presencia--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s04-del-cumplimiento-a-la-excelencia--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s05-de-trabajar-duro-a-sin-friccion--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s06-jornadas-estrategicas--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.1.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s08-bocetos-y-prototipos-con-ia--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s09-multimedia-con-ia--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s10-mini-apps-con-ia--v1.0.md",
+      "03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/README.md",
       "03_artefactos/projects/pilot-carousel-001/README.md",
       "03_artefactos/projects/pilot-carousel-001/spec/alt-text.md",
       "03_artefactos/projects/pilot-carousel-001/spec/caption.md",
@@ -525,6 +575,7 @@
       "02_proceso/workflows/multimedia/p07-revisar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p08-editar/prompt-spec.md",
       "02_proceso/workflows/multimedia/p09-distribuir/prompt-spec.md",
+      "02_proceso/workflows/notebooklm-os/README.md",
       "02_proceso/workflows/operator-core/README.md",
       "02_proceso/workflows/trainer-os/README.md",
       "02_proceso/workflows/video-os/AGENTS.md",
@@ -777,6 +828,14 @@
       "03_artefactos/skills/metodologia-workbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
+      "03_artefactos/skills/notebooklm-artifact-verifier/SKILL.md",
+      "03_artefactos/skills/notebooklm-naming-taxonomy/SKILL.md",
+      "03_artefactos/skills/notebooklm-os-router/SKILL.md",
+      "03_artefactos/skills/notebooklm-profile-compiler/SKILL.md",
+      "03_artefactos/skills/notebooklm-sharing-guardian/SKILL.md",
+      "03_artefactos/skills/notebooklm-source-curator/SKILL.md",
+      "03_artefactos/skills/notebooklm-studio-director/SKILL.md",
+      "03_artefactos/skills/notebooklm-system-prompt/SKILL.md",
       "03_artefactos/skills/remotion-video-production-v2/SKILL.md",
       "03_artefactos/skills/remotion-video-production/SKILL.md",
       "03_artefactos/skills/scroll-experience-foundations/SKILL.md",
@@ -4653,7 +4712,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "8d692deb11323ee166b4bb9360bb5b648c7647d1ea1cbc3af264a64fa27dd655",
+      "sha256": "6f569712589405473c355d83e2385a2341ef51286faf95d2aab1c2614bafc50a",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9579,6 +9638,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/notebooklm-os/README.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/notebooklm-os/**",
+      "authorityRefs": [
+        "02_proceso/workflows/notebooklm-os/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/notebooklm-os/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "323a9a97942984ad9a7c2db3c764fd3f8e7d372dd00d3cef757a31ca228753d0",
+      "words": 367,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/operator-core/README.md",
       "class": "workflow",
       "owner": "content",
@@ -10079,6 +10164,32 @@
       }
     },
     {
+      "path": "03_artefactos/adapters/notebooklm-managed/README.md",
+      "class": "authored_control",
+      "owner": "sources",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:sources:adapters/notebooklm-managed/**",
+      "authorityRefs": [
+        "03_artefactos/adapters/notebooklm-managed/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/adapters/notebooklm-managed/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0f7421dd678563fb8458b1d0d28d20a80efd5cc3167cf2d67c6f31f9a74a4ca5",
+      "words": 41,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/adapters/notebooklm/README.md",
       "class": "authored_control",
       "owner": "sources",
@@ -10300,9 +10411,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "e939f8f123f36714c917a857352a5efcdad845638e2abc4d81db7c57ffe0a8e3",
-      "words": 10603,
-      "lines": 986,
+      "sha256": "383d1b72a9449d56ee16b4a851ec32a3726a20134e0ffa2b550ad333d101e718",
+      "words": 10680,
+      "lines": 993,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -10366,6 +10477,1280 @@
         "hasAuthorityLink": true,
         "hasNextAction": true,
         "duplicateHeadings": 1
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/asset-usage-guide.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/asset-usage-guide.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/asset-usage-guide.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "02c06f8c5b99122f7af985c2a79b5a74238fe52cdae8680f95e9fe8406241b6b",
+      "words": 433,
+      "lines": 48,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/brand-content-knowledge-base.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/brand-content-knowledge-base.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/brand-content-knowledge-base.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ed0e6ad50e1fbac3d40f1764c8c67f6ba1da38066851b2a7319418a5873ea20a",
+      "words": 1717,
+      "lines": 229,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f46c8bbb4b34b2d54bae1a71151ee9e9ce405a18172ed1550a319bb86b41ab2f",
+      "words": 755,
+      "lines": 107,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c4160e306f9a240f169584169556a570e9c7757cec7635c1a493629eb04d4c13",
+      "words": 919,
+      "lines": 92,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/00-control--system-prompt--v2.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f86e133a8de48261ed1a9dd3c7b15dad7718f078b4ec90adc654458fe0b59e98",
+      "words": 1030,
+      "lines": 94,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/01-control--authority-routing-and-gates--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/01-control--authority-routing-and-gates--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/01-control--authority-routing-and-gates--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1a02744ab56068915698d67e505b0619b4daf33015c7e7e995c3013d5c50b31a",
+      "words": 281,
+      "lines": 47,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/02-control--routing-and-source-selection--v2.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/02-control--routing-and-source-selection--v2.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/02-control--routing-and-source-selection--v2.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "5fbe442ffa42ab696573976f1d31b7a8325d22946e80d157de37cc6db2968e45",
+      "words": 235,
+      "lines": 33,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/10-canon--metodologia-operating-method--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/10-canon--metodologia-operating-method--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/10-canon--metodologia-operating-method--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d791fc0e35b8a3af43733f7b58fd903064eddae4b94b8a78a092a44170e35d2e",
+      "words": 648,
+      "lines": 90,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/11-canon--formation-curriculum-map--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/11-canon--formation-curriculum-map--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/11-canon--formation-curriculum-map--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4cd9e1219a7f98053a76381a70a060218803ca7f1e60445f4c5e7ec2174ee620",
+      "words": 862,
+      "lines": 121,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/12-canon--content-studio--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/12-canon--content-studio--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/12-canon--content-studio--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0e847f946876eec81038c0bc7c6420c518dc8ae7e3c7d12befec549c01daa89b",
+      "words": 546,
+      "lines": 94,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/13-canon--agentic-sovereignty--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/13-canon--agentic-sovereignty--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/13-canon--agentic-sovereignty--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2e1c5bf2ea5751eb9edea22efb01673a2d431ca0a27b3096a4648b2885489004",
+      "words": 439,
+      "lines": 70,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/14-canon--brand-voice-and-editorial-rhetoric--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/14-canon--brand-voice-and-editorial-rhetoric--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/14-canon--brand-voice-and-editorial-rhetoric--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8a2d60f66a90b1ce465a15664369fe655ec55f3a681379a98e24797a3e04be5e",
+      "words": 621,
+      "lines": 83,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/15-reference--written-tone-and-style--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/15-reference--written-tone-and-style--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/15-reference--written-tone-and-style--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "58e9dbb1d732fb82fc1072591c9b6883dd3371867b384c98c466f5b77c1efb36",
+      "words": 438,
+      "lines": 80,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/16-canon--hooks-punchlines-and-ctas--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/16-canon--hooks-punchlines-and-ctas--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/16-canon--hooks-punchlines-and-ctas--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9171f106c71ed79bdff9d4213fb3d306c2cbfb0c6469a4487d1959a78dbd3238",
+      "words": 586,
+      "lines": 88,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "da61b256067bbbc254a51c21ce78c7e22f4039509f23e26cc12e68d7f9d00b62",
+      "words": 741,
+      "lines": 91,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "72e90f7704a809552eadc76a6f391da264d10312a2ba8f2c11cd75af84f0d203",
+      "words": 131,
+      "lines": 18,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "eb501cd3a8a0fd6faea80f305eb72ab9497827e1ad1ce944aa38fec77b10d957",
+      "words": 574,
+      "lines": 106,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "dbddfad3968e37fc41f6e8f6bfe4b82a133e21e096e1473488341e61c8f99e0a",
+      "words": 553,
+      "lines": 89,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.2.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.2.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/18-templates--copy-and-visual-prompt-library--v1.2.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "63bcd64eb3defcd1c0a4de829dc0d94117f34990704cbad862f7652b21543807",
+      "words": 590,
+      "lines": 47,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/20-evidence--claims-and-gaps--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/20-evidence--claims-and-gaps--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/20-evidence--claims-and-gaps--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "687c1c9431cdebf1a8361a786af8955bfda24483a57590cc76481bcde5e4e007",
+      "words": 384,
+      "lines": 56,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f34886ea92e8df804dfedabb0d7e1ba5542a15137093b4f9bedf388a7215e54a",
+      "words": 424,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/21-evidence--drive-corpus-completeness-audit--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "15616adebd43b4d9e52f42cb3a6fb1f53df60c68d269ce7e97f564c02c2290d4",
+      "words": 354,
+      "lines": 36,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-canon--aprender-aprehender-y-revolucionar--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-canon--aprender-aprehender-y-revolucionar--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-canon--aprender-aprehender-y-revolucionar--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c2bd0b43d9adfc71c3aefaa12621ad9aea091fa148e5104da0d08706f67b7694",
+      "words": 266,
+      "lines": 41,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-reference--aprender-aprehender-y-revolucionar--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-reference--aprender-aprehender-y-revolucionar--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/24-reference--aprender-aprehender-y-revolucionar--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a10d52edaf7aaf1b9ff087d0ccb51862f291f7e8f1bae236e42ec56108de7e3e",
+      "words": 183,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-canon--programa-empoderamiento-onboarding--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-canon--programa-empoderamiento-onboarding--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-canon--programa-empoderamiento-onboarding--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "2aab7e4f01c21ed175c831269968c9b20ed88bac85ee8bab875221bc6ef2f2f8",
+      "words": 224,
+      "lines": 36,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-reference--programa-empoderamiento-onboarding--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-reference--programa-empoderamiento-onboarding--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/27-reference--programa-empoderamiento-onboarding--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7316c7016bbf3101ce84b99fcbb91684df0434060cdcf1bf67a1e57822522477",
+      "words": 173,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/30-templates--briefs-and-checklists--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/30-templates--briefs-and-checklists--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/30-templates--briefs-and-checklists--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e7582a25762348da1864937da4764dfca75e0d83c44659576c661ffcb37ec221",
+      "words": 364,
+      "lines": 89,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/40-reference--pdf-gallery-guide--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/40-reference--pdf-gallery-guide--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/40-reference--pdf-gallery-guide--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9435b0460106aa828cdbb5ba092e38cb73f469fde040cf278f58518e4862ea0d",
+      "words": 341,
+      "lines": 51,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/41-reference--presentaciones-como-activos-de-autoridad--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/41-reference--presentaciones-como-activos-de-autoridad--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/41-reference--presentaciones-como-activos-de-autoridad--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "154005f038281d7d3022f9d924fc05f4ac866cf11b7de609a3140f2d6aa26016",
+      "words": 203,
+      "lines": 27,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/42-reference--skills-agentes-y-chief-of-staff--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/42-reference--skills-agentes-y-chief-of-staff--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/42-reference--skills-agentes-y-chief-of-staff--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c647f7d4d849c66355cc7b4890ec3898b49d2016ceaa2492312c2338f75fcf89",
+      "words": 194,
+      "lines": 26,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/43-reference--variantes-editoriales-de-formacion--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/43-reference--variantes-editoriales-de-formacion--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/43-reference--variantes-editoriales-de-formacion--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "53477771f0603367dd915a363deaf056576eb83495b364ba308637ce83431ce3",
+      "words": 174,
+      "lines": 25,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/50-assets--manifest-and-usage--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/50-assets--manifest-and-usage--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/50-assets--manifest-and-usage--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b4a608e0671257b18307ee00ab4aef54614e081d58424f5be6746fe1a4bedc1e",
+      "words": 417,
+      "lines": 47,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/60-operations--sources-receipts-and-readback--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/60-operations--sources-receipts-and-readback--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/60-operations--sources-receipts-and-readback--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8a35da211218c39ada6d016c906bda9c332603a15b5e1cd3831dc78f0a93369e",
+      "words": 380,
+      "lines": 67,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "528f31d4958b69edb4f679aefc5822066f368eea992c3f5a234ec2166b0fd9a9",
+      "words": 553,
+      "lines": 74,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/61-operations--origin-notebook-migration-audit--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1167fdd911c05289d2ee9bccaf9d49005cc44fd7dd5ec7d8c2aa68b6b2b6f7ed",
+      "words": 295,
+      "lines": 35,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/62-operations--naming-tags-and-source-roles--v2.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/62-operations--naming-tags-and-source-roles--v2.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/62-operations--naming-tags-and-source-roles--v2.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "6b8e1c5b85831ff97f49bb971b58e524a621c8b1373defa4a55422a8db5b0d93",
+      "words": 241,
+      "lines": 58,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--assessment-transfer-matrix--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--assessment-transfer-matrix--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--assessment-transfer-matrix--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "578ef5b877860afa86d1697e43affcbf7f5d09d3354ad4f0f94580e44b540530",
+      "words": 505,
+      "lines": 27,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s01-de-ocupado-a-productivo--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s01-de-ocupado-a-productivo--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s01-de-ocupado-a-productivo--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "54d726800e1a0e1504dbad81119476f5ce1cd53fb60b70948d572ba2a11c6910",
+      "words": 307,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s02-recibimiento-y-aprender-a-aprender--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s02-recibimiento-y-aprender-a-aprender--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s02-recibimiento-y-aprender-a-aprender--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0e46731e42344f52991c9535415d727ec56bced0ac1a6acacbbe3f9335b053ce",
+      "words": 299,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s03-automatismo-y-presencia--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s03-automatismo-y-presencia--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s03-automatismo-y-presencia--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0d5a83575fbd46e25975d937f1365dc01ac7895724b56d52c4d0a84d3d859a24",
+      "words": 262,
+      "lines": 42,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s04-del-cumplimiento-a-la-excelencia--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s04-del-cumplimiento-a-la-excelencia--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s04-del-cumplimiento-a-la-excelencia--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "012c3b1acecea00e1db2fb8df3951fc867a812d1cd4416e198c2ca30d1b36f58",
+      "words": 272,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s05-de-trabajar-duro-a-sin-friccion--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s05-de-trabajar-duro-a-sin-friccion--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s05-de-trabajar-duro-a-sin-friccion--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "84e008de5ff9d3c7e9a1594f3fe920f5e853b6ac7c64712936239b7585db8049",
+      "words": 279,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s06-jornadas-estrategicas--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s06-jornadas-estrategicas--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s06-jornadas-estrategicas--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "886dfb4fa2b513bea395298182a068f1815f66e84e3c1df41c3000773767a3a8",
+      "words": 261,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "341ea8c25941be54cf5224a70815e319eb9eb77af5eec11f02f1c2d5e3d9969d",
+      "words": 263,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.1.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s07-alto-desempeno-y-alto-rendimiento--v1.1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d84aef42c9dbdca8174ff6134660e31d22bbf1e6d6c300fde4c176aed9511ac2",
+      "words": 352,
+      "lines": 50,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s08-bocetos-y-prototipos-con-ia--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s08-bocetos-y-prototipos-con-ia--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s08-bocetos-y-prototipos-con-ia--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "55de2452a71be6410ee7667123bbb23397075cc7ed98d5850be49b7fb0ba80a6",
+      "words": 252,
+      "lines": 43,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s09-multimedia-con-ia--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s09-multimedia-con-ia--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s09-multimedia-con-ia--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "155e187bea489315d7c1724c4ab02ac7e9fc12b17df985f9a399a4aa183fab41",
+      "words": 266,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s10-mini-apps-con-ia--v1.0.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s10-mini-apps-con-ia--v1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/knowledge-base/70-pedagogy--s10-mini-apps-con-ia--v1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ecdf8e95829ad02486ca09b1273fde97552b71009274e7e5741b48755f2a7662",
+      "words": 268,
+      "lines": 45,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/README.md",
+      "class": "authored_control",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:projects/notebooklm-os/**",
+      "authorityRefs": [
+        "03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c89d70bff432b03ab62d8c54d07089180c4c6bf4a9bcf006c7e6bbce50962a29",
+      "words": 263,
+      "lines": 28,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
       }
     },
     {
@@ -17995,7 +19380,7 @@
     }
   ],
   "summary": {
-    "keep": 586,
+    "keep": 637,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

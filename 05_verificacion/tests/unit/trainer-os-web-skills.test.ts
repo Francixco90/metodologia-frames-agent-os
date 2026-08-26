@@ -166,11 +166,14 @@ describe('Trainer OS landing and workbook skill routers', () => {
     });
   });
 
-  it('binds Trainer OS to the existing R6 content route without inventing R10', () => {
+  it('keeps Trainer OS on R6 while R10 remains dedicated to NotebookLM OS', () => {
     const router = parse(read('02_proceso/governance/router.yml')) as {
       routes: Array<{id: string; signal_patterns?: string[]; reads?: string[]; output?: string}>;
     };
-    expect(router.routes.map(({id}) => id)).not.toContain('R10');
+    const r10 = router.routes.find(({id}) => id === 'R10');
+    expect(r10?.reads).toEqual(
+      expect.arrayContaining(['03_artefactos/skills/notebooklm-os-router/SKILL.md']),
+    );
     const r6 = router.routes.find(({id}) => id === 'R6');
     expect(r6?.signal_patterns).toEqual(
       expect.arrayContaining([
