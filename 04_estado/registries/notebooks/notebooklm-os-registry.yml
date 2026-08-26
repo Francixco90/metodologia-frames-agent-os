@@ -1,0 +1,56 @@
+schema_version: 1
+registry_id: notebooklm-os-registry-v1
+mutation_policy: append-only-records
+locator_policy: digests-only
+entries:
+  - binding_id: NB-PROFILE-METODOLOGIA-BRAND-CONTENT-V1
+    adapter_id: notebooklm-managed-v1
+    recorded_at: '2026-08-25T00:00:00Z'
+    binding:
+      mode: none
+      reason_code: private_notebook_not_materialized_nlm_plan_approval_required
+      locator_material_present: false
+    state: coverage_gap
+    profile_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/profile.yml
+    consequences:
+      - external_creation_blocked
+      - studio_generation_blocked
+      - sharing_and_publication_blocked
+  - binding_id: NB-PROFILE-METODOLOGIA-BRAND-CONTENT-V1-MATERIALIZED-20260826
+    adapter_id: notebooklm-managed-v1
+    recorded_at: '2026-08-26T00:00:00Z'
+    supersedes: NB-PROFILE-METODOLOGIA-BRAND-CONTENT-V1
+    binding:
+      mode: digest
+      binding_digest: 055d45dcf4eb9453aa7df745179a695c630bc4c1c11569b0ff698ac5b5cf5356
+      locator_material_present: false
+    state: materialized_private
+    profile_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/profile.yml
+    readback:
+      source_count: 135
+      studio_artifact_count: 1
+      access_level: restricted
+      is_shared: false
+      is_public: false
+    consequences:
+      - external_creation_complete
+      - further_mutations_remain_gate_bound
+      - sharing_and_publication_blocked
+  - binding_id: NB-BENCHMARK-IA-CAPABILITIES-V3-CENTRALIZADOR-20260826
+    adapter_id: notebooklm-managed-v1
+    recorded_at: '2026-08-26T00:00:00Z'
+    binding:
+      mode: digest
+      binding_digest: 57f89b9d45b3430a86e95d8d5cea369e3315dad3e5395a463c0ca8804b6f9d96
+      locator_material_present: false
+    state: materialized_private
+    readback:
+      source_count: 18
+      studio_artifact_count: 0
+      access_level: restricted
+      is_shared: false
+      is_public: false
+    consequences:
+      - factual_authority_preserved
+      - studio_generation_blocked
+      - sharing_and_publication_blocked

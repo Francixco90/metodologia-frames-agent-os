@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "notebook-lifecycle-receipt-v1",
+  "receiptId": "notebook-parity-readback-20260826",
+  "planSha256": "9d41bcf09f91a7ee56d51621011eab6d308a144804d5b6f8e4ee899f5bcf118d",
+  "actor": "Frames ContentOS · NotebookLM OS · por MetodologIA",
+  "approval": null,
+  "approvalUse": "NONE",
+  "externalChanges": [],
+  "readbackSha256": "cc1c4db184a14efd7b1f5a870850c8a0e4f900f913bb7817a1a415a0f6e2e95a",
+  "outputHashes": [
+    "57f89b9d45b3430a86e95d8d5cea369e3315dad3e5395a463c0ca8804b6f9d96",
+    "055d45dcf4eb9453aa7df745179a695c630bc4c1c11569b0ff698ac5b5cf5356"
+  ],
+  "state": "VERIFIED",
+  "nextGate": "NLM_SHARE_AUTHORIZED"
+}
