@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "1ab9f0a6f7b01d72beb4c3d259939189e201e4ad98659705b47e884652f6fdb0",
+  "sourceSha256": "bb8ab3916b9c9b7e50ab94abe335a042c2961eac2da2587a1632351e4fdb2969",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -578,6 +578,7 @@
     {"kind":"RENDERER","id":"three","ref":"04_estado/registries/renderers/renderer-capability-registry-v1.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ROUTE","id":"R0","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ROUTE","id":"R1","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"ROUTE","id":"R10","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ROUTE","id":"R2","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ROUTE","id":"R3-LOOSE","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"ROUTE","id":"R3","ref":"02_proceso/governance/router.yml","scope":"CANONICAL","state":"ACTIVE"},
