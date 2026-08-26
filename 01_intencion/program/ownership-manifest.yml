@@ -57,6 +57,7 @@ writers:
   sources:
     - inbox/**
     - adapters/notebooklm/**
+    - adapters/notebooklm-managed/**
     - registries/sources/**
     - registries/notebooks/**
     - registries/claims/**
@@ -112,6 +113,7 @@ writers:
     - workflows/maintenance/**
     - workflows/skill-systems/**
     - workflows/trainer-os/**
+    - workflows/notebooklm-os/**
     - projects/trainer-os/**
     - 03_artefactos/content/documentation/**
     - workflows/context.md
@@ -188,6 +190,7 @@ writers:
     - 05_verificacion/tests/unit/skill-systems-*.test.ts
     - 05_verificacion/tests/unit/trainer-os-*.test.ts
     - 05_verificacion/tests/unit/host-adapter-contract.test.ts
+    - 05_verificacion/tests/unit/notebooklm-os.test.ts
     - 05_verificacion/tests/integration/career-*.test.ts
     - 05_verificacion/context.md
   governance:

@@ -27,12 +27,13 @@ productive_handlers:
   R7: {status: active, effect: local_reversible, stop: EXP_BRIEF_APPROVED}
   R8: {status: active, effect: local_reversible, stop: LX_BRIEF_APPROVED}
   R9: {status: active, effect: local_reversible, stop: HM_CHANGE_APPROVED}
+  R10: {status: active, effect: external_gated, stop: NLM_PLAN_APPROVED}
 # El First-Turn Gateway clasifica asistencia, acción, reanudación o ambigüedad;
-# este manifiesto R0-R7 conserva la autoridad de routing. Los adapters solo
+# este manifiesto R0-R10 conserva la autoridad de routing. Los adapters solo
 # ejecutan una ruta cuando su handler es resoluble. [CONFIG]
 #
 # Estados de tarea (task-contract.ts): INTAKE, ESPECIFICADO, COMPILADO, EVALUADO,
-# ENTREGADO, BLOQUEADO. El enum `created_from_route` valida R0-R7. [CÓDIGO]
+# ENTREGADO, BLOQUEADO. El enum `created_from_route` valida R0-R10. [CÓDIGO]
 #
 # Gates G13-G17 y MW_BRIEF_APPROVED son manuales fail-closed (dag.yml: release.human_gate G15,
 # readiness_gate G16, publish_gate G17). No los automatices. [CONFIG]
@@ -182,6 +183,23 @@ routes:
     output: 'impact plan + M00-M06 con S00-S09; STOP en HM_CHANGE_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
+  - id: R10
+    signal: 'crear, auditar, curar, sincronizar u operar NotebookLM OS'
+    signal_patterns:
+      - 'NotebookLM OS'
+      - 'NotebookLM'
+      - 'Gemini Notebook'
+      - '/notebooklm:init'
+      - '/notebooklm:audit'
+      - '/notebooklm:studio'
+    reads:
+      - '02_proceso/workflows/notebooklm-os/README.md'
+      - '02_proceso/core/contracts/notebooklm-os-v1.ts'
+      - '03_artefactos/adapters/notebooklm-managed/contract.yml'
+      - '03_artefactos/skills/notebooklm-os-router/SKILL.md'
+    output: 'NotebookIntentV1 + NotebookPlanV1 + cadena N00-N09; lectura y planificación sin mutación; STOP en NLM_PLAN_APPROVED o el gate específico del efecto'
+    binds_to: task
+    runtime_status: active_plan_first_external_fail_closed
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
 gate_commands:
   G00_toolchain: 'pnpm check:toolchain'
@@ -197,6 +215,7 @@ gate_commands:
   G09_CAREER_DESIGN_design_system: 'pnpm verify:career-design'
   G09_VIDEO_OS_contracts: 'pnpm verify:video-os'
   G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
+  G09_NOTEBOOKLM_OS_contracts: 'pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts'
   G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
   G12_QA_media: 'pnpm verify:media'
   preflight_VS_001: 'pnpm slice:build'
@@ -225,4 +244,9 @@ manual_fail_closed_gates:
     DOCS_TRANSVERSAL_COMPLETE,
     HM_CHANGE_APPROVED,
     HM_PROMOTION_APPROVED,
+    NLM_PLAN_APPROVED,
+    NLM_SYNC_APPROVED,
+    NLM_STUDIO_GENERATION_APPROVED,
+    NLM_SHARE_AUTHORIZED,
+    NLM_DESTRUCTIVE_AUTHORIZED,
   ]

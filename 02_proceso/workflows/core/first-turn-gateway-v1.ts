@@ -8,6 +8,7 @@ import {
   CONTENT_SIGNALS_V1,
   HARNESS_MAINTENANCE_SIGNALS_V1,
   LOCAL_EXTENSION_SIGNALS_V1,
+  NOTEBOOKLM_OS_SIGNALS_V1,
   RESUME_SIGNALS_V1,
   classifyGovernedLegacyRouteV1,
   hasFirstTurnSignalV1,
@@ -15,8 +16,7 @@ import {
 } from './first-turn-signals-v1.ts';
 import {buildUnsupportedLegacyRouteEnvelopeV1} from './legacy-route-block-v1.ts';
 import {
-  buildGatewayRouteFailureV1,
-  buildGatewayRouteOutcomeV1,
+  resolveGatewayRouteV1,
   type FirstTurnGatewayInputV1,
   type GatewayRouteHandlerV1,
 } from './gateway-route-outcome-v1.ts';
@@ -39,7 +39,8 @@ function baseEnvelope(
 export function runFirstTurnGatewayV1(
   input: FirstTurnGatewayInputV1,
   handlers: Readonly<
-    Record<'R6' | 'R7', GatewayRouteHandlerV1> & Partial<Record<'R8' | 'R9', GatewayRouteHandlerV1>>
+    Record<'R6' | 'R7', GatewayRouteHandlerV1> &
+      Partial<Record<'R8' | 'R9' | 'R10', GatewayRouteHandlerV1>>
   >,
 ): AssistanceEnvelopeV1 {
   const prompt = normalizeFirstTurnPromptV1(input.prompt);
@@ -118,6 +119,18 @@ export function runFirstTurnGatewayV1(
     input.explicitRoute === 'R9' ||
     (input.explicitRoute === undefined &&
       hasFirstTurnSignalV1(prompt, HARNESS_MAINTENANCE_SIGNALS_V1));
+  const notebookMatch =
+    input.explicitRoute === 'R10' ||
+    (input.explicitRoute === undefined && hasFirstTurnSignalV1(prompt, NOTEBOOKLM_OS_SIGNALS_V1));
+  if (notebookMatch) {
+    const context = {
+      ...common,
+      understoodOutcome,
+      routeId: 'R10' as const,
+      reasonCode: 'NOTEBOOKLM_OS_SIGNAL',
+    };
+    return resolveGatewayRouteV1(handlers.R10, {...input, requestHash, routeId: 'R10'}, context);
+  }
   if (extensionMatch || maintenanceMatch) {
     const routeId: 'R8' | 'R9' = extensionMatch ? 'R8' : 'R9';
     if (extensionMatch && maintenanceMatch) {
@@ -147,13 +160,7 @@ export function runFirstTurnGatewayV1(
     }
     const reasonCode = routeId === 'R8' ? 'LOCAL_EXTENSION_SIGNAL' : 'HARNESS_MAINTENANCE_SIGNAL';
     const context = {...common, understoodOutcome, routeId, reasonCode};
-    const handler = handlers[routeId];
-    if (handler === undefined) return buildGatewayRouteFailureV1(context);
-    try {
-      return buildGatewayRouteOutcomeV1(handler({...input, requestHash, routeId}), context, input);
-    } catch {
-      return buildGatewayRouteFailureV1(context);
-    }
+    return resolveGatewayRouteV1(handlers[routeId], {...input, requestHash, routeId}, context);
   }
   if (contentMatch === careerMatch) {
     const candidates = contentMatch
@@ -189,10 +196,5 @@ export function runFirstTurnGatewayV1(
   const routeId: 'R6' | 'R7' = contentMatch ? 'R6' : 'R7';
   const reasonCode = contentMatch ? 'CONTENT_SIGNAL' : 'CAREER_SIGNAL';
   const context = {...common, understoodOutcome, routeId, reasonCode};
-  try {
-    const result = handlers[routeId]({...input, requestHash, routeId});
-    return buildGatewayRouteOutcomeV1(result, context, input);
-  } catch {
-    return buildGatewayRouteFailureV1(context);
-  }
+  return resolveGatewayRouteV1(handlers[routeId], {...input, requestHash, routeId}, context);
 }

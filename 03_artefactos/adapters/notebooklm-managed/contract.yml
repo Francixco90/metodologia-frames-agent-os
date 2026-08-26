@@ -1,0 +1,26 @@
+schema_version: 1
+adapter_id: notebooklm-managed-v1
+providers: [notebooklm, gemini-notebook]
+default_mode: validate_only
+locator_persistence: forbidden
+idempotency_key: plan_id_plus_operation_id
+identity_precedence: [drive_id, canonical_url, content_sha256]
+allowed_operations:
+  [audit, create, configure, curate, ground, studio, verify, sync, share, evolve, archive, delete]
+gates:
+  create: NLM_PLAN_APPROVED
+  configure: NLM_PLAN_APPROVED
+  curate: NLM_PLAN_APPROVED
+  sync: NLM_SYNC_APPROVED
+  studio: NLM_STUDIO_GENERATION_APPROVED
+  share: NLM_SHARE_AUTHORIZED
+  archive: NLM_DESTRUCTIVE_AUTHORIZED
+  delete: NLM_DESTRUCTIVE_AUTHORIZED
+single_use_gates: [NLM_SHARE_AUTHORIZED, NLM_DESTRUCTIVE_AUTHORIZED]
+invariants:
+  - every_external_mutation_has_receipt
+  - every_external_mutation_has_readback
+  - source_title_never_defines_identity
+  - resume_never_duplicates_resources
+  - publication_is_separate_from_sharing
+  - private_locators_never_enter_versioned_files
