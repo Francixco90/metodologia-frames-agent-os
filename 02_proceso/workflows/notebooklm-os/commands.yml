@@ -1,0 +1,14 @@
+schema_version: notebooklm-os-commands-v1
+prefix: /notebooklm
+natural_language_primary: true
+aliases:
+  init: {starts_at: N00, effect: READ_ONLY, stop: NLM_PLAN_APPROVED}
+  audit: {starts_at: N01, effect: READ_ONLY, stop: audit_receipt}
+  create: {starts_at: N04, effect: EXTERNAL_MUTATION, stop: NLM_PLAN_APPROVED}
+  curate: {starts_at: N03, effect: LOCAL_REVERSIBLE, stop: NLM_PLAN_APPROVED}
+  studio: {starts_at: N07, effect: EXTERNAL_MUTATION, stop: NLM_STUDIO_GENERATION_APPROVED}
+  verify: {starts_at: N08, effect: READ_ONLY, stop: artifact_receipt}
+  sync: {starts_at: N05, effect: EXTERNAL_MUTATION, stop: NLM_SYNC_APPROVED}
+  share: {starts_at: N09, effect: EXTERNAL_MUTATION, stop: NLM_SHARE_AUTHORIZED}
+  status: {starts_at: N01, effect: READ_ONLY, stop: lifecycle_digest}
+  evolve: {starts_at: N02, effect: LOCAL_REVERSIBLE, stop: NLM_PLAN_APPROVED}

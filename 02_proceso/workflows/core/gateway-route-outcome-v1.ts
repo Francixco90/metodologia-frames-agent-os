@@ -6,7 +6,7 @@ import {
 } from '../../core/contracts/index.ts';
 
 export interface GatewayRoutePlanV1 {
-  routeId: 'R6' | 'R7' | 'R8' | 'R9';
+  routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
   workflowPlan: string[];
   activeStep: string;
   skillBindings: AssistanceEnvelopeV1['skillBindings'];
@@ -28,7 +28,7 @@ export interface FirstTurnGatewayInputV1 {
   sensitivity?: AssistanceEnvelopeV1['sensitivity'];
   knownInputs?: string[];
   activeProjectId?: string;
-  explicitRoute?: 'R6' | 'R7' | 'R8' | 'R9';
+  explicitRoute?: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
   resumeCandidate?: GatewayResumeCandidateV1;
   decisionFunnel?: unknown;
   decisionSelection?: unknown;
@@ -37,7 +37,7 @@ export interface FirstTurnGatewayInputV1 {
 export type GatewayRouteHandlerV1 = (
   input: Readonly<FirstTurnGatewayInputV1> & {
     requestHash: string;
-    routeId: 'R6' | 'R7' | 'R8' | 'R9';
+    routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
   },
 ) => GatewayRoutePlanV1;
 
@@ -46,8 +46,21 @@ interface GatewayOutcomeContextV1 {
   understoodOutcome: string;
   knownInputs: string[];
   sensitivity: AssistanceEnvelopeV1['sensitivity'];
-  routeId: 'R6' | 'R7' | 'R8' | 'R9';
+  routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
   reasonCode: string;
+}
+
+export function resolveGatewayRouteV1(
+  handler: GatewayRouteHandlerV1 | undefined,
+  input: Parameters<GatewayRouteHandlerV1>[0],
+  context: GatewayOutcomeContextV1,
+): AssistanceEnvelopeV1 {
+  if (handler === undefined) return buildGatewayRouteFailureV1(context);
+  try {
+    return buildGatewayRouteOutcomeV1(handler(input), context, input);
+  } catch {
+    return buildGatewayRouteFailureV1(context);
+  }
 }
 
 export function buildGatewayRouteOutcomeV1(

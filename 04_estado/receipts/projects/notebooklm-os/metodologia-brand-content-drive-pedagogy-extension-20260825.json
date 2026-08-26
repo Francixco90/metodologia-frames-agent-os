@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "notebook-lifecycle-receipt-v1",
+  "receiptId": "metodologia-brand-content-drive-pedagogy-extension-20260825",
+  "actor": "Frames ContentOS · NotebookLM OS · por MetodologIA",
+  "approval": "NLM_PLAN_APPROVED",
+  "approvalEvidence": "explicit_user_instruction_2026-08-25_proceed_build_notebook_and_create_one_markdown_per_class",
+  "approvalUse": "CONSUMED_ONCE",
+  "notebookLocatorDigest": "055d45dcf4eb9453aa7df745179a695c630bc4c1c11569b0ff698ac5b5cf5356",
+  "notebookTitle": "MetodologIA · Brand Content Studio · Canon v1",
+  "externalChanges": [
+    "Imported 20 complementary Drive PDFs as references, editions, templates or evidence.",
+    "Imported 19 initial Markdown governance and pedagogy sources, including exactly one class guide for S01-S10.",
+    "Imported six corrective successors: router v2.1, two active references, one assessment matrix, S07 pedagogy v1.1 and audit evidence v1.1.",
+    "Configured notebook chat from system prompt v2.1 and added seven notebook routing tags.",
+    "Moved five superseded sources to 90 Archive and renamed them without deleting content.",
+    "Did not sync Drive sources, generate Studio artifacts, invite collaborators, publish or delete anything."
+  ],
+  "successorSourceLocatorDigests": {
+    "system-prompt-v2.1": "8142be7cf0224c1c417aadf070333052d221d616474d3557250b296069261db8",
+    "learning-reference-v1.1": "0114f7edcbf54696dec0515aaa6b03e524a0ab52168c2a456ccea0c9a7e2db57",
+    "onboarding-reference-v1.1": "b0a4497ed57a3e1f44a519302ec2cf9685d077d3930252ce694c9e1fa7ce4a09",
+    "assessment-matrix-v1.0": "6763849c18480888cfcda73f39bfe962e9ca48e77fe8db80f007612c46233dbb",
+    "s07-pedagogy-v1.1": "fe70bc012fd7452623921e558bb5a7adbf0515413b1bfa7360543bf800c8d7c2",
+    "drive-audit-v1.1": "8d7df493fc9670f932a1286e5acff2d9f8fc0088ae6d2f451874c39e555122bb"
+  },
+  "outputHashes": [
+    "6cd682036f5e50bc4021fa240fec3063401516f2b3d44aef697276ea9e9f0cd6",
+    "cca3318a1d3772b75e2e873f47f880510c738ca028355dd18ea794e4a2f5b050",
+    "8dfd7fcc303eb6827b85dbd24f9e7238d2801779cc0cdcc3ec82a9689b62e7a2",
+    "e1e69b30816f0dbe4f65a4ce9d08be28ec198c54cb0ad1933b665672ec961172",
+    "4ac31a7fedef780ff9599d1ff7edcdfdb80a8bb4e49b5071ffbbcd2e0237e9c9",
+    "ba605565c5ad56200be5a35a3ad4d03628b83a3bfd81bef611d0b24180c3d98b"
+  ],
+  "readback": {
+    "sourceCountBeforeThisExtension": 72,
+    "sourceCountAfterCorrectiveSuccessors": 117,
+    "newPdfCount": 20,
+    "initialMarkdownCount": 19,
+    "correctiveSuccessorCount": 6,
+    "ownership": "owned",
+    "accessLevel": "restricted",
+    "isPublic": false,
+    "collaboratorCount": 1
+  },
+  "validations": [
+    "Five corrective sources returned indexed content in readback.",
+    "S02 query recovered phases, transfer evidence, threshold and the missing-main-PDF gap with citations.",
+    "S07 query recovered corrected active definitions, historical variant and acceptance with citations.",
+    "Asset query routed R40 plus R60, allowed Javier portrait for editorial use and blocked the unapproved logo.",
+    "S09 query produced a 20-minute activity with transfer evidence and threshold.",
+    "Infographic query compiled R40 to R70 and stopped at NLM_STUDIO_GENERATION_APPROVED without generation.",
+    "Singleton audit query recovered 20 complementary PDFs, exclusions and VERIFIED_SCOPED limits with citations."
+  ],
+  "gaps": [
+    "S02 lacks a confirmed principal PDF equivalent.",
+    "Videos without transcripts, ZIP internals and hidden historical revisions were not inspected.",
+    "Binary equality of some Drive copies remains unverified without local content hashes.",
+    "Logo family still requires human approval; Katherine, Daniel, German and Pristino remain REVIEW.",
+    "Provider-side import count is verified, but source permissions not exposed by Drive remain unknown."
+  ],
+  "state": "VERIFIED_DRAFT",
+  "humanApproval": "PENDING_JAVIER_VOICE_AND_VISUAL_REVIEW",
+  "sharing": "BLOCKED",
+  "publication": "BLOCKED",
+  "nextGate": "NLM_STUDIO_GENERATION_APPROVED"
+}

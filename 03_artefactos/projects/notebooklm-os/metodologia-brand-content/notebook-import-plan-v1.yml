@@ -1,0 +1,195 @@
+schema_version: notebook-plan-v1
+plan_id: metodologia-brand-content-canon-v1-materialization
+profile_id: metodologia-brand-content-canon-v1
+target_notebook: 'MetodologIA · Brand Content Studio · Canon v1'
+provider: notebooklm
+visibility: private
+approval:
+  gate: NLM_PLAN_APPROVED
+  evidence: explicit_user_instruction_2026-08-25
+  allows: [create_private_notebook, configure_chat, import_declared_sources]
+  does_not_allow: [studio_generation, sharing, publication, deletion, drive_sync]
+idempotency_key: metodologia-brand-content-canon-v1
+source_budget:
+  controls_and_canon: 21
+  historical_pdf_gallery: 21
+  current_pdf_gallery: 22
+  image_gallery: 8
+  total: 72
+selection_exception:
+  reason: 'Javier requiere que el notebook final contenga los 21 PDF históricos de Masterclass y Playbooks, los 22 PDF canónicos nuevos, los Markdown y las ocho referencias artísticas.'
+  guardrail: 'consultas y Studio seleccionan source_ids explícitos; all-sources no es el default'
+markdown_sources:
+  - {
+      source_id: NLS-KB-00-SYSTEM,
+      name: '00-control--system-prompt--v1.1',
+      path: knowledge-base/00-control--system-prompt--v1.1.md,
+      content_sha256: 6944ac25365202758d8e156bb1af1f78b3450501af3ac6f1e7db37576bb12ef8,
+      authority: CONTROL,
+    }
+  - {
+      source_id: NLS-KB-01-AUTHORITY,
+      name: '01-control--authority-routing-and-gates--v1.0',
+      path: knowledge-base/01-control--authority-routing-and-gates--v1.0.md,
+      content_sha256: f13f5937f596b08418771db7429188f6830a69e7ec5ec6ddea4a71d9876f7830,
+      authority: CONTROL,
+    }
+  - {
+      source_id: NLS-KB-10-METHOD,
+      name: '10-canon--metodologia-operating-method--v1.0',
+      path: knowledge-base/10-canon--metodologia-operating-method--v1.0.md,
+      content_sha256: e3d7115bf394557f325b2e64658cb23504107c9fd43b374e692f06a46d935ecc,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-11-CURRICULUM,
+      name: '11-canon--formation-curriculum-map--v1.0',
+      path: knowledge-base/11-canon--formation-curriculum-map--v1.0.md,
+      content_sha256: 08aabc1ab956693b9eb3f6dcff7bccaaa6086d613abe233c7deeca5b91728e73,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-12-CONTENT,
+      name: '12-canon--content-studio--v1.0',
+      path: knowledge-base/12-canon--content-studio--v1.0.md,
+      content_sha256: a2f67a7e060d67f570871daf3d951cb76694675efc8dde2aa9d53f8716cc4a32,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-13-AGENTIC,
+      name: '13-canon--agentic-sovereignty--v1.0',
+      path: knowledge-base/13-canon--agentic-sovereignty--v1.0.md,
+      content_sha256: 6077960fbb65d6bd59f198d896a68f3645291dc7b3e455fb88c03f2ed35d2c51,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-14-VOICE-CANON,
+      name: '14-canon--brand-voice-and-editorial-rhetoric--v1.0',
+      path: knowledge-base/14-canon--brand-voice-and-editorial-rhetoric--v1.0.md,
+      content_sha256: b3b41de285bec722c9f0f29431621321339c36be7d840c2c1b03b276441e74e1,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-15-VOICE,
+      name: '15-reference--written-tone-and-style--v1.0',
+      path: knowledge-base/15-reference--written-tone-and-style--v1.0.md,
+      content_sha256: 8f60b99c38f23166b0d0121fa954785ae1e8d10e7a52031c8da12f8acfa0af93,
+      authority: REFERENCE,
+    }
+  - {
+      source_id: NLS-KB-16-HOOKS,
+      name: '16-canon--hooks-punchlines-and-ctas--v1.0',
+      path: knowledge-base/16-canon--hooks-punchlines-and-ctas--v1.0.md,
+      content_sha256: 20875d4757d9c43ca9520d3b750381a5fb728397b8b1356c4c3f1ed3d99d5f8c,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-17-VISUAL,
+      name: '17-canon--neo-swiss-clean-soft-explainer--v1.0',
+      path: knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.0.md,
+      content_sha256: b6a7b13632842f8a27959349c9e7ca8fcd12fa4c0d1d5b746d2b2b1fc04a400a,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-17-VISUAL-V1.1,
+      name: '17-canon--neo-swiss-clean-soft-explainer--v1.1',
+      path: knowledge-base/17-canon--neo-swiss-clean-soft-explainer--v1.1.md,
+      content_sha256: 87b7d1e19bd058726b3f335bb5b8795c53de9f598f78b08739d50d64e175d99b,
+      authority: CANON,
+    }
+  - {
+      source_id: NLS-KB-18-PROMPTS,
+      name: '18-templates--copy-and-visual-prompt-library--v1.0',
+      path: knowledge-base/18-templates--copy-and-visual-prompt-library--v1.0.md,
+      content_sha256: 6da1cc4c186d99edec93d2495606cac50a892dbd786d02485cf9cf00da6a00cc,
+      authority: TEMPLATE,
+    }
+  - {
+      source_id: NLS-KB-18-PROMPTS-V1.1,
+      name: '18-templates--copy-and-visual-prompt-library--v1.1',
+      path: knowledge-base/18-templates--copy-and-visual-prompt-library--v1.1.md,
+      content_sha256: 96405c8c0c389c3fbeea4d4b8177d212df95bbc09c697b508f74096c5a1aa800,
+      authority: TEMPLATE,
+    }
+  - {
+      source_id: NLS-KB-18-PROMPTS-V1.2,
+      name: '18-templates--copy-and-visual-prompt-library--v1.2',
+      path: knowledge-base/18-templates--copy-and-visual-prompt-library--v1.2.md,
+      content_sha256: dae50eccc1fb7bbddbd8b755e3e021ba47a8dbd73e659d8675b5756f66dda572,
+      authority: TEMPLATE,
+    }
+  - {
+      source_id: NLS-KB-20-EVIDENCE,
+      name: '20-evidence--claims-and-gaps--v1.0',
+      path: knowledge-base/20-evidence--claims-and-gaps--v1.0.md,
+      content_sha256: ac7be358ce275dc63f1ea6fe393c67eeee9dae1a2bf6cd0c8a5a4fb852aa32c2,
+      authority: EVIDENCE,
+    }
+  - {
+      source_id: NLS-KB-30-TEMPLATES,
+      name: '30-templates--briefs-and-checklists--v1.0',
+      path: knowledge-base/30-templates--briefs-and-checklists--v1.0.md,
+      content_sha256: 43ac82241613f2ac1c504394e5f735d8eae1bd94837618163cc32db6ad654545,
+      authority: TEMPLATE,
+    }
+  - {
+      source_id: NLS-KB-40-GALLERY,
+      name: '40-reference--pdf-gallery-guide--v1.0',
+      path: knowledge-base/40-reference--pdf-gallery-guide--v1.0.md,
+      content_sha256: 04a544538f375c4411821ff2c14c298dad68b1428be2f0018a5c91d44acbd639,
+      authority: REFERENCE,
+    }
+  - {
+      source_id: NLS-KB-50-ASSETS,
+      name: '50-assets--manifest-and-usage--v1.0',
+      path: knowledge-base/50-assets--manifest-and-usage--v1.0.md,
+      content_sha256: af940ded2b9c550ccc8e15db1936c3ae089329ba0b17a72e657766a45bbcba5f,
+      authority: ASSET_CONTROL,
+    }
+  - {
+      source_id: NLS-KB-60-OPERATIONS,
+      name: '60-operations--sources-receipts-and-readback--v1.0',
+      path: knowledge-base/60-operations--sources-receipts-and-readback--v1.0.md,
+      content_sha256: b58f332d32deb959757bbdd8699acd55794441acc93060d0e99f7bdfec255cf8,
+      authority: OPERATIONS,
+    }
+  - {
+      source_id: NLS-KB-61-MIGRATION,
+      name: '61-operations--origin-notebook-migration-audit--v1.0',
+      path: knowledge-base/61-operations--origin-notebook-migration-audit--v1.0.md,
+      content_sha256: e0ecf0c01e33592267c5655698fe8ecf307f74e2d24d9c22efd6e4c1c194ea11,
+      authority: OPERATION_EVIDENCE,
+    }
+  - {
+      source_id: NLS-KB-61-MIGRATION-V1.1,
+      name: '61-operations--origin-notebook-migration-audit--v1.1',
+      path: knowledge-base/61-operations--origin-notebook-migration-audit--v1.1.md,
+      content_sha256: a4b732d4d4784ce069432590adde556a010a0149a42c7ff4bf1dbf1ed7521e18,
+      authority: OPERATION_EVIDENCE,
+    }
+historical_pdf_sources:
+  inventory: source-packs/masterclass-playbooks-v1.yml
+  local_directory: source-packs/historical-pdf-editions
+  selection: all_21_rows
+  authority: REFERENCE_UNLESS_EXPLICITLY_PROMOTED
+  role_allocation: {masterclass: 14, playbook: 7}
+current_pdf_sources:
+  inventory: source-packs/formation-canon-v1/drive-editions.csv
+  selection: all_22_rows
+  authority: REFERENCE_UNLESS_EXPLICITLY_PROMOTED
+  role_allocation:
+    working: 15
+    examples: 7
+image_sources:
+  inventory: gallery/catalog.yml
+  selection: all_8_items
+  authority: INTERNAL_ART_REFERENCE_ONLY
+  examples: 8
+stop_rules:
+  - duplicate_target_notebook_requires_readback_before_create
+  - source_hash_already_present_means_skip
+  - unsupported_file_type_means_receipted_gap_not_substitution
+  - sharing_and_publication_remain_blocked
+rollback:
+  before_external_use: archive_or_delete_requires_NLM_DESTRUCTIVE_AUTHORIZED
+  default: leave_private_and_mark_PARTIAL

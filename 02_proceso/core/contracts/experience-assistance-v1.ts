@@ -31,6 +31,7 @@ export const ExperienceRouteIdV1Schema = z.enum([
   'R7',
   'R8',
   'R9',
+  'R10',
 ]);
 export type ExperienceRouteIdV1 = z.infer<typeof ExperienceRouteIdV1Schema>;
 
@@ -120,7 +121,7 @@ export const AssistanceEnvelopeV1Schema = z
     if (value.state === 'READY_FOR_BRIEF') {
       const activeBinding = value.skillBindings.find(({stepId}) => stepId === value.activeStep);
       if (
-        !['R6', 'R7', 'R8', 'R9'].includes(value.selectedRoute ?? '') ||
+        !['R6', 'R7', 'R8', 'R9', 'R10'].includes(value.selectedRoute ?? '') ||
         value.activeStep === null ||
         !value.workflowPlan.includes(value.activeStep) ||
         activeBinding === undefined ||

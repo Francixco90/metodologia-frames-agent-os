@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "notebook-lifecycle-receipt-v1",
+  "receiptId": "metodologia-brand-content-materialization-20260825",
+  "planSha256": "69d56444f8b7e25a460bed84b958baed5ea16af0dc4ff1d3d1cf5a73c32296a7",
+  "actor": "Frames ContentOS · NotebookLM OS · por MetodologIA",
+  "approval": "NLM_PLAN_APPROVED",
+  "approvalUse": "CONSUMED_ONCE",
+  "externalChanges": [
+    "Created one private notebook with the approved target title.",
+    "Configured chat with NotebookSystemPrompt v1.1.",
+    "Imported 12 Markdown sources, 21 historical PDFs, 22 current PDFs, and 8 internal art references.",
+    "Executed five grounding queries with explicit source subsets; all returned success with citations."
+  ],
+  "readbackSha256": "b5314107996929ec3d641199f25a2d3b7197763d01d5afe7c72a32e3ad71531e",
+  "outputHashes": [
+    "055d45dcf4eb9453aa7df745179a695c630bc4c1c11569b0ff698ac5b5cf5356",
+    "6944ac25365202758d8e156bb1af1f78b3450501af3ac6f1e7db37576bb12ef8",
+    "1c14a443dd1ec06eef6edfc893495c4eb4e490b582291e8b8e4d53c445653459"
+  ],
+  "state": "VERIFIED",
+  "nextGate": "NLM_STUDIO_GENERATION_APPROVED"
+}

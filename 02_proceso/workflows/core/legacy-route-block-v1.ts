@@ -5,7 +5,7 @@ import {
 } from '../../core/contracts/index.ts';
 
 export function buildUnsupportedLegacyRouteEnvelopeV1(input: {
-  routeId: Exclude<ExperienceRouteIdV1, 'R0' | 'R4' | 'R6' | 'R7' | 'R8' | 'R9'>;
+  routeId: Exclude<ExperienceRouteIdV1, 'R0' | 'R4' | 'R6' | 'R7' | 'R8' | 'R9' | 'R10'>;
   requestHash: string;
   understoodOutcome: string;
   knownInputs: string[];
