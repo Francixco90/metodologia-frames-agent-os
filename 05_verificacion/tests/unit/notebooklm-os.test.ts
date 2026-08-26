@@ -257,6 +257,52 @@ describe('NotebookLM OS contracts and deterministic runtime', () => {
     ).toBe(true);
   });
 
+  it('records private materialization through portable digests and a contract-valid receipt', () => {
+    const registry = readYaml('04_estado/registries/notebooks/notebooklm-os-registry.yml') as {
+      entries: Array<{
+        binding: {mode: string; binding_digest?: string; locator_material_present: boolean};
+        state: string;
+        readback?: {source_count: number; studio_artifact_count: number};
+      }>;
+    };
+    const materialized = registry.entries.filter(({state}) => state === 'materialized_private');
+    expect(materialized).toHaveLength(2);
+    expect(
+      materialized
+        .map(({binding, readback}) => ({
+          mode: binding.mode,
+          locatorMaterialPresent: binding.locator_material_present,
+          sourceCount: readback?.source_count,
+          studioArtifactCount: readback?.studio_artifact_count,
+        }))
+        .sort((left, right) => (left.sourceCount ?? 0) - (right.sourceCount ?? 0)),
+    ).toEqual([
+      {mode: 'digest', locatorMaterialPresent: false, sourceCount: 18, studioArtifactCount: 0},
+      {mode: 'digest', locatorMaterialPresent: false, sourceCount: 135, studioArtifactCount: 1},
+    ]);
+    for (const {binding} of materialized) {
+      expect(binding.binding_digest).toMatch(/^[a-f0-9]{64}$/u);
+    }
+
+    const receipt = JSON.parse(
+      readFileSync(
+        resolve(
+          root,
+          '04_estado/receipts/projects/notebooklm-os/notebook-parity-readback-20260826.json',
+        ),
+        'utf8',
+      ),
+    ) as unknown;
+    expect(NotebookLifecycleReceiptV1Schema.parse(receipt)).toMatchObject({
+      externalChanges: [],
+      state: 'VERIFIED',
+      nextGate: 'NLM_SHARE_AUTHORIZED',
+    });
+    expect(JSON.stringify({materialized, receipt})).not.toMatch(
+      /(?:https?:\/\/|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/iu,
+    );
+  });
+
   it('requires one-use consumption for sharing and destructive approvals', () => {
     const base = {
       schemaVersion: 'notebook-lifecycle-receipt-v1',
