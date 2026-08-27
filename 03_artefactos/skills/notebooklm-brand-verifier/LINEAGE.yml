@@ -1,0 +1,10 @@
+schema_version: 1
+skill_id: notebooklm-brand-verifier
+version: 0.1.0
+content_origin: locally_authored
+lifecycle_state: candidate
+execution_scope: independent-verification
+authority_refs: [02_proceso/workflows/notebooklm-os/README.md]
+compatibility_contract: notebooklm-brand-v1
+external_fragments_reused: false
+publication_authority: false
