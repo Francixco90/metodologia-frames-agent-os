@@ -15,6 +15,7 @@ export * from './notebooklm-work-unit.ts';
 export * from './opportunity-map-v2.ts';
 export * from './notebooklm-os-v1.ts';
 export * from './notebooklm-studio-v1.ts';
+export * from './notebooklm-content-v3.ts';
 export * from './primitives.ts';
 export * from './renderer-capabilities-v1.ts';
 export * from './reasoning-safety.ts';
