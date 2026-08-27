@@ -11,7 +11,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 291
+- ASSET: 299
 - COMMAND: 101
 - COMPONENT: 16
 - DELIVERABLE: 87
@@ -85,6 +85,12 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/prompt-registry.json | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/prompt-registry.json` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md` |
@@ -93,6 +99,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md` |
+| ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md` |
 | ASSET | 03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/fonts/char-widths.json` |
 | ASSET | 03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/strokefonts/HersheyScript1.svg | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/strokefonts/HersheyScript1.svg` |
 | ASSET | 03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/strokefonts/HersheyScriptMed.svg | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/hyperframes/embedded-captions/assets/strokefonts/HersheyScriptMed.svg` |
@@ -997,4 +1005,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `135840d0974af23cb480baf6e49d1f455bff37ca5d99c5d5874944b04b83d302`.
+Hash de fuentes: `259facc23ff34462716914763cf5300b4132c7783c07582e4d9ceece359cf924`.
