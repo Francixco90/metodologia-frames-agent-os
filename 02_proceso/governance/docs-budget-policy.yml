@@ -6,6 +6,12 @@ defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
 pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 
 budgets:
+  - surface: notebooklm-canon-v3-governed-package
+    kind: exempt
+    match: '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/**'
+    target: {}
+    hard: {}
+    rationale: 'The private Canon v3 package has a stricter domain validator: 33,682 normalized-word cap, 25% containment limit, exact 107-source hash readback, prompt parity and bounded source selection.'
   - surface: generated-workflow-documentation
     kind: generated
     match:

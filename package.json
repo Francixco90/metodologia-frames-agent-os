@@ -32,6 +32,8 @@
     "check:projects": "node --import tsx scripts/check-projects.ts",
     "check:memory": "node --import tsx scripts/check-memory.ts",
     "check:notebooklm": "node --import tsx scripts/check-notebooklm.ts",
+    "build:notebooklm-canon-v3": "node 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/scripts/build-source-manifest.mjs && node 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/scripts/build-runtime-config.mjs",
+    "check:notebooklm-canon-v3": "node --import tsx 05_verificacion/scripts/check-notebooklm-canon-v3.ts",
     "check:sources": "node --import tsx scripts/check-sources.ts",
     "check:claims": "node --import tsx scripts/check-claims.ts",
     "check:privacy": "node --import tsx scripts/check-privacy.ts",

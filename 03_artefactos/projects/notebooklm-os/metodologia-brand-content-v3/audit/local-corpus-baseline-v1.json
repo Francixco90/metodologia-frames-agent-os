@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "knowledge-corpus-baseline-v1",
+  "baselineId": "metodologia-brand-content-canon-v2-local",
+  "observedAt": "2026-08-26T00:00:00-05:00",
+  "markdown": {
+    "files": 46,
+    "normalizedWords": 16841,
+    "wordBudgetMultiplier": 2,
+    "canonV3MaximumNormalizedWords": 33682,
+    "frontMatterCoverage": 0,
+    "abstractCoverage": 0,
+    "indexCoverage": 0,
+    "xmlSandwichCoverage": 0
+  },
+  "referenceMedia": {
+    "historicalPdfCount": 21,
+    "currentPdfCount": 22,
+    "originalImageCount": 8,
+    "historicalManifestSha256": "3c729585c0b87205aebb5c9538cb269f550e29513d987c64c0d1419372b9515a",
+    "currentPdfIndexSha256": "3850c701a9957552275ae208aea764417428f1b83978fdbfc5b38dba88e16ea0",
+    "imageCatalogSha256": "d933cbdcbd9e534ec74a99bdd8c619fe7dab3ad2576c4f0e7f269ecc2f109c89"
+  },
+  "migrationPolicy": {
+    "rewriteActiveLogicalUnits": true,
+    "editHistoricalFiles": false,
+    "duplicateReferenceBinaries": false,
+    "importBenchmarkSources": false
+  }
+}

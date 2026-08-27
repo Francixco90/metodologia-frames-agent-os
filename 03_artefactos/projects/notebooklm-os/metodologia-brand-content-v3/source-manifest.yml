@@ -1,0 +1,4171 @@
+schema_version: notebook-source-pack-v3
+profile_id: metodologia-brand-content-canon-v3
+display_name: MetodologIA · Brand Content Studio · Canon v3
+state: PLANNED_LOCAL
+generated_by: scripts/build-source-manifest.mjs
+locator_policy:
+  private_locators_persisted: false
+  runtime_resolution: repository-relative-path-plus-content-sha256
+authority_policy:
+  markdown_governs: true
+  pdf_and_images_inspire: true
+  asset_authority_has_veto: true
+  all_sources_blocked: true
+excluded_packs:
+  - pack_id: benchmark-ia-regional-global-v4
+    reason: attachable factual working pack; excluded from the brand canon
+summary:
+  markdown: 57
+  historical_pdfs: 21
+  current_pdfs: 22
+  images: 8
+  total: 108
+sources:
+  - source_id: NLS-V3-ART-01-HUMAN-AI-PHONE
+    name: 50-assets--art-01-human-ai-phone--v3.0
+    title: Interacción humana con IA
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - human-centered-technology
+      - tactile-interface
+      - dark-field
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f0c0599a7075c1506a9b2c70057a102a3bbcd94a558ce6741682bb499e88424f
+    portable_identity_digest: f0c0599a7075c1506a9b2c70057a102a3bbcd94a558ce6741682bb499e88424f
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/01-human-ai-phone.jpg
+    source_refs:
+      - NLG-MC-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 790x1184
+  - source_id: NLS-V3-ART-02-CONTENT-FUNNEL
+    name: 50-assets--art-02-content-funnel--v3.0
+    title: Síntesis y foco
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - abstraction
+      - information-funnel
+      - human-scale
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: cdc0818b172e17d0a524d57800f38be9a9756ff8125f31592e985a9b98951921
+    portable_identity_digest: cdc0818b172e17d0a524d57800f38be9a9756ff8125f31592e985a9b98951921
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/02-content-funnel.jpg
+    source_refs:
+      - NLG-MC-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 768x1152
+  - source_id: NLS-V3-ART-03-IDEA-LIGHTBULB
+    name: 50-assets--art-03-idea-lightbulb--v3.0
+    title: Asistente accesible
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - friendly-ai
+      - gradient
+      - simple-character
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 6bbcce38f658ed55b1c7fb3b9eb10ae791dbd477a2e0509a5be883098887b870
+    portable_identity_digest: 6bbcce38f658ed55b1c7fb3b9eb10ae791dbd477a2e0509a5be883098887b870
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/03-idea-lightbulb.jpg
+    source_refs:
+      - NLG-MC-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 790x1184
+  - source_id: NLS-V3-ART-04-CONTENT-ORCHESTRATION
+    name: 50-assets--art-04-content-orchestration--v3.0
+    title: Orquestación de contenido
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - collaboration
+      - dashboards
+      - systems
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: b58260ec17e0ce3450a2a2c6ed563ef076e690064d41edcfa82d7ba3425547ef
+    portable_identity_digest: b58260ec17e0ce3450a2a2c6ed563ef076e690064d41edcfa82d7ba3425547ef
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/04-content-orchestration.jpg
+    source_refs:
+      - NLG-MC-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 768x1152
+  - source_id: NLS-V3-ART-05-SUMMIT
+    name: 50-assets--art-05-summit--v3.0
+    title: Progreso con propósito
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - summit
+      - progress
+      - warm-rays
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f609cc39369877a881ca5fd7d1c8ec24caa06d2de68ff15c19e96bc788388f73
+    portable_identity_digest: f609cc39369877a881ca5fd7d1c8ec24caa06d2de68ff15c19e96bc788388f73
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/05-summit-transformation.jpg
+    source_refs:
+      - NLG-MC-S14
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 768x1152
+  - source_id: NLS-V3-ART-06-PURPOSE-PORTAL
+    name: 50-assets--art-06-purpose-portal--v3.0
+    title: Claridad del propósito
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - portal
+      - direction
+      - luminous-gradient
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: ff8046daa49b26b0b92d4adeeb9e75fe378c3a6f8d6b0d543f3539ec696e4159
+    portable_identity_digest: ff8046daa49b26b0b92d4adeeb9e75fe378c3a6f8d6b0d543f3539ec696e4159
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/06-purpose-portal.jpg
+    source_refs:
+      - NLG-MC-S14
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 768x1152
+  - source_id: NLS-V3-ART-07-STRATEGY-GEARS
+    name: 50-assets--art-07-strategy-gears--v3.0
+    title: Sistema estratégico
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - mechanism
+      - intentional-design
+      - precision
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 99d10450ef15b67e1c0874b011a291d2696991a53317f51bdba339b1b5fe332e
+    portable_identity_digest: 99d10450ef15b67e1c0874b011a291d2696991a53317f51bdba339b1b5fe332e
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/07-strategy-gears.jpg
+    source_refs:
+      - NLG-MC-S14
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 768x1152
+  - source_id: NLS-V3-ART-08-NEXT-STEP
+    name: 50-assets--art-08-next-step--v3.0
+    title: Cruzar el siguiente umbral
+    layer: 50 Assets
+    authority: ASSET
+    source_type: image
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - art-reference
+      - threshold
+      - decision
+      - future
+    audiences:
+      - content strategist
+      - visual director
+    language: zxx
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 7e445ec90513be34a5fe8e937cae3357ccb4b7695a434a96612eab7ab23b4a61
+    portable_identity_digest: 7e445ec90513be34a5fe8e937cae3357ccb4b7695a434a96612eab7ab23b4a61
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/original-art/08-next-step-portal.jpg
+    source_refs:
+      - NLG-MC-S14
+    supersedes: []
+    related_ids: []
+    provenance: Existing original-art gallery image; bytes and allowed internal-reference role verified by the v2 catalog.
+    notebook_role: internal artistic reference; never logo or factual evidence
+    dimensions: 790x1184
+  - source_id: NLS-V3-ASSET-REGISTRY-V3
+    name: 51-assets--portable-registry--v3.0
+    title: Portable Brand Asset Registry
+    layer: 50 Assets
+    authority: ASSET
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - asset-registry
+      - portable-identity
+      - rights
+      - consent
+    audiences:
+      - creator
+      - designer
+      - verifier
+      - publisher
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d64791442f6dc1cc0d1afaf2eeccb8d36ba060d57c2eff375736112c7d948410
+    portable_identity_digest: d64791442f6dc1cc0d1afaf2eeccb8d36ba060d57c2eff375736112c7d948410
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/50-assets/51-assets--portable-registry--v3.0.md
+    source_refs:
+      - ASSET-REVIEW-V2
+      - LEGACY-KB-50-ASSETS-V1
+    supersedes:
+      - LEGACY-KB-50-ASSETS-V1
+    related_ids:
+      - ASSET-USAGE-V3
+      - CANON-NEO-SWISS-V3
+      - EVIDENCE-CORPUS-COMPLETENESS-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: resolve-asset, verify-hash, inspect-rights-state
+  - source_id: NLS-V3-ASSET-USAGE-V3
+    name: 50-assets--identity-rights-usage--v3.0
+    title: Brand Assets, Rights, and Usage Control
+    layer: 50 Assets
+    authority: ASSET
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - assets
+      - rights
+      - consent
+      - hash-identity
+    audiences:
+      - creator
+      - designer
+      - verifier
+      - publisher
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 96a8292169dada022e3f9d81018247c08469c665fdf53394b61493457e3d1f85
+    portable_identity_digest: 96a8292169dada022e3f9d81018247c08469c665fdf53394b61493457e3d1f85
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/50-assets/50-assets--identity-rights-usage--v3.0.md
+    source_refs:
+      - LEGACY-KB-50-ASSETS-V1
+      - ASSET-REVIEW-V2
+      - ART-GALLERY-V1
+    supersedes:
+      - LEGACY-KB-50-ASSETS-V1
+    related_ids:
+      - ASSET-REGISTRY-V3
+      - CANON-NEO-SWISS-V3
+      - EVIDENCE-CLAIMS-GAPS-V3
+      - OPS-RECEIPTS-READBACK-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: resolve-asset, approve-usage, block-unlicensed-asset
+  - source_id: NLS-V3-CANON-AGENTIC-SOVEREIGNTY-V3
+    name: 13-canon--agentic-sovereignty--v3.0
+    title: Agentic Work and Digital Sovereignty
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - digital-sovereignty
+      - agents
+      - orchestration
+      - human-in-the-loop
+    audiences:
+      - operator
+      - architect
+      - executive
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 0fcdfdb440ef3c57c91da764d2db3a765375ba31a0e6d7430d0ba06b5b79c932
+    portable_identity_digest: 0fcdfdb440ef3c57c91da764d2db3a765375ba31a0e6d7430d0ba06b5b79c932
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/13-canon--agentic-sovereignty--v3.0.md
+    source_refs:
+      - LEGACY-KB-13-AGENTIC-V1
+      - NFC-DRV-S12
+      - NFC-DRV-S13
+      - NFC-DRV-S14A
+      - NFC-DRV-S14B
+      - NFC-DRV-T20
+    supersedes:
+      - LEGACY-KB-13-AGENTIC-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - OPS-RECEIPTS-READBACK-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: choose-architecture, design-handoff, assess-autonomy
+  - source_id: NLS-V3-CANON-BRAND-VOICE-V3
+    name: 14-canon--brand-voice-rhetoric--v3.0
+    title: Brand Voice and Editorial Rhetoric
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - brand-voice
+      - rhetoric
+      - es-419
+      - evidence-first
+    audiences:
+      - creator
+      - editor
+      - executive
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 80e454f41a80193ae8fa66f85e7b88107adad836f2134921e6064f8b47b52561
+    portable_identity_digest: 80e454f41a80193ae8fa66f85e7b88107adad836f2134921e6064f8b47b52561
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/14-canon--brand-voice-rhetoric--v3.0.md
+    source_refs:
+      - LEGACY-KB-14-VOICE-V1
+      - LEGACY-KB-15-STYLE-V1
+    supersedes:
+      - LEGACY-KB-14-VOICE-V1
+      - LEGACY-KB-15-STYLE-V1
+    related_ids:
+      - CANON-HOOKS-CTA-V3
+      - CANON-CONTENT-STUDIO-V3
+      - EVIDENCE-CLAIMS-GAPS-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: write-copy, edit-copy, localize-content
+  - source_id: NLS-V3-CANON-CONTENT-STUDIO-V3
+    name: 12-canon--content-studio--v3.0
+    title: Brand Content Studio Canon
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - content-studio
+      - editorial-architecture
+      - functional-aesthetics
+      - wow
+    audiences:
+      - creator
+      - editor
+      - executive
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: a2eee03326f9e431d8f7223bce235918a4ac96fb756a1a1be7641388cf5a2c8a
+    portable_identity_digest: a2eee03326f9e431d8f7223bce235918a4ac96fb756a1a1be7641388cf5a2c8a
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/12-canon--content-studio--v3.0.md
+    source_refs:
+      - LEGACY-KB-12-CONTENT-V1
+      - NFC-DRV-S04
+      - NFC-DRV-S09
+      - NFC-DRV-T22
+    supersedes:
+      - LEGACY-KB-12-CONTENT-V1
+    related_ids:
+      - CANON-BRAND-VOICE-V3
+      - CANON-HOOKS-CTA-V3
+      - CANON-NEO-SWISS-V3
+      - OPS-SOURCE-SELECTION-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: design-content, choose-format, evaluate-artifact
+  - source_id: NLS-V3-CANON-CURRICULUM-V3
+    name: 11-canon--formation-curriculum--v3.0
+    title: Formation Curriculum Map
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - curriculum
+      - formation
+      - progression
+      - transfer
+    audiences:
+      - learner
+      - facilitator
+      - instructional-designer
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: abc1d7f1b67ed94197847b7f1c2cbfe9aca644f85898f1ff83f8a503ccd1ae80
+    portable_identity_digest: abc1d7f1b67ed94197847b7f1c2cbfe9aca644f85898f1ff83f8a503ccd1ae80
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/11-canon--formation-curriculum--v3.0.md
+    source_refs:
+      - LEGACY-KB-11-CURRICULUM-V1
+      - NFC-DRV-S01
+      - NFC-DRV-S16
+    supersedes:
+      - LEGACY-KB-11-CURRICULUM-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: select-lesson, explain-progression, design-learning-path
+  - source_id: NLS-V3-CANON-HOOKS-CTA-V3
+    name: 16-canon--hooks-punchlines-ctas--v3.0
+    title: Hooks, Punchlines, and Calls to Action
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - hooks
+      - punchlines
+      - cta
+      - no-clickbait
+    audiences:
+      - creator
+      - editor
+      - marketer
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 356fe9dba2e8e8ddd69573ab02ccab592978b3ec3c9299ac318347a111d4510d
+    portable_identity_digest: 356fe9dba2e8e8ddd69573ab02ccab592978b3ec3c9299ac318347a111d4510d
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/16-canon--hooks-punchlines-ctas--v3.0.md
+    source_refs:
+      - LEGACY-KB-16-HOOKS-V1
+    supersedes:
+      - LEGACY-KB-16-HOOKS-V1
+    related_ids:
+      - CANON-BRAND-VOICE-V3
+      - CANON-CONTENT-STUDIO-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: write-hook, write-punchline, write-cta, audit-attention
+  - source_id: NLS-V3-CANON-NEO-SWISS-V3
+    name: 17-canon--neo-swiss-accessibility--v3.0
+    title: Neo-Swiss Clean and Soft Explainer Visual Canon
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - neo-swiss
+      - corporate-clean-premium
+      - accessibility
+      - visual-system
+    audiences:
+      - designer
+      - creator
+      - editor
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 4364bb3da53ce5a6df9fdcdbbb70a529a727fc0fd70fa87f658fe864660e65c8
+    portable_identity_digest: 4364bb3da53ce5a6df9fdcdbbb70a529a727fc0fd70fa87f658fe864660e65c8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/17-canon--neo-swiss-accessibility--v3.0.md
+    source_refs:
+      - LEGACY-KB-17-VISUAL-V1
+      - EVD-OWNER-VISUAL-20260825
+    supersedes:
+      - LEGACY-KB-17-VISUAL-V1
+      - LEGACY-KB-17-VISUAL-V1-1
+    related_ids:
+      - CANON-CONTENT-STUDIO-V3
+      - ASSET-USAGE-V3
+      - REFERENCE-PDF-GALLERY-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: design-visual, audit-brand, audit-accessibility
+  - source_id: NLS-V3-CANON-OPERATING-METHOD-V3
+    name: 10-canon--operating-method--v3.0
+    title: MetodologIA Operating Method
+    layer: 10 Canon
+    authority: CANON
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - method-first
+      - human-agency
+      - pivote
+      - excellence
+      - zero-friction
+    audiences:
+      - creator
+      - facilitator
+      - operator
+      - executive
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 03af53f735b67b89d8f1011b14ed15bc6dd23efc57b733df8d7ed34f6c70a576
+    portable_identity_digest: 03af53f735b67b89d8f1011b14ed15bc6dd23efc57b733df8d7ed34f6c70a576
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/10-canon/10-canon--operating-method--v3.0.md
+    source_refs:
+      - LEGACY-KB-10-METHOD-V1
+      - NFC-DRV-S01
+      - NFC-DRV-S03
+      - NFC-DRV-S05
+      - NFC-DRV-S07
+      - NFC-DRV-S15
+    supersedes:
+      - LEGACY-KB-10-METHOD-V1
+    related_ids:
+      - CANON-CURRICULUM-V3
+      - CANON-AGENTIC-SOVEREIGNTY-V3
+      - EVIDENCE-CLAIMS-GAPS-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: explain-method, design-workflow, evaluate-process
+  - source_id: NLS-V3-CTRL-AUTHORITY-ROUTER-V3
+    name: 00-control--authority-routing-and-gates--v3.0
+    title: Authority Routing and Gates
+    layer: 00 Control
+    authority: CONTROL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - authority
+      - routing
+      - gates
+      - lifecycle
+      - fail-closed
+    audiences:
+      - conductor
+      - operator
+      - curator
+      - verifier
+      - guardian
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 6d1b9d4f409336a84cbfe3d22980e3b134e1e31c22e212c4f7c8799e1e9fd677
+    portable_identity_digest: 6d1b9d4f409336a84cbfe3d22980e3b134e1e31c22e212c4f7c8799e1e9fd677
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--authority-routing-and-gates--v3.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+    supersedes:
+      - LEGACY-KB-01-AUTHORITY-V1
+      - LEGACY-KB-02-ROUTING-V2
+    related_ids:
+      - CTRL-BOOTSTRAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: resolve-conflict, apply-gate, assign-state, stop-safely
+  - source_id: NLS-V3-CTRL-BOOTSTRAP-V3
+    name: 00-control--notebook-bootstrap--v3.0
+    title: Notebook Bootstrap Prompt
+    layer: 00 Control
+    authority: CONTROL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - bootstrap
+      - system-prompt
+      - routing
+      - source-selection
+      - security
+    audiences:
+      - notebook-runtime
+      - operator
+      - guardian
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 1bc4f1542e111d772054423ec7d6d0dbc3b1b16b375d9d246a4bf0868d0d539a
+    portable_identity_digest: 1bc4f1542e111d772054423ec7d6d0dbc3b1b16b375d9d246a4bf0868d0d539a
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--notebook-bootstrap--v3.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+    supersedes:
+      - LEGACY-KB-00-SYSTEM-PROMPT-V2-1
+    related_ids:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: initialize-notebook, route-request, enforce-precedence
+  - source_id: NLS-V3-CTRL-KB-STANDARD-V3
+    name: 00-control--knowledge-document-standard--v3.0
+    title: Canon v3 Knowledge Document Standard
+    layer: 00 Control
+    authority: CONTROL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - document-standard
+      - metadata
+      - xml-sandwich
+      - indexing
+      - evidence
+    audiences:
+      - knowledge-architect
+      - curator
+      - editor
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: afcf1fade4106a73c4b68a3a853f6284e2a2124223fc017e4723979fc637880c
+    portable_identity_digest: afcf1fade4106a73c4b68a3a853f6284e2a2124223fc017e4723979fc637880c
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--knowledge-document-standard--v3.0.md
+    source_refs:
+      - CTRL-AUTHORITY-ROUTER-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+    supersedes: []
+    related_ids:
+      - CTRL-SYSTEM-PROMPT-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: author-document, validate-document, maintain-index, supersede-document
+  - source_id: NLS-V3-CTRL-KNOWLEDGE-MAP-V3
+    name: 00-control--knowledge-map--v3.0
+    title: Canon v3 Knowledge Map
+    layer: 00 Control
+    authority: CONTROL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - knowledge-map
+      - navigation
+      - source-selection
+      - authority
+    audiences:
+      - notebook-runtime
+      - conductor
+      - curator
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 67f5f9efa8eeee72621e311b30c7deb5d6b1590e502046f4a8af7142956aa96d
+    portable_identity_digest: 67f5f9efa8eeee72621e311b30c7deb5d6b1590e502046f4a8af7142956aa96d
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--knowledge-map--v3.0.md
+    source_refs:
+      - CTRL-AUTHORITY-ROUTER-V3
+      - CTRL-SYSTEM-PROMPT-V3
+    supersedes: []
+    related_ids:
+      - CTRL-BOOTSTRAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: find-authority, assemble-source-set, resolve-document
+  - source_id: NLS-V3-CTRL-SYSTEM-PROMPT-V3
+    name: 00-control--operating-system-prompt--v3.0
+    title: Canon v3 Full Operating System Prompt
+    layer: 00 Control
+    authority: CONTROL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - system-prompt
+      - operating-contract
+      - routing
+      - evidence
+      - lifecycle
+    audiences:
+      - notebook-runtime
+      - conductor
+      - curator
+      - creator
+      - verifier
+      - guardian
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d8476e6051cbc51210473bd0480d8aaf7ea9088ad9fc7036eb323fd3bcfc418a
+    portable_identity_digest: d8476e6051cbc51210473bd0480d8aaf7ea9088ad9fc7036eb323fd3bcfc418a
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--operating-system-prompt--v3.0.md
+    source_refs:
+      - CTRL-AUTHORITY-ROUTER-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    supersedes:
+      - LEGACY-KB-00-SYSTEM-PROMPT-V2-1
+    related_ids:
+      - CTRL-BOOTSTRAP-V3
+      - CTRL-KNOWLEDGE-MAP-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: route-request, select-sources, compile-brief, verify-output, govern-lifecycle
+  - source_id: NLS-V3-EVIDENCE-CLAIMS-GAPS-V3
+    name: 20-evidence--claims-provenance-gaps--v3.0
+    title: Claims, Provenance, and Coverage Gaps
+    layer: 20 Evidence
+    authority: EVIDENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - claims
+      - provenance
+      - validity
+      - coverage-gap
+    audiences:
+      - creator
+      - editor
+      - verifier
+      - executive
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5b50df08e52b634472ebfe053874c886337e5939127e41a26c85eea06e201036
+    portable_identity_digest: 5b50df08e52b634472ebfe053874c886337e5939127e41a26c85eea06e201036
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/20-evidence/20-evidence--claims-provenance-gaps--v3.0.md
+    source_refs:
+      - LEGACY-KB-20-EVIDENCE-V1
+      - LEGACY-KB-21-AUDIT-V1-1
+    supersedes:
+      - LEGACY-KB-20-EVIDENCE-V1
+    related_ids:
+      - CTRL-AUTHORITY-ROUTER-V3
+      - CANON-OPERATING-METHOD-V3
+      - ASSET-USAGE-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: classify-claim, verify-claim, disclose-gap
+  - source_id: NLS-V3-EVIDENCE-CORPUS-COMPLETENESS-V3
+    name: 21-evidence--corpus-completeness--v3.0
+    title: Formation Corpus Completeness and Known Gaps
+    layer: 20 Evidence
+    authority: EVIDENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - corpus
+      - completeness
+      - drive
+      - provenance
+      - omission
+    audiences:
+      - curator
+      - verifier
+      - notebook-operator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 850cb284b988c3402587a80cba1763dd9b138108a371a2a6e71b2e8fb9f94794
+    portable_identity_digest: 850cb284b988c3402587a80cba1763dd9b138108a371a2a6e71b2e8fb9f94794
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/20-evidence/21-evidence--corpus-completeness--v3.0.md
+    source_refs:
+      - LEGACY-KB-21-AUDIT-V1-1
+      - FORMATION-CANON-V1
+      - MASTERCLASS-PLAYBOOKS-V1
+    supersedes:
+      - LEGACY-KB-21-AUDIT-V1
+      - LEGACY-KB-21-AUDIT-V1-1
+    related_ids:
+      - REFERENCE-PDF-GALLERY-V3
+      - REFERENCE-EDITORIAL-EDITION-V3
+      - OPS-SOURCE-SELECTION-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: assess-coverage, explain-omission, compare-editions
+  - source_id: NLS-V3-OPS-RECEIPTS-READBACK-V3
+    name: 61-operations--receipts-readback-recovery--v3.0
+    title: Receipts, Readback, Idempotency, and Recovery
+    layer: 60 Operations
+    authority: OPERATIONAL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - receipts
+      - readback
+      - idempotency
+      - recovery
+      - gates
+    audiences:
+      - notebook-operator
+      - verifier
+      - guardian
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5fbaa5de309a13c8073e430b841a75db36c996c8cc87b7186e98b2db5fcc5bab
+    portable_identity_digest: 5fbaa5de309a13c8073e430b841a75db36c996c8cc87b7186e98b2db5fcc5bab
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/60-operations/61-operations--receipts-readback-recovery--v3.0.md
+    source_refs:
+      - LEGACY-KB-60-OPERATIONS-V1
+      - LEGACY-KB-61-MIGRATION-V1-1
+    supersedes:
+      - LEGACY-KB-60-OPERATIONS-V1
+      - LEGACY-KB-61-MIGRATION-V1-1
+    related_ids:
+      - CTRL-AUTHORITY-ROUTER-V3
+      - OPS-SOURCE-SELECTION-V3
+      - ASSET-USAGE-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: plan-mutation, record-receipt, verify-readback, resume-operation
+  - source_id: NLS-V3-OPS-SOURCE-SELECTION-V3
+    name: 60-operations--source-selection-deduplication--v3.0
+    title: Naming, Source Selection, and Deduplication
+    layer: 60 Operations
+    authority: OPERATIONAL
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - sources
+      - naming
+      - deduplication
+      - working-set
+    audiences:
+      - curator
+      - notebook-operator
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 769e925db26970ad8472e34a731c0356a92bdf4c26fa2573e0ffb26d55351c9a
+    portable_identity_digest: 769e925db26970ad8472e34a731c0356a92bdf4c26fa2573e0ffb26d55351c9a
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/60-operations/60-operations--source-selection-deduplication--v3.0.md
+    source_refs:
+      - LEGACY-KB-60-OPERATIONS-V1
+      - LEGACY-KB-62-NAMING-V2
+      - FORMATION-CANON-V1
+    supersedes:
+      - LEGACY-KB-62-NAMING-V2
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - EVIDENCE-CORPUS-COMPLETENESS-V3
+      - OPS-RECEIPTS-READBACK-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: name-source, build-working-set, deduplicate-source
+  - source_id: NLS-V3-PDF-CURRENT-S01
+    name: 40-reference--current-s01--v3.0
+    title: De Ocupado a Productivo
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5ec4756c5f8c3f3fa8d27cbbcdc234960aaaf1178c69d7d2cdb7781f466f05bb
+    portable_identity_digest: 5ec4756c5f8c3f3fa8d27cbbcdc234960aaaf1178c69d7d2cdb7781f466f05bb
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/01-de-ocupado-a-productivo--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S01
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 12229465
+    pages: 11
+  - source_id: NLS-V3-PDF-CURRENT-S03
+    name: 40-reference--current-s03--v3.0
+    title: Automatismo y Presencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d9f87e04d0c186779a7268daa5d1e9ea918153e6fd0d1caf7e1a4d6ebcaaca7b
+    portable_identity_digest: d9f87e04d0c186779a7268daa5d1e9ea918153e6fd0d1caf7e1a4d6ebcaaca7b
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/03-automatismo-y-presencia--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S03
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 9232308
+    pages: 11
+  - source_id: NLS-V3-PDF-CURRENT-S04
+    name: 40-reference--current-s04--v3.0
+    title: De entregables que cumplen a entregables de Excelencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 57e7b6c733babeee200e49b56bb5a6fcc648a084b77871013938cad0b8f7e158
+    portable_identity_digest: 57e7b6c733babeee200e49b56bb5a6fcc648a084b77871013938cad0b8f7e158
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/04-entregables-de-excelencia--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S04
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 10295107
+    pages: 11
+  - source_id: NLS-V3-PDF-CURRENT-S05
+    name: 40-reference--current-s05--v3.0
+    title: De Trabajar Duro a Trabajar Sin Fricción
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 19989eb3c107fb528d42ee2db7da5a03dd9359f15be9a28d1adab8d85bc19a79
+    portable_identity_digest: 19989eb3c107fb528d42ee2db7da5a03dd9359f15be9a28d1adab8d85bc19a79
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/05-trabajar-sin-friccion--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S05
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 17043633
+    pages: 15
+  - source_id: NLS-V3-PDF-CURRENT-S06
+    name: 40-reference--current-s06--v3.0
+    title: Jornadas Estratégicas
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: cb44551b17b2f5bce3f742c8ead9495def2df465c0d89a5e7e756ce436a3b3c2
+    portable_identity_digest: cb44551b17b2f5bce3f742c8ead9495def2df465c0d89a5e7e756ce436a3b3c2
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/06-jornadas-estrategicas--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S06
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14125142
+    pages: 15
+  - source_id: NLS-V3-PDF-CURRENT-S07
+    name: 40-reference--current-s07--v3.0
+    title: Alto Desempeño y Alto Rendimiento
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e01f5f17527580d8fd27b53c3a0549cca6723f632276da435fd71487e0fd19a8
+    portable_identity_digest: e01f5f17527580d8fd27b53c3a0549cca6723f632276da435fd71487e0fd19a8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/07-alto-desempeno-y-rendimiento--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-S07
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 15153976
+    pages: 12
+  - source_id: NLS-V3-PDF-CURRENT-S08
+    name: 40-reference--current-s08--v3.0
+    title: De Bocetos a Prototipos con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 4e38b7e1a981a0261acba2faabf130cdc2957dde0a6c0b8a841c7d57bec94d76
+    portable_identity_digest: 4e38b7e1a981a0261acba2faabf130cdc2957dde0a6c0b8a841c7d57bec94d76
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/08-prototipos-con-ia--drive-2026-06.pdf
+    source_refs:
+      - NFC-DRV-S08
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 13677487
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S09
+    name: 40-reference--current-s09--v3.0
+    title: Multimedia con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e1d55cc794dd764fa6847789651a5a5f618fff34de74c8de158e4749ef309b71
+    portable_identity_digest: e1d55cc794dd764fa6847789651a5a5f618fff34de74c8de158e4749ef309b71
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/09-multimedia-con-ia--drive-2026-06.pdf
+    source_refs:
+      - NFC-DRV-S09
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14127029
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S10
+    name: 40-reference--current-s10--v3.0
+    title: (Mini) Apps con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 0645c8edfbf6341bac13cbd910aa9274bb4c9e36068c5a8a509157dad5070244
+    portable_identity_digest: 0645c8edfbf6341bac13cbd910aa9274bb4c9e36068c5a8a509157dad5070244
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/10-mini-apps-con-ia--drive-2026-06.pdf
+    source_refs:
+      - NFC-DRV-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 15560614
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S11
+    name: 40-reference--current-s11--v3.0
+    title: Creación de Asistentes y Skills a Medida
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5774ee2a8e8fdef8679aaaaabe509cbcafbc7d343e081d7fd09b807508284f37
+    portable_identity_digest: 5774ee2a8e8fdef8679aaaaabe509cbcafbc7d343e081d7fd09b807508284f37
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/11-asistentes-y-skills-a-medida--drive-2026-06.pdf
+    source_refs:
+      - NFC-DRV-S11
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 12273586
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S12
+    name: 40-reference--current-s12--v3.0
+    title: Automatización de Procesos con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e75b86fc4606f9a661115f1a50688f12b6e81ba79c4e84d23e7d7cd4f171be57
+    portable_identity_digest: e75b86fc4606f9a661115f1a50688f12b6e81ba79c4e84d23e7d7cd4f171be57
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/12-automatizacion-de-procesos-con-ia--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S12
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 11552795
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S13
+    name: 40-reference--current-s13--v3.0
+    title: Agentes de IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 73503129447491fb385d67ee3103274a8aa8531d0da80a0fd6c4fb6e1f203565
+    portable_identity_digest: 73503129447491fb385d67ee3103274a8aa8531d0da80a0fd6c4fb6e1f203565
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/13-agentes-de-ia--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S13
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 12948352
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-S14A
+    name: 40-reference--current-s14a--v3.0
+    title: Orquestación Multi Agéntica
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: ad6f03d62ad0e10572b6610d96b5e597b762f3c45cc73f5fe72da810f098155f
+    portable_identity_digest: ad6f03d62ad0e10572b6610d96b5e597b762f3c45cc73f5fe72da810f098155f
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/14-1-orquestacion-multi-agentica--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S14A
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14136052
+    pages: 15
+  - source_id: NLS-V3-PDF-CURRENT-S14B
+    name: 40-reference--current-s14b--v3.0
+    title: Profundizando en Orquestación Multi Agéntica
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e515aa5bad9362bb312a7961c3109944dbda9a0ffc26dc6280639ea52ce7ab48
+    portable_identity_digest: e515aa5bad9362bb312a7961c3109944dbda9a0ffc26dc6280639ea52ce7ab48
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/14-2-profundizando-orquestacion-multi-agentica--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S14B
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14319366
+    pages: 15
+  - source_id: NLS-V3-PDF-CURRENT-S15
+    name: 40-reference--current-s15--v3.0
+    title: Entendiendo el Empoderamiento de MetodologIA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 8ba91631e0bd4f8e06befe023380fcd9edf53c3d16b2829d1af9a29ad456cb71
+    portable_identity_digest: 8ba91631e0bd4f8e06befe023380fcd9edf53c3d16b2829d1af9a29ad456cb71
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/15-entendiendo-el-empoderamiento--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S15
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 3567409
+    pages: 20
+  - source_id: NLS-V3-PDF-CURRENT-S16
+    name: 40-reference--current-s16--v3.0
+    title: Cierre
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5b53992faa9c856f1029ac28f95ae3e94e1048c674ec8da0bc537aad79669445
+    portable_identity_digest: 5b53992faa9c856f1029ac28f95ae3e94e1048c674ec8da0bc537aad79669445
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/16-cierre--drive-2026-07.pdf
+    source_refs:
+      - NFC-DRV-S16
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 2714524
+    pages: 26
+  - source_id: NLS-V3-PDF-CURRENT-T20
+    name: 40-reference--current-t20--v3.0
+    title: Soberanía Digital
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: fdf304ae3b7b9330d8d7b613ea85da77745a84a55153d634514190879cd6fce8
+    portable_identity_digest: fdf304ae3b7b9330d8d7b613ea85da77745a84a55153d634514190879cd6fce8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/20-soberania-digital--drive-2026-06.pdf
+    source_refs:
+      - NFC-DRV-T20
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14905285
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-T21
+    name: 40-reference--current-t21--v3.0
+    title: Trabajo Agéntico
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 0b4c170de21c36b4ae78bb31e86f22e43b25bff112fd3bbae33373f26c0afe1b
+    portable_identity_digest: 0b4c170de21c36b4ae78bb31e86f22e43b25bff112fd3bbae33373f26c0afe1b
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/21-trabajo-agentico--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-T21
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 10228319
+    pages: 9
+  - source_id: NLS-V3-PDF-CURRENT-T22
+    name: 40-reference--current-t22--v3.0
+    title: Ingeniería del Asombro
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 47b4b4188f945f449b2a2324fe51e1a0d972c446208c952aa7abc83a27613a77
+    portable_identity_digest: 47b4b4188f945f449b2a2324fe51e1a0d972c446208c952aa7abc83a27613a77
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/22-ingenieria-del-asombro--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-T22
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 19462158
+    pages: 15
+  - source_id: NLS-V3-PDF-CURRENT-T23
+    name: 40-reference--current-t23--v3.0
+    title: Ingeniería de Intención
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: b796e8eeb2edd087e13e18b742f5d77de0d2febbb2840344ee03d1df51d5978d
+    portable_identity_digest: b796e8eeb2edd087e13e18b742f5d77de0d2febbb2840344ee03d1df51d5978d
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/23-ingenieria-de-intencion--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-T23
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 11807478
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-T24
+    name: 40-reference--current-t24--v3.0
+    title: IA qué está pasando y cómo sacarle provecho
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 060a38dedbd71caa5fe44c3e81166b09dbb5f9593953e3a8cab1d4672f69e916
+    portable_identity_digest: 060a38dedbd71caa5fe44c3e81166b09dbb5f9593953e3a8cab1d4672f69e916
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/24-ia-que-esta-pasando--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-T24
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 13339088
+    pages: 13
+  - source_id: NLS-V3-PDF-CURRENT-T25
+    name: 40-reference--current-t25--v3.0
+    title: Soberanía Digital · bonus
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - current-edition
+      - formation
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 9c653794f0bebbdb83c1cc1460bd4fbcb5dc578c8e18451a170c88c13c4f9cde
+    portable_identity_digest: 9c653794f0bebbdb83c1cc1460bd4fbcb5dc578c8e18451a170c88c13c4f9cde
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/formation-canon-v1/drive-pdf-editions/25-soberania-digital-bonus--drive-2026-05.pdf
+    source_refs:
+      - NFC-DRV-T25
+    supersedes: []
+    related_ids: []
+    provenance: Existing current formation PDF; bytes verified against the v2 Drive-editions index.
+    notebook_role: current editorial and formation reference; Markdown remains governing authority
+    bytes: 14217332
+    pages: 13
+  - source_id: NLS-V3-PDF-HIST-MC-S01
+    name: 40-reference--historical-masterclass-01--v3.0
+    title: De ocupado a productivo
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 638f45439760faee34b93b26b2b6bb1b018d60c7339d66efbe606c941f02b308
+    portable_identity_digest: 638f45439760faee34b93b26b2b6bb1b018d60c7339d66efbe606c941f02b308
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S1 Masterclass De Ocupado a Productivo.pdf
+    source_refs:
+      - NLG-MC-S01
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3976185
+    pages: 18
+  - source_id: NLS-V3-PDF-HIST-MC-S02
+    name: 40-reference--historical-masterclass-02--v3.0
+    title: Del automatismo a estar en presencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 34068be076d31a868e1cf4a6d6c64a76236f386d750a7ea63046920aee41327f
+    portable_identity_digest: 34068be076d31a868e1cf4a6d6c64a76236f386d750a7ea63046920aee41327f
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S2 Masterclass Del Automatismo a estar En Presencia.pdf
+    source_refs:
+      - NLG-MC-S02
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 5433281
+    pages: 24
+  - source_id: NLS-V3-PDF-HIST-MC-S03
+    name: 40-reference--historical-masterclass-03--v3.0
+    title: De trabajar duro a trabajar sin fricción
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 158493e6a0335d4c43c300106de14ea3d9524ba36c58a0c28b14e2c2f0681db9
+    portable_identity_digest: 158493e6a0335d4c43c300106de14ea3d9524ba36c58a0c28b14e2c2f0681db9
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S3 Masterclass De Trabajar duro a Trabajar sin friccion.pdf
+    source_refs:
+      - NLG-MC-S03
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 4077483
+    pages: 20
+  - source_id: NLS-V3-PDF-HIST-MC-S04
+    name: 40-reference--historical-masterclass-04--v3.0
+    title: De días caóticos a jornadas inteligentes y estratégicas
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 32e0d0ee3618bcf04c9b906bcc00395579988eadf594bfae13ae59b44190e312
+    portable_identity_digest: 32e0d0ee3618bcf04c9b906bcc00395579988eadf594bfae13ae59b44190e312
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S4 Masterclass De dias caoticos a Jornadas Inteligentes y Estrategicas.pdf
+    source_refs:
+      - NLG-MC-S04
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 4744866
+    pages: 20
+  - source_id: NLS-V3-PDF-HIST-MC-S05
+    name: 40-reference--historical-masterclass-05--v3.0
+    title: De hacer sin estructura a formas de trabajo de alto desempeño
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 59b0acbc84e72425e797ffeccec36cbd4da59587f10cf0c397f9576674dadbff
+    portable_identity_digest: 59b0acbc84e72425e797ffeccec36cbd4da59587f10cf0c397f9576674dadbff
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S5 Masterclass De Hacer sin Estructura a Formas de Trabajo de Alto Desempeno.pdf
+    source_refs:
+      - NLG-MC-S05
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 6339408
+    pages: 31
+  - source_id: NLS-V3-PDF-HIST-MC-S06
+    name: 40-reference--historical-masterclass-06--v3.0
+    title: De formas de trabajo efectivas a dinámicas de alto rendimiento
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 54f4ef164191be095beb82623d4c894f6e6a2f31a910bcc1294af7024efdecd7
+    portable_identity_digest: 54f4ef164191be095beb82623d4c894f6e6a2f31a910bcc1294af7024efdecd7
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S6 Masterclass De Formas de Trabajo Efectivas a Dinamicas de Alto Rendimiento.pdf
+    source_refs:
+      - NLG-MC-S06
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 4519952
+    pages: 20
+  - source_id: NLS-V3-PDF-HIST-MC-S07
+    name: 40-reference--historical-masterclass-07--v3.0
+    title: De entregables que cumplen a entregables de excelencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 99482d9e6bc52fe91d486e49df83668cef910c06f6b1e56049800ffd2f886f7b
+    portable_identity_digest: 99482d9e6bc52fe91d486e49df83668cef910c06f6b1e56049800ffd2f886f7b
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S7 Masterclass De Entregables que Cumplen a Entregables de Excelencia.pdf
+    source_refs:
+      - NLG-MC-S07
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 2641168
+    pages: 14
+  - source_id: NLS-V3-PDF-HIST-MC-S08
+    name: 40-reference--historical-masterclass-08--v3.0
+    title: De bocetos a prototipos construidos con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 4e26d8a33c2407d58c0fe69403b3fe54b6a4fe94cbbf84f17df351d0a6321985
+    portable_identity_digest: 4e26d8a33c2407d58c0fe69403b3fe54b6a4fe94cbbf84f17df351d0a6321985
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S8 Masterclass De Bocetos A Prototipos Construidos con IA.pdf
+    source_refs:
+      - NLG-MC-S08
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 2381282
+    pages: 13
+  - source_id: NLS-V3-PDF-HIST-MC-S09
+    name: 40-reference--historical-masterclass-09--v3.0
+    title: De productividad convencional a productividad apalancada con agentes autónomos
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: aac45dc3953309f146c6deb6a7bd040047d4819af8066f69c5371e2cce551c01
+    portable_identity_digest: aac45dc3953309f146c6deb6a7bd040047d4819af8066f69c5371e2cce551c01
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S9Masterclass De Productividad Convencional a Apalancada con Agentes Autonomos.pdf
+    source_refs:
+      - NLG-MC-S09
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 4136156
+    pages: 14
+  - source_id: NLS-V3-PDF-HIST-MC-S10
+    name: 40-reference--historical-masterclass-10--v3.0
+    title: De documentos convencionales a contenido sorprendente construido con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d93b1147f456ebeffdd5431f0020e146079a1382401c7acdece0b339cf67f8f4
+    portable_identity_digest: d93b1147f456ebeffdd5431f0020e146079a1382401c7acdece0b339cf67f8f4
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S10 Masterclass De Documentos Convencionales a Contenido Sorprendente con IA.pdf
+    source_refs:
+      - NLG-MC-S10
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3454959
+    pages: 19
+  - source_id: NLS-V3-PDF-HIST-MC-S11
+    name: 40-reference--historical-masterclass-11--v3.0
+    title: De rendimiento convencional a productividad aumentada con asistentes de IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 653dba0a204fb3bd280c83f7cd4f1a75737b0c346b6717933cf5c50e8c5f1b65
+    portable_identity_digest: 653dba0a204fb3bd280c83f7cd4f1a75737b0c346b6717933cf5c50e8c5f1b65
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S11 Masterclass De Rendimiento Convencional a Productividad Aumentada con Asistentes de IA.pdf
+    source_refs:
+      - NLG-MC-S11
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 5098330
+    pages: 24
+  - source_id: NLS-V3-PDF-HIST-MC-S12
+    name: 40-reference--historical-masterclass-12--v3.0
+    title: De tareas manuales a automatizaciones con IA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f573523aa19ef376b0407cc52e9fd5738eac90e7582fc0733912267c44b78b32
+    portable_identity_digest: f573523aa19ef376b0407cc52e9fd5738eac90e7582fc0733912267c44b78b32
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S12 Masterclass De Tareas Manuales a Automatizaciones con IA.pdf
+    source_refs:
+      - NLG-MC-S12
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 4400319
+    pages: 20
+  - source_id: NLS-V3-PDF-HIST-MC-S13
+    name: 40-reference--historical-masterclass-13--v3.0
+    title: Entendiendo el empoderamiento de MetodologIA
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 64ec6e4a5533f6e44f09545b4c7e50582307e8e47ec97a3b80f264d7a20b1e44
+    portable_identity_digest: 64ec6e4a5533f6e44f09545b4c7e50582307e8e47ec97a3b80f264d7a20b1e44
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S13 Entendiendo El Empoderamiento de MetodologIA.pdf
+    source_refs:
+      - NLG-MC-S13
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3929489
+    pages: 20
+  - source_id: NLS-V3-PDF-HIST-MC-S14
+    name: 40-reference--historical-masterclass-14--v3.0
+    title: Cierre del programa de empoderamiento
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - masterclass
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 8d3b8a050968d7d55693f06053e67ab4cbeb5df5da48f9d6184c1bdbb6b4e39e
+    portable_identity_digest: 8d3b8a050968d7d55693f06053e67ab4cbeb5df5da48f9d6184c1bdbb6b4e39e
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/masterclass/[Conocimiento]
+      [MetodologIA] S14 Masterclass Cierre.pdf
+    source_refs:
+      - NLG-MC-S14
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 5933596
+    pages: 26
+  - source_id: NLS-V3-PDF-HIST-PB-S01
+    name: 40-reference--historical-playbook-01--v3.0
+    title: De ocupado a productivo
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 0a716caebb3c126caefd6adba19d338736b1f583d8aa6fc27394ce8baf117c5e
+    portable_identity_digest: 0a716caebb3c126caefd6adba19d338736b1f583d8aa6fc27394ce8baf117c5e
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA] S1 Playbook De ocupad o a productivo.pdf
+    source_refs:
+      - NLG-PB-S01
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3496402
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S02
+    name: 40-reference--historical-playbook-02--v3.0
+    title: Del automatismo a actuar en presencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 4e556517dc6293fcfd515d01c5b9f68ad34a7761b2a7aafdae8b64cc255e6743
+    portable_identity_digest: 4e556517dc6293fcfd515d01c5b9f68ad34a7761b2a7aafdae8b64cc255e6743
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA] S2 Playbook Del Automatismo a Actuar En Presencia.pdf
+    source_refs:
+      - NLG-PB-S02
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3481917
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S03
+    name: 40-reference--historical-playbook-03--v3.0
+    title: De trabajar duro a trabajar sin fricción
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 57cb6bfceed67ef1adac717bb48eaff99a883c924e4cfa880d390926d0651c90
+    portable_identity_digest: 57cb6bfceed67ef1adac717bb48eaff99a883c924e4cfa880d390926d0651c90
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA]S3 Playbook De trabajar duro a trabajar sin friccion.pdf
+    source_refs:
+      - NLG-PB-S03
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3411394
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S04
+    name: 40-reference--historical-playbook-04--v3.0
+    title: De días caóticos a jornadas inteligentes y estratégicas
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: a79d59069e9457abb147e64a7e5b7cc7435b45a647a1ebffec9592e18fdca691
+    portable_identity_digest: a79d59069e9457abb147e64a7e5b7cc7435b45a647a1ebffec9592e18fdca691
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA] S4 Playbook De dias caoticos a Jornadas Inteligentes y Estrategicas.pdf
+    source_refs:
+      - NLG-PB-S04
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3399419
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S05
+    name: 40-reference--historical-playbook-05--v3.0
+    title: De hacer sin estructura a formas de trabajo de alto desempeño
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 4fda68fd963741c3dfd3578bcdd40924aa71398702e0262f12295a4e526125ad
+    portable_identity_digest: 4fda68fd963741c3dfd3578bcdd40924aa71398702e0262f12295a4e526125ad
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA] S5 Playbook De Hacer Sin Estructura a Formas de Trabajo de Alto Desempeno.pdf
+    source_refs:
+      - NLG-PB-S05
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3289022
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S06
+    name: 40-reference--historical-playbook-06--v3.0
+    title: De formas de trabajo efectivas a dinámicas de alto rendimiento
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: cef8c82c303be4b7bcf3f3cd973c405879b8576dfb66c8275bd2d6df655307e6
+    portable_identity_digest: cef8c82c303be4b7bcf3f3cd973c405879b8576dfb66c8275bd2d6df655307e6
+    source_ref:
+      03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/[Conocimiento]
+      [MetodologIA] S6PlaybookDeFormasdeTrabajoEfectivasaDinamicasdeAltoRendimiento-or-EmpowermentProgram.pdf
+    source_refs:
+      - NLG-PB-S06
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3298293
+    pages: 30
+  - source_id: NLS-V3-PDF-HIST-PB-S07
+    name: 40-reference--historical-playbook-07--v3.0
+    title: De entregables que cumplen a entregables de excelencia
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: pdf
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - historical
+      - playbook
+      - editorial-gallery
+    audiences:
+      - content strategist
+      - facilitator
+    language: es-419
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f1beaf43f94652dfbbbf677bc4729a081259577dff8ecbf4a23565b79f16306d
+    portable_identity_digest: f1beaf43f94652dfbbbf677bc4729a081259577dff8ecbf4a23565b79f16306d
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/historical-pdf-editions/playbooks/S7PlaybookDeEntregablesquecumplenaEntregablesdeExcelencia-or-EmpowermentProgram.pdf
+    source_refs:
+      - NLG-PB-S07
+    supersedes: []
+    related_ids: []
+    provenance: Existing historical masterclass or playbook PDF; identity and bytes verified by the v2 source-pack manifest.
+    notebook_role: editorial and artistic reference; never canonical authority
+    bytes: 3293160
+    pages: 30
+  - source_id: NLS-V3-PEDAGOGY-S01-V3
+    name: 70-pedagogy--s01-productive-intention--v3.0
+    title: S01 From Busy to Productive
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S01
+      - productivity
+      - intention
+      - workflow
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 1737cb042a23bb40700b81cfca28df074b8071ae00aca1aa9d628f53b7da384c
+    portable_identity_digest: 1737cb042a23bb40700b81cfca28df074b8071ae00aca1aa9d628f53b7da384c
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s01-productive-intention--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S01-V1
+      - NFC-DRV-S01
+    supersedes:
+      - LEGACY-KB-70-S01-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S01, explain-productivity, assess-S01
+  - source_id: NLS-V3-PEDAGOGY-S02-V3
+    name: 70-pedagogy--s02-learning-to-learn--v3.0
+    title: S02 Learning to Learn with AI
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S02
+      - learning
+      - research
+      - NotebookLM
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e0def04541ca36b0bf4a4154540beea8690773a7c7a81e28eabf07534f7998b8
+    portable_identity_digest: e0def04541ca36b0bf4a4154540beea8690773a7c7a81e28eabf07534f7998b8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s02-learning-to-learn--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S02-V1
+      - LEGACY-KB-24-LEARNING-V1-1
+    supersedes:
+      - LEGACY-KB-70-S02-V1
+    related_ids:
+      - CANON-CURRICULUM-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S02, design-learning-path, assess-S02
+  - source_id: NLS-V3-PEDAGOGY-S03-V3
+    name: 70-pedagogy--s03-automation-presence--v3.0
+    title: S03 Automation and Presence
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S03
+      - presence
+      - automation
+      - SPEC
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 74f3543703dc31575c9956deb685eef047f338c2bbe68a990f734edfca0c87bc
+    portable_identity_digest: 74f3543703dc31575c9956deb685eef047f338c2bbe68a990f734edfca0c87bc
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s03-automation-presence--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S03-V1
+      - NFC-DRV-S03
+    supersedes:
+      - LEGACY-KB-70-S03-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S03, design-SPEC, assess-S03
+  - source_id: NLS-V3-PEDAGOGY-S04-V3
+    name: 70-pedagogy--s04-designed-excellence--v3.0
+    title: S04 From Compliance to Designed Excellence
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S04
+      - excellence
+      - rubric
+      - deliverable
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 91a4a9b0994ae27deff8a08c7681ea16b9769cd61a38911329840629c836d2be
+    portable_identity_digest: 91a4a9b0994ae27deff8a08c7681ea16b9769cd61a38911329840629c836d2be
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s04-designed-excellence--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S04-V1
+      - NFC-DRV-S04
+    supersedes:
+      - LEGACY-KB-70-S04-V1
+    related_ids:
+      - CANON-CONTENT-STUDIO-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S04, design-rubric, assess-S04
+  - source_id: NLS-V3-PEDAGOGY-S05-V3
+    name: 70-pedagogy--s05-zero-friction-work--v3.0
+    title: S05 From Hard Work to Low-Friction Work
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S05
+      - friction
+      - SOP
+      - skills
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 3cb338316deee685a2c62543380d4673d16ad5f109492275973c1d791c7fba5e
+    portable_identity_digest: 3cb338316deee685a2c62543380d4673d16ad5f109492275973c1d791c7fba5e
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s05-zero-friction-work--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S05-V1
+      - NFC-DRV-S05
+    supersedes:
+      - LEGACY-KB-70-S05-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - REFERENCE-SKILLS-AGENTS-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S05, design-SOP, assess-S05
+  - source_id: NLS-V3-PEDAGOGY-S06-V3
+    name: 70-pedagogy--s06-strategic-days--v3.0
+    title: S06 Strategic Days
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S06
+      - strategy
+      - attention
+      - capacity
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: ceb56b738b2e851c1432073d6c61489ad3425ed485fbc6b1b563490abf9a9e3b
+    portable_identity_digest: ceb56b738b2e851c1432073d6c61489ad3425ed485fbc6b1b563490abf9a9e3b
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s06-strategic-days--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S06-V1
+      - NFC-DRV-S06
+    supersedes:
+      - LEGACY-KB-70-S06-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S06, redesign-calendar, assess-S06
+  - source_id: NLS-V3-PEDAGOGY-S07-V3
+    name: 70-pedagogy--s07-sustainable-performance--v3.0
+    title: S07 Sustainable High Performance
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S07
+      - performance
+      - resilience
+      - systems
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 8e9ced3ac19326cc2d5ff9c11cab0683b1e28f929461f982ff6a75c4c57ccabd
+    portable_identity_digest: 8e9ced3ac19326cc2d5ff9c11cab0683b1e28f929461f982ff6a75c4c57ccabd
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s07-sustainable-performance--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S07-V1-1
+      - NFC-DRV-S07
+    supersedes:
+      - LEGACY-KB-70-S07-V1
+      - LEGACY-KB-70-S07-V1-1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S07, design-capability, assess-S07
+  - source_id: NLS-V3-PEDAGOGY-S08-V3
+    name: 70-pedagogy--s08-sketches-prototypes--v3.0
+    title: S08 Sketches and AI Prototypes
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S08
+      - prototype
+      - hypothesis
+      - feedback
+    audiences:
+      - learner
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d648439525ebb45893286a7f174bb8564151ebe71748e9b4aa5a24ca3c6225c6
+    portable_identity_digest: d648439525ebb45893286a7f174bb8564151ebe71748e9b4aa5a24ca3c6225c6
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s08-sketches-prototypes--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S08-V1
+      - NFC-DRV-S08
+    supersedes:
+      - LEGACY-KB-70-S08-V1
+    related_ids:
+      - CANON-OPERATING-METHOD-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S08, design-prototype-test, assess-S08
+  - source_id: NLS-V3-PEDAGOGY-S09-V3
+    name: 70-pedagogy--s09-multimedia-direction--v3.0
+    title: S09 Multimedia Direction with AI
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S09
+      - multimedia
+      - art-direction
+      - accessibility
+    audiences:
+      - learner
+      - facilitator
+      - creator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: c9049c94e5f2ea2d4a57dc7e9b2850ab78220a17b8ca94a12fef172640a68869
+    portable_identity_digest: c9049c94e5f2ea2d4a57dc7e9b2850ab78220a17b8ca94a12fef172640a68869
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s09-multimedia-direction--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S09-V1
+      - NFC-DRV-S09
+    supersedes:
+      - LEGACY-KB-70-S09-V1
+    related_ids:
+      - CANON-CONTENT-STUDIO-V3
+      - CANON-NEO-SWISS-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S09, design-multimedia-brief, assess-S09
+  - source_id: NLS-V3-PEDAGOGY-S10-V3
+    name: 70-pedagogy--s10-mini-apps--v3.0
+    title: S10 Mini-Apps with AI
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - S10
+      - mini-app
+      - SDLC
+      - testing
+    audiences:
+      - learner
+      - facilitator
+      - builder
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f588b0125a19c2a337da4f0e9c8c4b73d05efa3f260a1c046d2f3d64cb8917d2
+    portable_identity_digest: f588b0125a19c2a337da4f0e9c8c4b73d05efa3f260a1c046d2f3d64cb8917d2
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--s10-mini-apps--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-S10-V1
+      - NFC-DRV-S10
+    supersedes:
+      - LEGACY-KB-70-S10-V1
+    related_ids:
+      - CANON-AGENTIC-SOVEREIGNTY-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: teach-S10, design-mini-app, assess-S10
+  - source_id: NLS-V3-PEDAGOGY-TRANSFER-MATRIX-V3
+    name: 70-pedagogy--assessment-transfer-matrix--v3.0
+    title: S01-S10 Assessment and Transfer Matrix
+    layer: 70 Pedagogy
+    authority: PEDAGOGY
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - assessment
+      - transfer
+      - acceptance
+      - S01-S10
+    audiences:
+      - facilitator
+      - instructional-designer
+      - learner
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 028bbff6792d8e823fcfa7a74931151aa76339ded42476b85c18555978bb8b7b
+    portable_identity_digest: 028bbff6792d8e823fcfa7a74931151aa76339ded42476b85c18555978bb8b7b
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/70-pedagogy/70-pedagogy--assessment-transfer-matrix--v3.0.md
+    source_refs:
+      - LEGACY-KB-70-MATRIX-V1
+      - LEGACY-KB-70-S01-V1
+      - LEGACY-KB-70-S10-V1
+    supersedes:
+      - LEGACY-KB-70-MATRIX-V1
+    related_ids:
+      - CANON-CURRICULUM-V3
+      - PEDAGOGY-S01-V3
+      - PEDAGOGY-S10-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: design-assessment, evaluate-transfer, select-lesson
+  - source_id: NLS-V3-PROMPT-CHANNEL-BRANDED-STATIC-VISUAL-V1
+    name: 30-template--branded-static-visual--v1.0
+    title: Branded Static Visual Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - branded-static-visual
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: bb2b0add942b1cf2690913be6823a167e62c47506c8b7f28710721d77ae811c8
+    portable_identity_digest: bb2b0add942b1cf2690913be6823a167e62c47506c8b7f28710721d77ae811c8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--branded-static-visual--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, branded-static-visual
+  - source_id: NLS-V3-PROMPT-CHANNEL-CASE-STUDY-V1
+    name: 30-template--case-study--v1.0
+    title: Case Study Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - case-study
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: f5f57352cea0d78c15c50caeade52481627b34d86479bc6d886f2ba872b3441f
+    portable_identity_digest: f5f57352cea0d78c15c50caeade52481627b34d86479bc6d886f2ba872b3441f
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--case-study--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, case-study
+  - source_id: NLS-V3-PROMPT-CHANNEL-COMMERCIAL-PROPOSAL-DECK-V1
+    name: 30-template--commercial-proposal-deck--v1.0
+    title: Commercial Proposal Deck Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - commercial-proposal-deck
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: b430c922eea9068648cf81f75981c240973c2eea6b13faa02702b7b9b5c10863
+    portable_identity_digest: b430c922eea9068648cf81f75981c240973c2eea6b13faa02702b7b9b5c10863
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, commercial-proposal-deck
+  - source_id: NLS-V3-PROMPT-CHANNEL-EMAIL-V1
+    name: 30-template--email--v1.0
+    title: Email Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - email
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 2f4a7618654d52d2a5eaa2a6af8af00f3d8ab4619c45484c3b477219721800e4
+    portable_identity_digest: 2f4a7618654d52d2a5eaa2a6af8af00f3d8ab4619c45484c3b477219721800e4
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--email--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, email
+  - source_id: NLS-V3-PROMPT-CHANNEL-EXECUTIVE-DECK-V1
+    name: 30-template--executive-deck--v1.0
+    title: Executive Deck Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - executive-deck
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 0e0dac0103af78f046ccb101b50b06ee5cbf89eefe5ec45defe82d7dc2c96cc9
+    portable_identity_digest: 0e0dac0103af78f046ccb101b50b06ee5cbf89eefe5ec45defe82d7dc2c96cc9
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--executive-deck--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, executive-deck
+  - source_id: NLS-V3-PROMPT-CHANNEL-LANDING-PAGE-V1
+    name: 30-template--landing-page--v1.0
+    title: Landing Page Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - landing-page
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 2f89a90889ac45c50d771bc43ff40da06db8dc02625c4cb37f63e577a45e88b5
+    portable_identity_digest: 2f89a90889ac45c50d771bc43ff40da06db8dc02625c4cb37f63e577a45e88b5
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--landing-page--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, landing-page
+  - source_id: NLS-V3-PROMPT-CHANNEL-LEARNING-DECK-V1
+    name: 30-template--learning-deck--v1.0
+    title: Learning Deck Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - learning-deck
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 610f87ea7ec318fdd96d390b79b2032c829121deabc9e6fcb86cda101c33274c
+    portable_identity_digest: 610f87ea7ec318fdd96d390b79b2032c829121deabc9e6fcb86cda101c33274c
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--learning-deck--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, learning-deck
+  - source_id: NLS-V3-PROMPT-CHANNEL-LINKEDIN-CAROUSEL-V1
+    name: 30-template--linkedin-carousel--v1.0
+    title: LinkedIn Carousel Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - linkedin-carousel
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 143de88caf678e12d0607df6e54262e3a857ab42dc0d8658e7f65d5f045480ff
+    portable_identity_digest: 143de88caf678e12d0607df6e54262e3a857ab42dc0d8658e7f65d5f045480ff
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--linkedin-carousel--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, linkedin-carousel
+  - source_id: NLS-V3-PROMPT-CHANNEL-LINKEDIN-POST-V1
+    name: 30-template--linkedin-post--v1.0
+    title: LinkedIn Post Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - linkedin-post
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 5771a6eacdee0d5f054a32dc6fc4ed66f9e80faff9a6719a56359371e2d3ed23
+    portable_identity_digest: 5771a6eacdee0d5f054a32dc6fc4ed66f9e80faff9a6719a56359371e2d3ed23
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--linkedin-post--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, linkedin-post
+  - source_id: NLS-V3-PROMPT-CHANNEL-NEWSLETTER-ARTICLE-V1
+    name: 30-template--newsletter-article--v1.0
+    title: Newsletter or Article Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - newsletter-article
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: c8ca040bebafecf4ca9658660e791b6ed65a484241bf4ee9d90aaa89da99a063
+    portable_identity_digest: c8ca040bebafecf4ca9658660e791b6ed65a484241bf4ee9d90aaa89da99a063
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--newsletter-article--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, newsletter-article
+  - source_id: NLS-V3-PROMPT-CHANNEL-ONE-PAGER-V1
+    name: 30-template--one-pager--v1.0
+    title: One-pager Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - one-pager
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 502e97dff576b67a5a1b6612d79e139ca30db48a7b03dea84b8d0dba010c5af3
+    portable_identity_digest: 502e97dff576b67a5a1b6612d79e139ca30db48a7b03dea84b8d0dba010c5af3
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--one-pager--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, one-pager
+  - source_id: NLS-V3-PROMPT-CHANNEL-PODCAST-SCRIPT-V1
+    name: 30-template--podcast-script--v1.0
+    title: Podcast Script Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - podcast-script
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: e8df13db34a6c701a08725f149a48155110dfc62c7c6749b8f9f91b724e88b82
+    portable_identity_digest: e8df13db34a6c701a08725f149a48155110dfc62c7c6749b8f9f91b724e88b82
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--podcast-script--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, podcast-script
+  - source_id: NLS-V3-PROMPT-CHANNEL-SHORT-VIDEO-SCRIPT-V1
+    name: 30-template--short-video-script--v1.0
+    title: Short Video Script Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - channel
+      - short-video-script
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 259af258d869aa059bb1716e1fc613b26d3dcf62d11ee625447edbcc06b1d205
+    portable_identity_digest: 259af258d869aa059bb1716e1fc613b26d3dcf62d11ee625447edbcc06b1d205
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--short-video-script--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, short-video-script
+  - source_id: NLS-V3-PROMPT-STUDIO-AUDIO-V1
+    name: 30-template--audio--v1.0
+    title: Audio Overview Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - audio
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 6d48d5e7657d6bec0f3335def5bcfc6414d421e2202c9ee6470ad886cceb13b4
+    portable_identity_digest: 6d48d5e7657d6bec0f3335def5bcfc6414d421e2202c9ee6470ad886cceb13b4
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--audio--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, audio
+  - source_id: NLS-V3-PROMPT-STUDIO-DATA-TABLE-V1
+    name: 30-template--data-table--v1.0
+    title: Data Table Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - data-table
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 194e3dd5207d9ae93274f84f6a2cfa4866c19a6e84c626d52599767567fc27e6
+    portable_identity_digest: 194e3dd5207d9ae93274f84f6a2cfa4866c19a6e84c626d52599767567fc27e6
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--data-table--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, data-table
+  - source_id: NLS-V3-PROMPT-STUDIO-FLASHCARDS-V1
+    name: 30-template--flashcards--v1.0
+    title: Flashcards Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - flashcards
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 548f7871376f8911503e62324f359e1fb9a3f65952086e437b25fb8f20ca3bb2
+    portable_identity_digest: 548f7871376f8911503e62324f359e1fb9a3f65952086e437b25fb8f20ca3bb2
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--flashcards--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, flashcards
+  - source_id: NLS-V3-PROMPT-STUDIO-INFOGRAPHIC-V1
+    name: 30-template--infographic--v1.0
+    title: Infographic Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - infographic
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d8603b2a78755787814cb171912bc85b72fd762699c355cfb83ad7c5e757c6f4
+    portable_identity_digest: d8603b2a78755787814cb171912bc85b72fd762699c355cfb83ad7c5e757c6f4
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--infographic--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, infographic
+  - source_id: NLS-V3-PROMPT-STUDIO-MIND-MAP-V1
+    name: 30-template--mind-map--v1.0
+    title: Mind Map Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - mind-map
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d3c7a9d8aefa9b5e77171cdabc6fb0949294a893d1fff3adc536d45c0f3b69d7
+    portable_identity_digest: d3c7a9d8aefa9b5e77171cdabc6fb0949294a893d1fff3adc536d45c0f3b69d7
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--mind-map--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, mind-map
+  - source_id: NLS-V3-PROMPT-STUDIO-QUIZ-V1
+    name: 30-template--quiz--v1.0
+    title: Quiz Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - quiz
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 8ab1af41c7ec384f0120c279bb104fcc816b05270fa1d43895074cba1c6a0154
+    portable_identity_digest: 8ab1af41c7ec384f0120c279bb104fcc816b05270fa1d43895074cba1c6a0154
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--quiz--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, quiz
+  - source_id: NLS-V3-PROMPT-STUDIO-REPORT-V1
+    name: 30-template--report--v1.0
+    title: Report Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - report
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: c70c0378c1ddd4ce262bee092c60d668bcb95a8dd0071d3f46c7eba2358aac14
+    portable_identity_digest: c70c0378c1ddd4ce262bee092c60d668bcb95a8dd0071d3f46c7eba2358aac14
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--report--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, report
+  - source_id: NLS-V3-PROMPT-STUDIO-SLIDE-DECK-V1
+    name: 30-template--slide-deck--v1.0
+    title: Slide Deck Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - slide-deck
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 99f7f24aea828aa08d4818032e2ca43ef4146eb874eed70b5184a2b0e49aa8fd
+    portable_identity_digest: 99f7f24aea828aa08d4818032e2ca43ef4146eb874eed70b5184a2b0e49aa8fd
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--slide-deck--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, slide-deck
+  - source_id: NLS-V3-PROMPT-STUDIO-VIDEO-V1
+    name: 30-template--video--v1.0
+    title: Video Overview Prompt Template
+    layer: 30 Templates
+    authority: TEMPLATE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - notebooklm-os
+      - canon-v3
+      - prompt-template
+      - studio
+      - video
+    audiences:
+      - content strategist
+      - editor
+      - producer
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 8be4cc11a0774e87bf680887ea2e0a87f31374cf416089d1e5e1f8df32cff82a
+    portable_identity_digest: 8be4cc11a0774e87bf680887ea2e0a87f31374cf416089d1e5e1f8df32cff82a
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/studio/30-template--video--v1.0.md
+    source_refs:
+      - CTRL-SYSTEM-PROMPT-V3
+      - CTRL-AUTHORITY-ROUTER-V3
+      - prompt.registry.v1
+    supersedes: []
+    related_ids:
+      - CTRL-KNOWLEDGE-MAP-V3
+      - CTRL-KB-STANDARD-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: create, brief, verify, video
+  - source_id: NLS-V3-REFERENCE-AUTHORITY-PRESENTATIONS-V3
+    name: 41-reference--authority-presentations--v3.0
+    title: Presentations as Decision and Authority Assets
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - presentations
+      - decision-design
+      - authority
+    audiences:
+      - creator
+      - executive
+      - facilitator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 6604a05877914f9fb673466f11d7d689bf2f2ec8efc2a307a72bbfa47fa959d3
+    portable_identity_digest: 6604a05877914f9fb673466f11d7d689bf2f2ec8efc2a307a72bbfa47fa959d3
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/41-reference--authority-presentations--v3.0.md
+    source_refs:
+      - LEGACY-KB-41-PRESENTATIONS-V1
+    supersedes:
+      - LEGACY-KB-41-PRESENTATIONS-V1
+    related_ids:
+      - CANON-CONTENT-STUDIO-V3
+      - CANON-BRAND-VOICE-V3
+      - CANON-NEO-SWISS-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: structure-deck, audit-decision-value
+  - source_id: NLS-V3-REFERENCE-EDITORIAL-EDITION-V3
+    name: 43-reference--editorial-editions--v3.0
+    title: Historical Editorial Edition Comparison
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - editions
+      - history
+      - comparison
+      - provenance
+    audiences:
+      - curator
+      - creator
+      - verifier
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 1c72fadc28eb982a76b549da5f302782bf6a1c89078f583dc6d50e35dcfb71a6
+    portable_identity_digest: 1c72fadc28eb982a76b549da5f302782bf6a1c89078f583dc6d50e35dcfb71a6
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/43-reference--editorial-editions--v3.0.md
+    source_refs:
+      - LEGACY-KB-43-EDITIONS-V1
+      - FORMATION-CANON-V1
+      - MASTERCLASS-PLAYBOOKS-V1
+    supersedes:
+      - LEGACY-KB-43-EDITIONS-V1
+    related_ids:
+      - EVIDENCE-CORPUS-COMPLETENESS-V3
+      - OPS-SOURCE-SELECTION-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: compare-version, select-reference, preserve-provenance
+  - source_id: NLS-V3-REFERENCE-EMPOWERMENT-ONBOARDING-V3
+    name: 45-reference--empowerment-onboarding--v3.0
+    title: Empowerment Program Onboarding Reference
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - onboarding
+      - empowerment
+      - expectations
+      - support
+    audiences:
+      - learner
+      - facilitator
+      - program-owner
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 85c2b9840ca8ebfa903c98b16b027b727038c3a06a14d22e877951f5fb774ea8
+    portable_identity_digest: 85c2b9840ca8ebfa903c98b16b027b727038c3a06a14d22e877951f5fb774ea8
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/45-reference--empowerment-onboarding--v3.0.md
+    source_refs:
+      - LEGACY-KB-27-ONBOARDING-V1
+      - LEGACY-KB-27-ONBOARDING-V1-1
+    supersedes:
+      - LEGACY-KB-27-ONBOARDING-V1
+      - LEGACY-KB-27-ONBOARDING-V1-1
+    related_ids:
+      - CANON-CURRICULUM-V3
+      - PEDAGOGY-S02-V3
+      - REFERENCE-LEARNING-EVOLUTION-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: orient-participant, explain-program-use
+  - source_id: NLS-V3-REFERENCE-LEARNING-EVOLUTION-V3
+    name: 44-reference--learning-appropriation-evolution--v3.0
+    title: Learn, Appropriate, and Evolve
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - learning
+      - appropriation
+      - evolution
+      - transfer
+    audiences:
+      - learner
+      - facilitator
+      - instructional-designer
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 3ccc9528c166e9814395958a35676562eb5cf6e253f321d898535a0a16471418
+    portable_identity_digest: 3ccc9528c166e9814395958a35676562eb5cf6e253f321d898535a0a16471418
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/44-reference--learning-appropriation-evolution--v3.0.md
+    source_refs:
+      - LEGACY-KB-24-LEARNING-V1
+      - LEGACY-KB-24-LEARNING-V1-1
+    supersedes:
+      - LEGACY-KB-24-LEARNING-V1
+      - LEGACY-KB-24-LEARNING-V1-1
+    related_ids:
+      - PEDAGOGY-S02-V3
+      - PEDAGOGY-TRANSFER-MATRIX-V3
+      - EVIDENCE-CLAIMS-GAPS-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: design-learning-cycle, explain-learning-stages
+  - source_id: NLS-V3-REFERENCE-PDF-GALLERY-V3
+    name: 40-reference--pdf-art-gallery--v3.0
+    title: PDF and Artistic Reference Gallery Guide
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - pdf-gallery
+      - artistic-reference
+      - pattern-extraction
+    audiences:
+      - designer
+      - creator
+      - curator
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: 08de8b727eecf41104a25556b7e8e24d0c2f249a0085e2db052df36549c55492
+    portable_identity_digest: 08de8b727eecf41104a25556b7e8e24d0c2f249a0085e2db052df36549c55492
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/40-reference--pdf-art-gallery--v3.0.md
+    source_refs:
+      - LEGACY-KB-40-GALLERY-V1
+      - MASTERCLASS-PLAYBOOKS-V1
+      - FORMATION-CANON-V1
+      - ART-GALLERY-V1
+    supersedes:
+      - LEGACY-KB-40-GALLERY-V1
+    related_ids:
+      - CANON-NEO-SWISS-V3
+      - REFERENCE-EDITORIAL-EDITION-V3
+      - ASSET-USAGE-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: analyze-reference, extract-pattern, compare-edition
+  - source_id: NLS-V3-REFERENCE-SKILLS-AGENTS-V3
+    name: 42-reference--skills-agents-executive-assistance--v3.0
+    title: Skills, Agents, and Executive Assistance Patterns
+    layer: 40 Golden References
+    authority: REFERENCE
+    source_type: markdown
+    scope: metodologia-brand-content-canon-v3
+    confidentiality: PRIVATE
+    owner: MetodologIA
+    tags:
+      - skills
+      - agents
+      - chief-of-staff
+      - governance
+    audiences:
+      - operator
+      - architect
+      - executive
+    language: en
+    response_locales:
+      - en
+      - es-419
+    rights: APPROVED
+    status: ACTIVE
+    valid_from: 2026-08-26
+    valid_until: null
+    content_sha256: d982798d179c0bdde6bfbffde7a8caf178efc43b2bdb9166e99386f2eab5e74c
+    portable_identity_digest: d982798d179c0bdde6bfbffde7a8caf178efc43b2bdb9166e99386f2eab5e74c
+    source_ref: 03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/40-reference/42-reference--skills-agents-executive-assistance--v3.0.md
+    source_refs:
+      - LEGACY-KB-42-SKILLS-AGENTS-V1
+    supersedes:
+      - LEGACY-KB-42-SKILLS-AGENTS-V1
+    related_ids:
+      - CANON-AGENTIC-SOVEREIGNTY-V3
+      - OPS-RECEIPTS-READBACK-V3
+    provenance: Canon v3 curated Markdown successor; source_refs preserve its admitted lineage.
+    notebook_role: design-skill, assess-agent, design-executive-assistant

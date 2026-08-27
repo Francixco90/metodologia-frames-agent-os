@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/prompt-template-v1.json",
+  "title": "PromptTemplateV1",
+  "description": "Portable contract for a governed Canon v3 content prompt.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "templateId",
+    "version",
+    "family",
+    "title",
+    "markdownRef",
+    "jsonPointer",
+    "inputs",
+    "sourceRoles",
+    "outputContract",
+    "studioConfig",
+    "executionGate",
+    "negativePrompt",
+    "acceptance",
+    "idempotency"
+  ],
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "pattern": "^prompt\\.(studio|channel)\\.[a-z0-9-]+\\.v1$"
+    },
+    "version": {"const": "1.0"},
+    "family": {"enum": ["studio", "channel"]},
+    "title": {"type": "string", "minLength": 3},
+    "markdownRef": {
+      "type": "string",
+      "pattern": "^../knowledge-base/30-templates/(studio|channels)/[a-z0-9-]+--v1\\.0\\.md$"
+    },
+    "jsonPointer": {"type": "string", "pattern": "^/templates/[0-9]+$"},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "optional"],
+      "properties": {
+        "required": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "optional": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "sourceRoles": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "control",
+          "canon",
+          "evidence",
+          "template",
+          "reference",
+          "asset",
+          "pedagogy",
+          "working"
+        ]
+      }
+    },
+    "outputContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "structure", "state", "languagePolicy"],
+      "properties": {
+        "format": {"type": "string"},
+        "structure": {"type": "array", "minItems": 3, "items": {"type": "string"}},
+        "state": {"const": "DRAFT"},
+        "languagePolicy": {"const": "user-language-with-es-419-default"}
+      }
+    },
+    "studioConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "artifactType", "sourcePolicy", "requiresGenerationGate"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "artifactType": {"type": ["string", "null"]},
+        "sourcePolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max", "rejectEmpty", "rejectAllSources"],
+          "properties": {
+            "min": {"type": "integer", "minimum": 3, "maximum": 4},
+            "max": {"type": "integer", "minimum": 8, "maximum": 12},
+            "rejectEmpty": {"const": true},
+            "rejectAllSources": {"const": true}
+          }
+        },
+        "requiresGenerationGate": {"type": "boolean"}
+      }
+    },
+    "executionGate": {
+      "type": ["string", "null"],
+      "enum": ["NLM_STUDIO_GENERATION_APPROVED", null]
+    },
+    "negativePrompt": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "acceptance": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "idempotency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "fields", "onDuplicate"],
+      "properties": {
+        "algorithm": {"const": "sha256-canonical-json"},
+        "fields": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "onDuplicate": {"const": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"}
+      }
+    }
+  }
+}
