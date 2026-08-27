@@ -6,10 +6,24 @@ metadata: {owner: MetodologIA, lifecycle_state: candidate, execution_scope: loca
 
 # NotebookLM Naming & Taxonomy
 
-Use source names `NN-layer--slug--vX.Y` and Studio names `NN · Resultado · Audiencia · vX`.
-Only use these labels: `00 Control`, `10 Canon`, `20 Evidence`, `30 Templates`,
-`40 Golden References`, `50 Assets`, `60 Operations`, `90 Archive`.
+## Trigger
 
-Naming does not establish identity, authority or rights. Preserve source IDs across renames; create
-a successor version for changed content; record `replaces`; archive superseded sources instead of
-creating competing canon.
+Use when naming or classifying notebooks, sources, labels, artifacts, versions or archive entries.
+
+## Inputs
+
+Logical identity, layer, slug, version, audience and successor relation.
+
+## Outputs
+
+Use `NN-layer--slug--vX.Y`, `NN · Resultado · Audiencia · vX` and the eight approved layers. Brand
+packs use stable document IDs; locale/channel belong in metadata unless needed for disambiguation.
+
+## Stop rules
+
+Never treat naming as identity, authority or rights; never encode locators, credentials or personal data.
+
+## Done contract
+
+The name is deterministic, the source ID survives renames, changed content has `replaces`, and no
+competing active version remains.

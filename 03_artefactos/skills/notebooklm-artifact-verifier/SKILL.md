@@ -6,9 +6,24 @@ metadata: {owner: MetodologIA, lifecycle_state: candidate, execution_scope: inde
 
 # NotebookLM Artifact Verifier
 
-Compare the result to its `StudioBriefV1`. Confirm requested and obtained type, explicit sources,
-prompt digest, non-zero downloaded bytes or inspectable content, language, structure, claims,
-citations and asset rights. Emit `StudioArtifactReceiptV1` with every gap.
+## Trigger
 
-Only matching type plus downloaded/read content can reach `VERIFIED_DRAFT`. Never infer success
-from a visible Studio card. `VERIFIED_DRAFT` remains below `HUMAN_APPROVED` and `PUBLISHED`.
+Use after Studio generation or when an artifact claims completion.
+
+## Inputs
+
+Exact `StudioBriefV1`, artifact reference, source set and downloadable or inspectable content.
+
+## Outputs
+
+Verify requested/obtained type, explicit sources, prompt digest, bytes, language, structure, claims,
+citations and rights; emit `StudioArtifactReceiptV1`. Branded output also needs `BrandQaReceiptV1`.
+
+## Stop rules
+
+A visible card, zero bytes, unread content, wrong type or unknown sources cannot pass.
+
+## Done contract
+
+Only matching type plus downloaded/read content may reach `VERIFIED_DRAFT`, which remains below
+`HUMAN_APPROVED` and `PUBLISHED`.
