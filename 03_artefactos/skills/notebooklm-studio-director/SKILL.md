@@ -6,9 +6,26 @@ metadata: {owner: MetodologIA, lifecycle_state: candidate, execution_scope: loca
 
 # NotebookLM Studio Director
 
-Create one `StudioBriefV1` per artifact with type, audience, objective, thesis, explicit source IDs,
-structure, style, duration, constraints and acceptance. Never reuse one generic instruction across
-formats. Block unapproved assets, unsupported claims and source sets outside scope.
+## Trigger
 
-Generation waits for `NLM_STUDIO_GENERATION_APPROVED`. A slide revision creates a successor and
-preserves the original. Generation alone is not verification, approval, sharing or publication.
+Use to compile or execute one NotebookLM Studio artifact request.
+
+## Inputs
+
+Type-specific intent, audience, objective, explicit sources, constraints and acceptance; for brand
+work, a bounded brief from `notebooklm-brand-content-director`.
+
+## Outputs
+
+Create one `StudioBriefV1` per artifact with structure, style, duration and source IDs. Each format
+gets its own instruction; revisions create successors. Never ask Studio to recreate a protected logo.
+
+## Stop rules
+
+Block unsupported claims, unapproved assets, out-of-scope/all-sources sets, and generation without
+`NLM_STUDIO_GENERATION_APPROVED`.
+
+## Done contract
+
+A type-specific brief or receipted generation exists. Generation is not verification, approval,
+sharing or publication.

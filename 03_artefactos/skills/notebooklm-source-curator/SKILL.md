@@ -6,10 +6,25 @@ metadata: {owner: MetodologIA, lifecycle_state: candidate, execution_scope: gove
 
 # NotebookLM Source Curator
 
-Validate every item with `NotebookSourceManifestV1`. Resolve identity by Drive ID, canonical URL,
-then hash; never by title. Same title plus distinct hash is a new version or conflict, not a duplicate.
-Enforce naming `NN-layer--slug--vX.Y`, authority, provenance, rights, vigency and replacement links.
+## Trigger
 
-Keep the active set within 15 controls, 15 assets/examples and 20 working sources. Prefer explicit
-`source_ids`; all-sources selection needs a written exception. Import waits for `NLM_PLAN_APPROVED`;
-Drive sync waits for `NLM_SYNC_APPROVED`. Read back every applied mutation.
+Use to plan, import, deduplicate, replace, tag, select or synchronize notebook sources.
+
+## Inputs
+
+Candidate sources and `NotebookSourceManifestV1` entries, including provenance and rights.
+
+## Outputs
+
+Resolve identity by Drive ID, canonical URL, then hash—never title. Enforce naming, authority,
+vigency and successors within 15 controls, 15 assets/examples and 20 working sources. Preserve brand
+conversation, attachment and extraction as separate nodes; Markdown remains a projection.
+
+## Stop rules
+
+Block conflicts, unsupported claims, unknown rights and out-of-scope or all-sources sets. Import
+waits for `NLM_PLAN_APPROVED`; Drive sync for `NLM_SYNC_APPROVED`.
+
+## Done contract
+
+Manifest, explicit `source_ids`, deduplication decisions and gaps are stable; every mutation has readback.
