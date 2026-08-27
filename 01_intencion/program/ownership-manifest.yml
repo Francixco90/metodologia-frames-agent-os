@@ -192,7 +192,8 @@ writers:
     - 05_verificacion/tests/unit/skill-systems-*.test.ts
     - 05_verificacion/tests/unit/trainer-os-*.test.ts
     - 05_verificacion/tests/unit/host-adapter-contract.test.ts
-    - 05_verificacion/tests/unit/notebooklm-os.test.ts
+    - 05_verificacion/tests/unit/notebooklm-*.test.ts
+    - 05_verificacion/tests/unit/notebooklm-canon-v3/**
     - 05_verificacion/fixtures/notebooklm-os/**
     - 05_verificacion/tests/integration/career-*.test.ts
     - 05_verificacion/context.md
