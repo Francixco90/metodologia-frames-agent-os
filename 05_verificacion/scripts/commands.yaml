@@ -1,11 +1,9 @@
-# commands-v1 — manifiesto versionado gate → comando.
-# Fuente original: CLAUDE.md L29-44 (tabla gate → comando existente).
+# commands-v1 — manifiesto versionado gate → comando; fuente original: CLAUDE.md L29-44.
 # Gates G13-G17 son manuales por diseño fail-closed (no automatizables).
-# Gates intermedios (_PRECLEAR, _BRAND, _CONTRACTS, _CAROUSEL, _AI_RUNTIME, G10, G11)
-# mapeados a scripts existentes en package.json; ver [SUPUESTO] en notas del PR.
+# Gates intermedios (_PRECLEAR, _BRAND, _CONTRACTS, _CAROUSEL, _AI_RUNTIME, G10, G11) se mapean
+# a scripts existentes en package.json; ver [SUPUESTO] en notas del PR.
 # Comandos compuestos (no son gates): Preflight VS-001 → pnpm slice:build;
 # Verificación total → pnpm verify. Quedan fuera del manifiesto (no son gates del DAG).
-
 schema_version: 1
 manifest_id: commands-v1
 gates:
@@ -146,9 +144,11 @@ gates:
   # prettier-ignore
   - {gate: G09_EXPERIENCE, label: first-turn assistance and Experience OS contracts, command: 'node --import tsx scripts/check-experience-os.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: content}
   # prettier-ignore
-  - {gate: G09_NOTEBOOKLM_OS, label: NotebookLM OS reusable contracts adapters and adversarial tests, command: 'pnpm vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
+  - {gate: G09_NOTEBOOKLM_OS, label: NotebookLM OS reusable contracts brand builder and adversarial tests, command: 'pnpm verify:notebooklm-os', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: governance}
   # prettier-ignore
   - {gate: NLM_PLAN_APPROVED, label: approve notebook creation configuration labels or source import plan, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: NLM_BRAND_PROFILE_APPROVED, label: approve promoting a reviewed brand profile to active, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: NLM_SYNC_APPROVED, label: approve Drive source synchronization, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
