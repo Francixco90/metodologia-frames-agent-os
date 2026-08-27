@@ -167,6 +167,7 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).toEqual(
       expect.arrayContaining([
         'NLM_PLAN_APPROVED',
+        'NLM_BRAND_PROFILE_APPROVED',
         'NLM_SYNC_APPROVED',
         'NLM_STUDIO_GENERATION_APPROVED',
         'NLM_SHARE_AUTHORIZED',
@@ -204,6 +205,6 @@ describe('router.yml contract', () => {
     expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
     expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
     expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
-    expect(router.manual_fail_closed_gates).toHaveLength(26);
+    expect(router.manual_fail_closed_gates).toHaveLength(27);
   });
 });
