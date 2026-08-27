@@ -12,10 +12,10 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 306
-- COMMAND: 101
+- COMMAND: 102
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 69
+- GATE: 70
 - RENDERER: 5
 - ROUTE: 12
 - SKILL: 185
@@ -436,6 +436,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | verify:instructions | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:media | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:multimedia | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | verify:notebooklm-os | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:orchestration | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:renderers | ACTIVE | CANONICAL | `package.json` |
@@ -601,6 +602,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | MW_DISTRIBUTION_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_EDIT_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_SPEC_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | NLM_BRAND_PROFILE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | NLM_DESTRUCTIVE_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | NLM_PLAN_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | NLM_SHARE_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -1012,4 +1014,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `852f8d6769fa764ba0e967db12ff268f9e32d12a6dee52cd33c060eac7347b27`.
+Hash de fuentes: `8b5f1ab61fe8fdb7da3a450a16639a1bb002bdab0a9613e77a5f2052a484b676`.
