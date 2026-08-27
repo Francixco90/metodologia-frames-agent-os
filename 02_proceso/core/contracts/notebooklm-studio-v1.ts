@@ -1,7 +1,8 @@
 import {z} from 'zod';
 
+import {hashExperienceValue} from './experience-normalization.ts';
 import {NotebookGateSchema, NotebookStudioTypeSchema} from './notebooklm-os-v1.ts';
-import {Sha256Schema} from './primitives.ts';
+import {PortableIdSchema, Sha256Schema} from './primitives.ts';
 
 const IdSchema = z.string().regex(/^[a-z0-9][a-z0-9-]{1,79}$/u);
 const TextSchema = z.string().trim().min(1).max(2_000);
@@ -21,6 +22,66 @@ export const StudioBriefV1Schema = z.strictObject({
   constraints: z.array(TextSchema).min(1),
   acceptance: z.array(TextSchema).min(1),
 });
+
+const LocaleSchema = z.string().regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/u);
+
+export const StudioClaimEvidenceV2Schema = z.strictObject({
+  claimId: IdSchema,
+  sourceIds: z.array(SourceIdSchema).min(1).max(12),
+  condition: TextSchema.nullable(),
+});
+
+/**
+ * Backward-compatible successor to StudioBriefV1. V1 remains unchanged and
+ * callers opt in by using this schemaVersion.
+ */
+export const StudioBriefV2Schema = z
+  .strictObject({
+    schemaVersion: z.literal('studio-brief-v2'),
+    briefId: IdSchema,
+    brandId: PortableIdSchema,
+    profileSha256: Sha256Schema,
+    type: NotebookStudioTypeSchema,
+    audience: TextSchema,
+    objective: TextSchema,
+    thesis: TextSchema,
+    sourceIds: z.array(SourceIdSchema).min(1).max(12),
+    structure: z.array(TextSchema).min(1),
+    style: TextSchema,
+    duration: TextSchema,
+    constraints: z.array(TextSchema).min(1),
+    acceptance: z.array(TextSchema).min(1),
+    locale: LocaleSchema,
+    channel: IdSchema,
+    claimEvidence: z.array(StudioClaimEvidenceV2Schema).max(50),
+    assetIds: z.array(IdSchema).max(20),
+    exclusions: z.array(TextSchema),
+    finalFormat: IdSchema,
+    sourceSetSha256: Sha256Schema,
+    brandContentBriefSha256: Sha256Schema,
+    negativePrompt: z.array(TextSchema).min(1),
+    idempotencyKey: Sha256Schema,
+  })
+  .superRefine((value, context) => {
+    if (new Set(value.sourceIds).size !== value.sourceIds.length) {
+      context.addIssue({code: 'custom', message: 'sourceIds must be unique.'});
+    }
+    const expected = hashExperienceValue([...new Set(value.sourceIds)].sort());
+    if (value.sourceSetSha256 !== expected) {
+      context.addIssue({code: 'custom', message: 'sourceSetSha256 does not match sourceIds.'});
+    }
+    const selected = new Set(value.sourceIds);
+    for (const binding of value.claimEvidence) {
+      if (binding.sourceIds.some((sourceId) => !selected.has(sourceId))) {
+        context.addIssue({
+          code: 'custom',
+          message: `Claim ${binding.claimId} references a source outside the explicit source set.`,
+        });
+      }
+    }
+  });
+
+export const StudioBriefCompatibleSchema = z.union([StudioBriefV1Schema, StudioBriefV2Schema]);
 
 export const StudioArtifactReceiptV1Schema = z
   .strictObject({
@@ -80,5 +141,7 @@ export const NotebookLifecycleReceiptV1Schema = z
   });
 
 export type StudioBriefV1 = z.infer<typeof StudioBriefV1Schema>;
+export type StudioBriefV2 = z.infer<typeof StudioBriefV2Schema>;
+export type StudioBriefCompatible = z.infer<typeof StudioBriefCompatibleSchema>;
 export type StudioArtifactReceiptV1 = z.infer<typeof StudioArtifactReceiptV1Schema>;
 export type NotebookLifecycleReceiptV1 = z.infer<typeof NotebookLifecycleReceiptV1Schema>;
