@@ -1,0 +1,93 @@
+schema_version: notebooklm-brand-adversarial-fixtures-v1
+cases:
+  - {
+      case_id: deterministic-replay,
+      category: determinism,
+      expected: ALLOWED,
+      reason_code: SAME_INPUT_SAME_BUILD,
+    }
+  - {
+      case_id: same-title-new-hash,
+      category: identity,
+      expected: REVIEW,
+      reason_code: CONTENT_VARIANT,
+    }
+  - {
+      case_id: conflicting-user-comment,
+      category: conflict,
+      expected: REVIEW,
+      reason_code: USER_CONFIRMATION_REQUIRED,
+    }
+  - {
+      case_id: confirmed-feedback,
+      category: evolution,
+      expected: ALLOWED,
+      reason_code: VERSIONED_SUCCESSOR,
+    }
+  - {
+      case_id: cross-brand-token,
+      category: isolation,
+      expected: BLOCKED,
+      reason_code: BRAND_MIX_DETECTED,
+    }
+  - {
+      case_id: embedded-prompt-injection,
+      category: safety,
+      expected: BLOCKED,
+      reason_code: PROMPT_INJECTION,
+    }
+  - {
+      case_id: unnecessary-personal-data,
+      category: privacy,
+      expected: BLOCKED,
+      reason_code: UNNECESSARY_PII,
+    }
+  - {
+      case_id: unsupported-superlative,
+      category: claims,
+      expected: BLOCKED,
+      reason_code: UNSUPPORTED_STRONG_CLAIM,
+    }
+  - {
+      case_id: visual-rights-review,
+      category: rights,
+      expected: BLOCKED,
+      reason_code: ASSET_RIGHTS_NOT_APPROVED,
+    }
+  - {case_id: empty-source-set, category: sources, expected: BLOCKED, reason_code: SOURCE_SET_EMPTY}
+  - {
+      case_id: all-sources-request,
+      category: sources,
+      expected: BLOCKED,
+      reason_code: BLOCKED_ALL_SOURCES,
+    }
+  - {
+      case_id: oversized-bootstrap,
+      category: prompt,
+      expected: BLOCKED,
+      reason_code: BOOTSTRAP_TOO_LONG,
+    }
+  - {
+      case_id: unbalanced-bootstrap-xml,
+      category: prompt,
+      expected: BLOCKED,
+      reason_code: INVALID_BOOTSTRAP_XML,
+    }
+  - {
+      case_id: template-registry-drift,
+      category: templates,
+      expected: BLOCKED,
+      reason_code: TEMPLATE_PARITY_FAILED,
+    }
+  - {
+      case_id: private-locator,
+      category: privacy,
+      expected: BLOCKED,
+      reason_code: PRIVATE_LOCATOR_EXPOSED,
+    }
+  - {
+      case_id: external-write-without-gate,
+      category: governance,
+      expected: BLOCKED,
+      reason_code: APPROVAL_REQUIRED,
+    }

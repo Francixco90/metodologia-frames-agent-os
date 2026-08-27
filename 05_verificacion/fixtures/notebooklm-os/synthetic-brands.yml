@@ -1,0 +1,74 @@
+schema_version: notebooklm-brand-fixtures-v1
+fixture_kind: synthetic-brand-intake
+brands:
+  - brand_id: northstar-learning-cooperative
+    display_name: Northstar Learning Cooperative
+    primary_locale: en
+    audiences: [adult learners, facilitators]
+    channels: [linkedin-post, learning-deck, newsletter-article]
+    distinctive_terms: [learning compass, practical progress]
+    forbidden_terms: [guaranteed mastery, effortless transformation]
+    palette: ['#143642', '#F2C14E', '#F8FAFC']
+    inputs:
+      - input_id: ns-conversation-01
+        kind: conversation
+        modality: text
+        mime_type: text/plain
+        rights: APPROVED
+        sensitivity: INTERNAL
+        content: We teach adults through short practice loops and respectful, plain language.
+      - input_id: ns-guide-01
+        kind: attachment
+        modality: document
+        mime_type: text/markdown
+        rights: APPROVED
+        sensitivity: INTERNAL
+        content: Use the phrase learning compass. Never promise guaranteed mastery.
+      - input_id: ns-feedback-01
+        kind: comment
+        modality: text
+        mime_type: text/plain
+        rights: APPROVED
+        sensitivity: INTERNAL
+        content: Prefer practical progress over rapid results.
+    expected:
+      canonical_phrase: learning compass
+      blocked_phrase: guaranteed mastery
+      voice_trait: respectful and practical
+      status: REVIEW
+
+  - brand_id: fieldnote-robotics
+    display_name: Fieldnote Robotics
+    primary_locale: es-419
+    audiences: [equipos de operaciones, líderes de planta]
+    channels: [executive-deck, one-pager, case-study]
+    distinctive_terms: [automatización observable, criterio operativo]
+    forbidden_terms: [autonomía ilimitada, cero riesgo]
+    palette: ['#253237', '#5C6B73', '#E0FBFC']
+    inputs:
+      - input_id: fr-conversation-01
+        kind: conversation
+        modality: text
+        mime_type: text/plain
+        rights: APPROVED
+        sensitivity: INTERNAL
+        content: Explicamos robótica con precisión, sin exagerar capacidades ni ocultar límites.
+      - input_id: fr-visual-01
+        kind: attachment
+        modality: image
+        mime_type: image/svg+xml
+        rights: REVIEW
+        sensitivity: INTERNAL
+        content: Diagrama sintético en revisión; no autoriza uso del activo.
+      - input_id: fr-feedback-01
+        kind: comment
+        modality: text
+        mime_type: text/plain
+        rights: APPROVED
+        sensitivity: INTERNAL
+        content: Usa automatización observable y evita autonomía ilimitada.
+    expected:
+      canonical_phrase: automatización observable
+      blocked_phrase: autonomía ilimitada
+      voice_trait: preciso y transparente
+      status: REVIEW
