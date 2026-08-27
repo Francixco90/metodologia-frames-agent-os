@@ -1,0 +1,24 @@
+schema_version: notebooklm-brand-template-catalog-v1
+templates:
+  - {template_id: studio-audio, kind: studio}
+  - {template_id: studio-video, kind: studio}
+  - {template_id: studio-infographic, kind: studio}
+  - {template_id: studio-slide-deck, kind: studio}
+  - {template_id: studio-report, kind: studio}
+  - {template_id: studio-flashcards, kind: studio}
+  - {template_id: studio-quiz, kind: studio}
+  - {template_id: studio-data-table, kind: studio}
+  - {template_id: studio-mind-map, kind: studio}
+  - {template_id: channel-linkedin-post, kind: channel}
+  - {template_id: channel-linkedin-carousel, kind: channel}
+  - {template_id: channel-one-pager, kind: channel}
+  - {template_id: channel-executive-deck, kind: channel}
+  - {template_id: channel-commercial-proposal-deck, kind: channel}
+  - {template_id: channel-learning-deck, kind: channel}
+  - {template_id: channel-podcast-script, kind: channel}
+  - {template_id: channel-short-video-script, kind: channel}
+  - {template_id: channel-newsletter-article, kind: channel}
+  - {template_id: channel-email, kind: channel}
+  - {template_id: channel-landing-page, kind: channel}
+  - {template_id: channel-case-study, kind: channel}
+  - {template_id: channel-branded-static-visual, kind: channel}
