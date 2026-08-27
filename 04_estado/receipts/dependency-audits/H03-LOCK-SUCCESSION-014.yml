@@ -1,0 +1,28 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-014
+supersedes_receipt_id: H03-LOCK-SUCCESSION-013
+recorded_at: '2026-08-27T00:00:00Z'
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: add_notebooklm_brand_builder_verification_without_dependency_change
+previous:
+  package_sha256: 8bb5f10c6ac56a9c32b463ba500c46f4171f1ac66374de747d135bf8f951d73a
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+current:
+  package_sha256: 50c1cbc2e91cdbb9e2145d17be2988077090ccf709df6f2dbee8ca15e40eb362
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: false
+dependency_set: []
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260827-001.json
+  sha256: f9f488a8878b82349f3fa79ef96842b1bb608b0f2e3dec2106d698ce92b61cb4
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: inherited:no-dependency-change
+  status: passed
+rollback:
+  strategy: restore_pre_notebooklm_brand_builder_package_and_remove_added_verification_entry
+  expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

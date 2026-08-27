@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 69 gates including NotebookLM OS, Video OS and Career design boundaries', () => {
-    expect(manifest.gates).toHaveLength(69);
+  it('declares 70 gates including NotebookLM OS, Video OS and Career design boundaries', () => {
+    expect(manifest.gates).toHaveLength(70);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
@@ -29,6 +29,7 @@ describe('commands.yaml contract', () => {
         'CR_CV_DESIGN_APPROVED',
         'G09_NOTEBOOKLM_OS',
         'NLM_PLAN_APPROVED',
+        'NLM_BRAND_PROFILE_APPROVED',
         'NLM_SHARE_AUTHORIZED',
       ]),
     );

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "d843a6c9f837634f83defb241c9678e56df215041592b088d9d85bc34f31e5fc",
-  "totalMarkdown": 1867,
-  "auditedAuthored": 603,
+  "repositoryTreeSha256": "b8fb7308df05d13c6f1906d276abf74a016db933d5bcf2e4bc4a4cbec22c162c",
+  "totalMarkdown": 1897,
+  "auditedAuthored": 629,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -367,6 +367,32 @@
       "03_artefactos/skills/metodologia-workbook-html/references/operating-contract.md",
       "03_artefactos/skills/metodologia-workshop-route-landing-html/references/operating-contract.md",
       "03_artefactos/skills/motion-library-adapters/references/media-use-adapter.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-learning-deck.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-carousel.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-post.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-newsletter-article.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-one-pager.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-podcast-script.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-short-video-script.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-flashcards.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-infographic.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/references/briefing-policy.md",
+      "03_artefactos/skills/notebooklm-brand-intake/references/intake-policy.md",
+      "03_artefactos/skills/notebooklm-brand-kit-compiler/references/knowledge-pack.md",
+      "03_artefactos/skills/notebooklm-brand-verifier/references/qa-rubric.md",
       "03_artefactos/skills/remotion-video-production/CHANGELOG.md",
       "03_artefactos/skills/remotion-video-production/examples/minimal-deterministic/README.md",
       "03_artefactos/skills/remotion-video-production/licenses/LicenseRef-MetodologIA-Internal.md",
@@ -780,6 +806,10 @@
       "03_artefactos/skills/metodologia-workshop-route-landing-html/SKILL.md",
       "03_artefactos/skills/motion-library-adapters/SKILL.md",
       "03_artefactos/skills/notebooklm-artifact-verifier/SKILL.md",
+      "03_artefactos/skills/notebooklm-brand-content-director/SKILL.md",
+      "03_artefactos/skills/notebooklm-brand-intake/SKILL.md",
+      "03_artefactos/skills/notebooklm-brand-kit-compiler/SKILL.md",
+      "03_artefactos/skills/notebooklm-brand-verifier/SKILL.md",
       "03_artefactos/skills/notebooklm-naming-taxonomy/SKILL.md",
       "03_artefactos/skills/notebooklm-os-router/SKILL.md",
       "03_artefactos/skills/notebooklm-profile-compiler/SKILL.md",
@@ -4663,7 +4693,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "b8c5a4dfa99ec8039098a7d6e995f52975bcd0d750db38a6c2d8599018fb560a",
+      "sha256": "ea853d1438f1631e326bfd0948ce6f6cb03d3e17e1a4851423e754cb2bc1c1f8",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -9600,9 +9630,9 @@
       "sourceRef": "02_proceso/workflows/notebooklm-os/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "323a9a97942984ad9a7c2db3c764fd3f8e7d372dd00d3cef757a31ca228753d0",
-      "words": 367,
-      "lines": 41,
+      "sha256": "992070cf60ab394319bab90d8e26b86c2fba38f90b2da411b0b247ddde94014a",
+      "words": 821,
+      "lines": 89,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -10362,9 +10392,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "e939f8f123f36714c917a857352a5efcdad845638e2abc4d81db7c57ffe0a8e3",
-      "words": 10603,
-      "lines": 986,
+      "sha256": "be28f78bd73335cb7dc957985c17322e22179a7083f944fca89d6c5409c6fdd3",
+      "words": 10955,
+      "lines": 1018,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -14335,6 +14365,814 @@
       }
     },
     {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a2cf4b3ac78638c1da9f3ffc86d128a423f39b7d54941102fad45f39ae47b7ba",
+      "words": 101,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "5615451c9a98dff2b484c9ba1063c8b0c4e74cc67246e2cb81e23a7468646de2",
+      "words": 96,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7c445c4689b629a0b8f543c5e1d74341e3a43a8d5bf7265e20ba1c50f9047d85",
+      "words": 101,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-email.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d1bfd4918c3ec5a554b14d24aa677c1b7f0a8796c5430dbff577810a92243c30",
+      "words": 95,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-executive-deck.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "b8f9c0fe50585041bc1eb68e96768352281ae826cd653e734a245a3dae670b3a",
+      "words": 96,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-landing-page.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "54b27cf879517b2447030e07837b870543a2faea4b68637ea36d810d73f6d1fa",
+      "words": 96,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-learning-deck.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-learning-deck.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-learning-deck.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "dfb0d24f98c898cf0861ccf4d7701ee1558d6533b95eafa97a4d7b19b93ecaca",
+      "words": 93,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-carousel.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-carousel.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-carousel.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8e77dfc60051457dfd97601f79d5537e61729cbcc12715f8a1e70fa223715a4e",
+      "words": 99,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-post.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-post.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-linkedin-post.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "504d68536b27d08b29bd1d65dbc9cbca1c22332b68f702c9418cf9055980322d",
+      "words": 95,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-newsletter-article.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-newsletter-article.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-newsletter-article.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f74b37b79ad977babc9cd1efc6d15de4f06571b37ff630790728247fdb8c1c28",
+      "words": 96,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-one-pager.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-one-pager.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-one-pager.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f2b8da9a01ab8ae2e4c26ca5c2df9b7c89ef737f3e96eb52133c6b4ece4d59b5",
+      "words": 95,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-podcast-script.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-podcast-script.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-podcast-script.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "75df3c520a419a3b10966a80c167d3bf97cd9ecfb1181fb14d4e7b475c70a1d7",
+      "words": 94,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-short-video-script.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-short-video-script.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-short-video-script.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "a5022ab61427de23f88a579dc2c08b65df86a5857da4f80a5dec7730338d3b35",
+      "words": 96,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-audio.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "42f812ccf713fe6021da31ca9ee5c3a09704dadece381300538eaa9006b906af",
+      "words": 95,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-data-table.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "77dc6d385b1f5c2b742838a4035eea3e3efcd9b5a81f3e13241f4a408f107f51",
+      "words": 99,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-flashcards.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-flashcards.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-flashcards.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "c29f95085200a19123ae3b37848487b76c25a36b168fdd850c3b5c57a19d745c",
+      "words": 93,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-infographic.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-infographic.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-infographic.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d15a306c6f04ca6b98b0cb723078f9b374fa12bfb6f010927296be0c3f905e15",
+      "words": 93,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-mind-map.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "4eb14cd8879c60b4404dda4f2ab7cfb03e20a1faf386eb6f04a6b19a687f5880",
+      "words": 95,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-quiz.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "44da104118dd7f25e3ffcb31b3e0e965b8c098674ba050b5c330e42c95017d7c",
+      "words": 91,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-report.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3079aa4cb94806299f1b10ece3814cc928dfe9ac48e5089b184dbf54589a2815",
+      "words": 88,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-slide-deck.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "561015d0fa3df4bfaad2928b8f60d7af7c5f71a88a5049186316b8f4bf6a20de",
+      "words": 107,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/studio-video.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8db18205b2bb1a333c47e6470b0a15f7d6dc9252fc11aaa576052411f731e777",
+      "words": 104,
+      "lines": 18,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-content-director/references/briefing-policy.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-content-director/references/briefing-policy.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-content-director/references/briefing-policy.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f606cbbc209c212056ab06b151ed0133516af3147e057d1810a692b0f01fb920",
+      "words": 172,
+      "lines": 26,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-intake/references/intake-policy.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-intake/references/intake-policy.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-intake/references/intake-policy.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7956ca327cb015691dcf6b0e096a8f94b4e2073af4328a76cfd0e28773c14671",
+      "words": 216,
+      "lines": 27,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-kit-compiler/references/knowledge-pack.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-kit-compiler/references/knowledge-pack.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-kit-compiler/references/knowledge-pack.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d6019d9f009b4e481ac6970e6654c3085cf0627b8fa4d43ec5cca15011464253",
+      "words": 187,
+      "lines": 26,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/notebooklm-brand-verifier/references/qa-rubric.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/notebooklm-brand-verifier/references/qa-rubric.md"
+      ],
+      "budgetSurface": "harness-creator-references",
+      "sourceRef": "03_artefactos/skills/notebooklm-brand-verifier/references/qa-rubric.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7476f3aa43c389aae56a8748aa72a39db7f30a96d13c009d65fd27345c46b022",
+      "words": 219,
+      "lines": 22,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/remotion-video-production/CHANGELOG.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -18057,7 +18895,7 @@
     }
   ],
   "summary": {
-    "keep": 588,
+    "keep": 614,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,
