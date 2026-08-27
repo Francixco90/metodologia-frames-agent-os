@@ -34,6 +34,7 @@ export const NotebookStudioTypeSchema = z.enum([
   'mind-map',
 ]);
 export const NotebookGateSchema = z.enum([
+  'NLM_BRAND_PROFILE_APPROVED',
   'NLM_PLAN_APPROVED',
   'NLM_SYNC_APPROVED',
   'NLM_STUDIO_GENERATION_APPROVED',
@@ -184,6 +185,8 @@ export const NotebookPlanV1Schema = z
   });
 
 export type NotebookIntentV1 = z.infer<typeof NotebookIntentV1Schema>;
+export type NotebookGate = z.infer<typeof NotebookGateSchema>;
+export type NotebookSystemPromptV1 = z.infer<typeof NotebookSystemPromptV1Schema>;
 export type NotebookProfileV1 = z.infer<typeof NotebookProfileV1Schema>;
 export type NotebookSourceManifestV1 = z.infer<typeof NotebookSourceManifestV1Schema>;
 export type NotebookPlanV1 = z.infer<typeof NotebookPlanV1Schema>;
