@@ -1,0 +1,44 @@
+schema_version: notebook-coverage-gap-register-v1
+profile_id: metodologia-brand-content-canon-v3
+as_of: 2026-08-26
+policy:
+  invention_forbidden: true
+  unresolved_claims_are_not_authority: true
+  blocked_assets_cannot_be_used: true
+gaps:
+  - gap_id: GAP-PEDAGOGY-S02-SOURCE
+    domain: pedagogy
+    status: OPEN
+    impact: S02 remains method guidance; equivalence to a current canonical onboarding PDF is unconfirmed.
+    allowed_response: Explain the documented method and disclose the missing source equivalence.
+    close_when: A rights-cleared canonical source is hashed and its logical identity is reviewed.
+  - gap_id: GAP-PEDAGOGY-S11-S16
+    domain: pedagogy
+    status: OPEN
+    impact: Sessions S11–S16 do not yet have dedicated Canon v3 teaching guides.
+    allowed_response: Route to the curriculum overview and mark lesson-specific guidance as incomplete.
+    close_when: Each session has a transcript-grounded guide that passes the Canon v3 document contract.
+  - gap_id: GAP-EMPIRICAL-LEARNING-EVIDENCE
+    domain: evidence
+    status: OPEN
+    impact: Specialized empirical sources for neuroscience and learning-science claims are not admitted.
+    allowed_response: Use METODOLOGIA or PEDAGOGIA labels only for the documented practice; do not imply empirical validation.
+    close_when: Primary or authoritative evidence is reviewed, licensed, manifested, and connected to the relevant claims.
+  - gap_id: GAP-FOUNDER-ASSET-RIGHTS
+    domain: assets
+    status: BLOCKING
+    impact: Portraits of Katherine, Daniel, Germán and other founders, plus Prístino and companion assets, lack confirmed master-file rights or consent.
+    allowed_response: Describe the gap; do not select or generate with those assets.
+    close_when: Asset Steward records master hash, owner, consent, allowed uses, expiry and approval.
+  - gap_id: GAP-GOLDEN-MASTER-FILES
+    domain: references
+    status: OPEN
+    impact: Golden Reference Add-on, Bundle and Single Service master files are unresolved.
+    allowed_response: Use admitted PDF references as bounded inspiration and avoid claiming master parity.
+    close_when: Master binaries are resolved and hash-compared to the admitted editions.
+  - gap_id: GAP-UNINSPECTED-VIDEO-ZIP
+    domain: provenance
+    status: OPEN
+    impact: Videos without transcripts and archived ZIP contents were not promoted into Canon v3.
+    allowed_response: State that omitted media was not evaluated; never infer its contents.
+    close_when: Files are inventoried, rights-reviewed, extracted safely and represented by manifests or transcripts.

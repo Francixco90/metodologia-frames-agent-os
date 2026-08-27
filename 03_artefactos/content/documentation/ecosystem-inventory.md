@@ -12,7 +12,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 283
-- COMMAND: 101
+- COMMAND: 103
 - COMPONENT: 16
 - DELIVERABLE: 87
 - GATE: 69
@@ -326,6 +326,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | atoms:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | bootstrap | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | brand:generate | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | build:notebooklm-canon-v3 | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | carousel:build | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | carousel:orchestrate | ACTIVE | CANONICAL | `package.json` |
@@ -343,6 +344,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | check:md-budgets | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:memory | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:n8n | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | check:notebooklm-canon-v3 | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:notebooklm | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check:ownership | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | check | ACTIVE | CANONICAL | `package.json` |
@@ -989,4 +991,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `bb8ab3916b9c9b7e50ab94abe335a042c2961eac2da2587a1632351e4fdb2969`.
+Hash de fuentes: `dac4f6005918d3e55619b62d6d2182834628a0a2e96d9259b73082ca3634bb40`.

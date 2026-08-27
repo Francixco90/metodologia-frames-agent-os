@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "studio-negative-fixture-v1",
+  "fixtureId": "canon-v2-first-commercial-deck-executions",
+  "observedAt": "2026-08-26T00:00:00-05:00",
+  "sampleSize": 4,
+  "requestedType": "slide-deck",
+  "sharedCharacteristics": {
+    "pageCount": 8,
+    "sourceIds": [],
+    "sourceSelectionInstruction": "ALL_SOURCES",
+    "nearDuplicateIntent": true,
+    "rasterOnlyPdf": true,
+    "extractableText": false,
+    "embeddedFonts": false,
+    "editableOutputVerified": false
+  },
+  "observedDefects": [
+    "near-duplicate generations without an idempotency lock",
+    "internal error or warning labels visible in artwork",
+    "3D, glow, dark-grid, and generated-logo drift from the visual canon",
+    "no explicit source subset in the artifact receipt",
+    "no verified master-logo postproduction",
+    "image-only output cannot satisfy editability or accessibility"
+  ],
+  "requiredBlocks": [
+    "BLOCKED_ALL_SOURCES",
+    "BLOCKED_EMPTY_SOURCE_SET",
+    "BLOCKED_DUPLICATE_GENERATION"
+  ],
+  "allowedState": "STUDIO_RAW",
+  "forbiddenPromotion": "VERIFIED_DRAFT",
+  "privateLocatorsPersisted": false
+}

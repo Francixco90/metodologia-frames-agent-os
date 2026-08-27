@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "notebook-baseline-receipt-v1",
+  "receiptId": "metodologia-brand-content-canon-v2-freeze-2026-08-26",
+  "observedAt": "2026-08-26T00:00:00-05:00",
+  "notebook": {
+    "title": "MetodologIA · Brand Content Studio · Canon v2",
+    "sourceCount": 135,
+    "studioArtifacts": 5,
+    "studioCompleted": 5,
+    "studioInProgress": 0,
+    "public": false,
+    "collaboratorCount": 5
+  },
+  "portableOnly": true,
+  "privateLocatorsPersisted": false,
+  "externalEffects": [],
+  "successorPolicy": {
+    "mutateV2": false,
+    "copyStudioArtifacts": false,
+    "target": "MetodologIA · Brand Content Studio · Canon v3"
+  },
+  "state": "VERIFIED_READ_ONLY"
+}
