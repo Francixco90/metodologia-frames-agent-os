@@ -10,6 +10,7 @@ import {
   type StudioBriefV1,
 } from '../../core/contracts/index.ts';
 export type {NotebookPlanV1} from '../../core/contracts/index.ts';
+export * from './brand-runtime.ts';
 
 export const NOTEBOOKLM_OS_STAGES = [
   'N00',
