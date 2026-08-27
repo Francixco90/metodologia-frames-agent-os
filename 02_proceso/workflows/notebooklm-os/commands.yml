@@ -12,3 +12,9 @@ aliases:
   share: {starts_at: N09, effect: EXTERNAL_MUTATION, stop: NLM_SHARE_AUTHORIZED}
   status: {starts_at: N01, effect: READ_ONLY, stop: lifecycle_digest}
   evolve: {starts_at: N02, effect: LOCAL_REVERSIBLE, stop: NLM_PLAN_APPROVED}
+  brand-init: {starts_at: N00, effect: READ_ONLY, stop: brand_intake_packet}
+  brand-audit: {starts_at: N01, effect: READ_ONLY, stop: brand_evidence_audit}
+  brand-build: {starts_at: N02, effect: LOCAL_REVERSIBLE, stop: NLM_BRAND_PROFILE_APPROVED}
+  brand-content: {starts_at: N07, effect: LOCAL_REVERSIBLE, stop: brand_content_brief}
+  brand-verify: {starts_at: N08, effect: READ_ONLY, stop: brand_qa_receipt}
+  brand-evolve: {starts_at: N02, effect: LOCAL_REVERSIBLE, stop: NLM_BRAND_PROFILE_APPROVED}

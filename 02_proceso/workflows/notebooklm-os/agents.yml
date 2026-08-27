@@ -4,23 +4,73 @@ agents:
   - {
       id: notebook-conductor,
       role: 'Notebook Conductor',
+      runtime_role_id: RT-01,
       owns: [N00, N01, N04, N09],
       may_mutate_external: gated,
     }
-  - {id: profile-architect, role: 'Profile Architect', owns: [N02], may_mutate_external: false}
-  - {id: source-curator, role: 'Source Curator', owns: [N03, N05], may_mutate_external: gated}
-  - {id: asset-steward, role: 'Asset Steward', owns: [N05], may_mutate_external: gated}
-  - {id: studio-director, role: 'Studio Director', owns: [N07], may_mutate_external: gated}
+  - {
+      id: profile-architect,
+      role: 'Profile Architect',
+      runtime_role_id: RT-04,
+      owns: [N02],
+      may_mutate_external: false,
+    }
+  - {
+      id: source-curator,
+      role: 'Source Curator',
+      runtime_role_id: RT-02,
+      owns: [N01, N03, N05],
+      may_mutate_external: gated,
+    }
+  - {
+      id: asset-steward,
+      role: 'Asset Steward',
+      runtime_role_id: RT-02,
+      owns: [N05],
+      may_mutate_external: gated,
+    }
+  - {
+      id: studio-director,
+      role: 'Studio Director',
+      runtime_role_id: RT-07,
+      owns: [N07],
+      may_mutate_external: gated,
+    }
   - {
       id: grounding-verifier,
       role: 'Grounding Verifier',
+      runtime_role_id: RT-03,
       owns: [N06, N08],
       may_mutate_external: false,
     }
   - {
       id: notebook-guardian,
       role: 'Notebook Guardian',
+      runtime_role_id: RT-11,
       owns: [N09],
+      may_mutate_external: false,
+      independent: true,
+    }
+  - {
+      id: brand-intake-analyst,
+      role: 'Brand Intake Analyst',
+      runtime_role_id: RT-02,
+      owns: [N00, N01],
+      may_mutate_external: false,
+    }
+  - {
+      id: brand-content-director,
+      role: 'Brand Content Director',
+      runtime_role_id: RT-05,
+      supporting_runtime_role_id: RT-06,
+      owns: [N07],
+      may_mutate_external: false,
+    }
+  - {
+      id: brand-verifier,
+      role: 'Brand Verifier',
+      runtime_role_id: RT-09,
+      owns: [N06, N08],
       may_mutate_external: false,
       independent: true,
     }
@@ -28,3 +78,5 @@ separation_rules:
   - producer_and_guardian_are_distinct
   - source_curator_and_grounding_verifier_are_distinct
   - no_agent_can_approve_its_own_external_effect
+  - brand_producer_and_brand_verifier_are_distinct
+  - at_most_two_specialists_active_concurrently

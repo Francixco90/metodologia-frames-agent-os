@@ -184,7 +184,7 @@ routes:
     binds_to: task
     runtime_status: active_brief_first
   - id: R10
-    signal: 'crear, auditar, curar, sincronizar u operar NotebookLM OS'
+    signal: 'crear, auditar, curar, sincronizar u operar NotebookLM OS o un notebook generador de contenido de marca'
     signal_patterns:
       - 'NotebookLM OS'
       - 'NotebookLM'
@@ -192,12 +192,22 @@ routes:
       - '/notebooklm:init'
       - '/notebooklm:audit'
       - '/notebooklm:studio'
+      - '/notebooklm:brand-init'
+      - '/notebooklm:brand-build'
+      - '/notebooklm:brand-content'
+      - 'crear un notebook de marca'
+      - 'brand content notebook'
+      - 'generador de contenido con la voz de la marca'
     reads:
       - '02_proceso/workflows/notebooklm-os/README.md'
       - '02_proceso/core/contracts/notebooklm-os-v1.ts'
       - '03_artefactos/adapters/notebooklm-managed/contract.yml'
       - '03_artefactos/skills/notebooklm-os-router/SKILL.md'
-    output: 'NotebookIntentV1 + NotebookPlanV1 + cadena N00-N09; lectura y planificación sin mutación; STOP en NLM_PLAN_APPROVED o el gate específico del efecto'
+      - '03_artefactos/skills/notebooklm-brand-intake/SKILL.md'
+      - '03_artefactos/skills/notebooklm-brand-kit-compiler/SKILL.md'
+      - '03_artefactos/skills/notebooklm-brand-content-director/SKILL.md'
+      - '03_artefactos/skills/notebooklm-brand-verifier/SKILL.md'
+    output: 'NotebookIntentV1 + NotebookPlanV1 + cadena N00-N09; para marca, intake trazable + knowledge pack + source sets + brief + QA; lectura y planificación sin mutación; STOP en NLM_BRAND_PROFILE_APPROVED, NLM_PLAN_APPROVED o el gate específico del efecto'
     binds_to: task
     runtime_status: active_plan_first_external_fail_closed
 # Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
@@ -245,6 +255,7 @@ manual_fail_closed_gates:
     HM_CHANGE_APPROVED,
     HM_PROMOTION_APPROVED,
     NLM_PLAN_APPROVED,
+    NLM_BRAND_PROFILE_APPROVED,
     NLM_SYNC_APPROVED,
     NLM_STUDIO_GENERATION_APPROVED,
     NLM_SHARE_AUTHORIZED,

@@ -4,57 +4,85 @@ mutation_policy: append-only-events-with-versioned-current-view
 entries:
   - {
       skill_id: notebooklm-os-router,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: local-planning,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-profile-compiler,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: local-compilation,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-source-curator,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: governed-source-planning,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-naming-taxonomy,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: local-classification,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-system-prompt,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: local-compilation,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-studio-director,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: local-briefing,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-artifact-verifier,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: independent-verification,
       publication_authority: false,
     }
   - {
       skill_id: notebooklm-sharing-guardian,
-      version: 0.1.0,
+      version: 0.2.0,
       current_state: candidate,
       execution_scope: independent-governance,
+      publication_authority: false,
+    }
+  - {
+      skill_id: notebooklm-brand-intake,
+      version: 0.1.0,
+      current_state: candidate,
+      execution_scope: local-analysis,
+      publication_authority: false,
+    }
+  - {
+      skill_id: notebooklm-brand-kit-compiler,
+      version: 0.1.0,
+      current_state: candidate,
+      execution_scope: local-compilation,
+      publication_authority: false,
+    }
+  - {
+      skill_id: notebooklm-brand-content-director,
+      version: 0.1.0,
+      current_state: candidate,
+      execution_scope: local-briefing,
+      publication_authority: false,
+    }
+  - {
+      skill_id: notebooklm-brand-verifier,
+      version: 0.1.0,
+      current_state: candidate,
+      execution_scope: independent-verification,
       publication_authority: false,
     }
