@@ -4,6 +4,7 @@ import {renderExperienceView} from '../../../../02_proceso/workflows/experience/
 const CONTROL_FIELDS = new Set([
   'actor_id',
   'activeProjectId',
+  'brief_sources',
   'completed_at',
   'completedAt',
   'decision_funnel',
@@ -18,6 +19,7 @@ const CONTROL_FIELDS = new Set([
   'resume_candidate_id',
   'sensitivity',
   'source_materials',
+  'source_authority_receipts',
   'started_at',
   'startedAt',
   'stateRoot',

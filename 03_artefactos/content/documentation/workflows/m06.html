@@ -153,7 +153,10 @@
       <section>
         <h2>Qué necesitas y qué recibes</h2>
         <p><strong>Entradas:</strong> Ninguna declarada</p>
-        <p><strong>Entregables:</strong> Ninguno declarado</p>
+        <p>
+          <strong>Entregables:</strong> guardian-verdict, guardian-verdict-receipt,
+          maintenance-handoff
+        </p>
       </section>
       <section>
         <h2>Cómo avanza</h2>
@@ -169,7 +172,15 @@
           <tbody>
             <tr>
               <td>S01</td>
-              <td>Consolidar hashes, evidencias, gaps, rollback y siguiente gate.</td>
+              <td>RT-11 emite un verdict hash-bound; RT-10 lo persiste sin reinterpretarlo.</td>
+              <td>frames-harness-maintainer</td>
+              <td>HM_GUARDIAN_VERDICT_RECORDED</td>
+            </tr>
+            <tr>
+              <td>S02</td>
+              <td>
+                Preparar handoff, rollback y solicitud hash-bound para decisión exclusiva de H01.
+              </td>
               <td>frames-harness-maintainer</td>
               <td>HM_PROMOTION_APPROVED</td>
             </tr>
@@ -179,16 +190,19 @@
       <section>
         <h2>Secuencia</h2>
         <svg
-          viewBox="0 0 920 380"
+          viewBox="0 0 920 612"
           role="img"
           aria-labelledby="seq-title seq-desc"
           xmlns="http://www.w3.org/2000/svg"
         >
           <title id="seq-title">Secuencia M06</title>
           <desc id="seq-desc">
-            La persona solicita Entregar y preparar promoción. S01: frames-harness-maintainer
-            produce maintenance-handoff; RT-11 decide HM_PROMOTION_APPROVED. Frames entrega el
-            resultado y cierra el recorrido.
+            La persona solicita Entregar y preparar promoción. S01: frames-harness-maintainer reúne
+            verification-verdict, documentation-closure-receipt, ecosystem-inventory; RT-11 emite el
+            verdict; RT-10 persiste guardian-verdict-receipt; RT-10 resuelve
+            HM_GUARDIAN_VERDICT_RECORDED. S02: frames-harness-maintainer prepara
+            maintenance-handoff; H01 decide HM_PROMOTION_APPROVED. Frames entrega el resultado y
+            cierra el recorrido.
           </desc>
           <style>
             .actor {
@@ -200,7 +214,7 @@
               fill: #26324d;
             }
           </style>
-          <line x1="34" y1="45" x2="34" y2="350" stroke="#122562" stroke-width="3" />
+          <line x1="34" y1="45" x2="34" y2="582" stroke="#122562" stroke-width="3" />
           <g>
             <circle cx="34" cy="68" r="12" fill="#137DC5" />
             <line x1="46" y1="68" x2="112" y2="68" stroke="#122562" stroke-width="2" />
@@ -212,32 +226,65 @@
             <line x1="46" y1="126" x2="112" y2="126" stroke="#122562" stroke-width="2" />
             <text x="126" y="118" class="actor">Frames → frames-harness-maintainer</text>
             <text x="126" y="140" class="label">
-              S01: Consolidar hashes, evidencias, gaps, rollback y siguiente gate.
+              S01: RT-11 emite un verdict hash-bound; RT-10 lo persiste sin reinterpretarlo.
             </text>
           </g>
           <g>
             <circle cx="34" cy="184" r="12" fill="#137DC5" />
             <line x1="46" y1="184" x2="112" y2="184" stroke="#122562" stroke-width="2" />
             <text x="126" y="176" class="actor">frames-harness-maintainer → RT-11</text>
-            <text x="126" y="198" class="label">Evidencia: maintenance-handoff</text>
+            <text x="126" y="198" class="label">
+              Evidencia: verification-verdict, documentation-closure-receipt, ecosystem-inventory
+            </text>
           </g>
           <g>
-            <circle cx="34" cy="242" r="12" fill="#FFD700" />
+            <circle cx="34" cy="242" r="12" fill="#137DC5" />
             <line x1="46" y1="242" x2="112" y2="242" stroke="#122562" stroke-width="2" />
-            <text x="126" y="234" class="actor">RT-11 → Frames</text>
-            <text x="126" y="256" class="label">Gate HM_PROMOTION_APPROVED</text>
+            <text x="126" y="234" class="actor">RT-11 → RT-10</text>
+            <text x="126" y="256" class="label">Veredicto para registro: guardian-verdict</text>
           </g>
           <g>
             <circle cx="34" cy="300" r="12" fill="#FFD700" />
             <line x1="46" y1="300" x2="112" y2="300" stroke="#122562" stroke-width="2" />
-            <text x="126" y="292" class="actor">Frames → Persona</text>
-            <text x="126" y="314" class="label">Entrega o siguiente paso: cierre</text>
+            <text x="126" y="292" class="actor">RT-10 → Frames</text>
+            <text x="126" y="314" class="label">Gate HM_GUARDIAN_VERDICT_RECORDED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="358" r="12" fill="#137DC5" />
+            <line x1="46" y1="358" x2="112" y2="358" stroke="#122562" stroke-width="2" />
+            <text x="126" y="350" class="actor">Frames → frames-harness-maintainer</text>
+            <text x="126" y="372" class="label">
+              S02: Preparar handoff, rollback y solicitud hash-bound para decisión exclusiva de H01.
+            </text>
+          </g>
+          <g>
+            <circle cx="34" cy="416" r="12" fill="#137DC5" />
+            <line x1="46" y1="416" x2="112" y2="416" stroke="#122562" stroke-width="2" />
+            <text x="126" y="408" class="actor">frames-harness-maintainer → H01</text>
+            <text x="126" y="430" class="label">Solicitud: maintenance-handoff</text>
+          </g>
+          <g>
+            <circle cx="34" cy="474" r="12" fill="#FFD700" />
+            <line x1="46" y1="474" x2="112" y2="474" stroke="#122562" stroke-width="2" />
+            <text x="126" y="466" class="actor">H01 → Frames</text>
+            <text x="126" y="488" class="label">Gate HM_PROMOTION_APPROVED</text>
+          </g>
+          <g>
+            <circle cx="34" cy="532" r="12" fill="#FFD700" />
+            <line x1="46" y1="532" x2="112" y2="532" stroke="#122562" stroke-width="2" />
+            <text x="126" y="524" class="actor">Frames → Persona</text>
+            <text x="126" y="546" class="label">Entrega o siguiente paso: cierre</text>
           </g>
         </svg>
         <ol>
           <li>La persona solicita Entregar y preparar promoción.</li>
           <li>
-            S01: frames-harness-maintainer produce maintenance-handoff; RT-11 decide
+            S01: frames-harness-maintainer reúne verification-verdict,
+            documentation-closure-receipt, ecosystem-inventory; RT-11 emite el verdict; RT-10
+            persiste guardian-verdict-receipt; RT-10 resuelve HM_GUARDIAN_VERDICT_RECORDED.
+          </li>
+          <li>
+            S02: frames-harness-maintainer prepara maintenance-handoff; H01 decide
             HM_PROMOTION_APPROVED.
           </li>
           <li>Frames entrega el resultado y cierra el recorrido.</li>
@@ -245,7 +292,7 @@
       </section>
       <section>
         <h2>Límites</h2>
-        <p>Detener en HM_PROMOTION_APPROVED.</p>
+        <p>Detener en HM_PROMOTION_APPROVED; solo H01 decide sobre el candidate exacto.</p>
         <p class="meta">
           Fuente: 02_proceso/workflows/maintenance/m06-handoff/workflow.yml · Próximo: cierre
         </p>

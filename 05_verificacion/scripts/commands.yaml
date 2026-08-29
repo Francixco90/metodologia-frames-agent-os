@@ -168,7 +168,9 @@ gates:
   # prettier-ignore
   - {gate: HM_CANDIDATE_VERIFIED, label: verify frozen harness candidate, command: 'pnpm check:repo', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
-  - {gate: HM_PROMOTION_APPROVED, label: approve harness promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: high, manual: true, fail_closed: true, owner: h01}
+  - {gate: HM_GUARDIAN_VERDICT_RECORDED, label: record an independent hash-bound Guardian verdict without promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}
+  # prettier-ignore
+  - {gate: HM_PROMOTION_APPROVED, label: approve exact harness promotion candidate once, command: null, allowed_tools: [], write_set_globs: [], idempotency: false, danger_level: high, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
   - {gate: SSS_CASE_READY, label: skill case evidence complete, command: 'pnpm skills:inspect -- --stdin', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: skill-foundry}
   # prettier-ignore

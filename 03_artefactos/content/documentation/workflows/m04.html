@@ -153,7 +153,7 @@
       <section>
         <h2>Qué necesitas y qué recibes</h2>
         <p><strong>Entradas:</strong> Ninguna declarada</p>
-        <p><strong>Entregables:</strong> Ninguno declarado</p>
+        <p><strong>Entregables:</strong> verification-verdict</p>
       </section>
       <section>
         <h2>Cómo avanza</h2>
@@ -186,9 +186,9 @@
         >
           <title id="seq-title">Secuencia M04</title>
           <desc id="seq-desc">
-            La persona solicita Verificar candidate. S01: dev-verification-before-completion produce
-            verification-verdict; RT-09 decide HM_CANDIDATE_VERIFIED. Frames entrega el resultado y
-            propone M05.
+            La persona solicita Verificar candidate. S01: dev-verification-before-completion prepara
+            verification-verdict; RT-09 verifica; RT-09 decide HM_CANDIDATE_VERIFIED. Frames entrega
+            el resultado y propone M05.
           </desc>
           <style>
             .actor {
@@ -237,8 +237,8 @@
         <ol>
           <li>La persona solicita Verificar candidate.</li>
           <li>
-            S01: dev-verification-before-completion produce verification-verdict; RT-09 decide
-            HM_CANDIDATE_VERIFIED.
+            S01: dev-verification-before-completion prepara verification-verdict; RT-09 verifica;
+            RT-09 decide HM_CANDIDATE_VERIFIED.
           </li>
           <li>Frames entrega el resultado y propone M05.</li>
         </ol>

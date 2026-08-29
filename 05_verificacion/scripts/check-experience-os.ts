@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {parse} from 'yaml';
 
 import {ExperienceReleaseCapsuleV1Schema} from '../../02_proceso/core/contracts/experience-release-v1.ts';
+import {EXPERIENCE_ROUTE_IDS_V1} from '../../02_proceso/core/contracts/experience-assistance-v1.ts';
 import {
   checkBlueprintParity,
   verifyReleaseCapsule,
@@ -132,10 +133,13 @@ export const checkExperienceOs = (root = ROOT): string[] => {
   const handlerStatus = Object.fromEntries(
     Object.entries(router.productive_handlers ?? {}).map(([route, {status}]) => [route, status]),
   );
+  const handlerRoutes = Object.keys(handlerStatus).sort();
+  const expectedRoutes = [...EXPERIENCE_ROUTE_IDS_V1].sort();
   if (
-    handlerStatus.R4 !== 'active' ||
-    handlerStatus.R6 !== 'active' ||
-    handlerStatus.R7 !== 'active' ||
+    JSON.stringify(handlerRoutes) !== JSON.stringify(expectedRoutes) ||
+    ['R0', 'R4', 'R6', 'R7', 'R8', 'R9', 'R10'].some(
+      (route) => handlerStatus[route] !== 'active',
+    ) ||
     ['R1', 'R2', 'R3', 'R3-LOOSE', 'R5'].some((route) => handlerStatus[route] !== 'coverage_gap')
   ) {
     errors.push('EXP-GOV003 productive handler availability drift');

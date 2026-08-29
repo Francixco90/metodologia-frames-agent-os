@@ -20,7 +20,7 @@ gates y handoff.
 Puerta para contenido, carrera, extensiones y mantenimiento. Enruta una vez, carga
 capabilities y no instala, usa red ni renderiza; `content-os-core` conserva HTML→MP4.
 
-`dispatchIntent()` conserva compatibilidad: R6/R7/R8/R9 invocan sus adapters; R0 no.
+`dispatchIntent()` conserva compatibilidad: R6/R7/R8/R9/R10 invocan sus adapters; R0 no.
 Sin `adapter_invoked` y `domain_intent` solo hay planificación. R8/R9 requieren
 aprobación y las señales mixtas nunca fusionan dominios.
 

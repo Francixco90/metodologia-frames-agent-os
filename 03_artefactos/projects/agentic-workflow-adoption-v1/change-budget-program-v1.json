@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "change-budget-program-v1",
+  "programId": "agentic-workflow-adoption-v1",
+  "branch": "codex/proposal-defense-adoption-v1",
+  "baseCommit": "9978acd2e9f056fa3634a71ed7c495ba0323af77",
+  "authority": {
+    "mode": "LOCAL_SIMULATION",
+    "planRef": "03_artefactos/projects/agentic-workflow-adoption-v1/implementation-authority-v1.md",
+    "planSha256": "3545443117b031b209bd0d5d369be2ef33a8ea474b71ab4023cff43db4239c02"
+  },
+  "limits": {
+    "targetFiles": 140,
+    "targetLoc": 16000,
+    "hardFiles": 160,
+    "hardLoc": 20000
+  },
+  "partitions": [
+    {
+      "id": "wave1-source-tests",
+      "paths": [
+        "05_verificacion/tests/contract/source-notebook.contract.test.ts",
+        "05_verificacion/tests/contract/source-notebook.grounding.contract.test.ts",
+        "05_verificacion/tests/contract/source-notebook.notebook.contract.test.ts",
+        "05_verificacion/tests/fixtures/source-notebook/common.ts",
+        "05_verificacion/tests/fixtures/source-notebook/content-schemas.ts",
+        "05_verificacion/tests/fixtures/source-notebook/contracts.ts",
+        "05_verificacion/tests/fixtures/source-notebook/coverage-audit.ts",
+        "05_verificacion/tests/fixtures/source-notebook/helpers.ts",
+        "05_verificacion/tests/fixtures/source-notebook/lifecycle-audit.ts",
+        "05_verificacion/tests/fixtures/source-notebook/lifecycle-contract.ts",
+        "05_verificacion/tests/fixtures/source-notebook/lifecycle-entry-audit.ts",
+        "05_verificacion/tests/fixtures/source-notebook/lifecycle-migration-audit.ts",
+        "05_verificacion/tests/fixtures/source-notebook/notebook-schemas.ts",
+        "05_verificacion/tests/fixtures/source-notebook/receipt-schemas.ts",
+        "05_verificacion/tests/fixtures/source-notebook/registry-schema.ts",
+        "05_verificacion/tests/fixtures/source-notebook/runner-workspace.ts",
+        "05_verificacion/tests/fixtures/source-notebook/test-support.ts",
+        "05_verificacion/tests/integration/source-governance-runner.integration.test.ts",
+        "05_verificacion/tests/negative/source-notebook.negative.test.ts",
+        "05_verificacion/tests/negative/source-notebook.notebook.negative.test.ts",
+        "05_verificacion/tests/negative/source-notebook.pinned-governance.negative.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 25,
+        "targetLoc": 4000,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave1-source-runtime",
+      "paths": [
+        "02_proceso/core/contracts/source-governance-v2.ts",
+        "02_proceso/core/contracts/source-governance-v2/artifact-audit.ts",
+        "02_proceso/core/contracts/source-governance-v2/audit.ts",
+        "02_proceso/core/contracts/source-governance-v2/coherence.ts",
+        "02_proceso/core/contracts/source-governance-v2/common.ts",
+        "02_proceso/core/contracts/source-governance-v2/evidence-schemas.ts",
+        "02_proceso/core/contracts/source-governance-v2/manifest.ts",
+        "02_proceso/core/contracts/source-governance-v2/policy-schema.ts",
+        "02_proceso/core/contracts/source-governance-v2/receipt-audit.ts",
+        "02_proceso/core/contracts/source-governance-v2/receipt-schemas.ts",
+        "02_proceso/core/contracts/source-governance-v2/repository-schemas.ts",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/repository.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/rights-authorization.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths-projection.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths.manifest.tsv",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/repository.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/rights-authorization.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths-projection.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths.manifest.tsv",
+        "04_estado/registries/sources/lifecycle-contract.yml",
+        "04_estado/registries/sources/source-registry.yml",
+        "05_verificacion/scripts/check-sources.ts",
+        "05_verificacion/scripts/lib/source-governance/deduplication.ts",
+        "05_verificacion/scripts/lib/source-governance/generic-receipts.ts",
+        "05_verificacion/scripts/lib/source-governance/historical-sources.ts",
+        "05_verificacion/scripts/lib/source-governance/lifecycle.ts",
+        "05_verificacion/scripts/lib/source-governance/parser.ts",
+        "05_verificacion/scripts/lib/source-governance/physical-validation.ts",
+        "05_verificacion/scripts/lib/source-governance/pinned-repositories.ts",
+        "05_verificacion/scripts/lib/source-governance/registry-entry-schema.ts",
+        "05_verificacion/scripts/lib/source-governance/registry-schema.ts",
+        "05_verificacion/scripts/lib/source-governance/run.ts"
+      ],
+      "limits": {
+        "targetFiles": 35,
+        "targetLoc": 3500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave1-experience-r6",
+      "paths": [
+        "01_intencion/career/career-os-operating-contract-v2.md",
+        "02_proceso/workflows/core/brief-material-handlers-v1.ts",
+        "02_proceso/workflows/core/local-experience-orchestrator-v1.ts",
+        "02_proceso/workflows/core/source-authority-v1/bind-brief-sources.ts",
+        "02_proceso/workflows/core/source-authority-v1/codes.ts",
+        "02_proceso/workflows/core/source-authority-v1/content-brief-handler.ts",
+        "02_proceso/workflows/core/source-authority-v1/receipt-files.ts",
+        "02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts",
+        "03_artefactos/skills/content-os-router/SKILL.md",
+        "03_artefactos/skills/content-os-router/scripts/decision-transport.mjs",
+        "03_artefactos/skills/content-os-router/scripts/domain-plan-transport.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-intent.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-notebooklm.mjs",
+        "05_verificacion/tests/integration/experience-launch-probe.test.ts",
+        "05_verificacion/tests/integration/experience-local-execution-authority-receipts.test.ts",
+        "05_verificacion/tests/integration/experience-local-execution-fixtures.ts",
+        "05_verificacion/tests/integration/experience-local-execution-source-binding.test.ts",
+        "05_verificacion/tests/integration/experience-local-execution.test.ts",
+        "05_verificacion/tests/unit/career-a0-authority.test.ts",
+        "05_verificacion/tests/unit/career-router.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 30,
+        "targetLoc": 3000,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave1-evidence-budget",
+      "paths": [
+        "03_artefactos/projects/agentic-workflow-adoption-v1/README.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/as-built-blueprint-v1.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/capitalization-dossier.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/change-budget-program-v1.json",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/handoff.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/implementation-authority-v1.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/socratic-debate.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
+        "05_verificacion/scripts/check-md-budgets.ts",
+        "05_verificacion/scripts/lib/file-budget-evaluation.ts",
+        "05_verificacion/scripts/lib/file-budget-policy.ts",
+        "05_verificacion/tests/unit/check-md-budgets.test.ts",
+        "05_verificacion/tests/unit/file-budget-policy.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 20,
+        "targetLoc": 2500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave1-governance",
+      "paths": [
+        "01_intencion/program/ownership-manifest.yml",
+        "02_proceso/agents/RT-11/contract.yml",
+        "02_proceso/core/contracts/experience-assistance-v1.ts",
+        "02_proceso/core/contracts/experience-release-v1.ts",
+        "02_proceso/core/contracts/experience-route-ids-v1.ts",
+        "02_proceso/core/contracts/task-contract.ts",
+        "02_proceso/governance/agent-cli-adapters.md",
+        "02_proceso/governance/atemporal-naming-policy.md",
+        "02_proceso/governance/context-surfaces/operation.yml",
+        "02_proceso/governance/context-surfaces/skills.yml",
+        "02_proceso/governance/context-surfaces/topology.yml",
+        "02_proceso/governance/context-surfaces/workflows.yml",
+        "02_proceso/governance/docs-budget-policy.yml",
+        "02_proceso/governance/experience-first-orchestration.md",
+        "02_proceso/governance/router.yml",
+        "02_proceso/governance/tool-policy.yml",
+        "02_proceso/workflows/documentation/contracts.ts",
+        "02_proceso/workflows/documentation/coverage.ts",
+        "02_proceso/workflows/documentation/sequence-model.ts",
+        "02_proceso/workflows/documentation/workflow-source.ts",
+        "02_proceso/workflows/experience/release-capsule.ts",
+        "02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts",
+        "02_proceso/workflows/maintenance/ecosystem-inventory-v1.ts",
+        "02_proceso/workflows/maintenance/m06-handoff/workflow.yml",
+        "04_estado/registries/agents/agent-registry-v2.yml",
+        "05_verificacion/scripts/check-context-surfaces.ts",
+        "05_verificacion/scripts/check-experience-os.ts",
+        "05_verificacion/scripts/commands.yaml",
+        "05_verificacion/scripts/lib/budget-generated-path.ts",
+        "05_verificacion/scripts/lib/change-program-budget.ts",
+        "05_verificacion/tests/contract/experience-contracts.test.ts",
+        "05_verificacion/tests/contract/harness/router.test.ts",
+        "05_verificacion/tests/integration/documentation-ecosystem-inventory.test.ts",
+        "05_verificacion/tests/unit/change-program-budget.test.ts",
+        "05_verificacion/tests/unit/documentation-maintenance-routing.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 35,
+        "targetLoc": 2500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    }
+  ],
+  "perFileLineCaps": [
+    {
+      "path": "05_verificacion/scripts/commands.yaml",
+      "surface": "canonical-control-config",
+      "baselineHardLines": 450,
+      "programHardLines": 650,
+      "rationale": "Branch-local growth for the exact governed command registry while preserving its global word cap."
+    },
+    {
+      "path": "04_estado/registries/sources/source-registry.yml",
+      "surface": "authored-explicit-fallback",
+      "baselineHardLines": 500,
+      "programHardLines": 800,
+      "rationale": "Branch-local source lifecycle evidence for two pinned donors while preserving the global fallback and word cap."
+    }
+  ],
+  "canonicalSha256": "753d9db1296136654a0d76e670eadfbcf40dbd270963ad8f742c19ab94edd1ae"
+}

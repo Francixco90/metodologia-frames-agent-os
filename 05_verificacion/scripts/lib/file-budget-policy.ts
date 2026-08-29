@@ -86,6 +86,17 @@ const prBudgetSchema = z
       target_files <= hard_files && target_loc <= hard_loc,
     'PR target exceeds hard limit',
   );
+const manifestPathSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .refine(
+    (value) =>
+      !value.startsWith('/') &&
+      !value.includes('\\') &&
+      !value.split('/').some((segment) => ['', '.', '..'].includes(segment)),
+    'invalid change program manifest path',
+  );
 const recordSchema = z.record(z.string(), z.unknown());
 const rawSchema = z
   .object({
@@ -93,6 +104,7 @@ const rawSchema = z
     defaults: recordSchema.optional().default({}),
     budgets: z.array(recordSchema),
     pr_budget: prBudgetSchema,
+    change_program_manifest: manifestPathSchema.optional(),
   })
   .passthrough();
 
@@ -102,6 +114,7 @@ export interface Policy {
   schema_version: 'file-budget-policy-v2';
   budgets: BudgetRule[];
   pr_budget: z.infer<typeof prBudgetSchema>;
+  change_program_manifest?: string;
 }
 
 export const globToRe = (glob: string): RegExp => {
@@ -142,7 +155,12 @@ export const loadPolicy = (root: string): Policy => {
       throw new Error(`BUDGET-POLICY004 requires one ${kind} fallback`);
     }
   }
-  return {schema_version: raw.schema_version, budgets, pr_budget: raw.pr_budget};
+  return {
+    schema_version: raw.schema_version,
+    budgets,
+    pr_budget: raw.pr_budget,
+    ...(raw.change_program_manifest ? {change_program_manifest: raw.change_program_manifest} : {}),
+  };
 };
 
 const pathMatch = (rule: BudgetRule, path: string): boolean =>

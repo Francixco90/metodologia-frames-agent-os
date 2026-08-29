@@ -7,6 +7,8 @@ export type WorkflowStepDocumentationV1 = {
   primarySkill: string;
   optionalSkills: readonly string[];
   verifier: string;
+  recorder?: string;
+  decisionActor?: string;
   outputs: readonly string[];
   templateId?: string;
   gate: string;

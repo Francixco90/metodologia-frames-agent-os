@@ -24,9 +24,10 @@ tools:
   allowed:
     - Lectura global read-only de candidate, manifests y evidencia.
     - Validadores locales, scanners y comparaciones reproducibles.
-    - Escritura exclusiva de verdicts y reportes Guardian asignados.
+    - Emisión del verdict como resultado read-only para que un recorder distinto lo persista sin reinterpretarlo.
   forbidden:
     - Producir, corregir o sobrescribir archivos del candidate.
+    - Persistir su propio verdict, receipt o estado de promoción.
     - Actuar como H01 o conceder HUMAN_APPROVED, READY, release o publicación.
     - Ocultar failures, coverage_gaps o conflictos de independencia.
 stop_rules:
@@ -42,6 +43,7 @@ stop_rules:
 done:
   - Cada finding tiene severidad, evidencia, owner y disposition.
   - La independencia de RT-11 frente al producer y H01 es demostrable.
+  - El resultado identifica el recorder independiente que debe materializar sus bytes exactos.
   - El verdict conserva gaps y no eleva estados sin evidencia suficiente.
 handoff:
   consumers: [RT-01]

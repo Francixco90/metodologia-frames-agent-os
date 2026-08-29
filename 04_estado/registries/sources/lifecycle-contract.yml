@@ -125,3 +125,41 @@ stop_rules:
   - state_transition_out_of_order
   - receipt_mutation_or_deletion
   - scope_exceeds_rights_or_authority_verdict
+repository_sources:
+  contract_id: pinned-repository-implementation-source-v1
+  additive_to_registry_schema: 2
+  maximum_state_without_h01: evaluated
+  git_object_algorithm: sha1
+  content_and_receipt_hash_algorithm: sha256
+  required_transitions:
+    - null>candidate
+    - candidate>quarantined
+    - quarantined>evaluated
+  required_portable_artifacts:
+    - repository_descriptor
+    - selected_paths_manifest
+    - selected_paths_projection
+    - rights_authorization_projection
+  receipt_chain:
+    receipt_schema_version: 2
+    receipt_kind: pinned_repository_source_transition_v2
+    physical_sha256_binding_required: true
+    previous_receipt_sha256_required_after_first: true
+    actor_and_verifier_must_differ: true
+    immutable_fields:
+      - source_id
+      - repository.canonical_uri
+      - repository.commit_sha1
+      - repository.tree_sha1
+      - evidence_projection.selected_paths_manifest_sha256
+      - rights.allowed_use_scope
+      - restrictions
+  rights_verdict: allowed_internal_implementation
+  allowed_use_scope: internal_typescript_reimplementation_only
+  restrictions:
+    - internal_typescript_reimplementation_only
+    - no_full_runtime_vendoring
+    - no_asset_copy_without_separate_traceability
+    - no_external_distribution
+    - no_publication_authority
+    - no_network_or_delivery_authority

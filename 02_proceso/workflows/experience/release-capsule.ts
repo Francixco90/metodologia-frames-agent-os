@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 
+import {EXPERIENCE_ROUTE_IDS_V1} from '../../core/contracts/experience-assistance-v1.ts';
 import {
   ExperienceReleaseCapsuleV1Schema,
   type ExperienceReleaseCapsuleV1,
@@ -123,7 +124,7 @@ export const buildReleaseCapsule = (options: BuildReleaseOptions): ExperienceRel
     schemaVersion: 'experience-release-capsule-v1',
     ...identity,
     status,
-    compatibleRoutes: ['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7'],
+    compatibleRoutes: [...EXPERIENCE_ROUTE_IDS_V1],
     compatibleHosts: hostProof.compatibleHosts,
     invalidatedObjects: [],
     gaps: [

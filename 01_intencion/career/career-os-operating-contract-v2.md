@@ -57,7 +57,7 @@ documentación; nunca satisface un gate de run. [CONFIG]
 `CR_PACKAGE_QA` es un boundary legacy/unimplemented todavía referenciado por
 skills activas, pero no tiene command/receipt en `commands.yaml` ni autoridad de
 ejecución. `coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED`. Permanece fuera de
-`manual_fail_closed_gates`, nunca puede emitir `PASS` y obliga a detener cualquier
+la lista de gates en `commands.yaml`, nunca puede emitir `PASS` y obliga a detener cualquier
 ruta que lo encuentre. No es alias de `G14` ni de `CR_PACKAGE_APPROVED`. [CONFIG]
 
 ## Estados, efectos e invalidación

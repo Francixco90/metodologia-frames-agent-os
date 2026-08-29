@@ -12,12 +12,12 @@ import {
 import type {LocalExtensionDiscovery} from '../local-extensions/index.ts';
 
 type Item = EcosystemInventoryV1['items'][number];
-const item = (kind: Item['kind'], id: string, ref: string): Item => ({
+const item = (kind: Item['kind'], id: string, ref: string, state = 'ACTIVE'): Item => ({
   kind,
   id,
   ref,
   scope: 'CANONICAL',
-  state: 'ACTIVE',
+  state,
 });
 
 const trackedPaths = (root: string): string[] => {
@@ -95,7 +95,12 @@ export const buildEcosystemInventoryV1 = (
   );
   for (const source of sources.entries ?? [])
     items.push(
-      item('SOURCE', source.source_id, '04_estado/registries/sources/source-registry.yml'),
+      item(
+        'SOURCE',
+        source.source_id,
+        '04_estado/registries/sources/source-registry.yml',
+        source.current_state.toUpperCase(),
+      ),
     );
   for (const registryRef of [
     '02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml',

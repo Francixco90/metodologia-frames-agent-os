@@ -6,11 +6,11 @@ tiempos/versiones**. Tres concerns distintos, tres tratamientos. Ver ADR 0027.
 
 ## Tres concerns
 
-| Concern   | Tratamiento                                            | Ejemplos                                                                                                    |
-| --------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| Contrato  | Preservar (identidad, no versión)                      | `-vN` suffix, `schema_version`, `manifest_id`, gates `GNN`/`MW_*`, rutas `R0`..`R5`, roles `RT-01`..`RT-11` |
-| Tiempo    | Solo en `04_estado/receipts/**` y `04_estado/tasks/**` | timestamps en contenido de receipts, dirs timestamped, `task.yaml`                                          |
-| Lifecycle | Ortogonal a versiones                                  | `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`                                           |
+| Concern   | Tratamiento                                            | Ejemplos                                                                                                                 |
+| --------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| Contrato  | Preservar (identidad, no versión)                      | `-vN` suffix, `schema_version`, `manifest_id`, gates `GNN`/`MW_*`, rutas `R0`–`R10` + `R3-LOOSE`, roles `RT-01`..`RT-11` |
+| Tiempo    | Solo en `04_estado/receipts/**` y `04_estado/tasks/**` | timestamps en contenido de receipts, dirs timestamped, `task.yaml`                                                       |
+| Lifecycle | Ortogonal a versiones                                  | `RENDERED_DRAFT != FINAL != HUMAN_APPROVED != READY != PUBLISHED`                                                        |
 
 ## Allowlist (trazas legítimas — preservar)
 
@@ -19,7 +19,8 @@ tiempos/versiones**. Tres concerns distintos, tres tratamientos. Ver ADR 0027.
   semántica de la captura, no versionado del repo).
 - `schema_version` zod literals (`task-contract-v1`, `render-receipt-v2`, etc.).
 - `manifest_id` strings (`router-v1`, `tool-policy-v1`, `commands-v1`).
-- Gates `G00`..`G21` + `MW_*`; rutas `R0`..`R5`; role ids `RT-01`..`RT-11`.
+- Gates `G00`..`G21` + `MW_*`; rutas `R0`, `R1`, `R2`, `R3`, `R3-LOOSE`, `R4`, `R5`,
+  `R6`, `R7`, `R8`, `R9`, `R10`; role ids `RT-01`..`RT-11`.
 - Immutability baselines: `BASELINE_FILE_COUNT`, `V2_CLOSURE_COMMIT`,
   `H02_LOCK_SHA256`, `baselineTextLines` — anclas de inmutabilidad, no tiempo.
 - Date-pins hash-bound en `renderers/remotion/src/{validation,append-only}-evidence.ts`

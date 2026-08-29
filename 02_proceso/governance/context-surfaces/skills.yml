@@ -262,7 +262,7 @@ surfaces:
     read_set: [03_artefactos/skills/frames-harness-maintainer/SKILL.md]
     write_policy:
       {mode: generated_only, paths: [03_artefactos/skills/frames-harness-maintainer/context.md]}
-    gates: [HM_CHANGE_APPROVED, HM_PROMOTION_APPROVED]
+    gates: [HM_CHANGE_APPROVED, HM_GUARDIAN_VERDICT_RECORDED, HM_PROMOTION_APPROVED]
     stop_rules: [No mutar antes de aprobación, No promover por inferencia]
     privacy: public_only
     children: []

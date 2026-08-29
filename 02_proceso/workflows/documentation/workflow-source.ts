@@ -2,12 +2,8 @@ import {readFile, realpath} from 'node:fs/promises';
 import {glob} from 'node:fs/promises';
 import path from 'node:path';
 import {parse} from 'yaml';
-import type {
-  SequenceMessageV1,
-  SequenceModelV1,
-  WorkflowDocumentationV1,
-  WorkflowStepDocumentationV1,
-} from './contracts.ts';
+import type {WorkflowDocumentationV1, WorkflowStepDocumentationV1} from './contracts.ts';
+export {buildSequenceModel} from './sequence-model.ts';
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -25,12 +21,20 @@ const asStrings = (value: unknown): string[] =>
 const normalizeOutputs = (source: UnknownRecord): string[] => {
   const direct = asStrings(source.deliverables);
   if (direct.length > 0) return direct;
-  return Array.isArray(source.outputs)
-    ? source.outputs
-        .map(asRecord)
-        .map((item) => asString(item.deliverable_id || item.artifact))
-        .filter(Boolean)
-    : [];
+  if (Array.isArray(source.outputs)) {
+    const outputs = source.outputs
+      .map(asRecord)
+      .map((item) => asString(item.deliverable_id || item.artifact))
+      .filter(Boolean);
+    if (outputs.length > 0) return outputs;
+  }
+  return [
+    ...new Set(
+      (Array.isArray(source.execution_steps) ? source.execution_steps : []).flatMap((step) =>
+        asStrings(asRecord(step).outputs),
+      ),
+    ),
+  ];
 };
 
 const normalizeTemplateRefs = (source: UnknownRecord): string[] =>
@@ -40,6 +44,8 @@ const normalizeTemplateRefs = (source: UnknownRecord): string[] =>
 
 const normalizeStep = (value: unknown): WorkflowStepDocumentationV1 => {
   const step = asRecord(value);
+  const recorder = asString(step.recorder);
+  const decisionActor = asString(step.decision_actor);
   return {
     id: asString(step.step_id, 'STEP'),
     purpose: asString(step.purpose, 'Ejecutar el paso declarado.'),
@@ -47,6 +53,8 @@ const normalizeStep = (value: unknown): WorkflowStepDocumentationV1 => {
     primarySkill: asString(step.primary_skill, 'unassigned'),
     optionalSkills: asStrings(step.optional_skills),
     verifier: asString(step.verifier, 'unassigned'),
+    ...(recorder ? {recorder} : {}),
+    ...(decisionActor ? {decisionActor} : {}),
     outputs: asStrings(step.outputs),
     templateId: asString(step.template_id),
     gate: asString(step.gate, 'UNKNOWN'),
@@ -82,6 +90,13 @@ export const loadWorkflowDocumentation = async (
               ? 'maintenance'
               : 'skill-system';
       const directGate = asString(source.gate);
+      const stepGates = [
+        ...new Set(
+          (Array.isArray(source.execution_steps) ? source.execution_steps : [])
+            .map((step) => asString(asRecord(step).gate))
+            .filter(Boolean),
+        ),
+      ];
       return {
         schemaVersion: 'workflow-documentation-v1',
         id,
@@ -98,7 +113,7 @@ export const loadWorkflowDocumentation = async (
           ? asStrings(source.gates)
           : directGate
             ? [directGate]
-            : [],
+            : stepGates,
         nextWorkflow: asString(source.next_workflow) || null,
         stopRule: asString(
           source.stop_rule || source.fallback,
@@ -124,53 +139,4 @@ export const loadWorkflowDocumentation = async (
     }),
   );
   return workflows.sort((left, right) => left.id.localeCompare(right.id));
-};
-
-export const buildSequenceModel = (workflow: WorkflowDocumentationV1): SequenceModelV1 => {
-  const actors = ['Persona', 'Frames'];
-  const messages: SequenceMessageV1[] = [
-    {from: 'Persona', to: 'Frames', label: `Solicita ${workflow.title}`, kind: 'request'},
-  ];
-  const summaries: string[] = [`La persona solicita ${workflow.title}.`];
-  for (const step of workflow.steps) {
-    if (!actors.includes(step.primarySkill)) actors.push(step.primarySkill);
-    if (!actors.includes(step.verifier)) actors.push(step.verifier);
-    messages.push({
-      from: 'Frames',
-      to: step.primarySkill,
-      label: `${step.id}: ${step.purpose}`,
-      kind: 'work',
-    });
-    messages.push({
-      from: step.primarySkill,
-      to: step.verifier,
-      label: `Evidencia: ${step.outputs.join(', ')}`,
-      kind: 'evidence',
-    });
-    messages.push({
-      from: step.verifier,
-      to: 'Frames',
-      label: `Gate ${step.gate}`,
-      kind: 'decision',
-    });
-    summaries.push(
-      `${step.id}: ${step.primarySkill} produce ${step.outputs.join(', ') || 'evidencia'}; ${step.verifier} decide ${step.gate}.`,
-    );
-  }
-  messages.push({
-    from: 'Frames',
-    to: 'Persona',
-    label: `Entrega o siguiente paso: ${workflow.nextWorkflow || 'cierre'}`,
-    kind: 'decision',
-  });
-  summaries.push(
-    `Frames entrega el resultado y ${workflow.nextWorkflow ? `propone ${workflow.nextWorkflow}` : 'cierra el recorrido'}.`,
-  );
-  return {
-    schemaVersion: 'sequence-model-v1',
-    workflowId: workflow.id,
-    actors,
-    messages,
-    accessibleSummary: summaries,
-  };
 };
