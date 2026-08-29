@@ -4,16 +4,29 @@ title: Entregar y preparar promoción
 purpose: Emitir handoff, rollback y límites sin confundir validación, merge o publicación.
 change_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
 capability_map: [frames-harness-maintainer, dev-document-release]
-authority_refs: [AGENTS.md, 02_proceso/governance/router.yml]
+authority_refs:
+  [AGENTS.md, 02_proceso/agents/RT-11/contract.yml, 05_verificacion/scripts/commands.yaml]
 execution_steps:
   - step_id: S01
-    purpose: Consolidar hashes, evidencias, gaps, rollback y siguiente gate.
+    purpose: RT-11 emite un verdict hash-bound; RT-10 lo persiste sin reinterpretarlo.
     primary_skill: frames-harness-maintainer
     verifier: RT-11
+    recorder: RT-10
+    decision_actor: RT-10
     inputs: [verification-verdict, documentation-closure-receipt, ecosystem-inventory]
+    outputs: [guardian-verdict, guardian-verdict-receipt]
+    gate: HM_GUARDIAN_VERDICT_RECORDED
+    stop_rule: RT-11 no remedia ni persiste estado; el recorder no altera el verdict.
+  - step_id: S02
+    purpose: Preparar handoff, rollback y solicitud hash-bound para decisión exclusiva de H01.
+    primary_skill: frames-harness-maintainer
+    verifier: null
+    recorder: null
+    decision_actor: H01
+    inputs: [guardian-verdict-receipt, verification-verdict, documentation-closure-receipt]
     outputs: [maintenance-handoff]
     gate: HM_PROMOTION_APPROVED
-    stop_rule: PASS técnico no concede commit, push, merge, deployment o publicación.
+    stop_rule: PASS técnico o Guardian no concede promoción, commit, push, merge o publicación.
 next_workflow: null
-stop_rule: Detener en HM_PROMOTION_APPROVED.
+stop_rule: Detener en HM_PROMOTION_APPROVED; solo H01 decide sobre el candidate exacto.
 metadata: {status: active, execution_scope: local-evaluation, external_effects: false}

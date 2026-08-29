@@ -61,7 +61,13 @@ surfaces:
     read_set: [02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts]
     write_policy: {mode: generated_only, paths: [02_proceso/workflows/maintenance/context.md]}
     gates:
-      [HM_CHANGE_APPROVED, HM_CANDIDATE_VERIFIED, DOCS_TRANSVERSAL_COMPLETE, HM_PROMOTION_APPROVED]
+      [
+        HM_CHANGE_APPROVED,
+        HM_CANDIDATE_VERIFIED,
+        DOCS_TRANSVERSAL_COMPLETE,
+        HM_GUARDIAN_VERDICT_RECORDED,
+        HM_PROMOTION_APPROVED,
+      ]
     stop_rules: [Impact plan antes de editar, Promoción separada]
     privacy: public_only
     children: []

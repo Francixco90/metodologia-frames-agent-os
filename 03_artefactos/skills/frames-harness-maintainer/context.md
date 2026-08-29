@@ -50,7 +50,7 @@ Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `HM_CHANGE_APPROVED`, `HM_PROMOTION_APPROVED`  
+Gates: `HM_CHANGE_APPROVED`, `HM_GUARDIAN_VERDICT_RECORDED`, `HM_PROMOTION_APPROVED`  
 Stop rules: No mutar antes de aprobación · No promover por inferencia
 
 Hijos:

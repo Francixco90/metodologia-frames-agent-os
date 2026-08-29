@@ -1,0 +1,24 @@
+schema_version: 1
+evidence_projection_id: proposal-measure-e0d6ba4-rights-authorization-v1
+source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
+evidence_kind: user_instruction_projection
+assumption: '[SUPUESTO] user_authorized_internal_implementation'
+rights_verdict: allowed_internal_implementation
+allowed_use_scope: internal_typescript_reimplementation_only
+external_distribution_authorized: false
+observations:
+  tracked_license_file_observed: false
+  repository_ownership_inferred: false
+  public_license_inferred: false
+  source_bytes_versioned_in_frames: false
+restrictions:
+  - internal_typescript_reimplementation_only
+  - no_full_runtime_vendoring
+  - no_asset_copy_without_separate_traceability
+  - no_external_distribution
+  - no_publication_authority
+  - no_network_or_delivery_authority
+evidence_limits:
+  - authorization_is_user_supplied_not_host_attested
+  - no_claim_of_repository_ownership_or_public_license
+  - any_broader_use_requires_new_rights_review_and_receipt

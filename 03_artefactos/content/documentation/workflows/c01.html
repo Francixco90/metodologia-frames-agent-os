@@ -206,11 +206,12 @@
           <title id="seq-title">Secuencia C01</title>
           <desc id="seq-desc">
             La persona solicita Reconciliación de evidencia. S01: candidate-evidence-reconciler
-            produce evidence-bank-v1; RT-09 decide G13. S02: candidate-evidence-reconciler produce
-            contradiction-ledger-v1, evidence-gap-report-v1; RT-09 decide G14. S03:
-            career-evidence-interviewer produce career-discovery-session-v1,
-            evidence-candidate-packet-v1, career-evidence-readiness-v1; RT-09 decide
-            CR_CAREER_EVIDENCE_READY. Frames entrega el resultado y propone C02.
+            prepara evidence-bank-v1; RT-09 verifica; RT-09 decide G13. S02:
+            candidate-evidence-reconciler prepara contradiction-ledger-v1, evidence-gap-report-v1;
+            RT-09 verifica; RT-09 decide G14. S03: career-evidence-interviewer prepara
+            career-discovery-session-v1, evidence-candidate-packet-v1, career-evidence-readiness-v1;
+            RT-09 verifica; RT-09 decide CR_CAREER_EVIDENCE_READY. Frames entrega el resultado y
+            propone C02.
           </desc>
           <style>
             .actor {
@@ -304,14 +305,17 @@
         </svg>
         <ol>
           <li>La persona solicita Reconciliación de evidencia.</li>
-          <li>S01: candidate-evidence-reconciler produce evidence-bank-v1; RT-09 decide G13.</li>
           <li>
-            S02: candidate-evidence-reconciler produce contradiction-ledger-v1,
-            evidence-gap-report-v1; RT-09 decide G14.
+            S01: candidate-evidence-reconciler prepara evidence-bank-v1; RT-09 verifica; RT-09
+            decide G13.
           </li>
           <li>
-            S03: career-evidence-interviewer produce career-discovery-session-v1,
-            evidence-candidate-packet-v1, career-evidence-readiness-v1; RT-09 decide
+            S02: candidate-evidence-reconciler prepara contradiction-ledger-v1,
+            evidence-gap-report-v1; RT-09 verifica; RT-09 decide G14.
+          </li>
+          <li>
+            S03: career-evidence-interviewer prepara career-discovery-session-v1,
+            evidence-candidate-packet-v1, career-evidence-readiness-v1; RT-09 verifica; RT-09 decide
             CR_CAREER_EVIDENCE_READY.
           </li>
           <li>Frames entrega el resultado y propone C02.</li>

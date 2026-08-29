@@ -7,10 +7,8 @@ import {
   type MaterialReferenceV1,
 } from '../../core/contracts/index.ts';
 import type {CareerRunnerInput} from '../career/_runner/career-runner.ts';
-import {
-  createCareerBriefMaterialHandlerV1,
-  createContentBriefMaterialHandlerV1,
-} from './brief-material-handlers-v1.ts';
+import type {BriefSourceV1} from '../multimedia/_schema/brief-v1.schema.ts';
+import {createCareerBriefMaterialHandlerV1} from './brief-material-handlers-v1.ts';
 import {
   autoPrimeExperienceV1,
   compileExperienceWorkflowPlanV1,
@@ -20,16 +18,11 @@ import {
 import {MaterialSkillAdapterV1} from './material-skill-adapter-v1.ts';
 import {createProductiveExperienceWorkflowDefinitionsV1} from './productive-workflow-definitions-v1.ts';
 import {prepareContainedDirectoryV1} from './safe-local-path-v1.ts';
-interface ContentIntentForBriefV1 {
-  request: string;
-  request_hash: string;
-  content_class: string;
-  audience: string | null;
-  outcome: string | null;
-  selected_stage_path: string[];
-  channels: string[];
-  restrictions: string[];
-}
+import {bindBriefSourcesV1} from './source-authority-v1/bind-brief-sources.ts';
+import {
+  createAuthorizedContentBriefHandlerV1,
+  type AuthorizedContentExecutionV1,
+} from './source-authority-v1/content-brief-handler.ts';
 interface LocalExecutionBaseV1 {
   root: string;
   envelope: AssistanceEnvelopeV1;
@@ -41,14 +34,9 @@ interface LocalExecutionBaseV1 {
   decision?: ExperienceDecisionContextV1;
   decisionRefs?: Record<'funnel' | 'selection', MaterialReferenceV1>;
 }
+type LocalCareerExecutionV1 = {routeId: 'R7'; domainIntent: CareerRunnerInput['route']};
 export type LocalExperienceExecutionInputV1 = LocalExecutionBaseV1 &
-  (
-    | {routeId: 'R6'; domainIntent: ContentIntentForBriefV1}
-    | {
-        routeId: 'R7';
-        domainIntent: CareerRunnerInput['route'];
-      }
-  );
+  (AuthorizedContentExecutionV1 | LocalCareerExecutionV1);
 export interface LocalExperienceExecutionResultV1 {
   status: 'NEEDS_INPUT' | 'AWAITING_APPROVAL' | 'BLOCKED';
   routeId: 'R6' | 'R7';
@@ -85,6 +73,7 @@ const noExecution = (
   brief: null,
   ...(coverageGap === undefined ? {} : {coverageGap}),
 });
+
 export async function orchestrateLocalExperienceV1(
   input: LocalExperienceExecutionInputV1,
 ): Promise<LocalExperienceExecutionResultV1> {
@@ -95,16 +84,37 @@ export async function orchestrateLocalExperienceV1(
   ) {
     return noExecution(input, 'NEEDS_INPUT');
   }
+  let briefSources: BriefSourceV1[] = [];
+  let sourceAuthorityReceipts: MaterialReferenceV1[] = [];
+  if (input.routeId === 'R6') {
+    try {
+      const binding = bindBriefSourcesV1(
+        input.root,
+        input.sourceMaterials,
+        input.briefSources ?? [],
+        input.sourceAuthorityReceipts ?? [],
+      );
+      briefSources = binding.sources;
+      sourceAuthorityReceipts = binding.authorityReceipts;
+    } catch (error) {
+      return noExecution(
+        input,
+        'BLOCKED',
+        error instanceof Error ? error.message : 'EXPERIENCE-SOURCE-AUTHORITY-UNVERIFIED',
+      );
+    }
+  }
   const outputDirectoryRef = RelativePathSchema.parse(
     input.outputDirectoryRef ??
       `work/private/experience/${input.envelope.requestHash.slice(0, 16)}`,
   );
   const markdownRef = `${outputDirectoryRef}/brief.md`;
   const htmlRef = `${outputDirectoryRef}/brief.html`;
+  const workOrderInputs = [...input.sourceMaterials, ...sourceAuthorityReceipts];
   const definitions = createProductiveExperienceWorkflowDefinitionsV1({
     briefMarkdownRef: markdownRef,
     briefHtmlRef: htmlRef,
-    sourceRefs: input.sourceMaterials.map(({ref}) => ref),
+    sourceRefs: workOrderInputs.map(({ref}) => ref),
   });
   if (input.decision === undefined || input.decisionRefs === undefined) {
     return noExecution(input, 'NEEDS_INPUT', 'DECISION-FUNNEL-AND-HUMAN-SELECTION-REQUIRED');
@@ -124,7 +134,7 @@ export async function orchestrateLocalExperienceV1(
   try {
     workOrder = createFramesWorkOrderV1(plan, input.envelope, {
       workOrderId: `WO.EXP.${input.envelope.requestHash.slice(0, 16).toUpperCase()}`,
-      inputRefs: input.sourceMaterials,
+      inputRefs: workOrderInputs,
       decisionRefs: input.decisionRefs,
       decision: input.decision,
       outputDirectoryRef,
@@ -149,20 +159,12 @@ export async function orchestrateLocalExperienceV1(
   }
   const handler =
     input.routeId === 'R6'
-      ? createContentBriefMaterialHandlerV1({
-          root: input.root,
-          request: input.domainIntent.request,
-          requestHash: input.domainIntent.request_hash,
-          contentClass: input.domainIntent.content_class,
-          audience: input.domainIntent.audience ?? 'por resolver',
-          objective: input.domainIntent.outcome ?? 'por resolver',
-          workflowPlan: input.domainIntent.selected_stage_path as Array<
-            'P00' | 'P01' | 'P02' | 'P03' | 'P04' | 'P05' | 'P06' | 'P07' | 'P08' | 'P09'
-          >,
-          channels: input.domainIntent.channels,
-          restrictions: input.domainIntent.restrictions,
-          sources: input.sourceMaterials,
-        })
+      ? createAuthorizedContentBriefHandlerV1(
+          input.root,
+          input.domainIntent,
+          briefSources,
+          sourceAuthorityReceipts,
+        )
       : createCareerBriefMaterialHandlerV1({
           root: input.root,
           route: input.domainIntent,

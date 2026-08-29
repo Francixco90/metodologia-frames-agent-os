@@ -26,6 +26,7 @@ writers:
     - projects/vs-001-source-to-campaign/project.yml
     - projects/pilot-carousel-001/README.md
     - projects/pilot-carousel-001/project.yml
+    - projects/agentic-workflow-adoption-v1/**
     - work/private/.gitkeep
   repo:
     - package.json
@@ -174,6 +175,7 @@ writers:
     - evals/**
     - 05_verificacion/evals/**
     - 05_verificacion/tests/unit/check-md-budgets.test.ts
+    - 05_verificacion/tests/unit/change-program-budget.test.ts
     - 05_verificacion/tests/unit/docs-budget-v2.test.ts
     - 05_verificacion/tests/unit/file-budget-git.test.ts
     - 05_verificacion/tests/unit/file-budget-policy.test.ts
@@ -199,6 +201,7 @@ writers:
     - 05_verificacion/context.md
   governance:
     - governance/**
+    - guardian/**
     - 02_proceso/context.md
     - 04_estado/context.md
     - 04_estado/registries/context.md
@@ -207,10 +210,9 @@ writers:
     - receipts/experience/**
     - receipts/projects/notebooklm-os/**
     - 04_estado/releases/experience/**
-  guardian:
-    - guardian/**
     - projects/vs-001-source-to-campaign/guardian/**
     - projects/pilot-carousel-001/guardian/**
+  guardian: []
   # Versioned host adapters are installed only by an explicit, dry-run-first command.
 non_writers:
   human_approver:

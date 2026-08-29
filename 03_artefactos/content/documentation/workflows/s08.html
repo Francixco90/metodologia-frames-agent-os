@@ -156,7 +156,9 @@
           <strong>Entradas:</strong> skill-candidate, skill-review-report-v1,
           skill-change-proposal-v1
         </p>
-        <p><strong>Entregables:</strong> Ninguno declarado</p>
+        <p>
+          <strong>Entregables:</strong> skill-release-capsule-v1, compatibility-report, restore-plan
+        </p>
       </section>
       <section>
         <h2>Cómo avanza</h2>
@@ -189,9 +191,9 @@
         >
           <title id="seq-title">Secuencia S08</title>
           <desc id="seq-desc">
-            La persona solicita Empaquetar release candidate. S01: skill-release-governor produce
-            skill-release-capsule-v1, compatibility-report, restore-plan; RT-11 decide
-            SSS_RELEASE_CANDIDATE. Frames entrega el resultado y propone S09.
+            La persona solicita Empaquetar release candidate. S01: skill-release-governor prepara
+            skill-release-capsule-v1, compatibility-report, restore-plan; RT-11 verifica; RT-11
+            decide SSS_RELEASE_CANDIDATE. Frames entrega el resultado y propone S09.
           </desc>
           <style>
             .actor {
@@ -242,8 +244,8 @@
         <ol>
           <li>La persona solicita Empaquetar release candidate.</li>
           <li>
-            S01: skill-release-governor produce skill-release-capsule-v1, compatibility-report,
-            restore-plan; RT-11 decide SSS_RELEASE_CANDIDATE.
+            S01: skill-release-governor prepara skill-release-capsule-v1, compatibility-report,
+            restore-plan; RT-11 verifica; RT-11 decide SSS_RELEASE_CANDIDATE.
           </li>
           <li>Frames entrega el resultado y propone S09.</li>
         </ol>

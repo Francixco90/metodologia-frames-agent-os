@@ -199,10 +199,10 @@
           <title id="seq-title">Secuencia C09</title>
           <desc id="seq-desc">
             La persona solicita Preparación de postulación y aprendizaje. S01:
-            career-application-orchestrator produce submission-preview-v1; RT-09 decide G14. S02:
-            career-application-orchestrator produce authorization-receipt-v1, follow-up-plan-v1,
-            funnel-event-v1; RT-11 decide CR_SUBMISSION_AUTHORIZED. Frames entrega el resultado y
-            cierra el recorrido.
+            career-application-orchestrator prepara submission-preview-v1; RT-09 verifica; RT-09
+            decide G14. S02: career-application-orchestrator prepara authorization-receipt-v1,
+            follow-up-plan-v1, funnel-event-v1; RT-11 verifica; RT-11 decide
+            CR_SUBMISSION_AUTHORIZED. Frames entrega el resultado y cierra el recorrido.
           </desc>
           <style>
             .actor {
@@ -273,11 +273,13 @@
         <ol>
           <li>La persona solicita Preparación de postulación y aprendizaje.</li>
           <li>
-            S01: career-application-orchestrator produce submission-preview-v1; RT-09 decide G14.
+            S01: career-application-orchestrator prepara submission-preview-v1; RT-09 verifica;
+            RT-09 decide G14.
           </li>
           <li>
-            S02: career-application-orchestrator produce authorization-receipt-v1,
-            follow-up-plan-v1, funnel-event-v1; RT-11 decide CR_SUBMISSION_AUTHORIZED.
+            S02: career-application-orchestrator prepara authorization-receipt-v1,
+            follow-up-plan-v1, funnel-event-v1; RT-11 verifica; RT-11 decide
+            CR_SUBMISSION_AUTHORIZED.
           </li>
           <li>Frames entrega el resultado y cierra el recorrido.</li>
         </ol>

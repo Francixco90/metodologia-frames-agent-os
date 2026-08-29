@@ -13,21 +13,44 @@ export const MaintenanceWorkflowIdV1Schema = z.enum([
   'M06',
 ]);
 
-const StepSchema = z.strictObject({
-  step_id: z.string().regex(/^S[0-9]{2}$/u),
-  purpose: z.string().min(1).max(280),
-  primary_skill: PortableIdSchema,
-  verifier: PortableIdSchema.nullable(),
-  inputs: z.array(PortableIdSchema).max(12),
-  outputs: z.array(PortableIdSchema).min(1).max(12),
-  gate: z.enum([
-    'HM_CHANGE_APPROVED',
-    'HM_CANDIDATE_VERIFIED',
-    'DOCS_TRANSVERSAL_COMPLETE',
-    'HM_PROMOTION_APPROVED',
-  ]),
-  stop_rule: z.string().min(1).max(400),
-});
+const StepSchema = z
+  .strictObject({
+    step_id: z.string().regex(/^S[0-9]{2}$/u),
+    purpose: z.string().min(1).max(280),
+    primary_skill: PortableIdSchema,
+    verifier: PortableIdSchema.nullable(),
+    recorder: PortableIdSchema.nullable().optional(),
+    decision_actor: PortableIdSchema.optional(),
+    inputs: z.array(PortableIdSchema).max(12),
+    outputs: z.array(PortableIdSchema).min(1).max(12),
+    gate: z.enum([
+      'HM_CHANGE_APPROVED',
+      'HM_CANDIDATE_VERIFIED',
+      'DOCS_TRANSVERSAL_COMPLETE',
+      'HM_GUARDIAN_VERDICT_RECORDED',
+      'HM_PROMOTION_APPROVED',
+    ]),
+    stop_rule: z.string().min(1).max(400),
+  })
+  .superRefine((step, context) => {
+    if (step.gate === 'HM_GUARDIAN_VERDICT_RECORDED') {
+      if (
+        step.verifier !== 'RT-11' ||
+        step.recorder === undefined ||
+        step.recorder === null ||
+        step.recorder === step.verifier ||
+        step.decision_actor !== step.recorder
+      ) {
+        context.addIssue({
+          code: 'custom',
+          message: 'Guardian recording requires RT-11 plus a distinct recorder decision actor.',
+        });
+      }
+    }
+    if (step.gate === 'HM_PROMOTION_APPROVED' && step.decision_actor !== 'H01') {
+      context.addIssue({code: 'custom', message: 'Only H01 decides HM_PROMOTION_APPROVED.'});
+    }
+  });
 
 export const MaintenanceWorkflowV1Schema = z.strictObject({
   schema_version: z.literal('maintenance-workflow-v1'),

@@ -99,7 +99,7 @@ rules:
         - 'may_remediate: false — non-writer. [CONFIG] ownership-manifest non_writers.guardian'
         - 'Bash restricted to read-only validators, hash comparators and reproducible scanners'
         - 'Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden'
-        - "Writes (verdicts/reports) land in guardian/** via a separate writer delegation, not Guardian's own Edit/Write. [SUPUESTO] pending Guardian write-path clarification"
+        - 'RT-11 emits verdict bytes through its read-only task result; RT-10 is the recorder actor and persists them without reinterpretation under the governance-owned guardian/** write set. Owner names in commands.yaml govern paths; they do not collapse actor identity. [CONFIG] RT-10/RT-11 contracts; M06; ownership-manifest'
       source_ref: 'RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14'
   # --- Source/skill/content and local build writers ---
   - role: sources
@@ -212,5 +212,4 @@ runtime_grants:
 gaps:
   - 'coverage_gap: 2 stub owners (agents-committee and n8n) remain read-only pending agent-by-agent audit.'
   - 'coverage_gap: future Design System First output paths remain unresolved and therefore blocked until a later PR adds explicit one-writer ownership; this PR grants no wildcard outside current allowlists.'
-  - 'coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5.'
   - 'coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit.'
