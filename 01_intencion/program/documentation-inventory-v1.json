@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "b8fb7308df05d13c6f1906d276abf74a016db933d5bcf2e4bc4a4cbec22c162c",
+  "repositoryTreeSha256": "f8d6f6bf71748b5f7f9b25545e1a47c6761d9872d12a825babea241c17dd2eb2",
   "totalMarkdown": 1897,
   "auditedAuthored": 629,
   "classPaths": {
@@ -4173,16 +4173,16 @@
       "sourceRef": "01_intencion/guides/maintain-frames.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "9e35a4b017163b427a8622608b4f7621cfe27aeebe6fa8faffe7678a268cfb72",
-      "words": 216,
-      "lines": 38,
+      "sha256": "d9ee4f1cb01860ce2948b89bad363035fc460b0e0953a16d4de5df12f5f271b4",
+      "words": 396,
+      "lines": 76,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
         "hasExecutableCommand": true,
-        "hasAuthorityLink": true,
+        "hasAuthorityLink": false,
         "hasNextAction": false,
         "duplicateHeadings": 0
       }
@@ -4693,7 +4693,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "ea853d1438f1631e326bfd0948ce6f6cb03d3e17e1a4851423e754cb2bc1c1f8",
+      "sha256": "a06b5427395c5d9bba1b387efe0793992905e50ea6ffa9d3baea435b655a86e9",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -10392,9 +10392,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "be28f78bd73335cb7dc957985c17322e22179a7083f944fca89d6c5409c6fdd3",
-      "words": 10955,
-      "lines": 1018,
+      "sha256": "060752d7a635b7827c49cc69377ecdbcd3f877d2e515ea49531b940d52163749",
+      "words": 10966,
+      "lines": 1019,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",

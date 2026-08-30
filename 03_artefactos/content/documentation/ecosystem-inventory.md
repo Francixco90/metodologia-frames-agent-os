@@ -12,7 +12,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 
 - AGENT: 11
 - ASSET: 306
-- COMMAND: 102
+- COMMAND: 103
 - COMPONENT: 16
 - DELIVERABLE: 87
 - GATE: 70
@@ -388,6 +388,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | format:check | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | frames:assist | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | frames:extend | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | frames:maintain | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | host:generate | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | host:install | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | inventory:generate | ACTIVE | CANONICAL | `package.json` |
@@ -1014,4 +1015,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `8b5f1ab61fe8fdb7da3a450a16639a1bb002bdab0a9613e77a5f2052a484b676`.
+Hash de fuentes: `a03e21a67163e383c3793b3b1a45ed2fc7330d157cef752866ce8e9e183cad28`.
