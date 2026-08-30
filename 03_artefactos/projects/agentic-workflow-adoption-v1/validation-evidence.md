@@ -211,18 +211,21 @@ anticipa su veredicto. [CONFIG] [DOC]
   El source register y sus receipts históricos permanecieron sin reescritura.
 - G08: 14 archivos y 220/220 tests PASS; cubre kernel, causal gates, recovery, R6, R8 y
   compatibilidad V1.
-- Budget: programa activo sobre el upstream configurado, 200 archivos authored y 19 785 LOC,
+- Budget: programa activo sobre el upstream configurado, 200 archivos authored y 19 841 LOC,
   dentro del hard cap 200/20 000. El resolver evita medir esta rama pública contra el origin
-  privado y sus tests pasan 20/20.
+  privado y sus tests pasan 21/21. El primer CI público detectó correctamente que el checkout PR
+  estaba detached; la remediación solo acepta `GITHUB_HEAD_REF` en GitHub Actions, evento
+  `pull_request`, target `main` y branch `codex/*`. El replay remoto permanece pendiente.
 - `pnpm check` y `pnpm typecheck`: PASS; privacidad 6496 archivos versionables, 72 gates y 33
   manuales fail-closed.
 - Primer `pnpm verify`: bloqueó una aserción de cardinal heredada (71 versus 72) y no fue contado
   como PASS. Tras corregirla contra el manifest público, el replay completo cerró exit 0, con
-  234/234 archivos, 2143/2143 tests, lint y formato PASS.
+  234/234 archivos, 2144/2144 tests, lint y formato PASS.
 - Derivados regenerados: documentación 43 workflows/90 outputs, ecosistema 988 items, ledger
   387/387 y auditoría 1905 Markdown/637 authored-control.
-- Efectos externos del port: 0. No hubo push, PR, merge, publicación, distribución, entrega, H01
-  ni promoción. [HERRAMIENTA] [CONFIG]
+- Efectos externos del port: rama feature publicada en el fork real y PR draft público #276.
+  No hubo merge a `main`, publicación final, distribución, entrega, H01 ni promoción.
+  [HERRAMIENTA] [CONFIG]
 
 `[SUPUESTO] user_authorized_internal_implementation` sigue siendo el único fundamento de alcance
 adicional a la licencia interna observada en Defense. Proposal no presentó LICENSE tracked en el

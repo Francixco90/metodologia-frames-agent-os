@@ -244,7 +244,7 @@ dependencias ejecutables. [DOC] [CONFIG]
   tres replays completos sin divergencia, manteniendo hashes PNG byte-identical en el candidato
   privado: `HISTORICAL_PASS_LOCAL`.
 - Port público: fuentes 45/45, G08 220/220, `pnpm check`, `typecheck` y `pnpm verify` completos:
-  `PASS_LOCAL`; Vitest cerró 234/234 archivos y 2143/2143 tests.
+  `PASS_LOCAL`; Vitest cerró 234/234 archivos y 2144/2144 tests.
 - Adaptación pública: R6 usa el template comercial candidato hash-bound ya presente en el fork; R8 conserva
   attestation estricta con runner `cf7f5d78…` y sandbox probe `bb3784dd…`.
 - Guardian final sobre el digest exacto: pendiente al redactar este estado.

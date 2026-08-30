@@ -373,7 +373,14 @@
       "baselineHardLines": 350,
       "programHardLines": 380,
       "rationale": "Adversarial global and project-local runner coverage including path and TOCTOU negatives."
+    },
+    {
+      "path": "05_verificacion/scripts/lib/change-program-budget.ts",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 230,
+      "rationale": "Bounded GitHub PR branch-context resolver for the exact hash-bound change program."
     }
   ],
-  "canonicalSha256": "20ac865ae65b35dc053e95ef71217ea83abc7f860c3079b3fd250de1c2ff69b6"
+  "canonicalSha256": "6042147920e67202a9803a27170077092f87479ae02af1f6ccc4db128176b2b6"
 }

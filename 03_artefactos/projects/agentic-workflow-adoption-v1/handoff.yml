@@ -96,15 +96,17 @@ public_port_completed_gates:
   - global_11_and_project_local_2_source_gates_passed
   - source_contract_negative_runner_suites_passed_45_of_45
   - canonical_g08_passed_220_of_220
-  - change_budget_passed_200_files_19785_loc_against_upstream_main
+  - change_budget_passed_200_files_19841_loc_against_upstream_main
+  - detached_github_pull_request_branch_context_focal_passed_21_of_21
   - pnpm_check_and_typecheck_passed
-  - full_verify_passed_234_of_234_files_and_2143_of_2143_tests
+  - full_verify_passed_234_of_234_files_and_2144_of_2144_tests
 next_gates:
   - guardian_reviews_exact_public_port_candidate_digest
   - H01_may_bind_exact_candidate_only_after_explicit_human_approval
   - promotion_requires_exact_H01_and_same_recorder_identity_as_guardian_pass_event
 coverage_gaps:
   - final_wave4_guardian_verdict_is_pending
+  - github_ci_replay_after_detached_branch_context_fix_is_pending
   - no_active_source_receipts_created
   - donor_authorization_is_user_supplied_and_not_host_attested
   - external_archive_tree_and_blob_observations_not_replayed_in_frames
@@ -117,4 +119,7 @@ external_effects:
   donor_repository_mutation: false
   local_synthetic_pilots: true
   human_approval_or_promotion: false
-  push_merge_publication_distribution_delivery: false
+  feature_branch_push: JaviMontano/metodologia-frames-agent-os-notebooklm:codex/proposal-defense-adoption-public-v1
+  draft_pull_request: Francixco90/metodologia-frames-agent-os#276
+  main_merge: false
+  publication_distribution_delivery: false
