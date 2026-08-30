@@ -40,6 +40,8 @@ const safeCheck = (check: () => boolean): boolean => { try { return check(); } c
 const same = (left: unknown, right: unknown): boolean =>
   stableStringify(left) === stableStringify(right);
 // prettier-ignore
+const renderProposalHtml = (markdown: string): string => renderFramesDeliverableHtml(markdown).replace('</style>', '.section-body,.note{overflow-wrap:anywhere}</style>');
+// prettier-ignore
 const commercialInputHashes = (spec: CP.CommercialProposalSpecV1) => ({clientContext: sha256Text(spec.clientContext), offerScope: sha256Text(spec.offerScope), commercialStatus: sha256Text(spec.commercialStatus)});
 // prettier-ignore
 export const commercialProposalRequestSha256V1 = (spec: CP.CommercialProposalSpecV1): string => hashCanonical({contentClass: 'commercial-proposal', proposalId: spec.proposalId, readinessSha256: spec.readinessSha256, sourceManifestSha256: spec.sourceManifestSha256, objective: spec.objective});
@@ -113,7 +115,7 @@ export const createCommercialProposalProjections = (
     throw new Error('COMMERCIAL_PROPOSAL_MATERIAL_BINDING_MISMATCH');
   const markdown = createMarkdown(spec);
   // prettier-ignore
-  const artifacts = [intent('md', 'text/markdown', markdown), intent('html', 'text/html', renderFramesDeliverableHtml(markdown)), intent('json', 'application/json', `${stableStringify(spec)}\n`), intent('csv', 'text/csv', createCsv(spec))];
+  const artifacts = [intent('md', 'text/markdown', markdown), intent('html', 'text/html', renderProposalHtml(markdown)), intent('json', 'application/json', `${stableStringify(spec)}\n`), intent('csv', 'text/csv', createCsv(spec))];
   const manifest = CP.CommercialProposalArtifactManifestV1Schema.parse(
     // prettier-ignore
     Profile.sealCommercialProposalContract({schemaVersion: 'commercial-proposal-artifact-manifest-v1' as const, manifestId: `${spec.proposalId}.manifest`, proposalId: spec.proposalId, specSha256: spec.canonicalSha256, readinessSha256: spec.readinessSha256, workOrderSha256: spec.workOrderSha256, authorizationSha256: hashCanonical(authorization), sourceAuthorityManifestSha256: spec.sourceAuthorityManifestSha256, commercialAuthorityManifestSha256: spec.commercialAuthorityManifestSha256, template: spec.template, sectionSequence: spec.sectionSequence, commercialInputsSha256: commercialInputHashes(spec), artifacts: artifacts.map(({bytes, ...artifact}) => ({...artifact, bytes: bytes.byteLength})), deck: {...readiness.deck, materialized: false as const}, maximumAutomaticState: 'RENDERED_DRAFT' as const}),
@@ -155,10 +157,9 @@ export const verifyCommercialProposalProjections = (
     // prettier-ignore
     artifactBinding: bundle.artifacts.length === EXPECTED.length && same(physical, bundle.manifest.artifacts) && bundle.artifacts.every((artifact, index) => artifact.sha256 === physical[index]?.sha256 && artifact.format === EXPECTED[index]?.[0] && artifact.relativePath === EXPECTED[index]?.[1] && artifact.mediaType === EXPECTED[index]?.[2]),
     // prettier-ignore
-    templateProjection: safeCheck(() => decode('md') === createMarkdown(bundle.spec) && decode('html') === renderFramesDeliverableHtml(createMarkdown(bundle.spec)) && same(bundle.manifest.template, bundle.spec.template) && same(bundle.manifest.sectionSequence, bundle.spec.sectionSequence) && same(bundle.manifest.commercialInputsSha256, commercialInputHashes(bundle.spec))),
-    markdownHtmlParity: safeCheck(
-      () => verifyDeliverableParity(decode('md'), decode('html')).status === 'PASS',
-    ),
+    templateProjection: safeCheck(() => decode('md') === createMarkdown(bundle.spec) && decode('html') === renderProposalHtml(createMarkdown(bundle.spec)) && same(bundle.manifest.template, bundle.spec.template) && same(bundle.manifest.sectionSequence, bundle.spec.sectionSequence) && same(bundle.manifest.commercialInputsSha256, commercialInputHashes(bundle.spec))),
+    // prettier-ignore
+    markdownHtmlParity: safeCheck(() => verifyDeliverableParity(decode('md'), decode('html').replace('.section-body,.note{overflow-wrap:anywhere}', '')).status === 'PASS'),
     canonicalJson: safeCheck(() => decode('json') === `${stableStringify(bundle.spec)}\n`),
     rfc4180: safeCheck(() => decode('csv') === createCsv(bundle.spec)),
     deckBoundary: bundle.manifest.deck.materialized === false && !byFormat.has('deck' as 'md'),

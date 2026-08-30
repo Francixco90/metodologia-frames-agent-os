@@ -2,7 +2,7 @@ import {
   PinnedRepositorySourceEntryV2Schema,
   auditPinnedRepositorySourceV2,
 } from '../../../../02_proceso/core/contracts/source-governance-v2.ts';
-import type {LoadedSourceGovernance} from './parser.ts';
+import type {LoadedProjectLocalSourceGovernance} from './parser.ts';
 import {containsPrivateLocator, readPortableFile} from './physical-validation.ts';
 
 const EXPECTED_PINNED_REPOSITORIES: ReadonlyMap<
@@ -30,12 +30,10 @@ const EXPECTED_PINNED_REPOSITORIES: ReadonlyMap<
 
 export const validatePinnedRepositories = (
   root: string,
-  {registry, lifecycle}: LoadedSourceGovernance,
+  {registry, projectLocal, scopeReceipt}: LoadedProjectLocalSourceGovernance,
 ): string[] => {
   const errors: string[] = [];
-  const pinnedEntries = registry.entries.filter(
-    ({source_kind: sourceKind}) => sourceKind === 'pinned_repository_implementation_source',
-  );
+  const pinnedEntries = projectLocal.entries;
   const pinnedIds = new Set(pinnedEntries.map(({source_id: sourceId}) => sourceId));
   if (
     pinnedIds.size !== EXPECTED_PINNED_REPOSITORIES.size ||
@@ -43,6 +41,16 @@ export const validatePinnedRepositories = (
   ) {
     errors.push('Las dos fuentes donantes fijadas no están registradas exactamente una vez');
   }
+  const globalIds = new Set(registry.entries.map(({source_id: sourceId}) => sourceId));
+  if (pinnedEntries.some(({source_id: sourceId}) => globalIds.has(sourceId))) {
+    errors.push('Una fuente donante PROJECT_LOCAL contaminó source-registry.yml global');
+  }
+  validateScopeReceiptBindings(
+    projectLocal.entries,
+    scopeReceipt.historical_receipt_bindings,
+    errors,
+  );
+  validateScopedUnionDeduplication(registry.entries, pinnedEntries, errors);
 
   for (const candidate of pinnedEntries) {
     const parsed = PinnedRepositorySourceEntryV2Schema.safeParse(candidate);
@@ -65,18 +73,88 @@ export const validatePinnedRepositories = (
       errors.push(`${entry.source_id}: URI/commit/tree difieren del baseline donante congelado`);
     }
     if (
-      entry.current_state !== lifecycle.repository_sources.maximum_state_without_h01 ||
-      entry.rights.rights_verdict !== lifecycle.repository_sources.rights_verdict ||
-      entry.rights.allowed_use_scope !== lifecycle.repository_sources.allowed_use_scope ||
+      entry.current_state !== projectLocal.policy.maximum_state_without_h01 ||
+      entry.rights.rights_verdict !== projectLocal.policy.rights_verdict ||
+      entry.rights.allowed_use_scope !== projectLocal.policy.allowed_use_scope ||
       entry.restrictions.some(
-        (restriction, index) => restriction !== lifecycle.repository_sources.restrictions[index],
+        (restriction, index) => restriction !== projectLocal.policy.restrictions[index],
       )
     ) {
-      errors.push(`${entry.source_id}: estado, rights o límites exceden el contrato lifecycle`);
+      errors.push(`${entry.source_id}: estado, rights o límites exceden la policy PROJECT_LOCAL`);
+    }
+    if (
+      !entry.coverage_gaps.includes(projectLocal.external_evidence_contract.required_coverage_gap)
+    ) {
+      errors.push(`${entry.source_id}: falta coverage_gap de evidencia externa no replayed`);
     }
     errors.push(...auditPinnedRepositoryEvidence(root, entry, errors));
   }
   return errors;
+};
+
+type ProjectLocalEntry = LoadedProjectLocalSourceGovernance['projectLocal']['entries'][number];
+type ScopeReceiptBinding =
+  LoadedProjectLocalSourceGovernance['scopeReceipt']['historical_receipt_bindings'][number];
+
+const validateScopeReceiptBindings = (
+  entries: readonly ProjectLocalEntry[],
+  scopeBindings: readonly ScopeReceiptBinding[],
+  errors: string[],
+): void => {
+  const bySource = new Map<string, ScopeReceiptBinding['receipts']>(
+    scopeBindings.map((binding) => [binding.source_id, binding.receipts]),
+  );
+  for (const entry of entries) {
+    const actual = bySource.get(entry.source_id);
+    if (
+      actual === undefined ||
+      actual.some(
+        (binding, index) =>
+          binding.path !== entry.receipt_bindings[index]?.path ||
+          binding.sha256 !== entry.receipt_bindings[index]?.sha256 ||
+          binding.event_order !== entry.receipt_bindings[index]?.event_order,
+      )
+    ) {
+      errors.push(`${entry.source_id}: scope receipt no liga la cadena histórica exacta`);
+    }
+  }
+};
+
+const validateScopedUnionDeduplication = (
+  globalEntries: LoadedProjectLocalSourceGovernance['registry']['entries'],
+  localEntries: readonly ProjectLocalEntry[],
+  errors: string[],
+): void => {
+  const union = [
+    ...globalEntries.map((entry) => ({scope: 'GLOBAL', entry}) as const),
+    ...localEntries.map((entry) => ({scope: 'PROJECT_LOCAL', entry}) as const),
+  ];
+  for (const local of localEntries) {
+    const keys = {
+      canonical_uri: local.canonical_uri,
+      raw_sha256: local.hashes.raw_sha256,
+      source_normalized_sha256: local.hashes.source_normalized_sha256,
+      commit_sha1: local.repository_lock.commit_object_id,
+    };
+    for (const candidate of union) {
+      if (candidate.entry.source_id === local.source_id) continue;
+      const repositoryLock = (candidate.entry as {repository_lock?: {commit_object_id?: string}})
+        .repository_lock;
+      const candidateKeys = {
+        canonical_uri: candidate.entry.canonical_uri,
+        raw_sha256: candidate.entry.hashes.raw_sha256,
+        source_normalized_sha256: candidate.entry.hashes.source_normalized_sha256,
+        commit_sha1: repositoryLock?.commit_object_id,
+      };
+      for (const key of Object.keys(keys) as Array<keyof typeof keys>) {
+        if (candidateKeys[key] !== undefined && candidateKeys[key] === keys[key]) {
+          errors.push(
+            `${local.source_id}: colisión ${key} en dedupe GLOBAL+PROJECT_LOCAL con ${candidate.scope}:${candidate.entry.source_id}`,
+          );
+        }
+      }
+    }
+  }
 };
 
 const auditPinnedRepositoryEvidence = (
@@ -91,6 +169,9 @@ const auditPinnedRepositoryEvidence = (
     entry.repository_lock.rights_authorization_projection.locator,
     ...entry.receipt_bindings.map(({path}) => path),
   ]);
+  if (evidencePaths.size !== 7) {
+    errors.push(`${entry.source_id}: se requieren 4 evidencias y 3 receipts físicos distintos`);
+  }
   const evidence = [];
   for (const path of evidencePaths) {
     const bytes = readPortableFile(root, entry.source_id, path, errors);

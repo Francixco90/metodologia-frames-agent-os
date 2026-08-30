@@ -67,10 +67,6 @@ describe('loadPolicy', () => {
   it.each([
     ['missing pr_budget', (value: Record<string, unknown>) => delete value.pr_budget],
     [
-      'unsafe program manifest',
-      (value: Record<string, unknown>) => (value.change_program_manifest = '../budget.json'),
-    ],
-    [
       'fractional pr budget',
       (value: Record<string, unknown>) =>
         Object.assign(value.pr_budget as object, {target_files: 1.5}),

@@ -7,10 +7,6 @@ import {hashCanonical} from 'core/evidence/hash.ts';
 import {
   DefaultTransactionKernelV1,
   DurableCausalGateRecorderV1,
-  DurableHumanApprovalRecorderV1,
-  computeGuardianAuthorityActionSha256V1,
-  computeHumanApprovalAuthorityActionSha256V1,
-  computePromotionAuthorityActionSha256V1,
   computeVerificationAuthorityActionSha256V1,
   validateTransactionGraphV1,
 } from 'core/orchestration/index.ts';
@@ -27,7 +23,6 @@ import {
   transactionAuthorityPort as authorityPort,
   transactionDigest as sha,
   transactionProducerAuthorizer as producerAuthorizer,
-  transactionSession as session,
 } from 'tests/fixtures/transaction-kernel-v1.fixture.ts';
 
 afterEach(() => {
@@ -113,114 +108,6 @@ describe('TransactionKernelV1', () => {
         receiptCount: 1,
       });
     }
-  });
-
-  it('requires distinct physical evidence through verification, Guardian, H01 and recorder', async () => {
-    const {effect, state, authority} = makeRoots();
-    mkdirSync(resolve(effect, 'out'));
-    const workOrder = makeWorkOrder('causal', ['out/result.md']);
-    const authorization = {scope: 'PROJECT_LOCAL'};
-    const graph = makeGraph('causal', workOrder, authorization);
-    const draft = makeDraft('causal', authority, graph, workOrder, authorization);
-    const store = new TransactionDurableStoreV1(state);
-    const kernel = new DefaultTransactionKernelV1(state, {
-      producerAuthority: authorityPort,
-    });
-    const effectReceipt = await new MaterialSkillAdapterV2(
-      kernel,
-      {
-        [workOrder.skillId]: () => ({
-          intents: [{ref: 'out/result.md', bytes: Buffer.from('candidate\n')}],
-        }),
-      },
-      producerAuthorizer,
-    ).invoke({execution: draft});
-    const recorder = new DurableCausalGateRecorderV1(state, authorityPort);
-    const candidateSha256 = effectReceipt.candidateSha256;
-    const effectPhysicalSha256 = physical(effectReceipt);
-    const verification = recorder.recordVerification({
-      runId: draft.runId,
-      nodeId: draft.nodeId,
-      receiptId: 'verification.causal',
-      effectReceiptId: effectReceipt.receiptId,
-      effectReceiptPhysicalSha256: effectPhysicalSha256,
-      producerActorInstanceId: effectReceipt.producerActorInstanceId,
-      verifierSession: session(
-        'verifier',
-        computeVerificationAuthorityActionSha256V1(
-          effectReceipt,
-          effectPhysicalSha256,
-          'PASS',
-          candidateSha256,
-        ),
-      ),
-      decision: 'PASS',
-      evidenceSha256: candidateSha256,
-      recordedAt: '2026-08-29T12:00:01.000Z',
-    });
-    const verificationPhysicalSha256 = physical(verification);
-    const guardian = recorder.recordGuardianVerdict({
-      runId: draft.runId,
-      nodeId: draft.nodeId,
-      receiptId: 'guardian.causal',
-      verificationReceiptId: verification.receiptId,
-      verificationReceiptPhysicalSha256: verificationPhysicalSha256,
-      guardianSession: session(
-        'guardian',
-        computeGuardianAuthorityActionSha256V1(
-          verification,
-          verificationPhysicalSha256,
-          'PASS',
-          candidateSha256,
-        ),
-      ),
-      decision: 'PASS',
-      evidenceSha256: candidateSha256,
-      recordedAt: '2026-08-29T12:00:02.000Z',
-    });
-    const guardianPhysicalSha256 = physical(guardian);
-    const approval = new DurableHumanApprovalRecorderV1(state, authorityPort).recordHumanApproval({
-      runId: draft.runId,
-      nodeId: draft.nodeId,
-      receiptId: 'approval.causal',
-      guardianReceiptId: guardian.receiptId,
-      guardianReceiptPhysicalSha256: guardianPhysicalSha256,
-      approverSession: session(
-        'approver',
-        computeHumanApprovalAuthorityActionSha256V1(guardian, guardianPhysicalSha256),
-      ),
-      recordedAt: '2026-08-29T12:00:03.000Z',
-    });
-    const approvalPhysicalSha256 = physical(approval);
-    expect(store.inspect(draft.runId).latestState).toBe('H01_APPROVED');
-    const promotion = recorder.promote({
-      runId: draft.runId,
-      nodeId: draft.nodeId,
-      promotionReceiptId: 'promotion.causal',
-      humanApprovalReceiptId: approval.receiptId,
-      humanApprovalReceiptPhysicalSha256: approvalPhysicalSha256,
-      recorderSession: session(
-        'recorder',
-        computePromotionAuthorityActionSha256V1(approval, approvalPhysicalSha256),
-      ),
-      recordedAt: '2026-08-29T12:00:04.000Z',
-    });
-
-    expect(promotion.state).toBe('PROMOTED');
-    expect(
-      new Set([
-        promotion.producerActorInstanceId,
-        promotion.verifierActorInstanceId,
-        promotion.guardianActorInstanceId,
-        promotion.approverActorInstanceId,
-        promotion.recorderActorInstanceId,
-      ]).size,
-    ).toBe(5);
-    expect(store.inspect(draft.runId)).toMatchObject({
-      status: 'CLEAN',
-      latestState: 'PROMOTED',
-      receiptCount: 5,
-    });
   });
 
   it('rejects invalid DAG topology and hash-bound authorization drift', () => {

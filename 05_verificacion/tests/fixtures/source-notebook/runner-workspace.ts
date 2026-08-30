@@ -15,6 +15,14 @@ const COPY_ROOTS = [
     '03_artefactos/projects/agentic-workflow-adoption-v1/sources',
     '03_artefactos/projects/agentic-workflow-adoption-v1/sources',
   ],
+  [
+    '03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml',
+    '03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml',
+  ],
+  [
+    '03_artefactos/projects/agentic-workflow-adoption-v1/receipts',
+    '03_artefactos/projects/agentic-workflow-adoption-v1/receipts',
+  ],
 ] as const;
 
 export type SourceGovernanceWorkspace = Readonly<{
@@ -24,6 +32,7 @@ export type SourceGovernanceWorkspace = Readonly<{
   readYaml: <Value = unknown>(locator: string) => Promise<Value>;
   writeText: (locator: string, value: string) => Promise<void>;
   writeYaml: (locator: string, value: unknown) => Promise<void>;
+  remove: (locator: string) => Promise<void>;
 }>;
 
 const sha256 = (value: Uint8Array | string): string =>
@@ -50,6 +59,7 @@ export const createSourceGovernanceWorkspace = async (): Promise<
     writeText: async (locator, value) => writeFile(resolveLocator(locator), value, 'utf8'),
     writeYaml: async (locator, value) =>
       writeFile(resolveLocator(locator), stringify(value, {lineWidth: 0}), 'utf8'),
+    remove: async (locator) => rm(resolveLocator(locator), {recursive: true, force: true}),
     dispose: async () => rm(root, {recursive: true, force: true}),
   };
 };

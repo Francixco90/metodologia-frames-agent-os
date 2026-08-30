@@ -1,8 +1,8 @@
 schema_version: 1
-handoff_id: agentic-workflow-adoption-v1-source-architecture-handoff
-status: WAVE1_OWNER_SOURCE_VERIFIED_GUARDIAN_REVALIDATION_PENDING
-from_actor: source_architecture_artifact_curator
-to_actor: governance_and_integration_owner
+handoff_id: agentic-workflow-adoption-v1-wave4-local-candidate-handoff
+status: WAVE4_LOCAL_VERIFIED_FINAL_GUARDIAN_PENDING_H01_NOT_EXECUTED_NOT_PROMOTED
+from_actor: governance_and_integration_owner
+to_actor: independent_final_guardian
 baseline:
   frames_commit_sha1: 9978acd2e9f056fa3634a71ed7c495ba0323af77
   branch: codex/proposal-defense-adoption-v1
@@ -10,6 +10,7 @@ source_decisions:
   - source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
     pinned_commit_sha1: e0d6ba4576b23c83a6b22dbad53e23a8795b26d0
     lifecycle_state: evaluated
+    external_evidence_state: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
     receipt_review_status: v2_semantic_hash_chain_privacy_readback_pass
     rights_verdict: allowed_internal_implementation
     external_distribution_authorized: false
@@ -17,20 +18,21 @@ source_decisions:
   - source_id: SRC-TECHNICAL-DEFENSE-78FD383
     pinned_commit_sha1: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
     lifecycle_state: evaluated
+    external_evidence_state: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
     receipt_review_status: v2_semantic_hash_chain_privacy_readback_pass
     rights_verdict: allowed_internal_implementation
     external_distribution_authorized: false
     destination: R8_project_local_technical_defense_and_transaction_pattern
-shared_file_writes_completed_by_owner:
-  - path: 04_estado/registries/sources/source-registry.yml
-    operation: append_two_evaluated_current_view_entries
-    source_projection: projects/agentic-workflow-adoption-v1/source-register.yml
+integration_writes_completed_by_owner:
+  - path: 03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml
+    operation: validate_two_evaluated_entries_as_project_local_overlay
+    global_authorities: byte_identical_and_sha256_bound
   - path: 01_intencion/program/ownership-manifest.yml
     operation: assign_new_paths_to_bounded_owners
   - path: 02_proceso/governance/router.yml
-    operation: separate_route_authority_from_command_authority_without_activating_wave3_signals
+    operation: add_exact_r6_commercial_proposal_signals_without_parallel_route
   - path: 05_verificacion/scripts/commands.yaml
-    operation: register_commands_only_after_handlers_and_gates_exist
+    operation: register_transaction_r6_r8_gates_after_handlers_exist
 receipt_chains:
   - source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
     receipt_contract: pinned_repository_source_transition_v2
@@ -50,6 +52,12 @@ receipt_chains:
         sha256: fc2115c212d896326b100ef58c747f5f3de96623b10f3f49ae1deac8a5dd35d5
       - path: receipts/imports/technical-defense-78fd383/20260829-SRC-TECHNICAL-DEFENSE-78FD383-evaluated.yml
         sha256: 17f6aab2ec922f3121ba53ab9c29f4d2c4e1a208cb765495e672264ca6b0c294
+scope_successor_receipt:
+  path: 03_artefactos/projects/agentic-workflow-adoption-v1/receipts/source-register-project-local-scope-v1.yml
+  sha256: bedc41530a21e72bb7b1fd013a458e3d5451a9deca3698afb00deb5448c12538
+  register_sha256: e816e18be128de6c1b9854e1131ac52a0b43c45763ef08eb52ebfe9820c0b469
+  integration_scope: PROJECT_LOCAL
+  global_registry_integration_authorized: false
 integration_invariants:
   - do_not_create_parallel_routes_or_authorities
   - do_not_copy_donor_code_prompts_templates_fonts_or_assets
@@ -60,23 +68,41 @@ integration_invariants:
   - evaluated_source_is_not_active_source
   - no_network_distribution_push_merge_publication_or_external_delivery
 completed_gates:
-  - governance_owner_validated_source_registry_schema_and_lifecycle_chain
-  - source_checker_passed_13_sources_and_0_of_4_fail_closed_corpus
-  - source_contract_negative_and_real_runner_suites_passed_43_of_43
-  - privacy_scan_passed_6620_versionable_files
-  - independent_source_reviewer_recomputed_14_bindings_and_6_previous_hash_links
+  - governance_owner_validated_project_local_overlay_and_global_authority_hashes
+  - global_source_cli_passed_exactly_11_sources_and_0_of_4_fail_closed_corpus
+  - project_local_source_cli_passed_exactly_2_donor_sources
+  - source_contract_negative_and_real_runner_suites_passed_45_of_45
+  - legacy_H01_H02_remained_byte_identical_and_verify_atoms_passed_39_atoms_50_edges
+  - privacy_scan_passed_6675_versionable_files
+  - independent_source_guardian_passed_with_zero_findings_and_source_core_112_of_112
   - pnpm_check_and_typecheck_passed_on_wave1_candidate
+  - transaction_kernel_and_causal_focal_suites_passed_80_of_80
+  - process_crash_and_recovery_seams_passed_10_of_10
+  - r6_commercial_proposal_canary_passed_47_of_47
+  - canonical_g08_source_core_r6_r8_passed_220_of_220
+  - r8_technical_defense_suites_passed_61_of_61
+  - two_fresh_process_replays_produced_identical_r6_r8_hashes
+  - chrome_desktop_and_mobile_basic_visual_accessibility_passed
+  - deterministic_swiftshader_browser_probe_passed_128_stress_renders_and_three_full_replays
+  - full_vitest_passed_236_of_236_files_and_2148_of_2148_tests
+  - pnpm_check_and_full_verify_passed_on_documented_candidate
+  - independent_wave4_qa_reported_zero_blocker_or_high
 next_gates:
-  - guardian_reviews_exact_wave1_candidate_digest
-  - wave3_integration_owner_adds_exact_r6_signals_after_domain_handlers_and_gates_exist
-  - HM_CHANGE_APPROVED_binds_exact_candidate_hash_before_capability_execution
+  - guardian_reviews_exact_wave4_candidate_digest
+  - H01_may_bind_exact_candidate_only_after_explicit_human_approval
+  - promotion_requires_exact_H01_and_same_recorder_identity_as_guardian_pass_event
 coverage_gaps:
-  - independent_source_revalidation_passed_but_wave1_guardian_verdict_is_pending
+  - final_wave4_guardian_verdict_is_pending
   - no_active_source_receipts_created
-  - no_router_or_command_activation_created_by_this_handoff
-  - no_transaction_kernel_or_domain_capability_implemented_by_this_handoff
   - donor_authorization_is_user_supplied_and_not_host_attested
+  - external_archive_tree_and_blob_observations_not_replayed_in_frames
+  - actor_separation_is_LOCAL_SIMULATION_not_cryptographic_isolation
+  - linux_and_windows_acceptance_not_executed
+  - windows_safe_filesystem_backend_is_a_capability_gap
+  - exact_candidate_H01_and_promotion_not_executed
 external_effects:
   network_reads_for_pinned_git_repositories: observed_read_only
   donor_repository_mutation: false
+  local_synthetic_pilots: true
+  human_approval_or_promotion: false
   push_merge_publication_distribution_delivery: false

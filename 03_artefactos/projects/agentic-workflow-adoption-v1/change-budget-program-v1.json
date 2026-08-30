@@ -23,7 +23,7 @@
         "05_verificacion/tests/contract/source-notebook.notebook.contract.test.ts",
         "05_verificacion/tests/fixtures/source-notebook/common.ts",
         "05_verificacion/tests/fixtures/source-notebook/content-schemas.ts",
-        "05_verificacion/tests/fixtures/source-notebook/contracts.ts",
+        "05_verificacion/tests/fixtures/source-notebook/contracts-v2.ts",
         "05_verificacion/tests/fixtures/source-notebook/coverage-audit.ts",
         "05_verificacion/tests/fixtures/source-notebook/helpers.ts",
         "05_verificacion/tests/fixtures/source-notebook/lifecycle-audit.ts",
@@ -62,6 +62,7 @@
         "02_proceso/core/contracts/source-governance-v2/receipt-schemas.ts",
         "02_proceso/core/contracts/source-governance-v2/repository-schemas.ts",
         "03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/receipts/source-register-project-local-scope-v1.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/repository.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/rights-authorization.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths-projection.yml",
@@ -70,8 +71,6 @@
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/rights-authorization.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths-projection.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths.manifest.tsv",
-        "04_estado/registries/sources/lifecycle-contract.yml",
-        "04_estado/registries/sources/source-registry.yml",
         "05_verificacion/scripts/check-sources.ts",
         "05_verificacion/scripts/lib/source-governance/deduplication.ts",
         "05_verificacion/scripts/lib/source-governance/generic-receipts.ts",
@@ -135,9 +134,10 @@
         "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
         "05_verificacion/scripts/check-md-budgets.ts",
         "05_verificacion/scripts/lib/file-budget-evaluation.ts",
+        "05_verificacion/scripts/lib/file-budget-git.ts",
         "05_verificacion/scripts/lib/file-budget-policy.ts",
         "05_verificacion/tests/unit/check-md-budgets.test.ts",
-        "05_verificacion/tests/unit/file-budget-policy.test.ts"
+        "05_verificacion/tests/unit/file-budget-git.test.ts"
       ],
       "limits": {
         "targetFiles": 20,
@@ -181,7 +181,6 @@
         "05_verificacion/scripts/lib/change-program-budget.ts",
         "05_verificacion/tests/contract/experience-contracts.test.ts",
         "05_verificacion/tests/contract/harness/router.test.ts",
-        "05_verificacion/tests/integration/documentation-ecosystem-inventory.test.ts",
         "05_verificacion/tests/unit/change-program-budget.test.ts",
         "05_verificacion/tests/unit/documentation-maintenance-routing.test.ts"
       ],
@@ -199,6 +198,7 @@
         "02_proceso/core/contracts/transaction-causal-gates-v1.ts",
         "02_proceso/core/contracts/transaction-kernel-v1.ts",
         "02_proceso/core/orchestration/causal-gate-guardian-v1.ts",
+        "02_proceso/core/orchestration/causal-gate-human-approval-v1.ts",
         "02_proceso/core/orchestration/causal-gate-promotion-v1.ts",
         "02_proceso/core/orchestration/causal-gate-recorder-v1.ts",
         "02_proceso/core/orchestration/causal-gate-verification-v1.ts",
@@ -223,7 +223,9 @@
         "02_proceso/workflows/core/material-skill-adapter-v2.ts",
         "05_verificacion/tests/fixtures/transaction-kernel-v1.fixture.ts",
         "05_verificacion/tests/negative/transaction-kernel-api-boundaries.negative.test.ts",
+        "05_verificacion/tests/negative/transaction-kernel-durable-seams.negative.test.ts",
         "05_verificacion/tests/negative/transaction-kernel-security.negative.test.ts",
+        "05_verificacion/tests/unit/core/transaction-causal-gates-v1.test.ts",
         "05_verificacion/tests/unit/core/transaction-kernel-v1.test.ts"
       ],
       "limits": {
@@ -299,12 +301,25 @@
     },
     {
       "id": "wave3-shared-integration",
-      "paths": ["05_verificacion/scripts/creation-v3-skills.json"],
+      "paths": [
+        "05_verificacion/scripts/creation-v3-skills.json",
+        "05_verificacion/tests/contract/harness/commands.test.ts"
+      ],
       "limits": {
         "targetFiles": 5,
         "targetLoc": 500,
         "hardFiles": 40,
         "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave4-visual-proof",
+      "paths": ["05_verificacion/scripts/method-explainer-diagram-browser-probe.ts"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 200,
+        "hardFiles": 1,
+        "hardLoc": 300
       }
     }
   ],
@@ -315,13 +330,6 @@
       "baselineHardLines": 450,
       "programHardLines": 650,
       "rationale": "Branch-local growth for the exact governed command registry while preserving its global word cap."
-    },
-    {
-      "path": "04_estado/registries/sources/source-registry.yml",
-      "surface": "authored-explicit-fallback",
-      "baselineHardLines": 500,
-      "programHardLines": 800,
-      "rationale": "Branch-local source lifecycle evidence for two pinned donors while preserving the global fallback and word cap."
     },
     {
       "path": "03_artefactos/skills/content-os-router/scripts/check-skill.mjs",
@@ -343,7 +351,28 @@
       "baselineHardLines": 200,
       "programHardLines": 230,
       "rationale": "Bounded fail-closed authority receipt validation in the plain Node R6 routing boundary."
+    },
+    {
+      "path": "02_proceso/core/contracts/source-governance-v2/receipt-audit.ts",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 220,
+      "rationale": "Bounded physical successor receipt audit for the isolated project-local source overlay."
+    },
+    {
+      "path": "02_proceso/core/contracts/source-governance-v2/receipt-schemas.ts",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 230,
+      "rationale": "Strict schemas for historical source chains and the project-local successor receipt."
+    },
+    {
+      "path": "05_verificacion/tests/integration/source-governance-runner.integration.test.ts",
+      "surface": "test-code",
+      "baselineHardLines": 350,
+      "programHardLines": 380,
+      "rationale": "Adversarial global and project-local runner coverage including path and TOCTOU negatives."
     }
   ],
-  "canonicalSha256": "190fd4d53144fdbadbe576840863ec07ab5f22294eefd812d5bbf658e51a7e74"
+  "canonicalSha256": "8aa816feb968d0f2a8bb348a3be26cff4587f80abac90470d4d2da778c2f7b93"
 }

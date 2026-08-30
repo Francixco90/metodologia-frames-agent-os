@@ -40,11 +40,6 @@ describe('ecosystem inventory projections', () => {
     const identities = first.items.map(identity);
     expect(new Set(identities).size).toBe(identities.length);
     expect(first.sourceSha256).toMatch(/^[a-f0-9]{64}$/u);
-    for (const sourceId of ['SRC-PROPOSAL-MEASURE-E0D6BA4', 'SRC-TECHNICAL-DEFENSE-78FD383']) {
-      expect(first.items.find(({kind, id}) => kind === 'SOURCE' && id === sourceId)).toMatchObject({
-        state: 'EVALUATED',
-      });
-    }
   });
 
   it('combines one sanitized local record without exposing private locators', () => {

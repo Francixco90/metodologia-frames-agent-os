@@ -1,29 +1,29 @@
-# Blueprint as-built inicial v1
+# Blueprint as-built v1
 
 Estado de evidencia:
-`WAVE1_OWNER_SOURCE_VERIFIED + TARGET_SPECIFIED · GUARDIAN_REVALIDATION_PENDING · RUNTIME_V2_NOT_IMPLEMENTED`.
+`WAVE4_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
 
-“As-built inicial” significa que este documento distingue lo existente al baseline de lo que la
-adopción deberá construir. No acredita que kernel, adapters, capacidades o pilotos ya existan.
-[METODOLOGIA]
+Este documento distingue el baseline del delta implementado y verificado localmente. Acredita
+runtime, capacidades y pilotos por tests/readback; no acredita autoridad host, H01 real,
+promoción, publicación, distribución o entrega. [METODOLOGIA]
 
 ## 1. Línea base y delta
 
 Baseline: Frames `origin/main@9978acd2e9f056fa3634a71ed7c495ba0323af77`.
 
-| Elemento             | Baseline observado                           | Delta objetivo                                         | Estado              |
-| -------------------- | -------------------------------------------- | ------------------------------------------------------ | ------------------- |
-| Gateway y route lock | Autoridades Frames existentes                | Añadir señales inequívocas sin ruta paralela           | PENDING             |
-| WorkOrder            | Contratos V1 existentes                      | Hash-bind graph, authority, inputs, outputs y receipts | PENDING             |
-| Material adapters    | V1 operativo                                 | V2 puro detrás del kernel; V1 compatible               | PENDING             |
-| Kernel transaccional | No existe con el contrato objetivo           | `TransactionKernelV1` create-only                      | PENDING             |
-| Proposal             | Perfiles/renderers comerciales reutilizables | `commercial-proposal` dentro de R6                     | PENDING             |
-| Technical Defense    | Loader local valida/simula                   | Bundle R8 + executor real por kernel                   | PENDING             |
-| Source evidence      | Lifecycle source-promotion-v2                | Dos cadenas hasta `evaluated`                          | VERIFIED_NOT_ACTIVE |
-| Promotion            | Separación documental RT-11/recorder/H01     | Receipts físicos y recorder V2                         | RUNTIME_PENDING     |
+| Elemento             | Baseline observado                                | Delta objetivo                                                    | Estado              |
+| -------------------- | ------------------------------------------------- | ----------------------------------------------------------------- | ------------------- |
+| Gateway y route lock | Autoridades Frames existentes                     | Señales inequívocas sin ruta paralela                             | IMPLEMENTED         |
+| WorkOrder            | Contratos V1 existentes                           | Hash-bind graph, authority, inputs, outputs y receipts            | IMPLEMENTED         |
+| Material adapters    | V1 operativo                                      | V2 puro detrás del kernel; V1 compatible                          | IMPLEMENTED         |
+| Kernel transaccional | No existía con el contrato objetivo               | `TransactionKernelV1` create-only                                 | LOCAL_VERIFIED      |
+| Proposal             | Perfiles/renderers comerciales reutilizables      | `commercial-proposal` dentro de R6                                | CANARY_PASS         |
+| Technical Defense    | Loader local validaba/simulaba                    | Bundle R8 + executor real por kernel                              | PILOT_PASS          |
+| Source evidence      | Overlay `PROJECT_LOCAL` + lifecycle global fijado | Proyecciones/receipts verificados; archive/tree/blobs no replayed | RECORDED_NOT_ACTIVE |
+| Promotion            | Separación documental RT-11/recorder/H01          | Contratos físicos y recorder V2                                   | TESTED_NOT_EXECUTED |
 
-Los receipts y proyecciones creados por este expediente son evidencia de fuente; no son receipts de
-ejecución del kernel. [CONFIG]
+Los receipts de fuente siguen separados de los receipts transaccionales. Los últimos se probaron
+con fixtures sintéticos; no constituyen H01 ni promoción del candidato de adopción. [CONFIG]
 
 ## 2. Arquitectura objetivo
 
@@ -66,8 +66,8 @@ final `HM_PROMOTION_APPROVED`, one-use y ligada al hash del candidato. Commands 
 
 La secuencia normativa resuelve la ambigüedad del blueprint inicial a favor de M06: H01 sucede
 antes de `PROMOTED` y antes de que cualquier descendiente consuma el PromotionReceipt. H01 no fue
-ejecutado; todo piloto futuro seguirá declarando `LOCAL_SIMULATION` mientras el host no acredite
-identidad. [CONFIG] [SUPUESTO]
+ejecutado; los pilotos declaran `LOCAL_SIMULATION` mientras el host no acredite identidad.
+[CONFIG] [SUPUESTO]
 
 ## 3. Fronteras de autoridad
 
@@ -83,7 +83,7 @@ identidad. [CONFIG] [SUPUESTO]
 | Recorder               | Persistencia causal hash-bound                  | Decisión o aprobación                          |
 | H01                    | Autoriza candidate exacto y one-use             | Persistencia, publicación o entrega implícita  |
 
-## 4. Contratos públicos objetivo
+## 4. Contratos públicos implementados
 
 ```ts
 interface ActorAuthorityPortV1 {
@@ -91,21 +91,30 @@ interface ActorAuthorityPortV1 {
 }
 
 interface TransactionKernelV1 {
-  execute(input): TransactionEffectReceiptV1;
-  inspect(input): TransactionInspectionV1;
-  inspectRecovery(input): TransactionRecoveryAssessmentV1;
-  recover(input): TransactionRecoveryReceiptV1;
+  execute(input: unknown): TransactionEffectReceiptV1;
+  inspect(input: unknown): TransactionInspectionV1;
+  inspectRecovery(input: unknown): TransactionRecoveryAssessmentV1;
+  recover(input: unknown): TransactionRecoveryReceiptV1;
+}
+
+interface ReadOnlyGuardianVerdictEmitterPortV1 {
+  emit(input: unknown): TransactionGuardianVerdictV1;
 }
 
 interface CausalGateRecorderV1 {
-  recordVerification(input): TransactionVerificationReceiptV1;
-  recordGuardianVerdict(input): TransactionGuardianReceiptV1;
-  promote(input): TransactionPromotionReceiptV1;
+  recordVerification(input: unknown): TransactionVerificationReceiptV1;
+  recordGuardianVerdict(input: unknown): TransactionGuardianReceiptV1;
+  promote(input: unknown): TransactionPromotionReceiptV1;
+}
+
+interface HumanApprovalRecorderV1 {
+  recordHumanApproval(input: unknown): TransactionHumanApprovalReceiptV1;
 }
 ```
 
-Firmas ilustrativas: los tipos y módulos exactos deben cerrarse en el contrato de Wave 2. No deben
-copiarse interfaces Python ni introducir un segundo barrel de autoridad. [CÓDIGO]
+Las firmas corresponden a los contratos exportados. Guardian emite bytes canónicos read-only; un
+recorder distinto persiste el verdict, H01 exige el candidate exacto y promoción reutiliza la
+identidad del recorder de `GUARDIAN_PASS`. [CÓDIGO]
 
 ## 5. Estado y causalidad
 
@@ -200,16 +209,41 @@ La etapa de red-team no puede autoaprobarse. Omitir rehearsal o usar evidencia m
 | 3 integration | Integration Owner único              | Router/exports/registries/commands           | Ownership + parity R0–R10                  |
 | 4             | Producer/Verifier/Guardian separados | Pilotos, replay, crash injection             | Determinism + causal receipts              |
 
-## 10. Evidencia pendiente para llamarlo as-built completo
+Waves 1–4 están implementadas y verificadas localmente; la fila de promoción describe un contrato
+probado con fixtures, no un gate real ejecutado. [HERRAMIENTA]
 
-- Implementación y exports de los tres interfaces públicos.
-- Tests de DAG, filesystem, writer, ledger, recovery y Guardian.
-- Canary R6 y piloto R8 con fixtures sintéticos.
-- Dos procesos frescos con hashes idénticos.
-- Crash injection en cada durable seam.
-- Visual QA o `BLOCKED/NOT_EXECUTED` si Chrome no está disponible.
-- Guardian revalidation y H01 ligado al candidate hash exacto.
+## 10. ADRs de transacción
 
-Hasta entonces, `DESIGN_BASELINE != VERIFIED_RUNTIME != PROMOTED`. [INFERENCIA]
+| ADR    | Decisión                                                   | Evidencia                                     | Consecuencia                                            | Estado         |
+| ------ | ---------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------- | -------------- |
+| TX-001 | Separar dominio R6/R8 de un kernel único                   | Router, profiles, bundle y core disjuntos     | No runtime o autoridad paralela                         | ACCEPTED       |
+| TX-002 | Ligar contratos, receipts y bytes por hash canónico/físico | Schemas, canonical JSON y readback            | Drift o bytes no canónicos bloquean                     | IMPLEMENTED    |
+| TX-003 | Usar raíz estable y publicación `CREATE_FILE` create-only  | PathGuard, snapshots, fsync, link y readback  | Overwrite/delete/move/red quedan denegados              | IMPLEMENTED    |
+| TX-004 | Ledger y recovery son append-only                          | Hash chain y crash tests por seam             | Incertidumbre nunca se convierte en éxito               | IMPLEMENTED    |
+| TX-005 | Guardian es read-only; recorder es actor distinto          | Verdict serializado y autoridad revalidada    | RT-11 no remedia, persiste ni promueve                  | IMPLEMENTED    |
+| TX-006 | H01 liga candidate exacto; promoción usa el mismo recorder | Tests de candidate drift y recorder collision | El contrato existe; el H01 real permanece pendiente     | TESTED_NO_GATE |
+| TX-007 | Commercial Proposal es content class dentro de R6          | Señales, perfiles, template y canary          | Techo automático `RENDERED_DRAFT`; sin workflow alterno | IMPLEMENTED    |
+| TX-008 | Technical Defense queda `PROJECT_LOCAL`, con red denegada  | Manifest, sandbox probe y piloto R8           | `ACTIVE_LOCAL` no se convierte en ruta global           | IMPLEMENTED    |
+
+Estas decisiones son propias de Frames; los SHAs donantes permanecen como referencia y no como
+dependencias ejecutables. [DOC] [CONFIG]
+
+## 11. Evidencia de cierre y gaps
+
+- Implementación/exports, DAG, filesystem, writer, ledger, recovery y contratos/suites causales de
+  Guardian: `PASS_LOCAL`.
+- Procedencia: gate global de 11 y gate `PROJECT_LOCAL` de 2 separados; register/successor y seis
+  receipts históricos con readback físico. Archive, árbol completo y blobs donantes:
+  `EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED`.
+- Canary R6 y piloto R8 sintéticos: `PASS_LOCAL`; techo R6 `RENDERED_DRAFT`, R8 `ACTIVE_LOCAL`.
+- Dos procesos frescos: hashes R6/R8 idénticos; crash real en seams y recovery exacto: `PASS`.
+- Chrome desktop/mobile: sin overflow ni errores; landmarks/nombre accesible básico: `PASS`.
+- Browser proof: `swiftshader` fijado tras aislar deriva `angle/swangle`; 128 renders de estrés y
+  tres replays completos sin divergencia, manteniendo hashes PNG byte-identical: `PASS_LOCAL`.
+- Guardian final sobre el digest exacto: pendiente al redactar este estado.
+- H01 real, promoción, publicación, distribución y entrega: `NOT_EXECUTED`.
+- Linux/Windows: `NOT_EXECUTED`; Windows mantiene capability gap hasta backend seguro.
+
+`LOCAL_VERIFIED != GUARDIAN_FINAL != H01_APPROVED != PROMOTED`. [INFERENCIA]
 
 `[NEUROCIENCIA]` No hay afirmaciones neurocientíficas en esta arquitectura.

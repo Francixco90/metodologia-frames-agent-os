@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 70 gates including NotebookLM OS, Video OS and Career design boundaries', () => {
-    expect(manifest.gates).toHaveLength(70);
+  it('declares 71 gates including transaction, Guardian and existing domain boundaries', () => {
+    expect(manifest.gates).toHaveLength(71);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
@@ -31,6 +31,8 @@ describe('commands.yaml contract', () => {
         'NLM_PLAN_APPROVED',
         'NLM_BRAND_PROFILE_APPROVED',
         'NLM_SHARE_AUTHORIZED',
+        'G08_TRANSACTION_KERNEL',
+        'HM_GUARDIAN_VERDICT_RECORDED',
       ]),
     );
   });
@@ -42,6 +44,18 @@ describe('commands.yaml contract', () => {
       fail_closed: true,
       owner: 'content',
     });
+  });
+
+  it('binds the PROJECT_LOCAL source overlay to the fail-closed transaction gate', () => {
+    const gate = manifest.gates.find(({gate: gateId}) => gateId === 'G08_TRANSACTION_KERNEL');
+    expect(gate).toMatchObject({manual: false, fail_closed: true, owner: 'core'});
+    expect(gate?.command).toContain('05_verificacion/scripts/check-sources.ts --project-local');
+    for (const capability of [
+      'commercial-proposal-canary.test.ts',
+      'technical-defense-local-extension-adversarial.test.ts',
+    ]) {
+      expect(gate?.command).toContain(capability);
+    }
   });
 
   it('binds the Trainer runtime gate to its material adversarial suite', () => {

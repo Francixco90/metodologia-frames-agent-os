@@ -1,27 +1,32 @@
 # Adopción gobernada de workflows agénticos v1
 
-Estado: `WAVE1_OWNER_SOURCE_VERIFIED · GUARDIAN_REVALIDATION_PENDING · SOURCES_EVALUATED_NOT_ACTIVE · RUNTIME_V2_NOT_IMPLEMENTED`.
+Estado: `WAVE4_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
 
-Este expediente convierte dos repositorios fijados por SHA en evidencia de diseño para Frames,
-sin copiar código, prompts, plantillas ni assets del donante. La autoridad concedida cubre
-reimplementación interna; no cubre distribución externa, publicación, despliegue, entrega ni
-promoción a fuente `active`. [METODOLOGIA] [SUPUESTO]
+Este expediente convierte dos repositorios fijados por SHA en evidencia y una reimplementación
+TypeScript gobernada dentro de Frames, sin copiar código, prompts, plantillas ni assets del
+donante. La autoridad concedida cubre cambio y pilotos locales; no cubre distribución externa,
+publicación, despliegue, entrega, H01 ni promoción a fuente `active`. [METODOLOGIA] [SUPUESTO]
 
 Fuentes evaluadas:
 
-- `Propuesta-Medida@e0d6ba4576b23c83a6b22dbad53e23a8795b26d0`, destino conceptual R6.
+- `Propuesta-Medida@e0d6ba4576b23c83a6b22dbad53e23a8795b26d0`, reimplementado como
+  `content_class: commercial-proposal` dentro de R6.
 - `technical-defense-preparation-workflow@78fd3834acd38cf4b6ace7f7f1ed9c06893300f3`,
-  destino conceptual R8 y kernel transaccional.
+  capitalizado como bundle `PROJECT_LOCAL` R8 y patrón del kernel transaccional.
 
 ## Artefactos
 
 - `capitalization-dossier.md`: auditoría, matriz COPY/ADAPT/REFERENCE/REJECT, defectos
   reproducidos y plan de capitalización.
 - `socratic-debate.md`: decisión arquitectónica sometida a cuatro voces y cinco tensiones.
-- `as-built-blueprint-v1.md`: baseline de arquitectura objetivo, todavía no evidencia de runtime.
-- `source-register.yml`: proyección de las dos entradas evaluadas para integración por el owner del
-  registry compartido.
-- `handoff.yml`: contrato de entrega al Governance/Integration Owner.
+- `as-built-blueprint-v1.md`: arquitectura implementada, ADRs TX-001…TX-008 y límites residuales.
+- `source-register.yml`: overlay `PROJECT_LOCAL` de las dos entradas evaluadas; fija por hash las
+  autoridades globales sin mutarlas ni invalidar el freeze H-01/H-02 existente, y declara
+  `EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED` para archive, árbol y blobs no versionados.
+- `receipts/source-register-project-local-scope-v1.yml`: successor receipt que niega integración
+  global, liga el register físico y preserva sin reescribir los seis receipts históricos.
+- `handoff.yml`: contrato de cierre local y handoff al Guardian final; H01 permanece como gate
+  humano posterior, separado y no autorizado en este expediente.
 - `validation-evidence.md`: comandos, resultados, hashes y límites de la evaluación.
 - `implementation-authority-v1.md`: autoridad local explícita para cambio y piloto, sin autoridad
   de promoción, entrega o publicación.
@@ -40,8 +45,9 @@ Fuentes evaluadas:
 
 ## Límite de estado
 
-Los seis receipts físicos forman dos cadenas v2 hash-bound hasta `evaluated`; el readback del
-owner, la integración al registry y la reauditoría independiente de semántica y privacidad
-pasaron. Un cambio en `router.yml`, un
-manifest, un WorkOrder o un comando no se deriva de este expediente y debe hacerlo su owner en un
-gate separado. `EVALUATED != ACTIVE != PROMOTED != HUMAN_APPROVED != PUBLISHED`. [CONFIG]
+Los seis receipts históricos de fuente forman dos cadenas v2 hash-bound hasta `evaluated`; ese
+estado no implica replay local de los bytes donantes. El runtime V2,
+R6 y R8 pasaron suites focales, replays en procesos frescos, crash/recovery y QA visual local; sus
+autoridades siguen separadas entre router, manifests, WorkOrders y commands. La validación del
+contrato H01/promoción usa fixtures sintéticos, pero el candidato real no recibió H01 ni fue
+promovido. `EVALUATED != ACTIVE != PROMOTED != HUMAN_APPROVED != PUBLISHED`. [CONFIG]

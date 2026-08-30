@@ -19,7 +19,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - RENDERER: 5
 - ROUTE: 12
 - SKILL: 185
-- SOURCE: 13
+- SOURCE: 11
 - TEMPLATE: 138
 - WORKFLOW: 43
 
@@ -831,11 +831,9 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SOURCE | SRC-METH-JVC-SKOOL-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-METH-JVC-YT-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-PROMPT-MAESTRO-V6 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-PROPOSAL-MEASURE-E0D6BA4 | EVALUATED | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-REMOTION-DOCS-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-REMOTION-SKILLS-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-SYNTH-VS001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-TECHNICAL-DEFENSE-78FD383 | EVALUATED | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | TEMPLATE | .agents/skills/harness-creator/templates/agents.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/agents.md` |
 | TEMPLATE | .agents/skills/harness-creator/templates/assets/brand.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/assets/brand.md` |
 | TEMPLATE | .agents/skills/harness-creator/templates/CLAUDE.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/CLAUDE.md` |
@@ -1018,4 +1016,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `60fe29a6c0fa4714f3aa815497103ffcb0296b5d510de4992564cc8abbbbe29f`.
+Hash de fuentes: `4ed5b12aee17af4ea6228fa38f4df175b0e1ff6b9c768781f6bc248bcb788f5e`.

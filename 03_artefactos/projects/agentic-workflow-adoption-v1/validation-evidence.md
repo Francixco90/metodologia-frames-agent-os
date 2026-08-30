@@ -1,19 +1,20 @@
 # Evidencia de validación del expediente v1
 
-Estado: `WAVE1_OWNER_SOURCE_VERIFIED · GUARDIAN_REVALIDATION_PENDING`.
+Estado: `WAVE4_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
 
-Este informe registra observaciones reproducibles del SHA fijado de cada donante y de las
-proyecciones creadas en Frames. No acredita implementación del kernel, activación de ruta, H01,
-publicación, distribución o entrega. [METODOLOGIA] [CONFIG]
+Este informe registra observaciones reproducibles de los SHAs donantes, la implementación Frames y
+sus pilotos locales. Acredita ejecución local bajo `LOCAL_SIMULATION`; no acredita identidad de
+host, H01 del candidato, promoción, publicación, distribución o entrega. [METODOLOGIA] [CONFIG]
 
-## 1. Bindings de repositorio
+## 1. Observaciones externas de repositorio registradas
 
 | Fuente            | Commit SHA-1                               | Tree SHA-1                                 | Git archive SHA-256                                                |     Bytes | Files tracked |
 | ----------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------ | --------: | ------------: |
 | Propuesta-Medida  | `e0d6ba4576b23c83a6b22dbad53e23a8795b26d0` | `457920d64756549eb4862b2653e2bf293d332ab9` | `adb8a27e74dd44312834705f4f21f5af594fccfd4571e550f2057cbb65ee1bb3` | 1 576 960 |            76 |
 | Technical Defense | `78fd3834acd38cf4b6ace7f7f1ed9c06893300f3` | `467691b625de2590171290d2dff779a791749f8c` | `dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61` |   174 080 |            44 |
 
-Comandos conceptuales reproducibles, ejecutados contra checkouts limpios y detached:
+Estos valores fueron registrados por el Source Curator contra checkouts limpios y detached con
+los comandos siguientes:
 
 ```sh
 git rev-parse HEAD 'HEAD^{tree}'
@@ -22,24 +23,26 @@ git ls-tree -rz --full-tree HEAD | shasum -a 256
 git ls-tree -r --name-only HEAD | wc -l
 ```
 
-Tree-listing SHA-256: Proposal
+Tree-listing SHA-256 registrado: Proposal
 `ca7edbfec3253e676a13fcee8ff7784308a3a342501161c32719c000543c4ef9`; Defense
-`a7571dbec7e2b09b30c212d160f243b1984222e6678ffa1642030fbd99c34b8a`. [HERRAMIENTA]
+`a7571dbec7e2b09b30c212d160f243b1984222e6678ffa1642030fbd99c34b8a`. Frames no versiona los
+archives, árboles completos ni blobs necesarios para reejecutar estas observaciones; su estado es
+`EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED`. [HERRAMIENTA] [INFERENCIA]
 
-## 2. Replays de selected-path manifests
+## 2. Manifests de selected paths
 
-Cada row se regeneró desde el Git object exacto como:
-`path<TAB>blob_sha1<TAB>file_sha256<TAB>bytes<LF>`. Se comprobó orden bytewise, igualdad byte a
-byte y dos hashes de replay.
+Cada row registra la forma `path<TAB>blob_sha1<TAB>file_sha256<TAB>bytes<LF>`. El expediente
+versionado comprueba orden bytewise, formato, hash y bytes del manifest; no recomputa sus rows
+desde blobs donantes ausentes.
 
-| Fuente   | Paths | Manifest SHA-256                                                   | Replay 1 | Replay 2 | Resultado |
-| -------- | ----: | ------------------------------------------------------------------ | -------- | -------- | --------- |
-| Proposal |    22 | `6d63babbead317c234a1b97e92825da4fbc0d86f8aa92e9156d24513ed1c25cc` | igual    | igual    | PASS      |
-| Defense  |    27 | `13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34` | igual    | igual    | PASS      |
+| Fuente   | Paths | Manifest SHA-256                                                   | Readback versionado | Replay de blobs |
+| -------- | ----: | ------------------------------------------------------------------ | ------------------- | --------------- |
+| Proposal |    22 | `6d63babbead317c234a1b97e92825da4fbc0d86f8aa92e9156d24513ed1c25cc` | PASS                | NOT_REPLAYED    |
+| Defense  |    27 | `13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34` | PASS                | NOT_REPLAYED    |
 
-El primer intento detectó y corrigió antes del freeze un orden no canónico entre `builder.py` y
-`business_case.py`. El PASS anterior corresponde a los bytes corregidos y reejecutados; no se
-oculta el rework. [HERRAMIENTA] [DOC]
+El primer intento de curación externa detectó y corrigió antes del freeze un orden no canónico
+entre `builder.py` y `business_case.py`. El PASS anterior acredita los bytes versionados del
+manifest corregido, no un replay actual del repositorio donante. [HERRAMIENTA] [DOC]
 
 ## 3. Proyecciones versionables
 
@@ -48,10 +51,11 @@ oculta el rework. [HERRAMIENTA] [DOC]
 | Proposal | `e3bf872833b8845b98d0889c3606c2ab814a7701881041590964f92d0b365df1` | `f73aa35c9e74bf0a6189e7a1e2b55a5777e0d6a961e8e1068b5752d16c6f6853` | `3c6ab32d388c51ef4ad8544aa63101f64536f09cb273b6eadc35175bfb204665` |
 | Defense  | `75c3b76c6083ef86e67aeb588b2b812581c90238c530ea88c2ccc2259cbae23d` | `f34f7bb4ffd0a12a9894804972a039b5af7cde5712c211cadaec2ed7350ae18b` | `e69d9769d950e4491efedac41a028ce56d2330584e6eb46e26f41164c570b67c` |
 
-Readback verificó hash y bytes de cada locator del descriptor. Ningún archivo del expediente tiene
-el mismo SHA-256 completo que uno de los 120 blobs tracked únicos de los donantes: intersección
-`0`. Esto prueba ausencia de copia byte-idéntica en el conjunto medido, no equivalencia a un DLP
-semántico. [HERRAMIENTA] [INFERENCIA]
+Readback verificó hash y bytes de cada locator versionado. La comparación externa registrada
+reportó intersección SHA-256 `0` con 120 blobs tracked únicos; como los blobs donantes no están
+versionados, Frames no reproduce esa comparación. Incluso si se reejecutara, solo probaría ausencia
+de copia byte-idéntica en el conjunto medido, no equivalencia a un DLP semántico. [HERRAMIENTA]
+[INFERENCIA]
 
 ## 4. Receipts v2 físicos
 
@@ -69,7 +73,8 @@ Readback local:
 - IDs ligados a source/orden, `package_id` estable y timestamps estrictamente monotónicos;
 - `actor_id != verifier_id` en los seis eventos;
 - repository, evidence projection, rights y restricciones idénticos dentro de cada cadena;
-- autoridad y deduplicación pendientes antes de evaluación, e idénticas al registry en `evaluated`;
+- autoridad y deduplicación pendientes antes de evaluación, e idénticas al overlay project-local
+  en `evaluated`;
 - todo gap retirado tiene una resolución explícita; la limitación pattern-based sigue documentada
   y no se presenta como DLP formal;
 - review final acredita integración y cadena física, pero conserva Guardian independiente pendiente;
@@ -78,11 +83,18 @@ Readback local:
   `allowed_internal_implementation`, external distribution false;
 - exactamente seis restricciones y cero transición `active`.
 
-La integración/readback del Governance owner pasó. `pnpm check:sources` emitió PASS con 13 fuentes
-y corpus canónico `0/4` fail-closed; siete suites contract, negative e integración del runner
-productivo pasaron 43/43. La reauditoría independiente recomputó 14/14 bindings físicos y 6/6
-enlaces `previous_receipt_sha256`, sin HIGH ni MEDIUM residuales en este bloque. La revalidación
-Guardian de la adopción completa sigue pendiente. [CONFIG] [HERRAMIENTA]
+La integración/readback del Governance owner pasó mediante dos gates separados: `pnpm
+check:sources` emitió PASS con exactamente 11 fuentes globales y corpus canónico `0/4`
+fail-closed; la CLI `check-sources.ts --project-local` emitió PASS con exactamente 2 donantes. Las
+siete suites source contract/negative/integración pasaron 45/45, incluido dedupe sobre la unión,
+hardlink, symlink y dos seams TOCTOU. Las autoridades globales conservan los hashes del baseline
+(`lifecycle 2fa4f6bd…`, `registry fbba5539…`) y H-01/H-02 permanecen byte-identical;
+`verify:atoms` pasó con 39 átomos y 50 edges. El successor receipt liga el register físico
+`e816e18b…`, deniega integración global y tiene SHA-256 `bedc4153…`; los seis receipts históricos
+permanecen byte-identical. La reauditoría Guardian independiente de este bloque emitió PASS con
+0 BLOCKER/HIGH/MEDIUM/LOW y ejecutó el subconjunto source/core de G08 112/112; después, el gate
+canónico se amplió a source/core/R6/R8 y pasó 220/220. La revisión Guardian de la adopción completa
+sigue pendiente al redactar esta versión. [CONFIG] [HERRAMIENTA]
 
 ## 5. Tests del donante Proposal
 
@@ -144,25 +156,39 @@ directorio temporal y no muta el donante. [CÓDIGO] [HERRAMIENTA]
 
 El scan es pattern-based y contextual; no es DLP/entropy analysis formal. [HERRAMIENTA]
 
-## 8. Gates Wave 1, no ejecutado y efectos externos
+## 8. Gates Wave 1–4 y efectos externos
 
-- `pnpm check`: PASS, incluidos repo, privacidad, sources, documentación, atemporalidad, budgets,
-  ownership, DAG y tasks.
-- `pnpm typecheck`: PASS observado por lead y reviewer independiente.
-- Source contract + negative + runner productivo: 7 files, 43/43 tests, PASS.
-- `check:privacy`: PASS sobre 6.620 archivos versionables; el caso adversarial construye el locator
-  privado solo en runtime y el scanner no exime la suite de integración.
-- Cápsula de cambio: 122 archivos authored, 10.759 LOC, exact path set y hash canónico PASS;
-  `LOCAL_SIMULATION`, baseline y rama ligados.
-- Kernel, adapters V2, R6, R8, pilotos, crash injection, browser/Chrome y H01: `NOT_EXECUTED`.
-- Network: solo lectura de referencias Git fijadas; no hubo provider execution.
-- Mutaciones externas: 0; no push, merge, publicación, distribución, entrega o activación.
+- Fuentes: source contract/negative/runner 45/45; gates separados 11 global/2 project-local;
+  globals y H-01/H-02 inmutables; receipts/proyecciones versionados PASS; archive/tree/blobs
+  `EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED`.
+- Kernel: suites focales de contratos, causal gates, filesystem, API boundaries y recovery 80/80,
+  PASS; revisión QA independiente sin blocker/high residual. [CÓDIGO] [HERRAMIENTA]
+- Crash/recovery: siete puntos físicos de efecto —incluidos tres `LEDGER_FSYNC`— y tres seams de
+  recovery en procesos hijo; binding, ledger, receipts y outputs permanecen byte-identical.
+- R6: canary 47/47; MD `3a07033e…`, HTML `743dc6fa…`, JSON `c801e1f0…`, CSV `8da0bf33…`;
+  candidate `b9b73362…`, estado máximo `RENDERED_DRAFT`.
+- R8: 61/61; nueve outputs, candidate `1c84d430…`, runner attestation `d7f4c4d9…`, estado máximo
+  `ACTIVE_LOCAL`, red `DENIED`.
+- G08 canónico: overlay `PROJECT_LOCAL`, core, R6 y R8, 14 archivos/220 tests PASS tras reatestar
+  el runner; el drift previo bloqueó antes de producir efectos.
+- Replay: dos procesos frescos independientes produjeron exactamente los mismos hashes R6/R8.
+- Chrome local: desktop 1440 y mobile 390, `lang=es`, un H1, cuatro landmarks, cero links sin
+  nombre, cero imágenes sin `alt`, cero page/console/request errors y cero overflow horizontal.
+- Browser proof determinista: `angle` produjo 8/24 pares divergentes bajo carga y `swangle` una
+  divergencia en 96 renders;
+  el DOM permaneció idéntico y la deriva se aisló a un píxel de antialiasing. El backend fijado
+  `swiftshader` produjo 0/128 renders divergentes bajo estrés y tres replays secuenciales completos
+  del probe pasaron 12/12 conservando comparación PNG byte a byte. [CÓDIGO] [HERRAMIENTA]
+- Vitest integral posterior al fix visual: 236/236 archivos y 2148/2148 tests PASS.
+- `pnpm check` y `pnpm verify`: PASS sobre el candidato documentado previo al freeze; la ejecución
+  integral cerró con 236/236 archivos, 2148/2148 tests y formato completo. [HERRAMIENTA]
+- Linux/Windows: `NOT_EXECUTED`; Windows conserva capability gap explícito para filesystem seguro.
+- Network: solo lectura previa de referencias Git fijadas; no hubo provider execution en pilotos.
+- Mutaciones externas: 0; no push, merge, publicación, distribución, entrega, H01 o promoción.
 
-El primer freeze Guardian quedó en `REWORK`: detectó límites globales relajados, una mutación de
-router declarada pero inexistente, paridad R10 incompleta y metadatos desactualizados. La
-remediación restaura los hard caps globales y traslada únicamente dos excesos de líneas a la
-cápsula branch/base/hash-bound; las palabras conservan sus límites originales. El PASS Guardian
-independiente sobre el nuevo digest sigue pendiente y este documento no lo anticipa. [CONFIG]
+El primer freeze Guardian de Wave1 quedó en `REWORK` y fue remediado antes de Waves 2–4. El
+Guardian final debe revisar el digest exacto posterior a documentación y gates; este documento no
+anticipa su veredicto. [CONFIG] [DOC]
 
 `[SUPUESTO] user_authorized_internal_implementation` sigue siendo el único fundamento de alcance
 adicional a la licencia interna observada en Defense. Proposal no presentó LICENSE tracked en el

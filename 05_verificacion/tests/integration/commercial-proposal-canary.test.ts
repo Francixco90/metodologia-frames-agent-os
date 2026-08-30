@@ -75,7 +75,13 @@ describe('R6 commercial-proposal governed canary', () => {
       createCommercialProposalAuthorizationV1(projection.spec, projection.workOrder),
     );
     expect(document.frontmatter).toMatchObject({state: 'RENDERED_DRAFT', next_gate: 'G14'});
-    expect(verifyDeliverableParity(text('md'), text('html')).status).toBe('PASS');
+    expect(
+      verifyDeliverableParity(
+        text('md'),
+        text('html').replace('.section-body,.note{overflow-wrap:anywhere}', ''),
+      ).status,
+    ).toBe('PASS');
+    expect(text('html')).toContain('.section-body,.note{overflow-wrap:anywhere}');
     expect(text('json')).toBe(`${stableStringify(projection.spec)}\n`);
     expect(text('csv')).toContain('"Valor, ""verificable""\r\nsegunda línea."');
     expect(text('csv')).toBe(

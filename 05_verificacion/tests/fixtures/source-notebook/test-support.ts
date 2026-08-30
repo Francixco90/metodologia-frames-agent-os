@@ -4,6 +4,8 @@ import path from 'node:path';
 import {parse} from 'yaml';
 
 import {PinnedRepositorySourceEntryV2Schema} from '../../../../core/contracts/source-governance-v2.ts';
+import {ProjectLocalSourceRegisterScopeReceiptV1Schema} from '../../../../core/contracts/source-governance-v2/receipt-schemas.ts';
+import {ProjectLocalSourceRegisterSchema} from '../../../scripts/lib/source-governance/registry-schema.ts';
 import {ImportReceiptSchema} from './receipt-schemas.ts';
 import {SourceLifecycleContractSchema} from './lifecycle-contract.ts';
 import {SourceRegistrySchema} from './registry-schema.ts';
@@ -21,12 +23,15 @@ export const EXPECTED_SOURCE_IDS = [
   'SRC-METH-JVC-SKOOL-001',
   'SRC-METH-JVC-YT-001',
   'SRC-PROMPT-MAESTRO-V6',
-  'SRC-PROPOSAL-MEASURE-E0D6BA4',
   'SRC-REMOTION-DOCS-001',
   'SRC-REMOTION-SKILLS-001',
   'SRC-SYNTH-VS001',
-  'SRC-TECHNICAL-DEFENSE-78FD383',
 ] as const;
+
+export const PROJECT_LOCAL_SOURCE_REGISTER =
+  '03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml';
+export const PROJECT_LOCAL_SCOPE_RECEIPT =
+  '03_artefactos/projects/agentic-workflow-adoption-v1/receipts/source-register-project-local-scope-v1.yml';
 
 export const EXPECTED_REFERENCE_STATES = new Map([
   ['SRC-LEGACY-STITCH-REMOTION-001', 'quarantined'],
@@ -116,11 +121,14 @@ export const loadSourceSystem = async () => {
   return {lifecycle, registry, receipts};
 };
 
+export const loadProjectLocalSourceRegister = async () =>
+  readYamlFile(PROJECT_LOCAL_SOURCE_REGISTER, ProjectLocalSourceRegisterSchema);
+
+export const loadProjectLocalScopeReceipt = async () =>
+  readYamlFile(PROJECT_LOCAL_SCOPE_RECEIPT, ProjectLocalSourceRegisterScopeReceiptV1Schema);
+
 export const loadPinnedAuditFixture = async (sourceId = 'SRC-PROPOSAL-MEASURE-E0D6BA4') => {
-  const registry = await readYamlFile(
-    'registries/sources/source-registry.yml',
-    SourceRegistrySchema,
-  );
+  const registry = await loadProjectLocalSourceRegister();
   const entry = PinnedRepositorySourceEntryV2Schema.parse(
     registry.entries.find(({source_id}) => source_id === sourceId),
   );

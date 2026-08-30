@@ -90,6 +90,18 @@ describe('file-budget Git state', () => {
     });
   });
 
+  it('collapses a committed change after its exact baseline bytes are staged again', () => {
+    const {root, base} = repository();
+    put(root, 'modify.txt', 'changed\n');
+    commit(root, 'change tracked bytes');
+    put(root, 'modify.txt', 'old\n');
+    git(root, ['add', 'modify.txt']);
+
+    const state = collectBudgetGitState(root, {BUDGET_BASE_REF: base});
+    expect([...state.paths]).toStrictEqual([]);
+    expect(state.loc).toBe(0);
+  });
+
   it('prefers the product origin when both main remotes exist', () => {
     const {root, base} = repository();
     git(root, ['update-ref', 'refs/remotes/upstream/main', base]);

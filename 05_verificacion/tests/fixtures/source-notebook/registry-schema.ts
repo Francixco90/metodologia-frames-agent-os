@@ -1,10 +1,5 @@
 import {z} from 'zod';
 
-import {
-  PinnedRepositoryLockV1Schema,
-  PinnedRepositoryReceiptBindingV2Schema,
-  PinnedRepositorySourceEntryV2Schema,
-} from '../../../../core/contracts/source-governance-v2.ts';
 import {RelativePathSchema, Sha256Schema} from '../../../../core/contracts/index.ts';
 import {NonEmptyTextSchema, NullableHashSchema, SourceIdSchema} from './common.ts';
 
@@ -74,7 +69,6 @@ const SourceEntrySchema = z
     observed_at: NonEmptyTextSchema,
     hashes: SourceHashesSchema,
     projection: SourceProjectionSchema.optional(),
-    repository_lock: PinnedRepositoryLockV1Schema.optional(),
     deduplication: z
       .object({
         verdict: NonEmptyTextSchema,
@@ -93,7 +87,6 @@ const SourceEntrySchema = z
       )
       .optional(),
     receipts: z.array(RelativePathSchema).min(1),
-    receipt_bindings: z.array(PinnedRepositoryReceiptBindingV2Schema).min(1).optional(),
     restrictions: z.array(NonEmptyTextSchema).optional(),
     coverage_gaps: z.array(NonEmptyTextSchema).optional(),
   })
@@ -138,24 +131,6 @@ const SourceEntrySchema = z
         code: 'custom',
         message: 'source material locator cannot also be a derived projection',
         path: ['projection'],
-      });
-    }
-    if (entry.source_kind === 'pinned_repository_implementation_source') {
-      const result = PinnedRepositorySourceEntryV2Schema.safeParse(entry);
-      if (!result.success) {
-        for (const issue of result.error.issues) {
-          context.addIssue({
-            code: 'custom',
-            message: `Pinned repository source contract: ${issue.message}`,
-            path: issue.path,
-          });
-        }
-      }
-    } else if (entry.repository_lock !== undefined || entry.receipt_bindings !== undefined) {
-      context.addIssue({
-        code: 'custom',
-        message: 'Repository lock fields are reserved for pinned repository implementation sources',
-        path: ['repository_lock'],
       });
     }
   });
