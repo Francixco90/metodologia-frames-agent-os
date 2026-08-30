@@ -84,8 +84,10 @@ completed_gates:
   - two_fresh_process_replays_produced_identical_r6_r8_hashes
   - chrome_desktop_and_mobile_basic_visual_accessibility_passed
   - deterministic_swiftshader_browser_probe_passed_128_stress_renders_and_three_full_replays
-  - full_vitest_passed_236_of_236_files_and_2148_of_2148_tests
-  - pnpm_check_and_full_verify_passed_on_documented_candidate
+  - detached_github_pull_request_branch_context_private_focal_passed_19_of_19
+  - change_budget_passed_199_files_19713_loc_against_origin_main
+  - full_vitest_passed_236_of_236_files_and_2149_of_2149_tests
+  - pnpm_check_typecheck_and_full_verify_passed_on_documented_candidate
   - independent_wave4_qa_reported_zero_blocker_or_high
 next_gates:
   - guardian_reviews_exact_wave4_candidate_digest
@@ -99,6 +101,7 @@ coverage_gaps:
   - actor_separation_is_LOCAL_SIMULATION_not_cryptographic_isolation
   - linux_and_windows_acceptance_not_executed
   - windows_safe_filesystem_backend_is_a_capability_gap
+  - github_actions_detached_checkout_replay_not_executed_for_private_local_candidate
   - exact_candidate_H01_and_promotion_not_executed
 external_effects:
   network_reads_for_pinned_git_repositories: observed_read_only

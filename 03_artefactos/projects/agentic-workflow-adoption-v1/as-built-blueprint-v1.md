@@ -240,6 +240,9 @@ dependencias ejecutables. [DOC] [CONFIG]
 - Chrome desktop/mobile: sin overflow ni errores; landmarks/nombre accesible básico: `PASS`.
 - Browser proof: `swiftshader` fijado tras aislar deriva `angle/swangle`; 128 renders de estrés y
   tres replays completos sin divergencia, manteniendo hashes PNG byte-identical: `PASS_LOCAL`.
+- El resolver de presupuesto conserva el branch real y solo recupera `GITHUB_HEAD_REF` para un
+  checkout detached de GitHub Actions ligado a `pull_request`, base `main` y branch `codex/*`.
+  El focal privado cerró 19/19; push, base distinta y ref insegura quedan inactivos. [CÓDIGO]
 - Guardian final sobre el digest exacto: pendiente al redactar este estado.
 - H01 real, promoción, publicación, distribución y entrega: `NOT_EXECUTED`.
 - Linux/Windows: `NOT_EXECUTED`; Windows mantiene capability gap hasta backend seguro.

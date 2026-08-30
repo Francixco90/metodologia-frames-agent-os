@@ -9,6 +9,7 @@ import {readBudgetFile} from './file-budget-git.ts';
 
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const GitCommitSchema = z.string().regex(/^[a-f0-9]{40}$/u);
+const ChangeProgramBranchSchema = z.string().regex(/^codex\/[a-z0-9][a-z0-9/_-]*$/u);
 const SafePathSchema = z
   .string()
   .trim()
@@ -61,7 +62,7 @@ const ManifestSchema = z
   .object({
     schemaVersion: z.literal('change-budget-program-v1'),
     programId: z.string().regex(/^[a-z0-9-]+$/u),
-    branch: z.string().regex(/^codex\/[a-z0-9][a-z0-9/_-]*$/u),
+    branch: ChangeProgramBranchSchema,
     baseCommit: GitCommitSchema,
     authority: z
       .object({
@@ -101,6 +102,24 @@ export interface ChangeProgramBudgetResult {
   perFileLineCaps: ChangeProgramFileLineCapV1[];
   programId?: string;
 }
+
+export const selectChangeProgramBranch = (
+  currentBranch: string,
+  environment: NodeJS.ProcessEnv = process.env,
+): string => {
+  const checkedOutBranch = currentBranch.trim();
+  if (checkedOutBranch) return checkedOutBranch;
+  const pullRequestBranch = environment.GITHUB_HEAD_REF?.trim() ?? '';
+  if (
+    environment.CI !== 'true' ||
+    environment.GITHUB_ACTIONS !== 'true' ||
+    environment.GITHUB_EVENT_NAME !== 'pull_request' ||
+    environment.GITHUB_BASE_REF !== 'main' ||
+    !ChangeProgramBranchSchema.safeParse(pullRequestBranch).success
+  )
+    return '';
+  return pullRequestBranch;
+};
 
 export const evaluateChangeProgramBudget = (
   input: ChangeProgramBudgetInput,
@@ -187,10 +206,12 @@ export const evaluateChangeProgramBudget = (
 
 export const evaluateConfiguredChangeProgramBudget = (
   input: Omit<ChangeProgramBudgetInput, 'branch'>,
+  environment: NodeJS.ProcessEnv = process.env,
 ): ChangeProgramBudgetResult =>
   evaluateChangeProgramBudget({
     ...input,
-    branch: execFileSync('git', ['branch', '--show-current'], {cwd: input.root})
-      .toString('utf8')
-      .trim(),
+    branch: selectChangeProgramBranch(
+      execFileSync('git', ['branch', '--show-current'], {cwd: input.root}).toString('utf8'),
+      environment,
+    ),
   });

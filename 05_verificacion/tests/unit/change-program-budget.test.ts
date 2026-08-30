@@ -8,6 +8,7 @@ import {afterEach, describe, expect, it} from 'vitest';
 import {
   computeChangeProgramSha256,
   evaluateChangeProgramBudget,
+  selectChangeProgramBranch,
   type ChangeProgramManifestV1,
 } from '../../scripts/lib/change-program-budget.ts';
 
@@ -67,6 +68,25 @@ const withoutProgramHash = (
 afterEach(() => roots.splice(0).forEach((root) => rmSync(root, {recursive: true, force: true})));
 
 describe('change program budget', () => {
+  it('uses a validated GitHub pull-request head only for a detached Actions checkout', () => {
+    const pullRequest = {
+      CI: 'true',
+      GITHUB_ACTIONS: 'true',
+      GITHUB_EVENT_NAME: 'pull_request',
+      GITHUB_BASE_REF: 'main',
+      GITHUB_HEAD_REF: 'codex/adoption-v1',
+    };
+    expect(selectChangeProgramBranch('', pullRequest)).toBe('codex/adoption-v1');
+    expect(selectChangeProgramBranch('main', pullRequest)).toBe('main');
+    expect(selectChangeProgramBranch('', {...pullRequest, CI: 'false'})).toBe('');
+    expect(selectChangeProgramBranch('', {...pullRequest, GITHUB_ACTIONS: 'false'})).toBe('');
+    expect(selectChangeProgramBranch('', {...pullRequest, GITHUB_EVENT_NAME: 'push'})).toBe('');
+    expect(selectChangeProgramBranch('', {...pullRequest, GITHUB_BASE_REF: 'release'})).toBe('');
+    expect(
+      selectChangeProgramBranch('', {...pullRequest, GITHUB_HEAD_REF: 'feature/unbound'}),
+    ).toBe('');
+  });
+
   it('accepts an exact hash-bound branch-local partition', () => {
     const result = fixture().run();
     expect(result.active).toBe(true);

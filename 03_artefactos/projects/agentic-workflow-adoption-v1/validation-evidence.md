@@ -182,6 +182,12 @@ El scan es pattern-based y contextual; no es DLP/entropy analysis formal. [HERRA
 - Vitest integral posterior al fix visual: 236/236 archivos y 2148/2148 tests PASS.
 - `pnpm check` y `pnpm verify`: PASS sobre el candidato documentado previo al freeze; la ejecución
   integral cerró con 236/236 archivos, 2148/2148 tests y formato completo. [HERRAMIENTA]
+- Remediación CI detached: el branch real del checkout conserva precedencia; `GITHUB_HEAD_REF` solo
+  activa el programa con `CI=true`, GitHub Actions, evento `pull_request`, base `main` y ref
+  `codex/*` válida. Push, base distinta o ref insegura quedan inactivos. [CÓDIGO] [CONFIG]
+- Focal privado equivalente: 19/19; budget 199 archivos/19 713 LOC sobre `origin/main`; `pnpm check`,
+  `typecheck` y `pnpm verify` cerraron PASS con 236/236 archivos y 2149/2149 tests. El replay en
+  GitHub Actions no fue ejecutado desde este candidato local. [HERRAMIENTA] [CONFIG]
 - Linux/Windows: `NOT_EXECUTED`; Windows conserva capability gap explícito para filesystem seguro.
 - Network: solo lectura previa de referencias Git fijadas; no hubo provider execution en pilotos.
 - Mutaciones externas: 0; no push, merge, publicación, distribución, entrega, H01 o promoción.
