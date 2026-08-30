@@ -15,7 +15,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - COMMAND: 103
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 70
+- GATE: 71
 - RENDERER: 5
 - ROUTE: 12
 - SKILL: 185
@@ -547,6 +547,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G07 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08_AI_RUNTIME | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08_CONTRACTS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | G08_TRANSACTION_KERNEL | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CAREER_DESIGN | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -994,4 +995,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `309acc6102136a01d68c55f565a3bd7a2b2ee36d6d3b153fe5191192c7194f24`.
+Hash de fuentes: `2d76116b7fa364fed9e8e5dc03a40f34ddea76e442e8565e1a007a966a3c7b24`.

@@ -191,6 +191,47 @@
         "hardFiles": 40,
         "hardLoc": 5000
       }
+    },
+    {
+      "id": "wave2-transaction-kernel",
+      "paths": [
+        "02_proceso/core/contracts/index.ts",
+        "02_proceso/core/contracts/transaction-causal-gates-v1.ts",
+        "02_proceso/core/contracts/transaction-kernel-v1.ts",
+        "02_proceso/core/orchestration/causal-gate-guardian-v1.ts",
+        "02_proceso/core/orchestration/causal-gate-promotion-v1.ts",
+        "02_proceso/core/orchestration/causal-gate-recorder-v1.ts",
+        "02_proceso/core/orchestration/causal-gate-verification-v1.ts",
+        "02_proceso/core/orchestration/index.ts",
+        "02_proceso/core/orchestration/stable-root-capability-v1.ts",
+        "02_proceso/core/orchestration/transaction-bound-file-v1.ts",
+        "02_proceso/core/orchestration/transaction-create-only-writer-v1.ts",
+        "02_proceso/core/orchestration/transaction-dag-v1.ts",
+        "02_proceso/core/orchestration/transaction-dependency-validator-v1.ts",
+        "02_proceso/core/orchestration/transaction-durable-receipts-v1.ts",
+        "02_proceso/core/orchestration/transaction-durable-store-support-v1.ts",
+        "02_proceso/core/orchestration/transaction-durable-store-v1.ts",
+        "02_proceso/core/orchestration/transaction-effect-receipt-v1.ts",
+        "02_proceso/core/orchestration/transaction-kernel-v1.ts",
+        "02_proceso/core/orchestration/transaction-output-verifier-v1.ts",
+        "02_proceso/core/orchestration/transaction-path-guard-v1.ts",
+        "02_proceso/core/orchestration/transaction-recovery-v1.ts",
+        "02_proceso/core/orchestration/transaction-recovery-persistence-v1.ts",
+        "02_proceso/core/orchestration/transaction-run-identity-v1.ts",
+        "02_proceso/core/orchestration/transaction-run-inspection-v1.ts",
+        "02_proceso/workflows/core/index.ts",
+        "02_proceso/workflows/core/material-skill-adapter-v2.ts",
+        "05_verificacion/tests/fixtures/transaction-kernel-v1.fixture.ts",
+        "05_verificacion/tests/negative/transaction-kernel-api-boundaries.negative.test.ts",
+        "05_verificacion/tests/negative/transaction-kernel-security.negative.test.ts",
+        "05_verificacion/tests/unit/core/transaction-kernel-v1.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 20,
+        "targetLoc": 3500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
     }
   ],
   "perFileLineCaps": [
@@ -209,5 +250,5 @@
       "rationale": "Branch-local source lifecycle evidence for two pinned donors while preserving the global fallback and word cap."
     }
   ],
-  "canonicalSha256": "753d9db1296136654a0d76e670eadfbcf40dbd270963ad8f742c19ab94edd1ae"
+  "canonicalSha256": "92c7e3e222d7037cb15f4e01c68747f6a91fcf8e6a0ebc7fe752d31c5848d85e"
 }

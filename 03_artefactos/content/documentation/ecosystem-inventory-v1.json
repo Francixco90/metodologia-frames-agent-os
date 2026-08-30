@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "309acc6102136a01d68c55f565a3bd7a2b2ee36d6d3b153fe5191192c7194f24",
+  "sourceSha256": "2d76116b7fa364fed9e8e5dc03a40f34ddea76e442e8565e1a007a966a3c7b24",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -524,6 +524,7 @@
     {"kind":"GATE","id":"G07","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"G08_AI_RUNTIME","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"G08_CONTRACTS","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"GATE","id":"G08_TRANSACTION_KERNEL","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"G08","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"G09_CAREER_DESIGN","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"GATE","id":"G09_CAREER","ref":"05_verificacion/scripts/commands.yaml","scope":"CANONICAL","state":"ACTIVE"},

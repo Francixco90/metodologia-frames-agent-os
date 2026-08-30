@@ -56,6 +56,13 @@ const fixture = () => {
     });
   return {root, manifestPath, manifest, run};
 };
+const withoutProgramHash = (
+  manifest: ChangeProgramManifestV1,
+): Omit<ChangeProgramManifestV1, 'canonicalSha256'> => {
+  const payload = {...manifest} as Partial<ChangeProgramManifestV1>;
+  delete payload.canonicalSha256;
+  return payload as Omit<ChangeProgramManifestV1, 'canonicalSha256'>;
+};
 
 afterEach(() => roots.splice(0).forEach((root) => rmSync(root, {recursive: true, force: true})));
 
@@ -112,7 +119,7 @@ describe('change program budget', () => {
 
   it('blocks duplicate partition ownership', () => {
     const value = fixture();
-    const {canonicalSha256: _old, ...payload} = value.manifest;
+    const payload = withoutProgramHash(value.manifest);
     payload.partitions.push({
       id: 'duplicate',
       paths: ['docs/plan.md'],
@@ -128,7 +135,7 @@ describe('change program budget', () => {
 
   it('returns an exact line-only cap only while the hash-bound program is active', () => {
     const value = fixture();
-    const {canonicalSha256: _old, ...payload} = value.manifest;
+    const payload = withoutProgramHash(value.manifest);
     payload.perFileLineCaps = [
       {
         path: 'docs/plan.md',
@@ -156,7 +163,7 @@ describe('change program budget', () => {
     ['unpartitioned', ['docs/other.md'], 'BUDGET-PROGRAM009'],
   ])('rejects a %s per-file line cap binding', (_label, paths, code) => {
     const value = fixture();
-    const {canonicalSha256: _old, ...payload} = value.manifest;
+    const payload = withoutProgramHash(value.manifest);
     payload.perFileLineCaps = paths.map((path) => ({
       path,
       surface: 'authored-doc',
@@ -177,7 +184,7 @@ describe('change program budget', () => {
 
   it('rejects an unbounded self-authorized cap', () => {
     const value = fixture();
-    const {canonicalSha256: _old, ...payload} = value.manifest;
+    const payload = withoutProgramHash(value.manifest);
     payload.limits.hardFiles = 161;
     write(
       value.root,

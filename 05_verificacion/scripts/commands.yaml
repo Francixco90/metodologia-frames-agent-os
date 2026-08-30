@@ -86,6 +86,17 @@ gates:
     fail_closed: false
     owner: core
 
+  - gate: G08_TRANSACTION_KERNEL
+    label: TransactionKernelV1 contracts filesystem recovery and V1 compatibility
+    command: 'pnpm typecheck && pnpm exec vitest run 05_verificacion/tests/unit/core/transaction-kernel-v1.test.ts 05_verificacion/tests/negative/transaction-kernel-security.negative.test.ts 05_verificacion/tests/negative/transaction-kernel-api-boundaries.negative.test.ts 05_verificacion/tests/unit/video-os-stable-snapshot-reader.test.ts 05_verificacion/tests/negative/experience-material-adapter.test.ts'
+    allowed_tools: [Bash]
+    write_set_globs: []
+    idempotency: true
+    danger_level: low
+    manual: false
+    fail_closed: true
+    owner: core
+
   - gate: G10
     label: agents-committee
     command: 'pnpm committee:validate'
