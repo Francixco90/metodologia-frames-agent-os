@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95837
-    v3_rolling_adjustment_words: 7651
+    baseline_words: 95849
+    v3_rolling_adjustment_words: 7663
     original_baseline_words: 88186
-    final_words: 108482
+    final_words: 108530
     maximum_multiplier: 1.5
-    maximum_words: 143755
-    actual_multiplier: 1.1319
+    maximum_words: 143773
+    actual_multiplier: 1.1323
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95837
-    v3_rolling_adjustment_words: 7651
+    baseline_words: 95849
+    v3_rolling_adjustment_words: 7663
     original_baseline_words: 88186
-    final_words: 108482
-    maximum_words: 191674
-    word_multiplier: 1.1319
-    baseline_loc: 36027
-    v3_rolling_adjustment_loc: 3139
+    final_words: 108530
+    maximum_words: 191698
+    word_multiplier: 1.1323
+    baseline_loc: 36030
+    v3_rolling_adjustment_loc: 3142
     original_baseline_loc: 32888
-    final_loc: 40571
-    maximum_loc: 72054
-    loc_multiplier: 1.1261
+    final_loc: 40585
+    maximum_loc: 72060
+    loc_multiplier: 1.1264
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -2192,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: 1152f1ed7c2b6104b0c15f91ecfad8bcfdf9252eee0e01a14f2eef0bb5be984c
-      current_words: 111
-      current_loc: 27
+      current_sha256: 2f236cde5727775a29c5ee0548e320e33b017c5abd35b6e5c71ac8f1219e1db3
+      current_words: 119
+      current_loc: 29
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -8912,9 +8912,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:workflows/core/index.ts
       current_ref: working-tree:workflows/core/index.ts
       current_state: present
-      current_sha256: 64d5953b0a1742c0891006ee17f2ba4a9c432e6d64a94cec6e17f29e223d2f22
-      current_words: 44
-      current_loc: 11
+      current_sha256: 295feb1f177e8ff2f627d76b9d300786a6877987e042be94f15c6e5c10dd7574
+      current_words: 48
+      current_loc: 12
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:workflows/core/**

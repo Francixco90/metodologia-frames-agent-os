@@ -22,6 +22,8 @@ export * from './renderer-capabilities-v1.ts';
 export * from './reasoning-safety.ts';
 export * from './schemas.ts';
 export * from './task-contract.ts';
+export * from './transaction-causal-gates-v1.ts';
+export * from './transaction-kernel-v1.ts';
 // Multimedia workflow surface (P00–P09, MIA-MEDIA-LIB-2.0.0). [DOC]
 export * from '../../workflows/multimedia/_schema/workflow-v1.schema.ts';
 export * from '../../workflows/multimedia/_schema/prompt-spec-v1.schema.ts';
