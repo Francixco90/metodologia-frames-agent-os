@@ -1,0 +1,170 @@
+{
+  "positive": {
+    "schema_version": "technical-defense-case-v1",
+    "case_id": "case.synthetic-r8",
+    "title": "Defensa técnica sintética de TransactionKernelV1",
+    "objective": "Explicar decisiones, trade-offs, evidencia y límites del piloto local sin presentarlo como promoción.",
+    "frozen_at": "2026-08-29T15:00:00.000Z",
+    "pilot_data_classification": "SYNTHETIC_ONLY",
+    "pii_redaction_receipt": {
+      "schema_version": "technical-defense-pii-redaction-receipt-v1",
+      "policy": "SYNTHETIC_ONLY",
+      "detector_id": "frames.synthetic-pii-detector-v1",
+      "status": "NO_PII_DETECTED",
+      "findings_count": 0,
+      "redactions_count": 0,
+      "case_payload_sha256": "d5325ca6b1eeaf03900560ac800366ac36f173615c92bb4ae99b0a2162ebc599",
+      "evidence_sha256": "131702d82ec0b727d895de36e3cb07e22c2a35985a8c13bc2488a890d4ca559f",
+      "receipt_sha256": "e16ddc4c4ea80268f254eb44ec946d3dc48f2e14778ae0cf3dda2ee1c9b1381c"
+    },
+    "producer_actor_instance_id": "actor.producer.r8",
+    "requirements": [
+      {
+        "id": "req.hash-binding",
+        "text": "Cada claim debe apuntar a evidencia material hash-bound."
+      },
+      {
+        "id": "req.local-only",
+        "text": "La ejecución debe permanecer PROJECT_LOCAL y sin red."
+      }
+    ],
+    "architecture": {
+      "summary": "El executor valida activación, probe y caso antes de cerrar un handler puro sobre bytes y delegar toda materialización al kernel transaccional.",
+      "tradeoffs": [
+        {
+          "decision": "Registro estático cerrado",
+          "benefit": "Evita ejecución de código local arbitrario",
+          "cost": "Cada capability nueva requiere integración explícita"
+        },
+        {
+          "decision": "Publicación create-only",
+          "benefit": "Impide overwrite implícito",
+          "cost": "Un rerun requiere un effect root nuevo"
+        }
+      ]
+    },
+    "evidence": [
+      {
+        "id": "ev.architecture",
+        "ref": "synthetic/architecture.txt",
+        "content": "Arquitectura transaccional con publicación create-only y recibos hash-bound.",
+        "sha256": "7d82c6bc331d7314428ede0b32a9bb6ea7cdafe41cb2ca02af9ddbca79850cbe",
+        "rights": "VERIFIED_INTERNAL",
+        "authority_sha256": "e18f973ff70aacc52dcd5102a4391557c94f59f55c183d77140d261bea6967bd"
+      },
+      {
+        "id": "ev.rehearsal",
+        "ref": "synthetic/rehearsal.txt",
+        "content": "Fixture sintético: dos ensayos observados y red-team independiente.",
+        "sha256": "754b65f2a9d6b3e574b5b79090b5c61fff36858395bb2ae5fbd11a7afe005375",
+        "rights": "CLEARED",
+        "authority_sha256": "5c5ed40e1240ea7ec04fb3893e71079bdc2ca60378b465175969535f60c8e71f"
+      },
+      {
+        "id": "ev.objective",
+        "ref": "synthetic/objective.txt",
+        "content": "Objetivo congelado: defender decisiones, trade-offs y límites verificables.",
+        "sha256": "ac707f546f3f434bbdf6901bce79dcdc6047ad40c93ac549edfff7ebe7e77390",
+        "rights": "VERIFIED_INTERNAL",
+        "authority_sha256": "abb2e65a5f228dc11c2ce912371aedf2b12abe83f03cab859f76f6676456d5c7"
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim.create-only",
+        "statement": "Los outputs del piloto se materializan mediante CREATE_FILE create-only.",
+        "evidence_ids": ["ev.architecture"]
+      },
+      {
+        "id": "claim.local-simulation",
+        "statement": "El resultado permanece como simulación local no promovida.",
+        "evidence_ids": ["ev.objective", "ev.rehearsal"]
+      }
+    ],
+    "threats": [
+      {
+        "id": "threat.mutable-evidence",
+        "failure": "La evidencia cambia después del freeze",
+        "mitigation": "Comparar el contenido contra su SHA-256 antes de renderizar",
+        "residual_risk": "La autoridad de origen sigue siendo una declaración LOCAL_SIMULATION"
+      },
+      {
+        "id": "threat.self-approval",
+        "failure": "El producer actúa como red-team",
+        "mitigation": "Exigir actor_instance_id distinto",
+        "residual_risk": "La separación local no es aislamiento criptográfico"
+      }
+    ],
+    "questions": [
+      {
+        "id": "qa.why-kernel",
+        "question": "¿Por qué el handler no escribe directamente?",
+        "answer": "Para que PathGuard, snapshot, create-only y receipts gobiernen el único efecto físico.",
+        "evidence_ids": ["ev.architecture"]
+      },
+      {
+        "id": "qa.what-pass",
+        "question": "¿EFFECT_SUCCEEDED significa que el paquete fue promovido?",
+        "answer": "No; verificación, Guardian, H01 y recorder son gates causales posteriores.",
+        "evidence_ids": ["ev.objective"]
+      }
+    ],
+    "rehearsals": [
+      {
+        "id": "rehearsal.one",
+        "observed": true,
+        "observer_task_id": "task.observer.one",
+        "observer_actor_instance_id": "actor.observer.one",
+        "observer_authority_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "occurred_at": "2026-08-29T16:00:00.000Z",
+        "score": 82,
+        "notes": "La arquitectura fue explicada con el límite LOCAL_SIMULATION visible."
+      },
+      {
+        "id": "rehearsal.two",
+        "observed": true,
+        "observer_task_id": "task.observer.two",
+        "observer_actor_instance_id": "actor.observer.two",
+        "observer_authority_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "occurred_at": "2026-08-29T17:00:00.000Z",
+        "score": 88,
+        "notes": "Las respuestas distinguieron efecto, verificación y promoción."
+      }
+    ],
+    "red_team": {
+      "task_id": "task.red-team.r8",
+      "actor_instance_id": "actor.red-team.r8",
+      "authority_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "verdict": "PASS",
+      "findings": [
+        {
+          "severity": "D2",
+          "description": "La separación de actores se simula localmente y no es aislamiento criptográfico.",
+          "limitation": "Declarar LOCAL_SIMULATION en el paquete y no inferir independencia host-level.",
+          "owner": "owner.r8-pilot",
+          "signoff_sha256": "283d7dc2b114c5d41af8c4c19bd833a91f9444ab4d54fcc07619df7b054afe8b"
+        }
+      ]
+    }
+  },
+  "adversarial": [
+    {"id": "mutable-evidence", "mutation": "Cambiar evidence.content sin cambiar evidence.sha256."},
+    {"id": "unsupported-claim", "mutation": "Referenciar un evidence_id ausente."},
+    {"id": "missing-rehearsal", "mutation": "Conservar menos de dos ensayos observados."},
+    {"id": "self-red-team", "mutation": "Reutilizar producer_actor_instance_id como red-team."},
+    {
+      "id": "review-authority",
+      "mutation": "Forjar autoridad o task ID de un observador o red-team."
+    },
+    {
+      "id": "pii",
+      "mutation": "Insertar correo o teléfono real y re-firmar falsamente el recibo no-PII."
+    },
+    {
+      "id": "probe-subset",
+      "mutation": "Declarar en el probe solo un subconjunto autoelegido de manifest.content."
+    },
+    {"id": "network", "mutation": "Cambiar el probe de DENIED a ALLOWED."},
+    {"id": "write-set", "mutation": "Omitir o añadir un output frente al manifest."}
+  ]
+}

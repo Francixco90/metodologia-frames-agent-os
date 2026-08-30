@@ -10,12 +10,11 @@ const ExactRefSchema = z.string().min(1).max(512);
 export const TransactionKernelErrorCodeV1Schema = z.enum(['CONTRACT_INVALID', 'HASH_MISMATCH', 'CAPABILITY_GAP', 'ROOT_AUTHORITY_INVALID', 'ROOT_IDENTITY_DRIFT', 'PATH_REJECTED', 'GRAPH_INVALID', 'AUTHORIZATION_DRIFT', 'LOCK_CONFLICT', 'FILESYSTEM_RACE', 'WRITE_FAILED', 'LEDGER_INVALID', 'RECEIPT_INVALID', 'RECOVERY_UNAUTHORIZED', 'CAUSAL_ORDER', 'ACTOR_COLLISION', 'AUTHORITY_DENIED', 'BLOCKED_UNCERTAIN']);
 export type TransactionKernelErrorCodeV1 = z.infer<typeof TransactionKernelErrorCodeV1Schema>;
 export class TransactionKernelErrorV1 extends Error {
-  public constructor(
-    public readonly code: TransactionKernelErrorCodeV1,
-    message: string,
-  ) {
+  public readonly code: TransactionKernelErrorCodeV1;
+  public constructor(code: TransactionKernelErrorCodeV1, message: string) {
     super(message);
     this.name = 'TransactionKernelErrorV1';
+    this.code = code;
   }
 }
 export const failTransactionV1 = (code: TransactionKernelErrorCodeV1, message: string): never => {

@@ -9,9 +9,9 @@
     "planSha256": "3545443117b031b209bd0d5d369be2ef33a8ea474b71ab4023cff43db4239c02"
   },
   "limits": {
-    "targetFiles": 140,
-    "targetLoc": 16000,
-    "hardFiles": 160,
+    "targetFiles": 190,
+    "targetLoc": 19000,
+    "hardFiles": 200,
     "hardLoc": 20000
   },
   "partitions": [
@@ -232,6 +232,80 @@
         "hardFiles": 40,
         "hardLoc": 5000
       }
+    },
+    {
+      "id": "wave3-commercial-proposal",
+      "paths": [
+        "02_proceso/workflows/core/first-turn-signals-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/commercial-proposal-materials-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/commercial-proposal-projections-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/rfc4180-v1.ts",
+        "02_proceso/workflows/multimedia/_schema/commercial-proposal-authority-v1.schema.ts",
+        "02_proceso/workflows/multimedia/_schema/commercial-proposal-common-v1.schema.ts",
+        "02_proceso/workflows/multimedia/_schema/commercial-proposal-output-v1.schema.ts",
+        "02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts",
+        "02_proceso/workflows/multimedia/_schema/index.ts",
+        "02_proceso/workflows/multimedia/index.ts",
+        "03_artefactos/skills/content-os-router/LINEAGE.yml",
+        "03_artefactos/skills/content-os-router/references/routes.md",
+        "03_artefactos/skills/content-os-router/rules/router-contract.md",
+        "03_artefactos/skills/content-os-router/scripts/check-skill.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-audit.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-content.mjs",
+        "04_estado/registries/skills/creation-v3-skill-registry.yml",
+        "05_verificacion/tests/fixtures/commercial-proposal-v1.fixture.ts",
+        "05_verificacion/tests/integration/commercial-proposal-canary.test.ts",
+        "05_verificacion/tests/unit/core/content-router.test.ts",
+        "05_verificacion/tests/unit/experience-first-turn.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 20,
+        "targetLoc": 1500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave3-technical-defense",
+      "paths": [
+        "02_proceso/workflows/local-extensions/contracts.ts",
+        "02_proceso/workflows/local-extensions/dependencies.ts",
+        "02_proceso/workflows/local-extensions/executor-v1.ts",
+        "02_proceso/workflows/local-extensions/index.ts",
+        "02_proceso/workflows/local-extensions/loader.ts",
+        "02_proceso/workflows/local-extensions/receipt.ts",
+        "02_proceso/workflows/local-extensions/technical-defense-executor-attestation-v1.ts",
+        "02_proceso/workflows/local-extensions/technical-defense-executor-case-v1.ts",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/README.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/extension.yml",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/fixtures.json",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/handler.ts",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/sandbox-probe.json",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/technical-defense-contracts-v1.ts",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/technical-defense-render-v1.ts",
+        "05_verificacion/tests/integration/local-extension-discovery.test.ts",
+        "05_verificacion/tests/integration/technical-defense-local-extension-adversarial.test.ts",
+        "05_verificacion/tests/integration/technical-defense-local-extension.test.ts",
+        "05_verificacion/tests/integration/technical-defense-local-extension.harness.ts",
+        "05_verificacion/tests/negative/local-extension-security.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 15,
+        "targetLoc": 1500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
+    },
+    {
+      "id": "wave3-shared-integration",
+      "paths": ["05_verificacion/scripts/creation-v3-skills.json"],
+      "limits": {
+        "targetFiles": 5,
+        "targetLoc": 500,
+        "hardFiles": 40,
+        "hardLoc": 5000
+      }
     }
   ],
   "perFileLineCaps": [
@@ -248,7 +322,28 @@
       "baselineHardLines": 500,
       "programHardLines": 800,
       "rationale": "Branch-local source lifecycle evidence for two pinned donors while preserving the global fallback and word cap."
+    },
+    {
+      "path": "03_artefactos/skills/content-os-router/scripts/check-skill.mjs",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 220,
+      "rationale": "Branch-local adversarial router probes for the exact R6 profile while preserving the global word cap."
+    },
+    {
+      "path": "03_artefactos/skills/content-os-router/scripts/route-audit.mjs",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 220,
+      "rationale": "Branch-local exact-path audit for the R6 profile while preserving the global word cap."
+    },
+    {
+      "path": "03_artefactos/skills/content-os-router/scripts/route-content.mjs",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 230,
+      "rationale": "Bounded fail-closed authority receipt validation in the plain Node R6 routing boundary."
     }
   ],
-  "canonicalSha256": "92c7e3e222d7037cb15f4e01c68747f6a91fcf8e6a0ebc7fe752d31c5848d85e"
+  "canonicalSha256": "190fd4d53144fdbadbe576840863ec07ab5f22294eefd812d5bbf658e51a7e74"
 }

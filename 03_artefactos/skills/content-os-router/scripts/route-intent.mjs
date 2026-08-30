@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
-import {hashExperienceValue} from '../../../../02_proceso/core/contracts/index.ts';
-import {
-  orchestrateLocalExperienceV1,
-  renderExperienceMenuV1,
-  renderExperienceRouteV1,
-  runFirstTurnGatewayV1,
-} from '../../../../02_proceso/workflows/core/index.ts';
+import {hashExperienceValue} from '../../../../02_proceso/core/contracts/experience-normalization.ts';
+import {renderExperienceMenuV1, renderExperienceRouteV1} from '../../../../02_proceso/workflows/core/experience-command-view-v1.ts';
+import {runFirstTurnGatewayV1} from '../../../../02_proceso/workflows/core/first-turn-gateway-v1.ts';
+import {orchestrateLocalExperienceV1} from '../../../../02_proceso/workflows/core/local-experience-orchestrator-v1.ts';
 import {assertContainedWorkspaceV1} from '../../../../02_proceso/workflows/core/safe-local-path-v1.ts';
-import {routeLocalExtensionIntent} from '../../../../02_proceso/workflows/local-extensions/index.ts';
+import {routeLocalExtensionIntent} from '../../../../02_proceso/workflows/local-extensions/intent-router.ts';
 import {routeMaintenanceIntent} from '../../../../02_proceso/workflows/maintenance/index.ts';
 import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
 import {

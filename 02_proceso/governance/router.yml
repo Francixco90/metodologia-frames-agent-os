@@ -114,11 +114,16 @@ routes:
       - 'method explainer'
       - 'PASA'
       - 'PIVOTE'
+      - 'propuesta comercial'
+      - 'commercial proposal'
+      - 'proposal deck'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
       - '03_artefactos/skills/metodologia-trainer-os/SKILL.md'
       - '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts'
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
+      - '02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts'
+      - '02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts'
       - '02_proceso/workflows/trainer-os/trainer-intake-v1.schema.ts'
       - '02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts'
       - '02_proceso/workflows/trainer-os/runner.ts'
@@ -130,7 +135,9 @@ routes:
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
+      - '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md'
+      - '03_artefactos/skills/content-os-slideshow/SKILL.md'
+    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil commercial-proposal R6: P00 opcional → P01 → P02 → P03 → P05 → P06 → P07, sin P04/P09; P08 bloqueado en V1 y una revisión futura exige verification REVISE + receipt durable V2; MD/HTML/JSON/CSV y techo RENDERED_DRAFT; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
@@ -162,9 +169,11 @@ routes:
       - 'corregir extensión local'
     reads:
       - '02_proceso/workflows/local-extensions/contracts.ts'
+      - '02_proceso/workflows/local-extensions/executor-v1.ts'
       - '02_proceso/workflows/skill-systems/contracts.ts'
       - '03_artefactos/skills/frames-local-extension-foundry/SKILL.md'
-    output: 'brief local + L00-L05 con S00-S07; recomienda PROJECT_LOCAL si falta scope; STOP en LX_BRIEF_APPROVED'
+      - '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/extension.yml'
+    output: 'brief local + L00-L05 con S00-S07; recomienda PROJECT_LOCAL si falta scope; código activo solo mediante LocalExtensionExecutorV1 + TransactionKernelV1, sandbox hash-bound y network DENIED; technical-defense queda ACTIVE_LOCAL y no crea ruta global; STOP en LX_BRIEF_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R9

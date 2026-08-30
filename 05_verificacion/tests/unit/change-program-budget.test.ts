@@ -185,7 +185,7 @@ describe('change program budget', () => {
   it('rejects an unbounded self-authorized cap', () => {
     const value = fixture();
     const payload = withoutProgramHash(value.manifest);
-    payload.limits.hardFiles = 161;
+    payload.limits.hardFiles = 201;
     write(
       value.root,
       value.manifestPath,

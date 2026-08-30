@@ -63,13 +63,27 @@ if (isManifest) {
     if (isContentV2) {
       const path = Array.isArray(entry.selected_stage_path) ? entry.selected_stage_path : [];
       const intervention = entry.content_class === 'intervention';
+      const commercialProposal = entry.content_class === 'commercial-proposal';
       if (path.length < 2 || path.some((stage) => !validStages.has(stage))) {
         violations.push({code: 'missing-route', detail: `intent ${intentId} invalid stage path`});
       }
       if (!intervention && !path.includes('P03')) {
         violations.push({code: 'brief-required', detail: `intent ${intentId} new piece omits P03`});
       }
-      if (!path.includes('P07') || !path.includes('P08')) {
+      const commercialPaths = [
+        ['P01', 'P02', 'P03', 'P05', 'P06', 'P07'],
+        ['P00', 'P01', 'P02', 'P03', 'P05', 'P06', 'P07'],
+      ];
+      if (
+        commercialProposal &&
+        !commercialPaths.some((candidate) => JSON.stringify(candidate) === JSON.stringify(path))
+      ) {
+        violations.push({
+          code: 'commercial-route',
+          detail: `intent ${intentId} must use the exact governed commercial proposal path`,
+        });
+      }
+      if (!commercialProposal && (!path.includes('P07') || !path.includes('P08'))) {
         violations.push({code: 'review-required', detail: `intent ${intentId} omits P07/P08`});
       }
       if (path.includes('P09') && entry.next_gate !== 'MW_DISTRIBUTION_AUTHORIZED') {

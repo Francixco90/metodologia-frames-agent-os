@@ -8,6 +8,9 @@ export const CONTENT_SIGNALS_V1 = [
   'video',
   'imagen',
   'brief',
+  'propuesta comercial',
+  'commercial proposal',
+  'proposal deck',
 ] as const;
 export const CAREER_SIGNALS_V1 = [
   'cv',

@@ -17,6 +17,16 @@ requested. Editing an existing governed piece may use P07→P08. [CONFIG]
 The route produces a canonical `brief.md` and stops at `MW_BRIEF_APPROVED`.
 P09 always stops at `MW_DISTRIBUTION_AUTHORIZED`; it never publishes. [CONFIG]
 
+## Commercial proposal profile
+
+Las señales inequívocas `propuesta comercial`, `commercial proposal` y `proposal deck`
+conservan R6 y seleccionan exactamente P01 → P02 → P03 → P05 → P06 → P07; P00 se
+prefija solo si falta el perfil de marca. P04 y P09 están excluidos. P08 queda bloqueado
+en V1; un sucesor exige `CommercialProposalVerificationV1` con `REVISE` y receipt durable V2.
+Los outputs base son MD, HTML, JSON canónico y CSV RFC4180, con techo
+`RENDERED_DRAFT`; `proposal` aislado no es señal y el deck requiere confirmación
+explícita posterior. [CONFIG]
+
 The table below is the backward-compatible source-to-video specialization.
 
 Route table para deliverables Frames ContentOS. First-match por **deliverable**, no

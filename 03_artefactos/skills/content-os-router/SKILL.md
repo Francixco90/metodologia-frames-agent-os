@@ -1,6 +1,6 @@
 ---
 name: content-os-router
-description: This skill should be used when the user asks to "help me create a piece", "ayúdame a generar una pieza", "make a video from a URL", "turn a GitHub PR into a video", "plan or edit content", "route a source to a Frames ContentOS workflow", or "dispatch capabilities for a source-to-content deliverable".
+description: This skill should be used when the user asks to create, improve, plan or route content, generate video from a URL or GitHub PR, or dispatch a source-to-content capability.
 version: 0.8.2
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
@@ -29,13 +29,17 @@ aprobación y las señales mixtas nunca fusionan dominios.
 1. Normaliza el pedido y calcula `requestHash`; no usa reloj ni azar.
 2. Si faltan audiencia, resultado o fuente/autoridad, formula como máximo tres
    preguntas bloqueantes y conserva `brief_sufficiency: insufficient|partial`.
-3. Selecciona la cadena mínima: P03 siempre para una pieza nueva; P00/P01/P02/P04/P06
-   solo por señales explícitas; P07 y P08 siempre; P09 solo si se pide distribución.
+3. Selecciona la cadena mínima genérica: P03 siempre para una pieza nueva; P00/P01/P02/P04/P06
+   solo por señales explícitas; P07 y P08 cierran revisión; P09 solo si se pide distribución.
+   El perfil `commercial-proposal` usa P00 opcional → P01 → P02 → P03 → P05 → P06 → P07,
+   excluye P04/P09 y bloquea P08 en V1; un sucesor requerirá verdict físico `REVISE`
+   y receipt durable V2.
 4. Emite `content-intent-v2` con `selected_stage_path`, reason codes, `brief_ref`
    y `next_gate`; las capabilities se resuelven desde los workflows seleccionados.
 5. Materializa el `brief.md` con FramesBriefV1 y espera `MW_BRIEF_APPROVED` antes de
    producir, salvo autorización end-to-end inequívoca ya registrada. La distribución
-   siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`.
+   siempre se detiene en `MW_DISTRIBUTION_AUTHORIZED`. La propuesta comercial se limita a
+   `RENDERED_DRAFT`; un deck requiere confirmación humana separada. [CONFIG]
 
 `runFirstTurnGatewayV1` diferencia saludo, acción, ambigüedad y reanudación mediante
 `AssistanceEnvelopeV1`. El saludo muestra **Frames ContentOS · por MetodologIA** y

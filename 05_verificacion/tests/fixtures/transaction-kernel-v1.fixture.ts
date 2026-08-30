@@ -109,7 +109,7 @@ export const makeTransactionDraft = (
   dependencyPromotions: {nodeId: string; receiptId: string; physicalSha256: string}[] = [],
 ) => {
   const producerTaskId = `task.producer.${id}`;
-  const producerActorInstanceId = `actor.producer.${id}`;
+  const producerActorInstanceId = workOrder.actorId;
   const producerSession = {
     taskId: producerTaskId,
     actorInstanceId: producerActorInstanceId,
