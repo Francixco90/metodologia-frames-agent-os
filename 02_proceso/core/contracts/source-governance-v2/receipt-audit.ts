@@ -18,6 +18,8 @@ const parseReceipt = (bytes: Uint8Array): unknown =>
   parse(new TextDecoder().decode(bytes)) as unknown;
 
 const PENDING_DEDUPLICATION = 'pending_source_registry_v2_comparison';
+const POST_HISTORICAL_SCOPE_GAP =
+  'external_archive_tree_and_blob_observations_not_replayed_in_frames';
 
 const auditReceiptIdentity = (
   entry: PinnedRepositorySourceEntryV2,
@@ -97,7 +99,10 @@ const auditCoverageProgression = (
     }
   }
   const finalGaps = records.at(-1)?.receipt.coverage_gaps ?? [];
-  if (!sameArray(finalGaps, entry.coverage_gaps)) {
+  const historicalRegistryGaps = entry.coverage_gaps.filter(
+    (gap) => gap !== POST_HISTORICAL_SCOPE_GAP,
+  );
+  if (!sameArray(finalGaps, historicalRegistryGaps)) {
     errors.push(`${entry.source_id}: evaluated receipt coverage gaps differ from registry`);
   }
 };

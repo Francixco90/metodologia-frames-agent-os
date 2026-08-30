@@ -1,6 +1,5 @@
 import {z} from 'zod';
 
-import {RepositorySourcePolicyV1Schema} from '../../../../core/contracts/source-governance-v2.ts';
 import {NonEmptyTextSchema, TransitionSchema} from './common.ts';
 
 export const SourceLifecycleContractSchema = z.strictObject({
@@ -137,7 +136,6 @@ export const SourceLifecycleContractSchema = z.strictObject({
       .length(10),
   }),
   stop_rules: z.array(NonEmptyTextSchema).min(1),
-  repository_sources: RepositorySourcePolicyV1Schema,
 });
 
 export type SourceLifecycleContract = z.infer<typeof SourceLifecycleContractSchema>;

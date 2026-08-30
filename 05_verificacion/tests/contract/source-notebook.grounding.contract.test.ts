@@ -13,7 +13,7 @@ import {
   normalizeSourceBytes,
   readYamlFile,
   sha256,
-} from '../fixtures/source-notebook/contracts.ts';
+} from '../fixtures/source-notebook/contracts-v2.ts';
 import {
   SOURCE_NOTEBOOK_ROOT,
   loadImportReceipts,

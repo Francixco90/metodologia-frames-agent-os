@@ -1,14 +1,15 @@
 # Dossier de capitalización: Proposal + Technical Defense para Frames
 
-Estado: `EVALUATED_INPUTS · DESIGN_BASELINE · NOT_IMPLEMENTED`.
+Estado: `IMPLEMENTED_LOCAL · PILOTS_VERIFIED · FINAL_GUARDIAN_PENDING · NOT_PROMOTED`.
 
 ## 1. Decisión ejecutiva
 
-Frames debe absorber semántica de dominio de `Propuesta-Medida` y patrones de integridad de
-`technical-defense-preparation-workflow`, pero no sus runtimes. La adopción correcta es un
-strangler nativo en TypeScript: R6 conserva la autoridad comercial existente; R8 aloja un bundle
-`PROJECT_LOCAL`; R9 conserva cambio y promoción. No se crean rutas, renderers, registries ni
-autoridades paralelas. [METODOLOGIA] [INFERENCIA]
+Frames absorbió semántica de dominio de `Propuesta-Medida` y patrones de integridad de
+`technical-defense-preparation-workflow`, pero no sus runtimes. La adopción es un strangler nativo
+en TypeScript: R6 conserva la autoridad comercial existente; R8 aloja un bundle
+`PROJECT_LOCAL`; R9 conserva cambio y promoción. No se crean rutas, renderers ni autoridades
+globales paralelas; el registro de evidencia donante es un overlay local hash-bound que no muta
+el registry global. [METODOLOGIA] [INFERENCIA] [CONFIG]
 
 ```text
 Gateway → Route lock → WorkOrder hash-bound
@@ -43,12 +44,14 @@ receipts terminan en `evaluated`, no `active`. [CONFIG]
 - **COPY**: elevar una invariante o criterio observable al contrato de Frames. Nunca significa
   copiar bytes, código, prompts, tests, plantillas o assets del donante.
 - **ADAPT**: reexpresar el comportamiento en contratos, handlers y tests nativos de Frames.
-- **REFERENCE**: mantener la ruta y el hash del blob seleccionado como evidencia de análisis, sin
-  incorporar su contenido.
+- **REFERENCE**: mantener la ruta y los hashes declarados del blob seleccionado como evidencia de
+  análisis, sin incorporar su contenido ni presentar el binding como replay local.
 - **REJECT**: prohibir la incorporación del componente o del comportamiento observado.
 
 Los manifests de paths seleccionados contienen solo path, Git blob SHA-1, SHA-256 y bytes. Las
-proyecciones describen decisiones; ningún source file del donante fue versionado. [CÓDIGO]
+proyecciones describen decisiones; ningún source file del donante fue versionado. Por ello esos
+hashes son observaciones externas registradas y no recomputaciones hechas desde bytes presentes en
+Frames. [CÓDIGO] [INFERENCIA]
 
 ## 3. Auditoría 6D
 
@@ -113,8 +116,9 @@ WorkOrder y commands. [METODOLOGIA] [CONFIG]
 - Casos negativos: `tests/test_contracts.py`, `tests/test_runtime.py`, `tests/test_stages.py`.
 - Defecto de integridad: `control/package-manifest.json`, `tests/test_package_manifest.py`.
 
-Cada referencia está ligada al blob y SHA-256 exactos; no existe locator local privado en el
-expediente. [HERRAMIENTA]
+Cada referencia conserva en el manifest los identificadores observados del blob; el expediente
+verifica físicamente el manifest, no el blob donante ausente. No existe locator local privado en
+el expediente. [HERRAMIENTA] [INFERENCIA]
 
 ### 4.4 REJECT
 
@@ -138,12 +142,13 @@ expediente. [HERRAMIENTA]
 
 ### 5.2 ADAPT: TransactionKernelV1
 
-El runtime Python se usa como oráculo conceptual, no como dependencia. La implementación destino
-debe separar causalmente:
+El runtime Python se usó como oráculo conceptual, no como dependencia. La implementación separa
+causalmente:
 
 ```text
 PREPARED → RUNNING → EFFECT_SUCCEEDED
-         → VERIFIED_PASS → GUARDIAN_PASS → PROMOTED
+         → VERIFIED_PASS → GUARDIAN_PASS
+         → [H01_APPROVAL_RECEIPT] → PROMOTED
 ```
 
 `EFFECT_SUCCEEDED` no habilita descendientes. La dependencia consumible es el hash físico de un
@@ -153,9 +158,9 @@ aprobación H01 one-use, un `PromotionReceipt`. RT-11 no es owner de promoción 
 implementación. H01 no se ha ejecutado en este expediente. [METODOLOGIA]
 
 V1 admite solo `CREATE_FILE` local. Overwrite, delete, move, subprocess, network y efectos externos
-bloquean. El kernel debe incorporar snapshots pre/post, exact-path PathGuard, defensa de alias y
-links, temporal exclusivo, `fsync`, hardlink create-only, readback, locks durables y recovery
-append-only. Windows declara un capability gap mientras no exista backend seguro. [CÓDIGO]
+bloquean. El kernel incorpora snapshots pre/post, exact-path PathGuard, defensa de alias y links,
+temporal exclusivo, `fsync`, hardlink create-only, readback, locks durables y recovery append-only.
+Windows declara un capability gap mientras no exista backend seguro. [CÓDIGO]
 
 ### 5.3 ADAPT: bundle PROJECT_LOCAL
 
@@ -174,7 +179,7 @@ El bundle `local.metodologia.technical-defense-preparation` vive bajo R8 con
 
 Salidas mínimas: brief, evidence map, architecture narrative, claim matrix, Q&A bank, threat model,
 rehearsal report y paquete MD/HTML. El loader conserva manifest, hashes y sandbox probe; un
-`LocalExtensionExecutorV1` respaldado por `TransactionKernelV1` reemplaza la simulación. Estado
+`LocalExtensionExecutorV1` respaldado por `TransactionKernelV1` materializa los outputs. Estado
 máximo: `ACTIVE_LOCAL`; nunca ruta global. [DOC] [CONFIG]
 
 ### 5.4 REFERENCE
@@ -233,8 +238,9 @@ bytes no prueba autoría del efecto. [HERRAMIENTA] [CÓDIGO] [INFERENCIA]
 - Defense: lock sin recovery gobernado de stale lock; sin snapshot completo del effect root, root
   swap/hardlink defense o API `inspectRecovery/recover`; un output por request.
 
-Estos ítems requieren tests adversariales en la implementación Frames antes de elevar severidad o
-declarar cierre. [INFERENCIA]
+Frames cubre estos ítems con tests adversariales de actor separation, snapshots, API boundaries,
+crash/recovery y causalidad; los riesgos descritos siguen siendo evidencia sobre los donantes, no
+deuda transferida. [INFERENCIA]
 
 ## 7. Capitalización de scripts, schemas, templates y tests
 
@@ -248,18 +254,19 @@ declarar cierre. [INFERENCIA]
 | Tests                 | ADAPT ideas                    | Suites negativas y crash injection nativas       | Reescribir fixtures sintéticos; no copiar tests    |
 | Manifests/receipts    | REFERENCE semántica            | Hashes canónicos y receipts Frames               | Regenerar; nunca confiar en manifest donante       |
 
-## 8. Plan de ejecución y gates
+## 8. Ejecución observada y gates
 
-1. **Wave 1 — autoridad:** integrar entradas `evaluated`, corregir paridad R0–R10 y separar
-   RT-11/recorder/H01. Gate: source lifecycle + baseline verde.
-2. **Wave 2 — kernel:** contratos, canonical hash, DAG, PathGuard, writer, ledger, inspect/recovery,
-   recorder y fachada. Gate: adversarial suite por seam.
-3. **Wave 3 — dominios:** R6 y R8 en rutas disjuntas; un solo Integration Owner para shared files.
-   Gate: contratos, ownership y no activación prematura.
-4. **Wave 4 — pilotos:** un output, DAG padre-hijo, multi-output; procesos frescos y crash
-   injection. Gate: hashes idénticos y cero PASS/promoción espuria.
-5. **Promoción:** `R9 freeze → HM_CHANGE_APPROVED → LX_BRIEF_APPROVED → piloto →
-HM_CANDIDATE_VERIFIED → DOCS_TRANSVERSAL_COMPLETE → HM_PROMOTION_APPROVED`.
+1. **Wave 1 — autoridad: COMPLETE.** Entradas `evaluated`, paridad R0–R10 y separación
+   RT-11/recorder/H01; source lifecycle y baseline verdes.
+2. **Wave 2 — kernel: COMPLETE_LOCAL.** Contratos, DAG, PathGuard, writer, ledger,
+   inspect/recovery, recorder y fachada; suite adversarial por seam verde.
+3. **Wave 3 — dominios: COMPLETE_LOCAL.** R6/R8 en rutas disjuntas y shared files integrados por
+   owner; contracts, ownership y compatibilidad V1 verdes.
+4. **Wave 4 — pilotos: COMPLETE_LOCAL.** Uno/múltiples outputs, DAG, procesos frescos, crash real
+   y recovery; hashes idénticos y cero PASS/promoción espuria.
+5. **Promoción: NOT_EXECUTED.** La secuencia sigue siendo `R9 freeze → HM_CHANGE_APPROVED →
+LX_BRIEF_APPROVED → piloto → HM_CANDIDATE_VERIFIED → DOCS_TRANSVERSAL_COMPLETE →
+HM_PROMOTION_APPROVED`.
 
 `HM_PROMOTION_APPROVED` debe ser one-use y hash-bound al candidato exacto. H01 es el único owner
 humano de la decisión final; commands es la autoridad de comandos y no se duplica en router o docs.
@@ -267,7 +274,7 @@ humano de la decisión final; commands es la autoridad de comandos y no se dupli
 
 ## 9. Criterios de go/no-go
 
-GO de implementación local solo cuando:
+GO de implementación local satisfecho porque:
 
 - las fuentes `evaluated` tienen receipts físicos continuos y proyecciones hash-bound;
 - el WorkOrder liga hashes de autorización, grafo, input y write set;
@@ -275,13 +282,13 @@ GO de implementación local solo cuando:
 - un descendiente exige PromotionReceipt físico, no estado `SUCCEEDED`;
 - no hay `UNKNOWN`, `coverage_gap`, high o blocker en el camino obligatorio.
 
-NO-GO para activación/promoción mientras:
+NO-GO para promoción o efecto externo mientras:
 
-- el contrato reforzado de receipts y su hash-chain no esté integrado;
 - falte H01 ligado al hash candidato;
 - Windows no tenga backend seguro y se pretenda paridad de filesystem;
-- una prueba visual dependa de Chrome no disponible;
-- exista drift entre router, manifests, gateway, commands o documentación.
+- falte Guardian final sobre el digest exacto;
+- exista drift entre router, manifests, gateway, commands o documentación;
+- se pretenda push, merge, publicación, distribución o entrega sin autoridad separada.
 
 ## 10. Límites epistemológicos
 

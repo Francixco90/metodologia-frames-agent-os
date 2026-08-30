@@ -16,7 +16,7 @@ import {
   SourceRegistrySchema,
   hasAbsoluteLocalLocator,
   readYamlFile,
-} from '../fixtures/source-notebook/contracts.ts';
+} from '../fixtures/source-notebook/contracts-v2.ts';
 import {SOURCE_NOTEBOOK_ROOT} from '../fixtures/source-notebook/test-support.ts';
 
 describe('NotebookLM read-only production contracts', () => {

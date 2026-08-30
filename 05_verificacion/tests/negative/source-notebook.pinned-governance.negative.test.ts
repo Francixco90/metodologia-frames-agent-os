@@ -5,7 +5,7 @@ import {
   auditPinnedRepositorySourceV2,
   sha256,
   type PinnedRepositoryTransitionReceiptV2,
-} from '../fixtures/source-notebook/contracts.ts';
+} from '../fixtures/source-notebook/contracts-v2.ts';
 import {loadPinnedAuditFixture} from '../fixtures/source-notebook/test-support.ts';
 
 const mutateEvaluatedReceipt = async (

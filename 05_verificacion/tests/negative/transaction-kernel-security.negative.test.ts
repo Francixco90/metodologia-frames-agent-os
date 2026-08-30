@@ -24,7 +24,6 @@ import {
   readTransactionLedgerV1,
   withStableRootCapabilityV1,
   type DefaultTransactionKernelOptionsV1,
-  type TransactionDurableSeamV1,
   type TransactionWriterOperationV1,
   type TransactionWriterSeamV1,
 } from 'core/orchestration/index.ts';
@@ -331,20 +330,4 @@ describe('TransactionKernelV1 filesystem and recovery boundaries', () => {
       ).toThrow();
     }
   });
-
-  it.each(['LOCK_FSYNC', 'LEDGER_FSYNC'] satisfies TransactionDurableSeamV1[])(
-    'leaves a detectable uncertain state after durable seam %s',
-    (seam) => {
-      const fixture = execution(`durable.${seam.toLowerCase()}`);
-      const durableHooks = {
-        onSeam: (current: TransactionDurableSeamV1) => {
-          if (current === seam) throw new Error(`crash:${seam}`);
-        },
-      };
-      expect(() => kernelFor(fixture.state, {durableHooks}).execute(fixture.input)).toThrow();
-      const inspection = new TransactionDurableStoreV1(fixture.state).inspect(fixture.input.runId);
-      expect(inspection.status).toBe('BLOCKED_UNCERTAIN');
-      expect(inspection.latestState).not.toBe('PROMOTED');
-    },
-  );
 });

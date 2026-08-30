@@ -15,7 +15,7 @@ import {
   auditSourceLifecycle,
   readYamlFile,
   sha256,
-} from '../fixtures/source-notebook/contracts.ts';
+} from '../fixtures/source-notebook/contracts-v2.ts';
 import {
   EXPECTED_PINNED_SOURCES,
   EXPECTED_REFERENCE_STATES,
@@ -25,6 +25,8 @@ import {
   SOURCE_NOTEBOOK_ROOT,
   loadImportReceipts,
   loadPinnedEvidence,
+  loadProjectLocalScopeReceipt,
+  loadProjectLocalSourceRegister,
 } from '../fixtures/source-notebook/test-support.ts';
 
 describe('source lifecycle production contracts', () => {
@@ -143,20 +145,58 @@ describe('source lifecycle production contracts', () => {
   });
 
   it('binds both donor repositories to full Git objects and physical receipt chains', async () => {
-    const [lifecycle, registry, receipts] = await Promise.all([
-      readYamlFile('registries/sources/lifecycle-contract.yml', SourceLifecycleContractSchema),
+    const [
+      registry,
+      projectLocal,
+      scopeReceipt,
+      receipts,
+      lifecycleBytes,
+      registryBytes,
+      registerBytes,
+    ] = await Promise.all([
       readYamlFile('registries/sources/source-registry.yml', SourceRegistrySchema),
+      loadProjectLocalSourceRegister(),
+      loadProjectLocalScopeReceipt(),
       loadImportReceipts(),
+      readFile(path.resolve(SOURCE_NOTEBOOK_ROOT, 'registries/sources/lifecycle-contract.yml')),
+      readFile(path.resolve(SOURCE_NOTEBOOK_ROOT, 'registries/sources/source-registry.yml')),
+      readFile(
+        path.resolve(
+          SOURCE_NOTEBOOK_ROOT,
+          '03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml',
+        ),
+      ),
     ]);
-    expect(lifecycle.repository_sources).toMatchObject({
+    expect(projectLocal).toMatchObject({
+      scope: 'PROJECT_LOCAL',
+      global_authorities: {
+        overlay_rule: 'additive_project_local_no_global_registry_mutation',
+        lifecycle_contract: {sha256: sha256(lifecycleBytes)},
+        source_registry: {sha256: sha256(registryBytes)},
+      },
+    });
+    expect(projectLocal.policy).toMatchObject({
       maximum_state_without_h01: 'evaluated',
       git_object_algorithm: 'sha1',
       content_and_receipt_hash_algorithm: 'sha256',
       rights_verdict: 'allowed_internal_implementation',
       allowed_use_scope: 'internal_typescript_reimplementation_only',
     });
+    expect(projectLocal.status).toBe('EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED');
+    expect(scopeReceipt).toMatchObject({
+      register_id: projectLocal.register_id,
+      register_sha256: sha256(registerBytes),
+      integration_scope: 'PROJECT_LOCAL',
+      global_registry_integration_authorized: false,
+      historical_receipts_immutable: true,
+      external_evidence_state: 'EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED',
+      versioned_evidence_verification: {historical_receipts: 6},
+      union_deduplication: {verdict: 'unique_within_scoped_union'},
+    });
+    const pinnedIds = new Set<string>(EXPECTED_PINNED_SOURCES.keys());
+    expect(registry.entries.some(({source_id: sourceId}) => pinnedIds.has(sourceId))).toBe(false);
     for (const [sourceId, expected] of EXPECTED_PINNED_SOURCES) {
-      const candidate = registry.entries.find(({source_id}) => source_id === sourceId);
+      const candidate = projectLocal.entries.find(({source_id}) => source_id === sourceId);
       const entry = PinnedRepositorySourceEntryV2Schema.parse(candidate);
       expect(entry).toMatchObject({
         current_state: 'evaluated',

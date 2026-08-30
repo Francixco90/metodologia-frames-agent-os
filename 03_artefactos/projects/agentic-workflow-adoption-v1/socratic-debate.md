@@ -1,6 +1,6 @@
 # Debate socrático: cómo adoptar sin crear un segundo Frames
 
-Estado del debate: `DECISIONS_RECORDED · IMPLEMENTATION_PENDING`.
+Estado del debate: `DECISIONS_IMPLEMENTED · LOCAL_VERIFICATION_PASS · FINAL_GUARDIAN_PENDING`.
 
 Participantes:
 
@@ -9,8 +9,9 @@ Participantes:
 - **Escéptico (ES):** busca contraejemplos, deuda oculta y falsas equivalencias.
 - **Guardian (GU):** emite veredicto read-only y protege la separación de autoridad.
 
-Las voces no son identidades criptográficamente acreditadas; son roles de deliberación. La futura
-separación operacional requiere task/session IDs distintos y `ActorAuthorityPortV1`. [SUPUESTO]
+Las voces no son identidades criptográficamente acreditadas; son roles de deliberación. En los
+pilotos, la separación operacional usó task/session IDs distintos y `ActorAuthorityPortV1`, pero
+solo acredita `LOCAL_SIMULATION`. [SUPUESTO]
 
 ## Tensión 1 — ¿Dominio o motor?
 
@@ -43,7 +44,8 @@ pertenece a R8; el cambio y promoción pertenecen a R9. [METODOLOGIA]
   PathGuard y receipts, pero ambos implementan runtimes Python independientes. [CÓDIGO]
 - **Contraejemplo:** copiar W02 completo produciría dos autoridades de routing, state y release;
   venderlo como “reuso” ocultaría divergencia.
-- **Gap:** `TransactionKernelV1` y los adapters V2 todavía no existen; el blueprint no es ejecución.
+- **Gap:** kernel y adapter V2 existen y pasaron pruebas locales; Linux/Windows y autoridad de host
+  verificable permanecen fuera de la evidencia ejecutada.
 
 ## Tensión 2 — ¿Autoridad o conveniencia?
 
@@ -141,12 +143,12 @@ promoción, borra outputs o reescribe receipts.
 
 - **Decisión:** separar efecto, verificación, verdict Guardian, GuardianReceipt, H01, PromotionReceipt
   y descendientes; H01 siempre precede la persistencia de `PROMOTED`.
-- **Evidencia:** Proposal falla su test de igualdad de manifest pese a 54/55 tests verdes; Defense
-  permite un falso `SUCCEEDED` en la carrera idéntica reproducida. [HERRAMIENTA]
+- **Evidencia:** además de los defectos donantes, Frames pasó crash real en procesos hijo para cada
+  seam durable, recovery append-only y rechazo de H01/promoción causalmente inválidos. [HERRAMIENTA]
 - **Contraejemplo:** “el archivo existe y su hash coincide” no prueba quién lo creó ni bajo qué
   WorkOrder; promoverlo rompe causalidad aunque los bytes sean correctos.
-- **Gap:** la separación por tasks será `LOCAL_SIMULATION` mientras el host no acredite autoridad e
-  identidad; no es aislamiento criptográfico.
+- **Gap:** la separación por tasks se ejecutó como `LOCAL_SIMULATION`; mientras el host no acredite
+  autoridad e identidad, no constituye aislamiento criptográfico.
 
 ## Tensión 5 — ¿Autonomía o gates humanos?
 
@@ -163,9 +165,9 @@ evidence y límites de promoción desde contexto independiente. Ninguno sustituy
 
 **OP:** ¿Qué gate humano es realmente final?
 
-**GU:** H01 con `HM_PROMOTION_APPROVED` ligado al candidate hash, one-use y `idempotency: false`.
-Después puede persistirse promoción local; publicación o entrega siguen siendo autorizaciones
-separadas.
+**GU:** H01 con `HM_PROMOTION_APPROVED` ligado al candidate hash y single-use por receipt
+create-only y último estado causal. Después puede persistirse promoción local; publicación o
+entrega siguen siendo autorizaciones separadas.
 
 **ES:** ¿No podría el sistema continuar dos veces con la misma aprobación?
 
@@ -179,7 +181,9 @@ separadas.
   publicación y entrega externa. [CONFIG]
 - **Contraejemplo:** un canary R6 determinista puede quedar `RENDERED_DRAFT`; eso no lo hace
   comercialmente aprobado ni entregado.
-- **Gap:** los pilotos, dos replays, crash injection, visual QA y H01 aún no se han ejecutado.
+- **Gap:** pilotos, dos replays en procesos frescos, crash injection y QA visual ya se ejecutaron
+  localmente. H01 del candidato, promoción, Linux/Windows y aislamiento criptográfico no se
+  ejecutaron.
 
 ## Síntesis
 

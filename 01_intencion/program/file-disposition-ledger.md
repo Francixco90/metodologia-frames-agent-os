@@ -23,10 +23,10 @@ de los 387 archivos. [CONFIG]
 
 | Disposición          | Archivos |
 | -------------------- | -------: |
-| `refactored`         |       86 |
+| `refactored`         |       85 |
 | `generator_fixed`    |        6 |
 | `superseded`         |        0 |
-| `verified_no_change` |      196 |
+| `verified_no_change` |      197 |
 | `quarantined`        |        4 |
 | `immutable_history`  |       95 |
 
@@ -39,9 +39,9 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             95675 |              108361 |     143512 (1.5×) | 1.1326× | `pass` |
-| Total authored (palabras)     |             95675 |              108361 |       191350 (2×) | 1.1326× | `pass` |
-| Total authored (LOC)          |             35954 |               40509 |        71908 (2×) | 1.1267× | `pass` |
+| Corpus authored elegible      |             95240 |              110166 |     142860 (1.5×) | 1.1567× | `pass` |
+| Total authored (palabras)     |             95240 |              110166 |       190480 (2×) | 1.1567× | `pass` |
+| Total authored (LOC)          |             35733 |               41227 |        71466 (2×) | 1.1538× | `pass` |
 | Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
@@ -301,8 +301,8 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `registries/skills/lifecycle-contract.yml`                                                                    | `skill-foundry`    | `verified_no_change` | 76                 | 76                | 38          | 38         | `e90b0715d47955754a2692d819d76f0e447e7d2452ef594538e92b194de42264` | `byte-identical` |
 | `registries/skills/skill-registry.yml`                                                                        | `skill-foundry`    | `refactored`         | 306                | 2569              | 156         | 1172       | `72d3043140260040ba6f08ea50f70c88c568943815a2ee357a9da17f71fac9fc` | `changed`        |
 | `registries/sources/canonical-source-gaps.yml`                                                                | `sources`          | `verified_no_change` | 72                 | 72                | 35          | 35         | `13da2cf746907bcb68bc652aa6f239219fd75718064da910afc01cb25e6bb772` | `byte-identical` |
-| `registries/sources/lifecycle-contract.yml`                                                                   | `sources`          | `refactored`         | 235                | 305               | 127         | 165        | `2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613` | `changed`        |
-| `registries/sources/source-registry.yml`                                                                      | `sources`          | `refactored`         | 555                | 1178              | 278         | 591        | `a3a7f5f166d346800896a22d7488640b8a79dd94faca931b63beb01c0c04aec7` | `changed`        |
+| `registries/sources/lifecycle-contract.yml`                                                                   | `sources`          | `verified_no_change` | 235                | 235               | 127         | 127        | `2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613` | `byte-identical` |
+| `registries/sources/source-registry.yml`                                                                      | `sources`          | `refactored`         | 555                | 811               | 278         | 404        | `a3a7f5f166d346800896a22d7488640b8a79dd94faca931b63beb01c0c04aec7` | `changed`        |
 | `renderers/remotion/README.md`                                                                                | `remotion`         | `verified_no_change` | 358                | 358               | 53          | 53         | `0d9be1e63133d9ad9af662230a89aaf6426f080141b8a5caee66578a57c1c730` | `byte-identical` |
 | `renderers/remotion/scripts/inspect-renders.ts`                                                               | `remotion`         | `generator_fixed`    | 1828               | 1828              | 606         | 606        | `565bf560bec747e007c6592737f3bc28017055b919fc5151d77f4ec80d73c764` | `changed`        |
 | `renderers/remotion/scripts/prepare-project.ts`                                                               | `remotion`         | `generator_fixed`    | 1758               | 294               | 642         | 88         | `8b33294e9df5a384cd088fecc091b9dd772e167d25252951a9404f77e2c53391` | `changed`        |
@@ -345,7 +345,7 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `scripts/check-privacy.ts`                                                                                    | `repo`             | `refactored`         | 188                | 264               | 72          | 84         | `f3239e066d1f3b997671da2b1140702ceb0ea4360abeb73f3fc787d432e62e1e` | `changed`        |
 | `scripts/check-projects.ts`                                                                                   | `repo`             | `refactored`         | 596                | 918               | 219         | 304        | `e0f362ab15dfcfb0e0f61ccdbe6870e035d5c383b31b34a717e0e847b81b63a4` | `changed`        |
 | `scripts/check-repo.ts`                                                                                       | `repo`             | `refactored`         | 182                | 209               | 84          | 111        | `1b945d47d48aaf5f7ec5b2c87b80c3aaf39147b388e41d0836f3ca13b543a7df` | `changed`        |
-| `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 68                | 226         | 25         | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
+| `scripts/check-sources.ts`                                                                                    | `repo`             | `refactored`         | 741                | 91                | 226         | 33         | `70f0e8fd9e37c8b09a69a8f9b757d5493acf539ea0cc2e9d0ba143363c4975e3` | `changed`        |
 | `scripts/check-toolchain.ts`                                                                                  | `repo`             | `refactored`         | 378                | 394               | 114         | 122        | `615aab897aad324102a694fbefe0d6ac1f1c228928c08abba5958d61b0fbd857` | `changed`        |
 | `scripts/hooks/pre-commit-pii-guard.sh`                                                                       | `repo`             | `verified_no_change` | 103                | 103               | 21          | 21         | `5bbb2fbf2694db30d0a2550f54f83896b28b0776cf750b1fb5f9a1e1a93fda8e` | `byte-identical` |
 | `scripts/web-visual-smoke.mjs`                                                                                | `repo`             | `refactored`         | 225                | 257               | 73          | 82         | `bc241bb3d460103839924e969a4e9379da6d28e647b6f6b83d277982785f3f24` | `changed`        |
@@ -402,9 +402,9 @@ posible sucesor permanecen en el YAML canónico. [CONFIG]
 | `tests/contract/qa-verdict.contract.test.ts`                                                                  | `qa`               | `verified_no_change` | 238                | 238               | 117         | 117        | `c2db93bef6a75c1e1396d8432d457162705a6a467fec00fa901867388c0e10fd` | `byte-identical` |
 | `tests/contract/remotion-documentation.contract.test.ts`                                                      | `qa`               | `verified_no_change` | 811                | 811               | 323         | 323        | `1cbdcf5701225081a7320aed4224822e9a5cd6504520b5f5e9f81d7603faee32` | `byte-identical` |
 | `tests/contract/skill-foundry.contract.test.ts`                                                               | `qa`               | `refactored`         | 1299               | 1327              | 633         | 648        | `58056b01692a6bc67daec0cf719faa62dc63ec11b8211403f1d6feec921b609e` | `changed`        |
-| `tests/contract/source-notebook.contract.test.ts`                                                             | `qa`               | `refactored`         | 1272               | 584               | 539         | 231        | `137e4b97d77660b8678106b65deb8892a8a9563744a6944f1b55f40bc08b62e4` | `changed`        |
+| `tests/contract/source-notebook.contract.test.ts`                                                             | `qa`               | `refactored`         | 1272               | 647               | 539         | 271        | `137e4b97d77660b8678106b65deb8892a8a9563744a6944f1b55f40bc08b62e4` | `changed`        |
 | `tests/contract/web.contract.test.ts`                                                                         | `qa`               | `refactored`         | 281                | 281               | 111         | 111        | `8832e625e16b165eb86bb76554eaf59ce7332f88e22ddee3917a69aaf9275a9d` | `changed`        |
-| `tests/fixtures/source-notebook/contracts.ts`                                                                 | `qa`               | `refactored`         | 2205               | 63                | 913         | 25         | `3c079d9b93f524f4fd3bc4f38e4b587edf1eed5c8208a7db6c59fb0cf9c22452` | `changed`        |
+| `tests/fixtures/source-notebook/contracts.ts`                                                                 | `qa`               | `refactored`         | 2205               | 2207              | 913         | 917        | `3c079d9b93f524f4fd3bc4f38e4b587edf1eed5c8208a7db6c59fb0cf9c22452` | `changed`        |
 | `tests/fixtures/verifier/io.ts`                                                                               | `qa`               | `verified_no_change` | 63                 | 63                | 23          | 23         | `087282add58f9743708d12a168db8ee3154d61f7ce84a4738a64af12f39db031` | `byte-identical` |
 | `tests/fixtures/verifier/n8n.ts`                                                                              | `qa`               | `refactored`         | 373                | 373               | 168         | 168        | `a28fcd6fba617d3cd001d8bdb31849b1aeaf31625eb051c073bd8d8d20d1d6db` | `changed`        |
 | `tests/integration/web-offline.integration.test.ts`                                                           | `qa`               | `verified_no_change` | 120                | 120               | 47          | 47         | `6d9f0941c443bbfa3d1f4ef416383cd7616a9e669fc291caa22239fa64c7fdab` | `byte-identical` |

@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 86
+    refactored: 85
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 196
+    verified_no_change: 197
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95675
-    v3_rolling_adjustment_words: 7489
+    baseline_words: 95240
+    v3_rolling_adjustment_words: 7054
     original_baseline_words: 88186
-    final_words: 108361
+    final_words: 110166
     maximum_multiplier: 1.5
-    maximum_words: 143512
-    actual_multiplier: 1.1326
+    maximum_words: 142860
+    actual_multiplier: 1.1567
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95675
-    v3_rolling_adjustment_words: 7489
+    baseline_words: 95240
+    v3_rolling_adjustment_words: 7054
     original_baseline_words: 88186
-    final_words: 108361
-    maximum_words: 191350
-    word_multiplier: 1.1326
-    baseline_loc: 35954
-    v3_rolling_adjustment_loc: 3066
+    final_words: 110166
+    maximum_words: 190480
+    word_multiplier: 1.1567
+    baseline_loc: 35733
+    v3_rolling_adjustment_loc: 2845
     original_baseline_loc: 32888
-    final_loc: 40509
-    maximum_loc: 71908
-    loc_multiplier: 1.1267
+    final_loc: 41227
+    maximum_loc: 71466
+    loc_multiplier: 1.1538
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -5924,17 +5924,17 @@ entries:
     initial_words: 235
     initial_loc: 127
     resolved_owner: sources
-    decision: refactored
-    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
+    decision: verified_no_change
+    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/sources/lifecycle-contract.yml
       current_ref: working-tree:registries/sources/lifecycle-contract.yml
       current_state: present
-      current_sha256: 9bb24e54da7a2839e33b0c7b1499d8e38c2faae0a23189d738d9c8d8512fbe72
-      current_words: 305
-      current_loc: 165
-      byte_identical: false
-      material_change: true
+      current_sha256: 2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613
+      current_words: 235
+      current_loc: 127
+      byte_identical: true
+      material_change: false
       owner_resolution: docs/program/ownership-manifest.yml:sources:registries/sources/**
       generator_ref: null
       successor_path: null
@@ -5951,9 +5951,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:registries/sources/source-registry.yml
       current_ref: working-tree:registries/sources/source-registry.yml
       current_state: present
-      current_sha256: d0cfab8696399415b3279658896e2d6d99f762492f7508f99e9d86a8009cad32
-      current_words: 1178
-      current_loc: 591
+      current_sha256: fbba553904040cc8a9d035da3efbdac9f1cbdd269fccaadccfdedca2138fdf8b
+      current_words: 811
+      current_loc: 404
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:sources:registries/sources/**
@@ -6854,9 +6854,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-sources.ts
       current_ref: working-tree:scripts/check-sources.ts
       current_state: present
-      current_sha256: 383c1a282b56d00c3d3f607760275f661f4169d5a68aac80600159d0502262fd
-      current_words: 68
-      current_loc: 25
+      current_sha256: 1da79616413e68b256c453340765d39cc714720d67a62de4e94d7020135bf9f0
+      current_words: 91
+      current_loc: 33
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -8051,9 +8051,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/contract/source-notebook.contract.test.ts
       current_ref: working-tree:tests/contract/source-notebook.contract.test.ts
       current_state: present
-      current_sha256: 7ed237659f0d9a8a6afe36f6e295dc5108ea9f38f36f838e9e27efa8ea69dc7e
-      current_words: 584
-      current_loc: 231
+      current_sha256: 49ac6398596208a7db1112e04589bbfe7bf3ad11998a0cf225102079a76a7a48
+      current_words: 647
+      current_loc: 271
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:qa:tests/contract/**
@@ -8093,9 +8093,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/fixtures/source-notebook/contracts.ts
       current_ref: working-tree:tests/fixtures/source-notebook/contracts.ts
       current_state: present
-      current_sha256: 512c6667963b417a7d501dffa85b44cf99cb8013bb84a5c6ccd7299a278f35bb
-      current_words: 63
-      current_loc: 25
+      current_sha256: b4fd8e9b715cae8f847c97d1e0b9f33c8bd0fb06aff3ab54d104009e878fbf47
+      current_words: 2207
+      current_loc: 917
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:qa:tests/fixtures/**
@@ -8261,7 +8261,7 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/negative/source-notebook.negative.test.ts
       current_ref: working-tree:tests/negative/source-notebook.negative.test.ts
       current_state: present
-      current_sha256: 7117dddcc168a9e554649b06cf4a836bf2daab54000a18f991f31c3b5809618c
+      current_sha256: 092018cf8c70291d78f7ae79c3e3649cb3f21f745d642e1e2b6dc20c7734ca67
       current_words: 830
       current_loc: 238
       byte_identical: false

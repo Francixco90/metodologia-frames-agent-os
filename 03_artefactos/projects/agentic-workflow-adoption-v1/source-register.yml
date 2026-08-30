@@ -1,13 +1,77 @@
 schema_version: 1
 register_id: agentic-workflow-adoption-v1-source-register
-registry_contract: source-registry-v2
-status: EVALUATED_REGISTERED_HASH_CHAIN_VERIFIED
-merge_authority: governance_engineer_only
+registry_contract: pinned-repository-project-local-register-v1
+scope: PROJECT_LOCAL
+project_root: 03_artefactos/projects/agentic-workflow-adoption-v1
+status: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
+overlay_ownership: governance_engineer_only
 baseline:
   frames_commit_sha1: 9978acd2e9f056fa3634a71ed7c495ba0323af77
   observed_at: '2026-08-29T18:14:22Z'
+global_authorities:
+  overlay_rule: additive_project_local_no_global_registry_mutation
+  lifecycle_contract:
+    locator: 04_estado/registries/sources/lifecycle-contract.yml
+    sha256: 2fa4f6bd00a69afdc51729963cb3dc0f030bfffa8903d84b6cab93376f01b613
+  source_registry:
+    locator: 04_estado/registries/sources/source-registry.yml
+    sha256: fbba553904040cc8a9d035da3efbdac9f1cbdd269fccaadccfdedca2138fdf8b
 normalization_contract: git-archive-binary-identity-v1
 receipt_contract: pinned_repository_source_transition_v2
+external_evidence_contract:
+  state: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
+  versioned_evidence_physically_verified:
+    - repository_descriptor
+    - selected_paths_manifest
+    - selected_paths_projection
+    - rights_authorization_projection
+    - three_historical_receipts_per_source
+  observations_not_replayed:
+    - source_archive_bytes
+    - full_commit_tree
+    - selected_blob_contents
+  prohibited_claims:
+    - source_archive_recomputed_in_frames
+    - commit_tree_replayed_in_frames
+    - selected_blob_hashes_recomputed_from_source_bytes_in_frames
+  required_coverage_gap: external_archive_tree_and_blob_observations_not_replayed_in_frames
+policy:
+  contract_id: pinned-repository-implementation-source-v1
+  additive_to_registry_schema: 2
+  maximum_state_without_h01: evaluated
+  git_object_algorithm: sha1
+  content_and_receipt_hash_algorithm: sha256
+  required_transitions: [null>candidate, candidate>quarantined, quarantined>evaluated]
+  required_portable_artifacts:
+    [
+      repository_descriptor,
+      selected_paths_manifest,
+      selected_paths_projection,
+      rights_authorization_projection,
+    ]
+  receipt_chain:
+    receipt_schema_version: 2
+    receipt_kind: pinned_repository_source_transition_v2
+    physical_sha256_binding_required: true
+    previous_receipt_sha256_required_after_first: true
+    actor_and_verifier_must_differ: true
+    immutable_fields:
+      - source_id
+      - repository.canonical_uri
+      - repository.commit_sha1
+      - repository.tree_sha1
+      - evidence_projection.selected_paths_manifest_sha256
+      - rights.allowed_use_scope
+      - restrictions
+  rights_verdict: allowed_internal_implementation
+  allowed_use_scope: internal_typescript_reimplementation_only
+  restrictions: &donor_restrictions
+    - internal_typescript_reimplementation_only
+    - no_full_runtime_vendoring
+    - no_asset_copy_without_separate_traceability
+    - no_external_distribution
+    - no_publication_authority
+    - no_network_or_delivery_authority
 entries:
   - source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
     snapshot_id: proposal-measure-e0d6ba4-git-archive-v1
@@ -24,22 +88,50 @@ entries:
       raw_bytes: 1576960
       normalized_bytes: 1576960
       normalization_contract: git-archive-binary-identity-v1
-    repository_binding:
+    repository_lock:
+      contract_id: pinned-repository-implementation-source-v1
+      canonical_uri: https://github.com/SepBaGer/Propuesta-Medida.git
+      canonical_uri_sha256: 552a274f1ccfd0a805548b65fa799f452bbf12471c94114ad8a5d09a4d7b62a0
       git_object_algorithm: sha1
-      commit_sha1: e0d6ba4576b23c83a6b22dbad53e23a8795b26d0
-      tree_sha1: 457920d64756549eb4862b2653e2bf293d332ab9
+      commit_object_id: e0d6ba4576b23c83a6b22dbad53e23a8795b26d0
+      tree_object_id: 457920d64756549eb4862b2653e2bf293d332ab9
       tree_listing_sha256: ca7edbfec3253e676a13fcee8ff7784308a3a342501161c32719c000543c4ef9
       tracked_file_count: 76
-    evidence_projection:
-      repository_descriptor: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/repository.yml
-      repository_descriptor_sha256: e3bf872833b8845b98d0889c3606c2ab814a7701881041590964f92d0b365df1
-      selected_paths_manifest_sha256: 6d63babbead317c234a1b97e92825da4fbc0d86f8aa92e9156d24513ed1c25cc
-      selected_paths_projection_sha256: f73aa35c9e74bf0a6189e7a1e2b55a5777e0d6a961e8e1068b5752d16c6f6853
-      rights_authorization_projection_sha256: 3c6ab32d388c51ef4ad8544aa63101f64536f09cb273b6eadc35175bfb204665
+      source_archive:
+        format: git_archive_tar
+        sha256: adb8a27e74dd44312834705f4f21f5af594fccfd4571e550f2057cbb65ee1bb3
+        bytes: 1576960
+        versioned_in_frames: false
+      repository_descriptor:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/repository.yml
+        sha256: e3bf872833b8845b98d0889c3606c2ab814a7701881041590964f92d0b365df1
+        bytes: 1753
+      selected_paths_manifest:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths.manifest.tsv
+        sha256: 6d63babbead317c234a1b97e92825da4fbc0d86f8aa92e9156d24513ed1c25cc
+        bytes: 3144
+        format: utf8_lf_tsv_v1
+        selected_path_count: 22
+      selected_paths_projection:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths-projection.yml
+        sha256: f73aa35c9e74bf0a6189e7a1e2b55a5777e0d6a961e8e1068b5752d16c6f6853
+        bytes: 2258
+      rights_authorization_projection:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/rights-authorization.yml
+        sha256: 3c6ab32d388c51ef4ad8544aa63101f64536f09cb273b6eadc35175bfb204665
+        bytes: 972
+      limits: &donor_limits
+        allowed_use_scope: internal_typescript_reimplementation_only
+        claim_authority: denied
+        full_runtime_vendoring: denied
+        asset_copy_without_separate_traceability: denied
+        external_distribution: denied
+        publication: denied
+        network_or_delivery: denied
     deduplication:
-      verdict: unique_canonical_uri_and_commit_within_adoption_source_set
-      checked_against_registry: source-registry-v2-at-9978acd2e9f056fa3634a71ed7c495ba0323af77
-    rights:
+      verdict: unique_canonical_uri_and_commit_within_source_registry_v2
+      checked_against_registry: source-registry-v2
+    rights: &donor_rights
       rights_holder: repository_authors_and_rightsholders
       rights_basis: user_supplied_authorization_for_requested_internal_reimplementation
       allowed_use_scope: internal_typescript_reimplementation_only
@@ -63,16 +155,11 @@ entries:
       - event_order: 3
         path: receipts/imports/proposal-measure-e0d6ba4/20260829-SRC-PROPOSAL-MEASURE-E0D6BA4-evaluated.yml
         sha256: 442ca5f9b7cc61ae0f6f8b245c4aa8c83183bab6c5969b85bb2def362ab239f6
-    restrictions:
-      - internal_typescript_reimplementation_only
-      - no_full_runtime_vendoring
-      - no_asset_copy_without_separate_traceability
-      - no_external_distribution
-      - no_publication_authority
-      - no_network_or_delivery_authority
+    restrictions: *donor_restrictions
     coverage_gaps:
       - no_tracked_license_file_observed_at_pinned_commit
       - source_archive_not_versioned_in_frames
+      - external_archive_tree_and_blob_observations_not_replayed_in_frames
       - authorization_is_user_supplied_not_host_attested
       - active_promotion_not_authorized
   - source_id: SRC-TECHNICAL-DEFENSE-78FD383
@@ -90,26 +177,43 @@ entries:
       raw_bytes: 174080
       normalized_bytes: 174080
       normalization_contract: git-archive-binary-identity-v1
-    repository_binding:
+    repository_lock:
+      contract_id: pinned-repository-implementation-source-v1
+      canonical_uri: https://github.com/GermanMetodologIA/technical-defense-preparation-workflow.git
+      canonical_uri_sha256: 7914a8cae58608f4809d9d937d28cbbe4bf51d915e6f82a3ed8723df0b3abd2b
       git_object_algorithm: sha1
-      commit_sha1: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
-      tree_sha1: 467691b625de2590171290d2dff779a791749f8c
+      commit_object_id: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
+      tree_object_id: 467691b625de2590171290d2dff779a791749f8c
       tree_listing_sha256: a7571dbec7e2b09b30c212d160f243b1984222e6678ffa1642030fbd99c34b8a
       tracked_file_count: 44
-    evidence_projection:
-      repository_descriptor: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/repository.yml
-      repository_descriptor_sha256: 75c3b76c6083ef86e67aeb588b2b812581c90238c530ea88c2ccc2259cbae23d
-      selected_paths_manifest_sha256: 13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34
-      selected_paths_projection_sha256: f34f7bb4ffd0a12a9894804972a039b5af7cde5712c211cadaec2ed7350ae18b
-      rights_authorization_projection_sha256: e69d9769d950e4491efedac41a028ce56d2330584e6eb46e26f41164c570b67c
+      source_archive:
+        format: git_archive_tar
+        sha256: dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61
+        bytes: 174080
+        versioned_in_frames: false
+      repository_descriptor:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/repository.yml
+        sha256: 75c3b76c6083ef86e67aeb588b2b812581c90238c530ea88c2ccc2259cbae23d
+        bytes: 1789
+      selected_paths_manifest:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths.manifest.tsv
+        sha256: 13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34
+        bytes: 3778
+        format: utf8_lf_tsv_v1
+        selected_path_count: 27
+      selected_paths_projection:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths-projection.yml
+        sha256: f34f7bb4ffd0a12a9894804972a039b5af7cde5712c211cadaec2ed7350ae18b
+        bytes: 2245
+      rights_authorization_projection:
+        locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/rights-authorization.yml
+        sha256: e69d9769d950e4491efedac41a028ce56d2330584e6eb46e26f41164c570b67c
+        bytes: 1168
+      limits: *donor_limits
     deduplication:
-      verdict: unique_canonical_uri_and_commit_within_adoption_source_set
-      checked_against_registry: source-registry-v2-at-9978acd2e9f056fa3634a71ed7c495ba0323af77
-    rights:
-      rights_holder: repository_authors_and_rightsholders
-      rights_basis: user_supplied_authorization_for_requested_internal_reimplementation
-      allowed_use_scope: internal_typescript_reimplementation_only
-      rights_verdict: allowed_internal_implementation
+      verdict: unique_canonical_uri_and_commit_within_source_registry_v2
+      checked_against_registry: source-registry-v2
+    rights: *donor_rights
     authority:
       authority_class: technical_authority
       authority_verdict: verified_pinned_repository_reference_for_internal_reimplementation
@@ -129,14 +233,9 @@ entries:
       - event_order: 3
         path: receipts/imports/technical-defense-78fd383/20260829-SRC-TECHNICAL-DEFENSE-78FD383-evaluated.yml
         sha256: 17f6aab2ec922f3121ba53ab9c29f4d2c4e1a208cb765495e672264ca6b0c294
-    restrictions:
-      - internal_typescript_reimplementation_only
-      - no_full_runtime_vendoring
-      - no_asset_copy_without_separate_traceability
-      - no_external_distribution
-      - no_publication_authority
-      - no_network_or_delivery_authority
+    restrictions: *donor_restrictions
     coverage_gaps:
       - source_archive_not_versioned_in_frames
+      - external_archive_tree_and_blob_observations_not_replayed_in_frames
       - authorization_is_user_supplied_not_host_attested
       - active_promotion_not_authorized

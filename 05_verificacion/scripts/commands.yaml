@@ -87,8 +87,8 @@ gates:
     owner: core
 
   - gate: G08_TRANSACTION_KERNEL
-    label: TransactionKernelV1 contracts filesystem recovery and V1 compatibility
-    command: 'pnpm typecheck && pnpm exec vitest run 05_verificacion/tests/unit/core/transaction-kernel-v1.test.ts 05_verificacion/tests/negative/transaction-kernel-security.negative.test.ts 05_verificacion/tests/negative/transaction-kernel-api-boundaries.negative.test.ts 05_verificacion/tests/unit/video-os-stable-snapshot-reader.test.ts 05_verificacion/tests/negative/experience-material-adapter.test.ts'
+    label: TransactionKernelV1 source overlay R6 R8 recovery and V1 compatibility
+    command: 'node --import tsx 05_verificacion/scripts/check-sources.ts --project-local && pnpm typecheck && pnpm exec vitest run 05_verificacion/tests/unit/core/transaction-kernel-v1.test.ts 05_verificacion/tests/unit/core/transaction-causal-gates-v1.test.ts 05_verificacion/tests/negative/transaction-kernel-security.negative.test.ts 05_verificacion/tests/negative/transaction-kernel-durable-seams.negative.test.ts 05_verificacion/tests/negative/transaction-kernel-api-boundaries.negative.test.ts 05_verificacion/tests/unit/video-os-stable-snapshot-reader.test.ts 05_verificacion/tests/negative/experience-material-adapter.test.ts 05_verificacion/tests/integration/commercial-proposal-canary.test.ts 05_verificacion/tests/unit/local-extension-contracts.test.ts 05_verificacion/tests/integration/local-extension-discovery.test.ts 05_verificacion/tests/integration/local-extension-cli.test.ts 05_verificacion/tests/negative/local-extension-security.test.ts 05_verificacion/tests/integration/technical-defense-local-extension.test.ts 05_verificacion/tests/integration/technical-defense-local-extension-adversarial.test.ts'
     allowed_tools: [Bash]
     write_set_globs: []
     idempotency: true

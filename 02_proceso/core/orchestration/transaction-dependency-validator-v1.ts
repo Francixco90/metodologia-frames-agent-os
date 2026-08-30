@@ -112,7 +112,15 @@ export const verifyTransactionDependenciesV1 = (
       guardian.effectReceiptId === effect.receiptId &&
       guardian.effectReceiptPhysicalSha256 === promotion.effectReceiptPhysicalSha256 &&
       verification.effectReceiptId === effect.receiptId &&
-      verification.effectReceiptPhysicalSha256 === promotion.effectReceiptPhysicalSha256;
+      verification.effectReceiptPhysicalSha256 === promotion.effectReceiptPhysicalSha256 &&
+      approval.recorderTaskId === guardian.recorderTaskId &&
+      approval.recorderActorInstanceId === guardian.recorderActorInstanceId &&
+      approval.guardianAuthoritySha256 === guardian.guardianAuthoritySha256 &&
+      approval.recorderAuthoritySha256 === guardian.recorderAuthoritySha256 &&
+      promotion.recorderTaskId === guardian.recorderTaskId &&
+      promotion.recorderActorInstanceId === guardian.recorderActorInstanceId &&
+      promotion.guardianAuthoritySha256 === guardian.guardianAuthoritySha256 &&
+      promotion.recorderAuthoritySha256 === guardian.recorderAuthoritySha256;
     const bound = [approval, guardian, verification, effect].every(
       (receipt) =>
         receipt.runId === input.runId &&

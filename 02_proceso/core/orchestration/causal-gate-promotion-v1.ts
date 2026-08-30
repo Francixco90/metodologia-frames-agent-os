@@ -5,11 +5,13 @@ import {
   failTransactionV1,
 } from '../contracts/transaction-kernel-v1.ts';
 import {immutableClone} from '../evidence/immutable.ts';
+import {verifyImmutableCausalActorAuthorityV1} from './causal-gate-guardian-v1.ts';
+import type {StableRootHooksV1} from './stable-root-capability-v1.ts';
 import {transactionAuthorityActionSha256V1} from './transaction-dag-v1.ts';
 import type {TransactionDurableStoreV1} from './transaction-durable-store-v1.ts';
 import {verifyTransactionEffectOutputsV1} from './transaction-output-verifier-v1.ts';
 // prettier-ignore
-import {assertDistinctTransactionActorsV1, sameTransactionChainV1, signTransactionCausalReceiptV1, transactionChainV1, verifyCausalActorAuthorityV1} from './causal-gate-verification-v1.ts';
+import {assertDistinctTransactionActorsV1, sameTransactionChainV1, signTransactionCausalReceiptV1, transactionChainV1} from './causal-gate-verification-v1.ts';
 
 export const computePromotionAuthorityActionSha256V1 = (
   approval: TransactionHumanApprovalReceiptV1,
@@ -28,6 +30,7 @@ export const recordTransactionPromotionV1 = (
   store: TransactionDurableStoreV1,
   authority: ActorAuthorityPortV1,
   raw: unknown,
+  rootHooks?: StableRootHooksV1,
 ): TransactionPromotionReceiptV1 => {
   const input = PromoteTransactionInputV1Schema.parse(raw);
   return store.withRunLock(
@@ -92,7 +95,7 @@ export const recordTransactionPromotionV1 = (
           state: 'H01_APPROVED',
         },
       ]);
-      const candidate = verifyTransactionEffectOutputsV1(effect).candidateSha256;
+      const candidate = verifyTransactionEffectOutputsV1(effect, rootHooks).candidateSha256;
       const pointers =
         guardian.verificationReceiptId === verification.receiptId &&
         guardian.verificationReceiptPhysicalSha256 === approval.verificationReceiptPhysicalSha256 &&
@@ -106,6 +109,13 @@ export const recordTransactionPromotionV1 = (
         Date.parse(input.recordedAt) <= Date.parse(approval.recordedAt) ||
         !sameTransactionChainV1(approval, guardian, verification, effect) ||
         !pointers ||
+        approval.recorderTaskId !== guardian.recorderTaskId ||
+        approval.recorderActorInstanceId !== guardian.recorderActorInstanceId ||
+        approval.guardianAuthoritySha256 !== guardian.guardianAuthoritySha256 ||
+        approval.recorderAuthoritySha256 !== guardian.recorderAuthoritySha256 ||
+        input.recorderSession.taskId !== guardian.recorderTaskId ||
+        input.recorderSession.actorInstanceId !== guardian.recorderActorInstanceId ||
+        input.recorderSession.authoritySha256 !== guardian.recorderAuthoritySha256 ||
         candidate !== approval.candidateSha256
       )
         return failTransactionV1('CAUSAL_ORDER', 'H01 physical chain is invalid.');
@@ -113,7 +123,7 @@ export const recordTransactionPromotionV1 = (
         approval,
         input.humanApprovalReceiptPhysicalSha256,
       );
-      const authorityVerdictSha256 = verifyCausalActorAuthorityV1(
+      const authorityVerdictSha256 = verifyImmutableCausalActorAuthorityV1(
         authority,
         input.recorderSession,
         'RECORDER',
@@ -160,8 +170,10 @@ export const recordTransactionPromotionV1 = (
         producerActorInstanceId: approval.producerActorInstanceId,
         verifierActorInstanceId: approval.verifierActorInstanceId,
         guardianActorInstanceId: approval.guardianActorInstanceId,
+        guardianAuthoritySha256: approval.guardianAuthoritySha256,
         approverActorInstanceId: approval.approverActorInstanceId,
         recorderActorInstanceId: input.recorderSession.actorInstanceId,
+        recorderAuthoritySha256: input.recorderSession.authoritySha256,
         authorityVerdictSha256,
         recordedAt: input.recordedAt,
       };
