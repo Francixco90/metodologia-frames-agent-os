@@ -105,8 +105,8 @@ entries:
     version: 0.8.2
     current_state: active
     execution_scope: local-evaluation
-    content_sha256: 24fb6aa2a67bc0173b213bb806d750ac91204757aec9aac5169282b7162614c9
-    package_manifest_sha256: cca1ba5c51d6e583fe9a75b654bd4aaa2a864f699fb01c5712ddcc66d62d3c23
+    content_sha256: 8ecfe04334ebf2b42b2b780a59db6201e36b9b3f791dd465241159e5347c9390
+    package_manifest_sha256: b165e921378e2d52bf931d8abe6dce55ff8f87cfe43162e428852712deccc219
     lineage_ref: skills/content-os-router/LINEAGE.yml
     dependency_receipt_ref: skills/content-os-router/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -1822,7 +1822,7 @@ entries:
     current_state: active
     execution_scope: local-evaluation
     content_sha256: a5978933c36ae0bbea3cc5cf67843f6a3e9468d8c78cdbbd5d02c3338cb766b0
-    package_manifest_sha256: 83defffe00358263320cf5ce1c530d89899b4fa6bd21b0e7b84899eaf904fbe7
+    package_manifest_sha256: 87530ab6d7e90a348738ab3e72989c6b0b0e1a707d3ddb66cf2e1d7c3bee6ffa
     lineage_ref: skills/frames-harness-maintainer/LINEAGE.yml
     dependency_receipt_ref: skills/frames-harness-maintainer/receipts/runtime-boundary.yml
     production_runtime_status: local_capability_only
@@ -2037,6 +2037,7 @@ events:
   - {event_id: EVT-SKL-FHM-H03-002, event_order: 2, skill_id: frames-harness-maintainer, from: candidate, to: quarantined, actor_id: RT-07-MAINTENANCE-SKILL-PRODUCER}
   - {event_id: EVT-SKL-FHM-H03-003, event_order: 3, skill_id: frames-harness-maintainer, from: quarantined, to: evaluated, actor_id: RT-10-MAINTENANCE-SKILL-INTEGRATOR}
   - {event_id: EVT-SKL-FHM-H03-004, event_order: 4, skill_id: frames-harness-maintainer, from: evaluated, to: active, actor_id: RT-10-MAINTENANCE-SKILL-INTEGRATOR}
+  - {event_id: EVT-SKL-FHM-H03-005, event_order: 5, skill_id: frames-harness-maintainer, from: active, to: active, actor_id: RT-10-MAINTENANCE-SKILL-INTEGRATOR, recorded_at: '2026-08-29T00:00:00Z', decision: align_guardian_verdict_recording_gate_context, content_sha256: a5978933c36ae0bbea3cc5cf67843f6a3e9468d8c78cdbbd5d02c3338cb766b0, package_manifest_sha256: 87530ab6d7e90a348738ab3e72989c6b0b0e1a707d3ddb66cf2e1d7c3bee6ffa}
   - {event_id: EVT-SKL-FEI-H03-001, event_order: 1, skill_id: frames-ecosystem-inventory, from: null, to: candidate, actor_id: RT-07-INVENTORY-SKILL-PRODUCER}
   - {event_id: EVT-SKL-FEI-H03-002, event_order: 2, skill_id: frames-ecosystem-inventory, from: candidate, to: quarantined, actor_id: RT-07-INVENTORY-SKILL-PRODUCER}
   - {event_id: EVT-SKL-FEI-H03-003, event_order: 3, skill_id: frames-ecosystem-inventory, from: quarantined, to: evaluated, actor_id: RT-10-INVENTORY-SKILL-INTEGRATOR}
@@ -2833,6 +2834,7 @@ events:
   - {event_id: EVT-SKL-CGV-H03-039, event_order: 39, skill_id: content-os-general-video, from: active, to: active, actor_id: RT-10-VIDEO-INTEGRATION, recorded_at: '2026-08-21T00:00:00Z', decision: add_material_disclosure_curtain_v2_and_autonomous_clip_verification, content_sha256: 9534929ba23b49046b6856a5aa25f451b6e6f590933c66e29ed7ee38203c7e9f, package_manifest_sha256: 9aeebf562012d9ff6d12e015714bd2e0379dff7acfb1888883997ec249554b1d}
   - {event_id: EVT-SKL-COR-H03-013, event_order: 13, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, recorded_at: '2026-08-21T00:00:00Z', decision: derive_external_decision_gate_and_gap_from_experience_envelope, content_sha256: 9389a510663f83ed0a20e26f3f31779d119c4fa331d50b264225dd9788e8d887, package_manifest_sha256: 308b1aab692aa17643ccb3b6adcf95df48b87beaca8777fe251157f48f4e336b}
   - {event_id: EVT-SKL-COR-H03-014, event_order: 14, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, recorded_at: '2026-08-21T00:00:00Z', decision: transport_verified_decision_funnel_selection_and_refs_through_public_router, content_sha256: 24fb6aa2a67bc0173b213bb806d750ac91204757aec9aac5169282b7162614c9, package_manifest_sha256: cca1ba5c51d6e583fe9a75b654bd4aaa2a864f699fb01c5712ddcc66d62d3c23}
+  - {event_id: EVT-SKL-COR-H03-015, event_order: 15, skill_id: content-os-router, from: active, to: active, actor_id: RT-10-EXPERIENCE-INTEGRATOR, recorded_at: '2026-08-29T00:00:00Z', decision: adopt_commercial_proposal_r6_profile, content_sha256: 8ecfe04334ebf2b42b2b780a59db6201e36b9b3f791dd465241159e5347c9390, package_manifest_sha256: b165e921378e2d52bf931d8abe6dce55ff8f87cfe43162e428852712deccc219}
   - {event_id: EVT-SKL-SSD-H03-001, event_order: 1, skill_id: content-os-sensitive-signal-detector, from: null, to: candidate, actor_id: RT-07-H03-PRIVACY-DETECTOR-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: register_data_only_sensitive_signal_inventory_candidate, content_sha256: 06008207dd9b3b43d9bd4b210020de4af1b8e59d1aadc4c4f3a1d27a1131d6e7, package_manifest_sha256: 629c71843d9387e006bd5637dc3ef2e943b8aef031d0352e268d216bac701c0c}
   - {event_id: EVT-SKL-CPP-H03-001, event_order: 1, skill_id: content-os-contextual-privacy-planner, from: null, to: candidate, actor_id: RT-07-H03-PRIVACY-PLANNER-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: register_data_only_contextual_privacy_and_value_preservation_planner_candidate, content_sha256: 4a227bda0527c13575f09010f4ebea533c3d9699d8f7e60533663d289387574f, package_manifest_sha256: 61122b19e07a18f562f58e1531ec9ad605e70410f77824626df17288ff7b052b}
   - {event_id: EVT-SKL-CPP-H03-002, event_order: 2, skill_id: content-os-contextual-privacy-planner, from: candidate, to: candidate, actor_id: RT-07-H03-PRIVACY-PLANNER-PRODUCER, recorded_at: '2026-08-21T00:00:00Z', decision: harden_inventory_semantics_value_preservation_and_exact_redaction_bounds, content_sha256: 4a227bda0527c13575f09010f4ebea533c3d9699d8f7e60533663d289387574f, package_manifest_sha256: 297b20758e021e5e4e45d09a7abab36ff88c097cc8ec7524538fde8c740fc916}

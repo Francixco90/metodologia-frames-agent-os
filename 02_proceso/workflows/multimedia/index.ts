@@ -18,6 +18,12 @@ export {
   MultimediaWorkflowIdSchema,
 } from './_schema/workflow-v1.schema.ts';
 export {PromptSpecFrontmatterSchema} from './_schema/prompt-spec-v1.schema.ts';
+export * from './_schema/commercial-proposal-authority-v1.schema.ts';
+export * from './_schema/commercial-proposal-v1.schema.ts';
+export * from './_runner/commercial-proposal-materials-v1.ts';
+export * from './_runner/commercial-proposal-profile-v1.ts';
+export * from './_runner/commercial-proposal-projections-v1.ts';
+export * from './_runner/rfc4180-v1.ts';
 export {runWorkflow as runMultimediaWorkflow} from './_runner/run.ts';
 
 import {runWorkflow} from './_runner/run.ts';

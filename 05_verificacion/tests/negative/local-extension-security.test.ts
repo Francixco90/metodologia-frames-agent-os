@@ -5,7 +5,10 @@ import {dirname, join} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
-import {discoverLocalExtensions} from 'workflows/local-extensions/index.ts';
+import {
+  createLocalActivationReceipt,
+  discoverLocalExtensions,
+} from 'workflows/local-extensions/index.ts';
 
 const roots: string[] = [];
 const digest = (value: string | Buffer): string => createHash('sha256').update(value).digest('hex');
@@ -25,14 +28,12 @@ const workspace = () => {
 
 const installCode = (root: string): {runnerId: string; runnerHash: string} => {
   const handler = 'export const run = () => "ok";\n';
-  const evidence = '{"network":"denied"}\n';
   const documentation = '# Code extension\n';
   const fixture = '{}\n';
   write(root, 'handler.ts', handler);
   write(root, 'README.md', documentation);
   write(root, 'fixtures/positive.json', fixture);
   write(root, 'fixtures/adversarial.json', fixture);
-  write(root, 'evidence/sandbox.json', evidence);
   const manifest = {
     schema_version: 'frames-local-extension-v1',
     extension_id: 'local.frames.code-review',
@@ -79,7 +80,7 @@ const installCode = (root: string): {runnerId: string; runnerHash: string} => {
     network: 'DENIED',
     deterministic_replay: 'PASS',
     write_set_check: 'PASS',
-    evidence: [{ref: 'evidence/sandbox.json', sha256: digest(evidence)}],
+    evidence: manifest.content,
   };
   write(root, 'probe.json', `${JSON.stringify(probe, null, 2)}\n`);
   return {runnerId, runnerHash};
@@ -106,14 +107,40 @@ describe('local extension fail-closed security', () => {
       trusted_sandbox_runners: {[runnerId]: runnerHash},
     }).records[0];
     expect(trusted).toMatchObject({state: 'ACTIVE_LOCAL', reason_codes: []});
+    const probeSha256 = digest(readFileSync(join(extension, 'probe.json')));
+    expect(trusted?.sandbox_probe_sha256).toBe(probeSha256);
+    expect(createLocalActivationReceipt(trusted!).sandbox_probe_sha256).toBe(probeSha256);
   });
 
-  it('invalidates code activation when material evidence changes', () => {
+  it('invalidates code activation when manifest-bound content changes', () => {
     const {repository, project} = workspace();
     const extension = join(project, 'code-review');
     mkdirSync(extension);
     const {runnerId, runnerHash} = installCode(extension);
-    write(extension, 'evidence/sandbox.json', '{"network":"unknown"}\n');
+    write(extension, 'handler.ts', 'export const run = () => "drift";\n');
+
+    expect(
+      discoverLocalExtensions({
+        repository_root: repository,
+        trusted_sandbox_runners: {[runnerId]: runnerHash},
+      }).records[0],
+    ).toMatchObject({
+      state: 'BLOCKED',
+      reason_codes: ['CONTENT_HASH_MISMATCH'],
+    });
+  });
+
+  it('rejects a trusted probe that self-selects only a subset of manifest evidence', () => {
+    const {repository, project} = workspace();
+    const extension = join(project, 'code-review');
+    mkdirSync(extension);
+    const {runnerId, runnerHash} = installCode(extension);
+    const probePath = join(extension, 'probe.json');
+    const probe = JSON.parse(readFileSync(probePath, 'utf8')) as {
+      evidence: {ref: string; sha256: string}[];
+    };
+    probe.evidence = probe.evidence.slice(0, 1);
+    write(extension, 'probe.json', `${JSON.stringify(probe, null, 2)}\n`);
 
     expect(
       discoverLocalExtensions({
@@ -122,7 +149,7 @@ describe('local extension fail-closed security', () => {
       }).records[0],
     ).toMatchObject({
       state: 'VALIDATED_NOT_RUNNABLE',
-      reason_codes: ['SANDBOX_EVIDENCE_HASH_MISMATCH'],
+      reason_codes: ['SANDBOX_EVIDENCE_SET_MISMATCH'],
     });
   });
 

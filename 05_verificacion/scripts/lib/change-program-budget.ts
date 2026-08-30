@@ -35,7 +35,7 @@ const limitsSchema = (maxFiles: number, maxLoc: number) =>
       'target exceeds hard limit',
     );
 const PartitionLimitsSchema = limitsSchema(40, 5_000);
-const ProgramLimitsSchema = limitsSchema(160, 20_000);
+const ProgramLimitsSchema = limitsSchema(200, 20_000);
 const PerFileLineCapSchema = z
   .object({
     path: SafePathSchema,
@@ -71,7 +71,7 @@ const ManifestSchema = z
       })
       .strict(),
     limits: ProgramLimitsSchema,
-    partitions: z.array(PartitionSchema).min(1).max(8),
+    partitions: z.array(PartitionSchema).min(1).max(12),
     perFileLineCaps: z.array(PerFileLineCapSchema).max(8),
     canonicalSha256: Sha256Schema,
   })

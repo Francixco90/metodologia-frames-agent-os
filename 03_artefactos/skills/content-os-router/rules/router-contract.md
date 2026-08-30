@@ -26,13 +26,19 @@ Reglas que gobiernan la puerta única de Frames. Source of truth para
    `content-os-core`. El workflow orquesta; el router solo enruta.
 9. **Brief-first.** `content-intent-v2` siempre referencia un `brief.md` canónico;
    una pieza nueva incluye P03 y no produce antes de `MW_BRIEF_APPROVED`.
-10. **Minimum stage path.** P00/P01/P02/P04/P06/P09 se añaden por señales
-    explícitas; P07/P08 permanecen obligatorios. P09 nunca publica.
+10. **Minimum stage path.** En contenido genérico, P00/P01/P02/P04/P06/P09 se añaden
+    por señales explícitas y P07/P08 permanecen obligatorios. `commercial-proposal`
+    usa P00 opcional → P01 → P02 → P03 → P05 → P06 → P07; excluye P04/P09 y
+    bloquea P08 en V1. Un sucesor exige `REVISE` material más receipt durable V2.
+    P09 nunca publica.
    `RENDERED_DRAFT != HUMAN_APPROVED != READY != PUBLISHED`.
 11. **Causal dispatch.** R6/R7 deben devolver `adapter_invoked: true` y el
     `domain_intent` validado; un locator solo es `planned`. R0 nunca invoca.
 12. **Receipted skills.** Una skill declarada en el plan no cuenta como ejecutada
     sin `SkillInvocationReceiptV1` ligado al WorkOrder y a outputs materiales.
+13. **Commercial authority.** ROI, precio y compromisos requieren evidencia y autoridad
+    comercial hash-bound. La salida automática máxima es `RENDERED_DRAFT`; un deck no se
+    genera sin confirmación humana explícita. [CONFIG]
 
 ## Example manifest entry
 

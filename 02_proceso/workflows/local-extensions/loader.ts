@@ -1,7 +1,6 @@
 import {createHash} from 'node:crypto';
 import {readdirSync, readFileSync} from 'node:fs';
 import {dirname, relative} from 'node:path';
-import {parse as parseYaml} from 'yaml';
 
 import {
   LocalExtensionManifestSchema,
@@ -10,7 +9,12 @@ import {
   type LocalExtensionManifest,
   type LocalExtensionRecord,
 } from './contracts.ts';
-import {applyDependencyBlocks, validatePackageContent} from './dependencies.ts';
+import {
+  applyDependencyBlocks,
+  parseLocalExtensionManifestFileV1,
+  sameExtensionEvidenceV1,
+  validatePackageContent,
+} from './dependencies.ts';
 import {
   containedFile,
   existingPhysicalRoot,
@@ -21,11 +25,6 @@ import {
 const sha256 = (value: Buffer | string): string => createHash('sha256').update(value).digest('hex');
 const compareText = (left: string, right: string): number =>
   left < right ? -1 : left > right ? 1 : 0;
-const parseManifest = (path: string): unknown => {
-  const text = readFileSync(path, 'utf8');
-  return path.endsWith('.json') ? JSON.parse(text) : parseYaml(text);
-};
-
 const blocked = (root: string, ref: string, reasons: string[]): LocalExtensionRecord => ({
   extension_id: `blocked.extension.${sha256(`${root}\u0000${ref}`).slice(0, 12)}`,
   scope: 'UNKNOWN',
@@ -40,11 +39,16 @@ const codeState = (
   manifestPath: string,
   manifest: LocalExtensionManifest,
   trustedRunners: Readonly<Record<string, string>>,
-): {state: LocalExtensionRecord['state']; reason?: string} => {
+): {
+  state: LocalExtensionRecord['state'];
+  reason?: string;
+  sandboxProbeSha256?: string;
+} => {
   if (manifest.execution.mode !== 'code') return {state: 'ACTIVE_LOCAL'};
   try {
     const probePath = containedFile(root, manifest.execution.sandbox_probe);
-    const probe = SandboxProbeSchema.parse(JSON.parse(readFileSync(probePath, 'utf8')));
+    const probeRaw = readFileSync(probePath);
+    const probe = SandboxProbeSchema.parse(JSON.parse(probeRaw.toString('utf8')));
     const digest = sha256(readFileSync(manifestPath));
     if (trustedRunners[probe.runner_id] !== probe.runner_sha256) {
       return {state: 'VALIDATED_NOT_RUNNABLE', reason: 'SANDBOX_RUNNER_UNTRUSTED'};
@@ -52,13 +56,19 @@ const codeState = (
     if (probe.extension_id !== manifest.extension_id || probe.manifest_sha256 !== digest) {
       return {state: 'VALIDATED_NOT_RUNNABLE', reason: 'SANDBOX_PROBE_STALE'};
     }
+    if (!sameExtensionEvidenceV1(probe.evidence, manifest.content)) {
+      return {
+        state: 'VALIDATED_NOT_RUNNABLE',
+        reason: 'SANDBOX_EVIDENCE_SET_MISMATCH',
+      };
+    }
     for (const evidence of probe.evidence) {
       const evidencePath = containedFile(root, evidence.ref);
       if (sha256(readFileSync(evidencePath)) !== evidence.sha256) {
         return {state: 'VALIDATED_NOT_RUNNABLE', reason: 'SANDBOX_EVIDENCE_HASH_MISMATCH'};
       }
     }
-    return {state: 'ACTIVE_LOCAL'};
+    return {state: 'ACTIVE_LOCAL', sandboxProbeSha256: sha256(probeRaw)};
   } catch {
     return {state: 'VALIDATED_NOT_RUNNABLE', reason: 'SANDBOX_PROBE_MISSING_OR_INVALID'};
   }
@@ -74,7 +84,7 @@ const loadOne = (
     const path = containedFile(root, ref);
     const packageRoot = dirname(path);
     const raw = readFileSync(path);
-    const manifest = LocalExtensionManifestSchema.parse(parseManifest(path));
+    const manifest = LocalExtensionManifestSchema.parse(parseLocalExtensionManifestFileV1(path));
     const reasons = validatePackageContent(packageRoot, manifest);
     if (manifest.scope !== expectedScope) reasons.push('SCOPE_ROOT_MISMATCH');
     if (manifest.execution.mode === 'code') {
@@ -91,6 +101,18 @@ const loadOne = (
         const evaluation = codeState(packageRoot, path, manifest, trustedRunners);
         state = evaluation.state;
         if (evaluation.reason) reasons.push(evaluation.reason);
+        if (evaluation.sandboxProbeSha256)
+          return {
+            extension_id: manifest.extension_id,
+            scope: expectedScope,
+            source_root: packageRoot,
+            manifest_ref: ref,
+            manifest_sha256: sha256(raw),
+            sandbox_probe_sha256: evaluation.sandboxProbeSha256,
+            state,
+            reason_codes: [...new Set(reasons)].sort(),
+            manifest,
+          };
       }
     }
     return {

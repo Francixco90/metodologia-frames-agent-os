@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {mkdirSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs';
+import {mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {dirname, join} from 'node:path';
 
@@ -10,6 +10,13 @@ import {
   discoverLocalExtensions,
   resolveLocalExtensionCandidates,
 } from 'workflows/local-extensions/index.ts';
+import {
+  hashTechnicalDefenseRuntimeInputsV1,
+  technicalDefenseRunnerSha256V1,
+  technicalDefenseRuntimeAttestationRefsV1,
+  validateTechnicalDefenseActivationV1,
+  type LocalExtensionExecutionInputV1,
+} from 'workflows/local-extensions/technical-defense-executor-attestation-v1.ts';
 
 const roots: string[] = [];
 const sha256 = (value: string): string => createHash('sha256').update(value).digest('hex');
@@ -97,6 +104,7 @@ describe('local extension discovery and routing', () => {
     const first = createLocalActivationReceipt(discovery.records[0]!);
     const second = createLocalActivationReceipt(discovery.records[0]!);
     expect(first).toEqual(second);
+    expect(first.sandbox_probe_sha256).toBeNull();
     expect(first.receipt_sha256).toMatch(/^[a-f0-9]{64}$/u);
   });
 
@@ -159,5 +167,56 @@ describe('local extension discovery and routing', () => {
     expect(cycleA?.reason_codes).toContain('CIRCULAR_LOCAL_DEPENDENCY');
     expect(cycleB?.state).toBe('BLOCKED');
     expect(cycleB?.reason_codes).toContain('CIRCULAR_LOCAL_DEPENDENCY');
+  });
+});
+
+describe('technical-defense runtime attestation', () => {
+  it('hashes a deterministic transitive superset and rejects drift before activation input', () => {
+    const refs = [...technicalDefenseRuntimeAttestationRefsV1()];
+    expect(refs).toEqual([...refs].sort());
+    expect(new Set(refs).size).toBe(refs.length);
+    expect(refs).toEqual(
+      expect.arrayContaining([
+        '.npmrc',
+        'package.json',
+        'pnpm-lock.yaml',
+        'pnpm-workspace.yaml',
+        'tsconfig.json',
+        '02_proceso/core/contracts/transaction-kernel-v1.ts',
+        '02_proceso/core/orchestration/transaction-kernel-v1.ts',
+        '02_proceso/workflows/core/material-skill-adapter-v2.ts',
+        '02_proceso/workflows/local-extensions/contracts.ts',
+        '02_proceso/workflows/local-extensions/dependencies.ts',
+        '02_proceso/workflows/local-extensions/loader.ts',
+        '02_proceso/workflows/local-extensions/paths.ts',
+        '02_proceso/workflows/local-extensions/receipt.ts',
+        '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/handler.ts',
+        '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/technical-defense-contracts-v1.ts',
+        '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/technical-defense-render-v1.ts',
+      ]),
+    );
+
+    const decisiveRef = '02_proceso/workflows/local-extensions/dependencies.ts';
+    const trustedDigest = technicalDefenseRunnerSha256V1();
+    const driftedDigest = hashTechnicalDefenseRuntimeInputsV1((ref) => {
+      const bytes = readFileSync(join(process.cwd(), ref));
+      return ref === decisiveRef ? Buffer.concat([bytes, Buffer.from('\n// drift')]) : bytes;
+    });
+    expect(driftedDigest).not.toBe(trustedDigest);
+
+    let activationInputRead = false;
+    const guardedInput = new Proxy({} as LocalExtensionExecutionInputV1, {
+      get() {
+        activationInputRead = true;
+        throw new Error('ACTIVATION_INPUT_READ_BEFORE_RUNTIME_ATTESTATION');
+      },
+    });
+    expect(() =>
+      validateTechnicalDefenseActivationV1(guardedInput, {
+        runnerId: 'frames.local-extension-executor-v1',
+        runnerSha256: driftedDigest,
+      }),
+    ).toThrowError(/runner authority drifted/u);
+    expect(activationInputRead).toBe(false);
   });
 });

@@ -68,11 +68,16 @@ describe('router.yml contract', () => {
     expect(local?.reads).toEqual(
       expect.arrayContaining([
         '02_proceso/workflows/local-extensions/contracts.ts',
+        '02_proceso/workflows/local-extensions/executor-v1.ts',
         '03_artefactos/skills/frames-local-extension-foundry/SKILL.md',
+        '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/extension.yml',
       ]),
     );
     expect(local?.output).toMatch(/L00-L05/u);
     expect(local?.output).toMatch(/LX_BRIEF_APPROVED/u);
+    expect(local?.output).toMatch(/TransactionKernelV1/u);
+    expect(local?.output).toMatch(/ACTIVE_LOCAL/u);
+    expect(local?.output).toMatch(/no crea ruta global/u);
 
     const maintenance = router.routes.find((route) => route.id === 'R9');
     expect(maintenance?.reads).toEqual(
@@ -117,17 +122,31 @@ describe('router.yml contract', () => {
     expect(content).toBeDefined();
     expect(content?.binds_to).toBe('task');
     expect(content?.signal_patterns).toContain('ayúdame a generar una pieza');
+    expect(content?.signal_patterns).toEqual(
+      expect.arrayContaining(['propuesta comercial', 'commercial proposal', 'proposal deck']),
+    );
+    expect(content?.signal_patterns).not.toContain('proposal');
     expect(content?.reads).toEqual(
       expect.arrayContaining([
         '03_artefactos/skills/content-os-router/SKILL.md',
         '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts',
         '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts',
+        '02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts',
+        '02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts',
+        '03_artefactos/skills/content-os-slideshow/SKILL.md',
       ]),
     );
     expect(content?.output).toMatch(/content-intent-v2/u);
     expect(content?.output).toMatch(/brief\.md/u);
     expect(content?.output).toMatch(/P00-P09/u);
     expect(content?.output).toMatch(/STOP en MW_BRIEF_APPROVED/u);
+    expect(content?.output).toMatch(/commercial-proposal R6/u);
+    expect(content?.output).toMatch(/P00 opcional.*P01.*P02.*P03.*P05.*P06.*P07/u);
+    expect(content?.output).toMatch(
+      /P08 bloqueado en V1.*verification REVISE.*receipt durable V2/u,
+    );
+    expect(content?.output).toMatch(/sin P04\/P09/u);
+    expect(content?.output).toMatch(/RENDERED_DRAFT/u);
   });
 
   it('R6 dispatches Trainer OS while R10 remains a separate NotebookLM authority', () => {

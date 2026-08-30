@@ -144,10 +144,12 @@ rules:
       allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/** and workflows/experience/** plus declared content artifacts and registries/experience/**.'
+        - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/**, workflows/experience/** and workflows/local-extensions/** plus declared content artifacts and registries/experience/**.'
         - 'workflows/multimedia/** is one atomic content-owned route, including _schema, _runner and P00-P09; renderer roles cannot write there.'
         - 'Design System First work reads approved brand profile/tokens and requires pnpm verify:brand before pnpm content:build; unresolved authority blocks.'
         - 'Career C09 is prepare-and-stop: no browser submission, connector, publish or external effect.'
+        - 'Commercial proposal R6 stops at RENDERED_DRAFT; price, ROI and commitments require hash-bound commercial authority, and deck materialization requires separate human confirmation.'
+        - 'PROJECT_LOCAL code runs only through LocalExtensionExecutorV1 backed by TransactionKernelV1; network, subprocess, eval, dynamic imports and direct filesystem writes are denied.'
         - 'Bash restricted to pnpm verify:brand, pnpm content:build, local typecheck, tests and deterministic workflow validators.'
       source_ref: 'ownership-manifest writers.content; dag packages A07/A07c gates G09_CONTENT/G09_CAREER'
   - role: remotion
