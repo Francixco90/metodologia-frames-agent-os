@@ -1,10 +1,15 @@
 # Evidencia de validación del expediente v1
 
-Estado: `WAVE4_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
+Estado: `PUBLIC_PORT_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
 
 Este informe registra observaciones reproducibles de los SHAs donantes, la implementación Frames y
 sus pilotos locales. Acredita ejecución local bajo `LOCAL_SIMULATION`; no acredita identidad de
 host, H01 del candidato, promoción, publicación, distribución o entrega. [METODOLOGIA] [CONFIG]
+
+Las secciones 1–8 preservan evidencia histórica del candidato privado
+`db0c2148f397acf84ba79faee9238b0f0cbbb0c1`. No acreditan por sí solas el port basado en
+`upstream/main@5e2a18c54ed6343b58428ab940f735405710c643`; la reproducción pública se documenta por separado
+en la sección 9. [DOC] [INFERENCIA]
 
 ## 1. Observaciones externas de repositorio registradas
 
@@ -189,6 +194,35 @@ El scan es pattern-based y contextual; no es DLP/entropy analysis formal. [HERRA
 El primer freeze Guardian de Wave1 quedó en `REWORK` y fue remediado antes de Waves 2–4. El
 Guardian final debe revisar el digest exacto posterior a documentación y gates; este documento no
 anticipa su veredicto. [CONFIG] [DOC]
+
+## 9. Revalidación del port público
+
+- Baseline: `upstream/main@5e2a18c54ed6343b58428ab940f735405710c643`; rama local
+  `codex/proposal-defense-adoption-public-v1`.
+- Port trazable: cuatro cherry-picks secuenciales `-x`; los conflictos se limitaron a autoridades
+  compartidas y derivados regenerables. No se realizó merge mayorista de historias.
+- R6: el locator privado ausente quedó sustituido por el template comercial público existente,
+  SHA-256 `7c445c4689b629a0b8f543c5e1d74341e3a43a8d5bf7265e20ba1c50f9047d85`; canary 47/47 PASS.
+- R8: la attestation bloqueó el digest privado antes de ejecutar. El runtime público recomputado
+  quedó ligado a `cf7f5d78a19ad6c3927cbfb522671a32f443217b098a94ba325435449c7fa379` y el sandbox probe a
+  `bb3784ddaca81ba57d90ff5749836bd676e0832542f4e959f6149aa17a919987`; las suites R6/R8 directas
+  pasaron 90/90 sin relajar el loader, write set o `network: DENIED`.
+- Fuentes: CLI global 11, overlay `PROJECT_LOCAL` 2 y siete suites contract/negative/runner 45/45.
+  El source register y sus receipts históricos permanecieron sin reescritura.
+- G08: 14 archivos y 220/220 tests PASS; cubre kernel, causal gates, recovery, R6, R8 y
+  compatibilidad V1.
+- Budget: programa activo sobre el upstream configurado, 200 archivos authored y 19 785 LOC,
+  dentro del hard cap 200/20 000. El resolver evita medir esta rama pública contra el origin
+  privado y sus tests pasan 20/20.
+- `pnpm check` y `pnpm typecheck`: PASS; privacidad 6496 archivos versionables, 72 gates y 33
+  manuales fail-closed.
+- Primer `pnpm verify`: bloqueó una aserción de cardinal heredada (71 versus 72) y no fue contado
+  como PASS. Tras corregirla contra el manifest público, el replay completo cerró exit 0, con
+  234/234 archivos, 2143/2143 tests, lint y formato PASS.
+- Derivados regenerados: documentación 43 workflows/90 outputs, ecosistema 988 items, ledger
+  387/387 y auditoría 1905 Markdown/637 authored-control.
+- Efectos externos del port: 0. No hubo push, PR, merge, publicación, distribución, entrega, H01
+  ni promoción. [HERRAMIENTA] [CONFIG]
 
 `[SUPUESTO] user_authorized_internal_implementation` sigue siendo el único fundamento de alcance
 adicional a la licencia interna observada en Defense. Proposal no presentó LICENSE tracked en el

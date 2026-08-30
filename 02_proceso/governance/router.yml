@@ -135,7 +135,7 @@ routes:
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-      - '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md'
+      - '03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md'
       - '03_artefactos/skills/content-os-slideshow/SKILL.md'
     output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil commercial-proposal R6: P00 opcional → P01 → P02 → P03 → P05 → P06 → P07, sin P04/P09; P08 bloqueado en V1 y una revisión futura exige verification REVISE + receipt durable V2; MD/HTML/JSON/CSV y techo RENDERED_DRAFT; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
     binds_to: task

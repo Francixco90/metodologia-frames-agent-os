@@ -1,6 +1,6 @@
 # Adopción gobernada de workflows agénticos v1
 
-Estado: `WAVE4_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
+Estado: `PUBLIC_PORT_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING · H01_NOT_EXECUTED · NOT_PROMOTED`.
 
 Este expediente convierte dos repositorios fijados por SHA en evidencia y una reimplementación
 TypeScript gobernada dentro de Frames, sin copiar código, prompts, plantillas ni assets del
@@ -30,6 +30,8 @@ Fuentes evaluadas:
 - `validation-evidence.md`: comandos, resultados, hashes y límites de la evaluación.
 - `implementation-authority-v1.md`: autoridad local explícita para cambio y piloto, sin autoridad
   de promoción, entrega o publicación.
+- `public-port-authority-v1.md`: autoridad sucesora, ligada al main público y a la rama del port,
+  sin permiso de push, merge o promoción.
 - `change-budget-program-v1.json`: allowlist exacta, hash-bound y limitada a esta rama y baseline.
 - `sources/**`: descriptors, manifests canónicos de paths, proyecciones analíticas y evidencia
   acotada de autorización, todos hash-bound y sin bytes fuente.
@@ -47,7 +49,9 @@ Fuentes evaluadas:
 
 Los seis receipts históricos de fuente forman dos cadenas v2 hash-bound hasta `evaluated`; ese
 estado no implica replay local de los bytes donantes. El runtime V2,
-R6 y R8 pasaron suites focales, replays en procesos frescos, crash/recovery y QA visual local; sus
+R6 y R8 pasaron suites focales, replays en procesos frescos, crash/recovery y QA visual en el
+candidato privado. El port público reprodujo las suites focales, `pnpm check`, `typecheck` y
+`pnpm verify`; sus
 autoridades siguen separadas entre router, manifests, WorkOrders y commands. La validación del
 contrato H01/promoción usa fixtures sintéticos, pero el candidato real no recibió H01 ni fue
 promovido. `EVALUATED != ACTIVE != PROMOTED != HUMAN_APPROVED != PUBLISHED`. [CONFIG]

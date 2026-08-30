@@ -114,6 +114,40 @@ describe('file-budget Git state', () => {
     });
   });
 
+  it('prefers the branch configured upstream over an unrelated product origin', () => {
+    const {root, base} = repository();
+    put(root, 'origin-only.txt', 'origin\n');
+    const originHead = commit(root, 'origin head');
+    git(root, ['update-ref', 'refs/remotes/origin/main', originHead]);
+    git(root, ['update-ref', 'refs/remotes/upstream/main', base]);
+    git(root, ['remote', 'add', 'upstream', '.']);
+    git(root, ['config', 'branch.main.remote', 'upstream']);
+    git(root, ['config', 'branch.main.merge', 'refs/heads/main']);
+
+    expect(resolveBudgetBase(root, {})).toStrictEqual({
+      commit: base,
+      source: 'upstream/main',
+      explicit: false,
+    });
+  });
+
+  it('ignores a configured feature upstream when selecting the budget baseline', () => {
+    const {root, base} = repository();
+    git(root, ['update-ref', 'refs/remotes/origin/main', base]);
+    put(root, 'feature-only.txt', 'feature\n');
+    const featureHead = commit(root, 'feature head');
+    git(root, ['update-ref', 'refs/remotes/origin/feature', featureHead]);
+    git(root, ['remote', 'add', 'origin', '.']);
+    git(root, ['config', 'branch.main.remote', 'origin']);
+    git(root, ['config', 'branch.main.merge', 'refs/heads/feature']);
+
+    expect(resolveBudgetBase(root, {})).toStrictEqual({
+      commit: base,
+      source: 'origin/main',
+      explicit: false,
+    });
+  });
+
   it('fails closed without an explicit or remote main base in CI and locally', () => {
     const {root} = repository();
     expect(() => resolveBudgetBase(root, {})).toThrow('BUDGET-BASE002 no reliable local base');

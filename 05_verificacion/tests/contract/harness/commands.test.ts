@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 71 gates including transaction, Guardian and existing domain boundaries', () => {
-    expect(manifest.gates).toHaveLength(71);
+  it('declares 72 gates including transaction, Guardian and existing domain boundaries', () => {
+    expect(manifest.gates).toHaveLength(72);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',

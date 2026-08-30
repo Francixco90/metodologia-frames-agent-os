@@ -1,6 +1,6 @@
 # Debate socrático: cómo adoptar sin crear un segundo Frames
 
-Estado del debate: `DECISIONS_IMPLEMENTED · LOCAL_VERIFICATION_PASS · FINAL_GUARDIAN_PENDING`.
+Estado del debate: `DECISIONS_IMPLEMENTED · PUBLIC_PORT_LOCAL_VERIFIED · FINAL_GUARDIAN_PENDING`.
 
 Participantes:
 

@@ -49,7 +49,20 @@ export const resolveBudgetBase = (
     return {commit, source: explicit, explicit: true};
   }
 
-  for (const source of ['origin/main', 'upstream/main']) {
+  const configuredUpstream = tryGitText(root, [
+    'rev-parse',
+    '--abbrev-ref',
+    '--symbolic-full-name',
+    '@{upstream}',
+  ]);
+  const configuredMain =
+    configuredUpstream === 'main' || /^[^/]+\/main$/u.test(configuredUpstream ?? '')
+      ? configuredUpstream
+      : null;
+  const candidates = [...new Set([configuredMain, 'origin/main', 'upstream/main'])].filter(
+    (source): source is string => source !== null,
+  );
+  for (const source of candidates) {
     if (!commitFor(root, source)) continue;
     const commit = tryGitText(root, ['merge-base', 'HEAD', source]);
     if (commit) return {commit, source, explicit: false};

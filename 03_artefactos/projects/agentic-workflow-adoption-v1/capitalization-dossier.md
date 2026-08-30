@@ -1,6 +1,6 @@
 # Dossier de capitalización: Proposal + Technical Defense para Frames
 
-Estado: `IMPLEMENTED_LOCAL · PILOTS_VERIFIED · FINAL_GUARDIAN_PENDING · NOT_PROMOTED`.
+Estado: `PUBLIC_PORT_LOCAL_VERIFIED · HISTORICAL_PILOTS_VERIFIED · FINAL_GUARDIAN_PENDING · NOT_PROMOTED`.
 
 ## 1. Decisión ejecutiva
 

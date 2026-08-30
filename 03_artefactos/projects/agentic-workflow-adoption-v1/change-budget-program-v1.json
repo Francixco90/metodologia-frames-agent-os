@@ -1,12 +1,12 @@
 {
   "schemaVersion": "change-budget-program-v1",
   "programId": "agentic-workflow-adoption-v1",
-  "branch": "codex/proposal-defense-adoption-v1",
-  "baseCommit": "9978acd2e9f056fa3634a71ed7c495ba0323af77",
+  "branch": "codex/proposal-defense-adoption-public-v1",
+  "baseCommit": "5e2a18c54ed6343b58428ab940f735405710c643",
   "authority": {
     "mode": "LOCAL_SIMULATION",
-    "planRef": "03_artefactos/projects/agentic-workflow-adoption-v1/implementation-authority-v1.md",
-    "planSha256": "3545443117b031b209bd0d5d369be2ef33a8ea474b71ab4023cff43db4239c02"
+    "planRef": "03_artefactos/projects/agentic-workflow-adoption-v1/public-port-authority-v1.md",
+    "planSha256": "7da977e7d0b5d1fd4df92fd5d196d63e786a9c370dfcdf16fff86624d2eb66af"
   },
   "limits": {
     "targetFiles": 190,
@@ -130,6 +130,7 @@
         "03_artefactos/projects/agentic-workflow-adoption-v1/change-budget-program-v1.json",
         "03_artefactos/projects/agentic-workflow-adoption-v1/handoff.yml",
         "03_artefactos/projects/agentic-workflow-adoption-v1/implementation-authority-v1.md",
+        "03_artefactos/projects/agentic-workflow-adoption-v1/public-port-authority-v1.md",
         "03_artefactos/projects/agentic-workflow-adoption-v1/socratic-debate.md",
         "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
         "05_verificacion/scripts/check-md-budgets.ts",
@@ -374,5 +375,5 @@
       "rationale": "Adversarial global and project-local runner coverage including path and TOCTOU negatives."
     }
   ],
-  "canonicalSha256": "8aa816feb968d0f2a8bb348a3be26cff4587f80abac90470d4d2da778c2f7b93"
+  "canonicalSha256": "20ac865ae65b35dc053e95ef71217ea83abc7f860c3079b3fd250de1c2ff69b6"
 }

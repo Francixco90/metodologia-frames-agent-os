@@ -5,9 +5,9 @@ import {hashCanonical} from '../../../core/evidence/hash.ts';
 
 export const CommercialProposalTextV1Schema = z.string().trim().min(1).max(2_000);
 export const COMMERCIAL_PROPOSAL_TEMPLATE_REF_V1 =
-  '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md' as const;
+  '03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md' as const;
 export const COMMERCIAL_PROPOSAL_TEMPLATE_SHA256_V1 =
-  'b430c922eea9068648cf81f75981c240973c2eea6b13faa02702b7b9b5c10863' as const;
+  '7c445c4689b629a0b8f543c5e1d74341e3a43a8d5bf7265e20ba1c50f9047d85' as const;
 // prettier-ignore
 export const COMMERCIAL_PROPOSAL_SECTION_SEQUENCE_V1 = ['client situation', 'outcomes', 'approach', 'scope', 'evidence', 'risks', 'commercial boundary', 'next step'] as const;
 // prettier-ignore
