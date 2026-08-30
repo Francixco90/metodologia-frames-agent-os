@@ -63,6 +63,7 @@ describe('H-03 renderer adapters integration', () => {
       receipt_id?: string;
       supersedes_receipt_id?: string;
       approval_phrase?: string;
+      approval_scope?: string;
       previous?: {lock_sha256?: string};
       current?: {lock_sha256?: string};
       dependency_change?: boolean;
@@ -78,9 +79,12 @@ describe('H-03 renderer adapters integration', () => {
       temporary_outputs_versioned?: boolean;
     };
 
-    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-014');
-    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-013');
-    expect(succession.approval_phrase).toBe('PLEASE IMPLEMENT THIS PLAN');
+    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-015');
+    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-014');
+    expect(succession.approval_phrase).toBe('go');
+    expect(succession.approval_scope).toBe(
+      'frames_maintain_b1_successor_evidence_without_dependency_change',
+    );
     expect(succession.dependency_change).toBe(false);
     expect(succession.previous?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);
     expect(succession.current?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);
