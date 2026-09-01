@@ -262,8 +262,10 @@ describe('R7 Career intent router', () => {
       readFileSync(resolve(ROOT, '02_proceso/governance/router.yml'), 'utf8'),
     ) as {
       routes: Array<{id: string; reads: string[]}>;
-      gate_commands: Record<string, string>;
     };
+    const commands = parse(
+      readFileSync(resolve(ROOT, '05_verificacion/scripts/commands.yaml'), 'utf8'),
+    ) as {gates: Array<{gate: string; command: string | null}>};
     const route = manifest.routes.find(({id}) => id === 'R7');
     expect(route).toBeDefined();
     for (const reference of route!.reads) {
@@ -280,7 +282,7 @@ describe('R7 Career intent router', () => {
       'R7 dispatcher adapter',
     ).toBe(true);
 
-    const command = manifest.gate_commands.G09_CAREER_career_contracts;
+    const command = commands.gates.find(({gate}) => gate === 'G09_CAREER')?.command;
     expect(command).toBeTypeOf('string');
     if (!command) throw new Error('Career gate command missing');
     const script = command.match(/(?:^|\s)([^\s]+\.ts)(?:\s|$)/u)?.[1];

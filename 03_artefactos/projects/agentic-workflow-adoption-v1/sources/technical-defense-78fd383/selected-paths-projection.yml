@@ -1,0 +1,68 @@
+schema_version: 1
+projection_id: technical-defense-78fd383-selected-paths-v1
+source_id: SRC-TECHNICAL-DEFENSE-78FD383
+copy_policy: metadata_only_no_source_bytes
+manifest_contract:
+  format: utf8_lf_tsv_v1
+  columns:
+    - repository_relative_path
+    - git_blob_sha1
+    - source_file_sha256
+    - source_file_bytes
+  order: bytewise_lexicographic_by_repository_relative_path
+  selected_path_count: 27
+selections:
+  - purpose: donor_scope_governance_and_rights_reference
+    decision: REFERENCE
+    paths:
+      - GOVERNANCE.md
+      - LICENSE
+      - MANIFEST.sha256
+      - README.md
+  - purpose: contract_semantics_for_native_typescript_mapping
+    decision: ADAPT
+    paths:
+      - contracts/approval-receipt.schema.json
+      - contracts/authority-runtime.schema.json
+      - contracts/control-spec.schema.json
+      - contracts/graph-spec.schema.json
+      - contracts/guardian-input-manifest.schema.json
+      - contracts/node-contract.schema.json
+      - contracts/node-receipt.schema.json
+      - contracts/objective.schema.json
+      - contracts/state-ledger.schema.json
+  - purpose: integrity_and_domain_phase_reference
+    decision: ADAPT
+    paths:
+      - docs/integrity.md
+      - docs/phase-a.md
+      - docs/phase-b.md
+      - examples/approval.example.json
+      - examples/graph.example.json
+  - purpose: transactional_algorithm_review
+    decision: REJECT_RUNTIME_ADAPT_INVARIANTS
+    paths:
+      - src/defense_workflow/authority.py
+      - src/defense_workflow/executor.py
+      - src/defense_workflow/graph_validation.py
+      - src/defense_workflow/integrity.py
+      - src/defense_workflow/models.py
+      - src/defense_workflow/path_guard.py
+      - src/defense_workflow/receipt_store.py
+  - purpose: negative_case_inventory_not_test_file_copy
+    decision: ADAPT_TEST_IDEAS_ONLY
+    paths:
+      - tests/test_contracts.py
+      - tests/test_runtime.py
+excluded_classes:
+  - complete_python_runtime_vendoring
+  - donor_examples_as_production_data
+  - hidden_or_untracked_material
+  - any_external_connector_or_network_effect
+target:
+  route: R8
+  extension_id: local.metodologia.technical-defense-preparation
+  scope: PROJECT_LOCAL
+  implementation_language: TypeScript
+  network: DENIED
+  maximum_state: ACTIVE_LOCAL

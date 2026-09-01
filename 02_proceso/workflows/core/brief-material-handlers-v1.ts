@@ -1,8 +1,14 @@
 import {mkdirSync, renameSync, writeFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 
+import type {MaterialReferenceV1} from '../../core/contracts/index.ts';
 import {runCareerBriefFirst, type CareerRunnerInput} from '../career/_runner/career-runner.ts';
-import type {FRAMES_BRIEF_SECTIONS, FramesBriefV1} from '../multimedia/_schema/brief-v1.schema.ts';
+import {
+  BriefSourceSchema,
+  type BriefSourceV1,
+  type FRAMES_BRIEF_SECTIONS,
+  type FramesBriefV1,
+} from '../multimedia/_schema/brief-v1.schema.ts';
 import {createFramesBriefMarkdown, sha256Text} from '../multimedia/_runner/brief-model.ts';
 import {verifyBriefParity} from '../multimedia/_runner/brief-parity.ts';
 import {renderFramesBriefHtml} from '../multimedia/_runner/brief-renderer.ts';
@@ -32,14 +38,21 @@ export function createContentBriefMaterialHandlerV1(input: {
   >;
   channels: string[];
   restrictions: string[];
-  sources: Array<{ref: string; sha256: string}>;
+  sources: BriefSourceV1[];
+  authorityReceipts: MaterialReferenceV1[];
 }): MaterialSkillHandlerV1 {
   return (workOrder) => {
     const markdownRef = workOrder.expectedOutputs.find((ref) => ref.endsWith('.md'));
     const htmlRef = workOrder.expectedOutputs.find((ref) => ref.endsWith('.html'));
     if (!markdownRef || !htmlRef) throw new Error('CONTENT_BRIEF_OUTPUTS_UNRESOLVED');
-    const sourceLines = input.sources.length
-      ? input.sources.map(({ref, sha256}) => `- ${ref} · sha256:${sha256}`).join('\n')
+    const sources = input.sources.map((source) => BriefSourceSchema.parse(source));
+    const sourceLines = sources.length
+      ? sources
+          .map(
+            ({ref, sha256, authority, rights}) =>
+              `- ${ref} · sha256:${sha256 ?? 'UNKNOWN'} · authority:${authority} · rights:${rights}`,
+          )
+          .join('\n')
       : '- Sin fuente material; no se incorporan claims.';
     const skills = [...new Set(workOrder.skillId ? [workOrder.skillId] : [])];
     const sections: FramesBriefV1['sections'] = [
@@ -84,13 +97,7 @@ export function createContentBriefMaterialHandlerV1(input: {
           request_hash: input.requestHash,
           content_class: input.contentClass,
         },
-        sources: input.sources.map(({ref, sha256}, index) => ({
-          source_id: `SRC-${index + 1}`,
-          ref,
-          sha256,
-          authority: 'verified',
-          rights: 'unknown',
-        })),
+        sources,
         audience: input.audience,
         objective: input.objective,
         format: {
@@ -118,7 +125,16 @@ export function createContentBriefMaterialHandlerV1(input: {
     return {
       status: 'PASS',
       outputs,
-      evidence: input.sources.length > 0 ? input.sources : [outputs[0]!],
+      evidence:
+        sources.length > 0
+          ? [
+              ...sources.map(({ref, sha256}) => {
+                if (sha256 === null) throw new Error('CONTENT_BRIEF_SOURCE_HASH_REQUIRED');
+                return {ref, sha256};
+              }),
+              ...input.authorityReceipts,
+            ]
+          : [outputs[0]!],
       publicSummary: 'Brief materializado.',
     };
   };

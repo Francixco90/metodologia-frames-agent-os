@@ -1,0 +1,26 @@
+schema_version: 1
+evidence_projection_id: technical-defense-78fd383-rights-authorization-v1
+source_id: SRC-TECHNICAL-DEFENSE-78FD383
+evidence_kind: user_instruction_and_tracked_license_projection
+assumption: '[SUPUESTO] user_authorized_internal_implementation'
+rights_verdict: allowed_internal_implementation
+allowed_use_scope: internal_typescript_reimplementation_only
+external_distribution_authorized: false
+observations:
+  tracked_license_file_observed: true
+  tracked_license_scope: authorized_internal_business_use_only
+  tracked_license_sha256: 22935bff84488197ea28f02338a4080d97c7a5ce4d4fc1309b75fe36d76f85f4
+  repository_ownership_inferred: false
+  public_license_inferred: false
+  source_bytes_versioned_in_frames: false
+restrictions:
+  - internal_typescript_reimplementation_only
+  - no_full_runtime_vendoring
+  - no_asset_copy_without_separate_traceability
+  - no_external_distribution
+  - no_publication_authority
+  - no_network_or_delivery_authority
+evidence_limits:
+  - authorization_is_user_supplied_not_host_attested
+  - license_does_not_authorize_public_redistribution_or_third_party_hosting
+  - any_broader_use_requires_new_rights_review_and_receipt

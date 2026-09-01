@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 84
+    refactored: 85
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 198
+    verified_no_change: 197
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -47,8 +47,8 @@ summary:
     static-social: 0
     n8n: 11
     qa: 27
-    governance: 3
-    guardian: 4
+    governance: 7
+    guardian: 0
 budgets:
   measurement_contract:
     words: non-empty Unicode-whitespace-delimited tokens
@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95167
-    v3_rolling_adjustment_words: 6981
+    baseline_words: 95245
+    v3_rolling_adjustment_words: 7059
     original_baseline_words: 88186
-    final_words: 111320
+    final_words: 110171
     maximum_multiplier: 1.5
-    maximum_words: 142750
-    actual_multiplier: 1.1697
+    maximum_words: 142867
+    actual_multiplier: 1.1567
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95167
-    v3_rolling_adjustment_words: 6981
+    baseline_words: 95245
+    v3_rolling_adjustment_words: 7059
     original_baseline_words: 88186
-    final_words: 111320
-    maximum_words: 190334
-    word_multiplier: 1.1697
-    baseline_loc: 35743
-    v3_rolling_adjustment_loc: 2855
+    final_words: 110171
+    maximum_words: 190490
+    word_multiplier: 1.1567
+    baseline_loc: 35734
+    v3_rolling_adjustment_loc: 2846
     original_baseline_loc: 32888
-    final_loc: 41742
-    maximum_loc: 71486
-    loc_multiplier: 1.1678
+    final_loc: 41228
+    maximum_loc: 71468
+    loc_multiplier: 1.1537
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -1976,17 +1976,17 @@ entries:
     initial_words: 376
     initial_loc: 92
     resolved_owner: agents-committee
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:agents/RT-11/contract.yml
       current_ref: working-tree:agents/RT-11/contract.yml
       current_state: present
-      current_sha256: cc79f1b808589ad1c1f142cc601f7ba916cc6938bdea0668a4cf3b36b3293708
-      current_words: 376
-      current_loc: 92
-      byte_identical: true
-      material_change: false
+      current_sha256: 00e0bacecab347689ef1b11d1040d52f2f3122953a639d0ab2e1f875d468d4d5
+      current_words: 406
+      current_loc: 94
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:agents-committee:agents/RT-11/**
       generator_ref: null
       successor_path: null
@@ -2192,9 +2192,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:core/contracts/index.ts
       current_ref: working-tree:core/contracts/index.ts
       current_state: present
-      current_sha256: 21aec1aadd96a6973a23cdef65d55ba22ff2a1fde2de77e7046f88d8810bd50b
-      current_words: 107
-      current_loc: 26
+      current_sha256: 535e77f8f53b3a9c5705c6f30d5827306fa6852d7030af4ffe2d1bc619924f9d
+      current_words: 115
+      current_loc: 28
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:core/**
@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 4d93614fe2c91378af4c482d2860bf99a81b1f7f0ae8d7d2169fd1282e59b092
-      current_words: 466
-      current_loc: 219
+      current_sha256: 23c96d1de2ec4baca12fd25fd4ac225ea271f0cf193403b8cc06b2efde0733ac
+      current_words: 471
+      current_loc: 221
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2773,7 +2773,7 @@ entries:
     initial_format: text
     initial_words: 947
     initial_loc: 162
-    resolved_owner: guardian
+    resolved_owner: governance
     decision: immutable_history
     justification: Historical evidence is excluded from refactoring and must preserve its baseline bytes.
     evidence:
@@ -2785,7 +2785,7 @@ entries:
       current_loc: 162
       byte_identical: true
       material_change: false
-      owner_resolution: docs/program/ownership-manifest.yml:guardian:guardian/**
+      owner_resolution: docs/program/ownership-manifest.yml:governance:guardian/**
       generator_ref: null
       successor_path: null
   - path: guardian/reviews/GDN-002-local-closeout.md
@@ -2794,7 +2794,7 @@ entries:
     initial_format: text
     initial_words: 1101
     initial_loc: 195
-    resolved_owner: guardian
+    resolved_owner: governance
     decision: immutable_history
     justification: Historical evidence is excluded from refactoring and must preserve its baseline bytes.
     evidence:
@@ -2806,7 +2806,7 @@ entries:
       current_loc: 195
       byte_identical: true
       material_change: false
-      owner_resolution: docs/program/ownership-manifest.yml:guardian:guardian/**
+      owner_resolution: docs/program/ownership-manifest.yml:governance:guardian/**
       generator_ref: null
       successor_path: null
   - path: inbox/.gitignore
@@ -3340,7 +3340,7 @@ entries:
     initial_format: text
     initial_words: 293
     initial_loc: 132
-    resolved_owner: guardian
+    resolved_owner: governance
     decision: immutable_history
     justification: Historical evidence is excluded from refactoring and must preserve its baseline bytes.
     evidence:
@@ -3352,7 +3352,7 @@ entries:
       current_loc: 132
       byte_identical: true
       material_change: false
-      owner_resolution: docs/program/ownership-manifest.yml:guardian:projects/vs-001-source-to-campaign/guardian/**
+      owner_resolution: docs/program/ownership-manifest.yml:governance:projects/vs-001-source-to-campaign/guardian/**
       generator_ref: null
       successor_path: null
   - path: projects/vs-001-source-to-campaign/guardian/GDN-002-local-closeout.yml
@@ -3361,7 +3361,7 @@ entries:
     initial_format: text
     initial_words: 395
     initial_loc: 175
-    resolved_owner: guardian
+    resolved_owner: governance
     decision: immutable_history
     justification: Historical evidence is excluded from refactoring and must preserve its baseline bytes.
     evidence:
@@ -3373,7 +3373,7 @@ entries:
       current_loc: 175
       byte_identical: true
       material_change: false
-      owner_resolution: docs/program/ownership-manifest.yml:guardian:projects/vs-001-source-to-campaign/guardian/**
+      owner_resolution: docs/program/ownership-manifest.yml:governance:projects/vs-001-source-to-campaign/guardian/**
       generator_ref: null
       successor_path: null
   - path: projects/vs-001-source-to-campaign/project.yml
@@ -6854,9 +6854,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:scripts/check-sources.ts
       current_ref: working-tree:scripts/check-sources.ts
       current_state: present
-      current_sha256: b6e1f118472e229ef9334bad898fa3ff4a7a61a50e98d46e3436abddb84e21c5
-      current_words: 755
-      current_loc: 234
+      current_sha256: 1da79616413e68b256c453340765d39cc714720d67a62de4e94d7020135bf9f0
+      current_words: 91
+      current_loc: 33
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:scripts/**
@@ -8051,9 +8051,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/contract/source-notebook.contract.test.ts
       current_ref: working-tree:tests/contract/source-notebook.contract.test.ts
       current_state: present
-      current_sha256: eaaa3149e24f8e5b8de2ae699c6e4133252d48095767dc632b311b96f0913193
-      current_words: 1277
-      current_loc: 545
+      current_sha256: 49ac6398596208a7db1112e04589bbfe7bf3ad11998a0cf225102079a76a7a48
+      current_words: 647
+      current_loc: 271
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:qa:tests/contract/**
@@ -8261,9 +8261,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:tests/negative/source-notebook.negative.test.ts
       current_ref: working-tree:tests/negative/source-notebook.negative.test.ts
       current_state: present
-      current_sha256: 130fedb9f99c5fa3861346c9a323a7bfd2fe55110d83f2a61665c57dabd7136e
-      current_words: 775
-      current_loc: 296
+      current_sha256: 092018cf8c70291d78f7ae79c3e3649cb3f21f745d642e1e2b6dc20c7734ca67
+      current_words: 830
+      current_loc: 238
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:qa:tests/negative/**
@@ -8912,9 +8912,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:workflows/core/index.ts
       current_ref: working-tree:workflows/core/index.ts
       current_state: present
-      current_sha256: 64d5953b0a1742c0891006ee17f2ba4a9c432e6d64a94cec6e17f29e223d2f22
-      current_words: 44
-      current_loc: 11
+      current_sha256: 295feb1f177e8ff2f627d76b9d300786a6877987e042be94f15c6e5c10dd7574
+      current_words: 48
+      current_loc: 12
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:core:workflows/core/**

@@ -26,7 +26,7 @@ type DispatchResult = {
 };
 
 describe('productive first-turn launch probe', () => {
-  it('proves gateway use for R6/R7 and keeps their domain adapters causal', async () => {
+  it('proves gateway use for R6/R7/R10 and keeps their domain adapters causal', async () => {
     const {dispatchIntent} = (await import(
       pathToFileURL(resolve('03_artefactos/skills/content-os-router/scripts/route-intent.mjs')).href
     )) as {dispatchIntent: (input: Record<string, unknown>) => DispatchResult};
@@ -44,11 +44,13 @@ describe('productive first-turn launch probe', () => {
         profileReady: true,
         evidenceReady: true,
       }),
+      dispatchIntent({request: 'Audita NotebookLM OS', intent_domain: 'notebooklm'}),
     ];
-    expect(results.map(({route_id}) => route_id)).toEqual(['R6', 'R7']);
+    expect(results.map(({route_id}) => route_id)).toEqual(['R6', 'R7', 'R10']);
     expect(results.map(({domain_intent}) => domain_intent?.schema_version)).toEqual([
       'content-intent-v2',
       'career-intent-v1',
+      'notebooklm-route-intent-v1',
     ]);
     for (const result of results) {
       expect(result.adapter_invoked).toBe(true);
@@ -64,6 +66,12 @@ describe('productive first-turn launch probe', () => {
         hashExperienceValue(result.experience_envelope),
       );
     }
+    expect(results[2]).toMatchObject({
+      adapter: 'workflows/notebooklm-os/route-notebooklm-v1.ts',
+      experience_envelope: {
+        workflowPlan: ['N00', 'N01', 'N02', 'N03', 'N04', 'N05', 'N06', 'N07', 'N08', 'N09'],
+      },
+    });
   });
 
   it('routes resumptions through gateway R4 without invoking a domain adapter', async () => {

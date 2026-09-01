@@ -1,0 +1,65 @@
+schema_version: 2
+receipt_kind: pinned_repository_source_transition_v2
+receipt_id: RCP-IMP-SRC-TECHNICAL-DEFENSE-78FD383-001
+recorded_at: '2026-08-29T18:14:20Z'
+event_order: 1
+actor_id: source-curator
+verifier_id: source-candidate-verifier
+package_id: AWF-ADOPTION-V1
+source_id: SRC-TECHNICAL-DEFENSE-78FD383
+previous_receipt_sha256: null
+transition:
+  from: null
+  to: candidate
+hashes:
+  raw_sha256: dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61
+  normalized_sha256: dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61
+  source_normalized_sha256: dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61
+hash_semantics:
+  raw: git_archive_tar_bytes_for_exact_pinned_commit
+  normalized: binary_identity_same_as_raw
+  normalization_contract: git-archive-binary-identity-v1
+  raw_bytes: 174080
+repository:
+  canonical_uri: https://github.com/GermanMetodologIA/technical-defense-preparation-workflow.git
+  canonical_uri_sha256: 7914a8cae58608f4809d9d937d28cbbe4bf51d915e6f82a3ed8723df0b3abd2b
+  git_object_algorithm: sha1
+  commit_sha1: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
+  tree_sha1: 467691b625de2590171290d2dff779a791749f8c
+  tree_listing_sha256: a7571dbec7e2b09b30c212d160f243b1984222e6678ffa1642030fbd99c34b8a
+  tracked_file_count: 44
+evidence_projection:
+  repository_descriptor: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/repository.yml
+  repository_descriptor_sha256: 75c3b76c6083ef86e67aeb588b2b812581c90238c530ea88c2ccc2259cbae23d
+  selected_paths_manifest_sha256: 13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34
+  selected_paths_projection_sha256: f34f7bb4ffd0a12a9894804972a039b5af7cde5712c211cadaec2ed7350ae18b
+  rights_authorization_projection_sha256: e69d9769d950e4491efedac41a028ce56d2330584e6eb46e26f41164c570b67c
+rights:
+  rights_holder: repository_authors_and_rightsholders
+  rights_basis: user_supplied_authorization_for_requested_internal_reimplementation
+  allowed_use_scope: internal_typescript_reimplementation_only
+  rights_verdict: allowed_internal_implementation
+  external_distribution_authorized: false
+authority:
+  authority_class: technical_authority
+  authority_verdict: pinned_repository_candidate_pending_evaluation
+  provenance_evidence: exact_git_commit_tree_listing_and_archive_hash_observed_read_only
+deduplication:
+  verdict: pending_source_registry_v2_comparison
+  checked_against_registry: source-registry-v2
+restrictions:
+  - internal_typescript_reimplementation_only
+  - no_full_runtime_vendoring
+  - no_asset_copy_without_separate_traceability
+  - no_external_distribution
+  - no_publication_authority
+  - no_network_or_delivery_authority
+coverage_gaps:
+  - source_archive_not_versioned_in_frames
+  - license_restricts_use_to_authorized_internal_team
+decision: register_pinned_repository_candidate_for_rights_privacy_and_architecture_review
+append_only: true
+review:
+  registry_integration_authorized: false
+  contract_hash_chain: physically_bound_pending_governance_readback
+  guardian_revalidation: pending

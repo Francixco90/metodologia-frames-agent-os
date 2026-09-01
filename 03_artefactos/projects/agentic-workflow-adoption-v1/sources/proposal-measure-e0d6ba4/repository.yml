@@ -1,0 +1,38 @@
+schema_version: 1
+descriptor_id: proposal-measure-e0d6ba4-repository-v1
+source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
+status: EVALUATED
+repository:
+  canonical_uri: https://github.com/SepBaGer/Propuesta-Medida.git
+  canonical_uri_sha256: 552a274f1ccfd0a805548b65fa799f452bbf12471c94114ad8a5d09a4d7b62a0
+  commit_sha1: e0d6ba4576b23c83a6b22dbad53e23a8795b26d0
+  tree_sha1: 457920d64756549eb4862b2653e2bf293d332ab9
+  tree_listing_sha256: ca7edbfec3253e676a13fcee8ff7784308a3a342501161c32719c000543c4ef9
+  tracked_file_count: 76
+source_archive:
+  format: git_archive_tar
+  sha256: adb8a27e74dd44312834705f4f21f5af594fccfd4571e550f2057cbb65ee1bb3
+  bytes: 1576960
+  versioned_in_frames: false
+selected_paths_manifest:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths.manifest.tsv
+  sha256: 6d63babbead317c234a1b97e92825da4fbc0d86f8aa92e9156d24513ed1c25cc
+  bytes: 3144
+  selected_path_count: 22
+  content_copied: false
+selected_paths_projection:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/selected-paths-projection.yml
+  sha256: f73aa35c9e74bf0a6189e7a1e2b55a5777e0d6a961e8e1068b5752d16c6f6853
+  bytes: 2258
+rights_authorization_projection:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/proposal-measure-e0d6ba4/rights-authorization.yml
+  sha256: 3c6ab32d388c51ef4ad8544aa63101f64536f09cb273b6eadc35175bfb204665
+  bytes: 972
+assumption: '[SUPUESTO] user_authorized_internal_implementation'
+restrictions:
+  - internal_typescript_reimplementation_only
+  - no_full_runtime_vendoring
+  - no_asset_copy_without_separate_traceability
+  - no_external_distribution
+  - no_publication_authority
+  - no_network_or_delivery_authority

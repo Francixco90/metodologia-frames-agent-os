@@ -1,5 +1,6 @@
 import {z} from 'zod';
 
+import {ExperienceRouteIdV1Schema} from './experience-assistance-v1.ts';
 import {
   ActorIdSchema,
   PortableIdSchema,
@@ -70,20 +71,7 @@ export const TaskContractSchema = z
     validacion: z.string().min(1).max(1000),
     gaps: z.array(z.string().min(1)).default([]),
     state: TaskWorkStateSchema,
-    created_from_route: z.enum([
-      'R0',
-      'R1',
-      'R2',
-      'R3',
-      'R3-LOOSE',
-      'R4',
-      'R5',
-      'R6',
-      'R7',
-      'R8',
-      'R9',
-      'R10',
-    ]),
+    created_from_route: ExperienceRouteIdV1Schema,
     gate_target: z
       .string()
       .regex(

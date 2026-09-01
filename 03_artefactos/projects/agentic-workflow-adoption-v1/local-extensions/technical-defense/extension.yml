@@ -1,0 +1,79 @@
+schema_version: frames-local-extension-v1
+extension_id: local.metodologia.technical-defense-preparation
+version: 1.0.0
+scope: PROJECT_LOCAL
+kind: bundle
+lifecycle: READY
+enabled: true
+override_policy: never
+description: >-
+  Prepara una defensa técnica local con evidencia hash-bound, dos ensayos observados,
+  red-team independiente y materialización gobernada por TransactionKernelV1.
+triggers:
+  - preparar defensa técnica
+  - technical defense preparation
+capabilities:
+  - technical-defense.prepare
+  - technical-defense.rehearse
+inputs:
+  - technical-defense-case-v1 canonical bytes
+  - synthetic-only PII/redaction receipt hash-bound
+  - independent privacy/provenance authority bound to exact case bytes
+  - rehearsal observer and red-team runtime authority
+  - activation receipt hash-bound
+  - sandbox probe hash-bound
+outputs:
+  - brief.md
+  - evidence-map.md
+  - architecture-narrative.md
+  - claim-matrix.md
+  - qa-bank.md
+  - threat-model.md
+  - rehearsal-report.md
+  - technical-defense-package.md
+  - technical-defense-package.html
+dependencies: []
+effect_class: local_reversible
+tools: []
+read_set:
+  - technical-defense-case.json
+  - extension.yml
+  - sandbox-probe.json
+  - activation-receipt.json
+write_set:
+  - brief.md
+  - evidence-map.md
+  - architecture-narrative.md
+  - claim-matrix.md
+  - qa-bank.md
+  - threat-model.md
+  - rehearsal-report.md
+  - technical-defense-package.md
+  - technical-defense-package.html
+routing:
+  priority: after_canonical
+  complements:
+    - R8
+execution:
+  mode: code
+  handler: handler.ts
+  sandbox_probe: sandbox-probe.json
+content:
+  - ref: handler.ts
+    sha256: 315ee6caa00385e7a9bde12a50d57981656f1c97e606c49b5170844fbb6941eb
+  - ref: technical-defense-contracts-v1.ts
+    sha256: 586a8bfd998892315215a1f53e494f8d6416c9263594c424873fba39e1140f4c
+  - ref: technical-defense-render-v1.ts
+    sha256: b4e3f546ec8c75b5bec45831a48ba47ffc843f936b40afdb943948e933cc989d
+  - ref: README.md
+    sha256: ea829a4b9e821aacde69664d8d4b12620a6763295c757446af8ddc798910ca13
+  - ref: fixtures.json
+    sha256: 6dce098c7d3555c7c9bce999ea9901c2afcab60acd14ee5ae3be62f551ba39da
+documentation:
+  - README.md
+fixtures:
+  positive: fixtures.json
+  adversarial: fixtures.json
+budgets:
+  max_files: 12
+  max_context_files: 10

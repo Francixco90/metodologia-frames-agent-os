@@ -30,9 +30,17 @@ surfaces:
     kind: workflow
     owner: content
     applies_when: R8 resolvió crear o evolucionar una capacidad privada.
-    authority_refs: [02_proceso/workflows/local-extensions/contracts.ts]
+    authority_refs:
+      [
+        02_proceso/workflows/local-extensions/contracts.ts,
+        02_proceso/core/contracts/transaction-kernel-v1.ts,
+      ]
     load_first: [02_proceso/workflows/local-extensions/intent-router.ts]
-    load_on_demand: [02_proceso/workflows/local-extensions/loader.ts]
+    load_on_demand:
+      [
+        02_proceso/workflows/local-extensions/loader.ts,
+        02_proceso/workflows/local-extensions/executor-v1.ts,
+      ]
     defer: [Extensiones no candidatas y locators privados]
     routes: [R8]
     workflows: [L00, L01, L02, L03, L04, L05]
@@ -41,7 +49,12 @@ surfaces:
     read_set: [02_proceso/workflows/local-extensions/contracts.ts]
     write_policy: {mode: generated_only, paths: [02_proceso/workflows/local-extensions/context.md]}
     gates: [LX_BRIEF_APPROVED]
-    stop_rules: [Capacidad canónica prevalece, Código sin sandbox no ejecuta]
+    stop_rules:
+      [
+        Capacidad canónica prevalece,
+        Código sin sandbox hash-bound no ejecuta,
+        ACTIVE_LOCAL no concede ruta global ni publicación,
+      ]
     privacy: private_after_route_lock
     children: []
     budget: {target_lines: 80, hard_lines: 120}
@@ -61,7 +74,13 @@ surfaces:
     read_set: [02_proceso/workflows/maintenance/_schema/workflow-v1.schema.ts]
     write_policy: {mode: generated_only, paths: [02_proceso/workflows/maintenance/context.md]}
     gates:
-      [HM_CHANGE_APPROVED, HM_CANDIDATE_VERIFIED, DOCS_TRANSVERSAL_COMPLETE, HM_PROMOTION_APPROVED]
+      [
+        HM_CHANGE_APPROVED,
+        HM_CANDIDATE_VERIFIED,
+        DOCS_TRANSVERSAL_COMPLETE,
+        HM_GUARDIAN_VERDICT_RECORDED,
+        HM_PROMOTION_APPROVED,
+      ]
     stop_rules: [Impact plan antes de editar, Promoción separada]
     privacy: public_only
     children: []
@@ -93,7 +112,12 @@ surfaces:
     applies_when: R6 resolvió creación, mejora, planificación o revisión de contenido.
     authority_refs: [AGENTS.md, 02_proceso/workflows/multimedia/index.ts]
     load_first: [02_proceso/workflows/multimedia/index.ts]
-    load_on_demand: [02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml]
+    load_on_demand:
+      [
+        02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml,
+        02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts,
+        02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts,
+      ]
     defer: [Etapas no seleccionadas, templates y prompts de otros idiomas]
     routes: [R6]
     workflows: [P00, P01, P02, P03, P04, P05, P06, P07, P08, P09]
@@ -102,7 +126,12 @@ surfaces:
     read_set: [02_proceso/workflows/multimedia/index.ts]
     write_policy: {mode: generated_only, paths: [02_proceso/workflows/multimedia/context.md]}
     gates: [MW_BRIEF_APPROVED]
-    stop_rules: [Brief first, P09 no publica sin aprobación específica]
+    stop_rules:
+      [
+        Brief first,
+        P09 no publica sin aprobación específica,
+        Commercial proposal termina en RENDERED_DRAFT y P08 queda bloqueado en V1; un sucesor exige REVISE y receipt durable V2,
+      ]
     privacy: public_only
     children:
       [CTX-P00, CTX-P01, CTX-P02, CTX-P03, CTX-P04, CTX-P05, CTX-P06, CTX-P07, CTX-P08, CTX-P09]

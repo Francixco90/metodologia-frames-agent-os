@@ -5,7 +5,7 @@ import {readRepositoryYaml} from '../../fixtures/verifier/io.ts';
 /**
  * Contract test: `02_proceso/governance/router.yml` (router-v1).
  * Asserts the 12 routes, R3-LOOSE project_id null, productive routes,
- * manual fail-closed gates and source_of_truth true. [CONFIG]
+ * route semantics and source_of_truth true. Gate execution belongs to commands.yaml. [CONFIG]
  */
 describe('router.yml contract', () => {
   const router = readRepositoryYaml('02_proceso/governance/router.yml') as {
@@ -20,9 +20,18 @@ describe('router.yml contract', () => {
       reads?: string[];
       output?: string;
     }>;
-    gate_commands: Record<string, string>;
-    manual_fail_closed_gates: string[];
   };
+  const commands = readRepositoryYaml('05_verificacion/scripts/commands.yaml') as {
+    gates: Array<{
+      gate: string;
+      command: string | null;
+      manual: boolean;
+      fail_closed: boolean;
+      idempotency: boolean;
+      owner: string;
+    }>;
+  };
+  const commandByGate = new Map(commands.gates.map((entry) => [entry.gate, entry]));
 
   it('declares schema_version 1 and manifest_id router-v1', () => {
     expect(router.schema_version).toBe(1);
@@ -59,11 +68,16 @@ describe('router.yml contract', () => {
     expect(local?.reads).toEqual(
       expect.arrayContaining([
         '02_proceso/workflows/local-extensions/contracts.ts',
+        '02_proceso/workflows/local-extensions/executor-v1.ts',
         '03_artefactos/skills/frames-local-extension-foundry/SKILL.md',
+        '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/extension.yml',
       ]),
     );
     expect(local?.output).toMatch(/L00-L05/u);
     expect(local?.output).toMatch(/LX_BRIEF_APPROVED/u);
+    expect(local?.output).toMatch(/TransactionKernelV1/u);
+    expect(local?.output).toMatch(/ACTIVE_LOCAL/u);
+    expect(local?.output).toMatch(/no crea ruta global/u);
 
     const maintenance = router.routes.find((route) => route.id === 'R9');
     expect(maintenance?.reads).toEqual(
@@ -108,17 +122,31 @@ describe('router.yml contract', () => {
     expect(content).toBeDefined();
     expect(content?.binds_to).toBe('task');
     expect(content?.signal_patterns).toContain('ayúdame a generar una pieza');
+    expect(content?.signal_patterns).toEqual(
+      expect.arrayContaining(['propuesta comercial', 'commercial proposal', 'proposal deck']),
+    );
+    expect(content?.signal_patterns).not.toContain('proposal');
     expect(content?.reads).toEqual(
       expect.arrayContaining([
         '03_artefactos/skills/content-os-router/SKILL.md',
         '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts',
         '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts',
+        '02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts',
+        '02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts',
+        '03_artefactos/skills/content-os-slideshow/SKILL.md',
       ]),
     );
     expect(content?.output).toMatch(/content-intent-v2/u);
     expect(content?.output).toMatch(/brief\.md/u);
     expect(content?.output).toMatch(/P00-P09/u);
     expect(content?.output).toMatch(/STOP en MW_BRIEF_APPROVED/u);
+    expect(content?.output).toMatch(/commercial-proposal R6/u);
+    expect(content?.output).toMatch(/P00 opcional.*P01.*P02.*P03.*P05.*P06.*P07/u);
+    expect(content?.output).toMatch(
+      /P08 bloqueado en V1.*verification REVISE.*receipt durable V2/u,
+    );
+    expect(content?.output).toMatch(/sin P04\/P09/u);
+    expect(content?.output).toMatch(/RENDERED_DRAFT/u);
   });
 
   it('R6 dispatches Trainer OS while R10 remains a separate NotebookLM authority', () => {
@@ -157,53 +185,29 @@ describe('router.yml contract', () => {
     );
     expect(content?.output).toMatch(/principal antes de derivados.*VO_DIRECTION_APPROVED/u);
     expect(career?.reads).toContain('02_proceso/workflows/operator-core/index.ts');
-    expect(router.gate_commands.G09_VIDEO_OS_contracts).toBe('pnpm verify:video-os');
+    expect(commandByGate.get('G09_VIDEO_OS')?.command).toBe('pnpm verify:video-os');
   });
 
-  it('lists G13-G17 and brief approval as manual fail-closed gates', () => {
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining(['G13', 'G14', 'G15', 'G16', 'G17', 'MW_BRIEF_APPROVED']),
-    );
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'NLM_PLAN_APPROVED',
-        'NLM_SYNC_APPROVED',
-        'NLM_STUDIO_GENERATION_APPROVED',
-        'NLM_SHARE_AUTHORIZED',
-        'NLM_DESTRUCTIVE_AUTHORIZED',
-      ]),
-    );
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'CR_BRIEF_APPROVED',
-        'CR_CV_DESIGN_APPROVED',
-        'CR_CV_SPEC_APPROVED',
-        'CR_PACKAGE_APPROVED',
-        'CR_SUBMISSION_AUTHORIZED',
-      ]),
-    );
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining(['EXP_BRIEF_APPROVED', 'EXP_RELEASE_APPROVED']),
-    );
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'VO_INTAKE_COMPLETE',
-        'VO_DIRECTION_APPROVED',
-        'VO_PRINCIPAL_VERIFIED',
-        'VO_HANDOFF_APPROVED',
-      ]),
-    );
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'LX_BRIEF_APPROVED',
-        'HM_CHANGE_APPROVED',
-        'DOCS_TRANSVERSAL_COMPLETE',
-        'HM_PROMOTION_APPROVED',
-      ]),
-    );
-    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
-    expect(router.manual_fail_closed_gates).not.toContain('CR_CV_COMPILED');
-    expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
-    expect(router.manual_fail_closed_gates).toHaveLength(26);
+  it('keeps operational gate metadata exclusively in commands.yaml', () => {
+    expect(router).not.toHaveProperty('gate_commands');
+    expect(router).not.toHaveProperty('manual_fail_closed_gates');
+    expect(commandByGate.get('DOCS_TRANSVERSAL_COMPLETE')).toMatchObject({
+      manual: false,
+      fail_closed: true,
+      owner: 'qa',
+    });
+    expect(commandByGate.get('HM_GUARDIAN_VERDICT_RECORDED')).toMatchObject({
+      command: null,
+      manual: true,
+      fail_closed: true,
+      owner: 'governance',
+    });
+    expect(commandByGate.get('HM_PROMOTION_APPROVED')).toMatchObject({
+      command: null,
+      manual: true,
+      fail_closed: true,
+      idempotency: false,
+      owner: 'h01',
+    });
   });
 });

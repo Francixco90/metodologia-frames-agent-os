@@ -36,7 +36,7 @@ Diferir:
 
 ## 4. Routing, workflow y skills
 
-Rutas: `R0`, `R1`, `R2`, `R3`, `R3-LOOSE`, `R4`, `R5`, `R6`, `R7`  
+Rutas: `R0`, `R1`, `R2`, `R3`, `R3-LOOSE`, `R4`, `R5`, `R6`, `R7`, `R8`, `R9`, `R10`  
 Workflows: `ninguno`  
 Skills primarias: `content-os-router`
 

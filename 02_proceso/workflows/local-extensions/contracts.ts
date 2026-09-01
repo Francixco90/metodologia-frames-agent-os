@@ -100,6 +100,62 @@ export const SandboxProbeSchema = z
   })
   .strict();
 
+export const TechnicalDefenseReviewRoleV1Schema = z.enum(['REHEARSAL_OBSERVER', 'RED_TEAM']);
+export type TechnicalDefenseReviewRoleV1 = z.infer<typeof TechnicalDefenseReviewRoleV1Schema>;
+export const TechnicalDefenseReviewSessionV1Schema = z.strictObject({
+  taskId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  actorInstanceId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  authoritySha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  actionSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  environment: z.literal('LOCAL_SIMULATION'),
+});
+export type TechnicalDefenseReviewSessionV1 = z.infer<typeof TechnicalDefenseReviewSessionV1Schema>;
+export const TechnicalDefenseReviewAuthorityVerdictV1Schema = z.strictObject({
+  schemaVersion: z.literal('technical-defense-review-authority-verdict-v1'),
+  status: z.enum(['VERIFIED', 'DENIED', 'CAPABILITY_GAP']),
+  expectedRole: TechnicalDefenseReviewRoleV1Schema,
+  taskId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  actorInstanceId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  authoritySha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  actionSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  evidenceSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  environment: z.literal('LOCAL_SIMULATION'),
+  verifiedAt: z.iso.datetime({offset: true}),
+  canonicalSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+});
+export interface TechnicalDefenseReviewAuthorityPortV1 {
+  verify(
+    session: TechnicalDefenseReviewSessionV1,
+    expectedRole: TechnicalDefenseReviewRoleV1,
+  ): z.infer<typeof TechnicalDefenseReviewAuthorityVerdictV1Schema>;
+}
+
+export const TechnicalDefensePrivacyProvenanceSessionV1Schema = z.strictObject({
+  taskId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  actorInstanceId: z.string().regex(/^[a-z0-9][a-z0-9._-]*$/u),
+  authoritySha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  casePayloadSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  caseFrozenAt: z.iso.datetime({offset: true}),
+  classification: z.literal('SYNTHETIC_ONLY'),
+  environment: z.literal('LOCAL_SIMULATION'),
+});
+export type TechnicalDefensePrivacyProvenanceSessionV1 = z.infer<
+  typeof TechnicalDefensePrivacyProvenanceSessionV1Schema
+>;
+export const TechnicalDefensePrivacyProvenanceVerdictV1Schema =
+  TechnicalDefensePrivacyProvenanceSessionV1Schema.extend({
+    schemaVersion: z.literal('technical-defense-privacy-provenance-verdict-v1'),
+    status: z.enum(['VERIFIED', 'DENIED', 'CAPABILITY_GAP']),
+    evidenceSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+    verifiedAt: z.iso.datetime({offset: true}),
+    canonicalSha256: z.string().regex(/^[a-f0-9]{64}$/u),
+  });
+export interface TechnicalDefensePrivacyAuthorityPortV1 {
+  verify(
+    session: TechnicalDefensePrivacyProvenanceSessionV1,
+  ): z.infer<typeof TechnicalDefensePrivacyProvenanceVerdictV1Schema>;
+}
+
 export type LocalExtensionManifest = z.infer<typeof LocalExtensionManifestSchema>;
 export type LocalExtensionState = z.infer<typeof LocalExtensionStateSchema>;
 
@@ -109,6 +165,7 @@ export interface LocalExtensionRecord {
   source_root: string;
   manifest_ref: string;
   manifest_sha256?: string;
+  sandbox_probe_sha256?: string;
   state: LocalExtensionState;
   reason_codes: string[];
   manifest?: LocalExtensionManifest;
@@ -125,6 +182,7 @@ export interface LocalActivationReceiptV1 {
   schema_version: 'frames-local-activation-receipt-v1';
   extension_id: string;
   manifest_sha256: string;
+  sandbox_probe_sha256: string | null;
   state: LocalExtensionState;
   reason_codes: string[];
   source_scope: 'PROJECT_LOCAL' | 'USER_LOCAL' | 'UNKNOWN';

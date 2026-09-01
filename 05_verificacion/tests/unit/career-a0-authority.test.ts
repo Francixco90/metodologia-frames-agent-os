@@ -21,7 +21,6 @@ describe('Career A0 authority remains receipt-bound', () => {
     }>;
   };
   const router = parse(read('02_proceso/governance/router.yml')) as {
-    manual_fail_closed_gates: string[];
     routes: Array<{id: string; output: string}>;
   };
   const contextSurfaces = parse(read('02_proceso/governance/context-surfaces/skills.yml')) as {
@@ -73,7 +72,7 @@ describe('Career A0 authority remains receipt-bound', () => {
       expect(result.status).toBe(1);
       expect(result.stderr).not.toContain('PASS');
     }
-    expect(router.manual_fail_closed_gates).not.toContain('CR_CAREER_EVIDENCE_READY');
+    expect(byGate.get('CR_CAREER_EVIDENCE_READY')?.manual).toBe(false);
     expect(contract).toContain('Hasta A2/A5');
     expect(contract).toMatch(/no decisiones\s+humanas/u);
     expect(contract).toMatch(/gate estático del\s+repositorio/u);
@@ -84,7 +83,6 @@ describe('Career A0 authority remains receipt-bound', () => {
   it('models package QA as an unimplemented legacy stop, not an executable gate', () => {
     expect(read('03_artefactos/skills/evidence-first-cv/SKILL.md')).toContain('CR_PACKAGE_QA');
     expect(byGate.has('CR_PACKAGE_QA')).toBe(false);
-    expect(router.manual_fail_closed_gates).not.toContain('CR_PACKAGE_QA');
     expect(orchestrator?.gates).not.toContain('CR_PACKAGE_QA');
     expect(orchestrator?.stop_rules?.join(' ')).toContain('A1_PACKAGE_QA_REFS_REQUIRED');
     expect(contract).toContain('coverage_gap: A1_PACKAGE_QA_REFS_REQUIRED');
@@ -93,14 +91,14 @@ describe('Career A0 authority remains receipt-bound', () => {
 
   it('keeps human and Guardian boundaries explicit while exposing the three routes', () => {
     expect(byGate.get('G14')).toMatchObject({manual: true, owner: 'guardian'});
-    expect(router.manual_fail_closed_gates).toEqual(
-      expect.arrayContaining([
-        'CR_CV_DESIGN_APPROVED',
-        'CR_CV_SPEC_APPROVED',
-        'CR_PACKAGE_APPROVED',
-        'CR_SUBMISSION_AUTHORIZED',
-      ]),
-    );
+    for (const gateId of [
+      'CR_CV_DESIGN_APPROVED',
+      'CR_CV_SPEC_APPROVED',
+      'CR_PACKAGE_APPROVED',
+      'CR_SUBMISSION_AUTHORIZED',
+    ]) {
+      expect(byGate.get(gateId)).toMatchObject({manual: true, fail_closed: true});
+    }
     const guide = read('01_intencion/guides/career.md');
     expect(guide).toContain('### ATS rápida');
     expect(guide).toContain('### Ejecutiva');

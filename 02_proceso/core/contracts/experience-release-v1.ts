@@ -1,7 +1,7 @@
 import {z} from 'zod';
 
 import {PortableIdSchema, RelativePathSchema, Sha256Schema} from './primitives.ts';
-import {ExperienceRouteIdV1Schema} from './experience-assistance-v1.ts';
+import {EXPERIENCE_ROUTE_IDS_V1, ExperienceRouteIdV1Schema} from './experience-assistance-v1.ts';
 
 const ReleaseArtifactV1Schema = z.strictObject({
   ref: RelativePathSchema,
@@ -23,7 +23,14 @@ export const ExperienceReleaseCapsuleV1Schema = z
     releaseClass: z.enum(['PATCH', 'COMPATIBLE', 'BREAKING', 'SAFETY', 'SOURCE_REFRESH']),
     status: z.enum(['DRAFT', 'CANDIDATE', 'APPROVED', 'SUPERSEDED', 'RETIRED', 'REVOKED']),
     artifacts: z.array(ReleaseArtifactV1Schema).min(1).max(32),
-    compatibleRoutes: z.array(ExperienceRouteIdV1Schema).min(1).max(9),
+    compatibleRoutes: z
+      .array(ExperienceRouteIdV1Schema)
+      .min(1)
+      .max(EXPERIENCE_ROUTE_IDS_V1.length)
+      .refine(
+        (routes) => new Set(routes).size === routes.length,
+        'Compatible routes must be unique',
+      ),
     compatibleHosts: z
       .array(z.enum(['CLAUDE', 'CODEX', 'CHATGPT', 'TEXT_FALLBACK']))
       .min(1)

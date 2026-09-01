@@ -114,11 +114,16 @@ routes:
       - 'method explainer'
       - 'PASA'
       - 'PIVOTE'
+      - 'propuesta comercial'
+      - 'commercial proposal'
+      - 'proposal deck'
     reads:
       - '03_artefactos/skills/content-os-router/SKILL.md'
       - '03_artefactos/skills/metodologia-trainer-os/SKILL.md'
       - '02_proceso/workflows/multimedia/_schema/content-intent-v2.schema.ts'
       - '02_proceso/workflows/multimedia/_schema/brief-v1.schema.ts'
+      - '02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts'
+      - '02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts'
       - '02_proceso/workflows/trainer-os/trainer-intake-v1.schema.ts'
       - '02_proceso/workflows/trainer-os/trainer-run-manifest-v1.schema.ts'
       - '02_proceso/workflows/trainer-os/runner.ts'
@@ -130,7 +135,9 @@ routes:
       - '02_proceso/workflows/multimedia/p00-definir-sistema/workflow.yml'
       - '04_estado/registries/brand/brand-profile-v2.yml'
       - '03_artefactos/brand/tokens/brand-tokens.yml'
-    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
+      - '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md'
+      - '03_artefactos/skills/content-os-slideshow/SKILL.md'
+    output: 'perfil general: content-intent-v2 + brief.md + cadena adaptativa P00-P09, STOP en MW_BRIEF_APPROVED; perfil commercial-proposal R6: P00 opcional → P01 → P02 → P03 → P05 → P06 → P07, sin P04/P09; P08 bloqueado en V1 y una revisión futura exige verification REVISE + receipt durable V2; MD/HTML/JSON/CSV y techo RENDERED_DRAFT; perfil Video OS: V00-V04 spec-first con principal antes de derivados, STOP en VO_DIRECTION_APPROVED; perfil method-explainer candidate/coverage_gap: planifica intent → assumptions → method model → beat budget → diagram contract → build manifest embebido sin self-hash → unattended state y exige source-pack, spec, debate, guion, captions, audio, storyboard, asset-manifest, render-plan, verification, receipts, contact-sheet, review, handoff, renderA, renderB y MP4 principal hash-bound; STOP real en VO_DIRECTION_APPROVED, sin afirmar compile/render/runtime activo ni superar RENDERED_DRAFT; perfil Trainer OS candidate: intake → route spec → exactamente 2 direcciones, luego STOP en EXP_BRIEF_APPROVED; para Trainer compile/verify/RENDERED_DRAFT siguen coverage_gap hasta evaluación y promoción, sin publicar'
     binds_to: task
     runtime_status: active_brief_first
   - id: R7
@@ -162,9 +169,11 @@ routes:
       - 'corregir extensión local'
     reads:
       - '02_proceso/workflows/local-extensions/contracts.ts'
+      - '02_proceso/workflows/local-extensions/executor-v1.ts'
       - '02_proceso/workflows/skill-systems/contracts.ts'
       - '03_artefactos/skills/frames-local-extension-foundry/SKILL.md'
-    output: 'brief local + L00-L05 con S00-S07; recomienda PROJECT_LOCAL si falta scope; STOP en LX_BRIEF_APPROVED'
+      - '03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/extension.yml'
+    output: 'brief local + L00-L05 con S00-S07; recomienda PROJECT_LOCAL si falta scope; código activo solo mediante LocalExtensionExecutorV1 + TransactionKernelV1, sandbox hash-bound y network DENIED; technical-defense queda ACTIVE_LOCAL y no crea ruta global; STOP en LX_BRIEF_APPROVED'
     binds_to: task
     runtime_status: active_brief_first
   - id: R9
@@ -200,53 +209,5 @@ routes:
     output: 'NotebookIntentV1 + NotebookPlanV1 + cadena N00-N09; lectura y planificación sin mutación; STOP en NLM_PLAN_APPROVED o el gate específico del efecto'
     binds_to: task
     runtime_status: active_plan_first_external_fail_closed
-# Tabla gate → comando (reusar, no crear). Espejo de CLAUDE.md; fuente única aquí. [CONFIG]
-gate_commands:
-  G00_toolchain: 'pnpm check:toolchain'
-  G04_repo: 'pnpm check:repo'
-  G01_G09_estructura: 'pnpm check:repo'
-  G02_sources: 'pnpm check:sources'
-  G03_BRAND_brand: 'pnpm verify:brand'
-  G07_skills: 'pnpm verify:skills'
-  G08_core_contracts: 'pnpm typecheck && pnpm test'
-  G09_WEB_web_build: 'pnpm web:build'
-  G09_CONTENT_content_build: 'pnpm content:build'
-  G09_CAREER_career_contracts: 'node --import tsx scripts/check-career-workflows.ts'
-  G09_CAREER_DESIGN_design_system: 'pnpm verify:career-design'
-  G09_VIDEO_OS_contracts: 'pnpm verify:video-os'
-  G09_EXPERIENCE_experience_contracts: 'node --import tsx scripts/check-experience-os.ts'
-  G09_NOTEBOOKLM_OS_contracts: 'node --import tsx 05_verificacion/scripts/check-notebooklm-os.ts && pnpm exec vitest run 05_verificacion/tests/unit/notebooklm-os.test.ts'
-  G12_remotion: 'pnpm remotion:prepare && pnpm remotion:validate && pnpm render:all'
-  G12_QA_media: 'pnpm verify:media'
-  preflight_VS_001: 'pnpm slice:build'
-  verificacion_total: 'pnpm verify'
-# Gates manuales fail-closed — no automatizar. Documenta en TASK.md como bloqueados. [CONFIG]
-manual_fail_closed_gates:
-  [
-    G13,
-    G14,
-    G15,
-    G16,
-    G17,
-    MW_BRIEF_APPROVED,
-    CR_BRIEF_APPROVED,
-    CR_CV_DESIGN_APPROVED,
-    CR_CV_SPEC_APPROVED,
-    CR_PACKAGE_APPROVED,
-    CR_SUBMISSION_AUTHORIZED,
-    EXP_BRIEF_APPROVED,
-    EXP_RELEASE_APPROVED,
-    VO_INTAKE_COMPLETE,
-    VO_DIRECTION_APPROVED,
-    VO_PRINCIPAL_VERIFIED,
-    VO_HANDOFF_APPROVED,
-    LX_BRIEF_APPROVED,
-    DOCS_TRANSVERSAL_COMPLETE,
-    HM_CHANGE_APPROVED,
-    HM_PROMOTION_APPROVED,
-    NLM_PLAN_APPROVED,
-    NLM_SYNC_APPROVED,
-    NLM_STUDIO_GENERATION_APPROVED,
-    NLM_SHARE_AUTHORIZED,
-    NLM_DESTRUCTIVE_AUTHORIZED,
-  ]
+# `commands.yaml` es la única autoridad para comando, owner, manualidad,
+# idempotencia y fail-closed de cada gate. El router solo conserva semántica de ruta. [CONFIG]

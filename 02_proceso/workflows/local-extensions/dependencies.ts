@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
+import {parse as parseYaml} from 'yaml';
 
 import type {LocalExtensionManifest, LocalExtensionRecord} from './contracts.ts';
 import {containedFile} from './paths.ts';
@@ -7,6 +8,27 @@ import {containedFile} from './paths.ts';
 const sha256 = (value: Buffer): string => createHash('sha256').update(value).digest('hex');
 const safeReason = (error: unknown, fallback: string): string =>
   error instanceof Error && error.message.startsWith('LOCAL_EXTENSION_') ? error.message : fallback;
+
+export const parseLocalExtensionManifestFileV1 = (path: string): unknown => {
+  const text = readFileSync(path, 'utf8');
+  return path.endsWith('.json') ? JSON.parse(text) : parseYaml(text);
+};
+
+export const sameExtensionEvidenceV1 = (
+  left: readonly {ref: string; sha256: string}[],
+  right: readonly {ref: string; sha256: string}[],
+): boolean => {
+  const normalized = (values: readonly {ref: string; sha256: string}[]) =>
+    [...values].map(({ref, sha256: digest}) => `${ref}\u0000${digest}`).sort();
+  const first = normalized(left);
+  const second = normalized(right);
+  return (
+    new Set(left.map(({ref}) => ref)).size === left.length &&
+    new Set(right.map(({ref}) => ref)).size === right.length &&
+    first.length === second.length &&
+    first.every((value, index) => value === second[index])
+  );
+};
 
 export const validatePackageContent = (
   root: string,

@@ -896,6 +896,7 @@
   },
   {
     "id": "frames-harness-maintainer",
+    "version": "0.1.0",
     "scope": "local-evaluation",
     "check": ["skills/frames-harness-maintainer/scripts/check-skill.mjs"]
   },

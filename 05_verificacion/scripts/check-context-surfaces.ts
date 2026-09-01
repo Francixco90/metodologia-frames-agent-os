@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
 
 import {ContextSurfaceRegistryV1Schema} from '../../02_proceso/core/contracts/context-surface-v1.ts';
+import {EXPERIENCE_ROUTE_IDS_V1} from '../../02_proceso/core/contracts/experience-assistance-v1.ts';
 import {
   REGISTRY_PATH,
   loadContextSurfaces,
@@ -37,6 +38,16 @@ export const checkContextSurfaces = (root: string): string[] => {
   const expectedTotal =
     registry.expected_non_skill_projections + registry.expected_skill_projections;
   issues.push(...validateContextGraph(root, surfaces, expectedTotal));
+  const expectedRoutes = [...EXPERIENCE_ROUTE_IDS_V1].sort();
+  for (const contextId of ['CTX-ROOT', 'CTX-GOVERNANCE']) {
+    const surface = surfaces.find(({context_id: candidate}) => candidate === contextId);
+    if (
+      surface === undefined ||
+      JSON.stringify([...surface.routes].sort()) !== JSON.stringify(expectedRoutes)
+    ) {
+      issues.push(`CTX-ROUTE003 ${contextId} must expose the exact governed route set`);
+    }
+  }
   for (const [path, content] of expected) {
     const absolute = resolve(root, path);
     if (!existsSync(absolute)) issues.push(`CTX-COVERAGE002 missing ${path}`);

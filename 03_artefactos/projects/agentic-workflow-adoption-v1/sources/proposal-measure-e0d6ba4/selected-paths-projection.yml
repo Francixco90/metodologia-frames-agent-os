@@ -1,0 +1,69 @@
+schema_version: 1
+projection_id: proposal-measure-e0d6ba4-selected-paths-v1
+source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
+copy_policy: metadata_only_no_source_bytes
+manifest_contract:
+  format: utf8_lf_tsv_v1
+  columns:
+    - repository_relative_path
+    - git_blob_sha1
+    - source_file_sha256
+    - source_file_bytes
+  order: bytewise_lexicographic_by_repository_relative_path
+  selected_path_count: 22
+selections:
+  - purpose: donor_scope_and_governance_reference
+    decision: REFERENCE
+    paths:
+      - GOVERNANCE.md
+      - README.md
+  - purpose: domain_graph_and_objective_semantics
+    decision: ADAPT
+    paths:
+      - control/graphs/build-graph.json
+      - control/graphs/runtime-graph.json
+      - control/objective-contract.json
+  - purpose: reproduce_manifest_integrity_defect
+    decision: REFERENCE
+    paths:
+      - control/package-manifest.json
+      - tests/test_package_manifest.py
+  - purpose: architecture_and_contract_evidence
+    decision: ADAPT
+    paths:
+      - docs/architecture.md
+      - docs/contracts.md
+      - src/w02_custom_proposal/contracts/schemas.py
+      - src/w02_custom_proposal/contracts/validation.py
+  - purpose: compare_runtime_causality_and_storage
+    decision: REJECT_RUNTIME_ADAPT_INVARIANTS
+    paths:
+      - src/w02_custom_proposal/core/engine.py
+      - src/w02_custom_proposal/core/storage.py
+      - src/w02_custom_proposal/runtime.py
+  - purpose: commercial_domain_contract_mapping
+    decision: ADAPT
+    paths:
+      - src/w02_custom_proposal/stages/business_case.py
+      - src/w02_custom_proposal/stages/builder.py
+      - src/w02_custom_proposal/stages/readiness.py
+      - src/w02_custom_proposal/stages/verification.py
+  - purpose: negative_case_inventory_not_test_file_copy
+    decision: ADAPT_TEST_IDEAS_ONLY
+    paths:
+      - tests/test_contracts.py
+      - tests/test_core.py
+      - tests/test_runtime.py
+      - tests/test_stages.py
+excluded_classes:
+  - donor_prompts
+  - design_templates
+  - fonts_and_binary_assets
+  - fixtures_with_delivery_or_client_semantics
+  - complete_python_runtime_vendoring
+target:
+  route: R6
+  content_class: commercial-proposal
+  implementation_language: TypeScript
+  renderer_authority: existing_frames_renderers
+  maximum_automatic_state: RENDERED_DRAFT

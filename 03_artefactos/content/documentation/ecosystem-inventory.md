@@ -15,7 +15,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - COMMAND: 104
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 69
+- GATE: 71
 - RENDERER: 5
 - ROUTE: 12
 - SKILL: 185
@@ -548,6 +548,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G07 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08_AI_RUNTIME | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08_CONTRACTS | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | G08_TRANSACTION_KERNEL | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G08 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CAREER_DESIGN | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | G09_CAREER | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -573,6 +574,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | G21 | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | HM_CANDIDATE_VERIFIED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | HM_CHANGE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | HM_GUARDIAN_VERDICT_RECORDED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | HM_PROMOTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | LX_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_ASSET_REVIEW | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -799,16 +801,16 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | web-open-browser | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-scrape | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-setup-browser-cookies | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
-| SOURCE | SRC-LEGACY-STITCH-REMOTION-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-LEGACY-STITCH-REMOTION-001 | QUARANTINED | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-MAO-BRAND-BUNDLE-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-MAO-BRAND-VOICE-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-MAO-BRAND-VOICE-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-MAO-PUBLIC-SEMANTICS-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-METH-IMAGE-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-METH-JVC-SKOOL-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-METH-JVC-YT-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-METH-IMAGE-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-METH-JVC-SKOOL-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-METH-JVC-YT-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-PROMPT-MAESTRO-V6 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-REMOTION-DOCS-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
-| SOURCE | SRC-REMOTION-SKILLS-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-REMOTION-DOCS-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
+| SOURCE | SRC-REMOTION-SKILLS-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-SYNTH-VS001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | TEMPLATE | .agents/skills/harness-creator/templates/agents.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/agents.md` |
 | TEMPLATE | .agents/skills/harness-creator/templates/assets/brand.md | ACTIVE | CANONICAL | `.agents/skills/harness-creator/templates/assets/brand.md` |
@@ -992,4 +994,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `66623fbf5b01d3bf30a631f86120476e740e315c09f6ac0db77d7370e34af4bf`.
+Hash de fuentes: `265663eddf7a3dd93f8a25eba3aca2f043d02d0ca86a597a576a52f730e036b1`.
