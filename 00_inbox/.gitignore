@@ -1,16 +1,26 @@
 # Inbox PII protection - defense in depth layer 1 (.gitignore)
 # Layer 2: README.md per subfolder (cognitive barrier)
 # Layer 3: pre-commit hook (only layer that blocks git add -f)
+#
+# Deny-by-default: only explicitly public artifacts may be versioned from this
+# tree. Personal and working zones are protected WITHOUT being named here —
+# anything not allowlisted below stays local by construction.
 
-# Zonas reguladas: ignorar todo el contenido excepto placeholders
-inbox/Contratos/*
-!inbox/Contratos/.gitkeep
-!inbox/Contratos/README.md
+/*/
+!/first-party/
+!/templates/
 
-inbox/Firmas/*
-!inbox/Firmas/.gitkeep
-!inbox/Firmas/README.md
+/*.md
+!README.md
+!context.md
 
-inbox/Muestras/*
-!inbox/Muestras/.gitkeep
-!inbox/Muestras/README.md
+# Regulated reference zones: tracked placeholders only
+/Contratos/*
+!/Contratos/.gitkeep
+!/Contratos/README.md
+/Firmas/*
+!/Firmas/.gitkeep
+!/Firmas/README.md
+/Muestras/*
+!/Muestras/.gitkeep
+!/Muestras/README.md
