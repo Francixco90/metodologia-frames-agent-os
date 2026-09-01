@@ -94,4 +94,19 @@ describe('Frames first-turn classification', () => {
     const second = runFirstTurnGatewayV1({prompt: 'hola'}, handlers);
     expect(first.requestHash).toBe(second.requestHash);
   });
+
+  it('routes only unequivocal commercial proposal phrases through R6', () => {
+    for (const prompt of ['propuesta comercial', 'commercial proposal', 'proposal deck']) {
+      neverRoute.mockClear();
+      const envelope = runFirstTurnGatewayV1({prompt}, handlers);
+      expect(envelope.selectedRoute).toBe('R6');
+      expect(envelope.routeCandidates[0]?.reasonCodes).toEqual(['CONTENT_SIGNAL']);
+      expect(neverRoute).toHaveBeenCalledOnce();
+    }
+    for (const prompt of ['proposal', 'proposal draft']) {
+      neverRoute.mockClear();
+      expect(runFirstTurnGatewayV1({prompt}, handlers).selectedRoute).toBe('R0');
+      expect(neverRoute).not.toHaveBeenCalled();
+    }
+  });
 });

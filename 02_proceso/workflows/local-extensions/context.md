@@ -14,6 +14,7 @@ R8 resolvió crear o evolucionar una capacidad privada.
 Owner: `content`. Cargar en este orden:
 
 - `02_proceso/workflows/local-extensions/contracts.ts`
+- `02_proceso/core/contracts/transaction-kernel-v1.ts`
 
 ## 3. Carga mínima y contexto diferido
 
@@ -24,6 +25,7 @@ Primero:
 Solo bajo demanda:
 
 - `02_proceso/workflows/local-extensions/loader.ts`
+- `02_proceso/workflows/local-extensions/executor-v1.ts`
 
 Diferir:
 
@@ -51,7 +53,7 @@ Privacidad: `private_after_route_lock`. Nunca persistir secretos, PII ni razonam
 ## 6. Gates, handoff y contextos hijos
 
 Gates: `LX_BRIEF_APPROVED`  
-Stop rules: Capacidad canónica prevalece · Código sin sandbox no ejecuta
+Stop rules: Capacidad canónica prevalece · Código sin sandbox hash-bound no ejecuta · ACTIVE_LOCAL no concede ruta global ni publicación
 
 Hijos:
 

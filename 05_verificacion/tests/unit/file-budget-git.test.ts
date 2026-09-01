@@ -90,10 +90,56 @@ describe('file-budget Git state', () => {
     });
   });
 
+  it('collapses a committed change after its exact baseline bytes are staged again', () => {
+    const {root, base} = repository();
+    put(root, 'modify.txt', 'changed\n');
+    commit(root, 'change tracked bytes');
+    put(root, 'modify.txt', 'old\n');
+    git(root, ['add', 'modify.txt']);
+
+    const state = collectBudgetGitState(root, {BUDGET_BASE_REF: base});
+    expect([...state.paths]).toStrictEqual([]);
+    expect(state.loc).toBe(0);
+  });
+
   it('prefers the product origin when both main remotes exist', () => {
     const {root, base} = repository();
     git(root, ['update-ref', 'refs/remotes/upstream/main', base]);
     git(root, ['update-ref', 'refs/remotes/origin/main', base]);
+
+    expect(resolveBudgetBase(root, {})).toStrictEqual({
+      commit: base,
+      source: 'origin/main',
+      explicit: false,
+    });
+  });
+
+  it('prefers the branch configured upstream over an unrelated product origin', () => {
+    const {root, base} = repository();
+    put(root, 'origin-only.txt', 'origin\n');
+    const originHead = commit(root, 'origin head');
+    git(root, ['update-ref', 'refs/remotes/origin/main', originHead]);
+    git(root, ['update-ref', 'refs/remotes/upstream/main', base]);
+    git(root, ['remote', 'add', 'upstream', '.']);
+    git(root, ['config', 'branch.main.remote', 'upstream']);
+    git(root, ['config', 'branch.main.merge', 'refs/heads/main']);
+
+    expect(resolveBudgetBase(root, {})).toStrictEqual({
+      commit: base,
+      source: 'upstream/main',
+      explicit: false,
+    });
+  });
+
+  it('ignores a configured feature upstream when selecting the budget baseline', () => {
+    const {root, base} = repository();
+    git(root, ['update-ref', 'refs/remotes/origin/main', base]);
+    put(root, 'feature-only.txt', 'feature\n');
+    const featureHead = commit(root, 'feature head');
+    git(root, ['update-ref', 'refs/remotes/origin/feature', featureHead]);
+    git(root, ['remote', 'add', 'origin', '.']);
+    git(root, ['config', 'branch.main.remote', 'origin']);
+    git(root, ['config', 'branch.main.merge', 'refs/heads/feature']);
 
     expect(resolveBudgetBase(root, {})).toStrictEqual({
       commit: base,

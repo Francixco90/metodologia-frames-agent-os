@@ -26,6 +26,24 @@ export const BriefSourceSchema = z.strictObject({
   authority: z.enum(['verified', 'user_assertion', 'unknown']),
   rights: z.enum(['cleared', 'restricted', 'unknown']),
 });
+export type BriefSourceV1 = z.infer<typeof BriefSourceSchema>;
+
+export const BriefSourceAuthorityReceiptV1Schema = z.strictObject({
+  schemaVersion: z.literal('brief-source-authority-receipt-v1'),
+  receiptId: z.string().min(3).max(160),
+  source: BriefSourceSchema,
+  authorityMode: z.literal('LOCAL_SIMULATION'),
+  authorityActorId: z.literal('LOCAL-USER-ASSERTION'),
+  rightsBasis: z.literal('user_supplied_for_local_brief'),
+  allowedUseScope: z.literal('local_internal_brief_only'),
+  restrictions: z
+    .array(z.enum(['no_external_distribution', 'no_claim_promotion']))
+    .length(2)
+    .refine((items) => new Set(items).size === 2, 'Both fail-closed restrictions are required'),
+  recordedAt: z.iso.datetime({offset: true}),
+  canonicalSha256: Sha256Schema,
+});
+export type BriefSourceAuthorityReceiptV1 = z.infer<typeof BriefSourceAuthorityReceiptV1Schema>;
 
 export const FramesBriefFrontmatterV1Schema = z.strictObject({
   schema_version: z.literal('frames-brief-v1'),

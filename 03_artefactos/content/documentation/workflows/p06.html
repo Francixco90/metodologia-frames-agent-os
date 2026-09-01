@@ -207,12 +207,13 @@
         >
           <title id="seq-title">Secuencia P06</title>
           <desc id="seq-desc">
-            La persona solicita Crea los activos multimedia. S01: content-os-core produce
-            capability-report-v1; RT-09 decide MW_ASSET_REVIEW. S02: content-os-remotion-create
-            produce asset-package-v1, tool-run-evidence-v1; RT-09 decide MW_ASSET_REVIEW. S03:
-            content-os-media produce asset-manifest-v1; RT-09 decide MW_ASSET_REVIEW. S04:
-            content-os-remotion-render produce asset-package-v1, asset-manifest-v1; RT-09 decide
-            G14. Frames entrega el resultado y propone P07.
+            La persona solicita Crea los activos multimedia. S01: content-os-core prepara
+            capability-report-v1; RT-09 verifica; RT-09 decide MW_ASSET_REVIEW. S02:
+            content-os-remotion-create prepara asset-package-v1, tool-run-evidence-v1; RT-09
+            verifica; RT-09 decide MW_ASSET_REVIEW. S03: content-os-media prepara asset-manifest-v1;
+            RT-09 verifica; RT-09 decide MW_ASSET_REVIEW. S04: content-os-remotion-render prepara
+            asset-package-v1, asset-manifest-v1; RT-09 verifica; RT-09 decide G14. Frames entrega el
+            resultado y propone P07.
           </desc>
           <style>
             .actor {
@@ -322,15 +323,21 @@
         </svg>
         <ol>
           <li>La persona solicita Crea los activos multimedia.</li>
-          <li>S01: content-os-core produce capability-report-v1; RT-09 decide MW_ASSET_REVIEW.</li>
           <li>
-            S02: content-os-remotion-create produce asset-package-v1, tool-run-evidence-v1; RT-09
-            decide MW_ASSET_REVIEW.
+            S01: content-os-core prepara capability-report-v1; RT-09 verifica; RT-09 decide
+            MW_ASSET_REVIEW.
           </li>
-          <li>S03: content-os-media produce asset-manifest-v1; RT-09 decide MW_ASSET_REVIEW.</li>
           <li>
-            S04: content-os-remotion-render produce asset-package-v1, asset-manifest-v1; RT-09
-            decide G14.
+            S02: content-os-remotion-create prepara asset-package-v1, tool-run-evidence-v1; RT-09
+            verifica; RT-09 decide MW_ASSET_REVIEW.
+          </li>
+          <li>
+            S03: content-os-media prepara asset-manifest-v1; RT-09 verifica; RT-09 decide
+            MW_ASSET_REVIEW.
+          </li>
+          <li>
+            S04: content-os-remotion-render prepara asset-package-v1, asset-manifest-v1; RT-09
+            verifica; RT-09 decide G14.
           </li>
           <li>Frames entrega el resultado y propone P07.</li>
         </ol>

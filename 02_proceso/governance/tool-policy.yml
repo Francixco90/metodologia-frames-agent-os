@@ -99,7 +99,7 @@ rules:
         - 'may_remediate: false — non-writer. [CONFIG] ownership-manifest non_writers.guardian'
         - 'Bash restricted to read-only validators, hash comparators and reproducible scanners'
         - 'Cannot produce, correct or overwrite candidate files; cannot act as H01. [CONFIG] RT-11 contract.forbidden'
-        - "Writes (verdicts/reports) land in guardian/** via a separate writer delegation, not Guardian's own Edit/Write. [SUPUESTO] pending Guardian write-path clarification"
+        - 'RT-11 emits verdict bytes through its read-only task result; RT-10 is the recorder actor and persists them without reinterpretation under the governance-owned guardian/** write set. Owner names in commands.yaml govern paths; they do not collapse actor identity. [CONFIG] RT-10/RT-11 contracts; M06; ownership-manifest'
       source_ref: 'RT-11 contract.yml tools.allowed/forbidden; ownership-manifest non_writers.guardian.may_remediate=false; dag package A12 gate G14'
   # --- Source/skill/content and local build writers ---
   - role: sources
@@ -144,10 +144,12 @@ rules:
       allow: [Read, Grep, Glob, Edit, Write, Bash]
       deny: []
       conditional:
-        - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/** and workflows/experience/** plus declared content artifacts and registries/experience/**.'
+        - 'Write only within workflows/content/**, workflows/multimedia/**, workflows/career/**, workflows/experience/** and workflows/local-extensions/** plus declared content artifacts and registries/experience/**.'
         - 'workflows/multimedia/** is one atomic content-owned route, including _schema, _runner and P00-P09; renderer roles cannot write there.'
         - 'Design System First work reads approved brand profile/tokens and requires pnpm verify:brand before pnpm content:build; unresolved authority blocks.'
         - 'Career C09 is prepare-and-stop: no browser submission, connector, publish or external effect.'
+        - 'Commercial proposal R6 stops at RENDERED_DRAFT; price, ROI and commitments require hash-bound commercial authority, and deck materialization requires separate human confirmation.'
+        - 'PROJECT_LOCAL code runs only through LocalExtensionExecutorV1 backed by TransactionKernelV1; network, subprocess, eval, dynamic imports and direct filesystem writes are denied.'
         - 'Bash restricted to pnpm verify:brand, pnpm content:build, local typecheck, tests and deterministic workflow validators.'
       source_ref: 'ownership-manifest writers.content; dag packages A07/A07c gates G09_CONTENT/G09_CAREER'
   - role: remotion
@@ -212,5 +214,4 @@ runtime_grants:
 gaps:
   - 'coverage_gap: 2 stub owners (agents-committee and n8n) remain read-only pending agent-by-agent audit.'
   - 'coverage_gap: future Design System First output paths remain unresolved and therefore blocked until a later PR adds explicit one-writer ownership; this PR grants no wildcard outside current allowlists.'
-  - 'coverage_gap: Guardian write-path for verdicts/reports unclear — ownership-manifest lists guardian/** under writers.guardian yet non_writers.guardian.may_remediate=false. Reconcile in P5.'
   - 'coverage_gap: MCP tool permissions (notebooklm/tessl/playwright) admitted at runtime_grants level only; full per-role MCP allow/deny awaits the agent-by-agent audit.'

@@ -48,7 +48,7 @@ Saltar una etapa produce `UNKNOWN/BLOCKED`; la narrativa no la completa. [CONFIG
 
 ## Estado productivo del routing
 
-El registry R0–R7 es la autoridad semántica; disponibilidad documental no implica
+El registry R0–R10 más R3-LOOSE es la autoridad semántica; disponibilidad documental no implica
 handler productivo. [CONFIG]
 
 | Ruta          | Uso                                 | Estado Experience                                       |
@@ -61,6 +61,9 @@ handler productivo. [CONFIG]
 | R5            | eval/ablation                       | `coverage_gap`: ejecución aislada no integrada          |
 | R6            | contenido P00–P09                   | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
 | R7            | Career C00–C09                      | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
+| R8            | extensiones locales                 | productivo hasta `LX_BRIEF_APPROVED`                    |
+| R9            | mantenimiento del harness           | productivo hasta `HM_CHANGE_APPROVED`                   |
+| R10           | NotebookLM OS                       | plan-first hasta el gate NLM específico                 |
 
 Una ruta sin handler puede orientar, no ejecutar. Nunca inventa un pipeline ni un
 sustituto para ocultar el `coverage_gap`.

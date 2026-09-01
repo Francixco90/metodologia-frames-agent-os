@@ -42,8 +42,26 @@ export const validateSequence = (
 ): string[] => {
   const issues: string[] = [];
   if (sequence.workflowId !== workflow.id) issues.push('sequence:workflow-id');
-  if (sequence.messages.length !== workflow.steps.length * 3 + 2)
-    issues.push('sequence:message-cardinality');
+  const expectedMessages =
+    2 +
+    workflow.steps.reduce((total, step) => {
+      const verifier = step.verifier === 'unassigned' ? null : step.verifier;
+      const recorder = step.recorder ?? null;
+      const decisionActor = step.decisionActor ?? verifier ?? 'Frames';
+      let count = 2;
+      let currentActor = step.primarySkill;
+      if (verifier !== null) {
+        count += 1;
+        currentActor = verifier;
+      }
+      if (recorder !== null && recorder !== currentActor) {
+        count += 1;
+        currentActor = recorder;
+      }
+      if (decisionActor !== currentActor) count += 1;
+      return total + count;
+    }, 0);
+  if (sequence.messages.length !== expectedMessages) issues.push('sequence:message-cardinality');
   if (sequence.accessibleSummary.length !== workflow.steps.length + 2)
     issues.push('sequence:summary-cardinality');
   for (const message of sequence.messages) {
@@ -87,6 +105,12 @@ export const assessWorkflowCoverage = async (
     }
     if (step.verifier !== 'unassigned' && !tokenPattern(step.verifier).test(corpus)) {
       unresolved.push(`verifier:${step.verifier}`);
+    }
+    if (step.recorder !== undefined && !tokenPattern(step.recorder).test(corpus)) {
+      unresolved.push(`recorder:${step.recorder}`);
+    }
+    if (step.decisionActor !== undefined && !tokenPattern(step.decisionActor).test(corpus)) {
+      unresolved.push(`decision-actor:${step.decisionActor}`);
     }
     if (
       step.templateId &&

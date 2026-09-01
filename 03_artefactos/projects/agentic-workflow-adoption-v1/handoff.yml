@@ -1,0 +1,125 @@
+schema_version: 1
+handoff_id: agentic-workflow-adoption-v1-public-port-handoff
+status: PUBLIC_PORT_LOCAL_VERIFIED_FINAL_GUARDIAN_PENDING_H01_NOT_EXECUTED_NOT_PROMOTED
+from_actor: governance_and_integration_owner
+to_actor: independent_final_guardian
+baseline:
+  frames_commit_sha1: a470cf5920c8e730263a6fc293d660f25a13b443
+  branch: codex/proposal-defense-adoption-public-v1
+  original_candidate_commit_sha1: db0c2148f397acf84ba79faee9238b0f0cbbb0c1
+  original_frames_commit_sha1: 9978acd2e9f056fa3634a71ed7c495ba0323af77
+source_decisions:
+  - source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
+    pinned_commit_sha1: e0d6ba4576b23c83a6b22dbad53e23a8795b26d0
+    lifecycle_state: evaluated
+    external_evidence_state: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
+    receipt_review_status: v2_semantic_hash_chain_privacy_readback_pass
+    rights_verdict: allowed_internal_implementation
+    external_distribution_authorized: false
+    destination: R6_commercial_proposal_content_class
+  - source_id: SRC-TECHNICAL-DEFENSE-78FD383
+    pinned_commit_sha1: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
+    lifecycle_state: evaluated
+    external_evidence_state: EXTERNAL_EVIDENCE_RECORDED_NOT_REPLAYED
+    receipt_review_status: v2_semantic_hash_chain_privacy_readback_pass
+    rights_verdict: allowed_internal_implementation
+    external_distribution_authorized: false
+    destination: R8_project_local_technical_defense_and_transaction_pattern
+integration_writes_completed_by_owner:
+  - path: 03_artefactos/projects/agentic-workflow-adoption-v1/source-register.yml
+    operation: validate_two_evaluated_entries_as_project_local_overlay
+    global_authorities: byte_identical_and_sha256_bound
+  - path: 01_intencion/program/ownership-manifest.yml
+    operation: assign_new_paths_to_bounded_owners
+  - path: 02_proceso/governance/router.yml
+    operation: add_exact_r6_commercial_proposal_signals_without_parallel_route
+  - path: 05_verificacion/scripts/commands.yaml
+    operation: register_transaction_r6_r8_gates_after_handlers_exist
+receipt_chains:
+  - source_id: SRC-PROPOSAL-MEASURE-E0D6BA4
+    receipt_contract: pinned_repository_source_transition_v2
+    bindings:
+      - path: receipts/imports/proposal-measure-e0d6ba4/20260829-SRC-PROPOSAL-MEASURE-E0D6BA4-candidate.yml
+        sha256: 9269f3c6d7b6dbb7e29521312dba2dcc553fe6247c322a96613bb88b3ce1cfbb
+      - path: receipts/imports/proposal-measure-e0d6ba4/20260829-SRC-PROPOSAL-MEASURE-E0D6BA4-quarantined.yml
+        sha256: 8533d64e197d8de46af7b95927afb384b6ad8b7da76e0b0d34fb41ce985dd7b5
+      - path: receipts/imports/proposal-measure-e0d6ba4/20260829-SRC-PROPOSAL-MEASURE-E0D6BA4-evaluated.yml
+        sha256: 442ca5f9b7cc61ae0f6f8b245c4aa8c83183bab6c5969b85bb2def362ab239f6
+  - source_id: SRC-TECHNICAL-DEFENSE-78FD383
+    receipt_contract: pinned_repository_source_transition_v2
+    bindings:
+      - path: receipts/imports/technical-defense-78fd383/20260829-SRC-TECHNICAL-DEFENSE-78FD383-candidate.yml
+        sha256: 1d92237dd1a037e5891f8f66e43cbb937bb410b53beb8ecfe3ecf00474c0e872
+      - path: receipts/imports/technical-defense-78fd383/20260829-SRC-TECHNICAL-DEFENSE-78FD383-quarantined.yml
+        sha256: fc2115c212d896326b100ef58c747f5f3de96623b10f3f49ae1deac8a5dd35d5
+      - path: receipts/imports/technical-defense-78fd383/20260829-SRC-TECHNICAL-DEFENSE-78FD383-evaluated.yml
+        sha256: 17f6aab2ec922f3121ba53ab9c29f4d2c4e1a208cb765495e672264ca6b0c294
+scope_successor_receipt:
+  path: 03_artefactos/projects/agentic-workflow-adoption-v1/receipts/source-register-project-local-scope-v1.yml
+  sha256: bedc41530a21e72bb7b1fd013a458e3d5451a9deca3698afb00deb5448c12538
+  register_sha256: e816e18be128de6c1b9854e1131ac52a0b43c45763ef08eb52ebfe9820c0b469
+  integration_scope: PROJECT_LOCAL
+  global_registry_integration_authorized: false
+integration_invariants:
+  - do_not_create_parallel_routes_or_authorities
+  - do_not_copy_donor_code_prompts_templates_fonts_or_assets
+  - handlers_return_bytes_and_intents_only
+  - only_transaction_kernel_writes_effect_root
+  - effect_success_does_not_unlock_descendants
+  - promotion_requires_physical_hash_bound_promotion_receipt
+  - evaluated_source_is_not_active_source
+  - no_donor_network_mutation_main_merge_publication_distribution_or_external_delivery
+historical_candidate_completed_gates:
+  - governance_owner_validated_project_local_overlay_and_global_authority_hashes
+  - global_source_cli_passed_exactly_11_sources_and_0_of_4_fail_closed_corpus
+  - project_local_source_cli_passed_exactly_2_donor_sources
+  - source_contract_negative_and_real_runner_suites_passed_45_of_45
+  - legacy_H01_H02_remained_byte_identical_and_verify_atoms_passed_39_atoms_50_edges
+  - privacy_scan_passed_6675_versionable_files
+  - independent_source_guardian_passed_with_zero_findings_and_source_core_112_of_112
+  - pnpm_check_and_typecheck_passed_on_wave1_candidate
+  - transaction_kernel_and_causal_focal_suites_passed_80_of_80
+  - process_crash_and_recovery_seams_passed_10_of_10
+  - r6_commercial_proposal_canary_passed_47_of_47
+  - canonical_g08_source_core_r6_r8_passed_220_of_220
+  - r8_technical_defense_suites_passed_61_of_61
+  - two_fresh_process_replays_produced_identical_r6_r8_hashes
+  - chrome_desktop_and_mobile_basic_visual_accessibility_passed
+  - deterministic_swiftshader_browser_probe_passed_128_stress_renders_and_three_full_replays
+  - full_vitest_passed_236_of_236_files_and_2148_of_2148_tests
+  - pnpm_check_and_full_verify_passed_on_documented_candidate
+  - independent_wave4_qa_reported_zero_blocker_or_high
+public_port_completed_gates:
+  - four_x_cherry_picks_plus_public_main_two_parent_merge_preserved_traceability
+  - commercial_proposal_rebound_to_existing_public_template_sha256_7c445c46
+  - technical_defense_runner_recomputed_and_fail_closed_sha256_172954c9
+  - global_11_and_project_local_2_source_gates_passed
+  - source_contract_negative_runner_suites_passed_45_of_45
+  - canonical_g08_passed_220_of_220
+  - change_budget_passed_200_files_19843_loc_against_upstream_main
+  - detached_github_pull_request_branch_context_focal_passed_21_of_21
+  - pnpm_check_and_typecheck_passed
+  - full_verify_passed_235_of_235_files_and_2162_of_2162_tests
+next_gates:
+  - guardian_reviews_exact_public_port_candidate_digest
+  - H01_may_bind_exact_candidate_only_after_explicit_human_approval
+  - promotion_requires_exact_H01_and_same_recorder_identity_as_guardian_pass_event
+coverage_gaps:
+  - final_wave4_guardian_verdict_is_pending
+  - github_ci_replay_after_detached_branch_context_fix_is_pending
+  - no_active_source_receipts_created
+  - donor_authorization_is_user_supplied_and_not_host_attested
+  - external_archive_tree_and_blob_observations_not_replayed_in_frames
+  - actor_separation_is_LOCAL_SIMULATION_not_cryptographic_isolation
+  - linux_and_windows_acceptance_not_executed
+  - windows_safe_filesystem_backend_is_a_capability_gap
+  - exact_candidate_H01_and_promotion_not_executed
+external_effects:
+  network_reads_for_pinned_git_repositories: observed_read_only
+  donor_repository_mutation: false
+  local_synthetic_pilots: true
+  human_approval_or_promotion: false
+  feature_branch_push: JaviMontano/metodologia-frames-agent-os-notebooklm:codex/proposal-defense-adoption-public-v1
+  draft_pull_request: Francixco90/metodologia-frames-agent-os#276
+  main_merge: false
+  publication_distribution_delivery: false

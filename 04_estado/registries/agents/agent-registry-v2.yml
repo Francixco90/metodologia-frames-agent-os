@@ -280,7 +280,7 @@ entries:
     legacyV1Contract:
       schemaVersion: hash-bound-ref-v1
       ref: agents/RT-11/contract.yml
-      sha256: cc79f1b808589ad1c1f142cc601f7ba916cc6938bdea0668a4cf3b36b3293708
+      sha256: 00e0bacecab347689ef1b11d1040d52f2f3122953a639d0ab2e1f875d468d4d5
 migration:
   strategy: v1-adapter-before-producer-cutover
   vs001Compatible: true

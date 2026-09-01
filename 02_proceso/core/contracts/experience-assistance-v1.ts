@@ -6,6 +6,8 @@ import {
   RelativePathSchema,
   Sha256Schema,
 } from './primitives.ts';
+import {EXPERIENCE_ROUTE_IDS_V1} from './experience-route-ids-v1.ts';
+export {EXPERIENCE_ROUTE_IDS_V1} from './experience-route-ids-v1.ts';
 export const InteractionClassV1Schema = z.enum([
   'ASSIST_ONLY',
   'ACTIONABLE',
@@ -19,8 +21,7 @@ export const ExperienceStateV1Schema = z.enum([
   'RESUMABLE',
   'BLOCKED',
 ]);
-// prettier-ignore
-export const ExperienceRouteIdV1Schema = z.enum(['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10']);
+export const ExperienceRouteIdV1Schema = z.enum(EXPERIENCE_ROUTE_IDS_V1);
 export type ExperienceRouteIdV1 = z.infer<typeof ExperienceRouteIdV1Schema>;
 
 const ShortTextSchema = z.string().trim().min(1).max(280);

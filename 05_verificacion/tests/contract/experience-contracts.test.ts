@@ -2,6 +2,7 @@ import {describe, expect, it} from 'vitest';
 
 import {
   AssistanceEnvelopeV1Schema,
+  EXPERIENCE_ROUTE_IDS_V1,
   ExperienceReleaseCapsuleV1Schema,
   ExperienceViewV1Schema,
   FramesWorkOrderV1Schema,
@@ -56,6 +57,22 @@ const workOrder = {
 } as const;
 
 describe('Frames Experience OS contracts', () => {
+  it('uses one exact route tuple across assistance and release contracts', () => {
+    expect(EXPERIENCE_ROUTE_IDS_V1).toEqual([
+      'R0',
+      'R1',
+      'R2',
+      'R3',
+      'R3-LOOSE',
+      'R4',
+      'R5',
+      'R6',
+      'R7',
+      'R8',
+      'R9',
+      'R10',
+    ]);
+  });
   it('keeps assistance non-mutating and bounds questions and alternatives', () => {
     expect(AssistanceEnvelopeV1Schema.parse(greeting)).toEqual(greeting);
     expect(() =>
@@ -206,6 +223,18 @@ describe('Frames Experience OS contracts', () => {
       canonicalSha256: digest,
     } as const;
     expect(ExperienceReleaseCapsuleV1Schema.parse(capsule).status).toBe('APPROVED');
+    expect(
+      ExperienceReleaseCapsuleV1Schema.parse({
+        ...capsule,
+        compatibleRoutes: [...EXPERIENCE_ROUTE_IDS_V1],
+      }).compatibleRoutes,
+    ).toEqual(EXPERIENCE_ROUTE_IDS_V1);
+    expect(() =>
+      ExperienceReleaseCapsuleV1Schema.parse({
+        ...capsule,
+        compatibleRoutes: ['R6', 'R6'],
+      }),
+    ).toThrow(/unique/u);
     expect(() =>
       ExperienceReleaseCapsuleV1Schema.parse({
         ...capsule,

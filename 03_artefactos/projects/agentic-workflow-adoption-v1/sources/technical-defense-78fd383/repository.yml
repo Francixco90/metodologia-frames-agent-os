@@ -1,0 +1,38 @@
+schema_version: 1
+descriptor_id: technical-defense-78fd383-repository-v1
+source_id: SRC-TECHNICAL-DEFENSE-78FD383
+status: EVALUATED
+repository:
+  canonical_uri: https://github.com/GermanMetodologIA/technical-defense-preparation-workflow.git
+  canonical_uri_sha256: 7914a8cae58608f4809d9d937d28cbbe4bf51d915e6f82a3ed8723df0b3abd2b
+  commit_sha1: 78fd3834acd38cf4b6ace7f7f1ed9c06893300f3
+  tree_sha1: 467691b625de2590171290d2dff779a791749f8c
+  tree_listing_sha256: a7571dbec7e2b09b30c212d160f243b1984222e6678ffa1642030fbd99c34b8a
+  tracked_file_count: 44
+source_archive:
+  format: git_archive_tar
+  sha256: dc48f6e6cde67e5c9d092fc3af806a575933c635c4d939403d0385b2e9b99a61
+  bytes: 174080
+  versioned_in_frames: false
+selected_paths_manifest:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths.manifest.tsv
+  sha256: 13ef17a7a33677d31cee125f6087b87259e4fc83cf641384721dd861d04ecf34
+  bytes: 3778
+  selected_path_count: 27
+  content_copied: false
+selected_paths_projection:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/selected-paths-projection.yml
+  sha256: f34f7bb4ffd0a12a9894804972a039b5af7cde5712c211cadaec2ed7350ae18b
+  bytes: 2245
+rights_authorization_projection:
+  locator: 03_artefactos/projects/agentic-workflow-adoption-v1/sources/technical-defense-78fd383/rights-authorization.yml
+  sha256: e69d9769d950e4491efedac41a028ce56d2330584e6eb46e26f41164c570b67c
+  bytes: 1168
+assumption: '[SUPUESTO] user_authorized_internal_implementation'
+restrictions:
+  - internal_typescript_reimplementation_only
+  - no_full_runtime_vendoring
+  - no_asset_copy_without_separate_traceability
+  - no_external_distribution
+  - no_publication_authority
+  - no_network_or_delivery_authority

@@ -6,6 +6,7 @@ export * from './experience-command-view-v1.ts';
 export * from './fake-skill-adapter-v1.ts';
 export * from './first-turn-gateway-v1.ts';
 export * from './material-skill-adapter-v1.ts';
+export * from './material-skill-adapter-v2.ts';
 export * from './local-experience-orchestrator-v1.ts';
 export * from './productive-workflow-definitions-v1.ts';
 export * from './resume-lineage-resolver-v1.ts';

@@ -52,6 +52,7 @@ for (const token of [
   'source-to-video',
   'source-to-content',
   'content-intent-v2',
+  'commercial-proposal',
   'career-application',
   'frames-route-decision-v1',
   'experience-view-v1',
@@ -90,11 +91,18 @@ const dispatchProbe = JSON.parse(
       '--input-type=module',
       '-e',
       `import {dispatchIntent} from './skills/content-os-router/scripts/route-intent.mjs';
+       import {hashExperienceValue} from './02_proceso/core/contracts/index.ts';
+       const source={source_id:'source-commercial-proposal',ref:'sources/proposal.md',sha256:'a'.repeat(64),authority:'user_assertion',rights:'restricted'};
+       const receiptDraft={schemaVersion:'brief-source-authority-receipt-v1',receiptId:'receipt-commercial-proposal',source,authorityMode:'LOCAL_SIMULATION',authorityActorId:'LOCAL-USER-ASSERTION',rightsBasis:'user_supplied_for_local_brief',allowedUseScope:'local_internal_brief_only',restrictions:['no_external_distribution','no_claim_promotion'],recordedAt:'2026-08-29T12:00:00.000Z'};
+       const sourceAuthorityReceipt={...receiptDraft,canonicalSha256:hashExperienceValue(receiptDraft)};
        const content = dispatchIntent({request:'crear contenido', audience:'equipos', outcome:'informar', source:{type:'text',authority:'verified'}});
        const career = dispatchIntent({request:'crear CV', candidateId:'CAND-FIXTURE', targetRole:'arquitectura', profileReady:true, evidenceReady:true});
        const blocked = dispatchIntent({request:'crear contenido'});
+       const commercial = dispatchIntent({request:'propuesta comercial', audience:'comité', outcome:'evaluar piloto', source:{type:'brief',...source},sourceAuthorityReceipt});
+       const commercialInvalid = dispatchIntent({request:'propuesta comercial',audience:'comité',outcome:'evaluar piloto',source:{ref:'unhashed-reference',authority:'verified'}});
+       const proposalOnly = dispatchIntent({request:'proposal'});
        const unknown = dispatchIntent({request:'necesito ayuda'});
-       process.stdout.write(JSON.stringify({content, career, blocked, unknown}));`,
+       process.stdout.write(JSON.stringify({content, career, blocked, commercial, commercialInvalid, proposalOnly, unknown}));`,
     ],
     {cwd: root, encoding: 'utf8'},
   ),
@@ -111,6 +119,16 @@ if (
   dispatchProbe.blocked?.next_gate !== null ||
   typeof dispatchProbe.blocked?.coverage_gap !== 'string' ||
   dispatchProbe.blocked.coverage_gap.length === 0 ||
+  dispatchProbe.commercial?.domain_intent?.content_class !== 'commercial-proposal' ||
+  JSON.stringify(dispatchProbe.commercial?.domain_intent?.selected_stage_path) !==
+    JSON.stringify(['P01', 'P02', 'P03', 'P05', 'P06', 'P07']) ||
+  dispatchProbe.commercial?.domain_intent?.source_authority !== 'partial' ||
+  dispatchProbe.commercialInvalid?.experience_envelope?.state !== 'BLOCKED' ||
+  dispatchProbe.commercialInvalid?.domain_intent?.brief_sufficiency !== 'insufficient' ||
+  dispatchProbe.commercialInvalid?.domain_intent?.route_candidates?.[0]?.route_id !== 'R0' ||
+  dispatchProbe.commercialInvalid?.domain_intent?.source_authority !== 'unknown' ||
+  dispatchProbe.proposalOnly?.route_id !== 'R0' ||
+  dispatchProbe.proposalOnly?.adapter_invoked !== false ||
   dispatchProbe.unknown?.route_id !== 'R0' ||
   dispatchProbe.unknown?.adapter_invoked !== false
 ) {

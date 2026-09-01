@@ -5,14 +5,14 @@ la misma experiencia sin duplicar gobierno. [CONFIG]
 
 ## Arquitectura de instrucciones
 
-| Capa        | Autoridad                                  | Responsabilidad                             |
-| ----------- | ------------------------------------------ | ------------------------------------------- |
-| núcleo      | `AGENTS.md`                                | invariantes aplicables a toda tarea         |
-| experiencia | `experience-first-orchestration.md`        | interacción, workflow manager y continuidad |
-| routing     | `router.yml`                               | semántica R0–R7 y disponibilidad productiva |
-| ejecución   | manifests + `commands.yaml`                | pasos, outputs, gates y comandos            |
-| seguridad   | `tool-policy.yml` + ownership              | tools, efectos y write sets                 |
-| host        | `CLAUDE.md`, `GEMINI.md`, adapters futuros | sintaxis de carga y launch probe            |
+| Capa        | Autoridad                                  | Responsabilidad                                         |
+| ----------- | ------------------------------------------ | ------------------------------------------------------- |
+| núcleo      | `AGENTS.md`                                | invariantes aplicables a toda tarea                     |
+| experiencia | `experience-first-orchestration.md`        | interacción, workflow manager y continuidad             |
+| routing     | `router.yml`                               | semántica R0–R10 + R3-LOOSE y disponibilidad productiva |
+| ejecución   | manifests + `commands.yaml`                | pasos, outputs, gates y comandos                        |
+| seguridad   | `tool-policy.yml` + ownership              | tools, efectos y write sets                             |
+| host        | `CLAUDE.md`, `GEMINI.md`, adapters futuros | sintaxis de carga y launch probe                        |
 
 Un adapter importa o enlaza estas fuentes; nunca redefine rutas, estados o gates.
 
@@ -51,7 +51,7 @@ La compatibilidad de una release no se infiere de esta tabla. Requiere un
 2. Crear un adapter breve: identidad, primer turno, autoridad y cierre.
 3. Enlazar `AGENTS.md` y `experience-first-orchestration.md`; no copiarlos.
 4. Implementar launch probe offline con `network_used: false` y effects vacíos.
-5. Probar saludo, acción R6/R7, intake incompleto, `/menu`, `/ruta`, resume y gate.
+5. Probar saludo, acciones productivas R6–R10, intake incompleto, `/menu`, `/ruta`, resume y gate.
 6. Confirmar paridad entre envelope, vista GenUI y fallback textual.
 7. Ejecutar ownership, privacidad, budgets, `check:repo` y tests focales.
 8. Mantener el host `UNKNOWN` hasta que el probe material pase.

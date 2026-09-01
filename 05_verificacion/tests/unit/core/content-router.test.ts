@@ -1,15 +1,41 @@
 import {execFileSync} from 'node:child_process';
-import {mkdtempSync, rmSync, writeFileSync} from 'node:fs';
+import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 
 import {afterEach, describe, expect, it} from 'vitest';
 
+import {hashExperienceValue} from 'core/contracts/index.ts';
 import {ContentIntentV2Schema} from 'workflows/multimedia/_schema/content-intent-v2.schema.ts';
 
 const ROOT = process.cwd();
 const ROUTER = resolve(ROOT, '03_artefactos/skills/content-os-router/scripts/route-content.mjs');
+const AUDITOR = resolve(ROOT, '03_artefactos/skills/content-os-router/scripts/route-audit.mjs');
 const temporaryDirs: string[] = [];
+const commercialAuthority = () => {
+  const source = {
+    source_id: 'source-commercial-proposal',
+    ref: 'sources/proposal.md',
+    sha256: 'a'.repeat(64),
+    authority: 'user_assertion' as const,
+    rights: 'restricted' as const,
+  };
+  const receiptDraft = {
+    schemaVersion: 'brief-source-authority-receipt-v1' as const,
+    receiptId: 'receipt-commercial-proposal',
+    source,
+    authorityMode: 'LOCAL_SIMULATION' as const,
+    authorityActorId: 'LOCAL-USER-ASSERTION' as const,
+    rightsBasis: 'user_supplied_for_local_brief' as const,
+    allowedUseScope: 'local_internal_brief_only' as const,
+    restrictions: ['no_external_distribution', 'no_claim_promotion'] as const,
+    recordedAt: '2026-08-29T12:00:00.000Z',
+  };
+  return {
+    source: {type: 'brief', ...source},
+    sourceAuthorityReceipt: {...receiptDraft, canonicalSha256: hashExperienceValue(receiptDraft)},
+  };
+};
 
 const route = (request: Record<string, unknown>) => {
   const directory = mkdtempSync(resolve(tmpdir(), 'frames-content-router-'));
@@ -21,6 +47,21 @@ const route = (request: Record<string, unknown>) => {
     encoding: 'utf8',
   });
   return ContentIntentV2Schema.parse(JSON.parse(stdout) as unknown);
+};
+const audit = (intent: unknown): Record<string, unknown> => {
+  const directory = mkdtempSync(resolve(tmpdir(), 'frames-content-audit-'));
+  temporaryDirs.push(directory);
+  const input = resolve(directory, 'intent.jsonl');
+  const output = resolve(directory, 'audit');
+  writeFileSync(input, `${JSON.stringify(intent)}\n`, 'utf8');
+  execFileSync(process.execPath, [AUDITOR, input, '--out', output, '--strict'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  return JSON.parse(readFileSync(resolve(output, 'route-audit.json'), 'utf8')) as Record<
+    string,
+    unknown
+  >;
 };
 
 afterEach(() => {
@@ -103,5 +144,61 @@ describe('content-os-router ContentIntentV2', () => {
       constraints: ['sin publicación automática'],
     };
     expect(route(input)).toEqual(route(input));
+  });
+
+  it.each(['propuesta comercial', 'commercial proposal', 'proposal deck'])(
+    'routes %s through the exact governed commercial proposal profile',
+    (request) => {
+      const input = {
+        request,
+        audience: 'Comité comprador',
+        outcome: 'Evaluar un piloto',
+        ...commercialAuthority(),
+        campaign: true,
+        distributionRequested: true,
+        assetsRequired: false,
+      };
+      const result = route(input);
+      expect(result.content_class).toBe('commercial-proposal');
+      expect(result.selected_stage_path).toEqual(['P01', 'P02', 'P03', 'P05', 'P06', 'P07']);
+      expect(result.selected_stage_path).not.toEqual(expect.arrayContaining(['P04', 'P08', 'P09']));
+      expect(result.route_candidates[0]?.reason_codes).toEqual(['COMMERCIAL_PROPOSAL']);
+      expect(result.next_gate).toBe('MW_BRIEF_APPROVED');
+      expect(audit(result)).toMatchObject({violations: [], routeBound: true});
+      expect(route(input)).toEqual(result);
+    },
+  );
+
+  it('prepends P00 only when commercial brand readiness is explicitly missing', () => {
+    const result = route({
+      request: 'propuesta comercial',
+      brandReady: false,
+      ...commercialAuthority(),
+    });
+    expect(result.selected_stage_path).toEqual(['P00', 'P01', 'P02', 'P03', 'P05', 'P06', 'P07']);
+    expect(result.route_candidates[0]?.reason_codes).toEqual([
+      'COMMERCIAL_PROPOSAL',
+      'BRAND_REQUIRED',
+    ]);
+  });
+
+  it('fails an unhashed commercial verified assertion closed to R0/insufficient', () => {
+    const result = route({
+      request: 'propuesta comercial',
+      audience: 'Comité comprador',
+      outcome: 'Evaluar un piloto',
+      source: {ref: 'unhashed-reference', authority: 'verified'},
+    });
+    expect(result).toMatchObject({
+      decision: 'NEEDS_INPUT',
+      brief_sufficiency: 'insufficient',
+      source_authority: 'unknown',
+      sources: [],
+      selected_stage_path: ['P01'],
+    });
+    expect(result.route_candidates[0]).toMatchObject({
+      route_id: 'R0',
+      reason_codes: ['COMMERCIAL_PROPOSAL', 'SOURCE_AUTHORITY_INSUFFICIENT'],
+    });
   });
 });

@@ -16,6 +16,7 @@ import {
   withCleanup,
 } from './method-explainer-diagram-browser-policy.ts';
 const marker = '__DIAGRAM_BROWSER_PROOF__';
+const DETERMINISTIC_GL = 'swiftshader' as const;
 const poses = pivoteFixture.diagram.required_poses;
 const frames = [
   poses.container_frame - 1,
@@ -77,7 +78,7 @@ const render = async (
   const logs: BrowserLog[] = [];
   const runtime = {
     chromeMode: 'chrome-for-testing' as const,
-    chromiumOptions: {gl: 'angle' as const},
+    chromiumOptions: {gl: DETERMINISTIC_GL},
     inputProps: {},
     logLevel: 'error' as const,
     onBrowserLog: (log: BrowserLog) => logs.push(log),
@@ -130,7 +131,7 @@ export const runDiagramBrowserProbe = async () => {
     const browser = await openBrowser('chrome', {
       browserExecutable: executable.path,
       chromeMode: 'chrome-for-testing',
-      chromiumOptions: {gl: 'angle'},
+      chromiumOptions: {gl: DETERMINISTIC_GL},
       logLevel: 'error',
     });
     return withCleanup(

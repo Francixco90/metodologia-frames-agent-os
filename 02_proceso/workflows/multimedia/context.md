@@ -25,6 +25,8 @@ Primero:
 Solo bajo demanda:
 
 - `02_proceso/workflows/multimedia/_assets/deliverable-definition-registry.yml`
+- `02_proceso/workflows/multimedia/_schema/commercial-proposal-v1.schema.ts`
+- `02_proceso/workflows/multimedia/_runner/commercial-proposal-profile-v1.ts`
 
 Diferir:
 
@@ -53,7 +55,7 @@ Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado
 ## 6. Gates, handoff y contextos hijos
 
 Gates: `MW_BRIEF_APPROVED`  
-Stop rules: Brief first · P09 no publica sin aprobación específica
+Stop rules: Brief first · P09 no publica sin aprobación específica · Commercial proposal termina en RENDERED_DRAFT y P08 queda bloqueado en V1; un sucesor exige REVISE y receipt durable V2
 
 Hijos:
 

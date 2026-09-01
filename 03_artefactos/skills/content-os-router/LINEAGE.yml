@@ -5,7 +5,7 @@ execution_scope: local-evaluation
 content_origin: locally_authored
 external_fragments_reused: false
 publication_authority: false
-compatibility_contract: router-intent-v1 + content-intent-v2 + voice-draft-revision-2 + frames-route-decision-v1 + assistance-envelope-v1 + experience-view-v1 decision-transport + R8 + R9
+compatibility_contract: router-intent-v1 + content-intent-v2 + commercial-proposal R6 + voice-draft-revision-2 + frames-route-decision-v1 + assistance-envelope-v1 + experience-view-v1 decision-transport + R8 + R9
 authority_refs:
   - skills/vendor/hyperframes/hyperframes/SKILL.md
   - skills/content-os-core/SKILL.md
@@ -19,10 +19,11 @@ provenance:
   source_skill: hyperframes
   source_repo: https://github.com/heygen-com/hyperframes
   source_license: Apache-2.0
-  adaptation: local declarative router; preserves source-to-video v1 and adds brief-first source-to-content routing over P00-P09 with a maximum of three blocking questions
+  adaptation: local declarative router; preserves source-to-video v1, adds brief-first source-to-content routing over P00-P09 and the governed commercial-proposal R6 profile with a maximum of three blocking questions
 supported_request_types:
   - intent_route_source_to_video
   - intent_route_source_to_content
+  - intent_route_commercial_proposal
   - intent_route_career_application
   - canonical_brief_binding
   - adaptive_p00_p09_selection

@@ -1,9 +1,10 @@
-import {resolveResumeCandidateV1} from '../../../../02_proceso/workflows/core/index.ts';
-import {renderExperienceView} from '../../../../02_proceso/workflows/experience/index.ts';
+import {resolveResumeCandidateV1} from '../../../../02_proceso/workflows/core/resume-lineage-resolver-v1.ts';
+import {renderExperienceView} from '../../../../02_proceso/workflows/experience/render-experience-view.ts';
 
 const CONTROL_FIELDS = new Set([
   'actor_id',
   'activeProjectId',
+  'brief_sources',
   'completed_at',
   'completedAt',
   'decision_funnel',
@@ -18,6 +19,7 @@ const CONTROL_FIELDS = new Set([
   'resume_candidate_id',
   'sensitivity',
   'source_materials',
+  'source_authority_receipts',
   'started_at',
   'startedAt',
   'stateRoot',

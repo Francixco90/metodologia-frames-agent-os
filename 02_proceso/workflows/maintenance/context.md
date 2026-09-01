@@ -50,7 +50,7 @@ Privacidad: `public_only`. Nunca persistir secretos, PII ni razonamiento privado
 
 ## 6. Gates, handoff y contextos hijos
 
-Gates: `HM_CHANGE_APPROVED`, `HM_CANDIDATE_VERIFIED`, `DOCS_TRANSVERSAL_COMPLETE`, `HM_PROMOTION_APPROVED`  
+Gates: `HM_CHANGE_APPROVED`, `HM_CANDIDATE_VERIFIED`, `DOCS_TRANSVERSAL_COMPLETE`, `HM_GUARDIAN_VERDICT_RECORDED`, `HM_PROMOTION_APPROVED`  
 Stop rules: Impact plan antes de editar · Promoción separada
 
 Hijos:
