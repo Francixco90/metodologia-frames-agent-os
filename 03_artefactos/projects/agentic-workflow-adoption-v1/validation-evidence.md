@@ -196,6 +196,17 @@ El primer freeze Guardian de Wave1 quedó en `REWORK` y fue remediado antes de W
 Guardian final debe revisar el digest exacto posterior a documentación y gates; este documento no
 anticipa su veredicto. [CONFIG] [DOC]
 
+## 9. Evidencia sucesora de reconciliación B1+
+
+- Base de mantenimiento incorporada por merge de dos padres:
+  `origin/main@12644b9d651ef01ac0473244bddf10acf0111774`; budget 199 archivos/19 724 LOC.
+- R8 renovó el runner a `d3150c01…` y el probe físico a `e8cc7eb5…`; G08 cerró 220/220.
+- Proyecciones regeneradas: ecosistema 966, ledger 387/387 y documentación 1981/717;
+  privacidad PASS sobre 6680 archivos versionables.
+- Un primer replay bloqueó en `DOC-INVENTORY-DRIFT` posterior al staging y no se contó como PASS.
+  Tras regenerar, `pnpm verify` cerró 237/237 archivos y 2167/2167 tests, con formato PASS.
+- CI remoto del nuevo SHA, Guardian final, H01 y promoción permanecen pendientes. [HERRAMIENTA]
+
 `[SUPUESTO] user_authorized_internal_implementation` sigue siendo el único fundamento de alcance
 adicional a la licencia interna observada en Defense. Proposal no presentó LICENSE tracked en el
 SHA evaluado. [SUPUESTO] [DOC]
