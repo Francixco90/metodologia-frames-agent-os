@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "dac4f6005918d3e55619b62d6d2182834628a0a2e96d9259b73082ca3634bb40",
+  "sourceSha256": "66623fbf5b01d3bf30a631f86120476e740e315c09f6ac0db77d7370e34af4bf",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -344,6 +344,7 @@
     {"kind":"COMMAND","id":"format:check","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"frames:assist","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"frames:extend","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"COMMAND","id":"frames:maintain","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"host:generate","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"host:install","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"inventory:generate","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},

@@ -1,37 +1,75 @@
-# Mantén y evoluciona Frames con trazabilidad
-
-Usa el recorrido de mantenimiento para corregir un defecto, ampliar una capacidad, migrar un contrato o retirar una superficie sin perder documentación, pruebas ni rollback.
+# Mantener Frames con R9
 
 ## Qué hace Frames
 
-1. Congela la base y el inventario.
-2. Clasifica el cambio y su riesgo.
-3. Define el write set, la aceptación y el impacto documental.
-4. Se detiene en `HM_CHANGE_APPROVED`.
-5. Implementa y verifica con producer, RT‑09 y RT‑11 separados cuando corresponde.
-6. Regenera páginas, secuencias e inventarios.
-7. Exige `DOCS_TRANSVERSAL_COMPLETE` antes del cierre.
-8. Mantiene `HM_PROMOTION_APPROVED` separado de commit, push, merge y publicación.
+`frames:maintain` es el bootstrap B0 de inspección y handoff para R9. Sus tres modos
+son locales, deterministas y de solo lectura. Siempre devuelven `writes: []` y se
+detienen ante un gate humano; no registran un veredicto Guardian ni una aprobación.
+[METODOLOGIA][DOC]
 
 ## Definition of Done documental
 
-Todo cambio `CREATE`, `EXPAND`, `EXTEND`, `CORRECT`, `MIGRATE` o `DEPRECATE` debe decidir, antes de editar, qué guías, referencias, workflows, skills, templates, routing, troubleshooting, ADR, compatibilidad, índices, portal y pruebas se actualizan. Una superficie no aplicable necesita un motivo controlado.
+- `inspect` liga el repositorio declarado a su remote Git local, rama simbólica,
+  base, `HEAD`, trees y estado del worktree.
+- `plan` revalida esa inspección y emite un `FramesWorkOrderV1` canónico. Solo
+  admite R9, `LOCAL_REVERSIBLE`, archivos exactos y herramientas locales permitidas.
+- `prepare-handoff` vuelve a leer el WorkOrder físico, hashes, baseline, solicitud,
+  plan documental, inputs y outputs. Bloquea cambios fuera del `writeSet`.
 
-El cierre liga base, candidate, fuentes y proyecciones a hashes materiales. Un archivo faltante, un symlink, privacidad desconocida o producer igual al verifier bloquea.
+Los inputs son JSON estricto por `stdin`; no se aceptan flags, campos extra,
+rutas ambiguas, globs, aliases casefold, symlinks ni hardlinks. La identidad del
+remote se normaliza a `owner/repository` y nunca se imprime su URL.
+
+Estados terminales:
+
+| Modo              | Estado            | Siguiente gate          |
+| ----------------- | ----------------- | ----------------------- |
+| `inspect`         | `STOPPED_AT_GATE` | `HM_CHANGE_APPROVED`    |
+| `plan`            | `STOPPED_AT_GATE` | `HM_CHANGE_APPROVED`    |
+| `prepare-handoff` | `STOPPED_AT_GATE` | `HM_PROMOTION_APPROVED` |
+
+`gateStatus: REQUIRED` significa que el gate falta; no acredita `PASS`, aprobación
+o promoción. [METODOLOGIA][CONFIG]
 
 ## Comandos útiles
 
 ```sh
-pnpm docs:generate
-pnpm inventory:generate
-pnpm check:documentation-os
+pnpm frames:maintain inspect < inspect-input.json
+pnpm frames:maintain plan < plan-input.json
+pnpm frames:maintain prepare-handoff < handoff-input.json
 ```
 
-Los dos primeros regeneran derivados; el tercero no escribe y detecta drift. La verificación completa sigue siendo necesaria antes de promover.
+El binding común contiene exactamente:
+
+```json
+{
+  "schemaVersion": "frames-maintain-binding-v1",
+  "repository": "owner/metodologia-frames-agent-os",
+  "branch": "codex/candidate-v1",
+  "baseRef": "origin/main",
+  "baseCommit": "<git-object-id>",
+  "baseTree": "<git-tree-id>"
+}
+```
+
+`inspect` recibe `{schemaVersion, binding}`. `plan` añade
+`expectedInspectionSha256` y `workOrder`. `prepare-handoff` añade
+`expectedInspectionSha256`, `workOrderRef` y `workOrderPhysicalSha256`. Primero se
+captura `inspect`; los modos posteriores bloquean si cambia su hash.
 
 ## Siguiente lectura
 
-- [Recorridos M00–M06](../reference/workflows/index.md)
-- [Ampliar Frames localmente](extend-frames.md)
-- [Portal offline](../../03_artefactos/content/documentation/index.html)
-- [Inventario del ecosistema](../../03_artefactos/content/documentation/ecosystem-inventory.md)
+No hay red, fetch, persistencia, commit, push, merge, publicación, recorder,
+Guardian, H01 ni promoción. Git se invoca sin shell y solo mediante comandos de
+lectura sobre refs explícitos. [METODOLOGIA][CONFIG]
+
+- `FM-ARG001` / `FM-INPUT001`: modo, argumentos o JSON no admitidos.
+- `FM-WORKSPACE001` / `FM-REPO001`: checkout o remote no acreditado.
+- `FM-BRANCH001` / `FM-BASE001` / `FM-HEAD001` / `FM-TREE001`: drift Git.
+- `FM-PATH001` / `FM-ALIAS001` / `FM-DIRTY001`: path inseguro o fuera de alcance.
+- `FM-HASH001` / `FM-WORKORDER001`: material o contrato stale/inválido.
+- `FM-EFFECT001`: efecto o herramienta fuera de la capacidad B0.
+
+[INFERENCIA] Un handoff válido solo prepara evidencia para decisión humana; no
+convierte el candidato en promovido. [SUPUESTO] El remote local ya existe y no se
+consulta por red. [NEUROCIENCIA] No aplica. [PEDAGOGIA] No aplica.
