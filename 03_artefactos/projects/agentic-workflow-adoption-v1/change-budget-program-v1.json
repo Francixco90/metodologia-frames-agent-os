@@ -2,11 +2,11 @@
   "schemaVersion": "change-budget-program-v1",
   "programId": "agentic-workflow-adoption-v1",
   "branch": "codex/proposal-defense-adoption-public-v1",
-  "baseCommit": "5e2a18c54ed6343b58428ab940f735405710c643",
+  "baseCommit": "a470cf5920c8e730263a6fc293d660f25a13b443",
   "authority": {
     "mode": "LOCAL_SIMULATION",
     "planRef": "03_artefactos/projects/agentic-workflow-adoption-v1/public-port-authority-v1.md",
-    "planSha256": "7da977e7d0b5d1fd4df92fd5d196d63e786a9c370dfcdf16fff86624d2eb66af"
+    "planSha256": "23177b6c477f26f9896c0937746040265200ab80a82f55e80ada79d057469472"
   },
   "limits": {
     "targetFiles": 190,
@@ -382,5 +382,5 @@
       "rationale": "Bounded GitHub PR branch-context resolver for the exact hash-bound change program."
     }
   ],
-  "canonicalSha256": "6042147920e67202a9803a27170077092f87479ae02af1f6ccc4db128176b2b6"
+  "canonicalSha256": "faa677445f974d059ba2e5dc4fe5208e30ba1f0f0ea33f4f45843e372ffa0d7c"
 }

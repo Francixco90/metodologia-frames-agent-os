@@ -8,7 +8,7 @@ host, H01 del candidato, promoción, publicación, distribución o entrega. [MET
 
 Las secciones 1–8 preservan evidencia histórica del candidato privado
 `db0c2148f397acf84ba79faee9238b0f0cbbb0c1`. No acreditan por sí solas el port basado en
-`upstream/main@5e2a18c54ed6343b58428ab940f735405710c643`; la reproducción pública se documenta por separado
+`upstream/main@a470cf5920c8e730263a6fc293d660f25a13b443`; la reproducción pública se documenta por separado
 en la sección 9. [DOC] [INFERENCIA]
 
 ## 1. Observaciones externas de repositorio registradas
@@ -197,31 +197,32 @@ anticipa su veredicto. [CONFIG] [DOC]
 
 ## 9. Revalidación del port público
 
-- Baseline: `upstream/main@5e2a18c54ed6343b58428ab940f735405710c643`; rama local
+- Baseline reconciliado: `upstream/main@a470cf5920c8e730263a6fc293d660f25a13b443`; rama local
   `codex/proposal-defense-adoption-public-v1`.
-- Port trazable: cuatro cherry-picks secuenciales `-x`; los conflictos se limitaron a autoridades
-  compartidas y derivados regenerables. No se realizó merge mayorista de historias.
+- Port trazable: cuatro cherry-picks secuenciales `-x`, seguidos por un merge de dos padres con el
+  `main` público; los conflictos se limitaron a seis derivados regenerables y no se copió la
+  historia privada.
 - R6: el locator privado ausente quedó sustituido por el template comercial público existente,
   SHA-256 `7c445c4689b629a0b8f543c5e1d74341e3a43a8d5bf7265e20ba1c50f9047d85`; canary 47/47 PASS.
-- R8: la attestation bloqueó el digest privado antes de ejecutar. El runtime público recomputado
-  quedó ligado a `cf7f5d78a19ad6c3927cbfb522671a32f443217b098a94ba325435449c7fa379` y el sandbox probe a
-  `bb3784ddaca81ba57d90ff5749836bd676e0832542f4e959f6149aa17a919987`; las suites R6/R8 directas
-  pasaron 90/90 sin relajar el loader, write set o `network: DENIED`.
+- R8: la attestation bloqueó el digest privado antes de ejecutar. Tras reconciliar mantenimiento,
+  el runtime público quedó ligado a `172954c9f8176fd620497587cc09c5bc81c8eb89032efc62b439f330461b6899`
+  y el sandbox probe físico a `064c360fbeb9798edc5e23217c7597683b0090e9cffb1cda209d280a4858ec61`;
+  las suites R8 focales pasaron 43/43 sin relajar loader, write set o `network: DENIED`.
 - Fuentes: CLI global 11, overlay `PROJECT_LOCAL` 2 y siete suites contract/negative/runner 45/45.
   El source register y sus receipts históricos permanecieron sin reescritura.
 - G08: 14 archivos y 220/220 tests PASS; cubre kernel, causal gates, recovery, R6, R8 y
   compatibilidad V1.
-- Budget: programa activo sobre el upstream configurado, 200 archivos authored y 19 841 LOC,
+- Budget: programa activo sobre el upstream configurado, 200 archivos authored y 19 843 LOC,
   dentro del hard cap 200/20 000. El resolver evita medir esta rama pública contra el origin
   privado y sus tests pasan 21/21. El primer CI público detectó correctamente que el checkout PR
   estaba detached; la remediación solo acepta `GITHUB_HEAD_REF` en GitHub Actions, evento
   `pull_request`, target `main` y branch `codex/*`. El replay remoto permanece pendiente.
-- `pnpm check` y `pnpm typecheck`: PASS; privacidad 6496 archivos versionables, 72 gates y 33
+- `pnpm check` y `pnpm typecheck`: PASS; privacidad 6501 archivos versionables, 72 gates y 33
   manuales fail-closed.
 - Primer `pnpm verify`: bloqueó una aserción de cardinal heredada (71 versus 72) y no fue contado
   como PASS. Tras corregirla contra el manifest público, el replay completo cerró exit 0, con
-  234/234 archivos, 2144/2144 tests, lint y formato PASS.
-- Derivados regenerados: documentación 43 workflows/90 outputs, ecosistema 988 items, ledger
+  235/235 archivos, 2162/2162 tests, lint y formato PASS.
+- Derivados regenerados: documentación 43 workflows/90 outputs, ecosistema 989 items, ledger
   387/387 y auditoría 1905 Markdown/637 authored-control.
 - Efectos externos del port: rama feature publicada en el fork real y PR draft público #276.
   No hubo merge a `main`, publicación final, distribución, entrega, H01 ni promoción.

@@ -9,8 +9,8 @@ promoción, publicación, distribución o entrega. [METODOLOGIA]
 
 ## 1. Línea base y delta
 
-Baseline del port público: Frames
-`upstream/main@5e2a18c54ed6343b58428ab940f735405710c643`. El expediente original fue implementado contra
+Baseline reconciliado del port público: Frames
+`upstream/main@a470cf5920c8e730263a6fc293d660f25a13b443`. El expediente original fue implementado contra
 `origin/main@9978acd2e9f056fa3634a71ed7c495ba0323af77`; sus receipts históricos no se reescriben.
 
 | Elemento             | Baseline observado                                | Delta objetivo                                                    | Estado              |
@@ -243,10 +243,10 @@ dependencias ejecutables. [DOC] [CONFIG]
 - Browser proof: `swiftshader` fijado tras aislar deriva `angle/swangle`; 128 renders de estrés y
   tres replays completos sin divergencia, manteniendo hashes PNG byte-identical en el candidato
   privado: `HISTORICAL_PASS_LOCAL`.
-- Port público: fuentes 45/45, G08 220/220, `pnpm check`, `typecheck` y `pnpm verify` completos:
-  `PASS_LOCAL`; Vitest cerró 234/234 archivos y 2144/2144 tests.
+- Port público reconciliado: fuentes 45/45, G08 220/220, `pnpm check`, `typecheck` y
+  `pnpm verify` completos: `PASS_LOCAL`; Vitest cerró 235/235 archivos y 2162/2162 tests.
 - Adaptación pública: R6 usa el template comercial candidato hash-bound ya presente en el fork; R8 conserva
-  attestation estricta con runner `cf7f5d78…` y sandbox probe `bb3784dd…`.
+  attestation estricta con runner `172954c9…` y sandbox probe físico `064c360f…`.
 - Guardian final sobre el digest exacto: pendiente al redactar este estado.
 - H01 real, promoción, publicación, distribución y entrega: `NOT_EXECUTED`.
 - Linux/Windows: `NOT_EXECUTED`; Windows mantiene capability gap hasta backend seguro.

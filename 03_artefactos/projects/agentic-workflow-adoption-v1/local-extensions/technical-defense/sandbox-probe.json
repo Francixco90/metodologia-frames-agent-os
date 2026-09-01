@@ -3,7 +3,7 @@
   "extension_id": "local.metodologia.technical-defense-preparation",
   "manifest_sha256": "9aa291c9b3d933d47002bfdd46f73d9ad82d6eb5f345942a146d65e0f5bc0146",
   "runner_id": "frames.local-extension-executor-v1",
-  "runner_sha256": "cf7f5d78a19ad6c3927cbfb522671a32f443217b098a94ba325435449c7fa379",
+  "runner_sha256": "172954c9f8176fd620497587cc09c5bc81c8eb89032efc62b439f330461b6899",
   "status": "PASS",
   "filesystem": "CONSTRAINED",
   "process": "CONTROLLED",

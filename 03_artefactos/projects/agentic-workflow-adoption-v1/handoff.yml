@@ -4,7 +4,7 @@ status: PUBLIC_PORT_LOCAL_VERIFIED_FINAL_GUARDIAN_PENDING_H01_NOT_EXECUTED_NOT_P
 from_actor: governance_and_integration_owner
 to_actor: independent_final_guardian
 baseline:
-  frames_commit_sha1: 5e2a18c54ed6343b58428ab940f735405710c643
+  frames_commit_sha1: a470cf5920c8e730263a6fc293d660f25a13b443
   branch: codex/proposal-defense-adoption-public-v1
   original_candidate_commit_sha1: db0c2148f397acf84ba79faee9238b0f0cbbb0c1
   original_frames_commit_sha1: 9978acd2e9f056fa3634a71ed7c495ba0323af77
@@ -68,7 +68,7 @@ integration_invariants:
   - effect_success_does_not_unlock_descendants
   - promotion_requires_physical_hash_bound_promotion_receipt
   - evaluated_source_is_not_active_source
-  - no_network_distribution_push_merge_publication_or_external_delivery
+  - no_donor_network_mutation_main_merge_publication_distribution_or_external_delivery
 historical_candidate_completed_gates:
   - governance_owner_validated_project_local_overlay_and_global_authority_hashes
   - global_source_cli_passed_exactly_11_sources_and_0_of_4_fail_closed_corpus
@@ -90,16 +90,16 @@ historical_candidate_completed_gates:
   - pnpm_check_and_full_verify_passed_on_documented_candidate
   - independent_wave4_qa_reported_zero_blocker_or_high
 public_port_completed_gates:
-  - four_x_cherry_picks_preserved_traceability_without_history_merge
+  - four_x_cherry_picks_plus_public_main_two_parent_merge_preserved_traceability
   - commercial_proposal_rebound_to_existing_public_template_sha256_7c445c46
-  - technical_defense_runner_recomputed_and_fail_closed_sha256_cf7f5d78
+  - technical_defense_runner_recomputed_and_fail_closed_sha256_172954c9
   - global_11_and_project_local_2_source_gates_passed
   - source_contract_negative_runner_suites_passed_45_of_45
   - canonical_g08_passed_220_of_220
-  - change_budget_passed_200_files_19841_loc_against_upstream_main
+  - change_budget_passed_200_files_19843_loc_against_upstream_main
   - detached_github_pull_request_branch_context_focal_passed_21_of_21
   - pnpm_check_and_typecheck_passed
-  - full_verify_passed_234_of_234_files_and_2144_of_2144_tests
+  - full_verify_passed_235_of_235_files_and_2162_of_2162_tests
 next_gates:
   - guardian_reviews_exact_public_port_candidate_digest
   - H01_may_bind_exact_candidate_only_after_explicit_human_approval

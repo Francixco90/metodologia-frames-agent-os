@@ -31,7 +31,7 @@ Fuentes evaluadas:
 - `implementation-authority-v1.md`: autoridad local explícita para cambio y piloto, sin autoridad
   de promoción, entrega o publicación.
 - `public-port-authority-v1.md`: autoridad sucesora, ligada al main público y a la rama del port,
-  sin permiso de push, merge o promoción.
+  con push reversible a feature; sin merge a `main`, H01, promoción o distribución.
 - `change-budget-program-v1.json`: allowlist exacta, hash-bound y limitada a esta rama y baseline.
 - `sources/**`: descriptors, manifests canónicos de paths, proyecciones analíticas y evidencia
   acotada de autorización, todos hash-bound y sin bytes fuente.
