@@ -179,7 +179,12 @@ const findStaleOutputs = async (
     '03_artefactos/content/documentation/*.json',
     '03_artefactos/content/documentation/workflows/*.html',
   ]) {
-    for await (const candidate of glob(pattern, {cwd: repoRoot})) candidates.push(candidate);
+    // Windows: glob yields backslash-separated relative paths; committed
+    // projections and the outputs map use forward slashes — normalise for
+    // the stale-detection comparison to work cross-platform.
+    for await (const candidate of glob(pattern, {cwd: repoRoot})) {
+      candidates.push(candidate.replaceAll('\\', '/'));
+    }
   }
   return candidates
     .filter((candidate) => generatedPatterns.some((pattern) => pattern.test(candidate)))
