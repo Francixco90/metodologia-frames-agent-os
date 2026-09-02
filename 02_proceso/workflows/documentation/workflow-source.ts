@@ -70,7 +70,7 @@ export const loadWorkflowDocumentation = async (
   for await (const relativeSource of glob('02_proceso/workflows/*/*/workflow.yml', {
     cwd: repoRoot,
   })) {
-    files.push(relativeSource);
+    files.push(relativeSource.replaceAll('\\', '/'));
   }
   const workflows = await Promise.all(
     files.sort().map(async (relativeSource) => {

@@ -24,9 +24,12 @@ export const materializeCaseLongformPrerenderReviewFixture = () => {
   const a = contract.artifacts;
   const sourceSet = CaseLongformSourceSet.parse(readCaseFixture(root, a.source_set));
   const trustedTool = (name: string) => {
-    const candidate = process.env.PATH?.split(delimiter)
-      .map((part) => resolve(part, name))
-      .find(existsSync);
+    // Windows: executables carry .exe; probe bare name first (POSIX), then
+    // name.exe so winget/WinGet-style installs resolve identically.
+    const candidate =
+      process.env.PATH?.split(delimiter)
+        .flatMap((part) => [resolve(part, name), resolve(part, `${name}.exe`)])
+        .find(existsSync) ?? undefined;
     if (!candidate) throw new Error(`fixture ${name} unavailable`);
     const path = realpathSync(candidate);
     return {path, sha256: createHash('sha256').update(readFileSync(path)).digest('hex')};

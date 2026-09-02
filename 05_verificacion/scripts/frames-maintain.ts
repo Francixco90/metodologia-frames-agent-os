@@ -26,8 +26,17 @@ function fail(code: string): never {
   throw new Error(code);
 }
 const sha = (bytes: string | Buffer): string => createHash('sha256').update(bytes).digest('hex');
-const GIT_BINARY =
-  process.platform === 'win32' ? 'C:\\Program Files\\Git\\cmd\\git.exe' : '/usr/bin/git';
+const GIT_BINARY = (() => {
+  // Windows: the legacy hardcoded Program Files path does not exist on hosts
+  // running portable git (e.g. Hermes-bundled mingw64). Fall back to the
+  // git resolvable from PATH; gitEnv() already isolates configuration, so
+  // PATH resolution stays deterministic here.
+  if (process.platform === 'win32') {
+    const hardcoded = 'C:\\Program Files\\Git\\cmd\\git.exe';
+    return existsSync(hardcoded) ? hardcoded : 'git';
+  }
+  return '/usr/bin/git';
+})();
 // prettier-ignore
 const gitEnv = (): NodeJS.ProcessEnv => ({GIT_CONFIG_COUNT: '0', GIT_CONFIG_GLOBAL: process.platform === 'win32' ? 'NUL' : '/dev/null', GIT_CONFIG_NOSYSTEM: '1', GIT_OPTIONAL_LOCKS: '0', GIT_PAGER: 'cat', GIT_TERMINAL_PROMPT: '0', LANG: 'C', LC_ALL: 'C', PAGER: 'cat'});
 // prettier-ignore
