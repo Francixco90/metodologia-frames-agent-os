@@ -2,6 +2,10 @@ import {createHash} from 'node:crypto';
 import {lstatSync, readdirSync, readFileSync, realpathSync} from 'node:fs';
 import {resolve} from 'node:path';
 
+// Windows: realpathSync yields backslash-separated paths; normalise both
+// sides of containment prefix checks so they are separator-agnostic.
+const portable = (value: string): string => value.replaceAll('\\', '/');
+
 import {ExperienceReleaseCapsuleV1Schema} from '../../core/contracts/experience-release-v1.ts';
 import {canonicalize} from '../../core/evidence/canonical-json.ts';
 import {ExperienceApprovalReceiptV1Schema} from './approval-receipt.ts';
@@ -131,7 +135,7 @@ export const verifyReleaseCapsule = (
         if (
           !lstatSync(absolute).isFile() ||
           lstatSync(absolute).isSymbolicLink() ||
-          !real.startsWith(`${realRoot}/`)
+          !portable(real).startsWith(`${portable(realRoot)}/`)
         ) {
           errors.push(`approval-not-regular:${ref}`);
         } else {

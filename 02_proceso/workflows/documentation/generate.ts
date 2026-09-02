@@ -179,7 +179,7 @@ const findStaleOutputs = async (
     '03_artefactos/content/documentation/*.json',
     '03_artefactos/content/documentation/workflows/*.html',
   ]) {
-    for await (const candidate of glob(pattern, {cwd: repoRoot})) candidates.push(candidate);
+    for await (const c of glob(pattern, {cwd: repoRoot})) candidates.push(c.replace(/\\/g, '/'));
   }
   return candidates
     .filter((candidate) => generatedPatterns.some((pattern) => pattern.test(candidate)))

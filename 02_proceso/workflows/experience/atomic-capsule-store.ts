@@ -12,6 +12,10 @@ import {
 } from 'node:fs';
 import {dirname, resolve} from 'node:path';
 
+// Windows: resolve/realpathSync yield backslash-separated paths; normalise
+// both sides of containment prefix checks so they are separator-agnostic.
+const portable = (value: string): string => value.replaceAll('\\', '/');
+
 const ARTIFACT_NAME = /^[a-z0-9][a-z0-9.-]{1,80}$/u;
 
 const pathExists = (path: string): boolean => {
@@ -31,7 +35,7 @@ const assertContainedDirectory = (root: string, directory: string): void => {
     throw new Error(`EXP-RELEASE-OUTPUT: regular non-symlink parent required: ${directory}`);
   }
   const realDirectory = realpathSync(directory);
-  if (realDirectory !== realRoot && !realDirectory.startsWith(`${realRoot}/`)) {
+  if (realDirectory !== realRoot && !portable(realDirectory).startsWith(`${portable(realRoot)}/`)) {
     throw new Error('EXP-RELEASE-OUTPUT: parent escapes repository');
   }
 };
@@ -43,7 +47,10 @@ export const writeCapsuleAtomically = (
 ): void => {
   const absoluteRoot = resolve(root);
   const absoluteOutput = resolve(output);
-  if (absoluteOutput === absoluteRoot || !absoluteOutput.startsWith(`${absoluteRoot}/`)) {
+  if (
+    absoluteOutput === absoluteRoot ||
+    !portable(absoluteOutput).startsWith(`${portable(absoluteRoot)}/`)
+  ) {
     throw new Error('EXP-RELEASE-OUTPUT: destination must remain inside repository');
   }
   const parent = dirname(absoluteOutput);
@@ -73,7 +80,7 @@ export const writeCapsuleAtomically = (
     if (
       !result.isDirectory() ||
       result.isSymbolicLink() ||
-      !realResult.startsWith(`${realpathSync(absoluteRoot)}/`)
+      !portable(realResult).startsWith(`${portable(realpathSync(absoluteRoot))}/`)
     ) {
       throw new Error('EXP-RELEASE-OUTPUT: promoted capsule failed containment');
     }

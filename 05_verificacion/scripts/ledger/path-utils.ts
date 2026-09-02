@@ -4,7 +4,7 @@
 // `git ls-files` output is inverted back to legacy paths. [CÓDIGO]
 import {type Dirent, existsSync, lstatSync, readdirSync, readlinkSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {resolve} from 'node:path';
+import {isAbsolute, relative, resolve} from 'node:path';
 
 export const legacyPathInversions = (root: string): Array<{link: string; target: string}> => {
   const inversions: Array<{link: string; target: string}> = [];
@@ -17,7 +17,14 @@ export const legacyPathInversions = (root: string): Array<{link: string; target:
   for (const entry of entries) {
     if (!entry.isSymbolicLink()) continue;
     try {
-      const target = readlinkSync(resolve(root, entry.name));
+      let target = readlinkSync(resolve(root, entry.name));
+      // Windows junctions return absolute paths (e.g. C:\...\03_artefactos\content).
+      // Normalise to a repo-relative path so the inversion logic works cross-platform.
+      if (isAbsolute(target)) {
+        target = relative(root, target);
+      }
+      // Normalise backslashes to forward slashes for cross-platform path matching.
+      target = target.split('\\').join('/');
       // Only relative in-repo targets that include a path separator map a
       // cardinal bucket back to a legacy root-relative name.
       if (!target.startsWith('/') && !target.startsWith('..') && target.includes('/')) {
@@ -45,21 +52,27 @@ export const normalizeToLegacyPath = (
 
 export const versionablePaths = (root: string): string[] => {
   const inversions = legacyPathInversions(root);
-  return execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
-    cwd: root,
-    encoding: 'utf8',
-  })
-    .split('\0')
-    .filter(
-      (path) =>
-        path.length > 0 &&
-        path !== 'node_modules' &&
-        !path.startsWith('node_modules/') &&
-        existsSync(resolve(root, path)) &&
-        lstatSync(resolve(root, path)).isFile(),
-    )
-    .map((path) => normalizeToLegacyPath(path, inversions))
-    .sort();
+  return (
+    execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
+      cwd: root,
+      encoding: 'utf8',
+    })
+      .split('\0')
+      .filter(
+        (path) =>
+          path.length > 0 &&
+          path !== 'node_modules' &&
+          !path.startsWith('node_modules/') &&
+          existsSync(resolve(root, path)) &&
+          lstatSync(resolve(root, path)).isFile(),
+      )
+      .map((path) => normalizeToLegacyPath(path, inversions))
+      // Deduplicate after junction normalisation: on Windows, git ls-files
+      // returns the same file under both the real path (03_artefactos/content/)
+      // and the junction path (content/), which collapse to the same legacy path.
+      .filter((path, index, array) => array.indexOf(path) === index)
+      .sort()
+  );
 };
 
 export const globPatternToRegExp = (pattern: string): RegExp => {

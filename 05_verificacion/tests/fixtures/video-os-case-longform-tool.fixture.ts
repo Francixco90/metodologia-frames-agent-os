@@ -9,9 +9,16 @@ export const caseFixtureSha = (bytes: Buffer): string =>
 export const caseFixtureHashValue = (value: number): string =>
   caseFixtureSha(Buffer.from(String(value)));
 const trustedTool = (name: 'ffmpeg' | 'ffprobe') => {
-  const found = spawnSync('which', [name], {encoding: 'utf8'});
+  // Windows: `which` is an MSYS shell builtin whose output (/c/Users/...) is
+  // meaningless to realpathSync (resolves as C:\c\Users\... → ENOENT). Use
+  // where.exe — the native resolver — on win32; unchanged elsewhere.
+  const found =
+    process.platform === 'win32'
+      ? spawnSync('where.exe', [name], {encoding: 'utf8'})
+      : spawnSync('which', [name], {encoding: 'utf8'});
   if (found.status !== 0) throw new Error(`missing ${name}`);
-  const path = realpathSync(found.stdout.trim());
+  const firstLine = found.stdout.trim().split(/\r?\n/u)[0] ?? '';
+  const path = realpathSync(firstLine);
   return {path, sha256: caseFixtureSha(readFileSync(path)), bytes: lstatSync(path).size};
 };
 export const caseFixtureMediaToolAuthority = () => {

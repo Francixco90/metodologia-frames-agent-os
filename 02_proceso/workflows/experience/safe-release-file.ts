@@ -53,7 +53,9 @@ export const assertSafeReleasePath = (root: string, value: string): {ref: string
   }
   const realRoot = realpathSync(absoluteRoot);
   const real = realpathSync(cursor);
-  if (!real.startsWith(`${realRoot}/`)) {
+  // Windows: realpathSync yields backslash-separated paths; normalise both
+  // sides so the containment prefix check is separator-agnostic.
+  if (!portable(real).startsWith(`${portable(realRoot)}/`)) {
     throw new Error(`EXP-RELEASE-PATH: realpath outside repository: ${ref}`);
   }
   return {ref, real};
