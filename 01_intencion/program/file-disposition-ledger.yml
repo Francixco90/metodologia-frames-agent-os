@@ -27,10 +27,10 @@ summary:
     agent_contract: 22
     workflow: 10
   dispositions:
-    refactored: 85
+    refactored: 86
     generator_fixed: 6
     superseded: 0
-    verified_no_change: 197
+    verified_no_change: 196
     quarantined: 4
     immutable_history: 95
   resolved_owners:
@@ -2816,17 +2816,17 @@ entries:
     initial_words: 49
     initial_loc: 16
     resolved_owner: sources
-    decision: verified_no_change
-    justification: Working-tree bytes equal the baseline; no material improvement is claimed for this file.
+    decision: refactored
+    justification: Baseline bytes changed under the resolved owner; compatibility and repository checks are required.
     evidence:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:inbox/.gitignore
       current_ref: working-tree:inbox/.gitignore
       current_state: present
-      current_sha256: 98fa6bd652c3f8b003f19f1051a1997b833259976f614fdb943f651a9d12bad6
-      current_words: 49
-      current_loc: 16
-      byte_identical: true
-      material_change: false
+      current_sha256: 413d894454f977deb019ff6d81e9231ceef130097f69a58f92c3403c38fccda2
+      current_words: 87
+      current_loc: 26
+      byte_identical: false
+      material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:sources:inbox/**
       generator_ref: null
       successor_path: null
