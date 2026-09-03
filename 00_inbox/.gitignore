@@ -6,13 +6,11 @@
 # tree. Personal and working zones are protected WITHOUT being named here —
 # anything not allowlisted below stays local by construction.
 
-/*/
-!/first-party/
-!/templates/
-
-/*.md
+/*
 !README.md
 !context.md
+!/first-party/
+!/templates/
 
 # Regulated reference zones: tracked placeholders only
 /Contratos/*
