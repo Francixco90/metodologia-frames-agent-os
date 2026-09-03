@@ -2822,9 +2822,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:inbox/.gitignore
       current_ref: working-tree:inbox/.gitignore
       current_state: present
-      current_sha256: 413d894454f977deb019ff6d81e9231ceef130097f69a58f92c3403c38fccda2
-      current_words: 87
-      current_loc: 26
+      current_sha256: 41179ca95c1a85471669afa4c16ba90c212a7c48535bf527a0956a76c4f13ccd
+      current_words: 86
+      current_loc: 24
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:sources:inbox/**
