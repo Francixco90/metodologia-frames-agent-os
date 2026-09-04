@@ -39,10 +39,10 @@ y la historia conserva bytes. [CONFIG]
 
 | Gate                          |          Baseline |               Final |            Límite |   Ratio | Estado |
 | ----------------------------- | ----------------: | ------------------: | ----------------: | ------: | ------ |
-| Corpus authored elegible      |             95955 |              116461 |     143932 (1.5×) | 1.2137× | `pass` |
-| Total authored (palabras)     |             95955 |              116461 |       191910 (2×) | 1.2137× | `pass` |
-| Total authored (LOC)          |             35966 |               42319 |        71932 (2×) | 1.1766× | `pass` |
-| Generated/template aplicables | 144 inventariados | 13 checks + 131 N/A | 2× palabras y LOC | 144/144 | `pass` |
+| Corpus authored elegible      |             95419 |              110340 |     143128 (1.5×) | 1.1564× | `pass` |
+| Total authored (palabras)     |             95419 |              110340 |       190838 (2×) | 1.1564× | `pass` |
+| Total authored (LOC)          |             35810 |               41304 |        71620 (2×) | 1.1534× | `pass` |
+| Generated/template aplicables | 142 inventariados | 13 checks + 129 N/A | 2× palabras y LOC | 142/142 | `pass` |
 | Historia baseline             |       95 archivos |   95 byte-idénticos |                95 |     n/a | `pass` |
 
 Además, 58 Markdown editables del baseline se

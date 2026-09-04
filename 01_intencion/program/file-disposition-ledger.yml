@@ -415,38 +415,38 @@ budgets:
         status: pass
   authored_eligible_corpus:
     baseline_files: 276
-    final_files: 347
-    baseline_words: 95955
-    v3_rolling_adjustment_words: 7769
+    final_files: 338
+    baseline_words: 95419
+    v3_rolling_adjustment_words: 7233
     original_baseline_words: 88186
-    final_words: 116461
+    final_words: 110340
     maximum_multiplier: 1.5
-    maximum_words: 143932
-    actual_multiplier: 1.2137
+    maximum_words: 143128
+    actual_multiplier: 1.1564
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
-    final_files: 347
-    baseline_words: 95955
-    v3_rolling_adjustment_words: 7769
+    final_files: 338
+    baseline_words: 95419
+    v3_rolling_adjustment_words: 7233
     original_baseline_words: 88186
-    final_words: 116461
-    maximum_words: 191910
-    word_multiplier: 1.2137
-    baseline_loc: 35966
-    v3_rolling_adjustment_loc: 3078
+    final_words: 110340
+    maximum_words: 190838
+    word_multiplier: 1.1564
+    baseline_loc: 35810
+    v3_rolling_adjustment_loc: 2922
     original_baseline_loc: 32888
-    final_loc: 42319
-    maximum_loc: 71932
-    loc_multiplier: 1.1766
+    final_loc: 41304
+    maximum_loc: 71620
+    loc_multiplier: 1.1534
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
     maximum_multiplier: 2
-    inventory_count: 144
+    inventory_count: 142
     applicable_bindings: 13
-    not_applicable_count: 131
-    coverage: 144/144
+    not_applicable_count: 129
+    coverage: 142/142
     coverage_gaps: []
     status: pass
     checks:
@@ -597,10 +597,6 @@ budgets:
         reason: Generated projection without a declared size-comparable template binding.
       - path: content/pilot-carousel-002/generated/source-freeze-receipt.json
         reason: Generated projection without a declared size-comparable template binding.
-      - path: docs/program/file-disposition-ledger.md
-        reason: Self-describing ledger projection; no size-comparable authored template exists.
-      - path: docs/program/file-disposition-ledger.yml
-        reason: Self-describing ledger projection; no size-comparable authored template exists.
       - path: projects/pilot-carousel-001/artifacts/asset-manifest.json
         reason: Runtime artifact; determinism, hashes and render checks replace a template-size ratio.
       - path: projects/pilot-carousel-001/artifacts/contact-sheet.html
