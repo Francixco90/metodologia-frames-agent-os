@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "929a78021dcda4f6bf96f203a465383284bb06ebc088dd42f09141ac000e60f6",
-  "totalMarkdown": 1905,
-  "auditedAuthored": 637,
+  "repositoryTreeSha256": "853955854a1811c8251831e38e74bd132d1f7b5b9b747d248732906ba04bde4c",
+  "totalMarkdown": 1906,
+  "auditedAuthored": 638,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -205,6 +205,7 @@
       "02_proceso/governance/experience-first-orchestration.md",
       "02_proceso/governance/harness-subsystem-reconciliation.md",
       "02_proceso/governance/loose-task-policy.md",
+      "02_proceso/governance/open-proposals.md",
       "02_proceso/governance/ownership-scripts-decision.md",
       "02_proceso/governance/scripting-and-tool-use.md",
       "02_proceso/governance/ux-writing-policy.md",
@@ -4701,7 +4702,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "bd534f08fdb6a54c607cb5b6ec639788b0d77c8f35d5ce5a18ecf5b91007573e",
+      "sha256": "23a93ba77770bef9c952f23c9e2400253fce7ac6f21f138c045433bb1e00c970",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -7280,9 +7281,9 @@
       "sourceRef": "02_proceso/governance/lessons-learned.md",
       "derivatives": [],
       "lifecycle": "frozen",
-      "sha256": "e45616d8ffe89a243c5d5e0c402e38ec6211e332368360c27ec4fdce3af327a4",
-      "words": 1774,
-      "lines": 243,
+      "sha256": "74e1e1874328a03f7fedfdcc2947713eed56fcc98f4968f21a3930ad4e0dccb0",
+      "words": 2477,
+      "lines": 278,
       "score": 100,
       "threshold": 90,
       "decision": "FREEZE",
@@ -7291,7 +7292,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
         "hasNextAction": true,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 2
       }
     },
     {
@@ -7318,6 +7319,33 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "02_proceso/governance/open-proposals.md",
+      "class": "authored_control",
+      "owner": "governance",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:governance:governance/**",
+      "authorityRefs": [
+        "AGENTS.md",
+        "02_proceso/governance/open-proposals.md"
+      ],
+      "budgetSurface": "authored-governance-md",
+      "sourceRef": "02_proceso/governance/open-proposals.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e06f5f8e673f5b873b8c85353ddb6e83a75e0450ad19d0ad361fcf75a2c191ff",
+      "words": 356,
+      "lines": 25,
+      "score": 100,
+      "threshold": 90,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -19111,7 +19139,7 @@
     }
   ],
   "summary": {
-    "keep": 622,
+    "keep": 623,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

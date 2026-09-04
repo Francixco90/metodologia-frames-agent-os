@@ -1,5 +1,11 @@
 # Lecciones Aprendidas — Meta-Gestión de Frames-Agent-OS
 
+## Propuestas abiertas (lifecycle)
+
+> Registro vivo de propuestas `[INFERENCIA]`/`[SUPUESTO]` con estados y gate 90d fail-closed: **`open-proposals.md`** (única sección re-escribible del sistema de lecciones; cada retro la revisa ANTES de escribir entrada nueva).
+
+---
+
 Registro append-only, oldest-first, blameless y accionable. Cada entrada nueva se agrega inmediatamente antes del marcador final. Fuente: patrón `dev-retro` + commits de PR #98-#100 (lift atemporal, multimedia P00-P09 y format-debt). Identidad: MetodologIA. `[CONFIG]`
 
 Cada entrada: **Recuento → Lecciones → Propuestas (skills/agents/workflows) → Flujos**. Las propuestas son `[INFERENCIA]`/`[SUPUESTO]` (no existen hasta homologación H-03); lo existente lleva `[CÓDIGO]`/`[CONFIG]`/`[DOC]`.
@@ -236,6 +242,35 @@ flowchart LR
 ### Cita
 
 > "Una ausencia no se sustituye por una inferencia pulida. Marca `coverage_gap` explícito. Escalada > asunción." — `CLAUDE.md`, regla fail-closed. [CONFIG]
+
+---
+
+## Retro 2026-09-03/04 — Campaña B2C local end-to-end (brand corpus → pieza aprobada)
+
+### Recuento del proceso
+
+Sesión creativa completa sobre corpus de marca de un taller (marca piloto B2C local, sector automotriz — nombre retenido: identidad y datos de marca de clientes no se publican en este repo; corpus en `00_inbox/`, excluido de git): primera ejecución Brand OS (inventario → matriz de claims → truth gate BRAND READY con caveats), debate de gobernanza por red socrática, brief aprobado, 3 rutas conceptuales, y producción visual iterada a aprobación humana ("listas para publicar"). Pipeline material: ComfyUI+SDXL local (GPU NVIDIA 12 GB) vía REST directa → compositor Pillow de zonas verticales exclusivas con asserts anti-colisión → keying de assets oficiales (logo, telltale) → entrega inline → gates de aprobación por cambio. **[CÓDIGO]** (skills de perfil `brand-intelligence-advertising` + `local-ad-piece-production`, con references)
+
+Iteraciones dirigidas por el usuario: (1) logo corregido desde archivo oficial — el recorte de pieza comprimida era plausible pero equivocado; (2) reframing de copy problem-first → topic-led con re-aprobación explícita; (3) testigos SRS reales adjuntos sustituyeron gráficos procedurales; (4) heroes SDXL rechazados por look IA → **foto real licenciada retocada con PIL** (crop al foco + grade sutil) fue la base final aprobada. **[OBSERVADO]**
+
+### Lecciones aprendidas (blameless, accionables)
+
+- **L9 — El usuario es el único verificador de _juicio estético y semántico de marca_.** Toda propiedad visual **medible** debe verificarse programáticamente ANTES de llegar al usuario (dimensiones, presencia de assets, luminancia, contraste WCAG, colisiones por asserts, texto cortado por energía de bordes, áreas vacías); el gate humano se reserva para lo genuinamente subjetivo ("¿se ve IA?", "¿es el logo correcto?", corrección semántica del copy). **[OBSERVADO]** _(Enmienda 2026-09-04, debate red socrática: la formulación original —"el usuario es el único verificador visual"— absolutizaba la limitación; los skills ya verifican decenas de propiedades visuales programáticas.)_
+- **L10 — Rechazo al look IA = cambiar de fuente, no de seed.** Iterar prompts/seeds tras un "se ve IA" es la palanca equivocada: la escalera correcta es procedural < SDXL < foto real licenciada (registrando URL+licencia junto al entregable). Aplicado como pitfall en ambos skills de perfil. **[OBSERVADO]**
+- **L11 — Zonas exclusivas con asserts previenen el rechazo por superposición.** Layout por bandas verticales + `Zone.contains()` convierte colisiones en fallos baratos de build en vez de renders rechazados. **[CÓDIGO]**
+- **L12 — El asset oficial del usuario outrankea cualquier derivado del corpus** (mismo día, sin re-consulta). Keying por mediana de esquinas + alpha suave para fondos sólidos. **[OBSERVADO]**
+- **L13 — La red socrática encontró que el registry H03 (2.858 líneas) y el presupuesto de gobernanza hacen inviable promocionar skills al repo con n=1 marca:** el método generalizable ya vive en el perfil; el repo debe registrar la lección, no copiar la capacidad. **[INFERENCIA]**
+- **L14 — Falla de descubrimiento: los skills existían en el perfil durante la campaña y NO se cargaron** — el pipeline se reconstruyó desde cero, sin los umbrales exactos que los skills ya documentaban (keying t≈16-44, luminancia 65-75%, presupuesto de acentos), produciendo rejects que el contenido existente prevenía. Causa raíz verificada: el índice de skills trunca descripciones a 57 caracteres y las actuales eran inglés-only mientras el usuario pidió en español → cero overlap léxico. La falla es invisible en el artefacto final. Remedio aplicado: descripciones bilingües front-loaded + test de reproducción obligatorio (verificar carga de skill ANTES del primer render en la próxima campaña; si falla N=2, escalar a intervención estructural). **[OBSERVADO]**
+
+### Propuestas
+
+- Fusionar `local-ad-piece-production` (156 líneas) DENTRO de `brand-intelligence-advertising` (753) — contenido casi subsumido, MSYS/HTTP-500 duplicado, divergencia problem-first ya corregida solo en uno. `[INFERENCIA]` (pendiente homologación)
+- Promover método desacoplado (sin estado de marca/PII/seeds/copy) a `03_artefactos/skills/vendor/` con H03 solo cuando n≥2 marcas compartan el núcleo. `[SUPUESTO]`
+- Ruta R6-perfil para campañas (no workflow P nueva): ningún failure mode documentado que los gates humanos per-change no cubrieran. `[INFERENCIA]`
+
+### Flujos
+
+- Rechazo visual → identificar palanca (asset/copy/layout/fuente) → re-aprobación explícita → re-render. La entrega inline (MEDIA:) es parte del gate: paths en prosa estancan el loop.
 
 ---
 
