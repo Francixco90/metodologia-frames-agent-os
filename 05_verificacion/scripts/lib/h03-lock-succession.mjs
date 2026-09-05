@@ -5,10 +5,10 @@ import {relative, resolve, sep} from 'node:path';
 import {parse} from 'yaml';
 
 export const H02_LOCK_SHA256 = 'c73533cf14815fc883b2e166c0a40c00fcac11fc62bf1081c45ba023db00fc82';
-export const H03_LOCK_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-015.yml';
-const PREVIOUS_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-014.yml';
+export const H03_LOCK_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-016.yml';
+const PREVIOUS_SUCCESSION_REF = 'receipts/dependency-audits/H03-LOCK-SUCCESSION-015.yml';
 const APPROVAL_PHRASE = 'go';
-const APPROVAL_SCOPE = 'frames_maintain_b1_successor_evidence_without_dependency_change';
+const APPROVAL_SCOPE = 'frames_consolidation_f9_generated_artifacts_gate_without_dependency_change';
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const fileSha256 = (root, ref) => sha256(readFileSync(resolve(root, ref)));
@@ -39,7 +39,7 @@ export const verifyApprovedH03LockSuccession = (
 
   if (
     receipt.schema_version !== 'dependency-lock-succession-v1' ||
-    receipt.receipt_id !== 'H03-LOCK-SUCCESSION-015' ||
+    receipt.receipt_id !== 'H03-LOCK-SUCCESSION-016' ||
     receipt.supersedes_receipt_id !== previousReceipt.receipt_id ||
     receipt.approval_phrase !== APPROVAL_PHRASE ||
     receipt.approval_scope !== APPROVAL_SCOPE ||
