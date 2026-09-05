@@ -8,6 +8,7 @@ import {
   changedBudgetLoc,
   changedBudgetPaths,
   collectBudgetGitState,
+  lfsManagedPaths,
   readBudgetFile,
   resolveBudgetBase,
   versionableBudgetPaths,
@@ -42,6 +43,17 @@ afterEach(() => {
 });
 
 describe('file-budget Git state', () => {
+  it('recognizes only Git LFS managed paths through the filter attribute', () => {
+    const {root} = repository();
+    put(root, '.gitattributes', 'media/**/*.bin filter=lfs diff=lfs merge=lfs -text\n');
+    put(root, 'media/pack/asset.bin', 'pointer-or-bytes\n');
+    put(root, 'media/pack/notes.txt', 'text\n');
+    put(root, 'plain.bin', 'not managed\n');
+    expect(
+      lfsManagedPaths(root, ['media/pack/asset.bin', 'media/pack/notes.txt', 'plain.bin']),
+    ).toEqual(new Set(['media/pack/asset.bin']));
+    expect(lfsManagedPaths(root, [])).toEqual(new Set());
+  });
   it('uses one explicit base for complete commits, index, worktree, untracked and deletions', () => {
     const {root, base} = repository();
     put(root, 'commit-one.txt', 'one\n');

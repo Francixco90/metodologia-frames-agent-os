@@ -1,0 +1,184 @@
+schema_version: notebook-source-pack-v1
+profile_id: metodologia-brand-content-canon-v1
+sources:
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-BRAND-PROFILE
+    name: 10-canon--brand-profile--v2.0
+    title: MetodologIA Brand Profile v2
+    tags: ['10 Canon', identity, visual]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: CANON
+    owner: MetodologIA
+    version: v2.0
+    validFrom: '2026-07-01'
+    validUntil: null
+    notebookRole: 'autoridad de identidad y reglas visuales'
+    provenance: 'registro versionado local'
+    contentSha256: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+    portableIdentityDigest: d13855224fe0ba040bb9f6d1a071aa19dedc43813a2e7507c38763c41a2b487c
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 04_estado/registries/brand/brand-profile-v2.yml
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-VOICE-PROFILE
+    name: 10-canon--voice-profile--v2.0
+    title: MetodologIA Voice Profile v2 candidate
+    tags: ['10 Canon', voice, review]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: CANON
+    owner: MetodologIA
+    version: v2.0
+    validFrom: '2026-07-01'
+    validUntil: null
+    notebookRole: 'candidato de voz sujeto a confirmación humana'
+    provenance: 'registro versionado local VOICE_CANDIDATE'
+    contentSha256: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+    portableIdentityDigest: c2129333e2fde087c0af5ecf3ebd1643f6329888003bb06241083b1893c2b88a
+    rights: REVIEW
+    replaces: null
+    status: REVIEW
+    sourceRef: 04_estado/registries/brand/voice-profile-v2.yml
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-SOURCE-BUNDLE
+    name: 20-evidence--brand-source-bundle--v1.0
+    title: MetodologIA Brand Source Bundle v1
+    tags: ['20 Evidence', provenance, claims]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: EVIDENCE
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-07-01'
+    validUntil: null
+    notebookRole: 'procedencia y evidencia del canon'
+    provenance: 'registro versionado local'
+    contentSha256: 39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf
+    portableIdentityDigest: 39762a7834893b760b4ec6b75acc33fb02cedefadcc90edba0325bf05dcb5acf
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 04_estado/registries/brand/source-bundle-v1.yml
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-BRAND-TOKENS
+    name: 10-canon--brand-tokens--v1.0
+    title: MetodologIA Brand Tokens
+    tags: ['10 Canon', tokens, accessibility]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: CANON
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-07-01'
+    validUntil: null
+    notebookRole: 'tokens visuales y restricciones de accesibilidad'
+    provenance: 'artefacto versionado local'
+    contentSha256: 88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3
+    portableIdentityDigest: 88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 03_artefactos/brand/tokens/brand-tokens.yml
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-ASSET-USAGE-GUIDE
+    name: 50-assets--usage-and-rights-guide--v1.0
+    title: MetodologIA Asset Usage and Rights Guide v1
+    tags: ['50 Assets', rights, logos, portraits]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA']
+    confidentiality: INTERNAL
+    sourceType: markdown
+    authority: ASSET
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-08-25'
+    validUntil: null
+    notebookRole: 'estado, derechos, límites y gates de los activos visuales'
+    provenance: 'auditoría local read-only gobernada; sin locators privados'
+    contentSha256: 02c06f8c5b99122f7af985c2a79b5a74238fe52cdae8680f95e9fe8406241b6b
+    portableIdentityDigest: 02c06f8c5b99122f7af985c2a79b5a74238fe52cdae8680f95e9fe8406241b6b
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/asset-usage-guide.md
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-BRAND-CONTENT-KB
+    name: 60-operations--brand-content-knowledge-base--v1.0
+    title: MetodologIA Brand Content Knowledge Base v1
+    tags: ['60 Operations', content, guidelines, templates]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA', 'creadores de contenido']
+    confidentiality: INTERNAL
+    sourceType: markdown
+    authority: OPERATIONAL
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-08-25'
+    validUntil: null
+    notebookRole: 'pauta compilada para crear y verificar contenido con branding'
+    provenance: 'compilación gobernada del canon vigente y patrones de la galería histórica'
+    contentSha256: ed0e6ad50e1fbac3d40f1764c8c67f6ba1da38066851b2a7319418a5873ea20a
+    portableIdentityDigest: ed0e6ad50e1fbac3d40f1764c8c67f6ba1da38066851b2a7319418a5873ea20a
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/brand-content-knowledge-base.md
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-ART-GALLERY-CATALOG
+    name: 50-assets--original-art-gallery--v1.0
+    title: MetodologIA Original Art Gallery Catalog v1
+    tags: ['50 Assets', art, gallery, reference]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA', 'creadores de contenido']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: ASSET
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-08-25'
+    validUntil: null
+    notebookRole: 'catálogo y reglas de ocho referencias artísticas originales'
+    provenance: 'extracción exacta de imágenes incrustadas en PDF canónicos'
+    contentSha256: d933cbdcbd9e534ec74a99bdd8c619fe7dab3ad2576c4f0e7f269ecc2f109c89
+    portableIdentityDigest: d933cbdcbd9e534ec74a99bdd8c619fe7dab3ad2576c4f0e7f269ecc2f109c89
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/gallery/catalog.yml
+  - schemaVersion: notebook-source-manifest-v1
+    sourceId: NLS-MASTERCLASS-PLAYBOOKS-PACK
+    name: 40-reference--masterclass-playbooks-gallery--v1.0
+    title: MetodologIA Masterclass and Playbooks Gallery Source Pack v1
+    tags: ['40 Golden References', masterclass, playbooks, integrated]
+    scope: metodologia-brand-content
+    audiences: ['equipo MetodologIA', 'creadores de contenido']
+    confidentiality: INTERNAL
+    sourceType: yaml
+    authority: REFERENCE
+    owner: MetodologIA
+    version: v1.0
+    validFrom: '2026-08-25'
+    validUntil: null
+    notebookRole: 'manifiesto de 21 PDF históricos integrados en el notebook final'
+    provenance: 'auditoría local read-only; identidad por hash; locators privados omitidos'
+    contentSha256: 3c729585c0b87205aebb5c9538cb269f550e29513d987c64c0d1419372b9515a
+    portableIdentityDigest: 3c729585c0b87205aebb5c9538cb269f550e29513d987c64c0d1419372b9515a
+    rights: APPROVED
+    replaces: null
+    status: ACTIVE
+    sourceRef: 03_artefactos/projects/notebooklm-os/metodologia-brand-content/source-packs/masterclass-playbooks-v1.yml
+coverage_gaps:
+  - human_approval_for_selected_vector_logo_family
+  - consent_and_usage_scope_for_katherine_daniel_and_german_portraits
+  - pristino_mascot_role_and_rights
+  - two_golden_references_per_channel

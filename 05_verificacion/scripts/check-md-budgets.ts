@@ -11,6 +11,7 @@ import {
 } from './lib/file-budget-policy.ts';
 import {
   collectBudgetGitState,
+  lfsManagedPaths,
   readBudgetFile,
   versionableBudgetPaths,
 } from './lib/file-budget-git.ts';
@@ -73,6 +74,7 @@ export const main = (root = ROOT): void => {
 
     const versionable = versionableBudgetPaths(root);
     const present = new Set(versionable);
+    const lfsManaged = lfsManagedPaths(root, [...delta.paths]);
     for (const path of delta.paths) {
       if (present.has(path)) continue;
       const logicalPath = normalizeToLegacyPath(path, inversions);
@@ -99,7 +101,7 @@ export const main = (root = ROOT): void => {
       try {
         const metrics = metricsFor(readBudgetFile(root, path));
         if (metrics.format === 'binary') {
-          if (changed) errors.push(`BUDGET-BINARY001 ${path}`);
+          if (changed && !lfsManaged.has(path)) errors.push(`BUDGET-BINARY001 ${path}`);
           continue;
         }
         if (rule.kind === 'exempt') continue;

@@ -1,0 +1,263 @@
+schema_version: notebook-gallery-source-pack-v1
+pack_id: metodologia-masterclass-playbooks-canon-v1
+display_name: 'MetodologIA · Masterclass & Playbooks · Galería histórica v1'
+profile_id: metodologia-brand-content-canon-v1
+purpose: 'muestra editorial, galería artística y evidencia histórica de patrones de contenido'
+projection: integrated_in_brand_content_notebook
+state: IMPORTED_PRIVATE_VERIFIED
+external_import_executed: true
+locator_policy:
+  absolute_paths_persisted: false
+  runtime_resolution: content_sha256
+  duplicate_policy: one_source_per_content_sha256
+rights_policy:
+  use_scope: INTERNAL_REFERENCE_ONLY
+  does_not_grant: [public_republication, standalone_art_licensing, human_approval]
+import_gate: NLM_PLAN_APPROVED
+local_storage:
+  directory: historical-pdf-editions
+  files_preserved: 21
+  locator_resolution: content_sha256
+summary:
+  masterclasses: 14
+  playbooks: 7
+  pdfs: 21
+  pages: 493
+  bytes: 84736081
+sources:
+  - {
+      source_id: NLG-MC-S01,
+      kind: masterclass,
+      sequence: 1,
+      title: 'De ocupado a productivo',
+      pages: 18,
+      bytes: 3976185,
+      content_sha256: 638f45439760faee34b93b26b2b6bb1b018d60c7339d66efbe606c941f02b308,
+      private_locator_digest: 30d8f9cda55708b39e5534d748b8d8babaff1b86b79b51441c6a733362f30ad2,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S02,
+      kind: masterclass,
+      sequence: 2,
+      title: 'Del automatismo a estar en presencia',
+      pages: 24,
+      bytes: 5433281,
+      content_sha256: 34068be076d31a868e1cf4a6d6c64a76236f386d750a7ea63046920aee41327f,
+      private_locator_digest: 6d276554bc097404409131d6c57658cbd4060a1fc6766786865fa89d2bfdf492,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S03,
+      kind: masterclass,
+      sequence: 3,
+      title: 'De trabajar duro a trabajar sin fricción',
+      pages: 20,
+      bytes: 4077483,
+      content_sha256: 158493e6a0335d4c43c300106de14ea3d9524ba36c58a0c28b14e2c2f0681db9,
+      private_locator_digest: 353a562118dd8032ea210b601b7b306e7f3857d0df513249bf54e39d184a88d9,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S04,
+      kind: masterclass,
+      sequence: 4,
+      title: 'De días caóticos a jornadas inteligentes y estratégicas',
+      pages: 20,
+      bytes: 4744866,
+      content_sha256: 32e0d0ee3618bcf04c9b906bcc00395579988eadf594bfae13ae59b44190e312,
+      private_locator_digest: 7abac6e00a566d47a9c5f6de5bb9405df44c9e520d610e3d67265c1cc195bb4a,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S05,
+      kind: masterclass,
+      sequence: 5,
+      title: 'De hacer sin estructura a formas de trabajo de alto desempeño',
+      pages: 31,
+      bytes: 6339408,
+      content_sha256: 59b0acbc84e72425e797ffeccec36cbd4da59587f10cf0c397f9576674dadbff,
+      private_locator_digest: f2b8d5f5e5513c30016424adb97ee5500147f72e4493d3360fd7a4cd8e260fc6,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S06,
+      kind: masterclass,
+      sequence: 6,
+      title: 'De formas de trabajo efectivas a dinámicas de alto rendimiento',
+      pages: 20,
+      bytes: 4519952,
+      content_sha256: 54f4ef164191be095beb82623d4c894f6e6a2f31a910bcc1294af7024efdecd7,
+      private_locator_digest: 3f84eb41d16a998580029f6d456154e18b612c9c77fc41544e81997d8bec5197,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S07,
+      kind: masterclass,
+      sequence: 7,
+      title: 'De entregables que cumplen a entregables de excelencia',
+      pages: 14,
+      bytes: 2641168,
+      content_sha256: 99482d9e6bc52fe91d486e49df83668cef910c06f6b1e56049800ffd2f886f7b,
+      private_locator_digest: 3817a103fa964881cfa216f1f5287793e0532ab2f42605e3dfe033c32bcf22a9,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S08,
+      kind: masterclass,
+      sequence: 8,
+      title: 'De bocetos a prototipos construidos con IA',
+      pages: 13,
+      bytes: 2381282,
+      content_sha256: 4e26d8a33c2407d58c0fe69403b3fe54b6a4fe94cbbf84f17df351d0a6321985,
+      private_locator_digest: ab3047ac2e383bca357335fe65de3ce3db36344775bad082c2f2c565e2e85d65,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S09,
+      kind: masterclass,
+      sequence: 9,
+      title: 'De productividad convencional a productividad apalancada con agentes autónomos',
+      pages: 14,
+      bytes: 4136156,
+      content_sha256: aac45dc3953309f146c6deb6a7bd040047d4819af8066f69c5371e2cce551c01,
+      private_locator_digest: 7e364818ee62dd86ee59f9b1a699f53a7f0d6a2ceb2d500969c1c5759eec4d0a,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S10,
+      kind: masterclass,
+      sequence: 10,
+      title: 'De documentos convencionales a contenido sorprendente construido con IA',
+      pages: 19,
+      bytes: 3454959,
+      content_sha256: d93b1147f456ebeffdd5431f0020e146079a1382401c7acdece0b339cf67f8f4,
+      private_locator_digest: e54921d1d6798299ddbcd719aae51eade8963e03ecef1caed19e95e406e964e8,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S11,
+      kind: masterclass,
+      sequence: 11,
+      title: 'De rendimiento convencional a productividad aumentada con asistentes de IA',
+      pages: 24,
+      bytes: 5098330,
+      content_sha256: 653dba0a204fb3bd280c83f7cd4f1a75737b0c346b6717933cf5c50e8c5f1b65,
+      private_locator_digest: 1b73cbe734aee0bafe6628f8d580080ec1b891a082c56c97386715a2e50f46de,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S12,
+      kind: masterclass,
+      sequence: 12,
+      title: 'De tareas manuales a automatizaciones con IA',
+      pages: 20,
+      bytes: 4400319,
+      content_sha256: f573523aa19ef376b0407cc52e9fd5738eac90e7582fc0733912267c44b78b32,
+      private_locator_digest: 646c39910c46f87ff55dda4ac011fc139978f3097358dfd6638860605e7ce61b,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S13,
+      kind: masterclass,
+      sequence: 13,
+      title: 'Entendiendo el empoderamiento de MetodologIA',
+      pages: 20,
+      bytes: 3929489,
+      content_sha256: 64ec6e4a5533f6e44f09545b4c7e50582307e8e47ec97a3b80f264d7a20b1e44,
+      private_locator_digest: 0af35b2c72e977b73c90a874e5249d724d4bf6fe4d5fe1bef50323b32e00e36f,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-MC-S14,
+      kind: masterclass,
+      sequence: 14,
+      title: 'Cierre del programa de empoderamiento',
+      pages: 26,
+      bytes: 5933596,
+      content_sha256: 8d3b8a050968d7d55693f06053e67ab4cbeb5df5da48f9d6184c1bdbb6b4e39e,
+      private_locator_digest: 863301da04ef13359dae73bb62987c676d76df23c173b684bd179a42c72a052e,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S01,
+      kind: playbook,
+      sequence: 1,
+      title: 'De ocupado a productivo',
+      pages: 30,
+      bytes: 3496402,
+      content_sha256: 0a716caebb3c126caefd6adba19d338736b1f583d8aa6fc27394ce8baf117c5e,
+      private_locator_digest: 222051ef503ca848ebb9fa4eb1500e575ca6f4552e85e8de073d5fa3d0cd69a4,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S02,
+      kind: playbook,
+      sequence: 2,
+      title: 'Del automatismo a actuar en presencia',
+      pages: 30,
+      bytes: 3481917,
+      content_sha256: 4e556517dc6293fcfd515d01c5b9f68ad34a7761b2a7aafdae8b64cc255e6743,
+      private_locator_digest: d1066f6e91946d96cd76e5dfff5dd1cc02dfbf153f7e7133577ba36693bbae66,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S03,
+      kind: playbook,
+      sequence: 3,
+      title: 'De trabajar duro a trabajar sin fricción',
+      pages: 30,
+      bytes: 3411394,
+      content_sha256: 57cb6bfceed67ef1adac717bb48eaff99a883c924e4cfa880d390926d0651c90,
+      private_locator_digest: 1af4c0696d43a1c3f45ae30707a11b5122d36d55a4e5dbd3e62ed52a703982e8,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S04,
+      kind: playbook,
+      sequence: 4,
+      title: 'De días caóticos a jornadas inteligentes y estratégicas',
+      pages: 30,
+      bytes: 3399419,
+      content_sha256: a79d59069e9457abb147e64a7e5b7cc7435b45a647a1ebffec9592e18fdca691,
+      private_locator_digest: e64aac5a41c75d9ccefd4bc4c2ff9790ba1cf46a17c9ef712ab1c9d7c403b1fc,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S05,
+      kind: playbook,
+      sequence: 5,
+      title: 'De hacer sin estructura a formas de trabajo de alto desempeño',
+      pages: 30,
+      bytes: 3289022,
+      content_sha256: 4fda68fd963741c3dfd3578bcdd40924aa71398702e0262f12295a4e526125ad,
+      private_locator_digest: 65492e3a8adaab38e32cf75081da4955afb3e3a62d521999afb306da1bd0f378,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S06,
+      kind: playbook,
+      sequence: 6,
+      title: 'De formas de trabajo efectivas a dinámicas de alto rendimiento',
+      pages: 30,
+      bytes: 3298293,
+      content_sha256: cef8c82c303be4b7bcf3f3cd973c405879b8576dfb66c8275bd2d6df655307e6,
+      private_locator_digest: eda736d619cae9e68ab19f42f16bf2bb1da2e61361b0221b99558335b91f7a78,
+      status: READY_FOR_IMPORT,
+    }
+  - {
+      source_id: NLG-PB-S07,
+      kind: playbook,
+      sequence: 7,
+      title: 'De entregables que cumplen a entregables de excelencia',
+      pages: 30,
+      bytes: 3293160,
+      content_sha256: f1beaf43f94652dfbbbf677bc4729a081259577dff8ecbf4a23565b79f16306d,
+      private_locator_digest: 08a068e4bb343e34b22b1f25c884f3398932fdbb87a1ec83bbfb43b7a43ab231,
+      status: READY_FOR_IMPORT,
+    }
+verification:
+  expected_source_count: 21
+  expected_unique_hashes: 21
+  expected_pages: 493
+  readback_required_after_import: true

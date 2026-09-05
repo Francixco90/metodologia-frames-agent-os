@@ -1,0 +1,110 @@
+schema_version: notebook-art-gallery-v1
+gallery_id: metodologia-original-art-sample-v1
+display_name: 'MetodologIA · Ocho referencias artísticas originales'
+profile_id: metodologia-brand-content-canon-v1
+state: IMPORTED_PRIVATE_VERIFIED
+external_import_executed: true
+purpose: 'enseñar lenguaje visual por referencia sin convertir cada imagen en autoridad de marca'
+derivation: exact_embedded_image_extraction_from_canonical_pdf
+generated_art: false
+rights: INTERNAL_REFERENCE_ONLY
+import_gate: NLM_PLAN_APPROVED
+preview:
+  file: gallery/gallery-preview.jpg
+  content_sha256: ce9e36f68e11a9177ea6308c9ba78e7e18d13b05d0642a42dbd007676646bbc0
+  derived_contact_sheet: true
+  import_as_source: false
+items:
+  - {
+      asset_id: ART-01-HUMAN-AI-PHONE,
+      title: 'Interacción humana con IA',
+      source_id: NLG-MC-S10,
+      source_page: 2,
+      file: gallery/original-art/01-human-ai-phone.jpg,
+      dimensions: 790x1184,
+      content_sha256: f0c0599a7075c1506a9b2c70057a102a3bbcd94a558ce6741682bb499e88424f,
+      motifs: [human-centered-technology, tactile-interface, dark-field],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-02-CONTENT-FUNNEL,
+      title: 'Síntesis y foco',
+      source_id: NLG-MC-S10,
+      source_page: 3,
+      file: gallery/original-art/02-content-funnel.jpg,
+      dimensions: 768x1152,
+      content_sha256: cdc0818b172e17d0a524d57800f38be9a9756ff8125f31592e985a9b98951921,
+      motifs: [abstraction, information-funnel, human-scale],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-03-IDEA-LIGHTBULB,
+      title: 'Asistente accesible',
+      source_id: NLG-MC-S10,
+      source_page: 9,
+      file: gallery/original-art/03-idea-lightbulb.jpg,
+      dimensions: 790x1184,
+      content_sha256: 6bbcce38f658ed55b1c7fb3b9eb10ae791dbd477a2e0509a5be883098887b870,
+      motifs: [friendly-ai, gradient, simple-character],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-04-CONTENT-ORCHESTRATION,
+      title: 'Orquestación de contenido',
+      source_id: NLG-MC-S10,
+      source_page: 17,
+      file: gallery/original-art/04-content-orchestration.jpg,
+      dimensions: 768x1152,
+      content_sha256: b58260ec17e0ce3450a2a2c6ed563ef076e690064d41edcfa82d7ba3425547ef,
+      motifs: [collaboration, dashboards, systems],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-05-SUMMIT,
+      title: 'Progreso con propósito',
+      source_id: NLG-MC-S14,
+      source_page: 2,
+      file: gallery/original-art/05-summit-transformation.jpg,
+      dimensions: 768x1152,
+      content_sha256: f609cc39369877a881ca5fd7d1c8ec24caa06d2de68ff15c19e96bc788388f73,
+      motifs: [summit, progress, warm-rays],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-06-PURPOSE-PORTAL,
+      title: 'Claridad del propósito',
+      source_id: NLG-MC-S14,
+      source_page: 7,
+      file: gallery/original-art/06-purpose-portal.jpg,
+      dimensions: 768x1152,
+      content_sha256: ff8046daa49b26b0b92d4adeeb9e75fe378c3a6f8d6b0d543f3539ec696e4159,
+      motifs: [portal, direction, luminous-gradient],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-07-STRATEGY-GEARS,
+      title: 'Sistema estratégico',
+      source_id: NLG-MC-S14,
+      source_page: 9,
+      file: gallery/original-art/07-strategy-gears.jpg,
+      dimensions: 768x1152,
+      content_sha256: 99d10450ef15b67e1c0874b011a291d2696991a53317f51bdba339b1b5fe332e,
+      motifs: [mechanism, intentional-design, precision],
+      status: IMPORTED_PRIVATE,
+    }
+  - {
+      asset_id: ART-08-NEXT-STEP,
+      title: 'Cruzar el siguiente umbral',
+      source_id: NLG-MC-S14,
+      source_page: 21,
+      file: gallery/original-art/08-next-step-portal.jpg,
+      dimensions: 790x1184,
+      content_sha256: 7e445ec90513be34a5fe8e937cae3357ccb4b7695a434a96612eab7ab23b4a61,
+      motifs: [threshold, decision, future],
+      status: IMPORTED_PRIVATE,
+    }
+usage_rules:
+  - 'use as style grounding and artistic reference, never as a logo or factual source'
+  - 'do not claim exclusive ownership or public reuse rights from presence in this gallery'
+  - 'do not crop away the central metaphor when used for internal comparison'
+  - 'new art should inherit principles, not trace or reproduce a reference composition'

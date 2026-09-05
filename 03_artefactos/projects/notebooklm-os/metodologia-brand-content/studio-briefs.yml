@@ -1,0 +1,161 @@
+schema_version: studio-brief-pack-v1
+profile_id: metodologia-brand-content-canon-v1
+briefs:
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-audio-v1,
+      type: audio,
+      audience: 'líderes de marca',
+      objective: 'explicar el canon en conversación',
+      thesis: 'la consistencia nace de autoridad y evidencia',
+      sourceIds: [NLS-BRAND-PROFILE, NLS-SOURCE-BUNDLE, NLS-BRAND-CONTENT-KB],
+      structure: ['apertura', 'tres decisiones', 'cierre'],
+      style: 'claro y conversacional',
+      duration: '6-8 minutos',
+      constraints: ['español', 'sin claims nuevos'],
+      acceptance: ['citas verificables', 'tesis explícita'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-video-v1,
+      type: video,
+      audience: 'equipos de contenido',
+      objective: 'mostrar el sistema de marca',
+      thesis: 'un canon pequeño mejora recuperabilidad',
+      sourceIds:
+        [
+          NLS-BRAND-PROFILE,
+          NLS-BRAND-TOKENS,
+          NLS-ASSET-USAGE-GUIDE,
+          NLS-BRAND-CONTENT-KB,
+          NLS-ART-GALLERY-CATALOG,
+        ],
+      structure: ['problema', 'sistema', 'demostración'],
+      style: 'visual y sobrio',
+      duration: '3-4 minutos',
+      constraints: ['sin retratos REVIEW', 'contraste accesible'],
+      acceptance: ['tipo video confirmado', 'fuentes citadas'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-infographic-v1,
+      type: infographic,
+      audience: 'creadores',
+      objective: 'resumir capas del canon',
+      thesis: 'cada capa tiene una autoridad distinta',
+      sourceIds:
+        [
+          NLS-BRAND-PROFILE,
+          NLS-SOURCE-BUNDLE,
+          NLS-ASSET-USAGE-GUIDE,
+          NLS-BRAND-CONTENT-KB,
+          NLS-ART-GALLERY-CATALOG,
+        ],
+      structure: ['jerarquía', 'flujo', 'gates'],
+      style: 'editorial',
+      duration: 'una página',
+      constraints: ['lectura móvil', 'sin datos inventados'],
+      acceptance: ['jerarquía visible', 'texto legible'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-slides-v1,
+      type: slide-deck,
+      audience: 'dirección',
+      objective: 'presentar Brand Content Studio',
+      thesis: 'la marca opera mejor como sistema gobernado',
+      sourceIds:
+        [
+          NLS-BRAND-PROFILE,
+          NLS-BRAND-TOKENS,
+          NLS-SOURCE-BUNDLE,
+          NLS-ASSET-USAGE-GUIDE,
+          NLS-BRAND-CONTENT-KB,
+          NLS-ART-GALLERY-CATALOG,
+        ],
+      structure: ['contexto', 'arquitectura', 'prueba', 'gates', 'decisión'],
+      style: 'ejecutivo',
+      duration: '5 diapositivas',
+      constraints: ['crear sucesor al revisar', 'no sobrescribir'],
+      acceptance: ['5 slides', 'trazabilidad'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-report-v1,
+      type: report,
+      audience: 'equipo MetodologIA',
+      objective: 'documentar el canon operativo',
+      thesis: 'fuentes compactas y explícitas superan volumen sin curación',
+      sourceIds:
+        [NLS-BRAND-PROFILE, NLS-SOURCE-BUNDLE, NLS-ASSET-USAGE-GUIDE, NLS-BRAND-CONTENT-KB],
+      structure: ['resumen', 'autoridades', 'gaps', 'recomendaciones'],
+      style: 'analítico',
+      duration: '4-6 páginas',
+      constraints: ['separar inferencias', 'declarar gaps'],
+      acceptance: ['claims trazables', 'gaps completos'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-flashcards-v1,
+      type: flashcards,
+      audience: 'nuevos colaboradores',
+      objective: 'aprender reglas del canon',
+      thesis: 'recordar decisiones reduce deriva',
+      sourceIds: [NLS-BRAND-PROFILE, NLS-BRAND-TOKENS, NLS-BRAND-CONTENT-KB],
+      structure: ['identidad', 'voz', 'visual', 'gates'],
+      style: 'didáctico',
+      duration: '12 tarjetas',
+      constraints: ['una idea por tarjeta', 'sin voz no aprobada'],
+      acceptance: ['12 tarjetas', 'respuesta verificable'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-quiz-v1,
+      type: quiz,
+      audience: 'equipo de contenido',
+      objective: 'evaluar aplicación del canon',
+      thesis: 'la comprensión se demuestra en decisiones',
+      sourceIds: [NLS-BRAND-PROFILE, NLS-BRAND-TOKENS, NLS-BRAND-CONTENT-KB],
+      structure: ['8 escenarios', 'respuesta', 'explicación'],
+      style: 'práctico',
+      duration: '8 preguntas',
+      constraints: ['sin preguntas ambiguas', 'citar regla'],
+      acceptance: ['8 preguntas', 'feedback por respuesta'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-table-v1,
+      type: data-table,
+      audience: 'operaciones',
+      objective: 'mapear autoridad por activo',
+      thesis: 'cada activo necesita estado derechos y owner',
+      sourceIds:
+        [NLS-BRAND-PROFILE, NLS-SOURCE-BUNDLE, NLS-ASSET-USAGE-GUIDE, NLS-BRAND-CONTENT-KB],
+      structure: ['activo', 'autoridad', 'estado', 'derechos', 'gate'],
+      style: 'operativo',
+      duration: 'una tabla',
+      constraints: ['sin locators privados', 'estado explícito'],
+      acceptance: ['columnas completas', 'cero APPROVED inferidos'],
+    }
+  - {
+      schemaVersion: studio-brief-v1,
+      briefId: brand-mindmap-v1,
+      type: mind-map,
+      audience: 'estrategas',
+      objective: 'visualizar relaciones del canon',
+      thesis: 'identidad evidencia activos y canales forman un sistema',
+      sourceIds:
+        [
+          NLS-BRAND-PROFILE,
+          NLS-BRAND-TOKENS,
+          NLS-SOURCE-BUNDLE,
+          NLS-ASSET-USAGE-GUIDE,
+          NLS-BRAND-CONTENT-KB,
+          NLS-ART-GALLERY-CATALOG,
+        ],
+      structure: ['identidad', 'evidencia', 'activos', 'canales', 'gates'],
+      style: 'sistémico',
+      duration: 'un mapa',
+      constraints: ['máximo 3 niveles', 'señalar gaps'],
+      acceptance: ['cinco ramas', 'gaps visibles'],
+    }
