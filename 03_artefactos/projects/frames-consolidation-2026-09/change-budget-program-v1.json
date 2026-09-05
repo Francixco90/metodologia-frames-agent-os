@@ -9,10 +9,10 @@
     "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
   },
   "limits": {
-    "targetFiles": 27,
-    "targetLoc": 671,
-    "hardFiles": 37,
-    "hardLoc": 839
+    "targetFiles": 28,
+    "targetLoc": 675,
+    "hardFiles": 38,
+    "hardLoc": 843
   },
   "partitions": [
     {
@@ -75,14 +75,15 @@
     {
       "id": "03-artefactos-projects-1",
       "paths": [
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/sandbox-probe.json",
         "03_artefactos/projects/frames-consolidation-2026-09/change-budget-program-v1.json",
         "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md"
       ],
       "limits": {
-        "targetFiles": 2,
-        "targetLoc": 184,
-        "hardFiles": 6,
-        "hardLoc": 253
+        "targetFiles": 3,
+        "targetLoc": 188,
+        "hardFiles": 7,
+        "hardLoc": 257
       }
     },
     {
@@ -162,5 +163,5 @@
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "74207b91e24e124b79ad2276362ca9aa3e1335249c90595168f22b4614d58125"
+  "canonicalSha256": "52ae84795f4a6ff6d40b035271d7493cd3f9129edeef1546535001fbd1776165"
 }
