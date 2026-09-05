@@ -15,6 +15,10 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
   Binaries enter only through Git LFS and `check-md-budgets` recognises LFS-managed paths.
   A hash-bound change-budget program (`frames-consolidation-2026-09`) replaces the per-PR
   budget on branch `codex/consolidation-2026-09` only. Nothing was pushed. [CONFIG]
+- **Generated artifacts gate (F9)** — `pnpm check:generated` (brand projections `--check`,
+  disposition ledger, ecosystem inventory, documentation portal) joins the `verify` chain
+  right after the budgets, so a hand-edited projection fails before any other gate runs.
+  `02_proceso/workflows/content` gains its governed `context.md` (56 public surfaces). [CODE]
 - **CI = verify (F8)** — `.github/workflows/validate.yml` runs one `pnpm verify` step and
   `scripts/check-ci-parity.ts` (wired into `check:repo`) fails when the workflow drifts from
   the `verify` chain. Vitest is split into `unit` and `media` projects: the case-longform

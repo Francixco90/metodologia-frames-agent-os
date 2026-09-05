@@ -4,6 +4,15 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## F9 · Generated artifacts regenerated and gated (2026-09-05)
+
+- `check:generated` in `verify`: `generate-brand-projections.ts --check` (new mode), ledger,
+  ecosystem inventory and documentation portal in check mode. Regeneration order when
+  Markdown changes: `docs:audit -- --write` → `ledger:generate` → `inventory:generate`. [CODE]
+- `CTX-CONTENT-LIBRARY` surface for `02_proceso/workflows/content` (schema literal and test
+  55 → 56). Dependency-audit receipt `RCP-DEP-PRODUCTION-20260905-001` inherited (scripts-only
+  `package.json` change, dependency set unchanged). [CONFIG]
+
 ## F8 · CI parity and media-grade test timeouts (2026-09-05)
 
 - `.github/workflows/validate.yml` → single `pnpm verify` step; `05_verificacion/scripts/check-ci-parity.ts`

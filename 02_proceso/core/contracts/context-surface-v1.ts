@@ -78,7 +78,7 @@ export const ContextSurfaceRegistryV1Schema = z
     source_of_truth: z.literal(true),
     projection_name: z.literal('context.md'),
     private_cabin: z.literal('work/private/CONTEXT.md'),
-    expected_non_skill_projections: z.literal(55),
+    expected_non_skill_projections: z.literal(56),
     expected_skill_projections: z.number().int().positive(),
     shards: z.array(portablePath).min(1),
     skill_shards: z.array(portablePath).default([]),

@@ -9,10 +9,10 @@
     "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
   },
   "limits": {
-    "targetFiles": 18,
-    "targetLoc": 534,
-    "hardFiles": 28,
-    "hardLoc": 688
+    "targetFiles": 25,
+    "targetLoc": 656,
+    "hardFiles": 35,
+    "hardLoc": 822
   },
   "partitions": [
     {
@@ -43,19 +43,33 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 96,
+        "targetLoc": 105,
         "hardFiles": 6,
-        "hardLoc": 156
+        "hardLoc": 166
+      }
+    },
+    {
+      "id": "02-proceso-core-1",
+      "paths": ["02_proceso/core/contracts/context-surface-v1.ts"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 2,
+        "hardFiles": 5,
+        "hardLoc": 53
       }
     },
     {
       "id": "02-proceso-governance-1",
-      "paths": ["02_proceso/governance/docs-budget-policy.yml"],
+      "paths": [
+        "02_proceso/governance/context-surfaces/registry.yml",
+        "02_proceso/governance/context-surfaces/workflows.yml",
+        "02_proceso/governance/docs-budget-policy.yml"
+      ],
       "limits": {
-        "targetFiles": 1,
-        "targetLoc": 14,
-        "hardFiles": 5,
-        "hardLoc": 66
+        "targetFiles": 3,
+        "targetLoc": 36,
+        "hardFiles": 7,
+        "hardLoc": 90
       }
     },
     {
@@ -66,9 +80,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 147,
+        "targetLoc": 183,
         "hardFiles": 6,
-        "hardLoc": 212
+        "hardLoc": 252
       }
     },
     {
@@ -87,13 +101,15 @@
         "05_verificacion/scripts/check-ci-parity.ts",
         "05_verificacion/scripts/check-md-budgets.ts",
         "05_verificacion/scripts/check-repo.ts",
+        "05_verificacion/scripts/context-surface-validation.ts",
+        "05_verificacion/scripts/generate-brand-projections.ts",
         "05_verificacion/scripts/lib/file-budget-git.ts"
       ],
       "limits": {
-        "targetFiles": 4,
-        "targetLoc": 76,
-        "hardFiles": 8,
-        "hardLoc": 134
+        "targetFiles": 6,
+        "targetLoc": 106,
+        "hardFiles": 10,
+        "hardLoc": 167
       }
     },
     {
@@ -102,13 +118,14 @@
         "05_verificacion/tests/fixtures/video-os-case-longform-coverage.fixture.ts",
         "05_verificacion/tests/fixtures/video-os-case-longform-preview-render.fixture.ts",
         "05_verificacion/tests/unit/check-ci-parity.test.ts",
+        "05_verificacion/tests/unit/core/context-surface-v1.test.ts",
         "05_verificacion/tests/unit/file-budget-git.test.ts"
       ],
       "limits": {
-        "targetFiles": 4,
-        "targetLoc": 83,
-        "hardFiles": 8,
-        "hardLoc": 142
+        "targetFiles": 5,
+        "targetLoc": 97,
+        "hardFiles": 9,
+        "hardLoc": 157
       }
     },
     {
@@ -116,9 +133,19 @@
       "paths": ["changelog.md"],
       "limits": {
         "targetFiles": 1,
-        "targetLoc": 18,
+        "targetLoc": 22,
         "hardFiles": 5,
-        "hardLoc": 70
+        "hardLoc": 75
+      }
+    },
+    {
+      "id": "package-json-1",
+      "paths": ["package.json"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 5,
+        "hardFiles": 5,
+        "hardLoc": 56
       }
     },
     {
@@ -133,5 +160,5 @@
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "da0b54f41e54e8a2e2bfa916ce684fab8f1f102b07f909fc402a202460c8a525"
+  "canonicalSha256": "489bc48121781a625750185ecdfd3750fa080073c8737efb4755874466841e4b"
 }

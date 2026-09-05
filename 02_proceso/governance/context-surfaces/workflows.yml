@@ -58,6 +58,26 @@ surfaces:
     privacy: private_after_route_lock
     children: []
     budget: {target_lines: 80, hard_lines: 120}
+  - context_id: CTX-CONTENT-LIBRARY
+    root: 02_proceso/workflows/content
+    kind: workflow
+    owner: content
+    applies_when: Un workflow R6 necesita átomos de contenido o el Markdown canónico compilado.
+    authority_refs: [02_proceso/workflows/content/types]
+    load_first: [02_proceso/workflows/content/build.ts]
+    load_on_demand: [02_proceso/workflows/content/notebooklm-binding.yml]
+    defer: [Átomos y Markdown no seleccionados por el workflow activo]
+    routes: [R6]
+    workflows: []
+    primary_skills: [content-os-core]
+    tools: [content:build]
+    read_set: [02_proceso/workflows/content/build.ts]
+    write_policy: {mode: generated_only, paths: [02_proceso/workflows/content/context.md]}
+    gates: [MW_BRIEF_APPROVED]
+    stop_rules: [Librería sin ruta propia, Compila solo bajo un workflow R6 activo]
+    privacy: public_only
+    children: []
+    budget: {target_lines: 80, hard_lines: 120}
   - context_id: CTX-MAINTENANCE
     root: 02_proceso/workflows/maintenance
     kind: workflow
