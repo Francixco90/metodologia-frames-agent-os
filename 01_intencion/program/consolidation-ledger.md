@@ -4,6 +4,19 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## Closure of Part A (2026-09-05)
+
+- `main` = `codex/consolidation-2026-09`; remotes `origin` (Francixco90) and `fork`
+  (JaviMetodologIA); nothing pushed. Object store repacked: 1 pack, 0 loose objects. [CODE]
+- Deleted after the preconditions passed (771/771 refs present in this repository, `git fsck`
+  clean, bundles and `SHA256SUMS` verified): 139 registered worktrees, 12 loose clones, the
+  separate store `frames-local-current-v1`, `.quarantine`, `.codex-trash`, the old canonical clone
+  and the Downloads zip snapshots. Kept untouched: `.frames-secure`, `worktrees/metodologia-brand-system-v3`
+  (repo site-metodologia), `worktrees/nivel-0-digital-brand-v1` (repo conoce-nivel-0), every
+  MetodologIA OS directory. [CODE]
+- Space: `~/Agentic_Space` 54 GB → 9.3 GB; volume free 123 GiB → 133 GiB (pnpm hard links mean
+  removed `node_modules` did not all translate into freed blocks). [CODE]
+
 ## Bases
 
 | Line                      | Remote                                        | Commit     | Tag                          |

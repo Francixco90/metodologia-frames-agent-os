@@ -1,6 +1,6 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "f322556af3b6a4607a6a224e16644cf44059af47062330ec446a983d7bb83fe2",
+  "repositoryTreeSha256": "a86a347053c73285baa11e2f960a005ce04e5951c5e5622a99adf080fec78aa7",
   "totalMarkdown": 2015,
   "auditedAuthored": 747,
   "classPaths": {
@@ -4759,9 +4759,9 @@
       "sourceRef": "01_intencion/program/consolidation-ledger.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "d250619df717b25b798c8493ff44555b81487cd31e45b85c0a2f559bfff86574",
-      "words": 732,
-      "lines": 70,
+      "sha256": "8bdfa8b4c22bedf8ae68f6a3014f6a4c985e4f7053d9f44c197889c71377c8d5",
+      "words": 842,
+      "lines": 83,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",

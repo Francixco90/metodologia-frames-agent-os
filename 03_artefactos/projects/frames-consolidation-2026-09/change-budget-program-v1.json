@@ -10,9 +10,9 @@
   },
   "limits": {
     "targetFiles": 10,
-    "targetLoc": 310,
+    "targetLoc": 323,
     "hardFiles": 20,
-    "hardLoc": 441
+    "hardLoc": 456
   },
   "partitions": [
     {
@@ -33,9 +33,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 74,
+        "targetLoc": 87,
         "hardFiles": 6,
-        "hardLoc": 132
+        "hardLoc": 146
       }
     },
     {
@@ -96,5 +96,5 @@
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "6127785a575013c09ae00cee78f5a1a626c0e20115c1b3be7127685bcce214c8"
+  "canonicalSha256": "f6840877b035f7fe1f844bad4e75fb0655942dbd964ba3b8acc60eebcfee3312"
 }
