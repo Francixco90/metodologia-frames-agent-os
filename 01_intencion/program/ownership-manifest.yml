@@ -27,6 +27,8 @@ writers:
     - projects/pilot-carousel-001/README.md
     - projects/pilot-carousel-001/project.yml
     - projects/agentic-workflow-adoption-v1/**
+    - projects/frames-consolidation-2026-09/**
+    - 01_intencion/program/consolidation-ledger.md
     - work/private/.gitkeep
   repo:
     - package.json

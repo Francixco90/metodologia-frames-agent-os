@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "b60cbb75a797b38826e74fc5d17ac01b5ee19004a689eb6306ae4ae1c11a706f",
-  "totalMarkdown": 2013,
-  "auditedAuthored": 745,
+  "repositoryTreeSha256": "f322556af3b6a4607a6a224e16644cf44059af47062330ec446a983d7bb83fe2",
+  "totalMarkdown": 2015,
+  "auditedAuthored": 747,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -104,6 +104,7 @@
       "01_intencion/ponytail/audit-report.md",
       "01_intencion/ponytail/verification-report.md",
       "01_intencion/program/README.md",
+      "01_intencion/program/consolidation-ledger.md",
       "01_intencion/program/content-atom-graph-v1.md",
       "01_intencion/program/execution-ledger.md",
       "01_intencion/program/formal-scope.md",
@@ -230,6 +231,7 @@
       "03_artefactos/projects/agentic-workflow-adoption-v1/public-port-authority-v1.md",
       "03_artefactos/projects/agentic-workflow-adoption-v1/socratic-debate.md",
       "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
+      "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/README.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--authority-routing-and-gates--v3.0.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--knowledge-document-standard--v3.0.md",
@@ -4746,6 +4748,32 @@
       }
     },
     {
+      "path": "01_intencion/program/consolidation-ledger.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/program/consolidation-ledger.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/program/consolidation-ledger.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d250619df717b25b798c8493ff44555b81487cd31e45b85c0a2f559bfff86574",
+      "words": 732,
+      "lines": 70,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/program/content-atom-graph-v1.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4809,7 +4837,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "97afb9a5dc0decb5f6f0ba14abfabdd78a0d119614bc59c14e14dfca3e633b9a",
+      "sha256": "501e163c6a465ed050f5c7747cac18cba4559c25a964959bd1c52d9be8177664",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -10808,6 +10836,32 @@
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:projects/frames-consolidation-2026-09/**",
+      "authorityRefs": [
+        "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730",
+      "words": 147,
+      "lines": 21,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -22028,7 +22082,7 @@
     }
   ],
   "summary": {
-    "keep": 730,
+    "keep": 732,
     "refactor": 0,
     "split": 1,
     "regenerate": 84,

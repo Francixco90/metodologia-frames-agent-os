@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: 3f87c812eac02509e20144cf220d792e87291dab2c6998424f6b9e11bd5d8336
-      current_words: 471
-      current_loc: 221
+      current_sha256: c7c914aa004aac6fcdcac7c97e5967e8b81d63994989477b96e46d5742d4eaa9
+      current_words: 475
+      current_loc: 223
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
