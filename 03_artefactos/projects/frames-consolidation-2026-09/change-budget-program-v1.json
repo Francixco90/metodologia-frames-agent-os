@@ -9,10 +9,10 @@
     "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
   },
   "limits": {
-    "targetFiles": 10,
-    "targetLoc": 323,
-    "hardFiles": 20,
-    "hardLoc": 456
+    "targetFiles": 18,
+    "targetLoc": 534,
+    "hardFiles": 28,
+    "hardLoc": 688
   },
   "partitions": [
     {
@@ -26,6 +26,16 @@
       }
     },
     {
+      "id": "github-workflows-1",
+      "paths": [".github/workflows/validate.yml"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 14,
+        "hardFiles": 5,
+        "hardLoc": 66
+      }
+    },
+    {
       "id": "01-intencion-program-1",
       "paths": [
         "01_intencion/program/consolidation-ledger.md",
@@ -33,9 +43,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 87,
+        "targetLoc": 96,
         "hardFiles": 6,
-        "hardLoc": 146
+        "hardLoc": 156
       }
     },
     {
@@ -56,9 +66,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 128,
+        "targetLoc": 147,
         "hardFiles": 6,
-        "hardLoc": 191
+        "hardLoc": 212
       }
     },
     {
@@ -74,27 +84,54 @@
     {
       "id": "05-verificacion-scripts-1",
       "paths": [
+        "05_verificacion/scripts/check-ci-parity.ts",
         "05_verificacion/scripts/check-md-budgets.ts",
+        "05_verificacion/scripts/check-repo.ts",
         "05_verificacion/scripts/lib/file-budget-git.ts"
       ],
       "limits": {
-        "targetFiles": 2,
-        "targetLoc": 22,
-        "hardFiles": 6,
-        "hardLoc": 75
+        "targetFiles": 4,
+        "targetLoc": 76,
+        "hardFiles": 8,
+        "hardLoc": 134
       }
     },
     {
       "id": "05-verificacion-tests-1",
-      "paths": ["05_verificacion/tests/unit/file-budget-git.test.ts"],
+      "paths": [
+        "05_verificacion/tests/fixtures/video-os-case-longform-coverage.fixture.ts",
+        "05_verificacion/tests/fixtures/video-os-case-longform-preview-render.fixture.ts",
+        "05_verificacion/tests/unit/check-ci-parity.test.ts",
+        "05_verificacion/tests/unit/file-budget-git.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 4,
+        "targetLoc": 83,
+        "hardFiles": 8,
+        "hardLoc": 142
+      }
+    },
+    {
+      "id": "changelog-md-1",
+      "paths": ["changelog.md"],
       "limits": {
         "targetFiles": 1,
-        "targetLoc": 12,
+        "targetLoc": 18,
         "hardFiles": 5,
-        "hardLoc": 64
+        "hardLoc": 70
+      }
+    },
+    {
+      "id": "vitest-config-ts-1",
+      "paths": ["vitest.config.ts"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 26,
+        "hardFiles": 5,
+        "hardLoc": 79
       }
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "f6840877b035f7fe1f844bad4e75fb0655942dbd964ba3b8acc60eebcfee3312"
+  "canonicalSha256": "da0b54f41e54e8a2e2bfa916ce684fab8f1f102b07f909fc402a202460c8a525"
 }

@@ -4,6 +4,24 @@ Append-only record of merged PRs and programa milestones (ADR 0027: the
 repo's only versioned temporal trace besides `04_estado/receipts/**` and
 `04_estado/tasks/**`). Newest entry first. Never rewrite past entries. [CONFIG]
 
+## 2026-09 — Consolidation into a single repository (Part A) and CI parity (F8)
+
+- **Consolidation merge** — `12c12351` merges the private line (`ba064ac7`, 58 commits:
+  brand-content packages, canon-v3 receipts) into the public line (`3f5b31d8`) with a real
+  merge commit that descends from both bases. NotebookLM OS keeps the public rewrite; private
+  brand-content enters as data; private canon-v3 code stays at tag `consolidation/base-private`
+  until it compiles against the public contracts. 19 `wip/*` branches preserve every
+  uncommitted worktree; dispositions live in `01_intencion/program/consolidation-ledger.md`.
+  Binaries enter only through Git LFS and `check-md-budgets` recognises LFS-managed paths.
+  A hash-bound change-budget program (`frames-consolidation-2026-09`) replaces the per-PR
+  budget on branch `codex/consolidation-2026-09` only. Nothing was pushed. [CONFIG]
+- **CI = verify (F8)** — `.github/workflows/validate.yml` runs one `pnpm verify` step and
+  `scripts/check-ci-parity.ts` (wired into `check:repo`) fails when the workflow drifts from
+  the `verify` chain. Vitest is split into `unit` and `media` projects: the case-longform
+  family validates real media through ffprobe/ffmpeg (about 2 s per test) and gets a 90 s
+  timeout instead of timing out under a full parallel run; the ffmpeg preview synthesis is
+  memoized per lavfi graph. Full suite: 236 files, 2166 tests, 0 timeouts. [CODE]
+
 ## 2026-08 — Method explainer contract and diagram candidate
 
 - **Aclaración de procedencia** — En la entrada inmediata siguiente, los

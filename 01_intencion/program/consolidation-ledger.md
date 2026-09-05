@@ -4,6 +4,14 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## F8 · CI parity and media-grade test timeouts (2026-09-05)
+
+- `.github/workflows/validate.yml` → single `pnpm verify` step; `05_verificacion/scripts/check-ci-parity.ts`
+  (in `check:repo`) fails on drift; unit test `check-ci-parity.test.ts`. [CODE]
+- `vitest.config.ts` projects `unit` (213 files) and `media` (22 case-longform files, 90 s
+  timeout); `video-os-case-longform-preview-render.fixture.ts` memoizes the ffmpeg preview per
+  lavfi graph. Full `pnpm verify`: 71 PASS, 236 test files, 2166 tests, 0 timeouts. [CODE]
+
 ## Closure of Part A (2026-09-05)
 
 - `main` = `codex/consolidation-2026-09`; remotes `origin` (Francixco90) and `fork`

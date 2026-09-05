@@ -37,16 +37,8 @@ jobs:
           ffprobe -version
           tesseract --version
       - run: pnpm install --frozen-lockfile
-      - run: pnpm check:repo
-      - run: pnpm check:md-budgets
+      # One step, one truth: CI runs the same aggregate gate as `pnpm verify` locally.
+      # scripts/check-ci-parity.ts fails check:repo if this workflow ever drifts from it.
+      - run: pnpm verify
         env:
           BUDGET_BASE_REF: ${{ github.event.pull_request.base.sha }}
-      - run: pnpm verify:contributions
-      - run: pnpm verify:skills
-      - run: pnpm verify:content-os
-      - run: pnpm verify:career
-      - run: pnpm verify:ai-runtime
-      - run: pnpm typecheck
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm format:check

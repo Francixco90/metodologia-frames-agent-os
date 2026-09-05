@@ -43,7 +43,31 @@ export default defineConfig({
     environment: 'node',
     globals: true,
     testTimeout: 10_000,
-    include: ['05_verificacion/tests/**/*.test.ts', '05_verificacion/tests/**/*.test.tsx'],
+    // Each project declares its own include; a root include would be merged into both.
+    // The case-longform family validates real media through ffprobe/ffmpeg on every test
+    // (about 2 s each in isolation); under a full parallel run it needs a media-grade
+    // timeout instead of the 10 s unit budget. No test is excluded by this split.
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'unit',
+          include: ['05_verificacion/tests/**/*.test.ts', '05_verificacion/tests/**/*.test.tsx'],
+          exclude: [
+            '**/node_modules/**',
+            '05_verificacion/tests/unit/video-os-case-longform-*.test.ts',
+          ],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'media',
+          include: ['05_verificacion/tests/unit/video-os-case-longform-*.test.ts'],
+          testTimeout: 90_000,
+        },
+      },
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json-summary'],

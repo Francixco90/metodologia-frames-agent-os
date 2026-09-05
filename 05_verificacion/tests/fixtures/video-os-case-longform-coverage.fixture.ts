@@ -1,4 +1,3 @@
-import {spawnSync} from 'node:child_process';
 import {copyFileSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -13,6 +12,7 @@ import {
   caseFixtureRoles as roles,
   caseFixtureSha as sha,
 } from './video-os-case-longform-tool.fixture.ts';
+import {synthesizePreview} from './video-os-case-longform-preview-render.fixture.ts';
 
 // [CONFIG] Pure synthetic authority fixture; this module registers no tests.
 export type CaseFixtureRef = {ref: string; sha256: string; bytes: number};
@@ -45,14 +45,7 @@ export const materializeCaseLongformGraphFixture = (staticPreview: boolean | 'ou
       : staticPreview === 'outside'
         ? "color=c=blue:s=1920x1080:r=24:d=1,drawbox=x='1000+200*t':y=700:w=100:h=100:c=red:t=fill"
         : "color=c=blue:s=1920x1080:r=24:d=1[bg];color=c=red:s=20x20:r=24:d=1[box];[bg][box]overlay=x='30+160*t':y=30:eval=frame:shortest=1";
-  // prettier-ignore
-  const result = spawnSync('ffmpeg', [
-    '-v', 'error', '-f', 'lavfi', '-i', visual,
-    '-f', 'lavfi', '-i', 'sine=frequency=600:sample_rate=48000:duration=1',
-    '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'mpeg4', '-q:v', '5',
-    '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-shortest', '-y', resolve(root, 'preview.mp4'),
-  ], {encoding: 'utf8'});
-  if (result.status !== 0) throw new Error(result.stderr);
+  writeFileSync(resolve(root, 'preview.mp4'), synthesizePreview(visual));
   const preview = caseFixtureRef(root, 'preview.mp4');
   const staged = roles.map((role, index) => {
     copyFileSync(resolve(root, preview.ref), resolve(root, `${role}.mp4`));
