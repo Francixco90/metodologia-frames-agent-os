@@ -4,6 +4,20 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## F14 · Handlers for R1, R2, R3, R3-LOOSE and R5 (2026-09-05)
+
+- `02_proceso/workflows/core/governed-legacy-routes-v1.ts`: four planning handlers in the
+  maintenance pattern (zod strict input, `request_hash`, `ROUTED | NEEDS_INPUT`, declared write
+  set, `read_only_until_<gate>`); R2 lists candidates and never chooses. Wired into
+  `route-intent.mjs` (intent domains `project`, `project-continue`, `task`, `eval`) and the
+  first-turn gateway, which now resolves governed routes through handlers instead of the
+  `legacy-route-block-v1.ts` coverage-gap envelope (file removed). [CODE]
+- Gates `PJ_SCAFFOLD_APPROVED`, `PJ_RESUME_CONFIRMED`, `TK_CONTRACT_APPROVED`, `EV_RUN_APPROVED`
+  (manual, fail-closed; 72 → 76) and the `PJ_ | TK_ | EV_` prefixes in `commands-schema.ts`;
+  `router.yml` productive handlers active with stop gates; `check-experience-os` expects all
+  twelve routes active. Materialization (scaffold, task contract, eval run) stays out of scope:
+  the handlers plan, the gates authorize. [CONFIG]
+
 ## F13 · Vendor packs and source locks (2026-09-05)
 
 - Finding: 22 of the 23 locked vendor packs are `authority_refs` of first-party hash-bound skills

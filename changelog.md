@@ -13,6 +13,9 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
   dispositions and blocking causes live in `01_intencion/program/consolidation-ledger.md`.
   Binaries enter only through Git LFS (`check-md-budgets` recognises LFS paths) and a
   hash-bound change-budget program governs branch `codex/consolidation-2026-09`. No push. [CONFIG]
+- **Governed routes (F14)** — R1, R2, R3, R3-LOOSE and R5 gain read-only planning handlers
+  behind four new manual gates; the gateway no longer emits a `coverage_gap` envelope for
+  them and R2 lists candidates without choosing. [CODE]
 - **Vendor locks (F13)** — `pnpm vendor:check` verifies untracked vendor packs against their
   source locks and `vendor:sync` restores one from its pinned commit. 22 packs stay tracked
   because first-party skills cite them as `authority_refs`; only `gsap-skills` leaves the tree.

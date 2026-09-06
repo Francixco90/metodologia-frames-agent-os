@@ -10,18 +10,19 @@ import {
   LOCAL_EXTENSION_SIGNALS_V1,
   NOTEBOOKLM_OS_SIGNALS_V1,
   RESUME_SIGNALS_V1,
-  classifyGovernedLegacyRouteV1,
   hasFirstTurnSignalV1,
   normalizeFirstTurnPromptV1,
 } from './first-turn-signals-v1.ts';
-import {buildUnsupportedLegacyRouteEnvelopeV1} from './legacy-route-block-v1.ts';
+import {GOVERNED_REASON_CODES_V1, selectGovernedRouteV1} from './governed-legacy-routes-v1.ts';
 import {
   resolveGatewayRouteV1,
   type FirstTurnGatewayInputV1,
+  type GatewayHandledRouteV1,
   type GatewayRouteHandlerV1,
 } from './gateway-route-outcome-v1.ts';
 export type {
   FirstTurnGatewayInputV1,
+  GatewayHandledRouteV1,
   GatewayResumeCandidateV1,
   GatewayRouteHandlerV1,
   GatewayRoutePlanV1,
@@ -40,7 +41,7 @@ export function runFirstTurnGatewayV1(
   input: FirstTurnGatewayInputV1,
   handlers: Readonly<
     Record<'R6' | 'R7', GatewayRouteHandlerV1> &
-      Partial<Record<'R8' | 'R9' | 'R10', GatewayRouteHandlerV1>>
+      Partial<Record<Exclude<GatewayHandledRouteV1, 'R6' | 'R7'>, GatewayRouteHandlerV1>>
   >,
 ): AssistanceEnvelopeV1 {
   const prompt = normalizeFirstTurnPromptV1(input.prompt);
@@ -96,15 +97,19 @@ export function runFirstTurnGatewayV1(
       state: 'RESUMABLE',
     });
   }
-  const legacyRoute = classifyGovernedLegacyRouteV1(prompt, input.activeProjectId !== undefined);
+  const legacyRoute = selectGovernedRouteV1(
+    prompt,
+    input.explicitRoute,
+    input.activeProjectId !== undefined,
+  );
   if (legacyRoute !== null) {
-    return buildUnsupportedLegacyRouteEnvelopeV1({
-      routeId: legacyRoute,
-      requestHash,
-      understoodOutcome,
-      knownInputs: common.knownInputs,
-      sensitivity: common.sensitivity,
-    });
+    const reasonCode = GOVERNED_REASON_CODES_V1[legacyRoute];
+    const context = {...common, understoodOutcome, routeId: legacyRoute, reasonCode};
+    return resolveGatewayRouteV1(
+      handlers[legacyRoute],
+      {...input, requestHash, routeId: legacyRoute},
+      context,
+    );
   }
   const contentMatch =
     input.explicitRoute === 'R6' ||

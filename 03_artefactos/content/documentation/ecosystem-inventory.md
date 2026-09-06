@@ -15,7 +15,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 - COMMAND: 106
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 72
+- GATE: 76
 - RENDERER: 5
 - ROUTE: 12
 - SKILL: 185
@@ -561,6 +561,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | CR_PACKAGE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | CR_SUBMISSION_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | DOCS_TRANSVERSAL_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | EV_RUN_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_RELEASE_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | EXP_TRAINER_RUNTIME_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -614,6 +615,8 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | NLM_SHARE_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | NLM_STUDIO_GENERATION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | NLM_SYNC_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | PJ_RESUME_CONFIRMED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | PJ_SCAFFOLD_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_ARCHITECTURE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_CANDIDATE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_CASE_READY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -621,6 +624,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | SSS_RELEASE_CANDIDATE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_REVIEW_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | SSS_STATIC_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | TK_CONTRACT_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | VO_DIRECTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | VO_HANDOFF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | VO_INTAKE_COMPLETE | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -1020,4 +1024,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `794e3eebc491780a87f014f1ee4976e1c77ccf33771bcae86af7951058c69c10`.
+Hash de fuentes: `89e30dd5abbbe496d19b0fbabee3eeac0371bd5cae2df40116ea934b5dc5a218`.

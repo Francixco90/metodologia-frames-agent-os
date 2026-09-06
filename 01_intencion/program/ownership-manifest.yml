@@ -179,6 +179,7 @@ writers:
     - 05_verificacion/tests/unit/check-md-budgets.test.ts
     - 05_verificacion/tests/unit/check-ci-parity.test.ts
     - 05_verificacion/tests/unit/check-vendor-locks.test.ts
+    - 05_verificacion/tests/unit/governed-legacy-routes-v1.test.ts
     - 05_verificacion/tests/unit/change-program-budget.test.ts
     - 05_verificacion/tests/unit/docs-budget-v2.test.ts
     - 05_verificacion/tests/unit/file-budget-git.test.ts

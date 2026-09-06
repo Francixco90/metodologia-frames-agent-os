@@ -137,10 +137,9 @@ export const checkExperienceOs = (root = ROOT): string[] => {
   const expectedRoutes = [...EXPERIENCE_ROUTE_IDS_V1].sort();
   if (
     JSON.stringify(handlerRoutes) !== JSON.stringify(expectedRoutes) ||
-    ['R0', 'R4', 'R6', 'R7', 'R8', 'R9', 'R10'].some(
+    ['R0', 'R1', 'R2', 'R3', 'R3-LOOSE', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10'].some(
       (route) => handlerStatus[route] !== 'active',
-    ) ||
-    ['R1', 'R2', 'R3', 'R3-LOOSE', 'R5'].some((route) => handlerStatus[route] !== 'coverage_gap')
+    )
   ) {
     errors.push('EXP-GOV003 productive handler availability drift');
   }

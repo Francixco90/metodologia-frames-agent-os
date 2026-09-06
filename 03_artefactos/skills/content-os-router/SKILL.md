@@ -1,7 +1,7 @@
 ---
 name: content-os-router
 description: This skill should be used when the user asks to create, improve, plan or route content, generate video from a URL or GitHub PR, or dispatch a source-to-content capability.
-version: 0.8.2
+version: 0.9.0
 license: LicenseRef-MetodologIA-Internal
 compatibility: Preserves router-intent-v1 and content-intent-v2. Adds a deterministic top-level R6/R7 dispatcher; CareerIntentV1 remains owned by career-application-orchestrator.
 metadata:
