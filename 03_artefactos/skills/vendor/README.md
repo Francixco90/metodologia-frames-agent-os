@@ -1,18 +1,8 @@
-# skills/vendor/ — Zona de aislamiento de fuentes externas auditadas
-#
-# Este directorio contiene copias de referencia de skills externas.
-# Los vendors NO son dependencias obligatorias del harness.
-# Los vendors NO se ejecutan automáticamente.
-# Los vendors NO sobrescriben las skills propias en skills/<name>/.
-#
-# Para actualizar un vendor:
-#   1. Re-auditar la nueva versión (ver docs/scroll-skills/audit-*.md)
-#   2. Actualizar el commit en docs/scroll-skills/source-lock.json
-#   3. Recalcular hashes de archivos críticos
-#   4. Copiar solo archivos de texto (nunca binarios ni instaladores)
-#
-# No se incluyen:
-#   - binarios (.mp4, .png, .webp, .gif, .glb, .wasm)
-#   - instaladores (bin/install.mjs)
-#   - templates completos de framework (templates/nextjs/)
-#   - node_modules
+# Vendor packs
+
+Third-party skill packs whose files first-party skills cite as `authority_refs` stay tracked here
+and are governed by the hash-bound skill registries (SKL-H03-004 / SKL-V2-008 `stat` every ref).
+Packs nobody cites (`gsap-skills`) are not tracked: `pnpm vendor:sync <pack>` re-materializes one
+from its `01_intencion/<pack>/source-lock.json` and `pnpm vendor:check` (part of `pnpm verify`)
+verifies materialized, untracked packs against their locks, failing closed on drift. The byte
+archive as of 2026-09-05 lives in the local repository `frames-vendor-archive`. [CONFIG]

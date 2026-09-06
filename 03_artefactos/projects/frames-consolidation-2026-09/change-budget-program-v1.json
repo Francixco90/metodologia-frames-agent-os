@@ -9,20 +9,20 @@
     "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
   },
   "limits": {
-    "targetFiles": 28,
-    "targetLoc": 685,
-    "hardFiles": 38,
-    "hardLoc": 854
+    "targetFiles": 32,
+    "targetLoc": 986,
+    "hardFiles": 42,
+    "hardLoc": 1185
   },
   "partitions": [
     {
-      "id": "gitattributes-1",
-      "paths": [".gitattributes"],
+      "id": "root-config-1",
+      "paths": [".gitattributes", ".gitignore", "changelog.md", "package.json", "vitest.config.ts"],
       "limits": {
-        "targetFiles": 1,
-        "targetLoc": 4,
-        "hardFiles": 5,
-        "hardLoc": 55
+        "targetFiles": 5,
+        "targetLoc": 60,
+        "hardFiles": 9,
+        "hardLoc": 116
       }
     },
     {
@@ -43,9 +43,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 122,
+        "targetLoc": 142,
         "hardFiles": 6,
-        "hardLoc": 185
+        "hardLoc": 207
       }
     },
     {
@@ -81,9 +81,9 @@
       ],
       "limits": {
         "targetFiles": 3,
-        "targetLoc": 189,
+        "targetLoc": 162,
         "hardFiles": 7,
-        "hardLoc": 258
+        "hardLoc": 229
       }
     },
     {
@@ -102,16 +102,17 @@
         "05_verificacion/scripts/check-ci-parity.ts",
         "05_verificacion/scripts/check-md-budgets.ts",
         "05_verificacion/scripts/check-repo.ts",
+        "05_verificacion/scripts/check-vendor-locks.ts",
         "05_verificacion/scripts/context-surface-validation.ts",
         "05_verificacion/scripts/generate-brand-projections.ts",
         "05_verificacion/scripts/lib/file-budget-git.ts",
         "05_verificacion/scripts/lib/h03-lock-succession.mjs"
       ],
       "limits": {
-        "targetFiles": 7,
-        "targetLoc": 114,
-        "hardFiles": 11,
-        "hardLoc": 176
+        "targetFiles": 8,
+        "targetLoc": 312,
+        "hardFiles": 12,
+        "hardLoc": 394
       }
     },
     {
@@ -121,47 +122,19 @@
         "05_verificacion/tests/fixtures/video-os-case-longform-preview-render.fixture.ts",
         "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
         "05_verificacion/tests/unit/check-ci-parity.test.ts",
+        "05_verificacion/tests/unit/check-vendor-locks.test.ts",
         "05_verificacion/tests/unit/core/context-surface-v1.test.ts",
+        "05_verificacion/tests/unit/core/documentation-inventory.test.ts",
         "05_verificacion/tests/unit/file-budget-git.test.ts"
       ],
       "limits": {
-        "targetFiles": 6,
-        "targetLoc": 103,
-        "hardFiles": 10,
-        "hardLoc": 164
-      }
-    },
-    {
-      "id": "changelog-md-1",
-      "paths": ["changelog.md"],
-      "limits": {
-        "targetFiles": 1,
-        "targetLoc": 14,
-        "hardFiles": 5,
-        "hardLoc": 66
-      }
-    },
-    {
-      "id": "package-json-1",
-      "paths": ["package.json"],
-      "limits": {
-        "targetFiles": 1,
-        "targetLoc": 5,
-        "hardFiles": 5,
-        "hardLoc": 56
-      }
-    },
-    {
-      "id": "vitest-config-ts-1",
-      "paths": ["vitest.config.ts"],
-      "limits": {
-        "targetFiles": 1,
-        "targetLoc": 26,
-        "hardFiles": 5,
-        "hardLoc": 79
+        "targetFiles": 8,
+        "targetLoc": 202,
+        "hardFiles": 12,
+        "hardLoc": 273
       }
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "dc4d1af6cae6d247ffd5fa361e9a5d3242018288e35052a258405e0ae0a8d327"
+  "canonicalSha256": "b74af9f2a8a2ba1509480981739861418151fce91c0c3b6d040f9d90340d5cd8"
 }

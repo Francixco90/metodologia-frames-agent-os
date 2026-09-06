@@ -1,0 +1,28 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-017
+supersedes_receipt_id: H03-LOCK-SUCCESSION-016
+recorded_at: '2026-09-05T00:00:00Z'
+approval_phrase: go
+approval_scope: frames_consolidation_f13_vendor_locks_gate_without_dependency_change
+previous:
+  package_sha256: 9e16d8d3124d0f0b295ebe6ec84d7e45c34877eb3c0a3b52e55a1427b579349e
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+current:
+  package_sha256: 7890aa98e2fd16d857c1bbc68162fec250e8d707f08199376cc4c9d405e1f246
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: false
+dependency_set: []
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20260905-002.json
+  sha256: 060858d573230292e467c8a2e702e458ddde8a38d0a4db5adc467ac06946ccdb
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: inherited:no-dependency-change
+  status: passed
+rollback:
+  strategy: restore_pre_f13_package_scripts_and_retrack_vendor_packs
+  expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

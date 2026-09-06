@@ -2,7 +2,7 @@
   "schemaVersion": "ecosystem-inventory-v1",
   "inventoryId": "ECO-PUBLIC-V1",
   "scope": "PUBLIC",
-  "sourceSha256": "203f537a5a0627c73f43e1c9f6b354bca8a1b525e48b7455cb2a273a56dc91fa",
+  "sourceSha256": "794e3eebc491780a87f014f1ee4976e1c77ccf33771bcae86af7951058c69c10",
   "items": [
     {"kind":"AGENT","id":"RT-01","ref":"02_proceso/agents/RT-01/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"AGENT","id":"RT-02","ref":"02_proceso/agents/RT-02/contract.yml","scope":"CANONICAL","state":"ACTIVE"},
@@ -400,6 +400,8 @@
     {"kind":"COMMAND","id":"test:unit","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"trainer","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"typecheck","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"COMMAND","id":"vendor:check","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
+    {"kind":"COMMAND","id":"vendor:sync","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"verify:ai-runtime","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"verify:atoms","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},
     {"kind":"COMMAND","id":"verify:brand","ref":"package.json","scope":"CANONICAL","state":"ACTIVE"},

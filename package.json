@@ -112,7 +112,7 @@
     "slice:verify-compat": "node --import tsx scripts/build-vertical-slice.ts --verify-existing",
     "verify:ai-runtime": "node --import tsx scripts/check-ai-runtime.ts",
     "verify:instructions": "pnpm docs:audit && pnpm check:context && pnpm check:host-adapters",
-    "verify": "pnpm check:repo && pnpm check:atemporal && pnpm check:md-budgets && pnpm check:generated && pnpm verify:instructions && pnpm verify:docs && pnpm verify:creation-doc && pnpm verify:atoms && pnpm verify:renderers && pnpm verify:brand && pnpm verify:orchestration && pnpm verify:carousel && pnpm verify:content-matrix && pnpm verify:skills && pnpm verify:content-os && pnpm verify:notebooklm-os && pnpm verify:career-design && pnpm verify:career && pnpm verify:video-os && pnpm verify:multimedia && pnpm verify:ai-runtime && pnpm verify:dependencies && pnpm slice:verify-compat && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
+    "verify": "pnpm check:repo && pnpm check:atemporal && pnpm check:md-budgets && pnpm check:generated && pnpm vendor:check && pnpm verify:instructions && pnpm verify:docs && pnpm verify:creation-doc && pnpm verify:atoms && pnpm verify:renderers && pnpm verify:brand && pnpm verify:orchestration && pnpm verify:carousel && pnpm verify:content-matrix && pnpm verify:skills && pnpm verify:content-os && pnpm verify:notebooklm-os && pnpm verify:career-design && pnpm verify:career && pnpm verify:video-os && pnpm verify:multimedia && pnpm verify:ai-runtime && pnpm verify:dependencies && pnpm slice:verify-compat && pnpm typecheck && pnpm lint && pnpm test && pnpm format:check",
     "verify:media": "pnpm remotion:inspect",
     "verify:multimedia": "node --import tsx scripts/check-multimedia-capabilities.ts",
     "bootstrap": "pnpm install && pnpm check:toolchain",
@@ -121,7 +121,9 @@
     "task:ongoing": "node --import tsx scripts/ongoing-projects.ts",
     "task:run-check": "/bin/sh scripts/run-check-safe.sh",
     "report": "node --import tsx scripts/doctor.ts",
-    "check:generated": "node --import tsx scripts/generate-brand-projections.ts --check && node --import tsx scripts/generate-file-disposition-ledger.ts && node --import tsx 05_verificacion/scripts/generate-ecosystem-inventory.ts && node --import tsx 02_proceso/workflows/documentation/generate.ts"
+    "check:generated": "node --import tsx scripts/generate-brand-projections.ts --check && node --import tsx scripts/generate-file-disposition-ledger.ts && node --import tsx 05_verificacion/scripts/generate-ecosystem-inventory.ts && node --import tsx 02_proceso/workflows/documentation/generate.ts",
+    "vendor:check": "node --import tsx 05_verificacion/scripts/check-vendor-locks.ts",
+    "vendor:sync": "node --import tsx 05_verificacion/scripts/check-vendor-locks.ts --sync"
   },
   "dependencies": {
     "@react-three/fiber": "9.2.0",

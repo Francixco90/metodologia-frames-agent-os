@@ -4,6 +4,25 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## F13 · Vendor packs and source locks (2026-09-05)
+
+- Finding: 22 of the 23 locked vendor packs are `authority_refs` of first-party hash-bound skills
+  (gstack 54 skills, hyperframes 26, genjutsu 17, superpowers 14, remotion-publisher 11, …) and
+  `check-creation-v3-skills` / `check-instagram-v2-skills` `stat` those files. Extracting them
+  breaks the authority model, so they stay tracked; only the uncited `gsap-skills` (220 KB)
+  leaves the tree. The 63 MB question moves to a follow-up program: either registries bind the
+  lock's hash instead of the bytes, or vendor stays in tree by design. [CODE]
+- Tooling landed: `05_verificacion/scripts/check-vendor-locks.ts` — `pnpm vendor:check` (in
+  `verify`) verifies untracked materialized packs against their locks (tracked packs reported as
+  registry-governed, absent packs allowed) and `pnpm vendor:sync <pack>` re-materializes from the
+  pinned upstream commit; unit test with a local upstream fixture; byte archive
+  `~/Agentic_Space/frames-vendor-archive` (26 packs + locks, no remote). [CODE]
+- Pre-existing lock drift surfaced: `cinematic-scroll` (15 files), `scroll-world` (7) and
+  `crawl4ai-skill/references/content-filters.md` do not match their recorded hashes; locks not
+  rewritten. Coverage gap until re-audit. [CODE]
+- Receipts `RCP-DEP-PRODUCTION-20260905-002` and `H03-LOCK-SUCCESSION-017` (scripts-only
+  `package.json` change); sandbox probe rebound. [CONFIG]
+
 ## F10 · Evaluation of the `wip/*` branches (2026-09-05)
 
 Cherry-pick and budget analysis against `main` after F9 (`c5fdb38f`). No branch lands in this

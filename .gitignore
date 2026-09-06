@@ -77,3 +77,8 @@ tmp/
 !.agents/skills/frames-assist/**
 !.agents/plugins/
 !.agents/plugins/marketplace.json
+
+# Vendor packs cited as authority_refs by first-party skills stay tracked (hash-bound);
+# uncited packs are materialized from 01_intencion/<pack>/source-lock.json (pnpm vendor:sync)
+# and verified by pnpm vendor:check.
+03_artefactos/skills/vendor/gsap-skills/

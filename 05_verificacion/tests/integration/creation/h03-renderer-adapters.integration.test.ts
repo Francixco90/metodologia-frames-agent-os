@@ -79,11 +79,11 @@ describe('H-03 renderer adapters integration', () => {
       temporary_outputs_versioned?: boolean;
     };
 
-    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-016');
-    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-015');
+    expect(succession.receipt_id).toBe('H03-LOCK-SUCCESSION-017');
+    expect(succession.supersedes_receipt_id).toBe('H03-LOCK-SUCCESSION-016');
     expect(succession.approval_phrase).toBe('go');
     expect(succession.approval_scope).toBe(
-      'frames_consolidation_f9_generated_artifacts_gate_without_dependency_change',
+      'frames_consolidation_f13_vendor_locks_gate_without_dependency_change',
     );
     expect(succession.dependency_change).toBe(false);
     expect(succession.previous?.lock_sha256).toBe(verifiedSuccession.currentLockSha256);

@@ -13,6 +13,10 @@ repo's only versioned temporal trace besides `04_estado/receipts/**` and
   dispositions and blocking causes live in `01_intencion/program/consolidation-ledger.md`.
   Binaries enter only through Git LFS (`check-md-budgets` recognises LFS paths) and a
   hash-bound change-budget program governs branch `codex/consolidation-2026-09`. No push. [CONFIG]
+- **Vendor locks (F13)** — `pnpm vendor:check` verifies untracked vendor packs against their
+  source locks and `vendor:sync` restores one from its pinned commit. 22 packs stay tracked
+  because first-party skills cite them as `authority_refs`; only `gsap-skills` leaves the tree.
+  Pre-existing lock drift in three packs is recorded, not rewritten. [CODE]
 - **Verify hardening** — CI runs one `pnpm verify` step guarded by `check-ci-parity.ts`;
   vitest splits `unit` and `media` projects (case-longform media tests, 90 s); `check:generated`
   gates brand projections, ledger, inventory and portal; `02_proceso/workflows/content`

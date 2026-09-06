@@ -18,7 +18,7 @@ describe('DocumentationInventoryV1', () => {
     expect(classified).toBe(inventory.totalMarkdown);
     expect(inventory.totalMarkdown).toBeGreaterThanOrEqual(1602);
     expect(inventory.auditedAuthored).toBe(stored.auditedAuthored);
-    expect(inventory.classPaths.vendor).toHaveLength(975);
+    expect(inventory.classPaths.vendor).toHaveLength(961);
     expect(inventory.classPaths.generated).toEqual(
       expect.arrayContaining([
         '01_intencion/program/file-disposition-ledger.md',
