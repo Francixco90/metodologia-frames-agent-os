@@ -10,9 +10,9 @@
   },
   "limits": {
     "targetFiles": 28,
-    "targetLoc": 675,
+    "targetLoc": 685,
     "hardFiles": 38,
-    "hardLoc": 843
+    "hardLoc": 854
   },
   "partitions": [
     {
@@ -43,9 +43,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 105,
+        "targetLoc": 122,
         "hardFiles": 6,
-        "hardLoc": 166
+        "hardLoc": 185
       }
     },
     {
@@ -81,9 +81,9 @@
       ],
       "limits": {
         "targetFiles": 3,
-        "targetLoc": 188,
+        "targetLoc": 189,
         "hardFiles": 7,
-        "hardLoc": 257
+        "hardLoc": 258
       }
     },
     {
@@ -136,9 +136,9 @@
       "paths": ["changelog.md"],
       "limits": {
         "targetFiles": 1,
-        "targetLoc": 22,
+        "targetLoc": 14,
         "hardFiles": 5,
-        "hardLoc": 75
+        "hardLoc": 66
       }
     },
     {
@@ -163,5 +163,5 @@
     }
   ],
   "perFileLineCaps": [],
-  "canonicalSha256": "52ae84795f4a6ff6d40b035271d7493cd3f9129edeef1546535001fbd1776165"
+  "canonicalSha256": "dc4d1af6cae6d247ffd5fa361e9a5d3242018288e35052a258405e0ae0a8d327"
 }
