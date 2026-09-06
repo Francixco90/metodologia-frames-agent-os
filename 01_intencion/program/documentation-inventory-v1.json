@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "8d7d09ecd3fbb246cfbdec10cdb03bdff59a1bd538557d73b4dd58b2e20ada3a",
-  "totalMarkdown": 2002,
-  "auditedAuthored": 747,
+  "repositoryTreeSha256": "c4ab2e3ef2750e8251957629a36c8f2f54b8c2a4d8c4bcfc0dc0ef198fae3b33",
+  "totalMarkdown": 2003,
+  "auditedAuthored": 748,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -232,6 +232,7 @@
       "03_artefactos/projects/agentic-workflow-adoption-v1/socratic-debate.md",
       "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
       "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+      "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/README.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--authority-routing-and-gates--v3.0.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/knowledge-base/00-control/00-control--knowledge-document-standard--v3.0.md",
@@ -4746,9 +4747,9 @@
       "sourceRef": "01_intencion/program/consolidation-ledger.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c5033e06f138708f64aa0aa97f11215d604469ca6c085b9f1529fddeae16fd09",
-      "words": 1513,
-      "lines": 150,
+      "sha256": "0787b68849f78f1e7282948b1dac903da60c2d7f5ccd251cf310a750f7fdbbb2",
+      "words": 1619,
+      "lines": 161,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -10841,6 +10842,32 @@
       "sha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730",
       "words": 147,
       "lines": 21,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:projects/frames-consolidation-2026-09/**",
+      "authorityRefs": [
+        "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "e702224cd0b7920df610addb1c9ea267f4a41cca956e2c1c64fab90b0cc712f3",
+      "words": 857,
+      "lines": 98,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -22053,9 +22080,9 @@
       "sourceRef": "changelog.md",
       "derivatives": [],
       "lifecycle": "frozen",
-      "sha256": "e508659e9762dd4b5baa1613a4ea202d071d84ba6657e067d3f46960b11371ae",
-      "words": 2458,
-      "lines": 312,
+      "sha256": "ddb43e9e31c83c55626fe347277b132be93f663071ff4b1f0eff719133980983",
+      "words": 2495,
+      "lines": 315,
       "score": 100,
       "threshold": 80,
       "decision": "FREEZE",
@@ -22069,7 +22096,7 @@
     }
   ],
   "summary": {
-    "keep": 732,
+    "keep": 733,
     "refactor": 0,
     "split": 1,
     "regenerate": 85,

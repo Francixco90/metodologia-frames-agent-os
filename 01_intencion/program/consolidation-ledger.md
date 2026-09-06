@@ -4,6 +4,17 @@ Append-only record of the 2026-09-05 consolidation that produced this repository
 (`frames-contentos`) from three divergent Git lines and 22 worktrees with
 uncommitted work. Newest entry first. Never rewrite past entries. [CONFIG]
 
+## Debate · best path after the consolidation (2026-09-05)
+
+Socratic debate (thesis, antithesis, evidence, elimination by contradiction, synthesis) recorded in
+`03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md`. Decisions:
+D1 symlink removal as a three-series program (fs-literal codemod → single `repoPath` resolver at the
+`stat` boundaries → delete symlinks behind a negative test), confidence 0.95; D2 no physical registry
+merge (coherence already gated by `reconcile-skill-registries.ts`), 0.96; D3 `wip/*` triage into
+series by value, archive `cv-dsf-v1` and `unattended-state-v1/v2`, 0.95; D4 private LFS binaries
+stay out of the public PR through a `-public` branch, final rights decision human, 0.90 → 0.95 after
+that decision; D5 one PR per destination, fork first then public, 0.95. [DOC]
+
 ## F14 · Handlers for R1, R2, R3, R3-LOOSE and R5 (2026-09-05)
 
 - `02_proceso/workflows/core/governed-legacy-routes-v1.ts`: four planning handlers in the

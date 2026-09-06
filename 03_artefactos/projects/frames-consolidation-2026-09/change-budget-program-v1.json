@@ -9,10 +9,10 @@
     "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
   },
   "limits": {
-    "targetFiles": 52,
-    "targetLoc": 1528,
-    "hardFiles": 62,
-    "hardLoc": 1781
+    "targetFiles": 53,
+    "targetLoc": 1640,
+    "hardFiles": 63,
+    "hardLoc": 1905
   },
   "partitions": [
     {
@@ -27,9 +27,9 @@
       ],
       "limits": {
         "targetFiles": 6,
-        "targetLoc": 66,
+        "targetLoc": 69,
         "hardFiles": 10,
-        "hardLoc": 123
+        "hardLoc": 126
       }
     },
     {
@@ -50,9 +50,9 @@
       ],
       "limits": {
         "targetFiles": 2,
-        "targetLoc": 157,
+        "targetLoc": 168,
         "hardFiles": 6,
-        "hardLoc": 223
+        "hardLoc": 235
       }
     },
     {
@@ -101,13 +101,14 @@
       "paths": [
         "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/sandbox-probe.json",
         "03_artefactos/projects/frames-consolidation-2026-09/change-budget-program-v1.json",
-        "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md"
+        "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+        "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md"
       ],
       "limits": {
-        "targetFiles": 3,
-        "targetLoc": 227,
-        "hardFiles": 7,
-        "hardLoc": 300
+        "targetFiles": 4,
+        "targetLoc": 325,
+        "hardFiles": 8,
+        "hardLoc": 408
       }
     },
     {
@@ -201,5 +202,5 @@
       "rationale": "Governed routes R1-R5 resolve through handlers in the same gateway branch structure as R6-R10."
     }
   ],
-  "canonicalSha256": "9437a44eecb958932bb7758b56bd39bcdf11e2b78d2ff91b5714e7c6a9b38fdb"
+  "canonicalSha256": "41da70403562c68c4dac3b29c82f8941050711dbefb2a53172ac477aad09a383"
 }
