@@ -10,9 +10,9 @@
   },
   "limits": {
     "targetFiles": 53,
-    "targetLoc": 1640,
+    "targetLoc": 1652,
     "hardFiles": 63,
-    "hardLoc": 1905
+    "hardLoc": 1918
   },
   "partitions": [
     {
@@ -37,9 +37,9 @@
       "paths": [".github/workflows/validate.yml"],
       "limits": {
         "targetFiles": 1,
-        "targetLoc": 14,
+        "targetLoc": 26,
         "hardFiles": 5,
-        "hardLoc": 66
+        "hardLoc": 79
       }
     },
     {
@@ -202,5 +202,5 @@
       "rationale": "Governed routes R1-R5 resolve through handlers in the same gateway branch structure as R6-R10."
     }
   ],
-  "canonicalSha256": "70d38b6d40eafb006972fd049d9c3625acd1f5706a5505b07c203c5f6dc99920"
+  "canonicalSha256": "d6f296fe66297e8628531dc22f14fc61e052a9da399a0d617fc3489233ecb825"
 }
