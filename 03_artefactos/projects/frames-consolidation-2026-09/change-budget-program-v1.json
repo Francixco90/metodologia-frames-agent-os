@@ -1,7 +1,7 @@
 {
   "schemaVersion": "change-budget-program-v1",
   "programId": "frames-consolidation-2026-09",
-  "branch": "codex/consolidation-2026-09",
+  "branch": "codex/consolidation-2026-09-public",
   "baseCommit": "3f5b31d8303bccf80fd1d593156f5ef3dc197ae5",
   "authority": {
     "mode": "LOCAL_SIMULATION",
@@ -202,5 +202,5 @@
       "rationale": "Governed routes R1-R5 resolve through handlers in the same gateway branch structure as R6-R10."
     }
   ],
-  "canonicalSha256": "41da70403562c68c4dac3b29c82f8941050711dbefb2a53172ac477aad09a383"
+  "canonicalSha256": "70d38b6d40eafb006972fd049d9c3625acd1f5706a5505b07c203c5f6dc99920"
 }
