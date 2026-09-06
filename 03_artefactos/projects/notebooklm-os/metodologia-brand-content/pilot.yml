@@ -1,0 +1,55 @@
+schema_version: notebooklm-os-pilot-v1
+profile_id: metodologia-brand-content-canon-v1
+target_notebook: 'MetodologIA · Brand Content Studio · Canon v1'
+visibility: private
+current_state: NOTEBOOK_MATERIALIZED_PRIVATE_VERIFIED
+target_state: VERIFIED_DRAFT
+external_effects_executed: true
+historical_notebooks_mutated: false
+narrative_test: 'MetodologIA convierte intención en sistemas de contenido gobernados, trazables y humanos.'
+channels: [linkedin, one-pager, short-deck]
+asset_strategy:
+  grounding_pack:
+    - 'manifest and usage guide; no private binary locator'
+    - 'only approved assets may be referenced as usable'
+  postproduction_pack:
+    - 'approved vector masters and approved portraits only'
+    - 'apply exact assets after Studio generation; never ask Studio to recreate a logo'
+  approved_now: [AST-PORTRAIT-JAVIER-MONTANO]
+  awaiting_human_approval:
+    - AST-METODOLOGIA-SYMBOL-SVG
+    - AST-METODOLOGIA-LOCKUP-POSITIVE-SVG
+    - AST-METODOLOGIA-LOCKUP-REVERSE-SVG
+  excluded_review:
+    - AST-PORTRAIT-KATHERINE-OQUENDO
+    - AST-PORTRAIT-DANIEL-ZULUAGA
+    - AST-PORTRAIT-GERMAN-SEPULVEDA
+    - AST-PRISTINO-MASCOT-CANDIDATE
+reference_library:
+  active_knowledge_sources:
+    - NLS-BRAND-CONTENT-KB
+    - NLS-ART-GALLERY-CATALOG
+  art_gallery:
+    items: 8
+    rights: INTERNAL_REFERENCE_ONLY
+    external_import_executed: true
+  integrated_historical_pdf_pack:
+    target: 'MetodologIA · Brand Content Studio · Canon v1'
+    masterclasses: 14
+    playbooks: 7
+    pages: 493
+    bytes: 84736081
+    external_import_executed: true
+    import_gate: NLM_PLAN_APPROVED
+studio_types:
+  [audio, video, infographic, slide-deck, report, flashcards, quiz, data-table, mind-map]
+required_queries: [identity, voice, logo, founders, templates, claims, content-guidelines]
+stop_rules:
+  - 'ASSET_CANON_APPROVED before importing or applying the logo family'
+  - 'NLM_PLAN_APPROVED before materialization or import'
+  - 'the 21 historical PDFs and 22 current PDFs coexist in the final notebook as separately hashed versions'
+  - 'art gallery is INTERNAL_REFERENCE_ONLY and cannot ground factual claims'
+  - 'NLM_STUDIO_GENERATION_APPROVED before each generation run'
+  - 'download and readback before VERIFIED_DRAFT'
+  - 'Javier approval before HUMAN_APPROVED'
+  - 'sharing and publication remain blocked'

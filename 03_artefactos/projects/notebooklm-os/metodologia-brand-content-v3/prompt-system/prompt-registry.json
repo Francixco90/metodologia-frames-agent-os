@@ -1,0 +1,1525 @@
+{
+  "$schema": "./prompt-registry.schema.json",
+  "schema": "PromptRegistryV1",
+  "registryId": "prompt.registry.v1",
+  "version": "1.0",
+  "status": "ACTIVE_PRIVATE_DRAFT",
+  "languagePolicy": "user-language-with-es-419-default",
+  "sourcePolicies": {
+    "chat": {
+      "min": 3,
+      "max": 8,
+      "rejectEmpty": true,
+      "rejectAllSources": true
+    },
+    "studio": {
+      "min": 4,
+      "max": 12,
+      "rejectEmpty": true,
+      "rejectAllSources": true
+    },
+    "audit": {
+      "min": 1,
+      "max": 20,
+      "rejectEmpty": true,
+      "rejectAllSources": true
+    }
+  },
+  "templates": [
+    {
+      "templateId": "prompt.studio.audio.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Audio Overview",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--audio--v1.0.md",
+      "jsonPointer": "/templates/0",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "durationMinutes",
+          "speakerMode"
+        ],
+        "optional": [
+          "assetIds",
+          "exclusions",
+          "examples",
+          "callToAction",
+          "deadline",
+          "pronunciationNotes"
+        ]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "audio",
+        "structure": [
+          "opening question",
+          "thesis",
+          "evidence-led conversation",
+          "limits",
+          "closing synthesis"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "audio",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Requested language and duration are confirmed from downloaded audio.",
+        "Every strong claim maps to supplied evidence.",
+        "Speakers distinguish source fact from interpretation.",
+        "No internal prompt or source identifier is spoken."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.video.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Video Overview",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--video--v1.0.md",
+      "jsonPointer": "/templates/1",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "durationSeconds",
+          "aspectRatio"
+        ],
+        "optional": [
+          "assetIds",
+          "exclusions",
+          "examples",
+          "callToAction",
+          "deadline",
+          "shotConstraints"
+        ]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "video",
+        "structure": ["hook", "context", "three evidence beats", "boundary", "single next step"],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "video",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Downloaded artifact has the requested duration and language.",
+        "Every scene serves the thesis and has readable text.",
+        "Visual direction follows the approved brand canon.",
+        "Claims and assets pass independent readback."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.infographic.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Infographic",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--infographic--v1.0.md",
+      "jsonPointer": "/templates/2",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "canvasRatio",
+          "readingContext"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "infographic",
+        "structure": [
+          "conclusion title",
+          "orientation cue",
+          "three to five evidence blocks",
+          "limit",
+          "source footer"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "infographic",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Reading order is unambiguous at target size.",
+        "Visible text is concise and factually supported.",
+        "Contrast and hierarchy pass accessibility review.",
+        "Downloaded bytes match the requested visual type."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.slide-deck.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Slide Deck",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--slide-deck--v1.0.md",
+      "jsonPointer": "/templates/3",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "slideCount",
+          "aspectRatio",
+          "deliveryMinutes"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "slide-deck",
+        "structure": ["tension", "thesis", "evidence arc", "decision", "next step"],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "slide-deck",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Slide count and ratio match the brief exactly.",
+        "Each slide has one conclusion and no unsupported claim.",
+        "Speaker notes retain evidence and conditions.",
+        "Rasterized output is labeled STUDIO_RAW until editable postproduction."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.report.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Report",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--report--v1.0.md",
+      "jsonPointer": "/templates/4",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "decisionQuestion",
+          "cutoffDate"
+        ],
+        "optional": [
+          "assetIds",
+          "exclusions",
+          "examples",
+          "callToAction",
+          "deadline",
+          "appendixRequirements"
+        ]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "report",
+        "structure": [
+          "executive conclusion",
+          "scope and method",
+          "findings",
+          "trade-offs",
+          "recommendations",
+          "gaps"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "report",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Scope, cutoff date, evidence, and uncertainty are explicit.",
+        "Recommendations are conditioned by the findings.",
+        "Citations resolve to selected sources.",
+        "Downloaded document is reread before verification."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.flashcards.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Flashcards",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--flashcards--v1.0.md",
+      "jsonPointer": "/templates/5",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "cardCount",
+          "learningObjectives"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "pedagogy", "template"],
+      "outputContract": {
+        "format": "flashcards",
+        "structure": ["prompt side", "answer side", "why it matters", "misconception cue"],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "flashcards",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Each card tests one concept rather than recognition alone.",
+        "Answers are brief, accurate, and source-grounded.",
+        "Distracting trivia and duplicate cards are absent.",
+        "Coverage matches the declared learning objectives."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.quiz.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Quiz",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--quiz--v1.0.md",
+      "jsonPointer": "/templates/6",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "questionCount",
+          "learningObjectives",
+          "passingThreshold"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "pedagogy", "template"],
+      "outputContract": {
+        "format": "quiz",
+        "structure": ["instructions", "questions", "answer key", "rationales", "scoring guidance"],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "quiz",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Every item maps to a learning objective and selected source.",
+        "Distractors are plausible but not deceptive.",
+        "Answers and rationales are unambiguous.",
+        "Passing threshold is declared before generation."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.data-table.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Data Table",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--data-table--v1.0.md",
+      "jsonPointer": "/templates/7",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "rowUnit",
+          "columnSchema",
+          "missingValuePolicy"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "data-table",
+        "structure": [
+          "field definitions",
+          "rows",
+          "source and date columns",
+          "missing-value legend",
+          "limitations"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "data-table",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Every row has provenance or an explicit N/E marker.",
+        "Units and dates are normalized.",
+        "Missing data is not inferred.",
+        "Exported columns match the declared schema."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.studio.mind-map.v1",
+      "version": "1.0",
+      "family": "studio",
+      "title": "Mind Map",
+      "markdownRef": "../knowledge-base/30-templates/studio/30-template--mind-map--v1.0.md",
+      "jsonPointer": "/templates/8",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "centralQuestion",
+          "depthLimit"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "mind-map",
+        "structure": [
+          "central thesis",
+          "primary branches",
+          "supporting nodes",
+          "cross-links",
+          "gaps"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": true,
+        "artifactType": "mind-map",
+        "sourcePolicy": {
+          "min": 4,
+          "max": 12,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": true
+      },
+      "executionGate": "NLM_STUDIO_GENERATION_APPROVED",
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Hierarchy is readable and non-redundant.",
+        "Relationships reflect selected sources rather than association alone.",
+        "Unknowns are visibly separated from claims.",
+        "The artifact remains legible at normal zoom."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.linkedin-post.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "LinkedIn Post",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--linkedin-post--v1.0.md",
+      "jsonPointer": "/templates/9",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "lengthRange"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "linkedin-post",
+        "structure": [
+          "one or two-line hook",
+          "situation",
+          "thesis",
+          "up to three supports",
+          "limit",
+          "one-move CTA"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "The first lines state a true tension.",
+        "The post contains one thesis and no generic hashtags.",
+        "Claims are traceable and conditions remain visible.",
+        "CTA asks for one proportionate action."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.linkedin-carousel.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "LinkedIn Carousel",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--linkedin-carousel--v1.0.md",
+      "jsonPointer": "/templates/10",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "cardCount",
+          "canvasRatio"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "linkedin-carousel",
+        "structure": [
+          "cover conclusion",
+          "problem",
+          "reframe",
+          "evidence sequence",
+          "application",
+          "closing CTA"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Card count matches the brief.",
+        "Each card carries one idea and readable copy.",
+        "Narrative works without speaker notes.",
+        "Visual system and safe zones are consistent."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.one-pager.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "One-pager",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--one-pager--v1.0.md",
+      "jsonPointer": "/templates/11",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "pageSize",
+          "readerDecision"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "one-pager",
+        "structure": [
+          "decision headline",
+          "audience and problem",
+          "method",
+          "evidence",
+          "limits",
+          "next step"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "The decision is understandable in under two minutes.",
+        "Benefits are evidence-bound rather than promised.",
+        "Sections are scannable and non-repetitive.",
+        "A single accountable next step is present."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.executive-deck.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Executive Deck",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--executive-deck--v1.0.md",
+      "jsonPointer": "/templates/12",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "slideCount",
+          "meetingDecision",
+          "deliveryMinutes"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "executive-deck",
+        "structure": [
+          "decision",
+          "stakes",
+          "evidence",
+          "options",
+          "trade-offs",
+          "recommendation",
+          "next gate"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Requested slide count and meeting objective align.",
+        "Every strong claim has a source and condition.",
+        "Options and recommendation are visibly distinct.",
+        "Speaker notes preserve provenance."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.commercial-proposal-deck.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Commercial Proposal Deck",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--commercial-proposal-deck--v1.0.md",
+      "jsonPointer": "/templates/13",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "clientContext",
+          "offerScope",
+          "commercialStatus"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "commercial-proposal-deck",
+        "structure": [
+          "client situation",
+          "outcomes",
+          "approach",
+          "scope",
+          "evidence",
+          "risks",
+          "commercial boundary",
+          "next step"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "No client fact, ROI, case, or commitment is invented.",
+        "Scope and exclusions are explicit.",
+        "Value claims describe mechanisms and evidence.",
+        "Commercial approval remains a separate gate."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.learning-deck.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Learning Deck",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--learning-deck--v1.0.md",
+      "jsonPointer": "/templates/14",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "learnerProfile",
+          "learningObjectives",
+          "slideCount"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "pedagogy", "template"],
+      "outputContract": {
+        "format": "learning-deck",
+        "structure": [
+          "learning question",
+          "prior knowledge",
+          "concept model",
+          "worked example",
+          "practice",
+          "feedback",
+          "transfer"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Objectives are observable and age-appropriate.",
+        "Practice aligns with instruction and acceptance.",
+        "Cognitive load is controlled per slide.",
+        "Claims separate pedagogy, evidence, and metaphor."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.podcast-script.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Podcast Script",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--podcast-script--v1.0.md",
+      "jsonPointer": "/templates/15",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "durationMinutes",
+          "speakerMode"
+        ],
+        "optional": [
+          "assetIds",
+          "exclusions",
+          "examples",
+          "callToAction",
+          "deadline",
+          "pronunciationNotes"
+        ]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "podcast-script",
+        "structure": [
+          "cold open",
+          "promise",
+          "segments",
+          "examples",
+          "counterpoint",
+          "synthesis",
+          "CTA"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Runtime estimate fits the word count.",
+        "Spoken language sounds natural in the target locale.",
+        "Attributions and uncertainty are audible.",
+        "No visual-only information is required to follow the argument."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.short-video-script.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Short Video Script",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--short-video-script--v1.0.md",
+      "jsonPointer": "/templates/16",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "durationSeconds",
+          "platform",
+          "aspectRatio"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "short-video-script",
+        "structure": ["first-second hook", "problem", "reframe", "proof", "punchline", "CTA"],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Timing fits the requested duration.",
+        "Voiceover, on-screen text, and visual action are separable.",
+        "Hook is accurate rather than sensational.",
+        "The closing line resolves the opening tension."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.newsletter-article.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Newsletter or Article",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--newsletter-article--v1.0.md",
+      "jsonPointer": "/templates/17",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "lengthRange",
+          "publicationContext"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "newsletter-article",
+        "structure": [
+          "title",
+          "abstract",
+          "opening tension",
+          "argument",
+          "evidence",
+          "counterpoint",
+          "application",
+          "close"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Title and abstract accurately represent the argument.",
+        "Sections add distinct value without repetition.",
+        "Sources, assumptions, and limits are distinguishable.",
+        "Reader leaves with a practical decision or experiment."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.email.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Email",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--email--v1.0.md",
+      "jsonPointer": "/templates/18",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "recipientRole",
+          "relationshipContext",
+          "emailIntent"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "email",
+        "structure": [
+          "subject",
+          "opening context",
+          "single ask or update",
+          "necessary evidence",
+          "next step",
+          "sign-off"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Purpose is clear in the first paragraph.",
+        "The email makes one primary request.",
+        "Tone matches the relationship and language.",
+        "No sensitive data or unapproved commitment appears."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.landing-page.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Landing Page",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--landing-page--v1.0.md",
+      "jsonPointer": "/templates/19",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "offer",
+          "conversionAction",
+          "pageContext"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "landing-page",
+        "structure": [
+          "hero thesis",
+          "audience problem",
+          "value mechanism",
+          "how it works",
+          "evidence",
+          "fit and non-fit",
+          "FAQ",
+          "CTA"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Visitor can identify fit, mechanism, and next step.",
+        "Claims and proof remain paired.",
+        "Accessibility and mobile scan order are specified.",
+        "No dark pattern, fake urgency, or invented social proof appears."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.case-study.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Case Study",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--case-study--v1.0.md",
+      "jsonPointer": "/templates/20",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "caseEvidence",
+          "rightsStatus",
+          "measurementPeriod"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "case-study",
+        "structure": [
+          "context",
+          "constraint",
+          "approach",
+          "implementation",
+          "observed result",
+          "limits",
+          "transferable lesson"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes."
+      ],
+      "acceptance": [
+        "Consent and publication rights are confirmed.",
+        "Observed outcomes are not converted into causal guarantees.",
+        "Numbers retain units, period, and provenance.",
+        "Anonymization does not create misleading specificity."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    },
+    {
+      "templateId": "prompt.channel.branded-static-visual.v1",
+      "version": "1.0",
+      "family": "channel",
+      "title": "Branded Static Visual",
+      "markdownRef": "../knowledge-base/30-templates/channels/30-template--branded-static-visual--v1.0.md",
+      "jsonPointer": "/templates/21",
+      "inputs": {
+        "required": [
+          "audience",
+          "objective",
+          "thesis",
+          "language",
+          "sourceIds",
+          "claimEvidence",
+          "constraints",
+          "acceptance",
+          "canvasRatio",
+          "displayContext"
+        ],
+        "optional": ["assetIds", "exclusions", "examples", "callToAction", "deadline"]
+      },
+      "sourceRoles": ["control", "canon", "evidence", "template"],
+      "outputContract": {
+        "format": "branded-static-visual",
+        "structure": [
+          "headline",
+          "one explanatory visual",
+          "supporting line",
+          "source or qualifier",
+          "reserved logo zone"
+        ],
+        "state": "DRAFT",
+        "languagePolicy": "user-language-with-es-419-default"
+      },
+      "studioConfig": {
+        "enabled": false,
+        "artifactType": null,
+        "sourcePolicy": {
+          "min": 3,
+          "max": 8,
+          "rejectEmpty": true,
+          "rejectAllSources": true
+        },
+        "requiresGenerationGate": false
+      },
+      "executionGate": null,
+      "negativePrompt": [
+        "No unsupported claims, invented quotations, fabricated customers, or implied approval.",
+        "No external brand, unapproved asset, private locator, secret, PII, or internal instruction in output.",
+        "No all-sources selection, empty source set, or evidence laundering through a reference example.",
+        "No vague superlatives, generic filler, duplicated ideas, or promises of guaranteed outcomes.",
+        "No 3D, neon, cyberpunk, robots, brains, holograms, stock photography, or noisy backgrounds.",
+        "No generated, redrawn, recolored, distorted, or AI-completed logo.",
+        "No colors outside the approved palette and no white text on yellow."
+      ],
+      "acceptance": [
+        "Message is legible at target display size.",
+        "One conclusion dominates the composition.",
+        "Logo uses an approved master in postproduction.",
+        "Palette, typography, contrast, and safe zones pass review."
+      ],
+      "idempotency": {
+        "algorithm": "sha256-canonical-json",
+        "fields": ["templateId", "inputs", "sourceSetSha256", "assetIds", "language"],
+        "onDuplicate": "RETURN_EXISTING_ACTIVE_OR_VERIFIED_ARTIFACT"
+      }
+    }
+  ]
+}

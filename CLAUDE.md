@@ -31,7 +31,8 @@ local cuando el intake y el write set son suficientes; luego se detiene en
 ## Ejecución y cierre
 
 - R6/R7 son brief-first; R4 exige `candidate_id`; R0 bloquea ambigüedad.
-- R1–R3/R5 conservan `coverage_gap` hasta tener handler productivo.
+- R1–R3/R5 planifican read-only hasta `PJ_SCAFFOLD_APPROVED`, `PJ_RESUME_CONFIRMED`,
+  `TK_CONTRACT_APPROVED` o `EV_RUN_APPROVED`; R2 lista candidatos y nunca elige.
 - Cargar solo workflow, paso, template, skill, fuentes activas y su `context.md`.
 - El contexto privado vive en `work/private/CONTEXT.md` y solo se carga después
   del route lock con autoridad explícita.

@@ -138,6 +138,24 @@ export const changedBudgetLoc = (root: string, baseCommit: string): number => {
   return [...changedBudgetLocByPath(root, baseCommit).values()].reduce((sum, loc) => sum + loc, 0);
 };
 
+// Binaries governed by Git LFS are pointer blobs in Git; the smudged worktree bytes are not the
+// versioned artifact, so the budget gate reads their attribute instead of their content. [CÓDIGO]
+export const lfsManagedPaths = (root: string, paths: readonly string[]): Set<string> => {
+  if (paths.length === 0) return new Set();
+  const output = execFileSync('git', ['check-attr', '-z', '--stdin', 'filter'], {
+    cwd: root,
+    input: `${paths.join('\0')}\0`,
+    maxBuffer: 256 * 1024 * 1024,
+    stdio: ['pipe', 'pipe', 'pipe'],
+  }).toString('utf8');
+  const fields = output.split('\0');
+  const managed = new Set<string>();
+  for (let index = 0; index + 2 < fields.length; index += 3) {
+    if (fields[index + 2] === 'lfs') managed.add(fields[index] as string);
+  }
+  return managed;
+};
+
 export const versionableBudgetPaths = (root: string): string[] =>
   nulPaths(git(root, ['ls-files', '-z', '--cached', '--others', '--exclude-standard']))
     .filter((path) => pathExistsNoFollow(root, path))

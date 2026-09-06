@@ -54,11 +54,11 @@ handler productivo. [CONFIG]
 | Ruta          | Uso                                 | Estado Experience                                       |
 | ------------- | ----------------------------------- | ------------------------------------------------------- |
 | R0            | ambigüedad o capacidad no resoluble | productivo, fail-closed                                 |
-| R1            | crear proyecto                      | `coverage_gap`: handler no integrado                    |
-| R2            | continuar proyecto                  | `coverage_gap`: lista sin elección arbitraria           |
-| R3 / R3-LOOSE | crear tarea                         | `coverage_gap`: handler no integrado                    |
+| R1            | crear proyecto                      | plan read-only hasta `PJ_SCAFFOLD_APPROVED`             |
+| R2            | continuar proyecto                  | lista candidatos, nunca elige; `PJ_RESUME_CONFIRMED`    |
+| R3 / R3-LOOSE | crear tarea                         | plan read-only hasta `TK_CONTRACT_APPROVED`             |
 | R4            | reanudar candidate                  | productivo solo con lineage hash-bound                  |
-| R5            | eval/ablation                       | `coverage_gap`: ejecución aislada no integrada          |
+| R5            | eval/ablation                       | plan read-only hasta `EV_RUN_APPROVED`                  |
 | R6            | contenido P00–P09                   | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
 | R7            | Career C00–C09                      | productivo hasta `EXP_BRIEF_APPROVED` / gate de dominio |
 | R8            | extensiones locales                 | productivo hasta `LX_BRIEF_APPROVED`                    |

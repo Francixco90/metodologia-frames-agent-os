@@ -1,0 +1,29 @@
+schema_version: notebook-profile-lineage-v1
+lineage_id: metodologia-brand-content-canon-v3
+owner: MetodologIA
+visibility: private
+predecessor:
+  title: MetodologIA · Brand Content Studio · Canon v2
+  state: FROZEN_HISTORICAL
+  evidence_ref: audit/canon-v2-freeze-receipt.json
+  mutation_allowed: false
+successor:
+  title: MetodologIA · Brand Content Studio · Canon v3
+  state: VERIFIED_LOCAL
+  profile_ref: profile.yml
+  manifest_ref: source-manifest.yml
+  plan_ref: notebook-import-plan-v2.yml
+migration:
+  active_markdown_rewritten: true
+  superseded_markdown_imported: false
+  reference_binaries_reused_by_hash: true
+  studio_artifacts_copied: false
+  benchmark_pack_imported: false
+  private_locators_persisted: false
+promotion:
+  local_maximum: VERIFIED_LOCAL
+  notebook_creation_gate: NLM_PLAN_APPROVED
+  automatic_notebook_maximum: VERIFIED_DRAFT
+  human_approval: PENDING
+  sharing: BLOCKED
+  publication: BLOCKED

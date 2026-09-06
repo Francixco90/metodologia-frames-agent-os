@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {readFileSync, writeFileSync} from 'node:fs';
+import {readFileSync, writeFileSync, existsSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -167,9 +167,25 @@ const isMain =
   process.argv[1] !== undefined && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 
 if (isMain) {
-  const projections = writeBrandProjections();
-  const hashes = Object.entries(projections)
-    .map(([path, contents]) => `${createHash('sha256').update(contents).digest('hex')}  ${path}`)
-    .join('\n');
-  console.info(`WROTE deterministic brand projections:\n${hashes}`);
+  if (process.argv.includes('--check')) {
+    const projections = renderBrandProjections(loadBrandTokens());
+    const drift = Object.entries(projections)
+      .filter(([relativePath, contents]) => {
+        const target = resolve(process.cwd(), relativePath);
+        return !existsSync(target) || readFileSync(target, 'utf8') !== contents;
+      })
+      .map(([relativePath]) => relativePath);
+    if (drift.length > 0) {
+      console.error(`BRAND-PROJECTION-DRIFT: ${drift.join(', ')}; run pnpm brand:generate`);
+      process.exitCode = 1;
+    } else {
+      console.info('PASS brand projections (check)');
+    }
+  } else {
+    const projections = writeBrandProjections();
+    const hashes = Object.entries(projections)
+      .map(([path, contents]) => `${createHash('sha256').update(contents).digest('hex')}  ${path}`)
+      .join('\n');
+    console.info(`WROTE deterministic brand projections:\n${hashes}`);
+  }
 }

@@ -128,5 +128,23 @@ describe('Frames Experience adversarial fail-closed behavior', () => {
     );
     expect(envelope).toMatchObject({selectedRoute: 'R1', state: 'BLOCKED', effects: []});
     expect(handler).not.toHaveBeenCalled();
+    const routed = runFirstTurnGatewayV1(
+      {prompt: 'crear proyecto nuevo'},
+      {
+        R6: handler,
+        R7: handler,
+        R1: () => ({
+          routeId: 'R1',
+          workflowPlan: ['PJ00-intake'],
+          activeStep: 'PJ00-intake',
+          skillBindings: [{stepId: 'PJ00-intake', primarySkillId: 'frames-harness-maintainer'}],
+          briefPreview: {briefKind: 'maintenance-brief', summary: 'Brief R1.', materialized: false},
+          blockingGaps: ['¿Qué identificador tendrá el proyecto?'],
+          recommendedNextAction: 'Responder la pregunta.',
+        }),
+      },
+    );
+    expect(routed).toMatchObject({selectedRoute: 'R1', state: 'BLOCKED', writePolicy: 'NONE'});
+    expect(handler).not.toHaveBeenCalled();
   });
 });

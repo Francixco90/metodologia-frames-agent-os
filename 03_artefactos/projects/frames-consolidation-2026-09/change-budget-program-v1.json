@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "change-budget-program-v1",
+  "programId": "frames-consolidation-2026-09",
+  "branch": "codex/consolidation-2026-09-public",
+  "baseCommit": "3f5b31d8303bccf80fd1d593156f5ef3dc197ae5",
+  "authority": {
+    "mode": "LOCAL_SIMULATION",
+    "planRef": "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+    "planSha256": "faf34cd4d1cfbc1e7c82f5e89ca00f1b7d78cc22db0128067118732399981730"
+  },
+  "limits": {
+    "targetFiles": 53,
+    "targetLoc": 1652,
+    "hardFiles": 63,
+    "hardLoc": 1918
+  },
+  "partitions": [
+    {
+      "id": "root-config-1",
+      "paths": [
+        ".gitattributes",
+        ".gitignore",
+        "CLAUDE.md",
+        "changelog.md",
+        "package.json",
+        "vitest.config.ts"
+      ],
+      "limits": {
+        "targetFiles": 6,
+        "targetLoc": 69,
+        "hardFiles": 10,
+        "hardLoc": 126
+      }
+    },
+    {
+      "id": "github-workflows-1",
+      "paths": [".github/workflows/validate.yml"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 26,
+        "hardFiles": 5,
+        "hardLoc": 79
+      }
+    },
+    {
+      "id": "01-intencion-program-1",
+      "paths": [
+        "01_intencion/program/consolidation-ledger.md",
+        "01_intencion/program/ownership-manifest.yml"
+      ],
+      "limits": {
+        "targetFiles": 2,
+        "targetLoc": 168,
+        "hardFiles": 6,
+        "hardLoc": 235
+      }
+    },
+    {
+      "id": "02-proceso-core-1",
+      "paths": ["02_proceso/core/contracts/context-surface-v1.ts"],
+      "limits": {
+        "targetFiles": 1,
+        "targetLoc": 2,
+        "hardFiles": 5,
+        "hardLoc": 53
+      }
+    },
+    {
+      "id": "02-proceso-governance-1",
+      "paths": [
+        "02_proceso/governance/context-surfaces/registry.yml",
+        "02_proceso/governance/context-surfaces/workflows.yml",
+        "02_proceso/governance/docs-budget-policy.yml",
+        "02_proceso/governance/experience-first-orchestration.md",
+        "02_proceso/governance/router.yml"
+      ],
+      "limits": {
+        "targetFiles": 5,
+        "targetLoc": 64,
+        "hardFiles": 9,
+        "hardLoc": 121
+      }
+    },
+    {
+      "id": "02-proceso-workflows-1",
+      "paths": [
+        "02_proceso/workflows/core/first-turn-gateway-v1.ts",
+        "02_proceso/workflows/core/gateway-route-outcome-v1.ts",
+        "02_proceso/workflows/core/governed-legacy-routes-v1.ts",
+        "02_proceso/workflows/core/legacy-route-block-v1.ts"
+      ],
+      "limits": {
+        "targetFiles": 4,
+        "targetLoc": 243,
+        "hardFiles": 8,
+        "hardLoc": 318
+      }
+    },
+    {
+      "id": "03-artefactos-projects-1",
+      "paths": [
+        "03_artefactos/projects/agentic-workflow-adoption-v1/local-extensions/technical-defense/sandbox-probe.json",
+        "03_artefactos/projects/frames-consolidation-2026-09/change-budget-program-v1.json",
+        "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
+        "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md"
+      ],
+      "limits": {
+        "targetFiles": 4,
+        "targetLoc": 325,
+        "hardFiles": 8,
+        "hardLoc": 408
+      }
+    },
+    {
+      "id": "03-artefactos-skills-1",
+      "paths": [
+        "03_artefactos/skills/content-os-router/LINEAGE.yml",
+        "03_artefactos/skills/content-os-router/SKILL.md",
+        "03_artefactos/skills/content-os-router/scripts/domain-plan-transport.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-intent.mjs"
+      ],
+      "limits": {
+        "targetFiles": 4,
+        "targetLoc": 54,
+        "hardFiles": 8,
+        "hardLoc": 110
+      }
+    },
+    {
+      "id": "04-estado-registries-1",
+      "paths": [
+        "04_estado/registries/notebooks/notebooklm-os-registry.yml",
+        "04_estado/registries/skills/creation-v3-skill-registry.yml"
+      ],
+      "limits": {
+        "targetFiles": 2,
+        "targetLoc": 63,
+        "hardFiles": 6,
+        "hardLoc": 120
+      }
+    },
+    {
+      "id": "05-verificacion-scripts-1",
+      "paths": [
+        "05_verificacion/scripts/check-ci-parity.ts",
+        "05_verificacion/scripts/check-experience-os.ts",
+        "05_verificacion/scripts/check-md-budgets.ts",
+        "05_verificacion/scripts/check-repo.ts",
+        "05_verificacion/scripts/check-vendor-locks.ts",
+        "05_verificacion/scripts/commands.yaml",
+        "05_verificacion/scripts/context-surface-validation.ts",
+        "05_verificacion/scripts/creation-v3-skills.json",
+        "05_verificacion/scripts/generate-brand-projections.ts",
+        "05_verificacion/scripts/lib/commands-schema.ts",
+        "05_verificacion/scripts/lib/file-budget-git.ts",
+        "05_verificacion/scripts/lib/h03-lock-succession.mjs"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 329,
+        "hardFiles": 16,
+        "hardLoc": 412
+      }
+    },
+    {
+      "id": "05-verificacion-tests-1",
+      "paths": [
+        "05_verificacion/tests/contract/harness/commands.test.ts",
+        "05_verificacion/tests/fixtures/video-os-case-longform-coverage.fixture.ts",
+        "05_verificacion/tests/fixtures/video-os-case-longform-preview-render.fixture.ts",
+        "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
+        "05_verificacion/tests/negative/experience-safety.test.ts",
+        "05_verificacion/tests/unit/check-ci-parity.test.ts",
+        "05_verificacion/tests/unit/check-vendor-locks.test.ts",
+        "05_verificacion/tests/unit/core/context-surface-v1.test.ts",
+        "05_verificacion/tests/unit/core/documentation-inventory.test.ts",
+        "05_verificacion/tests/unit/experience-resume-lineage.test.ts",
+        "05_verificacion/tests/unit/file-budget-git.test.ts",
+        "05_verificacion/tests/unit/governed-legacy-routes-v1.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 309,
+        "hardFiles": 16,
+        "hardLoc": 390
+      }
+    }
+  ],
+  "perFileLineCaps": [
+    {
+      "path": "05_verificacion/scripts/commands.yaml",
+      "surface": "canonical-control-config",
+      "baselineHardLines": 450,
+      "programHardLines": 480,
+      "rationale": "Four governed-route gates (PJ, TK, EV) join the exact command registry while preserving its global word cap."
+    },
+    {
+      "path": "02_proceso/workflows/core/first-turn-gateway-v1.ts",
+      "surface": "production-code",
+      "baselineHardLines": 200,
+      "programHardLines": 220,
+      "rationale": "Governed routes R1-R5 resolve through handlers in the same gateway branch structure as R6-R10."
+    }
+  ],
+  "canonicalSha256": "9b62b67e2ab7f0125af40f806819c9149957e99d65d48f73cefe9220f1a6008f"
+}

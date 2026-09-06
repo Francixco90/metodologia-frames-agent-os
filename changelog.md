@@ -4,6 +4,30 @@ Append-only record of merged PRs and programa milestones (ADR 0027: the
 repo's only versioned temporal trace besides `04_estado/receipts/**` and
 `04_estado/tasks/**`). Newest entry first. Never rewrite past entries. [CONFIG]
 
+## 2026-09 — Single-repository consolidation (Part A) and verify hardening (F8–F10)
+
+- **Consolidation merge** — `12c12351` merges the private line (`ba064ac7`) into the public
+  line (`3f5b31d8`) with a real merge commit descending from both bases. NotebookLM OS keeps
+  the public rewrite; private brand-content enters as data; private canon-v3 code waits at
+  tag `consolidation/base-private`. 19 `wip/*` branches preserve every uncommitted worktree;
+  dispositions and blocking causes live in `01_intencion/program/consolidation-ledger.md`.
+  Binaries enter only through Git LFS (`check-md-budgets` recognises LFS paths) and a
+  hash-bound change-budget program governs branch `codex/consolidation-2026-09`. No push. [CONFIG]
+- **Best-path debate** — recorded in the consolidation project: symlinks as a three-series
+  program, no physical registry merge, `wip/*` triage by value, private LFS binaries out of the
+  public PR, one PR per destination (fork first). [DOC]
+- **Governed routes (F14)** — R1, R2, R3, R3-LOOSE and R5 gain read-only planning handlers
+  behind four new manual gates; the gateway no longer emits a `coverage_gap` envelope for
+  them and R2 lists candidates without choosing. [CODE]
+- **Vendor locks (F13)** — `pnpm vendor:check` verifies untracked vendor packs against their
+  source locks and `vendor:sync` restores one from its pinned commit. 22 packs stay tracked
+  because first-party skills cite them as `authority_refs`; only `gsap-skills` leaves the tree.
+  Pre-existing lock drift in three packs is recorded, not rewritten. [CODE]
+- **Verify hardening** — CI runs one `pnpm verify` step guarded by `check-ci-parity.ts`;
+  vitest splits `unit` and `media` projects (case-longform media tests, 90 s); `check:generated`
+  gates brand projections, ledger, inventory and portal; `02_proceso/workflows/content`
+  gains its governed `context.md`. Full suite: 236 files, 2166 tests, 0 timeouts. [CODE]
+
 ## 2026-08 — Method explainer contract and diagram candidate
 
 - **Aclaración de procedencia** — En la entrada inmediata siguiente, los

@@ -82,6 +82,7 @@ const checks = [
   'check-experience-os.ts',
   'check-documentation-os.ts',
   'check-dependency-audit.ts',
+  'check-ci-parity.ts',
   'check-receipts.ts',
   'check-visual-reference-register.mjs',
 ];

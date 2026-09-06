@@ -27,6 +27,8 @@ writers:
     - projects/pilot-carousel-001/README.md
     - projects/pilot-carousel-001/project.yml
     - projects/agentic-workflow-adoption-v1/**
+    - projects/frames-consolidation-2026-09/**
+    - 01_intencion/program/consolidation-ledger.md
     - work/private/.gitkeep
   repo:
     - package.json
@@ -48,6 +50,7 @@ writers:
     - 05_verificacion/scripts/creation-v3-skills.json
     - 05_verificacion/scripts/check-career-workflows.ts
     - 05_verificacion/scripts/check-video-os.ts
+    - 05_verificacion/scripts/check-notebooklm-os.ts
     - 05_verificacion/scripts/lib/video-os-checks.ts
     - .agents/plugins/marketplace.json
     - 05_verificacion/scripts/install-host-adapter.ts
@@ -116,6 +119,7 @@ writers:
     - workflows/trainer-os/**
     - workflows/notebooklm-os/**
     - projects/trainer-os/**
+    - projects/notebooklm-os/**
     - 03_artefactos/content/documentation/**
     - workflows/context.md
     - registries/experience/**
@@ -173,6 +177,9 @@ writers:
     - evals/**
     - 05_verificacion/evals/**
     - 05_verificacion/tests/unit/check-md-budgets.test.ts
+    - 05_verificacion/tests/unit/check-ci-parity.test.ts
+    - 05_verificacion/tests/unit/check-vendor-locks.test.ts
+    - 05_verificacion/tests/unit/governed-legacy-routes-v1.test.ts
     - 05_verificacion/tests/unit/change-program-budget.test.ts
     - 05_verificacion/tests/unit/docs-budget-v2.test.ts
     - 05_verificacion/tests/unit/file-budget-git.test.ts
@@ -206,6 +213,7 @@ writers:
     - quality/reviews/rights-accessibility-security/**
     - receipts/migrations/**
     - receipts/experience/**
+    - receipts/projects/notebooklm-os/**
     - 04_estado/releases/experience/**
     - projects/vs-001-source-to-campaign/guardian/**
     - projects/pilot-carousel-001/guardian/**

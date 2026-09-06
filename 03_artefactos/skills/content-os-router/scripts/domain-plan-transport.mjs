@@ -3,12 +3,22 @@ const ROUTE_SKILLS = {
   R7: 'career-application-orchestrator',
   R8: 'frames-local-extension-foundry',
   R9: 'frames-harness-maintainer',
+  R1: 'frames-harness-maintainer',
+  R2: 'frames-harness-maintainer',
+  R3: 'frames-harness-maintainer',
+  'R3-LOOSE': 'frames-harness-maintainer',
+  R5: 'frames-harness-maintainer',
 };
 const BRIEF_KINDS = {
   R6: 'content-brief',
   R7: 'career-brief',
   R8: 'local-extension-brief',
   R9: 'maintenance-brief',
+  R1: 'maintenance-brief',
+  R2: 'maintenance-brief',
+  R3: 'maintenance-brief',
+  'R3-LOOSE': 'maintenance-brief',
+  R5: 'maintenance-brief',
 };
 
 export const planFromDomain = (routeId, domain) => {

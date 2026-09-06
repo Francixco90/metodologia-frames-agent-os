@@ -3,10 +3,13 @@ import {
   assertDecisionFunnelV1,
   assertDecisionSelectionV1,
   type AssistanceEnvelopeV1,
+  type ExperienceRouteIdV1,
 } from '../../core/contracts/index.ts';
 
+export type GatewayHandledRouteV1 = Exclude<ExperienceRouteIdV1, 'R0' | 'R4'>;
+
 export interface GatewayRoutePlanV1 {
-  routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
+  routeId: GatewayHandledRouteV1;
   workflowPlan: string[];
   activeStep: string;
   skillBindings: AssistanceEnvelopeV1['skillBindings'];
@@ -28,7 +31,7 @@ export interface FirstTurnGatewayInputV1 {
   sensitivity?: AssistanceEnvelopeV1['sensitivity'];
   knownInputs?: string[];
   activeProjectId?: string;
-  explicitRoute?: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
+  explicitRoute?: GatewayHandledRouteV1;
   resumeCandidate?: GatewayResumeCandidateV1;
   decisionFunnel?: unknown;
   decisionSelection?: unknown;
@@ -37,7 +40,7 @@ export interface FirstTurnGatewayInputV1 {
 export type GatewayRouteHandlerV1 = (
   input: Readonly<FirstTurnGatewayInputV1> & {
     requestHash: string;
-    routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
+    routeId: GatewayHandledRouteV1;
   },
 ) => GatewayRoutePlanV1;
 
@@ -46,7 +49,7 @@ interface GatewayOutcomeContextV1 {
   understoodOutcome: string;
   knownInputs: string[];
   sensitivity: AssistanceEnvelopeV1['sensitivity'];
-  routeId: 'R6' | 'R7' | 'R8' | 'R9' | 'R10';
+  routeId: GatewayHandledRouteV1;
   reasonCode: string;
 }
 

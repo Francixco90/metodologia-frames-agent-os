@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metodologia.local/schemas/prompt-registry-v1.json",
+  "title": "PromptRegistryV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema",
+    "registryId",
+    "version",
+    "status",
+    "languagePolicy",
+    "sourcePolicies",
+    "templates"
+  ],
+  "properties": {
+    "$schema": {"const": "./prompt-registry.schema.json"},
+    "schema": {"const": "PromptRegistryV1"},
+    "registryId": {"const": "prompt.registry.v1"},
+    "version": {"const": "1.0"},
+    "status": {"enum": ["ACTIVE_PRIVATE_DRAFT", "ACTIVE"]},
+    "languagePolicy": {"const": "user-language-with-es-419-default"},
+    "sourcePolicies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chat", "studio", "audit"],
+      "properties": {
+        "chat": {"$ref": "#/$defs/sourcePolicy"},
+        "studio": {"$ref": "#/$defs/sourcePolicy"},
+        "audit": {"$ref": "#/$defs/sourcePolicy"}
+      }
+    },
+    "templates": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {"$ref": "./prompt-template.schema.json"}
+    }
+  },
+  "$defs": {
+    "sourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "rejectEmpty", "rejectAllSources"],
+      "properties": {
+        "min": {"type": "integer", "minimum": 1},
+        "max": {"type": "integer", "maximum": 20},
+        "rejectEmpty": {"const": true},
+        "rejectAllSources": {"const": true}
+      }
+    }
+  }
+}

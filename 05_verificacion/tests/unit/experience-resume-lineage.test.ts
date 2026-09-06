@@ -128,9 +128,9 @@ describe('Frames resume lineage', () => {
     const result = dispatchIntent({request: 'Continuar', state_root: root});
     expect(result).toMatchObject({
       route_id: 'R2',
-      adapter_invoked: false,
+      adapter_invoked: true,
       resume_error: null,
-      experience_envelope: {selectedRoute: 'R2', state: 'BLOCKED'},
+      experience_envelope: {selectedRoute: 'R2', state: 'BLOCKED', writePolicy: 'NONE'},
     });
     expect(readdirSync(resolve(root, 'lineages')).sort()).toEqual(before);
   });

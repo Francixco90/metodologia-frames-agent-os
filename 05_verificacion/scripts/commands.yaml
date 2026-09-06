@@ -177,6 +177,14 @@ gates:
   # prettier-ignore
   - {gate: HM_CHANGE_APPROVED, label: approve harness change candidate, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
   # prettier-ignore
+  - {gate: PJ_SCAFFOLD_APPROVED, label: approve project scaffold before writing the project folder, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: PJ_RESUME_CONFIRMED, label: confirm which ongoing project to continue, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: TK_CONTRACT_APPROVED, label: approve task contract before writing 04_estado/tasks, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
+  - {gate: EV_RUN_APPROVED, label: approve eval or ablation run in isolated workspace, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: h01}
+  # prettier-ignore
   - {gate: HM_CANDIDATE_VERIFIED, label: verify frozen harness candidate, command: 'pnpm check:repo', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}
   # prettier-ignore
   - {gate: HM_GUARDIAN_VERDICT_RECORDED, label: record an independent hash-bound Guardian verdict without promotion, command: null, allowed_tools: [], write_set_globs: [], idempotency: true, danger_level: medium, manual: true, fail_closed: true, owner: governance}

@@ -1,0 +1,46 @@
+schema_version: notebook-grounding-suite-v1
+profile_id: metodologia-brand-content-canon-v1
+timeout_policy: bounded_and_receipted
+queries:
+  - {
+      id: identity,
+      question: '¿Cuál es la identidad canónica de MetodologIA?',
+      source_ids: [NLS-BRAND-PROFILE],
+      expected: cited_answer,
+    }
+  - {
+      id: voice,
+      question: '¿Qué reglas de voz están confirmadas y cuáles siguen candidatas?',
+      source_ids: [NLS-BRAND-PROFILE, NLS-VOICE-PROFILE],
+      expected: cited_answer_with_review_warning,
+    }
+  - {
+      id: logo,
+      question: '¿Qué familia de logos está propuesta, cuál es su estado y qué impide usarla?',
+      source_ids: [NLS-BRAND-PROFILE, NLS-ASSET-USAGE-GUIDE],
+      expected: candidate_family_with_human_approval_gate,
+    }
+  - {
+      id: founders,
+      question: '¿Qué retratos de fundadores pueden usarse?',
+      source_ids: [NLS-ASSET-USAGE-GUIDE],
+      expected: javier_cited_others_blocked_rights_review,
+    }
+  - {
+      id: templates,
+      question: '¿Qué templates canónicos están disponibles?',
+      source_ids: [NLS-BRAND-CONTENT-KB],
+      expected: cited_operational_templates_with_golden_reference_gap,
+    }
+  - {
+      id: claims,
+      question: '¿Qué claims fuertes están sustentados?',
+      source_ids: [NLS-SOURCE-BUNDLE],
+      expected: cited_answer_or_coverage_gap,
+    }
+  - {
+      id: content-guidelines,
+      question: '¿Cómo debe crearse y verificarse una pieza de contenido con el branding de MetodologIA?',
+      source_ids: [NLS-BRAND-CONTENT-KB, NLS-ASSET-USAGE-GUIDE, NLS-ART-GALLERY-CATALOG],
+      expected: cited_workflow_guardrails_and_acceptance_checklist,
+    }

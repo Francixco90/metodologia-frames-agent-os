@@ -3,7 +3,7 @@ manifest_id: frames-public-context-v1
 source_of_truth: true
 projection_name: context.md
 private_cabin: work/private/CONTEXT.md
-expected_non_skill_projections: 55
+expected_non_skill_projections: 56
 expected_skill_projections: 27
 shards:
   - 02_proceso/governance/context-surfaces/topology.yml

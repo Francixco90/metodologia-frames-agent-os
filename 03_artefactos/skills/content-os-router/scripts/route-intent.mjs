@@ -8,6 +8,12 @@ import {orchestrateLocalExperienceV1} from '../../../../02_proceso/workflows/cor
 import {assertContainedWorkspaceV1} from '../../../../02_proceso/workflows/core/safe-local-path-v1.ts';
 import {routeLocalExtensionIntent} from '../../../../02_proceso/workflows/local-extensions/intent-router.ts';
 import {routeMaintenanceIntent} from '../../../../02_proceso/workflows/maintenance/index.ts';
+import {
+  routeEvalIntent,
+  routeProjectContinueIntent,
+  routeProjectCreateIntent,
+  routeTaskCreateIntent,
+} from '../../../../02_proceso/workflows/core/governed-legacy-routes-v1.ts';
 import {routeCareerIntent} from '../../career-application-orchestrator/scripts/route-career.mjs';
 import {
   domainInputFor,
@@ -47,7 +53,11 @@ export const dispatchIntent = (input) => {
         : normalize(input.intent_domain).toLowerCase() === 'career' ? 'R7'
           : normalize(input.intent_domain).toLowerCase() === 'local-extension' ? 'R8'
             : normalize(input.intent_domain).toLowerCase() === 'maintenance' ? 'R9'
-              : normalize(input.intent_domain).toLowerCase() === 'notebooklm' ? 'R10' : undefined,
+              : normalize(input.intent_domain).toLowerCase() === 'notebooklm' ? 'R10'
+                : normalize(input.intent_domain).toLowerCase() === 'project' ? 'R1'
+                  : normalize(input.intent_domain).toLowerCase() === 'project-continue' ? 'R2'
+                    : normalize(input.intent_domain).toLowerCase() === 'task' ? (input.activeProjectId ? 'R3' : 'R3-LOOSE')
+                      : normalize(input.intent_domain).toLowerCase() === 'eval' ? 'R5' : undefined,
     resumeCandidate: resume,
   }, {
     R6: () => {
@@ -71,15 +81,36 @@ export const dispatchIntent = (input) => {
       domainIntent = routed.domainIntent;
       return routed.plan;
     },
+    R1: () => {
+      domainIntent = routeProjectCreateIntent({...domainInput, request});
+      return planFromDomain('R1', domainIntent);
+    },
+    R2: () => {
+      domainIntent = routeProjectContinueIntent({...domainInput, request});
+      return planFromDomain('R2', domainIntent);
+    },
+    R3: () => {
+      domainIntent = routeTaskCreateIntent({...domainInput, request, project_id: input.activeProjectId});
+      return planFromDomain('R3', domainIntent);
+    },
+    'R3-LOOSE': () => {
+      domainIntent = routeTaskCreateIntent({...domainInput, request});
+      return planFromDomain('R3-LOOSE', domainIntent);
+    },
+    R5: () => {
+      domainIntent = routeEvalIntent({...domainInput, request});
+      return planFromDomain('R5', domainIntent);
+    },
   });
   const routeId = envelope.selectedRoute ?? 'R0';
-  const adapterInvoked = domainIntent !== null && ['R6', 'R7', 'R8', 'R9', 'R10'].includes(routeId);
+  const adapterInvoked = domainIntent !== null && ['R1', 'R2', 'R3', 'R3-LOOSE', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10'].includes(routeId);
   const adapter = routeId === 'R7'
     ? 'career-application-orchestrator/scripts/route-career.mjs'
     : routeId === 'R6' ? 'content-os-router/scripts/route-content.mjs'
       : routeId === 'R8' ? 'workflows/local-extensions/intent-router.ts'
         : routeId === 'R9' ? 'workflows/maintenance/route-maintenance-v1.ts'
-          : routeId === 'R10' ? 'workflows/notebooklm-os/route-notebooklm-v1.ts' : null;
+          : routeId === 'R10' ? 'workflows/notebooklm-os/route-notebooklm-v1.ts'
+            : ['R1', 'R2', 'R3', 'R3-LOOSE', 'R5'].includes(routeId) ? 'workflows/core/governed-legacy-routes-v1.ts' : null;
   const decision = {
     ASSISTING: 'ASSIST_ONLY', ROUTED: 'AWAITING_SELECTION',
     READY_FOR_BRIEF: 'READY_FOR_BRIEF', RESUMABLE: 'ROUTED', BLOCKED: 'NEEDS_INPUT',
