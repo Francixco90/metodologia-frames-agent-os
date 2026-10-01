@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "change-budget-program-v1",
+  "programId": "aula-decks-publication-20261001",
+  "branch": "codex/aula-decks-integration-20261001",
+  "baseCommit": "2c8830bca189f55a5e8c10a145d0b8b96cae92a5",
+  "authority": {
+    "mode": "LOCAL_SIMULATION",
+    "planRef": "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
+    "planSha256": "3b50e37810b4db2c8f1e3b04ff48de6fd58c8f19d172cca52b3f431ad4c56e12"
+  },
+  "limits": {
+    "targetFiles": 75,
+    "targetLoc": 5660,
+    "hardFiles": 87,
+    "hardLoc": 6860
+  },
+  "partitions": [
+    {
+      "id": "aula-lot-1",
+      "paths": [
+        ".github/workflows/validate.yml",
+        ".gitignore",
+        ".prettierignore",
+        "01_intencion/frames-evolution/aula-decks-20261001/README.md",
+        "01_intencion/program/ownership-manifest.yml",
+        "02_proceso/governance/context-surfaces/registry.yml",
+        "02_proceso/governance/context-surfaces/skills.yml",
+        "02_proceso/governance/docs-budget-policy.yml",
+        "02_proceso/governance/router.yml",
+        "02_proceso/workflows/core/first-turn-signals-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/aula-capability-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/aula-continuation-v1.ts"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 600,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-2",
+      "paths": [
+        "02_proceso/workflows/multimedia/_runner/aula-engine-authority-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/aula-integration.md",
+        "02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts",
+        "02_proceso/workflows/multimedia/_runner/aula-work-order-v1.ts",
+        "02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts",
+        "02_proceso/workflows/multimedia/_schema/aula-promotion-review-v1.ts",
+        "02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml",
+        "02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml",
+        "02_proceso/workflows/multimedia/p07-revisar/workflow.yml",
+        "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
+        "03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 828,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-3",
+      "paths": [
+        "03_artefactos/renderers/frames-aula/LICENSE",
+        "03_artefactos/renderers/frames-aula/README.md",
+        "03_artefactos/renderers/frames-aula/app.js",
+        "03_artefactos/renderers/frames-aula/bank.py",
+        "03_artefactos/renderers/frames-aula/deck-workflow.py",
+        "03_artefactos/renderers/frames-aula/examples/dynamic-commercial-decks.json",
+        "03_artefactos/renderers/frames-aula/examples/immersive-class.json",
+        "03_artefactos/renderers/frames-aula/examples/index.json",
+        "03_artefactos/renderers/frames-aula/examples/lean-coffee.json",
+        "03_artefactos/renderers/frames-aula/examples/masterclass.json",
+        "03_artefactos/renderers/frames-aula/examples/module.json"
+      ],
+      "limits": {
+        "targetFiles": 11,
+        "targetLoc": 1139,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-4",
+      "paths": [
+        "03_artefactos/renderers/frames-aula/examples/playbook-immersive.json",
+        "03_artefactos/renderers/frames-aula/examples/playbook.json",
+        "03_artefactos/renderers/frames-aula/examples/technical-deck.json",
+        "03_artefactos/renderers/frames-aula/examples/workbook.json",
+        "03_artefactos/renderers/frames-aula/export_office.py",
+        "03_artefactos/renderers/frames-aula/guidelines.json",
+        "03_artefactos/renderers/frames-aula/migrate.py",
+        "03_artefactos/renderers/frames-aula/runtime.py",
+        "03_artefactos/renderers/frames-aula/style.css",
+        "03_artefactos/renderers/frames-aula/tests/test_runtime.py",
+        "03_artefactos/skills/content-os-router/scripts/decision-transport.mjs",
+        "03_artefactos/skills/content-os-router/scripts/route-intent.mjs"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 792,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-5",
+      "paths": [
+        "04_estado/registries/renderers/aula-decks-capability-v1.json",
+        "04_estado/registries/skills/aula-decks-package.json",
+        "04_estado/registries/skills/creation-v3-skill-registry.yml",
+        "05_verificacion/scripts/build-aula-decks.py",
+        "05_verificacion/scripts/check-aula-decks.mjs",
+        "05_verificacion/scripts/check-context-surfaces.ts",
+        "05_verificacion/scripts/commands.yaml",
+        "05_verificacion/scripts/creation-v3-checks.ts",
+        "05_verificacion/scripts/creation-v3-skills.json",
+        "05_verificacion/scripts/creation-v3-types.ts",
+        "05_verificacion/scripts/frames-aula.mjs",
+        "05_verificacion/scripts/lib/h03-lock-succession.mjs"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 1012,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-6",
+      "paths": [
+        "05_verificacion/scripts/prepare-aula-budget-program.mjs",
+        "05_verificacion/scripts/promote-aula-decks.mjs",
+        "05_verificacion/scripts/register-aula-decks.mjs",
+        "05_verificacion/tests/contract/aula-promotion-io.test.ts",
+        "05_verificacion/tests/contract/aula-promotion-review.test.ts",
+        "05_verificacion/tests/contract/h03-lock-succession-018.test.ts",
+        "05_verificacion/tests/contract/harness/commands.test.ts",
+        "05_verificacion/tests/fixtures/technical-defense-runtime-probe.fixture.test.ts",
+        "05_verificacion/tests/fixtures/technical-defense-runtime-probe.fixture.ts",
+        "05_verificacion/tests/integration/aula-browser.test.ts"
+      ],
+      "limits": {
+        "targetFiles": 10,
+        "targetLoc": 913,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-7",
+      "paths": [
+        "05_verificacion/tests/integration/aula-continuation.test.ts",
+        "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
+        "05_verificacion/tests/integration/technical-defense-local-extension.harness.ts",
+        "changelog.md",
+        "eslint.config.js",
+        "package.json"
+      ],
+      "limits": {
+        "targetFiles": 6,
+        "targetLoc": 376,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    }
+  ],
+  "perFileLineCaps": [],
+  "canonicalSha256": "4a7bd7cf1dd3b40816b9278f63821b3e46a8feee885b80f8ebd38b1ebc09dee2"
+}

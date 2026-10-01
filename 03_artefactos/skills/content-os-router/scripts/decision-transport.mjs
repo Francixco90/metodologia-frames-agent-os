@@ -3,6 +3,7 @@ import {renderExperienceView} from '../../../../02_proceso/workflows/experience/
 
 const CONTROL_FIELDS = new Set([
   'actor_id',
+  'aula_continuation',
   'activeProjectId',
   'brief_sources',
   'completed_at',

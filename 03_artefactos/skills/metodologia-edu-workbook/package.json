@@ -1,0 +1,8 @@
+{
+  "name": "metodologia-edu-workbook",
+  "version": "1.0.1",
+  "kind": "workbook",
+  "edition": "metodologia",
+  "license": "MIT",
+  "sourceEngineSha256": "91a0d64ab7b424794dd843700a3caccd31e064d723af8c89aac20ccc8641fb07"
+}

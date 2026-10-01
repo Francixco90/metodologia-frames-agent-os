@@ -63,3 +63,6 @@
 03_artefactos/brand/career-design-system/options/index.html
 # Machine-readable workflow manifest is compacted deterministically by its generator.
 03_artefactos/content/documentation/documentation-manifest-v1.json
+# Shared Aula snapshot: exact bytes are enforced by build-aula-decks.py --check
+# and package/engine hashes in both hosts; retain the frozen cross-host source.
+03_artefactos/renderers/frames-aula/**

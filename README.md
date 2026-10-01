@@ -67,7 +67,7 @@ Comandos conversacionales útiles:
 - `/ruta`: explica qué recorrido, capacidades y aprobaciones usaría.
 - una frase normal: siempre prevalece sobre el menú.
 
-La materialización local usa `--apply`, exige un workspace autorizado y se detiene en la aprobación del brief. Consulta [uso guiado y comandos](01_intencion/guides/guided-use.md) antes de activarla.
+La materialización local usa `--apply` y exige un workspace autorizado. Aula y los decks comerciales continúan desde el brief aprobado mediante una especificación aprobada, producción HTML y revisión con receipt; cada aprobación se liga al contenido actual. Consulta [uso guiado y comandos](01_intencion/guides/guided-use.md) antes de activarla.
 
 ## Qué recibirás durante el proceso
 
@@ -144,3 +144,7 @@ La fuente de verdad no es este texto por sí solo: contratos, registries, output
 ## Autoría e identidad
 
 Frames ContentOS es un producto MetodologIA, con autoría de Franklin Ospina y Javier Montaño. MetodologIA es la identidad visible del sistema; tecnologías y vendors son capacidades o fuentes, no sustitutos de la marca.
+
+## Aula y decks en ambas ediciones
+
+[METODOLOGIA] Dieciocho skills originales generan clase inmersiva, masterclass, workbook, Lean Coffee, playbook, playbook inmersivo, índice, módulo y deck comercial. MetodologIA es predeterminada; marca blanca se solicita explícitamente. [Guía de integración](01_intencion/frames-evolution/aula-decks-20261001/README.md). Los outputs siguen siendo RENDERED_DRAFT hasta revisión humana.

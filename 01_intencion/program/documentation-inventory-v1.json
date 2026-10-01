@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "520e5fd620da1125d9c63cbbe676503e83d4906485378c5d605dcf9a240202df",
-  "totalMarkdown": 2003,
-  "auditedAuthored": 748,
+  "repositoryTreeSha256": "71e2454622bb3bae54aee71a8bb3944e65bc6816037840bfd8166b309f123643",
+  "totalMarkdown": 2187,
+  "auditedAuthored": 896,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -71,6 +71,7 @@
       "01_intencion/find-skills/audit-report.md",
       "01_intencion/find-skills/verification-report.md",
       "01_intencion/frames-evolution/ADOPTION-V1.md",
+      "01_intencion/frames-evolution/aula-decks-20261001/README.md",
       "01_intencion/genjutsu/architecture.md",
       "01_intencion/genjutsu/audit-report.md",
       "01_intencion/genjutsu/verification-report.md",
@@ -231,6 +232,7 @@
       "03_artefactos/projects/agentic-workflow-adoption-v1/public-port-authority-v1.md",
       "03_artefactos/projects/agentic-workflow-adoption-v1/socratic-debate.md",
       "03_artefactos/projects/agentic-workflow-adoption-v1/validation-evidence.md",
+      "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
       "03_artefactos/projects/frames-consolidation-2026-09/consolidation-plan-v1.md",
       "03_artefactos/projects/frames-consolidation-2026-09/debate-best-path-v1.md",
       "03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/README.md",
@@ -351,6 +353,7 @@
       "03_artefactos/projects/vs-001-source-to-campaign/remotion/approvals/TEMPLATE.md",
       "03_artefactos/projects/vs-001-source-to-campaign/remotion/committee/orchestration.md",
       "03_artefactos/projects/vs-001-source-to-campaign/web/README.md",
+      "03_artefactos/renderers/frames-aula/README.md",
       "03_artefactos/renderers/remotion/README.md",
       "03_artefactos/renderers/static-social/README.md",
       "03_artefactos/skills/candidate-evidence-reconciler/references/evidence-policy.md",
@@ -468,6 +471,70 @@
       "03_artefactos/skills/dev-test-driven-development/fixtures/negative/example.md",
       "03_artefactos/skills/dev-test-driven-development/fixtures/positive/example.md",
       "03_artefactos/skills/dev-writing-plans/references/documentation-governance.md",
+      "03_artefactos/skills/edu-immersive-class/examples/brief.md",
+      "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-immersive-class/references/acceptance.md",
+      "03_artefactos/skills/edu-immersive-class/references/asset-bank.md",
+      "03_artefactos/skills/edu-immersive-class/references/migration.md",
+      "03_artefactos/skills/edu-immersive-class/references/runtime.md",
+      "03_artefactos/skills/edu-immersive-class/references/schema.md",
+      "03_artefactos/skills/edu-immersive-class/scripts/README.md",
+      "03_artefactos/skills/edu-index/examples/brief.md",
+      "03_artefactos/skills/edu-index/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-index/references/acceptance.md",
+      "03_artefactos/skills/edu-index/references/asset-bank.md",
+      "03_artefactos/skills/edu-index/references/migration.md",
+      "03_artefactos/skills/edu-index/references/runtime.md",
+      "03_artefactos/skills/edu-index/references/schema.md",
+      "03_artefactos/skills/edu-index/scripts/README.md",
+      "03_artefactos/skills/edu-lean-coffee/examples/brief.md",
+      "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-lean-coffee/references/acceptance.md",
+      "03_artefactos/skills/edu-lean-coffee/references/asset-bank.md",
+      "03_artefactos/skills/edu-lean-coffee/references/migration.md",
+      "03_artefactos/skills/edu-lean-coffee/references/runtime.md",
+      "03_artefactos/skills/edu-lean-coffee/references/schema.md",
+      "03_artefactos/skills/edu-lean-coffee/scripts/README.md",
+      "03_artefactos/skills/edu-masterclass/examples/brief.md",
+      "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-masterclass/references/acceptance.md",
+      "03_artefactos/skills/edu-masterclass/references/asset-bank.md",
+      "03_artefactos/skills/edu-masterclass/references/migration.md",
+      "03_artefactos/skills/edu-masterclass/references/runtime.md",
+      "03_artefactos/skills/edu-masterclass/references/schema.md",
+      "03_artefactos/skills/edu-masterclass/scripts/README.md",
+      "03_artefactos/skills/edu-module/examples/brief.md",
+      "03_artefactos/skills/edu-module/examples/rendered/workbook.md",
+      "03_artefactos/skills/edu-module/references/acceptance.md",
+      "03_artefactos/skills/edu-module/references/asset-bank.md",
+      "03_artefactos/skills/edu-module/references/migration.md",
+      "03_artefactos/skills/edu-module/references/runtime.md",
+      "03_artefactos/skills/edu-module/references/schema.md",
+      "03_artefactos/skills/edu-module/scripts/README.md",
+      "03_artefactos/skills/edu-playbook-immersive/examples/brief.md",
+      "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-playbook-immersive/references/acceptance.md",
+      "03_artefactos/skills/edu-playbook-immersive/references/asset-bank.md",
+      "03_artefactos/skills/edu-playbook-immersive/references/migration.md",
+      "03_artefactos/skills/edu-playbook-immersive/references/runtime.md",
+      "03_artefactos/skills/edu-playbook-immersive/references/schema.md",
+      "03_artefactos/skills/edu-playbook-immersive/scripts/README.md",
+      "03_artefactos/skills/edu-playbook/examples/brief.md",
+      "03_artefactos/skills/edu-playbook/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-playbook/references/acceptance.md",
+      "03_artefactos/skills/edu-playbook/references/asset-bank.md",
+      "03_artefactos/skills/edu-playbook/references/migration.md",
+      "03_artefactos/skills/edu-playbook/references/runtime.md",
+      "03_artefactos/skills/edu-playbook/references/schema.md",
+      "03_artefactos/skills/edu-playbook/scripts/README.md",
+      "03_artefactos/skills/edu-workbook/examples/brief.md",
+      "03_artefactos/skills/edu-workbook/examples/rendered/artifact.md",
+      "03_artefactos/skills/edu-workbook/references/acceptance.md",
+      "03_artefactos/skills/edu-workbook/references/asset-bank.md",
+      "03_artefactos/skills/edu-workbook/references/migration.md",
+      "03_artefactos/skills/edu-workbook/references/runtime.md",
+      "03_artefactos/skills/edu-workbook/references/schema.md",
+      "03_artefactos/skills/edu-workbook/scripts/README.md",
       "03_artefactos/skills/evidence-based-cover-letter/references/letter-quality-contract.md",
       "03_artefactos/skills/evidence-first-cv/references/cv-quality-contract.md",
       "03_artefactos/skills/frames-docs-as-code/references/operating-contract.md",
@@ -479,6 +546,78 @@
       "03_artefactos/skills/gstack-openclaw-office-hours/references/design-doc-templates.md",
       "03_artefactos/skills/gstack-openclaw-office-hours/references/forcing-questions.md",
       "03_artefactos/skills/metodologia-certificate-builder/references/certificate-manifest.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/brief.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/acceptance.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/migration.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/runtime.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/schema.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-index/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-index/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-index/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-index/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-index/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-index/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-index/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-module/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.md",
+      "03_artefactos/skills/metodologia-edu-module/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-module/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-module/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-module/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-module/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-module/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-playbook/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-playbook/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-playbook/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-playbook/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-playbook/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-playbook/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-playbook/scripts/README.md",
+      "03_artefactos/skills/metodologia-edu-workbook/examples/brief.md",
+      "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.md",
+      "03_artefactos/skills/metodologia-edu-workbook/references/acceptance.md",
+      "03_artefactos/skills/metodologia-edu-workbook/references/asset-bank.md",
+      "03_artefactos/skills/metodologia-edu-workbook/references/migration.md",
+      "03_artefactos/skills/metodologia-edu-workbook/references/runtime.md",
+      "03_artefactos/skills/metodologia-edu-workbook/references/schema.md",
+      "03_artefactos/skills/metodologia-edu-workbook/scripts/README.md",
       "03_artefactos/skills/metodologia-learning-playbook-html/references/operating-contract.md",
       "03_artefactos/skills/metodologia-masterclass-pdf/references/operating-contract.md",
       "03_artefactos/skills/metodologia-prompt-library/references/operating-contract.md",
@@ -542,6 +681,14 @@
       "03_artefactos/skills/skill-security-auditor/references/operating-contract.md",
       "03_artefactos/skills/skill-system-architect/references/operating-contract.md",
       "03_artefactos/skills/stitch-remotion-walkthrough/references/quarantine-assessment.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/brief.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/references/acceptance.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/references/asset-bank.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/references/migration.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/references/runtime.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/references/schema.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/scripts/README.md",
       "04_estado/registries/README.md",
       "04_estado/registries/agents/README.md",
       "04_estado/registries/contributions/README.md",
@@ -661,6 +808,7 @@
       "02_proceso/workflows/multimedia/_assets/evidence-tuple.md",
       "02_proceso/workflows/multimedia/_assets/no-regression-checklist.md",
       "02_proceso/workflows/multimedia/_assets/recovery-faq.md",
+      "02_proceso/workflows/multimedia/_runner/aula-integration.md",
       "02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md",
       "02_proceso/workflows/multimedia/p01-curar-material/prompt-spec.md",
       "02_proceso/workflows/multimedia/p02-investigar/prompt-spec.md",
@@ -887,6 +1035,14 @@
       "03_artefactos/skills/dev-verification-before-completion/SKILL.md",
       "03_artefactos/skills/dev-writing-plans/SKILL.md",
       "03_artefactos/skills/dev-writing-skills/SKILL.md",
+      "03_artefactos/skills/edu-immersive-class/SKILL.md",
+      "03_artefactos/skills/edu-index/SKILL.md",
+      "03_artefactos/skills/edu-lean-coffee/SKILL.md",
+      "03_artefactos/skills/edu-masterclass/SKILL.md",
+      "03_artefactos/skills/edu-module/SKILL.md",
+      "03_artefactos/skills/edu-playbook-immersive/SKILL.md",
+      "03_artefactos/skills/edu-playbook/SKILL.md",
+      "03_artefactos/skills/edu-workbook/SKILL.md",
       "03_artefactos/skills/evidence-based-cover-letter/SKILL.md",
       "03_artefactos/skills/evidence-first-cv/SKILL.md",
       "03_artefactos/skills/frames-docs-as-code/SKILL.md",
@@ -914,6 +1070,15 @@
       "03_artefactos/skills/media-rembg/SKILL.md",
       "03_artefactos/skills/metodologia-brand-router/SKILL.md",
       "03_artefactos/skills/metodologia-certificate-builder/SKILL.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-index/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-module/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-playbook/SKILL.md",
+      "03_artefactos/skills/metodologia-edu-workbook/SKILL.md",
       "03_artefactos/skills/metodologia-find-skills/SKILL.md",
       "03_artefactos/skills/metodologia-learning-playbook-html/SKILL.md",
       "03_artefactos/skills/metodologia-masterclass-pdf/SKILL.md",
@@ -955,7 +1120,8 @@
       "03_artefactos/skills/web-hackernews-frontpage/SKILL.md",
       "03_artefactos/skills/web-open-browser/SKILL.md",
       "03_artefactos/skills/web-scrape/SKILL.md",
-      "03_artefactos/skills/web-setup-browser-cookies/SKILL.md"
+      "03_artefactos/skills/web-setup-browser-cookies/SKILL.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/SKILL.md"
     ],
     "generated": [
       "00_inbox/context.md",
@@ -1023,12 +1189,29 @@
       "03_artefactos/skills/context-teammates/context.md",
       "03_artefactos/skills/dev-verification-before-completion/context.md",
       "03_artefactos/skills/dev-writing-plans/context.md",
+      "03_artefactos/skills/edu-immersive-class/context.md",
+      "03_artefactos/skills/edu-index/context.md",
+      "03_artefactos/skills/edu-lean-coffee/context.md",
+      "03_artefactos/skills/edu-masterclass/context.md",
+      "03_artefactos/skills/edu-module/context.md",
+      "03_artefactos/skills/edu-playbook-immersive/context.md",
+      "03_artefactos/skills/edu-playbook/context.md",
+      "03_artefactos/skills/edu-workbook/context.md",
       "03_artefactos/skills/frames-docs-as-code/context.md",
       "03_artefactos/skills/frames-ecosystem-inventory/context.md",
       "03_artefactos/skills/frames-harness-maintainer/context.md",
       "03_artefactos/skills/frames-local-extension-foundry/context.md",
       "03_artefactos/skills/frames-token-efficiency-orchestrator/context.md",
       "03_artefactos/skills/metodologia-brand-router/context.md",
+      "03_artefactos/skills/metodologia-dynamic-commercial-decks/context.md",
+      "03_artefactos/skills/metodologia-edu-immersive-class/context.md",
+      "03_artefactos/skills/metodologia-edu-index/context.md",
+      "03_artefactos/skills/metodologia-edu-lean-coffee/context.md",
+      "03_artefactos/skills/metodologia-edu-masterclass/context.md",
+      "03_artefactos/skills/metodologia-edu-module/context.md",
+      "03_artefactos/skills/metodologia-edu-playbook-immersive/context.md",
+      "03_artefactos/skills/metodologia-edu-playbook/context.md",
+      "03_artefactos/skills/metodologia-edu-workbook/context.md",
       "03_artefactos/skills/skill-authoring-engineer/context.md",
       "03_artefactos/skills/skill-contract-validator/context.md",
       "03_artefactos/skills/skill-evaluation-engineer/context.md",
@@ -1038,6 +1221,7 @@
       "03_artefactos/skills/skill-runtime-adapter/context.md",
       "03_artefactos/skills/skill-security-auditor/context.md",
       "03_artefactos/skills/skill-system-architect/context.md",
+      "03_artefactos/skills/white-label-dynamic-commercial-decks/context.md",
       "04_estado/context.md",
       "04_estado/registries/context.md",
       "05_verificacion/context.md",
@@ -3878,6 +4062,32 @@
       }
     },
     {
+      "path": "01_intencion/frames-evolution/aula-decks-20261001/README.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/frames-evolution/aula-decks-20261001/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/frames-evolution/aula-decks-20261001/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "9d5f5eb481e5704165199e1114a7209b439ced1e25507e8c567c7be2102128f8",
+      "words": 511,
+      "lines": 36,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "01_intencion/genjutsu/architecture.md",
       "class": "authored_control",
       "owner": "lead",
@@ -4825,7 +5035,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "5cfb54778664314b55d565565d85fb4ee9f4aca8f931b4bd01205fedcc100e22",
+      "sha256": "55597058ee608ebf73e4c1b75376865a130aa40822010e25212eceb5f839e353",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -8192,6 +8402,32 @@
       }
     },
     {
+      "path": "02_proceso/workflows/multimedia/_runner/aula-integration.md",
+      "class": "workflow",
+      "owner": "content",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:content:workflows/multimedia/**",
+      "authorityRefs": [
+        "02_proceso/workflows/multimedia/_runner/aula-integration.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "02_proceso/workflows/multimedia/_runner/aula-integration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "0a999c9fb1211ba2adc295a6d46f82fbef9429201d098ee163c0632854791855",
+      "words": 445,
+      "lines": 74,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "02_proceso/workflows/multimedia/p00-definir-sistema/prompt-spec.md",
       "class": "workflow",
       "owner": "content",
@@ -9007,7 +9243,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/asset-map-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "016199e3f8f12bd201807be9001a1fa06a744b5b49143db310e078bfb26f9600",
+      "sha256": "6d2883a055786192a5cc3824264a1e1cdf567831f2b071e9cc6ccb7b08ed7cf6",
       "words": 539,
       "lines": 173,
       "score": 85,
@@ -9041,7 +9277,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/continuity-bible-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "0a236deac617f40e575138e3c23ce8de4dc81ed67dabcb69c82e5c9ecf3aa94c",
+      "sha256": "f61cdcd4e789af376f70609168eff2dd77c889f6ebe555d1982496b03adfca89",
       "words": 508,
       "lines": 162,
       "score": 85,
@@ -9075,7 +9311,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/creative-spec-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "a9c987025f23232e1dfffded87e2ab96a8e76dff703f0613d64334e3ffda2986",
+      "sha256": "d3edf2dee927ced24ae228399d5e8376057556aa8120797d94ea6178d8ff3ea9",
       "words": 582,
       "lines": 186,
       "score": 85,
@@ -9109,7 +9345,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/derivatives-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "e853cf2b9d934928ab65d35f9b4315033c7c2585b96086e787d389b8b4942ab4",
+      "sha256": "667a461fcf6c7fcfe7ad949da5f4c20f618a2970c7e4998207fdeece5d93ff63",
       "words": 520,
       "lines": 164,
       "score": 85,
@@ -9143,7 +9379,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/piece-family-spec-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "a9d68de3387bf1b0a7bc1cd11e952ba9e2587196dfdc6cadcde51188ba9d4742",
+      "sha256": "670499b5f96bf83fc5adea6f6d299c73756d48052cef91f90adea0effd2f3d1e",
       "words": 563,
       "lines": 178,
       "score": 85,
@@ -9177,7 +9413,7 @@
         "02_proceso/workflows/multimedia/p05-disenar-pieza/templates/universal-prompts-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "26f216ec6777577b03606feb83e65f13aa4cc9e5bf93866a64ad98cfe313ae73",
+      "sha256": "9989c4b5191f3bbeddaa8d7369f25963b91b8e5d5cef07fce3a569d5fd3bc6f9",
       "words": 562,
       "lines": 179,
       "score": 85,
@@ -9237,7 +9473,7 @@
         "02_proceso/workflows/multimedia/p06-crear-activos/templates/asset-manifest-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "ed1ed135620553795026597fa83fdf629fa963ea4b524d3fa5103c1061c00b22",
+      "sha256": "54b64849a079d9f018a966127b9015fc700e5794e0dc0df05d8d4dfa99c227f0",
       "words": 567,
       "lines": 175,
       "score": 85,
@@ -9271,7 +9507,7 @@
         "02_proceso/workflows/multimedia/p06-crear-activos/templates/asset-package-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "55e7ced2d22258e230cc21c4410ee4928331c022cdb59c5a531601d1a77390a1",
+      "sha256": "ba33144a4ed43a5b3832827d8f2ae9582ddff16ce126ca58ca3037c493b86fdc",
       "words": 556,
       "lines": 171,
       "score": 85,
@@ -9305,7 +9541,7 @@
         "02_proceso/workflows/multimedia/p06-crear-activos/templates/capability-report-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "9901ecf4ade9b52506c8a8db544df2a8ad1fbc5a84b04ae3c5a5cdd905b1738b",
+      "sha256": "63ee4ccb21e86dbed150b843e0e95ceffa30edc9e163b00893daf3a93b847128",
       "words": 509,
       "lines": 160,
       "score": 85,
@@ -9339,7 +9575,7 @@
         "02_proceso/workflows/multimedia/p06-crear-activos/templates/tool-run-evidence-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "c7e0011c9efdf231ff172d727985b67c99c5db39323ad9a319c170bafa161d2b",
+      "sha256": "fa5f2502268abd5741247401ffb911329a537fdfb3aa5ac33026ead3d83c29d8",
       "words": 527,
       "lines": 168,
       "score": 85,
@@ -9399,7 +9635,7 @@
         "02_proceso/workflows/multimedia/p07-revisar/templates/review-report-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "240f2afb36d29763d6f915019ddb47b49c763e0076650ce30282b87f93e8a5c4",
+      "sha256": "4beeb5b9419418f94ba6340100b617cf867287cc3d0db0ce69b236ac8106991a",
       "words": 534,
       "lines": 172,
       "score": 85,
@@ -9433,7 +9669,7 @@
         "02_proceso/workflows/multimedia/p07-revisar/templates/top5-changes-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "8d27e3ab5615d414940806e3c8c79682a5897fd23cf2da464bf7fcc75a78e5ba",
+      "sha256": "4675fbc39449492fc9dc5319f04ba40e2778272b7754d791df13e9d34df60432",
       "words": 499,
       "lines": 160,
       "score": 85,
@@ -9467,7 +9703,7 @@
         "02_proceso/workflows/multimedia/p07-revisar/templates/verdict-v1.template.html"
       ],
       "lifecycle": "active",
-      "sha256": "02acd88058aba3cc5665bd361888b8e415ccb85a8ad18cfadee628a7059e1da9",
+      "sha256": "a1f84f85071b89355341b74c263ff4f6821a180ace29e4df06eb6d52c78b8975",
       "words": 505,
       "lines": 161,
       "score": 85,
@@ -10551,9 +10787,9 @@
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "142050417a3b95f332dbfd0421095dedc4fc6e7947318012db6cdda012ee05b7",
-      "words": 11065,
-      "lines": 1028,
+      "sha256": "4ae473799f498118f389eda99e113dd5bd518fb14b83cb4faf7642285ed7dfd0",
+      "words": 11494,
+      "lines": 1067,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -10824,6 +11060,32 @@
         "hasExecutableCommand": true,
         "hasAuthorityLink": true,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:projects/aula-decks-publication-20261001/**",
+      "authorityRefs": [
+        "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "3b50e37810b4db2c8f1e3b04ff48de6fd58c8f19d172cca52b3f431ad4c56e12",
+      "words": 158,
+      "lines": 8,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -13936,6 +14198,32 @@
       "sha256": "37438fa0d3b54e279c2b744dbb94ddef4dbff1aa62c7661b067866021b9a1763",
       "words": 31,
       "lines": 9,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/renderers/frames-aula/README.md",
+      "class": "authored_control",
+      "owner": "remotion",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:remotion:renderers/frames-aula/**",
+      "authorityRefs": [
+        "03_artefactos/renderers/frames-aula/README.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "03_artefactos/renderers/frames-aula/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17098,6 +17386,1734 @@
       }
     },
     {
+      "path": "03_artefactos/skills/edu-immersive-class/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1d37648bd4becebff8ab93c99d65d2bcfeaa1e89d7f8db25b6f774b51afd1acf",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "9c61a7bad26612db74e8d535ab4f15c04e6a564e021cbb5db6446789c62b46bb",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-immersive-class/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-immersive-class/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-immersive-class/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "53e5fa13fa65331e0e850fcfe372254b0f5e2a876db7d67fa603bca3a7806220",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-index/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-index/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-index/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-index/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f50bb411e7535b094dbaa0becf8d401fe4059e220e82a3ff22c9ab6f096445ee",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "5f71725b16575e327b03e177bacc06a2ae3098b5020985080f25e3e2cf619425",
+      "words": 52,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-lean-coffee/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-lean-coffee/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-lean-coffee/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "42dbde559190f1ecc2fc5d0a528ad48e34a0ae06c0faeb57c1ebeeb2a79ff6e3",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-masterclass/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-masterclass/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-masterclass/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8a28802c1898a4fa9a2cc7fe579ae4737bf085dcb604c588922329b30a2039e1",
+      "words": 27,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/examples/rendered/workbook.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/examples/rendered/workbook.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/examples/rendered/workbook.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-module/examples/rendered/workbook.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-module/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-module/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-module/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7b67491ae3b99b73f4ddd6074a84b0a99b721a26329926563b0749d88cb86e21",
+      "words": 22,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "e634f44faf33e2d484c7f026fd543384726847f2ad43a67973840485f81e13ea",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook-immersive/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook-immersive/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook-immersive/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d14a3fe9f7c4d4f66086ae76e75b55f1f0f66d70feb1cb5a3540e21289d3e203",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-playbook/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-playbook/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-playbook/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-playbook/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "77dcb874bc9c6207a6b6cdf6a9f59a24d63c5b28c28b801b819cc425b441fbf2",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/edu-workbook/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/edu-workbook/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/edu-workbook/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/edu-workbook/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
       "path": "03_artefactos/skills/evidence-based-cover-letter/references/letter-quality-contract.md",
       "class": "authored_control",
       "owner": "skill-foundry",
@@ -17380,6 +19396,1950 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "76915f44e9df755ece83e8a0d00e0213aabca8e1135e727abdb38837253382cd",
+      "words": 27,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758",
+      "words": 52,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-dynamic-commercial-decks/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-dynamic-commercial-decks/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "1d37648bd4becebff8ab93c99d65d2bcfeaa1e89d7f8db25b6f774b51afd1acf",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "9c61a7bad26612db74e8d535ab4f15c04e6a564e021cbb5db6446789c62b46bb",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-immersive-class/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-immersive-class/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "53e5fa13fa65331e0e850fcfe372254b0f5e2a876db7d67fa603bca3a7806220",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-index/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-index/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-index/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "f50bb411e7535b094dbaa0becf8d401fe4059e220e82a3ff22c9ab6f096445ee",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "5f71725b16575e327b03e177bacc06a2ae3098b5020985080f25e3e2cf619425",
+      "words": 52,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-lean-coffee/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-lean-coffee/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "42dbde559190f1ecc2fc5d0a528ad48e34a0ae06c0faeb57c1ebeeb2a79ff6e3",
+      "words": 26,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a",
+      "words": 51,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-masterclass/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-masterclass/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "8a28802c1898a4fa9a2cc7fe579ae4737bf085dcb604c588922329b30a2039e1",
+      "words": 27,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-module/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-module/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-module/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7b67491ae3b99b73f4ddd6074a84b0a99b721a26329926563b0749d88cb86e21",
+      "words": 22,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "e634f44faf33e2d484c7f026fd543384726847f2ad43a67973840485f81e13ea",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook-immersive/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook-immersive/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "d14a3fe9f7c4d4f66086ae76e75b55f1f0f66d70feb1cb5a3540e21289d3e203",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-playbook/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-playbook/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "77dcb874bc9c6207a6b6cdf6a9f59a24d63c5b28c28b801b819cc425b441fbf2",
+      "words": 25,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+      "words": 50,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/metodologia-edu-workbook/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/metodologia-edu-workbook/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -19150,6 +23110,222 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": true,
         "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/brief.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/brief.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/brief.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "76915f44e9df755ece83e8a0d00e0213aabca8e1135e727abdb38837253382cd",
+      "words": 27,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.md",
+      "derivatives": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.html"
+      ],
+      "lifecycle": "active",
+      "sha256": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758",
+      "words": 52,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/acceptance.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/references/acceptance.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/acceptance.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "ea447760185bf6a9978458707be98e11c02e34716c79f9fb2acba8cfbce6c4e2",
+      "words": 101,
+      "lines": 12,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/asset-bank.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/references/asset-bank.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/asset-bank.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
+      "words": 54,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/migration.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/references/migration.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/migration.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7776da0679f1ef19aa85b00bebe7a2a3f5c906b1148d3c0ac653418f155d1c16",
+      "words": 55,
+      "lines": 4,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/runtime.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/references/runtime.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/runtime.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "7859605f64607cf0090207388855125c7d1561bf622407075cc7c1bb141229f3",
+      "words": 709,
+      "lines": 44,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/schema.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/references/schema.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/schema.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
+      "words": 72,
+      "lines": 6,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "03_artefactos/skills/white-label-dynamic-commercial-decks/scripts/README.md",
+      "class": "authored_control",
+      "owner": "skill-foundry",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:skill-foundry:skills/**",
+      "authorityRefs": [
+        "03_artefactos/skills/white-label-dynamic-commercial-decks/scripts/README.md"
+      ],
+      "budgetSurface": "generated-aula-atomic-package",
+      "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/scripts/README.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "adb3a93a6922e929692999b1936cf90675be31378ae69d8e2bfa46d622cb60f8",
+      "words": 18,
+      "lines": 2,
+      "score": 85,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [
+        {
+          "code": "DOC-HEADING001",
+          "severity": "medium",
+          "detail": "Falta un H1."
+        }
+      ],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -22028,9 +26204,9 @@
       "sourceRef": "README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "27a35f04faaf004123327d9a491c506efb8842db26fc4e4ea0aa1393a7f23707",
-      "words": 1673,
-      "lines": 147,
+      "sha256": "6ca511045ef20e6d67762c16c1aa44f59c6e4e62581167ae1eab8e7514605fa5",
+      "words": 1738,
+      "lines": 151,
       "score": 100,
       "threshold": 90,
       "decision": "KEEP",
@@ -22080,9 +26256,9 @@
       "sourceRef": "changelog.md",
       "derivatives": [],
       "lifecycle": "frozen",
-      "sha256": "ddb43e9e31c83c55626fe347277b132be93f663071ff4b1f0eff719133980983",
-      "words": 2495,
-      "lines": 315,
+      "sha256": "9b62a48010a68f99408da5373e70b03da97b33140b067b1fbcb1496109c975cf",
+      "words": 2500,
+      "lines": 317,
       "score": 100,
       "threshold": 80,
       "decision": "FREEZE",
@@ -22096,10 +26272,10 @@
     }
   ],
   "summary": {
-    "keep": 733,
+    "keep": 881,
     "refactor": 0,
     "split": 1,
-    "regenerate": 85,
+    "regenerate": 103,
     "freeze": 973
   }
 }

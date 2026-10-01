@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "dynamic-commercial-decks",
+  "edition": "metodologia",
+  "inputSha256": "f0b366d726fba58b4ad508dc506387ba66e2702b2b5cd414b2d5b174e2745b5a",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "09ae7fe3dadeed4a7a3a4379e9d4814873de01f64d24b1b6274c1b4544d34761",
+    "artifact-mobile.html": "18c30d9e4aa9a5212f868590aaa64235897a1451aab22ed8b3760b9016d902ac",
+    "artifact-audience.html": "1a45d50f81fcc9760d8cd7b01f9822fef33b1dc27ff0c183de49e7cbde5a9761",
+    "artifact-mobile-audience.html": "c415e8840c651ef3b47a64302933c13d8126d278f683a0be1aebdd60fbc99555",
+    "artifact.md": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758"
+  },
+  "advisories": []
+}

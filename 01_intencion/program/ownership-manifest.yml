@@ -28,6 +28,7 @@ writers:
     - projects/pilot-carousel-001/project.yml
     - projects/agentic-workflow-adoption-v1/**
     - projects/frames-consolidation-2026-09/**
+    - projects/aula-decks-publication-20261001/**
     - 01_intencion/program/consolidation-ledger.md
     - work/private/.gitkeep
   repo:
@@ -136,6 +137,7 @@ writers:
     # [CONFIG] Remotion owns renderer implementation and render evidence only;
     # workflow orchestration remains under content:workflows/multimedia/**.
     - renderers/remotion/**
+    - renderers/frames-aula/**
     - registries/renderers/**
     - registries/components/**
     - receipts/renders/**
@@ -173,6 +175,7 @@ writers:
     - quality/reviews/core-committee/**
     - projects/pilot-carousel-001/quality/**
     - receipts/dependency-audits/**
+    - receipts/aula-decks-evaluation-20261001.json
     - receipts/check-runs/**
     - evals/**
     - 05_verificacion/evals/**
@@ -213,6 +216,9 @@ writers:
     - quality/reviews/rights-accessibility-security/**
     - receipts/migrations/**
     - receipts/experience/**
+    - receipts/aula-decks-guardian-20261001.json
+    - receipts/aula-decks-guardian-20261001-002.json
+    - receipts/aula-decks-guardian-20261001-003.json
     - receipts/projects/notebooklm-os/**
     - 04_estado/releases/experience/**
     - projects/vs-001-source-to-campaign/guardian/**

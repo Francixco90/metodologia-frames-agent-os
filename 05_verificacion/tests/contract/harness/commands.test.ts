@@ -17,8 +17,8 @@ describe('commands.yaml contract', () => {
     expect(manifest.schema_version).toBe(1);
   });
 
-  it('declares 76 gates including transaction, Guardian and existing domain boundaries', () => {
-    expect(manifest.gates).toHaveLength(76);
+  it('declares 77 gates including transaction, Guardian and existing domain boundaries', () => {
+    expect(manifest.gates).toHaveLength(77);
     expect(manifest.gates.map(({gate}) => gate)).toEqual(
       expect.arrayContaining([
         'G09_VIDEO_OS',
@@ -33,6 +33,7 @@ describe('commands.yaml contract', () => {
         'NLM_SHARE_AUTHORIZED',
         'G08_TRANSACTION_KERNEL',
         'HM_GUARDIAN_VERDICT_RECORDED',
+        'MW_AULA_LOCAL_VALIDATED',
       ]),
     );
   });

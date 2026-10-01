@@ -79,6 +79,24 @@ capability_map:
   skills:
     - design-audit-genjutsu
     - content-os-core
+    - metodologia-edu-immersive-class
+    - metodologia-edu-masterclass
+    - metodologia-edu-workbook
+    - metodologia-edu-lean-coffee
+    - metodologia-edu-playbook
+    - metodologia-edu-playbook-immersive
+    - metodologia-edu-index
+    - metodologia-edu-module
+    - metodologia-dynamic-commercial-decks
+    - edu-immersive-class
+    - edu-masterclass
+    - edu-workbook
+    - edu-lean-coffee
+    - edu-playbook
+    - edu-playbook-immersive
+    - edu-index
+    - edu-module
+    - white-label-dynamic-commercial-decks
   assets:
     - review-report-v1
     - verdict-v1

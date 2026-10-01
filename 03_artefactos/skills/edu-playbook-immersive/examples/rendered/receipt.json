@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "playbook-immersive",
+  "edition": "white-label",
+  "inputSha256": "061b5965782f7475a253e5359f8c969fbc63a0e8760e05fd5d2e4907291c1548",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "ae91c678c1cbd5ce3570312d6e63c6350f6d8396619f8fbe488cd25cddde1a0a",
+    "artifact-mobile.html": "f34c4801c2b5fd0691394836b1e1143a79ba15738b324a7aaaa447a32b198ae9",
+    "artifact-audience.html": "efeab2c27cec946d6e4eee66a8bd797842e6a97dba4391cc3e4e8a1911a87746",
+    "artifact-mobile-audience.html": "aad1a732a5dbfc7aa0fe184f6de6e327f19afd2d3c0f21aebb3e62e44743dc60",
+    "artifact.md": "e634f44faf33e2d484c7f026fd543384726847f2ad43a67973840485f81e13ea"
+  },
+  "advisories": []
+}

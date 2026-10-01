@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "index",
+  "edition": "white-label",
+  "inputSha256": "da893dcb1ee25b0e217c2d02f5e4d6f463bd22374819cd48989649761dca9294",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "4e29e109b3821ec4172bba76603affa61d17f1540ae806612fab5ac23ab32b2b",
+    "artifact-mobile.html": "d1eb3c0888c0639296011c17aaba670d9a13eb77bcf5d962e9e9d9eb27b23ec9",
+    "artifact-audience.html": "f9c371aa5f0a06fbbf3d1c4459d94b76a469f1d349ef680973c4ccde928229c8",
+    "artifact-mobile-audience.html": "4bff1e72781b9c25cfb268e27aadad75d8ffde246ca654796b340296d53e30e6",
+    "artifact.md": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40"
+  },
+  "advisories": []
+}

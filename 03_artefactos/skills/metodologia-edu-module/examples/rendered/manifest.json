@@ -1,0 +1,29 @@
+{
+  "state": "RENDERED_DRAFT",
+  "pieces": [
+    {
+      "kind": "immersive-class",
+      "href": "immersive-class.html"
+    },
+    {
+      "kind": "masterclass",
+      "href": "masterclass.html"
+    },
+    {
+      "kind": "workbook",
+      "href": "workbook.html"
+    },
+    {
+      "kind": "lean-coffee",
+      "href": "lean-coffee.html"
+    },
+    {
+      "kind": "playbook",
+      "href": "playbook.html"
+    },
+    {
+      "kind": "playbook-immersive",
+      "href": "playbook-immersive.html"
+    }
+  ]
+}

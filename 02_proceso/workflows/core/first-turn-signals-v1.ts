@@ -11,6 +11,18 @@ export const CONTENT_SIGNALS_V1 = [
   'propuesta comercial',
   'commercial proposal',
   'proposal deck',
+  'indice del modulo',
+  'landing del modulo',
+  'module home',
+  'workbook',
+  'masterclass',
+  'clase inmersiva',
+  'playbook',
+  'lean coffee',
+  'kit completo',
+  'taller completo',
+  'presentacion comercial',
+  'deck',
 ] as const;
 export const CAREER_SIGNALS_V1 = [
   'cv',

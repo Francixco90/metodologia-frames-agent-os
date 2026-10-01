@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "index",
+  "edition": "metodologia",
+  "inputSha256": "da893dcb1ee25b0e217c2d02f5e4d6f463bd22374819cd48989649761dca9294",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "023aed4b28e513205e38a9162787f343fb24489ecc3b25832b8e5b735ff4bc8e",
+    "artifact-mobile.html": "565d7f7ec48f63caa165190a3565405e28f3846655bffbd8228645c7ac583ada",
+    "artifact-audience.html": "0f164669b28f8a0e92135513b72c05a1ce64593d0a06553fb9eea1052a1d6139",
+    "artifact-mobile-audience.html": "ca0e6989b3401ee4cac4a9e5542aae6a4e7e11bb65cb9ab59a1faeb190f3757d",
+    "artifact.md": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40"
+  },
+  "advisories": []
+}

@@ -1,5 +1,7 @@
 # Changelog
 
+[METODOLOGIA] 2026-10-01: [18 skills Aula/decks](01_intencion/frames-evolution/aula-decks-20261001/README.md).
+
 Append-only record of merged PRs and programa milestones (ADR 0027: the
 repo's only versioned temporal trace besides `04_estado/receipts/**` and
 `04_estado/tasks/**`). Newest entry first. Never rewrite past entries. [CONFIG]

@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "workbook",
+  "edition": "white-label",
+  "inputSha256": "86a181a55b417ca26bb9a92fdcd641f5a888dd1e5b6c1269a848eaf0ad4e4051",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "ca5c70be0a3e197126c2c1ad8c85bd87430f054c78cfbf3ff21a2f63f63dd110",
+    "artifact-mobile.html": "2eb8ebbc20ee797b52b37302c85f1118d8f942bdd59992a76ae5b73ab0eab4cd",
+    "artifact-audience.html": "bae3322936fe480e6a9ea1b92f3b494c800b135d45e885013074f3af4f01311e",
+    "artifact-mobile-audience.html": "9e9062edbf99234c12ecc1dadc2b495ced361d3974e839c58cbb9762727978cc",
+    "artifact.md": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525"
+  },
+  "advisories": []
+}

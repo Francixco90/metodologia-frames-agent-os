@@ -37,4 +37,23 @@ export default tseslint.config(
       'no-console': ['error', {allow: ['info', 'warn', 'error']}],
     },
   },
+  {
+    files: ['03_artefactos/renderers/frames-aula/app.js'],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: {
+      globals: Object.fromEntries(
+        [
+          'document',
+          'navigator',
+          'localStorage',
+          'location',
+          'history',
+          'setInterval',
+          'clearInterval',
+          'URLSearchParams',
+        ].map((name) => [name, 'readonly']),
+      ),
+    },
+    rules: {'no-undef': 'error', 'no-empty': ['error', {allowEmptyCatch: true}]},
+  },
 );

@@ -1,0 +1,19 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "module",
+  "edition": "white-label",
+  "inputSha256": "8db1cdc574b527a4f1b57715b5a50e933d5adea18293a51de623b6238f170cd1",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "immersive-class.html": "bf080d4cd3d2b8603e6c41b70ec5dc0b7df7faef3bed66ffd3b43025eab2d54d",
+    "masterclass.html": "626499687a5b7ad60c2a69749f03d4c6aea44938f1a232241fcaf0ed6a1820b0",
+    "workbook.html": "43e7341f309e4eef0c479089e4d58166c27d3d080186f0ddfb7949d204d9eba1",
+    "lean-coffee.html": "5b483d5df5fb2579151badafabf9bd184bd21ebd8df1981d13546c3b2541011b",
+    "playbook.html": "13fa99c2e30f48eda52a22f36efb899c8553216829f07bc9e50c2f2e17ed1b8d",
+    "playbook-immersive.html": "ff4881047dc8e4b7309b3577efc84662d00194627c828f6027c7d48e274e9fc8",
+    "index.html": "83458878cb09b6cfd38d4bd092f9f1f222aea80c997e852039e09545f27630f2",
+    "workbook.md": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+    "manifest.json": "1b2824f3672d467c473668dc5ed89943a042bfe9dd1ec1d108d09cc3f1c809a9"
+  },
+  "advisories": []
+}

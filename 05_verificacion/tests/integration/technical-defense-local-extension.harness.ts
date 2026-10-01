@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync} from 'node:fs';
+import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join, resolve} from 'node:path';
 
@@ -38,6 +38,7 @@ import {
   transactionAuthorityPort,
   transactionProducerAuthorizer,
 } from 'tests/fixtures/transaction-kernel-v1.fixture.ts';
+import {makeCurrentTechnicalDefenseProbeFixture} from 'tests/fixtures/technical-defense-runtime-probe.fixture.ts';
 
 export const digest = (value: string | Uint8Array): string =>
   createHash('sha256').update(value).digest('hex');
@@ -156,7 +157,8 @@ export const loadTechnicalDefenseBundle = (): TechnicalDefenseBundleBinding => {
   );
   mkdirSync(target, {recursive: true});
   cpSync(bundleRoot, target, {recursive: true});
-  const probeBytes = readFileSync(resolve(target, 'sandbox-probe.json'));
+  const probeBytes = makeCurrentTechnicalDefenseProbeFixture(bundleRoot);
+  writeFileSync(resolve(target, 'sandbox-probe.json'), probeBytes);
   const probe = SandboxProbeSchema.parse(JSON.parse(probeBytes.toString('utf8')));
   const runnerAuthority: LocalExtensionRunnerAuthorityV1 = {
     runnerId: 'frames.local-extension-executor-v1',

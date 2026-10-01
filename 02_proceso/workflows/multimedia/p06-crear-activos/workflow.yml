@@ -5,10 +5,7 @@ title: 'Crea los activos multimedia'
 purpose: 'Genera, guía o especifica activos por etapas, con evidencia y estado exacto.'
 discipline: 'Generación y captura'
 phase: 'Producción'
-tags:
-  - assets
-  - build
-  - capability
+tags: [assets, build, capability]
 modes:
   - id: ia-nativa
     name: 'IA nativa'
@@ -46,9 +43,7 @@ outputs:
     template_id: TPL-P06-DELIVERABLE-V1
     required: true
 work_product_state: BUILD_VALIDATED
-gates:
-  - MW_ASSET_REVIEW
-  - G14
+gates: [MW_ASSET_REVIEW, G14]
 next_workflow: P07
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
@@ -79,6 +74,24 @@ capability_map:
     - content-os-remotion-create
     - content-os-remotion-render
     - content-os-media
+    - metodologia-edu-immersive-class
+    - metodologia-edu-masterclass
+    - metodologia-edu-workbook
+    - metodologia-edu-lean-coffee
+    - metodologia-edu-playbook
+    - metodologia-edu-playbook-immersive
+    - metodologia-edu-index
+    - metodologia-edu-module
+    - metodologia-dynamic-commercial-decks
+    - edu-immersive-class
+    - edu-masterclass
+    - edu-workbook
+    - edu-lean-coffee
+    - edu-playbook
+    - edu-playbook-immersive
+    - edu-index
+    - edu-module
+    - white-label-dynamic-commercial-decks
   assets:
     - asset-package-v1
     - asset-manifest-v1
@@ -133,7 +146,4 @@ metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
   status: candidate
-  locale:
-    - es
-    - en
-    - pt
+  locale: [es, en, pt]

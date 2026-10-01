@@ -36,19 +36,22 @@ jobs:
           ffmpeg -version
           ffprobe -version
           tesseract --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - run: pnpm install --frozen-lockfile
-      # The canonical public line (Francixco90/main) is the budget and ownership base in every
-      # clone, exactly as resolveBudgetBase and check-ownership already prefer `upstream/main`;
-      # the private fork imports that line, so measuring a PR against its own main would count
-      # the whole upstream history as authored change.
-      - name: Fetch canonical upstream main
-        run: git fetch --no-tags https://github.com/Francixco90/metodologia-frames-agent-os.git +refs/heads/main:refs/remotes/upstream/main
-      - name: Resolve budget base (pull requests only)
+      - name: Install offline HTML browser sensor
+        run: pnpm exec playwright install --with-deps chromium
+      # Bind each PR to its own remote main; public/private histories stay separate.
+      - name: Resolve reviewed base (pull requests only)
         id: base
         if: github.event_name == 'pull_request'
-        run: echo "sha=$(git merge-base HEAD upstream/main)" >> "$GITHUB_OUTPUT"
+        env:
+          REVIEWED_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: echo "sha=$REVIEWED_BASE_SHA" >> "$GITHUB_OUTPUT"
       # One step, one truth: CI runs the same aggregate gate as `pnpm verify` locally.
       # scripts/check-ci-parity.ts fails check:repo if this workflow ever drifts from it.
       - run: pnpm verify
         env:
           BUDGET_BASE_REF: ${{ steps.base.outputs.sha }}
+          OWNERSHIP_BASE_REF: ${{ steps.base.outputs.sha }}

@@ -65,29 +65,30 @@ export const validateSkill = (
   const events = (registry.events ?? [])
     .filter(({skill_id: id}) => id === skill.id)
     .sort((left, right) => (left.event_order ?? 0) - (right.event_order ?? 0));
-  const transitions: Array<[string | null, string]> = [
-    [null, 'candidate'],
-    ['candidate', 'quarantined'],
-    ['quarantined', 'evaluated'],
-  ];
-  if (registryState === 'active') transitions.push(['evaluated', 'active']);
-  if (registryState === 'active' && skill.version) transitions.push(['active', 'active']);
-  const minimum = transitions.length;
+  const transitions: Record<string, string[]> = {
+    null: ['candidate'],
+    candidate: ['candidate', 'quarantined'],
+    quarantined: ['quarantined', 'evaluated'],
+    evaluated: ['evaluated', 'active'],
+    active: ['active'],
+  };
+  let previous: string | null = null;
   const badLifecycle =
-    events.length < minimum ||
-    (!skill.version && events.length !== minimum) ||
+    events.length === 0 ||
     events.some((event, index) => {
-      const expected = transitions[index] ?? ['active', 'active'];
-      return (
-        event.event_order !== index + 1 ||
-        event.from !== expected[0] ||
-        event.to !== expected[1] ||
-        !event.actor_id
-      );
-    });
+      const valid =
+        event.event_order === index + 1 &&
+        event.from === previous &&
+        !!event.actor_id &&
+        !!event.to &&
+        (transitions[String(previous)] ?? []).includes(event.to);
+      previous = event.to ?? previous;
+      return !valid;
+    }) ||
+    previous !== registryState;
   if (badLifecycle) errors.push(`SKL-H03-006 invalid lifecycle ${skill.id}`);
   try {
-    execFileSync(process.execPath, skill.check, {cwd: root, encoding: 'utf8'});
+    execFileSync(skill.executable ?? process.execPath, skill.check, {cwd: root, encoding: 'utf8'});
   } catch {
     errors.push(`SKL-H03-007 local checker failed ${skill.id}`);
   }

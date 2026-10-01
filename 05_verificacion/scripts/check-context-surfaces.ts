@@ -85,7 +85,15 @@ export const checkContextSurfaces = (root: string): string[] => {
     'skill-runtime-adapter',
     'skill-security-auditor',
   ];
-  const presentSkills = expectedSkills.filter((skill) =>
+  const allExpectedSkills = [
+    ...new Set([
+      ...expectedSkills,
+      ...surfaces
+        .filter((surface) => surface.kind === 'skill')
+        .map((surface) => surface.root.slice(surface.root.lastIndexOf('/') + 1)),
+    ]),
+  ];
+  const presentSkills = allExpectedSkills.filter((skill) =>
     expected.has(`03_artefactos/skills/${skill}/context.md`),
   );
   if (presentSkills.length !== skillContexts) {

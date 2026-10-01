@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "frames-aula-v1",
+  "title": {
+    "es": "De la idea a la práctica",
+    "en": "From idea to practice",
+    "pt": "Da ideia à prática",
+    "fr": "De l’idée à la pratique"
+  },
+  "languages": [
+    "es",
+    "en",
+    "pt",
+    "fr"
+  ],
+  "language": "es",
+  "objectives": [
+    {
+      "es": "Construir una propuesta verificable",
+      "en": "Build a verifiable proposal",
+      "pt": "Construir uma proposta verificável",
+      "fr": "Construire une proposition vérifiable"
+    }
+  ],
+  "acceptance": [
+    {
+      "es": "Incluye objetivo, evidencia y siguiente paso.",
+      "en": "Include objective, evidence and next step.",
+      "pt": "Inclua objetivo, evidência e próximo passo.",
+      "fr": "Inclure objectif, preuve et prochaine étape."
+    }
+  ],
+  "sections": [
+    {
+      "id": "contexto",
+      "title": {
+        "es": "Observa, discute y practica",
+        "en": "Observe, discuss and practice",
+        "pt": "Observe, discuta e pratique",
+        "fr": "Observer, discuter et pratiquer"
+      },
+      "body": {
+        "es": "Describe la situación antes de elegir una solución. [METODOLOGIA]",
+        "en": "Describe the situation before choosing a solution. [METODOLOGIA]",
+        "pt": "Descreva a situação antes de escolher uma solução. [METODOLOGIA]",
+        "fr": "Décrivez la situation avant de choisir une solution. [METODOLOGIA]"
+      },
+      "scene": "flow",
+      "notes": {
+        "es": "Invita a una reflexión breve.",
+        "en": "Invite a brief reflection.",
+        "pt": "Convide a uma breve reflexão.",
+        "fr": "Invitez à une courte réflexion."
+      }
+    },
+    {
+      "id": "practica",
+      "title": {
+        "es": "Prueba una idea pequeña",
+        "en": "Test one small idea",
+        "pt": "Teste uma pequena ideia",
+        "fr": "Testez une petite idée"
+      },
+      "body": {
+        "es": "Describe la situación antes de elegir una solución. [METODOLOGIA]",
+        "en": "Describe the situation before choosing a solution. [METODOLOGIA]",
+        "pt": "Descreva a situação antes de escolher uma solução. [METODOLOGIA]",
+        "fr": "Décrivez la situation avant de choisir une solution. [METODOLOGIA]"
+      },
+      "prompt": {
+        "es": "Propón un experimento para {{contexto}}. Incluye objetivo y evidencia.",
+        "en": "Propose an experiment for {{contexto}}. Include objective and evidence.",
+        "pt": "Proponha um experimento para {{contexto}}. Inclua objetivo e evidência.",
+        "fr": "Proposez une expérience pour {{contexto}}. Incluez objectif et preuve."
+      },
+      "fields": [
+        {
+          "key": "contexto",
+          "label": {
+            "es": "Tu contexto",
+            "en": "Your context",
+            "pt": "Seu contexto",
+            "fr": "Votre contexte"
+          },
+          "default": "un equipo de práctica"
+        }
+      ],
+      "scene": "steps",
+      "exemplar": {
+        "es": "Un equipo registra una prueba y revisa el resultado. [SUPUESTO]",
+        "en": "A team records a test and reviews the result. [SUPUESTO]",
+        "pt": "Uma equipe registra um teste e revisa o resultado. [SUPUESTO]",
+        "fr": "Une équipe consigne un test et examine le résultat. [SUPUESTO]"
+      }
+    }
+  ],
+  "facts": [],
+  "pieces": []
+}

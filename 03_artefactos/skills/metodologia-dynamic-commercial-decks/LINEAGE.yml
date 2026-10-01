@@ -1,0 +1,7 @@
+skill_id: metodologia-dynamic-commercial-decks
+version: 1.0.1
+lifecycle_state: active
+execution_scope: local-draft-generation
+authority_refs: [03_artefactos/renderers/frames-aula/README.md]
+external_fragments_reused: false
+publication_authority: false

@@ -412,6 +412,30 @@ profiles:
   - skill_id: dev-writing-skills
     mutation_classes: [CREATE, EXPAND, EXTEND, CORRECT, MIGRATE, DEPRECATE]
     documentation_impact_required: true
+  - skill_id: edu-immersive-class
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-index
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-lean-coffee
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-masterclass
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-module
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-playbook
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-playbook-immersive
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: edu-workbook
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: evidence-based-cover-letter
     mutation_classes: []
     documentation_impact_required: false
@@ -493,6 +517,33 @@ profiles:
   - skill_id: metodologia-certificate-builder
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: metodologia-dynamic-commercial-decks
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-immersive-class
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-index
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-lean-coffee
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-masterclass
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-module
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-playbook
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-playbook-immersive
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-workbook
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: metodologia-find-skills
     mutation_classes: []
     documentation_impact_required: false
@@ -554,5 +605,8 @@ profiles:
     mutation_classes: []
     documentation_impact_required: false
   - skill_id: web-setup-browser-cookies
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: white-label-dynamic-commercial-decks
     mutation_classes: []
     documentation_impact_required: false

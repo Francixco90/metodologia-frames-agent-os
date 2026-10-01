@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "frames-html-renderer-capability-v1",
+  "capabilityId": "frames-aula-html",
+  "version": "1.0.0",
+  "lifecycleState": "active",
+  "scope": "local-draft-generation",
+  "engineRefs": [
+    {
+      "ref": "03_artefactos/renderers/frames-aula/runtime.py",
+      "sha256": "91a0d64ab7b424794dd843700a3caccd31e064d723af8c89aac20ccc8641fb07"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/app.js",
+      "sha256": "2e2774c5dcafee3333ff3a9197644d5c0ede81aff4b39e18ef2624c6b151ccf6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/style.css",
+      "sha256": "9988e18f78c5a5b5cf134320390456079eecd49e161961b6001e411e9033c0d5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/bank.py",
+      "sha256": "5fd9cc257aec214abf6e4f0f9750d6f5c61e06a48b2abba227086cd759ad4ab1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/deck-workflow.py",
+      "sha256": "851520e1efab0b8538975d306d0d64fbf3904591ed03dfa88ed79be41fb90d33"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/migrate.py",
+      "sha256": "fd64b96f45fb540fe893aad04836db8d2c024dc645bda02236e51736f17b1364"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/export_office.py",
+      "sha256": "9cc4e0c1c30c2739fe6c798201f20feb8b32d477dd6ae3503bac0d31a081474c"
+    }
+  ],
+  "handlerRef": {
+    "ref": "02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts",
+    "sha256": "762ae6c7c9966cee3f24a4bd5b737f71862fedcafd9a692d0534a3d5f68a4331"
+  },
+  "kinds": [
+    "immersive-class",
+    "masterclass",
+    "workbook",
+    "lean-coffee",
+    "playbook",
+    "playbook-immersive",
+    "index",
+    "module",
+    "dynamic-commercial-decks"
+  ],
+  "editions": ["metodologia", "white-label"],
+  "networkRuntimeRequired": false,
+  "license": "MIT",
+  "publicationAuthority": false,
+  "readinessEligible": true,
+  "registryBoundary": "HTML educational extension; existing motion renderer-capability-v1 unchanged",
+  "readinessScope": "RENDERED_DRAFT only; human approval remains manual"
+}

@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "lean-coffee",
+  "edition": "white-label",
+  "inputSha256": "5697af7fc57861b701ce4c0342e0a4c9ce47baf10cc0969fc14182955170433d",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "5ac8911bc6401d4d44c658ba5b539ad7547479052d5d651a41361be6d68883ad",
+    "artifact-mobile.html": "52844e9dc5b3ce4ff0e17bdd1c541fbddf651a33bc2825186884a2394b2c12e7",
+    "artifact-audience.html": "204c630747a3cb161427b71910d84693fe54d911895222d892f94b9c30d05ef5",
+    "artifact-mobile-audience.html": "e97d850cc90d289bf5c6c123d5a80d29ce497cc99b4c6d34e12ead1ffd95c03f",
+    "artifact.md": "5f71725b16575e327b03e177bacc06a2ae3098b5020985080f25e3e2cf619425"
+  },
+  "advisories": []
+}

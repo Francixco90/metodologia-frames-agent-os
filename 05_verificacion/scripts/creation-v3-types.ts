@@ -22,7 +22,8 @@ export type SkillEntry = {
   id: string;
   scope: string;
   version?: string;
-  registryState?: 'evaluated' | 'active';
+  registryState?: 'candidate' | 'quarantined' | 'evaluated' | 'active';
+  executable?: 'python3';
   check: string[];
 };
 export type ValidationContext = {

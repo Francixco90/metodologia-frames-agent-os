@@ -7,36 +7,12 @@
 schema_version: 1
 manifest_id: commands-v1
 gates:
-  - gate: G00
-    label: toolchain
-    command: 'pnpm check:toolchain'
-    allowed_tools: [Bash]
-    write_set_globs: []
-    idempotency: true
-    danger_level: low
-    manual: false
-    fail_closed: false
-    owner: lead
-  - gate: G04
-    label: repo / G01-G09 estructura
-    command: 'pnpm check:repo'
-    allowed_tools: [Bash]
-    write_set_globs: []
-    idempotency: true
-    danger_level: low
-    manual: false
-    fail_closed: false
-    owner: repo
-  - gate: G02_PRECLEAR
-    label: sources preclearance
-    command: 'pnpm check:sources'
-    allowed_tools: [Bash]
-    write_set_globs: []
-    idempotency: true
-    danger_level: low
-    manual: false
-    fail_closed: false
-    owner: sources
+  # prettier-ignore
+  - {gate: G00, label: toolchain, command: 'pnpm check:toolchain', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: false, owner: lead}
+  # prettier-ignore
+  - {gate: G04, label: repo / G01-G09 estructura, command: 'pnpm check:repo', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: false, owner: repo}
+  # prettier-ignore
+  - {gate: G02_PRECLEAR, label: sources preclearance, command: 'pnpm check:sources', allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: false, owner: sources}
   - gate: G03_PRECLEAR
     label: governance provenance preclearance
     command: 'pnpm check:claims'
@@ -469,3 +445,6 @@ gates:
     manual: true
     fail_closed: true
     owner: governance
+
+  # prettier-ignore
+  - {gate: MW_AULA_LOCAL_VALIDATED, label: Aula offline draft generation checks, command: "pnpm verify:aula", allowed_tools: [Bash], write_set_globs: [], idempotency: true, danger_level: low, manual: false, fail_closed: true, owner: qa}

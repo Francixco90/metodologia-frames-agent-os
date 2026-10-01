@@ -39,7 +39,7 @@ sources:
     rights: cleared
   - source_id: generator-workflow-p07
     ref: 02_proceso/workflows/multimedia/p07-revisar/workflow.yml
-    sha256: ff162637cee2bf7d6d292f5b503a01ae830c802d21873a736bb5df612b995d70
+    sha256: f6ebde65f254983d33423352c54a31239516ad7d29cc2c6be1925e512212346d
     authority: verified
     rights: cleared
 formats:
@@ -91,7 +91,7 @@ fields:
     source_refs: []
 state: DRAFT
 next_gate: G14
-content_sha256: 2cb0b1afbe156b694fcc5166f0141f300f798cc2d767fbe4d655483f77745260
+content_sha256: 5541abf15fd968030cb17efa683866a73d107adc2357ef86d8891a61a0689397
 ---
 
 ## Resultado y decisión

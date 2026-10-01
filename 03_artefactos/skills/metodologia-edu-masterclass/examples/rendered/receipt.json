@@ -1,0 +1,15 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "masterclass",
+  "edition": "metodologia",
+  "inputSha256": "6b0d5d74f073986436c57bbaec86bd8dbe812b44827c972c818d7b9a64d7fe20",
+  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "outputs": {
+    "artifact.html": "cc8f0e1feacbc4f8c96010bc070d0d526b09de95b672afbad009c5dad8eadcf0",
+    "artifact-mobile.html": "7f29020ec81d2d10b52415d0b766c4d5ff3f083f366a7d70b2764e3a3c6ab657",
+    "artifact-audience.html": "4a3d2503434f44dba96dbc5d0c76b9c84ae9175d1d4a38c2f84b4a3c6b358169",
+    "artifact-mobile-audience.html": "c01a589eb684b2bb7d40c13f949376c93bed7be10822d38ea898ec416e496c32",
+    "artifact.md": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a"
+  },
+  "advisories": []
+}

@@ -5,11 +5,7 @@ title: 'Diseña la pieza multimedia'
 purpose: 'Convierte un brief aprobado en guion, secuencia, continuidad y mapa de activos.'
 discipline: 'Guion y diseño multimedia'
 phase: 'Diseño creativo'
-tags:
-  - design
-  - spec
-  - continuity
-  - asset-map
+tags: [design, spec, continuity, asset-map]
 modes:
   - id: single
     name: 'single-mode'
@@ -49,9 +45,7 @@ outputs:
     required: false
     condition: 'content_count>1 or derivative_requested=true'
 work_product_state: SPEC_APPROVED
-gates:
-  - MW_SPEC_APPROVED
-  - G14
+gates: [MW_SPEC_APPROVED, G14]
 next_workflow: P06
 task_template_ref: task-template.yaml
 prompt_spec_ref: prompt-spec.md
@@ -84,6 +78,24 @@ capability_map:
     - content-os-motion-graphics
     - content-os-remotion-bridge
     - design-compose-graphics
+    - metodologia-edu-immersive-class
+    - metodologia-edu-masterclass
+    - metodologia-edu-workbook
+    - metodologia-edu-lean-coffee
+    - metodologia-edu-playbook
+    - metodologia-edu-playbook-immersive
+    - metodologia-edu-index
+    - metodologia-edu-module
+    - metodologia-dynamic-commercial-decks
+    - edu-immersive-class
+    - edu-masterclass
+    - edu-workbook
+    - edu-lean-coffee
+    - edu-playbook
+    - edu-playbook-immersive
+    - edu-index
+    - edu-module
+    - white-label-dynamic-commercial-decks
   assets:
     - creative-spec-v1
     - piece-family-spec-v1
@@ -129,7 +141,4 @@ metadata:
   source_id: MIA-MEDIA-LIB-2.0.0
   version: 2.0.0-candidato
   status: candidate
-  locale:
-    - es
-    - en
-    - pt
+  locale: [es, en, pt]

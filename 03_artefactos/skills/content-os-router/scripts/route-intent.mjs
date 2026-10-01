@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import {readFileSync} from 'node:fs';
+import {continueAulaExperienceV1} from '../../../../02_proceso/workflows/multimedia/_runner/aula-continuation-v1.ts';
 import {resolve} from 'node:path';
 import {hashExperienceValue} from '../../../../02_proceso/core/contracts/experience-normalization.ts';
 import {renderExperienceMenuV1, renderExperienceRouteV1} from '../../../../02_proceso/workflows/core/experience-command-view-v1.ts';
@@ -25,6 +26,7 @@ import {
 import {planFromDomain} from './domain-plan-transport.mjs';
 import {routeNotebooklmIntent} from './route-notebooklm.mjs';
 import {routeContentIntent} from './route-content.mjs';
+import {selectAulaCapabilityV1} from '../../../../02_proceso/workflows/multimedia/_runner/aula-capability-v1.ts';
 const normalize = (value) => String(value ?? '').normalize('NFKC').trim().replace(/\s+/gu, ' ');
 export const dispatchIntent = (input) => {
   const rawRequest = normalize(input.request);
@@ -81,22 +83,10 @@ export const dispatchIntent = (input) => {
       domainIntent = routed.domainIntent;
       return routed.plan;
     },
-    R1: () => {
-      domainIntent = routeProjectCreateIntent({...domainInput, request});
-      return planFromDomain('R1', domainIntent);
-    },
-    R2: () => {
-      domainIntent = routeProjectContinueIntent({...domainInput, request});
-      return planFromDomain('R2', domainIntent);
-    },
-    R3: () => {
-      domainIntent = routeTaskCreateIntent({...domainInput, request, project_id: input.activeProjectId});
-      return planFromDomain('R3', domainIntent);
-    },
-    'R3-LOOSE': () => {
-      domainIntent = routeTaskCreateIntent({...domainInput, request});
-      return planFromDomain('R3-LOOSE', domainIntent);
-    },
+    R1: () => planFromDomain('R1', domainIntent = routeProjectCreateIntent({...domainInput, request})),
+    R2: () => planFromDomain('R2', domainIntent = routeProjectContinueIntent({...domainInput, request})),
+    R3: () => planFromDomain('R3', domainIntent = routeTaskCreateIntent({...domainInput, request, project_id: input.activeProjectId})),
+    'R3-LOOSE': () => planFromDomain('R3-LOOSE', domainIntent = routeTaskCreateIntent({...domainInput, request})),
     R5: () => {
       domainIntent = routeEvalIntent({...domainInput, request});
       return planFromDomain('R5', domainIntent);
@@ -127,6 +117,7 @@ export const dispatchIntent = (input) => {
     schema_version: 'frames-route-decision-v1', request_hash: envelope.requestHash,
     route_id: routeId, adapter, next_gate: nextGate, decision, coverage_gap: coverageGap,
     adapter_invoked: adapterInvoked, domain_intent: domainIntent,
+    preferred_capability: routeId === 'R6' ? selectAulaCapabilityV1(request, input.aula_edition) : null,
     experience_envelope: envelope,
     experience_view: renderTransportedExperience(envelope, input),
     command_view: commandView, resume_error: resumeError,
@@ -174,6 +165,14 @@ export const dispatchIntentLocal = async (input, {authorizedRoot} = {}) => {
     }};
   }
   if (decision.route_id !== 'R6' && decision.route_id !== 'R7') return decision;
+  if (input.aula_continuation) {
+    try {
+      const localExecution = await continueAulaExperienceV1({root: safeRoot, request: input.request, requestHash: decision.request_hash, routeId: decision.route_id, continuation: input.aula_continuation, actorId: input.actor_id ?? 'RT-07', startedAt, completedAt});
+      return {...decision, local_execution: localExecution};
+    } catch (error) {
+      return {...decision, local_execution: {status: 'BLOCKED', materialized: false, coverageGap: error instanceof Error ? error.message : 'AULA_CONTINUATION_FAILED'}};
+    }
+  }
   const localExecution = await orchestrateLocalExperienceV1({
     root: safeRoot, routeId: decision.route_id, envelope: decision.experience_envelope,
     domainIntent: decision.route_id === 'R6' ? decision.domain_intent : domainInputFor(input),

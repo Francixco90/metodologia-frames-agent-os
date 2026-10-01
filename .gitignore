@@ -82,3 +82,7 @@ tmp/
 # uncited packs are materialized from 01_intencion/<pack>/source-lock.json (pnpm vendor:sync)
 # and verified by pnpm vendor:check.
 03_artefactos/skills/vendor/gsap-skills/
+
+# Python-generated caches are local runtime state.
+__pycache__/
+*.py[cod]

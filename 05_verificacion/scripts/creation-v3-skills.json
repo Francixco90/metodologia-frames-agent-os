@@ -442,11 +442,7 @@
     "scope": "local-evaluation",
     "check": ["skills/dev-spec/scripts/check-skill.mjs"]
   },
-  {
-    "id": "dev-qa",
-    "scope": "local-evaluation",
-    "check": ["skills/dev-qa/scripts/check-skill.mjs"]
-  },
+  {"id": "dev-qa", "scope": "local-evaluation", "check": ["skills/dev-qa/scripts/check-skill.mjs"]},
   {
     "id": "dev-review",
     "scope": "local-evaluation",
@@ -949,5 +945,149 @@
     "id": "skill-security-auditor",
     "scope": "local-evaluation",
     "check": ["skills/skill-security-auditor/scripts/check-skill.mjs"]
+  },
+  {
+    "id": "metodologia-edu-immersive-class",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-immersive-class/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-masterclass",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-masterclass/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-workbook",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-workbook/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-lean-coffee",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-lean-coffee/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-playbook",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-playbook/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-playbook-immersive",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-playbook-immersive/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-index",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-index/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-edu-module",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-edu-module/scripts/check.py"]
+  },
+  {
+    "id": "metodologia-dynamic-commercial-decks",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/metodologia-dynamic-commercial-decks/scripts/check.py"]
+  },
+  {
+    "id": "edu-immersive-class",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-immersive-class/scripts/check.py"]
+  },
+  {
+    "id": "edu-masterclass",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-masterclass/scripts/check.py"]
+  },
+  {
+    "id": "edu-workbook",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-workbook/scripts/check.py"]
+  },
+  {
+    "id": "edu-lean-coffee",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-lean-coffee/scripts/check.py"]
+  },
+  {
+    "id": "edu-playbook",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-playbook/scripts/check.py"]
+  },
+  {
+    "id": "edu-playbook-immersive",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-playbook-immersive/scripts/check.py"]
+  },
+  {
+    "id": "edu-index",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-index/scripts/check.py"]
+  },
+  {
+    "id": "edu-module",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/edu-module/scripts/check.py"]
+  },
+  {
+    "id": "white-label-dynamic-commercial-decks",
+    "scope": "local-draft-generation",
+    "version": "1.0.1",
+    "registryState": "active",
+    "executable": "python3",
+    "check": ["skills/white-label-dynamic-commercial-decks/scripts/check.py"]
   }
 ]

@@ -11,14 +11,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 306
-- COMMAND: 106
+- ASSET: 324
+- COMMAND: 108
 - COMPONENT: 16
 - DELIVERABLE: 87
-- GATE: 76
+- GATE: 77
 - RENDERER: 5
 - ROUTE: 12
-- SKILL: 185
+- SKILL: 203
 - SOURCE: 11
 - TEMPLATE: 138
 - WORKFLOW: 43
@@ -81,10 +81,27 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-creative/assets/metodologia/tokens.json` |
 | ASSET | 03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-general-video/assets/video-system-v1/brand-manifest.json` |
 | ASSET | 03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json | ACTIVE | CANONICAL | `03_artefactos/skills/content-os-transcript-intelligence/assets/semantic-intents.json` |
+| ASSET | 03_artefactos/skills/edu-immersive-class/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-immersive-class/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-index/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-index/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-lean-coffee/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-lean-coffee/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-masterclass/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-masterclass/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-module/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-module/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-playbook-immersive/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-playbook-immersive/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-playbook/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-playbook/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-workbook/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workbook/assets/bank.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template.html` |
+| ASSET | 03_artefactos/skills/metodologia-dynamic-commercial-decks/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-dynamic-commercial-decks/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-immersive-class/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-immersive-class/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-index/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-index/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-lean-coffee/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-lean-coffee/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-masterclass/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-masterclass/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-module/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-module/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-playbook-immersive/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-playbook-immersive/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-playbook/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-playbook/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workbook/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workbook/assets/bank.json` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md` |
@@ -344,6 +361,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/universal.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/universal.json` |
 | ASSET | 03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/warp.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/warp.json` |
 | ASSET | 03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/windsurf.json | ACTIVE | CANONICAL | `03_artefactos/skills/vendor/ui-ux-pro-max/ui-ux-pro-max/cli/assets/templates/platforms/windsurf.json` |
+| ASSET | 03_artefactos/skills/white-label-dynamic-commercial-decks/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/white-label-dynamic-commercial-decks/assets/bank.json` |
 | COMMAND | ablation:report | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | ablation:run | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | atoms:build | ACTIVE | CANONICAL | `package.json` |
@@ -388,6 +406,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | eval:run | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | format:check | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | frames:assist | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | frames:aula | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | frames:extend | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | frames:maintain | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | host:generate | ACTIVE | CANONICAL | `package.json` |
@@ -427,6 +446,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | COMMAND | vendor:sync | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:ai-runtime | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:atoms | ACTIVE | CANONICAL | `package.json` |
+| COMMAND | verify:aula | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:brand | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:career-design | ACTIVE | CANONICAL | `package.json` |
 | COMMAND | verify:career | ACTIVE | CANONICAL | `package.json` |
@@ -604,6 +624,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | GATE | HM_PROMOTION_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | LX_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_ASSET_REVIEW | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
+| GATE | MW_AULA_LOCAL_VALIDATED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_BRIEF_APPROVED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_CAPABILITY | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
 | GATE | MW_DISTRIBUTION_AUTHORIZED | ACTIVE | CANONICAL | `05_verificacion/scripts/commands.yaml` |
@@ -783,6 +804,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | dev-verification-before-completion | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | dev-writing-plans | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | dev-writing-skills | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-immersive-class | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-index | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-lean-coffee | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-masterclass | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-module | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-playbook-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-playbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-workbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | evidence-based-cover-letter | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | evidence-first-cv | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | frames-docs-as-code | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
@@ -810,6 +839,15 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | media-rembg | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | metodologia-brand-router | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | metodologia-certificate-builder | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
+| SKILL | metodologia-dynamic-commercial-decks | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-immersive-class | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-index | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-lean-coffee | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-masterclass | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-module | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-playbook-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-playbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-workbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | metodologia-find-skills | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | motion-library-adapters | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | remotion-video-production-v2 | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
@@ -831,6 +869,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | web-open-browser | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-scrape | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | web-setup-browser-cookies | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | white-label-dynamic-commercial-decks | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SOURCE | SRC-LEGACY-STITCH-REMOTION-001 | QUARANTINED | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-MAO-BRAND-BUNDLE-001 | ACTIVE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
 | SOURCE | SRC-MAO-BRAND-VOICE-001 | CANDIDATE | CANONICAL | `04_estado/registries/sources/source-registry.yml` |
@@ -1024,4 +1063,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `89e30dd5abbbe496d19b0fbabee3eeac0371bd5cae2df40116ea934b5dc5a218`.
+Hash de fuentes: `9e25814bbed9b53af362b12e555054c97d1470b90be4a1e1d68579fb64f51dc5`.

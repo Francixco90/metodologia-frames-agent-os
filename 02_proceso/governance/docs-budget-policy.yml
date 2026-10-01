@@ -4,21 +4,37 @@ schema_version: file-budget-policy-v2
 manifest_id: file-budget-policy-v2
 defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
 pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
-change_program_manifest: '03_artefactos/projects/frames-consolidation-2026-09/change-budget-program-v1.json'
+change_program_manifest: '03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json'
 
 budgets:
+  - surface: generated-aula-atomic-package
+    kind: generated
+    # prettier-ignore
+    match: [03_artefactos/skills/metodologia-edu-immersive-class/**, 03_artefactos/skills/metodologia-edu-masterclass/**, 03_artefactos/skills/metodologia-edu-workbook/**, 03_artefactos/skills/metodologia-edu-lean-coffee/**, 03_artefactos/skills/metodologia-edu-playbook/**, 03_artefactos/skills/metodologia-edu-playbook-immersive/**, 03_artefactos/skills/metodologia-edu-index/**, 03_artefactos/skills/metodologia-edu-module/**, 03_artefactos/skills/metodologia-dynamic-commercial-decks/**, 03_artefactos/skills/edu-immersive-class/**, 03_artefactos/skills/edu-masterclass/**, 03_artefactos/skills/edu-workbook/**, 03_artefactos/skills/edu-lean-coffee/**, 03_artefactos/skills/edu-playbook/**, 03_artefactos/skills/edu-playbook-immersive/**, 03_artefactos/skills/edu-index/**, 03_artefactos/skills/edu-module/**, 03_artefactos/skills/white-label-dynamic-commercial-decks/**]
+    exclude:
+      - '**/context.md'
+    target: {max_words: 5000, max_lines: 700}
+    hard: {max_words: 10000, max_lines: 1000}
+    rationale: Only eighteen original packages generated from the hash-bound canonical Aula engine;
+      verify:aula checks deterministic regeneration and integrity. Canonical sources remain
+      authored.
   - surface: notebooklm-brand-content-v1-governed-package
     kind: exempt
     match: '03_artefactos/projects/notebooklm-os/metodologia-brand-content/**'
     target: {}
     hard: {}
-    rationale: 'The private brand-content package (source packs, gallery, knowledge base) is governed by verify:notebooklm-os hash-bound source registries and LFS-managed binaries; per-file prose length is not the control.'
+    rationale:
+      'The private brand-content package (source packs, gallery, knowledge base) is governed by
+      verify:notebooklm-os hash-bound source registries and LFS-managed binaries; per-file prose
+      length is not the control.'
   - surface: notebooklm-canon-v3-governed-package
     kind: exempt
     match: '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/**'
     target: {}
     hard: {}
-    rationale: 'The private Canon v3 package has a stricter domain validator: 33,682 normalized-word cap, 25% containment limit, exact 107-source hash readback, prompt parity and bounded source selection.'
+    rationale: 'The private Canon v3 package has a stricter domain validator: 33,682 normalized-word
+      cap, 25% containment limit, exact 107-source hash readback, prompt parity and bounded source
+      selection.'
   - surface: generated-workflow-documentation
     kind: generated
     match:
@@ -28,7 +44,9 @@ budgets:
       - '03_artefactos/content/documentation/documentation-*.json'
     target: {max_words: 5000, max_lines: 1500}
     hard: {max_words: 7500, max_lines: 1800}
-    rationale: 'Workflow pages, sequences and the aggregate manifest scale deterministically with every registered workflow.'
+    rationale:
+      'Workflow pages, sequences and the aggregate manifest scale deterministically with every
+      registered workflow.'
   - surface: generated-ecosystem-inventory
     kind: generated
     match:
@@ -38,7 +56,9 @@ budgets:
       - '04_estado/registries/skills/mutation-profile-registry.yml'
     target: {max_words: 12000, max_lines: 6100}
     hard: {max_words: 24000, max_lines: 6500}
-    rationale: 'Complete inventories are generated, drift-checked and intentionally scale with governed ecosystem cardinality.'
+    rationale:
+      'Complete inventories are generated, drift-checked and intentionally scale with governed
+      ecosystem cardinality.'
   - surface: user-facing-explanatory-documentation
     kind: exempt
     match:
@@ -53,7 +73,9 @@ budgets:
       - 01_intencion/guides/maintain-frames.md
     target: {}
     hard: {}
-    rationale: 'A closed registry exempts only reader-facing explanations so utility and comprehension take precedence over per-file length.'
+    rationale:
+      'A closed registry exempts only reader-facing explanations so utility and comprehension
+      take precedence over per-file length.'
   - surface: generated-context-projection
     kind: generated
     match: ['context.md', '**/context.md']
@@ -64,7 +86,9 @@ budgets:
     match: '02_proceso/governance/context-surfaces/*.yml'
     target: {max_words: 3500, max_lines: 500}
     hard: {max_words: 6000, max_lines: 800}
-    rationale: 'Shards preserve the complete 49-surface graph while keeping each authority independently reviewable.'
+    rationale:
+      'Shards preserve the complete 49-surface graph while keeping each authority independently
+      reviewable.'
   - surface: generated-documentation-inventory
     kind: exempt
     match: '01_intencion/program/documentation-inventory-v1.json'
@@ -80,60 +104,63 @@ budgets:
     rationale: 'P00-P09 schematics are deterministic projections of one governed HTML template.'
   - surface: generated-multimedia-artifact-contract
     kind: generated
-    match:
-      [
-        '02_proceso/workflows/multimedia/_schema/artifacts/**',
-        '02_proceso/workflows/multimedia/_assets/artifact-registry.md',
-      ]
+    # prettier-ignore
+    match: ['02_proceso/workflows/multimedia/_schema/artifacts/**', '02_proceso/workflows/multimedia/_assets/artifact-registry.md',]
     target: {max_words: 800, max_lines: 100}
     hard: {max_words: 1500, max_lines: 200}
-    rationale: 'Artifact schemas and their human index are deterministic projections of the deliverable registry.'
+    rationale:
+      'Artifact schemas and their human index are deterministic projections of the deliverable
+      registry.'
   - surface: generated-deliverable-template-markdown
     kind: generated
     match: '02_proceso/workflows/multimedia/p*/templates/*.template.md'
     target: {max_words: 900, max_lines: 180}
     hard: {max_words: 1500, max_lines: 300}
-    rationale: 'Each Markdown template is a deterministic DRAFT projection of one deliverable definition and class profile.'
+    rationale:
+      'Each Markdown template is a deterministic DRAFT projection of one deliverable definition
+      and class profile.'
   - surface: generated-deliverable-template-html
     kind: generated
     match: '02_proceso/workflows/multimedia/p*/templates/*.template.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the MetodologIA shell.'
+    rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the
+      MetodologIA shell.'
   - surface: generated-career-template-markdown
     kind: generated
     match: '02_proceso/workflows/career/c*/templates/*.template.md'
     target: {max_words: 900, max_lines: 180}
     hard: {max_words: 1500, max_lines: 300}
-    rationale: 'Career Markdown templates are deterministic DRAFT projections of the career deliverable registry.'
+    rationale:
+      'Career Markdown templates are deterministic DRAFT projections of the career deliverable
+      registry.'
   - surface: generated-career-template-html
     kind: generated
     match: '02_proceso/workflows/career/c*/templates/*.template.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale: 'Career HTML templates are deterministic offline projections of their canonical Markdown twins.'
+    rationale:
+      'Career HTML templates are deterministic offline projections of their canonical Markdown
+      twins.'
   - surface: generated-experience-blueprint-html
     kind: generated
     match: '03_artefactos/content/experience/frames-experience-blueprint.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale: 'The Experience HTML blueprint is regenerated deterministically from its canonical Markdown model.'
+    rationale: 'The Experience HTML blueprint is regenerated deterministically from its canonical
+      Markdown model.'
   - surface: generated-experience-projection-manifest
     kind: generated
     match: '03_artefactos/content/experience/projection-manifest.json'
     target: {max_words: 500, max_lines: 200}
     hard: {max_words: 1000, max_lines: 400}
-    rationale: 'The projection manifest is emitted by the same renderer and remains hash-bound to the blueprint.'
+    rationale:
+      'The projection manifest is emitted by the same renderer and remains hash-bound to the
+      blueprint.'
   - surface: generated-host-adapter-projection
     kind: generated
-    match:
-      [
-        '.agents/plugins/marketplace.json',
-        '.agents/skills/frames-assist/SKILL.md',
-        '.claude/commands/frames/assist.md',
-        '.claude/skills/frames-assist/SKILL.md',
-        '.gemini/commands/frames/assist.toml',
-      ]
+    # prettier-ignore
+    match: ['.agents/plugins/marketplace.json', '.agents/skills/frames-assist/SKILL.md', '.claude/commands/frames/assist.md', '.claude/skills/frames-assist/SKILL.md', '.gemini/commands/frames/assist.toml',]
     target: {max_words: 500, max_lines: 150}
     hard: {max_words: 800, max_lines: 250}
     rationale: 'Host adapter projections are regenerated from one portable package manifest.'
@@ -146,13 +173,8 @@ budgets:
     rationale: 'Generated outputs require a declared size-comparable template.'
   - surface: generated-ledger-projection
     kind: exempt
-    match:
-      [
-        '01_intencion/program/file-disposition-ledger.yml',
-        '01_intencion/program/file-disposition-ledger.md',
-        'docs/program/file-disposition-ledger.yml',
-        'docs/program/file-disposition-ledger.md',
-      ]
+    # prettier-ignore
+    match: ['01_intencion/program/file-disposition-ledger.yml', '01_intencion/program/file-disposition-ledger.md', 'docs/program/file-disposition-ledger.yml', 'docs/program/file-disposition-ledger.md',]
     target: {}
     hard: {}
     rationale: 'Self-validating paired projections are governed by deterministic regeneration.'
@@ -172,13 +194,8 @@ budgets:
     rationale: 'Vendored bytes use provenance and import receipts, not authored caps.'
   - surface: immutable-runtime-evidence
     kind: exempt
-    match:
-      [
-        '04_estado/receipts/**',
-        '05_verificacion/quality/reports/**',
-        '05_verificacion/quality/reviews/**',
-        '02_proceso/committees/creation/**',
-      ]
+    # prettier-ignore
+    match: ['04_estado/receipts/**', '05_verificacion/quality/reports/**', '05_verificacion/quality/reviews/**', '02_proceso/committees/creation/**',]
     target: {}
     hard: {}
     changed_mode: report
@@ -203,7 +220,26 @@ budgets:
     rationale: 'Shared CLI adapters use the governance-document budget.'
   - surface: SKILL.md
     match: '03_artefactos/skills/**/SKILL.md'
-    exclude: ['03_artefactos/skills/vendor/**']
+    exclude: &aulaSkillExclusions
+      - 03_artefactos/skills/vendor/**
+      - 03_artefactos/skills/metodologia-edu-immersive-class/**
+      - 03_artefactos/skills/metodologia-edu-masterclass/**
+      - 03_artefactos/skills/metodologia-edu-workbook/**
+      - 03_artefactos/skills/metodologia-edu-lean-coffee/**
+      - 03_artefactos/skills/metodologia-edu-playbook/**
+      - 03_artefactos/skills/metodologia-edu-playbook-immersive/**
+      - 03_artefactos/skills/metodologia-edu-index/**
+      - 03_artefactos/skills/metodologia-edu-module/**
+      - 03_artefactos/skills/metodologia-dynamic-commercial-decks/**
+      - 03_artefactos/skills/edu-immersive-class/**
+      - 03_artefactos/skills/edu-masterclass/**
+      - 03_artefactos/skills/edu-workbook/**
+      - 03_artefactos/skills/edu-lean-coffee/**
+      - 03_artefactos/skills/edu-playbook/**
+      - 03_artefactos/skills/edu-playbook-immersive/**
+      - 03_artefactos/skills/edu-index/**
+      - 03_artefactos/skills/edu-module/**
+      - 03_artefactos/skills/white-label-dynamic-commercial-decks/**
     target: {max_words: 800, max_lines: 180}
     hard: {max_words: 1200, max_lines: 300}
     scope: all
@@ -216,26 +252,16 @@ budgets:
     scope: all
     rationale: 'Prompt specifications remain dense and reviewable.'
   - surface: authored-governance-md
-    match:
-      [
-        '02_proceso/governance/*.md',
-        '02_proceso/governance/*.yml',
-        '02_proceso/governance/*.yaml',
-        '02_proceso/governance/*.json',
-      ]
+    # prettier-ignore
+    match: ['02_proceso/governance/*.md', '02_proceso/governance/*.yml', '02_proceso/governance/*.yaml', '02_proceso/governance/*.json',]
     exclude: ['02_proceso/governance/context.md']
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 400}
     scope: all
     rationale: 'Governance documents use the approved density ceiling.'
   - surface: html-document-template
-    match:
-      [
-        '02_proceso/workflows/multimedia/_assets/schematic-template.html',
-        '02_proceso/workflows/multimedia/_assets/brief-document-template.html',
-        '02_proceso/workflows/career/_assets/brief-template.html',
-        '02_proceso/workflows/career/_assets/document-template.html',
-      ]
+    # prettier-ignore
+    match: ['02_proceso/workflows/multimedia/_assets/schematic-template.html', '02_proceso/workflows/multimedia/_assets/brief-document-template.html', '02_proceso/workflows/career/_assets/brief-template.html', '02_proceso/workflows/career/_assets/document-template.html',]
     target: {max_lines: 400}
     hard: {max_lines: 800}
     rationale: 'HTML templates use the approved document-specific ceiling.'
@@ -245,12 +271,8 @@ budgets:
     hard: {max_words: 2500, max_lines: 400}
     rationale: 'The canonical Experience blueprint remains comprehensive but independently reviewable.'
   - surface: experience-control-assets
-    match:
-      [
-        '02_proceso/workflows/experience/component-registry.yml',
-        '02_proceso/workflows/experience/microcopy.es.yml',
-        '02_proceso/workflows/experience/service-blueprint.yml',
-      ]
+    # prettier-ignore
+    match: ['02_proceso/workflows/experience/component-registry.yml', '02_proceso/workflows/experience/microcopy.es.yml', '02_proceso/workflows/experience/service-blueprint.yml',]
     target: {max_words: 1000, max_lines: 250}
     hard: {max_words: 1800, max_lines: 400}
     rationale: 'Allowlisted components, microcopy and service choreography stay concise and auditable.'
@@ -260,12 +282,8 @@ budgets:
     hard: {max_words: 1500, max_lines: 500}
     rationale: 'Approved release manifests preserve bounded hashes, compatibility and evidence.'
   - surface: experience-release-guidance
-    match:
-      [
-        '04_estado/releases/experience/**/compatibility.md',
-        '04_estado/releases/experience/**/migration.md',
-        '04_estado/releases/experience/**/restore.md',
-      ]
+    # prettier-ignore
+    match: ['04_estado/releases/experience/**/compatibility.md', '04_estado/releases/experience/**/migration.md', '04_estado/releases/experience/**/restore.md',]
     target: {max_words: 500, max_lines: 150}
     hard: {max_words: 1000, max_lines: 300}
     rationale: 'Release compatibility, migration and restore instructions stay operationally dense.'
@@ -287,7 +305,7 @@ budgets:
     rationale: 'ADRs preserve the 50-line norm and 120-line hard cap.'
   - surface: harness-creator-references
     match: '03_artefactos/skills/**/references/*.md'
-    exclude: ['03_artefactos/skills/vendor/**']
+    exclude: *aulaSkillExclusions
     target: {max_words: 800, max_lines: 150}
     hard: {max_words: 1500, max_lines: 300}
     scope: changed
@@ -303,15 +321,12 @@ budgets:
     hard: {max_lines: 150}
     rationale: 'Workflow manifests remain orchestration-focused.'
   - surface: canonical-control-config
-    match:
-      [
-        '01_intencion/program/dag.yml',
-        '01_intencion/program/ownership-manifest.yml',
-        '05_verificacion/scripts/commands.yaml',
-      ]
+    # prettier-ignore
+    match: ['01_intencion/program/dag.yml', '01_intencion/program/ownership-manifest.yml', '05_verificacion/scripts/commands.yaml',]
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 450}
-    rationale: 'Canonical control manifests remain bounded while accommodating the complete governed gate registry.'
+    rationale: 'Canonical control manifests remain bounded while accommodating the complete governed
+      gate registry.'
   - surface: hash-bound-skill-registry
     match: '04_estado/registries/skills/creation-v3-skill-registry.yml'
     target: {max_words: 14000, max_lines: 2600}
@@ -328,43 +343,43 @@ budgets:
     hard: {max_words: 3000, max_lines: 1600}
     rationale: 'The generated H-03 index has explicit caps and independent hash validation.'
   - surface: test-code
-    match:
-      [
-        '05_verificacion/tests/**/*.ts',
-        '05_verificacion/tests/**/*.tsx',
-        '05_verificacion/tests/**/*.mjs',
-      ]
+    # prettier-ignore
+    match: ['05_verificacion/tests/**/*.ts', '05_verificacion/tests/**/*.tsx', '05_verificacion/tests/**/*.mjs',]
     target: {max_lines: 200}
     hard: {max_lines: 350}
     rationale: 'Tests may be broader than production modules.'
   - surface: production-code
     match: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.mjs', '**/*.js']
     exclude:
-      [
-        '05_verificacion/tests/**',
-        '03_artefactos/skills/vendor/**',
-        'tsconfig.json',
-        'vitest.config.ts',
-        'eslint.config.js',
-      ]
+      - 05_verificacion/tests/**
+      - 03_artefactos/skills/vendor/**
+      - tsconfig.json
+      - vitest.config.ts
+      - eslint.config.js
+      - 03_artefactos/skills/metodologia-edu-immersive-class/**
+      - 03_artefactos/skills/metodologia-edu-masterclass/**
+      - 03_artefactos/skills/metodologia-edu-workbook/**
+      - 03_artefactos/skills/metodologia-edu-lean-coffee/**
+      - 03_artefactos/skills/metodologia-edu-playbook/**
+      - 03_artefactos/skills/metodologia-edu-playbook-immersive/**
+      - 03_artefactos/skills/metodologia-edu-index/**
+      - 03_artefactos/skills/metodologia-edu-module/**
+      - 03_artefactos/skills/metodologia-dynamic-commercial-decks/**
+      - 03_artefactos/skills/edu-immersive-class/**
+      - 03_artefactos/skills/edu-masterclass/**
+      - 03_artefactos/skills/edu-workbook/**
+      - 03_artefactos/skills/edu-lean-coffee/**
+      - 03_artefactos/skills/edu-playbook/**
+      - 03_artefactos/skills/edu-playbook-immersive/**
+      - 03_artefactos/skills/edu-index/**
+      - 03_artefactos/skills/edu-module/**
+      - 03_artefactos/skills/white-label-dynamic-commercial-decks/**
     target: {max_lines: 100}
     hard: {max_lines: 200}
     rationale: 'Production modules split before 200 lines.'
   - surface: root-repo-control
-    match:
-      [
-        .gitignore,
-        .gitattributes,
-        .prettierignore,
-        .prettierrc.json,
-        .npmrc,
-        .nvmrc,
-        package.json,
-        pnpm-workspace.yaml,
-        tsconfig.json,
-        vitest.config.ts,
-        eslint.config.js,
-      ]
+    # prettier-ignore
+    match: [.gitignore, .gitattributes, .prettierignore, .prettierrc.json, .npmrc, .nvmrc, package.json, pnpm-workspace.yaml, tsconfig.json, vitest.config.ts, eslint.config.js,]
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 400}
     rationale: 'Root controls use an explicit budget, not an invisible exclusion.'
