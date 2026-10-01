@@ -16,6 +16,8 @@ Una única fuente mantenible reside en `03_artefactos/renderers/frames-aula`. El
 
 El sucesor `1.0.1` localiza el idioma/título iniciales, etiquetas accesibles y estado de borrador en ES/EN/PT/FR desde una tabla común. Los bancos permanecen en `v1.0.0` con sus hashes originales.
 
+El sucesor `1.0.2` rechaza configuraciones de marca blanca ilegibles sobre las superficies reales, valida tipos de colores y aplica los mismos fallbacks del renderer. Texto conserva 4.5:1 y foco requiere 3:1. No modifica CSS/JS ni incorpora modo oscuro.
+
 ## Uso y verificación
 
 Cada skill contiene contrato, ejemplo neutral, engine lock y `scripts/check.py`. `pnpm verify:aula` comprueba selección, contratos, integridad y fallos hostiles; pertenece a la cadena de verificación y CI. Los sensores de navegador verifican escritorio/móvil, copia, foco, idiomas, módulos y movimiento reducido. Las fixtures sintetizan decisiones humanas exclusivamente para probar contratos.
@@ -33,3 +35,5 @@ Bancos opcionales: JaviMetodologIA/metodologia-aula-assets y JaviMontano/white-l
 El usuario autorizó implementación, PRs y merge a ambos repositorios actuales, más nuevo sucesor público. Se publican solo fuentes, paquetes, tests portables y receipts sanitizados. Evidencia privada y proyectos ajenos quedan fuera. Cada commit se revisa por verifier y Guardian distintos del productor; cualquier cambio posterior genera successor.
 
 Rollback: revertir únicamente los commits de la integración, sin reset, limpieza ni mezcla de historias públicas/privadas. El snapshot común permite reconstruir paquetes y reproducir ejemplos. Jarvis permanece en fallback local mientras no se acredite su binding.
+
+El sucesor `1.0.3` normaliza los colores parciales con la misma paleta efectiva usada por la validación, evitando trazos SVG ausentes. También rechaza nombres de marca de tipo incorrecto o vacíos. Las evaluaciones anteriores son inmutables; una evaluación nueva liga los paquetes actuales y los ejemplos siguen `RENDERED_DRAFT`.

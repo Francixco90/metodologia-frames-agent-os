@@ -2,6 +2,7 @@
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {readFileSync, writeFileSync} from 'node:fs';
+import {format, resolveConfig} from 'prettier';
 import {parse} from 'yaml';
 import {assertContainedInputFileV1} from '../../02_proceso/workflows/core/safe-local-path-v1.ts';
 import * as io from '../../02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts';
@@ -189,7 +190,10 @@ if (mode === '--evaluate') {
     readinessEligible: true,
     readinessScope: 'RENDERED_DRAFT only; human approval remains manual',
   });
-  writeFileSync(capRef, JSON.stringify(cap, null, 2) + '\n');
+  writeFileSync(
+    capRef,
+    await format(JSON.stringify(cap), {...(await resolveConfig(capRef)), filepath: capRef}),
+  );
 }
 writeFileSync(registryRef, text);
 console.log(`PASS Aula ${mode}; immutable previous events preserved.`);

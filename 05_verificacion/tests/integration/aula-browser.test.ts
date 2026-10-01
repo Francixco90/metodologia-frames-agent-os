@@ -1,5 +1,5 @@
-import {execFileSync} from 'node:child_process';
-import {mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync} from 'node:fs';
+import {execFileSync, spawnSync} from 'node:child_process';
+import {existsSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -10,37 +10,105 @@ const manifest = JSON.parse(
 ) as {skills: {name: string; kind: string; edition: string}[]};
 let browser: Browser;
 let root: string;
-beforeAll(async () => {
-  root = mkdtempSync(resolve(realpathSync(tmpdir()), 'frames-aula-browser-'));
-  for (const item of manifest.skills)
-    execFileSync(
-      'python3',
-      [
-        '03_artefactos/renderers/frames-aula/runtime.py',
-        'build',
-        '--kind',
-        item.kind,
-        '--edition',
-        item.edition,
-        '--input',
-        `03_artefactos/renderers/frames-aula/examples/${item.kind}.json`,
-        '--out',
-        resolve(root, item.name),
-      ],
-      {timeout: 60_000, env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'}},
+const runtime = '03_artefactos/renderers/frames-aula/runtime.py';
+function build(kind: string, edition: string, input: string, out: string) {
+  execFileSync(
+    'python3',
+    [runtime, 'build', '--kind', kind, '--edition', edition, '--input', input, '--out', out],
+    {
+      timeout: 60_000,
+      env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'},
+    },
+  );
+}
+it('rejects incompatible brand surfaces and unsafe color shapes before writing', () => {
+  const temporary = mkdtempSync(resolve(realpathSync(tmpdir()), 'frames-aula-contrast-'));
+  const data = JSON.parse(
+    readFileSync('03_artefactos/renderers/frames-aula/examples/workbook.json', 'utf8'),
+  ) as Record<string, unknown>;
+  const colors = (night: string, gold: string, white: string) => ({night, gold, white});
+  const fallback = colors('#0a122a', '#8a6d00', '#ffffff');
+  const neutral = colors('#152238', '#334155', '#ffffff');
+  let caseIndex = 0;
+  const check = (
+    palette: unknown,
+    error?: string,
+    edition = 'white-label',
+    name: unknown = 'Perfil de prueba',
+  ) => {
+    const input = resolve(temporary, 'input.json');
+    const out = resolve(temporary, `output-${caseIndex++}`);
+    writeFileSync(
+      input,
+      JSON.stringify({
+        ...data,
+        ...(palette === undefined ? {} : {brand: {name, colors: palette}}),
+      }),
     );
-  browser = await chromium.launch({
-    headless: true,
-    ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
-      ? {executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}
-      : {}),
-  });
-}, 60_000);
-afterAll(async () => {
-  if (browser) await browser.close();
-  if (root) rmSync(root, {recursive: true, force: true});
+    const flags = ['--kind', 'workbook', '--edition', edition];
+    flags.push('--input', input, '--out', out);
+    const result = spawnSync('python3', [runtime, 'build', ...flags], {
+      encoding: 'utf8',
+      timeout: 60_000,
+      env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'},
+    });
+    expect(result.status).toBe(error ? 2 : 0);
+    expect(result.stderr).toBe('');
+    expect(result.stdout).toContain(error ?? 'RENDERED_DRAFT');
+    expect(existsSync(out)).toBe(!error);
+    if (error) return;
+    const html = readFileSync(resolve(out, 'artifact.html'), 'utf8');
+    const payload = JSON.parse(/id="payload">([\s\S]*?)<\/script>/u.exec(html)![1]!) as {
+      brand: {colors: Record<string, string>};
+    };
+    expect(Object.keys(payload.brand.colors).sort()).toEqual(['gold', 'night', 'white']);
+    return payload.brand.colors;
+  };
+  try {
+    expect(check(undefined, undefined, 'metodologia')).toEqual(fallback);
+    expect(check(undefined)).toEqual(neutral);
+    data.brand = {};
+    expect(check(undefined)).toEqual(neutral);
+    delete data.brand;
+    check(colors('#1e293b', '#0f766e', '#f8fafc'));
+    check(colors('#ffffff', '#ffff00', '#000000'), 'night sobre blanco fijo');
+    check(colors('#152238', '#334155', '#000000'), 'footer/completed sobre canvas');
+    check(colors('#152238', '#334155', '#b0b0b0'), 'foco sobre canvas');
+    check(colors('#000000', '#000000', '#bbbbbb'), 'foco sobre canvas');
+    check(colors('#000000', '#000000', '#cccccc'));
+    check({night: '#152238', white: '#e9e9e9'}, 'gold sobre canvas');
+    expect(check({})).toEqual(fallback);
+    expect(check({night: '#152238'})).toEqual({...fallback, night: '#152238'});
+    for (const palette of [null, [], ['#152238'], 3, '#ffffff']) check(palette, 'Color no seguro');
+    for (const palette of [{night: 3}, {gold: null}, {extra: '#ffffff'}])
+      check(palette, 'Color no seguro');
+    for (const name of [3, {label: 'Perfil'}, ['Perfil'], '   '])
+      check({}, 'Brand inválida', 'white-label', name);
+  } finally {
+    rmSync(temporary, {recursive: true, force: true});
+  }
 });
 describe('Aula offline browser checks', () => {
+  beforeAll(async () => {
+    root = mkdtempSync(resolve(realpathSync(tmpdir()), 'frames-aula-browser-'));
+    for (const item of manifest.skills)
+      build(
+        item.kind,
+        item.edition,
+        `03_artefactos/renderers/frames-aula/examples/${item.kind}.json`,
+        resolve(root, item.name),
+      );
+    browser = await chromium.launch({
+      headless: true,
+      ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+        ? {executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}
+        : {}),
+    });
+  }, 60_000);
+  afterAll(async () => {
+    if (browser) await browser.close();
+    if (root) rmSync(root, {recursive: true, force: true});
+  });
   it.each([
     ['es', 'Revisión humana pendiente', 'Saltar al contenido', 'Idioma', 'Secciones'],
     ['en', 'Human review pending', 'Skip to content', 'Language', 'Sections'],
@@ -57,22 +125,7 @@ describe('Aula offline browser checks', () => {
         const input = resolve(root, `shell-${edition}-${lang}.json`);
         const output = resolve(root, `shell-${edition}-${lang}`);
         writeFileSync(input, JSON.stringify(data));
-        execFileSync(
-          'python3',
-          [
-            '03_artefactos/renderers/frames-aula/runtime.py',
-            'build',
-            '--kind',
-            'workbook',
-            '--edition',
-            edition,
-            '--input',
-            input,
-            '--out',
-            output,
-          ],
-          {timeout: 60_000},
-        );
+        build('workbook', edition, input, output);
         const artifact = resolve(output, 'artifact.html');
         const title = typeof data.title === 'string' ? data.title : data.title[lang];
         expect(readFileSync(artifact, 'utf8')).toContain(`<html lang="${lang}">`);

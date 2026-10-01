@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "frames-aula-evaluation-v1",
+  "receiptId": "aula-evaluation-20261001-005",
+  "appendOnly": true,
+  "actorId": "AUTOMATED-PORTABLE-CHECKS",
+  "status": "PASS",
+  "scope": "local-draft-generation",
+  "implementation": [
+    {
+      "ref": "02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts",
+      "sha256": "762ae6c7c9966cee3f24a4bd5b737f71862fedcafd9a692d0534a3d5f68a4331"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_runner/aula-work-order-v1.ts",
+      "sha256": "c226a94e1eedf399a363403b47e25d534915a00054d391ab4cae77262dcd6153"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_runner/aula-continuation-v1.ts",
+      "sha256": "9925e0d71aad4a25e88fa5f08a610f60688c2e3522b7f2f1a2d05d30ccef1cec"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts",
+      "sha256": "1a96b37072dbbb986b5b86bef982bdbdbf1212a9003a49182e920d7f17ccd86b"
+    },
+    {
+      "ref": "05_verificacion/tests/integration/aula-continuation.test.ts",
+      "sha256": "352ff88317a81c88a71c4c82e6346d02e4e2b80a1dc7e18e394e252b622345a4"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_runner/aula-engine-authority-v1.ts",
+      "sha256": "08bf61e30a148be655009215fac6f47dc63ff95487f5d9efa7c6c69778328ca4"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_schema/aula-promotion-review-v1.ts",
+      "sha256": "ff01c3dcd00de506317bdcfb014600e8bbe78dcc7c4c035188f0694bd6d9dd88"
+    },
+    {
+      "ref": "02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts",
+      "sha256": "c61d6ff139f999253c253760af3da2560af807a3074b4a563500d2724ab682f9"
+    },
+    {
+      "ref": "05_verificacion/scripts/promote-aula-decks.mjs",
+      "sha256": "a66a07089b70468a35ecc6b50a6f765a398f5fe0ac3b679323cce387fe9be1eb"
+    }
+  ],
+  "humanPieceApproval": false,
+  "publicationAuthority": false,
+  "checks": {
+    "atomicPackages": 18,
+    "materialCombinations": 18,
+    "negativeAndReadOnly": 10
+  },
+  "testReportSha256": "d55b950cf258d087354191ca1c597837b143af3f916a6aaa4717ed96003ce90a",
+  "packages": [
+    {
+      "skillId": "metodologia-edu-immersive-class",
+      "contentSha256": "d5b6b0b415aaa70a240dee21b2bca8a88d690888d0f80b62cfbc57d904b82922",
+      "packageManifestSha256": "47a8c66e0abb73c441f0140efa81c8a974672aa52a335a28ba0d7972df5c2002"
+    },
+    {
+      "skillId": "metodologia-edu-masterclass",
+      "contentSha256": "da236f9db297f78044b874d719b745f71d844ae7bae5f3af9fa8450625de9879",
+      "packageManifestSha256": "5bf758f6642dc45f58fd01e6e140d039e44d7027e2f943f34ce522079313bd1e"
+    },
+    {
+      "skillId": "metodologia-edu-workbook",
+      "contentSha256": "6c90f22e1017e7c208f5c6fcde76394f267e4b19a0b4236b81100b0f3179974c",
+      "packageManifestSha256": "223fc64b9cb503e41b881dfeacb824ecd5cd7145696cff383bc1063cc4a8e144"
+    },
+    {
+      "skillId": "metodologia-edu-lean-coffee",
+      "contentSha256": "962f35a0587d89e2ac55f8e5d60d36f963228f177297a2f043450e3d93ce7c4b",
+      "packageManifestSha256": "e1f40a471fa30098a274002c9143d3da00d5be089186c2b6afda9b11c4aa51b1"
+    },
+    {
+      "skillId": "metodologia-edu-playbook",
+      "contentSha256": "39e8bb4dcca485669e03bac56c30fcadece191d09a3c3fee5b5d0c9502234726",
+      "packageManifestSha256": "06cf7dc7b4e9d0c1b9e2890d59b74ccd190328c57bcf5c4b43430a6d751dc5a6"
+    },
+    {
+      "skillId": "metodologia-edu-playbook-immersive",
+      "contentSha256": "e5a777fa729bd04ac604904314aa52b9b52a62fa9e20467daabd28e0a831bf25",
+      "packageManifestSha256": "cbb83f2599d0296bd1cd06b307a2113f29dfaa41c067b6caa5d6ca2d016896d0"
+    },
+    {
+      "skillId": "metodologia-edu-index",
+      "contentSha256": "0f9538060b25d9e27971f1fb6080b6c56d02c8881816034ce2f33e5a22d61591",
+      "packageManifestSha256": "dcd2d88c94da3e065ce4aa77818f809e74d6de2b66da12dbe914e3d49cee102e"
+    },
+    {
+      "skillId": "metodologia-edu-module",
+      "contentSha256": "d42c9141f3ff8a1aff011da005ae1edabf4af94d996f9377da1bf0a56307a1ce",
+      "packageManifestSha256": "4f3c6a33ba62c5d51f7baf2d5e60583afc90138e1b69fa289fcbe69eb9f18676"
+    },
+    {
+      "skillId": "metodologia-dynamic-commercial-decks",
+      "contentSha256": "decc6b77a08537c353e63ff7776d1f374bf1ab01b942e1ba007a425130db0d73",
+      "packageManifestSha256": "769acd59020d1e14cc3b4f0bc3074f40fbad3490a725cb95c282253c303168ff"
+    },
+    {
+      "skillId": "edu-immersive-class",
+      "contentSha256": "07547bc78757fd6a21bbfa67bcdb3570996b667ef475888b9c79eacaa3c96a0e",
+      "packageManifestSha256": "a0be7c0c6c1a6139cb6ccbb78a513b59fedf750889eae742a5a503ae8b481b20"
+    },
+    {
+      "skillId": "edu-masterclass",
+      "contentSha256": "d48d2db0bec15c3ba2f0921fcb121e696fe377483ce1aa88b087ea4a1f411751",
+      "packageManifestSha256": "8a4dceb03a5a243bc20cbc56de65da4087ae7fa14d66b51b6cb111f8c955f00a"
+    },
+    {
+      "skillId": "edu-workbook",
+      "contentSha256": "cf92dc378747a2b8b335183bb29db2154d6b2187ff17b46f7b10d11fec9cd3ec",
+      "packageManifestSha256": "ab40d9bdad1b6508b3e4dd83020fb7ab4b878e04178f86a5fb12dfcdbfc0f9b2"
+    },
+    {
+      "skillId": "edu-lean-coffee",
+      "contentSha256": "46af0af856ad7101c0ee5535ed282d76f7a99f6505cd94807b80e6690412a271",
+      "packageManifestSha256": "d04e95b3a2ace56d66ac80a8760fd984d21b079ab296becca7079eff1614f151"
+    },
+    {
+      "skillId": "edu-playbook",
+      "contentSha256": "edfc1a258c1f6a377117bd1555ecbb76d3d10b47d1283855eaaecee6601ca5eb",
+      "packageManifestSha256": "dbeabfe8a81031227deaa61b2c40eeeeada6f0317dd79d8c2435f627f3a00d88"
+    },
+    {
+      "skillId": "edu-playbook-immersive",
+      "contentSha256": "f1fbcbeb7a60da6ac0254f9b2d49ccc58600cf41e9355f836c2380162630f9bc",
+      "packageManifestSha256": "a1e191f5c6cf1dcba146cdd32ce529c293f7f807ba7a53bfab117f1f6ebd2641"
+    },
+    {
+      "skillId": "edu-index",
+      "contentSha256": "822d54899103b1f5f549de3eb838677a53eb25aac5f3824c10442b632cb769cb",
+      "packageManifestSha256": "ad1664fdabd6285e3b82f6cdb607a4d4a504a68d1c6f32cb85d9a4aba70af282"
+    },
+    {
+      "skillId": "edu-module",
+      "contentSha256": "ec38b79d9a30eaea5a3e1eaa4bd638a8856ca6e4529642017f83c82384940d8e",
+      "packageManifestSha256": "f01758c675fba72a34289be1505fdac3167d867a7e5bca24f32075a82223c9a7"
+    },
+    {
+      "skillId": "white-label-dynamic-commercial-decks",
+      "contentSha256": "6d7047f529f0e734a3e146a4216303e9f70649906f7061c393440124764b5391",
+      "packageManifestSha256": "f6040879b855a0e62f5a54daa53b6e2db1b485c91d206e12981fbd9784f53520"
+    }
+  ],
+  "limits": [
+    "Browser and pedagogical acceptance require independent review.",
+    "Evaluation fixtures simulate explicit human gate decisions."
+  ]
+}

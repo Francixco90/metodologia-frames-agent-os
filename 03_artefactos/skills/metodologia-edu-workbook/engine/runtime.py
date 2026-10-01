@@ -43,6 +43,11 @@ def audience_content(data):
     if isinstance(data,list): return [audience_content(value) for value in data]
     return data
 
+def effective_colors(brand,edition):
+    colors={'night':'#0a122a','gold':'#8a6d00','white':'#ffffff'}
+    if edition=='white-label' and 'colors' not in brand: colors.update(night='#152238',gold='#334155')
+    return {**colors,**brand.get('colors',{})}
+
 def validate(d,kind,edition,base=None):
     errors=[]
     if not isinstance(d,dict): return ['Brief debe ser objeto JSON']
@@ -91,18 +96,23 @@ def validate(d,kind,edition,base=None):
         if not f.get('source') or f.get('confirmed') is not True or not re.fullmatch('[0-9a-f]{64}',f.get('sha256','')): errors.append('Fact requiere source, confirmed=true y sha256')
     if False: pass
     brand=d.get('brand',{})
+    if not isinstance(brand,dict): errors.append('Brand inválida'); brand={}
     def luminance(c):
         values=[int(c[i:i+2],16)/255 for i in (1,3,5)]
         return sum(w*(v/12.92 if v<=.04045 else ((v+.055)/1.055)**2.4) for w,v in zip((.2126,.7152,.0722),values))
     colors=brand.get('colors',{})
-    if colors and (not isinstance(colors,dict) or set(colors)-{'night','gold','white'} or any(not isinstance(v,str) or not re.fullmatch('#[0-9a-fA-F]{6}',v) for v in colors.values())): errors.append('Color no seguro')
-    if colors and all(re.fullmatch('#[0-9a-fA-F]{6}',v) for v in colors.values()):
-        for ink in ('night','gold'):
-            a,b=sorted((luminance(colors.get(ink,'#0a122a')),luminance(colors.get('white','#ffffff'))))
-            if (b+.05)/(a+.05)<4.5: errors.append('Contraste de brand insuficiente: '+ink)
+    safe_colors=isinstance(colors,dict) and not set(colors)-{'night','gold','white'} and all(isinstance(v,str) and re.fullmatch('#[0-9a-fA-F]{6}',v) for v in colors.values())
+    if not safe_colors: errors.append('Color no seguro')
+    if safe_colors:
+        effective=effective_colors(brand,edition)
+        pairs=[(ink+' sobre '+surface,effective[ink],background,4.5) for ink in ('night','gold') for surface,background in (('canvas',effective['white']),('blanco fijo','#ffffff'))]
+        pairs += [('footer/completed sobre canvas','#334155',effective['white'],4.5),('foco sobre canvas','#8a6d00',effective['white'],3)]
+        for label,ink,background,minimum in pairs:
+            a,b=sorted((luminance(ink),luminance(background)))
+            if (b+.05)/(a+.05)<minimum: errors.append('Contraste de brand insuficiente: '+label)
 
     if edition=='white-label' and brand:
-        if not brand.get('name') or any(not re.fullmatch('#[0-9a-fA-F]{6}',c) for c in brand.get('colors',{}).values()): errors.append('Brand inválida')
+        if not isinstance(brand.get('name'),str) or not brand['name'].strip() or not safe_colors: errors.append('Brand inválida')
     for s in d.get('sections',[]):
         for link in s.get('links',[]):
             href=link.get('href','')
@@ -131,6 +141,7 @@ def markdown(d,lang):
 def render(d,kind,edition):
     brand={'name':'MetodologIA' if edition=='metodologia' else 'Tu marca','colors':{'night':'#0a122a' if edition=='metodologia' else '#152238','gold':'#8a6d00' if edition=='metodologia' else '#334155','white':'#ffffff'}}
     if edition=='white-label': brand.update(d.get('brand',{}))
+    brand['colors']=effective_colors(brand,edition)
     lang=d.get('language','es'); shell=SHELL_UI.get(lang,SHELL_UI['es'])
     payload=json.dumps({'data':d,'kind':kind,'brand':brand,'shellUi':SHELL_UI},ensure_ascii=False).replace('<','\\u003c')
     css=(ROOT/'style.css').read_text()+':root{--ink:'+brand['colors'].get('night','#0a122a')+';--canvas:'+brand['colors'].get('white','#ffffff')+';--accent:'+brand['colors'].get('gold','#8a6d00')+'}'; js=(ROOT/'app.js').read_text()

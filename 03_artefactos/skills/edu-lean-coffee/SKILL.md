@@ -1,7 +1,7 @@
 ---
 name: edu-lean-coffee
 description: This skill should be used when el usuario solicita Lean Coffee o conversación de cierre. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.0.1
+version: 1.0.3
 license: MIT
 metadata:
   owner: MetodologIA

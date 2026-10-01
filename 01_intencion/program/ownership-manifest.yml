@@ -219,6 +219,8 @@ writers:
     - receipts/aula-decks-guardian-20261001.json
     - receipts/aula-decks-guardian-20261001-002.json
     - receipts/aula-decks-guardian-20261001-003.json
+    - receipts/aula-decks-guardian-20261001-005.json
+    - receipts/aula-decks-guardian-20261001-006.json
     - receipts/projects/notebooklm-os/**
     - 04_estado/releases/experience/**
     - projects/vs-001-source-to-campaign/guardian/**

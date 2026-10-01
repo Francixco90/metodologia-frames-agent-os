@@ -1,4 +1,4 @@
-# Frames Aula runtime 1.0.0
+# Frames Aula runtime 1.0.3
 
 Implementación original Python stdlib + HTML/CSS/JS local. [METODOLOGIA]
 
@@ -18,7 +18,7 @@ Implementación original Python stdlib + HTML/CSS/JS local. [METODOLOGIA]
 
 schemaVersion `frames-aula-v1`, title, language y languages explícitos; strings pueden ser `{es,en,pt,fr}`. No se traduce automáticamente: traducciones localizadas faltantes para idiomas declarados bloquean. La UI tiene esos cuatro idiomas. sections requiere id único, title; body, notes, scene, prompt y fields son opcionales. Un field tiene key único, label y default. Prompt sustituye `{{key}}` literalmente. objectives y acceptance contienen resultados y criterios de logro. facts requiere source, confirmed=true, sha256; id permite vincular section.factIds. Cifras comerciales en títulos o cuerpos de cualquier idioma necesitan referencias a facts; decks conceptuales no necesitan inventar hechos. No se valida por red la verdad del fact: el hash y confirmación son responsabilidad del autor/validador.
 
-links y pieces aceptan solo rutas locales presentes relativas al brief. Build verifica los enlaces también en el destino de salida. Mantener esos documentos junto a la salida o usar module, que genera sus enlaces. Brand white-label admite name y colors night/gold/white hex; contraste mínimo 4.5:1. MetodologIA no admite override. Tokens de referencia: `brand/tokens/brand-tokens.yml`, SOCIAL canvas #f5f7fa, ink #0a122a, gold_text #8a6d00, white #ffffff, text_soft #334155. Tipografía usa system-ui para independencia offline; no se redistribuyen fuentes ni logos externos.
+links y pieces aceptan solo rutas locales presentes relativas al brief. Build verifica los enlaces también en el destino de salida. Mantener esos documentos junto a la salida o usar module, que genera sus enlaces. Brand white-label admite name y colors night/gold/white hex. Texto sobre canvas y superficies blancas fijas requiere contraste mínimo 4.5:1; footer y progreso usan #334155 sobre canvas. El foco fijo #8a6d00 requiere 3:1 sobre canvas. Las paletas incompatibles se rechazan antes de construir; este motor usa superficies claras y no ofrece modo oscuro. MetodologIA no admite override. Tokens de referencia: `brand/tokens/brand-tokens.yml`, SOCIAL canvas #f5f7fa, ink #0a122a, gold_text #8a6d00, white #ffffff, text_soft #334155. Tipografía usa system-ui para independencia offline; no se redistribuyen fuentes ni logos externos.
 
 ## Comportamiento
 
@@ -41,3 +41,5 @@ Acepta template DOCX con estilos Heading 1/Normal o PPTX con placeholders títul
 Decks admiten `mode: comercial|tecnico` (comercial predeterminado; commercial se conserva como alias), `deckType` explícito, `thesis:{title,pillars:[{achieves,proof}]}` y escenas originales. Sections aceptan `table:{headers,rows}`, `tabs:[{title,body}]`, `accordion:[{title,body}]`. Tabs usan roles y flechas/Home/End; tablas validan ancho por fila. La revisión de arco técnico y pilares pertenece al workflow con gates humanos, no se inventan aprobaciones en el renderer. `deck-workflow.py` es el procedimiento intake → aprobación → spec → aprobación → build mantenido por Frames.
 
 Selección explícita: `outputs:["desktop","audience","markdown"]` produce solamente esas piezas y receipt; sin outputs conserva las seis salidas del plan aprobado. Module mantiene su suite completa. `guidelines.json` separa reglas bloqueantes verificables de criterio editorial: títulos comerciales mayores de diez palabras generan advisory REVIEW, nunca aprobación ficticia.
+
+La validación y el render comparten la paleta efectiva. Una configuración parcial conserva los fallbacks documentados y produce colores completos para las cinco escenas SVG; el nombre de marca solicitado debe ser texto no vacío.

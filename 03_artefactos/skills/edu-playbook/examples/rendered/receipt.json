@@ -3,7 +3,7 @@
   "kind": "playbook",
   "edition": "white-label",
   "inputSha256": "45b9030a1ab06a3532d010b7e1c9c5758c17ecd9c0ffb97449bd116b972d896d",
-  "engineSha256": "038d4ef2e4c0f604233f610ea939137bb0b2289b35ca2cd5a1886d6a451f1290",
+  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
   "outputs": {
     "artifact.html": "a4819c23f586b4481c40d3d6fbf0e65bc3d3b210e2c17e0c22d1266f80103481",
     "artifact-mobile.html": "53c6873b5b7215cf5d60bb80db318efc09bf9bcbd37970a712d52a33f4fca84b",

@@ -1,7 +1,7 @@
 ---
 name: edu-masterclass
 description: This skill should be used when el usuario solicita masterclass o fundamentos para lectura autónoma. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.0.1
+version: 1.0.3
 license: MIT
 metadata:
   owner: MetodologIA

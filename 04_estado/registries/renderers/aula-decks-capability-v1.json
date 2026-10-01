@@ -7,7 +7,7 @@
   "engineRefs": [
     {
       "ref": "03_artefactos/renderers/frames-aula/runtime.py",
-      "sha256": "91a0d64ab7b424794dd843700a3caccd31e064d723af8c89aac20ccc8641fb07"
+      "sha256": "1ecf205b711e888cd69ec0366a3d3edba3d4389df06c184a9ae1db7441e28e67"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/app.js",

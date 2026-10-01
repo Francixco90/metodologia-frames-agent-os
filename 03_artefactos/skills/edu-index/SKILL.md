@@ -1,7 +1,7 @@
 ---
 name: edu-index
 description: This skill should be used when el usuario solicita índice o landing de un módulo. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.0.1
+version: 1.0.3
 license: MIT
 metadata:
   owner: MetodologIA

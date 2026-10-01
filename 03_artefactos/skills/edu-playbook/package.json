@@ -1,8 +1,8 @@
 {
   "name": "edu-playbook",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "kind": "playbook",
   "edition": "white-label",
   "license": "MIT",
-  "sourceEngineSha256": "91a0d64ab7b424794dd843700a3caccd31e064d723af8c89aac20ccc8641fb07"
+  "sourceEngineSha256": "1ecf205b711e888cd69ec0366a3d3edba3d4389df06c184a9ae1db7441e28e67"
 }

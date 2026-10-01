@@ -4,7 +4,7 @@ import argparse, hashlib, json, pathlib, shutil, subprocess, tempfile, zipfile, 
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ENGINE = ROOT / '03_artefactos/renderers/frames-aula'
-VERSION = '1.0.1'
+VERSION = '1.0.3'
 KINDS = ['immersive-class', 'masterclass', 'workbook', 'lean-coffee', 'playbook',
          'playbook-immersive', 'index', 'module', 'dynamic-commercial-decks']
 PURPOSE = {
