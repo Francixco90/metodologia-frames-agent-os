@@ -1,5 +1,5 @@
 skill_id: edu-playbook
-version: 1.1.0
+version: 1.2.0
 lifecycle_state: active
 execution_scope: local-draft-generation
 authority_refs: [03_artefactos/renderers/frames-aula/README.md]

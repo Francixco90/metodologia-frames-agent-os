@@ -1,7 +1,7 @@
 ---
 name: metodologia-edu-immersive-class
 description: This skill should be used when el usuario solicita clase inmersiva o sesión presentada. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.1.0
+version: 1.2.0
 license: MIT
 metadata:
   owner: MetodologIA

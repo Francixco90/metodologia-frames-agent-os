@@ -3,15 +3,15 @@
   "kind": "lean-coffee",
   "edition": "metodologia",
   "inputSha256": "9bd9deb86b258771a514e9f5461653e47fc62c71fea3a4c1da053a5e419115f3",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "4cbeaaf590ccaeb2bb194fdd3fd7974a1f22810c29e53b41ea4dfc74ee0104d3",
-    "artifact-mobile.html": "16a9e1b22d637ea468b8fb2578bbf4460a07a17289936669dd0f2becd1697c67",
-    "artifact-audience.html": "531c6886bed5d75ed86273d29c14d09734ddd45ee53b949fbda06040b5a7b128",
-    "artifact-mobile-audience.html": "4b66c5ceb39a9a16ddab992aa085da88a9c220ccb46a15ba1e37e7be383c555d",
+    "artifact.html": "102ddd2eea34693dab5760d7ed7b531948116e96cb8a108d960f740f26165c19",
+    "artifact-mobile.html": "3a3e06a9e7fe607af2bfa9303bf6aeab63b28c820e6bdd54d642553f96b01a0f",
+    "artifact-audience.html": "54864a7d4b18ce2b51abe28037e4b07be9c4c766e10ec74aa1b9405d2e0e92a0",
+    "artifact-mobile-audience.html": "e60328eea5f51e9cecf2ddaf54b41d283cc83388d7c7d7e63d547ba052106409",
     "artifact.md": "96c00c62c64b8e352c830b3dae1ffe23d9cde6a76d4205ceaebda924f6b0d828"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

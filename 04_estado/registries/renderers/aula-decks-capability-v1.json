@@ -11,7 +11,7 @@
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/app.js",
-      "sha256": "28c117c841f8634f70b49792731770c10d875d7783050ce942a9edae5c924c45"
+      "sha256": "89c7502e48deeac552c9a158bf4f41bd395d6eb4769e2be41ed51bf940f34141"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/assets/LICENSE",
@@ -1951,11 +1951,11 @@
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/runtime.py",
-      "sha256": "6ae8797573e6db8e833bb1180eb89809109cb3c661420e4805507e1cdaf6ccbe"
+      "sha256": "88ee1ebad5eefb0ea85af3646690a8cecf437324cb3515513db36124c60e1122"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/style.css",
-      "sha256": "13d9087934c8aa673d906784a3fa6785414c6c6e532ec9507d8ca50e5484cad7"
+      "sha256": "49b7ed0c0b51b6f6b342c94c4a3bc70a6b800394646f086da5311653c79a4dda"
     }
   ],
   "handlerRef": {
@@ -1964,6 +1964,7 @@
   },
   "kinds": [
     "immersive-class",
+    "workshop-immersive",
     "masterclass",
     "workbook",
     "lean-coffee",

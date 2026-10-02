@@ -3,15 +3,15 @@
   "kind": "masterclass",
   "edition": "metodologia",
   "inputSha256": "3d03721cd580cb9d4eeb018bfe2300a610a9d4d8f71e558802560483860be46c",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "4fb690d34f005d46b7725cfb6f0be46c3a7c8ef4e7ef56f80c0e4a45ae0e61c9",
-    "artifact-mobile.html": "40d6780756113af94a32a642f2234e98dcaf48cece77098dbdeb877602a2be06",
-    "artifact-audience.html": "75871aee19be6ee7746605205cba6300b7150cab21201e0af49695f6b0ecfff8",
-    "artifact-mobile-audience.html": "47a3deb2c218d8e1ecba32b2adc8b5d8fcf53a4af53465a6c8d125e99fb3f5fb",
+    "artifact.html": "73296d0e5edd01e83691ad7a639dec2bcaa99ccd5981cf4241983e0292f5870f",
+    "artifact-mobile.html": "aa0c5a070171cd25061e605317c4fc7984a06fb700d5b8f1d689950585721f27",
+    "artifact-audience.html": "7a8a5998b8c5407840d2d5bff2c70579b257c0f13b877e6692f91ef10dc9f425",
+    "artifact-mobile-audience.html": "aeab66936dd21cf5ee4651db2b719c4481450797dcaade4ec85ac9f59ab58c08",
     "artifact.md": "325ecbd9ce73c59a55020ccc5e438e73e4c5aef464395214e708a77c879337f0"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

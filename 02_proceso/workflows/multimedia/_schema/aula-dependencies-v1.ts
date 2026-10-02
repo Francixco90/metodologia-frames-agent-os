@@ -31,7 +31,7 @@ export const aulaBuildFieldsV1 = {
   profile: z
     .strictObject({id: z.enum(['metodologia', 'white-label']), sha256: Sha256Schema})
     .optional(),
-  engineVersion: z.literal('1.1.0').optional(),
+  engineVersion: z.enum(['1.1.0', '1.2.0']).optional(),
 };
 export const AulaBuildBindingV1Schema = z
   .strictObject({...aulaBuildFieldsV1, bankRef: Ref.optional()})

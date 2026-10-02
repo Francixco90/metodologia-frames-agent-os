@@ -39,7 +39,7 @@ sources:
     rights: cleared
   - source_id: generator-workflow-p06
     ref: 02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml
-    sha256: 46bcf1c1af20dd2c6f6a12b393c0db14cb5b652ca2627a56ed485229419a8447
+    sha256: a302dfabd634e1a5a7e662ce2e1254bb1efb4fc64f6cb3d46980414f4bc3f1b2
     authority: verified
     rights: cleared
 formats:
@@ -99,7 +99,7 @@ fields:
     source_refs: []
 state: DRAFT
 next_gate: G14
-content_sha256: 5c4a296884f464fc0d0bf32e6406c3240c26bce1d77c5ab1f14121072886ff6f
+content_sha256: bcb4dc71ae7fd49ea32c2275d4f62aaaf5b420a9e25bec773322518ba6afe05d
 ---
 
 ## Resultado y decisión

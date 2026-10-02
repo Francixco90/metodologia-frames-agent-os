@@ -1,4 +1,9 @@
 import {
+  requests,
+  engineFiles,
+  type Execution,
+} from '../fixtures/experience/aula-capability-fixture.ts';
+import {
   cpSync,
   existsSync,
   mkdtempSync,
@@ -7,7 +12,6 @@ import {
   rmSync,
   writeFileSync,
   mkdirSync,
-  readdirSync,
 } from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -21,15 +25,6 @@ import {selectAulaCapabilityV1} from '../../../02_proceso/workflows/multimedia/_
 import {AulaBriefApprovalV1Schema} from '../../../02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts';
 
 type Runner = (input: {argv: string[]; stdin: string; cwd: string}) => Promise<{stdout: string}>;
-type Execution = {
-  local_execution: {
-    status: string;
-    materialized: boolean;
-    coverageGap?: string;
-    specRef?: string;
-    receiptRef?: string;
-  };
-};
 let run: Runner;
 const roots: string[] = [];
 beforeAll(async () => {
@@ -41,25 +36,6 @@ beforeAll(async () => {
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, {recursive: true, force: true});
 });
-const requests = [
-  ['immersive-class', 'Crear una clase inmersiva para una sesión presentada'],
-  ['masterclass', 'Crear una masterclass sobre conceptos'],
-  ['workbook', 'Crear un workbook de práctica guiada'],
-  ['lean-coffee', 'Crear Lean Coffee de cierre'],
-  ['playbook', 'Crear un playbook de adopción'],
-  ['playbook-immersive', 'Crear un playbook inmersivo'],
-  ['index', 'Crear el índice del módulo'],
-  ['module', 'Crear un kit completo para un taller'],
-  ['dynamic-commercial-decks', 'Crear un deck de prospección'],
-] as const;
-function engineFiles(dir: string, prefix = ''): string[] {
-  return readdirSync(dir, {withFileTypes: true}).flatMap((entry) => {
-    if (entry.isSymbolicLink()) throw new Error('FIXTURE_ENGINE_SYMLINK');
-    return entry.isDirectory()
-      ? engineFiles(resolve(dir, entry.name), prefix + entry.name + '/')
-      : [prefix + entry.name];
-  });
-}
 function fixture(
   kind: string,
   request: string,
@@ -257,7 +233,7 @@ describe('Aula natural-language continuation through Frames gates', () => {
       assetEvidence?: {id: string; source: string}[];
     };
     if (process.env.FRAMES_AULA_TEST_BANKS) {
-      expect(material.engineVersion).toBe('1.1.0');
+      expect(material.engineVersion).toBe('1.2.0');
       expect(material.assetEvidence).toContainEqual(
         expect.objectContaining({id: 'business-offer', source: 'bank'}),
       );

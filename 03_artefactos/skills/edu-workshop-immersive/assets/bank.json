@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/JaviMontano/white-label-aula-assets",
+  "tag": "v1.1.0",
+  "archive": "https://github.com/JaviMontano/white-label-aula-assets/releases/download/v1.1.0/white-label-aula-assets-1.1.0.zip",
+  "sha256": "fae2c43ae0d3024a8f15109fa1506c6538f4a30079172fa60ef0cfb7fcabb674",
+  "manifestSha256": "15eadbbc843b17f5756cb405755236c0360909542ef247440a2cff4ace5bd131",
+  "optional": true,
+  "networkRuntimeRequired": false
+}

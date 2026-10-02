@@ -81,6 +81,7 @@ capability_map:
     - content-os-core
     - metodologia-edu-immersive-class
     - metodologia-edu-masterclass
+    - metodologia-edu-workshop-immersive
     - metodologia-edu-workbook
     - metodologia-edu-lean-coffee
     - metodologia-edu-playbook
@@ -90,6 +91,7 @@ capability_map:
     - metodologia-dynamic-commercial-decks
     - edu-immersive-class
     - edu-masterclass
+    - edu-workshop-immersive
     - edu-workbook
     - edu-lean-coffee
     - edu-playbook

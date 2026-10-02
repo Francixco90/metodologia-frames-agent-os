@@ -3,15 +3,15 @@
   "kind": "immersive-class",
   "edition": "white-label",
   "inputSha256": "9afadae6854facdda1e3b9052a61010b4ab0220c92dd7965ff23a40bd197ec1b",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "df5a7306916c1c82ea0c873f1beb9725ce78ac4a087de57206e3b298ce4641b7",
-    "artifact-mobile.html": "e5d2faf74ace17d1a503025d1eece70178eb2b95cd987774654f32d916cc25ee",
-    "artifact-audience.html": "09317393a43e58745ca0dec023dd5f5b1dea0d6a73bf636650c945bf0c39a644",
-    "artifact-mobile-audience.html": "0dec3a2969989d65336dd5ab9ad1b569182f69f22a62ff0162f4b663e8b79045",
+    "artifact.html": "9b698f0ff1ceafa139227296cc87221144679cde29fdd0d11a6039bff52d05ba",
+    "artifact-mobile.html": "bd25cacd556ea825c4a9287c97b4e58f6cc0a434c5a58f6fb86994ea6463e99f",
+    "artifact-audience.html": "785c380b396ef30d4372fa001403dd50cc34f626e1ec71df98b979fcff07bd65",
+    "artifact-mobile-audience.html": "05f419f90620e4b57d7885ef55ec4fc0b26c9060c7b62b3cf6e15c273ce3406a",
     "artifact.md": "ef2f8dccfd18eb0dac6bb3bf15df7ba7ffea8c62ac206d6d88417e604eaac070"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "white-label",
     "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"

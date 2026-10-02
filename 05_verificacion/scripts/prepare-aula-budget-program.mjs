@@ -20,24 +20,31 @@ const authored = [...delta.paths].sort().filter((path) => {
 });
 const partitions = [],
   perFileLineCaps = [];
-let paths = [],
-  loc = 0;
-const close = () => {
-  if (!paths.length) return;
-  partitions.push({
-    id: `aula-lot-${partitions.length + 1}`,
-    paths,
-    limits: {targetFiles: paths.length, targetLoc: Math.max(1, loc), hardFiles: 12, hardLoc: 1200},
-  });
-  paths = [];
-  loc = 0;
-};
-for (const path of authored) {
+for (const path of [...authored].sort(
+  (a, b) => (delta.locByPath.get(b) || 0) - (delta.locByPath.get(a) || 0) || a.localeCompare(b),
+)) {
   const added = delta.locByPath.get(path) || 0;
   if (added > 1200) throw new Error(`Single-file lot exceeds approved limit: ${path}`);
-  if (paths.length === 12 || loc + added > 1200) close();
-  paths.push(path);
-  loc += added;
+  let lot =
+    path === policy.change_program_manifest
+      ? undefined
+      : partitions.find(
+          (item) =>
+            !item.paths.includes(policy.change_program_manifest) &&
+            item.paths.length < 12 &&
+            item.limits.targetLoc + added <= 1200,
+        );
+  if (!lot) {
+    lot = {
+      id: `aula-lot-${partitions.length + 1}`,
+      paths: [],
+      limits: {targetFiles: 0, targetLoc: 0, hardFiles: 12, hardLoc: 1200},
+    };
+    partitions.push(lot);
+  }
+  lot.paths.push(path);
+  lot.limits.targetFiles = lot.paths.length;
+  lot.limits.targetLoc += added;
   const logical = normalizeToLegacyPath(path, inversions);
   const [rule] = effectiveRules(policy.budgets, path, isBudgetGeneratedPath(path, logical));
   const metrics = metricsFor(readBudgetFile(root, path));
@@ -55,7 +62,7 @@ for (const path of authored) {
     });
   }
 }
-close();
+for (const lot of partitions) lot.limits.targetLoc = Math.max(1, lot.limits.targetLoc);
 if (partitions.length > 12 || perFileLineCaps.length > 8 || authored.length > 200)
   throw new Error('Approved change-program bound exceeded');
 const planRef = '03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md';

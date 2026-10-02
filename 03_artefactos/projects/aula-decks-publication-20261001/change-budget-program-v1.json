@@ -1,158 +1,75 @@
 {
   "schemaVersion": "change-budget-program-v1",
   "programId": "aula-decks-publication-20261001",
-  "branch": "codex/aula-immersive-110",
-  "baseCommit": "b430b87b85775a72ebdc192d3583a1e465dbfe6b",
+  "branch": "codex/aula-workshop-120",
+  "baseCommit": "97aa42cedfca3336a394f3f89f2d9c0e3bf19ba4",
   "authority": {
     "mode": "LOCAL_SIMULATION",
     "planRef": "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
     "planSha256": "3b50e37810b4db2c8f1e3b04ff48de6fd58c8f19d172cca52b3f431ad4c56e12"
   },
-  "limits": {"targetFiles": 61, "targetLoc": 6536, "hardFiles": 73, "hardLoc": 7736},
+  "limits": {"targetFiles": 31, "targetLoc": 2048, "hardFiles": 43, "hardLoc": 3248},
   "partitions": [
     {
       "id": "aula-lot-1",
       "paths": [
-        "01_intencion/frames-evolution/aula-decks-20261001/README.md",
-        "01_intencion/frames-evolution/aula-decks-20261001/release-1.1.0.md",
-        "01_intencion/program/ownership-manifest.yml",
+        "03_artefactos/renderers/frames-aula/examples/workshop-immersive.json",
         "02_proceso/governance/docs-budget-policy.yml",
-        "02_proceso/workflows/multimedia/_runner/aula-build-dependencies-v1.ts",
-        "02_proceso/workflows/multimedia/_runner/aula-continuation-v1.ts",
-        "02_proceso/workflows/multimedia/_runner/aula-engine-authority-v1.ts",
-        "02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts",
-        "02_proceso/workflows/multimedia/_runner/aula-work-order-v1.ts",
-        "02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts",
-        "02_proceso/workflows/multimedia/_schema/aula-dependencies-v1.ts",
-        "03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json"
+        "04_estado/registries/skills/creation-v3-skill-registry.yml",
+        "03_artefactos/renderers/frames-aula/examples/workshop-immersive-provenance.json",
+        "05_verificacion/scripts/prepare-aula-budget-program.mjs"
       ],
-      "limits": {"targetFiles": 12, "targetLoc": 764, "hardFiles": 12, "hardLoc": 1200}
+      "limits": {"targetFiles": 5, "targetLoc": 1200, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-2",
       "paths": [
-        "03_artefactos/renderers/frames-aula/README.md",
-        "03_artefactos/renderers/frames-aula/app.js",
-        "03_artefactos/renderers/frames-aula/bank.py",
-        "03_artefactos/renderers/frames-aula/examples/dynamic-commercial-decks.json",
-        "03_artefactos/renderers/frames-aula/examples/golden-brochure-metodologia-8.json",
-        "03_artefactos/renderers/frames-aula/examples/golden-empoderamiento-metodologia-13.json"
+        "03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json"
       ],
-      "limits": {"targetFiles": 6, "targetLoc": 1025, "hardFiles": 12, "hardLoc": 1200}
+      "limits": {"targetFiles": 1, "targetLoc": 157, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-3",
       "paths": [
-        "03_artefactos/renderers/frames-aula/examples/golden-empoderamiento-metodologia-8.json",
-        "03_artefactos/renderers/frames-aula/examples/golden-source-receipts.json",
-        "03_artefactos/renderers/frames-aula/examples/immersive-class.json",
-        "03_artefactos/renderers/frames-aula/examples/index.json",
-        "03_artefactos/renderers/frames-aula/examples/lean-coffee.json",
-        "03_artefactos/renderers/frames-aula/examples/masterclass.json"
+        "05_verificacion/tests/integration/aula-110-browser.test.ts",
+        "05_verificacion/tests/fixtures/experience/aula-geometry-sensor.mjs",
+        "05_verificacion/scripts/aula-visual-110.mjs",
+        "05_verificacion/scripts/creation-v3-skills.json",
+        "05_verificacion/scripts/lib/aula-font-budget.ts",
+        "05_verificacion/scripts/check-md-budgets.ts",
+        "05_verificacion/tests/integration/aula-continuation.test.ts",
+        "05_verificacion/tests/fixtures/experience/aula-capability-fixture.ts",
+        "03_artefactos/renderers/frames-aula/runtime.py",
+        "05_verificacion/scripts/promote-aula-decks.mjs",
+        "03_artefactos/renderers/frames-aula/tests/test_runtime.py",
+        "02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts"
       ],
-      "limits": {"targetFiles": 6, "targetLoc": 1069, "hardFiles": 12, "hardLoc": 1200}
+      "limits": {"targetFiles": 12, "targetLoc": 612, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-4",
       "paths": [
-        "03_artefactos/renderers/frames-aula/examples/module.template.json",
-        "03_artefactos/renderers/frames-aula/examples/playbook-immersive.json",
-        "03_artefactos/renderers/frames-aula/examples/playbook.json",
-        "03_artefactos/renderers/frames-aula/examples/workbook.json",
-        "03_artefactos/renderers/frames-aula/export_office.py",
-        "03_artefactos/renderers/frames-aula/migrate.py"
+        "03_artefactos/renderers/frames-aula/README.md",
+        "05_verificacion/scripts/build-aula-decks.py",
+        "05_verificacion/scripts/check-aula-decks.mjs",
+        "03_artefactos/renderers/frames-aula/app.js",
+        "02_proceso/workflows/multimedia/p06-crear-activos/workflow.yml",
+        "03_artefactos/skills/content-os-router/SKILL.md",
+        "02_proceso/workflows/multimedia/_runner/aula-capability-v1.ts",
+        "03_artefactos/renderers/frames-aula/style.css",
+        "05_verificacion/scripts/register-aula-decks.mjs",
+        "02_proceso/workflows/core/first-turn-signals-v1.ts",
+        "02_proceso/workflows/multimedia/_schema/aula-dependencies-v1.ts",
+        "02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml"
       ],
-      "limits": {"targetFiles": 6, "targetLoc": 920, "hardFiles": 12, "hardLoc": 1200}
+      "limits": {"targetFiles": 12, "targetLoc": 77, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-5",
-      "paths": [
-        "03_artefactos/renderers/frames-aula/runtime.py",
-        "03_artefactos/renderers/frames-aula/style.css",
-        "03_artefactos/renderers/frames-aula/tests/test_runtime.py",
-        "04_estado/registries/skills/creation-v3-skill-registry.yml",
-        "05_verificacion/scripts/aula-visual-110.mjs"
-      ],
-      "limits": {"targetFiles": 5, "targetLoc": 894, "hardFiles": 12, "hardLoc": 1200}
-    },
-    {
-      "id": "aula-lot-6",
-      "paths": [
-        "05_verificacion/scripts/build-aula-assets.py",
-        "05_verificacion/scripts/build-aula-decks.py",
-        "05_verificacion/scripts/build-aula-gallery.py",
-        "05_verificacion/scripts/build-aula-goldens.py",
-        "05_verificacion/scripts/check-aula-decks.mjs",
-        "05_verificacion/scripts/check-md-budgets.ts",
-        "05_verificacion/scripts/check-receipts.ts",
-        "05_verificacion/scripts/creation-v3-checks.ts",
-        "05_verificacion/scripts/creation-v3-skills.json",
-        "05_verificacion/scripts/lib/h03-lock-succession.mjs",
-        "05_verificacion/scripts/prepare-aula-budget-program.mjs",
-        "05_verificacion/scripts/promote-aula-decks.mjs"
-      ],
-      "limits": {"targetFiles": 12, "targetLoc": 967, "hardFiles": 12, "hardLoc": 1200}
-    },
-    {
-      "id": "aula-lot-7",
-      "paths": [
-        "05_verificacion/scripts/register-aula-decks.mjs",
-        "05_verificacion/scripts/test_build_aula_assets.py",
-        "05_verificacion/scripts/test_build_aula_gallery.py",
-        "05_verificacion/tests/contract/aula-build-dependencies.test.ts",
-        "05_verificacion/tests/contract/aula-promotion-io.test.ts",
-        "05_verificacion/tests/contract/h03-lock-succession-018.test.ts",
-        "05_verificacion/tests/integration/aula-110-browser.test.ts",
-        "05_verificacion/tests/integration/aula-continuation.test.ts",
-        "05_verificacion/tests/integration/creation-skills-media-profile.test.ts",
-        "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
-        "05_verificacion/tests/unit/check-md-budgets.test.ts",
-        "05_verificacion/tests/unit/receipts/check-receipts.test.ts"
-      ],
-      "limits": {"targetFiles": 12, "targetLoc": 893, "hardFiles": 12, "hardLoc": 1200}
-    },
-    {
-      "id": "aula-lot-8",
-      "paths": ["eslint.config.js", "package.json"],
-      "limits": {"targetFiles": 2, "targetLoc": 4, "hardFiles": 12, "hardLoc": 1200}
+      "paths": ["02_proceso/workflows/multimedia/p07-revisar/workflow.yml"],
+      "limits": {"targetFiles": 1, "targetLoc": 2, "hardFiles": 12, "hardLoc": 1200}
     }
   ],
-  "perFileLineCaps": [
-    {
-      "path": "02_proceso/governance/docs-budget-policy.yml",
-      "surface": "authored-governance-md",
-      "baselineHardLines": 400,
-      "programHardLines": 550,
-      "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
-    },
-    {
-      "path": "05_verificacion/scripts/aula-visual-110.mjs",
-      "surface": "production-code",
-      "baselineHardLines": 200,
-      "programHardLines": 225,
-      "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
-    },
-    {
-      "path": "05_verificacion/scripts/check-md-budgets.ts",
-      "surface": "production-code",
-      "baselineHardLines": 200,
-      "programHardLines": 225,
-      "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
-    },
-    {
-      "path": "05_verificacion/scripts/promote-aula-decks.mjs",
-      "surface": "production-code",
-      "baselineHardLines": 200,
-      "programHardLines": 225,
-      "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
-    },
-    {
-      "path": "05_verificacion/tests/integration/aula-continuation.test.ts",
-      "surface": "test-code",
-      "baselineHardLines": 350,
-      "programHardLines": 375,
-      "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
-    }
-  ],
-  "canonicalSha256": "6b567569d7a7304263120f4404453c0697663b6d8a37d82da50cba6ef82a2a90"
+  "perFileLineCaps": [],
+  "canonicalSha256": "324bf9109a48713e033537320978d0b701f911a6b17acbb7692bf6aff0bbc6ad"
 }

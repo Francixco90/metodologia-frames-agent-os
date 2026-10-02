@@ -5,9 +5,9 @@ ROOT=pathlib.Path(__file__).resolve().parent
 sys.dont_write_bytecode=True
 sys.path.insert(0,str(ROOT))
 import bank
-VERSION='1.1.0'
+VERSION='1.2.0'
 LEGACY_SCENES={'flow','steps','orbit','gate','contrast'}
-PRESENTED={'immersive-class','masterclass','dynamic-commercial-decks'}
+PRESENTED={'immersive-class','workshop-immersive','masterclass','dynamic-commercial-decks'}
 ROOT_FIELDS={'schemaVersion','title','language','languages','objectives','acceptance','sections','facts','pieces','pieceSections','brand','mode','meta','deckType','thesis','outputs','migrationSource','authoringPolicy','training','references','theme','assetFiles'}
 SECTION_FIELDS={'id','title','body','notes','spoken','facilitatorNotes','scene','sceneParams','assetRefs','prompt','fields','settings','links','factIds','exemplar','table','matrix','cols','cards','metrics','badges','tabs','accordion','objectives','acceptance','durationMinutes','demonstration','practice','checkpoints','reflection','transfer','references','layout','reveal'}
 
@@ -136,6 +136,13 @@ def contract_errors(d,kind):
                 entries=training['runOfShow']
                 if len({item['sectionId'] for item in entries})!=len(entries):errors.append('training.runOfShow sectionId duplicado')
                 if training.get('durationMinutes') and abs(sum(item['minutes'] for item in entries)-training['durationMinutes'])>.001:errors.append('training.runOfShow no coincide con durationMinutes')
+    if kind=='workshop-immersive' and not errors:
+        if not d.get('objectives') or not d.get('acceptance'):errors.append('workshop requiere objectives y acceptance observables')
+        if not training or not training.get('durationMinutes') or {item['sectionId'] for item in training.get('runOfShow',[])}!={s.get('id') for s in d['sections']}:errors.append('workshop requiere training con duración y runOfShow de todas las escenas')
+        elif any(s.get('durationMinutes')!=next(item['minutes'] for item in training['runOfShow'] if item['sectionId']==s.get('id')) for s in d['sections']):errors.append('workshop: durationMinutes de cada escena debe coincidir con runOfShow')
+        activities=[s for s in d['sections'] if s.get('practice')]
+        if not activities or any(not s.get('acceptance') or not s.get('facilitatorNotes') for s in activities):errors.append('workshop: cada práctica requiere entregable/criterios en acceptance y facilitatorNotes')
+        if not any(s.get('reflection') for s in d['sections']) or not any(s.get('transfer') for s in d['sections']):errors.append('workshop requiere reflexión/debrief y transferencia')
     return errors
 SHELL_UI={
     'es':['Revisión humana pendiente','Saltar al contenido','Idioma','Secciones','Estado'],
@@ -143,16 +150,19 @@ SHELL_UI={
     'pt':['Revisão humana pendente','Ir para o conteúdo','Idioma','Seções','Estado'],
     'fr':['Relecture humaine en attente','Aller au contenu','Langue','Sections','État'],
 }
-KINDS=('immersive-class','masterclass','workbook','lean-coffee','playbook','playbook-immersive','index','module','dynamic-commercial-decks')
+MODULE_KINDS=('immersive-class','masterclass','workbook','lean-coffee','playbook','playbook-immersive')
+KINDS=('immersive-class','workshop-immersive','masterclass','workbook','lean-coffee','playbook','playbook-immersive','index','module','dynamic-commercial-decks')
 def localized(x,lang='es'):
     return x.get(lang,x.get('es',next(iter(x.values()),''))) if isinstance(x,dict) else ('' if x is None else str(x))
 def sample(kind):
+    if kind=='workshop-immersive':return json.loads((ROOT/'examples/workshop-immersive.json' if (ROOT/'examples/workshop-immersive.json').is_file() else ROOT.parent/'examples/input.json').read_text())
     def tr(es,en,pt,fr): return dict(es=es,en=en,pt=pt,fr=fr)
     title=tr('De la idea a la práctica','From idea to practice','Da ideia à prática','De l’idée à la pratique')
     intents={
       'workbook':tr('Construye tu experimento','Build your experiment','Construa seu experimento','Construisez votre expérience'),
       'masterclass':tr('Comprende antes de elegir','Understand before choosing','Entenda antes de escolher','Comprendre avant de choisir'),
       'immersive-class':tr('Observa, discute y practica','Observe, discuss and practice','Observe, discuta e pratique','Observer, discuter et pratiquer'),
+      'workshop-immersive':tr('Facilita una práctica con evidencia','Facilitate evidence-based practice','Facilite uma prática com evidências','Animer une pratique avec des preuves'),
       'lean-coffee':tr('¿Qué pregunta merece nuestra atención?','Which question deserves our attention?','Qual pergunta merece nossa atenção?','Quelle question mérite notre attention ?'),
       'playbook':tr('Un procedimiento verificable','A verifiable procedure','Um procedimento verificável','Une procédure vérifiable'),
       'playbook-immersive':tr('Recorre el procedimiento','Walk through the procedure','Percorra o procedimento','Parcourir la procédure'),
@@ -248,7 +258,7 @@ def validate(d,kind,edition,base=None,asset_bank=None):
         effective=effective_colors(brand,edition)
         pairs=[(ink+' sobre '+surface,effective[ink],background,4.5) for ink in ('night','gold') for surface,background in (('canvas',effective['white']),('blanco fijo','#ffffff'))]
         pairs += [('footer/completed sobre canvas','#334155',effective['white'],4.5),('foco sobre canvas','#8a6d00',effective['white'],3)]
-        theme=d.get('theme','dark' if d.get('authoringPolicy',{}).get('origin')=='new' and kind in ('immersive-class','dynamic-commercial-decks') else 'light')
+        theme=d.get('theme','dark' if d.get('authoringPolicy',{}).get('origin')=='new' and kind in ('immersive-class','workshop-immersive','dynamic-commercial-decks') else 'light')
         if theme=='dark':
             dark_surface='#15213c' if edition=='metodologia' else effective['night']
             for surface,background in [('dark canvas',effective['night']),('dark surface',dark_surface)]:
@@ -271,13 +281,13 @@ def validate(d,kind,edition,base=None,asset_bank=None):
             href=p.get('href','')
             if p.get('kind') not in KINDS or not safe_local_href(href,base): errors.append('Piece insegura o ausente: '+str(href))
     reserved={'artifact.html','artifact-mobile.html','artifact-audience.html','artifact-mobile-audience.html','artifact.md','receipt.json','manifest.json','index.html'}
-    if kind=='module':reserved.update(k+'.html' for k in KINDS[:6]);reserved.add('workbook.md')
+    if kind=='module':reserved.update(k+'.html' for k in MODULE_KINDS);reserved.add('workbook.md')
     if set(d.get('assetFiles',{}))&reserved or kind=='index' and set(linked_files(d))&reserved:errors.append('Linked piece colisiona con output reservado')
     if kind=='module':
         if not isinstance(d.get('pieceSections',{}),dict): errors.append('pieceSections debe ser objeto')
         else:
             for piece_kind,sections in d.get('pieceSections',{}).items():
-                if piece_kind not in KINDS[:6]: errors.append('pieceSections kind inválido'); continue
+                if piece_kind not in MODULE_KINDS: errors.append('pieceSections kind inválido'); continue
                 piece=dict(d);piece.pop('pieceSections',None);piece['sections']=sections;piece['pieces']=[]
                 errors.extend(piece_kind+': '+e for e in validate(piece,piece_kind,edition,base,asset_bank))
     try: resolve_assets(d,edition,asset_bank,render_svg=False)
@@ -451,7 +461,7 @@ def render(d,kind,edition,assets=None):
         css+='body{font-family:Montserrat,system-ui,sans-serif}h1,h2,h3,header strong{font-family:Poppins,system-ui,sans-serif}'
     return '<!doctype html><html lang="'+html.escape(lang)+'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(localized(d['title'],lang))+'</title><style>'+css+'</style><body><a class="skip" href="#main">'+shell[1]+'</a><header><strong id="brand"></strong><select id="language" aria-label="'+shell[2]+'"></select><button id="motion">Pausar animación</button><button id="projection">Proyectar</button><button onclick="window.print()">Imprimir</button></header><main id="main" tabindex="-1"></main><nav aria-label="'+shell[3]+'"><button id="prev">Anterior</button><span id="position" aria-live="polite"></span><button id="next">Siguiente</button></nav><footer>RENDERED_DRAFT · '+shell[0]+'</footer><script type="application/json" id="payload">'+payload+'</script><script>'+js+'</script></body></html>'
 def output_plan(d,kind,edition):
-    if kind=='module': return [k+'.html' for k in KINDS[:6]]+['index.html','workbook.md','manifest.json','receipt.json']
+    if kind=='module': return [k+'.html' for k in MODULE_KINDS]+['index.html','workbook.md','manifest.json','receipt.json']
     mapping={'desktop':'artifact.html','mobile':'artifact-mobile.html','audience':'artifact-audience.html','mobile-audience':'artifact-mobile-audience.html','markdown':'artifact.md'}
     selected=d.get('outputs',list(mapping))
     files=list(dict.fromkeys(mapping[x] for x in selected if x in mapping))
@@ -465,7 +475,7 @@ def main():
     out=pathlib.Path(a.out)
     if a.command=='new':
         if out.exists() or any(x.is_symlink() for x in (out,*out.parents)): p.error('Destino existente o symlink')
-        brief=sample(a.kind);brief['authoringPolicy']={'origin':'new'}
+        brief=sample(a.kind);brief.setdefault('authoringPolicy',{'origin':'new'})
         out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(brief,ensure_ascii=False,indent=2));return
     if not a.input: p.error('--input es obligatorio')
     source=pathlib.Path(a.input);d=json.loads(source.read_text());
@@ -488,9 +498,9 @@ def main():
         for name in linked_files(d):
             target=out/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((source.parent/name).read_bytes())
     if a.kind=='module':
-        for k in KINDS[:6]:
+        for k in MODULE_KINDS:
             piece=dict(d);piece.pop('pieceSections',None);piece['sections']=d.get('pieceSections',{}).get(k,d['sections']);(out/(k+'.html')).write_text(render(piece,k,a.edition,resolve_assets(piece,a.edition,a.bank)[0]))
-        index=dict(d);index['pieces']=[{'kind':k,'href':k+'.html'} for k in KINDS[:6]]
+        index=dict(d);index['pieces']=[{'kind':k,'href':k+'.html'} for k in MODULE_KINDS]
         (out/'index.html').write_text(render(index,'index',a.edition,assets)); workbook=dict(d);workbook['sections']=d.get('pieceSections',{}).get('workbook',d['sections']);(out/'workbook.md').write_text(markdown(workbook,d.get('language','es')))
         (out/'manifest.json').write_text(json.dumps({'state':'RENDERED_DRAFT','pieces':index['pieces']},indent=2))
     else:

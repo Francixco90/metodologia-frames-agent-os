@@ -1,0 +1,8 @@
+{
+  "name": "metodologia-edu-workshop-immersive",
+  "version": "1.2.0",
+  "kind": "workshop-immersive",
+  "edition": "metodologia",
+  "license": "MIT",
+  "sourceEngineSha256": "88ee1ebad5eefb0ea85af3646690a8cecf437324cb3515513db36124c60e1122"
+}

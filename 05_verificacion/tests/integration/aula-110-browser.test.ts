@@ -97,11 +97,12 @@ it('keeps native arrows in a focused horizontal table', async () => {
     await page.close();
   }
 });
-it.each(skills.filter((s) => s.kind === 'workbook'))(
+it.each(skills.filter((s) => ['workbook', 'workshop-immersive'].includes(s.kind)))(
   '$name preserves editable prompt, progress and focus',
   async (s) => {
     const page = await browser.newPage();
-    await page.goto(pathToFileURL(artifact(s.name, s.kind)).href);
+    const practice = s.kind === 'workshop-immersive' ? 'consigna' : 'practica';
+    await page.goto(pathToFileURL(artifact(s.name, s.kind)).href + '#' + practice);
     // Transport stub checks the exact requested clipboard bytes; OS permission is a separate sensor.
     await page.evaluate(() =>
       Object.defineProperty(navigator, 'clipboard', {
@@ -113,7 +114,9 @@ it.each(skills.filter((s) => s.kind === 'workbook'))(
         },
       }),
     );
-    const card = page.locator('#practica');
+    const card = page.locator('#' + practice);
+    if (s.kind === 'workshop-immersive')
+      await card.getByText('Prompt completo', {exact: true}).click();
     await card.locator('textarea').first().fill('equipo ágil\nprueba exacta');
     const expected = await card.locator('pre').innerText();
     expect(expected).toContain('equipo ágil\nprueba exacta');
@@ -127,6 +130,43 @@ it.each(skills.filter((s) => s.kind === 'workbook'))(
     await page.keyboard.press('Escape');
     expect(await page.locator(':focus').innerText()).toBe('Proyectar');
     await page.close();
+  },
+);
+it.each(skills.filter((s) => s.kind === 'workshop-immersive'))(
+  '$name closes card projection before rerender and keeps its timebox paused',
+  async (s) => {
+    const page = await browser.newPage();
+    try {
+      await page.clock.install();
+      await page.goto(pathToFileURL(artifact(s.name, s.kind)).href + '#consigna');
+      await page.locator('#consigna').getByRole('button', {name: 'Proyectar', exact: true}).click();
+      await page.locator('#next').click();
+      expect(await page.locator('section.card:visible').count()).toBe(1);
+      expect(await page.locator('#practica-individual').isVisible()).toBe(true);
+      expect(await page.locator('body').getAttribute('class')).not.toContain('projection-card');
+      await page.locator('#timer-toggle-practica-individual').click();
+      await page.clock.fastForward(2100);
+      expect(await page.locator('#timer-practica-individual').innerText()).toBe('14:58');
+      await page.locator('#timer-toggle-practica-individual').click();
+      await page.clock.fastForward(10000);
+      expect(await page.locator('#timer-practica-individual').innerText()).toBe('14:58');
+      const projection = page.locator('#practica-individual').getByRole('button', {
+        name: 'Proyectar',
+        exact: true,
+      });
+      await projection.click();
+      await page.keyboard.press('Escape');
+      expect(await page.locator(':focus').innerText()).toBe('Proyectar');
+      await projection.click();
+      await page
+        .locator('#language')
+        .evaluate((el) => el.dispatchEvent(new Event('change', {bubbles: true})));
+      expect(await page.locator('section.card:visible').count()).toBe(1);
+      expect(await page.locator('body').getAttribute('class')).not.toContain('projection-card');
+      expect(await page.locator('#timer-practica-individual').innerText()).toBe('14:58');
+    } finally {
+      await page.close();
+    }
   },
 );
 it.each(skills.filter((s) => s.kind === 'lean-coffee'))(
@@ -168,46 +208,47 @@ it.each(skills.filter((s) => s.kind === 'index' || s.kind === 'module'))(
     await page.close();
   },
 );
-it.each(skills.filter((s) => ['immersive-class', 'dynamic-commercial-decks'].includes(s.kind)))(
-  '$name audience strips notes and motion respects controls',
-  async (s) => {
-    const audience = readFileSync(resolve(root, s.name, 'artifact-audience.html'), 'utf8');
-    const payload = JSON.parse(/id="payload">([\s\S]*?)<\/script>/u.exec(audience)![1]!) as {
-      data: {sections: Record<string, unknown>[]};
-    };
-    expect(
-      payload.data.sections.every(
-        (x: Record<string, unknown>) => !x.notes && !x.spoken && !x.facilitatorNotes,
-      ),
-    ).toBe(true);
-    const page = await browser.newPage();
-    await page.goto(pathToFileURL(artifact(s.name, s.kind)).href);
-    await page.emulateMedia({media: 'print'});
-    await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
-    for (const section of await page.locator('section.card').all())
-      expect(await section.isVisible()).toBe(true);
-    await page.emulateMedia({media: 'screen'});
-    await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
-    await page.locator('#motion').click();
-    expect(await page.locator('#motion').getAttribute('aria-pressed')).toBe('true');
-    expect(
-      await page
-        .locator('.scene-layer')
-        .first()
-        .evaluate((el) => getComputedStyle(el).animationPlayState),
-    ).toBe('paused');
-    await page.locator('#next').click();
-    for (const layer of await page.locator('section.card:not([hidden]) .scene-layer').all()) {
-      expect(await layer.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
-      expect(await layer.evaluate((el) => getComputedStyle(el).animationPlayState)).toBe('paused');
-    }
-    await page.emulateMedia({reducedMotion: 'reduce'});
-    expect(
-      await page
-        .locator('.scene-layer')
-        .first()
-        .evaluate((el) => getComputedStyle(el).animationName),
-    ).toBe('none');
-    await page.close();
-  },
-);
+it.each(
+  skills.filter((s) =>
+    ['immersive-class', 'workshop-immersive', 'dynamic-commercial-decks'].includes(s.kind),
+  ),
+)('$name audience strips notes and motion respects controls', async (s) => {
+  const audience = readFileSync(resolve(root, s.name, 'artifact-audience.html'), 'utf8');
+  const payload = JSON.parse(/id="payload">([\s\S]*?)<\/script>/u.exec(audience)![1]!) as {
+    data: {sections: Record<string, unknown>[]};
+  };
+  expect(
+    payload.data.sections.every(
+      (x: Record<string, unknown>) => !x.notes && !x.spoken && !x.facilitatorNotes,
+    ),
+  ).toBe(true);
+  const page = await browser.newPage();
+  await page.goto(pathToFileURL(artifact(s.name, s.kind)).href);
+  await page.emulateMedia({media: 'print'});
+  await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
+  for (const section of await page.locator('section.card').all())
+    expect(await section.isVisible()).toBe(true);
+  await page.emulateMedia({media: 'screen'});
+  await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
+  await page.locator('#motion').click();
+  expect(await page.locator('#motion').getAttribute('aria-pressed')).toBe('true');
+  expect(
+    await page
+      .locator('.scene-layer')
+      .first()
+      .evaluate((el) => getComputedStyle(el).animationPlayState),
+  ).toBe('paused');
+  await page.locator('#next').click();
+  for (const layer of await page.locator('section.card:not([hidden]) .scene-layer').all()) {
+    expect(await layer.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+    expect(await layer.evaluate((el) => getComputedStyle(el).animationPlayState)).toBe('paused');
+  }
+  await page.emulateMedia({reducedMotion: 'reduce'});
+  expect(
+    await page
+      .locator('.scene-layer')
+      .first()
+      .evaluate((el) => getComputedStyle(el).animationName),
+  ).toBe('none');
+  await page.close();
+});

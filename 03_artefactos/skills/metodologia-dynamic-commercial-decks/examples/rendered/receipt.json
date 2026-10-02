@@ -3,15 +3,15 @@
   "kind": "dynamic-commercial-decks",
   "edition": "metodologia",
   "inputSha256": "b41b76a5151000a0f5e1e548b3d58f85045d4a1edb9b59777f9a87bdb80ce31c",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "fbcc294d5c1700271317fb5c3e882e8d9475727f396072534c63bda3467b4441",
-    "artifact-mobile.html": "36bb8cc48a310b82c7a6fb09478000da45b67933bd518c75a1e95abd6f18a510",
-    "artifact-audience.html": "eaaabbb70e90997418bb7724757285837577183d382e97009570c54e9d58f319",
-    "artifact-mobile-audience.html": "3f875281e21705fb5ce967270ff1b36403a019b124dee8e3bb13b7bdddb8f7b7",
+    "artifact.html": "3620f5401cbbb54d4b39a032534797f40efd2b6fa0e2ac74bfe755e90059fd46",
+    "artifact-mobile.html": "f9b955f1edeb8010de48625633e254bdcb280b21a4f669d4982909b7374a6f8d",
+    "artifact-audience.html": "d9ff5e2c3891bb732ba7b03208f8d66d6bc1d346f899abb421dacc454ab994e2",
+    "artifact-mobile-audience.html": "c6dfc1ae722f43271e64e4dc9281c4309ef7c1ed923620ab7c13d93b05db8858",
     "artifact.md": "293059583122025ac3eb7bcae3c9af89c53f6f06d6e38e2c625220050ca4d1aa"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

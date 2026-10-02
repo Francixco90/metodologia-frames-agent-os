@@ -1,10 +1,10 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "source": "03_artefactos/renderers/frames-aula",
   "files": {
-    "runtime.py": "6ae8797573e6db8e833bb1180eb89809109cb3c661420e4805507e1cdaf6ccbe",
-    "app.js": "28c117c841f8634f70b49792731770c10d875d7783050ce942a9edae5c924c45",
-    "style.css": "13d9087934c8aa673d906784a3fa6785414c6c6e532ec9507d8ca50e5484cad7",
+    "runtime.py": "88ee1ebad5eefb0ea85af3646690a8cecf437324cb3515513db36124c60e1122",
+    "app.js": "89c7502e48deeac552c9a158bf4f41bd395d6eb4769e2be41ed51bf940f34141",
+    "style.css": "49b7ed0c0b51b6f6b342c94c4a3bc70a6b800394646f086da5311653c79a4dda",
     "LICENSE": "1e49b3472e4f5e683092bd71002aacde84fb11e2f1b20b1864ba47627a3d4949",
     "migrate.py": "f5020bf75f9b163267981e114f13f313bdedd9f45ebee51866d3f8da149b0fcf",
     "export_office.py": "84c0681598bf811a8caa23eecfdfc2c85aa38af39a08c4efa09163d056afa96e",

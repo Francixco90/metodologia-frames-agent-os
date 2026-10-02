@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "frames-aula-provenance-v1",
+  "artifact": "workshop-immersive.json",
+  "sha256": "a94f6007d484b45eb6c0ed3bb07391dc526fd8121683997351b002aa31df359a",
+  "status": "RENDERED_DRAFT",
+  "author": "Javier Montaño · own editorial implementation with assisted production",
+  "reference": {
+    "sourceHtmlSha256": "8fb41f256bf399b1794ec2c6fadfb8405069db05214b37d42895462e8d6947b4",
+    "domSlideCount": 20,
+    "role": "Functional reference for a facilitated sequence: observation, model, demonstration, individual work, peer feedback, debrief and transfer.",
+    "reuse": "No source prose, titles, notes, code, scene geometry, brand, logo, font binaries or private fallback artifacts copied.",
+    "sourceRights": "Reserved rights; reference only, no reuse authority recorded."
+  },
+  "originalConstruction": {
+    "content": "Neutral own fictitious team scenario; no real client facts, personal data, private paths or original slogans.",
+    "slideCount": 20,
+    "durationMinutes": 60,
+    "timing": "Design assumption, not a measured pedagogical or neurological claim. [SUPUESTO]",
+    "defaultLanguage": "es",
+    "declaredLanguages": [
+      "es"
+    ],
+    "editions": [
+      "metodologia",
+      "white-label"
+    ],
+    "assets": "Existing own core scene and icon identifiers; release-pinned external bank optional.",
+    "approval": "Draft; no artifact publication or human approval granted by this provenance file."
+  },
+  "licenses": [
+    {
+      "component": "Own content, own renderer integration and own visual assets",
+      "license": "MIT"
+    },
+    {
+      "component": "Poppins and Montserrat font assets",
+      "license": "SIL Open Font License 1.1",
+      "licenseFiles": [
+        "assets/core/fonts/OFL-Poppins.txt",
+        "assets/core/fonts/OFL-Montserrat.txt"
+      ]
+    }
+  ],
+  "checks": {
+    "planned": "Root validates strict workshop kind, audience-note removal, timers, exact prompt copy, mobile/offline, HTML–Markdown equivalence and material receipts.",
+    "completedHere": [
+      "Exactly20sections",
+      "Unique section IDs",
+      "60-minute total equals runOfShow and section durations",
+      "Existing core scene/icon IDs only",
+      "Scene label limits",
+      "Practice sections have timebox, acceptance and facilitator notes"
+    ]
+  }
+}

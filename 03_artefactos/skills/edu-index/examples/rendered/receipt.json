@@ -3,17 +3,17 @@
   "kind": "index",
   "edition": "white-label",
   "inputSha256": "1d1e4b100a1a3919703242c2a5885fc8b33ba0628369b0afa3942e8835006868",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "24669e6b478dc89de34319caca6d55dc10c38a2ab88fdb59e47bba5e2658df3e",
-    "artifact-mobile.html": "a390802fee091ade2fce4292d3066106f14d5d75c92c0fe9dcf154101a604ad8",
-    "artifact-audience.html": "b247ed85434d7a2d759065a6edf3663be30aad736efd51f43c52e415b7834f91",
-    "artifact-mobile-audience.html": "4e56b130bb232ecccc6c37a93f7bd4bbf41e3bf1a596e0f8844e3c5cf19e4946",
+    "artifact.html": "1a8ea78a17c209292ee314583be2492b2fc51182bf8dc6c4c57db31728e8bc8a",
+    "artifact-mobile.html": "77ff534bf04c5ffb11ffd69229f15e984d4604ee33fc21dd87f308938bf0cd05",
+    "artifact-audience.html": "d7a88494347d32ffef346654c5aa4845a03f6c74c93a52d950b59add9aa76a4f",
+    "artifact-mobile-audience.html": "8104faa82e1439e951449b6138b487503f2b08719db684ce3e4e9e408a903e49",
     "artifact.md": "4f7614270f4bcfa5144bc2ab6d81c571534554c7624861b053f5a66b37e37678",
-    "masterclass.html": "11379681c2b4546321a138de71bb64af9e5d00ecc02a73e709573fdc27fed7f7",
-    "workbook.html": "9b65f7c852f9f8e9acd26fec509e8508701d8a9d8c79a916307fd1fa459c8b5b"
+    "masterclass.html": "57b29d8ce2d7e5c59cfd7a7dd2c72a93dc8fe7ab42d3c64e0172feb2f22ffad4",
+    "workbook.html": "69a125b897e7a19aebf5e129daa830a36630e8aadd8a126385eff87c42bf47ca"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "white-label",
     "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
@@ -57,12 +57,12 @@
     {
       "role": "linked-piece",
       "ref": "input/masterclass.html",
-      "sha256": "11379681c2b4546321a138de71bb64af9e5d00ecc02a73e709573fdc27fed7f7"
+      "sha256": "57b29d8ce2d7e5c59cfd7a7dd2c72a93dc8fe7ab42d3c64e0172feb2f22ffad4"
     },
     {
       "role": "linked-piece",
       "ref": "input/workbook.html",
-      "sha256": "9b65f7c852f9f8e9acd26fec509e8508701d8a9d8c79a916307fd1fa459c8b5b"
+      "sha256": "69a125b897e7a19aebf5e129daa830a36630e8aadd8a126385eff87c42bf47ca"
     }
   ],
   "assetEvidence": [

@@ -3,15 +3,15 @@
   "kind": "masterclass",
   "edition": "white-label",
   "inputSha256": "af2085434c8927c263bc9ac84d2f48a6887756b5c3dbefda3911cb0e03cbaa27",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "11379681c2b4546321a138de71bb64af9e5d00ecc02a73e709573fdc27fed7f7",
-    "artifact-mobile.html": "0ac9a0610d5ef4bba44511f110ecf080534c4bd0e57fe40a1b46d80ed14186b0",
-    "artifact-audience.html": "ab555c446c482287ad44cd626019b3e5a99aa19b0c20b5aac60f057e6a39e9cb",
-    "artifact-mobile-audience.html": "00ae973e501aa47d2395ae2910bfe886ad92f8220aa57d1398826ab844309446",
+    "artifact.html": "57b29d8ce2d7e5c59cfd7a7dd2c72a93dc8fe7ab42d3c64e0172feb2f22ffad4",
+    "artifact-mobile.html": "ab7c5520cfa458e7ef76dbbce66d35d57fcefaab0c1680036daf8f092ca1c98a",
+    "artifact-audience.html": "fba20d01ce41ed7e78526fc017cb056f5914e99a250ed92fa2638e08a58453bd",
+    "artifact-mobile-audience.html": "0e57e0850629c139d005bef4c732ce7244979a61557adb8912eb8198edf563ee",
     "artifact.md": "eca1da9c120053475b304001e78f79edc962b6dec09b8e810a8d94390269a59c"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "white-label",
     "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"

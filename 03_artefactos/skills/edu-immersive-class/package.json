@@ -1,8 +1,8 @@
 {
   "name": "edu-immersive-class",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "kind": "immersive-class",
   "edition": "white-label",
   "license": "MIT",
-  "sourceEngineSha256": "6ae8797573e6db8e833bb1180eb89809109cb3c661420e4805507e1cdaf6ccbe"
+  "sourceEngineSha256": "88ee1ebad5eefb0ea85af3646690a8cecf437324cb3515513db36124c60e1122"
 }

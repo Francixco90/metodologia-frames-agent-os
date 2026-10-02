@@ -3,19 +3,19 @@
   "kind": "module",
   "edition": "metodologia",
   "inputSha256": "2b5b682970caa6f34fea14081491d6e4bc5ec1005e580afe669a4723fe4934b3",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "immersive-class.html": "dbf6efb70c60ad82a2d8ef63a508777cda09bce526f66e1c32bfde77fe0f9573",
-    "masterclass.html": "47776268b6304e231e1c5cf05f729e193b58bd1f1cb201e7b08165754a2a9fc1",
-    "workbook.html": "52c51f16199c9845504811a046f1c381cfd22cfd4b6d6495e06ed6c3104f80ea",
-    "lean-coffee.html": "c9a8836752d2b93736a53bdc64394b092b8dcf1e147fa13a0e1e603467d96769",
-    "playbook.html": "d958a2e451ecb323701d053a998bcb9c6a32947adc77e2780d279bcf38537fa3",
-    "playbook-immersive.html": "f64b086403b82ff5fec0d36151db3895a991854eee0afae0db36129b7012e296",
-    "index.html": "3ce68a9f34c2d257b198babea72164f49c76cb5ea6bedcf9c2db54462eb3fe0d",
+    "immersive-class.html": "218377b1c213900f2ba142b4c3f796c263026623c4b1610080485187f750a817",
+    "masterclass.html": "d4bb51b87a5585f0cf7df465604d6bf39c97338091581713e84d732b4ae95ae6",
+    "workbook.html": "d505458ce88fbb51cd51cc718360658307a200cb658a77b37fb1d33f560d3c61",
+    "lean-coffee.html": "b614abf5870bf23e9eab92c31084208aa261d141bf62033a7010e58a66b03c5f",
+    "playbook.html": "c9fc6ca62df8c96581adc8c87e66667708b169238bbcbf2bb527298cd20aec03",
+    "playbook-immersive.html": "bb8393c7e610c408678b2d782dbb3cde27132ab4a038551abb4ae1f3eeab86e2",
+    "index.html": "29e3b252e50ac8d0d691daec99679e30ee4fabf3058ebc229317d9181840ffb9",
     "workbook.md": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
     "manifest.json": "1b2824f3672d467c473668dc5ed89943a042bfe9dd1ec1d108d09cc3f1c809a9"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

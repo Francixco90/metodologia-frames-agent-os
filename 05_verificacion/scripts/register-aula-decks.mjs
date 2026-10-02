@@ -39,6 +39,8 @@ for (const skill of [...manifest.skills, {name: 'content-os-router'}]) {
     const entry = skills.find((item) => item.id === skill.name);
     if (!entry) throw new Error(`AULA_SKILL_ENTRY_MISSING: ${skill.name}`);
     entry.version = skill.version;
+    entry.registryState = previous.current_state;
+    entry.scope = previous.execution_scope;
   }
   if (
     previous.version !== next.version ||
@@ -95,6 +97,7 @@ writeFileSync(
 );
 const capabilityRef = '04_estado/registries/renderers/aula-decks-capability-v1.json';
 const capability = JSON.parse(readFileSync(capabilityRef, 'utf8'));
+capability.kinds = [...new Set(manifest.skills.map((item) => item.kind))];
 const engineRoot = '03_artefactos/renderers/frames-aula';
 capability.engineRefs = walk(engineRoot)
   .filter(

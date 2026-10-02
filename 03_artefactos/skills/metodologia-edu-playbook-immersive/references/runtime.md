@@ -1,6 +1,6 @@
-# Frames Aula runtime 1.1.0
+# Frames Aula runtime 1.2.0
 
-Motor original Python stdlib + HTML/CSS/JS local. Un motor genera las 18 skills; HTML autónomo, sin fuentes remotas ni red durante lectura. Los ejemplos permanecen `RENDERED_DRAFT`. [METODOLOGIA]
+Motor original Python stdlib + HTML/CSS/JS local. Un motor genera las 20 skills; HTML autónomo, sin fuentes remotas ni red durante lectura. Los ejemplos permanecen `RENDERED_DRAFT`. [METODOLOGIA]
 
 ```sh
 python3 runtime.py new --kind workbook --out brief.json
@@ -27,9 +27,11 @@ python3 -m unittest discover -s tests
 
 Decks conservan `mode: comercial|tecnico` (alias `commercial`), `deckType` y `thesis:{title,pillars:[{achieves,proof}]}`. El renderer no concede aprobación comercial: `deck-workflow.py` conserva intake → aprobación → spec → aprobación → build.
 
-## Clase inmersiva y límites de autoría
+## Clase, workshop inmersivo y límites de autoría
 
-`training:{durationMinutes?,audience?,materials?:[text],runOfShow?:[{sectionId,minutes,notes?}]}` describe la sesión. Los tiempos del run of show coinciden con su duración declarada. Secciones aceptan `durationMinutes`, `demonstration`, `practice`, `checkpoints:[{question,answer?,criterion?}]`, `reflection` y `transfer`. Una actividad puede incluir temporizador con inicio/pausa/reset; las respuestas se revelan voluntariamente. No hay avance automático ni captura de flechas al editar o interactuar con controles. La duración es un supuesto de planificación, no evidencia de eficacia. [SUPUESTO]
+`training:{durationMinutes?,audience?,materials?:[text],runOfShow?:[{sectionId,minutes,notes?}]}` describe la sesión. Los tiempos del run of show coinciden con su duración declarada. Secciones aceptan `durationMinutes`, `demonstration`, `practice`, `checkpoints:[{question,answer?,criterion?}]`, `reflection` y `transfer`. Una actividad puede incluir temporizador con inicio/pausa/reset; las respuestas se revelan voluntariamente. No hay avance automático ni captura de flechas al editar o interactuar con controles. Las tarjetas crecen con su contenido; los SVG conservan sus geometrías desktop/portrait. Una caja fija no debe tapar controles ni truncar prácticas. La duración es un supuesto de planificación, no evidencia de eficacia. [SUPUESTO]
+
+Workshop inmersivo exige objetivos, criterios, un plan completo por sección, tiempos consistentes, práctica con criterios y notas del facilitador, reflexión y transferencia. Su golden original tiene veinte slides por brief explícito; no cambia los límites generales. Incluye temporizadores manuales, campos, prompts y proyección.
 
 `authoringPolicy:{origin:"new"}` limita decks comerciales a 8 secciones y presentaciones académicas a 13; portada y tapa cuentan. `maxSlides` de 1 a 100 requiere `explicitBrief` textual no vacío. `origin:"historical"` reproduce el material completo. Sin política se preserva compatibilidad histórica. Workbooks, índices, ejercicios y Lean Coffee no usan el presupuesto de slides. Módulos aplican la política a cada pieza presentada, no al conjunto. La migración establece origen histórico.
 
@@ -37,7 +39,7 @@ Decks conservan `mode: comercial|tecnico` (alias `commercial`), `deckType` y `th
 
 MetodologIA conserva navy/oro, wordmark, Poppins títulos y Montserrat cuerpo locales. Fuentes mantienen OFL-1.1; geometría propia mantiene MIT. Marca blanca usa perfil neutral funcional o `brand:{name,colors:{night,gold,white}}` con hex seguros y contraste comprobado. MetodologIA rechaza overrides. `theme: light|dark` selecciona superficies semánticas; nuevas clases/decks usan oscuro por defecto y briefs antiguos mantienen claro. `brand.colors` conserva sus tres claves; `brand.tokens` contiene las superficies auxiliares.
 
-Cada paquete incluye catálogo core de 32 iconos/16 escenas y fuentes/licencias locales. `scene` usa un ID conocido, con `sceneParams:{slot:text}`. `assetRefs:[{id,kind:"icon"|"scene",label?}]` incluye piezas adicionales. Las escenas son composiciones declarativas originales: desktop 960×540 y portrait 420×740 con las mismas relaciones. Los textos se envuelven en líneas, sin recorte ni reducción automática; presupuesto excedido bloquea. Un ID ausente o hash alterado bloquea con diagnóstico.
+Cada paquete incluye catálogo core de 32 iconos/16 escenas y fuentes/licencias locales. `scene` usa un ID conocido, con `sceneParams:{slot:text}`. `assetRefs:[{id,kind:"icon"|"scene",label?}]` incluye piezas adicionales. Las escenas son composiciones declarativas originales: desktop 960×540 y portrait 420×740 con las mismas relaciones. Los textos se envuelven en líneas, sin recorte ni reducción automática; presupuesto excedido bloquea. Un ID ausente o hash alterado bloquea con diagnóstico. Los maxChars del catálogo son techos, no garantías de ancho de una palabra; `SCENE_WORD_OVERFLOW` identifica el slot para reescribir con etiquetas breves. Check precede a la entrega, sin truncar ni reducir fuentes.
 
 El banco completo opcional contiene 256 iconos y 160 escenas por edición. Se obtiene durante preparación explícita; HTML solo incorpora los assets seleccionados. Verificar e instalar localmente:
 
