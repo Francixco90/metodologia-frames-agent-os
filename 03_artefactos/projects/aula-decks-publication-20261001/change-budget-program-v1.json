@@ -8,12 +8,7 @@
     "planRef": "03_artefactos/projects/aula-decks-publication-20261001/budget-plan.md",
     "planSha256": "3b50e37810b4db2c8f1e3b04ff48de6fd58c8f19d172cca52b3f431ad4c56e12"
   },
-  "limits": {
-    "targetFiles": 60,
-    "targetLoc": 6512,
-    "hardFiles": 72,
-    "hardLoc": 7712
-  },
+  "limits": {"targetFiles": 61, "targetLoc": 6536, "hardFiles": 73, "hardLoc": 7736},
   "partitions": [
     {
       "id": "aula-lot-1",
@@ -31,12 +26,7 @@
         "02_proceso/workflows/multimedia/_schema/aula-dependencies-v1.ts",
         "03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json"
       ],
-      "limits": {
-        "targetFiles": 12,
-        "targetLoc": 749,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 12, "targetLoc": 764, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-2",
@@ -48,12 +38,7 @@
         "03_artefactos/renderers/frames-aula/examples/golden-brochure-metodologia-8.json",
         "03_artefactos/renderers/frames-aula/examples/golden-empoderamiento-metodologia-13.json"
       ],
-      "limits": {
-        "targetFiles": 6,
-        "targetLoc": 1025,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 6, "targetLoc": 1025, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-3",
@@ -65,12 +50,7 @@
         "03_artefactos/renderers/frames-aula/examples/lean-coffee.json",
         "03_artefactos/renderers/frames-aula/examples/masterclass.json"
       ],
-      "limits": {
-        "targetFiles": 6,
-        "targetLoc": 1069,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 6, "targetLoc": 1069, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-4",
@@ -82,12 +62,7 @@
         "03_artefactos/renderers/frames-aula/export_office.py",
         "03_artefactos/renderers/frames-aula/migrate.py"
       ],
-      "limits": {
-        "targetFiles": 6,
-        "targetLoc": 920,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 6, "targetLoc": 920, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-5",
@@ -98,12 +73,7 @@
         "04_estado/registries/skills/creation-v3-skill-registry.yml",
         "05_verificacion/scripts/aula-visual-110.mjs"
       ],
-      "limits": {
-        "targetFiles": 5,
-        "targetLoc": 894,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 5, "targetLoc": 894, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-6",
@@ -118,19 +88,15 @@
         "05_verificacion/scripts/creation-v3-checks.ts",
         "05_verificacion/scripts/creation-v3-skills.json",
         "05_verificacion/scripts/lib/h03-lock-succession.mjs",
-        "05_verificacion/scripts/promote-aula-decks.mjs",
-        "05_verificacion/scripts/register-aula-decks.mjs"
+        "05_verificacion/scripts/prepare-aula-budget-program.mjs",
+        "05_verificacion/scripts/promote-aula-decks.mjs"
       ],
-      "limits": {
-        "targetFiles": 12,
-        "targetLoc": 971,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 12, "targetLoc": 967, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-7",
       "paths": [
+        "05_verificacion/scripts/register-aula-decks.mjs",
         "05_verificacion/scripts/test_build_aula_assets.py",
         "05_verificacion/scripts/test_build_aula_gallery.py",
         "05_verificacion/tests/contract/aula-build-dependencies.test.ts",
@@ -141,27 +107,14 @@
         "05_verificacion/tests/integration/creation-skills-media-profile.test.ts",
         "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
         "05_verificacion/tests/unit/check-md-budgets.test.ts",
-        "05_verificacion/tests/unit/receipts/check-receipts.test.ts",
-        "eslint.config.js"
+        "05_verificacion/tests/unit/receipts/check-receipts.test.ts"
       ],
-      "limits": {
-        "targetFiles": 12,
-        "targetLoc": 882,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "limits": {"targetFiles": 12, "targetLoc": 893, "hardFiles": 12, "hardLoc": 1200}
     },
     {
       "id": "aula-lot-8",
-      "paths": [
-        "package.json"
-      ],
-      "limits": {
-        "targetFiles": 1,
-        "targetLoc": 2,
-        "hardFiles": 12,
-        "hardLoc": 1200
-      }
+      "paths": ["eslint.config.js", "package.json"],
+      "limits": {"targetFiles": 2, "targetLoc": 4, "hardFiles": 12, "hardLoc": 1200}
     }
   ],
   "perFileLineCaps": [
@@ -201,5 +154,5 @@
       "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
     }
   ],
-  "canonicalSha256": "7506e2cced6daab565c9cd4055c5d223875dc3f3234281b0f199d1291b51f375"
+  "canonicalSha256": "6b567569d7a7304263120f4404453c0697663b6d8a37d82da50cba6ef82a2a90"
 }

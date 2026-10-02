@@ -2,6 +2,7 @@
 import {readFileSync, writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {format, resolveConfig} from 'prettier';
 import {collectBudgetGitState, readBudgetFile} from './lib/file-budget-git.ts';
 import {loadPolicy, effectiveRules} from './lib/file-budget-policy.ts';
 import {isBudgetGeneratedPath} from './lib/budget-generated-path.ts';
@@ -79,7 +80,13 @@ const program = {
   perFileLineCaps,
 };
 program.canonicalSha256 = computeChangeProgramSha256(program);
-writeFileSync(policy.change_program_manifest, JSON.stringify(program, null, 2) + '\n');
+writeFileSync(
+  policy.change_program_manifest,
+  await format(JSON.stringify(program), {
+    ...(await resolveConfig(policy.change_program_manifest)),
+    filepath: policy.change_program_manifest,
+  }),
+);
 console.log(
   `Bound ${authored.length} authored files, ${totalLoc} changed lines, ${partitions.length} lots and ${perFileLineCaps.length} bounded line caps.`,
 );
