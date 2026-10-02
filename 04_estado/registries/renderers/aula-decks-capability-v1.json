@@ -6,37 +6,1961 @@
   "scope": "local-draft-generation",
   "engineRefs": [
     {
-      "ref": "03_artefactos/renderers/frames-aula/runtime.py",
-      "sha256": "1ecf205b711e888cd69ec0366a3d3edba3d4389df06c184a9ae1db7441e28e67"
+      "ref": "03_artefactos/renderers/frames-aula/LICENSE",
+      "sha256": "1e49b3472e4f5e683092bd71002aacde84fb11e2f1b20b1864ba47627a3d4949"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/app.js",
-      "sha256": "2e2774c5dcafee3333ff3a9197644d5c0ede81aff4b39e18ef2624c6b151ccf6"
+      "sha256": "28c117c841f8634f70b49792731770c10d875d7783050ce942a9edae5c924c45"
     },
     {
-      "ref": "03_artefactos/renderers/frames-aula/style.css",
-      "sha256": "9988e18f78c5a5b5cf134320390456079eecd49e161961b6001e411e9033c0d5"
+      "ref": "03_artefactos/renderers/frames-aula/assets/LICENSE",
+      "sha256": "1e49b3472e4f5e683092bd71002aacde84fb11e2f1b20b1864ba47627a3d4949"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/bank-pins.json",
+      "sha256": "ee149a7b02a4a59bbd306e1243460153fd9133a33ec9a618f7085e6c9099f3bb"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/catalog.json",
+      "sha256": "031d89b37ac9ddf411774609c8687d0b8b975d9caeef23934f0145d6c492d7d0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/component-notices.json",
+      "sha256": "e7b868336b989d0ad2b5050eacc0240a16a34e4ce085fcc5f2258c04403baf28"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/LICENSE",
+      "sha256": "1e49b3472e4f5e683092bd71002aacde84fb11e2f1b20b1864ba47627a3d4949"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/component-notices.json",
+      "sha256": "e7b868336b989d0ad2b5050eacc0240a16a34e4ce085fcc5f2258c04403baf28"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/fonts/OFL-Montserrat.txt",
+      "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/fonts/OFL-Poppins.txt",
+      "sha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/assessment-criterion.svg",
+      "sha256": "e6426a52ebf7b615e9fb109b700dc9a6f1762c50b1b061c9a43dfa319137f159"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/assessment-rubric.svg",
+      "sha256": "2c7d1df247a7aa2495027af761262c66aa6e96395d24e0a0d9f3e7821897c6c2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/business-customer.svg",
+      "sha256": "9bff7bd35bf8b1530af403aaf2dacac5bf874382515f47fcb7786ba57e987532"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/business-value.svg",
+      "sha256": "fa80b312afdc39b90c97dfd303e4736cb0f64bc812c838d1591443945ccc540a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/cognition-attention.svg",
+      "sha256": "4ff1d3d3cddf6de386409e75e4359e60c7a65a0298133cb760cecc4ab36112a8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/cognition-memory.svg",
+      "sha256": "cd50171c1d999aca374f258c127435edf076c044d2b5080c6828aa4495bcbb99"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/collaboration-roles.svg",
+      "sha256": "255833993d1a1a8400e59cd65416497e2cf50dba05f16b3ebb8ce59a662f0e47"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/collaboration-team.svg",
+      "sha256": "a99c09edf500a9f503270d2fddd5d207c01a2d2182e6b0d24544e0eb22d4be9d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/communication-listening.svg",
+      "sha256": "25b98310a8cc0967939a5f2a1ba8679ed909652fce03f06fcfdff1a1288043dc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/communication-message.svg",
+      "sha256": "eebf220c6e5f9fad8df5fbad68cf5afb40f50778be9ac09be2bdab5649e3d24b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/data-dataset.svg",
+      "sha256": "b9ef1a36528a0143361665061084fda262d7d03c254306a1620e6dcbf7629725"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/data-metric.svg",
+      "sha256": "495c90c511abb5515363b3caeade6f8381c39c2dc84e7157dfba870356dc2ff9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/design-composition.svg",
+      "sha256": "ff7e79951e5c3dc4809aba5981df0424a470462feb0a89c1d860417be2ab69bc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/design-prototype.svg",
+      "sha256": "cbb3c7139e9a041e7b9cb8e174d8a5a474184142befd572fe52ddd7eaec8865e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/ethics-consent.svg",
+      "sha256": "57d82ebe3be8f2478f52a9377c9d6714455255b51304047f92d4620799293c26"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/ethics-privacy.svg",
+      "sha256": "48434eb321c0d8f7bf5ecb630f6d0e4267d72bc36860a326194fa5517c33918a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/evidence-provenance.svg",
+      "sha256": "95b66a4b6c1d3a417c4614e28265b379372a285428a67d72929a8d8587b3aeb5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/evidence-source.svg",
+      "sha256": "8b96f40f5ac8f3ff0135a8e684edabdc4e68a9b00c9aab9298518e67e9c4b9f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/facilitation-framing.svg",
+      "sha256": "a6b208c4c96dbf2944978872c97bd13e0f7953d7252705e97e0c4126341734bf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/facilitation-opening.svg",
+      "sha256": "14413363b04ddf88a5288b30cd2a54e430b858682a3eb6bd0884191fadc1e09e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/learning-guided-practice.svg",
+      "sha256": "4abdc99e40f23437effec66629baafc1de3375ecd39a11b164d5c88dabe29ec0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/learning-reading.svg",
+      "sha256": "4e5fbd4351724f918b6af081633e385e0a370750c7b830e87c0271bc986daece"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/operations-configuration.svg",
+      "sha256": "2f47dbebdc25b3c3be2e1ba1459e1897787c32381445bf3238a0407415ff9b7a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/operations-maintenance.svg",
+      "sha256": "0cd6fc30c8fa9e14e0c69ee056518ac4dd02b197cc3f7a919016d3b36782d9b0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/planning-agenda.svg",
+      "sha256": "1a05ac53506c923d628320b523bfb3b14c52790b437e2ca6062514213eff8eef"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/planning-deadline.svg",
+      "sha256": "845a2fb88e902f559f2a82e540da2dec680a376f0c2c9337623451be02dc6320"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/process-start.svg",
+      "sha256": "4590412cfc058d9f2b0a9549306fa5d57db394b352d68215dbdee7e15f572017"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/process-workflow.svg",
+      "sha256": "34ecf14c62962d6266ab786055c66216cbe50b260d4d3941ffe8e2160b5fd2da"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/research-experiment.svg",
+      "sha256": "f64b97781f1159ee2633ba47e31450939c7858c351e95791170b2b7d0e33c658"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/research-observation.svg",
+      "sha256": "54bb014283e4499f965fd03d5b0d57889a025cd7ae98cf797af3cd9a985e35dc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/technology-computer.svg",
+      "sha256": "8845c626f382a750469350a22873d8d5218b6c41c4c5090872af5a83d6fac61e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/icons/technology-mobile.svg",
+      "sha256": "5c1ade8ca7389fee6adfd9a1639f0f4df1b77340a81c08e86ffdba3fe84cf376"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/contrast.json",
+      "sha256": "41d79572ef2a97021e32c135791eb01142ebde402a87958a56a7f4f8819a240a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/decision-options.json",
+      "sha256": "ce07fb45238300feb2e6292b978f8824e9a89ea3f935897a5c87f61d99788072"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-closing.json",
+      "sha256": "04a119be63877f7d9b7749b09a3fc51d84d5756b9c18a0421e8940f6a31c264f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-recall.json",
+      "sha256": "134cddcea4ff8e16d0b9dcf4de59e03bc82f4818e9b064a0f39df40af03433d7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/orbit.json",
+      "sha256": "a8d86919d7b50a276ccd1c11deb09add53f6e05821dcc07ad694b499568f7429"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/reflection-debrief.json",
+      "sha256": "3394db7ac88f5a7211cddac6c2a53f26560e139a19b76c35b0f62b0511695315"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/steps.json",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/core/scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-achievement.svg",
+      "sha256": "206821a43262938fe240efcf236f8756822e80103ec187b6f95eacba2010f7bb"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-criterion.svg",
+      "sha256": "e6426a52ebf7b615e9fb109b700dc9a6f1762c50b1b061c9a43dfa319137f159"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-feedback.svg",
+      "sha256": "85155d028beff301fe3ef4e41c028a87bddf4922ad60384bf8460b8a17236a8b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-formative.svg",
+      "sha256": "19a93295c8bfd0df2b7c6c80d641b932421120237b400554d304864a079e63e1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-gap.svg",
+      "sha256": "df287820931c8df726b4e841f8c84d7d283167a9ba4acc6c9d49ac9442775665"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-mastery.svg",
+      "sha256": "4beac02f07aa9dea5e768ca73eaee9b6f97fe8a5def7a9df04de72008d2a0a24"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-peer-assessment.svg",
+      "sha256": "1827c212e95f831b207f7351178fbbf7222de5febf9b0c8f1613b35c25a131b2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-performance.svg",
+      "sha256": "29ee6fa257f55c6a6d86e60e6060ee14a546773fff3299ffd5eb844bd501e3d1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-portfolio.svg",
+      "sha256": "9e3e166f609c33d8997b7650159610b34b75e1b29bf6bb829b4eddc14cd13c57"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-progress.svg",
+      "sha256": "1557f685a949b8483403c2c8933fd185921b91cadd8cf7be5044aa79455f609e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-quiz.svg",
+      "sha256": "e5ef602d20f5d17d9661dd856ff9bb47a4c4a8238899a20622b0d0b549c29865"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-readiness.svg",
+      "sha256": "963699c4e1871924092bd93aa8f4e258226f8bb68352f5af089a2b693903817a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-recognition.svg",
+      "sha256": "ea40330b4fee90a655480d3af9d12a4863a010aacf3781e23566e4395053cc6c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-rubric.svg",
+      "sha256": "2c7d1df247a7aa2495027af761262c66aa6e96395d24e0a0d9f3e7821897c6c2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-self-assessment.svg",
+      "sha256": "eddb2460800eec170e07838e570cd252da55b4e15574e93885dd8ef82710edee"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/assessment-summative.svg",
+      "sha256": "e1a27852d9a0833692351a355b1e1ae982bf05a0d358837ebaf4e48494c25ef5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-agreement.svg",
+      "sha256": "ba0291149f6e2aee1b575324f52df86bd3d8e05d821569dd3df9cfb44595cb50"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-commercial-risk.svg",
+      "sha256": "354eb6cb4961c045c5d9ebfb94ecc77dc7fd1d3f4e402ae5841079187a1550ac"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-cost.svg",
+      "sha256": "06966db9a48c14d3294b927051a81a4bf848ba7c8d9ec2be79f82b0fa16089db"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-customer.svg",
+      "sha256": "9bff7bd35bf8b1530af403aaf2dacac5bf874382515f47fcb7786ba57e987532"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-delivery.svg",
+      "sha256": "4ade7e2467dbb397b7abb03c2bf028c79d58cfee0e826b8994057aa561db4eca"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-growth.svg",
+      "sha256": "803ba477b6934d54bf9413eb97329003d66644daf2b3df3e50ef159bfe868bb2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-investment.svg",
+      "sha256": "d670ddee9b05e4d7b8482b7b909d25d0df8a6e1e605e20d6637ca0f35d1be0c8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-market.svg",
+      "sha256": "8d566db4769bb695368373dc0a91967d9a143e0541198ed17b6f9a28bb83680e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-offer.svg",
+      "sha256": "06a28b8fc41f95efa0e233615dc077961fef4e98728a464e9d01020c65e4b560"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-operations.svg",
+      "sha256": "97c7f655581b10a2807b15c38ce52c99483916a235926e7d920fc50f75da4d40"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-opportunity.svg",
+      "sha256": "8fb5953902b2bd8189ecc6f69d69613c0867b972192f57fb42ed881f4cdacf38"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-partner.svg",
+      "sha256": "ff74f4d0d3c3e0f551cdd24fe2a83b5a9cf2eaca382a1a8980a56f45b3faf619"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-portfolio.svg",
+      "sha256": "49e3d1bab2752c2e37f1b2bd452944dd315d1cf99106677ab9a03087a8b43577"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-revenue.svg",
+      "sha256": "5c435df671c04103795b36c01b73c06e9e2983bb765663572a31fbf18f511ad8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-strategy.svg",
+      "sha256": "2a0bed36f5752d4450df76daa8c373911de58eac05c9c55b4eec7d6bac8d0d8e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/business-value.svg",
+      "sha256": "fa80b312afdc39b90c97dfd303e4736cb0f64bc812c838d1591443945ccc540a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-abstraction.svg",
+      "sha256": "92539941ee25b37f9686f9559725d0bd29dcbe7c2ccddfb3f08cb45d074c0371"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-analysis.svg",
+      "sha256": "b7b8cc70c647aa684c945170a822f9c2db1f66009e87237efc6fd3ed4d695d0d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-attention.svg",
+      "sha256": "4ff1d3d3cddf6de386409e75e4359e60c7a65a0298133cb760cecc4ab36112a8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-bias.svg",
+      "sha256": "3d6d46d9e57cb2bab55379f671b002049c27406d1d6b24e4ce6df1cf6a064485"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-connection.svg",
+      "sha256": "1ace58d6b5f74d79ee694633dea462ff17d55afe6a3850101b4cf9cfdecd20e7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-empathy.svg",
+      "sha256": "181ae4427f8892c2375d5d49f6f2658ab1615df7abe43df8cabc40b79fbbdfea"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-focus.svg",
+      "sha256": "31420d7dbdec7ce558f3dacf412eb8ceff118d3985fff6e0f39b3ae037f990bb"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-hypothesis.svg",
+      "sha256": "dafe4dc57b904054b9592946ed6a9dcca49ee9b82f4813797480790fac820818"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-imagination.svg",
+      "sha256": "86ffada14db787c6c69c080ecb55820d6e0be0873e1aebf6ce1e6fe6151a1f48"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-insight.svg",
+      "sha256": "ac891f1fee33562e3a8161ce28e3312991ba91890cb91357644a49415c7ff7c0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-memory.svg",
+      "sha256": "cd50171c1d999aca374f258c127435edf076c044d2b5080c6828aa4495bcbb99"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-mental-model.svg",
+      "sha256": "933d8d824f55e087f21bcb4dff5f5d55e999cfb5eba451c3bdea7c6357b1c32d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-metacognition.svg",
+      "sha256": "3d399c4746f95dbbc93656b2c41acfa8be57cec56fda0964024bc12f8f6b16c8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-reasoning.svg",
+      "sha256": "a147b011d12d11b8e42db1832384a0154e4e66fe15392838a8433a17e64f0c20"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-reflection.svg",
+      "sha256": "e5d20c9ea4f095762f16005836b8963f71195c44daf25c004a725fb2e62d9eb8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/cognition-synthesis.svg",
+      "sha256": "2a07a35db44ba5e3922bb76ef927d8432ac581f54a49f812dba0539b88ad7677"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-co-creation.svg",
+      "sha256": "0ff77cba2228442810aec961c2382af2f158d53169a847e66b50efb540b32567"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-community.svg",
+      "sha256": "83603bb5f006de03dd95d284c2216cbd05bbe585bbd98df282e3318dfbc3c6bc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-conflict.svg",
+      "sha256": "5bb7094f2d45ebcd3115aa94790ba401c81da3a31d678c3c5716508dafe9a966"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-consensus.svg",
+      "sha256": "c0a68e49aa2d7512560dae6e251c714e941ec9846c5e0ddccf70cd4f2d9ac64d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-coordination.svg",
+      "sha256": "8de881bf1a6503f60cd81cc48d871763c913137d5958d00bad65de3d2da83485"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-handoff.svg",
+      "sha256": "902bb2a009a3c9247624e14c2536965e60e483edc2c3bf7b619bacf5627ba885"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-mediation.svg",
+      "sha256": "315626ccdcd61f6ed147b7599b50aa5eb5440dd1fcbb6dddf8bc5b5741b51e25"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-mentoring.svg",
+      "sha256": "6209894abd264b52bad156c19f38174282a5a7c923455eadb7d787272e004d8b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-network.svg",
+      "sha256": "b076c8fcd6b1aab334a6ba0f175d3366dab5d05462f7508a3a40c4bce01f3543"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-partnership.svg",
+      "sha256": "189dd8a9a7bb4632365e236a882bc89c742653b000dc0307f02574203f82b0c1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-peer-review.svg",
+      "sha256": "472c225189d4e1f1f74c823d06713902ec3d1f073b75fde0c7885aa3a5371c76"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-roles.svg",
+      "sha256": "255833993d1a1a8400e59cd65416497e2cf50dba05f16b3ebb8ce59a662f0e47"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-shared-goal.svg",
+      "sha256": "ee7a8dce2cea5d56e922199d1095817dd94c4a9bc1e6d1cc356065b94fdc1c8c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-shared-plan.svg",
+      "sha256": "4b956cb1307183d27a46fdbc862ffd9e6ee6f4a0a580ba8572e308741866d864"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-support.svg",
+      "sha256": "1149e3cb7f1093292daecc6fb198d939d87e85f51bfec7488b3e0d51a4c7376c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/collaboration-team.svg",
+      "sha256": "a99c09edf500a9f503270d2fddd5d207c01a2d2182e6b0d24544e0eb22d4be9d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-agreement.svg",
+      "sha256": "ae7f7dbf8db012ada50eb975beb8cd31501198a4503953f3a2a215e35b3fabcb"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-announcement.svg",
+      "sha256": "00a59a459b085ceb162c51bb197c12ba1f405739cb7b8e7a879c1c0238202bc3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-answer.svg",
+      "sha256": "2e05d9bb42693f0525f3453cf8b93b310171977e0a1356bb4361c1c03a670024"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-call-to-action.svg",
+      "sha256": "5d46814e887bf245875a884614c0b29f770e445852a0f11e407128dc75e241a5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-channel.svg",
+      "sha256": "088cdd9f01c41488a42f60ab388bd888b0a47b5388f0fcae65469fb525176e5f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-clarity.svg",
+      "sha256": "19f4e747cc1a9a0db5d95560d1b278d1a54131c7c907c130ce9f5c48dbb1f28e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-dialogue.svg",
+      "sha256": "a2a91dc9a6f9c48e669ee0eb0ffbb4d8f69f74e687e327d371e9dd5c02aa2026"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-feedback.svg",
+      "sha256": "9285391b4bade3efab182f8d1d55e0ff423a07fd44899786bc5b6855ab68073d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-listening.svg",
+      "sha256": "25b98310a8cc0967939a5f2a1ba8679ed909652fce03f06fcfdff1a1288043dc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-message.svg",
+      "sha256": "eebf220c6e5f9fad8df5fbad68cf5afb40f50778be9ac09be2bdab5649e3d24b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-presentation.svg",
+      "sha256": "a8ff51f7e6a31b4ec2b6129069b6400a6ce1ade9ca12969b8298e01500ce012b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-privacy.svg",
+      "sha256": "e66cdf841698a7927bd09e9beb63a749e4c2d806a746d117d4ca3403d389e802"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-question.svg",
+      "sha256": "2f4dc2a6cd65d22635d24c6cb82c6ef78a15a0caa20bbc0539327a2c43e4d9a8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-storytelling.svg",
+      "sha256": "8b11aaa1420e30a451db88dd04553bcb4c2623e34bb177baf8899867dac350f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-tone.svg",
+      "sha256": "978fbef606406341d001a73884951bd86dcbec8a155db1d22c2ecb7385e04137"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/communication-translation.svg",
+      "sha256": "2f93bedabaf639dc0ce15d6501b340dfda5052095be4544bbaea553758586e09"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-access.svg",
+      "sha256": "76607a9d91b6c6228653206a41a174c55a02fa9185b8fd8926e03686ac8192f0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-dashboard.svg",
+      "sha256": "a5d9eb34d7bd994c2f3defefe35f1224b9749500f78109fa2913f2b3728dfb5e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-dataset.svg",
+      "sha256": "b9ef1a36528a0143361665061084fda262d7d03c254306a1620e6dcbf7629725"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-distribution.svg",
+      "sha256": "4bed01a24b5d373f476382646dac1fd251b0eef50bafcc871045f4ecf8287035"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-filter.svg",
+      "sha256": "97c0a022a8c24d9fcd5a6f0835dd210739ba1dd0a213abc95d27dbe7d56d2338"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-insight.svg",
+      "sha256": "2761a12480f2b45792c0e2de8f14f6d0784ed93309e4ac586dd19d80f7168811"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-join.svg",
+      "sha256": "a401406843a25fd3fdd1aba231a7506af1fadde5d9d446920e6590ac1f3ab0ce"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-lineage.svg",
+      "sha256": "a30c754e7c3c59b68897c6aeed3963831f0c842e80faabf4c43cd8ef5e7f65d0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-metric.svg",
+      "sha256": "495c90c511abb5515363b3caeade6f8381c39c2dc84e7157dfba870356dc2ff9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-pipeline.svg",
+      "sha256": "b7c408b649938a02a7bc68a3eeb8079617348a018fc6d02ea08842dbf5abc1d3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-privacy.svg",
+      "sha256": "3e114482fcdd532de137650f11270697d5024ecb946675eb7c8f40bd925731ac"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-proportion.svg",
+      "sha256": "29e268802d8ce1e907f3a19d7ca08376f42a0f7e6f16db8cdbbd01ad9dcef566"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-quality.svg",
+      "sha256": "493e9ce9e388208f99c617343644e574a4fdd05fa96d97728117aacd294727f9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-query.svg",
+      "sha256": "784bc7725d497c7ec5199b8718fb1c576a51578ad86ea3909c9d781a2a13529f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-snapshot.svg",
+      "sha256": "a0cf48fd12b84a7cffb1bf1c4249d4d22e5b4a7aedd423f9ae7ecb4e97e319af"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/data-trend.svg",
+      "sha256": "bf510eadb1ca07caab136204f56c45973b4c8939f889d03573052f6ee66ade8e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-accessibility.svg",
+      "sha256": "fcddff9e595de4449b21542504d930e7b60554f93d936639caeed0b94531f951"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-balance.svg",
+      "sha256": "a41928dc67df91e4fb0747d146346eabcc6d458453e06c50b0cc195e578fad22"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-color.svg",
+      "sha256": "52ed132c6978a9abe8b7e37d0da067ba5df07464b09fe1e5960302a8b46ab3f8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-composition.svg",
+      "sha256": "ff7e79951e5c3dc4809aba5981df0424a470462feb0a89c1d860417be2ab69bc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-crop.svg",
+      "sha256": "c5994738f5d4c810bfa1993b4c6f807d22ffafbeb4adec5e1d60fbbc66b01f53"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-direction.svg",
+      "sha256": "83801698664459a633ebd5a38f282afcea4c2c3e5e6dee5f0a053ffcaf3b03e9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-interaction.svg",
+      "sha256": "6c9b80f973e80aa0f3d8492f4533dd368954880da656d40788ef7ee99084d281"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-iteration.svg",
+      "sha256": "0dc3174bdf34c6f96eca2b06cbe4cf45e98e959ddcb3e366d573393cbc6aa39e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-layout.svg",
+      "sha256": "89ad4247bb2272164463e3d84b0814f8409f55dad5b4e787d1819cb26e69ed3a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-motion.svg",
+      "sha256": "5f138b062a525bc9f82a845a0b063fc06766624b298d44f081cb76dabde4b851"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-pattern.svg",
+      "sha256": "799bbccc619e3199f5d93d7141ea9d79edadb8ac4384114eb274262177f760bd"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-proportion.svg",
+      "sha256": "8232579902c9d07255f3ec1f63f5f399daeb7e8fa910779170cf104d577a6ec5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-prototype.svg",
+      "sha256": "cbb3c7139e9a041e7b9cb8e174d8a5a474184142befd572fe52ddd7eaec8865e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-review.svg",
+      "sha256": "ee4145b8d3b83b7beb7f9bf58a0b8f78ebe4065fb7da8977301bbe2b4d36dbb9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-system.svg",
+      "sha256": "2410ce171180624bee6ef8d90f23150d0cd4c0fd037ad5392ab8497beb06502b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/design-typography.svg",
+      "sha256": "e896eded25d5d0742b1fcb5ed83359654514602a8f251d219723984f1d2c7f00"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-accountability.svg",
+      "sha256": "34a3bf6e8af3837bb1e5e7533dcafbd95415331759155f8f5b283f4a39e63b5b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-boundary.svg",
+      "sha256": "296741e1ff46245be14e50cd19e180da43b0d2db932f850f904b4fbd823725cf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-care.svg",
+      "sha256": "9fbc0999df201be7400be9ef2e6ef398e1f839fbe679a617b4d2943c970cb1d6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-consent.svg",
+      "sha256": "57d82ebe3be8f2478f52a9377c9d6714455255b51304047f92d4620799293c26"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-evidence.svg",
+      "sha256": "08d5c7fe3228fe723fa459811f7005f936d1f144519354b99ade2d1345fadf7d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-fairness.svg",
+      "sha256": "ea965038e67d8e14faa90b5846663358ccfe08de2edffe04a8fcd6fbc12479cd"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-inclusion.svg",
+      "sha256": "4f75cd0196b65c4cc54d5aa6c901d9bdb97854bfc24a0b106eb507f04569d4e1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-privacy.svg",
+      "sha256": "48434eb321c0d8f7bf5ecb630f6d0e4267d72bc36860a326194fa5517c33918a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-provenance.svg",
+      "sha256": "5ce490d7a7192adb9bc74378101757187f09f54e2da446cadb6fdd9fd678cc65"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-public-interest.svg",
+      "sha256": "fb899c9e7051c2d5b724d20f1bf71b4489f8790dcff764b50a340578f3c144c7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-responsibility.svg",
+      "sha256": "5bde468bf1bb30bb3a5085d9e9689035c2353ccc57602b39537d875eb3bb68b7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-review.svg",
+      "sha256": "b3d1ad557978b819c74927c55a23068bbffe4ff02903474be806065a873dbfba"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-rights.svg",
+      "sha256": "a861af17863c64e200509d9aa1accc82591b2f89d9ba40a62859022314b758d6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-risk.svg",
+      "sha256": "92f54df12d3e03c95f7db6829e21b686dee411902b4de2191716a2433302a2c0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-sustainability.svg",
+      "sha256": "2bd2d61b7b9b1a3c4e6864eab86903107500c085c1b93df7e27303508263d848"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/ethics-transparency.svg",
+      "sha256": "c68da37be16a83181b96063df73ae76016cf50d37f42c10e0f25330c45d86660"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-archive.svg",
+      "sha256": "15596f39dee8a2974b25d4b0edf725b8dfb87d273d8e0a7a9e039a6165b8ac23"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-audit.svg",
+      "sha256": "79dffd011ab72322bb803fd61f21d4c9c31e6a6de53ae9fbb1be6307ce7bd6d4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-citation.svg",
+      "sha256": "1935c77a531e0b49a33beef36013b8874d0da5ea0b224959c4628eca3ef50087"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-comparison.svg",
+      "sha256": "3f0b48567769b64606103812cd5f0ff2ad5c811ed070dd7c3ada63f3463e3651"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-confidence.svg",
+      "sha256": "0f92b3dc7bbdf69e66988007b938b77bb293cd8e85df7234048a6d520f4af376"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-gap.svg",
+      "sha256": "4c62efb03ecfbbcfdb54ef5068beceddedc2117e37bfdd4501878b6c91e87c7c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-hash.svg",
+      "sha256": "1234a74846999f94305cf88d48e63ff01ec49fabe05e7eb11232e8bddd201cc4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-observation.svg",
+      "sha256": "9fa91c123670d4a1a0a1b538433e0826736733eda1ad33ecb445146f2475936b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-provenance.svg",
+      "sha256": "95b66a4b6c1d3a417c4614e28265b379372a285428a67d72929a8d8587b3aeb5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-receipt.svg",
+      "sha256": "17ba34a61746dc81f35c1a8ed4f18b58a7aa248f91f3abb80776841d55bc2e4d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-result.svg",
+      "sha256": "379937090d09339182dfb1b77604d01621ab8d74ec0cae0c086ebffad8817929"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-review.svg",
+      "sha256": "1bd541972ba165566ba50e29aeaac7ab14cd9d319b6389079ba3e20b33c5d7ca"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-source.svg",
+      "sha256": "8b96f40f5ac8f3ff0135a8e684edabdc4e68a9b00c9aab9298518e67e9c4b9f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-trace.svg",
+      "sha256": "2a7617b4a4b4b48e61ed46496fd7a5ed8ad8423434349dc78080fc2fb5816a9b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-verification.svg",
+      "sha256": "453875213872b6d632a66aec6dde5f8b91d69363af58046aa99d657f4043b223"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/evidence-version.svg",
+      "sha256": "b2e1ecff641284427ebcd3ff58879ec149d09f0f42516cfc47cc00e3054d7501"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-closing.svg",
+      "sha256": "70503d686af2cf37dab3eaff37739533ca5b04d62cdd352b352ada57e8026f90"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-debrief.svg",
+      "sha256": "292d0ec2c6e673ef0b7619fcd5cd0482ffad8c0d487234ecc2ae05140ed78f2f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-discussion.svg",
+      "sha256": "662c5720c97a9dd9de31071711999ec60b30bde0d0ea5d00db054afffd4d3edf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-energizer.svg",
+      "sha256": "4eb2b73930efaabc61af7a3a0d28f0da35f1d1d71e3b3303d353de1e55aa08fc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-framing.svg",
+      "sha256": "a6b208c4c96dbf2944978872c97bd13e0f7953d7252705e97e0c4126341734bf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-grouping.svg",
+      "sha256": "d73cbe1b66dca41ef4a7c1e5c3894fb8499315275897c4c015eb4056ad68334d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-instruction.svg",
+      "sha256": "d078e56778e717a5108260ed48af641993ba753864918af6d36bddbdcf725793"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-next-step.svg",
+      "sha256": "938efb60f4eb86ab90d2094184b4c5724ff678b7cc261aea59ec0460e966a880"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-opening.svg",
+      "sha256": "14413363b04ddf88a5288b30cd2a54e430b858682a3eb6bd0884191fadc1e09e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-parking-lot.svg",
+      "sha256": "2e14c0a5c22a17f45919b55e205eedbbf35a008712ed48fadf72099ae2718f0f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-participation.svg",
+      "sha256": "8d7ccaef1969d1146693b2c19af6ef591b15aab041a4d68569005502230e7250"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-redirect.svg",
+      "sha256": "5a3f7f7b1ea60e02f334f906036c0c51df8126551e4ec3368e15acf037abc8f8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-reveal.svg",
+      "sha256": "6655aa14a9037a75c91e0c77cb3e327f28cd3e25f845bd1e0973f39f1d756002"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-silence.svg",
+      "sha256": "9c43c7abacb68538591c4d346d84080f6d81fa7f6720f8eb31ee0fdb66a3e059"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-summary.svg",
+      "sha256": "9a0a2734a46caee71df1d044343d265f066b4fe676f18b1114bb80d1de1be959"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/facilitation-timebox.svg",
+      "sha256": "7920e30d40ba209341122a447628d9810987ac02c646edc002871a16874bed91"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-class.svg",
+      "sha256": "e11dbf58bf03e143defb25ba2282aebaa79093b75543e0c4e5d6d80ce557c818"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-curriculum.svg",
+      "sha256": "55f4090fe6a72eb76463bbd2d0a1b954d539f6de975a31ee308217d2159bfe10"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-excellence.svg",
+      "sha256": "5642e1ca9cd634a2491f2ee5611ca8c572bbc4994d65f68f8abe8927ba21349d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-graduation.svg",
+      "sha256": "45c942a871d6a69feca610751d43e94f6ff7832a47dfb49da1db63962c5e189d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-guided-practice.svg",
+      "sha256": "4abdc99e40f23437effec66629baafc1de3375ecd39a11b164d5c88dabe29ec0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-inquiry.svg",
+      "sha256": "a930e28555da173316d47b273271de5f643a46be9a65c3b68d83d8c383d31bb4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-lesson.svg",
+      "sha256": "a2db2f0769837ba519b06792315865bbf6f3513231750bc7e2da06e1fcf1fc52"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-mastery.svg",
+      "sha256": "6808cafacb35e86614e216282f35b468a42680b3ff1414f29fb8ce443d56c8e9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-milestone.svg",
+      "sha256": "a664a46e9bb06e1500090624177bb701d9a55dab2f0f30bf8459636bf6dbee39"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-motivation.svg",
+      "sha256": "45e51d727d779f2d47d6d14d2b2f9e8cd7a0220a32141f2a75ed7ed6095e5e72"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-reading.svg",
+      "sha256": "4e5fbd4351724f918b6af081633e385e0a370750c7b830e87c0271bc986daece"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-recall.svg",
+      "sha256": "92c39b00cd21546f60447383504e78ede3b01a505d93487d0c58b2658c87bb34"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-schedule.svg",
+      "sha256": "549dcc091bc5abef9d8959ae08a2f3ace218d59ae145ee3c9ada8c76d4f3b389"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-teacher.svg",
+      "sha256": "6618318156af783fa0f25bce85b86b2b42419ddd14622673f254b58a2ad60855"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-transfer.svg",
+      "sha256": "37b594394c4d09767ca478f8936ca146f97df7b2193fb775c242f0200771d18b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/learning-understanding.svg",
+      "sha256": "d14d283efeabe8c85327ff8b6c1e64b1cd4ea313012c620bc7fa6023811b5980"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-capacity.svg",
+      "sha256": "0ee5480f0f77bd2865ff7c1257a5611bd3ba40b47d4d2182789fc8a7b2a69860"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-checklist.svg",
+      "sha256": "52f31f6b95388039775083d94b71b723ee59dc87842408e0b5aef744ca5d9592"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-completion.svg",
+      "sha256": "32009d8da94e2dbc442ae178f74e807f462ae340246170aa4766000ce9362067"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-configuration.svg",
+      "sha256": "2f47dbebdc25b3c3be2e1ba1459e1897787c32381445bf3238a0407415ff9b7a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-delivery.svg",
+      "sha256": "d96f8385917cb7b2e6cecc594476dff44c7467ca3e74ca3e96e5d12d4a91fa1b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-handoff.svg",
+      "sha256": "d67203f3478f20f69973c6538e095d5dc4013b403a309a06814db366486ab623"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-incident.svg",
+      "sha256": "d183460d034af4d2671e244915da5f999fa422ad1130b6b2ff762d184ad9e100"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-inventory.svg",
+      "sha256": "706d6a5bb6cb309008b2d2abae732d50860a4ac43658b35186f80f1de40e88ed"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-maintenance.svg",
+      "sha256": "0cd6fc30c8fa9e14e0c69ee056518ac4dd02b197cc3f7a919016d3b36782d9b0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-monitor.svg",
+      "sha256": "2a4668f8aa263af43021d722ab7e13acf8a6555d3d7a88c8a82c17d516b0fb09"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-queue.svg",
+      "sha256": "8416a52c6673066ed749f92dbbed2975fb2d980134dd49cf0d15546e26decdc8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-recovery.svg",
+      "sha256": "672691387b03ea79d98f071803a5822fcfcd553dd79f1e7e6090c6b0a808e41a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-repair.svg",
+      "sha256": "54414d96c80e42566d979990ef4619290d11523987fd6d2b66ea8bf70612508b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-safety.svg",
+      "sha256": "a95e656642a6ba3a193dff9b06c4bc4bc9d85cdddf37d47d696f74dd584a9f96"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-service.svg",
+      "sha256": "874fc31751150cba878b7b75afafd44506d57b9a9b396faf099de9a6b3f4564b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/operations-support.svg",
+      "sha256": "add74a842a3e056bb565265a2dcff70b8489416d692e1ee823297cd7f392a260"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-agenda.svg",
+      "sha256": "1a05ac53506c923d628320b523bfb3b14c52790b437e2ca6062514213eff8eef"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-appointment.svg",
+      "sha256": "671965e82f16fa09dee54edcf9bcaa4c19c9955dcfac178ccc344e97c0b111b0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-backlog.svg",
+      "sha256": "5edee3a93961c933694226909e910a5b33ee69329a1a12c9b32f279f6b6ddeed"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-capacity.svg",
+      "sha256": "b931caf5e884dffc7dd3aa085f95a1da6b1fd3854eefb50e0848a599060a539d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-deadline.svg",
+      "sha256": "845a2fb88e902f559f2a82e540da2dec680a376f0c2c9337623451be02dc6320"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-decision-date.svg",
+      "sha256": "14a8939ce4d98dcab2f6337c333c8df657f1f304479b7635ef65e4163eee488b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-dependency.svg",
+      "sha256": "6ba5b85ba7a573a14079995436d1a9265154968e2d92dac541464fd9e1d9adcf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-iteration.svg",
+      "sha256": "1ff868bbe044a3fbaa421a2a62f3ec2957bfcd3b57aef24d5a37b2ef1fdbd1af"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-launch.svg",
+      "sha256": "d7b661a5d413ddcfa511381d95796c5e4d724ec119f9e10686191f431bae1db9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-milestones.svg",
+      "sha256": "c26e0f3514996efac940ce994382829b376aa39ad2d95d234435e19cb568e884"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-objective.svg",
+      "sha256": "c4f31001c30279a041257754e7ee68ef5bb19aebe22b1383d1f6a937f654c970"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-priority.svg",
+      "sha256": "3370e92618b7379ac4ffdc5ed5b0de37025a8038e629d091473f57ad5d64d228"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-resource.svg",
+      "sha256": "7c4f811bc31a4008579c1ddf01aaeaafd962989d3dfcdf783b52a70d15a68ed4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-risk.svg",
+      "sha256": "384421f949cbda6bcf2ca968c7a024e0b8a21c22d6c213f233575761c7e54e20"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-roadmap.svg",
+      "sha256": "3a8dcbd8659f913bf05121f0177a53b0e492b7230461c6b8cf6084b58ad4c195"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/planning-scope.svg",
+      "sha256": "4d81457f763c94d0297ac4d086cd979acc60dc8a73ed178b44287c7a85621347"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-bottleneck.svg",
+      "sha256": "d77e7a3846b902a224dfc0704aef16c2938388f54136e09669a1f30aeb3c531d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-branch.svg",
+      "sha256": "fb5383145dfeed08a308846e09703a3ce35ad9f5c4bdb9f1fcd9ba625ce5a33c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-checkpoint.svg",
+      "sha256": "c552cdb8ccb1dd54f26ab85fc187343c0f8b67c85547d92c451dfe45ddfca13c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-continuous.svg",
+      "sha256": "c0ae6d7f877e3dc55125144f2c5955bc8773526ae5730518d3973751c9780e5c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-control.svg",
+      "sha256": "1087476a8a87473bee52b31f8b17788e9ce81bafbe548b4d61c2e080af7569fc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-exception.svg",
+      "sha256": "f72e46f173af49d45284c9f4eb211cd09fac4749ee1fd86b573aa8a59e071988"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-finish.svg",
+      "sha256": "2dcd6910dff56ec7758176cd5bac1120a053af9acaae065321775f18f1176a95"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-handover.svg",
+      "sha256": "38d599cf151bb4ce98a85f9a83ac3996e08c8fa49a17d20e342fab4eee3945be"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-iteration.svg",
+      "sha256": "40d86435a15a04a91b9d33b6f5be2ee09e461d000ecf42c6530a477e62ac950e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-merge.svg",
+      "sha256": "945d491e1c1b7e8c16f3a84e22e44d7c8752eb136c7d4112a2bc0d2c467e6778"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-pause.svg",
+      "sha256": "bfa0387c45b064105405c281df1bff943d27e87743aa7a01d18e8c048672ea17"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-procedure.svg",
+      "sha256": "e5d5009363168d50b1cd6893ed743c56ed6c66d52936e6b9878428baa56d6b8d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-stage.svg",
+      "sha256": "65de77e1bb5eb2d422ba140d526d8339cab8293504569d2045f4f88668e7dd44"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-start.svg",
+      "sha256": "4590412cfc058d9f2b0a9549306fa5d57db394b352d68215dbdee7e15f572017"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-stop.svg",
+      "sha256": "c899cad608e9df7af12d3ca33dc5bd0cfe7b2a84d477fc7a45493af396279c79"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/process-workflow.svg",
+      "sha256": "34ecf14c62962d6266ab786055c66216cbe50b260d4d3941ffe8e2160b5fd2da"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-control.svg",
+      "sha256": "782d3f3fed34c56e2f0414b251fd71e8f9885d0ee20fd6961106266d48096f93"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-discovery.svg",
+      "sha256": "9ca58cff207c8435e672cdd5b54e22169949df0b009b9f4bd985c3d1086f6868"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-experiment.svg",
+      "sha256": "f64b97781f1159ee2633ba47e31450939c7858c351e95791170b2b7d0e33c658"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-finding.svg",
+      "sha256": "d6ca4a608061ca38d322c6066273cdc3a77d3de6845224ebc8ac2e1eedb49779"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-limitation.svg",
+      "sha256": "a5272ebf5c29e1a189fb50abccbc9b6f00aaa80b539b7b05d1ec5c39f136e252"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-measurement.svg",
+      "sha256": "6d31ab483cbbe671ddb27c6ce70fdea337bba000fbc438d3fe9fcfff82a6e908"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-model.svg",
+      "sha256": "58f1d014d2491c3a798571fa5654d0afbb8ece8cd9930712937f6a82cab1cd78"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-observation.svg",
+      "sha256": "54bb014283e4499f965fd03d5b0d57889a025cd7ae98cf797af3cd9a985e35dc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-protocol.svg",
+      "sha256": "9589e2546bb3eea7117e57bdf002fa63714934eeb02018892140e2b5bfccc499"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-replication.svg",
+      "sha256": "5ad2fdd5a2c7e2f789a357939f62d42a7941ee304f12492e34c6eae0efa934e1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-research-question.svg",
+      "sha256": "b54e7cddcc2c7bb220c4ed9bb111e64b5bd199b0c1e0ca4b8c827f00f6fc1b13"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-sample.svg",
+      "sha256": "245bb8bec8cf86fafe1e6138727b7909339f2399d0e413ee06c4efa03b9f8552"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-source.svg",
+      "sha256": "b903a1bccf1c094903d1e69e1f0875d698c263a5749acf68abad47fdd9268a6e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-trial.svg",
+      "sha256": "3f63e166dcbb8ecb84d40c236d0a27db87ad452dc5611538a4343eb73ca479b0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-validation.svg",
+      "sha256": "37d2be647c694621c13484f41e2146a5b10889aaeacc48bce2df96143d53cf22"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/research-variable.svg",
+      "sha256": "eedd56eeec777cdf72bc13e474a8d3a1732ab3150c0274d6546954b832e58050"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-access.svg",
+      "sha256": "0ec4bed03ea9c77b7851c368796a0825a5cb2b5d6d3c912af040f4d4894515be"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-ai.svg",
+      "sha256": "8eb7807c1a3d66af397401cb9936c36bd53e2cd5f54ebed661cf805619775142"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-automation.svg",
+      "sha256": "8f2aa8c4b93014fa93104670bb10487d298ae57813bba51ebec712eb732c746a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-cloud.svg",
+      "sha256": "d56ca0adffbf4711e11f4c5afbdcbaf88b88fc9269777a04df140888e5948ed4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-code.svg",
+      "sha256": "02a5ead88be82409a835496eb02f897237184c5e140e42a56de3cf4eb30b6077"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-command.svg",
+      "sha256": "56ac7369f765f292bd51a1f34990656d2c18b46fb38c6591b94443984200b4b8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-computer.svg",
+      "sha256": "8845c626f382a750469350a22873d8d5218b6c41c4c5090872af5a83d6fac61e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-configuration.svg",
+      "sha256": "a71b35516a687e105eb011ab4406830cea9c719cbcf646236b8ef00d7c5c3cc6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-deployment.svg",
+      "sha256": "d6480228aa575962ce00cd34645e737297ff924adebc1ae0ccbf83339990295a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-diagnostic.svg",
+      "sha256": "42785ff7fc4773b95d9619a6319452421e1643aab349a785a91a2e88c4f82ce8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-integration.svg",
+      "sha256": "08612467dc280e522c2a64bcc15d7832551b4bce4c4f07e1889647cad91b3273"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-interface.svg",
+      "sha256": "e845a3095929e6d07ab9dce0e256b83d924f014257000a11e8ffba9e7734644c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-mobile.svg",
+      "sha256": "5c1ade8ca7389fee6adfd9a1639f0f4df1b77340a81c08e86ffdba3fe84cf376"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-offline.svg",
+      "sha256": "743c2fdf0ae7651d3be7f5842bc3a2a0fd280333333d651d990bbbe1adf1614a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-security.svg",
+      "sha256": "d3bdca0903f1bf3deb41c3282a826c4f81daf01109b1385123e5707f3d2fd22e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/icons/technology-storage.svg",
+      "sha256": "d2a5e832e2dc6c766a35adc1d97ddad0105f933adbbf907d3de422300274a1bd"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-acceptance.json",
+      "sha256": "09cff1a8b9c2ed4eeffb183404d821595f29460f807b263a2cce7b2bdf2f5fe4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-entry-criteria.json",
+      "sha256": "982be8b8975edf856b06811b5f3b1c0d4903f41ca6d158e47d2efb76e862c228"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-evidence-check.json",
+      "sha256": "8732b672d06171c251505138e8b185affdff34bc5f7be5f706f1fbe61d3dac81"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-human-decision.json",
+      "sha256": "8d86f024fda07507b7c2c45942313596daa4018e4c2bc22593ea791e3618df01"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-ready-check.json",
+      "sha256": "3a9e6c644c1a8b6346c6fcc943eb309d17583057e51d1ddae78009b78b54c15b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-release-gate.json",
+      "sha256": "9c4dfef53d22f17e658c7fcfc342a57eb332defc99a5608bd28b3bf9d0a60dcf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/checkpoint-review-point.json",
+      "sha256": "e560a47e35b6118e865df462162142c89530d60c195483e17b31ffce34164ddb"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-alternative-paths.json",
+      "sha256": "48871949f7d9baf872c1af284d6840c80f917c3e62a0c7b37a0c7f9aafd9ea9b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-before-after.json",
+      "sha256": "9bb571d50558ee737b2ba8e379e1376448ae576513d786b7a8d9fc6d66d1a455"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-benefit-limit.json",
+      "sha256": "fcd98e6b4a399e5f374635f5dc1a3a275d0a2285e164e50e5985b11074de3b05"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-claim-evidence.json",
+      "sha256": "aaff712864ac5d01e9429f477028ce047862f48d970c8c6d74f513e517ccd87d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-decision-matrix.json",
+      "sha256": "05b24dbc2a45b4713c7a1be6b03f42697b564427d3f893eae8d26b3c466c762c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-same-different.json",
+      "sha256": "d08dd785a69cf48e9228468faa001daf04b38e11aabc962b420c71b4191a81c8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/comparison-trade-offs.json",
+      "sha256": "88c0d3ff42bf4376763619c20787ec3091f1c17afd2b435c48ae95a6a3b567a1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-analogy.json",
+      "sha256": "a32c268a5a66c970279ebdfa4ea159846cdfdc017cedbd99eef6ee1edb2f16cc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-application.json",
+      "sha256": "c6be1e118701999915c8c8d68c53e1186623d830f3d6665ecf59088c31a42bd4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-classification.json",
+      "sha256": "95d86b7bde1cc61e50878377987584295705067d4d403a615deb3d91b2887894"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-counterexample.json",
+      "sha256": "8b208a794d9874d1edf851950eff36a00abd05b9fe5be53706df7d76bc1002c0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-definition.json",
+      "sha256": "9546021f6f9074b07f941564d4a67231ea818d6120bb66a9d07b0ea6d4e5a034"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-model.json",
+      "sha256": "ceaea78e348fd3b22d3ce06417ba02d7cbd29150d643cb73d7dfef9547e7dc96"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-parts.json",
+      "sha256": "f7e8bdc61c7e7fd092aaf723d93f96cebc3568c9537f62c363a94fcf6ec6c566"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/concept-relationships.json",
+      "sha256": "285bdc0100ef90fd47e6190ad73728e94d3e02217adb8af9b006884066d6f774"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/contrast.json",
+      "sha256": "41d79572ef2a97021e32c135791eb01142ebde402a87958a56a7f4f8819a240a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-continuous-improvement.json",
+      "sha256": "4a3898de3acecfb1f33c4d88f36a02db864dac53beb55de14ba438a336e0194b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-feedback-loop.json",
+      "sha256": "114f7b88a31038c93d0c83014ee692f693445862952e6bc9e4a93c6a90ff334c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-hypothesis-test.json",
+      "sha256": "f573fff0ccb2d440be9c55bb43b1497a62caca7162b77660dc411aa4d87ef3ae"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-learning-loop.json",
+      "sha256": "130431fcbf169e469cbf3dc193d47061b3e6c8bf6cbd194911cd354e2a44ebbe"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-observe-act.json",
+      "sha256": "3b99f2a2c742cab959cc2f50fb93f86687d2a7e3de4a8a764a8238ccda9b2269"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-plan-do-review.json",
+      "sha256": "b08ab9d788946fecd8955ea888c22ab8cc59b22ada7618ec799cbd0d8d3f7469"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/cycle-repeat-with-evidence.json",
+      "sha256": "bdd32cd39b2cbb376a03a2b4ccf2391e67abf354cd9240ea1b3636a764fa1c05"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-aggregation.json",
+      "sha256": "94c157a8ff7fbad4d143d2a08bd95870f5d422aab502d66b78313d7ddc50fc87"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-classification.json",
+      "sha256": "a1369ebca15220585978114dede8607f7b63c0013871e7eab4efe579f3720073"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-comparison.json",
+      "sha256": "2d499b3e42e4ff0ed7300ff92616ad34dc0eaba85d350eebac362ab992ef8844"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-filter.json",
+      "sha256": "48cff112c505ffd7e736bce2850a54c4cc27a96820c1068617eabd82403382ca"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-interpretation.json",
+      "sha256": "677eb9b961a45e4b7e53818a7afc629e7ec8538c609aedd5e5a021fef614912c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-lineage.json",
+      "sha256": "46d058c341ccd30b4ff808e0ac483a1d1a5dadd251ca81e94752a156f8d03705"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-quality.json",
+      "sha256": "3331d829053c931c89da70159136bd0219bd4730359f3701bd4604fbfec2c819"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/data-source-output.json",
+      "sha256": "6a955b288f709184f3c2c680d7566ac488a825536b3f7a7fa902d1131861f0f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-choice.json",
+      "sha256": "198bc8014de4e77493332be85921152047802bae9dfadcb008fcd06aff8cf512"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-consequence.json",
+      "sha256": "aba94229798bb9ae9659e498327aae5d8370078ab91410a6310846709453efb7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-criteria.json",
+      "sha256": "3e5bf8d1d7c4bd274544e6ea180eea6cf197af46bd042c83b7aa29a1de086e7d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-evidence.json",
+      "sha256": "948fa800a1b1d4f7b20a4ab327ba1e7604e0f25ed666faa90c039d662f581990"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-next-step.json",
+      "sha256": "e9495197d50bb3a49ab869e8b14633b55975a19152f1907e3c31297118cf6491"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-options.json",
+      "sha256": "ce07fb45238300feb2e6292b978f8824e9a89ea3f935897a5c87f61d99788072"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-threshold.json",
+      "sha256": "ddb6586862cc18c4908694d7d604b8f46766f86137f2780ad4dae312161b43a0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/decision-trade-off.json",
+      "sha256": "fbd9b7fadcaf3b56e042c5f184a8671cf324f0f071b258068017afdfb0d139e8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-agreement.json",
+      "sha256": "863d227fc4f77c1ed1c91cb4991fc6d771b477baa5aa0b82d2adb29499849540"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-challenge.json",
+      "sha256": "adabe7dbca2deed6f1d07d9250fa960f57a60853d6577893026327476d7d92bd"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-perspectives.json",
+      "sha256": "c7701e86b8c19c6d98a7832da8f71d1822055a40bb44b09682303325aec4a7f3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-prompt.json",
+      "sha256": "17a47d90e7c6371b88128c27da0daf5ae64b23a92a845eaabe88e4a7a1fc2ac0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-question-ladder.json",
+      "sha256": "a14cefbd128414f61250b999253d3f1c07a12efd78451c142d7bb70ab3c994d2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-shared-insight.json",
+      "sha256": "0a12696bdb87e5e6de9d382a50feb09dd3122f1282a315da13fd11939e11b6d8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-synthesis.json",
+      "sha256": "4625c484426d3419db2bd7b53cfab28d5b2207fa95d12c0a60551ae70fbbabaa"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/discussion-turn-taking.json",
+      "sha256": "417576206a6f40fc057e9ec6619e7b0d1899500f26a8716ffc917cee0b190810"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-claim-proof.json",
+      "sha256": "4e2188cc7b790bc4640eac4d54934a03b8aac26533d9c0b195a7fa8889e68b6f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-comparison.json",
+      "sha256": "b561aaa9614834eb77ea2a15839cd9fd6aa68bf34ab5356727cb52223a5b2f65"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-receipt.json",
+      "sha256": "4420fc5ce5427a0a332d576cb55a61887af062410104e9bd0b607f115a8dab3f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-review.json",
+      "sha256": "e33afca4e6e70e2675d7031d50244c41955d84f91b923cd596b81845679d602f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-source-chain.json",
+      "sha256": "9ae5df030cd60a530bbfc9b4e7c74056b049d76ea611295c962844230573c061"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-traceability.json",
+      "sha256": "fab103c3710d6dccb87a275ffb4d7eb82629145faf8ed78699d440809c52022b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/evidence-uncertainty.json",
+      "sha256": "883c527a3c16468cacb6fa0fd525b9adf86c53169f485acdadf166e9316a809e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-control.json",
+      "sha256": "fae8b99e8cc315da5ddeeaa966bc488d686c9ee9612182879d2f6676b2edb520"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-hypothesis.json",
+      "sha256": "ee976b0d488eda879f1da7eb7047ba0518462ccfb1c2b1bfb843a2d784ca0526"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-interpretation.json",
+      "sha256": "60e5d566175237d72b481ece28b583ab7b30d2ce6b178b454e58c06eeb85b265"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-measurement.json",
+      "sha256": "97d1823f515987720ba564926f851c000a93fd61c689a04358c6a8dc519b36ed"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-procedure.json",
+      "sha256": "8e36ce2ef5609b45e99d5b943219b93a81f8fd7f67372129bbf4fbd089eb91cf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-replication.json",
+      "sha256": "3ca251d1c889d45f7df84dcd74694d9983b9817824181acb7bfb16dc46baf244"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-result.json",
+      "sha256": "0bae302cc647239088edb47dfed57428a294b4e3d39fb30725dae093e401b413"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/experiment-variables.json",
+      "sha256": "ea20cdf08963c5e528ffaedb491db3c034eb0fd0ad08d4c6a8613bc423d04e6b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-adjustment.json",
+      "sha256": "654f66a5b8ebd4574fb6ac5367d27e104c64486e3f6f8aae2a656319fd3b351d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-closed-loop.json",
+      "sha256": "789923a3338443b7a407e9a1c27d5b6cca7de566f44abefaa2e035f3d9bdd16f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-dialogue.json",
+      "sha256": "cb9e0695ec8cd9e554c2f8dec67189e877a754d3445c22a3cf1f76d9670b053e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-follow-up.json",
+      "sha256": "2849712a2d89e8461acba8cb4cf6044150e9be60235eaa86cd4c511ea5d2c60b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-impact.json",
+      "sha256": "dcc4664089f99bd01949cb7b1854c227bfbb3730eeb852ab1f37bb1ed2c09048"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-observation.json",
+      "sha256": "ec7e074708684e263e29180332c8dce85704d899c09b8fe1f5c0fb6291fc70c2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-specific-example.json",
+      "sha256": "09ac976a9a7253e419c4cdeeb8105099a2ce2032ab03ee3624481f4029eb60c4"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/feedback-suggestion.json",
+      "sha256": "55fb150175426c91ff2f3851766a693cd50cc5e5fae2dcee150a48f14e184e46"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-dependency-path.json",
+      "sha256": "2b94891c7506ff6a0270cb15d6d1769354a52b05cfae54d5a076b903e19bdd4f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-handoff.json",
+      "sha256": "f0e7cbdbc47dfe0909645c388b14457bd9780220ecdba16d348c656e693bc144"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-milestones.json",
+      "sha256": "18a64f2141976e2113e2838ac0990ef931b647aeaeedc8c16a1abccd412d8e2b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-parallel-tracks.json",
+      "sha256": "7dee798e24123e9ac119f5e8718b4d1b11ae7629488eb115fa7fac6c7f9e799b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-return-loop.json",
+      "sha256": "a3b03925947617c05fd69b542f184f55325e63a5a71a8efd952799f0ce9d56ae"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-route-choice.json",
+      "sha256": "17a0a95ef50add93fa0426f288c97783b47816dd76e1f6929bd3174b4ee7a4da"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/journey-start-to-finish.json",
+      "sha256": "315ec1042cae259a3fcb875f8543db8b110d06712b8f70a868598feef1a61a4c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-competence.json",
+      "sha256": "a01fd9b8618f12e05209b53822963c03b2a9af17b7e8c679ba2423255050a027"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-from-example.json",
+      "sha256": "accf8b7adfe2c97df9f26fb3b931bd5e137609c22c7e46c2f2c3ad94a1202e53"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-independence.json",
+      "sha256": "3f3b34ab4486eb4974bc49ff4455fd1130a335a66e585fa93590459449ad236f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-levels.json",
+      "sha256": "cf6e095879bf8580c15af81e6713c6717180d278a65d74589018a542ceb341ce"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-progression.json",
+      "sha256": "bb0d60f520662f2956195e5e756fab516d12c96a6688fbe6ed1d056df1ad7b1a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-scaffold.json",
+      "sha256": "c2df107ae1037279441aa29bb3a06646f6150eed87ffea8999141386fc55f6d0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/ladder-skill-stack.json",
+      "sha256": "943cdcf24446c9bed6eaf0a767678461a2908fa8012fdafdbf0fcadc704939ab"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-checkpoint.json",
+      "sha256": "37ef1a097bc73287b4b730bb47904857f75d1da4f0d9707f39f85402a51edbe3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-closing.json",
+      "sha256": "04a119be63877f7d9b7749b09a3fc51d84d5756b9c18a0421e8940f6a31c264f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-recall.json",
+      "sha256": "134cddcea4ff8e16d0b9dcf4de59e03bc82f4818e9b064a0f39df40af03433d7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/orbit.json",
+      "sha256": "a8d86919d7b50a276ccd1c11deb09add53f6e05821dcc07ad694b499568f7429"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-assumption.json",
+      "sha256": "c9fa30b38de7130d7c51dde12ce6ae57d8f34db58a7be481d9c6468ec93b3d79"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-commitment.json",
+      "sha256": "034bc85b7959774a9b2741c5598072a9f44fcef234a16b282fc8704fc00c7b0a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-debrief.json",
+      "sha256": "3394db7ac88f5a7211cddac6c2a53f26560e139a19b76c35b0f62b0511695315"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-learning.json",
+      "sha256": "dcdf535f5e190a7035e7dbc4983256c4a71f8871e9f44211a89d30a74f0172b1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-next-experiment.json",
+      "sha256": "d8061edabd2182c0477045a80458b45886e5716ee7404753e1c8c1c95967b160"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-notice.json",
+      "sha256": "4b3649aa787c0c38054b18e7c5c54ee3ab5409cdc96cd671c71fb917d8195ee5"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-question.json",
+      "sha256": "466c0a0a7e439d6961d7cd71156eefce76e0c3e58e6c5031d1dfacbf480e4bfe"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/reflection-reframe.json",
+      "sha256": "930ea2d8abbfd9c7515288ee1d8a9ffa190449178743421ca4a9b0478e055169"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/steps.json",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-alignment.json",
+      "sha256": "26d5fc3bb9079b4c91f337635b4e7f6376799914803835e4a0e78f6194fffe52"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-intent.json",
+      "sha256": "3bc3ec2afb8ea3aa812d713f12ba556a6905b7f55de5f14e61741f343edf6470"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-pathways.json",
+      "sha256": "642f9b1e542449689b4d523e3714cd573f987b2b40395ed24a47e22f70762065"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-portfolio.json",
+      "sha256": "63870ed10cee198e8d3226d735e267c92c30a970cf0b2b4aced915309ac21ca6"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-priorities.json",
+      "sha256": "0386cb316e3c25d62e9224ddb75bd46dca3b61e5d5c0aed48126352691058133"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-resources.json",
+      "sha256": "c307b6312b06088af1827f6184d1e729da77376c0d31b6d1dbf765524a434875"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-review.json",
+      "sha256": "1c06f19d207d6e6f4887a472869da97d9ad989ed2619a9fdd0bba58dff25450d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/strategy-trade-offs.json",
+      "sha256": "7c9d41e5c04160f8a31d21a432c3c429a17f587178590a2597cbe3c05abacf0d"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-bottleneck.json",
+      "sha256": "1efd2d58e8a8d78ede8b2fadfb5daf860ca06cd50622662d501704e6a1c56207"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-boundaries.json",
+      "sha256": "dfae554c181ca41b6900b58f62521ee3ff7aac0365dbe83cd2c99cd96bb381b8"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-components.json",
+      "sha256": "55150bf0b0bba511aef5c7b0cc28c631462ffbaedeafe71690febc5f0d395894"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-dependency.json",
+      "sha256": "830b98bd1b36525c07a5d98705c1a7487b01089e59faaccaae6a3689420bc758"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-feedback.json",
+      "sha256": "c0d2c70eba8f3195ba0600fe8c73a6be770e9bedf9a15660531bbf404260d83e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-interfaces.json",
+      "sha256": "abaf78f8f37e6fc66a0688b12a949c936903140bfe6fd5fb108f083097cbba96"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-layers.json",
+      "sha256": "a48fec687bb7aaf6bb203d6ed62cdf69307c34c8402067979c9df5e7f158ac84"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/system-whole-part.json",
+      "sha256": "c9980d55789016b2f614b9cc0e60a62f753887cc0e409973c7cb57fe2b3b446c"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-agreement.json",
+      "sha256": "cea550f85c6877c08e33f826bd112e4939f055cf343703a4556c390e94095b98"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-contribution.json",
+      "sha256": "856b866a15223efe4af48819f3c81e78b3eb4b89a7d1498a23cd6e4837ac662b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-coordination.json",
+      "sha256": "3627799fbf1c6f1cc988869d2cf6338e3854ad7e83b64bfa8c204d94fd650a8e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-handoff.json",
+      "sha256": "3e913703f4edc3cd855e36b695b38ca28b3f53b49bbbf2e54ab05d897b50afc7"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-network.json",
+      "sha256": "49984da9b23f7c5e6004281ceeda2a0001b18bc9d7d5df3de22b2ac21d59d07a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-shared-goal.json",
+      "sha256": "24b66c4cf394ba927e1206156460d501b09f0e5910c35a48562d911248f02a2b"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/team-support.json",
+      "sha256": "0c065e22d2e4c43d5ef30c8ecb9063eaa45aec3552362b1eead94e4b53c7c3d1"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-cadence.json",
+      "sha256": "0271eade46ede135c2d34fa3400387412f653f6de71bbbc7965b384960464fd2"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-deadline.json",
+      "sha256": "455ba8230a11fc450c2df0c288c324158de4ed0ac83c1a5b3a8c1a83beef007e"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-horizon.json",
+      "sha256": "be5beff3531a21d04019d68f1d01afd6c941fd15da4f9364bb533fedc9b65134"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-milestones.json",
+      "sha256": "c70cf4f8c6aea1d2287f7af6bd478ab09381058a62974d4c8f3aa03f347b2292"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-parallel.json",
+      "sha256": "40439c2e52cf7111de7de37c74d944b5b9b340060c55b29baa1a05b3f96e826a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-sequence.json",
+      "sha256": "3b3cad2f869431fb84472960f6a59d8281bbbdb1e98ac52a41531a4d1f6be5fa"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-timebox.json",
+      "sha256": "499f07fbdfafe491b3812dcb064bba2c09195e77ad522572aa9942e45105b8bc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/time-timeline.json",
+      "sha256": "4fbd6769dd31dc4a99ad991ee23f4751fc22e04c918d434f0448284b53863fb9"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-adaptation.json",
+      "sha256": "70f3fc4ecab8e67dc19ba7fdbd7658c6a1e5e107e12794b7caf706d0add00342"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-application.json",
+      "sha256": "30ca310ef6ce08ad8c2590a885fdefef09d4ad2862b3197b530af1902aad58d0"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-constraints.json",
+      "sha256": "5ed656e9212038d133b02d30c3f731630262495012044370bfc0da6550335ff3"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-continuity.json",
+      "sha256": "51b95df7746823ffdc56dc2ee567ba7db017747d3dc1530e5bdb15eeb7603438"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-evidence.json",
+      "sha256": "86495b56bca3f63308750ae02d7738046408949e20c28e10846b2c1559996afc"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-new-context.json",
+      "sha256": "0ca8f7c85a7af14737589bf0ae29c3d1bac04a6df671b470b42e7180afd12966"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-similarity.json",
+      "sha256": "6435160185e75611b1a4d5fc13a2fd24eb9e7be32ce4cdde7d40933df418f350"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transfer-support.json",
+      "sha256": "7431f6c1a52f0c1697a8a46bded294b417f5e6ea85d811c9d4b0b02863b179fe"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-adoption.json",
+      "sha256": "8adceb0dde249f13efdf99acb5f50b483f6f2b14edafb96c6a08c50ae9cd41fd"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-bridge.json",
+      "sha256": "906829ead57d76b33bbb400b09935e8c0ebe9e75f07ce6287238d3ad0fc22248"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-capability.json",
+      "sha256": "137506a6758e8e238c0f435782dc0376c44348b0120fc361e194d707a0379f21"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-current-desired.json",
+      "sha256": "95b584826bb313008a7ba9eb578bec1ddd1f2d8c1723ecdb31b178765d4f1098"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-gap.json",
+      "sha256": "1e71a0b3f61d2b90d66f91758c66e559085ea6cde25606fbbb5b7bb65dc9b9ef"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-migration.json",
+      "sha256": "b339f9b6fc01629e62e095551f4e547f51c0eb5ec1f57e181efaa5ff32af8c27"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-staged-change.json",
+      "sha256": "681231802c1a443ae0f07cccc760e33b0d1f81eb782e506b45c7d1dbd341537a"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/assets/scenes/transformation-sustain.json",
+      "sha256": "4680225107b9f06a7b0b1c0ddd2a8492561743dcd5c1e6285b04c083d8050070"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/bank.py",
-      "sha256": "5fd9cc257aec214abf6e4f0f9750d6f5c61e06a48b2abba227086cd759ad4ab1"
+      "sha256": "8fd984b90a522cbbd51236f95dbe5bed5c7e9d0217af1950957f7335c3ea0ee2"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/deck-workflow.py",
       "sha256": "851520e1efab0b8538975d306d0d64fbf3904591ed03dfa88ed79be41fb90d33"
     },
     {
-      "ref": "03_artefactos/renderers/frames-aula/migrate.py",
-      "sha256": "fd64b96f45fb540fe893aad04836db8d2c024dc645bda02236e51736f17b1364"
+      "ref": "03_artefactos/renderers/frames-aula/export_office.py",
+      "sha256": "84c0681598bf811a8caa23eecfdfc2c85aa38af39a08c4efa09163d056afa96e"
     },
     {
-      "ref": "03_artefactos/renderers/frames-aula/export_office.py",
-      "sha256": "9cc4e0c1c30c2739fe6c798201f20feb8b32d477dd6ae3503bac0d31a081474c"
+      "ref": "03_artefactos/renderers/frames-aula/guidelines.json",
+      "sha256": "7f641096fba780a3365730c9c03e02cf2787b5a8461852b7586e47c0d6708531"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/migrate.py",
+      "sha256": "f5020bf75f9b163267981e114f13f313bdedd9f45ebee51866d3f8da149b0fcf"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/runtime.py",
+      "sha256": "6ae8797573e6db8e833bb1180eb89809109cb3c661420e4805507e1cdaf6ccbe"
+    },
+    {
+      "ref": "03_artefactos/renderers/frames-aula/style.css",
+      "sha256": "13d9087934c8aa673d906784a3fa6785414c6c6e532ec9507d8ca50e5484cad7"
     }
   ],
   "handlerRef": {
     "ref": "02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts",
-    "sha256": "762ae6c7c9966cee3f24a4bd5b737f71862fedcafd9a692d0534a3d5f68a4331"
+    "sha256": "b7cb97ac3d290406d6e56985dba64521383c88ed9bc6e983ebd55a9339c27eaa"
   },
   "kinds": [
     "immersive-class",

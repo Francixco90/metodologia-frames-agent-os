@@ -44,7 +44,7 @@
         "pt": "Descreva a situação antes de escolher uma solução. [METODOLOGIA]",
         "fr": "Décrivez la situation avant de choisir une solution. [METODOLOGIA]"
       },
-      "scene": "flow",
+      "scene": "learning-opening",
       "notes": {
         "es": "Invita a una reflexión breve.",
         "en": "Invite a brief reflection.",
@@ -84,12 +84,208 @@
           "default": "un equipo de práctica"
         }
       ],
-      "scene": "steps",
+      "scene": "learning-practice",
       "exemplar": {
         "es": "Un equipo registra una prueba y revisa el resultado. [SUPUESTO]",
         "en": "A team records a test and reviews the result. [SUPUESTO]",
         "pt": "Uma equipe registra um teste e revisa o resultado. [SUPUESTO]",
         "fr": "Une équipe consigne un test et examine le résultat. [SUPUESTO]"
+      },
+      "practice": {
+        "es": "Completa tu contexto y verifica el prompt resultante. [SUPUESTO]",
+        "en": "Complete your context and verify the resulting prompt. [SUPUESTO]",
+        "pt": "Complete seu contexto e verifique o prompt resultante. [SUPUESTO]",
+        "fr": "Complétez votre contexte et vérifiez le prompt produit. [SUPUESTO]"
+      },
+      "table": {
+        "headers": [
+          {
+            "es": "Paso",
+            "en": "Step",
+            "pt": "Etapa",
+            "fr": "Étape"
+          },
+          {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "es": "Delimitar",
+              "en": "Scope",
+              "pt": "Delimitar",
+              "fr": "Délimiter"
+            },
+            {
+              "es": "Objetivo",
+              "en": "Goal",
+              "pt": "Objetivo",
+              "fr": "Objectif"
+            }
+          ],
+          [
+            {
+              "es": "Revisar",
+              "en": "Review",
+              "pt": "Revisar",
+              "fr": "Examiner"
+            },
+            {
+              "es": "Decisión",
+              "en": "Decision",
+              "pt": "Decisão",
+              "fr": "Décision"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "criterio",
+      "title": {
+        "es": "Acordar el criterio",
+        "en": "Agree the criterion",
+        "pt": "Acordar o critério",
+        "fr": "Convenir du critère"
+      },
+      "body": {
+        "es": "Define qué resultado revisarás y qué evidencia necesitas. [SUPUESTO]",
+        "en": "Define the result to review and the evidence needed. [SUPUESTO]",
+        "pt": "Defina o resultado a revisar e a evidência necessária. [SUPUESTO]",
+        "fr": "Définissez le résultat à examiner et les preuves nécessaires. [SUPUESTO]"
+      },
+      "scene": "learning-demonstration",
+      "sceneParams": {
+        "title": {
+          "es": "Un estándar explícito",
+          "en": "An explicit standard",
+          "pt": "Um padrão explícito",
+          "fr": "Un standard explicite"
+        },
+        "a": {
+          "es": "Contexto",
+          "en": "Context",
+          "pt": "Contexto",
+          "fr": "Contexte"
+        },
+        "b": {
+          "es": "Evidencia",
+          "en": "Evidence",
+          "pt": "Evidência",
+          "fr": "Preuve"
+        },
+        "c": {
+          "es": "Revisión",
+          "en": "Review",
+          "pt": "Revisão",
+          "fr": "Examen"
+        },
+        "d": {
+          "es": "Decisión",
+          "en": "Decision",
+          "pt": "Decisão",
+          "fr": "Décision"
+        }
+      }
+    },
+    {
+      "id": "revision",
+      "title": {
+        "es": "Revisar antes de usar",
+        "en": "Review before use",
+        "pt": "Revisar antes de usar",
+        "fr": "Examiner avant usage"
+      },
+      "body": {
+        "es": "Compara el borrador con el criterio y registra cambios. [SUPUESTO]",
+        "en": "Compare the draft with the criterion and record changes. [SUPUESTO]",
+        "pt": "Compare o rascunho com o critério e registre mudanças. [SUPUESTO]",
+        "fr": "Comparez le brouillon au critère et consignez les changements. [SUPUESTO]"
+      },
+      "scene": "learning-feedback",
+      "sceneParams": {
+        "title": {
+          "es": "Evidencia de revisión",
+          "en": "Review evidence",
+          "pt": "Evidência de revisão",
+          "fr": "Preuve de révision"
+        },
+        "a": {
+          "es": "Borrador",
+          "en": "Draft",
+          "pt": "Rascunho",
+          "fr": "Brouillon"
+        },
+        "b": {
+          "es": "Criterio",
+          "en": "Criterion",
+          "pt": "Critério",
+          "fr": "Critère"
+        },
+        "c": {
+          "es": "Revisión",
+          "en": "Review",
+          "pt": "Revisão",
+          "fr": "Examen"
+        },
+        "d": {
+          "es": "Cambios",
+          "en": "Changes",
+          "pt": "Mudanças",
+          "fr": "Changements"
+        }
+      }
+    },
+    {
+      "id": "transferencia",
+      "title": {
+        "es": "Aplicar al siguiente caso",
+        "en": "Apply to the next case",
+        "pt": "Aplicar ao próximo caso",
+        "fr": "Appliquer au prochain cas"
+      },
+      "body": {
+        "es": "Elige una acción y conserva su evidencia. [SUPUESTO]",
+        "en": "Choose an action and keep its evidence. [SUPUESTO]",
+        "pt": "Escolha uma ação e guarde sua evidência. [SUPUESTO]",
+        "fr": "Choisissez une action et conservez sa preuve. [SUPUESTO]"
+      },
+      "scene": "learning-transfer",
+      "sceneParams": {
+        "title": {
+          "es": "Tu siguiente paso",
+          "en": "Your next step",
+          "pt": "Seu próximo passo",
+          "fr": "Votre prochaine étape"
+        },
+        "a": {
+          "es": "Caso",
+          "en": "Case",
+          "pt": "Caso",
+          "fr": "Cas"
+        },
+        "b": {
+          "es": "Acción",
+          "en": "Action",
+          "pt": "Ação",
+          "fr": "Action"
+        },
+        "c": {
+          "es": "Evidencia",
+          "en": "Evidence",
+          "pt": "Evidência",
+          "fr": "Preuve"
+        },
+        "d": {
+          "es": "Revisión",
+          "en": "Review",
+          "pt": "Revisão",
+          "fr": "Examen"
+        }
       }
     }
   ],

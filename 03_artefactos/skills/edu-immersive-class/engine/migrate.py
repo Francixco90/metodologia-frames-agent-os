@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Original loss-aware source adapter. Never edits upstream files."""
-import argparse,hashlib,json,pathlib,re,sys
+import argparse,copy,hashlib,json,pathlib,re,sys
+sys.dont_write_bytecode=True
 import runtime
 LOCALES={'es','en','pt','fr'}
 def stringify(value):
@@ -17,13 +18,16 @@ def convert(source,kind):
   if isinstance(sections,dict):rows=[dict(v,id=k,title=v.get('title',k)) for k,v in sections.items()]
   elif isinstance(sections,list):rows=sections
   else:rows=[{'id':'overview','title':source.get('title','Overview'),'body':stringify(source)}]
- result={'schemaVersion':'frames-aula-v1','title':source.get('title') or source.get('meta',{}).get('title','Migrated resource'),'language':source.get('language','es'),'languages':source.get('languages',['es']),'sections':[],'facts':source.get('facts',[]),'migrationSource':source}
+ result={'schemaVersion':'frames-aula-v1','title':source.get('title') or source.get('meta',{}).get('title','Migrated resource'),'language':source.get('language','es'),'languages':source.get('languages',['es']),'sections':[],'facts':source.get('facts',[]),'migrationSource':source,'authoringPolicy':{'origin':'historical'}}
+ for key in ('objectives','acceptance','training','references','theme','mode','deckType','thesis'):
+  if key in source:result[key]=copy.deepcopy(source[key])
  for n,row in enumerate(rows):
   if not isinstance(row,dict):report['unresolved'].append('row '+str(n)+' no es objeto');continue
   identifier=re.sub('[^a-z0-9-]','-',str(row.get('id',f'section-{n+1}')).lower()).strip('-')
   if not identifier or not identifier[0].isalpha():identifier='section-'+identifier
   s={'id':identifier,'title':row.get('title',f'Section {n+1}'),'body':row.get('body',row.get('subtitle',row.get('sub',row.get('thesis',''))))}
   if row.get('notes') or row.get('spoken'):s['notes']=row.get('notes',row.get('spoken'))
+  if row.get('spoken'):s['spoken']=copy.deepcopy(row['spoken'])
   scene=row.get('scene') or row.get('visual',{}).get('kind')
   if scene:
    mapping={'cycle':'orbit','loop':'orbit','chips':'steps','gate':'gate','contrast':'contrast','flow':'flow','steps':'steps','orbit':'orbit'}
@@ -42,12 +46,16 @@ def convert(source,kind):
    unresolved=[key for key in re.findall(r'\[([A-Z][A-Z0-9_]*)\]',prompt) if key not in ('METODOLOGIA','SUPUESTO','INFERENCIA','PEDAGOGIA','NEUROCIENCIA')]
    if unresolved:report['unresolved'].append({'section':identifier,'placeholders':unresolved})
    s['prompt']=prompt
-  handled={'id','title','body','subtitle','sub','thesis','notes','spoken','scene','visual','inputs','fields',*promptkeys}
+  semantic=runtime.SECTION_FIELDS-{'id','title','body','notes','scene','prompt','fields','settings','spoken'}
+  for key in semantic:
+   if key in row:s[key]=copy.deepcopy(row[key])
+  if 'settings' in row:s['settings']=copy.deepcopy(row['settings'])
+  handled={'id','title','body','subtitle','sub','thesis','notes','spoken','scene','visual','inputs','fields','settings',*promptkeys,*semantic}
   residual={k:v for k,v in row.items() if k not in handled}
   if residual:s['body']=stringify(s['body'])+'\n\n'+stringify(residual);report['unhandled'].append({'section':identifier,'fields':list(residual),'action':'preserved as labelled text and full migrationSource'})
   result['sections'].append(s)
  # Preserve non-row top-level material visibly, apart from metadata/styles.
- extra={k:v for k,v in source.items() if k not in {'title','meta','language','languages','sections','slides','livePrompts','closureSlides','facts'}}
+ extra={k:v for k,v in source.items() if k not in {'title','meta','language','languages','sections','slides','livePrompts','closureSlides','facts','objectives','acceptance','training','references','theme','mode','deckType','thesis'}}
  if extra:result['sections'].append({'id':'source-reference','title':'Referencia preservada / Preserved reference','body':stringify(extra)})
  if re.search(r'(?i)amaris',json.dumps(result,ensure_ascii=False)):report['unresolved'].append('Identidad Amaris presente: realizar reautoría de marca explícita; no se elimina automáticamente.')
  return result,report

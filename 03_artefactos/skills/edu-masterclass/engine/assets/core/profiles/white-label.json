@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "frames-aula-brand-v2",
+  "edition": "white-label",
+  "name": "Tu marca",
+  "wordmark": null,
+  "logo": null,
+  "colors": {
+    "ink": "#152238",
+    "accent": "#334155",
+    "accentFill": "#dbe4ed",
+    "canvas": "#f8fafc",
+    "surface": "#ffffff",
+    "surfaceAlt": "#f1f5f9",
+    "muted": "#576472",
+    "textSoft": "#334155",
+    "border": "#cbd5e1"
+  },
+  "typography": {
+    "heading": {
+      "family": "system-ui",
+      "weight": 700,
+      "file": null,
+      "sha256": null
+    },
+    "body": {
+      "family": "system-ui",
+      "weight": 400,
+      "file": null,
+      "sha256": null
+    }
+  },
+  "source": {
+    "path": "brand/tokens/brand-tokens.yml",
+    "sha256": "88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3",
+    "scope": "MetodologIA authored tokens; neutral white-label profile is original"
+  },
+  "license": "MIT",
+  "fontLicense": "OFL-1.1",
+  "limits": [
+    "No automatic identity override in MetodologIA",
+    "No fictional logo",
+    "White text on gold is forbidden",
+    "Fonts remain OFL-1.1"
+  ]
+}

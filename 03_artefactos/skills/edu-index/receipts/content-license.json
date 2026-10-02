@@ -1,6 +1,7 @@
 {
   "license": "MIT",
   "basis": "original_implementation",
+  "scope": "code, icons and scenes; fonts have OFL notices in engine/assets/core/fonts",
   "externalFragmentsReused": false,
   "restrictedReferences": "not_copied",
   "status": "ORIGINAL_IMPLEMENTATION"

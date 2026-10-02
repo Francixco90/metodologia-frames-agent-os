@@ -7,12 +7,151 @@ pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 change_program_manifest: '03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json'
 
 budgets:
+  - surface: generated-aula-module-fixtures
+    kind: generated
+    match:
+      [
+        '03_artefactos/skills/edu-module/examples/input.json',
+        '03_artefactos/skills/metodologia-edu-module/examples/input.json',
+      ]
+    target: {max_words: 8000, max_lines: 1800}
+    hard: {max_words: 10000, max_lines: 2000}
+    rationale: Two complete module inputs mirror the canonical aggregate of six format fixtures;
+      exact generation remains checked. Other atomic inputs retain their prior 1000-line ceiling.
+  - surface: aula-canonical-python-runtime
+    kind: authored
+    match: '03_artefactos/renderers/frames-aula/runtime.py'
+    target: {max_words: 2500, max_lines: 500}
+    hard: {max_words: 3000, max_lines: 525}
+    rationale: Exact shared Python runtime successor with structured contracts and asset bindings;
+      bounded below twice the fallback baseline, without changing other authored sources.
+  - surface: generated-aula-asset-catalogs
+    kind: generated
+    match:
+      [
+        '03_artefactos/renderers/frames-aula/assets/catalog.json',
+        '03_artefactos/renderers/frames-aula/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-immersive-class/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-masterclass/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-lean-coffee/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-playbook/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-playbook-immersive/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-index/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-edu-module/engine/assets/core/catalog.json',
+        '03_artefactos/skills/metodologia-dynamic-commercial-decks/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-immersive-class/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-masterclass/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-workbook/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-lean-coffee/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-playbook/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-playbook-immersive/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-index/engine/assets/core/catalog.json',
+        '03_artefactos/skills/edu-module/engine/assets/core/catalog.json',
+        '03_artefactos/skills/white-label-dynamic-commercial-decks/engine/assets/core/catalog.json',
+      ]
+    target: {max_words: 65000, max_lines: 25000}
+    hard: {max_words: 70000, max_lines: 26000}
+    rationale: Closed canonical 416-piece catalog and 48-piece core copies; exact generator,
+      semantics, geometry, hashes, archive member set and 30 MB bound are verified by verify:aula.
+  - surface: generated-aula-autonomous-html
+    kind: generated
+    match:
+      [
+        '03_artefactos/skills/metodologia-edu-immersive-class/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-masterclass/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-workbook/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-workbook/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-lean-coffee/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-playbook/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-playbook/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-playbook-immersive/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-index/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-index/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-edu-module/examples/*.html',
+        '03_artefactos/skills/metodologia-edu-module/examples/rendered/*.html',
+        '03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/*.html',
+        '03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/*.html',
+        '03_artefactos/skills/edu-immersive-class/examples/*.html',
+        '03_artefactos/skills/edu-immersive-class/examples/rendered/*.html',
+        '03_artefactos/skills/edu-masterclass/examples/*.html',
+        '03_artefactos/skills/edu-masterclass/examples/rendered/*.html',
+        '03_artefactos/skills/edu-workbook/examples/*.html',
+        '03_artefactos/skills/edu-workbook/examples/rendered/*.html',
+        '03_artefactos/skills/edu-lean-coffee/examples/*.html',
+        '03_artefactos/skills/edu-lean-coffee/examples/rendered/*.html',
+        '03_artefactos/skills/edu-playbook/examples/*.html',
+        '03_artefactos/skills/edu-playbook/examples/rendered/*.html',
+        '03_artefactos/skills/edu-playbook-immersive/examples/*.html',
+        '03_artefactos/skills/edu-playbook-immersive/examples/rendered/*.html',
+        '03_artefactos/skills/edu-index/examples/*.html',
+        '03_artefactos/skills/edu-index/examples/rendered/*.html',
+        '03_artefactos/skills/edu-module/examples/*.html',
+        '03_artefactos/skills/edu-module/examples/rendered/*.html',
+        '03_artefactos/skills/white-label-dynamic-commercial-decks/examples/*.html',
+        '03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/*.html',
+      ]
+    target: {max_words: 15000, max_lines: 700}
+    hard: {max_words: 20000, max_lines: 1000}
+    rationale: Exact standalone renderer projections include SVG, app code and embedded OFL
+      fonts. Regeneration, offline browser checks and native 2 MiB HTML-import gate remain.
+  - surface: generated-aula-capability-bindings
+    kind: generated
+    match: '04_estado/registries/renderers/aula-decks-capability-v1.json'
+    target: {max_words: 5000, max_lines: 2200}
+    hard: {max_words: 10000, max_lines: 3500}
+    rationale: register-aula-decks.mjs expands the complete immutable engine/assets hash closure;
+      Aula authority verification checks every declared file and strict contract bindings.
+  - surface: generated-aula-package-manifest
+    kind: generated
+    match: '04_estado/registries/skills/aula-decks-package.json'
+    target: {max_words: 5000, max_lines: 700}
+    hard: {max_words: 10000, max_lines: 1000}
+    rationale: Eighteen-package projection from build-aula-decks.py; regeneration and package
+      digests are verified separately from append-only skill promotion history.
+  - surface: generated-aula-canonical-assets
+    kind: generated
+    match: '03_artefactos/renderers/frames-aula/assets/**'
+    exclude: ['**/catalog.json']
+    target: {max_words: 5000, max_lines: 700}
+    hard: {max_words: 10000, max_lines: 1000}
+    rationale: Exact original geometry, catalog and profile projections from build-aula-assets.py;
+      build-aula-gallery.py --canonical --check verifies the frozen generator bytes and complete
+      output set. Runtime, generators, tests and editable examples remain authored.
+  - surface: generated-aula-module-aggregation
+    kind: generated
+    match: '03_artefactos/renderers/frames-aula/examples/module.json'
+    target: {max_words: 8000, max_lines: 1800}
+    hard: {max_words: 10000, max_lines: 2000}
+    rationale: One complete module projection from module.template.json and six canonical format
+      fixtures; verify:aula compares the exact aggregate. The template and format fixtures remain
+      authored and independently bounded.
+  - surface: generated-aula-example-companions
+    kind: generated
+    match:
+      [
+        '03_artefactos/renderers/frames-aula/examples/masterclass.html',
+        '03_artefactos/renderers/frames-aula/examples/workbook.html',
+      ]
+    target: {max_words: 15000, max_lines: 700}
+    hard: {max_words: 20000, max_lines: 1000}
+    rationale: Linked HTML companions regenerated by build-aula-goldens.py from editable JSON
+      and the canonical renderer; package integrity checks bind copied links to exact bytes.
   - surface: generated-aula-atomic-package
     kind: generated
     # prettier-ignore
     match: [03_artefactos/skills/metodologia-edu-immersive-class/**, 03_artefactos/skills/metodologia-edu-masterclass/**, 03_artefactos/skills/metodologia-edu-workbook/**, 03_artefactos/skills/metodologia-edu-lean-coffee/**, 03_artefactos/skills/metodologia-edu-playbook/**, 03_artefactos/skills/metodologia-edu-playbook-immersive/**, 03_artefactos/skills/metodologia-edu-index/**, 03_artefactos/skills/metodologia-edu-module/**, 03_artefactos/skills/metodologia-dynamic-commercial-decks/**, 03_artefactos/skills/edu-immersive-class/**, 03_artefactos/skills/edu-masterclass/**, 03_artefactos/skills/edu-workbook/**, 03_artefactos/skills/edu-lean-coffee/**, 03_artefactos/skills/edu-playbook/**, 03_artefactos/skills/edu-playbook-immersive/**, 03_artefactos/skills/edu-index/**, 03_artefactos/skills/edu-module/**, 03_artefactos/skills/white-label-dynamic-commercial-decks/**]
     exclude:
       - '**/context.md'
+      - '03_artefactos/skills/edu-module/examples/input.json'
+      - '03_artefactos/skills/metodologia-edu-module/examples/input.json'
+      - '**/engine/assets/core/catalog.json'
+      - '**/examples/*.html'
+      - '**/examples/rendered/*.html'
     target: {max_words: 5000, max_lines: 700}
     hard: {max_words: 10000, max_lines: 1000}
     rationale: Only eighteen original packages generated from the hash-bound canonical Aula engine;
@@ -47,12 +186,19 @@ budgets:
     rationale:
       'Workflow pages, sequences and the aggregate manifest scale deterministically with every
       registered workflow.'
-  - surface: generated-ecosystem-inventory
+  - surface: generated-public-ecosystem-inventory
     kind: generated
     match:
       - '03_artefactos/content/documentation/ecosystem-inventory-v1.json'
       - '03_artefactos/content/documentation/ecosystem-inventory.md'
       - '03_artefactos/content/documentation/ecosystem-inventory.html'
+    target: {max_words: 12000, max_lines: 6100}
+    hard: {max_words: 32000, max_lines: 6500}
+    rationale: Exact public inventory projection scales with the eighteen expanded atomic
+      packages; generator drift checks apply. Mutation profile registry keeps its prior budget.
+  - surface: generated-ecosystem-inventory
+    kind: generated
+    match:
       - '04_estado/registries/skills/mutation-profile-registry.yml'
     target: {max_words: 12000, max_lines: 6100}
     hard: {max_words: 24000, max_lines: 6500}

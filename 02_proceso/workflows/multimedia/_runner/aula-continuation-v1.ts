@@ -1,4 +1,3 @@
-import {execFileSync} from 'node:child_process';
 import {existsSync, readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {parse as parseYaml} from 'yaml';
@@ -13,6 +12,8 @@ import {
   prepareContainedDirectoryV1,
 } from '../../core/safe-local-path-v1.ts';
 import {AulaContinuationV1Schema, AulaDesignV1Schema} from '../_schema/aula-approval-v1.ts';
+import {planAulaBuildV1} from './aula-build-dependencies-v1.ts';
+import {aulaAuthorityRefV1} from './aula-engine-authority-v1.ts';
 import {selectAulaCapabilityV1} from './aula-capability-v1.ts';
 import {assertAulaApprovalsV1, createAulaMaterialHandlerV1} from './aula-material-handler-v1.ts';
 import {createAulaWorkOrderV1, aulaFileHashV1 as hash} from './aula-work-order-v1.ts';
@@ -74,6 +75,7 @@ export async function continueAulaExperienceV1(input: {
     ...(c.specApprovalRef ? {specApprovalRef: c.specApprovalRef} : {}),
     ...(c.intakeRef ? {intakeRef: c.intakeRef} : {}),
     ...(c.intakeApprovalRef ? {intakeApprovalRef: c.intakeApprovalRef} : {}),
+    ...(c.bankRef ? {bankRef: c.bankRef} : {}),
     requireSpec: c.stage === 'build',
     isDeck: capability.kind === 'dynamic-commercial-decks',
   };
@@ -83,26 +85,12 @@ export async function continueAulaExperienceV1(input: {
     throw new Error('AULA_OUTPUT_EXISTS_USE_SUCCESSOR');
   let handler: MaterialSkillHandlerV1;
   if (c.stage === 'spec') {
-    const runtime = assertContainedInputFileV1(
-      input.root,
-      '03_artefactos/renderers/frames-aula/runtime.py',
-    );
-    execFileSync(
-      'python3',
-      [
-        runtime,
-        'check',
-        '--kind',
-        capability.kind,
-        '--edition',
-        capability.edition,
-        '--input',
-        assertContainedInputFileV1(input.root, c.inputRef),
-        '--out',
-        resolve(input.root, c.outputDirectoryRef),
-      ],
-      {encoding: 'utf8', timeout: 60_000, env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'}},
-    );
+    const build = planAulaBuildV1({
+      root: input.root,
+      ...c,
+      kind: capability.kind,
+      edition: capability.edition,
+    });
     const spec = AulaDesignV1Schema.parse({
       schemaVersion: 'frames-aula-design-v1',
       requestHash: input.requestHash,
@@ -115,6 +103,12 @@ export async function continueAulaExperienceV1(input: {
       briefRef: c.briefRef,
       briefSha256: hash(assertContainedInputFileV1(input.root, c.briefRef)),
       state: 'SPEC_DRAFT',
+      ...(build.binding.engineVersion
+        ? {
+            buildBinding: build.binding,
+            engineAuthoritySha256: hash(assertContainedInputFileV1(input.root, aulaAuthorityRefV1)),
+          }
+        : {}),
       ...(c.intakeRef
         ? {
             intakeRef: c.intakeRef,

@@ -1,7 +1,7 @@
 ---
 name: white-label-dynamic-commercial-decks
 description: This skill should be used when el usuario solicita deck dinámico, prospección, defensa, keynote o webinar. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.0.3
+version: 1.1.0
 license: MIT
 metadata:
   owner: MetodologIA
@@ -18,7 +18,7 @@ Confirma audiencia, problema, decisión buscada y hechos. Redacta títulos que n
 
 1. Recibe lenguaje normal, esquema o anexos. Conserva un brief Markdown canónico con audiencia, objetivo, fuentes, restricciones y aceptación; máximo tres preguntas bloqueantes.
 2. Separa hechos, hipótesis y recomendaciones. Usa [METODOLOGIA], [PEDAGOGIA], [NEUROCIENCIA], [INFERENCIA] o [SUPUESTO] cuando corresponda; una etiqueta no sustituye evidencia. No inventes cifras ni afirmaciones científicas.
-3. Prepara `input.json` con el contrato de [schema.md](references/schema.md). Idiomas explícitos y contenido completo; no traduzcas silenciosamente con fallback. Conserva el contenido al cambiar idioma.
+3. Revisa [el golden de este formato](examples/input.json) y prepara `input.json` con [schema.md](references/schema.md). Idiomas explícitos y contenido completo. Para autoría nueva usa `authoringPolicy.origin=new`: comercial hasta 8 slides, académico hasta 13, portada y tapa incluidas. Otra extensión requiere `maxSlides` y `explicitBrief`. No recortes entradas históricas ni ejercicios.
 4. Muestra el argumento y los títulos para revisión cuando el brief no los haya autorizado. La edición es `white-label`; sus fuentes y claims no se mezclan con otras marcas.
 5. Ejecuta desde la carpeta de la skill, escribiendo en un directorio nuevo fuera del paquete:
 
@@ -35,6 +35,7 @@ python3 engine/runtime.py build --kind dynamic-commercial-decks --edition white-
 
 Usa el perfil neutral o una configuración explícita de marca con colores que pasen contraste. No incorpora logos ficticios ni identidad de MetodologIA en la pieza.
 Cada paquete contiene su propio motor generado desde la fuente canónica. Python stdlib; sin servicios externos, assets remotos ni otros skills obligatorios. El banco público de assets es opcional y solo admite releases verificadas por checksum. [METODOLOGIA]
+Incluye 32 iconos y 16 escenas locales, fuentes con avisos propios y un golden ejecutable. Consulta el catálogo local antes de elegir una escena: una referencia ausente bloquea. El banco opcional amplía a 256 iconos y 160 escenas; el HTML final embebe las piezas seleccionadas y no consulta la red. Código y arte propios MIT; fuentes OFL. [METODOLOGIA]
 
 ## Compatibilidad y límites
 
@@ -46,6 +47,6 @@ El CLI Python es portable y autónomo; su salida RENDERED_DRAFT no acredita gate
 
 ## Flujo de deck: dos decisiones
 
-Usa `python3 engine/deck-workflow.py intake WORK --input intake.json --type TIPO --mode comercial|tecnico --edition white-label`. Revisa audiencia, problema, decisión y tres pilares achieves/proof fuera del modo simple. Registra `approve WORK --gate intake --by ACTOR` solo después del sí humano. Prepara `spec WORK --input input.json`, muestra títulos, hechos, escenas y salidas; registra `approve WORK --gate spec --by ACTOR` después de la segunda decisión. `build WORK --out NUEVO` rechaza aprobaciones ausentes o stale. No pregunta por el modelo; el tipo explícito prevalece. [METODOLOGIA]
+Usa `python3 engine/deck-workflow.py intake WORK --input intake.json --type TIPO --mode comercial|tecnico --edition white-label`. Revisa audiencia, problema, decisión y tres pilares achieves/proof fuera del modo simple. Registra `approve WORK --gate intake --by ACTOR` solo después del sí humano. Prepara `spec WORK --input input.json`, muestra títulos, hechos, escenas y salidas; registra `approve WORK --gate spec --by ACTOR` después de la segunda decisión. `build WORK --out NUEVO` rechaza aprobaciones ausentes o stale. El tipo explícito prevalece. [METODOLOGIA]
 
-La arcada técnica recorre AS-IS, TO-BE, estrategia, migración, evolución y decisiones. Tablas, tabs, acordeones y detalles ayudan a profundizar sin saturar. El catálogo incluye cinco escenas originales, no las 137 de Amaris. `outputs` permite seleccionar desktop/mobile/audience/mobile-audience/markdown; si se omite, conserva las cinco salidas del contrato inicial. Office: `python3 engine/export_office.py --help`, con plantilla explícita y dependencias opcionales. [METODOLOGIA]
+La arcada técnica recorre AS-IS, TO-BE, estrategia, migración, evolución y decisiones. Tablas, columnas, matrices, métricas, tabs y acordeones conservan contenido verificable. `outputs` permite seleccionar desktop/mobile/audience/mobile-audience/markdown; si se omite, conserva las cinco salidas históricas. Office es opcional con plantilla explícita y dependencias comprobadas. [METODOLOGIA]

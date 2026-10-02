@@ -1,0 +1,24 @@
+{
+  "state": "RENDERED_DRAFT",
+  "sources": [
+    {
+      "id": "offer",
+      "source": "https://metodologia.info/",
+      "sha256": "f9d1b53de29f615715aa3c931d5cc236c31cd2dec8190159e20c0cbc852353f6",
+      "retrievedAt": "2026-10-01T21:57:15.514429+00:00",
+      "bytes": 56988,
+      "authority": "MetodologIA public official offering; frozen for this draft only",
+      "scope": "golden references, not transverse canon promotion"
+    },
+    {
+      "id": "empowerment",
+      "source": "https://metodologia.info/programas/empoderamiento/",
+      "sha256": "70072e8d7828107cd17f32ffc3dd0c00d59338cd5065ee81fddd7adf5b3dcac0",
+      "retrievedAt": "2026-10-01T21:57:16.096376+00:00",
+      "bytes": 52960,
+      "authority": "MetodologIA public official offering; frozen for this draft only",
+      "scope": "golden references, not transverse canon promotion"
+    }
+  ],
+  "note": "Published offer is provenance, not evidence of realized participant outcomes. Didactic timings are design assumptions."
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Optional original template-based static Office export; never claims scene parity."""
 import argparse,hashlib,json,pathlib,sys
+sys.dont_write_bytecode=True
 import runtime
 def main():
  p=argparse.ArgumentParser();p.add_argument('--input',required=True);p.add_argument('--template',required=True);p.add_argument('--out',required=True);p.add_argument('--kind',choices=runtime.KINDS,required=True);p.add_argument('--edition',choices=['metodologia','white-label'],default='metodologia');p.add_argument('--language',default='es');a=p.parse_args();src=pathlib.Path(a.input);template=pathlib.Path(a.template);out=pathlib.Path(a.out)

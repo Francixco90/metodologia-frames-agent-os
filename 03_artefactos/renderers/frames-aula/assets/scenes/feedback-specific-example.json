@@ -1,0 +1,713 @@
+{
+  "schemaVersion": "frames-aula-scene-v1",
+  "id": "feedback-specific-example",
+  "viewBox": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "composition": "orbit",
+  "meaning": "Retroalimentación: specific example. La disposición muestra relaciones, no magnitudes.",
+  "description": "Cuatro elementos en composición orbit, con marcador semántico feedback.",
+  "shapes": [
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 48,
+        "text-anchor": "middle",
+        "font-size": 28,
+        "font-weight": 700
+      },
+      "token": "ink",
+      "slot": "title"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M4 8a9 9 0 0 1 16 0M4 8V2m0 6h6M20 16a9 9 0 0 1-16 0m16 0v6m0-6h-6",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "ellipse",
+      "attrs": {
+        "cx": 480,
+        "cy": 300,
+        "rx": 295,
+        "ry": 150,
+        "fill": "none",
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 155,
+        "x2": 775,
+        "y2": 300,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M638.27 232.79L617.90 230.31L623.86 218.19Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 775,
+        "y1": 300,
+        "x2": 480,
+        "y2": 440,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M616.66 375.14L631.27 360.74L637.06 372.94Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 440,
+        "x2": 185,
+        "y2": 300,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M321.66 364.86L342.06 367.06L336.27 379.26Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 185,
+        "y1": 300,
+        "x2": 480,
+        "y2": 155,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M343.27 222.21L328.86 236.81L322.90 224.69Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 121,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 121,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 162,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "a"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 673,
+        "y": 266,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 673,
+        "y": 266,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 775,
+        "y": 307,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "b"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 406,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 406,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 447,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "c"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 83,
+        "y": 266,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 83,
+        "y": 266,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 185,
+        "y": 307,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "d"
+    }
+  ],
+  "slots": [
+    {
+      "id": "title",
+      "role": "thesis",
+      "label": {
+        "es": "Retroalimentación",
+        "en": "Feedback",
+        "pt": "Feedback",
+        "fr": "Retour"
+      },
+      "maxChars": 66,
+      "width": 800,
+      "maxLines": 2
+    },
+    {
+      "id": "a",
+      "role": "observation",
+      "label": {
+        "es": "Observación",
+        "en": "Observation",
+        "pt": "Observação",
+        "fr": "Observation"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "b",
+      "role": "result",
+      "label": {
+        "es": "Resultado",
+        "en": "Result",
+        "pt": "Resultado",
+        "fr": "Résultat"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "c",
+      "role": "adjustment",
+      "label": {
+        "es": "Ajuste",
+        "en": "Adjustment",
+        "pt": "Ajuste",
+        "fr": "Ajustement"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "d",
+      "role": "review",
+      "label": {
+        "es": "Revisión",
+        "en": "Review",
+        "pt": "Revisão",
+        "fr": "Revue"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    }
+  ],
+  "relationships": [
+    {
+      "from": "a",
+      "to": "b"
+    },
+    {
+      "from": "b",
+      "to": "c"
+    },
+    {
+      "from": "c",
+      "to": "d"
+    },
+    {
+      "from": "d",
+      "to": "a"
+    }
+  ],
+  "portrait": {
+    "viewBox": [
+      0,
+      0,
+      420,
+      740
+    ],
+    "shapes": [
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 46,
+          "text-anchor": "middle",
+          "font-size": 26,
+          "font-weight": 700
+        },
+        "token": "ink",
+        "slot": "title"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M4 8a9 9 0 0 1 16 0M4 8V2m0 6h6M20 16a9 9 0 0 1-16 0m16 0v6m0-6h-6",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 275,
+          "x2": 210,
+          "y2": 315,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 289.0L210 301.0L220 289.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 415,
+          "x2": 210,
+          "y2": 455,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 429.0L210 441.0L220 429.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 555,
+          "x2": 210,
+          "y2": 595,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 569.0L210 581.0L220 569.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M210 645H12V225H210",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M24 217L36 225L24 233",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 233,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "a"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 373,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "b"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 513,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "c"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 653,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "d"
+      }
+    ],
+    "slots": [
+      {
+        "id": "title",
+        "role": "thesis",
+        "label": {
+          "es": "Retroalimentación",
+          "en": "Feedback",
+          "pt": "Feedback",
+          "fr": "Retour"
+        },
+        "maxChars": 66,
+        "width": 370,
+        "maxLines": 3
+      },
+      {
+        "id": "a",
+        "role": "observation",
+        "label": {
+          "es": "Observación",
+          "en": "Observation",
+          "pt": "Observação",
+          "fr": "Observation"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "b",
+        "role": "result",
+        "label": {
+          "es": "Resultado",
+          "en": "Result",
+          "pt": "Resultado",
+          "fr": "Résultat"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "c",
+        "role": "adjustment",
+        "label": {
+          "es": "Ajuste",
+          "en": "Adjustment",
+          "pt": "Ajuste",
+          "fr": "Ajustement"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "d",
+        "role": "review",
+        "label": {
+          "es": "Revisión",
+          "en": "Review",
+          "pt": "Revisão",
+          "fr": "Revue"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      }
+    ],
+    "relationships": [
+      {
+        "from": "a",
+        "to": "b"
+      },
+      {
+        "from": "b",
+        "to": "c"
+      },
+      {
+        "from": "c",
+        "to": "d"
+      },
+      {
+        "from": "d",
+        "to": "a"
+      }
+    ],
+    "semanticEquivalence": "Same nodes, labels and directed relations; portrait reflows instead of shrinking."
+  },
+  "motion": {
+    "enabled": false,
+    "kind": "none",
+    "duration": 0,
+    "loop": false
+  },
+  "limits": {
+    "quantitativeScale": false,
+    "labelMaxChars": 32,
+    "notFor": "Gráficos estadísticos o afirmaciones científicas sin evidencia."
+  }
+}

@@ -1,8 +1,9 @@
 {
   "repository": "https://github.com/JaviMetodologIA/metodologia-aula-assets",
-  "tag": "v1.0.0",
-  "archive": "https://github.com/JaviMetodologIA/metodologia-aula-assets/releases/download/v1.0.0/metodologia-aula-assets-1.0.0.zip",
-  "sha256": "c856eff508bcfa4bd46d28e4282358f9f2a12d4cc4b588f579869903c71eeefa",
+  "tag": "v1.1.0",
+  "archive": "https://github.com/JaviMetodologIA/metodologia-aula-assets/releases/download/v1.1.0/metodologia-aula-assets-1.1.0.zip",
+  "sha256": "f44c73e965885287463204003a4ff9bf2bf7ecca4faac72dbc8f073eaaf3a64e",
+  "manifestSha256": "b15947b27f1d23eba240d8cfa3804e2fa01eb01f3dc3d7627fd3b7c039fee761",
   "optional": true,
   "networkRuntimeRequired": false
 }

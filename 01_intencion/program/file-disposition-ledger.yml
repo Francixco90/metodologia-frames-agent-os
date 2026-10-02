@@ -416,29 +416,29 @@ budgets:
   authored_eligible_corpus:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95769
-    v3_rolling_adjustment_words: 7583
+    baseline_words: 95773
+    v3_rolling_adjustment_words: 7587
     original_baseline_words: 88186
-    final_words: 110763
+    final_words: 110767
     maximum_multiplier: 1.5
-    maximum_words: 143653
+    maximum_words: 143659
     actual_multiplier: 1.1566
     status: pass
   total_authored_hard_cap:
     baseline_files: 276
     final_files: 338
-    baseline_words: 95769
-    v3_rolling_adjustment_words: 7583
+    baseline_words: 95773
+    v3_rolling_adjustment_words: 7587
     original_baseline_words: 88186
-    final_words: 110763
-    maximum_words: 191538
+    final_words: 110767
+    maximum_words: 191546
     word_multiplier: 1.1566
-    baseline_loc: 35876
-    v3_rolling_adjustment_loc: 2988
+    baseline_loc: 35878
+    v3_rolling_adjustment_loc: 2990
     original_baseline_loc: 32888
-    final_loc: 41392
-    maximum_loc: 71752
-    loc_multiplier: 1.1538
+    final_loc: 41394
+    maximum_loc: 71756
+    loc_multiplier: 1.1537
     maximum_multiplier: 2
     status: pass
   generated_template_budget:
@@ -2654,9 +2654,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:docs/program/ownership-manifest.yml
       current_ref: working-tree:docs/program/ownership-manifest.yml
       current_state: present
-      current_sha256: e6ace16e0bd83bc7dbdafb0734457efb54ccf59160a1ab3c9d8b68e05acf1910
-      current_words: 497
-      current_loc: 234
+      current_sha256: 1ad7e71b5cdfdda807b03083a8be8d52afadd39b662dd60bda0dd3bd6617d9fb
+      current_words: 499
+      current_loc: 235
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:lead:docs/**
@@ -2738,9 +2738,9 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:eslint.config.js
       current_ref: working-tree:eslint.config.js
       current_state: present
-      current_sha256: 372d5047c955fc7c39e91267ddb362f3919aa763a826d5b2c55d7b54ec97481f
-      current_words: 94
-      current_loc: 59
+      current_sha256: f8f24daa200d83de9421b69a273eec9b8a3c766e8df12d844c25fa0e320c9f32
+      current_words: 96
+      current_loc: 61
       byte_identical: false
       material_change: true
       owner_resolution: docs/program/ownership-manifest.yml:repo:eslint.config.js
@@ -3200,8 +3200,8 @@ entries:
       baseline_ref: 4c8c16820aa3abe9f4089a1f88c093e2ea58140f:package.json
       current_ref: working-tree:package.json
       current_state: present
-      current_sha256: ffe164e4029ac4eaadb1101335649375dbc634ad70bf64f529127e5ffdeecb1b
-      current_words: 827
+      current_sha256: c472186b4c25fdafc203fcaf08a7dd0d9af73a75245b21bad1459e53114fb86c
+      current_words: 829
       current_loc: 174
       byte_identical: false
       material_change: true
