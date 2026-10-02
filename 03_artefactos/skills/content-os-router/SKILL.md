@@ -150,9 +150,7 @@ binding a la spec, `captionTrackRef`, `correctionLedgerRef`, verificación ling�
 `sourceSpan`. Los trabajos v1 pueden abrirse en modo `read`, pero no producir un
 `RENDERED_DRAFT` nuevo hasta migrarse.
 
-Las ambigüedades de medio, duración, URL, storyboard y overlays se resuelven con
-las reglas canónicas y casos borde de `references/routes.md`; este archivo no las
-duplica.
+Ambigüedades: reglas canónicas y casos borde en `references/routes.md`.
 
 ## Critical Constraints
 
@@ -174,3 +172,5 @@ duplica.
 Intent ruteado con `capability_map[]`, auditoría PASS y workflow o `coverage_gap`.
 Opera offline.
 `RENDERED_DRAFT` no es aprobación; publicar exige gates humanos G13-G17.
+
+Workshop inmersivo → `workshop-immersive`, con tiempos, práctica y debrief ligados a especificación. Kit genérico → `module`; Trainer separado. [METODOLOGIA]

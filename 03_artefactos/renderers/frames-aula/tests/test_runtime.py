@@ -12,6 +12,19 @@ class RuntimeTests(unittest.TestCase):
    subprocess.run([sys.executable,'-X','pycache_prefix=',str(engine/'migrate.py'),'--input',str(source),'--out',str(root/'migrated.json'),'--kind','workbook'],check=True,capture_output=True,env=env)
    subprocess.run([sys.executable,'-X','pycache_prefix=',str(engine/'export_office.py'),'--help'],check=True,capture_output=True,env=env)
    self.assertTrue((root/'result/receipt.json').is_file());self.assertTrue((root/'migrated.json').is_file());self.assertEqual(snapshot(),before)
+ def test_workshop_requires_a_facilitation_plan_and_keeps_full_content(self):
+  self.assertEqual(r.output_plan({},'module','metodologia')[:6],[k+'.html' for k in ('immersive-class','masterclass','workbook','lean-coffee','playbook','playbook-immersive')])
+  d=r.sample('workshop-immersive')
+  for edition in ('metodologia','white-label'):
+   self.assertEqual(r.validate(d,'workshop-immersive',edition),[])
+  self.assertEqual(len(d['sections']),20);self.assertEqual(sum(item['minutes'] for item in d['training']['runOfShow']),60)
+  self.assertIn(d['sections'][-1]['title'],r.markdown(d,'es'))
+  for mutate in (lambda v:v.pop('training'),lambda v:v['training']['runOfShow'].pop(),lambda v:v['sections'][0].update(durationMinutes=480),lambda v:[s.pop('acceptance',None) for s in v['sections'] if s.get('practice')],lambda v:[s.pop('reflection',None) for s in v['sections']],lambda v:[s.pop('transfer',None) for s in v['sections']],lambda v:v['authoringPolicy'].pop('explicitBrief')):
+   altered=json.loads(json.dumps(d));mutate(altered);self.assertTrue(r.validate(altered,'workshop-immersive','metodologia'))
+  with tempfile.TemporaryDirectory() as temporary:
+   source=pathlib.Path(temporary).resolve()/'new.json';subprocess.run([sys.executable,'-B',str(P/'runtime.py'),'new','--kind','workshop-immersive','--out',str(source)],check=True,capture_output=True);self.assertEqual(r.validate(json.loads(source.read_text()),'workshop-immersive','metodologia'),[])
+  custom=json.loads(json.dumps(d));custom['brand']={'name':'Neutral','colors':{'night':'#767676','gold':'#334155','white':'#ffffff'}};custom.pop('theme',None);self.assertIn('dark canvas',repr(r.validate(custom,'workshop-immersive','white-label')))
+  audience=r.audience_content(d);self.assertNotIn('facilitatorNotes',json.dumps(audience));self.assertEqual([s['practice'] for s in d['sections'] if s.get('practice')],[s['practice'] for s in audience['sections'] if s.get('practice')])
  def test_positive(self):
   for kind in r.KINDS:
    d=r.sample(kind)
@@ -80,7 +93,7 @@ class RuntimeTests(unittest.TestCase):
   d=r.sample('immersive-class');assets,context=r.build_context(d,'metodologia')
   if not (P/'assets/core/catalog.json').exists():self.skipTest('Optional core not projected')
   self.assertEqual({item['id'] for item in context['assetEvidence']},{'flow','steps'})
-  self.assertEqual(context['engineVersion'],'1.1.0');self.assertTrue(all(len(item['sha256'])==64 for item in context['buildDependencies']))
+  self.assertEqual(context['engineVersion'],'1.2.0');self.assertTrue(all(len(item['sha256'])==64 for item in context['buildDependencies']))
   self.assertTrue(any(key.endswith(':mobile') for key in assets));self.assertFalse(any('decision-options' in key for key in assets))
  def test_asset_tampering_is_rejected(self):
   if not (P/'assets/core/catalog.json').exists():self.skipTest('Optional core not projected')

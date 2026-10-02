@@ -3,15 +3,15 @@
   "kind": "workbook",
   "edition": "white-label",
   "inputSha256": "77c0249642e8493e6ade3090e98c9838ad32456e343e436e5d20419b12cc8ec4",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "9b65f7c852f9f8e9acd26fec509e8508701d8a9d8c79a916307fd1fa459c8b5b",
-    "artifact-mobile.html": "d6547967fff7afb024ac622cb8be4ce6510a51af42b391e0f2a72720cc91075c",
-    "artifact-audience.html": "1145cf8ac96b579d458e2e7fab4f0ef565c14459ca046c8ad3d60c6841f22b84",
-    "artifact-mobile-audience.html": "6b6d063a31cc37a6741c7a888dd291f157d0fe4efb30a83b9fdbd8411478dcf4",
+    "artifact.html": "69a125b897e7a19aebf5e129daa830a36630e8aadd8a126385eff87c42bf47ca",
+    "artifact-mobile.html": "7f82a4666b628c6d20db6f6876fac873ea67d90595db697c408e57b159be8c6b",
+    "artifact-audience.html": "709f4d3a741e469f39c29af104371f63da4e0f01ce402fb170bb2b7536c21ace",
+    "artifact-mobile-audience.html": "b950cd7ff636ce868d454f713cde35a5ee1fb2f014dcda828805a2c5fb282983",
     "artifact.md": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "white-label",
     "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"

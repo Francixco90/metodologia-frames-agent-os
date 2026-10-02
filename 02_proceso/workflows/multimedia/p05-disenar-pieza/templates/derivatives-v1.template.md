@@ -39,7 +39,7 @@ sources:
     rights: cleared
   - source_id: generator-workflow-p05
     ref: 02_proceso/workflows/multimedia/p05-disenar-pieza/workflow.yml
-    sha256: b935a46a7ea398e35509c097de446be9455cc6c8da79487fcfa20b43cda4cd52
+    sha256: 79797dd1c69d5ca9b9e0a652752b46175b6301db51496ff7617fdc5471ee7061
     authority: verified
     rights: cleared
 formats:
@@ -94,7 +94,7 @@ fields:
     source_refs: []
 state: DRAFT
 next_gate: G14
-content_sha256: fce8f3643f43de5ea2bf7705ffe15bc0afffb1f292433d30a37c56410bf45c6f
+content_sha256: 72fdbe5f12f476953a235d4af4f0582712ecc51eebb0f2ee7c1854c2ebedc9a8
 ---
 
 ## Resultado y decisión

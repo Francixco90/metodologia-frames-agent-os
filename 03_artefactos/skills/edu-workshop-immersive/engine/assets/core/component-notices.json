@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "frames-aula-component-notices-v1",
+  "originalOnlyScope": "icons-and-scenes",
+  "components": [
+    {
+      "paths": [
+        "icons/**",
+        "scenes/**"
+      ],
+      "license": "MIT",
+      "rights": "original authored vector compositions"
+    },
+    {
+      "paths": [
+        "fonts/Poppins-Bold.ttf",
+        "fonts/OFL-Poppins.txt"
+      ],
+      "license": "OFL-1.1",
+      "source": "google/fonts@389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/poppins",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "paths": [
+        "fonts/Montserrat-VariableFont_wght.ttf",
+        "fonts/OFL-Montserrat.txt"
+      ],
+      "license": "OFL-1.1",
+      "source": "google/fonts@389b770410cc0b7c21c85673bfa2077420fe7f65/ofl/montserrat",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  ],
+  "trademarkNotice": "File licenses do not grant trademark rights. MetodologIA wordmark remains its owner identity; neutral edition has no logo."
+}

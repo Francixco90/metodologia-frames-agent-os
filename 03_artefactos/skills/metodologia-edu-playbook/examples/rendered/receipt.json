@@ -3,15 +3,15 @@
   "kind": "playbook",
   "edition": "metodologia",
   "inputSha256": "3537202fd7f51d9aa719880feb07a5d42a54b310bd1105c01f5480cb2c594e04",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "90b5a00e48c449df6a499ecff302cdad9c4c70c09d861dcd889e7dc95c07cab7",
-    "artifact-mobile.html": "40489901ad85b8d4f4a50a7ef3cbe7fda7c4fa9d719f3081bb9209b470f03140",
-    "artifact-audience.html": "af01281db56696c35aab8dda0dc9c08e3933d69231dfdd8847dc1d472c716ef0",
-    "artifact-mobile-audience.html": "2ee29b617cf06dd81c9d22a5bb7821a0d772c0e53940dd3bde8779522db25988",
+    "artifact.html": "1733db3a146888e04d6126f41eed77c6bff7589d9043d0f4d3e9b6f903e4b7cf",
+    "artifact-mobile.html": "771eafbe03edd8e6c7dd18a7f321144e18c3674e73aade8ee390ab70f845c9f5",
+    "artifact-audience.html": "a615b0bcb9dd90f3149595931899f1b2d492f2f72aab0f9b6218c15ddeb08a0a",
+    "artifact-mobile-audience.html": "081f78dce9b78a2d65260963dca5521ade0cc89acd0ea1bed7d56dd8ceb2921a",
     "artifact.md": "b9091db85fb72042d011184b35afc795d6bde7182ba5c04c77ce664d9907f6bb"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

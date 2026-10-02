@@ -1,5 +1,6 @@
 export const AULA_KINDS = [
   'immersive-class',
+  'workshop-immersive',
   'masterclass',
   'workbook',
   'lean-coffee',
@@ -22,6 +23,10 @@ export function selectAulaCapabilityV1(request: string, edition?: AulaEdition) {
     .replaceAll(/\p{Diacritic}/gu, '')
     .toLowerCase();
   const rules: Array<[AulaKind, RegExp]> = [
+    [
+      'workshop-immersive',
+      /workshop inmersivo|taller inmersivo|(?:deck|presentacion|sesion).*facilitar.*(?:workshop|taller)/u,
+    ],
     ['module', /kit completo|taller completo|modulo formativo|ruta formativa|training kit/u],
     ['index', /indice del modulo|landing del modulo|module home/u],
     ['playbook-immersive', /playbook inmersivo|immersive playbook/u],

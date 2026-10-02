@@ -1,7 +1,7 @@
 ---
 name: white-label-dynamic-commercial-decks
 description: This skill should be used when el usuario solicita deck dinámico, prospección, defensa, keynote o webinar. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.1.0
+version: 1.2.0
 license: MIT
 metadata:
   owner: MetodologIA

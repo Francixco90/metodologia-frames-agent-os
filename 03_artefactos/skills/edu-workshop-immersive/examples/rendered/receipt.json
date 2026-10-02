@@ -1,0 +1,262 @@
+{
+  "state": "RENDERED_DRAFT",
+  "kind": "workshop-immersive",
+  "edition": "white-label",
+  "inputSha256": "a94f6007d484b45eb6c0ed3bb07391dc526fd8121683997351b002aa31df359a",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
+  "outputs": {
+    "artifact.html": "5cfd0817382f8f114dc337027deb3a793c0a9ed50ff43311292020a9df6fffad",
+    "artifact-mobile.html": "148b70832531c19c866bf9f550a4284a182a8269ced2f0d41eaf053a9ee47663",
+    "artifact-audience.html": "ae3e5616a0bef2227b4ba42f7f919dbc6e0a669de898ea44fce7194b15794a50",
+    "artifact-mobile-audience.html": "c05db447c6402b325466faf475b889c19f84833a8df3cc2e71a7ea3168217407",
+    "artifact.md": "8058b048448f00d559e731758d5914ea4b036e5b6aaa8549ca556512a8ee5b31"
+  },
+  "engineVersion": "1.2.0",
+  "profile": {
+    "id": "white-label",
+    "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/steps.json",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/decision-options.json",
+      "sha256": "ce07fb45238300feb2e6292b978f8824e9a89ea3f935897a5c87f61d99788072"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/icons/communication-listening.svg",
+      "sha256": "25b98310a8cc0967939a5f2a1ba8679ed909652fce03f06fcfdff1a1288043dc"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/icons/assessment-criterion.svg",
+      "sha256": "e6426a52ebf7b615e9fb109b700dc9a6f1762c50b1b061c9a43dfa319137f159"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/icons/facilitation-framing.svg",
+      "sha256": "a6b208c4c96dbf2944978872c97bd13e0f7953d7252705e97e0c4126341734bf"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-recall.json",
+      "sha256": "134cddcea4ff8e16d0b9dcf4de59e03bc82f4818e9b064a0f39df40af03433d7"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/icons/evidence-provenance.svg",
+      "sha256": "95b66a4b6c1d3a417c4614e28265b379372a285428a67d72929a8d8587b3aeb5"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/icons/design-composition.svg",
+      "sha256": "ff7e79951e5c3dc4809aba5981df0424a470462feb0a89c1d860417be2ab69bc"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/reflection-debrief.json",
+      "sha256": "3394db7ac88f5a7211cddac6c2a53f26560e139a19b76c35b0f62b0511695315"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-closing.json",
+      "sha256": "04a119be63877f7d9b7749b09a3fc51d84d5756b9c18a0421e8940f6a31c264f"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "steps",
+      "kind": "scene",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "evidence-observe",
+      "kind": "scene",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "decision-options",
+      "kind": "scene",
+      "sha256": "ce07fb45238300feb2e6292b978f8824e9a89ea3f935897a5c87f61d99788072",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "team-roles",
+      "kind": "scene",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "communication-listening",
+      "kind": "icon",
+      "sha256": "25b98310a8cc0967939a5f2a1ba8679ed909652fce03f06fcfdff1a1288043dc",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "assessment-criterion",
+      "kind": "icon",
+      "sha256": "e6426a52ebf7b615e9fb109b700dc9a6f1762c50b1b061c9a43dfa319137f159",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "facilitation-framing",
+      "kind": "icon",
+      "sha256": "a6b208c4c96dbf2944978872c97bd13e0f7953d7252705e97e0c4126341734bf",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-recall",
+      "kind": "scene",
+      "sha256": "134cddcea4ff8e16d0b9dcf4de59e03bc82f4818e9b064a0f39df40af03433d7",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "flow",
+      "kind": "scene",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "gate",
+      "kind": "scene",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "evidence-provenance",
+      "kind": "icon",
+      "sha256": "95b66a4b6c1d3a417c4614e28265b379372a285428a67d72929a8d8587b3aeb5",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "design-composition",
+      "kind": "icon",
+      "sha256": "ff7e79951e5c3dc4809aba5981df0424a470462feb0a89c1d860417be2ab69bc",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "reflection-debrief",
+      "kind": "scene",
+      "sha256": "3394db7ac88f5a7211cddac6c2a53f26560e139a19b76c35b0f62b0511695315",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-closing",
+      "kind": "scene",
+      "sha256": "04a119be63877f7d9b7749b09a3fc51d84d5756b9c18a0421e8940f6a31c264f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
+  "advisories": []
+}

@@ -56,19 +56,6 @@ const transition = (id, to, actor, decision, evidence) => {
   text += '  - ' + JSON.stringify(event) + '\n';
   registry = parse(text);
 };
-const implementationRefs = [
-  '02_proceso/workflows/multimedia/_runner/aula-material-handler-v1.ts',
-  '02_proceso/workflows/multimedia/_runner/aula-work-order-v1.ts',
-  '02_proceso/workflows/multimedia/_runner/aula-continuation-v1.ts',
-  '02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts',
-  '05_verificacion/tests/integration/aula-continuation.test.ts',
-  '02_proceso/workflows/multimedia/_runner/aula-engine-authority-v1.ts',
-  '02_proceso/workflows/multimedia/_runner/aula-build-dependencies-v1.ts',
-  '02_proceso/workflows/multimedia/_schema/aula-dependencies-v1.ts',
-  '02_proceso/workflows/multimedia/_schema/aula-promotion-review-v1.ts',
-  '02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts',
-  '05_verificacion/scripts/promote-aula-decks.mjs',
-];
 if (mode === '--evaluate') {
   io.assertAulaEvaluationAbsentV1(root, evaluationRef);
   for (const item of manifest.skills)
@@ -90,13 +77,16 @@ if (mode === '--evaluate') {
     actorId: 'AUTOMATED-PORTABLE-CHECKS',
     status: 'PASS',
     scope: 'local-draft-generation',
-    implementation: implementationRefs.map((ref) => ({ref, sha256: digest(readFileSync(ref))})),
+    implementation: io.AULA_PROMOTION_IMPLEMENTATION_REFS.map((ref) => ({
+      ref,
+      sha256: digest(readFileSync(ref)),
+    })),
     humanPieceApproval: false,
     publicationAuthority: false,
     checks: {
-      atomicPackages: 18,
-      materialCombinations: 18,
-      negativeAndReadOnly: report.numPassedTests - 18,
+      atomicPackages: manifest.skills.length,
+      materialCombinations: manifest.skills.length,
+      negativeAndReadOnly: report.numPassedTests - manifest.skills.length,
     },
     testReportSha256: digest(results),
     packages: manifest.skills.map((item) => {
@@ -141,7 +131,7 @@ if (mode === '--evaluate') {
   );
   if (
     JSON.stringify(evaluation.implementation.map((item) => item.ref).sort()) !==
-    JSON.stringify([...implementationRefs].sort())
+    JSON.stringify([...io.AULA_PROMOTION_IMPLEMENTATION_REFS].sort())
   )
     throw new Error('AULA_IMPLEMENTATION_EVALUATION_INCOMPLETE');
   if (

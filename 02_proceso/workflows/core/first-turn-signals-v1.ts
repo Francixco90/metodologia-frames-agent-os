@@ -17,6 +17,8 @@ export const CONTENT_SIGNALS_V1 = [
   'workbook',
   'masterclass',
   'clase inmersiva',
+  'workshop inmersivo',
+  'taller inmersivo',
   'playbook',
   'lean coffee',
   'kit completo',

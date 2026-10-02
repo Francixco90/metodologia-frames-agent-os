@@ -3,15 +3,15 @@
   "kind": "playbook-immersive",
   "edition": "metodologia",
   "inputSha256": "485a3d98a0680a74548afd9f2a1f3f6688dea0f30eaef91b1c59badb6a064d51",
-  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
+  "engineSha256": "285420d9a534b335769ea3796e027fff6125f2f4e1ea773db514ebc1867361ec",
   "outputs": {
-    "artifact.html": "0f122e27981b721d39f1134ade212aeca655bdf7a70b81cf0aba0fbfc466715f",
-    "artifact-mobile.html": "f6102e860c957473b174aa5f224368f3336bc3dd2e92932b75ff3c974bf66e64",
-    "artifact-audience.html": "f7a9acc420e4042a07d5e6682821cd5b9f8a417dbc237a4273e5fa90e325c85d",
-    "artifact-mobile-audience.html": "1c3760d48acecb8256c09f70215d8c12e6adfa32690c1da798481976f764ae43",
+    "artifact.html": "85e7bd534b550b1f123acf350d30938d273303e6f8e9e1e42ce4e3cce513b69d",
+    "artifact-mobile.html": "695a70fad21b491b2cd3fedc488578e06f97a60a7c8bf038c9089ac7708a544a",
+    "artifact-audience.html": "648bc0f32822b4c3d67d7e232a17f625b95d254a74429fbee27d7ee6717e5bc2",
+    "artifact-mobile-audience.html": "1d088448ad3b5bb5ec686fde8f0890f81520e9771cbb8917e32c6e935e0e0992",
     "artifact.md": "535abd2940af1bf6b2cf833468b0b8eaee917386bfb964f471fe4ced2a0eb2c2"
   },
-  "engineVersion": "1.1.0",
+  "engineVersion": "1.2.0",
   "profile": {
     "id": "metodologia",
     "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"

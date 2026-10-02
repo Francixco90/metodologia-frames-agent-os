@@ -11,14 +11,14 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 ## Resumen
 
 - AGENT: 11
-- ASSET: 1829
+- ASSET: 1945
 - COMMAND: 108
 - COMPONENT: 16
 - DELIVERABLE: 87
 - GATE: 77
 - RENDERER: 5
 - ROUTE: 12
-- SKILL: 203
+- SKILL: 205
 - SOURCE: 11
 - TEMPLATE: 138
 - WORKFLOW: 43
@@ -1024,6 +1024,64 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/edu-workbook/engine/assets/core/scenes/reflection-debrief.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workbook/engine/assets/core/scenes/reflection-debrief.json` |
 | ASSET | 03_artefactos/skills/edu-workbook/engine/assets/core/scenes/steps.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workbook/engine/assets/core/scenes/steps.json` |
 | ASSET | 03_artefactos/skills/edu-workbook/engine/assets/core/scenes/team-roles.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workbook/engine/assets/core/scenes/team-roles.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/assets/bank.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/catalog.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/catalog.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/component-notices.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/component-notices.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/Montserrat-VariableFont_wght.ttf | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/Montserrat-VariableFont_wght.ttf` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/OFL-Montserrat.txt | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/OFL-Montserrat.txt` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/OFL-Poppins.txt | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/OFL-Poppins.txt` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/Poppins-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/fonts/Poppins-Bold.ttf` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/assessment-criterion.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/assessment-criterion.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/assessment-rubric.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/assessment-rubric.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/business-customer.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/business-customer.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/business-value.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/business-value.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/cognition-attention.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/cognition-attention.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/cognition-memory.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/cognition-memory.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/collaboration-roles.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/collaboration-roles.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/collaboration-team.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/collaboration-team.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/communication-listening.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/communication-listening.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/communication-message.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/communication-message.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/data-dataset.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/data-dataset.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/data-metric.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/data-metric.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/design-composition.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/design-composition.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/design-prototype.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/design-prototype.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/ethics-consent.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/ethics-consent.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/ethics-privacy.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/ethics-privacy.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/evidence-provenance.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/evidence-provenance.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/evidence-source.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/evidence-source.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/facilitation-framing.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/facilitation-framing.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/facilitation-opening.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/facilitation-opening.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/learning-guided-practice.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/learning-guided-practice.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/learning-reading.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/learning-reading.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/operations-configuration.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/operations-configuration.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/operations-maintenance.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/operations-maintenance.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/planning-agenda.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/planning-agenda.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/planning-deadline.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/planning-deadline.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/process-start.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/process-start.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/process-workflow.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/process-workflow.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/research-experiment.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/research-experiment.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/research-observation.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/research-observation.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/technology-computer.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/technology-computer.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/technology-mobile.svg | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/icons/technology-mobile.svg` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/LICENSE | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/LICENSE` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/profiles/metodologia.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/profiles/metodologia.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/profiles/white-label.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/profiles/white-label.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/contrast.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/contrast.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/decision-options.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/decision-options.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/evidence-observe.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/evidence-observe.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/flow.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/flow.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/gate.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/gate.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-closing.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-closing.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-demonstration.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-demonstration.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-feedback.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-feedback.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-opening.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-opening.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-practice.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-practice.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-recall.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-recall.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-transfer.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/learning-transfer.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/orbit.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/orbit.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/reflection-debrief.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/reflection-debrief.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/steps.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/steps.json` |
+| ASSET | 03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/team-roles.json | ACTIVE | CANONICAL | `03_artefactos/skills/edu-workshop-immersive/engine/assets/core/scenes/team-roles.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/contact-binding.example.json` |
 | ASSET | 03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json | ACTIVE | CANONICAL | `03_artefactos/skills/evidence-first-cv/assets/docx-style-contract.json` |
 | ASSET | 03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-certificate-builder/assets/certificate-template-v16.html` |
@@ -1550,6 +1608,64 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | ASSET | 03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/reflection-debrief.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/reflection-debrief.json` |
 | ASSET | 03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/steps.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/steps.json` |
 | ASSET | 03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/team-roles.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/scenes/team-roles.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/assets/bank.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/assets/bank.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/catalog.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/catalog.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/component-notices.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/component-notices.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/Montserrat-VariableFont_wght.ttf | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/Montserrat-VariableFont_wght.ttf` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/OFL-Montserrat.txt | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/OFL-Montserrat.txt` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/OFL-Poppins.txt | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/OFL-Poppins.txt` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/Poppins-Bold.ttf | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/fonts/Poppins-Bold.ttf` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/assessment-criterion.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/assessment-criterion.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/assessment-rubric.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/assessment-rubric.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/business-customer.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/business-customer.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/business-value.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/business-value.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/cognition-attention.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/cognition-attention.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/cognition-memory.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/cognition-memory.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/collaboration-roles.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/collaboration-roles.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/collaboration-team.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/collaboration-team.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/communication-listening.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/communication-listening.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/communication-message.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/communication-message.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/data-dataset.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/data-dataset.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/data-metric.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/data-metric.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/design-composition.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/design-composition.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/design-prototype.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/design-prototype.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/ethics-consent.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/ethics-consent.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/ethics-privacy.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/ethics-privacy.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/evidence-provenance.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/evidence-provenance.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/evidence-source.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/evidence-source.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/facilitation-framing.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/facilitation-framing.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/facilitation-opening.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/facilitation-opening.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/learning-guided-practice.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/learning-guided-practice.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/learning-reading.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/learning-reading.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/operations-configuration.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/operations-configuration.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/operations-maintenance.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/operations-maintenance.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/planning-agenda.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/planning-agenda.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/planning-deadline.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/planning-deadline.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/process-start.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/process-start.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/process-workflow.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/process-workflow.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/research-experiment.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/research-experiment.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/research-observation.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/research-observation.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/technology-computer.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/technology-computer.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/technology-mobile.svg | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/icons/technology-mobile.svg` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/LICENSE | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/LICENSE` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/profiles/metodologia.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/profiles/metodologia.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/profiles/white-label.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/profiles/white-label.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/contrast.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/contrast.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/decision-options.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/decision-options.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/evidence-observe.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/evidence-observe.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/flow.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/flow.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/gate.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/gate.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-closing.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-closing.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-demonstration.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-demonstration.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-feedback.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-feedback.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-opening.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-opening.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-practice.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-practice.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-recall.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-recall.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-transfer.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/learning-transfer.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/orbit.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/orbit.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/reflection-debrief.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/reflection-debrief.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/steps.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/steps.json` |
+| ASSET | 03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/team-roles.json | ACTIVE | CANONICAL | `03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/scenes/team-roles.json` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-branded-static-visual.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-case-study.md` |
 | ASSET | 03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md | ACTIVE | CANONICAL | `03_artefactos/skills/notebooklm-brand-content-director/assets/prompt-templates/channel-commercial-proposal-deck.md` |
@@ -2317,6 +2433,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | edu-playbook-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | edu-playbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | edu-workbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | edu-workshop-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | evidence-based-cover-letter | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | evidence-first-cv | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | frames-docs-as-code | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
@@ -2353,6 +2470,7 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | SKILL | metodologia-edu-playbook-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | metodologia-edu-playbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | metodologia-edu-workbook | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
+| SKILL | metodologia-edu-workshop-immersive | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | metodologia-find-skills | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
 | SKILL | motion-library-adapters | ACTIVE | CANONICAL | `04_estado/registries/skills/creation-v3-skill-registry.yml` |
 | SKILL | remotion-video-production-v2 | ACTIVE | CANONICAL | `04_estado/registries/skills/skill-registry.yml` |
@@ -2568,4 +2686,4 @@ Usa este índice para saber qué puede enrutar, ejecutar, documentar y verificar
 | WORKFLOW | S08 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s08-package/workflow.yml` |
 | WORKFLOW | S09 | ACTIVE | CANONICAL | `02_proceso/workflows/skill-systems/s09-lifecycle/workflow.yml` |
 
-Hash de fuentes: `22de5082daf7a3c13dc8f1010ca6c66bf38deccbcfb19d85c3901ff222d1596d`.
+Hash de fuentes: `6ddd1ac4e9e04de9b00e8300ebf744ef754786c6b7c886838afa5578106db619`.

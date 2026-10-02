@@ -2,12 +2,15 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
-import {selectAulaCapabilityV1} from '../../02_proceso/workflows/multimedia/_runner/aula-capability-v1.ts';
+import {
+  AULA_KINDS,
+  selectAulaCapabilityV1,
+} from '../../02_proceso/workflows/multimedia/_runner/aula-capability-v1.ts';
 import {dispatchIntent} from '../../03_artefactos/skills/content-os-router/scripts/route-intent.mjs';
 const manifest = JSON.parse(
   readFileSync('04_estado/registries/skills/aula-decks-package.json', 'utf8'),
 );
-assert.equal(manifest.skills.length, 18);
+assert.equal(manifest.skills.length, AULA_KINDS.length * 2);
 const examples = '03_artefactos/renderers/frames-aula/examples/';
 const moduleTemplate = JSON.parse(readFileSync(examples + 'module.template.json', 'utf8'));
 const pieceSections = Object.fromEntries(
@@ -61,6 +64,9 @@ for (const entry of manifest.skills)
 for (const [request, kind] of [
   ['Crear un workbook', 'workbook'],
   ['Masterclass sobre conceptos', 'masterclass'],
+  ['Facilitar un workshop inmersivo', 'workshop-immersive'],
+  ['Deck para facilitar un workshop', 'workshop-immersive'],
+  ['Crear un taller completo como workshop inmersivo', 'workshop-immersive'],
   ['Clase inmersiva', 'immersive-class'],
   ['Crear una clase inmersiva para capacitación', 'immersive-class'],
   ['Kit completo para un taller', 'module'],
@@ -82,5 +88,5 @@ assert.equal(selectAulaCapabilityV1('Crear un workbook de marca blanca').edition
 assert.equal(selectAulaCapabilityV1('Crear un video'), null);
 assert.throws(() => selectAulaCapabilityV1('workbook', 'unexpected'), /AULA_EDITION_INVALID/);
 console.log(
-  'PASS Aula: 18 packages and pertinent routing. Full material continuation exercised by integration suite.',
+  `PASS Aula: ${manifest.skills.length} packages and pertinent routing. Full material continuation exercised by integration suite.`,
 );

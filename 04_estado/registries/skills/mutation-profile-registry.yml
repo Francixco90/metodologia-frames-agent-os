@@ -436,6 +436,9 @@ profiles:
   - skill_id: edu-workbook
     mutation_classes: []
     documentation_impact_required: false
+  - skill_id: edu-workshop-immersive
+    mutation_classes: []
+    documentation_impact_required: false
   - skill_id: evidence-based-cover-letter
     mutation_classes: []
     documentation_impact_required: false
@@ -542,6 +545,9 @@ profiles:
     mutation_classes: []
     documentation_impact_required: false
   - skill_id: metodologia-edu-workbook
+    mutation_classes: []
+    documentation_impact_required: false
+  - skill_id: metodologia-edu-workshop-immersive
     mutation_classes: []
     documentation_impact_required: false
   - skill_id: metodologia-find-skills

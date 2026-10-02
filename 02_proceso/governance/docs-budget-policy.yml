@@ -1,5 +1,3 @@
-# Multi-format size budgets. Changed files must resolve one effective rule;
-# target overruns warn and hard overruns fail. [CONFIG]
 schema_version: file-budget-policy-v2
 manifest_id: file-budget-policy-v2
 defaults: {kind: authored, scope: changed, mode: enforce, changed_mode: enforce}
@@ -7,221 +5,132 @@ pr_budget: {target_files: 8, target_loc: 800, hard_files: 12, hard_loc: 1200}
 change_program_manifest: '03_artefactos/projects/aula-decks-publication-20261001/change-budget-program-v1.json'
 
 budgets:
+  # prettier-ignore
+  - {surface: authored-aula-workshop-golden, kind: authored, match: "03_artefactos/renderers/frames-aula/examples/workshop-immersive.json", target: {max_words: 4000, max_lines: 800}, hard: {max_words: 5000, max_lines: 1000}, rationale: "Exact original twenty-slide workshop source requested with complete practice, facilitation notes and sixty-minute schedule; bounded at twice the fallback limit, preserving other authored sources."}
   - surface: generated-aula-module-fixtures
     kind: generated
-    match:
-      [
-        '03_artefactos/skills/edu-module/examples/input.json',
-        '03_artefactos/skills/metodologia-edu-module/examples/input.json',
-      ]
+    # prettier-ignore
+    match: ["03_artefactos/skills/edu-module/examples/input.json","03_artefactos/skills/metodologia-edu-module/examples/input.json"]
     target: {max_words: 8000, max_lines: 1800}
     hard: {max_words: 10000, max_lines: 2000}
-    rationale: Two complete module inputs mirror the canonical aggregate of six format fixtures;
-      exact generation remains checked. Other atomic inputs retain their prior 1000-line ceiling.
+    # prettier-ignore
+    rationale: "Two complete module inputs mirror the canonical aggregate of six format fixtures; exact generation remains checked. Other atomic inputs retain their prior 1000-line ceiling."
   - surface: aula-canonical-python-runtime
     kind: authored
     match: '03_artefactos/renderers/frames-aula/runtime.py'
     target: {max_words: 2500, max_lines: 500}
     hard: {max_words: 3000, max_lines: 525}
-    rationale: Exact shared Python runtime successor with structured contracts and asset bindings;
-      bounded below twice the fallback baseline, without changing other authored sources.
+    # prettier-ignore
+    rationale: "Exact shared Python runtime successor with structured contracts and asset bindings; bounded below twice the fallback baseline, without changing other authored sources."
   - surface: generated-aula-asset-catalogs
     kind: generated
-    match:
-      [
-        '03_artefactos/renderers/frames-aula/assets/catalog.json',
-        '03_artefactos/renderers/frames-aula/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-immersive-class/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-masterclass/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-lean-coffee/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-playbook/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-playbook-immersive/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-index/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-edu-module/engine/assets/core/catalog.json',
-        '03_artefactos/skills/metodologia-dynamic-commercial-decks/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-immersive-class/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-masterclass/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-workbook/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-lean-coffee/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-playbook/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-playbook-immersive/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-index/engine/assets/core/catalog.json',
-        '03_artefactos/skills/edu-module/engine/assets/core/catalog.json',
-        '03_artefactos/skills/white-label-dynamic-commercial-decks/engine/assets/core/catalog.json',
-      ]
+    # prettier-ignore
+    match: ["03_artefactos/renderers/frames-aula/assets/catalog.json","03_artefactos/renderers/frames-aula/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-immersive-class/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-masterclass/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-workshop-immersive/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-lean-coffee/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-playbook/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-playbook-immersive/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-index/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-edu-module/engine/assets/core/catalog.json","03_artefactos/skills/metodologia-dynamic-commercial-decks/engine/assets/core/catalog.json","03_artefactos/skills/edu-immersive-class/engine/assets/core/catalog.json","03_artefactos/skills/edu-masterclass/engine/assets/core/catalog.json","03_artefactos/skills/edu-workshop-immersive/engine/assets/core/catalog.json","03_artefactos/skills/edu-workbook/engine/assets/core/catalog.json","03_artefactos/skills/edu-lean-coffee/engine/assets/core/catalog.json","03_artefactos/skills/edu-playbook/engine/assets/core/catalog.json","03_artefactos/skills/edu-playbook-immersive/engine/assets/core/catalog.json","03_artefactos/skills/edu-index/engine/assets/core/catalog.json","03_artefactos/skills/edu-module/engine/assets/core/catalog.json","03_artefactos/skills/white-label-dynamic-commercial-decks/engine/assets/core/catalog.json"]
     target: {max_words: 65000, max_lines: 25000}
     hard: {max_words: 70000, max_lines: 26000}
-    rationale: Closed canonical 416-piece catalog and 48-piece core copies; exact generator,
-      semantics, geometry, hashes, archive member set and 30 MB bound are verified by verify:aula.
+    # prettier-ignore
+    rationale: "Closed canonical 416-piece catalog and 48-piece core copies; exact generator, semantics, geometry, hashes, archive member set and 30 MB bound are verified by verify:aula."
   - surface: generated-aula-autonomous-html
     kind: generated
-    match:
-      [
-        '03_artefactos/skills/metodologia-edu-immersive-class/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-masterclass/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-workbook/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-workbook/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-lean-coffee/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-playbook/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-playbook/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-playbook-immersive/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-index/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-index/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-edu-module/examples/*.html',
-        '03_artefactos/skills/metodologia-edu-module/examples/rendered/*.html',
-        '03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/*.html',
-        '03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/*.html',
-        '03_artefactos/skills/edu-immersive-class/examples/*.html',
-        '03_artefactos/skills/edu-immersive-class/examples/rendered/*.html',
-        '03_artefactos/skills/edu-masterclass/examples/*.html',
-        '03_artefactos/skills/edu-masterclass/examples/rendered/*.html',
-        '03_artefactos/skills/edu-workbook/examples/*.html',
-        '03_artefactos/skills/edu-workbook/examples/rendered/*.html',
-        '03_artefactos/skills/edu-lean-coffee/examples/*.html',
-        '03_artefactos/skills/edu-lean-coffee/examples/rendered/*.html',
-        '03_artefactos/skills/edu-playbook/examples/*.html',
-        '03_artefactos/skills/edu-playbook/examples/rendered/*.html',
-        '03_artefactos/skills/edu-playbook-immersive/examples/*.html',
-        '03_artefactos/skills/edu-playbook-immersive/examples/rendered/*.html',
-        '03_artefactos/skills/edu-index/examples/*.html',
-        '03_artefactos/skills/edu-index/examples/rendered/*.html',
-        '03_artefactos/skills/edu-module/examples/*.html',
-        '03_artefactos/skills/edu-module/examples/rendered/*.html',
-        '03_artefactos/skills/white-label-dynamic-commercial-decks/examples/*.html',
-        '03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/*.html',
-      ]
+    # prettier-ignore
+    match: ["03_artefactos/skills/metodologia-edu-immersive-class/examples/*.html","03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-masterclass/examples/*.html","03_artefactos/skills/metodologia-edu-workshop-immersive/examples/*.html","03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-workshop-immersive/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-workbook/examples/*.html","03_artefactos/skills/metodologia-edu-workbook/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-lean-coffee/examples/*.html","03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-playbook/examples/*.html","03_artefactos/skills/metodologia-edu-playbook/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-playbook-immersive/examples/*.html","03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-index/examples/*.html","03_artefactos/skills/metodologia-edu-index/examples/rendered/*.html","03_artefactos/skills/metodologia-edu-module/examples/*.html","03_artefactos/skills/metodologia-edu-module/examples/rendered/*.html","03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/*.html","03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/*.html","03_artefactos/skills/edu-immersive-class/examples/*.html","03_artefactos/skills/edu-immersive-class/examples/rendered/*.html","03_artefactos/skills/edu-masterclass/examples/*.html","03_artefactos/skills/edu-workshop-immersive/examples/*.html","03_artefactos/skills/edu-masterclass/examples/rendered/*.html","03_artefactos/skills/edu-workshop-immersive/examples/rendered/*.html","03_artefactos/skills/edu-workbook/examples/*.html","03_artefactos/skills/edu-workbook/examples/rendered/*.html","03_artefactos/skills/edu-lean-coffee/examples/*.html","03_artefactos/skills/edu-lean-coffee/examples/rendered/*.html","03_artefactos/skills/edu-playbook/examples/*.html","03_artefactos/skills/edu-playbook/examples/rendered/*.html","03_artefactos/skills/edu-playbook-immersive/examples/*.html","03_artefactos/skills/edu-playbook-immersive/examples/rendered/*.html","03_artefactos/skills/edu-index/examples/*.html","03_artefactos/skills/edu-index/examples/rendered/*.html","03_artefactos/skills/edu-module/examples/*.html","03_artefactos/skills/edu-module/examples/rendered/*.html","03_artefactos/skills/white-label-dynamic-commercial-decks/examples/*.html","03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/*.html"]
     target: {max_words: 15000, max_lines: 700}
     hard: {max_words: 20000, max_lines: 1000}
-    rationale: Exact standalone renderer projections include SVG, app code and embedded OFL
-      fonts. Regeneration, offline browser checks and native 2 MiB HTML-import gate remain.
+    # prettier-ignore
+    rationale: "Exact standalone renderer projections include SVG, app code and embedded OFL fonts. Regeneration, offline browser checks and native 2 MiB HTML-import gate remain."
   - surface: generated-aula-capability-bindings
     kind: generated
     match: '04_estado/registries/renderers/aula-decks-capability-v1.json'
     target: {max_words: 5000, max_lines: 2200}
     hard: {max_words: 10000, max_lines: 3500}
-    rationale: register-aula-decks.mjs expands the complete immutable engine/assets hash closure;
-      Aula authority verification checks every declared file and strict contract bindings.
+    # prettier-ignore
+    rationale: "register-aula-decks.mjs expands the complete immutable engine/assets hash closure; Aula authority verification checks every declared file and strict contract bindings."
   - surface: generated-aula-package-manifest
     kind: generated
     match: '04_estado/registries/skills/aula-decks-package.json'
     target: {max_words: 5000, max_lines: 700}
     hard: {max_words: 10000, max_lines: 1000}
-    rationale: Eighteen-package projection from build-aula-decks.py; regeneration and package
-      digests are verified separately from append-only skill promotion history.
+    # prettier-ignore
+    rationale: "Eighteen-package projection from build-aula-decks.py; regeneration and package digests are verified separately from append-only skill promotion history."
   - surface: generated-aula-canonical-assets
     kind: generated
     match: '03_artefactos/renderers/frames-aula/assets/**'
     exclude: ['**/catalog.json']
     target: {max_words: 5000, max_lines: 700}
     hard: {max_words: 10000, max_lines: 1000}
-    rationale: Exact original geometry, catalog and profile projections from build-aula-assets.py;
-      build-aula-gallery.py --canonical --check verifies the frozen generator bytes and complete
-      output set. Runtime, generators, tests and editable examples remain authored.
+    # prettier-ignore
+    rationale: "Exact original geometry, catalog and profile projections from build-aula-assets.py; build-aula-gallery.py --canonical --check verifies the frozen generator bytes and complete output set. Runtime, generators, tests and editable examples remain authored."
   - surface: generated-aula-module-aggregation
     kind: generated
     match: '03_artefactos/renderers/frames-aula/examples/module.json'
     target: {max_words: 8000, max_lines: 1800}
     hard: {max_words: 10000, max_lines: 2000}
-    rationale: One complete module projection from module.template.json and six canonical format
-      fixtures; verify:aula compares the exact aggregate. The template and format fixtures remain
-      authored and independently bounded.
+    # prettier-ignore
+    rationale: "One complete module projection from module.template.json and six canonical format fixtures; verify:aula compares the exact aggregate. The template and format fixtures remain authored and independently bounded."
   - surface: generated-aula-example-companions
     kind: generated
-    match:
-      [
-        '03_artefactos/renderers/frames-aula/examples/masterclass.html',
-        '03_artefactos/renderers/frames-aula/examples/workbook.html',
-      ]
+    # prettier-ignore
+    match: ["03_artefactos/renderers/frames-aula/examples/masterclass.html","03_artefactos/renderers/frames-aula/examples/workbook.html"]
     target: {max_words: 15000, max_lines: 700}
     hard: {max_words: 20000, max_lines: 1000}
-    rationale: Linked HTML companions regenerated by build-aula-goldens.py from editable JSON
-      and the canonical renderer; package integrity checks bind copied links to exact bytes.
+    # prettier-ignore
+    rationale: "Linked HTML companions regenerated by build-aula-goldens.py from editable JSON and the canonical renderer; package integrity checks bind copied links to exact bytes."
   - surface: generated-aula-atomic-package
     kind: generated
     # prettier-ignore
-    match: [03_artefactos/skills/metodologia-edu-immersive-class/**, 03_artefactos/skills/metodologia-edu-masterclass/**, 03_artefactos/skills/metodologia-edu-workbook/**, 03_artefactos/skills/metodologia-edu-lean-coffee/**, 03_artefactos/skills/metodologia-edu-playbook/**, 03_artefactos/skills/metodologia-edu-playbook-immersive/**, 03_artefactos/skills/metodologia-edu-index/**, 03_artefactos/skills/metodologia-edu-module/**, 03_artefactos/skills/metodologia-dynamic-commercial-decks/**, 03_artefactos/skills/edu-immersive-class/**, 03_artefactos/skills/edu-masterclass/**, 03_artefactos/skills/edu-workbook/**, 03_artefactos/skills/edu-lean-coffee/**, 03_artefactos/skills/edu-playbook/**, 03_artefactos/skills/edu-playbook-immersive/**, 03_artefactos/skills/edu-index/**, 03_artefactos/skills/edu-module/**, 03_artefactos/skills/white-label-dynamic-commercial-decks/**]
-    exclude:
-      - '**/context.md'
-      - '03_artefactos/skills/edu-module/examples/input.json'
-      - '03_artefactos/skills/metodologia-edu-module/examples/input.json'
-      - '**/engine/assets/core/catalog.json'
-      - '**/examples/*.html'
-      - '**/examples/rendered/*.html'
+    match: [03_artefactos/skills/metodologia-edu-immersive-class/**, 03_artefactos/skills/metodologia-edu-masterclass/**,03_artefactos/skills/metodologia-edu-workshop-immersive/**, 03_artefactos/skills/metodologia-edu-workbook/**, 03_artefactos/skills/metodologia-edu-lean-coffee/**, 03_artefactos/skills/metodologia-edu-playbook/**, 03_artefactos/skills/metodologia-edu-playbook-immersive/**, 03_artefactos/skills/metodologia-edu-index/**, 03_artefactos/skills/metodologia-edu-module/**, 03_artefactos/skills/metodologia-dynamic-commercial-decks/**, 03_artefactos/skills/edu-immersive-class/**, 03_artefactos/skills/edu-masterclass/**,03_artefactos/skills/edu-workshop-immersive/**, 03_artefactos/skills/edu-workbook/**, 03_artefactos/skills/edu-lean-coffee/**, 03_artefactos/skills/edu-playbook/**, 03_artefactos/skills/edu-playbook-immersive/**, 03_artefactos/skills/edu-index/**, 03_artefactos/skills/edu-module/**, 03_artefactos/skills/white-label-dynamic-commercial-decks/**]
+    # prettier-ignore
+    exclude: ["**/context.md","03_artefactos/skills/edu-module/examples/input.json","03_artefactos/skills/metodologia-edu-module/examples/input.json","**/engine/assets/core/catalog.json","**/examples/*.html","**/examples/rendered/*.html"]
     target: {max_words: 5000, max_lines: 700}
     hard: {max_words: 10000, max_lines: 1000}
-    rationale: Only eighteen original packages generated from the hash-bound canonical Aula engine;
-      verify:aula checks deterministic regeneration and integrity. Canonical sources remain
-      authored.
+    # prettier-ignore
+    rationale: "Only eighteen original packages generated from the hash-bound canonical Aula engine; verify:aula checks deterministic regeneration and integrity. Canonical sources remain authored."
   - surface: notebooklm-brand-content-v1-governed-package
     kind: exempt
     match: '03_artefactos/projects/notebooklm-os/metodologia-brand-content/**'
     target: {}
     hard: {}
-    rationale:
-      'The private brand-content package (source packs, gallery, knowledge base) is governed by
-      verify:notebooklm-os hash-bound source registries and LFS-managed binaries; per-file prose
-      length is not the control.'
+    # prettier-ignore
+    rationale: "The private brand-content package (source packs, gallery, knowledge base) is governed by verify:notebooklm-os hash-bound source registries and LFS-managed binaries; per-file prose length is not the control."
   - surface: notebooklm-canon-v3-governed-package
     kind: exempt
     match: '03_artefactos/projects/notebooklm-os/metodologia-brand-content-v3/**'
     target: {}
     hard: {}
-    rationale: 'The private Canon v3 package has a stricter domain validator: 33,682 normalized-word
-      cap, 25% containment limit, exact 107-source hash readback, prompt parity and bounded source
-      selection.'
+    # prettier-ignore
+    rationale: "The private Canon v3 package has a stricter domain validator: 33,682 normalized-word cap, 25% containment limit, exact 107-source hash readback, prompt parity and bounded source selection."
   - surface: generated-workflow-documentation
     kind: generated
-    match:
-      - '01_intencion/reference/workflows/*.md'
-      - '03_artefactos/content/documentation/workflows/*.html'
-      - '03_artefactos/content/documentation/index.html'
-      - '03_artefactos/content/documentation/documentation-*.json'
+    # prettier-ignore
+    match: ["01_intencion/reference/workflows/*.md","03_artefactos/content/documentation/workflows/*.html","03_artefactos/content/documentation/index.html","03_artefactos/content/documentation/documentation-*.json"]
     target: {max_words: 5000, max_lines: 1500}
     hard: {max_words: 7500, max_lines: 1800}
-    rationale:
-      'Workflow pages, sequences and the aggregate manifest scale deterministically with every
-      registered workflow.'
+    # prettier-ignore
+    rationale: "Workflow pages, sequences and the aggregate manifest scale deterministically with every registered workflow."
   - surface: generated-public-ecosystem-inventory
     kind: generated
-    match:
-      - '03_artefactos/content/documentation/ecosystem-inventory-v1.json'
-      - '03_artefactos/content/documentation/ecosystem-inventory.md'
-      - '03_artefactos/content/documentation/ecosystem-inventory.html'
+    # prettier-ignore
+    match: ["03_artefactos/content/documentation/ecosystem-inventory-v1.json","03_artefactos/content/documentation/ecosystem-inventory.md","03_artefactos/content/documentation/ecosystem-inventory.html"]
     target: {max_words: 12000, max_lines: 6100}
     hard: {max_words: 32000, max_lines: 6500}
-    rationale: Exact public inventory projection scales with the eighteen expanded atomic
-      packages; generator drift checks apply. Mutation profile registry keeps its prior budget.
+    # prettier-ignore
+    rationale: "Exact public inventory projection scales with the eighteen expanded atomic packages; generator drift checks apply. Mutation profile registry keeps its prior budget."
   - surface: generated-ecosystem-inventory
     kind: generated
-    match:
-      - '04_estado/registries/skills/mutation-profile-registry.yml'
+    # prettier-ignore
+    match: ["04_estado/registries/skills/mutation-profile-registry.yml"]
     target: {max_words: 12000, max_lines: 6100}
     hard: {max_words: 24000, max_lines: 6500}
-    rationale:
-      'Complete inventories are generated, drift-checked and intentionally scale with governed
-      ecosystem cardinality.'
+    # prettier-ignore
+    rationale: "Complete inventories are generated, drift-checked and intentionally scale with governed ecosystem cardinality."
   - surface: user-facing-explanatory-documentation
     kind: exempt
-    match:
-      - README.md
-      - 01_intencion/guides/README.md
-      - 01_intencion/guides/capabilities.md
-      - 01_intencion/guides/guided-use.md
-      - 01_intencion/guides/content-multimedia.md
-      - 01_intencion/guides/career.md
-      - 01_intencion/guides/technical-reference.md
-      - 01_intencion/guides/extend-frames.md
-      - 01_intencion/guides/maintain-frames.md
+    # prettier-ignore
+    match: ["README.md","01_intencion/guides/README.md","01_intencion/guides/capabilities.md","01_intencion/guides/guided-use.md","01_intencion/guides/content-multimedia.md","01_intencion/guides/career.md","01_intencion/guides/technical-reference.md","01_intencion/guides/extend-frames.md","01_intencion/guides/maintain-frames.md"]
     target: {}
     hard: {}
-    rationale:
-      'A closed registry exempts only reader-facing explanations so utility and comprehension
-      take precedence over per-file length.'
+    # prettier-ignore
+    rationale: "A closed registry exempts only reader-facing explanations so utility and comprehension take precedence over per-file length."
   - surface: generated-context-projection
     kind: generated
     match: ['context.md', '**/context.md']
@@ -232,9 +141,8 @@ budgets:
     match: '02_proceso/governance/context-surfaces/*.yml'
     target: {max_words: 3500, max_lines: 500}
     hard: {max_words: 6000, max_lines: 800}
-    rationale:
-      'Shards preserve the complete 49-surface graph while keeping each authority independently
-      reviewable.'
+    # prettier-ignore
+    rationale: "Shards preserve the complete 49-surface graph while keeping each authority independently reviewable."
   - surface: generated-documentation-inventory
     kind: exempt
     match: '01_intencion/program/documentation-inventory-v1.json'
@@ -254,55 +162,50 @@ budgets:
     match: ['02_proceso/workflows/multimedia/_schema/artifacts/**', '02_proceso/workflows/multimedia/_assets/artifact-registry.md',]
     target: {max_words: 800, max_lines: 100}
     hard: {max_words: 1500, max_lines: 200}
-    rationale:
-      'Artifact schemas and their human index are deterministic projections of the deliverable
-      registry.'
+    # prettier-ignore
+    rationale: "Artifact schemas and their human index are deterministic projections of the deliverable registry."
   - surface: generated-deliverable-template-markdown
     kind: generated
     match: '02_proceso/workflows/multimedia/p*/templates/*.template.md'
     target: {max_words: 900, max_lines: 180}
     hard: {max_words: 1500, max_lines: 300}
-    rationale:
-      'Each Markdown template is a deterministic DRAFT projection of one deliverable definition
-      and class profile.'
+    # prettier-ignore
+    rationale: "Each Markdown template is a deterministic DRAFT projection of one deliverable definition and class profile."
   - surface: generated-deliverable-template-html
     kind: generated
     match: '02_proceso/workflows/multimedia/p*/templates/*.template.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale: 'Each offline HTML template is regenerated from its canonical Markdown twin and the
-      MetodologIA shell.'
+    # prettier-ignore
+    rationale: "Each offline HTML template is regenerated from its canonical Markdown twin and the MetodologIA shell."
   - surface: generated-career-template-markdown
     kind: generated
     match: '02_proceso/workflows/career/c*/templates/*.template.md'
     target: {max_words: 900, max_lines: 180}
     hard: {max_words: 1500, max_lines: 300}
-    rationale:
-      'Career Markdown templates are deterministic DRAFT projections of the career deliverable
-      registry.'
+    # prettier-ignore
+    rationale: "Career Markdown templates are deterministic DRAFT projections of the career deliverable registry."
   - surface: generated-career-template-html
     kind: generated
     match: '02_proceso/workflows/career/c*/templates/*.template.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale:
-      'Career HTML templates are deterministic offline projections of their canonical Markdown
-      twins.'
+    # prettier-ignore
+    rationale: "Career HTML templates are deterministic offline projections of their canonical Markdown twins."
   - surface: generated-experience-blueprint-html
     kind: generated
     match: '03_artefactos/content/experience/frames-experience-blueprint.html'
     target: {max_words: 1800, max_lines: 500}
     hard: {max_words: 3000, max_lines: 800}
-    rationale: 'The Experience HTML blueprint is regenerated deterministically from its canonical
-      Markdown model.'
+    # prettier-ignore
+    rationale: "The Experience HTML blueprint is regenerated deterministically from its canonical Markdown model."
   - surface: generated-experience-projection-manifest
     kind: generated
     match: '03_artefactos/content/experience/projection-manifest.json'
     target: {max_words: 500, max_lines: 200}
     hard: {max_words: 1000, max_lines: 400}
-    rationale:
-      'The projection manifest is emitted by the same renderer and remains hash-bound to the
-      blueprint.'
+    # prettier-ignore
+    rationale: "The projection manifest is emitted by the same renderer and remains hash-bound to the blueprint."
   - surface: generated-host-adapter-projection
     kind: generated
     # prettier-ignore
@@ -353,39 +256,14 @@ budgets:
     hard: {}
     changed_mode: report
     rationale: 'Gitignored task cabins are runtime context, not versioned authored corpus.'
-  - surface: baseline-root-doc
-    match: [README.md, AGENTS.md]
-    baseline: file-disposition
-    target: {multiplier: 1.5}
-    hard: {multiplier: 2}
-    rationale: 'Root documents retain their approved per-file baseline.'
-  - surface: agent-cli-adapter
-    match: [CLAUDE.md, GEMINI.md]
-    target: {max_words: 1000, max_lines: 150}
-    hard: {max_words: 2500, max_lines: 400}
-    rationale: 'Shared CLI adapters use the governance-document budget.'
+  # prettier-ignore
+  - {"surface":"baseline-root-doc","match":["README.md","AGENTS.md"],"baseline":"file-disposition","target":{"multiplier":1.5},"hard":{"multiplier":2},"rationale":"Root documents retain their approved per-file baseline."}
+  # prettier-ignore
+  - {"surface":"agent-cli-adapter","match":["CLAUDE.md","GEMINI.md"],"target":{"max_words":1000,"max_lines":150},"hard":{"max_words":2500,"max_lines":400},"rationale":"Shared CLI adapters use the governance-document budget."}
   - surface: SKILL.md
     match: '03_artefactos/skills/**/SKILL.md'
-    exclude: &aulaSkillExclusions
-      - 03_artefactos/skills/vendor/**
-      - 03_artefactos/skills/metodologia-edu-immersive-class/**
-      - 03_artefactos/skills/metodologia-edu-masterclass/**
-      - 03_artefactos/skills/metodologia-edu-workbook/**
-      - 03_artefactos/skills/metodologia-edu-lean-coffee/**
-      - 03_artefactos/skills/metodologia-edu-playbook/**
-      - 03_artefactos/skills/metodologia-edu-playbook-immersive/**
-      - 03_artefactos/skills/metodologia-edu-index/**
-      - 03_artefactos/skills/metodologia-edu-module/**
-      - 03_artefactos/skills/metodologia-dynamic-commercial-decks/**
-      - 03_artefactos/skills/edu-immersive-class/**
-      - 03_artefactos/skills/edu-masterclass/**
-      - 03_artefactos/skills/edu-workbook/**
-      - 03_artefactos/skills/edu-lean-coffee/**
-      - 03_artefactos/skills/edu-playbook/**
-      - 03_artefactos/skills/edu-playbook-immersive/**
-      - 03_artefactos/skills/edu-index/**
-      - 03_artefactos/skills/edu-module/**
-      - 03_artefactos/skills/white-label-dynamic-commercial-decks/**
+    # prettier-ignore
+    exclude: &aulaSkillExclusions ["03_artefactos/skills/vendor/**","03_artefactos/skills/metodologia-edu-immersive-class/**","03_artefactos/skills/metodologia-edu-masterclass/**","03_artefactos/skills/metodologia-edu-workshop-immersive/**","03_artefactos/skills/metodologia-edu-workbook/**","03_artefactos/skills/metodologia-edu-lean-coffee/**","03_artefactos/skills/metodologia-edu-playbook/**","03_artefactos/skills/metodologia-edu-playbook-immersive/**","03_artefactos/skills/metodologia-edu-index/**","03_artefactos/skills/metodologia-edu-module/**","03_artefactos/skills/metodologia-dynamic-commercial-decks/**","03_artefactos/skills/edu-immersive-class/**","03_artefactos/skills/edu-masterclass/**","03_artefactos/skills/edu-workshop-immersive/**","03_artefactos/skills/edu-workbook/**","03_artefactos/skills/edu-lean-coffee/**","03_artefactos/skills/edu-playbook/**","03_artefactos/skills/edu-playbook-immersive/**","03_artefactos/skills/edu-index/**","03_artefactos/skills/edu-module/**","03_artefactos/skills/white-label-dynamic-commercial-decks/**"]
     target: {max_words: 800, max_lines: 180}
     hard: {max_words: 1200, max_lines: 300}
     scope: all
@@ -471,8 +349,8 @@ budgets:
     match: ['01_intencion/program/dag.yml', '01_intencion/program/ownership-manifest.yml', '05_verificacion/scripts/commands.yaml',]
     target: {max_words: 1000, max_lines: 150}
     hard: {max_words: 2500, max_lines: 450}
-    rationale: 'Canonical control manifests remain bounded while accommodating the complete governed
-      gate registry.'
+    # prettier-ignore
+    rationale: "Canonical control manifests remain bounded while accommodating the complete governed gate registry."
   - surface: hash-bound-skill-registry
     match: '04_estado/registries/skills/creation-v3-skill-registry.yml'
     target: {max_words: 14000, max_lines: 2600}
@@ -496,30 +374,8 @@ budgets:
     rationale: 'Tests may be broader than production modules.'
   - surface: production-code
     match: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.mjs', '**/*.js']
-    exclude:
-      - 05_verificacion/tests/**
-      - 03_artefactos/skills/vendor/**
-      - tsconfig.json
-      - vitest.config.ts
-      - eslint.config.js
-      - 03_artefactos/skills/metodologia-edu-immersive-class/**
-      - 03_artefactos/skills/metodologia-edu-masterclass/**
-      - 03_artefactos/skills/metodologia-edu-workbook/**
-      - 03_artefactos/skills/metodologia-edu-lean-coffee/**
-      - 03_artefactos/skills/metodologia-edu-playbook/**
-      - 03_artefactos/skills/metodologia-edu-playbook-immersive/**
-      - 03_artefactos/skills/metodologia-edu-index/**
-      - 03_artefactos/skills/metodologia-edu-module/**
-      - 03_artefactos/skills/metodologia-dynamic-commercial-decks/**
-      - 03_artefactos/skills/edu-immersive-class/**
-      - 03_artefactos/skills/edu-masterclass/**
-      - 03_artefactos/skills/edu-workbook/**
-      - 03_artefactos/skills/edu-lean-coffee/**
-      - 03_artefactos/skills/edu-playbook/**
-      - 03_artefactos/skills/edu-playbook-immersive/**
-      - 03_artefactos/skills/edu-index/**
-      - 03_artefactos/skills/edu-module/**
-      - 03_artefactos/skills/white-label-dynamic-commercial-decks/**
+    # prettier-ignore
+    exclude: ["05_verificacion/tests/**","03_artefactos/skills/vendor/**","tsconfig.json","vitest.config.ts","eslint.config.js","03_artefactos/skills/metodologia-edu-immersive-class/**","03_artefactos/skills/metodologia-edu-masterclass/**","03_artefactos/skills/metodologia-edu-workshop-immersive/**","03_artefactos/skills/metodologia-edu-workbook/**","03_artefactos/skills/metodologia-edu-lean-coffee/**","03_artefactos/skills/metodologia-edu-playbook/**","03_artefactos/skills/metodologia-edu-playbook-immersive/**","03_artefactos/skills/metodologia-edu-index/**","03_artefactos/skills/metodologia-edu-module/**","03_artefactos/skills/metodologia-dynamic-commercial-decks/**","03_artefactos/skills/edu-immersive-class/**","03_artefactos/skills/edu-masterclass/**","03_artefactos/skills/edu-workshop-immersive/**","03_artefactos/skills/edu-workbook/**","03_artefactos/skills/edu-lean-coffee/**","03_artefactos/skills/edu-playbook/**","03_artefactos/skills/edu-playbook-immersive/**","03_artefactos/skills/edu-index/**","03_artefactos/skills/edu-module/**","03_artefactos/skills/white-label-dynamic-commercial-decks/**"]
     target: {max_lines: 100}
     hard: {max_lines: 200}
     rationale: 'Production modules split before 200 lines.'
