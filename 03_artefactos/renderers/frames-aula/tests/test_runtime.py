@@ -1,7 +1,17 @@
-import copy,hashlib,importlib.util,json,pathlib,shutil,subprocess,tempfile,unittest,zipfile
+import copy,hashlib,importlib.util,json,os,pathlib,shutil,subprocess,sys,tempfile,unittest,zipfile
 P=pathlib.Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('runtime',P/'runtime.py');r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
 class RuntimeTests(unittest.TestCase):
+ def test_standalone_cli_keeps_package_read_only(self):
+  with tempfile.TemporaryDirectory() as temporary:
+   root=pathlib.Path(temporary).resolve();engine=root/'engine';shutil.copytree(P,engine,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+   snapshot=lambda:{p.relative_to(engine).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in engine.rglob('*') if p.is_file()}
+   before=snapshot();source=root/'input.json';source.write_text(json.dumps(r.sample('workbook')));env=dict(os.environ);env.pop('PYTHONDONTWRITEBYTECODE',None)
+   for command in ('check','plan','build'):
+    subprocess.run([sys.executable,'-X','pycache_prefix=',str(engine/'runtime.py'),command,'--kind','workbook','--input',str(source),'--out',str(root/'result')],check=True,capture_output=True,env=env)
+   subprocess.run([sys.executable,'-X','pycache_prefix=',str(engine/'migrate.py'),'--input',str(source),'--out',str(root/'migrated.json'),'--kind','workbook'],check=True,capture_output=True,env=env)
+   subprocess.run([sys.executable,'-X','pycache_prefix=',str(engine/'export_office.py'),'--help'],check=True,capture_output=True,env=env)
+   self.assertTrue((root/'result/receipt.json').is_file());self.assertTrue((root/'migrated.json').is_file());self.assertEqual(snapshot(),before)
  def test_positive(self):
   for kind in r.KINDS:
    d=r.sample(kind)

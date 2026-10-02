@@ -88,7 +88,11 @@ export const validateSkill = (
     previous !== registryState;
   if (badLifecycle) errors.push(`SKL-H03-006 invalid lifecycle ${skill.id}`);
   try {
-    execFileSync(skill.executable ?? process.execPath, skill.check, {cwd: root, encoding: 'utf8'});
+    execFileSync(skill.executable ?? process.execPath, skill.check, {
+      cwd: root,
+      encoding: 'utf8',
+      env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'},
+    });
   } catch {
     errors.push(`SKL-H03-007 local checker failed ${skill.id}`);
   }

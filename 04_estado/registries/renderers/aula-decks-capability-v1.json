@@ -1939,7 +1939,7 @@
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/export_office.py",
-      "sha256": "9cc4e0c1c30c2739fe6c798201f20feb8b32d477dd6ae3503bac0d31a081474c"
+      "sha256": "84c0681598bf811a8caa23eecfdfc2c85aa38af39a08c4efa09163d056afa96e"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/guidelines.json",
@@ -1947,11 +1947,11 @@
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/migrate.py",
-      "sha256": "6ccde314c9843d4c14d4cc0eb7dfbb6b89a8949c430bb47edf8af25f637d6a4f"
+      "sha256": "f5020bf75f9b163267981e114f13f313bdedd9f45ebee51866d3f8da149b0fcf"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/runtime.py",
-      "sha256": "7e0fd6f45e9c26f98350b226f4a599fc8bfdccf853ace8083457058abc0eb906"
+      "sha256": "6ae8797573e6db8e833bb1180eb89809109cb3c661420e4805507e1cdaf6ccbe"
     },
     {
       "ref": "03_artefactos/renderers/frames-aula/style.css",

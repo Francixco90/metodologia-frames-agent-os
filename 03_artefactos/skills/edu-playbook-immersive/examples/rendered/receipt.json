@@ -3,7 +3,7 @@
   "kind": "playbook-immersive",
   "edition": "white-label",
   "inputSha256": "485a3d98a0680a74548afd9f2a1f3f6688dea0f30eaef91b1c59badb6a064d51",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "d951e1629139f20885d16ad97e760b2c7b8e6623581d5f5d4ae2bd6780de3cfa",
     "artifact-mobile.html": "39113ce982249e8477e459c998f6b485a485c60f8ca08cc1bf8bd4760621fedd",

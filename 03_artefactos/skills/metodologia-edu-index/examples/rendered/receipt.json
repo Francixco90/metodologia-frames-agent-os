@@ -3,7 +3,7 @@
   "kind": "index",
   "edition": "metodologia",
   "inputSha256": "1d1e4b100a1a3919703242c2a5885fc8b33ba0628369b0afa3942e8835006868",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "70ba7eb5fc11a497a78a4ac95b701cc1940b36ad2470f19640f670525db91262",
     "artifact-mobile.html": "fb385316b934d90c20bc1ce8dd5e46878cc1675f0a1097cba5289491d993b691",

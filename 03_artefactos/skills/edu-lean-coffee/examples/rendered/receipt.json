@@ -3,7 +3,7 @@
   "kind": "lean-coffee",
   "edition": "white-label",
   "inputSha256": "9bd9deb86b258771a514e9f5461653e47fc62c71fea3a4c1da053a5e419115f3",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "73c8ec19f1e9cdcdacd0f096f65fb35599acf3e3f62798d870d11d7b5ccfff94",
     "artifact-mobile.html": "81d2554599efee5e25d70a4ea1d47aa7f96c1a7941deed138827cc907d878f5e",

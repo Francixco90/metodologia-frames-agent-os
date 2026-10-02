@@ -3,7 +3,7 @@
   "kind": "index",
   "edition": "white-label",
   "inputSha256": "1d1e4b100a1a3919703242c2a5885fc8b33ba0628369b0afa3942e8835006868",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "24669e6b478dc89de34319caca6d55dc10c38a2ab88fdb59e47bba5e2658df3e",
     "artifact-mobile.html": "a390802fee091ade2fce4292d3066106f14d5d75c92c0fe9dcf154101a604ad8",

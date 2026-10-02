@@ -3,7 +3,7 @@
   "kind": "playbook-immersive",
   "edition": "metodologia",
   "inputSha256": "485a3d98a0680a74548afd9f2a1f3f6688dea0f30eaef91b1c59badb6a064d51",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "0f122e27981b721d39f1134ade212aeca655bdf7a70b81cf0aba0fbfc466715f",
     "artifact-mobile.html": "f6102e860c957473b174aa5f224368f3336bc3dd2e92932b75ff3c974bf66e64",

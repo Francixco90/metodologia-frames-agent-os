@@ -2,6 +2,7 @@
 """Original offline Frames Aula renderer. Python standard library only."""
 import argparse, base64, copy, hashlib, html, json, pathlib, re, sys, xml.etree.ElementTree as ET
 ROOT=pathlib.Path(__file__).resolve().parent
+sys.dont_write_bytecode=True
 sys.path.insert(0,str(ROOT))
 import bank
 VERSION='1.1.0'

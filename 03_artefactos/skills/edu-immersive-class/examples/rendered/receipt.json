@@ -3,7 +3,7 @@
   "kind": "immersive-class",
   "edition": "white-label",
   "inputSha256": "9afadae6854facdda1e3b9052a61010b4ab0220c92dd7965ff23a40bd197ec1b",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "df5a7306916c1c82ea0c873f1beb9725ce78ac4a087de57206e3b298ce4641b7",
     "artifact-mobile.html": "e5d2faf74ace17d1a503025d1eece70178eb2b95cd987774654f32d916cc25ee",

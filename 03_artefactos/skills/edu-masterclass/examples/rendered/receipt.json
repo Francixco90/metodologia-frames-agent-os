@@ -3,7 +3,7 @@
   "kind": "masterclass",
   "edition": "white-label",
   "inputSha256": "af2085434c8927c263bc9ac84d2f48a6887756b5c3dbefda3911cb0e03cbaa27",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "11379681c2b4546321a138de71bb64af9e5d00ecc02a73e709573fdc27fed7f7",
     "artifact-mobile.html": "0ac9a0610d5ef4bba44511f110ecf080534c4bd0e57fe40a1b46d80ed14186b0",

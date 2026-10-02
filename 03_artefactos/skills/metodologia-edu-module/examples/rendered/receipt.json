@@ -3,7 +3,7 @@
   "kind": "module",
   "edition": "metodologia",
   "inputSha256": "2b5b682970caa6f34fea14081491d6e4bc5ec1005e580afe669a4723fe4934b3",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "immersive-class.html": "dbf6efb70c60ad82a2d8ef63a508777cda09bce526f66e1c32bfde77fe0f9573",
     "masterclass.html": "47776268b6304e231e1c5cf05f729e193b58bd1f1cb201e7b08165754a2a9fc1",

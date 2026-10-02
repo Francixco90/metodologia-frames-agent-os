@@ -3,7 +3,7 @@
   "kind": "masterclass",
   "edition": "metodologia",
   "inputSha256": "3d03721cd580cb9d4eeb018bfe2300a610a9d4d8f71e558802560483860be46c",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "4fb690d34f005d46b7725cfb6f0be46c3a7c8ef4e7ef56f80c0e4a45ae0e61c9",
     "artifact-mobile.html": "40d6780756113af94a32a642f2234e98dcaf48cece77098dbdeb877602a2be06",

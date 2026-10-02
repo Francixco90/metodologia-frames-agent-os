@@ -9,10 +9,10 @@
     "planSha256": "3b50e37810b4db2c8f1e3b04ff48de6fd58c8f19d172cca52b3f431ad4c56e12"
   },
   "limits": {
-    "targetFiles": 57,
-    "targetLoc": 6362,
-    "hardFiles": 69,
-    "hardLoc": 7562
+    "targetFiles": 60,
+    "targetLoc": 6512,
+    "hardFiles": 72,
+    "hardLoc": 7712
   },
   "partitions": [
     {
@@ -33,7 +33,7 @@
       ],
       "limits": {
         "targetFiles": 12,
-        "targetLoc": 740,
+        "targetLoc": 749,
         "hardFiles": 12,
         "hardLoc": 1200
       }
@@ -79,11 +79,12 @@
         "03_artefactos/renderers/frames-aula/examples/playbook-immersive.json",
         "03_artefactos/renderers/frames-aula/examples/playbook.json",
         "03_artefactos/renderers/frames-aula/examples/workbook.json",
+        "03_artefactos/renderers/frames-aula/export_office.py",
         "03_artefactos/renderers/frames-aula/migrate.py"
       ],
       "limits": {
-        "targetFiles": 5,
-        "targetLoc": 918,
+        "targetFiles": 6,
+        "targetLoc": 920,
         "hardFiles": 12,
         "hardLoc": 1200
       }
@@ -99,7 +100,7 @@
       ],
       "limits": {
         "targetFiles": 5,
-        "targetLoc": 847,
+        "targetLoc": 894,
         "hardFiles": 12,
         "hardLoc": 1200
       }
@@ -114,15 +115,15 @@
         "05_verificacion/scripts/check-aula-decks.mjs",
         "05_verificacion/scripts/check-md-budgets.ts",
         "05_verificacion/scripts/check-receipts.ts",
+        "05_verificacion/scripts/creation-v3-checks.ts",
         "05_verificacion/scripts/creation-v3-skills.json",
         "05_verificacion/scripts/lib/h03-lock-succession.mjs",
         "05_verificacion/scripts/promote-aula-decks.mjs",
-        "05_verificacion/scripts/register-aula-decks.mjs",
-        "05_verificacion/scripts/test_build_aula_assets.py"
+        "05_verificacion/scripts/register-aula-decks.mjs"
       ],
       "limits": {
         "targetFiles": 12,
-        "targetLoc": 1004,
+        "targetLoc": 971,
         "hardFiles": 12,
         "hardLoc": 1200
       }
@@ -130,21 +131,34 @@
     {
       "id": "aula-lot-7",
       "paths": [
+        "05_verificacion/scripts/test_build_aula_assets.py",
         "05_verificacion/scripts/test_build_aula_gallery.py",
         "05_verificacion/tests/contract/aula-build-dependencies.test.ts",
         "05_verificacion/tests/contract/aula-promotion-io.test.ts",
         "05_verificacion/tests/contract/h03-lock-succession-018.test.ts",
         "05_verificacion/tests/integration/aula-110-browser.test.ts",
         "05_verificacion/tests/integration/aula-continuation.test.ts",
+        "05_verificacion/tests/integration/creation-skills-media-profile.test.ts",
         "05_verificacion/tests/integration/creation/h03-renderer-adapters.integration.test.ts",
         "05_verificacion/tests/unit/check-md-budgets.test.ts",
         "05_verificacion/tests/unit/receipts/check-receipts.test.ts",
-        "eslint.config.js",
+        "eslint.config.js"
+      ],
+      "limits": {
+        "targetFiles": 12,
+        "targetLoc": 882,
+        "hardFiles": 12,
+        "hardLoc": 1200
+      }
+    },
+    {
+      "id": "aula-lot-8",
+      "paths": [
         "package.json"
       ],
       "limits": {
-        "targetFiles": 11,
-        "targetLoc": 759,
+        "targetFiles": 1,
+        "targetLoc": 2,
         "hardFiles": 12,
         "hardLoc": 1200
       }
@@ -187,5 +201,5 @@
       "rationale": "Reviewed Aula integration and explicit generated-package policy; word limits unchanged, path-specific successor below twice baseline."
     }
   ],
-  "canonicalSha256": "8bed49e0229e8fd82a563a8d78ab1e52e69598dce87a2faef2350eedd67e4553"
+  "canonicalSha256": "7506e2cced6daab565c9cd4055c5d223875dc3f3234281b0f199d1291b51f375"
 }

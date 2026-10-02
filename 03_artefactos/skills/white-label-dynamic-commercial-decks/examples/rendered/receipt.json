@@ -3,7 +3,7 @@
   "kind": "dynamic-commercial-decks",
   "edition": "white-label",
   "inputSha256": "0d17a16d180ed91d5386207bc5df806f8dfb7541b3f288a53747fab4df5e6f17",
-  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
+  "engineSha256": "106cdbc6fff13cd926362c0f05542eb1c2d002ee0f97a73c7c315e2e6d5ef0c5",
   "outputs": {
     "artifact.html": "f055865744fb0c25e7f3278de302edaf9e175ff89a14e614ff0b5ad64e2ef97d",
     "artifact-mobile.html": "49d593eb0e8c2553230d163dc3a60d952c4f202efe6c0188625f2bd0cc63c55e",

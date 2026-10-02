@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Original loss-aware source adapter. Never edits upstream files."""
 import argparse,copy,hashlib,json,pathlib,re,sys
+sys.dont_write_bytecode=True
 import runtime
 LOCALES={'es','en','pt','fr'}
 def stringify(value):
