@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "frames-aula-brand-v2",
+  "edition": "metodologia",
+  "name": "MetodologIA",
+  "wordmark": "MetodologIA",
+  "logo": null,
+  "colors": {
+    "ink": "#0a122a",
+    "accent": "#8a6d00",
+    "accentFill": "#e0b400",
+    "canvas": "#f5f7fa",
+    "surface": "#ffffff",
+    "surfaceAlt": "#f1f5f9",
+    "muted": "#576472",
+    "textSoft": "#334155",
+    "border": "#cbd5e1"
+  },
+  "typography": {
+    "heading": {
+      "family": "Poppins",
+      "weight": 700,
+      "file": "fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    "body": {
+      "family": "Montserrat",
+      "weight": 400,
+      "file": "fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  },
+  "source": {
+    "path": "brand/tokens/brand-tokens.yml",
+    "sha256": "88e73185efb5d122ef0f0caf5dd428132d188ef00e75decaaad7f13207e62de3",
+    "scope": "MetodologIA authored tokens; neutral white-label profile is original"
+  },
+  "license": "MIT",
+  "fontLicense": "OFL-1.1",
+  "limits": [
+    "No automatic identity override in MetodologIA",
+    "No fictional logo",
+    "White text on gold is forbidden",
+    "Fonts remain OFL-1.1"
+  ]
+}

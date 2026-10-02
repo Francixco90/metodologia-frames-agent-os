@@ -1,45 +1,67 @@
-# Frames Aula runtime 1.0.3
+# Frames Aula runtime 1.1.0
 
-Implementación original Python stdlib + HTML/CSS/JS local. [METODOLOGIA]
+Motor original Python stdlib + HTML/CSS/JS local. Un motor genera las 18 skills; HTML autónomo, sin fuentes remotas ni red durante lectura. Los ejemplos permanecen `RENDERED_DRAFT`. [METODOLOGIA]
 
-`python3 runtime.py new --kind workbook --out brief.json`
+```sh
+python3 runtime.py new --kind workbook --out brief.json
+python3 runtime.py check --kind workbook --input brief.json --out salida
+python3 runtime.py plan --kind workbook --input brief.json --out salida
+python3 runtime.py build --kind workbook --edition metodologia --input brief.json --out salida
+python3 -m unittest discover -s tests
+```
 
-`python3 runtime.py plan --kind workbook --input brief.json --out salida`
+`--out` es archivo JSON en new y directorio en plan/build. Plan valida antes de entregar `outputs`, `buildDependencies`, `assetEvidence`, `profile` y `engineVersion`; no escribe. Build rechaza symlinks y outputs existentes. Los comandos e interfaces `frames-aula-v1` se conservan. Los briefs históricos documentados sin política conservan sus secciones completas.
 
-`python3 runtime.py build --kind workbook --edition metodologia --input brief.json --out salida`
+## Fuente editable y contenido verificable
 
-`python3 runtime.py check --kind workbook --input brief.json --out salida`
+`schemaVersion: frames-aula-v1`, `title`, `language`, `languages`, `sections`. Textos pueden ser strings o `{es,en,pt,fr}`. Cada idioma declarado requiere traducciones presentes; no se inventan traducciones. Cada sección tiene `id` único y `title`; admite `body`, `objectives`, `acceptance`, `exemplar`, `notes`, `spoken`, `facilitatorNotes`, `prompt`, `fields`, `settings`, `links`, `references`, `factIds`, `scene`, `sceneParams`, `assetRefs`, `layout: auto|left|center` y `reveal`. Los campos semánticos desconocidos o incompatibles bloquean con su ruta exacta, evitando pérdida silenciosa.
 
-`python3 -m unittest discover -s tests`
+- `table` y `matrix`: `{headers:[text],rows:[[text]],caption?:text}`; cada fila coincide con headers.
+- `cols` y `cards`: `[{title,body?,items?:[text],icon?:assetId,tag?:text}]`.
+- `metrics`: `[{label,value,detail?,factIds?:[id]}]`; `badges`: `[{label,detail?,icon?:assetId}]`.
+- `tabs` y `accordion`: `[{title,body}]`. Tabs ofrecen roles y flechas/Home/End.
+- `fields` y `settings`: `[{key,label,default?,setting?}]`. El prompt sustituye `{{key}}` literalmente, sin reformularlo. Campos ausentes bloquean.
+- `references`: texto o `{title,source,sha256?}`; son procedencia legible, no enlaces activos externos.
 
-`--out` es directorio en build/plan; archivo JSON en new. Build rechaza outputs existentes y symlinks. Plan entrega `{outputs:[...]}` antes de escribir. El build de module crea seis piezas HTML, índice local, workbook Markdown, manifiesto y receipt. La salida individual incluye variantes adaptativas de escritorio/móvil y audiencia sin notas; las dos variantes móviles usan el mismo comportamiento responsive, sin un motor divergente.
+`objectives` y `acceptance` también existen en la raíz. `facts` requiere `source`, `confirmed:true`, `sha256` de 64 caracteres; `id` vincula `factIds`. Cifras comerciales en títulos o cuerpos requieren hechos. Los hashes declarados acreditan identidad del material, no su verdad. Afirmaciones pedagógicas o neurocientíficas requieren evidencia del autor; etiquetas editoriales no acreditan investigación. Las etiquetas se preservan en fuente/Markdown y se presentan con lenguaje legible; copiar prompts conserva los bytes. [METODOLOGIA]
 
-## Contrato JSON
+Decks conservan `mode: comercial|tecnico` (alias `commercial`), `deckType` y `thesis:{title,pillars:[{achieves,proof}]}`. El renderer no concede aprobación comercial: `deck-workflow.py` conserva intake → aprobación → spec → aprobación → build.
 
-schemaVersion `frames-aula-v1`, title, language y languages explícitos; strings pueden ser `{es,en,pt,fr}`. No se traduce automáticamente: traducciones localizadas faltantes para idiomas declarados bloquean. La UI tiene esos cuatro idiomas. sections requiere id único, title; body, notes, scene, prompt y fields son opcionales. Un field tiene key único, label y default. Prompt sustituye `{{key}}` literalmente. objectives y acceptance contienen resultados y criterios de logro. facts requiere source, confirmed=true, sha256; id permite vincular section.factIds. Cifras comerciales en títulos o cuerpos de cualquier idioma necesitan referencias a facts; decks conceptuales no necesitan inventar hechos. No se valida por red la verdad del fact: el hash y confirmación son responsabilidad del autor/validador.
+## Clase inmersiva y límites de autoría
 
-links y pieces aceptan solo rutas locales presentes relativas al brief. Build verifica los enlaces también en el destino de salida. Mantener esos documentos junto a la salida o usar module, que genera sus enlaces. Brand white-label admite name y colors night/gold/white hex. Texto sobre canvas y superficies blancas fijas requiere contraste mínimo 4.5:1; footer y progreso usan #334155 sobre canvas. El foco fijo #8a6d00 requiere 3:1 sobre canvas. Las paletas incompatibles se rechazan antes de construir; este motor usa superficies claras y no ofrece modo oscuro. MetodologIA no admite override. Tokens de referencia: `brand/tokens/brand-tokens.yml`, SOCIAL canvas #f5f7fa, ink #0a122a, gold_text #8a6d00, white #ffffff, text_soft #334155. Tipografía usa system-ui para independencia offline; no se redistribuyen fuentes ni logos externos.
+`training:{durationMinutes?,audience?,materials?:[text],runOfShow?:[{sectionId,minutes,notes?}]}` describe la sesión. Los tiempos del run of show coinciden con su duración declarada. Secciones aceptan `durationMinutes`, `demonstration`, `practice`, `checkpoints:[{question,answer?,criterion?}]`, `reflection` y `transfer`. Una actividad puede incluir temporizador con inicio/pausa/reset; las respuestas se revelan voluntariamente. No hay avance automático ni captura de flechas al editar o interactuar con controles. La duración es un supuesto de planificación, no evidencia de eficacia. [SUPUESTO]
 
-## Comportamiento
+`authoringPolicy:{origin:"new"}` limita decks comerciales a 8 secciones y presentaciones académicas a 13; portada y tapa cuentan. `maxSlides` de 1 a 100 requiere `explicitBrief` textual no vacío. `origin:"historical"` reproduce el material completo. Sin política se preserva compatibilidad histórica. Workbooks, índices, ejercicios y Lean Coffee no usan el presupuesto de slides. Módulos aplican la política a cada pieza presentada, no al conjunto. La migración establece origen histórico.
 
-Teclado: flechas navegan fuera de inputs; Escape sale de proyección y restaura foco. Prompts editables, progreso y respuestas se conservan por ruta en localStorage; cambios de idioma conservan respuestas. Copia usa Clipboard API con fallback local. Lean Coffee tiene temporizador, pausa/reset y revelado. Cinco escenas SVG originales con paleta de marca; órbita en loop de 12 segundos con pausa y reduced-motion. No anima cifras. Print muestra todas las secciones y omite notas. Audience elimina notas del payload. Desktop de presentación usa 16:9; edición móvil 9:16 con adaptación responsive. Playbook inmersivo recorre escenas verticales; playbook prioriza impresión; workbook proyecta tarjetas con Escape y retorno de foco. Todos los resultados son RENDERED_DRAFT.
+## Identidad y assets
 
-## Límites explícitos
+MetodologIA conserva navy/oro, wordmark, Poppins títulos y Montserrat cuerpo locales. Fuentes mantienen OFL-1.1; geometría propia mantiene MIT. Marca blanca usa perfil neutral funcional o `brand:{name,colors:{night,gold,white}}` con hex seguros y contraste comprobado. MetodologIA rechaza overrides. `theme: light|dark` selecciona superficies semánticas; nuevas clases/decks usan oscuro por defecto y briefs antiguos mantienen claro. `brand.colors` conserva sus tres claves; `brand.tokens` contiene las superficies auxiliares.
 
-Export Office devuelve coverage_gap y error 3; no fabrica PPTX/DOCX. Los ejemplos no son investigación pedagógica: evidence tags son etiquetas editoriales, no acreditación científica. Tests unitarios no sustituyen revisión humana ni sensores reales de navegador/contraste. No se incluyen logos inventados, fuentes remotas, assets Amaris ni código de paquetes restrictivos.
+Cada paquete incluye catálogo core de 32 iconos/16 escenas y fuentes/licencias locales. `scene` usa un ID conocido, con `sceneParams:{slot:text}`. `assetRefs:[{id,kind:"icon"|"scene",label?}]` incluye piezas adicionales. Las escenas son composiciones declarativas originales: desktop 960×540 y portrait 420×740 con las mismas relaciones. Los textos se envuelven en líneas, sin recorte ni reducción automática; presupuesto excedido bloquea. Un ID ausente o hash alterado bloquea con diagnóstico.
 
-## Adaptadores explícitos
+El banco completo opcional contiene 256 iconos y 160 escenas por edición. Se obtiene durante preparación explícita; HTML solo incorpora los assets seleccionados. Verificar e instalar localmente:
 
-`python3 migrate.py --input original.json --kind workbook --edition white-label --out migrated.json`
+```sh
+python3 bank.py verify banco.zip --sha256 HASH
+python3 bank.py install banco.zip --sha256 HASH --dest banco-local
+python3 runtime.py build --kind immersive-class --input brief.json --out salida --bank banco-local
+python3 bank.py sync --pin assets/bank.json --dest cache/banco-1.1.0
+```
 
-El adapter reconoce `livePrompts`, `slides`, `closureSlides` y `sections` objeto/lista. Conserva el JSON original completo, prompts estructurados literales y texto residual; convierte inputs `[KEY]` declarados en fields `{{key}}`. Escribe `.migration.json` con hash, material no mapeado y pérdidas. Escenas originales no equivalentes exigen `--accept-scene-replacement`; placeholders no resueltos e identidad Amaris bloquean hasta reautoría explícita. No sustituye una traducción editorial ni licencias originales.
+Sync usa URL de release GitHub y hash fijados, presupuesto de descarga, redirects restringidos y caché confinada sin symlinks. Reutilizar caché requiere `manifestSha256` fijado. Los ZIP admiten máximo 1.024 miembros y 30.000.000 bytes descomprimidos: hashes, conjunto exacto, paths, duplicados, symlinks y SVG seguros se verifican antes de escribir. No se admiten scripts, recursos externos ni SVG activo. La edición del banco debe coincidir. La galería y sus capturas quedan fuera del ZIP de ejecución.
 
-`python3 export_office.py --input brief.json --kind workbook --template approved.docx --out review.docx`
+## Salidas, interacción y evidencia
 
-Acepta template DOCX con estilos Heading 1/Normal o PPTX con placeholders título/contenido. Requiere python-docx/python-pptx opcionales, conserva plantilla y añade contenido; exporta texto estático, no interacción/escenas equivalentes. Receipt incluye hashes y límites. El comando `runtime.py export` mantiene su error explícito; el adapter separado es la ruta Office implementada.
+Sin `outputs`, una pieza genera escritorio, móvil, audiencia, audiencia móvil, Markdown y receipt. `outputs:["desktop","audience","markdown"]` conserva selección explícita. Audience elimina notes/spoken/facilitatorNotes, notas de run of show y la fuente de migración del payload; mantiene comprobaciones y respuestas para revelado controlado. Markdown conserva objetivos, criterios, componentes, tablas, ejemplos, referencias, actividades y prompts completos.
 
-Decks admiten `mode: comercial|tecnico` (comercial predeterminado; commercial se conserva como alias), `deckType` explícito, `thesis:{title,pillars:[{achieves,proof}]}` y escenas originales. Sections aceptan `table:{headers,rows}`, `tabs:[{title,body}]`, `accordion:[{title,body}]`. Tabs usan roles y flechas/Home/End; tablas validan ancho por fila. La revisión de arco técnico y pilares pertenece al workflow con gates humanos, no se inventan aprobaciones en el renderer. `deck-workflow.py` es el procedimiento intake → aprobación → spec → aprobación → build mantenido por Frames.
+Module genera seis piezas HTML, índice, workbook Markdown, manifest y receipt. `pieceSections` permite contenido propio por formato. `links`/`pieces` requieren rutas locales existentes. En index, plan declara cada archivo enlazado y build copia sus bytes desde el directorio del brief, ligándolos a receipt; colisiones con salidas reservadas bloquean. En otros formatos los auxiliares deben existir también en el destino y el host debe declararlos. `assetFiles` conserva el mapa del host de hasta 20 HTML relativos y sus hashes, sin conceder permiso para sobrescribir salidas.
 
-Selección explícita: `outputs:["desktop","audience","markdown"]` produce solamente esas piezas y receipt; sin outputs conserva las seis salidas del plan aprobado. Module mantiene su suite completa. `guidelines.json` separa reglas bloqueantes verificables de criterio editorial: títulos comerciales mayores de diez palabras generan advisory REVIEW, nunca aprobación ficticia.
+Respuestas/progreso se conservan por ruta en localStorage; cambio de idioma conserva valores. Copia ofrece fallback local; proyección restaura foco al salir con Escape. Navegación no captura teclas de inputs, tabs ni controles. Movimiento de entrada es finito, con pausa y movimiento reducido; los temporizadores usan tiempo transcurrido y nunca avanzan la escena. Impresión expande contenido y omite notas.
 
-La validación y el render comparten la paleta efectiva. Una configuración parcial conserva los fallbacks documentados y produce colores completos para las cinco escenas SVG; el nombre de marca solicitado debe ser texto no vacío.
+Plan y receipt incluyen hashes de perfil, fuentes, catálogo y assets seleccionados. Refs `assets/core/...` se resuelven dentro del renderer; `bank/...` dentro del banco aprobado; `input/...` son piezas locales ligadas al brief. `engineSha256` conserva la fórmula histórica runtime.py+app.js+style.css. `assetEvidence` registra ID, tipo, origen y hashes de contenido/catálogo. Ningún recibo acredita aceptación humana ni publicación.
+
+## Migración y Office
+
+`python3 migrate.py --input original.json --kind workbook --edition white-label --out migrated.json` conserva el original completo, los componentes reconocidos y prompts estructurados. Reconoce livePrompts/slides/closureSlides/sections, convierte inputs declarados y registra pérdidas, residual y hash en `.migration.json`. Escenas no equivalentes requieren `--accept-scene-replacement`; placeholders e identidad restringida bloquean hasta reautoría explícita.
+
+`runtime.py export` conserva error 3 y `coverage_gap`. `export_office.py` es el adaptador opcional separado con plantillas DOCX/PPTX compatibles y dependencias opcionales: produce texto estático, receipt y límites; no reproduce la interacción ni fabrica archivos ante adaptador ausente. Pruebas mecánicas y fixtures no sustituyen revisión humana ni sensores reales de navegador. [METODOLOGIA]

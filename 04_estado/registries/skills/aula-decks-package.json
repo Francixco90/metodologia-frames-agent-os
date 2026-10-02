@@ -5,163 +5,163 @@
       "name": "metodologia-edu-immersive-class",
       "kind": "immersive-class",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-immersive-class.zip",
-      "sha256": "bca2cdb027402d479622aa105199f3e3a1145fdf7f8f5894d0b5a9dd382594f4",
-      "bytes": 66579
+      "sha256": "40836d81e5bbd114a78602b4e7e25e01be6e7e78e7b6a422472b14210aaea71b",
+      "bytes": 2410424
     },
     {
       "name": "metodologia-edu-masterclass",
       "kind": "masterclass",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-masterclass.zip",
-      "sha256": "275f6f8a41bcc4c9811e79c73ae869ca0b701248d047c79f9b80c1bf81e3c6e8",
-      "bytes": 66246
+      "sha256": "82c61f75a30dbc18b8d56b266ea4cf197d834b62c55b7ed17003d81592e81a41",
+      "bytes": 2401757
     },
     {
       "name": "metodologia-edu-workbook",
       "kind": "workbook",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-workbook.zip",
-      "sha256": "6697503bdac41fadbb8e7ed519d7b41f6572dbb89d670758059d80726bc1f8a8",
-      "bytes": 66057
+      "sha256": "cd99b49cb3cf06bd0c88511d85e6acd054900d6583d271e92fc03e2ccc8a6646",
+      "bytes": 2404269
     },
     {
       "name": "metodologia-edu-lean-coffee",
       "kind": "lean-coffee",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-lean-coffee.zip",
-      "sha256": "5ebea47166275a51be0764192236602ed0403a7b3bc346c20f577bca1865d6c7",
-      "bytes": 66549
+      "sha256": "cd74cfa963fc06c0200cf6e0a7e2dd571f5db55fcd0c7fe6826b8949d3f3df28",
+      "bytes": 2402288
     },
     {
       "name": "metodologia-edu-playbook",
       "kind": "playbook",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-playbook.zip",
-      "sha256": "de629c31f2324be9f1d7cb19f169fface9173eb19a87349919d14757c8bbb284",
-      "bytes": 66037
+      "sha256": "14c8e1799a190c615e4ef171cac0e347d2cd0e7329236d2057ff1d96950a7e80",
+      "bytes": 2401538
     },
     {
       "name": "metodologia-edu-playbook-immersive",
       "kind": "playbook-immersive",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-playbook-immersive.zip",
-      "sha256": "f87801bb9702b7bbf7c4c2f73133db9374583010fd2b563cfcc77d4a8666d610",
-      "bytes": 66831
+      "sha256": "c1a9e4716e5240645568990bc1bfab217a6fa7a84c9b64e1f884d4e85b92b1b2",
+      "bytes": 2403524
     },
     {
       "name": "metodologia-edu-index",
       "kind": "index",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-index.zip",
-      "sha256": "8ad873e5097ade84d167720ecdd1a70cd209b799db2acd6a64a65363a272d18c",
-      "bytes": 65950
+      "sha256": "47426f9c91c2db264f5f771f5a1b7fa604b0a23a4c5c858c3d16ad5bea09f517",
+      "bytes": 4316848
     },
     {
       "name": "metodologia-edu-module",
       "kind": "module",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-edu-module.zip",
-      "sha256": "b1ec62a4d4d703174f458f18f9d2e9ab712a855313f68d4684414f0b560619c6",
-      "bytes": 93717
+      "sha256": "f6998745c7dcbae71991bb4d7b5351ad6093966bb518aa2bce1d55275ee53e10",
+      "bytes": 3843396
     },
     {
       "name": "metodologia-dynamic-commercial-decks",
       "kind": "dynamic-commercial-decks",
       "edition": "metodologia",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/metodologia-dynamic-commercial-decks.zip",
-      "sha256": "ef8432d496628edacb86e85a3aa376bdbbecd06bb8af265e3af29621b7a9f227",
-      "bytes": 67563
+      "sha256": "d02327394db2c0ea53874227fe73589fe74cd1ed5b0b601df05ee13805a9b476",
+      "bytes": 2397516
     },
     {
       "name": "edu-immersive-class",
       "kind": "immersive-class",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-immersive-class.zip",
-      "sha256": "b5bc6ad6af74457a743c286bcb2c5fb6ada7b200af3feee1a66bf7939157c73a",
-      "bytes": 65834
+      "sha256": "95c6f6a8752f8ee2f7eaa8f4636d22378761a6eb2ecf583f0de8d32f0a43d95e",
+      "bytes": 555035
     },
     {
       "name": "edu-masterclass",
       "kind": "masterclass",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-masterclass.zip",
-      "sha256": "516b410d00d01404acff9ff24331ae233a4de5daef75fc2b941ea53ed6e4f965",
-      "bytes": 65503
+      "sha256": "966428831749572cb16fe1a98fb299dbf6239e38ef40bec102326afdf371d433",
+      "bytes": 554249
     },
     {
       "name": "edu-workbook",
       "kind": "workbook",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-workbook.zip",
-      "sha256": "fbd884295ad4ac0f29c147ffbf2a606a70a9693d52fe88ff3ec0f783d82d7b73",
-      "bytes": 65313
+      "sha256": "334c8d737d4bb9ee251ef53cb2a7c2d38b0ec86f2b7ddbb479ba3bb3eddc57f0",
+      "bytes": 555011
     },
     {
       "name": "edu-lean-coffee",
       "kind": "lean-coffee",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-lean-coffee.zip",
-      "sha256": "688c0b91861b4f2ab3522e82327f766e5df38f5d5ed58222277475fc218ac332",
-      "bytes": 65811
+      "sha256": "9f57db293c6cb57ca4b8f2202db59ce8d2a0ba3ba7b95a886352afb0000a7022",
+      "bytes": 553027
     },
     {
       "name": "edu-playbook",
       "kind": "playbook",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-playbook.zip",
-      "sha256": "eccc948841e54f2a249ffcddb462fdc3d5b44613e2f19ae2c2aafe568162ef93",
-      "bytes": 65292
+      "sha256": "a1bc7306426ef8a0f8b93f081d495ce0e3a93f64f1b511f485febfdf81a0592d",
+      "bytes": 552292
     },
     {
       "name": "edu-playbook-immersive",
       "kind": "playbook-immersive",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-playbook-immersive.zip",
-      "sha256": "9e833ea252fee2df395f39541151f15c083ff7ee722baeb70dfcedcb83615f27",
-      "bytes": 66087
+      "sha256": "2bad9a29a002cc6c877139851472945a36f3f5d285a7cbc1f2b381e3a4674d4d",
+      "bytes": 554252
     },
     {
       "name": "edu-index",
       "kind": "index",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-index.zip",
-      "sha256": "c55e9e6ec9fba9241ee6491378d065db6a49a095f7018f49116aecd834c58c2b",
-      "bytes": 65203
+      "sha256": "8d6b47106f694ef2e1bc6a75e46a5826910672e05191e0b2e723cd6ad2d5b8e4",
+      "bytes": 620466
     },
     {
       "name": "edu-module",
       "kind": "module",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/edu-module.zip",
-      "sha256": "affde77e29f785d9c9fbe99dd5e90734af7c3befc724fb6244e27084361d21d5",
-      "bytes": 92895
+      "sha256": "97a4d236a2aef5ecef497e033150b1e352904ee7aa505bd182528dde2830c2ce",
+      "bytes": 608777
     },
     {
       "name": "white-label-dynamic-commercial-decks",
       "kind": "dynamic-commercial-decks",
       "edition": "white-label",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "zip": "dist/white-label-dynamic-commercial-decks.zip",
-      "sha256": "f23e02600fb2da8e9e142c2db824a2b0e61525a0de7c2f7fcd5a795c6293deab",
-      "bytes": 67613
+      "sha256": "9e69ddfa22239a9b651577bb9dff3e5f0035969798c44dba106a651db06e7f67",
+      "bytes": 556700
     }
   ],
   "source": "05_verificacion/scripts/build-aula-decks.py"

@@ -1,11 +1,11 @@
-import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {dirname} from 'node:path';
 import {FramesWorkOrderV1Schema, hashExperienceValue} from '../../../core/contracts/index.ts';
 import {assertContainedInputFileV1} from '../../core/safe-local-path-v1.ts';
 import type {AulaContinuationV1} from '../_schema/aula-approval-v1.ts';
-import {assertAulaEngineAuthorityV1} from './aula-engine-authority-v1.ts';
+import {aulaAuthorityRefV1} from './aula-engine-authority-v1.ts';
+import {planAulaBuildV1, aulaEngineRefV1} from './aula-build-dependencies-v1.ts';
 import type {selectAulaCapabilityV1} from './aula-capability-v1.ts';
 
 export const aulaFileHashV1 = (path: string) =>
@@ -20,12 +20,13 @@ export function createAulaWorkOrderV1(input: {
   capability: NonNullable<ReturnType<typeof selectAulaCapabilityV1>>;
 }) {
   const {root, requestHash, actorId, continuation: c, capability} = input;
-  assertAulaEngineAuthorityV1(root);
+  const build = planAulaBuildV1({root, ...c, kind: capability.kind, edition: capability.edition});
   const refs = [
     ...new Set([
       c.inputRef,
       c.briefRef,
       c.briefApprovalRef,
+      aulaAuthorityRefV1,
       ...(c.specRef ? [c.specRef] : []),
       ...(c.specApprovalRef ? [c.specApprovalRef] : []),
       ...(c.intakeRef ? [c.intakeRef] : []),
@@ -39,40 +40,15 @@ export function createAulaWorkOrderV1(input: {
     ref,
     sha256: aulaFileHashV1(assertContainedInputFileV1(root, ref)),
   }));
-  let outputNames = ['spec.json'];
-  if (c.stage === 'build') {
-    const runtime = assertContainedInputFileV1(
-      root,
-      '03_artefactos/renderers/frames-aula/runtime.py',
-    );
-    const plan: unknown = JSON.parse(
-      execFileSync(
-        'python3',
-        [
-          runtime,
-          'plan',
-          '--kind',
-          capability.kind,
-          '--edition',
-          capability.edition,
-          '--input',
-          assertContainedInputFileV1(root, c.inputRef),
-          '--out',
-          resolve(root, c.outputDirectoryRef),
-        ],
-        {encoding: 'utf8', timeout: 60_000, env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'}},
-      ),
-    );
-    if (
-      !plan ||
-      typeof plan !== 'object' ||
-      !('outputs' in plan) ||
-      !Array.isArray(plan.outputs) ||
-      plan.outputs.some((name: unknown) => typeof name !== 'string')
-    )
-      throw new Error('AULA_OUTPUT_PLAN_INVALID');
-    outputNames = plan.outputs as string[];
-  }
+  const outputNames = c.stage === 'build' ? build.plan.outputs : ['spec.json'];
+  const readSet = [
+    ...refs,
+    `${aulaEngineRefV1}/assets/core/**`,
+    ...(build.binding.buildDependencies?.some((dep) => dep.role === 'linked-piece')
+      ? [`${dirname(c.inputRef)}/**`]
+      : []),
+    ...(c.bankRef ? [`${c.bankRef}/**`] : []),
+  ];
   const expectedOutputs = outputNames.map((name) => `${c.outputDirectoryRef}/${name}`);
   const additional = [
     'work-order.json',
@@ -90,7 +66,7 @@ export function createAulaWorkOrderV1(input: {
     stepId: 'S01',
     skillId: capability.skillId,
     actorId,
-    readSet: refs,
+    readSet,
     writeSet: c.writeSet,
     inputs,
     expectedOutputs,

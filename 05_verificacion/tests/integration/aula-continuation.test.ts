@@ -7,6 +7,7 @@ import {
   rmSync,
   writeFileSync,
   mkdirSync,
+  readdirSync,
 } from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
@@ -51,6 +52,14 @@ const requests = [
   ['module', 'Crear un kit completo para un taller'],
   ['dynamic-commercial-decks', 'Crear un deck de prospección'],
 ] as const;
+function engineFiles(dir: string, prefix = ''): string[] {
+  return readdirSync(dir, {withFileTypes: true}).flatMap((entry) => {
+    if (entry.isSymbolicLink()) throw new Error('FIXTURE_ENGINE_SYMLINK');
+    return entry.isDirectory()
+      ? engineFiles(resolve(dir, entry.name), prefix + entry.name + '/')
+      : [prefix + entry.name];
+  });
+}
 function fixture(
   kind: string,
   request: string,
@@ -75,7 +84,7 @@ function fixture(
     JSON.stringify({
       lifecycleState: 'active',
       publicationAuthority: false,
-      engineRefs: ['runtime.py', 'app.js', 'style.css'].map((name) => ({
+      engineRefs: engineFiles(resolve(root, '03_artefactos/renderers/frames-aula')).map((name) => ({
         ref: `03_artefactos/renderers/frames-aula/${name}`,
         sha256: hash(resolve(root, `03_artefactos/renderers/frames-aula/${name}`)),
       })),
@@ -101,6 +110,27 @@ function fixture(
     resolve(`03_artefactos/renderers/frames-aula/examples/${kind}.json`),
     resolve(root, 'input.json'),
   );
+  const source = JSON.parse(readFileSync(resolve(root, 'input.json'), 'utf8')) as {
+    sections: {links?: {href: string}[]; assetRefs?: {id: string; kind: string}[]}[];
+    pieces?: {href: string}[];
+  };
+  for (const piece of [
+    ...(source.pieces ?? []),
+    ...source.sections.flatMap((s) => s.links ?? []),
+  ]) {
+    const name = piece.href.split('#')[0]!;
+    if (!/^[a-z][a-z0-9-]*\.html$/u.test(name)) throw new Error('FIXTURE_LINKED_FILE_UNSAFE');
+    cpSync(resolve('03_artefactos/renderers/frames-aula/examples', name), resolve(root, name));
+  }
+  const testBanks = process.env.FRAMES_AULA_TEST_BANKS;
+  if (testBanks) {
+    cpSync(resolve(testBanks, edition), resolve(root, 'asset-bank'), {recursive: true});
+    source.sections[0]!.assetRefs = [
+      ...(source.sections[0]!.assetRefs ?? []),
+      {id: 'business-offer', kind: 'icon'},
+    ];
+    writeFileSync(resolve(root, 'input.json'), JSON.stringify(source));
+  }
   writeFileSync(
     resolve(root, 'brief.md'),
     '# Brief de evaluación original\n\nObjetivo: practicar con evidencia. [SUPUESTO]\n',
@@ -158,6 +188,7 @@ function fixture(
   const c = {
     edition,
     inputRef: 'input.json',
+    ...(testBanks ? {bankRef: 'asset-bank'} : {}),
     briefRef: 'brief.md',
     briefApprovalRef: 'brief-approval.json',
     ...(deck ? {intakeRef: 'intake.json', intakeApprovalRef: 'intake-approval.json'} : {}),
@@ -221,6 +252,16 @@ describe('Aula natural-language continuation through Frames gates', () => {
     const receipt = JSON.parse(
       readFileSync(resolve(f.root, 'render/invocation-receipt.json'), 'utf8'),
     ) as {status: string; outputs: {ref: string; sha256: string}[]};
+    const material = JSON.parse(readFileSync(resolve(f.root, 'render/receipt.json'), 'utf8')) as {
+      engineVersion?: string;
+      assetEvidence?: {id: string; source: string}[];
+    };
+    if (process.env.FRAMES_AULA_TEST_BANKS) {
+      expect(material.engineVersion).toBe('1.1.0');
+      expect(material.assetEvidence).toContainEqual(
+        expect.objectContaining({id: 'business-offer', source: 'bank'}),
+      );
+    }
     expect(receipt.status).toBe('PASS');
     for (const item of receipt.outputs) expect(hash(resolve(f.root, item.ref))).toBe(item.sha256);
     const review = JSON.parse(

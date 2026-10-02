@@ -74,8 +74,8 @@ for (const skill of [...manifest.skills, {name: 'content-os-router'}]) {
         skill_id: skill.name,
         from: previous.current_state,
         to: previous.current_state,
-        actor_id: 'RT-07',
-        recorded_at: '2026-10-01T15:00:00Z',
+        actor_id: 'AULA-110-PACKAGER',
+        recorded_at: new Date().toISOString(),
         decision: 'freeze_verified_local_package_successor',
         previous_version: previous.version,
         version: next.version,
@@ -95,6 +95,15 @@ writeFileSync(
 );
 const capabilityRef = '04_estado/registries/renderers/aula-decks-capability-v1.json';
 const capability = JSON.parse(readFileSync(capabilityRef, 'utf8'));
+const engineRoot = '03_artefactos/renderers/frames-aula';
+capability.engineRefs = walk(engineRoot)
+  .filter(
+    (ref) =>
+      !ref.includes('/examples/') && !ref.includes('/tests/') && !ref.includes('__pycache__'),
+  )
+  .filter((ref) => /\.(py|js|css|json|svg|ttf|txt)$/u.test(ref) || ref.endsWith('/LICENSE'))
+  .sort()
+  .map((ref) => ({ref, sha256: hash(readFileSync(ref))}));
 for (const item of [...capability.engineRefs, capability.handlerRef])
   item.sha256 = hash(readFileSync(item.ref));
 writeFileSync(

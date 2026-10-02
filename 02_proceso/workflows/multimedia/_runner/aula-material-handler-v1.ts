@@ -14,7 +14,13 @@ import {
   AulaDeckIntakeApprovalV1Schema,
   AulaDesignV1Schema,
 } from '../_schema/aula-approval-v1.ts';
-import {assertAulaEngineAuthorityV1} from './aula-engine-authority-v1.ts';
+import {aulaAuthorityRefV1} from './aula-engine-authority-v1.ts';
+import {
+  planAulaBuildV1,
+  assertApprovedAulaBuildV1,
+  aulaDependencyInputsV1,
+} from './aula-build-dependencies-v1.ts';
+import {aulaBuildBindingV1} from '../_schema/aula-dependencies-v1.ts';
 import {selectAulaCapabilityV1, type AulaEdition} from './aula-capability-v1.ts';
 import {aulaFileHashV1 as hash, aulaWriteAllowedV1 as allowed} from './aula-work-order-v1.ts';
 
@@ -23,6 +29,7 @@ export function assertAulaApprovalsV1(input: {
   requestHash: string;
   edition: AulaEdition;
   inputRef: string;
+  bankRef?: string;
   briefRef: string;
   approvalRef: string;
   specRef?: string;
@@ -75,6 +82,9 @@ export function assertAulaApprovalsV1(input: {
       spec.requestHash !== input.requestHash ||
       spec.edition !== input.edition ||
       spec.inputRef !== input.inputRef ||
+      spec.buildBinding?.bankRef !== input.bankRef ||
+      (spec.buildBinding?.engineVersion &&
+        spec.engineAuthoritySha256 !== fileHash(aulaAuthorityRefV1)) ||
       spec.inputSha256 !== fileHash(input.inputRef) ||
       spec.briefRef !== input.briefRef ||
       spec.briefSha256 !== fileHash(input.briefRef) ||
@@ -92,6 +102,7 @@ export function createAulaMaterialHandlerV1(input: {
   requestHash?: string;
   edition?: AulaEdition;
   inputRef: string;
+  bankRef?: string;
   briefRef: string;
   approvalRef: string;
   specRef?: string;
@@ -112,11 +123,19 @@ export function createAulaMaterialHandlerV1(input: {
       (input.requestHash !== undefined && input.requestHash !== order.requestHash)
     )
       throw new Error('AULA_ROUTE_LOCK_MISMATCH');
-    assertAulaEngineAuthorityV1(input.root);
+    assertAulaApprovalsV1({
+      ...input,
+      requestHash: order.requestHash,
+      edition: capability.edition,
+      requireSpec: true,
+      isDeck: capability.kind === 'dynamic-commercial-decks',
+    });
+    const build = planAulaBuildV1({...input, kind: capability.kind, edition: capability.edition});
     const refs = [
       input.inputRef,
       input.briefRef,
       input.approvalRef,
+      aulaAuthorityRefV1,
       ...(input.specRef ? [input.specRef] : []),
       ...(input.specApprovalRef ? [input.specApprovalRef] : []),
       ...(input.intakeRef ? [input.intakeRef] : []),
@@ -131,44 +150,19 @@ export function createAulaMaterialHandlerV1(input: {
       if (!order.inputs.some((item) => item.ref === ref && item.sha256 === hash(path)))
         throw new Error('AULA_INPUT_HASH_MISMATCH');
     }
+    for (const dep of build.dependencies)
+      if (!allowed(dep.ref, order.readSet)) throw new Error('AULA_UNAUTHORIZED_DEPENDENCY');
     if (input.specRef) {
       const spec = AulaDesignV1Schema.parse(
         JSON.parse(
           readFileSync(assertContainedInputFileV1(input.root, input.specRef), 'utf8'),
         ) as unknown,
       );
+      assertApprovedAulaBuildV1(spec, build.binding);
       if (spec.kind !== capability.kind || spec.skillId !== capability.skillId)
         throw new Error('AULA_SPEC_ROUTE_LOCK_MISMATCH');
     }
-    assertAulaApprovalsV1({
-      ...input,
-      requestHash: order.requestHash,
-      edition: capability.edition,
-      requireSpec: true,
-      isDeck: capability.kind === 'dynamic-commercial-decks',
-    });
-    const runtime = assertContainedInputFileV1(
-      input.root,
-      '03_artefactos/renderers/frames-aula/runtime.py',
-    );
-    const args = [
-      '--kind',
-      capability.kind,
-      '--edition',
-      capability.edition,
-      '--input',
-      assertContainedInputFileV1(input.root, input.inputRef),
-      '--out',
-      resolve(input.root, input.outputDirectoryRef),
-    ];
-    const options = {
-      encoding: 'utf8' as const,
-      timeout: 60_000,
-      env: {...process.env, PYTHONDONTWRITEBYTECODE: '1'},
-    };
-    const plan = JSON.parse(execFileSync('python3', [runtime, 'plan', ...args], options)) as {
-      outputs: string[];
-    };
+    const plan = build.plan;
     const outputRefs = plan.outputs.map((name) => `${input.outputDirectoryRef}/${name}`);
     if (
       JSON.stringify([...outputRefs].sort()) !==
@@ -177,7 +171,14 @@ export function createAulaMaterialHandlerV1(input: {
     )
       throw new Error('AULA_OUTPUT_CONTRACT_MISMATCH');
     prepareContainedDirectoryV1(input.root, input.outputDirectoryRef);
-    execFileSync('python3', [runtime, 'build', ...args], options);
+    const rendered = JSON.parse(
+      execFileSync('python3', [build.runtime, 'build', ...build.args], build.options),
+    ) as Record<string, unknown>;
+    assertApprovedAulaBuildV1(
+      {buildBinding: aulaBuildBindingV1(rendered, input.bankRef)},
+      build.binding,
+    );
+    aulaDependencyInputsV1(input.root, build.binding, input.inputRef);
     return {
       status: 'PASS',
       outputs: outputRefs.map((ref) => ({ref, sha256: hash(resolve(input.root, ref))})),
@@ -186,7 +187,12 @@ export function createAulaMaterialHandlerV1(input: {
         sha256: hash(assertContainedInputFileV1(input.root, ref)),
       })),
       publicSummary: 'HTML local generado; RENDERED_DRAFT, revisión humana pendiente.',
-      metrics: {kind: capability.kind, edition: capability.edition, externalEffects: false},
+      metrics: {
+        kind: capability.kind,
+        edition: capability.edition,
+        externalEffects: false,
+        buildBindingSha256: hashExperienceValue(build.binding),
+      },
     };
   };
 }

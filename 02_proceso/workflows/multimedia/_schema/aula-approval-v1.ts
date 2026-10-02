@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {RelativePathSchema, Sha256Schema} from '../../../core/contracts/index.ts';
+import {AulaBuildBindingV1Schema} from './aula-dependencies-v1.ts';
 
 export const AulaEditionV1Schema = z.enum(['metodologia', 'white-label']);
 const identity = {
@@ -40,6 +41,8 @@ export const AulaDesignV1Schema = z.strictObject({
   intakeRef: RelativePathSchema.optional(),
   intakeSha256: Sha256Schema.optional(),
   state: z.literal('SPEC_DRAFT'),
+  buildBinding: AulaBuildBindingV1Schema.optional(),
+  engineAuthoritySha256: Sha256Schema.optional(),
 });
 export const AulaContinuationV1Schema = z.strictObject({
   stage: z.enum(['spec', 'build']),
@@ -51,6 +54,7 @@ export const AulaContinuationV1Schema = z.strictObject({
   specApprovalRef: RelativePathSchema.optional(),
   intakeRef: RelativePathSchema.optional(),
   intakeApprovalRef: RelativePathSchema.optional(),
+  bankRef: RelativePathSchema.optional(),
   outputDirectoryRef: RelativePathSchema,
   writeSet: z.array(RelativePathSchema).min(1).max(12),
 });

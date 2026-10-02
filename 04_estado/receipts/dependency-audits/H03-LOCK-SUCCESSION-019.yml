@@ -1,0 +1,29 @@
+schema_version: dependency-lock-succession-v1
+receipt_id: H03-LOCK-SUCCESSION-019
+supersedes_receipt_id: H03-LOCK-SUCCESSION-018
+recorded_at: 2026-10-01T23:06:17.186145+00:00
+approval_phrase: PLEASE IMPLEMENT THIS PLAN
+approval_scope: frames_aula_decks_v1_v2_publication_scripts_without_dependency_change
+authorization_basis: current_user_approved_frames_aula_decks_plan_20261001
+previous:
+  package_sha256: ffe164e4029ac4eaadb1101335649375dbc634ad70bf64f529127e5ffdeecb1b
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+current:
+  package_sha256: c472186b4c25fdafc203fcaf08a7dd0d9af73a75245b21bad1459e53114fb86c
+  lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+dependency_change: false
+dependency_set: []
+audit_receipt:
+  ref: 04_estado/receipts/dependency-audits/RCP-DEP-PRODUCTION-20261001-003.json
+  sha256: b7db4e5d4b7f65445553e3b6d4e6f664745b1842e3dee4db083fbb53dc3e1c56
+license_receipt_ref: 04_estado/receipts/dependency-audits/H03-LIC-AJV-001.yml
+frozen_install:
+  command: inherited:no-dependency-change
+  status: passed
+rollback:
+  strategy: revert_aula_integration_commits_and_restore_prior_package_scripts
+  expected_lock_sha256: 01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d
+production_state: ACTIVE_LOCAL_EVALUATION
+distribution_state: NOT_DESIGNED
+publication_authority: false
+append_only: true

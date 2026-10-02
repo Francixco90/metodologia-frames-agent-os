@@ -1,6 +1,7 @@
-import {realpathSync} from 'node:fs';
+import {readFileSync, realpathSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {z} from 'zod';
 
 import {
   effectiveRules,
@@ -21,13 +22,42 @@ import {
   type ChangeProgramFileLineCapV1,
 } from './lib/change-program-budget.ts';
 import {isBudgetGeneratedPath} from './lib/budget-generated-path.ts';
-import {metricsFor} from './ledger/git-walker.ts';
+import {metricsFor, sha256} from './ledger/git-walker.ts';
 import {legacyPathInversions, normalizeToLegacyPath} from './ledger/path-utils.ts';
 
 const ROOT = process.cwd();
 
 export const wordCount = (text: string): number => metricsFor(Buffer.from(text)).words;
 export const lineCount = (text: string): number => metricsFor(Buffer.from(text)).loc;
+
+export const isVerifiedAulaFont = (root: string, path: string, bytes: Buffer): boolean => {
+  const fonts: Record<string, string> = {
+    'Poppins-Bold.ttf': '983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c',
+    'Montserrat-VariableFont_wght.ttf':
+      '0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7',
+  };
+  const name = path.split('/').at(-1)!;
+  if (!fonts[name] || sha256(bytes) !== fonts[name]) return false;
+  const result = z
+    .object({
+      skills: z.array(z.object({name: z.string().regex(/^[a-z][a-z0-9-]*$/)})).length(18),
+    })
+    .safeParse(
+      JSON.parse(
+        readFileSync(resolve(root, '04_estado/registries/skills/aula-decks-package.json'), 'utf8'),
+      ) as unknown,
+    );
+  if (!result.success || new Set(result.data.skills.map((skill) => skill.name)).size !== 18)
+    return false;
+  const manifest = result.data;
+  const scopes = [
+    '03_artefactos/renderers/frames-aula/assets/core/fonts/',
+    ...manifest.skills.map(
+      (skill: {name: string}) => `03_artefactos/skills/${skill.name}/engine/assets/core/fonts/`,
+    ),
+  ];
+  return scopes.some((scope) => path === scope + name);
+};
 
 export const main = (root = ROOT): void => {
   const errors: string[] = [];
@@ -99,9 +129,11 @@ export const main = (root = ROOT): void => {
       if (!changed && (rule.kind === 'exempt' || rule.scope === 'changed')) continue;
 
       try {
-        const metrics = metricsFor(readBudgetFile(root, path));
+        const bytes = readBudgetFile(root, path);
+        const metrics = metricsFor(bytes);
         if (metrics.format === 'binary') {
-          if (changed && !lfsManaged.has(path)) errors.push(`BUDGET-BINARY001 ${path}`);
+          if (changed && !lfsManaged.has(path) && !isVerifiedAulaFont(root, path, bytes))
+            errors.push(`BUDGET-BINARY001 ${path}`);
           continue;
         }
         if (rule.kind === 'exempt') continue;

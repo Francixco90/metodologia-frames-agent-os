@@ -1,8 +1,8 @@
 {
   "schemaVersion": "documentation-inventory-v1",
-  "repositoryTreeSha256": "0886a5eae03648a3bfa7730da5a302403f98b9ffdf8f9319e00b5509507ef765",
-  "totalMarkdown": 2187,
-  "auditedAuthored": 896,
+  "repositoryTreeSha256": "831ef5f483aedbba5766760a1b4eaa87221866fed32e830c77b1be17b36132b3",
+  "totalMarkdown": 2188,
+  "auditedAuthored": 897,
   "classPaths": {
     "authored_control": [
       ".agents/skills/frames-assist/SKILL.md",
@@ -72,6 +72,7 @@
       "01_intencion/find-skills/verification-report.md",
       "01_intencion/frames-evolution/ADOPTION-V1.md",
       "01_intencion/frames-evolution/aula-decks-20261001/README.md",
+      "01_intencion/frames-evolution/aula-decks-20261001/release-1.1.0.md",
       "01_intencion/genjutsu/architecture.md",
       "01_intencion/genjutsu/audit-report.md",
       "01_intencion/genjutsu/verification-report.md",
@@ -4073,9 +4074,9 @@
       "sourceRef": "01_intencion/frames-evolution/aula-decks-20261001/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "e1f68877c9623700440541efa43366a26f2be07b78600334796d4e739078d0d7",
-      "words": 596,
-      "lines": 40,
+      "sha256": "3d48cb9223223a969fe36feb1a83151a67b1fc3fcf87c8999f33ec9b8bc8533a",
+      "words": 750,
+      "lines": 48,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -4084,6 +4085,32 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": true,
+        "duplicateHeadings": 0
+      }
+    },
+    {
+      "path": "01_intencion/frames-evolution/aula-decks-20261001/release-1.1.0.md",
+      "class": "authored_control",
+      "owner": "lead",
+      "ownerEvidence": "docs/program/ownership-manifest.yml:lead:docs/**",
+      "authorityRefs": [
+        "01_intencion/frames-evolution/aula-decks-20261001/release-1.1.0.md"
+      ],
+      "budgetSurface": "authored-explicit-fallback",
+      "sourceRef": "01_intencion/frames-evolution/aula-decks-20261001/release-1.1.0.md",
+      "derivatives": [],
+      "lifecycle": "active",
+      "sha256": "78eddc75986a67b2fa50c1742db26105d8507059d44c69430b604282db77d248",
+      "words": 282,
+      "lines": 16,
+      "score": 100,
+      "threshold": 80,
+      "decision": "KEEP",
+      "findings": [],
+      "qualitySignals": {
+        "hasExecutableCommand": false,
+        "hasAuthorityLink": false,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -5035,7 +5062,7 @@
       "sourceRef": null,
       "derivatives": [],
       "lifecycle": "generated",
-      "sha256": "4e1fbea3422bdb21b2e09db4a334f8e6362e201058d22c9d7a390bd889817b95",
+      "sha256": "ce5bf1aa19ebb54470960f5ae5d53ff0720cb44f066a3f504ae250722b6b5163",
       "words": 7788,
       "lines": 450,
       "score": 100,
@@ -10781,15 +10808,15 @@
       "authorityRefs": [
         "03_artefactos/content/documentation/ecosystem-inventory.md"
       ],
-      "budgetSurface": "generated-ecosystem-inventory",
+      "budgetSurface": "generated-public-ecosystem-inventory",
       "sourceRef": "03_artefactos/content/documentation/ecosystem-inventory.md",
       "derivatives": [
         "03_artefactos/content/documentation/ecosystem-inventory.html"
       ],
       "lifecycle": "active",
-      "sha256": "4ae473799f498118f389eda99e113dd5bd518fb14b83cb4faf7642285ed7dfd0",
-      "words": 11494,
-      "lines": 1067,
+      "sha256": "deeba8f7dfb4ad8bf5a75e99d4cdc7302eeab458848a3c5d4d0c6c9a7b421aea",
+      "words": 28049,
+      "lines": 2572,
       "score": 100,
       "threshold": 80,
       "decision": "SPLIT",
@@ -14221,17 +14248,17 @@
       "sourceRef": "03_artefactos/renderers/frames-aula/README.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17397,8 +17424,8 @@
       "sourceRef": "03_artefactos/skills/edu-immersive-class/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "1d37648bd4becebff8ab93c99d65d2bcfeaa1e89d7f8db25b6f774b51afd1acf",
-      "words": 25,
+      "sha256": "dbb475c3dc420544af69b9ff51278c56dadb9f91d960f82782240785da28ba78",
+      "words": 18,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -17425,9 +17452,9 @@
         "03_artefactos/skills/edu-immersive-class/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "9c61a7bad26612db74e8d535ab4f15c04e6a564e021cbb5db6446789c62b46bb",
-      "words": 51,
-      "lines": 16,
+      "sha256": "ef2f8dccfd18eb0dac6bb3bf15df7ba7ffea8c62ac206d6d88417e604eaac070",
+      "words": 305,
+      "lines": 84,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17436,7 +17463,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -17477,8 +17504,8 @@
       "sourceRef": "03_artefactos/skills/edu-immersive-class/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -17529,17 +17556,17 @@
       "sourceRef": "03_artefactos/skills/edu-immersive-class/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17555,9 +17582,9 @@
       "sourceRef": "03_artefactos/skills/edu-immersive-class/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17565,7 +17592,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -17613,8 +17640,8 @@
       "sourceRef": "03_artefactos/skills/edu-index/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "53e5fa13fa65331e0e850fcfe372254b0f5e2a876db7d67fa603bca3a7806220",
-      "words": 26,
+      "sha256": "dcc9c2b7be0815c104bbd74049b22d3b9e843e4ee7de4e3c5aaa34d3a77239b9",
+      "words": 19,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -17641,9 +17668,9 @@
         "03_artefactos/skills/edu-index/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40",
-      "words": 51,
-      "lines": 16,
+      "sha256": "4f7614270f4bcfa5144bc2ab6d81c571534554c7624861b053f5a66b37e37678",
+      "words": 247,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17652,7 +17679,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -17693,8 +17720,8 @@
       "sourceRef": "03_artefactos/skills/edu-index/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -17745,17 +17772,17 @@
       "sourceRef": "03_artefactos/skills/edu-index/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17771,9 +17798,9 @@
       "sourceRef": "03_artefactos/skills/edu-index/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17781,7 +17808,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -17829,8 +17856,8 @@
       "sourceRef": "03_artefactos/skills/edu-lean-coffee/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "f50bb411e7535b094dbaa0becf8d401fe4059e220e82a3ff22c9ab6f096445ee",
-      "words": 26,
+      "sha256": "c557729e961a6e8fad4b8c8a2fc4db2f994af1a1c26f0a75ef73f60cefb3f34f",
+      "words": 19,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -17857,9 +17884,9 @@
         "03_artefactos/skills/edu-lean-coffee/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "5f71725b16575e327b03e177bacc06a2ae3098b5020985080f25e3e2cf619425",
-      "words": 52,
-      "lines": 16,
+      "sha256": "96c00c62c64b8e352c830b3dae1ffe23d9cde6a76d4205ceaebda924f6b0d828",
+      "words": 244,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17868,7 +17895,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -17909,8 +17936,8 @@
       "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -17961,17 +17988,17 @@
       "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -17987,9 +18014,9 @@
       "sourceRef": "03_artefactos/skills/edu-lean-coffee/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -17997,7 +18024,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -18045,8 +18072,8 @@
       "sourceRef": "03_artefactos/skills/edu-masterclass/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "42dbde559190f1ecc2fc5d0a528ad48e34a0ae06c0faeb57c1ebeeb2a79ff6e3",
-      "words": 26,
+      "sha256": "0615dfbe455db36b472b1cfcfdc03b83d73ada4c779877457d1c8c34717575e6",
+      "words": 19,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -18073,9 +18100,9 @@
         "03_artefactos/skills/edu-masterclass/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a",
-      "words": 51,
-      "lines": 16,
+      "sha256": "eca1da9c120053475b304001e78f79edc962b6dec09b8e810a8d94390269a59c",
+      "words": 305,
+      "lines": 84,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18084,7 +18111,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -18125,8 +18152,8 @@
       "sourceRef": "03_artefactos/skills/edu-masterclass/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -18177,17 +18204,17 @@
       "sourceRef": "03_artefactos/skills/edu-masterclass/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -18203,9 +18230,9 @@
       "sourceRef": "03_artefactos/skills/edu-masterclass/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18213,7 +18240,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -18261,8 +18288,8 @@
       "sourceRef": "03_artefactos/skills/edu-module/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "8a28802c1898a4fa9a2cc7fe579ae4737bf085dcb604c588922329b30a2039e1",
-      "words": 27,
+      "sha256": "b8821a60b28688934f4f930d34c9ca65cd0d304bb42d9a9fdec0ef7d049d65c1",
+      "words": 20,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -18289,9 +18316,9 @@
         "03_artefactos/skills/edu-module/examples/rendered/workbook.html"
       ],
       "lifecycle": "active",
-      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
+      "words": 337,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18300,7 +18327,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -18341,8 +18368,8 @@
       "sourceRef": "03_artefactos/skills/edu-module/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -18393,17 +18420,17 @@
       "sourceRef": "03_artefactos/skills/edu-module/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -18419,9 +18446,9 @@
       "sourceRef": "03_artefactos/skills/edu-module/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18429,7 +18456,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -18477,8 +18504,8 @@
       "sourceRef": "03_artefactos/skills/edu-playbook-immersive/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "7b67491ae3b99b73f4ddd6074a84b0a99b721a26329926563b0749d88cb86e21",
-      "words": 22,
+      "sha256": "060c141d53dd29a2952ecfde2c93a2d56796abd18512904ba97637476c98f70c",
+      "words": 15,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -18505,9 +18532,9 @@
         "03_artefactos/skills/edu-playbook-immersive/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "e634f44faf33e2d484c7f026fd543384726847f2ad43a67973840485f81e13ea",
-      "words": 50,
-      "lines": 16,
+      "sha256": "535abd2940af1bf6b2cf833468b0b8eaee917386bfb964f471fe4ced2a0eb2c2",
+      "words": 252,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18516,7 +18543,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -18557,8 +18584,8 @@
       "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -18609,17 +18636,17 @@
       "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -18635,9 +18662,9 @@
       "sourceRef": "03_artefactos/skills/edu-playbook-immersive/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18645,7 +18672,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -18693,8 +18720,8 @@
       "sourceRef": "03_artefactos/skills/edu-playbook/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "d14a3fe9f7c4d4f66086ae76e75b55f1f0f66d70feb1cb5a3540e21289d3e203",
-      "words": 25,
+      "sha256": "cec544db8240787ce197f8aa362c75249e1e860cea06ce35a9d1d687b4f1a14d",
+      "words": 18,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -18721,9 +18748,9 @@
         "03_artefactos/skills/edu-playbook/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b9091db85fb72042d011184b35afc795d6bde7182ba5c04c77ce664d9907f6bb",
+      "words": 252,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18732,7 +18759,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -18773,8 +18800,8 @@
       "sourceRef": "03_artefactos/skills/edu-playbook/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -18825,17 +18852,17 @@
       "sourceRef": "03_artefactos/skills/edu-playbook/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -18851,9 +18878,9 @@
       "sourceRef": "03_artefactos/skills/edu-playbook/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18861,7 +18888,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -18909,8 +18936,8 @@
       "sourceRef": "03_artefactos/skills/edu-workbook/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "77dcb874bc9c6207a6b6cdf6a9f59a24d63c5b28c28b801b819cc425b441fbf2",
-      "words": 25,
+      "sha256": "8405409c8592d6162bc0ed3b0429f5a950c8b3ec262fda812b5acaa2b62851e9",
+      "words": 18,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -18937,9 +18964,9 @@
         "03_artefactos/skills/edu-workbook/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
+      "words": 337,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -18948,7 +18975,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -18989,8 +19016,8 @@
       "sourceRef": "03_artefactos/skills/edu-workbook/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -19041,17 +19068,17 @@
       "sourceRef": "03_artefactos/skills/edu-workbook/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -19067,9 +19094,9 @@
       "sourceRef": "03_artefactos/skills/edu-workbook/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19077,7 +19104,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -19411,8 +19438,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "76915f44e9df755ece83e8a0d00e0213aabca8e1135e727abdb38837253382cd",
-      "words": 27,
+      "sha256": "087d532983f77c6d7b4179f19f2a7d54551d59027e20a8ea5606770bb07cee4e",
+      "words": 30,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -19439,9 +19466,9 @@
         "03_artefactos/skills/metodologia-dynamic-commercial-decks/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758",
-      "words": 52,
-      "lines": 16,
+      "sha256": "293059583122025ac3eb7bcae3c9af89c53f6f06d6e38e2c625220050ca4d1aa",
+      "words": 629,
+      "lines": 118,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19449,8 +19476,8 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
-        "duplicateHeadings": 0
+        "hasNextAction": true,
+        "duplicateHeadings": 14
       }
     },
     {
@@ -19491,8 +19518,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -19543,17 +19570,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -19569,9 +19596,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-dynamic-commercial-decks/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19579,7 +19606,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -19627,8 +19654,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "1d37648bd4becebff8ab93c99d65d2bcfeaa1e89d7f8db25b6f774b51afd1acf",
-      "words": 25,
+      "sha256": "c7bedf1ecddb162ee4ea6e66055eafe9851c4d6723f0eb3cc69a9ddb582ae317",
+      "words": 28,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -19655,9 +19682,9 @@
         "03_artefactos/skills/metodologia-edu-immersive-class/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "9c61a7bad26612db74e8d535ab4f15c04e6a564e021cbb5db6446789c62b46bb",
-      "words": 51,
-      "lines": 16,
+      "sha256": "f224033febd3b68834e2dba3ebc59e0f0820a358b2916e8281f274f909f025aa",
+      "words": 1473,
+      "lines": 285,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19665,8 +19692,8 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
-        "duplicateHeadings": 0
+        "hasNextAction": true,
+        "duplicateHeadings": 37
       }
     },
     {
@@ -19707,8 +19734,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -19759,17 +19786,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -19785,9 +19812,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-immersive-class/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19795,7 +19822,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -19843,8 +19870,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-index/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "53e5fa13fa65331e0e850fcfe372254b0f5e2a876db7d67fa603bca3a7806220",
-      "words": 26,
+      "sha256": "dcc9c2b7be0815c104bbd74049b22d3b9e843e4ee7de4e3c5aaa34d3a77239b9",
+      "words": 19,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -19871,9 +19898,9 @@
         "03_artefactos/skills/metodologia-edu-index/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "fb1c7ed535b93f8a605d0fca276aabe3edd3cf9845c3b791b34df74ff61c4b40",
-      "words": 51,
-      "lines": 16,
+      "sha256": "4f7614270f4bcfa5144bc2ab6d81c571534554c7624861b053f5a66b37e37678",
+      "words": 247,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -19882,7 +19909,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -19923,8 +19950,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -19975,17 +20002,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -20001,9 +20028,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-index/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20011,7 +20038,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -20059,8 +20086,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "f50bb411e7535b094dbaa0becf8d401fe4059e220e82a3ff22c9ab6f096445ee",
-      "words": 26,
+      "sha256": "c557729e961a6e8fad4b8c8a2fc4db2f994af1a1c26f0a75ef73f60cefb3f34f",
+      "words": 19,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -20087,9 +20114,9 @@
         "03_artefactos/skills/metodologia-edu-lean-coffee/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "5f71725b16575e327b03e177bacc06a2ae3098b5020985080f25e3e2cf619425",
-      "words": 52,
-      "lines": 16,
+      "sha256": "96c00c62c64b8e352c830b3dae1ffe23d9cde6a76d4205ceaebda924f6b0d828",
+      "words": 244,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20098,7 +20125,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -20139,8 +20166,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -20191,17 +20218,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -20217,9 +20244,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-lean-coffee/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20227,7 +20254,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -20275,8 +20302,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "42dbde559190f1ecc2fc5d0a528ad48e34a0ae06c0faeb57c1ebeeb2a79ff6e3",
-      "words": 26,
+      "sha256": "851873f19933c642a4f221ba2b59044f1dca4a62759a5895f3fef662e8d1f6bd",
+      "words": 29,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -20303,9 +20330,9 @@
         "03_artefactos/skills/metodologia-edu-masterclass/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a",
-      "words": 51,
-      "lines": 16,
+      "sha256": "325ecbd9ce73c59a55020ccc5e438e73e4c5aef464395214e708a77c879337f0",
+      "words": 1061,
+      "lines": 200,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20313,8 +20340,8 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
-        "duplicateHeadings": 0
+        "hasNextAction": true,
+        "duplicateHeadings": 22
       }
     },
     {
@@ -20355,8 +20382,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -20407,17 +20434,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -20433,9 +20460,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-masterclass/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20443,7 +20470,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -20491,8 +20518,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-module/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "8a28802c1898a4fa9a2cc7fe579ae4737bf085dcb604c588922329b30a2039e1",
-      "words": 27,
+      "sha256": "b8821a60b28688934f4f930d34c9ca65cd0d304bb42d9a9fdec0ef7d049d65c1",
+      "words": 20,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -20519,9 +20546,9 @@
         "03_artefactos/skills/metodologia-edu-module/examples/rendered/workbook.html"
       ],
       "lifecycle": "active",
-      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
+      "words": 337,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20530,7 +20557,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -20571,8 +20598,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -20623,17 +20650,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -20649,9 +20676,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-module/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20659,7 +20686,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -20707,8 +20734,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "7b67491ae3b99b73f4ddd6074a84b0a99b721a26329926563b0749d88cb86e21",
-      "words": 22,
+      "sha256": "060c141d53dd29a2952ecfde2c93a2d56796abd18512904ba97637476c98f70c",
+      "words": 15,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -20735,9 +20762,9 @@
         "03_artefactos/skills/metodologia-edu-playbook-immersive/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "e634f44faf33e2d484c7f026fd543384726847f2ad43a67973840485f81e13ea",
-      "words": 50,
-      "lines": 16,
+      "sha256": "535abd2940af1bf6b2cf833468b0b8eaee917386bfb964f471fe4ced2a0eb2c2",
+      "words": 252,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20746,7 +20773,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -20787,8 +20814,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -20839,17 +20866,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -20865,9 +20892,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook-immersive/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20875,7 +20902,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -20923,8 +20950,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "d14a3fe9f7c4d4f66086ae76e75b55f1f0f66d70feb1cb5a3540e21289d3e203",
-      "words": 25,
+      "sha256": "cec544db8240787ce197f8aa362c75249e1e860cea06ce35a9d1d687b4f1a14d",
+      "words": 18,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -20951,9 +20978,9 @@
         "03_artefactos/skills/metodologia-edu-playbook/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b9091db85fb72042d011184b35afc795d6bde7182ba5c04c77ce664d9907f6bb",
+      "words": 252,
+      "lines": 77,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -20962,7 +20989,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -21003,8 +21030,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -21055,17 +21082,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -21081,9 +21108,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-playbook/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -21091,7 +21118,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -21139,8 +21166,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "77dcb874bc9c6207a6b6cdf6a9f59a24d63c5b28c28b801b819cc425b441fbf2",
-      "words": 25,
+      "sha256": "8405409c8592d6162bc0ed3b0429f5a950c8b3ec262fda812b5acaa2b62851e9",
+      "words": 18,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -21167,9 +21194,9 @@
         "03_artefactos/skills/metodologia-edu-workbook/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
-      "words": 50,
-      "lines": 16,
+      "sha256": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
+      "words": 337,
+      "lines": 80,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -21178,7 +21205,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -21219,8 +21246,8 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -21271,17 +21298,17 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -21297,9 +21324,9 @@
       "sourceRef": "03_artefactos/skills/metodologia-edu-workbook/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -21307,7 +21334,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -23125,8 +23152,8 @@
       "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/brief.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "76915f44e9df755ece83e8a0d00e0213aabca8e1135e727abdb38837253382cd",
-      "words": 27,
+      "sha256": "4af4c2393b77b565cde66e124f7ee41af520a53b32857b060060e1625f6f9f1e",
+      "words": 20,
       "lines": 6,
       "score": 100,
       "threshold": 80,
@@ -23153,9 +23180,9 @@
         "03_artefactos/skills/white-label-dynamic-commercial-decks/examples/rendered/artifact.html"
       ],
       "lifecycle": "active",
-      "sha256": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758",
-      "words": 52,
-      "lines": 16,
+      "sha256": "c3e69619668526463f522756ad1c12763d597535535de15bdd16a40215154a60",
+      "words": 234,
+      "lines": 72,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -23164,7 +23191,7 @@
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
         "hasNextAction": false,
-        "duplicateHeadings": 0
+        "duplicateHeadings": 4
       }
     },
     {
@@ -23205,8 +23232,8 @@
       "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/asset-bank.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "62307415d64407587720d0728432e04e25e00c61b1a94f57b3a3fd27265bfb49",
-      "words": 54,
+      "sha256": "78d44b83ea016ab288a3c856433386a53f8061dcc58cd69d5f76943c608627f1",
+      "words": 83,
       "lines": 4,
       "score": 100,
       "threshold": 80,
@@ -23257,17 +23284,17 @@
       "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/runtime.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "c8481d4b1d2c140b66dc39fb0bbe8cfcdf32b2209f64afbaac530572b9aa202b",
-      "words": 785,
-      "lines": 46,
+      "sha256": "7d77ca464e7cbf98fe44c0452813c4e29801fdf1aaa6d7ae3825abc86712ed24",
+      "words": 1087,
+      "lines": 68,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
       "findings": [],
       "qualitySignals": {
-        "hasExecutableCommand": false,
+        "hasExecutableCommand": true,
         "hasAuthorityLink": false,
-        "hasNextAction": false,
+        "hasNextAction": true,
         "duplicateHeadings": 0
       }
     },
@@ -23283,9 +23310,9 @@
       "sourceRef": "03_artefactos/skills/white-label-dynamic-commercial-decks/references/schema.md",
       "derivatives": [],
       "lifecycle": "active",
-      "sha256": "17f159e550e5428ebaed51c48c5d6b7057f5ff951e710de3d1485fb30f703071",
-      "words": 72,
-      "lines": 6,
+      "sha256": "0d9b311eb6f4bcc3652caff1579950dbbe1c0867285e32de8bd1c63a2f097fdb",
+      "words": 175,
+      "lines": 12,
       "score": 100,
       "threshold": 80,
       "decision": "KEEP",
@@ -23293,7 +23320,7 @@
       "qualitySignals": {
         "hasExecutableCommand": false,
         "hasAuthorityLink": false,
-        "hasNextAction": true,
+        "hasNextAction": false,
         "duplicateHeadings": 0
       }
     },
@@ -26272,7 +26299,7 @@
     }
   ],
   "summary": {
-    "keep": 881,
+    "keep": 882,
     "refactor": 0,
     "split": 1,
     "regenerate": 103,

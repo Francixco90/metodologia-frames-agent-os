@@ -2,14 +2,103 @@
   "state": "RENDERED_DRAFT",
   "kind": "playbook",
   "edition": "metodologia",
-  "inputSha256": "45b9030a1ab06a3532d010b7e1c9c5758c17ecd9c0ffb97449bd116b972d896d",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "3537202fd7f51d9aa719880feb07a5d42a54b310bd1105c01f5480cb2c594e04",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "78269d679a6f0fe6778b2aecccdccfc5fcfd923f94fd62d1767b2684571cfac2",
-    "artifact-mobile.html": "6f8b7d093a682273eccad6f39628015ed133a356c2afb5120d0e4224c1b3782c",
-    "artifact-audience.html": "8dd80b1c9bcf1986c6fd4877be09dccbff81291533d5d17c61a579abe78b7621",
-    "artifact-mobile-audience.html": "59368485d25d50076e33d008eca6931314633012f2628e27f8774b5b351600cd",
-    "artifact.md": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770"
+    "artifact.html": "90b5a00e48c449df6a499ecff302cdad9c4c70c09d861dcd889e7dc95c07cab7",
+    "artifact-mobile.html": "40489901ad85b8d4f4a50a7ef3cbe7fda7c4fa9d719f3081bb9209b470f03140",
+    "artifact-audience.html": "af01281db56696c35aab8dda0dc9c08e3933d69231dfdd8847dc1d472c716ef0",
+    "artifact-mobile-audience.html": "2ee29b617cf06dd81c9d22a5bb7821a0d772c0e53940dd3bde8779522db25988",
+    "artifact.md": "b9091db85fb72042d011184b35afc795d6bde7182ba5c04c77ce664d9907f6bb"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "metodologia",
+    "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

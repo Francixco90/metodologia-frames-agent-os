@@ -26,9 +26,9 @@ La compatibilidad de pruebas R8 valida los bytes históricos y la evidencia del 
 
 ## Compatibilidad, derechos y límites
 
-Referencias históricas 0.4.0, 0.7.2 y 0.8.1 orientan capacidades; no acreditan paridad. Cinco escenas originales frente a 137 del catálogo Amaris. Migración explícita con informe de pérdidas. Office exporta texto estático con plantilla y dependencias opcionales; no conserva interactividad. Procedencia y hashes de hechos no verifican automáticamente su verdad.
+Referencias históricas 0.4.0, 0.7.2 y 0.8.1 orientan capacidades; no acreditan paridad. La versión1.0.x tenía cinco escenas locales;1.1.0 incorpora16 en el núcleo y160 composiciones originales en cada banco, sin copiar geometría restringida. Migración explícita con informe de pérdidas. Office exporta texto estático con plantilla y dependencias opcionales; no conserva interactividad. Procedencia y hashes de hechos no verifican automáticamente su verdad.
 
-Bancos opcionales: JaviMetodologIA/metodologia-aula-assets y JaviMontano/white-label-aula-assets, release v1.0.0. Licencia MIT del código y assets originales no concede derechos sobre marcas.
+Bancos históricos 1.0.x: JaviMetodologIA/metodologia-aula-assets y JaviMontano/white-label-aula-assets, release v1.0.0. Licencia MIT del código y assets originales no concede derechos sobre marcas.
 
 ## Publicación y recuperación
 
@@ -37,3 +37,11 @@ El usuario autorizó implementación, PRs y merge a ambos repositorios actuales,
 Rollback: revertir únicamente los commits de la integración, sin reset, limpieza ni mezcla de historias públicas/privadas. El snapshot común permite reconstruir paquetes y reproducir ejemplos. Jarvis permanece en fallback local mientras no se acredite su binding.
 
 El sucesor `1.0.3` normaliza los colores parciales con la misma paleta efectiva usada por la validación, evitando trazos SVG ausentes. También rechaza nombres de marca de tipo incorrecto o vacíos. Las evaluaciones anteriores son inmutables; una evaluación nueva liga los paquetes actuales y los ejemplos siguen `RENDERED_DRAFT`.
+
+## Sucesor inmersivo1.1.0
+
+[METODOLOGIA] Las18skills comparten motor, núcleo32iconos/16escenas y perfil tipográfico local. MetodologIA usa Poppins/Montserrat y navy/oro; marca blanca ofrece perfil neutral. Bancos opcionales v1.1.0:256iconos/160composiciones, ZIP runtime separado de galería, hashes en cada pin. El repositorio completo no es un directorio runtime válido: instalar el ZIP verificado antes de usar --bank.
+
+[METODOLOGIA] Autoría nueva de presentaciones:8slides comercial y13académica, con extensión explícita autorizada por el brief. Documentos históricos mantienen su extensión; ejercicios y workbooks conservan unidades propias. Campos desconocidos o incompatibles bloquean antes de escribir. Especificaciones, aprobaciones y receipts ligan contenido, motor, perfil, fuentes y piezas seleccionadas. Índices entregan companions reales; impresión conserva tabs/revelado.
+
+[METODOLOGIA] Tres referencias nuevas congelan la oferta pública y el programa oficial:brochure8, programa compacto8 y ampliado13. Son RENDERED_DRAFT. Sus horarios didácticos y decisiones de diseño son supuestos; fuentes públicas no prueban resultados de participantes. Entrenador mantiene sus gates separados.

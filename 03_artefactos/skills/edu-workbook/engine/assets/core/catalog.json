@@ -1,0 +1,2724 @@
+{
+  "schemaVersion": "frames-aula-asset-catalog-v1",
+  "version": "1.1.0",
+  "edition": "shared-geometry",
+  "icons": [
+    {
+      "id": "learning-reading",
+      "svg": "icons/learning-reading.svg",
+      "sha256": "4e5fbd4351724f918b6af081633e385e0a370750c7b830e87c0271bc986daece",
+      "title": "Lectura",
+      "meaning": "Aprendizaje: lectura. El motivo book identifica el dominio y eye identifica la acción o el rol.",
+      "tags": [
+        "learning",
+        "reading",
+        "eye"
+      ],
+      "uses": [
+        "Señalar lectura en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Lectura",
+        "assetRef": {
+          "id": "learning-reading",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-guided-practice",
+      "svg": "icons/learning-guided-practice.svg",
+      "sha256": "4abdc99e40f23437effec66629baafc1de3375ecd39a11b164d5c88dabe29ec0",
+      "title": "Práctica guiada",
+      "meaning": "Aprendizaje: práctica guiada. El motivo book identifica el dominio y pen identifica la acción o el rol.",
+      "tags": [
+        "learning",
+        "guided-practice",
+        "pen"
+      ],
+      "uses": [
+        "Señalar práctica guiada en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Práctica guiada",
+        "assetRef": {
+          "id": "learning-guided-practice",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "cognition-attention",
+      "svg": "icons/cognition-attention.svg",
+      "sha256": "4ff1d3d3cddf6de386409e75e4359e60c7a65a0298133cb760cecc4ab36112a8",
+      "title": "Atención",
+      "meaning": "Pensamiento: atención. El motivo brain identifica el dominio y eye identifica la acción o el rol.",
+      "tags": [
+        "cognition",
+        "attention",
+        "eye"
+      ],
+      "uses": [
+        "Señalar atención en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Atención",
+        "assetRef": {
+          "id": "cognition-attention",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "cognition-memory",
+      "svg": "icons/cognition-memory.svg",
+      "sha256": "cd50171c1d999aca374f258c127435edf076c044d2b5080c6828aa4495bcbb99",
+      "title": "Memoria",
+      "meaning": "Pensamiento: memoria. El motivo brain identifica el dominio y database identifica la acción o el rol.",
+      "tags": [
+        "cognition",
+        "memory",
+        "database"
+      ],
+      "uses": [
+        "Señalar memoria en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Memoria",
+        "assetRef": {
+          "id": "cognition-memory",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "communication-message",
+      "svg": "icons/communication-message.svg",
+      "sha256": "eebf220c6e5f9fad8df5fbad68cf5afb40f50778be9ac09be2bdab5649e3d24b",
+      "title": "Mensaje",
+      "meaning": "Comunicación: mensaje. El motivo speech identifica el dominio y document identifica la acción o el rol.",
+      "tags": [
+        "communication",
+        "message",
+        "document"
+      ],
+      "uses": [
+        "Señalar mensaje en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Mensaje",
+        "assetRef": {
+          "id": "communication-message",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "communication-listening",
+      "svg": "icons/communication-listening.svg",
+      "sha256": "25b98310a8cc0967939a5f2a1ba8679ed909652fce03f06fcfdff1a1288043dc",
+      "title": "Escucha",
+      "meaning": "Comunicación: escucha. El motivo speech identifica el dominio y ear identifica la acción o el rol.",
+      "tags": [
+        "communication",
+        "listening",
+        "ear"
+      ],
+      "uses": [
+        "Señalar escucha en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Escucha",
+        "assetRef": {
+          "id": "communication-listening",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "collaboration-team",
+      "svg": "icons/collaboration-team.svg",
+      "sha256": "a99c09edf500a9f503270d2fddd5d207c01a2d2182e6b0d24544e0eb22d4be9d",
+      "title": "Equipo",
+      "meaning": "Colaboración: equipo. El motivo people identifica el dominio y person identifica la acción o el rol.",
+      "tags": [
+        "collaboration",
+        "team",
+        "person"
+      ],
+      "uses": [
+        "Señalar equipo en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Equipo",
+        "assetRef": {
+          "id": "collaboration-team",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "collaboration-roles",
+      "svg": "icons/collaboration-roles.svg",
+      "sha256": "255833993d1a1a8400e59cd65416497e2cf50dba05f16b3ebb8ce59a662f0e47",
+      "title": "Roles",
+      "meaning": "Colaboración: roles. El motivo people identifica el dominio y briefcase identifica la acción o el rol.",
+      "tags": [
+        "collaboration",
+        "roles",
+        "briefcase"
+      ],
+      "uses": [
+        "Señalar roles en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Roles",
+        "assetRef": {
+          "id": "collaboration-roles",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "planning-agenda",
+      "svg": "icons/planning-agenda.svg",
+      "sha256": "1a05ac53506c923d628320b523bfb3b14c52790b437e2ca6062514213eff8eef",
+      "title": "Agenda",
+      "meaning": "Planificación: agenda. El motivo calendar identifica el dominio y document identifica la acción o el rol.",
+      "tags": [
+        "planning",
+        "agenda",
+        "document"
+      ],
+      "uses": [
+        "Señalar agenda en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Agenda",
+        "assetRef": {
+          "id": "planning-agenda",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "planning-deadline",
+      "svg": "icons/planning-deadline.svg",
+      "sha256": "845a2fb88e902f559f2a82e540da2dec680a376f0c2c9337623451be02dc6320",
+      "title": "Fecha límite",
+      "meaning": "Planificación: fecha límite. El motivo calendar identifica el dominio y clock identifica la acción o el rol.",
+      "tags": [
+        "planning",
+        "deadline",
+        "clock"
+      ],
+      "uses": [
+        "Señalar fecha límite en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Fecha límite",
+        "assetRef": {
+          "id": "planning-deadline",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "research-experiment",
+      "svg": "icons/research-experiment.svg",
+      "sha256": "f64b97781f1159ee2633ba47e31450939c7858c351e95791170b2b7d0e33c658",
+      "title": "Experimento",
+      "meaning": "Investigación: experimento. El motivo flask identifica el dominio y play identifica la acción o el rol.",
+      "tags": [
+        "research",
+        "experiment",
+        "play"
+      ],
+      "uses": [
+        "Señalar experimento en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Experimento",
+        "assetRef": {
+          "id": "research-experiment",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "research-observation",
+      "svg": "icons/research-observation.svg",
+      "sha256": "54bb014283e4499f965fd03d5b0d57889a025cd7ae98cf797af3cd9a985e35dc",
+      "title": "Observación",
+      "meaning": "Investigación: observación. El motivo flask identifica el dominio y eye identifica la acción o el rol.",
+      "tags": [
+        "research",
+        "observation",
+        "eye"
+      ],
+      "uses": [
+        "Señalar observación en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Observación",
+        "assetRef": {
+          "id": "research-observation",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "evidence-source",
+      "svg": "icons/evidence-source.svg",
+      "sha256": "8b96f40f5ac8f3ff0135a8e684edabdc4e68a9b00c9aab9298518e67e9c4b9f6",
+      "title": "Fuente documental",
+      "meaning": "Evidencia: fuente documental. El motivo clipboard identifica el dominio y book identifica la acción o el rol.",
+      "tags": [
+        "evidence",
+        "source",
+        "book"
+      ],
+      "uses": [
+        "Señalar fuente documental en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Fuente documental",
+        "assetRef": {
+          "id": "evidence-source",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "evidence-provenance",
+      "svg": "icons/evidence-provenance.svg",
+      "sha256": "95b66a4b6c1d3a417c4614e28265b379372a285428a67d72929a8d8587b3aeb5",
+      "title": "Procedencia",
+      "meaning": "Evidencia: procedencia. El motivo clipboard identifica el dominio y link identifica la acción o el rol.",
+      "tags": [
+        "evidence",
+        "provenance",
+        "link"
+      ],
+      "uses": [
+        "Señalar procedencia en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Procedencia",
+        "assetRef": {
+          "id": "evidence-provenance",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "technology-computer",
+      "svg": "icons/technology-computer.svg",
+      "sha256": "8845c626f382a750469350a22873d8d5218b6c41c4c5090872af5a83d6fac61e",
+      "title": "Computador",
+      "meaning": "Tecnología: computador. El motivo chip identifica el dominio y laptop identifica la acción o el rol.",
+      "tags": [
+        "technology",
+        "computer",
+        "laptop"
+      ],
+      "uses": [
+        "Señalar computador en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Computador",
+        "assetRef": {
+          "id": "technology-computer",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "technology-mobile",
+      "svg": "icons/technology-mobile.svg",
+      "sha256": "5c1ade8ca7389fee6adfd9a1639f0f4df1b77340a81c08e86ffdba3fe84cf376",
+      "title": "Dispositivo móvil",
+      "meaning": "Tecnología: dispositivo móvil. El motivo chip identifica el dominio y phone identifica la acción o el rol.",
+      "tags": [
+        "technology",
+        "mobile",
+        "phone"
+      ],
+      "uses": [
+        "Señalar dispositivo móvil en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Dispositivo móvil",
+        "assetRef": {
+          "id": "technology-mobile",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "process-workflow",
+      "svg": "icons/process-workflow.svg",
+      "sha256": "34ecf14c62962d6266ab786055c66216cbe50b260d4d3941ffe8e2160b5fd2da",
+      "title": "Flujo de trabajo",
+      "meaning": "Proceso: flujo de trabajo. El motivo gear identifica el dominio y arrow identifica la acción o el rol.",
+      "tags": [
+        "process",
+        "workflow",
+        "arrow"
+      ],
+      "uses": [
+        "Señalar flujo de trabajo en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Flujo de trabajo",
+        "assetRef": {
+          "id": "process-workflow",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "process-start",
+      "svg": "icons/process-start.svg",
+      "sha256": "4590412cfc058d9f2b0a9549306fa5d57db394b352d68215dbdee7e15f572017",
+      "title": "Inicio",
+      "meaning": "Proceso: inicio. El motivo gear identifica el dominio y play identifica la acción o el rol.",
+      "tags": [
+        "process",
+        "start",
+        "play"
+      ],
+      "uses": [
+        "Señalar inicio en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Inicio",
+        "assetRef": {
+          "id": "process-start",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "business-value",
+      "svg": "icons/business-value.svg",
+      "sha256": "fa80b312afdc39b90c97dfd303e4736cb0f64bc812c838d1591443945ccc540a",
+      "title": "Valor",
+      "meaning": "Negocio: valor. El motivo briefcase identifica el dominio y coins identifica la acción o el rol.",
+      "tags": [
+        "business",
+        "value",
+        "coins"
+      ],
+      "uses": [
+        "Señalar valor en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Valor",
+        "assetRef": {
+          "id": "business-value",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "business-customer",
+      "svg": "icons/business-customer.svg",
+      "sha256": "9bff7bd35bf8b1530af403aaf2dacac5bf874382515f47fcb7786ba57e987532",
+      "title": "Cliente",
+      "meaning": "Negocio: cliente. El motivo briefcase identifica el dominio y person identifica la acción o el rol.",
+      "tags": [
+        "business",
+        "customer",
+        "person"
+      ],
+      "uses": [
+        "Señalar cliente en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Cliente",
+        "assetRef": {
+          "id": "business-customer",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "data-dataset",
+      "svg": "icons/data-dataset.svg",
+      "sha256": "b9ef1a36528a0143361665061084fda262d7d03c254306a1620e6dcbf7629725",
+      "title": "Conjunto de datos",
+      "meaning": "Datos: conjunto de datos. El motivo database identifica el dominio y table identifica la acción o el rol.",
+      "tags": [
+        "data",
+        "dataset",
+        "table"
+      ],
+      "uses": [
+        "Señalar conjunto de datos en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Conjunto de datos",
+        "assetRef": {
+          "id": "data-dataset",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "data-metric",
+      "svg": "icons/data-metric.svg",
+      "sha256": "495c90c511abb5515363b3caeade6f8381c39c2dc84e7157dfba870356dc2ff9",
+      "title": "Métrica",
+      "meaning": "Datos: métrica. El motivo database identifica el dominio y ruler identifica la acción o el rol.",
+      "tags": [
+        "data",
+        "metric",
+        "ruler"
+      ],
+      "uses": [
+        "Señalar métrica en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Métrica",
+        "assetRef": {
+          "id": "data-metric",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "design-composition",
+      "svg": "icons/design-composition.svg",
+      "sha256": "ff7e79951e5c3dc4809aba5981df0424a470462feb0a89c1d860417be2ab69bc",
+      "title": "Composición",
+      "meaning": "Diseño: composición. El motivo palette identifica el dominio y grid identifica la acción o el rol.",
+      "tags": [
+        "design",
+        "composition",
+        "grid"
+      ],
+      "uses": [
+        "Señalar composición en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Composición",
+        "assetRef": {
+          "id": "design-composition",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "design-prototype",
+      "svg": "icons/design-prototype.svg",
+      "sha256": "cbb3c7139e9a041e7b9cb8e174d8a5a474184142befd572fe52ddd7eaec8865e",
+      "title": "Prototipo",
+      "meaning": "Diseño: prototipo. El motivo palette identifica el dominio y cube identifica la acción o el rol.",
+      "tags": [
+        "design",
+        "prototype",
+        "cube"
+      ],
+      "uses": [
+        "Señalar prototipo en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Prototipo",
+        "assetRef": {
+          "id": "design-prototype",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "ethics-consent",
+      "svg": "icons/ethics-consent.svg",
+      "sha256": "57d82ebe3be8f2478f52a9377c9d6714455255b51304047f92d4620799293c26",
+      "title": "Consentimiento",
+      "meaning": "Ética: consentimiento. El motivo shield identifica el dominio y hand identifica la acción o el rol.",
+      "tags": [
+        "ethics",
+        "consent",
+        "hand"
+      ],
+      "uses": [
+        "Señalar consentimiento en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Consentimiento",
+        "assetRef": {
+          "id": "ethics-consent",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "ethics-privacy",
+      "svg": "icons/ethics-privacy.svg",
+      "sha256": "48434eb321c0d8f7bf5ecb630f6d0e4267d72bc36860a326194fa5517c33918a",
+      "title": "Privacidad",
+      "meaning": "Ética: privacidad. El motivo shield identifica el dominio y lock identifica la acción o el rol.",
+      "tags": [
+        "ethics",
+        "privacy",
+        "lock"
+      ],
+      "uses": [
+        "Señalar privacidad en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Privacidad",
+        "assetRef": {
+          "id": "ethics-privacy",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "facilitation-opening",
+      "svg": "icons/facilitation-opening.svg",
+      "sha256": "14413363b04ddf88a5288b30cd2a54e430b858682a3eb6bd0884191fadc1e09e",
+      "title": "Apertura",
+      "meaning": "Facilitación: apertura. El motivo compass identifica el dominio y play identifica la acción o el rol.",
+      "tags": [
+        "facilitation",
+        "opening",
+        "play"
+      ],
+      "uses": [
+        "Señalar apertura en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Apertura",
+        "assetRef": {
+          "id": "facilitation-opening",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "facilitation-framing",
+      "svg": "icons/facilitation-framing.svg",
+      "sha256": "a6b208c4c96dbf2944978872c97bd13e0f7953d7252705e97e0c4126341734bf",
+      "title": "Encuadre",
+      "meaning": "Facilitación: encuadre. El motivo compass identifica el dominio y crop identifica la acción o el rol.",
+      "tags": [
+        "facilitation",
+        "framing",
+        "crop"
+      ],
+      "uses": [
+        "Señalar encuadre en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Encuadre",
+        "assetRef": {
+          "id": "facilitation-framing",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "assessment-criterion",
+      "svg": "icons/assessment-criterion.svg",
+      "sha256": "e6426a52ebf7b615e9fb109b700dc9a6f1762c50b1b061c9a43dfa319137f159",
+      "title": "Criterio",
+      "meaning": "Evaluación: criterio. El motivo target identifica el dominio y ruler identifica la acción o el rol.",
+      "tags": [
+        "assessment",
+        "criterion",
+        "ruler"
+      ],
+      "uses": [
+        "Señalar criterio en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Criterio",
+        "assetRef": {
+          "id": "assessment-criterion",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "assessment-rubric",
+      "svg": "icons/assessment-rubric.svg",
+      "sha256": "2c7d1df247a7aa2495027af761262c66aa6e96395d24e0a0d9f3e7821897c6c2",
+      "title": "Rúbrica",
+      "meaning": "Evaluación: rúbrica. El motivo target identifica el dominio y grid identifica la acción o el rol.",
+      "tags": [
+        "assessment",
+        "rubric",
+        "grid"
+      ],
+      "uses": [
+        "Señalar rúbrica en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Rúbrica",
+        "assetRef": {
+          "id": "assessment-rubric",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "operations-maintenance",
+      "svg": "icons/operations-maintenance.svg",
+      "sha256": "0cd6fc30c8fa9e14e0c69ee056518ac4dd02b197cc3f7a919016d3b36782d9b0",
+      "title": "Mantenimiento",
+      "meaning": "Operación: mantenimiento. El motivo wrench identifica el dominio y gear identifica la acción o el rol.",
+      "tags": [
+        "operations",
+        "maintenance",
+        "gear"
+      ],
+      "uses": [
+        "Señalar mantenimiento en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Mantenimiento",
+        "assetRef": {
+          "id": "operations-maintenance",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "operations-configuration",
+      "svg": "icons/operations-configuration.svg",
+      "sha256": "2f47dbebdc25b3c3be2e1ba1459e1897787c32381445bf3238a0407415ff9b7a",
+      "title": "Ajustes",
+      "meaning": "Operación: ajustes. El motivo wrench identifica el dominio y sliders identifica la acción o el rol.",
+      "tags": [
+        "operations",
+        "configuration",
+        "sliders"
+      ],
+      "uses": [
+        "Señalar ajustes en formación o presentaciones."
+      ],
+      "params": {
+        "color": "Inherit currentColor from the verified brand profile",
+        "size": "Minimum 32 CSS px for the composite icon"
+      },
+      "limits": [
+        "Not a logo",
+        "Do not use as the only accessible label",
+        "No quantitative or scientific claim implied"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "label": "Ajustes",
+        "assetRef": {
+          "id": "operations-configuration",
+          "kind": "icon"
+        }
+      },
+      "core": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "flow",
+      "path": "scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1",
+      "title": "Recorrido: flow",
+      "meaning": "Recorrido: flow. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "journey",
+        "route",
+        "flow"
+      ],
+      "uses": [
+        "Explicar flow mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "context"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "goal"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "action"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "evidence"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "flow",
+        "sceneParams": {
+          "title": {
+            "es": "Recorrido",
+            "en": "Journey",
+            "pt": "Percurso",
+            "fr": "Parcours"
+          },
+          "a": {
+            "es": "Contexto",
+            "en": "Context",
+            "pt": "Contexto",
+            "fr": "Contexte"
+          },
+          "b": {
+            "es": "Objetivo",
+            "en": "Goal",
+            "pt": "Objetivo",
+            "fr": "Objectif"
+          },
+          "c": {
+            "es": "Acción",
+            "en": "Action",
+            "pt": "Ação",
+            "fr": "Action"
+          },
+          "d": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "steps",
+      "path": "scenes/steps.json",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e",
+      "title": "Progresión: steps",
+      "meaning": "Progresión: steps. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "ladder",
+        "route",
+        "steps"
+      ],
+      "uses": [
+        "Explicar steps mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "context"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "goal"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "action"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "evidence"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "steps",
+        "sceneParams": {
+          "title": {
+            "es": "Progresión",
+            "en": "Progression",
+            "pt": "Progressão",
+            "fr": "Progression"
+          },
+          "a": {
+            "es": "Contexto",
+            "en": "Context",
+            "pt": "Contexto",
+            "fr": "Contexte"
+          },
+          "b": {
+            "es": "Objetivo",
+            "en": "Goal",
+            "pt": "Objetivo",
+            "fr": "Objectif"
+          },
+          "c": {
+            "es": "Acción",
+            "en": "Action",
+            "pt": "Ação",
+            "fr": "Action"
+          },
+          "d": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "orbit",
+      "path": "scenes/orbit.json",
+      "sha256": "a8d86919d7b50a276ccd1c11deb09add53f6e05821dcc07ad694b499568f7429",
+      "title": "Ciclo: orbit",
+      "meaning": "Ciclo: orbit. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "cycle",
+        "route",
+        "orbit"
+      ],
+      "uses": [
+        "Explicar orbit mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "observation"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "action"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "review"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "adjustment"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "orbit",
+        "sceneParams": {
+          "title": {
+            "es": "Ciclo",
+            "en": "Cycle",
+            "pt": "Ciclo",
+            "fr": "Cycle"
+          },
+          "a": {
+            "es": "Observación",
+            "en": "Observation",
+            "pt": "Observação",
+            "fr": "Observation"
+          },
+          "b": {
+            "es": "Acción",
+            "en": "Action",
+            "pt": "Ação",
+            "fr": "Action"
+          },
+          "c": {
+            "es": "Revisión",
+            "en": "Review",
+            "pt": "Revisão",
+            "fr": "Revue"
+          },
+          "d": {
+            "es": "Ajuste",
+            "en": "Adjustment",
+            "pt": "Ajuste",
+            "fr": "Ajustement"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "gate",
+      "path": "scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3",
+      "title": "Validación: gate",
+      "meaning": "Validación: gate. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "checkpoint",
+        "route",
+        "gate"
+      ],
+      "uses": [
+        "Explicar gate mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "criteria"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "evidence"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "review"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "decision"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "gate",
+        "sceneParams": {
+          "title": {
+            "es": "Validación",
+            "en": "Validation",
+            "pt": "Validação",
+            "fr": "Validation"
+          },
+          "a": {
+            "es": "Criterios",
+            "en": "Criteria",
+            "pt": "Critérios",
+            "fr": "Critères"
+          },
+          "b": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          },
+          "c": {
+            "es": "Revisión",
+            "en": "Review",
+            "pt": "Revisão",
+            "fr": "Revue"
+          },
+          "d": {
+            "es": "Decisión",
+            "en": "Decision",
+            "pt": "Decisão",
+            "fr": "Décision"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "contrast",
+      "path": "scenes/contrast.json",
+      "sha256": "41d79572ef2a97021e32c135791eb01142ebde402a87958a56a7f4f8819a240a",
+      "title": "Comparación: contrast",
+      "meaning": "Comparación: contrast. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "comparison",
+        "route",
+        "contrast"
+      ],
+      "uses": [
+        "Explicar contrast mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "before"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "after"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "evidence"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "limit"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "contrast",
+        "sceneParams": {
+          "title": {
+            "es": "Comparación",
+            "en": "Comparison",
+            "pt": "Comparação",
+            "fr": "Comparaison"
+          },
+          "a": {
+            "es": "Antes",
+            "en": "Before",
+            "pt": "Antes",
+            "fr": "Avant"
+          },
+          "b": {
+            "es": "Después",
+            "en": "After",
+            "pt": "Depois",
+            "fr": "Après"
+          },
+          "c": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          },
+          "d": {
+            "es": "Límite",
+            "en": "Limit",
+            "pt": "Limite",
+            "fr": "Limite"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-opening",
+      "path": "scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "title": "Aprendizaje: opening",
+      "meaning": "Aprendizaje: opening. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "route",
+        "opening"
+      ],
+      "uses": [
+        "Explicar opening mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-opening",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-demonstration",
+      "path": "scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "title": "Aprendizaje: demonstration",
+      "meaning": "Aprendizaje: demonstration. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "orbit",
+        "demonstration"
+      ],
+      "uses": [
+        "Explicar demonstration mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-demonstration",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-practice",
+      "path": "scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "title": "Aprendizaje: practice",
+      "meaning": "Aprendizaje: practice. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "comparison",
+        "practice"
+      ],
+      "uses": [
+        "Explicar practice mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-practice",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-recall",
+      "path": "scenes/learning-recall.json",
+      "sha256": "134cddcea4ff8e16d0b9dcf4de59e03bc82f4818e9b064a0f39df40af03433d7",
+      "title": "Aprendizaje: recall",
+      "meaning": "Aprendizaje: recall. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "layers",
+        "recall"
+      ],
+      "uses": [
+        "Explicar recall mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-recall",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-feedback",
+      "path": "scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "title": "Aprendizaje: feedback",
+      "meaning": "Aprendizaje: feedback. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "fork",
+        "feedback"
+      ],
+      "uses": [
+        "Explicar feedback mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-feedback",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-transfer",
+      "path": "scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "title": "Aprendizaje: transfer",
+      "meaning": "Aprendizaje: transfer. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "bridge",
+        "transfer"
+      ],
+      "uses": [
+        "Explicar transfer mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-transfer",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "learning-closing",
+      "path": "scenes/learning-closing.json",
+      "sha256": "04a119be63877f7d9b7749b09a3fc51d84d5756b9c18a0421e8940f6a31c264f",
+      "title": "Aprendizaje: closing",
+      "meaning": "Aprendizaje: closing. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "learning",
+        "cycle",
+        "closing"
+      ],
+      "uses": [
+        "Explicar closing mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "question"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "model"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "practice"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "transfer"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "learning-closing",
+        "sceneParams": {
+          "title": {
+            "es": "Aprendizaje",
+            "en": "Learning",
+            "pt": "Aprendizagem",
+            "fr": "Apprentissage"
+          },
+          "a": {
+            "es": "Pregunta",
+            "en": "Question",
+            "pt": "Pergunta",
+            "fr": "Question"
+          },
+          "b": {
+            "es": "Modelo",
+            "en": "Model",
+            "pt": "Modelo",
+            "fr": "Modèle"
+          },
+          "c": {
+            "es": "Práctica",
+            "en": "Practice",
+            "pt": "Prática",
+            "fr": "Pratique"
+          },
+          "d": {
+            "es": "Transferencia",
+            "en": "Transfer",
+            "pt": "Transferência",
+            "fr": "Transfert"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "evidence-observe",
+      "path": "scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603",
+      "title": "Evidencia: observe",
+      "meaning": "Evidencia: observe. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "evidence",
+        "route",
+        "observe"
+      ],
+      "uses": [
+        "Explicar observe mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "source"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "claim"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "review"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "limit"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "evidence-observe",
+        "sceneParams": {
+          "title": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          },
+          "a": {
+            "es": "Fuente",
+            "en": "Source",
+            "pt": "Fonte",
+            "fr": "Source"
+          },
+          "b": {
+            "es": "Afirmación",
+            "en": "Claim",
+            "pt": "Afirmação",
+            "fr": "Affirmation"
+          },
+          "c": {
+            "es": "Revisión",
+            "en": "Review",
+            "pt": "Revisão",
+            "fr": "Revue"
+          },
+          "d": {
+            "es": "Límite",
+            "en": "Limit",
+            "pt": "Limite",
+            "fr": "Limite"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "decision-options",
+      "path": "scenes/decision-options.json",
+      "sha256": "ce07fb45238300feb2e6292b978f8824e9a89ea3f935897a5c87f61d99788072",
+      "title": "Decisión: options",
+      "meaning": "Decisión: options. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "decision",
+        "route",
+        "options"
+      ],
+      "uses": [
+        "Explicar options mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "option"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "criteria"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "evidence"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "decision"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "decision-options",
+        "sceneParams": {
+          "title": {
+            "es": "Decisión",
+            "en": "Decision",
+            "pt": "Decisão",
+            "fr": "Décision"
+          },
+          "a": {
+            "es": "Opciones",
+            "en": "Options",
+            "pt": "Opções",
+            "fr": "Options"
+          },
+          "b": {
+            "es": "Criterios",
+            "en": "Criteria",
+            "pt": "Critérios",
+            "fr": "Critères"
+          },
+          "c": {
+            "es": "Evidencia",
+            "en": "Evidence",
+            "pt": "Evidência",
+            "fr": "Preuve"
+          },
+          "d": {
+            "es": "Decisión",
+            "en": "Decision",
+            "pt": "Decisão",
+            "fr": "Décision"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "team-roles",
+      "path": "scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15",
+      "title": "Equipo: roles",
+      "meaning": "Equipo: roles. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "team",
+        "route",
+        "roles"
+      ],
+      "uses": [
+        "Explicar roles mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "person"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "role"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "handoff"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "result"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "team-roles",
+        "sceneParams": {
+          "title": {
+            "es": "Equipo",
+            "en": "Team",
+            "pt": "Equipe",
+            "fr": "Équipe"
+          },
+          "a": {
+            "es": "Persona",
+            "en": "Person",
+            "pt": "Pessoa",
+            "fr": "Personne"
+          },
+          "b": {
+            "es": "Rol",
+            "en": "Role",
+            "pt": "Papel",
+            "fr": "Rôle"
+          },
+          "c": {
+            "es": "Entrega",
+            "en": "Handoff",
+            "pt": "Entrega",
+            "fr": "Passation"
+          },
+          "d": {
+            "es": "Resultado",
+            "en": "Result",
+            "pt": "Resultado",
+            "fr": "Résultat"
+          }
+        }
+      },
+      "core": true
+    },
+    {
+      "id": "reflection-debrief",
+      "path": "scenes/reflection-debrief.json",
+      "sha256": "3394db7ac88f5a7211cddac6c2a53f26560e139a19b76c35b0f62b0511695315",
+      "title": "Reflexión: debrief",
+      "meaning": "Reflexión: debrief. La disposición muestra relaciones, no magnitudes.",
+      "tags": [
+        "reflection",
+        "route",
+        "debrief"
+      ],
+      "uses": [
+        "Explicar debrief mediante relaciones visibles y etiquetas editables."
+      ],
+      "params": {
+        "title": {
+          "type": "localized-text",
+          "maxChars": 66,
+          "role": "thesis"
+        },
+        "a": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "observation"
+        },
+        "b": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "interpretation"
+        },
+        "c": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "adjustment"
+        },
+        "d": {
+          "type": "localized-text",
+          "maxChars": 32,
+          "role": "commitment"
+        }
+      },
+      "limits": [
+        "Four editable concept nodes, maximum 32 characters each",
+        "Title maximum 66 characters",
+        "No clipping; oversized labels must block",
+        "Not a quantitative chart"
+      ],
+      "license": "MIT",
+      "source": {
+        "path": "05_verificacion/scripts/build-aula-assets.py",
+        "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+        "basis": "original vector composition",
+        "externalFragmentsReused": false
+      },
+      "example": {
+        "scene": "reflection-debrief",
+        "sceneParams": {
+          "title": {
+            "es": "Reflexión",
+            "en": "Reflection",
+            "pt": "Reflexão",
+            "fr": "Réflexion"
+          },
+          "a": {
+            "es": "Observación",
+            "en": "Observation",
+            "pt": "Observação",
+            "fr": "Observation"
+          },
+          "b": {
+            "es": "Interpretación",
+            "en": "Interpretation",
+            "pt": "Interpretação",
+            "fr": "Interprétation"
+          },
+          "c": {
+            "es": "Ajuste",
+            "en": "Adjustment",
+            "pt": "Ajuste",
+            "fr": "Ajustement"
+          },
+          "d": {
+            "es": "Compromiso",
+            "en": "Commitment",
+            "pt": "Compromisso",
+            "fr": "Engagement"
+          }
+        }
+      },
+      "core": true
+    }
+  ],
+  "compositionPolicy": "Distinct domain/action vector combinations and diagram relationships; aliases and recolors do not count.",
+  "core": {
+    "icons": 32,
+    "scenes": 16
+  },
+  "source": {
+    "path": "05_verificacion/scripts/build-aula-assets.py",
+    "sha256": "67a7b431f3a06b41ec31415b8b691a1588e656a784189bd41cc597af281b885b",
+    "basis": "original vector composition",
+    "externalFragmentsReused": false
+  }
+}

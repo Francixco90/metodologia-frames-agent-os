@@ -180,6 +180,7 @@ writers:
     - evals/**
     - 05_verificacion/evals/**
     - 05_verificacion/tests/unit/check-md-budgets.test.ts
+    - 05_verificacion/tests/unit/receipts/check-receipts.test.ts
     - 05_verificacion/tests/unit/check-ci-parity.test.ts
     - 05_verificacion/tests/unit/check-vendor-locks.test.ts
     - 05_verificacion/tests/unit/governed-legacy-routes-v1.test.ts

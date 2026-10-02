@@ -1,5 +1,11 @@
 # Contrato de contenido
 
-`schemaVersion: frames-aula-v1`; `title`, `language`, `languages`, `objectives`, `acceptance`, `sections`. Cada sección: `id` único, `title`, `body`, `scene`, `notes` opcional, `prompt`, `fields`, `settings`, `links`, `factIds`. Strings pueden tener valores por idioma.
+`schemaVersion: frames-aula-v1`; `title`, `language`, `languages`, `objectives`, `acceptance`, `sections`. Cada sección tiene `id` único, `title`, `body`; admite `scene`, `sceneParams`, `assetRefs`, `prompt`, `fields`, `settings`, `links`, `factIds`, `table`, `matrix`, `cols`, `cards`, `metrics`, `badges`, `tabs`, `accordion`, `references`. Strings pueden ser objetos con los idiomas declarados. Campos desconocidos se rechazan con su ruta, nunca se descartan silenciosamente.
 
-`facts`: id, texto, source, sha256 y confirmed. La procedencia requiere evidencia externa al HTML; un hash declarado no prueba verdad. `brand` solo en marca blanca. `pieces` en índice y módulo. Ver ejemplos y runtime.md para claves ejecutables y límites. [METODOLOGIA]
+`scene` es un ID real del catálogo; `sceneParams` rellena slots de esa escena. `assetRefs`: lista de `{id,kind:icon|scene,label?}`. Núcleo local: engine/assets/core/catalog.json. Banco instalado: --bank DIRECTORIO; obtención opcional indicada en asset-bank.md.
+
+`training`: duración, audiencia, materiales y runOfShow con sectionId/minutes/notes. Cada sección puede tener durationMinutes, demonstration, practice, checkpoints(question/answer/criterion), reflection, transfer y facilitatorNotes. Los tiempos de ejemplo son supuestos de diseño, no afirmaciones pedagógicas.
+
+`authoringPolicy:{origin:new}` usa máximo8 comercial/13 académico. `maxSlides` requiere `explicitBrief`; cuenta portada y tapa. Sin política, entradas históricas se reproducen íntegras. `theme:dark|light`; brand configurable solo en marca blanca.
+
+`facts`: id, texto, source, sha256 y confirmed. Un hash declarado no prueba verdad. `pieces` en índice/módulo requieren archivos existentes; pieceSections mantiene el contenido específico de cada formato. Ver runtime.md para límites completos. [METODOLOGIA]

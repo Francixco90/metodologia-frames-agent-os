@@ -1,0 +1,699 @@
+{
+  "schemaVersion": "frames-aula-scene-v1",
+  "id": "transfer-evidence",
+  "viewBox": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "composition": "fork",
+  "meaning": "Transferencia: evidence. La disposición muestra relaciones, no magnitudes.",
+  "description": "Cuatro elementos en composición fork, con marcador semántico transfer.",
+  "shapes": [
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 48,
+        "text-anchor": "middle",
+        "font-size": 28,
+        "font-weight": 700
+      },
+      "token": "ink",
+      "slot": "title"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "m8 14-2 2c-6 6-12-1-6-6l5-5c4-4 8-2 9 1m2 4 2-2c6-6 12 1 6 6l-5 5c-4 4-8 2-9-1M8 16l8-8",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 150,
+        "x2": 250,
+        "y2": 305,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M355.05 234.21L367.34 217.78L374.89 228.98Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 150,
+        "x2": 710,
+        "y2": 305,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M604.95 234.21L585.11 228.98L592.66 217.78Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 250,
+        "y1": 305,
+        "x2": 480,
+        "y2": 445,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M375.25 381.24L355.19 376.94L362.21 365.40Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 710,
+        "y1": 305,
+        "x2": 480,
+        "y2": 445,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M584.75 381.24L597.79 365.40L604.81 376.94Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 116,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 116,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 157,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "a"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 148,
+        "y": 271,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 148,
+        "y": 271,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 250,
+        "y": 312,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "b"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 608,
+        "y": 271,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 608,
+        "y": 271,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 710,
+        "y": 312,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "c"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 411,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 411,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 452,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "d"
+    }
+  ],
+  "slots": [
+    {
+      "id": "title",
+      "role": "thesis",
+      "label": {
+        "es": "Transferencia",
+        "en": "Transfer",
+        "pt": "Transferência",
+        "fr": "Transfert"
+      },
+      "maxChars": 66,
+      "width": 800,
+      "maxLines": 2
+    },
+    {
+      "id": "a",
+      "role": "context",
+      "label": {
+        "es": "Contexto",
+        "en": "Context",
+        "pt": "Contexto",
+        "fr": "Contexte"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "b",
+      "role": "model",
+      "label": {
+        "es": "Modelo",
+        "en": "Model",
+        "pt": "Modelo",
+        "fr": "Modèle"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "c",
+      "role": "support",
+      "label": {
+        "es": "Apoyo",
+        "en": "Support",
+        "pt": "Apoio",
+        "fr": "Soutien"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "d",
+      "role": "action",
+      "label": {
+        "es": "Acción",
+        "en": "Action",
+        "pt": "Ação",
+        "fr": "Action"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    }
+  ],
+  "relationships": [
+    {
+      "from": "a",
+      "to": "b"
+    },
+    {
+      "from": "a",
+      "to": "c"
+    },
+    {
+      "from": "b",
+      "to": "d"
+    },
+    {
+      "from": "c",
+      "to": "d"
+    }
+  ],
+  "portrait": {
+    "viewBox": [
+      0,
+      0,
+      420,
+      740
+    ],
+    "shapes": [
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 46,
+          "text-anchor": "middle",
+          "font-size": 26,
+          "font-weight": 700
+        },
+        "token": "ink",
+        "slot": "title"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "m8 14-2 2c-6 6-12-1-6-6l5-5c4-4 8-2 9 1m2 4 2-2c6-6 12 1 6 6l-5 5c-4 4-8 2-9-1M8 16l8-8",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 275,
+          "x2": 210,
+          "y2": 315,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 289.0L210 301.0L220 289.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M210 225H12V505H210",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M24 497L36 505L24 513",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M210 365H408V645H210",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M396 637L384 645L396 653",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 555,
+          "x2": 210,
+          "y2": 595,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 569.0L210 581.0L220 569.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 233,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "a"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 373,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "b"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 513,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "c"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 653,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "d"
+      }
+    ],
+    "slots": [
+      {
+        "id": "title",
+        "role": "thesis",
+        "label": {
+          "es": "Transferencia",
+          "en": "Transfer",
+          "pt": "Transferência",
+          "fr": "Transfert"
+        },
+        "maxChars": 66,
+        "width": 370,
+        "maxLines": 3
+      },
+      {
+        "id": "a",
+        "role": "context",
+        "label": {
+          "es": "Contexto",
+          "en": "Context",
+          "pt": "Contexto",
+          "fr": "Contexte"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "b",
+        "role": "model",
+        "label": {
+          "es": "Modelo",
+          "en": "Model",
+          "pt": "Modelo",
+          "fr": "Modèle"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "c",
+        "role": "support",
+        "label": {
+          "es": "Apoyo",
+          "en": "Support",
+          "pt": "Apoio",
+          "fr": "Soutien"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "d",
+        "role": "action",
+        "label": {
+          "es": "Acción",
+          "en": "Action",
+          "pt": "Ação",
+          "fr": "Action"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      }
+    ],
+    "relationships": [
+      {
+        "from": "a",
+        "to": "b"
+      },
+      {
+        "from": "a",
+        "to": "c"
+      },
+      {
+        "from": "b",
+        "to": "d"
+      },
+      {
+        "from": "c",
+        "to": "d"
+      }
+    ],
+    "semanticEquivalence": "Same nodes, labels and directed relations; portrait reflows instead of shrinking."
+  },
+  "motion": {
+    "enabled": false,
+    "kind": "none",
+    "duration": 0,
+    "loop": false
+  },
+  "limits": {
+    "quantitativeScale": false,
+    "labelMaxChars": 32,
+    "notFor": "Gráficos estadísticos o afirmaciones científicas sin evidencia."
+  }
+}

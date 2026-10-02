@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "dependency-audit-receipt-v1",
+  "receiptId": "RCP-DEP-PRODUCTION-20261001-003",
+  "command": "inherited:no-dependency-change",
+  "status": "passed",
+  "exitCode": 0,
+  "vulnerabilities": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+  "packageJsonSha256": "c472186b4c25fdafc203fcaf08a7dd0d9af73a75245b21bad1459e53114fb86c",
+  "pnpmLockSha256": "01f35369cc344b0b142d350a10e2edc52437419a3156ab6b5bb656331371348d",
+  "supersedesReceiptId": "RCP-DEP-PRODUCTION-20261001-002",
+  "appendOnly": true,
+  "recordedAt": "2026-10-01T22:45:17.446287+00:00",
+  "dependencyChange": false,
+  "dependencySetSha256": "cd0cf87f61e545c4b3720e5abe9310059e7b3e041b3115ef59b710ad6005808b",
+  "authorizationBasis": "current_user_approved_frames_aula_decks_plan_20261001",
+  "basisReceiptId": "RCP-DEP-PRODUCTION-20261001-002"
+}

@@ -2,18 +2,107 @@
   "state": "RENDERED_DRAFT",
   "kind": "module",
   "edition": "metodologia",
-  "inputSha256": "8db1cdc574b527a4f1b57715b5a50e933d5adea18293a51de623b6238f170cd1",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "2b5b682970caa6f34fea14081491d6e4bc5ec1005e580afe669a4723fe4934b3",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "immersive-class.html": "33589f50aac3f792b79e779de5fbfcceca20df4eea9329f72cb72e6d997a1de8",
-    "masterclass.html": "7924735c814c43208164789091da59f692b5d175d45b03f7f08382bc9995640c",
-    "workbook.html": "c91b410e2ff276f73d7d5e64dddea3c4288bd378c81c66f07adb596da9b0d7c1",
-    "lean-coffee.html": "eff05b541689b7b70432ce3cedaa36bb3a17a0e5831045de7d92a4780dd7fec1",
-    "playbook.html": "f7934c28a5a24e82bbb66f89dea4e3a9f881574dbb1d3858015894e560d1670d",
-    "playbook-immersive.html": "57af9db9c40ca69954a064c73aee387495083f3f2ab6095d9fcf2e86ae53af81",
-    "index.html": "a395eebe877b9d9d2d25583aa3d2ec31fcc866e9e7420f393ed6d3777c2f71ea",
-    "workbook.md": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+    "immersive-class.html": "dbf6efb70c60ad82a2d8ef63a508777cda09bce526f66e1c32bfde77fe0f9573",
+    "masterclass.html": "47776268b6304e231e1c5cf05f729e193b58bd1f1cb201e7b08165754a2a9fc1",
+    "workbook.html": "52c51f16199c9845504811a046f1c381cfd22cfd4b6d6495e06ed6c3104f80ea",
+    "lean-coffee.html": "c9a8836752d2b93736a53bdc64394b092b8dcf1e147fa13a0e1e603467d96769",
+    "playbook.html": "d958a2e451ecb323701d053a998bcb9c6a32947adc77e2780d279bcf38537fa3",
+    "playbook-immersive.html": "f64b086403b82ff5fec0d36151db3895a991854eee0afae0db36129b7012e296",
+    "index.html": "3ce68a9f34c2d257b198babea72164f49c76cb5ea6bedcf9c2db54462eb3fe0d",
+    "workbook.md": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
     "manifest.json": "1b2824f3672d467c473668dc5ed89943a042bfe9dd1ec1d108d09cc3f1c809a9"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "metodologia",
+    "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

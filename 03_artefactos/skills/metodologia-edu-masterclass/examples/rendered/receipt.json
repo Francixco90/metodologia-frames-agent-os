@@ -2,14 +2,139 @@
   "state": "RENDERED_DRAFT",
   "kind": "masterclass",
   "edition": "metodologia",
-  "inputSha256": "6b0d5d74f073986436c57bbaec86bd8dbe812b44827c972c818d7b9a64d7fe20",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "3d03721cd580cb9d4eeb018bfe2300a610a9d4d8f71e558802560483860be46c",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "cc8f0e1feacbc4f8c96010bc070d0d526b09de95b672afbad009c5dad8eadcf0",
-    "artifact-mobile.html": "7f29020ec81d2d10b52415d0b766c4d5ff3f083f366a7d70b2764e3a3c6ab657",
-    "artifact-audience.html": "4a3d2503434f44dba96dbc5d0c76b9c84ae9175d1d4a38c2f84b4a3c6b358169",
-    "artifact-mobile-audience.html": "c01a589eb684b2bb7d40c13f949376c93bed7be10822d38ea898ec416e496c32",
-    "artifact.md": "a83e5daf42988ae3a0dde136f516e660b1ea1a9782814a3860254f1802a7469a"
+    "artifact.html": "4fb690d34f005d46b7725cfb6f0be46c3a7c8ef4e7ef56f80c0e4a45ae0e61c9",
+    "artifact-mobile.html": "40d6780756113af94a32a642f2234e98dcaf48cece77098dbdeb877602a2be06",
+    "artifact-audience.html": "75871aee19be6ee7746605205cba6300b7150cab21201e0af49695f6b0ecfff8",
+    "artifact-mobile-audience.html": "47a3deb2c218d8e1ecba32b2adc8b5d8fcf53a4af53465a6c8d125e99fb3f5fb",
+    "artifact.md": "325ecbd9ce73c59a55020ccc5e438e73e4c5aef464395214e708a77c879337f0"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "metodologia",
+    "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "team-roles",
+      "kind": "scene",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "gate",
+      "kind": "scene",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "flow",
+      "kind": "scene",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "evidence-observe",
+      "kind": "scene",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

@@ -2,14 +2,93 @@
   "state": "RENDERED_DRAFT",
   "kind": "workbook",
   "edition": "white-label",
-  "inputSha256": "86a181a55b417ca26bb9a92fdcd641f5a888dd1e5b6c1269a848eaf0ad4e4051",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "77c0249642e8493e6ade3090e98c9838ad32456e343e436e5d20419b12cc8ec4",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "ca5c70be0a3e197126c2c1ad8c85bd87430f054c78cfbf3ff21a2f63f63dd110",
-    "artifact-mobile.html": "2eb8ebbc20ee797b52b37302c85f1118d8f942bdd59992a76ae5b73ab0eab4cd",
-    "artifact-audience.html": "bae3322936fe480e6a9ea1b92f3b494c800b135d45e885013074f3af4f01311e",
-    "artifact-mobile-audience.html": "9e9062edbf99234c12ecc1dadc2b495ced361d3974e839c58cbb9762727978cc",
-    "artifact.md": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525"
+    "artifact.html": "9b65f7c852f9f8e9acd26fec509e8508701d8a9d8c79a916307fd1fa459c8b5b",
+    "artifact-mobile.html": "d6547967fff7afb024ac622cb8be4ce6510a51af42b391e0f2a72720cc91075c",
+    "artifact-audience.html": "1145cf8ac96b579d458e2e7fab4f0ef565c14459ca046c8ad3d60c6841f22b84",
+    "artifact-mobile-audience.html": "6b6d063a31cc37a6741c7a888dd291f157d0fe4efb30a83b9fdbd8411478dcf4",
+    "artifact.md": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "white-label",
+    "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

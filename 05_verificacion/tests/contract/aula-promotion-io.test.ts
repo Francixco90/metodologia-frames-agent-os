@@ -130,6 +130,8 @@ describe('Aula evaluation renewal IO', () => {
       '02_proceso/workflows/multimedia/_schema/aula-approval-v1.ts',
       '05_verificacion/tests/integration/aula-continuation.test.ts',
       '02_proceso/workflows/multimedia/_runner/aula-engine-authority-v1.ts',
+      '02_proceso/workflows/multimedia/_runner/aula-build-dependencies-v1.ts',
+      '02_proceso/workflows/multimedia/_schema/aula-dependencies-v1.ts',
       '02_proceso/workflows/multimedia/_schema/aula-promotion-review-v1.ts',
       '02_proceso/workflows/multimedia/_runner/aula-promotion-io-v1.ts',
       '05_verificacion/scripts/promote-aula-decks.mjs',

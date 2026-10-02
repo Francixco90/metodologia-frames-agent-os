@@ -2,14 +2,93 @@
   "state": "RENDERED_DRAFT",
   "kind": "dynamic-commercial-decks",
   "edition": "white-label",
-  "inputSha256": "f0b366d726fba58b4ad508dc506387ba66e2702b2b5cd414b2d5b174e2745b5a",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "0d17a16d180ed91d5386207bc5df806f8dfb7541b3f288a53747fab4df5e6f17",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "909836eebe77fef9e6687123987a742bfd7996d409c77f0a22364316a184b72a",
-    "artifact-mobile.html": "74aa8cfa20547c8082cd2d33eac2da441bbed458092d3bca46a351416c3c8e4e",
-    "artifact-audience.html": "afe74eaf8945fdab3cb508198a00b2509039ff4ac2ad56571258829b6785b425",
-    "artifact-mobile-audience.html": "0cef0e94be58e1166abf9dcd12f5d6ca855e8a16444de80bf4356a18c109e429",
-    "artifact.md": "4243f309e9fd512b9b0e014cea1d59e7f8846d750f5f7377e6c1c7421cdc5758"
+    "artifact.html": "f055865744fb0c25e7f3278de302edaf9e175ff89a14e614ff0b5ad64e2ef97d",
+    "artifact-mobile.html": "49d593eb0e8c2553230d163dc3a60d952c4f202efe6c0188625f2bd0cc63c55e",
+    "artifact-audience.html": "988e3a81550435b585def1d20f97c0b749504567fff44f062e59675be76b3009",
+    "artifact-mobile-audience.html": "15e844294bd9de66239812bed368cd6793853925bf6d616ec8d0f0274211fee4",
+    "artifact.md": "c3e69619668526463f522756ad1c12763d597535535de15bdd16a40215154a60"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "white-label",
+    "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

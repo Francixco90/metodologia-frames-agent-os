@@ -1,0 +1,784 @@
+{
+  "schemaVersion": "frames-aula-scene-v1",
+  "id": "reflection-question",
+  "viewBox": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "composition": "layers",
+  "meaning": "Reflexión: question. La disposición muestra relaciones, no magnitudes.",
+  "description": "Cuatro elementos en composición layers, con marcador semántico reflection.",
+  "shapes": [
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 48,
+        "text-anchor": "middle",
+        "font-size": 28,
+        "font-weight": 700
+      },
+      "token": "ink",
+      "slot": "title"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M2 12c6-10 14-10 20 0-6 10-14 10-20 0z",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "circle",
+      "attrs": {
+        "cx": "12",
+        "cy": "12",
+        "r": "3",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 150,
+        "y": 125,
+        "width": 660,
+        "height": 72,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 182,
+        "y": 207,
+        "width": 596,
+        "height": 72,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 214,
+        "y": 289,
+        "width": 532,
+        "height": 72,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 246,
+        "y": 371,
+        "width": 468,
+        "height": 72,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 155,
+        "x2": 480,
+        "y2": 245,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M480.00 212.00L473.25 192.63L486.75 192.63Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 245,
+        "x2": 480,
+        "y2": 335,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M480.00 302.00L473.25 282.63L486.75 282.63Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 480,
+        "y1": 335,
+        "x2": 480,
+        "y2": 425,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M480.00 392.00L473.25 372.63L486.75 372.63Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 121,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 121,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 162,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "a"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 211,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 211,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 252,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "b"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 301,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 301,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 342,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "c"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 391,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 378,
+        "y": 391,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 432,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "d"
+    }
+  ],
+  "slots": [
+    {
+      "id": "title",
+      "role": "thesis",
+      "label": {
+        "es": "Reflexión",
+        "en": "Reflection",
+        "pt": "Reflexão",
+        "fr": "Réflexion"
+      },
+      "maxChars": 66,
+      "width": 800,
+      "maxLines": 2
+    },
+    {
+      "id": "a",
+      "role": "observation",
+      "label": {
+        "es": "Observación",
+        "en": "Observation",
+        "pt": "Observação",
+        "fr": "Observation"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "b",
+      "role": "interpretation",
+      "label": {
+        "es": "Interpretación",
+        "en": "Interpretation",
+        "pt": "Interpretação",
+        "fr": "Interprétation"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "c",
+      "role": "adjustment",
+      "label": {
+        "es": "Ajuste",
+        "en": "Adjustment",
+        "pt": "Ajuste",
+        "fr": "Ajustement"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "d",
+      "role": "commitment",
+      "label": {
+        "es": "Compromiso",
+        "en": "Commitment",
+        "pt": "Compromisso",
+        "fr": "Engagement"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    }
+  ],
+  "relationships": [
+    {
+      "from": "a",
+      "to": "b"
+    },
+    {
+      "from": "b",
+      "to": "c"
+    },
+    {
+      "from": "c",
+      "to": "d"
+    }
+  ],
+  "portrait": {
+    "viewBox": [
+      0,
+      0,
+      420,
+      740
+    ],
+    "shapes": [
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 46,
+          "text-anchor": "middle",
+          "font-size": 26,
+          "font-weight": 700
+        },
+        "token": "ink",
+        "slot": "title"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M2 12c6-10 14-10 20 0-6 10-14 10-20 0z",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "circle",
+        "attrs": {
+          "cx": "12",
+          "cy": "12",
+          "r": "3",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 22,
+          "y": 161,
+          "width": 376,
+          "height": 546,
+          "rx": 18,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 28,
+          "y": 299,
+          "width": 364,
+          "height": 408,
+          "rx": 18,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 34,
+          "y": 437,
+          "width": 352,
+          "height": 270,
+          "rx": 18,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 575,
+          "width": 340,
+          "height": 132,
+          "rx": 18,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 275,
+          "x2": 210,
+          "y2": 315,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 289.0L210 301.0L220 289.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 415,
+          "x2": 210,
+          "y2": 455,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 429.0L210 441.0L220 429.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 555,
+          "x2": 210,
+          "y2": 595,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 569.0L210 581.0L220 569.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 233,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "a"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 373,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "b"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 513,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "c"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 653,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "d"
+      }
+    ],
+    "slots": [
+      {
+        "id": "title",
+        "role": "thesis",
+        "label": {
+          "es": "Reflexión",
+          "en": "Reflection",
+          "pt": "Reflexão",
+          "fr": "Réflexion"
+        },
+        "maxChars": 66,
+        "width": 370,
+        "maxLines": 3
+      },
+      {
+        "id": "a",
+        "role": "observation",
+        "label": {
+          "es": "Observación",
+          "en": "Observation",
+          "pt": "Observação",
+          "fr": "Observation"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "b",
+        "role": "interpretation",
+        "label": {
+          "es": "Interpretación",
+          "en": "Interpretation",
+          "pt": "Interpretação",
+          "fr": "Interprétation"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "c",
+        "role": "adjustment",
+        "label": {
+          "es": "Ajuste",
+          "en": "Adjustment",
+          "pt": "Ajuste",
+          "fr": "Ajustement"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "d",
+        "role": "commitment",
+        "label": {
+          "es": "Compromiso",
+          "en": "Commitment",
+          "pt": "Compromisso",
+          "fr": "Engagement"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      }
+    ],
+    "relationships": [
+      {
+        "from": "a",
+        "to": "b"
+      },
+      {
+        "from": "b",
+        "to": "c"
+      },
+      {
+        "from": "c",
+        "to": "d"
+      }
+    ],
+    "semanticEquivalence": "Same nodes, labels and directed relations; portrait reflows instead of shrinking."
+  },
+  "motion": {
+    "enabled": false,
+    "kind": "none",
+    "duration": 0,
+    "loop": false
+  },
+  "limits": {
+    "quantitativeScale": false,
+    "labelMaxChars": 32,
+    "notFor": "Gráficos estadísticos o afirmaciones científicas sin evidencia."
+  }
+}

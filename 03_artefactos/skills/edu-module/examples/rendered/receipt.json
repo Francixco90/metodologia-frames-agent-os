@@ -2,18 +2,97 @@
   "state": "RENDERED_DRAFT",
   "kind": "module",
   "edition": "white-label",
-  "inputSha256": "8db1cdc574b527a4f1b57715b5a50e933d5adea18293a51de623b6238f170cd1",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "2b5b682970caa6f34fea14081491d6e4bc5ec1005e580afe669a4723fe4934b3",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "immersive-class.html": "bf080d4cd3d2b8603e6c41b70ec5dc0b7df7faef3bed66ffd3b43025eab2d54d",
-    "masterclass.html": "626499687a5b7ad60c2a69749f03d4c6aea44938f1a232241fcaf0ed6a1820b0",
-    "workbook.html": "43e7341f309e4eef0c479089e4d58166c27d3d080186f0ddfb7949d204d9eba1",
-    "lean-coffee.html": "5b483d5df5fb2579151badafabf9bd184bd21ebd8df1981d13546c3b2541011b",
-    "playbook.html": "13fa99c2e30f48eda52a22f36efb899c8553216829f07bc9e50c2f2e17ed1b8d",
-    "playbook-immersive.html": "ff4881047dc8e4b7309b3577efc84662d00194627c828f6027c7d48e274e9fc8",
-    "index.html": "83458878cb09b6cfd38d4bd092f9f1f222aea80c997e852039e09545f27630f2",
-    "workbook.md": "23dcba58384678fe9d1d72ca345ef5661d19cd84e92effedae57ace48c062525",
+    "immersive-class.html": "90ee67dd49678bcd801518b876eb05cb448012da2682497f7f996b9927d740d7",
+    "masterclass.html": "e387ae591515771d9858be1d424d078e3272b8156ca6d6fde206d411f94a4b38",
+    "workbook.html": "34ee69c2fc01c397265ce4fa01e7abea7e208e9d792fdc31e1be655cb047eb06",
+    "lean-coffee.html": "1dfbd3d350d51bf14efe7cefdc08812f16d225bcbf637c9b22dc220de1f8d6f4",
+    "playbook.html": "1172a4a935c69082a24267ec8e5b006040dee5de009e465540e2be360c92768d",
+    "playbook-immersive.html": "7a2bba7052a384cf24e2f029b3d7d30802a813e2ce0ed23f19c8d2a2da29974a",
+    "index.html": "28c4d5f3c48d07160ad9cca1dbcd538e7e1abf425ae404296a1e73e0f0df74b5",
+    "workbook.md": "b347c7b119379b505c74d6947d901c9de79cc9e6e3d6bb47afcc8dfd5154e924",
     "manifest.json": "1b2824f3672d467c473668dc5ed89943a042bfe9dd1ec1d108d09cc3f1c809a9"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "white-label",
+    "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

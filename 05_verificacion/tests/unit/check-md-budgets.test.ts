@@ -1,5 +1,7 @@
 // Regression coverage for hash-bound per-file line caps. [CÓDIGO]
 import {describe, expect, it} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {isVerifiedAulaFont} from '../../scripts/check-md-budgets.ts';
 
 import {
   assessProgramLineCap,
@@ -68,4 +70,31 @@ describe('scoped Markdown budget exceptions', () => {
   ] as const)('denies %s drift', (_label, overrides, expected) => {
     expect(assess(overrides)).toBe(expected);
   });
+});
+
+it('allows only the two exact OFL font hashes in canonical and declared core paths', () => {
+  const root = process.cwd(),
+    path = '03_artefactos/renderers/frames-aula/assets/core/fonts/Poppins-Bold.ttf';
+  const bytes = readFileSync(path);
+  expect(isVerifiedAulaFont(root, path, bytes)).toBe(true);
+  expect(
+    isVerifiedAulaFont(
+      root,
+      '03_artefactos/skills/metodologia-edu-workbook/engine/assets/core/fonts/Poppins-Bold.ttf',
+      bytes,
+    ),
+  ).toBe(true);
+  expect(isVerifiedAulaFont(root, path, Buffer.concat([bytes, Buffer.from('altered')]))).toBe(
+    false,
+  );
+  expect(
+    isVerifiedAulaFont(
+      root,
+      '03_artefactos/skills/unrelated/engine/assets/core/fonts/Poppins-Bold.ttf',
+      bytes,
+    ),
+  ).toBe(false);
+  expect(isVerifiedAulaFont(root, path.replace('Poppins-Bold.ttf', 'other.bin'), bytes)).toBe(
+    false,
+  );
 });

@@ -2,14 +2,163 @@
   "state": "RENDERED_DRAFT",
   "kind": "immersive-class",
   "edition": "metodologia",
-  "inputSha256": "fb47776e2622ecfcf312e302d72f93a2ea3aa4d440a72c3e869726f4156d6a42",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "4c08dc557160387190252918dffc3f7103356b72e317d0dfbd3dfa1802d71cd2",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "47bd46eb5d5a2b4dcbf5e8620a442a15282d6ce550defeaa53a4fe76d8b37241",
-    "artifact-mobile.html": "aba83b247ac5f420ff37e2d7df406aa096ee7eeea93a48c85735236342d118ea",
-    "artifact-audience.html": "faa6757311bc264015118b524dac0eb821a36fc07349ffec9c6e356bc0c39778",
-    "artifact-mobile-audience.html": "a482eaa0703e5d660a359b51bd917a41f2f3d595de3c72356541116a59d01042",
-    "artifact.md": "9c61a7bad26612db74e8d535ab4f15c04e6a564e021cbb5db6446789c62b46bb"
+    "artifact.html": "5152e9084d9691cb0b883a25276e25d4ba9b5e4f6bd8601679319e306dfc6f5d",
+    "artifact-mobile.html": "ae412b26c1c3866837764a4089ea324acfa87ff9f16f5b8cad48d80214d06c1f",
+    "artifact-audience.html": "1c545dad7c26e9d89e8893b0f1e34a2829ef14bcf9788c585187f5531f0de69c",
+    "artifact-mobile-audience.html": "ffe7923e2755500ab53fb29bc6a73dab4924865e6b402d1194ff04443d958c9b",
+    "artifact.md": "f224033febd3b68834e2dba3ebc59e0f0820a358b2916e8281f274f909f025aa"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "metodologia",
+    "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/team-roles.json",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/contrast.json",
+      "sha256": "41d79572ef2a97021e32c135791eb01142ebde402a87958a56a7f4f8819a240a"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/gate.json",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/flow.json",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/evidence-observe.json",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/steps.json",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/metodologia.json",
+      "sha256": "1d4eb24002324267d8c3565e29e8f88e3fb017cfd2c9a2d33f4017b9b7e88f68"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Poppins-Bold.ttf",
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "role": "font",
+      "ref": "assets/core/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "team-roles",
+      "kind": "scene",
+      "sha256": "d7e3df1f487bcfd6a70504ffd126a2175d5e22bf9484652a9e71246b6822ca15",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "contrast",
+      "kind": "scene",
+      "sha256": "41d79572ef2a97021e32c135791eb01142ebde402a87958a56a7f4f8819a240a",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "gate",
+      "kind": "scene",
+      "sha256": "9f04e39e1a675f48ccd54ed9559c015468011d972bc0190b27e972a7330dc8f3",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "flow",
+      "kind": "scene",
+      "sha256": "18ce8df8a3315aecaca84f1d342ed61b90916f4703406a2eb09fea9f3cffbec1",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "evidence-observe",
+      "kind": "scene",
+      "sha256": "ee50798b57a7f2b06d55f4841b7fc9e78614e1ee94da55ab767a6898acfa2603",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "steps",
+      "kind": "scene",
+      "sha256": "34c09e7d286629c45f5dfa240a9e072ebdb7ac2cdd51a507a8412e3ab9c0610e",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

@@ -1,5 +1,5 @@
 # Clase inmersiva o sesión presentada
 
-Ejemplo original neutral para evaluación local. [SUPUESTO]
+Referencia de la oferta pública de MetodologIA y del programa vigente; ver fuentes y hashes en input.json.
 
-Objetivo: practicar una decisión verificable. Audiencia: participantes de una sesión. Estado: RENDERED_DRAFT.
+Estado: RENDERED_DRAFT; aprobación humana pendiente.

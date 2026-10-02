@@ -1,0 +1,20 @@
+{
+  "metodologia": {
+    "repository": "https://github.com/JaviMetodologIA/metodologia-aula-assets",
+    "tag": "v1.1.0",
+    "archive": "https://github.com/JaviMetodologIA/metodologia-aula-assets/releases/download/v1.1.0/metodologia-aula-assets-1.1.0.zip",
+    "sha256": "f44c73e965885287463204003a4ff9bf2bf7ecca4faac72dbc8f073eaaf3a64e",
+    "manifestSha256": "b15947b27f1d23eba240d8cfa3804e2fa01eb01f3dc3d7627fd3b7c039fee761",
+    "optional": true,
+    "networkRuntimeRequired": false
+  },
+  "white-label": {
+    "repository": "https://github.com/JaviMontano/white-label-aula-assets",
+    "tag": "v1.1.0",
+    "archive": "https://github.com/JaviMontano/white-label-aula-assets/releases/download/v1.1.0/white-label-aula-assets-1.1.0.zip",
+    "sha256": "fae2c43ae0d3024a8f15109fa1506c6538f4a30079172fa60ef0cfb7fcabb674",
+    "manifestSha256": "15eadbbc843b17f5756cb405755236c0360909542ef247440a2cff4ace5bd131",
+    "optional": true,
+    "networkRuntimeRequired": false
+  }
+}

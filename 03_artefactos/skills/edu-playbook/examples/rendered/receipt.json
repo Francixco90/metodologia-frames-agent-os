@@ -2,14 +2,93 @@
   "state": "RENDERED_DRAFT",
   "kind": "playbook",
   "edition": "white-label",
-  "inputSha256": "45b9030a1ab06a3532d010b7e1c9c5758c17ecd9c0ffb97449bd116b972d896d",
-  "engineSha256": "fbffbc5e64b2e60206003cd427e75f53e9e2bf21d8f453beab8dde51dab8b29f",
+  "inputSha256": "3537202fd7f51d9aa719880feb07a5d42a54b310bd1105c01f5480cb2c594e04",
+  "engineSha256": "4f0d8df05d694cd2b334805ebf9655df89f7cb12ec81adb34b4f95c9d6e7d4e6",
   "outputs": {
-    "artifact.html": "a4819c23f586b4481c40d3d6fbf0e65bc3d3b210e2c17e0c22d1266f80103481",
-    "artifact-mobile.html": "53c6873b5b7215cf5d60bb80db318efc09bf9bcbd37970a712d52a33f4fca84b",
-    "artifact-audience.html": "7711c6de90066732d4b7cf16c6192577ba19808cfab826388b44f511694093ca",
-    "artifact-mobile-audience.html": "dfe19f63af3c9615349e7700eceaa21dc82d6c79cb9cb267d66505cdb4df99ca",
-    "artifact.md": "1272eb913e803a9a32003aeeb04d18285aa9c2e84c611dabb85af05fcfc39770"
+    "artifact.html": "e98ecf0f81df42526db236d5fc28f55d20b7a96862c060bbeed87ff6b05830ff",
+    "artifact-mobile.html": "f8a1adbe49fe98ea021879d23aaae8d759afe44b2d134bff68e75d0d597f5bb3",
+    "artifact-audience.html": "7b8de1863e37f12fd5f0eff182eab239e445f276dcdcdd05054aed5432d3980c",
+    "artifact-mobile-audience.html": "ead436906f46486e8009f2044f8ec4f7aab399444f815810e99c8cf565cf7590",
+    "artifact.md": "b9091db85fb72042d011184b35afc795d6bde7182ba5c04c77ce664d9907f6bb"
   },
+  "engineVersion": "1.1.0",
+  "profile": {
+    "id": "white-label",
+    "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+  },
+  "buildDependencies": [
+    {
+      "role": "core-catalog",
+      "ref": "assets/core/catalog.json",
+      "sha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-opening.json",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-practice.json",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-demonstration.json",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-feedback.json",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53"
+    },
+    {
+      "role": "asset",
+      "ref": "assets/core/scenes/learning-transfer.json",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009"
+    },
+    {
+      "role": "profile",
+      "ref": "assets/core/profiles/white-label.json",
+      "sha256": "99cd70bd781d2718dcde76a001219814ff3fc227743fd78c5f90e7d2065400e4"
+    }
+  ],
+  "assetEvidence": [
+    {
+      "id": "learning-opening",
+      "kind": "scene",
+      "sha256": "f0f2e3675c4eb80b82926c7f1593863047bb54dc94dab85dd2739e42a44fa082",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-practice",
+      "kind": "scene",
+      "sha256": "03229385216519b5a8a26b1f3239372acacc89ed6e77c0145dc7522db90ea5f6",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-demonstration",
+      "kind": "scene",
+      "sha256": "4b8857c5ca71279a1dd91c559ba3c792025f6a21fc675eb36458c07f77e4ac0f",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-feedback",
+      "kind": "scene",
+      "sha256": "4e9654255d0775c49946189072491a09b57f746ecddcf8d014b822cd4414ee53",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    },
+    {
+      "id": "learning-transfer",
+      "kind": "scene",
+      "sha256": "3d8a6e12eb438d691b069579235243a0eb8f458484c8f89b202faa0bcf169009",
+      "source": "core",
+      "catalogSha256": "1331349f45b19ed901b86b4800bc10ba31545ac61c8424b65aa18f66fbf4d7af"
+    }
+  ],
   "advisories": []
 }

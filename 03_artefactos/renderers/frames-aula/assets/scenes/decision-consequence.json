@@ -1,0 +1,689 @@
+{
+  "schemaVersion": "frames-aula-scene-v1",
+  "id": "decision-consequence",
+  "viewBox": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "composition": "bridge",
+  "meaning": "Decisión: consequence. La disposición muestra relaciones, no magnitudes.",
+  "description": "Cuatro elementos en composición bridge, con marcador semántico decision.",
+  "shapes": [
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 480,
+        "y": 48,
+        "text-anchor": "middle",
+        "font-size": 28,
+        "font-weight": 700
+      },
+      "token": "ink",
+      "slot": "title"
+    },
+    {
+      "tag": "circle",
+      "attrs": {
+        "cx": "12",
+        "cy": "12",
+        "r": "10",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "m16 7-3 8-6 3 3-8zM12 2v2m0 16v2M2 12h2m16 0h2",
+        "transform": "translate(445 66) scale(2.8)",
+        "fill": "none",
+        "stroke-width": 1.3
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M70 390Q480 0 890 390M70 390h820",
+        "fill": "none",
+        "stroke-width": 5
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 155,
+        "y1": 280,
+        "x2": 370,
+        "y2": 205,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M273.83 238.55L257.76 251.31L253.31 238.55Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 370,
+        "y1": 205,
+        "x2": 590,
+        "y2": 350,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M490.02 284.10L470.13 279.08L477.56 267.80Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "line",
+      "attrs": {
+        "x1": 590,
+        "y1": 350,
+        "x2": 805,
+        "y2": 280,
+        "stroke-width": 3
+      },
+      "token": "muted"
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M708.91 311.28L692.58 323.71L688.40 310.86Z",
+        "stroke-width": 1
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 53,
+        "y": 246,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 53,
+        "y": 246,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 155,
+        "y": 287,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "a"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 268,
+        "y": 171,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 268,
+        "y": 171,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 370,
+        "y": 212,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "b"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 488,
+        "y": 316,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 488,
+        "y": 316,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "ink"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 590,
+        "y": 357,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "c"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 703,
+        "y": 246,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "stroke-width": 2
+      },
+      "token": "surface"
+    },
+    {
+      "tag": "rect",
+      "attrs": {
+        "x": 703,
+        "y": 246,
+        "width": 204,
+        "height": 68,
+        "rx": 12,
+        "fill": "none",
+        "stroke-width": 2
+      },
+      "token": "accent"
+    },
+    {
+      "tag": "text",
+      "attrs": {
+        "x": 805,
+        "y": 287,
+        "text-anchor": "middle",
+        "font-size": 24,
+        "font-weight": 600
+      },
+      "token": "ink",
+      "slot": "d"
+    }
+  ],
+  "slots": [
+    {
+      "id": "title",
+      "role": "thesis",
+      "label": {
+        "es": "Decisión",
+        "en": "Decision",
+        "pt": "Decisão",
+        "fr": "Décision"
+      },
+      "maxChars": 66,
+      "width": 800,
+      "maxLines": 2
+    },
+    {
+      "id": "a",
+      "role": "option",
+      "label": {
+        "es": "Opciones",
+        "en": "Options",
+        "pt": "Opções",
+        "fr": "Options"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "b",
+      "role": "criteria",
+      "label": {
+        "es": "Criterios",
+        "en": "Criteria",
+        "pt": "Critérios",
+        "fr": "Critères"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "c",
+      "role": "evidence",
+      "label": {
+        "es": "Evidencia",
+        "en": "Evidence",
+        "pt": "Evidência",
+        "fr": "Preuve"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    },
+    {
+      "id": "d",
+      "role": "decision",
+      "label": {
+        "es": "Decisión",
+        "en": "Decision",
+        "pt": "Decisão",
+        "fr": "Décision"
+      },
+      "maxChars": 32,
+      "width": 180,
+      "maxLines": 2
+    }
+  ],
+  "relationships": [
+    {
+      "from": "a",
+      "to": "b"
+    },
+    {
+      "from": "b",
+      "to": "c"
+    },
+    {
+      "from": "c",
+      "to": "d"
+    }
+  ],
+  "portrait": {
+    "viewBox": [
+      0,
+      0,
+      420,
+      740
+    ],
+    "shapes": [
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 46,
+          "text-anchor": "middle",
+          "font-size": 26,
+          "font-weight": 700
+        },
+        "token": "ink",
+        "slot": "title"
+      },
+      {
+        "tag": "circle",
+        "attrs": {
+          "cx": "12",
+          "cy": "12",
+          "r": "10",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "m16 7-3 8-6 3 3-8zM12 2v2m0 16v2M2 12h2m16 0h2",
+          "transform": "translate(187 104) scale(1.9)",
+          "fill": "none",
+          "stroke-width": 1.3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 275,
+          "x2": 210,
+          "y2": 315,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 289.0L210 301.0L220 289.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 415,
+          "x2": 210,
+          "y2": 455,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 429.0L210 441.0L220 429.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "line",
+        "attrs": {
+          "x1": 210,
+          "y1": 555,
+          "x2": 210,
+          "y2": 595,
+          "stroke-width": 3
+        },
+        "token": "muted"
+      },
+      {
+        "tag": "path",
+        "attrs": {
+          "d": "M200 569.0L210 581.0L220 569.0",
+          "fill": "none",
+          "stroke-width": 3
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 175,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 233,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "a"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 315,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 373,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "b"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 455,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "ink"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 513,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "c"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "stroke-width": 2
+        },
+        "token": "surface"
+      },
+      {
+        "tag": "rect",
+        "attrs": {
+          "x": 40,
+          "y": 595,
+          "width": 340,
+          "height": 100,
+          "rx": 16,
+          "fill": "none",
+          "stroke-width": 2
+        },
+        "token": "accent"
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "x": 210,
+          "y": 653,
+          "text-anchor": "middle",
+          "font-size": 24,
+          "font-weight": 600
+        },
+        "token": "ink",
+        "slot": "d"
+      }
+    ],
+    "slots": [
+      {
+        "id": "title",
+        "role": "thesis",
+        "label": {
+          "es": "Decisión",
+          "en": "Decision",
+          "pt": "Decisão",
+          "fr": "Décision"
+        },
+        "maxChars": 66,
+        "width": 370,
+        "maxLines": 3
+      },
+      {
+        "id": "a",
+        "role": "option",
+        "label": {
+          "es": "Opciones",
+          "en": "Options",
+          "pt": "Opções",
+          "fr": "Options"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "b",
+        "role": "criteria",
+        "label": {
+          "es": "Criterios",
+          "en": "Criteria",
+          "pt": "Critérios",
+          "fr": "Critères"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "c",
+        "role": "evidence",
+        "label": {
+          "es": "Evidencia",
+          "en": "Evidence",
+          "pt": "Evidência",
+          "fr": "Preuve"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      },
+      {
+        "id": "d",
+        "role": "decision",
+        "label": {
+          "es": "Decisión",
+          "en": "Decision",
+          "pt": "Decisão",
+          "fr": "Décision"
+        },
+        "maxChars": 32,
+        "width": 310,
+        "maxLines": 2
+      }
+    ],
+    "relationships": [
+      {
+        "from": "a",
+        "to": "b"
+      },
+      {
+        "from": "b",
+        "to": "c"
+      },
+      {
+        "from": "c",
+        "to": "d"
+      }
+    ],
+    "semanticEquivalence": "Same nodes, labels and directed relations; portrait reflows instead of shrinking."
+  },
+  "motion": {
+    "enabled": false,
+    "kind": "none",
+    "duration": 0,
+    "loop": false
+  },
+  "limits": {
+    "quantitativeScale": false,
+    "labelMaxChars": 32,
+    "notFor": "Gráficos estadísticos o afirmaciones científicas sin evidencia."
+  }
+}

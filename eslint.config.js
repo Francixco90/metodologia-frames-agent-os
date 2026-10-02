@@ -44,6 +44,8 @@ export default tseslint.config(
       globals: Object.fromEntries(
         [
           'document',
+          'window',
+          'DOMParser',
           'navigator',
           'localStorage',
           'location',

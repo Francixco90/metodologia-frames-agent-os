@@ -11,20 +11,24 @@
  *   - check-projects.ts validates the v2 render receipt + the migration receipt
  *     via appendOnlyEvidenceMigrationSchema; the v1 render receipt is unchecked.
  *
- * This script enforces four ADR 008 invariants across ALL 40 on-disk receipts:
+ * This script enforces five ADR 008 invariants across on-disk receipts:
  *   1. Parses as valid YAML or JSON.
- *   2. Declares a schema_version / schemaVersion (non-empty string or integer).
- *   3. Carries a portable ID (receipt_id | receiptId | migrationId).
+ *   2. Declares a schema_version / schemaVersion (non-empty string or integer),
+ *      or supplies the validated native Aula review contract version.
+ *   3. Carries a portable ID (receipt_id | receiptId | migrationId), or the
+ *      validated native Aula review filename supplies that identity.
  *   4. Any *sha256 / *Sha256 field, when a non-empty string, is 64-hex.
  *   5. append_only / appendOnly, when DECLARED, is true. Renders and migrations
  *      omit the field (append-only is a family convention there, enforced by
  *      the migration receipt's supersessions[] structure), so the lint only
  *      fails when the field is present and not true.
  */
-import {existsSync, readdirSync, readFileSync} from 'node:fs';
+import {existsSync, lstatSync, readdirSync, readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {parse} from 'yaml';
+import {validateAulaPromotionReviewV1} from '../../02_proceso/workflows/multimedia/_schema/aula-promotion-review-v1.ts';
 
 const FAMILY_DIRS = [
   'imports',
@@ -113,12 +117,45 @@ export const validateReceipts = (root = process.cwd()): string[] => {
       }
       count++;
 
-      const portableId = findPortableId(data);
+      let portableId = findPortableId(data);
+      let schemaVersion = findSchemaVersion(data);
+      const aulaReview =
+        family === 'check-runs' ? /^aula-review-([0-9]{8})-([0-9]{3})\.json$/u.exec(file) : null;
+      if (aulaReview) {
+        try {
+          const evaluationId = `aula-evaluation-${aulaReview[1]}-${aulaReview[2]}`;
+          const evaluationPath = resolve(root, 'receipts', family, `${evaluationId}.json`);
+          const stat = lstatSync(evaluationPath);
+          if (!stat.isFile() || stat.isSymbolicLink()) throw new Error('evaluación no regular');
+          const evaluationBytes = readFileSync(evaluationPath);
+          const evaluation = JSON.parse(evaluationBytes.toString('utf8')) as unknown;
+          if (
+            !isPlainObject(evaluation) ||
+            evaluation.schemaVersion !== 'frames-aula-evaluation-v1' ||
+            evaluation.receiptId !== evaluationId ||
+            evaluation.appendOnly !== true
+          )
+            throw new Error('identidad/contrato de evaluación incompatible');
+          validateAulaPromotionReviewV1(data, {
+            status: evaluation.status,
+            actorId: evaluation.actorId,
+            sha256: createHash('sha256').update(evaluationBytes).digest('hex'),
+          });
+          // Native reviews deliberately have exactly four fields. Their portable
+          // identity/version follow this governed filename and strict contract;
+          // existing append-only bytes remain intact and all other lint still runs.
+          portableId = file.slice(0, -5);
+          schemaVersion = 'frames-aula-promotion-review-v1';
+        } catch (error) {
+          errors.push(
+            `${rel}: revisión Aula nativa inválida: ${error instanceof Error ? error.message : String(error)}`,
+          );
+        }
+      }
       if (portableId === undefined || portableId === null || portableId === '') {
         errors.push(`${rel}: sin portable id (receipt_id|receiptId|migrationId)`);
       }
 
-      const schemaVersion = findSchemaVersion(data);
       if (schemaVersion === undefined || schemaVersion === null || schemaVersion === '') {
         errors.push(`${rel}: sin schema_version|schemaVersion`);
       } else if (typeof schemaVersion === 'string') {

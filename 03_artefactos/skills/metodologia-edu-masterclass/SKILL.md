@@ -1,7 +1,7 @@
 ---
 name: metodologia-edu-masterclass
 description: This skill should be used when el usuario solicita masterclass o fundamentos para lectura autónoma. Genera HTML dinámico offline con evidencia y revisión humana.
-version: 1.0.3
+version: 1.1.0
 license: MIT
 metadata:
   owner: MetodologIA
@@ -18,7 +18,7 @@ La explicación debe entenderse sin presentador. Articula problema, modelo, ejem
 
 1. Recibe lenguaje normal, esquema o anexos. Conserva un brief Markdown canónico con audiencia, objetivo, fuentes, restricciones y aceptación; máximo tres preguntas bloqueantes.
 2. Separa hechos, hipótesis y recomendaciones. Usa [METODOLOGIA], [PEDAGOGIA], [NEUROCIENCIA], [INFERENCIA] o [SUPUESTO] cuando corresponda; una etiqueta no sustituye evidencia. No inventes cifras ni afirmaciones científicas.
-3. Prepara `input.json` con el contrato de [schema.md](references/schema.md). Idiomas explícitos y contenido completo; no traduzcas silenciosamente con fallback. Conserva el contenido al cambiar idioma.
+3. Revisa [el golden de este formato](examples/input.json) y prepara `input.json` con [schema.md](references/schema.md). Idiomas explícitos y contenido completo. Para autoría nueva usa `authoringPolicy.origin=new`: comercial hasta 8 slides, académico hasta 13, portada y tapa incluidas. Otra extensión requiere `maxSlides` y `explicitBrief`. No recortes entradas históricas ni ejercicios.
 4. Muestra el argumento y los títulos para revisión cuando el brief no los haya autorizado. La edición es `metodologia`; sus fuentes y claims no se mezclan con otras marcas.
 5. Ejecuta desde la carpeta de la skill, escribiendo en un directorio nuevo fuera del paquete:
 
@@ -35,6 +35,7 @@ python3 engine/runtime.py build --kind masterclass --edition metodologia --input
 
 Usa exclusivamente los tokens locales autorizados de MetodologIA. No admite override de identidad.
 Cada paquete contiene su propio motor generado desde la fuente canónica. Python stdlib; sin servicios externos, assets remotos ni otros skills obligatorios. El banco público de assets es opcional y solo admite releases verificadas por checksum. [METODOLOGIA]
+Incluye 32 iconos y 16 escenas locales, fuentes con avisos propios y un golden ejecutable. Consulta el catálogo local antes de elegir una escena: una referencia ausente bloquea. El banco opcional amplía a 256 iconos y 160 escenas; el HTML final embebe las piezas seleccionadas y no consulta la red. Código y arte propios MIT; fuentes OFL. [METODOLOGIA]
 
 ## Compatibilidad y límites
 

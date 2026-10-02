@@ -1,3 +1,3 @@
 # Banco opcional
 
-El renderer funciona sin banco. Descarga la release v1.0.0 indicada en assets/bank.json; verifica el SHA256 fijado con `python3 engine/bank.py verify ARCHIVO.zip --sha256 HASH`. `install` exige --dest nuevo y jamás escribe en el paquete. El banco aporta SVG, estilos y briefs originales; no acredita la verdad de contenido ni publica piezas. [METODOLOGIA]
+El núcleo funciona sin red. assets/bank.json fija la release v1.1.0 y su hash. `python3 engine/bank.py verify ARCHIVO.zip --sha256 HASH` verifica; `install ARCHIVO.zip --sha256 HASH --dest NUEVO` instala sin modificar el paquete. `sync` obtiene solo la URL y hash fijados con caché confinada; consulta --help. Después añade --bank DIRECTORIO a check/plan/build. Los assets utilizados se embeben; referencias ausentes o alteradas bloquean. La galería y sus capturas se distribuyen aparte del ZIP runtime. MIT para arte propio; fuentes OFL con avisos. [METODOLOGIA]
